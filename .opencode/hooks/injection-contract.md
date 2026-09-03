@@ -83,13 +83,13 @@ B) Create a new spec folder
 - **Owning module:** `system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent`).
 - **Channel per runtime:** Claude/Cursor/Devin/Codex `[SYS]` (`spec-gate-classify.mjs` -> `additionalContext`). OpenCode `[SYS]` (`system-spec-gate.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`spec-gate-classify.ts` appends the question onto the visible prompt via the same `input`-transform mechanism as the advisor brief, and the two chain additively, so both appear in the same visibly-modified prompt).
 
-### Spec Memory / Goal / Dist-Freshness Context (OpenCode only)
+### Goal / Dist-Freshness Context (OpenCode only)
 
-**Injects:** a deduplicated continuity brief, active-goal guidance, or a stale-dist warning, each bounded and each appended independently.
+**Injects:** active-goal guidance or a stale-dist warning, each bounded and each appended independently.
 
-- **Trigger:** `session.created` (continuity/goal) or before a risky Bash command (dist-freshness).
-- **Owning modules:** `system-spec-memory.js`, `opencode-goal.js`, `system-dist-freshness-guard.js` (see their own entries in [`../plugins/README.md`](../plugins/README.md) §5).
-- **Channel:** `[SYS]` only. All three use `experimental.chat.system.transform`, never `chat.message`'s mutable `parts`, so none of this is rendered as a visible chat bubble in OpenCode today (see §5 below for what would make it visible).
+- **Trigger:** `session.created` (goal) or before a risky Bash command (dist-freshness).
+- **Owning modules:** `opencode-goal.js`, `system-dist-freshness-guard.js` (see their own entries in [`../plugins/README.md`](../plugins/README.md) §5).
+- **Channel:** `[SYS]` only. Both use `experimental.chat.system.transform`, never `chat.message`'s mutable `parts`, so none of this is rendered as a visible chat bubble in OpenCode today (see §5 below for what would make it visible).
 
 ### Cross-Runtime Active-Goal Brief (Cursor / Pi)
 
@@ -191,7 +191,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ### Session Start Context
 
-**Injects:** a startup or resume brief: a session-context surface on cold start (constitutional-memory reminders are no longer injected — that layer was removed), or a cached compaction/resume payload.
+**Injects:** a startup or resume brief: a session-context surface on cold start, or a cached compaction/resume payload.
 
 - **Trigger:** `session_start` (Pi) / `SessionStart` (Claude/Cursor/Devin/Codex).
 - **Owning module:** `system-spec-kit/mcp-server/hooks/claude/session-prime.ts`. Emits **plain text**, not a JSON envelope. Every proxy that wraps it (`emitDevinContext`, Pi's `session-start-context.ts`) constructs the envelope on the way out. `session-prime.js` itself does not.
@@ -211,7 +211,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ### Post-Compaction Recovery (Devin/Pi)
 
-**Injects:** a composed recovery block: retained summary, active spec-folder pointer, and a bounded `memory_context(mode=resume)` fallback when no summary exists.
+**Injects:** a composed recovery block: retained summary and active spec-folder pointer.
 
 - **Trigger:** `PostCompaction` (Devin) / `session_compact` (Pi). Devin's `PostCompaction` fires *after* compaction with only `session_id` and a possibly-null summary, a materially different contract from Claude's `PreCompact`-then-cached-`SessionStart` chain, per `post-compaction.cjs`'s own header comment.
 - **Owning module:** `system-spec-kit/mcp-server/hooks/devin/post-compaction.cjs`. Pi's `session-compact-context.ts` is a native port of the same recovery chain, not a proxy.

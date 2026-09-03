@@ -35,7 +35,7 @@ Both faces are bounded and fail-open: subprocesses wait at most eight seconds (p
 3. With a session PID that is not alive → skip. Otherwise walks the descendant tree (`pgrep -P`) and, for each descendant whose command matches a known MCP helper target, **re-proves ancestry at kill time** by walking the live ppid chain upward (max 15 hops, stopping at `0`/`1` = launchd/init). Ancestry not confirmed → `skip-kill`. Confirmed → `kill -15` (TERM).
 4. Logs every action to `~/.local/share/session-cleanup.log` (10 MB, rotated through `.1`/`.2`/`.3`).
 
-The matched MCP helper targets are: `system-spec-memory-launcher.cjs`, `system-skill-advisor-launcher.cjs`, `system-spec-kit/mcp-server/dist/context-server.js`, `system-skill-advisor/mcp-server/dist/*advisor-server.js`, `mcp-code-mode/mcp-server/dist/index.js`, `@modelcontextprotocol/server-sequential-thinking`, `server-sequential-thinking`, and `clickup-mcp-server`.
+The matched MCP helper targets are: `system-skill-advisor-launcher.cjs`, `system-skill-advisor/mcp-server/dist/*advisor-server.js`, `mcp-code-mode-launcher.cjs`, `mcp-code-mode/mcp-server/dist/index.js`, `@modelcontextprotocol/server-sequential-thinking`, `server-sequential-thinking`, and `clickup-mcp-server`.
 
 ### OpenCode plugin (startup guards + teardown)
 

@@ -30,10 +30,6 @@ count_launcher() {
   ps -eo command | grep -E "^node .*${pattern}" | grep -v grep | wc -l | tr -d '[:space:]'
 }
 
-count_child_context_server() {
-  ps -eo command | grep -E "node.*context-server\.js" | grep -v grep | wc -l | tr -d '[:space:]'
-}
-
 list_launcher_pids() {
   local pattern="$1"
   ps -eo pid,etime,command | grep -E "^[[:space:]]*[0-9]+.*node .*${pattern}" | grep -v grep
@@ -41,8 +37,6 @@ list_launcher_pids() {
 
 SKILL_ADVISOR_COUNT=$(count_launcher "system-skill-advisor-launcher")
 CODE_INDEX_COUNT=$(count_launcher "system-code-index-launcher")
-SPEC_MEMORY_COUNT=$(count_launcher "system-spec-memory-launcher")
-CONTEXT_SERVER_COUNT=$(count_child_context_server)
 
 EXIT=0
 
@@ -53,8 +47,6 @@ printf "\n"
 printf "Launcher process counts (target: ≤ 1 each):\n"
 printf "  system-skill-advisor-launcher: %s\n" "$SKILL_ADVISOR_COUNT"
 printf "  system-code-index-launcher:    %s\n" "$CODE_INDEX_COUNT"
-printf "  system-spec-memory-launcher:   %s\n" "$SPEC_MEMORY_COUNT"
-printf "  context-server.js (child): %s\n" "$CONTEXT_SERVER_COUNT"
 printf "\n"
 
 # Verify each launcher count is at most 1.
@@ -64,15 +56,6 @@ if [ "$SKILL_ADVISOR_COUNT" -gt 1 ]; then
 fi
 if [ "$CODE_INDEX_COUNT" -gt 1 ]; then
   printf "FAIL: system-code-index-launcher has %s instances (expected ≤ 1)\n" "$CODE_INDEX_COUNT" >&2
-  EXIT=1
-fi
-if [ "$SPEC_MEMORY_COUNT" -gt 1 ]; then
-  printf "FAIL: system-spec-memory-launcher has %s instances (expected ≤ 1)\n" "$SPEC_MEMORY_COUNT" >&2
-  EXIT=1
-fi
-# context-server.js is the spec-memory child; should match spec-memory launcher count.
-if [ "$CONTEXT_SERVER_COUNT" -gt 1 ]; then
-  printf "FAIL: context-server.js has %s instances (expected ≤ 1)\n" "$CONTEXT_SERVER_COUNT" >&2
   EXIT=1
 fi
 
@@ -92,8 +75,6 @@ if [ "$VERBOSE" -eq 1 ]; then
   list_launcher_pids "system-skill-advisor-launcher" || true
   printf "\n-- system-code-index-launcher --\n"
   list_launcher_pids "system-code-index-launcher" || true
-  printf "\n-- system-spec-memory-launcher --\n"
-  list_launcher_pids "system-spec-memory-launcher" || true
 fi
 
 printf "\n"

@@ -42,7 +42,6 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 | `system-dist-freshness-guard.test.cjs` | `system-dist-freshness-guard.js` | Freshness detection and terminal-output guarantees. |
 | `system-skill-advisor.test.cjs` | `system-skill-advisor.js` | Advisor caching, lifecycle, and bridge behavior; bridge imported via `pathToFileURL`. |
 | `system-spec-gate.test.cjs` | `system-spec-gate.js` | Mutation-gate kill-switch ordering (disabled checked before `output` read), hook behavior when enabled. |
-| `system-spec-memory.test.cjs` | `system-spec-memory.js` | Memory bridge, cache, and hook-boundary behavior; bridge imported via `pathToFileURL`. |
 | `system-speckit-completion.test.cjs` | `system-speckit-completion.js` | Completion-tool kill-switch behavior. |
 | `helpers/` | — | Shared fixture utilities (see `helpers/README.md`). |
 
@@ -70,7 +69,6 @@ tests/
 +-- system-dist-freshness-guard.test.cjs
 +-- system-skill-advisor.test.cjs
 +-- system-spec-gate.test.cjs
-+-- system-spec-memory.test.cjs
 +-- system-speckit-completion.test.cjs
 `-- helpers/
     +-- README.md
@@ -85,7 +83,6 @@ tests/
 |---|---|
 | `system-spec-gate.test.cjs` | Pins the kill-switch ordering contract: `SYSTEM_SPEC_GATE_DISABLED=1` must be checked before `experimental.chat.system.transform` reads or mutates `output` at all. Also pins normal hook behavior (normalize + inject) when enabled. |
 | `system-skill-advisor.test.cjs` | Pins advisor caching, lifecycle, and bridge behavior. Imports the bridge via `pathToFileURL(BRIDGE_PATH)` and exercises the TTL+LRU cache, in-flight dedup, and fail-open paths. |
-| `system-spec-memory.test.cjs` | Pins memory bridge, cache, and hook-boundary behavior. Same bridge-via-`pathToFileURL` pattern. |
 | `opencode-goal-*.test.cjs` (7 files) | The goal plugin's split test surface: capabilities, continuation, export contract, lifecycle, state, supervisor, tool-path. Uses `helpers/continuation-log.cjs` for continuation-log fixtures. |
 | `sk-code-post-edit-quality.test.cjs` | Pins the `tool.execute.before`/`after` callID-to-filePath correlation and the post-edit router drain on the next transform. |
 | `sk-communication-projection.test.cjs` | Pins the projection gate matrix, snapshot-backed byte-exact restore, and fail-open boundary. |

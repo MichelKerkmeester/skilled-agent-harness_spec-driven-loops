@@ -40,7 +40,6 @@ assert.strictEqual(payload.scanRequired, false);
 // ─────────────────────────────────────────────────────────────────────────────
 
 const expected = new Map([
-  ['spec-memory', 41],
   ['skill-advisor', 9],
 ]);
 
@@ -56,16 +55,7 @@ for (const row of payload.results) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 (async () => {
-  const memoryBridge = await import('../skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs');
   const advisorBridge = await import('../skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs');
-
-  for (const classify of [memoryBridge.classifyCliFailure]) {
-    const stale = classify(69, 'dist entrypoint is stale. Run a build.', false);
-    assert.strictEqual(stale.error, 'dist_stale_rebuild_required');
-    assert.strictEqual(stale.metadata.staleDist, true);
-    assert.strictEqual(stale.metadata.rebuildRequired, true);
-    assert.strictEqual(stale.retryable, false);
-  }
 
   const advisorStale = advisorBridge.classifyCliStaleDist(69, 'skill-advisor dist entrypoint is stale. Run a build.');
   assert.strictEqual(advisorStale.state, 'dist_stale_rebuild_required');

@@ -127,7 +127,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
     });
   });
 
-  it('defaults the child MEMORY_DB_PATH to the advisor own database, not system-spec-memory context-index.sqlite', () => {
+  it('defaults the child MEMORY_DB_PATH to the advisor own database, not a foreign context-index.sqlite', () => {
     configureTempLauncher();
     const childEnv = launcher.createChildEnv({ PATH: '/bin' });
 
@@ -151,7 +151,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
   it('009-REQ-004/005: ignores an ambient MEMORY_DB_PATH that was not set via the dedicated override var', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
-    // Mimics system-spec-memory's own established use of this exact env var name —
+    // MEMORY_DB_PATH is a generic name any other service may already export —
     // a legacy shell/script exporting it must not silently reopen the
     // cross-server DB-path leak the advisor default protects against.
     const ambientMemoryDbPath = '/tmp/some-other-service/context-index.sqlite';

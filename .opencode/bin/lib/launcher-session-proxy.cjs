@@ -42,32 +42,10 @@ const PROTOCOL_MISMATCH_ERROR = Object.freeze({
   message: 'backend protocol version changed; client reconnect required',
   data: { retryable: false },
 });
-const REPLAYABLE_TOOL_NAMES = new Set([
-  'memory_search',
-  'memory_context',
-  'memory_match_triggers',
-  'memory_quick_search',
-  'memory_save',
-  'session_bootstrap',
-  'session_health',
-  'session_resume',
-  'session_status',
-  'memory_stats',
-  'memory_status',
-  'checkpoint_list',
-  'embedder_health',
-]);
-const UNSAFE_TOOL_NAMES = new Set([
-  'memory_delete',
-  'memory_bulk_delete',
-  'memory_update',
-  'checkpoint_restore',
-  'checkpoint_delete',
-  'embedder_set',
-  'memory_retention_sweep',
-  'memory_ingest_start',
-  'memory_ingest_cancel',
-]);
+// No tool set is server-agnostic, so the proxy owns none. A caller that supplies
+// neither set replays protocol methods only and never a tools/call, which is the
+// fail-safe default: an unrecognized tool is treated as unsafe to repeat.
+const NO_TOOL_NAMES = new Set();
 const REPLAYABLE_PROTOCOL_METHODS = new Set([
   'initialize',
   'ping',
@@ -138,11 +116,11 @@ function isResponseFrame(parsed) {
 
 // Build a frame classifier for a given replayable/unsafe tool set. The protocol-method rules
 // (initialize/ping/notifications) and the parse/unsafe/replayable order are identical across MCP
-// servers; only the tools/call replayability set differs per server (memory tools vs code-graph
-// tools). Each launcher passes its own sets so the reattach/replay machinery stays one implementation.
+// servers; only the tools/call replayability set differs per server. Each launcher passes its own
+// sets so the reattach/replay machinery stays one implementation.
 function createClassifyFrame(options = {}) {
-  const replayable = options.replayableToolNames instanceof Set ? options.replayableToolNames : REPLAYABLE_TOOL_NAMES;
-  const unsafe = options.unsafeToolNames instanceof Set ? options.unsafeToolNames : UNSAFE_TOOL_NAMES;
+  const replayable = options.replayableToolNames instanceof Set ? options.replayableToolNames : NO_TOOL_NAMES;
+  const unsafe = options.unsafeToolNames instanceof Set ? options.unsafeToolNames : NO_TOOL_NAMES;
   return function classify(frame) {
     const parsed = typeof frame === 'string' ? parseFrame(frame) : frame;
     if (!parsed || typeof parsed.method !== 'string') return false;
@@ -159,14 +137,9 @@ function createClassifyFrame(options = {}) {
   };
 }
 
-// Default classifier uses the system-spec-memory tool sets. memory_save is replayable on a
-// commit-then-die backend because its primary row is protected by content-hash dedup AND the v28
-// active-row partial unique index (idx_memory_logical_key_active_unique): an identical-content replay
-// collapses to the same logical key and writes no new primary row. The KNOWN GAP is the secondary
-// index — a commit-then-die that finished the primary insert but not the secondary-index write can,
-// on replay, append duplicate secondary-index rows because that path is not yet keyed by an
-// idempotency token. Closing it requires a request-id/dedup key threaded into the save handler, which
-// lives behind the daemon IPC and is out of scope for this proxy-layer frame classifier.
+// The fallback used wherever a caller passes no classifier: protocol methods replay, tools/call
+// never does. A launcher that wants its reads replayed across a recycle must declare its own
+// replayable set, because only the owning server knows which of its tools are idempotent.
 const classifyFrame = createClassifyFrame();
 
 // ─────────────────────────────────────────────────────────────────────────────

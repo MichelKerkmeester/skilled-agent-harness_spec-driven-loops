@@ -351,7 +351,7 @@ Effect of the call:
 - `hasActiveEmbedderPointer(db)` returns `true`, so both read path (`semantic-shadow.ts`, `loadSkillEmbeddings()`) and write path (`refreshSkillEmbeddingsViaAdapter`) target `vec_<active.dim>`
 - The shared cascade is skipped on subsequent restarts (a manual override pins the pointer)
 
-There are intentionally no `embedder_set` / `embedder_status` MCP tools here. Skill-advisor's surface is one database helper plus the cascade-driven sentinel. Operator discipline owns any manual swap workflow; there is no async re-index orchestrator on the skill-advisor side.
+There are intentionally no embedder-administration MCP tools here. Skill-advisor's surface is one database helper plus the cascade-driven sentinel. Operator discipline owns any manual swap workflow; there is no async re-index orchestrator on the skill-advisor side.
 
 ### 12.4 Operator-safe swap runbook
 

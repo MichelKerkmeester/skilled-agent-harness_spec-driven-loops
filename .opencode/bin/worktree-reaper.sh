@@ -2,25 +2,22 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: Worktree Reaper
 # ───────────────────────────────────────────────────────────────
-# Prune finished per-session AI worktrees, report orphan daemons.
+# Prune finished per-session AI worktrees and their leftover session state.
 #
-# Companion to worktree-session.sh. Keeps .worktrees/ and the MCP daemon population
-# bounded without ever touching a sibling's LIVE worktree.
+# Companion to worktree-session.sh. Keeps .worktrees/ bounded without ever touching a
+# sibling's LIVE worktree.
 #
 # Default (safe) behavior:
 #   - `git worktree prune` (clears stale administrative entries for already-deleted dirs).
 #   - Remove each .worktrees/* whose branch is fully merged into main AND whose working
 #     tree is clean (no uncommitted changes). A dirty or unmerged worktree is left alone.
-#   - REPORT (does not kill) MCP daemons whose recorded lease points at a .worktrees/ dir
-#     that no longer exists.
+#   - Prune per-session socket dirs and session markers whose worktree is gone.
 #
 # Flags:
-#   --dry-run        Print what would be pruned/reported; change nothing.
-#   --reap-daemons   Also SIGTERM (then SIGKILL) daemons whose worktree DB dir is gone.
-#                    Off by default — daemon killing is opt-in to protect live sessions.
+#   --dry-run        Print what would be pruned; change nothing.
 #
 # Safety: only operates on worktrees under <repo>/.worktrees/. Never removes the main
-# checkout. Never kills a daemon whose worktree still exists.
+# checkout. Never signals a process.
 
 set -euo pipefail
 
@@ -29,11 +26,9 @@ set -euo pipefail
 # ───────────────────────────────────────────────────────────────
 
 DRY_RUN=0
-REAP_DAEMONS=0
 for arg in "$@"; do
   case "$arg" in
     --dry-run) DRY_RUN=1 ;;
-    --reap-daemons) REAP_DAEMONS=1 ;;
     *) echo "unknown flag: $arg" >&2; exit 2 ;;
   esac
 done
@@ -113,50 +108,6 @@ _wrapper_branch_matches_dir() {
   return 1
 }
 
-# Extract the worktree path a daemon cmdline points at, but only when it sits
-# directly under the resolved worktree base (WT_BASE). Anchors on WT_BASE by
-# CANONICALIZING each path token's ancestors and comparing to WT_BASE, so it
-# follows a relocated base and is immune to /var vs /private/var symlink skew
-# (the base dir itself resolves the same either way).
-_daemon_worktree_path_from_cmdline() {
-  local cmdline="$1" tok cur parent canon_parent name worktree_path
-  for tok in $cmdline; do
-    case "$tok" in /*) ;; *) continue ;; esac
-    cur="$tok"
-    while :; do
-      parent="${cur%/*}"
-      [ -n "$parent" ] && [ "$parent" != "$cur" ] || break
-      if [ -d "$parent" ]; then
-        canon_parent="$(cd "$parent" 2>/dev/null && pwd -P)" || canon_parent="$parent"
-      else
-        canon_parent="$parent"
-      fi
-      if [ "$canon_parent" = "$WT_BASE" ]; then
-        name="${cur##*/}"
-        case "$name" in ''|.|..) break ;; esac
-        worktree_path="$WT_BASE/$name"
-        if [ -d "$worktree_path" ]; then
-          ( cd "$worktree_path" 2>/dev/null && pwd -P )
-        else
-          printf '%s\n' "$worktree_path"
-        fi
-        return 0
-      fi
-      cur="$parent"
-    done
-  done
-  return 1
-}
-
-_daemon_cmdline_is_orphan() {
-  local cmdline="$1" worktree_path
-  if ! worktree_path="$(_daemon_worktree_path_from_cmdline "$cmdline")"; then
-    return 1
-  fi
-  [ -e "$worktree_path" ] || [ -L "$worktree_path" ] || return 0
-  return 1
-}
-
 # ───────────────────────────────────────────────────────────────
 # 4. WORKTREE PRUNING
 # ───────────────────────────────────────────────────────────────
@@ -215,59 +166,7 @@ else
 fi
 
 # ───────────────────────────────────────────────────────────────
-# 5. ORPHAN DAEMON REPORTING
-# ───────────────────────────────────────────────────────────────
-
-# --- orphan daemon reporting (kill only with --reap-daemons) ---------------
-# A worktree daemon writes its lease under <worktree-db-dir>/.system-spec-memory-launcher.json.
-# If that lease names a live childPid but the worktree DB dir is gone, it is orphaned.
-log "scanning for orphan worktree daemons"
-ORPHANS=0
-# Look at lease files that ever lived under .worktrees/. After worktree removal the file
-# is gone, so we instead detect live daemon PIDs whose cwd/db-dir no longer resolves.
-# Conservative heuristic: list node daemons referencing a .worktrees/ path that is absent.
-while IFS= read -r pid; do
-  [ -z "$pid" ] && continue
-  # Resolve the process command line; match worktree DB dir references.
-  cmdline="$(ps -o command= -p "$pid" 2>/dev/null || true)"
-  [ -z "$cmdline" ] && continue
-  case "$cmdline" in
-    *node*context-server.js*) ;;
-    *) continue ;;
-  esac
-  if ! _daemon_cmdline_is_orphan "$cmdline"; then
-    log "skip live or unproven daemon pid=$pid"
-    continue
-  fi
-  if [ "$REAP_DAEMONS" = "1" ]; then
-    current_cmdline="$(ps -o command= -p "$pid" 2>/dev/null || true)"
-    if [ -z "$current_cmdline" ] || [ "$current_cmdline" != "$cmdline" ]; then
-      log "skip changed daemon pid=$pid"
-      continue
-    fi
-    case "$current_cmdline" in
-      *node*context-server.js*) ;;
-      *)
-        log "skip changed daemon pid=$pid"
-        continue
-        ;;
-    esac
-    if ! _daemon_cmdline_is_orphan "$current_cmdline"; then
-      log "skip live daemon pid=$pid"
-      continue
-    fi
-  fi
-  ORPHANS=$((ORPHANS+1))
-  if [ "$REAP_DAEMONS" = "1" ]; then
-    log "reaping orphan daemon pid=$pid"
-    act kill -TERM "$pid"
-  else
-    log "orphan daemon (report only; use --reap-daemons to kill) pid=$pid :: $cmdline"
-  fi
-done < <(pgrep -f 'context-server\.js' 2>/dev/null || true)
-
-# ───────────────────────────────────────────────────────────────
-# 6. SOCKET DIRECTORY CLEANUP
+# 5. SOCKET DIRECTORY CLEANUP
 # ───────────────────────────────────────────────────────────────
 
 # Prune short per-session socket dirs (~/.spk-wt-sock/<runtime>-<slug>) whose worktree is gone.
@@ -292,4 +191,4 @@ if [ -d "$MARKERS_DIR" ]; then
   done
 fi
 
-log "done (orphan daemon candidates: $ORPHANS; reap-daemons=$REAP_DAEMONS)"
+log "done"

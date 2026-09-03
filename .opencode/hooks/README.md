@@ -49,7 +49,6 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `mcp-route-guard` | `MCP_ROUTE_GUARD_DISABLED` | none | enabled | warn / audit | wired |
 | `goal` | `OPENCODE_GOAL_DISABLED` | `OPENCODE_GOAL_PLUGIN_DISABLED` | enabled | inject / tool | wired |
 | `git-preflight` | `SK_GIT_PREFLIGHT_DISABLED` | none | enabled | warn | wired |
-| `spec-memory` | `SYSTEM_SPEC_MEMORY_DISABLED` | `SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED`, `SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED` | enabled | inject | wired |
 | `session-lifecycle` | `SYSTEM_SESSION_LIFECYCLE_DISABLED` | none | enabled | inject / teardown | wired |
 | `git-worktree-guard` | `SYSTEM_GIT_WORKTREE_GUARD_DISABLED` | `SYSTEM_WORKTREE_GUARD_DISABLED`, `SPECKIT_WORKTREE_GUARD=off` (caller-side) | enabled | warn | wired |
 | `git-hooks-check` | `SYSTEM_GIT_HOOKS_CHECK_DISABLED` | `SPECKIT_GIT_HOOKS_GUARD=off` (caller-side) | enabled | warn | wired |
@@ -140,7 +139,7 @@ hooks/
     `-- opencode/ opencode-goal.js (browsability symlink -> ../../../plugins/)
 ```
 
-**Skill-owned concerns are indexed here too** — the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill; see "Full index + kill-switches" above): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `spec-memory/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`.
+**Skill-owned concerns are indexed here too** — the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill; see "Full index + kill-switches" above): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`.
 
 Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `goal/pi/`) — Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.opencode/plugins/` — the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified — the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
 
@@ -232,7 +231,6 @@ For the *why* behind each absence — why a runtime has no adapter for a concern
 | `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | — by-design: session events run inside the owning `mk-*` plugins | ✓ covered |
 | `skill-advisor` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `spec-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `spec-memory` | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | ✓ covered | — by-design: OpenCode plugin owns continuity retrieval |
 | `task-dispatch` | ✓ covered | unverified: `PreToolUse` exists but no confirmed agent-spawn tool event; no adapter | ✓ covered | ✓ covered | ✓ covered | ~ partial: intercepts direct `subagent` calls; workflow-nested (`runs.run`) dispatches not yet covered |
 
 ### Additional centralized hooks

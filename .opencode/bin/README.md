@@ -1,11 +1,9 @@
 ---
 title: "bin: MCP Launchers, Daemon CLIs, Compiled Routing and Repo Tooling"
-description: "Executable entrypoints for the OpenCode runtime: three MCP launchers and their daemon-backed CLI shims, the local embedding server, the compiled-routing serving and publication tools, and the git, worktree and hook helpers."
+description: "Executable entrypoints for the OpenCode runtime: the MCP launchers and their daemon-backed CLI shims, the local embedding server, the compiled-routing serving and publication tools, and the git, worktree and hook helpers."
 trigger_phrases:
   - "mcp launcher"
   - "hf model server"
-  - "system-spec-memory launcher"
-  - "spec-memory cli"
   - "code-index cli"
   - "skill-advisor cli"
   - "compiled route cli"
@@ -20,8 +18,8 @@ trigger_phrases:
 Current state:
 
 - Each launcher loads project-local `.env.local` / `.env`, ensures the server's `dist/` artifacts are built and current, serializes concurrent starts with a filesystem bootstrap lock, then spawns the MCP child and bridges stdio to the running daemon.
-- The three CLI shims run the built daemon-backed CLIs (`spec-memory` 41 tools, `code-index` 8 tools, `skill-advisor` 9 tools) against the **same unchanged daemons** the MCP registrations use, a dual-stack surface, not a replacement. Each shim enforces a dist-freshness guard (exit `69` on missing/stale dist, with a per-CLI `*_DEV_ALLOW_STALE=1` override), defaults `SPECKIT_IPC_SOCKET_DIR` to the short `/tmp/<service>` directory, and refuses a socket path over the Darwin `sun_path` limit.
-- The freshness check itself is a shared module, not per-shim logic: all three shims call `checkPackageFreshness()` from [`system-spec-kit/scripts/lib/dist-freshness.cjs`](../skills/system-spec-kit/scripts/lib/dist-freshness.cjs), which also backs `validate.sh`'s hard staleness backstop, the `sk-code` PostToolUse hook, and the `system-dist-freshness-guard` OpenCode plugin, one source of truth for "is this package's dist current" across all four call sites. See §6 "Dist freshness" for the full package table and consumer list.
+- The CLI shims run the built daemon-backed CLIs (`code-index` 8 tools, `skill-advisor` 9 tools) against the **same unchanged daemons** the MCP registrations use, a dual-stack surface, not a replacement. Each shim enforces a dist-freshness guard (exit `69` on missing/stale dist, with a per-CLI `*_DEV_ALLOW_STALE=1` override), defaults `SPECKIT_IPC_SOCKET_DIR` to the short `/tmp/<service>` directory, and refuses a socket path over the Darwin `sun_path` limit.
+- The freshness check itself is a shared module, not per-shim logic: every shim calls `checkPackageFreshness()` from [`system-spec-kit/scripts/lib/dist-freshness.cjs`](../skills/system-spec-kit/scripts/lib/dist-freshness.cjs), which also backs `validate.sh`'s hard staleness backstop, the `sk-code` PostToolUse hook, and the `system-dist-freshness-guard` OpenCode plugin, one source of truth for "is this package's dist current" across all four call sites. See §6 "Dist freshness" for the full package table and consumer list.
 - `hf-model-server.cjs` loads a transformers model and answers `/api/health` and `/api/embed` requests. It refuses any non-loopback bind unless the operator sets `HF_EMBED_ALLOW_REMOTE_BIND=1` and supplies `HF_EMBED_AUTH_TOKEN`, and it asserts ownership of the socket directory before listening.
 - Shared launcher behavior (model-server supervision, stdio-to-socket bridging, sidecar env allowlist) lives in `lib/`. The CLI shims' dist entrypoints reuse `lib/launcher-ipc-bridge.cjs` for socket-path resolution and warm-daemon probes.
 - A second family serves and publishes **compiled routing**. `compiled-route.cjs` is the runtime front door a hub calls to ask whether the compiled router is authoritative for it, falling back to legacy routing when it is not. `compiled-route-status.cjs` reports per-hub serving state with a cause code that separates expected drift from breakage. `compiled-route-guard.cjs` is the gate: it fails when a hub's activation manifest no longer matches what its routing inputs compile to, or when the promoted runtime and its authored source disagree. `compiled-route-sync.cjs` publishes a new closure by tracing, staging, verifying, swapping and then finalizing or reverting. `compiled-route-manifest.cjs` is a thin CLI over the activation-manifest library in `lib/`.
@@ -47,7 +45,7 @@ Current state:
                      │ lib/                 │
                      │ supervision + bridge │
                      └──────────┬───────────┘
-                                │ (spec-memory + advisor only)
+                                │ (advisor only)
                                 ▼
                      ┌──────────────────────┐     ┌────────────────┐
                      │ hf-model-server.cjs  │ ──▶ │ transformers   │
@@ -63,11 +61,9 @@ Dependency direction: launchers ───▶ lib/ ───▶ hf-model-server.c
 
 ```text
 bin/
-+-- system-spec-memory-launcher.cjs    # Launches system-spec-memory MCP, owns shared hf-model-server lease
 +-- system-skill-advisor-launcher.cjs  # Launches system-skill-advisor MCP, optional model-server supervision
-+-- spec-memory.cjs                # Daemon-backed CLI shim for system-spec-memory (41 tools)
 +-- skill-advisor.cjs              # Daemon-backed CLI shim for system-skill-advisor (9 tools)
-+-- cli-offline-smoke.cjs          # Daemon-free smoke: list-tools counts (41/8/9), cwd-independent
++-- cli-offline-smoke.cjs          # Daemon-free smoke: list-tools counts, cwd-independent
 +-- cli-exit-taxonomy-smoke.cjs    # Daemon-free smoke: CLI failure contract (exit 64/69/75, parseable envelopes)
 +-- cli-offline-smoke.test.cjs     # Test runner asserting cli-offline-smoke.cjs passes
 +-- hf-model-server.cjs            # Local HTTP/UDS HuggingFace embedding server
@@ -100,9 +96,7 @@ bin/
 
 | File | Responsibility |
 |---|---|
-| `system-spec-memory-launcher.cjs` | Boots the system-spec-memory MCP child. Manages the shared hf-model-server lease, respawn locks, and reaping a dead lease child before respawn. |
 | `system-skill-advisor-launcher.cjs` | Boots the system-skill-advisor MCP child. Loads model-server supervision when enabled, enforces a strict single-writer lease, and rebuilds `dist/` from `handlers`, `lib`, `schemas`, `tools` when stale. |
-| `spec-memory.cjs` | CLI shim for system-spec-memory. Checks dist freshness and exits `69` when stale, with `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` as the override, ensures the socket dir, then runs `mcp-server/dist/spec-memory-cli.js` with inherited stdio. |
 | `skill-advisor.cjs` | CLI shim for system-skill-advisor. Same guard pattern (`SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override), runs `mcp-server/dist/mcp-server/skill-advisor-cli.js`. Mutation tools require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. calls are sent untrusted by default. |
 | `hf-model-server.cjs` | Loads a transformers embedding model and serves `/api/health` and `/api/embed`. Enforces the loopback bind perimeter guard, socket-dir ownership, request size limits and inference timeouts. |
 
@@ -156,15 +150,13 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `node .opencode/bin/system-spec-memory-launcher.cjs` | CLI | Start the system-spec-memory MCP server. |
 | `node .opencode/bin/system-skill-advisor-launcher.cjs` | CLI | Start the system-skill-advisor MCP server. |
-| `node .opencode/bin/spec-memory.cjs <tool> [flags]` | CLI | Call any of the 41 system-spec-memory tools from a shell (`list-tools` enumerates them offline). |
 | `node .opencode/bin/skill-advisor.cjs <tool> [flags]` | CLI | Call any of the 9 system-skill-advisor tools from a shell. pass `--trusted` for maintainer mutations. |
 | `node .opencode/bin/hf-model-server.cjs` | CLI | Start the local embedding server (via `main`). |
 | `createHfModelServer` | Function | Build an embedding server instance with `listen`, `close`, `dispose` and `inject` for tests. |
 | `assertLoopbackBindAllowed` | Function | Refuse non-loopback binds unless remote bind plus auth token are set. |
 | `bash .opencode/bin/worktree-session.sh <runtime> [args]` | CLI | Launch an AI session in its own git worktree + branch + isolated MCP databases. Top-level sessions isolate. orchestrated children (`AI_SESSION_CHILD=1` or already inside a linked worktree) exec in place. `--dry-run` prints the plan. |
-| `bash .opencode/bin/worktree-reaper.sh [--dry-run] [--reap-daemons]` | CLI | Prune merged + clean per-session worktrees and stale socket dirs. report orphan daemons (kill only with `--reap-daemons`). Auto-reap is restricted to proven-inactive exact `work/<runtime>/<slug>` pairs (the whole marker file must match a PID grammar, a malformed marker is treated as ambiguous and the worktree is kept. the branch's runtime/slug must equal the directory basename). `--reap-daemons` signals only when the referenced worktree/DB path is absent and the PID identity still matches. |
+| `bash .opencode/bin/worktree-reaper.sh [--dry-run]` | CLI | Prune merged + clean per-session worktrees, stale socket dirs and session markers. never signals a process. Auto-reap is restricted to proven-inactive exact `work/<runtime>/<slug>` pairs (the whole marker file must match a PID grammar, a malformed marker is treated as ambiguous and the worktree is kept. the branch's runtime/slug must equal the directory basename). |
 | `bash .opencode/bin/worktree-guard.sh` | CLI / SessionStart hook | Detect-and-warn: prints a one-line stderr warning when a top-level session is on shared `main`/`master` instead of an isolated worktree. Non-fatal (always exits 0). silent for children, inside worktrees, non-git dirs, or with `SPECKIT_WORKTREE_GUARD=off`. |
 | `node .opencode/bin/compiled-route.cjs --hub <id> --prompt "<task>"` | CLI | Ask whether the compiled router is authoritative for a hub. Returns a legacy sentinel when it is not. |
 | `node .opencode/bin/compiled-route-status.cjs --all` | CLI | Report per-hub serving authority and a cause code separating expected drift from breakage. |
@@ -211,9 +203,8 @@ Run from the repository root.
 ```bash
 node -e "require('./.opencode/bin/hf-model-server.cjs')"
 node -e "require('./.opencode/bin/lib/model-server-supervision.cjs')"
-node .opencode/bin/spec-memory.cjs list-tools --format text | head -3
 node .opencode/bin/skill-advisor.cjs list-tools --format text | head -3
-node .opencode/bin/cli-offline-smoke.cjs --format text          # daemon-free: list-tools counts 41/8/9, cwd-independent
+node .opencode/bin/cli-offline-smoke.cjs --format text          # daemon-free: list-tools counts, cwd-independent
 node .opencode/bin/cli-exit-taxonomy-smoke.cjs --format text    # daemon-free: CLI failure contract (exit 64/69/75)
 bash -n .opencode/bin/worktree-session.sh
 

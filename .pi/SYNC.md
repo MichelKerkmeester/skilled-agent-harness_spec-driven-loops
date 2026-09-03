@@ -26,7 +26,7 @@ Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `
 | `agents/*.md` (13) | **generated** | `.opencode/agents/*.md` | Yes — `sync-agents-pi.cjs --check` |
 | `prompts/*.md` (35) | **generated** pointer stubs | `.opencode/commands/**/*.md` | Yes — `sync-prompts-pi.cjs --check` |
 | `extensions/*.ts` + `lib/` | **hand-authored** guard bridges | shared guard cores under `.opencode/**` | Behavioral drift only; no checker |
-| `mcp.json` | **hand-authored** | — | Registers system-spec-memory, system_skill_advisor, code_mode, sequential_thinking |
+| `mcp.json` | **hand-authored** | — | Registers system_skill_advisor and code_mode |
 | `settings.json` | **hand-authored** | — | Pi package configuration |
 | `settings.json`, `modes.json`, `statusline.sh`, `pi-blackhole-config.json`, `models.json` (global) | **symlinked canonicals** | repo `.pi/*` is the source of truth; `~/.pi/agent/*` and `~/.pi/agent/pi-blackhole/pi-blackhole-config.json` are relative symlinks back into the repo | Users pull the latest configs from this repo; the local Mac consumes them via symlink |
 | `npm/` | operator-local package output | — | not synced |

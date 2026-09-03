@@ -91,9 +91,6 @@ function repoRoot() {
 
 function defaultDbDirForService(serviceName) {
   const root = repoRoot();
-  if (serviceName === 'system-spec-memory') {
-    return path.join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp-server', 'database');
-  }
   if (serviceName === 'system-skill-advisor') {
     const advisorOverride = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
     return advisorOverride

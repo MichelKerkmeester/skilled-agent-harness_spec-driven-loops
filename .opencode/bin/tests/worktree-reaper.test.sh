@@ -9,7 +9,8 @@
 # the on-disk + ref-level outcome for each. HOME is redirected to a scratch
 # dir before the reaper ever runs, since the reaper reads/writes
 # $HOME/.spk-wt-sock and must never be allowed to see the operator's real
-# home directory.
+# home directory. The reaper signals no process, and one assertion holds it
+# to that so a kill path cannot return unnoticed.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
@@ -128,29 +129,12 @@ expect "(d) human numbered: branch kept" git -C "$FIXTURE" show-ref --verify --q
 # (e) kept: detached worktree is report-only, never auto-reaped
 expect "(e) detached: dir kept" test -d "$FIXTURE/.worktrees/0002-detached"
 
-# A daemon command line can mention a worktree that is live or already gone.
-FAKE_BIN="$FIXTURE/.fake-bin"
-F6_OUT="$FIXTURE/.reaper-f6.out"
-mkdir -p "$FAKE_BIN" "$FIXTURE/.worktrees/live-session"
-printf '%s\n' \
-  '#!/usr/bin/env bash' \
-  'printf "%s\\n" 424242 424243' > "$FAKE_BIN/pgrep"
-printf '%s\n' \
-  '#!/usr/bin/env bash' \
-  'case "$*" in' \
-  "  *424242*) printf '%s\\n' 'node $FIXTURE/.worktrees/live-session/context-server.js' ;;" \
-  "  *424243*) printf '%s\\n' 'node $FIXTURE/.worktrees/gone-session/context-server.js' ;;" \
-  'esac' > "$FAKE_BIN/ps"
-chmod +x "$FAKE_BIN/pgrep" "$FAKE_BIN/ps"
-( cd "$FIXTURE" && PATH="$FAKE_BIN:$PATH" bash "$REAPER" --reap-daemons --dry-run ) >"$F6_OUT" 2>&1
-expect_not "live daemon path is not an orphan" grep -Fq 'kill -TERM 424242' "$F6_OUT"
-expect "absent daemon path is an orphan" grep -Fq 'kill -TERM 424243' "$F6_OUT"
+# The reaper prunes worktrees and their leftover state; it never signals a process.
+expect_not "reaper signals no process" grep -Fq 'kill -TERM' "$REAPER_OUT"
 
 if [ "$FAIL" -ne 0 ]; then
   echo "--- reaper output (rc=$REAPER_RC) ---"
   cat "$REAPER_OUT"
-  echo "--- daemon reaper output ---"
-  cat "$F6_OUT"
   echo "--------------------------------------"
 fi
 

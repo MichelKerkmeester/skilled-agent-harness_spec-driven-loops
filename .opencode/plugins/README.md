@@ -39,9 +39,8 @@ Every plugin honors a per-concern kill-switch via the shared `hook-flags.cjs` re
 | `system-dist-freshness-guard.js` | `dist-freshness` | `tool.execute.before`, `event` (`session.created`/`deleted`), `experimental.chat.system.transform` | Reports stale compiled outputs and invalidates diagnostics. Short-circuits the whole plugin at factory entry when disabled. |
 | `system-skill-advisor.js` | `skill-advisor` | `experimental.chat.system.transform`, `event`, `tool` (`spec_kit_skill_advisor_status`) | Injects skill-routing guidance per prompt and exposes advisor status. Spawns the warm bridge subprocess; TTL+LRU prompt cache with in-flight dedup. |
 | `system-spec-gate.js` | `spec-gate` | `experimental.chat.system.transform`, `tool.execute.before`, `event` | Classifies and evaluates mutation-gate state. Classify best-effort fetches the last user message via `ctx.client`; enforce throws `system-spec-gate:` on deny (OpenCode's deny signal). |
-| `system-spec-memory.js` | `spec-memory` | `experimental.chat.system.transform`, `event`, `tool` (`system_spec_memory_status`) | Injects Spec Kit continuity per prompt and exposes memory status. Spawns the warm bridge subprocess; TTL+LRU continuity cache with in-flight dedup. |
 | `system-speckit-completion.js` | `speckit-completion` | `tool` (read-only completion evidence) | Exposes read-only completion evidence. Checks `core.DISABLED_ENV` directly at factory entry. |
-| `lib/opencode-message-identity.js` | — (shared helper) | — | Stable transform identity and dedup state. Used by `system-spec-memory.js` and `system-skill-advisor.js` when `deduplicateTransforms` is on. |
+| `lib/opencode-message-identity.js` | — (shared helper) | — | Stable transform identity and dedup state. Used by `system-skill-advisor.js` when `deduplicateTransforms` is on. |
 | `tests/` | — | — | Plugin regression suites (see `tests/README.md`). |
 
 ---
@@ -65,7 +64,6 @@ plugins/
 +-- system-dist-freshness-guard.js
 +-- system-skill-advisor.js
 +-- system-spec-gate.js
-+-- system-spec-memory.js
 +-- system-speckit-completion.js
 +-- lib/
 |   `-- opencode-message-identity.js       # shared transform-dedup helper
@@ -83,7 +81,6 @@ plugins/
 |---|---|
 | `opencode-goal.js` | The largest plugin. Owns the goal state machine, supervisor, continuation, capabilities, and the goal tool surface. Hooks `session.created`/`status`/`idle`/`deleted`, `experimental.chat.system.transform`, and a family of goal tools. |
 | `system-skill-advisor.js` | Spawns the skill-advisor bridge subprocess per prompt, manages a TTL+LRU prompt cache with in-flight dedup, integrates transform-dedup, and exposes `spec_kit_skill_advisor_status`. |
-| `system-spec-memory.js` | Spawns the spec-memory bridge subprocess per transform, manages a TTL+LRU continuity cache with in-flight dedup, integrates transform-dedup, and exposes `system_spec_memory_status`. |
 | `system-spec-gate.js` | Maps OpenCode's transport onto the runtime-neutral spec-gate core. Classify best-effort fetches the last user message via `ctx.client`; enforce throws `system-spec-gate:` on deny; `event` sweeps/advances/evicts state. |
 | `sk-code-post-edit-quality.js` | Correlates `tool.execute.before` file paths to `tool.execute.after` callIDs, runs the post-edit router core, and drains findings on the next transform. |
 | `lib/opencode-message-identity.js` | Shared stable transform identity and dedup state used by the advisor and memory plugins. |
@@ -121,7 +118,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 
 Plugin factories register some subset of:
 
-- `tool` — tools exposed to the model (e.g. `system_spec_memory_status`, `spec_kit_skill_advisor_status`, the goal tools, the 13 `sk_vision_*` tools, the read-only completion-evidence tool).
+- `tool` — tools exposed to the model (e.g. `spec_kit_skill_advisor_status`, the goal tools, the 13 `sk_vision_*` tools, the read-only completion-evidence tool).
 - `tool.execute.before` — pre-tool evaluation (spec-gate enforce, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
 - `tool.execute.after` — post-tool evaluation (cli-dispatch-audit, post-edit-quality run).
 - `experimental.chat.system.transform` — per-turn system-context injection (advisor, memory, spec-gate classify, goal, post-edit-quality drain, dist-freshness).
@@ -152,5 +149,5 @@ Expected result: no syntax errors across every plugin (resolves imports against 
 
 - [`tests/README.md`](./tests/README.md): the plugin regression suites.
 - [`tests/helpers/README.md`](./tests/helpers/README.md): the shared test helpers.
-- [`../hooks/README.md`](../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix. Several plugins are mirrored there as the OpenCode adapter for their concern (`spec-memory`, `spec-gate`, `skill-advisor`, `git-preflight`, `session-cleanup`).
+- [`../hooks/README.md`](../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix. Several plugins are mirrored there as the OpenCode adapter for their concern (`spec-gate`, `skill-advisor`, `git-preflight`, `session-cleanup`).
 - [`../skills/`](../skills/): the shared skill cores these plugins adapt.

@@ -21,7 +21,7 @@ trigger_phrases:
 
 Current state:
 
-- `pre-commit` runs an advisory doc-model-reference drift check, then four independently-bypassable blocking sub-gates (comment hygiene, prompt-card sync, MCP mutation-class, tool-ownership lint).
+- `pre-commit` runs an advisory doc-model-reference drift check, then three independently-bypassable blocking sub-gates (comment hygiene, prompt-card sync, MCP mutation-class).
 - `post-commit` invalidates the code-graph SQLite after a large commit and marks memory-index drift for any spec-doc rename/delete in the commit.
 - `post-merge` and `post-rewrite` mark memory-index drift after a merge or an amend/rebase, diffing the appropriate commit range (`ORIG_HEAD`→`HEAD`, or each rewritten commit pair).
 - `lib/memory-drift-marker.sh` is the one shared helper `post-commit`, `post-merge`, and `post-rewrite` all source. Its `mark_memory_drift_from_diff()` function writes rename/delete entries for `specs` paths to `.memory-drift-dirty-paths.json`, which `mcp-server/startup-checks.ts` consumes on the next MCP server boot to seed drift-suspect confirmation.
@@ -84,7 +84,7 @@ Allowed dependency direction:
 
 ```text
 post-commit / post-merge / post-rewrite → lib/memory-drift-marker.sh
-pre-commit → .opencode/hooks/git/pre-commit, sk-doc validator, skill-advisor card-sync guard, doctor mutation-class guard, tool-ownership lint runner
+pre-commit → .opencode/hooks/git/pre-commit, sk-doc validator, skill-advisor card-sync guard, doctor mutation-class guard
 pre-push → .opencode/skills/sk-git/scripts/worktree-naming.sh (sourced; validators only)
 ```
 
@@ -101,7 +101,7 @@ hooks here → hard-fail without a bypass env var on their primary check
 
 | File | Responsibility | Bypass |
 |---|---|---|
-| `pre-commit` | Runs `validate-doc-model-refs.js` and warns (does not block) on drift. Then runs four blocking sub-gates when their staged-path trigger matches: comment hygiene, prompt-quality-card sync, MCP mutation-class contract, and tool-ownership map lint. | `SPECKIT_SKIP_DOC_MODEL_VALIDATE=1` (advisory check); `SPECKIT_SKIP_COMMENT_HYGIENE=1`, `SPECKIT_SKIP_CARD_SYNC=1`, `SPECKIT_SKIP_MCP_MUTATION_CLASS=1`, `SPECKIT_SKIP_TOOL_OWNERSHIP_LINT=1` (the four blocking sub-gates) |
+| `pre-commit` | Runs `validate-doc-model-refs.js` and warns (does not block) on drift. Then runs three blocking sub-gates when their staged-path trigger matches: comment hygiene, prompt-quality-card sync, and the MCP mutation-class contract. | `SPECKIT_SKIP_DOC_MODEL_VALIDATE=1` (advisory check); `SPECKIT_SKIP_COMMENT_HYGIENE=1`, `SPECKIT_SKIP_CARD_SYNC=1`, `SPECKIT_SKIP_MCP_MUTATION_CLASS=1` (the three blocking sub-gates) |
 | `post-commit` | Sources `lib/memory-drift-marker.sh` to mark spec-doc renames/deletes in the just-completed commit. | `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1` (skip the drift marker) |
 | `post-merge` | Marks memory-index drift for spec-doc renames/deletes brought in by the merge, diffing `ORIG_HEAD`→`HEAD` when `ORIG_HEAD` resolves, else `HEAD` alone. | `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1` |
 | `post-rewrite` | Marks memory-index drift after an amend or rebase, reading each rewritten `old_commit new_commit` pair from stdin and diffing every pair. | `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1` |

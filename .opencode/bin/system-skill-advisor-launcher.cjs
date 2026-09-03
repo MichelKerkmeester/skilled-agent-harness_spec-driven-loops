@@ -148,9 +148,9 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_MAX_SECONDARY_CLIENTS',
   // Dedicated skill-advisor-namespaced override for the child's MEMORY_DB_PATH
   // pointer; see createChildEnv() for why the bare MEMORY_DB_PATH name is
-  // deliberately NOT in this allowlist (its repo-wide established meaning is
-  // system-spec-memory's own database, so blindly forwarding it would silently
-  // reopen the cross-server DB-path leak createChildEnv() closes).
+  // deliberately NOT in this allowlist (it is an ambient repo-wide name that no
+  // single component owns, so blindly forwarding it would silently reopen the
+  // cross-database path leak createChildEnv() closes).
   'SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH',
 ]);
 let childProcess = null;
@@ -281,13 +281,12 @@ function createChildEnv(sourceEnv = process.env) {
   );
   // Without an explicit MEMORY_DB_PATH, shared/embeddings/factory.ts's
   // resolveConfiguredDatabaseCandidates() falls back to walking up from its own
-  // on-disk realpath, which resolves through the @spec-kit/shared symlink to
-  // system-spec-memory's package root — not this advisor's own database. Compute
-  // the child's MEMORY_DB_PATH explicitly from the dedicated skill-advisor
-  // override var (never from a blindly-forwarded ambient MEMORY_DB_PATH — that
-  // name's repo-wide established meaning is system-spec-memory's own database, so
-  // treating it as "already configured for skill-advisor" would silently
-  // reopen the exact leak this pointer exists to prevent).
+  // on-disk realpath, which resolves through the @spec-kit/shared symlink to that
+  // package's root — not this advisor's own database. Compute the child's
+  // MEMORY_DB_PATH explicitly from the dedicated skill-advisor override var
+  // (never from a blindly-forwarded ambient MEMORY_DB_PATH — that name belongs to
+  // no single component, so treating it as "already configured for skill-advisor"
+  // would silently reopen the exact leak this pointer exists to prevent).
   const explicitOverride = typeof sourceEnv.SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH === 'string'
     && sourceEnv.SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH.length > 0
     ? sourceEnv.SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH

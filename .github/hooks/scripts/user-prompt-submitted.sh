@@ -15,9 +15,9 @@ else
   mkdir -p "$(dirname "$INSTRUCTIONS_PATH")"
   cat > "$INSTRUCTIONS_PATH" <<'EOF'
 <!-- SPEC-KIT-COPILOT-CONTEXT:START -->
-# Spec Kit Memory Auto-Generated Context
+# Spec Kit Auto-Generated Context
 
-Active Advisor Brief: Copilot wrapper fallback active. Use `session_bootstrap()` or `session_resume()` for fresh context when needed.
+Active Advisor Brief: Copilot wrapper fallback active. Run `/speckit:resume` for fresh context when needed.
 <!-- SPEC-KIT-COPILOT-CONTEXT:END -->
 EOF
   printf '{}\n'

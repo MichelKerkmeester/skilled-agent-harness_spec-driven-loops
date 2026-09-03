@@ -670,11 +670,11 @@ test('multi-transform receipts record both transform fires and their outcomes', 
     identity,
     blockId,
     contentHash,
-    transform: 'system-spec-memory',
+    transform: 'second-transform',
     state,
   }).shouldDeliver, false);
   identityModule.commitTransformDelivery(identity, blockId, contentHash, {
-    transform: 'system-spec-memory',
+    transform: 'second-transform',
     state,
   });
 
@@ -685,7 +685,7 @@ test('multi-transform receipts record both transform fires and their outcomes', 
     outcome: entry.outcome,
   })), [
     { transform: 'system-skill-advisor', blockId, outcome: 'delivered' },
-    { transform: 'system-spec-memory', blockId, outcome: 'suppressed_duplicate' },
+    { transform: 'second-transform', blockId, outcome: 'suppressed_duplicate' },
   ]);
 });
 
@@ -738,7 +738,7 @@ test('concurrent transforms reserve delivery before commit so only one may deliv
     identity,
     blockId,
     contentHash,
-    transform: 'system-spec-memory',
+    transform: 'second-transform',
     state,
   });
   assert.equal(first.shouldDeliver, true);
@@ -753,7 +753,7 @@ test('concurrent transforms reserve delivery before commit so only one may deliv
     identity,
     blockId,
     contentHash,
-    transform: 'system-spec-memory',
+    transform: 'second-transform',
     state,
   });
   assert.equal(third.shouldDeliver, false);

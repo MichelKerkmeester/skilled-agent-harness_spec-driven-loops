@@ -7,7 +7,6 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   countProcessesMatching,
-  processLive,
   readJsonFile,
   repoRoot,
   terminatePidTree,
@@ -23,18 +22,13 @@ interface AsyncRun {
 
 interface TriSandbox {
   readonly root: string;
-  readonly specMemoryShim: string;
   readonly codeIndexShim: string;
   readonly skillAdvisorShim: string;
-  readonly specMemoryDbDir: string;
   readonly codeIndexDbDir: string;
   readonly skillAdvisorDbDir: string;
-  readonly specSocketDir: string;
   readonly codeSocketDir: string;
   readonly advisorSocketDir: string;
   readonly socketRoot: string;
-  readonly memoryDbPath: string;
-  readonly specChildPidFile: string;
   readonly codeChildPidFile: string;
   readonly advisorChildPidFile: string;
   readonly advisorDaemonLeaseFile: string;
@@ -135,9 +129,7 @@ function createTriSandbox(): TriSandbox {
   const binLibDir = join(binDir, 'lib');
   mkdirSync(binLibDir, { recursive: true });
   for (const fileName of [
-    'spec-memory.cjs',
     'skill-advisor.cjs',
-    'system-spec-memory-launcher.cjs',
     'system-code-index-launcher.cjs',
     'system-skill-advisor-launcher.cjs',
   ]) {
@@ -146,15 +138,11 @@ function createTriSandbox(): TriSandbox {
   cpSync(join(repoRoot, '.opencode/bin/lib'), binLibDir, { recursive: true });
   writeExecutable(join(binDir, 'daemon-holder.js'), holderSource());
 
-  const specMemoryDbDir = join(root, '.opencode/skills/system-spec-kit/mcp-server/database');
   const codeIndexDbDir = join(root, 'runtime/code-graph-db');
   const skillAdvisorDbDir = join(root, 'runtime/skill-advisor-db');
   const socketRoot = mkdtempSync('/tmp/trid-');
-  const specSocketDir = join(socketRoot, 'm');
   const codeSocketDir = join(socketRoot, 'c');
   const advisorSocketDir = join(socketRoot, 'a');
-  const memoryDbPath = join(root, 'runtime/memory.sqlite');
-  const specChildPidFile = join(root, 'runtime/spec-memory-child.pid');
   const codeChildPidFile = join(root, 'runtime/code-index-child.pid');
   const advisorChildPidFile = join(root, 'runtime/skill-advisor-child.pid');
   const advisorDaemonLeaseFile = join(skillAdvisorDbDir, 'skill-graph-daemon-lease.sqlite');
@@ -162,10 +150,8 @@ function createTriSandbox(): TriSandbox {
   const advisorLeaseModulePath = join(root, '.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/daemon/lease.js');
 
   for (const dir of [
-    specMemoryDbDir,
     codeIndexDbDir,
     skillAdvisorDbDir,
-    specSocketDir,
     codeSocketDir,
     advisorSocketDir,
   ]) {
@@ -173,29 +159,12 @@ function createTriSandbox(): TriSandbox {
   }
 
   writeExecutable(
-    join(root, '.opencode/skills/system-spec-kit/mcp-server/dist/spec-memory-cli.js'),
-    stubCliSource('../../../../..', 'system-spec-memory-launcher.cjs', 'system-spec-memory'),
-  );
-  writeExecutable(
     stubCliSource('../../../../..', 'system-code-index-launcher.cjs', 'system-code-index'),
   );
   writeExecutable(
     join(root, '.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/skill-advisor-cli.js'),
     stubCliSource('../../../../../..', 'system-skill-advisor-launcher.cjs', 'system-skill-advisor'),
   );
-  writeFileSync(
-    join(root, '.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js'),
-    longRunningServerSource(specChildPidFile),
-    'utf8',
-  );
-  // The spec-memory launcher checks these scripts artifacts for existence at
-  // boot and runs a real npm install/build in the sandbox when they are missing.
-  for (const scriptArtifact of [
-    'scripts/dist/graph/backfill-graph-metadata.js',
-    'scripts/dist/spec-folder/generate-description.js',
-  ]) {
-    writeExecutable(join(root, '.opencode/skills/system-spec-kit', scriptArtifact), '');
-  }
   writeFileSync(
     longRunningServerSource(codeChildPidFile),
     'utf8',
@@ -213,17 +182,12 @@ function createTriSandbox(): TriSandbox {
 
   const sandbox = {
     root,
-    specMemoryShim: join(binDir, 'spec-memory.cjs'),
     skillAdvisorShim: join(binDir, 'skill-advisor.cjs'),
-    specMemoryDbDir,
     codeIndexDbDir,
     skillAdvisorDbDir,
-    specSocketDir,
     codeSocketDir,
     advisorSocketDir,
     socketRoot,
-    memoryDbPath,
-    specChildPidFile,
     codeChildPidFile,
     advisorChildPidFile,
     advisorDaemonLeaseFile,
@@ -238,7 +202,6 @@ function serviceEnv(sandbox: TriSandbox, socketDir: string): NodeJS.ProcessEnv {
     ...process.env,
     SPECKIT_DAEMON_REELECTION: 'on',
     SPECKIT_IPC_SOCKET_DIR: socketDir,
-    MEMORY_DB_PATH: sandbox.memoryDbPath,
     SYSTEM_SKILL_ADVISOR_DB_DIR: sandbox.skillAdvisorDbDir,
     SPECKIT_LEASE_PROBE_RETRIES: '1',
     SPECKIT_PROBE_TIMEOUT_MS: '250',
@@ -291,14 +254,6 @@ function readPidFile(filePath: string): number | null {
   }
 }
 
-function specLauncherLeasePath(sandbox: TriSandbox): string {
-  return join(sandbox.specMemoryDbDir, '.system-spec-memory-launcher.json');
-}
-
-function specOwnerLeasePath(sandbox: TriSandbox): string {
-  return join(sandbox.specMemoryDbDir, '.spec-memory-owner.json');
-}
-
 function codeLauncherLeasePath(sandbox: TriSandbox): string {
   return join(sandbox.codeIndexDbDir, '.system-code-index-launcher.json');
 }
@@ -326,14 +281,10 @@ async function cleanup(): Promise<void> {
   }
   for (const sandbox of sandboxes.splice(0)) {
     const pids = [
-      leasePid(specLauncherLeasePath(sandbox), 'pid'),
-      leasePid(specLauncherLeasePath(sandbox), 'childPid'),
-      leasePid(specOwnerLeasePath(sandbox), 'ownerPid'),
       leasePid(codeLauncherLeasePath(sandbox), 'pid'),
       leasePid(codeOwnerLeasePath(sandbox), 'ownerPid'),
       leasePid(advisorLauncherLeasePath(sandbox), 'pid'),
       leasePid(advisorOwnerLeasePath(sandbox), 'ownerPid'),
-      readPidFile(sandbox.specChildPidFile),
       readPidFile(sandbox.codeChildPidFile),
       readPidFile(sandbox.advisorChildPidFile),
     ];
@@ -350,15 +301,9 @@ afterEach(async () => {
   await cleanup();
 });
 
-describeTriDaemon('tri-daemon-drill program gate', () => {
-  it('spawns all three CLI shims with isolated owners and divergent SIGTERM behavior', async () => {
+describeTriDaemon('multi-daemon-drill program gate', () => {
+  it('spawns both CLI shims with isolated owners and divergent SIGTERM behavior', async () => {
     const sandbox = createTriSandbox();
-    const specRun = spawnShim(
-      sandbox.specMemoryShim,
-      ['memory_health', '--format', 'json'],
-      serviceEnv(sandbox, sandbox.specSocketDir),
-      sandbox.root,
-    );
     const codeRun = spawnShim(
       sandbox.codeIndexShim,
       serviceEnv(sandbox, sandbox.codeSocketDir),
@@ -372,35 +317,20 @@ describeTriDaemon('tri-daemon-drill program gate', () => {
     );
 
     const exits = await Promise.all([
-      waitForRun(specRun, 5000),
       waitForRun(codeRun, 5000),
       waitForRun(advisorRun, 5000),
     ]);
-    expect(exits.map((exit) => exit.code)).toEqual([0, 0, 0]);
-    await waitFor(() => existsSync(specOwnerLeasePath(sandbox)), 5000, 'spec-memory owner lease');
+    expect(exits.map((exit) => exit.code)).toEqual([0, 0]);
     await waitFor(() => existsSync(codeOwnerLeasePath(sandbox)), 5000, 'code-index owner lease');
     await waitFor(() => existsSync(advisorLauncherLeasePath(sandbox)), 5000, 'skill-advisor launcher lease');
     await waitFor(() => existsSync(advisorOwnerLeasePath(sandbox)), 5000, 'skill-advisor owner lease');
     await waitFor(() => existsSync(sandbox.advisorDaemonLeaseFile), 5000, 'skill-advisor daemon lease');
 
-    expect(leasePid(specOwnerLeasePath(sandbox), 'ownerPid')).toEqual(expect.any(Number));
     expect(leasePid(codeOwnerLeasePath(sandbox), 'ownerPid')).toEqual(expect.any(Number));
     expect(leasePid(advisorLauncherLeasePath(sandbox), 'pid')).toEqual(expect.any(Number));
     expect(leasePid(advisorOwnerLeasePath(sandbox), 'ownerPid')).toEqual(expect.any(Number));
-    expect(existsSync(join(sandbox.specMemoryDbDir, '.system-spec-memory-launcher.lockdir'))).toBe(false);
     expect(existsSync(join(sandbox.codeIndexDbDir, '.system-code-index-launcher.lockdir'))).toBe(false);
     expect(existsSync(join(sandbox.skillAdvisorDbDir, '.system-skill-advisor-launcher.lockdir'))).toBe(false);
-
-    const specLauncherPid = leasePid(specLauncherLeasePath(sandbox), 'pid');
-    const specChildPid = leasePid(specLauncherLeasePath(sandbox), 'childPid');
-    expect(specLauncherPid).toEqual(expect.any(Number));
-    expect(specChildPid).toEqual(expect.any(Number));
-    process.kill(specChildPid as number, 'SIGTERM');
-    await waitFor(() => {
-      const nextChildPid = leasePid(specLauncherLeasePath(sandbox), 'childPid');
-      return typeof nextChildPid === 'number' && nextChildPid !== specChildPid;
-    }, 10_000, 'spec-memory child recycle');
-    expect(processLive(specLauncherPid)).toBe(true);
 
     const codeLauncherPid = leasePid(codeLauncherLeasePath(sandbox), 'pid');
     const codeChildPid = leasePid(codeOwnerLeasePath(sandbox), 'ownerPid');

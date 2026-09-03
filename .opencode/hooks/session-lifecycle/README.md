@@ -31,16 +31,16 @@ Every adapter honors the `session-lifecycle` kill-switch (`isHookEnabled('sessio
 The concern covers three session boundaries, each with a distinct job:
 
 **Session start (`session-prime` / `session-start`).** Injects context via stdout (Claude) or the runtime's context-injection channel (Codex `emitCodexContext`, Cursor `agent_message`, Devin `emitDevinContext`, Pi `sendMessage`). It branches on the session source:
-- `compact` (Claude only): reads the cached compact brief that the PreCompact hook persisted, validates it semantically and for staleness (30-minute TTL), sanitizes and wraps it with provenance markers, and injects it as `Recovered Context (Post-Compaction)` plus `Recovery Instructions`. A stale or quarantined cache falls back to a one-line pointer to `memory_context({ mode: "resume" })`.
-- `startup`: emits a `Session Context` surface (memory status line, recovery-tools list) and, when a cached session summary is accepted, a `Session Continuity` section. A bounded CLI warm-fallback (`buildWarmSessionResumeSection`) may append a `Spec Memory CLI Fallback` section.
+- `compact` (Claude only): reads the cached compact brief that the PreCompact hook persisted, validates it semantically and for staleness (30-minute TTL), sanitizes and wraps it with provenance markers, and injects it as `Recovered Context (Post-Compaction)` plus `Recovery Instructions`. A stale or quarantined cache falls back to a one-line pointer to `/speckit:resume`.
+- `startup`: emits a `Session Context` surface (recovery-tools list) and, when a cached session summary is accepted, a `Session Continuity` section.
 - `resume`: emits the last active spec folder (from per-session state) and a resume pointer.
 - `clear` (Claude only): minimal fresh-context notice.
 
 A token-pressure adjustment shrinks the budget when the context window is filling. Output is truncated to the budget and written to stdout only after the write callback confirms handoff (so compact recovery is never dropped early).
 
 **Compaction boundary.** Two shapes exist because runtimes fire compaction at different points:
-- Claude/Codex/Cursor `PreCompact` (before compaction): `compact-inject` precomputes a merged context via the merge pipeline (active files + session-state attention signals), runs an anti-feedback guard that strips recovered hook-cache markers from the transcript tail before summarization, optionally auto-surfaces triggered memories and a CLI fallback, and **caches** the result to per-session hook state. It deliberately emits no stdout on PreCompact — the cache is delivered by the next `SessionStart(source=compact)`. An optional authored-continuity-snapshot worker runs in a bounded child process.
-- Devin `PostCompaction` / Pi `session_compact` (after compaction): a bespoke 5-step recovery chain (retain summary → rehydrate spec-folder continuity from the shared tmpdir state file → bounded `memory_context(mode=resume)` CLI fallback → provenance/length filtering → emit `additionalContext` directly), because these runtimes give no transcript path and no guaranteed follow-up event to defer to.
+- Claude/Codex/Cursor `PreCompact` (before compaction): `compact-inject` precomputes a merged context via the merge pipeline (active files + session-state attention signals), runs an anti-feedback guard that strips recovered hook-cache markers from the transcript tail before summarization, and **caches** the result to per-session hook state. It deliberately emits no stdout on PreCompact — the cache is delivered by the next `SessionStart(source=compact)`. An optional authored-continuity-snapshot worker runs in a bounded child process.
+- Devin `PostCompaction` / Pi `session_compact` (after compaction): a bespoke recovery chain (retain summary → rehydrate spec-folder continuity from the shared tmpdir state file → provenance/length filtering → emit `additionalContext` directly), because these runtimes give no transcript path and no guaranteed follow-up event to defer to.
 
 **Session stop (`session-stop` / `session-end` / `session_shutdown`).** Parses the transcript tail for token usage (incremental from the last offset), builds producer metadata (transcript fingerprint, cache tokens), auto-detects/retargets the active spec folder from transcript paths, extracts a ≤200-char session summary, and writes all of it in **one atomic `updateState()` call** (no torn-state window). It then runs a bounded context autosave (`generate-context.js`) from the in-memory merged state — never a disk reload — and a shadow-only true-citation emit. A `--finalize` mode cleans stale states older than 24h. The `stop_hook_active` re-entrant case is skipped.
 
@@ -85,16 +85,16 @@ The real code lives in `.opencode/skills/system-spec-kit/mcp-server/hooks/<runti
 
 | File | Responsibility |
 |---|---|
-| `claude/session-prime.ts` | Canonical SessionStart handler. Branches on `source` (compact/startup/resume/clear), reads/validates/quarantines the cached compact brief, builds the startup surface with memory-status discrimination, applies token-pressure budget adjustment, writes stdout after handoff confirm, then clears the compact prime. |
+| `claude/session-prime.ts` | Canonical SessionStart handler. Branches on `source` (compact/startup/resume/clear), reads/validates/quarantines the cached compact brief, builds the startup surface, applies token-pressure budget adjustment, writes stdout after handoff confirm, then clears the compact prime. |
 | `claude/session-stop.ts` | Canonical Stop handler. Incremental transcript parse for token usage, producer-metadata build, spec-folder auto-detect/retarget, ≤200-char summary extraction, single atomic `updateState`, bounded context autosave from in-memory state, shadow true-citation emit, `--finalize` stale-state sweep. |
-| `claude/compact-inject.ts` | PreCompact handler. Transcript-tail extraction (anti-feedback guard), 3-source merge pipeline (`mergeCompactBrief`), optional memory auto-surface + CLI fallback, token-budgeted section rendering, cache to hook state (no stdout), optional authored-continuity-snapshot worker. |
+| `claude/compact-inject.ts` | PreCompact handler. Transcript-tail extraction (anti-feedback guard), 3-source merge pipeline (`mergeCompactBrief`), token-budgeted section rendering, cache to hook state (no stdout), optional authored-continuity-snapshot worker. |
 | `codex/session-start.ts`, `codex/session-stop.ts`, `codex/compact-inject.ts` | Thin Codex adapters. `readCodexHookInput` + `runClaudeHookAdapter` delegate to the compiled Claude hooks; `emitCodexContext` wraps the result. |
 | `cursor/session-start.ts`, `cursor/session-end.ts`, `cursor/precompact.ts` | Thin Cursor adapters. `toClaudeShape` + `runClaudeHookAdapter`; `sessionEnd` substitutes for `stop`; `precompact` registered, delivery unconfirmed. |
 | `devin/session-start.ts`, `devin/session-stop.ts` | Thin Devin adapters delegating to the Claude hooks via `runDevinHook`/`runClaudeHookAdapter`. |
-| `devin/post-compaction.cjs` | Bespoke PostCompaction recovery chain (CommonJS, no build). Retains summary → rehydrates spec-folder continuity → bounded `memory_context(mode=resume)` CLI fallback → sanitize/filter → emit `additionalContext`. Fails open. |
+| `devin/post-compaction.cjs` | Bespoke PostCompaction recovery chain (CommonJS, no build). Retains summary → rehydrates spec-folder continuity → sanitize/filter → emit `additionalContext`. Fails open. |
 | `pi/session-start-context.ts` | Native Pi `session_start` extension. Bridges `session-prime.js` via `runClaudeHookAdapter`; maps Pi reasons to Claude `startup`/`resume`; `sendMessage` with `display: false`. |
 | `pi/session-stop-context.ts` | Native Pi `session_shutdown` (reason `quit`) extension. Fire-and-forget bridge to `session-stop.js`. |
-| `pi/session-compact-context.ts` | Native Pi `session_compact` extension. Port of Devin's post-compaction chain reading `compactionEntry.summary` in-process; reuses the shared tmpdir state file and `spec-memory.cjs` CLI fallback. |
+| `pi/session-compact-context.ts` | Native Pi `session_compact` extension. Port of Devin's post-compaction chain reading `compactionEntry.summary` in-process; reuses the shared tmpdir state file. |
 | `pi/session-start-advisories.ts` | Native Pi `session_start` extension running the same warn-only startup guard scripts (worktree-guard, check-git-hooks, primary-reconcile, live-sync-follow, dist-staleness, install-codex-hooks) Cursor/Devin wire in, surfacing warnings via `ctx.ui.notify`. Each check honors its own concern kill-switch. |
 | `shared/hook-flags.cjs` / `shared/hook-flags.mjs` | Kill-switch resolver every adapter calls via `isHookEnabled('session-lifecycle')`. |
 
@@ -120,12 +120,12 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Boundary | Rule |
 |---|---|
 | Advisory only | Every adapter injects recovery/priming context or performs fire-and-forget side effects; none ever denies or halts a session. |
-| Fail-open | A missing payload, an unreadable transcript, a parse error, a missing `generate-context.js`, a CLI-fallback timeout, or any internal error resolves to a no-op. The Claude `main()` catches unhandled errors and exits 0; the thin adapters and Pi extensions wrap their bodies in try/catch. |
+| Fail-open | A missing payload, an unreadable transcript, a parse error, a missing `generate-context.js`, or any internal error resolves to a no-op. The Claude `main()` catches unhandled errors and exits 0; the thin adapters and Pi extensions wrap their bodies in try/catch. |
 | Atomic state | `session-stop` accumulates a single patch and writes it in one atomic `updateState()`; autosave reads from the in-memory merged state, never a disk reload, so interleaved writers cannot produce a torn-state window. |
 | Anti-feedback | `compact-inject` strips recovered hook-cache source markers (`[SOURCE:hook-cache]`, `## Recovered Context`, `auto-recovered`, …) from the transcript tail before summarization, so the next compaction cannot re-ingest its own prior output. |
-| Bounded | All subprocesses (autosave 4s, CLI fallback 600ms, authored-snapshot worker, memory auto-surface) are deadline-bounded against `HOOK_TIMEOUT_MS`; the thin adapters pass explicit per-call timeouts (2.8s start/compact, 10s stop). |
+| Bounded | All subprocesses (autosave 4s, authored-snapshot worker) are deadline-bounded against `HOOK_TIMEOUT_MS`; the thin adapters pass explicit per-call timeouts (2.8s start/compact, 10s stop). |
 | Output | Start/compact emit context via the runtime's injection channel (stdout, `additionalContext`, `agent_message`, `sendMessage`); stop emits nothing to the model (side effects + bounded log only). The core never writes to the TUI directly. |
-| Imports | Adapters import the shared `hook-flags` resolver and the `system-spec-kit` continuity core (`shared.js`, `hook-state.js`, `spec-memory-cli-fallback.js`, `mergeCompactBrief`, `autoSurfaceAtCompaction`). Nothing outside the skill tree. |
+| Imports | Adapters import the shared `hook-flags` resolver and the `system-spec-kit` continuity core (`shared.js`, `hook-state.js`, `mergeCompactBrief`). Nothing outside the skill tree. |
 
 ---
 

@@ -109,7 +109,6 @@ Wrapper sessions inherit `SPECKIT_AUTOSYNC=1` while committing, so commit-time g
 | Pre-commit | Agent mirror sync | When agent mirrors are staged | No exemption | Blocks with `[gate:agent-mirror-sync]` and repair guidance |
 | Pre-commit | Prompt card sync | When prompt-knowledge files are staged | No exemption | Blocks with `[gate:prompt-card-sync]` and repair guidance |
 | Pre-commit | MCP mutation class | When matching doctor/install files are staged | No exemption | Blocks with `[gate:mcp-mutation-class]` and repair guidance |
-| Pre-commit | Tool ownership map | Yes | No exemption | Blocks with `[gate:tool-ownership]` and repair guidance |
 | Post-commit | Memory drift marker | Yes, before publish | Best-effort; a broken helper warns and autosync continues | Never blocks the commit or publish |
 | Post-commit | Live-sync flags and linked-worktree check | Yes | Publishes only when live-sync is enabled and the commit is in a linked worktree | A broken flag resolver warns and keeps the default-on publish behavior |
 | Pre-push | Mass-deletion ceiling | Yes, for updates to every branch | No exemption | Blocks real violations with `[gate:mass-deletion]`; hook and sync logs both persist the reason |

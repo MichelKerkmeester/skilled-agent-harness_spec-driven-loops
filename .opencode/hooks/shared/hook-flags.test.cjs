@@ -43,7 +43,7 @@ test("legacy aliases still disable their concern", () => {
   assert.equal(isHookEnabled("dispatch", { CLI_DISPATCH_AUDIT_DISABLED: "1" }), false);
   assert.equal(isHookEnabled("skill-advisor", { SPECKIT_SKILL_ADVISOR_HOOK_DISABLED: "true" }), false);
   assert.equal(isHookEnabled("completion", { SYSTEM_SPECKIT_COMPLETION_DISABLED: "yes" }), false);
-  assert.equal(isHookEnabled("spec-memory", { SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED: "on" }), false);
+  assert.equal(isHookEnabled("spec-gate", { SPECKIT_SPEC_GATE_DISABLED: "on" }), false);
   // an alias for one concern must not disable a different concern
   assert.equal(isHookEnabled("dispatch", { OPENCODE_GOAL_PLUGIN_DISABLED: "1" }), true);
 });

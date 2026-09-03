@@ -3,7 +3,7 @@
 // ║ COMPONENT: CLI Exit-Taxonomy Smoke                                       ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Daemon-free exit-code and envelope taxonomy smoke for the       ║
-// ║ three CLI shims (warm-only=75, usage/trust refusal=64).                  ║
+// ║ CLI shims (warm-only=75, usage/trust refusal=64).                        ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -29,7 +29,6 @@ const { spawnSync } = require('child_process');
 const repoRoot = path.resolve(__dirname, '..', '..');
 
 const SHIMS = {
-  'spec-memory': path.join(__dirname, 'spec-memory.cjs'),
   'skill-advisor': path.join(__dirname, 'skill-advisor.cjs'),
 };
 
@@ -39,10 +38,8 @@ const SHIMS = {
 
 const CASES = [
   // Warm-only reads with no daemon must refuse retryably (75), never spawn.
-  { name: 'spec-memory warm-only read exits 75', shim: 'spec-memory', args: ['memory_stats', '--json', '{}', '--warm-only', '--format', 'json'], expectExit: 75, expectJsonStatus: 'error' },
   { name: 'skill-advisor warm-only read exits 75', shim: 'skill-advisor', args: ['advisor_recommend', '--json', '{"prompt":"taxonomy smoke"}', '--warm-only', '--format', 'json'], expectExit: 75, expectJsonStatus: 'error' },
   // Unknown commands are usage errors (64).
-  { name: 'spec-memory unknown command exits 64', shim: 'spec-memory', args: ['no_such_tool', '--format', 'json'], expectExit: 64 },
   { name: 'code-index unknown command exits 64', shim: 'code-index', args: ['no_such_tool', '--format', 'json'], expectExit: 64 },
   { name: 'skill-advisor unknown command exits 64', shim: 'skill-advisor', args: ['no_such_tool', '--format', 'json'], expectExit: 64 },
   // Trust refusal: advisor mutations without --trusted fail closed (64)

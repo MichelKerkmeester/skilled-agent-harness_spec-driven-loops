@@ -4,10 +4,10 @@
 // Proves the canonical embedder factory surface is identical when
 // resolved through skill-advisor's local re-export shim and through the
 // direct @spec-kit/shared import. The shim path is what production
-// callers in skill-advisor use; the shared path is what system-spec-memory
-// uses. Both must return equivalent adapter objects (same name + dim +
-// backend) and the same MANIFESTS array reference, otherwise the shared
-// extraction has silently drifted.
+// callers in skill-advisor use; the shared path is what any other consumer
+// of the canonical registry uses. Both must return equivalent adapter
+// objects (same name + dim + backend) and the same MANIFESTS array
+// reference, otherwise the shared extraction has silently drifted.
 //
 // Offline-safe: no Ollama daemon required. The adapter construction
 // path is exercised but `embed()` is not called.

@@ -291,9 +291,6 @@ export interface SharedPayloadSection {
 export const SHARED_PAYLOAD_PRODUCER_VALUES = [
   'startup_brief',
   'session_snapshot',
-  'session_resume',
-  'session_health',
-  'session_bootstrap',
   'compact_merger',
   'hook_cache',
   'advisor',
