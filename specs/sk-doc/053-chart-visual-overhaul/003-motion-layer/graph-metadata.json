@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/053-chart-visual-overhaul/003-motion-layer",
+  "spec_folder": "sk-doc/053-chart-visual-overhaul/003-motion-layer",
+  "parent_id": "sk-doc/053-chart-visual-overhaul",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart reveal wipe",
+      "chart bar growth",
+      "chart reduce motion",
+      "chart determinism proof",
+      "chart motion plan",
+      "reveal wipe plan",
+      "bar growth plan",
+      "chart motion tasks",
+      "reveal wipe tasks",
+      "determinism proof tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "chart",
+      "reveal",
+      "wipe",
+      "bar",
+      "growth",
+      "reduce",
+      "motion",
+      "determinism",
+      "proof",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-range.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-rows.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/grouped-bars.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-bars.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/waterfall.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/progress-single.html",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "daily-line.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html",
+        "source": "derived"
+      },
+      {
+        "name": "daily-range.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-range.html",
+        "source": "derived"
+      },
+      {
+        "name": "stacked-area.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html",
+        "source": "derived"
+      },
+      {
+        "name": "bar-columns.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html",
+        "source": "derived"
+      },
+      {
+        "name": "bar-rows.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-rows.html",
+        "source": "derived"
+      },
+      {
+        "name": "grouped-bars.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/grouped-bars.html",
+        "source": "derived"
+      },
+      {
+        "name": "stacked-bars.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-bars.html",
+        "source": "derived"
+      },
+      {
+        "name": "waterfall.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/waterfall.html",
+        "source": "derived"
+      },
+      {
+        "name": "progress-single.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/progress-single.html",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`grep -rn 'prefers-reduced-motion' assets/` over the corpus returns nothing, and so does a search",
+    "created_at": "2026-09-03T08:02:25.308Z",
+    "last_save_at": "2026-09-03T08:02:59.381Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:38fdfd59911d452bbaa414004f84bb9815f2126d622d28cbad247c361a18dafa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0bd7b922e77327b0b377b5ba17d2d45c8a4f195647b8f055cbda4ef3fc8bd4fa",
+      "plan.md": "9afa41135b8cf74a3cd59db8821a6717b0bf980fa26213d0e6c51aa4fe0249e4",
+      "tasks.md": "7ab7a64d618890a8f8d10d4064b7e631591e915941d288a3d558c843553fc7bd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -86,15 +86,24 @@ pass is stricter and stays. Only the visual treatment is adopted.
 Five real forks. Each is recorded with the losing argument intact so none is relitigated. The
 fifth was missed when this document was first written and is marked as such.
 
-**D1. Series stroke weight.** DeepSeek ranks thinning from 2px to 0.8px as the change that buys the most
-visible payoff, and calls it the reason the corpus looks plain. GLM rejects it outright, citing
-the corpus comment that declares the 2px round cap a deliberate print register, and notes that
-no evidence ties the weight to the defect.
+**D1. Series stroke weight.** DeepSeek ranks thinning from 2px to 0.8px as the change that buys
+the most visible payoff, and calls it the reason the corpus looks plain. GLM rejects it, citing a
+corpus comment that declares the 2px round cap a deliberate print register.
 
-Neither can settle this from reading source, because it is a question of taste about a
-deliberate choice. Resolution: render the same chart at three weights and let the operator
-choose. This is the first thing the build does, and until it is answered nothing else about
-line weight moves.
+That rationale does not exist. The phrase appears nowhere in the skill. The only written
+statement on the matter sits three lines below the rule it contradicts: the drawing comment in
+the daily line template says a hairline is the right weight, while the style rule above it sets a
+stroke of 2. Nothing in the packet records why 2 was chosen. The corpus is not even consistent
+with itself, carrying five different weights across its templates, so there is no convention to
+defend.
+
+This was written into the merge by trusting a lineage summary instead of opening the file it
+described, and it was caught while planning the build.
+
+The correction removes GLM's argument. It does not settle the question, because taste is still
+taste and a thinner line can read as weak in print. Resolution stands: render the same chart at
+three weights and let the operator choose. The build phase that does it now carries the real
+state of the file rather than the claim about it.
 
 **D2. Glow behind the emphasis line.** DeepSeek rejects it as a dashboard effect that prints
 badly. GLM adopts one layer at low opacity while rejecting the four-layer stack evilcharts

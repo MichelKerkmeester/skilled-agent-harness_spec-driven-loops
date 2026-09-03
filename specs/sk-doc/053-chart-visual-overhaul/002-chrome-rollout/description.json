@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/053-chart-visual-overhaul/002-chrome-rollout",
+  "description": "Twenty templates were authored one at a time, and every one of them re-types the same chrome by",
+  "keywords": [
+    "twenty",
+    "templates",
+    "authored",
+    "one",
+    "time",
+    "every",
+    "them",
+    "re-types",
+    "same",
+    "chrome"
+  ],
+  "lastUpdated": "2026-09-03T07:55:58.752Z",
+  "specId": "002",
+  "folderSlug": "chrome-rollout",
+  "parentChain": [
+    "sk-doc",
+    "053-chart-visual-overhaul"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

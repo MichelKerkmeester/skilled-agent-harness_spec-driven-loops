@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/053-chart-visual-overhaul/005-dark-theme",
+  "spec_folder": "sk-doc/053-chart-visual-overhaul/005-dark-theme",
+  "parent_id": "sk-doc/053-chart-visual-overhaul",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart dark theme",
+      "prefers color scheme chart",
+      "dark palette twin",
+      "chart contrast gates per theme",
+      "chart dark theme plan",
+      "dark palette derivation",
+      "palette block amendment",
+      "chart dark theme tasks",
+      "dark palette tasks",
+      "palette block amendment tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "chart",
+      "dark",
+      "theme",
+      "prefers",
+      "color",
+      "scheme",
+      "palette",
+      "twin",
+      "contrast",
+      "gates",
+      "per",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "palettes.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twenty chart forms, six family deliveries and three palette proof sheets all paint on a warm paper surface",
+    "created_at": "2026-09-03T07:52:32.972Z",
+    "last_save_at": "2026-09-03T07:52:32.972Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:fc220e6beb8038074a5cd40099e5f1dc18d01da20bd74734775ffb790bd72a8d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d66d6b14d0993f3be3d6e26275596a673a46b1632654ee55249fc7d3234f2ea5",
+      "plan.md": "2ca8656ae5e11f87146932c466f751088792f2d99b61bb394b3505628f9c6c27",
+      "tasks.md": "f34540dacb000a9d0375b4765f04f606c46a81806d9dfe53e152d68c8bb634ef"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

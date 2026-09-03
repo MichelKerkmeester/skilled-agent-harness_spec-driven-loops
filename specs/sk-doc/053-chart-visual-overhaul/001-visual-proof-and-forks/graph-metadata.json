@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks",
+  "spec_folder": "sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks",
+  "parent_id": "sk-doc/053-chart-visual-overhaul",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart chrome proof",
+      "stroke weight fork",
+      "chart glow fork",
+      "chart visual decision record",
+      "chart chrome proof plan",
+      "stroke weight comparison",
+      "glow layer comparison",
+      "chart chrome proof tasks",
+      "fork comparison tasks",
+      "chart decision tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "chart",
+      "chrome",
+      "proof",
+      "stroke",
+      "weight",
+      "fork",
+      "glow",
+      "visual",
+      "decision",
+      "record",
+      "plan",
+      "comparison"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "daily-line.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html",
+        "source": "derived"
+      },
+      {
+        "name": "bar-columns.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Twenty",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twenty templates share one visual register, so any chrome change is a twenty-file change",
+    "created_at": "2026-09-03T08:02:24.685Z",
+    "last_save_at": "2026-09-03T08:07:12.421Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:f1d3d7c51fb53a7695f9e2b28b3927665ad5c805bcd249577977d46824ffee1f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0c14301dc9c8cf09ca6a10cfcc13fcbd50a4b014d18dd4cbf1d3790d2bb1c42c",
+      "plan.md": "d742718453b09049bdb40828566ce73b69f8628d3958727cbfc25a22b2260443",
+      "tasks.md": "ea17b9561820d40cedb9a9215e2bcd01c82e12e278cc7b32a02e7dab2a510a9f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

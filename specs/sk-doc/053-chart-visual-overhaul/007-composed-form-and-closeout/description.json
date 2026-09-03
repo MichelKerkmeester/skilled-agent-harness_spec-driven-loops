@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout",
+  "description": "Three problems, and they close the packet together",
+  "keywords": [
+    "three",
+    "problems",
+    "close",
+    "packet",
+    "together"
+  ],
+  "lastUpdated": "2026-09-03T08:00:26.015Z",
+  "specId": "007",
+  "folderSlug": "composed-form-and-closeout",
+  "parentChain": [
+    "sk-doc",
+    "053-chart-visual-overhaul"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

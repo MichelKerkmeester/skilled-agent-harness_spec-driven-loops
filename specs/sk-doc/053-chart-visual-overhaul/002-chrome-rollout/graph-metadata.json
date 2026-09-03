@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/053-chart-visual-overhaul/002-chrome-rollout",
+  "spec_folder": "sk-doc/053-chart-visual-overhaul/002-chrome-rollout",
+  "parent_id": "sk-doc/053-chart-visual-overhaul",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart chrome rollout",
+      "chart radius ladder",
+      "chart mono tabular figures",
+      "corpus wide restyle",
+      "chart chrome rollout plan",
+      "chart radius token plan",
+      "corpus wide restyle plan",
+      "chart chrome rollout tasks",
+      "chart radius token tasks",
+      "corpus restyle tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "chart",
+      "chrome",
+      "rollout",
+      "radius",
+      "ladder",
+      "mono",
+      "tabular",
+      "figures",
+      "corpus",
+      "wide",
+      "restyle",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "palettes.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twenty templates were authored one at a time, and every one of them re-types the same chrome by",
+    "created_at": "2026-09-03T08:02:24.988Z",
+    "last_save_at": "2026-09-03T08:02:57.665Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:ec2ac30d849b515b898934d8f85b7bab032c3fb18c641a90e8b7a9f9705288a4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f4dfb2a65c98ce0ebd4229e573f087b03019783ae9c0c43f9ae65d1d9559bbff",
+      "plan.md": "b2afd4aa4ebddbb3d2d60bbde6fc4e406736132bf887ce39bb82561e567e2fb4",
+      "tasks.md": "cdeca8c2553620e37046603d4481b4bb7a552dafa52e505f8fd18bed48d05b33",
+      "decision-record.md": "30b32d97ec285029d0f43cd6a783a60ea99e65d2fd43e10b2c8ac35d999a76a4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
