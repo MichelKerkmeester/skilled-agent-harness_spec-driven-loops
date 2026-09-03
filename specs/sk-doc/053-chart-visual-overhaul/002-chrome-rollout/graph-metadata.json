@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,10 +47,18 @@
       "acceptance-criteria.md",
       "goal.md",
       "decision-record.md",
+      "implementation-summary.md",
+      "scratch/validator-before.txt",
+      "scratch/validator-after.txt",
+      "scratch/radius-negative.txt",
       ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
       ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
       ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
-      ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md"
+      ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+      "scratch/acceptance-evidence.txt",
+      "scratch/counts-before.txt",
+      "scratch/route-a-test.txt",
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -90,6 +98,30 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validator-before.txt",
+        "kind": "file",
+        "path": "scratch/validator-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validator-after.txt",
+        "kind": "file",
+        "path": "scratch/validator-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "radius-negative.txt",
+        "kind": "file",
+        "path": "scratch/radius-negative.txt",
+        "source": "derived"
+      },
+      {
         "name": "palettes.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
@@ -111,6 +143,30 @@
         "name": "color-system.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-evidence.txt",
+        "kind": "file",
+        "path": "scratch/acceptance-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "counts-before.txt",
+        "kind": "file",
+        "path": "scratch/counts-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "route-a-test.txt",
+        "kind": "file",
+        "path": "scratch/route-a-test.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -148,59 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Twenty templates were authored one at a time, and every one of them re-types the same chrome by",
     "created_at": "2026-09-03T08:02:24.988Z",
-    "last_save_at": "2026-09-03T08:02:57.665Z",
+    "last_save_at": "2026-09-03T10:16:47.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,15 +217,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec2ac30d849b515b898934d8f85b7bab032c3fb18c641a90e8b7a9f9705288a4",
+    "source_fingerprint": "sha256:b141d11c086a89c14b1ed0d95fde661889b90662b7eaa56ac516161389ff562b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4dfb2a65c98ce0ebd4229e573f087b03019783ae9c0c43f9ae65d1d9559bbff",
-      "plan.md": "b2afd4aa4ebddbb3d2d60bbde6fc4e406736132bf887ce39bb82561e567e2fb4",
-      "tasks.md": "cdeca8c2553620e37046603d4481b4bb7a552dafa52e505f8fd18bed48d05b33",
-      "decision-record.md": "30b32d97ec285029d0f43cd6a783a60ea99e65d2fd43e10b2c8ac35d999a76a4"
+      "spec.md": "81fb46cd1bc695725792c022acacd3457235194b75fe4388ff424490ce70c06f",
+      "plan.md": "cc815191696b4a09d862201aa34d725a8c809ae189fb650b3793f5e2884ff67e",
+      "tasks.md": "a4be58c0bd24bcd233e296d0b80ef633516277f985cc3a217b0d2e2eb552fdb6",
+      "decision-record.md": "6c782dc38e783463e75c01f88623ad62fa57849412a47f2245b0617b6d836da3",
+      "implementation-summary.md": "d732cfa1ae8fb0a3a7bff110dafa71e56929046edf53765b8dbad5a946e8ad99"
     },
     "last_active_child_id": null,
     "last_active_at": null

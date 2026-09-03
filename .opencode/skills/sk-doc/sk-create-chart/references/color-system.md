@@ -1,6 +1,6 @@
 ---
 title: "Chart Colour Systems"
-description: "Three colour systems, one shared role vocabulary and the contrast gates the corpus check enforces, so a set of charts reads as one product rather than four."
+description: "Three colour systems, one shared role vocabulary, the corner ladder that rides beside it and the contrast gates the corpus check enforces, so a set of charts reads as one product rather than four."
 trigger_phrases:
   - "chart color system"
   - "chart palette"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Chart Colour Systems
@@ -51,6 +51,23 @@ A template reads a role, never a value. Every system defines the same roles, so 
 | muted | `--chart-muted` | Secondary text: the subtitle, the axis labels, the source line |
 | rule | `--chart-rule` | Gridlines, axis lines, card borders. Structure, never data |
 
+### Corner roles, identical in all three systems
+
+Not colours, and in the palette source they sit in their own object for that reason. They are
+listed here because they are the other half of the role vocabulary a template reads: one 2px knob,
+five steps, each earned by a surface the corpus actually draws.
+
+| Role | Custom property | What it is |
+| --- | --- | --- |
+| mark | `--chart-radius-mark` | A data mark's corner: a bar end, a box body, a calendar cell, a legend swatch, a ring tick |
+| track | `--chart-radius-track` | A percentage bar and the track it runs inside |
+| swatch | `--chart-radius-swatch` | A colour block large enough to read as a panel rather than as a mark |
+| pill | `--chart-radius-pill` | A progress track and its fill, which read as one capsule |
+| card | `--chart-radius-card` | The card that holds the chart |
+
+A corner computed from a mark's own geometry is not a rung. A range bar rounded to half its own
+width is a lozenge, which is a shape rather than a shared value, and it stays in the drawing code.
+
 ### Data roles, which are what a system changes
 
 | Role | Custom property | What it is |
@@ -60,7 +77,7 @@ A template reads a role, never a value. Every system defines the same roles, so 
 
 ### What varies and what does not
 
-Only the series values and the emphasis value change between systems. The chrome roles, the typeface, the spacing, the corner radius and the card layout are identical everywhere. That is what makes three charts in three systems still read as one product, and it is the reason a system swap is a single line in the palette block rather than a redesign.
+Only the series values and the emphasis value change between systems. The chrome roles, the corner ladder, the typeface, the spacing and the card layout are identical everywhere. That is what makes three charts in three systems still read as one product, and it is the reason a system swap is a single line in the palette block rather than a redesign.
 
 A palette built from a client's brand colours defines the same six roles or it is not a palette. It is a pile of hex.
 
@@ -112,6 +129,7 @@ Enforced by `scripts/check-corpus.cjs`, on every run:
 - A `magnitude` system is strictly monotonic in lightness.
 - A template's palette block matches the palette file exactly, in both directions.
 - No colour literal appears anywhere outside a palette block.
+- No corner value appears anywhere outside a palette block: a stylesheet corner resolves through a rung, and the drawing code computes a corner rather than typing one.
 
 Advisory, and reviewed by a person:
 

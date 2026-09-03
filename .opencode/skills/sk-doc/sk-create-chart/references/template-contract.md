@@ -1,6 +1,6 @@
 ---
 title: "Chart Template Contract"
-description: "What a chart template file contains, how it receives data, what it may depend on and the fourteen rules the corpus check enforces on every one."
+description: "What a chart template file contains, how it receives data, what it may depend on and the fifteen rules the corpus check enforces on every one."
 trigger_phrases:
   - "chart template contract"
   - "how to author a chart template"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Chart Template Contract
@@ -56,7 +56,7 @@ Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a wor
   <meta name="chart-color-system" content="<system>">
   <style>
     /* CHART_PALETTE:BEGIN system=<system> */
-    :root { every role, values pasted from the palette source }
+    :root { every colour role and every corner rung, pasted from the palette source }
     /* CHART_PALETTE:END */
 
     everything else, referring only to var(--chart-…)
@@ -143,9 +143,26 @@ To show a colour value as text, read it at runtime with `getComputedStyle(docume
 
 Which system to pick, what the roles mean and where the ceilings are: `color-system.md`.
 
+### The corner ladder rides in the same block
+
+The block carries one more kind of shared value: the five corner rungs, `--chart-radius-mark`
+through `--chart-radius-card`. They are not colours and they live in their own object in the
+palette source, but they are emitted into the same block because every file already carries that
+block and the check already compares it against the source in both directions.
+
+A corner is never typed into a file. A stylesheet reaches a rung the way it reaches a colour, and
+SVG marks take theirs from CSS too: `rx` is a geometry property, so `.box { rx: var(--chart-radius-mark); }`
+rounds a mark without a number appearing in the drawing code. Where a mark rounds only one end,
+the drawing builds a path and reads the rung once through `getComputedStyle`, because an `rx`
+rounds all four corners and a bar that meets a baseline should not round the end that meets it.
+
+A corner computed from a mark's own geometry is not a rung and stays in the drawing code. The
+range bars in `daily-range.html` are rounded to half their own width, which is a lozenge rather
+than a shared value.
+
 ---
 
-## 7. THE FOURTEEN RULES
+## 7. THE FIFTEEN RULES
 
 Every rule is enforced. The check name is what appears in the corpus check output, so a failure points at the rule it broke.
 
@@ -165,11 +182,17 @@ Every rule is enforced. The check name is what appears in the corpus check outpu
 | 12 | No randomness and no clock in rendering code | `determinism` | Two renders of one file that disagree |
 | 13 | A file that animates carries a `prefers-reduced-motion` fallback | `motion` | Motion shipped to a reader who asked their system for none |
 | 14 | The figure region can scroll sideways, and its drawing declares a `min-width` no wider than its own `viewBox` | `narrow-viewport` | A phone-width screen shrinking a chart until its labels sit on top of each other |
+| 15 | No corner value outside the palette block: a stylesheet corner resolves through a rung, and the drawing code computes a corner rather than typing one | `radius` | Twenty files agreeing on one corner by coincidence, and the twenty-first quietly disagreeing |
 
 Rule 14 is the one a desktop author never notices is missing. `width: 100%` on the drawing
 looks correct at every size the author tries, and squashes the chart into illegibility at the
 width most readers will open it on. A floor plus a pannable region is the whole fix, and it is
 two declarations.
+
+Rule 15 is the one that only pays later. The corner was already identical in every form before
+it was enforced, so the check found nothing wrong on the day it shipped. That is the point: the
+uniformity held because twenty authors happened to agree, and a convention nothing asserts breaks
+on the file nobody diffs closely.
 
 Rule 10 is the one worth doing first rather than last. A title inside the vector output, an accessible role and a hidden data table cost almost nothing while a template is being written, and are close to unaffordable to retrofit across a whole corpus.
 

@@ -13,6 +13,11 @@
   --chart-ink: #1A1917;
   --chart-muted: #52504E;
   --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
   --chart-series-1: #213B3D;
   --chart-series-2: #275C63;
   --chart-series-3: #2E7F89;
@@ -38,7 +43,7 @@ body {
   margin: 0 auto 20px;
   padding: 28px 28px 22px;
   border: 1px solid var(--chart-rule);
-  border-radius: 10px;
+  border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
@@ -63,9 +68,16 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .series-3 { fill: var(--chart-series-3); }
 .series-4 { fill: var(--chart-series-4); }
 .series-5 { fill: var(--chart-series-5); }
+/* Every cell and every legend block carries the ladder's mark corner, so a day in the grid
+   and its key below it are the same shape. */
+.series-1, .series-2, .series-3, .series-4, .series-5, .empty { rx: var(--chart-radius-mark); }
 .empty { fill: var(--chart-rule); }
 .lab { fill: var(--chart-muted); font-size: 10px; }
 .key { fill: var(--chart-muted); font-size: 11px; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The weekday and month labels keep the body face, because they are names rather than figures. */
+.key, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -209,7 +221,7 @@ function level(v) {
 WEEKS.forEach(function (week, w) {
   week.forEach(function (v, d) {
     tip(node('rect', {
-      x: GUTTER + w * STEP, y: TOP + d * STEP, width: CELL, height: CELL, rx: 2
+      x: GUTTER + w * STEP, y: TOP + d * STEP, width: CELL, height: CELL
     }, level(v)), DAYS[d] + ', week ' + (w + 1) + ': ' + fmt(v));
   });
 });
@@ -231,10 +243,10 @@ MONTHS.forEach(function (name, m) {
 // does not have. The legend says what the grid actually does.
 const legendY = TOP + 7 * STEP + 16;
 node('text', { x: GUTTER, y: legendY + 9 }, 'key').textContent = 'none';
-node('rect', { x: GUTTER + 32, y: legendY, width: CELL, height: CELL, rx: 2 }, 'empty');
+node('rect', { x: GUTTER + 32, y: legendY, width: CELL, height: CELL }, 'empty');
 node('text', { x: GUTTER + 54, y: legendY + 9 }, 'key').textContent = 'less';
 for (let i = 0; i < STEPS; i += 1) {
-  node('rect', { x: GUTTER + 84 + i * STEP, y: legendY, width: CELL, height: CELL, rx: 2 }, 'series-' + (STEPS - i));
+  node('rect', { x: GUTTER + 84 + i * STEP, y: legendY, width: CELL, height: CELL }, 'series-' + (STEPS - i));
 }
 node('text', { x: GUTTER + 84 + STEPS * STEP + 6, y: legendY + 9 }, 'key').textContent = 'more, up to ' + fmt(peak);
 

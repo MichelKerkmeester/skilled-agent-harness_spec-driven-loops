@@ -46,7 +46,7 @@ files.
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-03 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -181,12 +181,12 @@ path in the right column resolves under `.opencode/skills/sk-doc/sk-create-chart
 
 | Row | Change | Vendored evidence | Corpus target |
 |-----|--------|-------------------|---------------|
-| A1 | Grid dashed at `3 3` in a weakened rule colour, horizontal only | `src/registry/charts/recharts-bar-chart.tsx:484-489`, `src/registry/charts/echarts-line-chart.tsx:775` | The ten `.grid` declarations, at `assets/templates/daily-line.html:62` and its nine siblings |
+| A1 | Grid dashed at `3 3` in a weakened rule colour, on the value axis only | `src/registry/charts/recharts-bar-chart.tsx:484-489`, `src/registry/charts/echarts-line-chart.tsx:775` | Thirteen `.grid` declarations, not the ten this row predicted: ten templates and three deliveries. On a form whose value axis runs across the page, such as `distribution-strip`, the grid runs down it |
 | A1b | Tick text in muted ink rather than at full strength | `src/registry/ui/recharts-chart.tsx:112` | Every `.tick` declaration, at `assets/templates/daily-line.html:65` and its siblings |
 | A2 | Every number in a system mono face with tabular figures, bound to the corpus formatter | `src/registry/ui/recharts-tooltip.tsx:152-156` | The body font stack at `assets/templates/daily-line.html:31` and its twenty-eight siblings, and the formatter at `:122` |
 | A7 | A two-weight dot language, small dots with a surface-coloured ring on the emphasized point | `src/registry/ui/recharts-dot.tsx:83-116` | `assets/templates/daily-line.html:63`, `assets/templates/stacked-area.html` |
 | A9 | Area fills fade toward the baseline rather than sitting at a flat opacity | `src/registry/charts/recharts-area-chart.tsx:766-768` | `assets/templates/daily-line.html:60`, `assets/templates/stacked-area.html`, `assets/templates/daily-range.html` |
-| Radius ladder | A contextual ladder in place of one uniform corner, expressed as tokens | `src/app/globals.css:47-56` where one radius knob drives a calc ladder | `assets/color/palettes.json`, and the twenty `border-radius: 10px` declarations at `assets/templates/daily-line.html:40` and its siblings |
+| Radius ladder | A contextual ladder in place of one uniform corner, expressed as tokens | `src/app/globals.css:47-56` where one radius knob drives a calc ladder | `assets/color/palettes.json`, and twenty-nine `border-radius: 10px` declarations plus twenty-one `rx` literals across the whole asset tree |
 | Bar-end radius | Two pixels on the outer visible edge of a bar | `src/registry/charts/recharts-bar-chart.tsx:45` and `:654-658`, `src/registry/charts/echarts-bar-chart.tsx:98` | `assets/templates/bar-columns.html`, `bar-rows.html`, `grouped-bars.html`, `stacked-bars.html`, `waterfall.html`, `progress-single.html` |
 
 A2 carries a correction both lineages made and one lineage recorded as a reversal of its own
@@ -202,10 +202,10 @@ Only the visual treatment is adopted.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `grep -c 'border-radius: 10px' .opencode/skills/sk-doc/sk-create-chart/assets/templates/*.html` reports zero across all twenty files, with the before-count of twenty recorded.
-- **SC-002**: `node scripts/check-corpus.cjs --render` prints `RESULT: PASSED` with a nonzero assertion count on the new radius check.
-- **SC-003**: `grep -rn 'toLocaleString' .opencode/skills/sk-doc/sk-create-chart/assets/` returns nothing.
-- **SC-004**: The radius check fails on a mutated copy of one template before it is restored, proving the new assertion can go red.
+- **SC-001**: MET. Zero across `assets/` whole, against a recorded before-count of 29 rather than the 20 written here. Twenty is the templates-only figure, and the six deliveries and the three proof sheets typed the same value.
+- **SC-002**: MET. `RESULT: PASSED` with `radius: 58 assertion(s), 0 failure(s)`.
+- **SC-003**: MET. Nothing, before or after.
+- **SC-004**: MET, three times over. The rule reported 50 failures across the untouched corpus, then one per branch on a deliberately mutated file, and went green after each restore.
 <!-- /ANCHOR:success-criteria -->
 
 ---

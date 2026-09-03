@@ -104,6 +104,14 @@ function customProperties(palette, systemId) {
   for (const [role, value] of Object.entries(palette.chrome)) {
     props.set(`${palette.customPropertyPrefix}${role}`, value);
   }
+  // The corner ladder rides in the same block as the colours because every file already
+  // carries that block and compares it against the source in both directions. It lives in
+  // its own object in the source rather than inside chrome, because chrome means colour:
+  // a length that cannot differ between a light and a dark theme has no business in the
+  // one structure whose whole purpose is to differ between them.
+  for (const [role, value] of Object.entries(palette.radius || {})) {
+    props.set(`${palette.customPropertyPrefix}radius-${role}`, value);
+  }
   system.series.forEach((value, i) => {
     props.set(`${palette.customPropertyPrefix}series-${i + 1}`, value);
   });
@@ -132,6 +140,12 @@ function checkPaletteSource(palette) {
     if (!palette.chrome[role]) {
       record('palette-source', 'error', rel(PALETTE_SOURCE), `chrome role "${role}" is missing`);
     }
+  }
+  for (const [role, value] of Object.entries(palette.radius || {})) {
+    checked += 1;
+    if (/^\d+(?:\.\d+)?px$/.test(value)) continue;
+    record('palette-source', 'error', rel(PALETTE_SOURCE),
+      `radius rung "${role}" is ${value}, and a rung has to be a pixel length the stylesheet can use directly`);
   }
   for (const role of ['ink', 'muted']) {
     const ratio = contrast(palette.chrome[role], surface);
@@ -355,6 +369,48 @@ function checkColourLiterals(file, src, block) {
       if (bare.every((t) => COLOUR_KEYWORDS.has(t))) continue;
       record('colour-literals', 'error', file,
         `"${m[1]}: ${m[2].trim()}" does not resolve through a var(--chart-…) reference`);
+    }
+  }
+}
+
+// A corner comes from the ladder, never from a number typed into a file.
+//
+// This is the same idea as the palette rule one function up. A value meant to be identical
+// everywhere lives in one place and is read rather than re-typed, and twenty forms agreeing
+// on ten pixels by coincidence is not a convention: it is twenty chances to disagree, and
+// the twenty-first file is where it breaks. A corner declared in a stylesheet therefore has
+// to resolve through a rung, and a corner set from the drawing code has to be computed from
+// the mark's own geometry rather than typed. A range bar rounded to half its own width is
+// geometry and passes; a 2 typed beside it is a rung in disguise and fails.
+const RADIUS_DECLARATION = /(?:^|[;{\s])(border-radius|border-[a-z-]+-radius|rx|ry)\s*:\s*([^;}]+)/gi;
+const RADIUS_IN_ATTRS = /(?:^|[{,\s])(rx|ry)\s*:\s*(-?\d+(?:\.\d+)?)\s*(?=[,}\n])/g;
+const RADIUS_IN_SETATTR = /setAttribute\(\s*['"](rx|ry)['"]\s*,\s*['"]?(-?\d+(?:\.\d+)?)/g;
+
+function checkRadiusTokens(file, src, block) {
+  const withoutBlock = block ? src.slice(0, block.start) + src.slice(block.end) : src;
+  const { styles, scripts } = regionsOf(stripHtmlComments(withoutBlock));
+  tally('radius', styles.length + scripts.length);
+
+  for (const text of styles) {
+    let m;
+    RADIUS_DECLARATION.lastIndex = 0;
+    while ((m = RADIUS_DECLARATION.exec(text)) !== null) {
+      const value = m[2].trim();
+      if (value.includes('var(--chart-radius-')) continue;
+      record('radius', 'error', file,
+        `"${m[1]}: ${value}" is a corner typed into the stylesheet. Every corner resolves through a var(--chart-radius-…) rung, so one edit reaches the whole corpus instead of one file`);
+    }
+  }
+
+  for (const code of scripts) {
+    const executable = stripJsComments(code);
+    for (const re of [RADIUS_IN_ATTRS, RADIUS_IN_SETATTR]) {
+      let m;
+      re.lastIndex = 0;
+      while ((m = re.exec(executable)) !== null) {
+        record('radius', 'error', file,
+          `the drawing code sets ${m[1]} to the literal ${m[2]}. A shared corner belongs on a rung and reaches the mark through its class; a corner that is genuinely per-mark is computed from that mark's geometry`);
+      }
     }
   }
 }
@@ -673,6 +729,7 @@ function main() {
     const { id, systemId } = checkIdentity(name, src, palette);
     const block = checkPaletteBlock(name, src, palette, systemId);
     checkColourLiterals(name, src, block);
+    checkRadiusTokens(name, src, block);
     checkNoExternalResources(name, src);
     checkScriptParses(name, src);
     checkDataBlock(name, src);

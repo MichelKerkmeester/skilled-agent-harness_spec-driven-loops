@@ -1,0 +1,40 @@
+=== every rx the corpus draws (SVG rect corner) ===
+assets/color/palette-sheet-categorical.html:129:  rect.setAttribute('rx', '6');
+assets/color/palette-sheet-neutral.html:129:  rect.setAttribute('rx', '6');
+assets/color/palette-sheet-ordered.html:131:  rect.setAttribute('rx', '6');
+
+=== border-radius values, distinct ===
+  29 border-radius: 10px
+
+=== rect elements drawn by script (rect nodes) ===
+assets/examples/calls-by-day-and-hour.html:164:    node('rect', {
+assets/examples/staff-hours-by-service.html:124:  node('rect', { x: LEFT, y: y, width: width(d.value), height: BAR, rx: 2 }, d.lead ? 'bar-lead' : 'bar');
+assets/examples/where-the-budget-went.html:118:    node('rect', {
+assets/examples/where-the-budget-went.html:131:  node('rect', { x: keyX, y: 6, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
+assets/templates/bar-columns.html:174:  node('rect', {
+assets/templates/bar-rows.html:149:  node('rect', { x: LEFT, y: y, width: width(d.value), height: BAR, rx: 2 }, d.lead ? 'bar-lead' : 'bar');
+assets/templates/box-plot.html:177:  tip(node('rect', {
+assets/templates/calendar-grid.html:211:    tip(node('rect', {
+assets/templates/calendar-grid.html:234:node('rect', { x: GUTTER + 32, y: legendY, width: CELL, height: CELL, rx: 2 }, 'empty');
+assets/templates/calendar-grid.html:237:  node('rect', { x: GUTTER + 84 + i * STEP, y: legendY, width: CELL, height: CELL, rx: 2 }, 'series-' + (STEPS - i));
+assets/templates/candlestick.html:192:  tip(node('rect', { x: cx - bodyWidth / 2, y: top, width: bodyWidth, height: height }, rising ? 'up' : 'down'),
+assets/templates/candlestick.html:200:  node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, k.cls);
+assets/templates/daily-range.html:176:  node('rect', {
+assets/templates/grouped-bars.html:165:  node('rect', { x: x, y: 8, width: 14, height: 14, rx: 2 }, RANK[s]);
+assets/templates/grouped-bars.html:175:    node('rect', { x: x, y: y(v), width: barWidth, height: BASE - y(v), rx: 2 }, RANK[s]);
+assets/templates/heat-matrix.html:201:    tip(node('rect', {
+assets/templates/heat-matrix.html:221:  node('rect', { x: GUTTER + 54 + i * 20, y: legendY, width: 18, height: 13, rx: 2 }, 'series-' + (STEPS - i));
+assets/templates/independent-percentages.html:139:  node('rect', { x: LEFT, y: y, width: RIGHT - LEFT, height: BAR, rx: 4 }, 'track');
+assets/templates/independent-percentages.html:140:  node('rect', {
+assets/templates/progress-single.html:153:node('rect', { x: LEFT, y: TRACK_Y, width: RIGHT - LEFT, height: TRACK_H, rx: 8 }, 'track');
+assets/templates/progress-single.html:154:node('rect', { x: LEFT, y: TRACK_Y, width: (RIGHT - LEFT) * share, height: TRACK_H, rx: 8 }, 'fill');
+assets/templates/stacked-area.html:242:  node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, 'band-' + (s + 1));
+assets/templates/stacked-bars.html:171:    node('rect', { x: cx - barWidth / 2, y: y, width: barWidth, height: h }, 'seg series-' + (s + 1));
+assets/templates/stacked-bars.html:182:  node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
+assets/templates/treemap.html:197:    tip(node('rect', { x: x, y: y, width: w, height: h }, 'cell series-' + (s + 1)),
+assets/templates/unit-grid.html:139:    node('rect', {
+assets/templates/unit-grid.html:152:  node('rect', { x: keyX, y: 6, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
+assets/templates/unit-ring.html:144:    node('rect', {
+assets/templates/unit-ring.html:161:  node('rect', { x: keyX, y: 6, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
+assets/templates/waterfall.html:194:  tip(node('rect', { x: cx - barWidth / 2, y: top, width: barWidth, height: Math.max(height, 2) }, b.cls),
+assets/templates/waterfall.html:212:  node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, k.cls);

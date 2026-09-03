@@ -8,7 +8,7 @@ trigger_phrases:
   - "check-corpus"
 importance_tier: normal
 contextType: reference
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # sk-create-chart Scripts
@@ -53,7 +53,7 @@ Render is off by default and the summary says which mode it ran in. Without `--r
 
 ## 4. WHAT IT CHECKS
 
-Per template file, one check name each: `document-shape`, `identity`, `palette-block`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `narrow-viewport`, `motion`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
+Per template file, one check name each: `document-shape`, `identity`, `palette-block`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `narrow-viewport`, `motion`, `radius`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
 
 Two checks are about the corpus rather than about one file:
 
@@ -69,11 +69,16 @@ A validator that has only ever passed is not evidence. Before trusting a green r
 
 ```bash
 # a colour literal outside the palette block
+cp assets/color/palette-sheet-neutral.html /tmp/keep.html
 sed -i '' 's/var(--chart-muted)/#888888/' assets/color/palette-sheet-neutral.html
 node scripts/check-corpus.cjs   # expect RESULT: FAILED on colour-literals
-git checkout -- assets/color/palette-sheet-neutral.html
+cp /tmp/keep.html assets/color/palette-sheet-neutral.html
 node scripts/check-corpus.cjs   # expect RESULT: PASSED
 ```
+
+**Restore from a copy, not from `git checkout --`.** That command reverts to the last commit,
+not to the state you were working in, so on an uncommitted change it silently throws the work
+away and the run that follows fails for a reason unrelated to the mutation you were testing.
 
 Any of these breaks a different check: change one hex in the palette block, delete an `aria-labelledby`, add a second element with an existing id, add a catalog row pointing at a file that does not exist, drop the `CHART_DATA:END` sentinel.
 
@@ -88,6 +93,20 @@ git checkout -- assets/templates/scatter.html
 
 Raising the floor above the drawing's own width fails it a third way, which is the case
 that catches a min-width copied from a wider form.
+
+`radius` has two branches, so break both. A corner typed into a stylesheet is one:
+
+```bash
+cp assets/templates/bar-columns.html /tmp/keep.html
+sed -i '' 's/border-radius: var(--chart-radius-card);/border-radius: 12px;/' assets/templates/bar-columns.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on radius
+cp /tmp/keep.html assets/templates/bar-columns.html
+```
+
+A corner typed into the drawing code is the other: add `rx: 2` to any `node('rect', …)` call and
+run it again. A corner computed from a mark's own geometry, such as the range bar in
+`daily-range.html` rounded to half its width, is geometry rather than a shared value and passes
+on purpose.
 
 ---
 

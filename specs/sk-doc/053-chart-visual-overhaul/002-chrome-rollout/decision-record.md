@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/053-chart-visual-overhaul/002-chrome-rollout"
     last_updated_at: "2026-09-03T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Recorded four settled decisions and one route decision left open"
-    next_safe_action: "Test whether a length survives the palette block machinery"
+    recent_action: "Resolved ADR-005 to Route B and added ADR-006"
+    next_safe_action: "Hand phase 003 a corpus whose chrome is settled and whose corners are enforced"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json"
@@ -22,14 +22,15 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-03-053-002-chrome-rollout"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the radius tokens live inside the palette sentinels or beside them"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "ADR-001: every number binds to the corpus formatter"
       - "ADR-002: the ladder is the change and tokens make it checkable"
       - "ADR-003: the mono face is a system stack"
       - "ADR-004: round tick dots are carried and not applied"
+      - "ADR-005: Route B, the rungs live beside chrome rather than inside it"
+      - "ADR-006: a fill that carries a value does not fade"
 ---
 # Decision Record: Roll the settled chrome across the whole chart corpus
 
@@ -232,7 +233,7 @@ replace.
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-03 |
 | **Deciders** | Phase 2 implementer |
 | **Satisfies** | REQ-006 |
@@ -253,20 +254,103 @@ a colour.
 
 ### Decision
 
-Undecided until tested. Route A adds the rungs to `palette.chrome` and changes no code. Route B
-adds a sibling object to the palette source and teaches `customProperties` to read it, which keeps
-`chrome` meaning colour. The deciding evidence is whether a length survives the existing block
-machinery without a false contrast reading, and whether the contract sentence can be amended in
-one line rather than rewritten.
+**Route B.** The rungs live in a `radius` object beside `chrome` in the palette source, and
+`customProperties` emits them into the same block as `--chart-radius-mark` through
+`--chart-radius-card`.
+
+Route A was tested rather than reasoned about, because the record said to test it. A rung was added
+to `palette.chrome`, the check was run, and the result is in `scratch/route-a-test.txt`: the length
+survived `customProperties` and `canonicalBlock` intact, appearing in the printed block as
+`--chart-radius-card: 10px;` between the colour properties, and `palette-source` reported the same
+22 assertions and 0 failures as the baseline, so no contrast ratio was taken of it. Route A works.
+
+It was still rejected. Phase 005 adds a second copy of this block under a media query, and that
+block exists precisely so its values can differ between a light and a dark theme. A corner cannot.
+Putting a length inside `chrome` would put a value that must never change into the one structure
+whose purpose is to change, and every dark-theme block after this phase would carry five properties
+its author has to remember not to touch.
+
+The cost of Route B was five lines in `customProperties` and a five-line sanity rule in
+`checkPaletteSource` that fails a rung which is not a pixel length.
 
 ### Consequences
 
-- Route A ships faster and leaves a length inside an object every reader expects to hold colours.
-- Route B costs a small function change and keeps the two vocabularies apart, which matters more
-  once phase 005 adds a second media-scoped block.
+- `chrome` still means colour, which is what the contract says it means.
+- The block a template carries now holds two kinds of shared value, and the contract says so in the
+  skeleton section rather than leaving a reader to infer it from the property names.
+- Phase 005's media-scoped block redeclares colours only.
 
 ### Alternatives Rejected
 
+- **Route A, rungs inside `palette.chrome`.** Tested and working, rejected on the phase 005 argument
+  above. The evidence that it works is kept, because a later phase that wants to move a non-colour
+  value into the block should not have to re-run the experiment.
+- **A second sentinel pair for a corner block.** A new region, a new comparison and a new failure
+  message, to carry five values that the existing region already carries for free.
 - **Put the radius tokens in each file's stylesheet outside the sentinels.** That is where they
   already effectively are, and it reproduces the unenforced duplication this phase exists to end.
 <!-- /ANCHOR:adr-005 -->
+
+---
+
+<!-- ANCHOR:adr-006 -->
+## ADR-006: A fill that carries a value does not fade, and a form without a line has no dot language
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-03 |
+| **Deciders** | Phase 2 implementer |
+| **Satisfies** | REQ-005 |
+
+---
+
+### Context
+
+The A9 row names three forms: `daily-line`, `daily-range` and `stacked-area`. The first was done in
+phase 001. Reading the other two against the row rather than against their names changes the answer.
+
+`daily-range` draws one rect per day, from that day's low to its high, rounded to half its own
+width. There is no area path in the file and `grep -rn 'fill-opacity' assets/` returns one match in
+the whole corpus, in a delivery. A vertical fade across a range bar would say the low end of a
+range matters less than the high end, which is the opposite of what the form exists to show.
+
+`stacked-area` draws bands, and a band's fill is its magnitude. The neutral system ranks series by
+lightness and the corpus check enforces that ranking with `rampStepSeparation` and
+`emphasisAgainstFirstSeries`, computed from the palette source. An opacity ramp painted over those
+fills would change the rendered lightness while the gate kept reading the source values, so the
+encoding would be corrupted by a change the check certifies as green. That is the exact failure the
+packet's own scripts document warns about.
+
+The A7 row names `stacked-area` as well. It draws no marks at all, so there is no one-weight dot
+language to make two-weight.
+
+### Decision
+
+A9 reaches a fill that is decoration under a mark that carries the value, and stops at a fill that
+is the value. In this corpus that is `daily-line` and its delivery twin
+`orders-after-the-price-change`, both of which now fade from the series token at 0.18 to nothing at
+the baseline. A7 reaches the same two files.
+
+`daily-range` and `stacked-area` are recorded here as not reached, with the reason, rather than left
+looking like an oversight.
+
+### Consequences
+
+- Two files carry the fade instead of the four the row implied, and the two that do not carry it
+  each have a written reason.
+- The delivery and the form in the line family now look alike, which is the property the six
+  deliveries exist to demonstrate.
+- AC-007 named three files and is superseded by AC-018, which names the two that draw an area.
+
+### Alternatives Rejected
+
+- **Fade the stacked bands anyway.** It would satisfy the row as written and break the lightness
+  ranking the palette gates exist to protect, in a way no check would catch.
+- **Fade the range bars anyway.** A range has two real ends. Fading one of them is an encoding, and
+  it is one nobody asked for.
+- **Drop the row for those two forms with no record.** A row dropped without a reason is
+  indistinguishable from a row nobody read.
+<!-- /ANCHOR:adr-006 -->

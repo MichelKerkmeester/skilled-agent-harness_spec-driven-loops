@@ -1,0 +1,111 @@
+=== asset file inventory ===
+      29
+--- templates ---
+      20
+--- examples ---
+       6
+--- color sheets ---
+       3
+
+=== border-radius: 10px per file ===
+assets/color/palette-sheet-categorical.html:1
+assets/color/palette-sheet-neutral.html:1
+assets/color/palette-sheet-ordered.html:1
+assets/color/palettes.json:0
+assets/examples/calls-by-day-and-hour.html:1
+assets/examples/orders-after-the-price-change.html:1
+assets/examples/pick-times-by-depot.html:1
+assets/examples/staff-hours-by-service.html:1
+assets/examples/van-age-against-repair-cost.html:1
+assets/examples/where-the-budget-went.html:1
+assets/templates/bar-columns.html:1
+assets/templates/bar-rows.html:1
+assets/templates/box-plot.html:1
+assets/templates/calendar-grid.html:1
+assets/templates/candlestick.html:1
+assets/templates/daily-line.html:1
+assets/templates/daily-range.html:1
+assets/templates/distribution-strip.html:1
+assets/templates/grouped-bars.html:1
+assets/templates/heat-matrix.html:1
+assets/templates/independent-percentages.html:1
+assets/templates/parallel-axes.html:1
+assets/templates/progress-single.html:1
+assets/templates/scatter.html:1
+assets/templates/stacked-area.html:1
+assets/templates/stacked-bars.html:1
+assets/templates/treemap.html:1
+assets/templates/unit-grid.html:1
+assets/templates/unit-ring.html:1
+assets/templates/waterfall.html:1
+TOTAL 10px declarations:
+      29
+
+=== all border-radius declarations ===
+assets/color/palette-sheet-categorical.html -> border-radius: 10px;
+assets/color/palette-sheet-neutral.html -> border-radius: 10px;
+assets/color/palette-sheet-ordered.html -> border-radius: 10px;
+assets/examples/calls-by-day-and-hour.html -> border-radius: 10px;
+assets/examples/orders-after-the-price-change.html -> border-radius: 10px;
+assets/examples/pick-times-by-depot.html -> border-radius: 10px;
+assets/examples/staff-hours-by-service.html -> border-radius: 10px;
+assets/examples/van-age-against-repair-cost.html -> border-radius: 10px;
+assets/examples/where-the-budget-went.html -> border-radius: 10px;
+assets/templates/bar-columns.html -> border-radius: 10px;
+assets/templates/bar-rows.html -> border-radius: 10px;
+assets/templates/box-plot.html -> border-radius: 10px;
+assets/templates/calendar-grid.html -> border-radius: 10px;
+assets/templates/candlestick.html -> border-radius: 10px;
+assets/templates/daily-line.html -> border-radius: 10px;
+assets/templates/daily-range.html -> border-radius: 10px;
+assets/templates/distribution-strip.html -> border-radius: 10px;
+assets/templates/grouped-bars.html -> border-radius: 10px;
+assets/templates/heat-matrix.html -> border-radius: 10px;
+assets/templates/independent-percentages.html -> border-radius: 10px;
+assets/templates/parallel-axes.html -> border-radius: 10px;
+assets/templates/progress-single.html -> border-radius: 10px;
+assets/templates/scatter.html -> border-radius: 10px;
+assets/templates/stacked-area.html -> border-radius: 10px;
+assets/templates/stacked-bars.html -> border-radius: 10px;
+assets/templates/treemap.html -> border-radius: 10px;
+assets/templates/unit-grid.html -> border-radius: 10px;
+assets/templates/unit-ring.html -> border-radius: 10px;
+assets/templates/waterfall.html -> border-radius: 10px;
+
+=== .grid declarations ===
+assets/examples/orders-after-the-price-change.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/examples/pick-times-by-depot.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/examples/van-age-against-repair-cost.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/bar-columns.html:65:.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+assets/templates/box-plot.html:64:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/candlestick.html:64:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/daily-line.html:73:.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+assets/templates/daily-range.html:63:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/distribution-strip.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/grouped-bars.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/scatter.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/stacked-area.html:65:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/waterfall.html:64:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+
+=== files with stroke-dasharray ===
+assets/templates/bar-columns.html
+assets/templates/daily-line.html
+assets/templates/progress-single.html
+
+=== .tick declarations ===
+assets/examples/orders-after-the-price-change.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/examples/pick-times-by-depot.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/examples/van-age-against-repair-cost.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/bar-columns.html:67:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/bar-columns.html:72:.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+assets/templates/box-plot.html:66:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/candlestick.html:65:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/daily-line.html:79:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/daily-line.html:85:.tick, .note, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+assets/templates/daily-range.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/distribution-strip.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/grouped-bars.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/progress-single.html:66:.tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+assets/templates/scatter.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/stacked-area.html:66:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/waterfall.html:66:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }

@@ -1,0 +1,65 @@
+== Evidence for the acceptance criteria, from the final state ==
+
+-- AC-001 grid dashed --
+grid-bearing files before: 13 (10 templates, 3 deliveries), all solid except the two phase 001 shipped
+files whose .grid now carries stroke-dasharray:       13
+solid .grid declarations remaining: 0
+
+-- AC-002 tick ink muted --
+.tick colour declarations, all reading muted: 14
+.tick colour declarations total: 14
+
+-- AC-003 mono face --
+asset files carrying ui-monospace:       29
+asset html files in the tree:            29
+
+-- AC-004 locale-independent formatting --
+no match
+
+-- AC-008 corner literals --
+border-radius: 10px, before (assets/, all 29 files): 29 (recorded in counts-before.txt; the packet docs said 20, which is the templates-only count)
+border-radius: 10px, after:        0
+any corner literal remaining anywhere:        0
+
+-- AC-011 bar-family outer edge --
+forms whose bar rounds only the edge that meets nothing (drawn as a path):
+.opencode/skills/sk-doc/sk-create-chart/assets/examples/staff-hours-by-service.html
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-rows.html
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/grouped-bars.html
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-bars.html
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/waterfall.html
+rx= as a literal attribute anywhere in the tree:
+  none, because rx is never typed; a mark takes its corner from CSS and a one-ended bar is a path
+
+-- AC-018 / AC-019 area fade and dot language --
+files carrying a fade gradient: .opencode/skills/sk-doc/sk-create-chart/assets/examples/orders-after-the-price-change.html .opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html 
+files carrying a per-reading dot plus a surface-ringed mark: .opencode/skills/sk-doc/sk-create-chart/assets/examples/orders-after-the-price-change.html .opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html 
+
+-- AC-015 the skeleton --
+palette-sheet-neutral.html is scanned by every check the twenty forms are scanned by; it was the last file edited in the rollout.
+
+-- AC-005 the labels change only in face --
+Every asset file was rendered twice in headless Chrome, once from the committed version and once
+from the working tree, and every SVG text node and every table cell was dumped in document order.
+`diff -r` over the twenty-nine pairs reports no difference: every rendered label is
+character-for-character identical. Only the face changed.
+
+-- AC-013 the labels were read --
+Two passes, because the corpus check does not look at the picture.
+1. Measured: a probe appended to a copy of each file walks every SVG text node, takes getBBox()
+   and reports overlapping pairs. Three overlaps were found, in parallel-axes, scatter and
+   van-age-against-repair-cost. The same probe run against the committed versions reports the same
+   three, and the horizontal figure is smaller after the change (14.0 to 13.2, 28.0 to 26.5,
+   7.0 to 6.6) because mono digits are narrower than proportional ones at these sizes. Two of the
+   three are a rotate(-90) axis name, where getBBox reports the untransformed box, so they are an
+   artefact of the measurement rather than a collision. None is new and none is caused by the face.
+2. Looked at: all twenty-nine files were rendered to PNG at 840x700 and read. One defect was found
+   this way and fixed: progress-single's 56px headline figure in a mono face put the decimal point
+   in a cell as wide as a digit, so 6.7 read as 6 . 7. That figure now keeps the body face.
+
+-- CHK-112 checker runtime --
+Five structural runs each on the same machine, `time` real seconds.
+  before (checker and corpus restored from HEAD into a scratch copy of the package): 0.11 0.06 0.07 0.07 0.07
+  after  (the shipped state):                                                        0.08 0.07 0.07 0.07 0.08
+Median 0.07 on both sides. The new rule adds 58 assertions and no measurable time at this corpus size.

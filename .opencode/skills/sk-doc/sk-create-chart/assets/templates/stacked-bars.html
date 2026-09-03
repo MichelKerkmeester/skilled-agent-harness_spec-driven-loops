@@ -13,6 +13,11 @@
   --chart-ink: #1A1917;
   --chart-muted: #52504E;
   --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
   --chart-series-1: #28405C;
   --chart-series-2: #874420;
   --chart-series-3: #487B3B;
@@ -37,7 +42,7 @@ body {
   margin: 0 auto 20px;
   padding: 28px 28px 22px;
   border: 1px solid var(--chart-rule);
-  border-radius: 10px;
+  border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
@@ -61,10 +66,17 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .series-2 { fill: var(--chart-series-2); }
 .series-3 { fill: var(--chart-series-3); }
 .seg { stroke: var(--chart-surface); stroke-width: 3; }
+/* The legend block carries the ladder's mark corner. Only the top segment of a stack carries
+   it in the drawing, so no two data colours ever meet across a rounded seam. */
+.key-swatch { rx: var(--chart-radius-mark); }
 .cat { fill: var(--chart-ink); font-size: 12px; }
 .key { fill: var(--chart-muted); font-size: 12px; }
 .on-dark { fill: var(--chart-surface); font-size: 12px; font-variant-numeric: tabular-nums; }
 .on-light { fill: var(--chart-ink); font-size: 12px; font-variant-numeric: tabular-nums; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The category and legend names keep the body face, because they are names rather than figures. */
+.on-dark, .on-light, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -151,6 +163,23 @@ function labelClass(fill) {
   return ratio(resolve('--chart-surface'), fill) >= ratio(resolve('--chart-ink'), fill) ? 'on-dark' : 'on-light';
 }
 
+// The corner comes from the ladder in the palette block rather than from a number typed
+// here, so one edit reaches every form instead of one file.
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-mark')) || 0;
+
+// A column rounds only the end that meets nothing. The end on the baseline stays square,
+// because a rounded corner there reads as a column that stops short of the axis it is
+// measured from. A column shorter than its own corner has the corner clamped to its height,
+// so a small value stays a column rather than collapsing into a lozenge.
+function topRounded(x, y, w, h, r) {
+  const k = Math.max(0, Math.min(r, w / 2, h));
+  return 'M' + x + ',' + (y + h) + ' V' + (y + k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + k) + ',' + y +
+    ' H' + (x + w - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w) + ',' + (y + k) +
+    ' V' + (y + h) + ' Z';
+}
+
 const LEFT = 40;
 const RIGHT = 700;
 const TOP = 44;
@@ -168,7 +197,10 @@ DATA.forEach(function (d, i) {
   d.values.forEach(function (v, s) {
     const h = v * scale;
     y -= h;
-    node('rect', { x: cx - barWidth / 2, y: y, width: barWidth, height: h }, 'seg series-' + (s + 1));
+    const top = s === d.values.length - 1;
+    node(top ? 'path' : 'rect', top
+      ? { d: topRounded(cx - barWidth / 2, y, barWidth, h, MARK_R) }
+      : { x: cx - barWidth / 2, y: y, width: barWidth, height: h }, 'seg series-' + (s + 1));
     if (h >= 22) {
       node('text', { x: cx, y: y + h / 2 + 4, 'text-anchor': 'middle' },
         labelClass(resolve('--chart-series-' + (s + 1)))).textContent = fmt(v);
@@ -179,7 +211,7 @@ DATA.forEach(function (d, i) {
 
 let keyX = LEFT;
 SEGMENTS.forEach(function (name, s) {
-  node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
+  node('rect', { x: keyX, y: 8, width: 13, height: 13 }, 'key-swatch series-' + (s + 1));
   const label = node('text', { x: keyX + 19, y: 19 }, 'key');
   label.textContent = name;
   // The gap after a swatch is the label's real width, measured once it is in the

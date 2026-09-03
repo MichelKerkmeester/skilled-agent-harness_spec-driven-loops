@@ -13,6 +13,11 @@
   --chart-ink: #1A1917;
   --chart-muted: #52504E;
   --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
   --chart-series-1: #213B3D;
   --chart-series-2: #275C63;
   --chart-series-3: #2E7F89;
@@ -38,7 +43,7 @@ body {
   margin: 0 auto 20px;
   padding: 28px 28px 22px;
   border: 1px solid var(--chart-rule);
-  border-radius: 10px;
+  border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
@@ -58,6 +63,10 @@ th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
+/* The track and the fill are one capsule, so both ends are rounded and both sit on the
+   ladder's widest mark rung. The rule about rounding only the outer end is for a bar that
+   meets a baseline; this one meets the track it runs inside. */
+.track, .fill { rx: var(--chart-radius-pill); }
 .track { fill: var(--chart-rule); }
 .fill { fill: var(--chart-series-2); }
 .pace { stroke: var(--chart-ink); stroke-width: 2; stroke-dasharray: 5 4; }
@@ -65,6 +74,13 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .unit { fill: var(--chart-muted); font-size: 15px; }
 .tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 .pace-label { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The big
+   number keeps the body face: nothing is set under it to line up with, and at 56px a mono
+   decimal point sits in a cell as wide as a digit, which reads as 6 . 7 rather than as 6.7.
+   The unit caption keeps it too, because it is a sentence around a figure. */
+.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -150,8 +166,8 @@ node('text', { x: LEFT + (headlineValue.getComputedTextLength() || fmt(MEASURE.v
 node('text', { x: RIGHT, y: 62, 'text-anchor': 'end' }, 'unit')
   .textContent = Math.round(share * 100) + '% of goal';
 
-node('rect', { x: LEFT, y: TRACK_Y, width: RIGHT - LEFT, height: TRACK_H, rx: 8 }, 'track');
-node('rect', { x: LEFT, y: TRACK_Y, width: (RIGHT - LEFT) * share, height: TRACK_H, rx: 8 }, 'fill');
+node('rect', { x: LEFT, y: TRACK_Y, width: RIGHT - LEFT, height: TRACK_H }, 'track');
+node('rect', { x: LEFT, y: TRACK_Y, width: (RIGHT - LEFT) * share, height: TRACK_H }, 'fill');
 
 node('line', {
   x1: at(MEASURE.pace), y1: TRACK_Y - 12, x2: at(MEASURE.pace), y2: TRACK_Y + TRACK_H + 12

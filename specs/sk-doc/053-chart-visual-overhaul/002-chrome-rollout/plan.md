@@ -55,15 +55,15 @@ is more honest, and the deciding evidence is whether the contrast machinery in
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001 closed with a recorded stroke weight and a recorded glow verdict
-- [ ] Baseline corpus check captured with `--render`
-- [ ] The before-count of every value this phase replaces is recorded
+- [x] Phase 001 closed with a recorded stroke weight and a recorded glow verdict
+- [x] Baseline corpus check captured with `--render`
+- [x] The before-count of every value this phase replaces is recorded
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state
-- [ ] The radius assertion is proven able to fail
-- [ ] Docs updated (spec/plan/tasks/acceptance-criteria/decision-record)
+- [x] All acceptance criteria met. 17 Met, 3 Superseded by ADR-006, 0 Unmet
+- [x] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state
+- [x] The radius assertion is proven able to fail. Three red runs in `scratch/radius-negative.txt`
+- [x] Docs updated (spec/plan/tasks/acceptance-criteria/decision-record/implementation-summary)
 <!-- /ANCHOR:quality-gates -->
 
 ---

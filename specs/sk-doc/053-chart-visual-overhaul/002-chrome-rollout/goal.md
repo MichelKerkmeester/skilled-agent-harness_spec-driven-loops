@@ -13,10 +13,9 @@ _memory:
     packet_pointer: "sk-doc/053-chart-visual-overhaul/002-chrome-rollout"
     last_updated_at: "2026-09-03T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the durable directive for the twenty-nine file chrome pass"
-    next_safe_action: "Confirm phase 001 closed with a disposition on both forks"
-    blockers:
-      - "Phase 001 has not answered the stroke weight fork"
+    recent_action: "Rolled the settled chrome across the corpus and put the corner ladder behind a check"
+    next_safe_action: "Start phase 003 on a corpus that passes --render from its final state"
+    blockers: []
     key_files:
       - ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json"
       - ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs"
@@ -25,14 +24,14 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-03-053-002-chrome-rollout"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the radius tokens live inside the palette sentinels or beside them"
-      - "Which rungs the ladder actually needs"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Every number binds to the corpus formatter, never to a locale-dependent one"
       - "The mono face is a system stack, so the no-web-font rule holds"
       - "Round tick dots are carried and not applied"
+      - "The rungs live beside chrome, not inside it, because a corner cannot differ by theme"
+      - "A fill that carries a value does not fade"
 ---
 # Goal: Chrome Rollout
 
@@ -73,13 +72,13 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED` with `Summary: errors: 0`
-- [ ] `grep -rc 'border-radius: 10px' .opencode/skills/sk-doc/sk-create-chart/assets/` returns 0 in every file, against a recorded before-count of 20
-- [ ] `grep -rn 'toLocaleString' .opencode/skills/sk-doc/sk-create-chart/assets/` returns no match
-- [ ] `grep -rl 'ui-monospace' .opencode/skills/sk-doc/sk-create-chart/assets/` lists all twenty-nine asset files
-- [ ] The corpus check names a radius rule with a nonzero assertion count, and that rule printed `RESULT: FAILED` on a mutated template before the template was restored
-- [ ] `decision-record.md` carries ADR-001 through ADR-005, with ADR-005 resolved to Route A or Route B on tested evidence
-- [ ] `validate.sh specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout --strict` prints `RESULT: PASSED`
+- [x] `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED` with `Summary: errors: 0`
+- [x] `grep -rc 'border-radius: 10px' .opencode/skills/sk-doc/sk-create-chart/assets/` returns 0 in every file, against a recorded before-count of 20
+- [x] `grep -rn 'toLocaleString' .opencode/skills/sk-doc/sk-create-chart/assets/` returns no match
+- [x] `grep -rl 'ui-monospace' .opencode/skills/sk-doc/sk-create-chart/assets/` lists all twenty-nine asset files
+- [x] The corpus check names a radius rule with a nonzero assertion count, and that rule printed `RESULT: FAILED` on a mutated template before the template was restored
+- [x] `decision-record.md` carries ADR-001 through ADR-005, with ADR-005 resolved to Route A or Route B on tested evidence
+- [x] `validate.sh specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -95,20 +94,26 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| A1 dashed grid across ten grid-bearing files | Pending | Row table in `spec.md` |
-| A1b muted tick ink across the corpus | Pending | Row table in `spec.md` |
-| A2 mono face with tabular figures across twenty-nine files | Pending | Row table in `spec.md` |
-| A7 two-weight dot language in the line family | Pending | Row table in `spec.md` |
-| A9 area and band fills fading to the baseline | Pending | Row table in `spec.md` |
-| Radius ladder as tokens, plus its check | Pending | ADR-002 and ADR-005 in `decision-record.md` |
-| Bar-end radius on the six bar-family forms | Pending | Row table in `spec.md` |
+| A1 dashed grid across the grid-bearing files | Done | 13 of 13, not the 10 the row predicted: three deliveries draw a grid too |
+| A1b muted tick ink across the corpus | Done, no-op | All 14 `.tick` declarations already read `var(--chart-muted)` before the phase began |
+| A2 mono face with tabular figures across twenty-nine files | Done | `grep -rl 'ui-monospace' assets/` returns 29 of 29, against a before-count of 2 |
+| A7 two-weight dot language in the line family | Done, narrowed | `daily-line` and `orders-after-the-price-change`. ADR-006 records why `stacked-area` is out of reach |
+| A9 area and band fills fading to the baseline | Done, narrowed | The same two files. ADR-006 records why `daily-range` and `stacked-area` are out of reach |
+| Radius ladder as tokens, plus its check | Done | Five rungs in `palettes.json`, a `radius` check at 58 assertions, watched failing three times |
+| Bar-end radius on the six bar-family forms | Done | Five build a path so only the outer edge rounds, and `progress-single` is a pill that keeps both ends |
 | Round tick dots, carried and not applied | Recorded | ADR-004 in `decision-record.md` |
+| Series stroke at the settled 1px | Done | `orders-after-the-price-change` 2 to 1, `parallel-axes` four lines 2.5 to 1 |
+| The glow verdict | Done, no-op | No filter was authored anywhere |
+| Both reference documents and the scripts README | Done | Rule 15, the corner roles table, and how to break both branches of the new check |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| A length may not belong inside the palette block | `customProperties` walks `palette.chrome` and emits a property per key, and `checkPaletteSource` only takes contrast on ink and muted. The cheap route works and is not obviously correct, so ADR-005 decides it by testing |
-| The corpus draws no tick marks | One lineage's round tick dots row has nothing to replace. It is recorded rather than dropped so a later phase does not rediscover it as a new idea |
-| Mono advances are wider than sans advances | Every character-count width estimate in the corpus is tuned against a sans stack. The check does not judge the picture, so every file has to be opened and read |
+| The before-counts in the packet docs were the templates-only counts | The tree holds 29 `border-radius: 10px` declarations and 13 grid declarations, not the 20 and 10 the spec and this goal predicted. The six deliveries and the three proof sheets type the same chrome the templates do. The inventory in `scratch/counts-before.txt` was taken over `assets/` whole, which is the only reason the nine extra files were not missed |
+| A length does survive the palette block machinery | Route A was tested rather than argued about, and it works: `scratch/route-a-test.txt` shows the rung emitted into the printed block with `palette-source` unchanged at 22 assertions and 0 failures. Route B was chosen anyway, because phase 005 duplicates that block under a media query and a corner is the one value that cannot differ by theme |
+| Three rows named files that cannot carry them | An area fade for a form drawing range bars, a dot language for a form drawing no marks, and an `rx` attribute to verify a one-edge requirement that an `rx` cannot express. ADR-006 records all three and AC-018, AC-019 and AC-020 replace them |
+| Mono advances are wider, and it changed nothing | Every rendered label in all 29 files is character-identical before and after, proven by diffing two headless renders. The measured overlaps are the same three that existed before, and two of those are an artefact of a rotated axis name |
+| One real defect, found by looking rather than by checking | `progress-single`'s 56px headline figure in a mono face put the decimal point in a cell as wide as a digit, so 6.7 read as 6 . 7. That figure keeps the body face: nothing is set under it to line up with |
+| `git checkout --` destroyed uncommitted work during the negative control | It reverts to the last commit rather than to the working state, so it wiped this phase's edits to `bar-columns.html` and the run that followed failed for an unrelated reason. The edits were re-applied and the control was redone against a kept copy. `scripts/README.md` now warns about it in the section that teaches the technique |
 <!-- /ANCHOR:log -->

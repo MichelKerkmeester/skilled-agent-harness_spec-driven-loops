@@ -1,0 +1,19 @@
+== Proving the radius rule can go red ==
+
+-- 1. Green from the final state --
+  + radius: 58 assertion(s), 0 failure(s)
+RESULT: PASSED
+
+-- 2. bar-columns.html types its own card corner: border-radius: 12px --
+  x radius: 58 assertion(s), 1 failure(s)
+  FAIL [radius] assets/templates/bar-columns.html: "border-radius: 12px" is a corner typed into the stylesheet. Every corner resolves through a var(--chart-radius-…) rung, so one edit reaches the whole corpus instead of one file
+RESULT: FAILED
+
+-- 3. bar-columns.html types a mark corner into the drawing code: rx: 2 --
+  x radius: 58 assertion(s), 1 failure(s)
+  FAIL [radius] assets/templates/bar-columns.html: the drawing code sets rx to the literal 2. A shared corner belongs on a rung and reaches the mark through its class; a corner that is genuinely per-mark is computed from that mark's geometry
+RESULT: FAILED
+
+-- 4. restored from the kept copy, and the rule goes green again --
+  + radius: 58 assertion(s), 0 failure(s)
+RESULT: PASSED

@@ -13,6 +13,11 @@
   --chart-ink: #1A1917;
   --chart-muted: #52504E;
   --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
   --chart-series-1: #292825;
   --chart-series-2: #4C4B48;
   --chart-series-3: #6B6A67;
@@ -37,7 +42,7 @@ body {
   margin: 0 auto 20px;
   padding: 28px 28px 22px;
   border: 1px solid var(--chart-rule);
-  border-radius: 10px;
+  border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }

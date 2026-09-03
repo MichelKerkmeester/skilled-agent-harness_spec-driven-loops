@@ -15,6 +15,22 @@
     "rule": "Gridlines, axis lines and card borders. Structure, never data.",
     "separator": "Not a value. Shapes that touch are separated by a stroke in surface, so no two data colours ever share an edge."
   },
+  "radius": {
+    "mark": "2px",
+    "track": "4px",
+    "swatch": "6px",
+    "pill": "8px",
+    "card": "10px"
+  },
+  "radiusRoles": {
+    "ladder": "One 2px knob, five steps. Every step is a corner the corpus actually draws, so a rung exists for a consumer rather than for symmetry.",
+    "mark": "A data mark's corner: a bar end, a box body, a calendar cell, a legend swatch, a ring tick.",
+    "track": "A percentage bar and the track it runs inside.",
+    "swatch": "A colour block large enough to be read as a panel rather than as a mark.",
+    "pill": "A progress track and its fill, which read as one capsule.",
+    "card": "The card that holds the chart.",
+    "notALadderRung": "A corner computed from a mark's own geometry, such as a range bar rounded to half its width, is geometry rather than a shared value. It stays in the drawing code."
+  },
   "gates": {
     "textOnSurface": 4.5,
     "markOnSurface": 3.0,
