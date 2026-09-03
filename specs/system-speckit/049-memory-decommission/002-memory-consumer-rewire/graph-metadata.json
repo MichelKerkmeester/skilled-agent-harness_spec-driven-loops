@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+      "shared/ipc/socket-server.ts",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs",
       ".opencode/skills/system-spec-kit/references/memory/save-workflow.md",
       ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
       ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
@@ -56,7 +59,8 @@
       ".claude/mcp.json",
       ".codex/config.toml",
       ".cursor/mcp.json",
-      ".pi/mcp.json"
+      ".pi/mcp.json",
+      "references/memory/save-workflow.md"
     ],
     "entities": [
       {
@@ -96,6 +100,24 @@
         "source": "derived"
       },
       {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": "shared/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-memory-residue.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs",
+        "source": "derived"
+      },
+      {
         "name": "save-workflow.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/memory/save-workflow.md",
@@ -105,12 +127,6 @@
         "name": "workflow.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "socket-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
         "source": "derived"
       },
       {
@@ -190,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Work",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Strangler",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "427 files reference the memory MCP surface",
     "created_at": "2026-09-02T11:04:50Z",
-    "last_save_at": "2026-09-02T20:08:01.086Z",
+    "last_save_at": "2026-09-03T08:07:31.249Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de67e9b03c0d48d98546550e5911726ead3eb5f422d7661c88fd9709f39eaba6",
+    "source_fingerprint": "sha256:2a45f6f313c7cdc63fc8a7b6542c18dc5f9c650d4e4082c2d4b135499941803d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64d353054af61605c1e2d06924f07b17db3a62bc4120287bb39fbf14e7bd1f67",
+      "spec.md": "deb33859a8aaec4d0ff0a1d85204be0607109ed0369c57bfc8c4b6bb16e3688c",
       "plan.md": "f8aa111b895528887e16e1155ac3d41754dee56b129187e0e136f9d4152eccf6",
-      "tasks.md": "0d446b124cae50c7a2e54ca397d9f7f71cee80f1e623832aa79212f27fef4613",
-      "implementation-summary.md": "3ac2f6829a1ef42740c4c4037d5d07db48aec7147ebdc052ea50c4b86bf2b4a8"
+      "tasks.md": "6eb01d9acbd2a474a3bf65dd986d4e2ee236c9535f001bfa3b15900427f16557",
+      "implementation-summary.md": "b683e7394f880563b496e50ed105cf2878b75dce4bf07d36da06b44b2c569787"
     },
     "last_active_child_id": null,
     "last_active_at": null

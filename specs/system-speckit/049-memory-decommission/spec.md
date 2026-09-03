@@ -156,7 +156,7 @@ Aggregate scope. Per-phase detail lives in each child plan.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-trigger-index-replacement/ | Build the generated trigger index and ripgrep retrieval conventions; prove parity against the current `LIKE`-based trigger lane before anything is removed | Complete |
-| 2 | 002-memory-consumer-rewire/ | Repoint `AGENTS.md` Gate 1 and ~167 external consumer files at the new retrieval path while the old surface still exists | Pending |
+| 2 | 002-memory-consumer-rewire/ | Repoint `AGENTS.md` Gate 1 and ~167 external consumer files at the new retrieval path while the old surface still exists | Complete |
 | 3 | 003-spec-memory-server-removal/ | Delete the server package, MCP transport entries, plugin, bridge, hook, commands and flags | Pending |
 | 4 | 004-grep-convention-doc-retrofit/ | Define and enforce the grep-optimized doc convention; retrofit 22,127 active spec docs | Pending |
 | 5 | 005-ripgrep-retrieval-research/ | Research phase, complete: five-iteration deep research on ripgrep-first retrieval and trigger-index design; its ranked amendments are folded into phases 001 and 004 | Complete |
@@ -198,6 +198,7 @@ Aggregate scope. Per-phase detail lives in each child plan.
 - **Is the `hf-embed` socket still needed after removal?** `system_skill_advisor` pins the
   same socket. Phase 003 must confirm the advisor still resolves its embedder once
   spec-memory stops spawning the shared model server.
+- **Does the MCP package survive as the spec-kit engine?** Validation, the metadata refresh and the continuity writer run from modules inside `mcp-server/`, so phase 003 cannot delete the tree as one unit. The recommended amendment is to delete the engine (transport, tools, daemon, launcher, plugin, hooks, memory runtime) and keep the package; the alternative is extracting a 96-file closure that reaches into search and storage. Decision pending before phase 003 starts.
 <!-- /ANCHOR:questions -->
 
 ---

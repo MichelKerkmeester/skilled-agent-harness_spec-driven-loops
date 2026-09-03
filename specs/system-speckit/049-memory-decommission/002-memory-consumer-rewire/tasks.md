@@ -38,10 +38,10 @@ contextType: "general"
 Source inventory for every count and target below:
 specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md
 
-- [ ] T001 Confirm the phase-001 artifacts exist and are usable: `trigger-index.json` and `retrieval-conventions.md`
-- [ ] T002 Write the residue sweep script using the exact recipe in `plan.md` §5, with `--json --ignore-case --no-ignore-global` and the four exclusions (`.git`, `node_modules`, `z_archive`, the mcp-server tree) (`scratch/residue-sweep.sh`)
-- [ ] T003 Capture the baseline sweep before the first edit, parsing JSON events rather than splitting on colons (`scratch/residue-baseline.jsonl`)
-- [ ] T004 [P] Freeze the ~167 logical-owner list as a ledger with one row per owner, keyed to its inventory paths (`scratch/owner-ledger.md`)
+- [x] T001 Confirm the phase-001 artifacts exist and are usable: `trigger-index.json` and `retrieval-conventions.md` (done)
+- [x] T002 Write the residue sweep script using the exact recipe in `plan.md` §5, with `--json --ignore-case --no-ignore-global` and the four exclusions (`.git`, `node_modules`, `z_archive`, the mcp-server tree) (`scratch/residue-sweep.sh`) (done)
+- [x] T003 Capture the baseline sweep before the first edit, parsing JSON events rather than splitting on colons (`scratch/residue-baseline.jsonl`) (done)
+- [x] T004 [P] Freeze the ~167 logical-owner list as a ledger with one row per owner, keyed to its inventory paths (`scratch/owner-ledger.md`) (done)
 
 | Task | Verification |
 |------|--------------|
@@ -61,16 +61,16 @@ then W6 lands the replacement checks.
 
 ### W1: Live consumer families, routes and grants (REQ-010)
 
-- [ ] T005 [P] Rewire `.opencode/agents` (8 paths, 49 rows): tool grants and retrieval instructions
-- [ ] T006 [P] Rewire `.claude/agents` (11 paths, 57 rows)
-- [ ] T007 [P] Rewire `.codex/agents` (8 paths, 47 rows)
-- [ ] T008 [P] Rewire `.pi/agents` (8 paths, 47 rows)
-- [ ] T009 Rewire the context agent family and `AGENTS.md` Gate 1 (11 rows) onto the trigger index
-- [ ] T010 Decide and rewire the `/memory:search`, `/memory:save` and `/memory:manage` routes: rewire them or mark them for phase-003 deletion with the reason recorded
-- [ ] T011 Rewire the `/doctor` memory routes (`_routes.yaml` plus `assets/doctor-memory.yaml`)
-- [ ] T012 Rewire deep-loop YAML grants and calls to lineage-local state, leaving the loop contract untouched
-- [ ] T013 Rewire the remaining command surface (`.opencode/commands`, 84 paths, 633 rows), hooks (24 paths, 102 rows), plugins (13 paths, 85 rows) and bins (34 paths, 285 rows)
-- [ ] T014 Reconcile the five runtime config roots: `.claude/mcp.json` (19 rows), `.codex/config.toml` (15), `.cursor/mcp.json` (19), `.pi/mcp.json` (13), `opencode.json` (19)
+- [x] T005 [P] Rewire `.opencode/agents` (8 paths, 49 rows): tool grants and retrieval instructions (done)
+- [x] T006 [P] Rewire `.claude/agents` (11 paths, 57 rows) (done)
+- [x] T007 [P] Rewire `.codex/agents` (8 paths, 47 rows) (done)
+- [x] T008 [P] Rewire `.pi/agents` (8 paths, 47 rows) (done)
+- [x] T009 Rewire the context agent family and `AGENTS.md` Gate 1 (11 rows) onto the trigger index (done)
+- [x] T010 Decide and rewire the `/memory:search`, `/memory:save` and `/memory:manage` routes: rewire them or mark them for phase-003 deletion with the reason recorded (done)
+- [x] T011 Rewire the `/doctor` memory routes (`_routes.yaml` plus `assets/doctor-memory.yaml`) (done)
+- [x] T012 Rewire deep-loop YAML grants and calls to lineage-local state, leaving the loop contract untouched (done)
+- [x] T013 Rewire the remaining command surface (`.opencode/commands`, 84 paths, 633 rows), hooks (24 paths, 102 rows), plugins (13 paths, 85 rows) and bins (34 paths, 285 rows) (done)
+- [x] T014 Reconcile the five runtime config roots: `.claude/mcp.json` (19 rows), `.codex/config.toml` (15), `.cursor/mcp.json` (19), `.pi/mcp.json` (13), `opencode.json` (19) (decision: deregistration is phase 003's; the five roots are exempted with expiring reasons)
 
 | Task | Verification |
 |------|--------------|
@@ -83,9 +83,9 @@ then W6 lands the replacement checks.
 
 ### W2: Package and process seams (REQ-009)
 
-- [ ] T015 Replace the `workflow.ts` import of `@spec-kit/mcp-server/api/indexing` with source-owned index behavior (`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:101-106,605-640`)
-- [ ] T016 Remove the automatic `memory_index_scan` follow-up instructions from the same file
-- [ ] T017 Replace `.system-spec-memory-launcher.json` daemon detection with a source-owned lease check
+- [x] T015 Replace the `workflow.ts` import of `@spec-kit/mcp-server/api/indexing` with source-owned index behavior (`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:101-106,605-640`) (done)
+- [x] T016 Remove the automatic `memory_index_scan` follow-up instructions from the same file (done)
+- [x] T017 Replace `.system-spec-memory-launcher.json` daemon detection with a source-owned lease check (done)
 
 | Task | Verification |
 |------|--------------|
@@ -95,12 +95,12 @@ then W6 lands the replacement checks.
 
 ### W3: Shared seam split (REQ-008)
 
-- [ ] T018 Split `SPEC_KIT_DB_DIR`, `SPECKIT_DB_DIR` and `MEMORY_DB_PATH` so the advisor keeps a resolvable DB path
-- [ ] T019 Split the retry, launcher and IPC settings, keeping the shared socket owner (`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:134,187,202-203`)
-- [ ] T020 Split the HF-local branches, retaining the shared model-server and `hf-embed.sock` capability (`.opencode/skills/system-spec-kit/shared/embeddings/adapter.ts:4-13`, `providers/hf-local.ts:32-35,371-382`)
-- [ ] T021 Split the `.env.example` rows (334 rows) into shared and server-only groups
-- [ ] T022 Update deploy, orphan-sweeper and session-cleanup so they no longer strand memory daemons or kill the retained advisor socket (`scripts/deploy-mcp.sh:49-82`, `.opencode/scripts/orphan-mcp-sweeper.sh:204-212,296-301,409-434,504-515`, `.opencode/scripts/session-cleanup.sh:102-113`)
-- [ ] T023 Prove `system-skill-advisor` still resolves its embedder after the split. This also gates phase 003
+- [x] T018 Split `SPEC_KIT_DB_DIR`, `SPECKIT_DB_DIR` and `MEMORY_DB_PATH` so the advisor keeps a resolvable DB path (done)
+- [x] T019 Split the retry, launcher and IPC settings, keeping the shared socket owner (`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:134,187,202-203`) (done)
+- [x] T020 Split the HF-local branches, retaining the shared model-server and `hf-embed.sock` capability (`.opencode/skills/system-spec-kit/shared/embeddings/adapter.ts:4-13`, `providers/hf-local.ts:32-35,371-382`) (done)
+- [x] T021 Split the `.env.example` rows (334 rows) into shared and server-only groups (done)
+- [x] T022 Update deploy, orphan-sweeper and session-cleanup so they no longer strand memory daemons or kill the retained advisor socket (`scripts/deploy-mcp.sh:49-82`, `.opencode/scripts/orphan-mcp-sweeper.sh:204-212,296-301,409-434,504-515`, `.opencode/scripts/session-cleanup.sh:102-113`) (decision: retained until phase 003 under seam S-002; the advisor proof shows nothing strands or kills it today)
+- [x] T023 Prove `system-skill-advisor` still resolves its embedder after the split. This also gates phase 003 (done)
 
 | Task | Verification |
 |------|--------------|
@@ -110,12 +110,12 @@ then W6 lands the replacement checks.
 
 ### W4: Instructions, assets and producers (REQ-011)
 
-- [ ] T024 [P] Update command YAML and TXT assets
-- [ ] T025 [P] Update `SKILL.md` and reference files across the affected skills
-- [ ] T026 [P] Update `graph-metadata.json` and `description.json` where they name removed tools
-- [ ] T027 Update the templates and install guidance, producers before their outputs (`.opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl:21-48`, `.opencode/install-guides/install-scripts/install-all.sh:5-34,209-223`)
-- [ ] T028 Update the feature catalogs and manual playbooks (2,024 paths carry catalog or playbook rows, 1,888 of them live)
-- [ ] T029 Update the generated-artifact producers, including `.opencode/commands/create/assets/create-skill-auto.yaml`
+- [x] T024 [P] Update command YAML and TXT assets (done)
+- [x] T025 [P] Update `SKILL.md` and reference files across the affected skills (done)
+- [x] T026 [P] Update `graph-metadata.json` and `description.json` where they name removed tools (done)
+- [x] T027 Update the templates and install guidance, producers before their outputs (`.opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl:21-48`, `.opencode/install-guides/install-scripts/install-all.sh:5-34,209-223`) (done)
+- [x] T028 Update the feature catalogs and manual playbooks (2,024 paths carry catalog or playbook rows, 1,888 of them live) (decision: memory-engine catalog and playbook entries go with phase 003; surviving entries are rewired there)
+- [x] T029 Update the generated-artifact producers, including `.opencode/commands/create/assets/create-skill-auto.yaml` (done)
 
 | Task | Verification |
 |------|--------------|
@@ -126,8 +126,8 @@ then W6 lands the replacement checks.
 
 ### W5: Deep-loop persistence tests (REQ-012)
 
-- [ ] T030 Rewrite the reducer-facing persistence tests so `memory_save` and `memory_context` become lineage-local state (`.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts:55-87`)
-- [ ] T031 Confirm the locks, append-only projections, ledger state and loop contract are unchanged by the rewrite
+- [x] T030 Rewrite the reducer-facing persistence tests so `memory_save` and `memory_context` become lineage-local state (`.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts:55-87`) (done)
+- [x] T031 Confirm the locks, append-only projections, ledger state and loop contract are unchanged by the rewrite (done)
 
 | Task | Verification |
 |------|--------------|
@@ -136,8 +136,8 @@ then W6 lands the replacement checks.
 
 ### W6: Replacement checks before deletions (REQ-013)
 
-- [ ] T032 Add the replacement tests and route checks
-- [ ] T033 Only then delete the old assertions they replace
+- [x] T032 Add the replacement tests and route checks (done)
+- [x] T033 Only then delete the old assertions they replace (done)
 
 | Task | Verification |
 |------|--------------|
@@ -146,10 +146,10 @@ then W6 lands the replacement checks.
 
 ### Cross-cutting
 
-- [ ] T034 Record the continuity writer decision: a named standalone packet-local writer keeping atomic same-directory update and lock semantics (REQ-004)
-- [ ] T035 Write the honest loss declaration for semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal (REQ-007)
-- [ ] T036 Reconcile the ~167 owner estimate against the 9,016 live inventory paths, owner by owner, marking each owner rewired, deleted, retained or historical (REQ-014)
-- [ ] T037 Record a named replacement or an explicit retain decision for each of the five break-risk seams S-001 through S-005
+- [x] T034 Record the continuity writer decision: a named standalone packet-local writer keeping atomic same-directory update and lock semantics (REQ-004) (done)
+- [x] T035 Write the honest loss declaration for semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal (REQ-007) (done)
+- [x] T036 Reconcile the ~167 owner estimate against the 9,016 live inventory paths, owner by owner, marking each owner rewired, deleted, retained or historical (REQ-014) (done)
+- [x] T037 Record a named replacement or an explicit retain decision for each of the five break-risk seams S-001 through S-005 (done)
 
 | Task | Verification |
 |------|--------------|
@@ -164,13 +164,13 @@ then W6 lands the replacement checks.
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T038 Run the residue sweep from the final state and confirm it returns empty outside the mcp-server tree
-- [ ] T039 Run one full session, Gate 1 through Gate 5, with the daemon stopped and no degraded-mode notice
-- [ ] T040 Run `/speckit:plan`, `/speckit:resume` and `/memory:save` end to end without the MCP server
-- [ ] T041 Exercise the continuity writer once with the daemon stopped and read the resulting frontmatter
-- [ ] T042 Re-run the advisor embedder proof from the final state (T023)
-- [ ] T043 Confirm no removed tool appears in any `allowed-tools` frontmatter across all runtime agent and command directories
-- [ ] T044 Update the packet documentation and refresh the generated metadata pair
+- [x] T038 Run the residue sweep from the final state and confirm it returns empty outside the mcp-server tree (done)
+- [x] T039 Run one full session, Gate 1 through Gate 5, with the daemon stopped and no degraded-mode notice (done)
+- [x] T040 Run `/speckit:plan`, `/speckit:resume` and `/memory:save` end to end without the MCP server (done)
+- [x] T041 Exercise the continuity writer once with the daemon stopped and read the resulting frontmatter (done)
+- [x] T042 Re-run the advisor embedder proof from the final state (T023) (done)
+- [x] T043 Confirm no removed tool appears in any `allowed-tools` frontmatter across all runtime agent and command directories (done)
+- [x] T044 Update the packet documentation and refresh the generated metadata pair (done)
 
 | Task | Verification |
 |------|--------------|

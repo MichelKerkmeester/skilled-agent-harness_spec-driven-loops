@@ -1,0 +1,2957 @@
+{
+  "schemaVersion": 1,
+  "consumerPaths": 588,
+  "logicalOwnerEstimate": 167,
+  "inventoryLivePathsAttributed": 9016,
+  "states": {
+    "rewired": 180,
+    "deferred-to-removal": 322,
+    "rewired-then-deferred": 14,
+    "historical": 54,
+    "no-live-hit": 16,
+    "false-positive": 2
+  },
+  "note": "One row per file the hidden-aware sweep found outside the subsystem tree and outside spec packets before the rewire. The logical-owner estimate counted subsystems, the inventory counted rows; this ledger reconciles at file level, which is what a residue sweep can verify.",
+  "rows": [
+    {
+      "path": ".claude/agents/ai-council.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/agents/code.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/agents/context.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/agents/debug.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/agents/deep-improvement.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/agents/deep-research.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/agents/deep-review.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/agents/design.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/agents/markdown.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/agents/orchestrate.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/agents/review.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".claude/mcp.json",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".codex/agents/ai-council.toml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".codex/agents/context.toml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".codex/agents/debug.toml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".codex/agents/deep-improvement.toml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".codex/agents/deep-research.toml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".codex/agents/deep-review.toml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".codex/agents/review.toml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".codex/config.toml",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".cursor/mcp.json",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".env.example",
+      "state": "rewired-then-deferred",
+      "reason": "Memory-only rows are marked for removal and stay until the removal phase deletes them; the shared rows survive under their new owners."
+    },
+    {
+      "path": ".github/hooks/scripts/user-prompt-submitted.sh",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".gitignore",
+      "state": "deferred-to-removal",
+      "reason": "Ignores the memory database files until the removal phase deletes those rows."
+    },
+    {
+      "path": ".opencode/agents/ai-council.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/agents/context.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/agents/debug.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/agents/deep-improvement.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/agents/deep-research.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/agents/deep-review.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/agents/review.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/bin/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/bin/cli-exit-taxonomy-smoke.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/bin/cli-offline-smoke.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/bin/cli-offline-smoke.test.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/bin/lib/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/bin/spec-memory.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Memory-server CLI shim, deleted whole once every consumer is rewired. Temporary: drop this row when the file goes."
+    },
+    {
+      "path": ".opencode/bin/system-skill-advisor-launcher.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/bin/system-spec-memory-launcher.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Memory-server launcher, deleted whole once every consumer is rewired. Temporary: drop this row when the file goes."
+    },
+    {
+      "path": ".opencode/bin/worktree-reaper.sh",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/commands/create/agent.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-agent-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-agent-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-benchmark-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-benchmark-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-command-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-command-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-feature-catalog-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-feature-catalog-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-manual-testing-playbook-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-manual-testing-playbook-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-readme-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-readme-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-skill-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-skill-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-skill-parent-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/assets/create-skill-parent-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/command.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/create/skill.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/agent-improvement.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/ai-council.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/compiled/deep-ai-council.contract.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-agent-improvement-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-ai-council-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-model-benchmark-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep-review-presentation.txt",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/model-benchmark.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/research.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/deep/review.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/doctor/_routes.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor-causal-graph.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml",
+      "state": "rewired-then-deferred",
+      "reason": "Server roster row for install and repair of the baseline server that keeps running during the rewire; the removal phase deregisters it and drops this row."
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+      "state": "rewired-then-deferred",
+      "reason": "Server roster row for install and repair of the baseline server that keeps running during the rewire; the removal phase deregisters it and drops this row."
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor-mcp-presentation.txt",
+      "state": "rewired-then-deferred",
+      "reason": "Server roster row for install and repair of the baseline server that keeps running during the rewire; the removal phase deregisters it and drops this row."
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor-memory.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor-update-presentation.txt",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor-update.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      "state": "rewired-then-deferred",
+      "reason": "Server roster row for install and repair of the baseline server that keeps running during the rewire; the removal phase deregisters it and drops this row."
+    },
+    {
+      "path": ".opencode/commands/doctor/scripts/route-validate.py",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/doctor/speckit.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/doctor/update.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/memory/README.txt",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/memory/assets/search-presentation.txt",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/memory/manage.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/memory/save.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/memory/search.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/assets/speckit-complete-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/assets/speckit-complete-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/assets/speckit-implement-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/assets/speckit-implement-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/assets/speckit-plan-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/assets/speckit-plan-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/assets/speckit-resume-confirm.yaml",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/assets/speckit-resume-presentation.txt",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/complete.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/implement.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/plan.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/commands/speckit/resume.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/hooks/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/hooks/coverage-rationale.md",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/hooks/hook-flags.env.example",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/hooks/injection-contract.md",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/hooks/session-cleanup/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/hooks/session-lifecycle/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/hooks/shared/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/hooks/shared/env-aliases.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/hooks/shared/hook-flags.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/hooks/shared/hook-flags.test.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/hooks/spec-memory/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Memory-server hook adapters, deleted whole once every consumer is rewired. Temporary: drop this row when the directory goes."
+    },
+    {
+      "path": ".opencode/install-guides/README.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/install-guides/install-scripts/install-all.sh",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/plugins/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/plugins/system-spec-memory.js",
+      "state": "deferred-to-removal",
+      "reason": "Memory-server plugin bridge, deleted whole once every consumer is rewired. Temporary: drop this row when the file goes."
+    },
+    {
+      "path": ".opencode/plugins/tests/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/plugins/tests/opencode-goal-tool-path.test.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/plugins/tests/session-cleanup.test.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/plugins/tests/system-spec-memory.test.cjs",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+      "state": "deferred-to-removal",
+      "reason": "Process cleanup seam; the memory daemon branch is removed in the removal phase."
+    },
+    {
+      "path": ".opencode/scripts/session-cleanup.sh",
+      "state": "deferred-to-removal",
+      "reason": "Process cleanup seam; the memory daemon branch is removed in the removal phase."
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.4.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/external-dispatch/from-claude-code.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/cross-ai-handback.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/extension-auto-discovery.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md",
+      "state": "historical",
+      "reason": "Dated transport confirmation kept as evidence with a retirement clause."
+    },
+    {
+      "path": ".opencode/skills/mcp-code-mode/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/mcp-tooling/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/mcp-tooling/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live--live/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-remediated--live/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-code/shared/references/workflow-implement.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-code/shared/references/workflow-verify.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-code/sk-code-obsidian/changelog/v0.1.0.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/sk-code/sk-code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-code/sk-code-opencode/references/rust/style-guide/naming-conventions.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-code/sk-code-opencode/references/shared/code-organization/imports-and-exports.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-code/sk-code-opencode/references/shared/hooks.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-code/sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Dated embedder bake-off case study; rehomed or narrated when the removal phase deletes its benchmark folder."
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md",
+      "state": "deferred-to-removal",
+      "reason": "Dated embedder bake-off case study; rehomed or narrated when the removal phase deletes its benchmark folder."
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-command/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      "state": "rewired-then-deferred",
+      "reason": "The learn and manage command rows describe database administration that the removal phase deletes."
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-template.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/references/examples.md",
+      "state": "deferred-to-removal",
+      "reason": "Annotated walkthrough of the spec-kit feature catalog; rehomed when the removal phase reshapes that catalog."
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/README.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-git/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-git/references/large-reorg-playbook.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-git/references/worktree-workflows.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/cursor-mcp.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+      "state": "historical",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/feature-catalog.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/manual-testing-playbook.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.12.0.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/per-iteration-memory-upsert.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.4.0.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/changelog/v1.0.0.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/references/script-interface-contract.md",
+      "state": "historical",
+      "reason": "One historical sentence explaining why the runtime scripts exist."
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts",
+      "state": "historical",
+      "reason": "Negative guard listing the retired tool names so they cannot reappear in the workflow."
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md",
+      "state": "rewired-then-deferred",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/README.md",
+      "state": "rewired-then-deferred",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/changelog/v0.7.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md",
+      "state": "rewired-then-deferred",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/embedders/registry.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/shared-payload.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/labeled-prompts.jsonl",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/verify-zombie-soak.sh",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/stress-test/search-quality/harness.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/embedders/shared-factory-parity.vitest.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-validate.vitest.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/launcher-bootstrap.vitest.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/tri-daemon-drill.vitest.ts",
+      "state": "deferred-to-removal",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/references/config/db-path-policy.md",
+      "state": "rewired-then-deferred",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/references/runtime/legacy-tool-bridge.md",
+      "state": "rewired-then-deferred",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/references/runtime/standalone-mcp-shape.md",
+      "state": "rewired-then-deferred",
+      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/README.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/SKILL.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v1+/v1.0.2.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v1+/v1.2.1.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v1+/v1.2.2.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v2+/v2.1.9.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v2+/v2.2.17.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v2+/v2.2.24.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v2+/v2.2.4.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v2+/v2.3.0.7.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.0.0.1.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.0.0.2.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.1.2.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.2.0.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.2.0.1.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.2.1.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.3.0.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.4.2.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.5.0.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.5.0.4.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.5.0.5.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.6.0.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.7.0.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.9.0.0.md",
+      "state": "historical",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/data/trigger-index.json",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/bug-fixes-and-data-integrity/error-code-reference.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/context-preservation/cross-runtime-fallback.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/context-preservation/mcp-auto-priming.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/context-preservation/passive-context-enrichment.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/context-preservation/query-intent-classifier.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/context-preservation/query-intent-routing.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/context-preservation/session-resume-tool.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/context-preservation/tool-routing-enforcement.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/discovery/session-bootstrap-reader-ready-context.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/discovery/session-health-shared-payload.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/discovery/session-resume-continuity-ladder.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/evaluation-and-measurement/agent-consumption-instrumentation.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/evaluation-and-measurement/evaluation-database-and-schema.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/governance/constitutional-gate-enforcement-rule-pack.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/governance/session-resume-caller-binding-and-unicode-sanitization.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/lifecycle/async-ingestion-job-lifecycle.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/lifecycle/checkpoint-restore-checkpointrestore.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/lifecycle/constitutional-memory-end-to-end-lifecycle.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/lifecycle/startup-pending-file-recovery.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/maintenance/startup-runtime-compatibility-guards.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/maintenance/workspace-scanning-and-indexing-memoryindexscan.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/canonical-continuity-save-substrate.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/deferred-lexical-only-indexing.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/dry-run-preflight-for-memory-save.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/indexing-runtime-bootstrap-api.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/memory-causal-trust-display.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/outsourced-agent-memory-capture.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/pre-flight-token-budget-validation.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/mutation/memory-idempotency-receipts-and-near-duplicate-hints.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/mutation/memory-indexing-memorysave.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/mutation/memory-metadata-update-memoryupdate.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/mutation/memory-retention-sweep.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/mutation/per-memory-history-log.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/pipeline-architecture/atomic-write-then-index-api.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/pipeline-architecture/daemon-ownership-reelection.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/pipeline-architecture/embedding-retry-orchestrator.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/pipeline-architecture/mcp-code-index-reconnecting-proxy.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/pipeline-architecture/mcp-launcher-front-proxy.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/pipeline-architecture/mcp-launcher-persistent-log.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/pipeline-architecture/pipeline-and-mutation-hardening.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/remediation-revalidation/category-stub.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval-enhancements/dual-level-retrieval.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval-enhancements/lightweight-consolidation.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval-enhancements/provenance-rich-response-envelopes.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/bounded-graph-diagnostics.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/fast-delegated-search-memory-quick-search.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/hybrid-search-pipeline.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/memory-search-command-routing.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/semantic-and-lexical-search-memorysearch.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/semantic-trigger-shadow-matcher-and-hybrid-handler.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/session-transition-trace-contract.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/tool-result-extraction-to-working-memory.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/trigger-embedding-backfill.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/trigger-phrase-matching-memorymatchtriggers.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/retrieval/unified-context-retrieval-memorycontext.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/scoring-and-calibration/tool-level-ttl-cache.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/code-index-cli-daemon-backed-surface.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/constitutional-memory-manager-command.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/mcp-daemon-rebuild-restart-live-probe.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/ux-hooks/final-token-metadata-recomputation.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/ux-hooks/mode-aware-response-profiles.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/ux-hooks/mutation-response-ux-payload-exposure.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/ux-hooks/progressive-disclosure.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/feature-catalog/ux-hooks/retrieval-observability-diagnostics.md",
+      "state": "deferred-to-removal",
+      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/bug-fixes-and-data-integrity/chunk-collapse-deduplication-g3.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/bug-fixes-and-data-integrity/chunking-safe-swap-atomicity-p0-6.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/bug-fixes-and-data-integrity/error-response-credential-sanitization.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/context-preservation-metrics.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/mcp-auto-priming.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/passive-context-enrichment.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/query-intent-classifier.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/query-intent-routing.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/session-resume.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/session-start-startup.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/tool-routing-enforcement.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/discovery/session-bootstrap-reader-ready-context.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/discovery/session-health-shared-payload.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/discovery/session-resume-continuity-ladder.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-causal-graph-confidence-threshold.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-causal-graph-low-coverage.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-memory-disk-pressure.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-memory-drift-detection.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-memory-fresh-install.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-memory-long-pole-rebuild.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-g7-sigint.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-tier-aware-default.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/ci-and-build-informational.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/debug-and-telemetry.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/embedding-and-api.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/mcp-configuration.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/memory-and-storage.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/memory-idempotency-replay-and-conflict.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/search-pipeline-features-speckit.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/semantic-trigger-shadow-and-union.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/session-and-cache.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/session-trace-causal-inference.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/soft-delete-tombstones.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/governance/governed-ingest-and-scope-isolation-phase-5.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/governance/session-resume-caller-binding-and-unicode-sanitization.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/governance/source-kind-provenance-guard.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/governance/stale-exclusion-audit-and-tool-ownership-lint.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/graph-signal-activation/graph-calibration-profile-speckit-graph-calibration-profile.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/graph-signal-activation/graph-concept-routing-speckit-graph-concept-routing.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/graph-signal-activation/graph-refresh-mode-speckit-graph-refresh-mode.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/graph-signal-activation/temporal-edges.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/graph-signal-activation/unified-graph-rollback-and-explainability-phase-3.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/lifecycle/checkpoint-restore-checkpoint-restore.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/lifecycle/checkpoint-v2-needs-rebuild-self-heal.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/causal-coverage-under-bulk-save.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/causal-graph-link-quality.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/compound-concept-synthesis.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/concurrent-multi-ai-safety.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/cross-ai-memory-handoff.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/disambiguation-under-context.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/drift-detection-quality.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/llm-made-memory-recall.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/multi-aspect-query-synthesis.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/paraphrase-recall.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/query-latency-and-throughput.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/specificity-ladder.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/synonymy-across-vocabularies.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/maintenance/index-scan-phased-async-refinements.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/maintenance/memory-retention-sweep-basic-flow.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/maintenance/post-insert-enrichment-lifecycle-v30.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/maintenance/workspace-scanning-and-indexing-memory-index-scan.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/auto-entity-extraction-r10.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/context-save-index-update.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/deferred-lexical-only-indexing.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/dry-run-preflight-for-memory-save.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/implemented-auto-entity-extraction-r10.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/memory-causal-trust-display.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/pre-flight-token-budget-validation-pi-a3.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/signal-vocabulary-expansion-tm-08.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/mutation/feature-09-direct-manual-scenario-per-memory-history-log.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/mutation/memory-indexing-memory-save.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/mutation/memory-metadata-update-memory-update.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/mutation/single-and-folder-delete-memory-delete.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/atomic-write-then-index-api.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/cross-process-db-hot-rebinding.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/daemon-ownership-reelection.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/embedding-retry-orchestrator.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/four-stage-pipeline-refactor-r6.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/front-proxy-reconnect-and-backend-only.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/learned-relevance-feedback-r11.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/legacy-v1-pipeline-removal.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/mcp-code-index-reconnecting-proxy.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/mcp-launcher-persistent-log.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/phase-017-maintainability-extracts.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/pipeline-and-mutation-hardening.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/routing-telemetry-and-graph-channel-invocation.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/search-pipeline-safety.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/seven-layer-tool-architecture-metadata.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/strict-zod-schema-validation-p0-1.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/tri-daemon-spawn-drill.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-memory-plugin.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/query-intelligence/confidence-based-result-truncation-r15-ext.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/query-intelligence/graph-channel-preservation.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/query-intelligence/graph-concept-routing.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/query-intelligence/hyde-speckit-hyde.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/query-intelligence/llm-reformulation-speckit-llm-reformulation.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/query-intelligence/query-decomposition-speckit-query-decomposition.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/query-intelligence/query-expansion-r12.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/query-intelligence/query-surrogates-speckit-query-surrogates.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/remediation-revalidation/remediation-runtime-surface.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/causal-boost-graduated.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/community-search-fallback.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection-pi-a4.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/contextual-tree-injection-p1-4.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/dual-level-retrieval.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/lightweight-consolidation-n3-lite.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/memory-summary-search-channel-r8.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/provenance-rich-response-envelopes-p0-2.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/retrieval-observability-trace-and-health.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/session-boost-graduated.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure-s4.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/bounded-graph-walk-rollout-and-diagnostics.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/context-recovery-and-continuation.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/four-stage-pipeline-architecture.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/hybrid-search-pipeline.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/quality-aware-3-tier-search-fallback.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/quick-search-memory-quick-search.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/semantic-and-lexical-search-memory-search.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/session-transition-trace-contract.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/targeted-memory-lookup.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/tool-result-extraction-to-working-memory.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/trigger-phrase-matching-memory-match-triggers.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/unified-context-retrieval-memory-context.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/scoring-and-calibration/adaptive-shadow-proposal-and-rollback-phase-4.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/scoring-and-calibration/calibrated-overlap-bonus-speckit-calibrated-overlap-bonus.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/scoring-and-calibration/stage-2-score-field-synchronization-p0-8.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/scoring-and-calibration/tool-level-ttl-cache.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-compact-and-completion.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-dist-freshness-guard.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-list-tools-parity.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-stress-concurrent-dual-client-load.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-stress-large-payload-pipe-integrity.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-stress-warm-only-probe-churn.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/dead-code-removal.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/embedder-list-registry-inventory.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/embedder-status-job-and-active-pointer.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/memory-manage-command-routing.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/multi-feature-annotation-coverage.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/rendered-memory-template-contract.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/mutation-response-ux-payload-exposure.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/progressive-disclosure-v1-speckit-progressive-disclosure-v1.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/response-profile-v1-speckit-response-profile-v1.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/result-confidence-speckit-result-confidence-v1.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/result-explain-v1-speckit-result-explain-v1.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/result-provenance.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/session-retrieval-state-v1-speckit-session-retrieval-state-v1.md",
+      "state": "deferred-to-removal",
+      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/package-lock.json",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/cli/daemon-cli-reference.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/cli/memory-handback.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/config/environment-variables.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/config/hook-system.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/config/launcher-lease.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/debugging/troubleshooting.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/memory/embedder-architecture.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/memory/embedder-pluggability.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/memory/embedding-resilience.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/memory/memory-system.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/memory/save-workflow.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/memory/trigger-config.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      "state": "historical",
+      "reason": "Names the retired tools it replaces so a reader can map each one to its recipe."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/workflows/quick-reference.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/workflows/rollback-runbook.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/.scan-lines.txt",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Documents the memory-only CLIs until the removal phase deletes them."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/core/README.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/core/daemon-detect.ts",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/deploy-mcp.sh",
+      "state": "deferred-to-removal",
+      "reason": "Deploy seam; the memory server branch is removed in the removal phase."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/lib/memory-telemetry.ts",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
+      "state": "deferred-to-removal",
+      "reason": "Memory daemon process harness; removed with the engine."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      "state": "deferred-to-removal",
+      "reason": "Process cleanup seam; the memory daemon branch is removed in the removal phase."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/corpus-manifest.json",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/daemon-off-proof.json",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/generation-diagnostics.json",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/phrase-variants.json",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/semantic-probes.json",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs",
+      "state": "historical",
+      "reason": "The daemon-off proof probes for the retired server process by name so it can record that none is running."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/setup/install.sh",
+      "state": "deferred-to-removal",
+      "reason": "Install producer; the memory server steps are removed in the removal phase."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/daemon-detect.vitest.ts",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.js",
+      "state": "deferred-to-removal",
+      "reason": "Fixture for the playbook runner; goes with it in the removal phase."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
+      "state": "deferred-to-removal",
+      "reason": "Fixture for the playbook runner; goes with it in the removal phase."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/gate-3-classifier.vitest.ts",
+      "state": "false-positive",
+      "reason": "False positive: tests the memory_save prompt category, not a tool call."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.js",
+      "state": "deferred-to-removal",
+      "reason": "Runs the memory-engine playbook scenarios; goes with the playbook in the removal phase."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts",
+      "state": "deferred-to-removal",
+      "reason": "Runs the memory-engine playbook scenarios; goes with the playbook in the removal phase."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.vitest.ts",
+      "state": "deferred-to-removal",
+      "reason": "Runs the memory-engine playbook scenarios; goes with the playbook in the removal phase."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts",
+      "state": "historical",
+      "reason": "Fixture text quoting a historical save gate message; the gate lives in the continuity writer."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/nested-changelog.vitest.ts",
+      "state": "historical",
+      "reason": "Fixture text; historical narrative inside a test fixture."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts",
+      "state": "deferred-to-removal",
+      "reason": "Memory daemon process harness test; removed with the engine."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts",
+      "state": "deferred-to-removal",
+      "reason": "Memory-engine session test; removed with the engine."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/warm-start-bundle-benchmark.vitest.ts.test.ts",
+      "state": "deferred-to-removal",
+      "reason": "Memory-engine benchmark test; removed with the engine."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/scripts/tests/workflow-step115-daemon-guard.vitest.ts",
+      "state": "historical",
+      "reason": "Negative guard asserting the retired index scan and daemon probe never return to the save path."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/README.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings/adapter.ts",
+      "state": "deferred-to-removal",
+      "reason": "Shared embedding adapters carry comments naming the memory server as a former consumer; the removal phase rewrites them."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings/adapters/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Shared embedding adapters carry comments naming the memory server as a former consumer; the removal phase rewrites them."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts",
+      "state": "deferred-to-removal",
+      "reason": "Shared embedding adapters carry comments naming the memory server as a former consumer; the removal phase rewrites them."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+      "state": "deferred-to-removal",
+      "reason": "Shared embedding adapters carry comments naming the memory server as a former consumer; the removal phase rewrites them."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+      "state": "rewired-then-deferred",
+      "reason": "Shared embedding adapters carry comments naming the memory server as a former consumer; the removal phase rewrites them."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      "state": "deferred-to-removal",
+      "reason": "Shared embedding adapters carry comments naming the memory server as a former consumer; the removal phase rewrites them."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings/types.ts",
+      "state": "deferred-to-removal",
+      "reason": "Shared embedding adapters carry comments naming the memory server as a former consumer; the removal phase rewrites them."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      "state": "false-positive",
+      "reason": "False positive: memory_save is the classifier category for prompts that say save context or /memory:save, not a tool call."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/index.ts",
+      "state": "no-live-hit",
+      "reason": null
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/trigger-extractor.ts",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".pi/SYNC.md",
+      "state": "deferred-to-removal",
+      "reason": "Inventory row naming the runtime registration that the removal phase deletes; drop with it."
+    },
+    {
+      "path": ".pi/agents/ai-council.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".pi/agents/context.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".pi/agents/debug.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".pi/agents/deep-improvement.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".pi/agents/deep-research.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".pi/agents/deep-review.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".pi/agents/review.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": ".pi/extensions/README.md",
+      "state": "deferred-to-removal",
+      "reason": "Describes the pi extension's CLI fallback to the retired shim, which the removal phase deletes along with the shim; the row is rewritten there."
+    },
+    {
+      "path": ".pi/mcp.json",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    },
+    {
+      "path": "AGENTS.md",
+      "state": "rewired",
+      "reason": null
+    },
+    {
+      "path": "README.md",
+      "state": "rewired-then-deferred",
+      "reason": "Root README architecture box, launcher help and registration snippet describe the server that stays running until the removal phase; rewritten there."
+    },
+    {
+      "path": "opencode.json",
+      "state": "deferred-to-removal",
+      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
+    }
+  ]
+}

@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-09-02T20:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Criteria re-baselined against the surface inventory"
-    next_safe_action: "Reconcile consumer owners, then rewire Gate 1"
+    next_safe_action: "Start phase 003 after the package decision"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-02-049-memory-decommission"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -88,11 +88,13 @@ and findings belong here.
 |------|-------|----------|
 | Research input | Done | `../006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md` sections 6, 7, 9 and 11 |
 | Spec, plan, tasks and acceptance amended | Done | worklist W1 to W6, preserve set, seams S-001 to S-005, REQ-007 to REQ-014, AC-001 to AC-012; validate --strict 0 errors |
-| Build | Pending | - |
+| Rewire | Done | 588 consumer files reconciled, residue sweep live 0, AC-001 to AC-012 Met |
+| Verification | Done | targeted suites green, whole suites recorded in implementation-summary.md |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| MCP package fate is a logic-sync decision | Validation, metadata refresh and the continuity writer run from modules inside the package; delete the engine and keep the package is the recommended amendment, recorded in the parent |
 | Consumer count corrected | The 167 figure is a logical-owner estimate; the row inventory holds 9,016 live paths with a rewire row, and both must be reconciled rather than one replacing the other |
 <!-- /ANCHOR:log -->
