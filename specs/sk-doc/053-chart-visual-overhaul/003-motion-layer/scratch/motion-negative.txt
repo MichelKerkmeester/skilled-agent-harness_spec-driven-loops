@@ -1,0 +1,45 @@
+
+===== SHAPE 1  a motion driven from script, with no reduce-motion guard anywhere
+  x motion: 116 assertion(s), 1 failure(s)
+  FAIL [motion] assets/templates/bar-columns.html: the drawing code animates through requestAnimationFrame and never reads the reader's reduce-motion preference. No media query reaches a motion driven from script, so this route has to ask through matchMedia('(prefers-reduced-motion: reduce)'). A stylesheet fallback does not cover it and the rule used not to look here at all
+RESULT: FAILED
+
+===== SHAPE 1 restored
+  + motion: 116 assertion(s), 0 failure(s)
+RESULT: PASSED
+
+===== SHAPE 2  a fallback that shortens the motion rather than removing it
+  x motion: 116 assertion(s), 1 failure(s)
+  FAIL [motion] assets/templates/bar-columns.html: the reduce-motion fallback declares "animation-duration: 0.01s". A reader who asked their system for no motion gets a shorter animation rather than no animation, which is not what they asked for. A fallback removes the motion, so the declarations it carries are "animation: none" and "transition: none"
+RESULT: FAILED
+
+===== SHAPE 2 restored
+  + motion: 116 assertion(s), 0 failure(s)
+RESULT: PASSED
+
+===== SHAPE 3  an animation that repeats without end
+  x motion: 116 assertion(s), 1 failure(s)
+  FAIL [motion] assets/templates/daily-line.html: an animation repeats without end. A picture that never stops changing has no settled state, so two renders of the file disagree by construction and rule 12 cannot hold
+RESULT: FAILED
+
+===== SHAPE 3 restored
+  + motion: 116 assertion(s), 0 failure(s)
+RESULT: PASSED
+
+===== SHAPE 4a  a stylesheet animation ten times longer than the render budget
+  + motion: 116 assertion(s), 0 failure(s)
+  x settled-render: 58 assertion(s), 1 failure(s)
+  FAIL [settled-render] assets/templates/daily-line.html: two opens of this file painted different pictures after 3000ms. Either something moves without settling or the motion outruns the budget, and either way two screenshots of one chart disagree
+RESULT: FAILED
+
+===== SHAPE 4b  a guarded motion driven from script off a clock the determinism rule does not read
+  + motion: 116 assertion(s), 0 failure(s)
+  x settled-render: 58 assertion(s), 2 failure(s)
+  FAIL [settled-render] assets/templates/daily-line.html: two opens of this file built different documents after 3000ms. Something in the drawing code is still changing the page when the budget expires, so a screenshot review compares the chart against noise rather than against itself
+  FAIL [settled-render] assets/templates/daily-line.html: two opens of this file painted different pictures after 3000ms. Either something moves without settling or the motion outruns the budget, and either way two screenshots of one chart disagree
+RESULT: FAILED
+
+===== SHAPE 4 restored
+  + motion: 116 assertion(s), 0 failure(s)
+  + settled-render: 58 assertion(s), 0 failure(s)
+RESULT: FAILED

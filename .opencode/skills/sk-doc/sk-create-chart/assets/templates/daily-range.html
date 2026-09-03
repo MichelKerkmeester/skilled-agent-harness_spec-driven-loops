@@ -74,6 +74,23 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    and a table cell line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. The sentence about undrawn days keeps the body face, because it is prose and not a figure. */
 .tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* The figure reveals itself left to right on first paint, so a reader watches the series
+   arrive in reading order instead of finding it already there. The wipe takes the whole
+   figure rather than the marks alone: a reveal that leaves the axis standing reads as a
+   chart being drawn on top of a chart. It runs once and it ends unclipped, which is the
+   picture this file would paint with no animation in it at all. That is what lets the
+   fallback below remove the motion instead of replacing it with a second design. */
+@keyframes chart-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+/* backwards, not both: the clip applies before the first frame and is gone once the
+   animation ends, so the settled file carries no trace of having moved. */
+.figure svg { animation: chart-reveal 1s cubic-bezier(0, 0.7, 0.5, 1) backwards; }
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  .figure svg { animation: none; }
+}
 </style>
 </head>
 <body>

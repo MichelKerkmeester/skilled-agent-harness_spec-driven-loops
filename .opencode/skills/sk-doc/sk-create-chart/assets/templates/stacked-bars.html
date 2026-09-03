@@ -77,6 +77,30 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    and a table cell line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. The category and legend names keep the body face, because they are names rather than figures. */
 .on-dark, .on-light, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* A stack grows as one shape. Every segment scales about the axis rather than about its own
+   foot, because a segment that scales about itself detaches from the one below it and the
+   column arrives in pieces, which is an order the data does not have. The origin is the
+   baseline the drawing code already computed, handed to the stylesheet as a custom property
+   so the number is not typed twice.
+   The delay comes from the column's place in the drawing order, which is geometry: no number
+   in the data block reaches the timing. It is capped rather than accumulated, so a file
+   carrying thirty columns still settles inside the one second the contract names.
+   backwards, not both: the collapsed state applies before the first frame and is gone once
+   the animation ends, so the settled file carries no trace of having moved. */
+@keyframes chart-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.seg {
+  transform-box: view-box;
+  transform-origin: 0 var(--chart-grow-base, 100%);
+  animation: chart-grow 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
+  animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
+}
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  .seg { animation: none; }
+}
 </style>
 </head>
 <body>
@@ -189,6 +213,11 @@ const peak = DATA.reduce(function (m, d) {
 }, 0);
 const scale = (BASE - TOP) / peak;
 
+// The stack scales about the axis rather than about each segment's own foot, so the
+// stylesheet needs the baseline the drawing already computed. Handing it over as a custom
+// property keeps the number in one place instead of typing it a second time in CSS.
+svg.style.setProperty('--chart-grow-base', BASE + 'px');
+
 const slot = (RIGHT - LEFT) / DATA.length;
 const barWidth = slot * 0.52;
 DATA.forEach(function (d, i) {
@@ -198,9 +227,13 @@ DATA.forEach(function (d, i) {
     const h = v * scale;
     y -= h;
     const top = s === d.values.length - 1;
+    // Every segment of a column carries the column's index, so the whole stack grows on one
+    // timing and arrives as one shape. An index is where a mark sits in the drawing, so
+    // nothing in the data block reaches the timing.
     node(top ? 'path' : 'rect', top
-      ? { d: topRounded(cx - barWidth / 2, y, barWidth, h, MARK_R) }
-      : { x: cx - barWidth / 2, y: y, width: barWidth, height: h }, 'seg series-' + (s + 1));
+      ? { d: topRounded(cx - barWidth / 2, y, barWidth, h, MARK_R), style: '--mark-index:' + i }
+      : { x: cx - barWidth / 2, y: y, width: barWidth, height: h, style: '--mark-index:' + i },
+      'seg series-' + (s + 1));
     if (h >= 22) {
       node('text', { x: cx, y: y + h / 2 + 4, 'text-anchor': 'middle' },
         labelClass(resolve('--chart-series-' + (s + 1)))).textContent = fmt(v);

@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # Chart Template Contract
@@ -179,10 +179,29 @@ Every rule is enforced. The check name is what appears in the corpus check outpu
 | 9 | Element ids unique in the file | `unique-ids` | Two charts silently rendering into one container |
 | 10 | Every `svg` carries `role="img"` and an `aria-labelledby` that resolves, and the file carries a `data-chart-table` | `accessibility` | A screen reader getting nothing at all from the chart |
 | 11 | The four card parts, present and in order | `card-parts` | A chart that needs a caption to be understood |
-| 12 | No randomness and no clock in rendering code | `determinism` | Two renders of one file that disagree |
-| 13 | A file that animates carries a `prefers-reduced-motion` fallback | `motion` | Motion shipped to a reader who asked their system for none |
+| 12 | No randomness and no clock in rendering code, and two renders of one file settle to the same document | `determinism`, `settled-render` | Two renders of one file that disagree |
+| 13 | A file that animates carries a `prefers-reduced-motion` fallback that removes the motion, the motion never repeats, and it settles within one second of first paint | `motion` | Motion shipped to a reader who asked their system for none, and a review that screenshots a chart still moving |
 | 14 | The figure region can scroll sideways, and its drawing declares a `min-width` no wider than its own `viewBox` | `narrow-viewport` | A phone-width screen shrinking a chart until its labels sit on top of each other |
 | 15 | No corner value outside the palette block: a stylesheet corner resolves through a rung, and the drawing code computes a corner rather than typing one | `radius` | Twenty files agreeing on one corner by coincidence, and the twenty-first quietly disagreeing |
+
+Rule 13 carries a number, and the number is what makes rule 12 checkable. One second is the
+settle time: every animation in the corpus finishes inside it, and the render check opens each
+file with a three second budget, which is three times over. Without a stated settle time the two
+rules argue with each other. Rule 12 wants a picture that does not change, rule 13 permits one
+that changes for a while, and nobody can say when the second stopped being true. A named ceiling
+turns that into arithmetic.
+
+The three parts of rule 13 are one requirement, not three preferences. A fallback that shortens
+the motion is not a fallback, because the reader who asked their system for no motion still gets
+motion. An animation that repeats has no settled state at all, which breaks rule 12 by
+construction rather than by accident. And a motion that outruns the render budget is caught
+mid-move, which is the same failure as randomness: two renders disagree and nobody can tell which
+one is the bug.
+
+The settle time is a ceiling the file has to hold on its own, not a promise about the data it
+shipped with. A stagger that adds a delay per mark would walk past one second the moment a reader
+pastes thirty rows into the data block, so the delay is capped rather than accumulated. Nothing
+about the ceiling depends on how many rows the file happens to carry.
 
 Rule 14 is the one a desktop author never notices is missing. `width: 100%` on the drawing
 looks correct at every size the author tries, and squashes the chart into illegibility at the
@@ -221,6 +240,7 @@ Stated plainly, so nobody reads a green run as more than it is.
 - **It does not read console warnings.** A script that throws is caught, because the marks never appear. A script that warns is not.
 - **It does not judge the headline.** Whether the top line states a conclusion is a review question.
 - **Without `--render` it has not opened anything.** The summary line says so on every run. A structural pass is not a rendering pass.
+- **It does not watch the motion.** With `--render` it opens each file twice after the settle time and confirms the two documents are identical, which catches a picture that is still changing when the review screenshots it. It does not see the animation itself, so whether the wipe reads as an entrance is a review question.
 - **It does not measure a narrow screen.** Rule 14 is asserted from the stylesheet, not from a rendered page, because a headless browser hands back the DOM and the DOM does not say whether the page overflowed. The check proves the pan affordance is declared and that its floor is not above the drawing's natural width. Whether the chart is legible at that floor is a review question, and the floor itself is a judgement nobody has measured per form.
 
 ---

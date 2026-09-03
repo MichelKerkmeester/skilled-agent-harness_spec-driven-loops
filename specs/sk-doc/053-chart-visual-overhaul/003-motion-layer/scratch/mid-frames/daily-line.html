@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="daily-line">
+<meta name="chart-color-system" content="neutral">
+<title>One reading per day over a month</title>
+<style>
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* The fill names a gradient rather than a flat value. The colour still comes from the
+   series token, which the gradient stops below carry; this property exists because a fill
+   has to resolve through a --chart- reference to satisfy the corpus colour rule, and a
+   bare url() reference reads to that rule as a fill with no colour in it at all. */
+:root { --chart-area-fill: url(#area-fade); }
+
+.area { fill: var(--chart-area-fill); }
+.fade-top { stop-color: var(--chart-series-1); stop-opacity: 0.18; }
+.fade-base { stop-color: var(--chart-series-1); stop-opacity: 0; }
+.line { fill: none; stroke: var(--chart-series-1); stroke-width: 1; stroke-linejoin: round; stroke-linecap: round; }
+/* Dashed and drawn below full strength, because the rule token is also the card border and
+   a grid at the same weight competes with the frame around it. The grid is the thing a
+   reader looks past, so it gives way first. */
+.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+.dot { fill: var(--chart-series-1); }
+/* The ring is the surface colour, so the emphasized reading separates from the line it
+   sits on instead of merging into it. */
+.mark { fill: var(--chart-emphasis); stroke: var(--chart-surface); stroke-width: 2; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The
+   sentence about missing days keeps the body face, because it is prose and not a figure. */
+.tick, .note, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* The figure reveals itself left to right on first paint, so a reader watches the series
+   arrive in reading order instead of finding it already there. The wipe takes the whole
+   figure rather than the marks alone: a reveal that leaves the axis standing reads as a
+   chart being drawn on top of a chart. It runs once and it ends unclipped, which is the
+   picture this file would paint with no animation in it at all. That is what lets the
+   fallback below remove the motion instead of replacing it with a second design. */
+@keyframes chart-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+/* backwards, not both: the clip applies before the first frame and is gone once the
+   animation ends, so the settled file carries no trace of having moved. */
+.figure svg { animation: chart-reveal 1s cubic-bezier(0, 0.7, 0.5, 1) backwards; }
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  .figure svg { animation: none; }
+}
+.figure svg { animation-delay: -0.4s; animation-play-state: paused; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">The drop in the second week never came back</h1>
+  <p class="subtitle" data-chart-part="subtitle">Orders placed per day across four weeks to the twenty-eighth. The lowest day carries a marker because it is what the headline is about.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart">
+      <title id="fig-title">Orders per day over twenty-eight days</title>
+      <desc id="fig-desc">A daily line over twenty-eight days with an area fill beneath it that fades toward the baseline. The series falls sharply on day eleven to a low of 96 and settles below its earlier level. The table below the chart carries every reading as text.</desc>
+      <defs>
+        <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">
+          <stop offset="0" class="fade-top"></stop>
+          <stop offset="1" class="fade-base"></stop>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Orders placed per day, twenty-eight days.</caption>
+    <thead><tr><th scope="col">Day</th><th scope="col">Orders</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { day: 1, value: 184 }, { day: 2, value: 191 }, { day: 3, value: 176 }, { day: 4, value: 203 },
+  { day: 5, value: 198 }, { day: 6, value: 142 }, { day: 7, value: 131 }, { day: 8, value: 188 },
+  { day: 9, value: 195 }, { day: 10, value: 173 }, { day: 11, value: 96 }, { day: 12, value: 108 },
+  { day: 13, value: 121 }, { day: 14, value: 114 }, { day: 15, value: 133 }, { day: 16, value: 145 },
+  { day: 17, value: 139 }, { day: 18, value: 151 }, { day: 19, value: 148 }, { day: 20, value: 112 },
+  { day: 21, value: 104 }, { day: 22, value: 156 }, { day: 23, value: 162 }, { day: 24, value: 149 },
+  { day: 25, value: 158 }, { day: 26, value: 154 }, { day: 27, value: 118 }, { day: 28, value: 109 }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. A near-hairline is the right weight here: heavy enough to hold on
+// paper, light enough that the line reads as a measurement rather than as a border. The area fill helps only
+// when the reader is reading shape rather than reading values off the axis.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
+// the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+const LEFT = 50;
+const RIGHT = 706;
+const TOP = 20;
+const BASE = 244;
+const TICKS = 4;
+const peak = DATA.reduce(function (m, d) { return Number.isFinite(d.value) ? Math.max(m, d.value) : m; }, 0);
+const max = niceStep(peak / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
+const x = function (i) { return LEFT + (RIGHT - LEFT) * (i / (DATA.length - 1)); };
+const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
+
+// The fade runs down the plot rather than down each path's own box. A series broken by a
+// gap is drawn as several paths, and a per-path ramp would give each piece its own ink
+// density at the same height, which reads as an encoding nobody intended.
+const fade = document.getElementById('area-fade');
+fade.setAttribute('y1', TOP);
+fade.setAttribute('y2', BASE);
+
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (max / TICKS) * t;
+  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
+}
+
+// A day with no reading breaks the line rather than dragging it through a value nobody
+// recorded. Interpolating across the gap invents the reading, and dropping the day and
+// closing up moves every later day to the wrong place on the axis. The line restarts on
+// the far side, which is what a reader needs to see. A day standing alone between two
+// gaps has no segment to belong to, so it is drawn as a round cap on a zero-length path.
+const segments = [];
+let run = [];
+DATA.forEach(function (d, i) {
+  if (Number.isFinite(d.value)) { run.push(x(i) + ',' + y(d.value)); return; }
+  if (run.length) segments.push(run);
+  run = [];
+});
+if (run.length) segments.push(run);
+const omitted = DATA.length - segments.reduce(function (n, s) { return n + s.length; }, 0);
+
+segments.forEach(function (points) {
+  if (points.length > 1) {
+    const from = points[0].split(',')[0];
+    const to = points[points.length - 1].split(',')[0];
+    node('path', { d: 'M' + from + ',' + BASE + ' L' + points.join(' L') + ' L' + to + ',' + BASE + ' Z' }, 'area');
+  }
+  node('path', { d: 'M' + points.join(' L') + (points.length === 1 ? ' L' + points[0] : '') }, 'line');
+});
+
+// A dot per reading says where a value was actually recorded. A line alone leaves that to
+// be guessed from its corners, and a corner is also what a steep pair of readings makes
+// where nothing was recorded at all.
+DATA.forEach(function (d, i) {
+  if (!Number.isFinite(d.value)) return;
+  node('circle', { cx: x(i), cy: y(d.value), r: 2.5 }, 'dot');
+});
+
+// A line with a hole in it and a line that is simply short look the same, so the count
+// is stated inside the figure rather than left to the table to imply.
+if (omitted) {
+  node('text', { x: LEFT, y: BASE + 42 }, 'notice').textContent =
+    omitted === 1 ? '1 day has no reading and is left out of the line.'
+                  : fmt(omitted) + ' days have no reading and are left out of the line.';
+}
+
+// Thinning, not rotating. Days sit (RIGHT - LEFT) / (count - 1) apart, which is 24 units
+// over twenty-eight days. A 'day 28' label is six characters at the fixed mono advance of
+// roughly 0.6em, so about 40 units at the 11px .tick size, and drawing every day overlaps
+// by two thirds. Every seventh leaves roughly 170 units of clear space. The estimate is
+// exact rather than averaged now that the label is monospaced, which is worth keeping:
+// raise the divisor when the label grows, because a date reads far wider than a day
+// number, and the first and last are always kept so the span stays readable.
+DATA.forEach(function (d, i) {
+  if (d.day % 7 !== 0 && d.day !== 1) return;
+  const anchor = i === 0 ? 'start' : i === DATA.length - 1 ? 'end' : 'middle';
+  node('text', { x: x(i), y: BASE + 20, 'text-anchor': anchor }, 'tick').textContent = 'day ' + d.day;
+});
+
+// The low point is found among the readings that exist. A missing value compares as
+// smaller than every real one, so an unfiltered search marks the gap as the low.
+const readings = DATA.filter(function (d) { return Number.isFinite(d.value); });
+if (readings.length) {
+  const lowest = readings.reduce(function (a, b) { return b.value < a.value ? b : a; }, readings[0]);
+  const lowIndex = DATA.indexOf(lowest);
+  node('circle', { cx: x(lowIndex), cy: y(lowest.value), r: 5 }, 'mark');
+  node('text', { x: x(lowIndex) + 10, y: y(lowest.value) + 4 }, 'note').textContent = fmt(lowest.value);
+}
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = 'Day ' + d.day;
+  const td = document.createElement('td');
+  td.className = 'num';
+  td.textContent = fmt(d.value);
+  tr.appendChild(th);
+  tr.appendChild(td);
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>

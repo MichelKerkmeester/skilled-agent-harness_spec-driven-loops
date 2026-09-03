@@ -56,15 +56,15 @@ later phase cannot add a script-driven motion and pass by accident.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 002 closed with the corpus check green over twenty-nine files
-- [ ] Baseline corpus check captured with `--render`
-- [ ] A settle time is chosen and written into the contract before any file animates
+- [x] Phase 002 closed with the corpus check green over twenty-nine files
+- [x] Baseline corpus check captured with `--render`
+- [x] A settle time is chosen and written into the contract before any file animates
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state
-- [ ] Each animating file renders twice to the same settled document
-- [ ] Docs updated (spec/plan/tasks/acceptance-criteria)
+- [x] All acceptance criteria met
+- [x] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state
+- [x] Each animating file renders twice to the same settled document, and to the same settled picture
+- [x] Docs updated (spec/plan/tasks/acceptance-criteria)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -158,7 +158,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: two renders of one file disagree, or the corpus check fails on an animating file across repeated runs.
-- **Procedure**: `git checkout -- <file>` for the affected template. Motion is additive, so reverting a file returns it to a state that paints instantly and passes every rule it passed before.
+- **Procedure**: restore the affected template from a kept copy. Motion is additive, so reverting a file returns it to a state that paints instantly and passes every rule it passed before. Do not reach for `git checkout -- <file>` while the phase is uncommitted: it reverts to the last commit rather than to the working state, and it takes the phase's own edits with it.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -207,13 +207,13 @@ Setup (settle time, baseline) ──► Reveal on three forms ───┐
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline corpus check captured with `--render` and its `RESULT:` line read
-- [ ] A settled-state dump captured for each of the nine files before any animation is added, so the after-dump has something to be compared against
-- [ ] Nothing committed, so the working tree is the only state to revert
+- [x] Baseline corpus check captured with `--render` and its `RESULT:` line read
+- [x] A settled-state dump captured for each of the nine files before any animation is added, so the after-dump has something to be compared against
+- [x] Nothing committed, so the working tree is the only state to revert
 
 ### Rollback Procedure
 1. Identify the failing file from the `FAIL` block, or from the two-render comparison.
-2. `git checkout -- <file>` to restore it.
+2. Restore it from a kept copy, never with `git checkout --` while the phase is uncommitted.
 3. Re-run `node scripts/check-corpus.cjs --render` and read the `RESULT:` line.
 4. Compare the restored file's dump against the pre-motion dump captured in setup, which is the proof that reverting really did return it to the earlier picture.
 5. Record the reverted change in `acceptance-criteria.md` as unmet, with the reason.

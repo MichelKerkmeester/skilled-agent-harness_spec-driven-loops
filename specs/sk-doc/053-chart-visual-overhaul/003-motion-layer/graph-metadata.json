@@ -39,24 +39,28 @@
       "acceptance"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
+      "scratch/route-test/p-transform-mid.png",
+      "scratch/route-test/p-clip-mid.png",
+      "scratch/route-test/p-line-mid.png",
+      "scratch/validator-before.txt",
+      "scratch/validator-after.txt",
+      "scratch/determinism.txt",
+      "scratch/motion-negative.txt",
       ".opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html",
       ".opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-range.html",
       ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html",
       ".opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html",
       ".opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-rows.html",
       ".opencode/skills/sk-doc/sk-create-chart/assets/templates/grouped-bars.html",
-      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-bars.html",
-      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/waterfall.html",
-      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/progress-single.html",
-      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
-      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md"
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-bars.html"
     ],
     "entities": [
       {
@@ -87,6 +91,54 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "p-transform-mid.png",
+        "kind": "file",
+        "path": "scratch/route-test/p-transform-mid.png",
+        "source": "derived"
+      },
+      {
+        "name": "p-clip-mid.png",
+        "kind": "file",
+        "path": "scratch/route-test/p-clip-mid.png",
+        "source": "derived"
+      },
+      {
+        "name": "p-line-mid.png",
+        "kind": "file",
+        "path": "scratch/route-test/p-line-mid.png",
+        "source": "derived"
+      },
+      {
+        "name": "validator-before.txt",
+        "kind": "file",
+        "path": "scratch/validator-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validator-after.txt",
+        "kind": "file",
+        "path": "scratch/validator-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "determinism.txt",
+        "kind": "file",
+        "path": "scratch/determinism.txt",
+        "source": "derived"
+      },
+      {
+        "name": "motion-negative.txt",
+        "kind": "file",
+        "path": "scratch/motion-negative.txt",
         "source": "derived"
       },
       {
@@ -132,30 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "waterfall.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/waterfall.html",
-        "source": "derived"
-      },
-      {
-        "name": "progress-single.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/progress-single.html",
-        "source": "derived"
-      },
-      {
-        "name": "check-corpus.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "template-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -178,35 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`grep -rn 'prefers-reduced-motion' assets/` over the corpus returns nothing, and so does a search",
     "created_at": "2026-09-03T08:02:25.308Z",
-    "last_save_at": "2026-09-03T08:02:59.381Z",
+    "last_save_at": "2026-09-03T11:17:14.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +218,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38fdfd59911d452bbaa414004f84bb9815f2126d622d28cbad247c361a18dafa",
+    "source_fingerprint": "sha256:2be242ff9e62e94e61473ee38ce9fb8e584fb2891f2d3506bf0e68f46bce3eb4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0bd7b922e77327b0b377b5ba17d2d45c8a4f195647b8f055cbda4ef3fc8bd4fa",
-      "plan.md": "9afa41135b8cf74a3cd59db8821a6717b0bf980fa26213d0e6c51aa4fe0249e4",
-      "tasks.md": "7ab7a64d618890a8f8d10d4064b7e631591e915941d288a3d558c843553fc7bd"
+      "spec.md": "a4436daece5b1b1f26848064877d88f568c2a43bc8b471d5e63dd549b4cd29f8",
+      "plan.md": "f60664427b851e0ce37c67e60e651fcf2c9c1d7716c46e112081dfc750ce15b0",
+      "tasks.md": "9d8ef1b63df7776f8c1a081a2f7c233ff8ed6b7426d7c0b8ef180d9156133261",
+      "implementation-summary.md": "ecbddd70e38795c817ba251bec05f59ad6df3abbf8d9c72d5a80fd36037f0771"
     },
     "last_active_child_id": null,
     "last_active_at": null

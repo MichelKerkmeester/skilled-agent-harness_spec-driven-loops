@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="daily-range">
+<meta name="chart-color-system" content="neutral">
+<title>A minimum and a maximum per day</title>
+<style>
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.range { fill: var(--chart-series-1); }
+.range-wide { fill: var(--chart-emphasis); }
+.notice { fill: var(--chart-muted); font-size: 12px; }
+/* Dashed and drawn below full strength, because the rule token is also the card border and
+   a grid at the same weight competes with the frame around it. The grid is the thing a
+   reader looks past, so it gives way first. */
+.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The sentence about undrawn days keeps the body face, because it is prose and not a figure. */
+.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">The floor held all fortnight and the ceiling kept climbing</h1>
+  <p class="subtitle" data-chart-part="subtitle">Daily minimum and maximum response time in milliseconds, fourteen days. The widest day is marked. Nothing here is averaged, because averaging a range into a line is the quiet dishonesty this form exists to refuse.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart">
+      <title id="fig-title">Daily response time range over fourteen days</title>
+      <desc id="fig-desc">One vertical bar per day running from that day's minimum to its maximum. The minimum stays near 120 milliseconds throughout while the maximum rises from 340 to 910. The table below the chart carries both bounds for every day.</desc>
+    <line x1="52" y1="244" x2="706" y2="244" class="grid"></line><text x="42" y="248" text-anchor="end" class="tick">0</text><line x1="52" y1="187.5" x2="706" y2="187.5" class="grid"></line><text x="42" y="191.5" text-anchor="end" class="tick">250</text><line x1="52" y1="131" x2="706" y2="131" class="grid"></line><text x="42" y="135" text-anchor="end" class="tick">500</text><line x1="52" y1="74.5" x2="706" y2="74.5" class="grid"></line><text x="42" y="78.5" text-anchor="end" class="tick">750</text><line x1="52" y1="18" x2="706" y2="18" class="grid"></line><text x="42" y="22" text-anchor="end" class="tick">1,000</text><text x="75.35714285714286" y="264" text-anchor="middle" class="tick">1</text><rect x="65.54714285714286" y="167.16" width="19.62" height="50.172" rx="9.81" class="range"></rect><text x="122.07142857142858" y="264" text-anchor="middle" class="tick">2</text><rect x="112.26142857142858" y="161.284" width="19.62" height="55.370000000000005" rx="9.81" class="range"></rect><text x="168.7857142857143" y="264" text-anchor="middle" class="tick">3</text><rect x="158.9757142857143" y="164.448" width="19.62" height="53.335999999999984" rx="9.81" class="range"></rect><text x="215.5" y="264" text-anchor="middle" class="tick">4</text><rect x="205.69" y="153.374" width="19.62" height="62.602000000000004" rx="9.81" class="range"></rect><text x="262.2142857142857" y="264" text-anchor="middle" class="tick">5</text><rect x="252.40428571428572" y="145.012" width="19.62" height="72.094" rx="9.81" class="range"></rect><text x="308.9285714285714" y="264" text-anchor="middle" class="tick">6</text><rect x="299.1185714285714" y="153.148" width="19.62" height="65.53999999999999" rx="9.81" class="range"></rect><text x="355.6428571428571" y="264" text-anchor="middle" class="tick">7</text><rect x="345.8328571428571" y="148.85399999999998" width="19.62" height="69.156" rx="9.81" class="range"></rect><text x="402.35714285714283" y="264" text-anchor="middle" class="tick">8</text><rect x="392.54714285714283" y="129.418" width="19.62" height="86.78399999999999" rx="9.81" class="range"></rect><text x="449.07142857142856" y="264" text-anchor="middle" class="tick">9</text><rect x="439.26142857142855" y="120.15199999999999" width="19.62" height="96.72800000000001" rx="9.81" class="range"></rect><text x="495.7857142857143" y="264" text-anchor="middle" class="tick">10</text><rect x="485.9757142857143" y="105.91400000000002" width="19.62" height="109.60999999999999" rx="9.81" class="range"></rect><text x="542.5" y="264" text-anchor="middle" class="tick">11</text><rect x="532.69" y="93.93599999999998" width="19.62" height="123.39600000000002" rx="9.81" class="range"></rect><text x="589.2142857142858" y="264" text-anchor="middle" class="tick">12</text><rect x="579.4042857142858" y="85.34800000000001" width="19.62" height="131.07999999999998" rx="9.81" class="range"></rect><text x="635.9285714285714" y="264" text-anchor="middle" class="tick">13</text><rect x="626.1185714285715" y="67.494" width="19.62" height="150.064" rx="9.81" class="range"></rect><text x="682.6428571428572" y="264" text-anchor="middle" class="tick">14</text><rect x="672.8328571428573" y="38.34" width="19.62" height="177.41" rx="9.81" class="range-wide"></rect></svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table="">
+    <caption>Daily minimum and maximum response time in milliseconds.</caption>
+    <thead><tr><th scope="col">Day</th><th scope="col">Minimum</th><th scope="col">Maximum</th></tr></thead>
+    <tbody id="rows"><tr><th scope="row">Day 1</th><td class="num">118</td><td class="num">340</td></tr><tr><th scope="row">Day 2</th><td class="num">121</td><td class="num">366</td></tr><tr><th scope="row">Day 3</th><td class="num">116</td><td class="num">352</td></tr><tr><th scope="row">Day 4</th><td class="num">124</td><td class="num">401</td></tr><tr><th scope="row">Day 5</th><td class="num">119</td><td class="num">438</td></tr><tr><th scope="row">Day 6</th><td class="num">112</td><td class="num">402</td></tr><tr><th scope="row">Day 7</th><td class="num">115</td><td class="num">421</td></tr><tr><th scope="row">Day 8</th><td class="num">123</td><td class="num">507</td></tr><tr><th scope="row">Day 9</th><td class="num">120</td><td class="num">548</td></tr><tr><th scope="row">Day 10</th><td class="num">126</td><td class="num">611</td></tr><tr><th scope="row">Day 11</th><td class="num">118</td><td class="num">664</td></tr><tr><th scope="row">Day 12</th><td class="num">122</td><td class="num">702</td></tr><tr><th scope="row">Day 13</th><td class="num">117</td><td class="num">781</td></tr><tr><th scope="row">Day 14</th><td class="num">125</td><td class="num">910</td></tr></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { day: 1, low: 118, high: 340 }, { day: 2, low: 121, high: 366 },
+  { day: 3, low: 116, high: 352 }, { day: 4, low: 124, high: 401 },
+  { day: 5, low: 119, high: 438 }, { day: 6, low: 112, high: 402 },
+  { day: 7, low: 115, high: 421 }, { day: 8, low: 123, high: 507 },
+  { day: 9, low: 120, high: 548 }, { day: 10, low: 126, high: 611 },
+  { day: 11, low: 118, high: 664 }, { day: 12, low: 122, high: 702 },
+  { day: 13, low: 117, high: 781 }, { day: 14, low: 125, high: 910 }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. A range is two numbers and it stays two numbers. The moment a
+// midpoint line appears, the reader starts reading an average nobody measured.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
+// the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+const LEFT = 52;
+const RIGHT = 706;
+const TOP = 18;
+const BASE = 244;
+const TICKS = 4;
+// A day is drawn only when both ends of its range are real numbers. Half a range is not
+// a range, and a missing end reaches the geometry as NaN, which the browser drops without
+// saying so: the day disappears and the chart still looks complete.
+const drawable = DATA.filter(function (d) { return Number.isFinite(d.low) && Number.isFinite(d.high); });
+const omitted = DATA.length - drawable.length;
+const peak = drawable.reduce(function (m, d) { return Math.max(m, d.high); }, 0);
+const max = niceStep(peak / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
+const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
+
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (max / TICKS) * t;
+  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
+}
+
+const widest = drawable.reduce(function (a, b) { return (b.high - b.low) > (a.high - a.low) ? b : a; }, drawable[0]);
+const slot = (RIGHT - LEFT) / DATA.length;
+const barWidth = slot * 0.42;
+DATA.forEach(function (d, i) {
+  const cx = LEFT + slot * i + slot / 2;
+  // The slot is kept even when the bar is not drawn, so the days that remain stay on the
+  // dates they belong to instead of sliding left into the gap.
+  node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'tick').textContent = fmt(d.day);
+  if (drawable.indexOf(d) === -1) return;
+  node('rect', {
+    x: cx - barWidth / 2, y: y(d.high), width: barWidth, height: y(d.low) - y(d.high), rx: barWidth / 2
+  }, d === widest ? 'range-wide' : 'range');
+});
+
+// A day with no bar and a day whose range is too narrow to see look the same, so the
+// count is stated inside the figure rather than left to the table to imply.
+if (omitted) {
+  node('text', { x: LEFT, y: BASE + 42 }, 'notice').textContent =
+    omitted === 1 ? '1 day has no complete range and is left undrawn.'
+                  : fmt(omitted) + ' days have no complete range and are left undrawn.';
+}
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = 'Day ' + d.day;
+  tr.appendChild(th);
+  [d.low, d.high].forEach(function (v) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = fmt(v);
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+</script>
+
+
+</body></html>

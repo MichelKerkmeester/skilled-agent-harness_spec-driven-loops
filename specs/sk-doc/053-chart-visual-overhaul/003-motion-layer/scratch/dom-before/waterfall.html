@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="waterfall">
+<meta name="chart-color-system" content="categorical">
+<title>Step by step from gross to net</title>
+<style>
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.total { fill: var(--chart-series-1); }
+.down { fill: var(--chart-series-2); }
+.up { fill: var(--chart-series-3); }
+/* A step bar floats between two running totals and meets nothing, so all four of its corners
+   are outer edges. A total bar stands on the baseline and is drawn as a path with only its
+   top rounded, the way every other column in the corpus is. */
+.down, .up, .key-swatch { rx: var(--chart-radius-mark); }
+.connector { stroke: var(--chart-rule); stroke-width: 1.5; }
+/* Dashed and drawn below full strength, because the rule token is also the card border and
+   a grid at the same weight competes with the frame around it. The grid is the thing a
+   reader looks past, so it gives way first. */
+.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+.cat { fill: var(--chart-ink); font-size: 11px; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.key { fill: var(--chart-muted); font-size: 12px; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The step names and the legend keep the body face, because they are names rather than figures. */
+.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Discounting gives back more than churn takes away</h1>
+  <p class="subtitle" data-chart-part="subtitle">Movement from gross bookings to net revenue for the year, in thousands. Six steps is the working limit for this form. Past about eight the connectors start to dominate the picture.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
+      <title id="fig-title">From gross bookings to net revenue</title>
+      <desc id="fig-desc">Six columns showing a running total. Each column takes the swatch printed beside its name in the key: the first and last columns are anchors resting on the baseline, a column rising from the previous total is an increase, and a column falling from it is a decrease. Gross bookings of 4200 fall by 640 for discounting and 410 for churn, then rise by 380 for expansion and 210 for services, ending at a net of 3740. The table below the chart carries every step as text.</desc>
+    <line x1="62" y1="262" x2="706" y2="262" class="grid"></line><text x="52" y="266" text-anchor="end" class="tick">0</text><line x1="62" y1="206.5" x2="706" y2="206.5" class="grid"></line><text x="52" y="210.5" text-anchor="end" class="tick">1,250</text><line x1="62" y1="151" x2="706" y2="151" class="grid"></line><text x="52" y="155" text-anchor="end" class="tick">2,500</text><line x1="62" y1="95.5" x2="706" y2="95.5" class="grid"></line><text x="52" y="99.5" text-anchor="end" class="tick">3,750</text><line x1="62" y1="40" x2="706" y2="40" class="grid"></line><text x="52" y="44" text-anchor="end" class="tick">5,000</text><path d="M85.61333333333332,262 V77.52000000000001 A2,2 0 0 1 87.61333333333332,75.52000000000001 H143.71999999999997 A2,2 0 0 1 145.71999999999997,77.52000000000001 V262 Z" class="total"><title>Gross bookings: 4,200</title></path><text x="115.66666666666666" y="67.52000000000001" text-anchor="middle" class="tick">4,200</text><text x="115.66666666666666" y="282" text-anchor="middle" class="cat">Gross bookings</text><line x1="145.72" y1="75.52000000000001" x2="192.94666666666666" y2="75.52000000000001" class="connector"></line><rect x="192.94666666666663" y="75.52000000000001" width="60.10666666666667" height="28.415999999999997" class="down"><title>Discounting: -640, running total 3,560</title></rect><text x="222.99999999999997" y="67.52000000000001" text-anchor="middle" class="tick">-640</text><text x="222.99999999999997" y="282" text-anchor="middle" class="cat">Discounting</text><line x1="253.0533333333333" y1="103.936" x2="300.28" y2="103.936" class="connector"></line><rect x="300.28" y="103.936" width="60.10666666666667" height="18.20399999999998" class="down"><title>Churn: -410, running total 3,150</title></rect><text x="330.3333333333333" y="95.936" text-anchor="middle" class="tick">-410</text><text x="330.3333333333333" y="282" text-anchor="middle" class="cat">Churn</text><line x1="360.38666666666666" y1="122.13999999999999" x2="407.6133333333333" y2="122.13999999999999" class="connector"></line><rect x="407.61333333333334" y="105.268" width="60.10666666666667" height="16.871999999999986" class="up"><title>Expansion: +380, running total 3,530</title></rect><text x="437.6666666666667" y="97.268" text-anchor="middle" class="tick">+380</text><text x="437.6666666666667" y="282" text-anchor="middle" class="cat">Expansion</text><line x1="467.72" y1="105.268" x2="514.9466666666667" y2="105.268" class="connector"></line><rect x="514.9466666666667" y="95.94399999999999" width="60.10666666666667" height="9.324000000000012" class="up"><title>Services: +210, running total 3,740</title></rect><text x="545" y="87.94399999999999" text-anchor="middle" class="tick">+210</text><text x="545" y="282" text-anchor="middle" class="cat">Services</text><line x1="575.0533333333333" y1="95.94399999999999" x2="622.2800000000001" y2="95.94399999999999" class="connector"></line><path d="M622.28,262 V97.94399999999999 A2,2 0 0 1 624.28,95.94399999999999 H680.3866666666667 A2,2 0 0 1 682.3866666666667,97.94399999999999 V262 Z" class="total"><title>Net revenue: 3,740</title></path><text x="652.3333333333333" y="87.94399999999999" text-anchor="middle" class="tick">3,740</text><text x="652.3333333333333" y="282" text-anchor="middle" class="cat">Net revenue</text><rect x="62" y="8" width="13" height="13" class="key-swatch total"></rect><text x="81" y="19" class="key">Anchor</text><rect x="146.50522232055664" y="8" width="13" height="13" class="key-swatch up"></rect><text x="165.50522232055664" y="19" class="key">Increase</text><rect x="238.4291114807129" y="8" width="13" height="13" class="key-swatch down"></rect><text x="257.4291114807129" y="19" class="key">Decrease</text></svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table="">
+    <caption>Movement from gross bookings to net revenue, in thousands.</caption>
+    <thead><tr><th scope="col">Step</th><th scope="col">Movement</th><th scope="col">Running total</th></tr></thead>
+    <tbody id="rows"><tr><th scope="row">Gross bookings</th><td class="num"></td><td class="num">4,200</td></tr><tr><th scope="row">Discounting</th><td class="num">-640</td><td class="num">3,560</td></tr><tr><th scope="row">Churn</th><td class="num">-410</td><td class="num">3,150</td></tr><tr><th scope="row">Expansion</th><td class="num">+380</td><td class="num">3,530</td></tr><tr><th scope="row">Services</th><td class="num">+210</td><td class="num">3,740</td></tr><tr><th scope="row">Net revenue</th><td class="num"></td><td class="num">3,740</td></tr></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { label: 'Gross bookings', value: 4200, kind: 'start' },
+  { label: 'Discounting', value: -640, kind: 'step' },
+  { label: 'Churn', value: -410, kind: 'step' },
+  { label: 'Expansion', value: 380, kind: 'step' },
+  { label: 'Services', value: 210, kind: 'step' },
+  { label: 'Net revenue', value: 0, kind: 'end' }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. The end column is computed from the steps rather than typed,
+// so a step edited in the data block can never disagree with the total drawn beside it.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// A native SVG tooltip. The value a reader hovers is the value in the data block,
+// with no library, no listener and no state: the browser draws it and a screen
+// reader reads it as the mark's name.
+function tip(el, text) {
+  const t = document.createElementNS(SVG, 'title');
+  t.textContent = text;
+  el.appendChild(t);
+  return el;
+}
+
+// The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
+// the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+let running = 0;
+const bars = DATA.map(function (d) {
+  if (d.kind === 'start') {
+    running = d.value;
+    return { label: d.label, from: 0, to: running, move: d.value, cls: 'total' };
+  }
+  if (d.kind === 'end') {
+    return { label: d.label, from: 0, to: running, move: running, cls: 'total' };
+  }
+  const from = running;
+  running += d.value;
+  return { label: d.label, from: from, to: running, move: d.value, cls: d.value >= 0 ? 'up' : 'down' };
+});
+
+// The corner comes from the ladder in the palette block rather than from a number typed
+// here, so one edit reaches every form instead of one file.
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-mark')) || 0;
+
+// A column rounds only the end that meets nothing. The end on the baseline stays square,
+// because a rounded corner there reads as a column that stops short of the axis it is
+// measured from. A column shorter than its own corner has the corner clamped to its height,
+// so a small value stays a column rather than collapsing into a lozenge.
+function topRounded(x, y, w, h, r) {
+  const k = Math.max(0, Math.min(r, w / 2, h));
+  return 'M' + x + ',' + (y + h) + ' V' + (y + k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + k) + ',' + y +
+    ' H' + (x + w - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w) + ',' + (y + k) +
+    ' V' + (y + h) + ' Z';
+}
+
+const LEFT = 62;
+const RIGHT = 706;
+const TOP = 40;
+const BASE = 262;
+const TICKS = 4;
+const peak = bars.reduce(function (m, b) { return Math.max(m, b.from, b.to); }, 0);
+const max = niceStep(peak / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
+const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
+
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (max / TICKS) * t;
+  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
+}
+
+const slot = (RIGHT - LEFT) / bars.length;
+const barWidth = slot * 0.56;
+bars.forEach(function (b, i) {
+  const cx = LEFT + slot * i + slot / 2;
+  const top = Math.min(y(b.from), y(b.to));
+  const height = Math.abs(y(b.from) - y(b.to));
+  const drawn = Math.max(height, 2);
+  tip(node(b.cls === 'total' ? 'path' : 'rect', b.cls === 'total'
+    ? { d: topRounded(cx - barWidth / 2, top, barWidth, drawn, MARK_R) }
+    : { x: cx - barWidth / 2, y: top, width: barWidth, height: drawn }, b.cls),
+    b.cls === 'total' ? b.label + ': ' + fmt(b.to) : b.label + ': ' + (b.move > 0 ? '+' : '') + fmt(b.move) + ', running total ' + fmt(b.to));
+  node('text', { x: cx, y: top - 8, 'text-anchor': 'middle' }, 'tick')
+    .textContent = (b.cls === 'total' ? '' : b.move > 0 ? '+' : '') + fmt(b.move);
+  node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'cat').textContent = b.label;
+  if (i === bars.length - 1) return;
+  node('line', {
+    x1: cx + barWidth / 2, y1: y(b.to), x2: cx + slot - barWidth / 2, y2: y(b.to)
+  }, 'connector');
+});
+
+const KEYS = [
+  { name: 'Anchor', cls: 'total' },
+  { name: 'Increase', cls: 'up' },
+  { name: 'Decrease', cls: 'down' }
+];
+let keyX = LEFT;
+KEYS.forEach(function (k) {
+  node('rect', { x: keyX, y: 8, width: 13, height: 13 }, 'key-swatch ' + k.cls);
+  const label = node('text', { x: keyX + 19, y: 19 }, 'key');
+  label.textContent = k.name;
+  // The gap after a swatch is the label's real width, measured once it is in the
+  // document. A character count times a constant assumes every glyph is the same
+  // width, which this font stack does not promise, so a wide label used to run
+  // under the next swatch. The count stays as the fallback for a reader that has
+  // not laid the text out yet.
+  keyX += 44 + (label.getComputedTextLength() || k.name.length * 6.6);
+});
+
+const rows = document.getElementById('rows');
+bars.forEach(function (b) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = b.label;
+  tr.appendChild(th);
+  [b.cls === 'total' ? '' : (b.move > 0 ? '+' : '') + fmt(b.move), fmt(b.to)].forEach(function (v) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = v;
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+</script>
+
+
+</body></html>

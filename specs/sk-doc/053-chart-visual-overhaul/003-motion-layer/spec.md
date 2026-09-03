@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-03 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -234,9 +234,20 @@ corpus check and amends a contract rule, rather than because it edits nine files
 
 ## 7. OPEN QUESTIONS
 
-- Which animation route survives a render on a bar: a transform scaled about the anchor, or a mask that wipes the mark into view. A transform scales the stroke with the shape, and the corpus draws a surface-coloured separator on stacked segments.
-- Whether the reveal should also cover the axis labels or only the marks. The vendored source wipes the plot area, and the corpus prints labels the plot area does not contain.
-- What settle time the contract should name. One second covers both motions with room to spare, and naming a number turns rule 12 from a principle into something a render budget can be set against.
+All three are answered. The answers are kept here because each one shaped the implementation.
+
+- **Which animation route survives a render on a bar.** The transform. A clip resolves against
+  each element's own box, so clipping the segments of a stack detaches them and the column arrives
+  in pieces. The transform scales the whole stack about the axis and the seams hold. Both routes
+  were rendered as paused mid-animation frames and read side by side, in `scratch/route-test/`.
+- **Whether the reveal covers the axis labels or only the marks.** The whole figure. A wipe that
+  leaves the axis standing reads as a chart being drawn on top of a chart, and the drawing code
+  appends straight to the `<svg>` rather than into a plot group, so clipping the marks alone would
+  have meant restructuring every one of the three files.
+- **What settle time the contract should name.** One second. It bounds both motions and stays a
+  third of the render budget. It is only true if the stagger cannot grow without limit, so the
+  delay is capped at half a second rather than accumulated, which keeps the ceiling honest for a
+  file whose data block a reader has doubled.
 <!-- /ANCHOR:questions -->
 
 ---

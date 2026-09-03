@@ -78,6 +78,27 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    The stack is all system faces: a delivered file has no network to fetch one from. The category and legend names keep the body face, because they are names rather than figures. */
 .tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 .key { fill: var(--chart-muted); font-size: 12px; }
+
+/* Each mark grows from the anchor it is measured against over half a second, and consecutive
+   marks start slightly apart so the eye follows the order the chart is arranged in. The delay
+   comes from a mark's place in the drawing order, which is geometry: no number in the data
+   block reaches the timing. It is capped rather than accumulated, so a file carrying thirty
+   rows still settles inside the one second the contract names.
+   backwards, not both: the collapsed state applies before the first frame and is gone once
+   the animation ends, so the settled file carries no trace of having moved. */
+@keyframes chart-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+path.past, path.current {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: chart-grow 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
+  animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
+}
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  path.past, path.current { animation: none; }
+}
 </style>
 </head>
 <body>
@@ -200,11 +221,21 @@ SERIES.forEach(function (name, s) {
 
 const slot = (RIGHT - LEFT) / DATA.length;
 const barWidth = slot * 0.30;
+// Counts the columns as they are drawn, left to right across the whole plot rather than
+// within a group, so the growth arrives in the order a person scans. A running count is where
+// a mark sits in the drawing and nothing else: reaching into the data for the same number
+// would let the shape of the data set the timing.
+let drawn = 0;
 DATA.forEach(function (d, i) {
   const cx = LEFT + slot * i + slot / 2;
   d.values.forEach(function (v, s) {
     const x = cx + (s === 0 ? -barWidth - 3 : 3);
-    node('path', { d: topRounded(x, y(v), barWidth, BASE - y(v), MARK_R) }, RANK[s]);
+    // The stylesheet grows each column from the axis and staggers it by this index.
+    node('path', {
+      d: topRounded(x, y(v), barWidth, BASE - y(v), MARK_R),
+      style: '--mark-index:' + drawn
+    }, RANK[s]);
+    drawn += 1;
   });
   node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
 });

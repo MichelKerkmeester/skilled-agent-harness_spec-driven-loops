@@ -18,6 +18,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const vm = require('vm');
 const { execFileSync } = require('child_process');
 
@@ -575,15 +576,104 @@ function checkNarrowViewport(file, src) {
     `min-width is ${min[1]}px and the drawing is ${viewBox[1]} units wide, so the floor is above the natural size and the chart is scaled up at every screen width`);
 }
 
+// Rule 13: a file that moves lets the reader turn the motion off, and it never repeats.
+//
+// This rule used to read the stylesheet regions and nothing else, which made it a hole rather
+// than a gate. A motion driven from the drawing code matches none of the CSS patterns, so a
+// file could animate with no fallback at all and the check would report a pass on it. Nothing
+// in the corpus moved for as long as the hole was open, so the rule had never once fired on a
+// real file, and a rule with no observed failure is a claim rather than a check.
+//
+// A file can move by three routes and each has its own way of asking the reader's system
+// whether motion is wanted. A stylesheet animation is turned off by a media query in the same
+// stylesheet. A motion driven from the drawing code has to ask through matchMedia, because no
+// media query reaches it. An animation element in the markup cannot be reached by a media
+// query either, so it needs the same guard in script.
+//
+// What this does not treat as motion: a bare setTimeout. It is a one-shot delay far more often
+// than it is an animation loop, and a rule that demands a reduce-motion guard around a deferred
+// measurement fires on correct code. The residual is covered from the other side. The render
+// path opens each file twice after the settle time and compares both documents, so a motion
+// still running when the budget expires shows up as two renders that disagree.
+//
+// The settle time rule 13 names is not asserted here either, and for the same reason. Reading a
+// duration out of a stylesheet says what the author wrote, not when the picture stopped moving.
+// Only the two-render comparison observes that.
+const SCRIPT_MOTION = [
+  [/\brequestAnimationFrame\s*\(/, 'requestAnimationFrame'],
+  [/\.\s*animate\s*\(/, 'an animate() call'],
+  [/\bsetInterval\s*\(/, 'setInterval'],
+];
+const MARKUP_MOTION = /<\s*(?:animate|animateTransform|animateMotion|set)\b/i;
+const CSS_MOTION = /@keyframes\b|\banimation(?:-name)?\s*:|\btransition\s*:/;
+const REDUCED_MOTION = /prefers-reduced-motion/;
+const REPEATS_IN_CSS = /\banimation(?:-iteration-count)?\s*:[^;}]*\binfinite\b/i;
+const REPEATS_IN_MARKUP = /\b(?:repeatCount|repeatDur)\s*=\s*"\s*indefinite/i;
+const REPEATS_IN_SCRIPT = /\biterations\s*:\s*Infinity\b/;
+// Only these three declarations belong in a reduce-motion fallback. Anything else in one is a
+// motion made shorter, and a shorter animation is still an animation to somebody it makes ill.
+const MOTION_DECLARATION = /(?:^|[;{\s])(animation|animation-[a-z-]+|transition|transition-[a-z-]+)\s*:\s*([^;}]+)/gi;
+const REMOVES_MOTION = new Set(['animation', 'animation-name', 'transition', 'transition-property']);
+
+// The body of every reduce-motion media query, brace-matched rather than pattern-matched: the
+// block holds nested rules, and a regex that stops at the first closing brace reads half of one.
+function reducedMotionBlocks(css) {
+  const out = [];
+  const opener = /@media[^{]*prefers-reduced-motion[^{]*\{/gi;
+  let m;
+  while ((m = opener.exec(css)) !== null) {
+    let depth = 1;
+    let i = opener.lastIndex;
+    while (i < css.length && depth > 0) {
+      if (css[i] === '{') depth += 1;
+      else if (css[i] === '}') depth -= 1;
+      i += 1;
+    }
+    out.push(css.slice(opener.lastIndex, i - 1));
+  }
+  return out;
+}
+
 function checkMotion(file, src) {
-  const { styles } = regionsOf(src);
-  const joined = styles.join('\n');
-  tally('motion', 1);
-  const animates = /@keyframes\b/.test(joined) || /\banimation\s*:/.test(joined) || /\btransition\s*:/.test(joined);
-  if (!animates) return;
-  if (/prefers-reduced-motion/.test(joined)) return;
-  record('motion', 'error', file,
-    'the file animates and carries no prefers-reduced-motion fallback');
+  const { styles, scripts, markup } = regionsOf(stripHtmlComments(src));
+  // CSS and JavaScript share block-comment syntax, so one stripper serves both. It matters
+  // here: a comment explaining an animation must not read to this rule as an animation.
+  const css = stripJsComments(styles.join('\n'));
+  const code = scripts.map(stripJsComments).join('\n');
+  tally('motion', 4);
+
+  if (CSS_MOTION.test(css) && !REDUCED_MOTION.test(css)) {
+    record('motion', 'error', file,
+      'the stylesheet animates and carries no prefers-reduced-motion fallback');
+  }
+
+  const routes = SCRIPT_MOTION.filter(([re]) => re.test(code)).map(([, what]) => what);
+  if (routes.length && !REDUCED_MOTION.test(code)) {
+    record('motion', 'error', file,
+      `the drawing code animates through ${routes.join(', ')} and never reads the reader's reduce-motion preference. No media query reaches a motion driven from script, so this route has to ask through matchMedia('(prefers-reduced-motion: reduce)'). A stylesheet fallback does not cover it and the rule used not to look here at all`);
+  }
+
+  if (MARKUP_MOTION.test(markup) && !REDUCED_MOTION.test(code)) {
+    record('motion', 'error', file,
+      'the markup carries an animation element and the drawing code never reads the reduce-motion preference. A media query cannot switch off an animation element, so the guard belongs in script');
+  }
+
+  for (const body of reducedMotionBlocks(css)) {
+    let m;
+    MOTION_DECLARATION.lastIndex = 0;
+    while ((m = MOTION_DECLARATION.exec(body)) !== null) {
+      const prop = m[1].toLowerCase();
+      const value = m[2].trim().toLowerCase();
+      if (REMOVES_MOTION.has(prop) && value === 'none') continue;
+      record('motion', 'error', file,
+        `the reduce-motion fallback declares "${prop}: ${value}". A reader who asked their system for no motion gets a shorter animation rather than no animation, which is not what they asked for. A fallback removes the motion, so the declarations it carries are "animation: none" and "transition: none"`);
+    }
+  }
+
+  if (REPEATS_IN_CSS.test(css) || REPEATS_IN_MARKUP.test(markup) || REPEATS_IN_SCRIPT.test(code)) {
+    record('motion', 'error', file,
+      'an animation repeats without end. A picture that never stops changing has no settled state, so two renders of the file disagree by construction and rule 12 cannot hold');
+  }
 }
 
 /* ------------------------------------------------------------------- catalog */
@@ -669,6 +759,33 @@ function findBrowser() {
   return candidates.find((p) => fs.existsSync(p)) || null;
 }
 
+// The render budget is three seconds, and the contract puts the settle time at one. Three
+// times over is deliberate: a budget that only just clears the settle time turns every slow
+// machine into a failure nobody can reproduce.
+const RENDER_BUDGET_MS = 3000;
+// Tall enough that the whole card and the table under it sit inside one frame. A short window
+// crops the page, and a comparison that only sees the top of a document is not a comparison of
+// the document.
+const RENDER_WINDOW = '900,6000';
+
+// One open of one file: the document the browser built, and the picture it painted.
+function openOnce(browser, file, shot) {
+  // Clear the target first. A browser that dies without writing leaves the previous file's
+  // picture sitting at this path, and comparing a stale artifact is how a check reports a pass
+  // on something it never looked at.
+  fs.rmSync(shot, { force: true });
+  try {
+    const dom = execFileSync(browser, [
+      '--headless=new', '--disable-gpu', '--no-sandbox', '--hide-scrollbars',
+      `--window-size=${RENDER_WINDOW}`, `--virtual-time-budget=${RENDER_BUDGET_MS}`,
+      '--dump-dom', `--screenshot=${shot}`, `file://${file}`,
+    ], { encoding: 'utf8', timeout: 45000, stdio: ['ignore', 'pipe', 'ignore'] });
+    return { dom, pixels: fs.existsSync(shot) ? fs.readFileSync(shot) : null };
+  } catch (err) {
+    return { error: err.message };
+  }
+}
+
 function checkRenders(files) {
   const browser = findBrowser();
   if (!browser) {
@@ -678,26 +795,53 @@ function checkRenders(files) {
     return;
   }
   tally('render', files.length);
-  for (const file of files) {
-    let dom;
-    try {
-      dom = execFileSync(browser, [
-        '--headless=new', '--disable-gpu', '--no-sandbox',
-        '--virtual-time-budget=3000', '--dump-dom', `file://${file}`,
-      ], { encoding: 'utf8', timeout: 45000, stdio: ['ignore', 'pipe', 'ignore'] });
-    } catch (err) {
-      record('render', 'error', rel(file), `the browser did not return a document: ${err.message}`);
-      continue;
+  // Rule 12's rendered half. The static determinism rule reads the drawing code for a clock or
+  // a random source, which catches the two ways a picture used to be able to change on its own.
+  // It cannot catch a third: an animation still running when the review takes its screenshot.
+  // So each file is opened twice and both halves of what came back are compared. The document
+  // catches a drawing that is still building itself, and the picture catches motion that has
+  // not settled, which no document dump can see because a CSS animation never touches the DOM.
+  tally('settled-render', files.length * 2);
+  const shots = fs.mkdtempSync(path.join(os.tmpdir(), 'chart-corpus-render-'));
+  try {
+    for (const file of files) {
+      const first = openOnce(browser, file, path.join(shots, 'first.png'));
+      if (first.error) {
+        record('render', 'error', rel(file), `the browser did not return a document: ${first.error}`);
+        continue;
+      }
+      const figure = /<[^>]*data-chart-part\s*=\s*"figure"[^>]*>([\s\S]*?)<\/(?:div|figure|section)>/i.exec(first.dom);
+      if (!figure) {
+        record('render', 'error', rel(file), 'the rendered document has no figure region');
+      } else {
+        const elements = (figure[1].match(/<[a-zA-Z]/g) || []).length;
+        if (elements < 4) {
+          record('render', 'error', rel(file),
+            `the figure region holds ${elements} elements after the script ran. A chart that opens as an empty box passes every static check`);
+        }
+      }
+
+      const second = openOnce(browser, file, path.join(shots, 'second.png'));
+      if (second.error) {
+        record('settled-render', 'error', rel(file),
+          `the second open did not return a document, so nothing could be compared: ${second.error}`);
+        continue;
+      }
+      if (first.dom !== second.dom) {
+        record('settled-render', 'error', rel(file),
+          `two opens of this file built different documents after ${RENDER_BUDGET_MS}ms. Something in the drawing code is still changing the page when the budget expires, so a screenshot review compares the chart against noise rather than against itself`);
+      }
+      if (!first.pixels || !second.pixels) {
+        record('settled-render', 'error', rel(file),
+          'the browser returned no picture, so the settled state could not be compared. The document alone cannot see an animation, because a stylesheet animation never touches the DOM');
+        continue;
+      }
+      if (first.pixels.equals(second.pixels)) continue;
+      record('settled-render', 'error', rel(file),
+        `two opens of this file painted different pictures after ${RENDER_BUDGET_MS}ms. Either something moves without settling or the motion outruns the budget, and either way two screenshots of one chart disagree`);
     }
-    const figure = /<[^>]*data-chart-part\s*=\s*"figure"[^>]*>([\s\S]*?)<\/(?:div|figure|section)>/i.exec(dom);
-    if (!figure) {
-      record('render', 'error', rel(file), 'the rendered document has no figure region');
-      continue;
-    }
-    const elements = (figure[1].match(/<[a-zA-Z]/g) || []).length;
-    if (elements >= 4) continue;
-    record('render', 'error', rel(file),
-      `the figure region holds ${elements} elements after the script ran. A chart that opens as an empty box passes every static check`);
+  } finally {
+    fs.rmSync(shots, { recursive: true, force: true });
   }
 }
 

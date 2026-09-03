@@ -1,0 +1,27 @@
+REDUCE-MOTION COVERAGE across the twenty chart forms
+A fallback belongs on a file that moves and nowhere else. A grep that only checked for
+at least nine would pass a corpus that had scattered the fallback everywhere, so the
+eleven that must NOT carry one are listed too.
+
+bar-columns.html               animates, fallback present: animation: none
+bar-rows.html                  animates, fallback present: animation: none
+box-plot.html                  does not move, no fallback
+calendar-grid.html             does not move, no fallback
+candlestick.html               does not move, no fallback
+daily-line.html                animates, fallback present: animation: none
+daily-range.html               animates, fallback present: animation: none
+distribution-strip.html        does not move, no fallback
+grouped-bars.html              animates, fallback present: animation: none
+heat-matrix.html               does not move, no fallback
+independent-percentages.html   does not move, no fallback
+parallel-axes.html             does not move, no fallback
+progress-single.html           animates, fallback present: animation: none
+scatter.html                   does not move, no fallback
+stacked-area.html              animates, fallback present: animation: none
+stacked-bars.html              animates, fallback present: animation: none
+treemap.html                   does not move, no fallback
+unit-grid.html                 does not move, no fallback
+unit-ring.html                 does not move, no fallback
+waterfall.html                 animates, fallback present: animation: none
+
+animating: 9   still: 11

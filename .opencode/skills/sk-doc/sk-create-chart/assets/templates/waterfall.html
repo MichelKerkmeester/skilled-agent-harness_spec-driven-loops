@@ -81,6 +81,31 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    and a table cell line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. The step names and the legend keep the body face, because they are names rather than figures. */
 .tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* Each step grows from the running total it is measured against, so the growth follows the
+   sign of the step. A rise starts at the total below it and climbs. A fall hangs from the
+   total above it and drops. An anchor stands on the baseline like every other column in the
+   corpus. Scaling about the wrong edge would read as the mark sliding into place rather than
+   as the movement it records.
+   The delay comes from a step's place in the sequence, which is geometry: no number in the
+   data block reaches the timing. It is capped rather than accumulated, so a file carrying
+   thirty steps still settles inside the one second the contract names.
+   backwards, not both: the collapsed state applies before the first frame and is gone once
+   the animation ends, so the settled file carries no trace of having moved. */
+@keyframes chart-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.total:not(.key-swatch), .up:not(.key-swatch), .down:not(.key-swatch) {
+  transform-box: fill-box;
+  animation: chart-grow 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
+  animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
+}
+.total:not(.key-swatch), .up:not(.key-swatch) { transform-origin: bottom; }
+.down:not(.key-swatch) { transform-origin: top; }
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  .total:not(.key-swatch), .up:not(.key-swatch), .down:not(.key-swatch) { animation: none; }
+}
 </style>
 </head>
 <body>
@@ -225,9 +250,12 @@ bars.forEach(function (b, i) {
   const top = Math.min(y(b.from), y(b.to));
   const height = Math.abs(y(b.from) - y(b.to));
   const drawn = Math.max(height, 2);
+  // The stylesheet grows each step from the running total it is measured against and
+  // staggers it by this index. An index is where a mark sits in the sequence, so nothing in
+  // the data block reaches the timing.
   tip(node(b.cls === 'total' ? 'path' : 'rect', b.cls === 'total'
-    ? { d: topRounded(cx - barWidth / 2, top, barWidth, drawn, MARK_R) }
-    : { x: cx - barWidth / 2, y: top, width: barWidth, height: drawn }, b.cls),
+    ? { d: topRounded(cx - barWidth / 2, top, barWidth, drawn, MARK_R), style: '--mark-index:' + i }
+    : { x: cx - barWidth / 2, y: top, width: barWidth, height: drawn, style: '--mark-index:' + i }, b.cls),
     b.cls === 'total' ? b.label + ': ' + fmt(b.to) : b.label + ': ' + (b.move > 0 ? '+' : '') + fmt(b.move) + ', running total ' + fmt(b.to));
   node('text', { x: cx, y: top - 8, 'text-anchor': 'middle' }, 'tick')
     .textContent = (b.cls === 'total' ? '' : b.move > 0 ? '+' : '') + fmt(b.move);

@@ -8,7 +8,7 @@ trigger_phrases:
   - "check-corpus"
 importance_tier: normal
 contextType: reference
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # sk-create-chart Scripts
@@ -54,6 +54,11 @@ Render is off by default and the summary says which mode it ran in. Without `--r
 ## 4. WHAT IT CHECKS
 
 Per template file, one check name each: `document-shape`, `identity`, `palette-block`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `narrow-viewport`, `motion`, `radius`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
+
+With `--render` two more run, and both need a browser:
+
+- `render` opens each file once and asserts the figure region holds real elements after the script ran, which catches a chart that opens as an empty box.
+- `settled-render` opens each file a second time and compares both halves of what came back. Rule 12 asks that two renders of one file agree, and the rule's other half is a static scan of the drawing code for a clock or a random source. That catches two ways a picture can change on its own and misses a third, an animation still running when a reviewer takes the screenshot. The document dump catches a drawing still building itself. The picture catches motion that has not settled, and it is the half that does the new work, because a stylesheet animation never touches the DOM and a document comparison cannot see it at all.
 
 Two checks are about the corpus rather than about one file:
 
@@ -107,6 +112,46 @@ A corner typed into the drawing code is the other: add `rx: 2` to any `node('rec
 run it again. A corner computed from a mark's own geometry, such as the range bar in
 `daily-range.html` rounded to half its width, is geometry rather than a shared value and passes
 on purpose.
+
+---
+
+`motion` reads three routes now, because it used to read one. Break each separately.
+
+```bash
+cp assets/templates/bar-columns.html /tmp/keep.html
+
+# a motion driven from the drawing code, with no guard anywhere. This is the shape the rule
+# used to miss: it matches no CSS pattern, so the file animated and the check said nothing
+sed -i '' "s|const rows = document.getElementById('rows');|requestAnimationFrame(function () {});\nconst rows = document.getElementById('rows');|" assets/templates/bar-columns.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on motion
+
+# a fallback that shortens the motion instead of removing it
+cp /tmp/keep.html assets/templates/bar-columns.html
+sed -i '' 's/.col, .col-lead { animation: none; }/.col, .col-lead { animation-duration: 0.01s; }/' assets/templates/bar-columns.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on motion
+
+# an animation that repeats, which leaves the file with no settled state at all
+cp /tmp/keep.html assets/templates/bar-columns.html
+sed -i '' 's/0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards/0.5s cubic-bezier(0.33, 1, 0.68, 1) infinite backwards/' assets/templates/bar-columns.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on motion
+
+cp /tmp/keep.html assets/templates/bar-columns.html
+```
+
+`settled-render` needs `--render` and a slower run, and it fails on a motion the structural
+rules are right to pass. Raise a duration well past the three second budget, or drive an
+animation from `performance.now()`, which is a clock rule 12's static half does not read:
+
+```bash
+cp assets/templates/daily-line.html /tmp/keep.html
+sed -i '' 's/chart-reveal 1s/chart-reveal 30s/' assets/templates/daily-line.html
+node scripts/check-corpus.cjs --render   # expect RESULT: FAILED on settled-render
+cp /tmp/keep.html assets/templates/daily-line.html
+```
+
+That one is worth running at least once. It is the only check in the set that observes the
+painted picture rather than the file or the document, and a check nobody has watched fail is
+a check nobody should quote.
 
 ---
 

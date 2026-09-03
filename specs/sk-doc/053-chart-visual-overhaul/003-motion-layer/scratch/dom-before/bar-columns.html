@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="bar-columns">
+<meta name="chart-color-system" content="neutral">
+<title>Ranked comparison, vertical columns</title>
+<style>
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* The columns are drawn as paths so only the end away from the baseline is rounded, which a
+   rect cannot express: an rx rounds all four corners, and a rounded corner on the baseline
+   reads as a column that stops short of the axis it is measured from. */
+.col { fill: var(--chart-series-1); }
+.col-lead { fill: var(--chart-emphasis); }
+/* Dashed and drawn below full strength, because the rule token is also the card border and
+   a grid at the same weight competes with the frame around it. The grid is the thing a
+   reader looks past, so it gives way first. */
+.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+.cat { fill: var(--chart-ink); font-size: 12px; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a column label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The
+   site codes keep the body face, because they are names rather than figures. */
+.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Two of the seven sites move more than half of everything we ship</h1>
+  <p class="subtitle" data-chart-part="subtitle">Pallets despatched per site, last full week. Site codes are short, which is what makes columns the right orientation here.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
+      <title id="fig-title">Pallets despatched by site</title>
+      <desc id="fig-desc">Seven sites drawn as vertical columns against a value axis. The tallest site despatched 840 pallets and carries the emphasis colour. The table below the chart carries every value as text.</desc>
+    <line x1="54" y1="262" x2="706" y2="262" class="grid"></line><text x="44" y="266" text-anchor="end" class="tick">0</text><line x1="54" y1="212.8" x2="706" y2="212.8" class="grid"></line><text x="44" y="216.8" text-anchor="end" class="tick">200</text><line x1="54" y1="163.6" x2="706" y2="163.6" class="grid"></line><text x="44" y="167.6" text-anchor="end" class="tick">400</text><line x1="54" y1="114.4" x2="706" y2="114.4" class="grid"></line><text x="44" y="118.4" text-anchor="end" class="tick">600</text><line x1="54" y1="65.19999999999999" x2="706" y2="65.19999999999999" class="grid"></line><text x="44" y="69.19999999999999" text-anchor="end" class="tick">800</text><line x1="54" y1="16" x2="706" y2="16" class="grid"></line><text x="44" y="20" text-anchor="end" class="tick">1,000</text><path d="M71.69714285714286,262 V57.360000000000014 A2,2 0 0 1 73.69714285714286,55.360000000000014 H127.4457142857143 A2,2 0 0 1 129.4457142857143,57.360000000000014 V262 Z" class="col-lead"></path><text x="100.57142857142857" y="282" text-anchor="middle" class="cat">LDS</text><text x="100.57142857142857" y="47.360000000000014" text-anchor="middle" class="tick">840</text><path d="M164.84,262 V94.26000000000002 A2,2 0 0 1 166.84,92.26000000000002 H220.5885714285714 A2,2 0 0 1 222.5885714285714,94.26000000000002 V262 Z" class="col"></path><text x="193.71428571428572" y="282" text-anchor="middle" class="cat">BRM</text><text x="193.71428571428572" y="84.26000000000002" text-anchor="middle" class="tick">690</text><path d="M257.98285714285714,262 V161.91000000000003 A2,2 0 0 1 259.98285714285714,159.91000000000003 H313.7314285714286 A2,2 0 0 1 315.7314285714286,161.91000000000003 V262 Z" class="col"></path><text x="286.85714285714283" y="282" text-anchor="middle" class="cat">CDF</text><text x="286.85714285714283" y="151.91000000000003" text-anchor="middle" class="tick">415</text><path d="M351.1257142857143,262 V170.51999999999998 A2,2 0 0 1 353.1257142857143,168.51999999999998 H406.87428571428575 A2,2 0 0 1 408.87428571428575,170.51999999999998 V262 Z" class="col"></path><text x="380" y="282" text-anchor="middle" class="cat">GLW</text><text x="380" y="160.51999999999998" text-anchor="middle" class="tick">380</text><path d="M444.2685714285714,262 V198.81 A2,2 0 0 1 446.2685714285714,196.81 H500.01714285714286 A2,2 0 0 1 502.01714285714286,198.81 V262 Z" class="col"></path><text x="473.1428571428571" y="282" text-anchor="middle" class="cat">NCL</text><text x="473.1428571428571" y="188.81" text-anchor="middle" class="tick">265</text><path d="M537.4114285714285,262 V217.26 A2,2 0 0 1 539.4114285714285,215.26 H593.1599999999999 A2,2 0 0 1 595.1599999999999,217.26 V262 Z" class="col"></path><text x="566.2857142857142" y="282" text-anchor="middle" class="cat">PLY</text><text x="566.2857142857142" y="207.26" text-anchor="middle" class="tick">190</text><path d="M630.5542857142857,262 V234.48 A2,2 0 0 1 632.5542857142857,232.48 H686.3028571428571 A2,2 0 0 1 688.3028571428571,234.48 V262 Z" class="col"></path><text x="659.4285714285714" y="282" text-anchor="middle" class="cat">ABZ</text><text x="659.4285714285714" y="224.48" text-anchor="middle" class="tick">120</text></svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table="">
+    <caption>Pallets despatched per site, last full week.</caption>
+    <thead><tr><th scope="col">Site</th><th scope="col">Pallets</th></tr></thead>
+    <tbody id="rows"><tr><th scope="row">LDS</th><td class="num">840</td></tr><tr><th scope="row">BRM</th><td class="num">690</td></tr><tr><th scope="row">CDF</th><td class="num">415</td></tr><tr><th scope="row">GLW</th><td class="num">380</td></tr><tr><th scope="row">NCL</th><td class="num">265</td></tr><tr><th scope="row">PLY</th><td class="num">190</td></tr><tr><th scope="row">ABZ</th><td class="num">120</td></tr></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { label: 'LDS', value: 840, lead: true },
+  { label: 'BRM', value: 690 },
+  { label: 'CDF', value: 415 },
+  { label: 'GLW', value: 380 },
+  { label: 'NCL', value: 265 },
+  { label: 'PLY', value: 190 },
+  { label: 'ABZ', value: 120 }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. Columns work when the category labels are short codes.
+// The moment they become words, use the horizontal row form instead.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
+// the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+// The corner comes from the ladder in the palette block rather than from a number typed
+// here, so one edit reaches every form instead of one file.
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-mark')) || 0;
+
+// A column rounds only the end that meets nothing. The end on the baseline stays square,
+// because a rounded corner there reads as a column that stops short of the axis it is
+// measured from. A column shorter than its own corner has the corner clamped to its height,
+// so a small value stays a column rather than collapsing into a lozenge.
+function topRounded(x, y, w, h, r) {
+  const k = Math.max(0, Math.min(r, w / 2, h));
+  return 'M' + x + ',' + (y + h) + ' V' + (y + k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + k) + ',' + y +
+    ' H' + (x + w - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w) + ',' + (y + k) +
+    ' V' + (y + h) + ' Z';
+}
+
+const LEFT = 54;
+const RIGHT = 706;
+const TOP = 16;
+const BASE = 262;
+const TICKS = 5;
+const peak = DATA.reduce(function (m, d) { return Math.max(m, d.value); }, 0);
+const max = niceStep(peak / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
+const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
+
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (max / TICKS) * t;
+  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
+}
+
+const slot = (RIGHT - LEFT) / DATA.length;
+const barWidth = slot * 0.62;
+DATA.forEach(function (d, i) {
+  const cx = LEFT + slot * i + slot / 2;
+  node('path', {
+    d: topRounded(cx - barWidth / 2, y(d.value), barWidth, BASE - y(d.value), MARK_R)
+  }, d.lead ? 'col-lead' : 'col');
+  node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
+  node('text', { x: cx, y: y(d.value) - 8, 'text-anchor': 'middle' }, 'tick').textContent = fmt(d.value);
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  const td = document.createElement('td');
+  td.className = 'num';
+  td.textContent = fmt(d.value);
+  tr.appendChild(th);
+  tr.appendChild(td);
+  rows.appendChild(tr);
+});
+</script>
+
+
+</body></html>

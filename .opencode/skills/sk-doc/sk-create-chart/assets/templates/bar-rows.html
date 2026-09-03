@@ -71,6 +71,27 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    and a table cell line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. The service names keep the body face, because they are names rather than figures. */
 .val, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* Each mark grows from the anchor it is measured against over half a second, and consecutive
+   marks start slightly apart so the eye follows the order the chart is arranged in. The delay
+   comes from a mark's place in the drawing order, which is geometry: no number in the data
+   block reaches the timing. It is capped rather than accumulated, so a file carrying thirty
+   rows still settles inside the one second the contract names.
+   backwards, not both: the collapsed state applies before the first frame and is gone once
+   the animation ends, so the settled file carries no trace of having moved. */
+@keyframes chart-grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.bar, .bar-lead {
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: chart-grow-x 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
+  animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
+}
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  .bar, .bar-lead { animation: none; }
+}
 </style>
 </head>
 <body>
@@ -172,7 +193,10 @@ node('line', { x1: LEFT, y1: TOP - 4, x2: LEFT, y2: TOP + DATA.length * ROW - 12
 DATA.forEach(function (d, i) {
   const y = TOP + i * ROW;
   node('text', { x: LEFT - 12, y: y + BAR / 2 + 5, 'text-anchor': 'end' }, 'cat').textContent = d.label;
-  node('path', { d: endRounded(LEFT, y, width(d.value), BAR, MARK_R) }, d.lead ? 'bar-lead' : 'bar');
+  // The stylesheet grows each bar from the axis and staggers it by this index. An index is
+  // where a mark sits in the drawing, so nothing in the data block reaches the timing.
+  node('path', { d: endRounded(LEFT, y, width(d.value), BAR, MARK_R), style: '--mark-index:' + i },
+    d.lead ? 'bar-lead' : 'bar');
   node('text', { x: LEFT + width(d.value) + 10, y: y + BAR / 2 + 5 }, 'val').textContent = fmt(d.value) + UNIT;
 });
 

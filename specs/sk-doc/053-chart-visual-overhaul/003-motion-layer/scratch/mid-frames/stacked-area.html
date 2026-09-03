@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="stacked-area">
+<meta name="chart-color-system" content="categorical">
+<title>Composition shifting over continuous time</title>
+<style>
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.band-1 { fill: var(--chart-series-1); }
+.band-2 { fill: var(--chart-series-2); }
+.band-3 { fill: var(--chart-series-3); }
+.band-4 { fill: var(--chart-series-4); }
+.band { stroke: var(--chart-surface); stroke-width: 2; }
+/* The legend block carries the ladder's mark corner. The bands themselves do not: a band is
+   a shape the data draws, and a corner radius on it would round a value. */
+.key-swatch { rx: var(--chart-radius-mark); }
+/* Dashed and drawn below full strength, because the rule token is also the card border and
+   a grid at the same weight competes with the frame around it. The grid is the thing a
+   reader looks past, so it gives way first. */
+.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.key { fill: var(--chart-muted); font-size: 12px; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The legend names and the sentence about missing periods keep the body face, because neither is a figure. */
+.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* The figure reveals itself left to right on first paint, so a reader watches the series
+   arrive in reading order instead of finding it already there. The wipe takes the whole
+   figure rather than the marks alone: a reveal that leaves the axis standing reads as a
+   chart being drawn on top of a chart. It runs once and it ends unclipped, which is the
+   picture this file would paint with no animation in it at all. That is what lets the
+   fallback below remove the motion instead of replacing it with a second design. */
+@keyframes chart-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+/* backwards, not both: the clip applies before the first frame and is gone once the
+   animation ends, so the settled file carries no trace of having moved. */
+.figure svg { animation: chart-reveal 1s cubic-bezier(0, 0.7, 0.5, 1) backwards; }
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  .figure svg { animation: none; }
+}
+.figure svg { animation-delay: -0.4s; animation-play-state: paused; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Subscription passed perpetual in month fourteen while the total stayed inside a fifteen percent band</h1>
+  <p class="subtitle" data-chart-part="subtitle">Revenue by licence type over twenty-four months, in millions. A stacked bar would break the continuity and a set of lines would lose the total, which is why this shape has no substitute in the corpus.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart">
+      <title id="fig-title">Revenue by licence type over twenty-four months</title>
+      <desc id="fig-desc">Four bands stacked over a continuous time axis. Each licence type takes the swatch printed beside its name in the key, left to right, and the bands stack in the same order from the foot of the chart upward: perpetual, then subscription, then services, then training. The perpetual band narrows from 52 to 18 while the subscription band widens from 14 to 50, crossing in month fourteen. The total stays between 92 and 106 throughout. The table below the chart carries every month as text.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Revenue by licence type, in millions, twenty-four months.</caption>
+    <thead><tr id="head-row"><th scope="col">Month</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const SERIES = ['Perpetual', 'Subscription', 'Services', 'Training'];
+const DATA = [
+  { period: 'Jan 1', values: [52, 14, 21, 9] },
+  { period: 'Feb 1', values: [49, 14, 22, 11] },
+  { period: 'Mar 1', values: [50, 19, 24, 11] },
+  { period: 'Apr 1', values: [47, 19, 23, 11] },
+  { period: 'May 1', values: [44, 22, 24, 9] },
+  { period: 'Jun 1', values: [44, 22, 25, 11] },
+  { period: 'Jul 1', values: [44, 25, 24, 9] },
+  { period: 'Aug 1', values: [43, 26, 22, 10] },
+  { period: 'Sep 1', values: [40, 28, 23, 11] },
+  { period: 'Oct 1', values: [39, 30, 21, 9] },
+  { period: 'Nov 1', values: [38, 28, 20, 10] },
+  { period: 'Dec 1', values: [37, 29, 19, 11] },
+  { period: 'Jan 2', values: [35, 33, 18, 9] },
+  { period: 'Feb 2', values: [32, 34, 16, 11] },
+  { period: 'Mar 2', values: [33, 35, 17, 10] },
+  { period: 'Apr 2', values: [31, 36, 15, 10] },
+  { period: 'May 2', values: [30, 39, 18, 11] },
+  { period: 'Jun 2', values: [28, 40, 17, 11] },
+  { period: 'Jul 2', values: [27, 41, 19, 9] },
+  { period: 'Aug 2', values: [24, 42, 20, 11] },
+  { period: 'Sep 2', values: [24, 46, 23, 9] },
+  { period: 'Oct 2', values: [22, 47, 22, 11] },
+  { period: 'Nov 2', values: [19, 48, 24, 10] },
+  { period: 'Dec 2', values: [19, 52, 25, 10] }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. Bands that touch carry a stroke in the surface role, so no two
+// data colours ever share an edge and each band is read against the ground.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+const LEFT = 46;
+const RIGHT = 706;
+const TOP = 42;
+const BASE = 266;
+const TICKS = 4;
+// A period is stackable only when every series has a real number for it. Substituting a
+// zero for a missing reading invents a value and drops every band above it by that much,
+// which is a lie the picture tells confidently. The stack breaks at the gap instead, the
+// way a line does, and resumes on the far side.
+const complete = DATA.map(function (d) {
+  return d.values.length === SERIES.length && d.values.every(function (v) { return Number.isFinite(v); });
+});
+const omitted = complete.filter(function (ok) { return !ok; }).length;
+const peak = DATA.reduce(function (m, d, i) {
+  if (!complete[i]) return m;
+  return Math.max(m, d.values.reduce(function (t, v) { return t + v; }, 0));
+}, 0);
+const max = niceStep(peak / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
+const x = function (i) { return LEFT + (RIGHT - LEFT) * (i / (DATA.length - 1)); };
+const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
+
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (max / TICKS) * t;
+  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
+}
+
+// Runs of consecutive complete periods. A period standing alone between two gaps has no
+// width for a band to fill, so only the table carries it.
+const runs = [];
+let run = [];
+complete.forEach(function (ok, i) {
+  if (ok) { run.push(i); return; }
+  if (run.length) runs.push(run);
+  run = [];
+});
+if (run.length) runs.push(run);
+
+const floors = DATA.map(function () { return 0; });
+SERIES.forEach(function (name, s) {
+  runs.forEach(function (indices) {
+    const upper = [];
+    const lower = [];
+    indices.forEach(function (i) {
+      lower.push(x(i) + ',' + y(floors[i]));
+      floors[i] += DATA[i].values[s];
+      upper.push(x(i) + ',' + y(floors[i]));
+    });
+    node('path', {
+      d: 'M' + upper.join(' L') + ' L' + lower.reverse().join(' L') + ' Z'
+    }, 'band band-' + (s + 1));
+  });
+});
+
+// A stack with a hole in it and a stack that simply starts late look the same, so the
+// count is stated inside the figure rather than left to the table to imply.
+if (omitted) {
+  node('text', { x: LEFT, y: BASE + 42 }, 'notice').textContent =
+    omitted === 1 ? '1 period is missing a reading and is left out of the stack.'
+                  : fmt(omitted) + ' periods are missing a reading and are left out of the stack.';
+}
+
+// Thinning, not rotating. Periods sit (RIGHT - LEFT) / (count - 1) apart, which is 29
+// units over twenty-four months, and a 'Jan 1' label is five characters at the fixed mono
+// advance of roughly 0.6em, so about 33 units at the 11px .tick size, and consecutive labels
+// touch. The estimate is exact rather than averaged now that the label is monospaced. Every
+// fourth leaves about 115 units of clear
+// space. The last period is always kept, because a time axis that stops short of its own
+// end reads as missing data.
+DATA.forEach(function (d, i) {
+  if (i % 4 !== 0 && i !== DATA.length - 1) return;
+  const anchor = i === 0 ? 'start' : i === DATA.length - 1 ? 'end' : 'middle';
+  node('text', { x: x(i), y: BASE + 20, 'text-anchor': anchor }, 'tick').textContent = d.period;
+});
+
+let keyX = LEFT;
+SERIES.forEach(function (name, s) {
+  node('rect', { x: keyX, y: 8, width: 13, height: 13 }, 'key-swatch band-' + (s + 1));
+  const label = node('text', { x: keyX + 19, y: 19 }, 'key');
+  label.textContent = name;
+  // The gap after a swatch is the label's real width, measured once it is in the
+  // document. A character count times a constant assumes every glyph is the same
+  // width, which this font stack does not promise, so a wide label used to run
+  // under the next swatch. The count stays as the fallback for a reader that has
+  // not laid the text out yet.
+  keyX += 44 + (label.getComputedTextLength() || name.length * 6.6);
+});
+
+const headRow = document.getElementById('head-row');
+SERIES.concat(['Total']).forEach(function (name) {
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'col');
+  th.textContent = name;
+  headRow.appendChild(th);
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.period;
+  tr.appendChild(th);
+  const total = d.values.reduce(function (t, v) { return t + v; }, 0);
+  d.values.concat([total]).forEach(function (v) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = fmt(v);
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>
