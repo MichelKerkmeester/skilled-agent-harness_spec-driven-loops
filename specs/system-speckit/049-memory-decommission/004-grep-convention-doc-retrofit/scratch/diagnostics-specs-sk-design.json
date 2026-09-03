@@ -22,7 +22,7 @@
     "duplicate": 0,
     "generic-trigger": 52,
     "malformed-or-unclosed": 0,
-    "missing": 0,
+    "missing": 1,
     "naming-exception": 0,
     "non-string-members": 0,
     "non-yaml": 0,
@@ -374,6 +374,14 @@
       "severity": "warn"
     },
     {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-design/012-sk-design-program/005-reviews-and-remediation/002-session-shipped-work-review/spec.md",
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
       "category": "generic-trigger",
       "line": 6,
       "path": "specs/sk-design/014-template-conformance/003-design-motion/001-packet-root/implementation-summary.md",
@@ -456,7 +464,7 @@
   ],
   "schemaVersion": 1,
   "severityCounts": {
-    "error": 0,
+    "error": 1,
     "warn": 52
   },
   "track": "specs/sk-design"

@@ -22,7 +22,7 @@
     "duplicate": 0,
     "generic-trigger": 80,
     "malformed-or-unclosed": 1,
-    "missing": 48,
+    "missing": 49,
     "naming-exception": 42,
     "non-string-members": 0,
     "non-yaml": 1,
@@ -1550,6 +1550,14 @@
       "severity": "warn"
     },
     {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/decision-record.md",
+      "rawKey": "decision-record.md",
+      "reason": "edit refused: decision-record.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
       "category": "generic-trigger",
       "line": 8,
       "path": "specs/sk-doc/026-skill-readme-refinement/handover.md",
@@ -1728,7 +1736,7 @@
   ],
   "schemaVersion": 1,
   "severityCounts": {
-    "error": 50,
+    "error": 51,
     "warn": 161
   },
   "track": "specs/sk-doc"

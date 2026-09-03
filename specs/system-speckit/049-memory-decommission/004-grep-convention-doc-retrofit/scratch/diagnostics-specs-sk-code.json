@@ -22,7 +22,7 @@
     "duplicate": 0,
     "generic-trigger": 7,
     "malformed-or-unclosed": 0,
-    "missing": 0,
+    "missing": 7,
     "naming-exception": 0,
     "non-string-members": 0,
     "non-yaml": 0,
@@ -270,6 +270,62 @@
       "severity": "warn"
     },
     {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-code/007-sk-code-obsidian-surface/001-surface-design-plan/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-code/007-sk-code-obsidian-surface/002-repo-convention-audit/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-code/007-sk-code-obsidian-surface/004-skill-core/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-code/007-sk-code-obsidian-surface/005-references-stack/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-code/007-sk-code-obsidian-surface/006-assets-checklists/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-code/007-sk-code-obsidian-surface/007-manual-testing-playbook/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-code/007-sk-code-obsidian-surface/008-scanners-and-gates/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
       "category": "generic-trigger",
       "line": 5,
       "path": "specs/sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan/plan.md",
@@ -320,7 +376,7 @@
   ],
   "schemaVersion": 1,
   "severityCounts": {
-    "error": 0,
+    "error": 7,
     "warn": 35
   },
   "track": "specs/sk-code"

@@ -22,7 +22,7 @@
     "duplicate": 0,
     "generic-trigger": 10,
     "malformed-or-unclosed": 0,
-    "missing": 0,
+    "missing": 12,
     "naming-exception": 32,
     "non-string-members": 0,
     "non-yaml": 0,
@@ -124,6 +124,22 @@
       "rawKey": "summary",
       "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
       "severity": "warn"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/plan.md",
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "naming-exception",
@@ -374,6 +390,86 @@
       "severity": "warn"
     },
     {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/spec.md",
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/tasks.md",
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance/plan.md",
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance/spec.md",
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance/tasks.md",
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/030-audit-fixes/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/030-audit-fixes/plan.md",
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/030-audit-fixes/spec.md",
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/030-audit-fixes/tasks.md",
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
       "category": "generic-trigger",
       "line": 6,
       "path": "specs/mcp-tooling/014-mcp-notion/003-knowledge-references/implementation-summary.md",
@@ -400,7 +496,7 @@
   ],
   "schemaVersion": 1,
   "severityCounts": {
-    "error": 0,
+    "error": 12,
     "warn": 45
   },
   "track": "specs/mcp-tooling"

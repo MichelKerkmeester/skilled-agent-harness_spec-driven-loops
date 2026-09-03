@@ -22,7 +22,7 @@
     "duplicate": 0,
     "generic-trigger": 12,
     "malformed-or-unclosed": 0,
-    "missing": 0,
+    "missing": 2,
     "naming-exception": 34,
     "non-string-members": 0,
     "non-yaml": 0,
@@ -622,6 +622,22 @@
       "severity": "warn"
     },
     {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/042-pi-remote-experience-parity/plan.md",
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/042-pi-remote-experience-parity/tasks.md",
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
       "category": "generic-trigger",
       "line": 6,
       "path": "specs/cli-external-orchestration/059-dispatch-surface-truthfulness/implementation-summary.md",
@@ -640,7 +656,7 @@
   ],
   "schemaVersion": 1,
   "severityCounts": {
-    "error": 0,
+    "error": 2,
     "warn": 75
   },
   "track": "specs/cli-external-orchestration"

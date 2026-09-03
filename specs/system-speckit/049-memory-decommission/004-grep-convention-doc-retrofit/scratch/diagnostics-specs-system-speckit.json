@@ -22,8 +22,8 @@
     "duplicate": 0,
     "generic-trigger": 207,
     "malformed-or-unclosed": 0,
-    "missing": 0,
-    "naming-exception": 421,
+    "missing": 9,
+    "naming-exception": 418,
     "non-string-members": 0,
     "non-yaml": 0,
     "oversized": 0,
@@ -1588,6 +1588,14 @@
       "rawKey": "RESUME.md",
       "reason": "document basename is not lowercase hyphen-separated: 'RESUME.md'",
       "severity": "warn"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit/spec.md",
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "generic-trigger",
@@ -3230,6 +3238,14 @@
       "severity": "warn"
     },
     {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix/decision-record.md",
+      "rawKey": "decision-record.md",
+      "reason": "edit refused: decision-record.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
       "category": "generic-trigger",
       "line": 5,
       "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix/handover.md",
@@ -3524,6 +3540,38 @@
       "rawKey": "research",
       "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
       "severity": "warn"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/plan.md",
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/spec.md",
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/tasks.md",
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "naming-exception",
@@ -4430,28 +4478,28 @@
       "severity": "warn"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval/spec.md",
-      "rawKey": "A-search-retrieval",
-      "reason": "directory name is not lowercase hyphen-separated: 'A-search-retrieval'",
-      "severity": "warn"
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002/spec.md",
-      "rawKey": "B-rest-of-002",
-      "reason": "directory name is not lowercase hyphen-separated: 'B-rest-of-002'",
-      "severity": "warn"
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server/spec.md",
-      "rawKey": "C-rest-of-server",
-      "reason": "directory name is not lowercase hyphen-separated: 'C-rest-of-server'",
-      "severity": "warn"
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "naming-exception",
@@ -5368,8 +5416,8 @@
   ],
   "schemaVersion": 1,
   "severityCounts": {
-    "error": 0,
-    "warn": 666
+    "error": 9,
+    "warn": 663
   },
   "track": "specs/system-speckit"
 }

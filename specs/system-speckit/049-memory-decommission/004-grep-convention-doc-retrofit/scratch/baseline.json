@@ -10,7 +10,7 @@
     },
     "documentsDeclaringTriggerPhrases": {
       "definition": "in-scope documents carrying a trigger_phrases or triggerPhrases key",
-      "value": 22084
+      "value": 22029
     },
     "parsedPhrases": {
       "definition": "phrases surviving the strict reader per document, summed across the corpus",

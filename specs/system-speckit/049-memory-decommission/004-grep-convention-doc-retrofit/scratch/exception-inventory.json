@@ -8,7 +8,7 @@
     "anchor-duplicate": 51,
     "anchor-unmatched": 95,
     "generic-trigger": 432,
-    "naming-exception": 682
+    "naming-exception": 664
   },
   "rows": {
     "alias-hit": [],
@@ -5742,30 +5742,6 @@
       {
         "category": "naming-exception",
         "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/plan.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/spec.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/tasks.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
         "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/FIXTURE.md",
         "rawKey": "behavior_benchmark",
         "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
@@ -5777,22 +5753,6 @@
         "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/FIXTURE.md",
         "rawKey": "FIXTURE.md",
         "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/plan.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/spec.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
         "severity": "warn"
       },
       {
@@ -5814,14 +5774,6 @@
       {
         "category": "naming-exception",
         "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/tasks.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
         "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/FIXTURE.md",
         "rawKey": "behavior_benchmark",
         "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
@@ -5833,30 +5785,6 @@
         "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/FIXTURE.md",
         "rawKey": "FIXTURE.md",
         "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/plan.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/spec.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/tasks.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
         "severity": "warn"
       },
       {
@@ -5918,22 +5846,6 @@
       {
         "category": "naming-exception",
         "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/plan.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/spec.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
         "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/src/demo-mode/SKILL.md",
         "rawKey": "behavior_benchmark",
         "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
@@ -5945,14 +5857,6 @@
         "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/src/demo-mode/SKILL.md",
         "rawKey": "SKILL.md",
         "reason": "document basename is not lowercase hyphen-separated: 'SKILL.md'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/tasks.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
         "severity": "warn"
       },
       {
@@ -6103,30 +6007,6 @@
         "category": "naming-exception",
         "line": 0,
         "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/implementation-summary.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/plan.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/spec.md",
-        "rawKey": "behavior_benchmark",
-        "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/tasks.md",
         "rawKey": "behavior_benchmark",
         "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
         "severity": "warn"
@@ -9593,30 +9473,6 @@
         "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation/verify/l9-still-real-partD.md",
         "rawKey": "l9-still-real-partD.md",
         "reason": "document basename is not lowercase hyphen-separated: 'l9-still-real-partD.md'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval/spec.md",
-        "rawKey": "A-search-retrieval",
-        "reason": "directory name is not lowercase hyphen-separated: 'A-search-retrieval'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002/spec.md",
-        "rawKey": "B-rest-of-002",
-        "reason": "directory name is not lowercase hyphen-separated: 'B-rest-of-002'",
-        "severity": "warn"
-      },
-      {
-        "category": "naming-exception",
-        "line": 0,
-        "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server/spec.md",
-        "rawKey": "C-rest-of-server",
-        "reason": "directory name is not lowercase hyphen-separated: 'C-rest-of-server'",
         "severity": "warn"
       },
       {

@@ -22,7 +22,7 @@
     "duplicate": 0,
     "generic-trigger": 18,
     "malformed-or-unclosed": 0,
-    "missing": 0,
+    "missing": 4,
     "naming-exception": 6,
     "non-string-members": 0,
     "non-yaml": 0,
@@ -92,6 +92,38 @@
       "rawKey": "GLM-BRIEF.md",
       "reason": "document basename is not lowercase hyphen-separated: 'GLM-BRIEF.md'",
       "severity": "warn"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-git/019-mass-deletion-guard/implementation-summary.md",
+      "rawKey": "implementation-summary.md",
+      "reason": "edit refused: implementation-summary.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-git/019-mass-deletion-guard/plan.md",
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-git/019-mass-deletion-guard/spec.md",
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/sk-git/019-mass-deletion-guard/tasks.md",
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "generic-trigger",
@@ -232,7 +264,7 @@
   ],
   "schemaVersion": 1,
   "severityCounts": {
-    "error": 0,
+    "error": 4,
     "warn": 24
   },
   "track": "specs/sk-git"

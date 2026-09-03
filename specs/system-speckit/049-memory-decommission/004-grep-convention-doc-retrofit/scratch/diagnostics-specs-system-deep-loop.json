@@ -22,8 +22,8 @@
     "duplicate": 0,
     "generic-trigger": 31,
     "malformed-or-unclosed": 0,
-    "missing": 0,
-    "naming-exception": 132,
+    "missing": 19,
+    "naming-exception": 117,
     "non-string-members": 0,
     "non-yaml": 0,
     "oversized": 0,
@@ -182,28 +182,28 @@
       "severity": "warn"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/plan.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/spec.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/tasks.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "naming-exception",
@@ -222,20 +222,20 @@
       "severity": "warn"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/plan.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/spec.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "naming-exception",
@@ -254,12 +254,12 @@
       "severity": "warn"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/tasks.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "naming-exception",
@@ -278,28 +278,28 @@
       "severity": "warn"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/plan.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/spec.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/tasks.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "naming-exception",
@@ -406,20 +406,20 @@
       "severity": "warn"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/plan.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/spec.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "naming-exception",
@@ -438,12 +438,12 @@
       "severity": "warn"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/tasks.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "naming-exception",
@@ -598,28 +598,28 @@
       "severity": "warn"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/plan.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/spec.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "spec.md",
+      "reason": "edit refused: spec.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
-      "category": "naming-exception",
-      "line": 0,
+      "category": "missing",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/tasks.md",
-      "rawKey": "behavior_benchmark",
-      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
-      "severity": "warn"
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "naming-exception",
@@ -804,6 +804,38 @@
       "rawKey": "README.md",
       "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
       "severity": "warn"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit/plan.md",
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit/tasks.md",
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout/plan.md",
+      "rawKey": "plan.md",
+      "reason": "edit refused: plan.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout/tasks.md",
+      "rawKey": "tasks.md",
+      "reason": "edit refused: tasks.md needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on",
+      "severity": "error"
     },
     {
       "category": "generic-trigger",
@@ -1416,8 +1448,8 @@
   ],
   "schemaVersion": 1,
   "severityCounts": {
-    "error": 0,
-    "warn": 172
+    "error": 19,
+    "warn": 157
   },
   "track": "specs/system-deep-loop"
 }
