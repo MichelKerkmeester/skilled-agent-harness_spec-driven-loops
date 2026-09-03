@@ -1783,6 +1783,19 @@ function isFlashMaxPinnedModel(model) {
   return /(^|\/)(deepseek-v4-flash(-latest)?|glm-5\.3-flash)$/.test(model);
 }
 
+// GLM-5.3-Flash's top tier is `xhigh`; it has no `max` variant on any route.
+// Mirrors isGlmFlashXhighPinnedModel in executor-config.ts.
+function isGlmFlashXhighPinnedModel(model) {
+  return /(^|\/)glm-5\.3-flash$/.test(model);
+}
+
+// Effective reasoning effort after the Flash top-tier pin, which differs per family.
+// Mirrors pinReasoningEffortForModel in executor-config.ts.
+function pinReasoningEffortForModel(model, reasoningEffort) {
+  if (isGlmFlashXhighPinnedModel(model)) return 'xhigh';
+  return isFlashMaxPinnedModel(model) ? 'max' : reasoningEffort;
+}
+
 function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   const model = lineage.model || 'anthropic/claude-opus-4-8';
   const args = [
@@ -1803,7 +1816,7 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
         + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
     );
   }
-  const opencodeEffort = isFlashMaxPinnedModel(model) ? 'max' : lineage.reasoningEffort;
+  const opencodeEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
   if (opencodeEffort) {
     args.push('--variant', opencodeEffort);
   }
@@ -2135,7 +2148,7 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
   if (resolvedSandbox === 'read-only') {
     args.push('--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates');
   }
-  const piEffort = isFlashMaxPinnedModel(model) ? 'max' : lineage.reasoningEffort;
+  const piEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
   if (piEffort) {
     const thinking = REASONING_TO_PI_THINKING.get(piEffort);
     if (!thinking) {

@@ -1,0 +1,559 @@
+@import "tailwindcss";
+@import "shadcn/tailwind.css";
+@import "tw-animate-css";
+@import "fumadocs-ui/css/shadcn.css";
+@import "fumadocs-ui/css/preset.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --breakpoint-sidebar: 940px;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-inter: var(--font-inter);
+  --font-google-sans: var(--font-google-sans);
+  --font-mono: var(--font-jetbrains-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-path: var(--path);
+}
+
+:root {
+  --radius: 0.525rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(15% 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(15% 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.4 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(15% 0 0);
+  --destructive: oklch(59.579% 0.21554 24.733);
+  --destructive-foreground: oklch(0.97 0.01 17);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(98% 0.00011 271.152);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(15% 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(93% 0 0);
+  --sidebar-accent-foreground: oklch(15% 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --surface: oklch(0.98 0 0);
+  --surface-foreground: oklch(0.145 0 0);
+  --code: oklch(0.98 0 0);
+  --code-foreground: oklch(0.145 0 0);
+  --code-highlight: oklch(0.96 0 0);
+  --code-number: oklch(0.56 0 0);
+  --selection: oklch(0.145 0 0);
+  --selection-foreground: oklch(1 0 0);
+  --path: oklch(0.9037 0 0);
+  /* code stuff */
+  --color-vesper-type: oklch(0.5645 0.1633 253.27);
+  --color-vesper-string: oklch(0.5464 0.1442 147.32);
+}
+
+.dark {
+  --background: oklch(14% 0 270);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.269 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.18 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(20% 0 71);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(62.559% 0.22587 26.142);
+  --border: oklch(100% 0 271.152 / 0.075);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(16% 0 270);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(21% 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.439 0 0);
+  --surface: oklch(0.2 0 0);
+  --surface-foreground: oklch(0.708 0 0);
+  --code: oklch(0.2 0 0);
+  --code-foreground: oklch(0.708 0 0);
+  --code-highlight: oklch(0.27 0 0);
+  --code-number: oklch(0.72 0 0);
+  --selection: oklch(0.922 0 0);
+  --selection-foreground: oklch(15% 0 0);
+  --path: oklch(0.269 0 0);
+  /* code stuff */
+  --color-vesper-type: oklch(0.8689 0.0877 60.68);
+  --color-vesper-string: oklch(0.93 0.1035 175.07);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html,
+body {
+  background-color: var(--color-sidebar);
+}
+
+body,
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: #4f4f4f;
+  color: #ffffff;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@utility docs-container {
+  @apply mx-auto w-full max-w-2xl px-4;
+}
+
+code {
+  font-family: var(--font-jetbrains-mono);
+}
+
+/* Shiki multi-theme support - switch between light/dark themes */
+html:not(.dark) .shiki,
+html:not(.dark) .shiki span,
+html:not(.dark) [data-rehype-pretty-code-figure] code,
+html:not(.dark) [data-rehype-pretty-code-figure] code span,
+:root:not(.dark) .shiki,
+:root:not(.dark) .shiki span,
+:root:not(.dark) [data-rehype-pretty-code-figure] code,
+:root:not(.dark) [data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-light) !important;
+  font-style: var(--shiki-light-font-style) !important;
+  font-weight: var(--shiki-light-font-weight) !important;
+  text-decoration: var(--shiki-light-text-decoration) !important;
+}
+
+html.dark .shiki,
+html.dark .shiki span,
+html.dark [data-rehype-pretty-code-figure] code,
+html.dark [data-rehype-pretty-code-figure] code span,
+:root.dark .shiki,
+:root.dark .shiki span,
+:root.dark [data-rehype-pretty-code-figure] code,
+:root.dark [data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-dark) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* Make code lines stretch full width for highlights */
+pre:has([data-line]) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+pre:has([data-line]) > code {
+  display: inline-block;
+  min-width: 100%;
+}
+
+pre:has([data-line]) > code > [data-line] {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Highlighted lines via [!code highlight] */
+code [data-line].highlighted,
+code span.line.highlighted {
+  position: relative;
+  display: inline-block;
+  min-width: 100%;
+  background-color: color-mix(in srgb, var(--color-vesper-type) 8%, transparent);
+  border-left: 1px solid var(--color-vesper-type);
+  padding-left: calc(1rem - 1px);
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+/* Word highlight via [!code word:xxx] */
+code .highlighted-word {
+  padding: 0.05rem 0.375rem;
+  margin: -0.125rem 0;
+  border: 1px solid color-mix(in srgb, var(--color-vesper-type) 60%, transparent);
+  border-style: dashed;
+}
+
+/* Focus via [!code focus] - dim non-focused lines */
+code:has(.focused) [data-line]:not(.focused) {
+  opacity: 0.4;
+  filter: blur(1px);
+  transition:
+    opacity 0.2s,
+    filter 0.2s;
+}
+
+code:has(.focused):hover [data-line]:not(.focused) {
+  opacity: 1;
+  filter: none;
+}
+
+/* Diff styles via [!code ++] and [!code --] */
+code [data-line].diff {
+  position: relative;
+}
+
+code [data-line].diff.add {
+  background-color: oklch(80.961% 0.21402 145.13 / 0.15);
+  border-left: 1px solid oklch(0.6 0.2 145);
+  padding-left: calc(1rem - 1px);
+  display: inline-block;
+  min-width: 100%;
+}
+
+code [data-line].diff.add::before {
+  content: "+";
+  position: absolute;
+  left: 0.5rem;
+  color: oklch(0.6 0.2 145);
+}
+
+code [data-line].diff.remove {
+  background-color: oklch(51.558% 0.16512 22.312 / 0.2) !important;
+  border-left: 1px solid oklch(0.6 0.2 25);
+  padding-left: calc(1rem - 1px);
+  display: inline-block;
+  min-width: 100%;
+}
+
+code [data-line].diff.remove::before {
+  content: "-";
+  position: absolute;
+  left: 0.5rem;
+  color: oklch(0.6 0.2 25);
+}
+
+/* Error/Warning via [!code error] and [!code warning] */
+code [data-line].highlighted.error {
+  background-color: oklch(0.55 0.2 25 / 0.15);
+  border-left: 2px solid oklch(0.6 0.2 25);
+  padding-left: calc(1rem - 2px);
+}
+
+code [data-line].highlighted.warning {
+  background-color: oklch(0.7 0.15 85 / 0.2);
+  border-left: 2px solid oklch(0.75 0.15 85);
+  padding-left: calc(1rem - 2px);
+}
+
+svg:focus,
+svg:focus-visible,
+path:focus,
+path:focus-visible,
+ellipse:focus,
+ellipse:focus-visible,
+circle:focus,
+circle:focus-visible,
+rect:focus,
+g:focus,
+g:focus-visible,
+rect:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+text,
+tspan {
+  user-select: none;
+}
+@utility easing-gradient {
+  --tw-ease-gradient-stops:
+    var(--tw-gradient-position), var(--tw-gradient-from) 0%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              0.12%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      5%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              0.86%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      10%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              2.66%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      15%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              5.79%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      20%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              10.35%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      25%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              16.31%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      30%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              23.52%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      35%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              31.74%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      40%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              40.69%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      45%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              50%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      50%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              59.31%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      55%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              68.26%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      60%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              76.48%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      65%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              83.69%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      70%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              89.65%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      75%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              96.21%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      80%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              97.34%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      85%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              99.14%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      90%,
+    oklch(
+        from
+          color-mix(
+            in oklch,
+            var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0))
+              99.88%,
+            var(--tw-gradient-from)
+          )
+          l c h / alpha
+      )
+      95%,
+    oklch(
+        from
+          var(--tw-gradient-to, oklch(from var(--tw-gradient-from) l c h / 0)) l
+          c h / alpha
+      )
+      100%;
+  /* !important so composing with from-* / to-* works: those utilities also set
+     --tw-gradient-stops and would otherwise win the cascade over this one. */
+  --tw-gradient-stops: var(--tw-ease-gradient-stops) !important;
+}

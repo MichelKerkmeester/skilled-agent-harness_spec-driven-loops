@@ -1,0 +1,62 @@
+# Iteration 1: Component Architecture — chart container, tooltip, legend, dot, brush, background
+
+## Focus
+
+How evilcharts assembles a chart from shared primitives over Recharts, and which of those responsibilities exist in the sk-create-chart corpus at all. Side-by-side read of `context/evilcharts/src/registry/ui/` and one full chart module against the corpus templates and `references/template-contract.md`.
+
+## Findings
+
+**F1-1. The corpus has no interaction layer at all; two forms are the only exception and they have none either.** The 20 templates contain zero `:hover`, `mousemove`, `mouseenter`, tooltip or legend constructs; `calendar-grid` and `heat-matrix` matched only on `<title>` accessibility elements. Every evilcharts chart is built on a tooltip card, a legend, hover highlights, and an optional brush. Evidence: corpus grep (0 hits in 20 files); evilcharts `recharts-tooltip.tsx:85-168` (tooltip card), `recharts-legend.tsx:40-97` (legend). [SOURCE: context/evilcharts/src/registry/ui/recharts-tooltip.tsx:85] [SOURCE: context/evilcharts/src/registry/ui/recharts-legend.tsx:40]
+
+**F1-2. The evilcharts tooltip is a small floating card with a precise physical recipe.** `rounded-lg` radius, `border-border/50` hairline, `shadow-xl`, `px-2.5 py-1.5`, `text-xs`, `min-w-32`, rows at `gap-1.5`; values are set in `font-mono font-medium tabular-nums`; the label is `font-medium`; a `frosted-glass` variant exists (`bg-background/70 backdrop-blur-sm`). Series are dimmed to `opacity-30` when another is selected. The empty tooltip renders a `p-4` spacer so it never animates from the 0,0 origin. [SOURCE: context/evilcharts/src/registry/ui/recharts-tooltip.tsx:85-92] [SOURCE: context/evilcharts/src/registry/ui/recharts-tooltip.tsx:154] [SOURCE: context/evilcharts/src/registry/ui/recharts-tooltip.tsx:78-81]
+
+**F1-3. The evilcharts legend is a real figure element, not prose.** Default alignment is right, `gap-4`, `pt-4`/`pb-4` separation from the plot; seven marker variants: square, circle, circle-outline, rounded-square, rounded-square-outline, vertical-bar, horizontal-bar. The default marker is a 8px rounded square (`h-2 w-2 rounded-[2px]`); outline variants are punched out with `mask-composite: exclude` so the ring respects gradient fills. Legend items are clickable to select/filter with `opacity-30` on unselected series. The corpus instead puts the legend *into the subtitle as a sentence* (template-contract rule: "Subtitle: the legend and the time range, in a sentence"). [SOURCE: context/evilcharts/src/registry/ui/recharts-legend.tsx:6-13] [SOURCE: context/evilcharts/src/registry/ui/recharts-legend.tsx:42-49] [SOURCE: context/evilcharts/src/registry/ui/recharts-legend.tsx:146-147] [SOURCE: context/evilcharts/src/registry/ui/recharts-legend.tsx:175-200]
+
+**F1-4. evilcharts has a three-variant dot language for line charts.** `default` = 3px solid dot; `border` = 6px dot with a 5px stroke in the background colour (reads as a highlighted point with a ring); `colored-border` = 3px dot with a 1px colored ring. All dots clip a full-width gradient rect to the dot shape, so a multi-colour series gets a gradient dot. Dots can share an area chart's intro-wipe mask. The corpus line forms (`daily-line`, `daily-range`, `stacked-area`) draw no dots at all — the only emphasis device is the text note marker. [SOURCE: context/evilcharts/src/registry/ui/recharts-dot.tsx:83-106] [SOURCE: context/evilcharts/src/registry/ui/recharts-dot.tsx:110-141] [SOURCE: context/evilcharts/src/registry/ui/recharts-dot.tsx:145-171]
+
+**F1-5. The evilcharts chart root owns shared defaults so every chart has one voice.** `EvilLineChart` defaults: `curveType = "linear"`, `animationType = "left-to-right"`, `STROKE_WIDTH = 0.8`, `REVEAL_DURATION = 1s`, reveal ease `[0, 0.7, 0.5, 1]`; `accessibilityLayer` is always on; the brush is pulled out of the children and rendered as a footer beneath the plot. The container enforces `aspect-video` (16:9) unless a footer brush is present. The corpus equivalent defaults are per-template hand-written constants: `daily-line` uses `stroke-width: 2`, viewBox `0 0 720 292`, `LEFT=50 RIGHT=706 TOP=20 BASE=244`. [SOURCE: context/evilcharts/src/registry/charts/recharts-line-chart.tsx:56-60] [SOURCE: context/evilcharts/src/registry/charts/recharts-line-chart.tsx:159-166] [SOURCE: context/evilcharts/src/registry/ui/recharts-chart.tsx:113] [SOURCE: ../../../../../../.opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:61]
+
+**F1-6. Background patterns are a first-class, eleven-variant subsystem.** `dots`, `grid`, `cross-hatch`, `diagonal-lines`, `plus`, `falling-triangles`, `4-pointed-star`, `tiny-checkers`, `overlapping-circles`, `wiggle-lines`, `bubbles` — all `currentColor` on `border` so they theme automatically, rendered at z-index -1 with an edge-fade mask (`feGaussianBlur stdDeviation=25` over an inset rect) so the pattern dissolves before the plot edge instead of being clipped hard. The corpus draws every background as an empty rect. [SOURCE: context/evilcharts/src/registry/ui/recharts-background.tsx:12-23] [SOURCE: context/evilcharts/src/registry/ui/recharts-background.tsx:184-196] [SOURCE: context/evilcharts/src/registry/ui/recharts-background.tsx:213-227]
+
+**F1-7. Loading state exists because the consumer is interactive; the corpus has no loading phase by construction.** `LoadingIndicator` is a centered pill (spinner + "Loading") over a randomly generated skeleton series. A static HTML file renders instantly — there is nothing to wait for, and rule 12 (no randomness in rendering) would forbid the skeleton generator anyway. [SOURCE: context/evilcharts/src/registry/ui/recharts-chart.tsx:131-144] [SOURCE: context/evilcharts/src/registry/ui/recharts-chart.tsx:248-253]
+
+**F1-8. Accessibility parity already exists in the corpus.** evilcharts always enables Recharts' `accessibilityLayer`; the corpus contract rule 10 (svg `role="img"`, resolving `aria-labelledby`, `data-chart-table`) is already enforced by `check-corpus.cjs`. This direction needs no change. [SOURCE: context/evilcharts/src/registry/charts/recharts-line-chart.tsx:245] [SOURCE: ../../../../../../.opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:163]
+
+## Ranked changes (component architecture)
+
+| # | Change | Evidence | Target | Verdict | Level | One-file route |
+|---|--------|----------|--------|---------|-------|----------------|
+| R1-1 | Add a hover tooltip to mark-dense forms (scatter, heat-matrix, calendar-grid, candlestick, box-plot, distribution-strip): a positioned SVG group or HTML overlay toggled by `mouseenter`/`mouseleave` per mark, styled on the evilcharts recipe — `rounded-lg`, hairline border at 50% of rule colour, `shadow-xl`, 12px text, values in tabular-nums, mono emphasis | `recharts-tooltip.tsx:85-92`, `recharts-tooltip.tsx:154` | `assets/templates/*` (per form) | ADOPT AS IDEA | Template-level, apply now | Pure inline SVG/CSS + one listener per mark; no network, deterministic (rule 12 bans clocks/randomness, not event handlers); needs a `prefers-reduced-motion` no-op only if it animates |
+| R1-2 | Add a visual legend inside the figure for every multi-series form (grouped-bars, stacked-bars, stacked-area, parallel-axes, independent-percentages): right-aligned row above/below the plot, 8px rounded-square swatch, 4px gap, series label; keep the subtitle sentence as the caption, not the legend | `recharts-legend.tsx:42-49`, `recharts-legend.tsx:146-147` | `assets/templates/*` | ADOPT AS IDEA | Template-level, apply now | Inline SVG swatch marks + text; trivially one file |
+| R1-3 | Give `daily-line`/`stacked-area` a highlighted-point language: a small 3px dot at each reading plus a 6px background-ring dot on the point the headline is about (the ring uses the card background colour, so it works on any theme) | `recharts-dot.tsx:83-106`, `recharts-dot.tsx:110-141` | `assets/templates/daily-line.html`, `assets/templates/stacked-area.html` | ADOPT AS IDEA | Template-level, apply now | Inline SVG circles; one file |
+| R1-4 | Adopt the background-pattern subsystem as a template option: a `data-chart-bg` attribute choosing one of the eleven SVG patterns, drawn in the rule colour at low opacity with a soft edge fade instead of a hard clip | `recharts-background.tsx:12-23`, `recharts-background.tsx:213-227` | `references/template-contract.md` (skeleton section) + `assets/templates/*` | ADOPT WITH ATTRIBUTION | Contract-level (needs operator decision: which forms may carry a pattern; check rule additions) | Inline `<pattern>` defs; the eleven path definitions are MIT code, copyable with attribution; one file |
+| R1-5 | Standardize the shared chart defaults in the skeleton: one consistent 16:9 plot aspect, one stroke-weight convention, one set of geometry constants at the top of the drawing code, so the corpus stops hand-varying `stroke-width`/margins per template | `recharts-chart.tsx:113` (aspect-video), `recharts-line-chart.tsx:56-60` (defaults owned by the root) | `assets/color/palette-sheet-neutral.html` (skeleton) | ADOPT AS IDEA | Template-level (skeleton is a template) | The skeleton is already one file; this only standardizes its constants |
+| R1-6 | Do NOT add an interactive range brush. The delivery unit is a static artifact meant to be read and emailed, not manipulated; the brush's value is dashboard navigation, and its state model (selection + redraw) is the heaviest thing in the library for the least static payoff | `recharts-line-chart.tsx:220-240` (brush as footer), `recharts-brush.tsx:702 lines` | n/a — rejection | REJECT WITH REASON | n/a | Cannot meaningfully reach the contract's "two screenshots of one file agree" reading model; a user-driven zoom makes the figure stateful |
+| R1-7 | Do NOT adopt the loading state. A static file has no async phase; the skeleton generator is random and would fail rule 12. The *empty-state* question (what the figure draws when the data block is empty) is the real gap and is taken up in a later iteration | `recharts-chart.tsx:131-144`, `recharts-chart.tsx:248-253` | n/a — rejection (empty state deferred) | REJECT WITH REASON | n/a | n/a |
+| R1-8 | No change: accessibility layer parity already exists (rule 10, `check-corpus.cjs`) | `recharts-line-chart.tsx:245` vs `template-contract.md:163` | none | REJECT WITH REASON (already present) | n/a | n/a |
+
+## Sources Consulted
+
+- `context/evilcharts/src/registry/ui/recharts-chart.tsx` (full, 261 lines)
+- `context/evilcharts/src/registry/ui/recharts-tooltip.tsx` (full, 193 lines)
+- `context/evilcharts/src/registry/ui/recharts-legend.tsx` (full, 204 lines)
+- `context/evilcharts/src/registry/ui/recharts-dot.tsx` (full, 175 lines)
+- `context/evilcharts/src/registry/ui/recharts-background.tsx` (full, 229 lines)
+- `context/evilcharts/src/registry/charts/recharts-line-chart.tsx` (lines 1-260)
+- `.opencode/skills/sk-doc/sk-create-chart/references/template-contract.md` (full, 212 lines)
+- `.opencode/skills/sk-doc/sk-create-chart/assets/templates/*` (grep: hover/tooltip/legend/animation markers; `daily-line.html` structure)
+
+## Assessment
+
+- **newInfoRatio**: 0.90 — first pass over the shared UI primitives; all eight findings are net-new to this packet. Not convergence-relevant (stop policy is max-iterations).
+- **Confidence**: High for the evilcharts side (read directly); the corpus side rests on a grep across 20 files plus full reading of `daily-line.html` and the contract.
+
+## Reflection
+
+- **What worked**: Reading the six UI primitives in full before the chart module made the composition model obvious; the grep across templates made the "no interaction layer" claim cheap to prove.
+- **What failed / ruled out**: Interactive brush and loading state rejected on contract grounds before spending more budget on them; noted for the synthesis so a later phase does not relitigate them.
+- **Follow-up needed**: the "empty state" gap (deferred here) belongs with iteration 4 (beauty/states); legend marker gradient fills and the `distributeColors` slot-spreading algorithm belong with iteration 4 (colour ramps) and iteration 3 (theming).
+
+## Recommended Next Focus
+
+Iteration 2: Catalog of forms — read `registry-chart.ts`, `registry-ui.ts`, `registry-blocks.ts`, the `charts/` and `blocks/` modules and `registry.json`, and map the eight chart types (area, line, bar, composed, radar, pie, radial, sankey) against the twenty corpus templates, naming forms that exist only on one side.

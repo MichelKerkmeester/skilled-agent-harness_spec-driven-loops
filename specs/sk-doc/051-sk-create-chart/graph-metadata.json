@@ -10,7 +10,8 @@
     "sk-doc/051-sk-create-chart/004-native-chart-build",
     "sk-doc/051-sk-create-chart/005-routing-integration",
     "sk-doc/051-sk-create-chart/006-playbook-and-closeout",
-    "sk-doc/051-sk-create-chart/007-fidelity-and-library-research"
+    "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
+    "sk-doc/051-sk-create-chart/008-evilcharts-reference-research"
   ],
   "manual": {
     "depends_on": [],
@@ -50,7 +51,8 @@
       ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/manual-testing-playbook.md",
       "006-playbook-and-closeout/implementation-summary.md",
-      "007-fidelity-and-library-research/goal.md"
+      "007-fidelity-and-library-research/goal.md",
+      "008-evilcharts-reference-research/goal.md"
     ],
     "entities": [
       {
@@ -152,17 +154,17 @@
     ],
     "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-02T20:20:19.340Z",
+    "last_save_at": "2026-09-03T07:28:19.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:948d13fc96bfb9932c33fda8d7ca27c61fa194def4d29c44557af6f76342c301",
+    "source_fingerprint": "sha256:dd74bc1c98358ef64ae99947107027559cfa344c4eec06c693cb0379ccfba0f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "41f7a4904504e111e036feda96077f736ad57971a4d4c54338014dad76e79899"
+      "spec.md": "09fe02b80c67a73c5886b666ffab25cb70ae2c3cc91abcd28921eb7d277c7a9c"
     },
     "last_active_child_id": "sk-doc/051-sk-create-chart/006-playbook-and-closeout",
     "last_active_at": null

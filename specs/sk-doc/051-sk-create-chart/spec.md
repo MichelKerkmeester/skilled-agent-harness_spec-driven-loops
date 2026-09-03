@@ -144,6 +144,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 5 | 005-routing-integration/ | Registration and both routing stages, plus canary coverage | Complete |
 | 6 | 006-playbook-and-closeout/ | The manual testing playbook, then the whole-fleet gates | Complete |
 | 7 | 007-fidelity-and-library-research/ | Renumber the reference overviews from one, measure the shipped corpus against six open-source charting libraries, and apply what the research proves | Complete |
+| 8 | 008-evilcharts-reference-research/ | Reverse-engineer the vendored evilcharts source, and rank what it does that the corpus does not into concrete template and contract changes | In Progress |
 
 ### Phase Transition Rules
 
@@ -162,6 +163,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 004 | 005 | Every authored template renders, and nothing from the reference is present | The corpus validator exits 0 after being shown it can fail, and a scan for reference strings returns nothing |
 | 005 | 006 | The skill is reachable in both routing stages, not merely registered | The advisor selects it, the router resolves it, and its leaves resolve on disk |
 | 006 | 007 | The playbook validates under the operator-scenario contract with a nonzero operator count, and the fleet gates pass from the final state | The playbook is in place and `check-corpus.cjs --render` passes from the shipped tree |
+| 007 | 008 | The corpus is correct against upstream convention, and the remaining complaint is how it looks | Phase 7 is closed, and its own goal document records every item as applied or refused in writing |
 <!-- /ANCHOR:phase-map -->
 
 ---

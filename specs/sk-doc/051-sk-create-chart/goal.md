@@ -70,6 +70,7 @@ phase and binds as if written here.
 | Phase | Goal document |
 |-------|---------------|
 | 007-fidelity-and-library-research | `007-fidelity-and-library-research/goal.md` |
+| 008-evilcharts-reference-research | `008-evilcharts-reference-research/goal.md` |
 
 Phases 001 through 006 closed before this document existed and carry no goal of
 their own. Their record is the `implementation-summary.md` in each folder.
