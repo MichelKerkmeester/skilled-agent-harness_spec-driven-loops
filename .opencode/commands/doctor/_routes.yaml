@@ -59,23 +59,6 @@ routes:
       - "hf-local model-server health"
       - "advisor embedder status"
 
-  # RETIRING. The causal graph lived in the retired continuity database. Grep cannot
-  # traverse or statefully update graph edges, so the capability is unsupported rather
-  # than replaced. This route reports that and does nothing else; it is deleted with the
-  # subsystem in phase 003 of the memory decommission.
-  - target: causal-graph
-    yaml: doctor-causal-graph.yaml
-    setup_vars: [execution_mode]
-    allowed_flags: []
-    mutating: read-only
-    gate3_location: "n/a (retiring notice only; writes nothing)"
-    status: retiring
-    mcp_tools: []
-    trigger_phrases:
-      - "causal edges drift"
-      - "causal graph doctor"
-      - "lineage coverage"
-
 
   - target: deep-loop
     yaml: doctor-deep-loop.yaml

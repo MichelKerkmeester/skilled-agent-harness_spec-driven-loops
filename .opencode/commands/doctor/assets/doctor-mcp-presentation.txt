@@ -64,7 +64,6 @@ MCP INSTALL ASSESSMENT
 
 | Server | Status | Detail |
 |--------|--------|--------|
-| Spec Kit Memory | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
 | Skill Advisor | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
 | System Code Graph | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
 | Code Mode | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
@@ -98,7 +97,6 @@ MCP DEBUG FINDINGS
 
 | Server | Status | Issues |
 |--------|--------|--------|
-| Spec Kit Memory | [PASS|WARN|FAIL] | [summary] |
 | Skill Advisor | [PASS|WARN|FAIL] | [summary] |
 | System Code Graph | [PASS|WARN|FAIL] | [summary] |
 | Code Mode | [PASS|WARN|FAIL] | [summary] |
@@ -144,7 +142,6 @@ MCP Install - Final Report
 
 | Server | Before | After | Action Taken |
 |--------|--------|-------|--------------|
-| Spec Kit Memory | [before] | [after] | [action] |
 | Skill Advisor | [before] | [after] | [action] |
 | System Code Graph | [before] | [after] | [action] |
 | Code Mode | [before] | [after] | [action] |
@@ -166,7 +163,6 @@ MCP Doctor - Final Report
 
 | Server | Before | After | Status |
 |--------|--------|-------|--------|
-| Spec Kit Memory | [before] | [after] | [status] |
 | Skill Advisor | [before] | [after] | [status] |
 | System Code Graph | [before] | [after] | [status] |
 | Code Mode | [before] | [after] | [status] |
@@ -176,18 +172,12 @@ Next Steps: [next_steps]
 STATUS=[OK|CANCELLED|FAIL]
 ```
 
-> RETIRING: the Spec Kit Memory server is being decommissioned. Retrieval now runs through
-> the generated trigger index and the ripgrep recipes in `retrieval-conventions.md`, and
-> continuity is written by `generate-context.js`. Phase 003 of the memory decommission
-> deletes the server and drops it from the examples below. Until then it stays installable
-> so the running instance remains repairable.
-
 ## 6. Examples Display
 
 ```text
 Examples:
   /doctor:mcp install
-  /doctor:mcp install --server system-spec-memory
+  /doctor:mcp install --server system_skill_advisor
   /doctor:mcp install --runtime claude
   /doctor:mcp debug
   /doctor:mcp debug --fix

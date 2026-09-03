@@ -24,7 +24,7 @@ operating_mode:
 # ─────────────────────────────────────────────────────────────────
 mcp_debug_doctor_invariant: |
   MCP debug workflows run the mcp-doctor.sh diagnostic script against all
-  supported servers (spec-memory, skill-advisor, code-mode), cross-reference
+  supported servers (skill-advisor, code-mode), cross-reference
   each failure with its install guide, and apply guided repairs ONLY when
   --fix is passed AND the user approves the proposed repair. No silent
   mutation: every config edit, env change, or build step requires explicit
@@ -33,33 +33,12 @@ mcp_debug_doctor_invariant: |
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
-# ─────────────────────────────────────────────────────────────────
-# RETIRING SERVER NOTICE
-# ─────────────────────────────────────────────────────────────────
-# The Spec Kit Memory server is being decommissioned. Its retrieval tools have
-# already been replaced across every consumer by the generated trigger index
-# (.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs)
-# and the ripgrep recipes in references/retrieval/retrieval-conventions.md, and
-# its continuity write path is now the standalone writer
-# (scripts/dist/memory/generate-context.js). Phase 003 of the memory
-# decommission deletes the server and removes every row naming it from the
-# rosters below. Until then the rows stay so the still-running server remains
-# repairable — do not add new callers, and do not treat a row here as a reason
-# to reintroduce a retired tool.
-retiring_servers:
-  - name: "Spec Kit Memory"
-    successor_retrieval: ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs plus the ripgrep recipes in references/retrieval/retrieval-conventions.md"
-    successor_write: ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
-    removed_by: "phase 003 of the memory decommission"
-    unsupported_after_removal: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal. No replacement; a miss is a clean no-hit."
-
 upstream_assets:
   contract: "local command design contract"
   files:
     spec: "spec.md"
     decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
   install_guides:
-    system-spec-memory: ".opencode/install-guides/MCP - Spec Kit Memory.md"
     system_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
     code_mode: ".opencode/install-guides/MCP - Code Mode.md"
   scripts:
@@ -108,7 +87,6 @@ arguments:
 # REFERENCE: INSTALL GUIDES
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  system-spec-memory: .opencode/install-guides/MCP - Spec Kit Memory.md
   system_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
   code_mode: .opencode/install-guides/MCP - Code Mode.md
 
@@ -125,21 +103,8 @@ config_files:
 # REFERENCE: REPAIR ACTIONS
 # ─────────────────────────────────────────────────────────────────
 repair_actions:
-  # Rebuild EVERY MCP server's dist at once (instead of the per-server commands
-  # below) and transparently recycle system-spec-memory in one step:
-  #   bash .opencode/skills/system-spec-kit/scripts/deploy-mcp.sh --recycle
   # A launcher .cjs change is NOT picked up by a recycle; it needs a fresh
   # session (SIGHUP is a shutdown signal, not a reload).
-  system-spec-memory:
-    dist_missing:
-      command: "cd .opencode/skills/system-spec-kit && npm install && npm run build"
-      description: "Install dependencies and rebuild dist"
-    native_module_mismatch:
-      command: "bash .opencode/skills/system-spec-kit/scripts/setup/rebuild-native-modules.sh"
-      description: "Rebuild native modules for current Node.js version"
-    better_sqlite3_fail:
-      command: "cd .opencode/skills/system-spec-kit/mcp-server && npm rebuild better-sqlite3"
-      description: "Rebuild better-sqlite3 native binding"
   system_skill_advisor:
     dist_missing:
       command: "cd .opencode/skills/system-skill-advisor/mcp-server && npm install && npm run build"
@@ -303,7 +268,6 @@ workflow:
 
       | Server | Before | After | Status |
       |--------|--------|-------|--------|
-      | Spec Kit Memory | {before} | {after} | {status} |
       | Skill Advisor | {before} | {after} | {status} |
       | System Code Graph | {before} | {after} | {status} |
       | Code Mode | {before} | {after} | {status} |

@@ -1,33 +1,5 @@
 {
   "mcpServers": {
-    "system-spec-memory": {
-      "command": "node",
-      "args": [
-        ".opencode/bin/system-spec-memory-launcher.cjs"
-      ],
-      "env": {
-        "EMBEDDINGS_PROVIDER": "auto",
-        "HF_EMBED_SERVER_URL": "unix:///tmp/system-hf-embed/hf-embed.sock",
-        "SPECKIT_IPC_SOCKET_DIR": "/tmp/system-spec-memory",
-        "SPECKIT_MAX_SECONDARY_CLIENTS": "64",
-        "SPECKIT_RETRY_BATCH_SIZE": "100",
-        "SPECKIT_RETRY_INTERVAL_MS": "5000",
-        "SPECKIT_RETRY_QUEUE_MAX_AGE_MS": "3153600000000",
-        "SPECKIT_RETRY_QUEUE_MAX_PENDING": "300000",
-        "_NOTE_RECOMMENDED_SETUP": "New users: install Ollama (https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects Ollama and persists nomic-embed-text-v1.5 (768d) as the active embedder \u2014 no API keys, all-local.",
-        "_NOTE_DB": "Default DB (recommended): context-index__ollama__nomic-embed-text-v1.5__768.sqlite (auto-derived from provider+model+dim). Pull `ollama pull nomic-embed-text:v1.5` for the local-first new-user setup; hf-local with nomic-ai/nomic-embed-text-v1.5 is the zero-install Node fallback (no Python).",
-        "_NOTE_PROVIDERS": "Auto cascade (ADR-014, local-first): Ollama (local) -> hf-local (pure-Node @huggingface/transformers HTTP model server, zero-install) -> OpenAI API -> Voyage API.",
-        "_NOTE_EMBEDDINGS_PROVIDER": "Auto cascade (ADR-014, local-first): Ollama -> hf-local -> OpenAI -> Voyage. Set EMBEDDINGS_PROVIDER=<provider> (ollama|hf-local|openai|voyage) to force a specific tier.",
-        "_NOTE_CLOUD_PROVIDERS": "Cloud tiers are explicit opt-in: add VOYAGE_API_KEY or OPENAI_API_KEY only when you want cloud embeddings; otherwise the cascade keeps everything local. Voyage is embeddings-only here; cloud rerankers (voyage/cohere) were removed in 022/013.",
-        "_NOTE_GET_VOYAGE_KEY": "Get Voyage key: https://dash.voyageai.com/api-keys",
-        "_NOTE_GET_OPENAI_KEY": "Get OpenAI key: https://platform.openai.com/api-keys",
-        "_NOTE_HF_EMBED_SOCKET": "Shared hf-local model-server socket. Pinned identically for system-spec-memory AND system_skill_advisor so both consume ONE resident nomic server (single-owner via the socket-keyed respawn lock). Short /tmp path stays under the macOS sun_path 104-char limit. Do not diverge the two services.",
-        "_NOTE_SOCKET": "macOS sun_path limit (104 chars): the default bridge socket path under database/daemon-ipc.sock exceeds the limit and the launcher fails with EINVAL. Pin to a short /tmp path so the multi-client bridge can bind.",
-        "_NOTE_FEATURE_FLAGS": "Opt-out flags (default ON): SPECKIT_ADAPTIVE_FUSION, SPECKIT_SESSION_BOOST, SPECKIT_CAUSAL_BOOST, SPECKIT_HYDE_ACTIVE, SPECKIT_ENTITY_LINKING, SPECKIT_GRAPH_CONCEPT_ROUTING, SPECKIT_GRAPH_REFRESH_MODE=write_local. Tier 3 LLM save routing is always on (fail-open to Tier 2 on timeout).",
-        "_NOTE_DAEMON_REELECTION": "Daemon re-election is on by default in the launcher code: on disposal the launcher releases the shared daemon for a live secondary to adopt instead of killing it, so concurrent sessions keep MCP transport. An unadopted released daemon is bounded by SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN. Set SPECKIT_DAEMON_REELECTION=0 to restore kill-on-disposal. See ENV_REFERENCE.md.",
-        "_NOTE_RETRY_TUNING": "Bulk re-embed retry tuning: raised pending cap + max-age + faster batch/interval so a large embedding backlog drains instead of being parked as failed (defaults park excess/old pending: cap 1000, 24h age, 5-per-5min)."
-      }
-    },
     "system_skill_advisor": {
       "command": "node",
       "args": [
@@ -42,11 +14,11 @@
         "SPECKIT_IPC_SOCKET_DIR": "/tmp/system-skill-advisor",
         "SPECKIT_MAX_SECONDARY_CLIENTS": "64",
         "_NOTE_DB": "Database lives at .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite by default; SYSTEM_SKILL_ADVISOR_DB_DIR overrides, with SYSTEM_SKILL_ADVISOR_DB_DIR as a legacy fallback (both still recognized by the launcher + handlers).",
-        "_NOTE_MEMORY_DB_PATH": "createChildEnv() pins the advisor child's embedder-pointer resolution (which DB's active_embedder_* row gets read) to this package's own skill-graph.sqlite. An ambient MEMORY_DB_PATH \u2014 including one set for system-spec-memory's own unrelated use of that same name \u2014 is never honored as an override, since that would silently misroute the advisor's embedder selection to spec-memory's database (the exact bug this pin fixed). Tests/CI only: SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH overrides the pin. See db_path_policy.md \u00a74.",
+        "_NOTE_MEMORY_DB_PATH": "createChildEnv() pins the advisor child's embedder-pointer resolution (which DB's active_embedder_* row gets read) to this package's own skill-graph.sqlite. An ambient MEMORY_DB_PATH is never honored as an override, since any other owner of that generic name would silently misroute the advisor's embedder selection to a foreign database. Tests/CI only: SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH overrides the pin. See db_path_policy.md \u00a74.",
         "_NOTE_THRESHOLDS": "Advisor confidence/uncertainty thresholds are tunable: SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD (default 0.8), SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD (default 0.35). Lane weights tunable via SPECKIT_ADVISOR_LANE_WEIGHTS_JSON + SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON (partial-merge JSON, post-022/011/4b).",
         "_NOTE_DOC_TRIGGERS": "Opt-in doc-frontmatter harvest: skill_graph_scan ingests references/assets trigger_phrases into skill_docs and advisor_recommend returns matchedDocs pointers (dampened derived-lane signal). Default-off in code; enabled for this repo. Unset/false to roll back.",
         "_NOTE_TRUST_DEFAULT": "Daemon-owner trust grant for mutation tools (advisor_rebuild, skill_graph_scan, skill_graph_propagate_enhances). Callers whose _meta omits transport/trust markers default to UNTRUSTED unless this is 'trusted'. Native MCP clients (e.g. /doctor repair flows) send no _meta, so this grant keeps them working; remove it to fail-closed on every transport-absent caller. Explicit _meta trusted:false / callerAuthority:'untrusted' is always rejected.",
-        "_NOTE_HF_EMBED_SOCKET": "Shared hf-local model-server socket \u2014 identical to system-spec-memory's so both services share ONE resident nomic server. (skill-advisor only spawns it when SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1; otherwise it just connects to system-spec-memory's.)"
+        "_NOTE_HF_EMBED_SOCKET": "hf-local model-server socket. The advisor is the sole owner: it spawns the resident nomic server only when SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1, and otherwise attaches to whatever already listens here. Short /tmp path stays under the macOS sun_path 104-char limit."
       }
     },
     "code_mode": {

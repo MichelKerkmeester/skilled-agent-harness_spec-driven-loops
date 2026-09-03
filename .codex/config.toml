@@ -1,23 +1,6 @@
 [features]
 hooks = true
 
-[mcp_servers."system-spec-memory"]
-command = "/Users/michelkerkmeester/.nvm/versions/node/v22.23.1/bin/node"
-args = [".opencode/bin/system-spec-memory-launcher.cjs"]
-
-[mcp_servers."system-spec-memory".env]
-EMBEDDINGS_PROVIDER = "auto"
-HF_EMBED_SERVER_URL = "unix:///tmp/system-hf-embed/hf-embed.sock"
-SPECKIT_IPC_SOCKET_DIR = "/tmp/system-spec-memory"
-SPECKIT_MAX_SECONDARY_CLIENTS = "64"
-SPECKIT_RETRY_BATCH_SIZE = "100"
-SPECKIT_RETRY_INTERVAL_MS = "5000"
-SPECKIT_RETRY_QUEUE_MAX_AGE_MS = "3153600000000"
-SPECKIT_RETRY_QUEUE_MAX_PENDING = "300000"
-
-[mcp_servers."system-spec-memory".tools.memory_match_triggers]
-approval_mode = "approve"
-
 # Keep this runtime aligned with the installed better-sqlite3 native-module ABI:
 # the built addon here is compiled for one NODE_MODULE_VERSION, and a launcher
 # started on any other Node aborts in dlopen before the daemon comes up.

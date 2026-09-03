@@ -12,7 +12,6 @@ snapshots + auto-rollback on regression. ETA 8-25 min.
 
 Mid-run prompts:
    SHORT  steps    -> auto (no prompt)
-   MEDIUM steps    -> 1 combined prompt   (Q-MED)
    LONG-POLE step  -> ETA prompt + skip   (Q-LONG, 5-15 min)
 
    1) Proceed
@@ -24,21 +23,6 @@ Accept `1`, `A`, `Y`, `Proceed`, or Enter as proceed. Accept `X`, `N`, or `Cance
 ## 2. Mid-Run Prompt Catalog
 
 Use these prompts verbatim. Do not paraphrase, summarize, or split them into multiple messages.
-
-### Q-MED - Combined Medium-Tier Prompt
-
-
-```text
-Medium-tier steps next:
-   speckit-eval rebuild  ~2-4 min   (mutates speckit-eval.db)
-
-Phase 3 snapshots in place -> auto-rollback on gold-battery regression.
-
-   1) Run both
-   X) Cancel + rollback
-```
-
-Accept `1`, `A`, `Y`, or `Proceed` as both. Accept `X`, `N`, or `Cancel` as rollback plus `STATUS=CANCELLED`. Empty input re-asks once; second empty input returns `STATUS=CANCELLED`.
 
 ### Q-LONG - Long-Pole ETA Prompt
 
@@ -135,11 +119,9 @@ Cross-Subsystem Health Dashboard
 | Subsystem     | Status | Age | Coverage | Recommended Action |
 |---------------|--------|-----|----------|--------------------|
 | context-index | [OK|STALE|MISSING|REGRESSED] | [age] | [metric] | [index-scan|skip|rollback] |
-| causal-edges  | [OK|LOW-COVERAGE|REGRESSED] | [age] | [metric] | [init-links|skip|rollback] |
 | skill-graph   | [OK|STALE|MISSING] | [age] | [n/a|metric] | [scan|skip] |
 | advisor       | [OK|INVALID|STALE] | [age] | [n/a|metric] | [rebuild|validate] |
 | deep-loop     | [OK|EMPTY|STALE] | [age] | [n/a|metric] | [upsert|skip] |
-| eval          | [OK|STALE|SKIPPED] | [age] | [n/a|metric] | [run-ablation|skip] |
 ```
 
 ## 5. Status Output Templates
@@ -189,7 +171,6 @@ State log: .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.l
 | Command | When To Use |
 |---------|-------------|
 | `/doctor memory` | Isolated context-index and vector-index health diagnosis |
-| `/doctor causal-graph` | Isolated causal edge coverage diagnosis |
 | `/doctor deep-loop` | Isolated research/review coverage graph diagnosis |
 | `/doctor skill-advisor` | Advisor and skill-graph optimization pass |
 | `/doctor skill-budget` | Advisor budget/status helper |

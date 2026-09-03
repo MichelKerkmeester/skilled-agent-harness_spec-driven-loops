@@ -13,14 +13,7 @@
 #   --json              Output machine-readable JSON
 #   --fix               Attempt auto-repair for failures
 #   --server <name>     Diagnose a single server only
-#                       Names: system-spec-memory, system_skill_advisor, code_mode
-#
-# RETIRING: the Spec Kit Memory server is being decommissioned. Retrieval moved to the
-# generated trigger index (scripts/retrieval/lookup-trigger-index.mjs) plus the ripgrep
-# recipes in references/retrieval/retrieval-conventions.md; continuity is written by
-# scripts/dist/memory/generate-context.js. Removing the server deletes its rows here.
-# Until then it stays diagnosable so the running instance remains repairable. Do not add
-# new callers.
+#                       Names: system_skill_advisor, code_mode
 #   --root <path>       Override project root
 #
 # Exit Codes:
@@ -54,7 +47,7 @@ Options:
   --json              Output machine-readable JSON
   --fix               Attempt auto-repair for failures
   --server <name>     Diagnose a single server only
-                      Names: system-spec-memory, system_skill_advisor, code_mode
+                      Names: system_skill_advisor, code_mode
   --root <path>       Override project root
 
 Exit Codes:
@@ -63,7 +56,6 @@ Exit Codes:
   2  Failures detected
 
 Servers Checked:
-  system-spec-memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
   system_skill_advisor      Skill Advisor (Node.js MCP, advisor_recommend + skill_graph_*)
   code_mode             Code Mode (Node.js MCP, TypeScript tool orchestration)
 
@@ -143,150 +135,6 @@ fi
 # ══════════════════════════════════════════════════════════════
 # SERVER DIAGNOSTICS
 # ══════════════════════════════════════════════════════════════
-
-# ── Spec Kit Memory ───────────────────────────────────────────
-diagnose_system_spec_memory() {
-  local srv="system-spec-memory"
-  local skill_dir="$PROJECT_ROOT/.opencode/skills/system-spec-kit"
-  local dist_entry="$skill_dir/mcp-server/dist/context-server.js"
-  local db_dir="$skill_dir/mcp-server/database"
-  local marker="$skill_dir/.node-version-marker"
-  local needs_fix=false
-
-  _log log_header "Spec Kit Memory"
-
-  if [[ "$HAS_NODE" != true ]]; then
-    record_skip "$srv" "all" "Node.js not available"
-    _log log_skip "Node.js not available — skipping all checks"
-    return
-  fi
-
-  # Check 1: dist/context-server.js exists
-  if [[ -f "$dist_entry" ]]; then
-    record_pass "$srv" "dist_exists" "$dist_entry"
-    _log log_pass "dist/context-server.js exists"
-  else
-    record_fail "$srv" "dist_exists" "File missing: $dist_entry"
-    _log log_fail "dist/context-server.js missing — needs build"
-    needs_fix=true
-  fi
-
-  # Check 2: better-sqlite3 loads
-  if node -e "require('$skill_dir/mcp-server/node_modules/better-sqlite3')" 2>/dev/null; then
-    record_pass "$srv" "better_sqlite3" "Loads successfully"
-    _log log_pass "better-sqlite3 loads"
-  else
-    record_fail "$srv" "better_sqlite3" "Failed to load — native module mismatch or not installed"
-    _log log_fail "better-sqlite3 does not load — native module rebuild needed"
-    needs_fix=true
-  fi
-
-  # Check 3: Node version marker matches
-  if [[ -f "$marker" ]]; then
-    local marker_mod current_mod
-    marker_mod="$(node -e "const m=JSON.parse(require('fs').readFileSync('$marker','utf8'));console.log(m.moduleVersion||'unknown')" 2>/dev/null || echo "unknown")"
-    current_mod="$(node -e 'console.log(process.versions.modules)' 2>/dev/null || echo "unknown")"
-    if [[ "$marker_mod" == "$current_mod" ]]; then
-      record_pass "$srv" "node_version_marker" "MODULE_VERSION $current_mod matches"
-      _log log_pass "Node MODULE_VERSION matches marker ($current_mod)"
-    else
-      record_warn "$srv" "node_version_marker" "Marker=$marker_mod Current=$current_mod"
-      _log log_warn "Node MODULE_VERSION mismatch: marker=$marker_mod current=$current_mod"
-      needs_fix=true
-    fi
-  else
-    record_warn "$srv" "node_version_marker" "Marker file not found"
-    _log log_warn "Node version marker not found (run rebuild to create)"
-  fi
-
-  # Check 4: database directory
-  if [[ -d "$db_dir" ]]; then
-    local db_file="$db_dir/context-index.sqlite"
-    local vector_count=0
-    vector_count="$(find "$db_dir/vectors" -maxdepth 1 -type f -name 'context-vectors__*.sqlite' 2>/dev/null | wc -l | tr -d ' ')"
-    if [[ -f "$db_file" ]]; then
-      local db_size
-      db_size="$(du -h "$db_file" 2>/dev/null | cut -f1)"
-      record_pass "$srv" "database" "context-index.sqlite exists ($db_size)"
-      _log log_pass "Database exists: context-index.sqlite ($db_size)"
-    else
-      record_warn "$srv" "database" "Database directory exists but context-index.sqlite is not yet built"
-      _log log_warn "Database directory exists but context-index.sqlite is not yet built"
-    fi
-    if [[ "$vector_count" -gt 0 ]]; then
-      record_pass "$srv" "vector_shards" "$vector_count vector shard(s)"
-      _log log_pass "Vector shard count: $vector_count"
-    else
-      record_warn "$srv" "vector_shards" "No context-vectors__*.sqlite shards found"
-      _log log_warn "No vector shards found (created after embedding-backed index/search)"
-    fi
-  else
-    record_warn "$srv" "database" "Database directory not found"
-    _log log_warn "Database directory not found (created on first MCP use)"
-  fi
-
-  # Check 5: Server starts (quick smoke test)
-  if [[ -f "$dist_entry" ]]; then
-    if timeout 5 node -e "
-      const path = require('path');
-      try { require('$dist_entry'); } catch(e) {
-        if (e.code === 'ERR_DLOPEN_FAILED') process.exit(2);
-        process.exit(0); // MCP server expects stdio — exiting is normal
-      }
-    " 2>/dev/null; then
-      record_pass "$srv" "server_starts" "No ERR_DLOPEN_FAILED"
-      _log log_pass "Server entry point loads without native errors"
-    else
-      local ec=$?
-      if [[ "$ec" -eq 2 ]]; then
-        record_fail "$srv" "server_starts" "ERR_DLOPEN_FAILED — native module mismatch"
-        _log log_fail "ERR_DLOPEN_FAILED — native module rebuild required"
-        needs_fix=true
-      else
-        record_pass "$srv" "server_starts" "Entry point accessible"
-        _log log_pass "Server entry point accessible"
-      fi
-    fi
-  fi
-
-  # Check 6: spec-kit dist has no stale package-root layout or runtime state.
-  local stale_dist_root
-  for stale_dist_root in \
-    "$skill_dir/mcp-server/dist/system-skill-advisor" \
-    "$skill_dir/mcp-server/dist/system-spec-kit" \
-    "$skill_dir/mcp-server/dist/tests" \
-    "$skill_dir/mcp-server/dist/database"; do
-    local drift_key
-    drift_key="dist_drift_$(basename "$stale_dist_root" | tr '-' '_')"
-    if [[ -e "$stale_dist_root" ]]; then
-      record_fail "$srv" "$drift_key" "Stale dist root present: $stale_dist_root"
-      _log log_fail "Stale dist root present: $stale_dist_root"
-      needs_fix=true
-    else
-      record_pass "$srv" "$drift_key" "Absent: $stale_dist_root"
-    fi
-  done
-
-  # Fix mode
-  if [[ "$FIX_MODE" == true ]] && [[ "$needs_fix" == true ]]; then
-    _log printf '\n  %sAttempting auto-repair...%s\n' "$CYAN" "$NC"
-    local rebuild_script="$skill_dir/scripts/setup/rebuild-native-modules.sh"
-    if [[ -f "$rebuild_script" ]]; then
-      if bash "$rebuild_script" 2>&1 | tail -5; then
-        record_pass "$srv" "fix_rebuild" "Rebuild completed"
-        _log log_pass "Native modules rebuilt"
-      else
-        record_fail "$srv" "fix_rebuild" "Rebuild failed"
-        _log log_fail "Rebuild failed — check output above"
-      fi
-    else
-      # Fallback: npm install + build
-      (cd "$skill_dir" && npm install 2>&1 | tail -3 && npm run build 2>&1 | tail -3) || true
-      record_pass "$srv" "fix_npm" "npm install + build attempted"
-      _log log_info "Ran npm install + build"
-    fi
-  fi
-}
 
 # ── Code Mode ─────────────────────────────────────────────────
 diagnose_code_mode() {
@@ -564,7 +412,7 @@ detect_and_check_configs() {
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 
-  local -a servers=("system-spec-memory" "system_skill_advisor" "code_mode")
+  local -a servers=("system_skill_advisor" "code_mode")
 
   for cfg_entry in "${config_files[@]}"; do
     IFS='|' read -r cfg_path cfg_format cfg_label <<< "$cfg_entry"
@@ -596,7 +444,6 @@ detect_and_check_configs() {
 # ══════════════════════════════════════════════════════════════
 # MAIN DISPATCH
 # ══════════════════════════════════════════════════════════════
-should_run "system-spec-memory"      && diagnose_system_spec_memory
 should_run "system_skill_advisor"    && diagnose_system_skill_advisor
 should_run "code_mode"            && diagnose_code_mode
 

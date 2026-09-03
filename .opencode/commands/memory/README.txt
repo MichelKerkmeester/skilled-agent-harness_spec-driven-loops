@@ -1,6 +1,6 @@
 ---
 title: "Memory Commands"
-description: "Slash commands for packet continuity: lexical retrieval over spec docs and skill docs, and the continuity writer. (/memory:manage and /memory:learn are retiring — the database they administered is being removed.)"
+description: "Slash commands for packet continuity: lexical retrieval over spec and skill docs, plus the continuity writer."
 trigger_phrases:
   - "memory command"
   - "memory save"
@@ -22,11 +22,10 @@ trigger_phrases:
 - [2. COMMANDS](#2--commands)
 - [3. STRUCTURE](#3--structure)
 - [4. USAGE EXAMPLES](#4--usage-examples)
-- [5. MANAGE SUBCOMMANDS](#5--manage-subcommands)
-- [6. TOOL COVERAGE MATRIX](#6--tool-coverage-matrix)
-- [7. FAQ](#7--faq)
-- [8. TROUBLESHOOTING](#8--troubleshooting)
-- [9. RELATED DOCUMENTS](#9--related-documents)
+- [5. TOOL COVERAGE MATRIX](#5--tool-coverage-matrix)
+- [6. FAQ](#6--faq)
+- [7. TROUBLESHOOTING](#7--troubleshooting)
+- [8. RELATED DOCUMENTS](#8--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -37,7 +36,7 @@ trigger_phrases:
 
 The `memory` command group covers packet continuity: writing session context into a packet's own documents, and finding text in spec docs and skill docs. Session recovery lives under `/speckit:resume`.
 
-Two commands are live. `/memory:save` is the writer front door and `/memory:search` is the retrieval front door. `/memory:manage` and `/memory:learn` are retiring: the indexed-continuity database they administered is being decommissioned, and phase 003 of the memory decommission deletes them.
+The group holds two commands. `/memory:save` is the writer front door and `/memory:search` is the retrieval front door.
 
 Retrieval runs on two local mechanisms and no background service:
 
@@ -65,8 +64,6 @@ Visible dashboards, prompts, examples, and errors live in each command's present
 |---------|------------|-------------|
 | **search** | `/memory:search <query> [--packet <specFolder>] [--triggers] [--paths] [--count]` | Lexical retrieval: trigger-index lookup and the ripgrep recipes over spec docs and skill docs |
 | **save** | `/memory:save <spec-folder>` | Write session context into the packet's continuity surfaces |
-| **manage** | `/memory:manage` | RETIRING — the indexed-continuity database is being decommissioned; no active routes |
-| **learn** | `/memory:learn` | DEPRECATED — the constitutional-memory layer was retired; no active routes |
 
 ### Search Lanes
 
@@ -81,12 +78,6 @@ The two lanes answer different questions. Prompt-to-declared-phrase matching is 
 
 Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` replaces the search roots with that packet.
 
-### Retiring Subcommands
-
-`/memory:manage` no longer accepts subcommands. Its stats, scan, cleanup, retention, learned-trigger, ledger, tier, trigger, validation, delete, health, checkpoint and ingest routes all operated on the database being removed. See Section 5 for where each one went.
-
-`/memory:learn` is deprecated. The constitutional-memory layer it managed — an always-surface, search-boosted rule tier — was retired and removed from the code, and the former rule files were deleted from the repository. Use `/memory:save` to preserve scoped context instead.
-
 <!-- /ANCHOR:commands -->
 
 ---
@@ -98,9 +89,7 @@ Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` re
 memory/
 ├── README.txt      # This file, command index and capability map
 ├── search.md       # /memory:search - Trigger-index lookup + ripgrep recipes
-├── save.md         # /memory:save - Continuity writer front door
-├── manage.md       # /memory:manage - RETIRING (database being decommissioned)
-└── learn.md        # /memory:learn - DEPRECATED (constitutional-memory layer retired)
+└── save.md         # /memory:save - Continuity writer front door
 ```
 
 The `assets/` folder contains the presentation contracts for memory commands. Workflows are defined inline within each command file until a separate workflow asset is introduced.
@@ -164,28 +153,8 @@ Copy the recipe flags literally. `--no-config` stops `RIPGREP_CONFIG_PATH` from 
 
 ---
 
-<!-- ANCHOR:manage-subcommands -->
-## 5. MANAGE SUBCOMMANDS
-
-`/memory:manage` is retiring and accepts no subcommands. Each former route is listed here with its successor so an operator who remembers the old surface lands somewhere real.
-
-| Former subcommand | Where the work lives now |
-|------------|-----------|
-| `stats`, `health`, `validate` | `/doctor memory` — diagnoses the trigger index and the retrieval conventions: index present, lookup runs, recipes resolve |
-| `scan [--force]` | `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` — regenerates the index from document frontmatter in one local pass. This is the trigger-index maintenance path |
-| `cleanup`, `retention-sweep`, `bulk-delete`, `delete` | Nothing. There are no stored records to age out or delete; packet documents are the record and are managed as files |
-| `learned-expire`, `learned-clear` | Nothing. Learned triggers were a database tier. `trigger_phrases` is an author-controlled frontmatter field, edited in the document |
-| `tier`, `triggers` | Edit the document's `trigger_phrases` frontmatter, then rerun the generator |
-| `checkpoint create/list/restore/delete` | Git. The packet documents are versioned files |
-| `ingest start/status/cancel` | Nothing. There is no ingestion step; the generator reads frontmatter directly |
-| `ledger-sweep` | Nothing. The feedback and audit ledgers lived in the same database |
-
-<!-- /ANCHOR:manage-subcommands -->
-
----
-
 <!-- ANCHOR:tool-coverage -->
-## 6. TOOL COVERAGE MATRIX
+## 5. TOOL COVERAGE MATRIX
 
 The retired continuity server exposed 41 tools across seven layers. They are replaced by two local mechanisms and one writer, and several capabilities are not replaced at all. This table maps capability to owner, because an honest map is shorter than the inventory it replaces.
 
@@ -219,8 +188,6 @@ These had no replacement, and no recipe approximates one. The commands report th
 |---------|-------------|--------|
 | `/memory:search` | Trigger index + 4 ripgrep recipes | none (read-only) |
 | `/memory:save` | `generate-context.js` | continuity frontmatter, `description.json`, `graph-metadata.json` |
-| `/memory:manage` (retiring) | none | none |
-| `/memory:learn` (deprecated) | none | none |
 | `/speckit:resume` | continuity ladder + scoped ripgrep recipe | none |
 | `/doctor memory` | index probe + recipe probe | packet-scratch report only |
 
@@ -231,7 +198,7 @@ These had no replacement, and no recipe approximates one. The commands report th
 ---
 
 <!-- ANCHOR:faq -->
-## 7. FAQ
+## 6. FAQ
 
 **Q: What is the difference between `/memory:search` and `/speckit:resume`?**
 
@@ -240,10 +207,6 @@ These had no replacement, and no recipe approximates one. The commands report th
 **Q: Why did `/memory:search` return nothing for a query I know is covered?**
 
 Retrieval is lexical. It matches the text you typed, not the meaning. The retired backend could match a paraphrase; this one cannot, and it reports a miss as a miss rather than returning something adjacent. Rephrase using the wording that actually appears in the documents, or widen the search roots.
-
-**Q: Can I still use `/memory:manage` or `/memory:learn`?**
-
-No. `/memory:manage` administered the indexed-continuity database, which is being decommissioned; Section 5 maps each former subcommand to its successor. `/memory:learn` managed the constitutional-memory rule tier, which was retired and removed from the code. Use `/memory:save` to preserve context and `/memory:search` to find it.
 
 **Q: How do I refresh retrieval after editing a document?**
 
@@ -254,7 +217,7 @@ For the free-text lane, you do not: `rg` reads the files directly, so an edit is
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 8. TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
@@ -272,7 +235,7 @@ For the free-text lane, you do not: `rg` reads the files directly, so an edit is
 ---
 
 <!-- ANCHOR:related-documents -->
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |----------|---------|

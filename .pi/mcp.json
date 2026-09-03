@@ -1,21 +1,5 @@
 {
   "mcpServers": {
-    "system-spec-memory": {
-      "command": "node",
-      "args": [".opencode/bin/system-spec-memory-launcher.cjs"],
-      "transport": "stdio",
-      "lifecycle": "eager",
-      "env": {
-        "EMBEDDINGS_PROVIDER": "auto",
-        "HF_EMBED_SERVER_URL": "unix:///tmp/system-hf-embed/hf-embed.sock",
-        "SPECKIT_IPC_SOCKET_DIR": "/tmp/system-spec-memory",
-        "SPECKIT_MAX_SECONDARY_CLIENTS": "64",
-        "SPECKIT_RETRY_BATCH_SIZE": "100",
-        "SPECKIT_RETRY_INTERVAL_MS": "5000",
-        "SPECKIT_RETRY_QUEUE_MAX_AGE_MS": "3153600000000",
-        "SPECKIT_RETRY_QUEUE_MAX_PENDING": "300000"
-      }
-    },
     "system_skill_advisor": {
       "command": "node",
       "args": [".opencode/bin/system-skill-advisor-launcher.cjs"],

@@ -47,7 +47,6 @@ These existing YAML assets are referenced only. The router must not modify them.
 |--------|----------|
 | `memory` | `.opencode/commands/doctor/assets/doctor-memory.yaml` |
 | `embeddings` | `.opencode/commands/doctor/assets/doctor-embeddings.yaml` |
-| `causal-graph` | `.opencode/commands/doctor/assets/doctor-causal-graph.yaml` |
 | `deep-loop` | `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` |
 | `skill-advisor` | `.opencode/commands/doctor/assets/doctor-skill-advisor.yaml` |
 | `skill-budget` | `.opencode/commands/doctor/assets/doctor-skill-budget.yaml` |

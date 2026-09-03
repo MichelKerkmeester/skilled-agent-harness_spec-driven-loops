@@ -25,7 +25,7 @@ operating_mode:
 mcp_install_doctor_invariant: |
   MCP install workflows perform fresh install (or reinstall) of the supported MCP
   servers based on their install guides. Each server's install runs only after
-  prerequisite check passes (Node >= 20.11.0, Python >= 3.11, npm, npx) and
+  prerequisite check passes (Node >= 20.11.0, Python >= 3.11, npm) and
   the user approves the install plan. No silent overwrite of existing installs:
   if a server is already present, the user is prompted to skip, reinstall, or
   upgrade. Post-install health check (mcp-doctor.sh --json) is mandatory and
@@ -34,33 +34,12 @@ mcp_install_doctor_invariant: |
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
-# ─────────────────────────────────────────────────────────────────
-# RETIRING SERVER NOTICE
-# ─────────────────────────────────────────────────────────────────
-# The Spec Kit Memory server is being decommissioned. Its retrieval tools have
-# already been replaced across every consumer by the generated trigger index
-# (.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs)
-# and the ripgrep recipes in references/retrieval/retrieval-conventions.md, and
-# its continuity write path is now the standalone writer
-# (scripts/dist/memory/generate-context.js). Phase 003 of the memory
-# decommission deletes the server and removes every row naming it from the
-# rosters below. Until then the rows stay so the still-running server remains
-# repairable — do not add new callers, and do not treat a row here as a reason
-# to reintroduce a retired tool.
-retiring_servers:
-  - name: "Spec Kit Memory"
-    successor_retrieval: ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs plus the ripgrep recipes in references/retrieval/retrieval-conventions.md"
-    successor_write: ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
-    removed_by: "phase 003 of the memory decommission"
-    unsupported_after_removal: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal. No replacement; a miss is a clean no-hit."
-
 upstream_assets:
   contract: "local command design contract"
   files:
     spec: "spec.md"
     decision_record: "decision-record.md"
   install_guides:
-    system-spec-memory: ".opencode/install-guides/MCP - Spec Kit Memory.md"
     system_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
     code_mode: ".opencode/install-guides/MCP - Code Mode.md"
   scripts:
@@ -111,7 +90,6 @@ arguments:
 # REFERENCE: INSTALL GUIDES (read these during workflow)
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  system-spec-memory: .opencode/install-guides/MCP - Spec Kit Memory.md
   system_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
   code_mode: .opencode/install-guides/MCP - Code Mode.md
 
@@ -119,24 +97,6 @@ install_guides:
 # REFERENCE: SERVER DEFINITIONS
 # ─────────────────────────────────────────────────────────────────
 servers:
-  system-spec-memory:
-    label: "Spec Kit Memory"
-    runtime: node
-    skill_dir: ".opencode/skills/system-spec-kit"
-    entry_point: "mcp-server/dist/context-server.js"
-    install_script: "scripts/setup/install.sh"
-    install_script_mutation_class: mutating  # installer: builds + writes state
-    rebuild_script: "scripts/setup/rebuild-native-modules.sh"
-    health_checks:
-      - { path: "mcp-server/dist/context-server.js", type: "file_exists" }
-      - { path: "mcp-server/node_modules/better-sqlite3", type: "dir_exists" }
-      - { probe: "node -e \"require('{skill_dir}/mcp-server/node_modules/better-sqlite3')\"", type: "command_succeeds" }
-    install_steps:
-      - "cd {skill_dir} && npm install"
-      - "cd {skill_dir} && npm run build"
-      - "bash {skill_dir}/scripts/setup/rebuild-native-modules.sh"
-    fallback_build: "cd {skill_dir} && npx tsc --build --noCheck --force"
-
   system_skill_advisor:
     label: "Skill Advisor"
     runtime: node
@@ -251,12 +211,9 @@ workflow:
     activities:
       - "Check Node.js version: node --version (must be >=20.11.0)"
       - "Check npm: npm --version"
-      - "Check npx: npx --version"
       - "Report which servers can be installed based on available prerequisites"
       - "If --server flag provided, validate server name"
       - "If --runtime flag provided, validate runtime name"
-    prerequisite_matrix:
-      npx: { required_for: [system-spec-memory], check: "npx --version" }  # tsc fallback_build
     on_missing_prereq:
       action: "WARN and skip affected servers, continue with others"
       hard_block: "If no prerequisites available at all, STATUS=FAIL"
@@ -277,7 +234,6 @@ workflow:
     assessment_format: |
       | Server | Status | Detail |
       |--------|--------|--------|
-      | Spec Kit Memory | {status} | {detail} |
       | Skill Advisor | {status} | {detail} |
       | System Code Graph | {status} | {detail} |
       | Code Mode | {status} | {detail} |
@@ -370,7 +326,6 @@ workflow:
 
       | Server | Before | After | Action Taken |
       |--------|--------|-------|--------------|
-      | Spec Kit Memory | {before} | {after} | {action} |
       | Skill Advisor | {before} | {after} | {action} |
       | System Code Graph | {before} | {after} | {action} |
       | Code Mode | {before} | {after} | {action} |

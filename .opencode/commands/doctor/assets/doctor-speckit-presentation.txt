@@ -12,7 +12,6 @@ What do you want to do?
    1) Update everything to match latest spec-kit release   (e.g. 3.3.0.0 -> 3.4.x)
    2) Debug Memory database              (search index, spec-doc indexing)
    3) Debug Embeddings                   (provider choice, hf-local health)
-   4) Debug Causal-Graph                 (spec lineage, drift_why)
    6) Debug Deep-Loop history            (research/review iteration graphs)
    7) Re-tune Skill Advisor              (which skill gets recommended)
    8) Audit Skill Description budget     (char counts, CI-friendly)
@@ -31,7 +30,6 @@ Accepted answers:
 | `1` | Abort `/doctor`; display `Switch to /doctor:update --migrate for upgrade migration. Exiting /doctor.` |
 | `2` | target = `memory` |
 | `3` | target = `embeddings` |
-| `4` | target = `causal-graph` |
 | `6` | target = `deep-loop` |
 | `7` | target = `skill-advisor` |
 | `8` | target = `skill-budget` |
@@ -53,7 +51,6 @@ Pick by symptom:
    Search returns stale or empty results               -> 2  Memory
    "context-index.sqlite missing" warning              -> 2  Memory
    Model mismatch or hf-local loading state unclear    -> 3  Embeddings
-   Lineage or drift question                           -> 4  Causal-Graph (retiring: unsupported)
    deep-research/deep-review iteration graph empty     -> 6  Deep-Loop
    Convergence not detected between iterations         -> 6  Deep-Loop
    Skill Advisor recommends the wrong skill            -> 7  Skill Advisor
@@ -74,7 +71,7 @@ Press 1-11, 0, or X.
 
 ```text
 Unknown target: [target]
-Valid targets: memory, embeddings, causal-graph, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors
+Valid targets: memory, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors
 Try: /doctor list
 STATUS=FAIL ERROR="unknown_target"
 ```
@@ -94,7 +91,6 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 |--------|----------|----------------|------------------|
 | `memory` | `doctor-memory.yaml` | add-only | Diagnose the memory continuity index; report drift and recommend action |
 | `embeddings` | `doctor-embeddings.yaml` | read-only | Inspect provider selection and hf-local model-server status |
-| `causal-graph` | `doctor-causal-graph.yaml` | add-only | Diagnose causal-edge integrity; sample drift and recommend candidates |
 | `deep-loop` | `doctor-deep-loop.yaml` | add-only | Diagnose deep-loop coverage graphs for research and review |
 | `skill-advisor` | `doctor-skill-advisor.yaml` | mutates | Audit and re-tune skill advisor scoring lanes |
 | `skill-budget` | `doctor-skill-budget.yaml` | read-only | Audit skill, command, and agent description budgets |

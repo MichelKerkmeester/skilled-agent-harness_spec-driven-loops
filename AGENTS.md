@@ -474,7 +474,7 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
 | **Save context** | `/memory:save`, or compose JSON → `generate-context.js` | — |
 | **End session** | `/memory:save` | → `handover.md` update → continuation prompt |
-| **Trigger index maintenance** | `/memory:manage` | — |
+| **Trigger index maintenance** | `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` | run after trigger phrases change; commit the regenerated index |
 | **Analysis / evaluation** | `/memory:search` | — |
 | **Doctor surface** | `/doctor <target>`; `/doctor:mcp install\|debug`; `/doctor:update` | — |
 

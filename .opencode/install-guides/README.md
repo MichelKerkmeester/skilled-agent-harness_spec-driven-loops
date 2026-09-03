@@ -43,7 +43,7 @@ This README serves as both the **directory index** (listing all available guides
 
 ## 2. GUIDES INVENTORY
 
-All 5 `.md` guide entries in this directory (1 regular file + 4 symlinks), grouped by type:
+All 4 `.md` guide entries in this directory (1 regular file + 3 symlinks), grouped by type:
 
 | Guide | Type | Purpose |
 |-------|------|---------|
@@ -51,7 +51,6 @@ All 5 `.md` guide entries in this directory (1 regular file + 4 symlinks), group
 | **MCP Guides** | | |
 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) | Symlink | Chrome DevTools MCP server (bdg CLI) |
 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) | Symlink | Code Mode orchestration MCP |
-| [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) | Symlink | Retired. The Spec Kit Memory MCP server is being decommissioned; retrieval now runs off the trigger index and the ripgrep recipes in `references/retrieval/retrieval-conventions.md` |
 | [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Skill-local | Standalone `system_skill_advisor` MCP server install + tuning |
 | **Automation** | | |
 | [install-scripts/](./install-scripts/) | Directory | Automated install scripts (7 files) |
@@ -899,7 +898,7 @@ After the static checks above pass, run the interactive doctor surface to verify
 - `/doctor:update` rebuilds every database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
 - `/doctor:mcp debug` checks the native MCP servers (Skill Advisor, Code Mode) and offers guided repair with `--fix`.
 
-Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory, causal-graph, deep-loop, skill-advisor, skill-budget.
+Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory, embeddings, deep-loop, skill-advisor, skill-budget.
 
 ---
 
@@ -1142,7 +1141,7 @@ You have completed the installation. Here is your roadmap for getting started.
 | Category | Commands                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | Create   | `/create:agent`, `/create:changelog`, `/create:feature-catalog`, `/create:readme`, `/create:prompt`, `/create:skill`, `/create:manual-testing-playbook` |
-| Memory   | `/memory:search`, `/memory:learn`, `/memory:manage`, `/memory:save` |
+| Memory   | `/memory:search`, `/memory:save` |
 | SpecKit  | `/speckit:complete`, `/deep:research`, `/deep:review`, `/speckit:implement`, `/speckit:plan`, `/speckit:plan --intake-only`, `/speckit:resume` |
 | Utility  | `/agent_router` |
 

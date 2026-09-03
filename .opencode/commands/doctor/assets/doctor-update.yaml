@@ -97,14 +97,10 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - "mcp-server/database/context-index.sqlite"  # canonical memory DB
-    - "mcp-server/database/context-index.sqlite.pre-doctor-update.*.bak"
     - ".opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite"  # standalone advisor routing graph DB
     - ".opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite.pre-doctor-update.*.bak"
     - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
     - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
-    - "mcp-server/database/speckit-eval.db"  # eval/ablation DB
-    - "mcp-server/database/speckit-eval.db.pre-doctor-update.*.bak"
     - "mcp-server/database/.doctor-update.flock"  # single-instance lock
     - "mcp-server/database/.doctor-update.lock"
     - "mcp-server/database/.doctor-update.last-run.json"  # orchestrator state log
@@ -161,7 +157,7 @@ interactive_prompts:
 # DEPENDENCY ORDER
 # ─────────────────────────────────────────────────────────────────
 dependency:
-  order: ["context-index", "causal-edges-init", "skill-graph", "advisor", "deep-loop-graph", "speckit-eval"]
+  order: ["context-index", "skill-graph", "advisor", "deep-loop-graph"]
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -380,19 +376,19 @@ workflow:
     council_line: 4
     approval: "prompt after rendering dashboard and before selecting actions"
     cross_subsystem_dashboard:
-      rows: ["context-index", "causal-edges", "skill-graph", "advisor", "deep-loop", "eval"]
+      rows: ["context-index", "skill-graph", "advisor", "deep-loop"]
       columns: ["status", "age", "coverage", "recommended action"]
       coverage_column_rationale: "context-index row populated by FIX-10 post_run_count_skipped output; other rows show n/a unless their tool surfaces a coverage metric"
 
   phase_5_dependency_order_execute:
     council_line: 4
     approval: "prompt before each dependency step"
-    dependency.order: ["context-index", "causal-edges-init", "skill-graph", "advisor", "deep-loop-graph", "speckit-eval"]
+    dependency.order: ["context-index", "skill-graph", "advisor", "deep-loop-graph"]
     test_failure_injection:
       env_var: "SPECKIT_FAIL_STEP"
       scope: "disposable workspace tests only"
       rule: "Before executing each dependency step, if SPECKIT_FAIL_STEP exactly equals the dependency step name, inject a synthetic failure after snapshots and before mutating that step."
-      example: "SPECKIT_FAIL_STEP=causal-edges-init"
+      example: "SPECKIT_FAIL_STEP=skill-graph"
       state_log_requirement: "Record injected_failure=true, failed_step=<step>, and final_status=rolled_back when rollback is selected."
     execute:
       context-index:
@@ -452,11 +448,9 @@ workflow:
               console.log('  run Phase 8 backfill OR /memory:save per affected packet to fix (or add the path to the index-scope exclusions if intentional)');
             " "$LOG"
           fi
-      causal-edges-init: "RETIRING — the causal-edge store lived in the continuity database being decommissioned. Grep cannot traverse or statefully update graph edges, so this step is a no-op that reports the capability as unsupported. Phase 003 of the memory decommission removes it from the dependency order."
       skill-graph: "system_skill_advisor.skill_graph_scan({})"
       advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"
       deep-loop-graph: "deep_loop_graph_upsert(...)"
-      speckit-eval: "RETIRING — channel ablation scored the retrieval channels of the continuity database being decommissioned. There are no channels left to ablate, so this step is a no-op that reports the capability as unsupported. Phase 003 removes it from the dependency order."
     failure:
       council_line: 5
       retry: "one retry with 5-sec backoff"
