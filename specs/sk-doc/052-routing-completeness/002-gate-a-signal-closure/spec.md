@@ -12,25 +12,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/002-gate-a-signal-closure"
-    last_updated_at: "2026-09-02T18:54:23Z"
+    last_updated_at: "2026-09-03T22:40:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Filled the phase specification from shipped evidence"
-    next_safe_action: "Record a decision for each of the 50 signals still unresolved"
-    blockers:
-      - "AC-003 fails a fresh sweep: 50 declared signals do not resolve and none carries a recorded decision"
+    recent_action: "Closed the phase against a fresh sweep at HEAD"
+    next_safe_action: "Hand the sk-doc activation-pin defect to its owner"
+    blockers: []
     key_files:
-      - "research/gate-a-measurement.md"
-      - "research/gate-a-raw.tsv"
+      - "research/unresolved-signal-decisions.md"
+      - "research/gate-a-rerun-2026-09-03.tsv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-02-052-002-gate-a-signal-closure"
       parent_session_id: null
-    completion_pct: 90
-    open_questions:
-      - "Which of the 50 remaining signals should resolve, and which should be retired"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Gate A baseline is 234 of 444 across five hubs"
       - "The executor hub resolved 7 of its 115 signals and had never been measured"
+      - "All 50 unresolved signals carry a decision, grouped by twelve distinct mechanisms"
+      - "Nineteen of the 21 deferrals are declared discovery-only by their own hub router"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Phase 2: gate-a-signal-closure
@@ -45,8 +45,9 @@ _memory:
 Every signal the five parent hubs declare was swept through the daemon-backed advisor and
 classified into one bucket. The baseline came out at 234 of 444 resolved, one hub had never
 been measured at all, and the follow-up fix moved the total to 328 against the same frozen
-corpus. A fresh sweep on 2026-09-02 returns 331 of 381 against today's declared vocabulary,
-which leaves 50 signals unresolved and AC-003 open.
+corpus. A fresh sweep on 2026-09-03 returns 339 of 389 against today's declared vocabulary once a
+stale activation pin is held aside, and every one of the 50 signals outside that total now
+carries a recorded decision.
 
 **Key Decisions**: Gate A is measured across all five hubs rather than the hub under audit,
 and rank is read from the comparator output rather than re-derived from the `score` field.
@@ -62,7 +63,7 @@ automatic routing, and the advisor graph database that holds each hub's declared
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -90,6 +91,8 @@ registries, graph metadata and one run-time override, and it left the scorer alo
 **Deliverables**:
 - `research/gate-a-measurement.md`, the method, the per-hub distribution and every non-resolved signal.
 - `research/gate-a-raw.tsv`, one row per declared signal so the number can be re-derived.
+- `research/unresolved-signal-decisions.md`, one recorded decision per signal outside RESOLVED.
+- `research/gate-a-rerun-2026-09-03.tsv` and its denominator, the closure sweep at HEAD.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -144,6 +147,9 @@ recorded.
 |-----------|-------------|-------------|
 | `research/gate-a-measurement.md` | Create | Method, per-hub distribution, every non-resolved signal, reproduction commands |
 | `research/gate-a-raw.tsv` | Create | One row per declared signal with its bucket |
+| `research/gate-a-rerun-2026-09-03.tsv` | Create | The closure sweep, with an engine-direct column beside each bucket |
+| `research/declared-signals-2026-09-03.tsv` | Create | The denominator behind that sweep |
+| `research/unresolved-signal-decisions.md` | Create | A decision per unresolved signal, grouped by mechanism |
 | `.opencode/skills/cli-external-orchestration/hub-router.json` | Modify | Stage-two classes for signals that reached the hub and dropped |
 | `.opencode/skills/cli-external-orchestration/mode-registry.json` | Modify | Mode declarations aligned with the router |
 | `.opencode/skills/cli-external-orchestration/graph-metadata.json` | Modify | Retired vocabulary removed from the advisor projection |
@@ -183,7 +189,8 @@ recorded.
 - **SC-002**: The headline 234 of 444 is reproduced by two independent tallies over the same
   replies. Matches AC-002. Met.
 - **SC-003**: A fresh sweep leaves no signal in an unresolved bucket without a decision beside
-  it. Matches AC-003. Not met: the 2026-09-02 re-run leaves 50 of 381.
+  it. Matches AC-003. Met: the 2026-09-03 re-sweep leaves the same 50 of 389, and
+  `research/unresolved-signal-decisions.md` decides each one.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -280,12 +287,13 @@ the choice recorded, **so that** no vocabulary sits in an unexplained bucket.
 
 ## 12. OPEN QUESTIONS
 
-One, and it is the reason this phase is not closed. Fifty declared signals still land outside
-RESOLVED on a fresh sweep: 21 reach their own hub and are dropped, 15 go to a different hub,
-13 surface nothing, and one names several modes. Each needs a resolution or a recorded
-retirement. Several are hub self-names such as `sk-code` and `system-deep-loop`, which may be
-correct behaviour for an ambiguous single word, and that is itself a decision nobody has
-written down.
+None left inside this phase. The fifty signals that do not resolve each carry a decision in
+`research/unresolved-signal-decisions.md`, and the hub self-names that looked undecided turned
+out to be declared discovery-only by their own routers.
+
+Two questions leave the phase rather than close inside it. Fourteen signals are cross-hub
+boundaries that phase 004 owns, and `sk-doc` is serving legacy on a stale activation pin,
+which belongs to whoever owns the compiled-routing re-pin.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -296,3 +304,4 @@ written down.
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `tasks.md`
 - **Measurement**: See `research/gate-a-measurement.md`
+- **Decisions**: See `research/unresolved-signal-decisions.md`

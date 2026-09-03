@@ -39,7 +39,7 @@
       "closure"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,11 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "research/unresolved-signal-decisions.md",
+      "research/gate-a-rerun-2026-09-03.tsv",
       "research/gate-a-measurement.md",
       "research/gate-a-raw.tsv",
+      "research/declared-signals-2026-09-03.tsv",
       ".opencode/skills/cli-external-orchestration/hub-router.json",
       ".opencode/skills/cli-external-orchestration/mode-registry.json",
       ".opencode/skills/cli-external-orchestration/graph-metadata.json",
@@ -94,6 +97,18 @@
         "source": "derived"
       },
       {
+        "name": "unresolved-signal-decisions.md",
+        "kind": "doc",
+        "path": "research/unresolved-signal-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-rerun-2026-09-03.tsv",
+        "kind": "file",
+        "path": "research/gate-a-rerun-2026-09-03.tsv",
+        "source": "derived"
+      },
+      {
         "name": "gate-a-measurement.md",
         "kind": "doc",
         "path": "research/gate-a-measurement.md",
@@ -103,6 +118,12 @@
         "name": "gate-a-raw.tsv",
         "kind": "file",
         "path": "research/gate-a-raw.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "declared-signals-2026-09-03.tsv",
+        "kind": "file",
+        "path": "research/declared-signals-2026-09-03.tsv",
         "source": "derived"
       },
       {
@@ -160,12 +181,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -178,25 +193,13 @@
         "source": "derived"
       },
       {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Declared",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -204,7 +207,7 @@
     ],
     "causal_summary": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
     "created_at": "2026-09-02T16:34:05Z",
-    "last_save_at": "2026-09-02T22:06:42.724Z",
+    "last_save_at": "2026-09-03T22:35:12.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de53da921b07c14a4c69d33067f6d248f4d10319735b9c437a04f3e6c43d494b",
+    "source_fingerprint": "sha256:d9eda54627d4740e7efeb25d4af90e505ee3f5ce2634911356f601ff29ff6d1f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ad45fbf777ba053ec102f828010e17049fe0147936ee58280f357ced0582c42f",
-      "plan.md": "d1dac3780b0750adcadb9643b11da19af9d2c21ca5eec765b1a1cb31a33465c1",
-      "tasks.md": "b62c8ebe5a31e0031ef957453fc8e59642dee7aeab1f1155eeb1c0452149885c",
-      "implementation-summary.md": "f7b1452f30d83271a48ec175e3cb0811fc7b62b847ce4fa24684d5ca1c20f87a"
+      "spec.md": "2e72add1886030a468ebc7527f82fda9e098f870803cbe646f21775465fcae3a",
+      "plan.md": "8ae4a6aab4bcfb34b7dfb6aa834eae0922271f58364749b9094da2d8d72ea38d",
+      "tasks.md": "1c7dfe3c6c11f551c1c8bacf429665c1785176a219ec0c2837336bab64a40388",
+      "implementation-summary.md": "44a34fb5b031602f5738957d3c40a46c0803460ed114dade68323ed9e28c269e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -59,6 +59,7 @@
         "assets/examples/van-age-against-repair-cost.html",
         "assets/examples/where-the-budget-went.html",
         "assets/templates/bar-columns.html",
+        "assets/templates/bar-line-composed.html",
         "assets/templates/bar-rows.html",
         "assets/templates/box-plot.html",
         "assets/templates/calendar-grid.html",

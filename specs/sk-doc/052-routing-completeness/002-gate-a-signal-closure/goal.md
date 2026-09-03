@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/002-gate-a-signal-closure"
-    last_updated_at: "2026-09-02T18:00:00Z"
+    last_updated_at: "2026-09-03T22:40:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "None; the phase is closed"
+    recent_action: "Recorded a decision for every unresolved signal"
+    next_safe_action: "Hand the sk-doc activation-pin defect to its owner"
     blockers: []
     key_files: []
     session_dedup:
@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 Copy these into the objective verbatim. Nothing dereferences a path.
 
 - [x] A fresh sweep reproduces the Gate A count across all five hubs
-- [x] No signal sits unclassified; each has a resolution or a retirement beside it
+- [x] No signal sits unclassified. Each has a resolution or a retirement beside it
 - [x] The executor hub 115 signals are measured rather than assumed
 <!-- /ANCHOR:completion -->
 
@@ -79,10 +79,13 @@ and findings belong here.
 | Gate A measured | Done | `dbc8678c9d` records 234 of 444 across five hubs |
 | Unresolved vocabulary closed | Done | `08eb67a0de` resolves half the declared vocabulary that reached nothing |
 | Executor hub measured | Done | 7 of 115 signals resolved, a hub nobody had measured before |
+| Every unresolved signal decided | Done | `research/unresolved-signal-decisions.md` covers all 50 in twelve groups, one group per signal |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| The distribution mattered more than the total | The documentation hub sat at 90 percent and drew every audit; the executor hub sat at 6 percent and drew none |
+| The distribution mattered more than the total | The documentation hub sat at 90 percent and drew every audit, while the executor hub sat at 6 percent and drew none |
+| Most unresolved signals were already decided, in a file nobody had read | Nineteen of the 21 deferrals are vocabulary the hubs declare discovery-only in their own `hub-router.json`. The deferral was the contract working, not a gap |
+| The re-sweep found a live defect outside this phase | `sk-doc` serves legacy on a stale activation pin since `756a7fcd4c`, which costs 96 signals their mode. Recorded and raised, not fixed here |
 <!-- /ANCHOR:log -->

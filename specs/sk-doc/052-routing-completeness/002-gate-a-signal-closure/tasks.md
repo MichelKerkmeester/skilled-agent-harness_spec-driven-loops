@@ -11,19 +11,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/002-gate-a-signal-closure"
-    last_updated_at: "2026-09-02T18:54:23Z"
+    last_updated_at: "2026-09-03T22:40:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Marked shipped tasks done and left T011 open"
-    next_safe_action: "Record a decision for each of the 50 signals still unresolved"
-    blockers:
-      - "T011 is open: 50 declared signals land outside RESOLVED with no decision beside them"
+    recent_action: "Closed T011 with a decision per unresolved signal"
+    next_safe_action: "Hand the sk-doc activation-pin defect to its owner"
+    blockers: []
     key_files:
-      - "research/gate-a-raw.tsv"
+      - "research/gate-a-rerun-2026-09-03.tsv"
+      - "research/unresolved-signal-decisions.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-02-052-002-gate-a-signal-closure"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -76,7 +76,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T010 Tally the raw replies twice by independent methods. Evidence: a Python pass and a `jq` pass both returned 234 RESOLVED of 444 and agreed per hub.
-- [ ] T011 Re-run the sweep and confirm no signal sits in an unresolved bucket without a decision. Evidence: the 2026-09-02 re-run returns 331 RESOLVED of 381 declared signals, leaving 21 DEFERRED, 15 WRONG_HUB, 13 NO_RECOMMENDATION and 1 MULTI. No per-signal decision is recorded for those 50, so this task and AC-003 stay open.
+- [x] T011 Re-run the sweep and confirm no signal sits in an unresolved bucket without a decision. Evidence: re-swept at HEAD `fe1ec30fe8` on 2026-09-03 over 389 declared signals, `research/gate-a-rerun-2026-09-03.tsv`, all 389 calls exit 0. Holding the stale sk-doc pin aside, the unresolved set is the same 50 signals as the 2026-09-02 capture, member for member. `research/unresolved-signal-decisions.md` records a decision for all 50 in twelve groups, and an exact-set check confirms one group per signal with no duplicate and no gap.
 - [x] T012 Re-run the regression suites after the fix. Evidence: 444 signals, 180 realistic prompts and 224 controls on the five hubs outside scope, with no hub losing a prompt it owned.
 <!-- /ANCHOR:phase-3 -->
 
@@ -85,7 +85,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`. T011 remains open.
+- [x] All tasks marked `[x]`.
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed for the tasks that are done
 <!-- /ANCHOR:completion -->
@@ -139,7 +139,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. AC-001 and AC-002 are Met. AC-003 is Unmet on a fresh sweep.
+- [x] CHK-020 [P0] All acceptance criteria met. AC-001, AC-002 and AC-003 all read Met after the 2026-09-03 re-sweep and the decision table.
 - [x] CHK-021 [P0] Manual testing complete. The sweep, the double tally and the re-run were all run and read.
 - [x] CHK-022 [P1] Edge cases tested. Single-token signals and empty recommendation arrays were measured as they are.
 - [x] CHK-023 [P1] Error scenarios validated. Tied scores were re-derived against the array order after the score re-sort inflated one hub.
@@ -174,7 +174,7 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized. All three record AC-003 as open.
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized. All three record AC-003 as Met and the phase as Complete.
 - [x] CHK-041 [P1] Code comments adequate. The override change carries its reasoning at the site.
 - [x] CHK-042 [P2] README updated. Not applicable.
 <!-- /ANCHOR:docs -->
@@ -195,11 +195,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 10/11 |
+| P0 Items | 11 | 11/11 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 4 | 4/4 |
 
-**Verification Date**: 2026-09-02
+**Verification Date**: 2026-09-03
 <!-- /ANCHOR:summary -->
 
 ---
@@ -252,10 +252,10 @@ _memory:
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [x] CHK-140 [P1] All spec documents synchronized. spec.md, plan.md, tasks.md and acceptance-criteria.md all record AC-003 as open.
+- [x] CHK-140 [P1] All spec documents synchronized. spec.md, plan.md, tasks.md and acceptance-criteria.md all record AC-003 as Met.
 - [x] CHK-141 [P1] API documentation complete. Not applicable.
 - [x] CHK-142 [P2] User-facing documentation updated. Not applicable.
-- [x] CHK-143 [P2] Knowledge transfer documented. `research/gate-a-measurement.md` carries the method and the reproduction commands.
+- [x] CHK-143 [P2] Knowledge transfer documented. `research/gate-a-measurement.md` carries the method, and `research/unresolved-signal-decisions.md` carries a decision per unresolved signal with its mechanism.
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -270,5 +270,5 @@ _memory:
 | Not applicable | QA Lead | [ ] Approved | |
 
 This phase ran as a single-operator measurement and fix, so no separate approver signed it
-off. The evidence rows above carry the verification instead, and one of them is still open.
+off. The evidence rows above carry the verification instead, and all of them now close.
 <!-- /ANCHOR:sign-off -->

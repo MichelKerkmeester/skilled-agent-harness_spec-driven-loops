@@ -99,7 +99,7 @@ const AUTHORED_DIGESTS = Object.freeze({
   'packets/sk-create-agent/SKILL.md': '4d58c69c58f450e86122b8febfe11a71dc7667830707e46f6191a694bf830767',
   'packets/sk-create-benchmark/SKILL.md': 'e1ab6aca520103e1cc46fa3445b8cdbb7b78f425b786800670b47211cfc75d9a',
   'packets/sk-create-changelog/SKILL.md': '60dac718a2d81e42508c52972c8d32a15da772b9671942707bbf53c527b4923b',
-  'packets/sk-create-chart/SKILL.md': 'a1bb56840d07c135c5ca822f4fb3c4b9f7fd50dc237ff0413a665a666ff42c1c',
+  'packets/sk-create-chart/SKILL.md': 'bd6fac4d9073af870c083bdba03534d56634defec8da97cde974f9d368a3457c',
   'packets/sk-create-command/SKILL.md': 'd081701986d558d7771b5871f632e392c71d1874cf1a3dd80dd983a38ddaa483',
   'packets/sk-create-diagram/SKILL.md': '0799f4eef8d405be3c1831dee2f14453aa3886d171b4e21c5eeb9fad8defbc40',
   'packets/sk-create-diff/SKILL.md': '91cf34e8834fb4e8841f8b9b9c56e364133add73cfdd3288a0f226c694668b36',

@@ -12,20 +12,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/002-gate-a-signal-closure"
-    last_updated_at: "2026-09-02T18:54:23Z"
+    last_updated_at: "2026-09-03T22:40:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Recorded the approach taken and its verification commands"
-    next_safe_action: "Record a decision for each of the 50 signals still unresolved"
-    blockers:
-      - "AC-003 fails a fresh sweep: 50 declared signals do not resolve"
+    recent_action: "Recorded the re-sweep method and its concurrency"
+    next_safe_action: "Hand the sk-doc activation-pin defect to its owner"
+    blockers: []
     key_files:
-      - "research/gate-a-measurement.md"
-      - "research/gate-a-raw.tsv"
+      - "research/unresolved-signal-decisions.md"
+      - "research/gate-a-rerun-2026-09-03.tsv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-02-052-002-gate-a-signal-closure"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -69,7 +68,7 @@ because phase 001 established the daemon as the transport that governs automatic
 
 ### Definition of Done
 - [x] Acceptance criteria AC-001 and AC-002 met
-- [ ] AC-003 met. A fresh sweep still leaves 50 signals unresolved with no decision beside them
+- [x] AC-003 met. The 2026-09-03 re-sweep leaves the same 50 signals unresolved, and each carries a recorded decision
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -164,6 +163,15 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend \
 
 The 2026-09-02 re-run used the same two commands over the current declared vocabulary, at 12
 concurrent requests, with exit status read from a per-signal file.
+
+The 2026-09-03 re-sweep at HEAD `fe1ec30fe8` used them again over 389 declared signals. It
+started at 12 concurrent, where 51 calls returned exit 75 and `socket closed before response`,
+which is daemon back-pressure rather than a routing answer. Those 51 were cleared and re-run
+at 4 concurrent, and all 389 replies in the committed capture are exit 0. Each row also
+carries an engine-direct probe through
+`014-runtime-engine/lib/compiled-route.cjs`, which reports what a hub's own compiled router
+decides with the activation gate bypassed. That column is what separates a stale serving pin
+from a signal whose vocabulary genuinely reaches no mode.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -297,7 +305,7 @@ Extract ──► Sweep ──► Classify ──► Tally ──► Fix ──�
 |-----------|-------------|------------------|--------|
 | M1 | Baseline measured | 444 rows, one bucket each, double-tallied | `dbc8678c9d` |
 | M2 | Vocabulary closed | Retirements audited, stage-two classes added | `08eb67a0de` |
-| M3 | Every signal settled | A fresh sweep leaves no unresolved signal without a decision | Open, 50 remain |
+| M3 | Every signal settled | A fresh sweep leaves no unresolved signal without a decision | Done, 2026-09-03. All 50 decided in twelve groups |
 <!-- /ANCHOR:milestones -->
 
 ---
