@@ -59,17 +59,9 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 .col { fill: var(--chart-series-1); }
 .col-lead { fill: var(--chart-emphasis); }
-/* Dashed and drawn below full strength, because the rule token is also the card border and
-   a grid at the same weight competes with the frame around it. The grid is the thing a
-   reader looks past, so it gives way first. */
-.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+.grid { stroke: var(--chart-rule); stroke-width: 1; }
 .cat { fill: var(--chart-ink); font-size: 12px; }
 .tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-/* Every figure a reader compares is set in one mono face, so an axis rung, a column label
-   and a table cell line up digit under digit and a column of numbers reads as a column.
-   The stack is all system faces: a delivered file has no network to fetch one from. The
-   site codes keep the body face, because they are names rather than figures. */
-.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>

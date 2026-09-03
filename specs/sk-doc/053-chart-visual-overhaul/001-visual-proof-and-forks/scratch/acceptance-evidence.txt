@@ -1,0 +1,41 @@
+AC-001 stroke-dasharray count:
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:1
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:1
+AC-001 vertical rules (x1!=x2 grid lines):
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:193:  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:166:  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+
+AC-002 tick rules:
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:79:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:85:.tick, .note, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:67:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:72:.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+AC-003 ui-monospace count:
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:1
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:1
+AC-003 toLocaleString count:
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:0
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:0
+
+AC-004 textContent writes in daily-line:
+194:  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
+232:  node('text', { x: LEFT, y: BASE + 42 }, 'notice').textContent =
+247:  node('text', { x: x(i), y: BASE + 20, 'text-anchor': anchor }, 'tick').textContent = 'day ' + d.day;
+257:  node('text', { x: x(lowIndex) + 10, y: y(lowest.value) + 4 }, 'note').textContent = fmt(lowest.value);
+265:  th.textContent = 'Day ' + d.day;
+268:  td.textContent = fmt(d.value);
+
+AC-006 linearGradient count:
+2
+AC-006 stops:
+67:.fade-top { stop-color: var(--chart-series-1); stop-opacity: 0.18; }
+68:.fade-base { stop-color: var(--chart-series-1); stop-opacity: 0; }
+
+AC-010 diff:
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html
+.opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html
+
+AC-011 hex or named colour outside the palette block:
+  (none in daily-line)
+  (none in bar-columns)

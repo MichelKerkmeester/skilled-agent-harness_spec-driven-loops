@@ -1,0 +1,51 @@
+Class declarations before the chrome edits, captured from the working tree at db9c0590a5.
+
+== daily-line.html ==
+31:  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+50:.figure { margin: 0; overflow-x: auto; }
+51:.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+52:.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+58:td.num { text-align: right; font-variant-numeric: tabular-nums; }
+60:.area { fill: var(--chart-series-1); fill-opacity: 0.10; }
+61:.line { fill: none; stroke: var(--chart-series-1); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+63:.mark { fill: var(--chart-emphasis); }
+65:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+66:.note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; }
+
+== bar-columns.html ==
+31:  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+50:.figure { margin: 0; overflow-x: auto; }
+51:.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+52:.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+58:td.num { text-align: right; font-variant-numeric: tabular-nums; }
+60:.col { fill: var(--chart-series-1); }
+61:.col-lead { fill: var(--chart-emphasis); }
+62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+63:.cat { fill: var(--chart-ink); font-size: 12px; }
+64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+
+== .grid, .tick, .area, .mark across the whole corpus ==
+assets/templates/distribution-strip.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/distribution-strip.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/box-plot.html:64:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/box-plot.html:66:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/daily-line.html:60:.area { fill: var(--chart-series-1); fill-opacity: 0.10; }
+assets/templates/daily-line.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/daily-line.html:63:.mark { fill: var(--chart-emphasis); }
+assets/templates/daily-line.html:65:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/bar-columns.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/bar-columns.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/waterfall.html:64:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/waterfall.html:66:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/stacked-area.html:65:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/stacked-area.html:66:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/grouped-bars.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/grouped-bars.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/scatter.html:62:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/scatter.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/candlestick.html:64:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/candlestick.html:65:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/daily-range.html:63:.grid { stroke: var(--chart-rule); stroke-width: 1; }
+assets/templates/daily-range.html:64:.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+assets/templates/progress-single.html:66:.tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }

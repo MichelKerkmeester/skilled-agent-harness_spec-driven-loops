@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | In Progress. Chrome and the weight comparison shipped, ADR-001 awaiting the operator |
 | **Created** | 2026-09-03 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -71,7 +71,9 @@ weight and a glow verdict by looking at the same chart drawn both ways.
 - The agreed static chrome applied to exactly two templates: `daily-line.html` as the line form
   and `bar-columns.html` as the bar form.
 - A rendered comparison for the stroke weight fork, at the three weights the research named.
-- A rendered comparison for the glow fork, at one low-opacity layer against no layer.
+- ~~A rendered comparison for the glow fork, at one low-opacity layer against no layer.~~
+  Superseded by ADR-002. The operator cut the glow on 2026-09-03 before the sheet was built,
+  so nothing is rendered for it.
 - A decision record that carries both forks, the losing argument intact, and the operator's
   answer once it arrives.
 
@@ -105,7 +107,7 @@ weight and a glow verdict by looking at the same chart drawn both ways.
 |----|-------------|
 | REQ-001 | The five agreed chrome rows below are applied to the two named templates and to nothing else |
 | REQ-002 | The stroke weight fork renders as one comparison sheet holding the same data at 2px, 1px and 0.8px. Every weight comes from a source: 2px is what the corpus draws today at `assets/templates/daily-line.html:61`, and 1px and 0.8px are the two ends of the range the adopting lineage proposed, whose lower end is the vendored constant at `src/registry/charts/recharts-line-chart.tsx:56` |
-| REQ-003 | The glow fork renders as one comparison sheet holding the same data with a single low-opacity layer and without it |
+| REQ-003 | ~~The glow fork renders as one comparison sheet holding the same data with a single low-opacity layer and without it~~ Superseded by ADR-002: the operator rejected the glow outright, so there is nothing to compare |
 | REQ-004 | Every edit passes `node scripts/check-corpus.cjs --render` from the final state |
 | REQ-005 | No chrome value is copied from the vendored source. Each is re-implemented against the corpus custom properties |
 
@@ -151,7 +153,7 @@ different CSS rule than the grid.
 
 - **SC-001**: `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED` from the final state.
 - **SC-002**: `git diff --name-only` over the packet lists exactly two template files.
-- **SC-003**: Both comparison sheets exist under `scratch/forks/` and open in a browser with no install step.
+- **SC-003**: The weight comparison sheet exists under `scratch/forks/` and opens in a browser with no install step. The glow sheet is superseded by ADR-002.
 - **SC-004**: `decision-record.md` carries an ADR per fork, each holding both arguments and a disposition field.
 <!-- /ANCHOR:success-criteria -->
 
@@ -229,7 +231,7 @@ this is a child phase and it is not decomposed further.
 ## 7. OPEN QUESTIONS
 
 - Which stroke weight the operator picks, and whether the answer differs between the line form and the bar form.
-- Whether a single glow layer survives a print test, which is the objection the rejecting lineage raised and which a screen comparison does not answer.
+- ~~Whether a single glow layer survives a print test.~~ Answered on 2026-09-03: the operator cut the glow because a delivered chart is often printed and a blur reads as a smudge. Recorded as ADR-002.
 - Whether the ring on the emphasized point should use the surface token or the card ground, which differ when a chart is embedded rather than delivered whole.
 <!-- /ANCHOR:questions -->
 

@@ -57,32 +57,13 @@ th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
-/* The fill names a gradient rather than a flat value. The colour still comes from the
-   series token, which the gradient stops below carry; this property exists because a fill
-   has to resolve through a --chart- reference to satisfy the corpus colour rule, and a
-   bare url() reference reads to that rule as a fill with no colour in it at all. */
-:root { --chart-area-fill: url(#area-fade); }
-
-.area { fill: var(--chart-area-fill); }
-.fade-top { stop-color: var(--chart-series-1); stop-opacity: 0.18; }
-.fade-base { stop-color: var(--chart-series-1); stop-opacity: 0; }
-.line { fill: none; stroke: var(--chart-series-1); stroke-width: 1; stroke-linejoin: round; stroke-linecap: round; }
-/* Dashed and drawn below full strength, because the rule token is also the card border and
-   a grid at the same weight competes with the frame around it. The grid is the thing a
-   reader looks past, so it gives way first. */
-.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
-.dot { fill: var(--chart-series-1); }
-/* The ring is the surface colour, so the emphasized reading separates from the line it
-   sits on instead of merging into it. */
-.mark { fill: var(--chart-emphasis); stroke: var(--chart-surface); stroke-width: 2; }
+.area { fill: var(--chart-series-1); fill-opacity: 0.10; }
+.line { fill: none; stroke: var(--chart-series-1); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.grid { stroke: var(--chart-rule); stroke-width: 1; }
+.mark { fill: var(--chart-emphasis); }
 .notice { fill: var(--chart-muted); font-size: 12px; }
 .tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 .note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; }
-/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
-   and a table cell line up digit under digit and a column of numbers reads as a column.
-   The stack is all system faces: a delivered file has no network to fetch one from. The
-   sentence about missing days keeps the body face, because it is prose and not a figure. */
-.tick, .note, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -92,13 +73,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart">
       <title id="fig-title">Orders per day over twenty-eight days</title>
-      <desc id="fig-desc">A daily line over twenty-eight days with an area fill beneath it that fades toward the baseline. The series falls sharply on day eleven to a low of 96 and settles below its earlier level. The table below the chart carries every reading as text.</desc>
-      <defs>
-        <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">
-          <stop offset="0" class="fade-top"></stop>
-          <stop offset="1" class="fade-base"></stop>
-        </linearGradient>
-      </defs>
+      <desc id="fig-desc">A daily line over twenty-eight days with a light area fill beneath it. The series falls sharply on day eleven to a low of 96 and settles below its earlier level. The table below the chart carries every reading as text.</desc>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
@@ -123,8 +98,7 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
-// Everything below draws. A near-hairline is the right weight here: heavy enough to hold on
-// paper, light enough that the line reads as a measurement rather than as a border. The area fill helps only
+// Everything below draws. A hairline is the right weight here. The area fill helps only
 // when the reader is reading shape rather than reading values off the axis.
 const SVG = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('chart');
@@ -182,13 +156,6 @@ const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').l
 const x = function (i) { return LEFT + (RIGHT - LEFT) * (i / (DATA.length - 1)); };
 const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
 
-// The fade runs down the plot rather than down each path's own box. A series broken by a
-// gap is drawn as several paths, and a per-path ramp would give each piece its own ink
-// density at the same height, which reads as an encoding nobody intended.
-const fade = document.getElementById('area-fade');
-fade.setAttribute('y1', TOP);
-fade.setAttribute('y2', BASE);
-
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
@@ -219,14 +186,6 @@ segments.forEach(function (points) {
   node('path', { d: 'M' + points.join(' L') + (points.length === 1 ? ' L' + points[0] : '') }, 'line');
 });
 
-// A dot per reading says where a value was actually recorded. A line alone leaves that to
-// be guessed from its corners, and a corner is also what a steep pair of readings makes
-// where nothing was recorded at all.
-DATA.forEach(function (d, i) {
-  if (!Number.isFinite(d.value)) return;
-  node('circle', { cx: x(i), cy: y(d.value), r: 2.5 }, 'dot');
-});
-
 // A line with a hole in it and a line that is simply short look the same, so the count
 // is stated inside the figure rather than left to the table to imply.
 if (omitted) {
@@ -236,12 +195,10 @@ if (omitted) {
 }
 
 // Thinning, not rotating. Days sit (RIGHT - LEFT) / (count - 1) apart, which is 24 units
-// over twenty-eight days. A 'day 28' label is six characters at the fixed mono advance of
-// roughly 0.6em, so about 40 units at the 11px .tick size, and drawing every day overlaps
-// by two thirds. Every seventh leaves roughly 170 units of clear space. The estimate is
-// exact rather than averaged now that the label is monospaced, which is worth keeping:
-// raise the divisor when the label grows, because a date reads far wider than a day
-// number, and the first and last are always kept so the span stays readable.
+// over twenty-eight days, and a 'day 28' label is about 40 units wide at the 11px .tick
+// size, so drawing every day overlaps by two thirds. Every seventh leaves roughly 170
+// units of clear space. Raise the divisor when the label grows: a date reads far wider
+// than a day number, and the first and last are always kept so the span stays readable.
 DATA.forEach(function (d, i) {
   if (d.day % 7 !== 0 && d.day !== 1) return;
   const anchor = i === 0 ? 'start' : i === DATA.length - 1 ? 'end' : 'middle';

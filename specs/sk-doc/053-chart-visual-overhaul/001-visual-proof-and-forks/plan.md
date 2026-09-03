@@ -36,10 +36,13 @@ fill fades toward the baseline instead of sitting flat. Each change is one or tw
 declarations against custom properties that already exist, which is what keeps a corpus-wide
 restyle affordable later.
 
-Then the two forks. The stroke weight sheet draws the same twenty-eight readings three times at
-2px, 1px and 0.8px. The glow sheet draws them twice, once with a single `feGaussianBlur` layer
-at low opacity behind the emphasis line and once without. Both sheets live in `scratch/` because
-a sheet carrying three copies of one series is a workbench rather than a delivery.
+Then the weight fork. The stroke weight sheet draws the same twenty-eight readings three times at
+2px, 1px and 0.8px. It lives in `scratch/` because a sheet carrying three copies of one series is
+a workbench rather than a delivery.
+
+The glow fork never reached a sheet. The operator cut it on 2026-09-03, before the comparison was
+built, on the ground that a delivered chart is often printed and a blur reads as a smudge. ADR-002
+carries the decision and both lineage arguments.
 
 The phase then stops. It does not pick a default, and it does not roll anything to the other
 eighteen templates.

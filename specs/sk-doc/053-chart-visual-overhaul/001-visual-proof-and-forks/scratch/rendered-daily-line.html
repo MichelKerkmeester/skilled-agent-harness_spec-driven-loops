@@ -1,6 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html>
+<html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="chart-template" content="daily-line">
@@ -66,7 +65,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .area { fill: var(--chart-area-fill); }
 .fade-top { stop-color: var(--chart-series-1); stop-opacity: 0.18; }
 .fade-base { stop-color: var(--chart-series-1); stop-opacity: 0; }
-.line { fill: none; stroke: var(--chart-series-1); stroke-width: 1; stroke-linejoin: round; stroke-linecap: round; }
+.line { fill: none; stroke: var(--chart-series-1); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
 /* Dashed and drawn below full strength, because the rule token is also the card border and
    a grid at the same weight competes with the frame around it. The grid is the thing a
    reader looks past, so it gives way first. */
@@ -94,20 +93,20 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
       <title id="fig-title">Orders per day over twenty-eight days</title>
       <desc id="fig-desc">A daily line over twenty-eight days with an area fill beneath it that fades toward the baseline. The series falls sharply on day eleven to a low of 96 and settles below its earlier level. The table below the chart carries every reading as text.</desc>
       <defs>
-        <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">
+        <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="20" y2="244">
           <stop offset="0" class="fade-top"></stop>
           <stop offset="1" class="fade-base"></stop>
         </linearGradient>
       </defs>
-    </svg>
+    <line x1="50" y1="244" x2="706" y2="244" class="grid"></line><text x="40" y="248" text-anchor="end" class="tick">0</text><line x1="50" y1="188" x2="706" y2="188" class="grid"></line><text x="40" y="192" text-anchor="end" class="tick">60</text><line x1="50" y1="132" x2="706" y2="132" class="grid"></line><text x="40" y="136" text-anchor="end" class="tick">120</text><line x1="50" y1="76" x2="706" y2="76" class="grid"></line><text x="40" y="80" text-anchor="end" class="tick">180</text><line x1="50" y1="20" x2="706" y2="20" class="grid"></line><text x="40" y="24" text-anchor="end" class="tick">240</text><path d="M50,244 L50,72.26666666666665 L74.29629629629629,65.73333333333335 L98.59259259259258,79.73333333333335 L122.88888888888889,54.53333333333333 L147.18518518518516,59.20000000000002 L171.48148148148147,111.46666666666667 L195.77777777777777,121.73333333333335 L220.07407407407408,68.53333333333333 L244.37037037037035,62 L268.66666666666663,82.53333333333333 L292.96296296296293,154.39999999999998 L317.25925925925924,143.2 L341.55555555555554,131.06666666666666 L365.85185185185185,137.60000000000002 L390.14814814814815,119.86666666666666 L414.44444444444446,108.66666666666669 L438.7407407407407,114.26666666666665 L463.03703703703707,103.06666666666666 L487.3333333333333,105.86666666666667 L511.6296296296296,139.46666666666667 L535.9259259259259,146.93333333333334 L560.2222222222222,98.4 L584.5185185185185,92.79999999999998 L608.8148148148148,104.93333333333334 L633.1111111111111,96.53333333333333 L657.4074074074074,100.26666666666665 L681.7037037037037,133.86666666666667 L706,142.26666666666665 L706,244 Z" class="area"></path><path d="M50,72.26666666666665 L74.29629629629629,65.73333333333335 L98.59259259259258,79.73333333333335 L122.88888888888889,54.53333333333333 L147.18518518518516,59.20000000000002 L171.48148148148147,111.46666666666667 L195.77777777777777,121.73333333333335 L220.07407407407408,68.53333333333333 L244.37037037037035,62 L268.66666666666663,82.53333333333333 L292.96296296296293,154.39999999999998 L317.25925925925924,143.2 L341.55555555555554,131.06666666666666 L365.85185185185185,137.60000000000002 L390.14814814814815,119.86666666666666 L414.44444444444446,108.66666666666669 L438.7407407407407,114.26666666666665 L463.03703703703707,103.06666666666666 L487.3333333333333,105.86666666666667 L511.6296296296296,139.46666666666667 L535.9259259259259,146.93333333333334 L560.2222222222222,98.4 L584.5185185185185,92.79999999999998 L608.8148148148148,104.93333333333334 L633.1111111111111,96.53333333333333 L657.4074074074074,100.26666666666665 L681.7037037037037,133.86666666666667 L706,142.26666666666665" class="line"></path><circle cx="50" cy="72.26666666666665" r="2.5" class="dot"></circle><circle cx="74.29629629629629" cy="65.73333333333335" r="2.5" class="dot"></circle><circle cx="98.59259259259258" cy="79.73333333333335" r="2.5" class="dot"></circle><circle cx="122.88888888888889" cy="54.53333333333333" r="2.5" class="dot"></circle><circle cx="147.18518518518516" cy="59.20000000000002" r="2.5" class="dot"></circle><circle cx="171.48148148148147" cy="111.46666666666667" r="2.5" class="dot"></circle><circle cx="195.77777777777777" cy="121.73333333333335" r="2.5" class="dot"></circle><circle cx="220.07407407407408" cy="68.53333333333333" r="2.5" class="dot"></circle><circle cx="244.37037037037035" cy="62" r="2.5" class="dot"></circle><circle cx="268.66666666666663" cy="82.53333333333333" r="2.5" class="dot"></circle><circle cx="292.96296296296293" cy="154.39999999999998" r="2.5" class="dot"></circle><circle cx="317.25925925925924" cy="143.2" r="2.5" class="dot"></circle><circle cx="341.55555555555554" cy="131.06666666666666" r="2.5" class="dot"></circle><circle cx="365.85185185185185" cy="137.60000000000002" r="2.5" class="dot"></circle><circle cx="390.14814814814815" cy="119.86666666666666" r="2.5" class="dot"></circle><circle cx="414.44444444444446" cy="108.66666666666669" r="2.5" class="dot"></circle><circle cx="438.7407407407407" cy="114.26666666666665" r="2.5" class="dot"></circle><circle cx="463.03703703703707" cy="103.06666666666666" r="2.5" class="dot"></circle><circle cx="487.3333333333333" cy="105.86666666666667" r="2.5" class="dot"></circle><circle cx="511.6296296296296" cy="139.46666666666667" r="2.5" class="dot"></circle><circle cx="535.9259259259259" cy="146.93333333333334" r="2.5" class="dot"></circle><circle cx="560.2222222222222" cy="98.4" r="2.5" class="dot"></circle><circle cx="584.5185185185185" cy="92.79999999999998" r="2.5" class="dot"></circle><circle cx="608.8148148148148" cy="104.93333333333334" r="2.5" class="dot"></circle><circle cx="633.1111111111111" cy="96.53333333333333" r="2.5" class="dot"></circle><circle cx="657.4074074074074" cy="100.26666666666665" r="2.5" class="dot"></circle><circle cx="681.7037037037037" cy="133.86666666666667" r="2.5" class="dot"></circle><circle cx="706" cy="142.26666666666665" r="2.5" class="dot"></circle><text x="50" y="264" text-anchor="start" class="tick">day 1</text><text x="195.77777777777777" y="264" text-anchor="middle" class="tick">day 7</text><text x="365.85185185185185" y="264" text-anchor="middle" class="tick">day 14</text><text x="535.9259259259259" y="264" text-anchor="middle" class="tick">day 21</text><text x="706" y="264" text-anchor="end" class="tick">day 28</text><circle cx="292.96296296296293" cy="154.39999999999998" r="5" class="mark"></circle><text x="302.96296296296293" y="158.39999999999998" class="note">96</text></svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
+  <table data-chart-table="">
     <caption>Orders placed per day, twenty-eight days.</caption>
     <thead><tr><th scope="col">Day</th><th scope="col">Orders</th></tr></thead>
-    <tbody id="rows"></tbody>
+    <tbody id="rows"><tr><th scope="row">Day 1</th><td class="num">184</td></tr><tr><th scope="row">Day 2</th><td class="num">191</td></tr><tr><th scope="row">Day 3</th><td class="num">176</td></tr><tr><th scope="row">Day 4</th><td class="num">203</td></tr><tr><th scope="row">Day 5</th><td class="num">198</td></tr><tr><th scope="row">Day 6</th><td class="num">142</td></tr><tr><th scope="row">Day 7</th><td class="num">131</td></tr><tr><th scope="row">Day 8</th><td class="num">188</td></tr><tr><th scope="row">Day 9</th><td class="num">195</td></tr><tr><th scope="row">Day 10</th><td class="num">173</td></tr><tr><th scope="row">Day 11</th><td class="num">96</td></tr><tr><th scope="row">Day 12</th><td class="num">108</td></tr><tr><th scope="row">Day 13</th><td class="num">121</td></tr><tr><th scope="row">Day 14</th><td class="num">114</td></tr><tr><th scope="row">Day 15</th><td class="num">133</td></tr><tr><th scope="row">Day 16</th><td class="num">145</td></tr><tr><th scope="row">Day 17</th><td class="num">139</td></tr><tr><th scope="row">Day 18</th><td class="num">151</td></tr><tr><th scope="row">Day 19</th><td class="num">148</td></tr><tr><th scope="row">Day 20</th><td class="num">112</td></tr><tr><th scope="row">Day 21</th><td class="num">104</td></tr><tr><th scope="row">Day 22</th><td class="num">156</td></tr><tr><th scope="row">Day 23</th><td class="num">162</td></tr><tr><th scope="row">Day 24</th><td class="num">149</td></tr><tr><th scope="row">Day 25</th><td class="num">158</td></tr><tr><th scope="row">Day 26</th><td class="num">154</td></tr><tr><th scope="row">Day 27</th><td class="num">118</td></tr><tr><th scope="row">Day 28</th><td class="num">109</td></tr></tbody>
   </table>
 </div>
 <script>
@@ -123,8 +122,7 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
-// Everything below draws. A near-hairline is the right weight here: heavy enough to hold on
-// paper, light enough that the line reads as a measurement rather than as a border. The area fill helps only
+// Everything below draws. A hairline is the right weight here. The area fill helps only
 // when the reader is reading shape rather than reading values off the axis.
 const SVG = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('chart');
@@ -272,5 +270,6 @@ DATA.forEach(function (d) {
   rows.appendChild(tr);
 });
 </script>
-</body>
-</html>
+
+
+</body></html>
