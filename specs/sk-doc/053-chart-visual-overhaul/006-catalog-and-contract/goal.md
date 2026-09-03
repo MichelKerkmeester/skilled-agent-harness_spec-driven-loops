@@ -59,6 +59,7 @@ Frozen choices. Changing one is an amendment.
 | D2 | A system reassignment is a paired edit. The catalog cell and the template's own declaration change together or not at all |
 | D3 | This phase changes one picture, and it owes a before and after for it. A documentation phase does not redraw a chart quietly |
 | D4 | The gradient clause is drafted and not applied. Only a yes from the operator moves it |
+| D4a | Answered yes on 2026-09-03, scoped to systems that already encode magnitude. Permitted on the calendar grid, the heat matrix and the progress form, forbidden on every neutral or categorical series, and enforced by the checker |
 | D5 | The shared geometry block records what the corpus already does. A form whose numbers differ keeps them and says why |
 | D6 | The empty-data guard is proved on a fixture and proved silent on the shipped data, per form |
 | D7 | The checker is not edited here. Phase 007 asserts every invariant this phase introduces |

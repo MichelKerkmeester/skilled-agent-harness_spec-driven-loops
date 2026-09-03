@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Three problems, and they close the packet together",
     "created_at": "2026-09-03T08:01:46.788Z",
-    "last_save_at": "2026-09-03T08:01:46.788Z",
+    "last_save_at": "2026-09-03T09:05:56.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:7033d39704d4beb43d5341ad366755fb8c68f6c92d38e2dbc01ac30eb08d1d2e",
+    "source_fingerprint": "sha256:7982b5104c5049a98bc65b0162a80ff9fe053c0a4df1c2e28bb5d0cc8790399c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c57ab60f879fc6a6d4ae160e336049cd66667836c544cd0c4c422eb7476b758d",

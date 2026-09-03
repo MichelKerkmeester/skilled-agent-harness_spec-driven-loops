@@ -178,14 +178,14 @@
     ],
     "causal_summary": "The operator does not like how `sk-create-chart` looks",
     "created_at": "2026-09-03T08:03:14.282Z",
-    "last_save_at": "2026-09-03T08:09:41.977Z",
+    "last_save_at": "2026-09-03T09:05:55.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:1f1f4abc3b2f590b30b776bc105e0319ed4d3f980f761e6466d47bfc931a15e6",
+    "source_fingerprint": "sha256:d1b23c742e19ac3f567038d92d687e18439730fa05483854b0d8b14cb84eec03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2636bf60e3b006a54c35cb87ac86ed6fad89f7fd858eaa687788f714ec7795b5"

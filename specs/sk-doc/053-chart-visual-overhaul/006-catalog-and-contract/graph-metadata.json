@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Five separate defects, one theme",
     "created_at": "2026-09-03T08:01:46.458Z",
-    "last_save_at": "2026-09-03T08:01:46.458Z",
+    "last_save_at": "2026-09-03T09:05:56.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6da0650620e98789fb98875780ef5ec069b8992159fece7cbfbd590874036b96",
+    "source_fingerprint": "sha256:547b6232aff74d2e6a25cd76f53e49b7c05c489bbe2cf4c4dfe3bcebd1fa6ff1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "32fe754492de465660be71439c501ecbe408dce1c5b2c2f28d334740fa9a8ec1",

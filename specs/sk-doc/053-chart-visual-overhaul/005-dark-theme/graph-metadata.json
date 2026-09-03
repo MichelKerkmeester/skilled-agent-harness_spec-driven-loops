@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Twenty chart forms, six family deliveries and three palette proof sheets all paint on a warm paper surface",
     "created_at": "2026-09-03T07:52:32.972Z",
-    "last_save_at": "2026-09-03T07:52:32.972Z",
+    "last_save_at": "2026-09-03T09:05:56.039Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:fc220e6beb8038074a5cd40099e5f1dc18d01da20bd74734775ffb790bd72a8d",
+    "source_fingerprint": "sha256:fb2f327d0ead15599e53c1afe63897e8ce9f5adf7d4a4a0db74b44d7fe780dd8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d66d6b14d0993f3be3d6e26275596a673a46b1632654ee55249fc7d3234f2ea5",

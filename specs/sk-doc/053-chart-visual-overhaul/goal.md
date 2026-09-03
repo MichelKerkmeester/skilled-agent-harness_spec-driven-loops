@@ -61,6 +61,7 @@ Frozen choices. Changing one is an amendment.
 | D2 | The twenty templates stay one self-contained file each. No build step, no charting library, no web font, no remote resource and no runtime fetch |
 | D3 | Determinism survives. Two renders of one file agree, which binds the motion phase to a settled final state and bans any handler that reads the clock or a random source |
 | D4 | The four operator decisions in section 6 of the synthesis are decisions, not assumptions. Line weight and glow, the dark theme, a multi-hue series and the composed form each get a recorded disposition before the work that depends on them ships |
+| D5 | The operator answered on 2026-09-03 that phase 001 is the only pause. Its render comparison is shown and answered, then phases 002 through 007 run without further prompts, each committed and pushed as it validates |
 <!-- /ANCHOR:directive -->
 
 ---

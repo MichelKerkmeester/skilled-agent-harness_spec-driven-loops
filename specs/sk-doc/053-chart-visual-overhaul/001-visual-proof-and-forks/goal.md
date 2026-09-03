@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Exactly two templates are touched: `daily-line.html` and `bar-columns.html`. Rolling out is phase 002 and doing it here defeats the point of proving first |
 | D2 | Every chrome value is re-implemented against corpus custom properties. Nothing is copied from the vendored source, per `SKILL.md:134` |
-| D3 | The glow is one low-opacity layer and it defaults to off. Both lineages reject the four-layer stack the vendored source ships |
+| D3 | The glow is cut. The operator answered on 2026-09-03 that a delivered chart is often printed, where a blur reads as a smudge. No glow sheet is rendered and no filter is authored |
 | D4 | The phase stops at the fork rather than choosing. A default picked here is the mistake this phase exists to avoid |
 | D5 | Comparison sheets live in `scratch/`. A page carrying three copies of one series is a workbench and is never handed over as a chart |
 <!-- /ANCHOR:directive -->

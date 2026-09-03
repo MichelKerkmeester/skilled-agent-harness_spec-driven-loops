@@ -57,6 +57,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | The contract amendment is the operator's call. No asset file gains a second palette block until the answer is recorded |
+| D1a | Answered yes on 2026-09-03. A file carries one palette block per theme and at most two, each matched against its own projection of the palette source in both directions. The phase proceeds |
 | D2 | Dark series values are re-chosen for the dark ground, not lightened. The existing derivation rule keeps governing steps inside one theme |
 | D3 | Every gate is computed from the palette source per theme, against that theme's own surface. No threshold is restated in a test |
 | D4 | A gate failure is fixed by re-deriving the value, never by lowering the threshold |

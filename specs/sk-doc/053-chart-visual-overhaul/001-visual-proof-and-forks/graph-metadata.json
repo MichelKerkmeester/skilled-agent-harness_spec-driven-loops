@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Twenty templates share one visual register, so any chrome change is a twenty-file change",
     "created_at": "2026-09-03T08:02:24.685Z",
-    "last_save_at": "2026-09-03T08:07:12.421Z",
+    "last_save_at": "2026-09-03T09:05:55.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:f1d3d7c51fb53a7695f9e2b28b3927665ad5c805bcd249577977d46824ffee1f",
+    "source_fingerprint": "sha256:d9fbc8bca50d0191a7e8f797cab94917a7aef08813f43a9e797e994b033c86df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0c14301dc9c8cf09ca6a10cfcc13fcbd50a4b014d18dd4cbf1d3790d2bb1c42c",

@@ -58,6 +58,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Adding the composed form to the catalog is the operator's call. The form is not indexed until the answer is recorded |
+| D1a | Answered yes on 2026-09-03. The catalog gains the composed form, taking the corpus to twenty-one |
 | D2 | A second scale appears only when the two series maxima differ by an order. The condition is computed from the data block, never chosen by the author |
 | D3 | No assertion is trusted until it has been watched failing on a mutated fixture, and every mutation is reverted before the phase closes |
 | D4 | An assertion that fails a correct file is rewritten. The corpus is never edited to satisfy a wrong check |
