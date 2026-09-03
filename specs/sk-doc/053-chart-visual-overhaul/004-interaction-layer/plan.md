@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: The interaction layer for the chart corpus"
-description: "How the tooltip, the legend, the dim and the hygiene reach thirteen template files without breaking the palette rule, the accessibility floor or the promise that two renders of one file agree."
+description: "How the tooltip, the legend, the dim and the hygiene reach twelve template files without breaking the palette rule, the accessibility floor or the promise that two renders of one file agree."
 trigger_phrases:
   - "chart interaction plan"
   - "chart tooltip recipe"
@@ -29,7 +29,7 @@ contextType: "implementation"
 
 ### Overview
 
-Three behaviours land, each on a named set of forms. A hover tooltip goes on the seven forms whose marks carry a value the picture cannot print. An in-figure legend goes on the five multi-series forms. A dim to 0.3 goes on the five forms where one series is worth isolating from the rest. Thirteen files gain a pointer, and the same two lines of hygiene follow the pointer wherever it goes.
+Three behaviours land, each on a named set of forms. A hover tooltip goes on the seven forms whose marks carry a value the picture cannot print. An in-figure legend goes on the four multi-series forms. A dim to 0.3 goes on the five forms where one series is worth isolating from the rest. Twelve files gain a pointer, and the same line of hygiene follows the pointer wherever it goes.
 
 Nothing here is copied. The vendored source is read for the recipe and re-authored in the corpus idiom, because the packet's own rule forbids copying a fragment from an outside chart library and carves out nothing for licence.
 <!-- /ANCHOR:summary -->
@@ -40,15 +40,15 @@ Nothing here is copied. The vendored source is read for the recipe and re-author
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 003 closed, so the reduce-motion gate the tooltip transition sits behind already exists
-- [ ] The per-form table below is settled, including the `independent-percentages` question
-- [ ] Baseline corpus check captured before any edit
+- [x] Phase 003 closed, so the reduce-motion gate the tooltip transition sits behind already exists
+- [x] The per-form table below is settled, including the `independent-percentages` question
+- [x] Baseline corpus check captured before any edit
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state
-- [ ] The first-paint determinism proof is recorded with both render hashes
-- [ ] Docs updated (spec, plan, tasks, acceptance-criteria, goal)
+- [x] All acceptance criteria met
+- [x] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state
+- [x] The first-paint determinism proof is recorded with both render hashes
+- [x] Docs updated (spec, plan, tasks, acceptance-criteria, goal)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -83,6 +83,11 @@ From `context/evilcharts/src/registry/ui/recharts-legend.tsx:42-49` for the row 
 - One swatch per series at 8px square with a 2px corner radius, then the series name at the tick size.
 - 4px between a swatch and its name, and a wider gap between entries.
 - The subtitle sentence stays the caption. It keeps naming the time range and the argument, and it stops carrying the colour key.
+- Each entry is a button rather than a label, because the key is also the control for the dim. A control a pointer can reach has to be reachable from a keyboard, so an entry carries `tabindex`, a button role and a pressed state, and answers Enter and Space as well as a click.
+
+Three of the four forms already carried a key inside the figure and it was rebuilt to this
+recipe rather than added. `parallel-axes` names each line where it ends and gained a swatch
+beside that name instead of a detached row. Both readings are recorded in ADR-003.
 
 ### The dim recipe
 
@@ -92,9 +97,15 @@ From `context/evilcharts/src/registry/charts/recharts-line-chart.tsx:542-548` an
 - Clicking a legend entry latches the same state, and clicking it again clears it.
 - Leaving the drawing clears the hover state, so no form is left permanently dimmed.
 
-### The hygiene pair
+### The hygiene line
 
-From `context/evilcharts/src/app/globals.css:318-337`, scoped down. Text inside the drawing gets `user-select: none` so a drag over the chart does not select the axis labels instead of driving the interaction, and the pointer-driven mark shapes lose their focus ring only where they are not keyboard reachable. Nothing a reader can tab to loses its indicator, which is what the opposing lineage was protecting.
+From `context/evilcharts/src/app/globals.css:318-337`, scoped down to one declaration.
+
+```css
+.figure svg :focus:not(:focus-visible) { outline: none; }
+```
+
+The focus half is adopted in the form `:focus-visible` makes possible: the ring is dropped for a reader who clicked and kept for a reader who tabbed, so nothing reachable by keyboard loses its indicator. The text-selection half is dropped outright. `user-select: none` would stop a reader copying a value out of a delivered chart, and the numbers in a delivered chart are meant to be copyable. ADR-002 records the reasoning and what it costs.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -102,17 +113,17 @@ From `context/evilcharts/src/app/globals.css:318-337`, scoped down. Text inside 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-This is the table the phase is judged on. Every one of the twenty forms is listed, and the seven that gain nothing carry the reason.
+This is the table the phase is judged on. Every one of the twenty forms is listed, and the eight that gain nothing carry the reason.
 
 | id | family | tooltip | legend | dim | hygiene | Reason |
 |----|--------|---------|--------|-----|---------|--------|
 | `bar-rows` | comparison | no | no | no | no | Each bar already prints its value at the bar end |
 | `bar-columns` | comparison | no | no | no | no | Each column already prints its value above the column |
-| `grouped-bars` | comparison | no | yes | yes | yes | Two series across categories, and the key currently lives only in the subtitle |
+| `grouped-bars` | comparison | no | yes | yes | yes | Two series across categories. Its key was already in the figure and was rebuilt to the recipe, per ADR-003 |
 | `unit-grid` | composition | no | no | no | no | Every part already carries its own label beside its block, so there is no detached key to bring inside the figure |
 | `unit-ring` | composition | no | no | no | no | Every group already carries its count beside its label |
-| `stacked-bars` | composition | no | yes | yes | yes | Segments share an edge, so isolating one stack layer is the reading the form needs |
-| `independent-percentages` | composition | no | yes | no | yes | Several measures that share no whole. Section 10 of the spec records the doubt about calling this multi-series |
+| `stacked-bars` | composition | no | yes | yes | yes | Segments share an edge, so isolating one stack layer is the reading the form needs. Its key was already in the figure and was rebuilt to the recipe |
+| `independent-percentages` | composition | no | no | no | no | Settled by ADR-001. Five independent measures, each already naming itself in the gutter and printing its own value. Colour marks the emphasised row rather than an identity, so there is no key to bring inside the figure |
 | `treemap` | composition | yes | no | no | yes | About thirty leaves, and a small cell has no room for a label |
 | `daily-line` | time | no | no | yes | yes | One series plus an emphasised point, and the dim is what separates the emphasis from the rest |
 | `daily-range` | time | no | no | no | no | The minimum and the maximum are both already printed per day |
@@ -120,18 +131,18 @@ This is the table the phase is judged on. Every one of the twenty forms is liste
 | `waterfall` | time | no | no | no | no | Every step already prints its signed value and the running total |
 | `progress-single` | time | no | no | no | no | One value against one goal, both printed |
 | `candlestick` | time | yes | no | no | yes | Four values per period, and printing all four per period is unreadable |
-| `stacked-area` | time | no | yes | yes | yes | Two to five bands, and the band under the pointer is the reading |
+| `stacked-area` | time | no | yes | yes | yes | Two to five bands, and the band under the pointer is the reading. Its key was already in the figure and was rebuilt to the recipe |
 | `distribution-strip` | distribution | yes | no | no | yes | Tens to a few hundred dots, one record each |
 | `box-plot` | distribution | yes | no | no | yes | A five-number summary per group, which no picture prints in place |
 | `scatter` | relationship | yes | no | no | yes | Two dimensions per point and no room for a pair of labels per mark |
-| `parallel-axes` | relationship | no | yes | yes | yes | One line per entity across several axes, and tracing one line is the whole reading |
+| `parallel-axes` | relationship | no | yes | yes | yes | One line per entity across several axes, and tracing one line is the whole reading. Its key stays at the line ends and gained a swatch there rather than a detached row |
 | `heat-matrix` | matrix | yes | no | no | yes | Up to one hundred cells shaded by value, with the value nowhere in the picture |
 
-Counts the verification depends on: tooltip 7, legend 5, dim 5, hygiene 13, untouched 7.
+Counts the verification depends on: tooltip 7, legend 4, dim 5, hygiene 12, untouched 8. The legend and hygiene counts each dropped by one when ADR-001 settled `independent-percentages`, which is the outcome section 10 of the spec predicted for that reading.
 
 Required inventories:
-- Producers of interaction: `grep -l 'data-chart-tooltip\|data-chart-legend\|data-chart-dim' assets/templates/*.html`.
-- Consumers of the formatter: `grep -c 'fmt(' assets/templates/*.html`, run before and after, so a tooltip that formats its own number is visible in the diff.
+- Producers of interaction: `grep -l 'data-chart-tooltip\|data-chart-legend\|data-chart-dim' assets/templates/*.html`, checked against the exact file names above rather than against a count, because a count passes on any four files.
+- Consumers of the formatter: `grep -o 'fmt(' assets/templates/*.html | wc -l`, run before and after, so a tooltip that formats its own number is visible in the diff. Occurrences rather than matching lines: one call site was split across two lines when the box plot's five readings became five rows, and a line count reads that as a rise nobody made.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -173,7 +184,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: the corpus check fails on a file this phase touched, and the failure repeats on the same file across runs.
-- **Procedure**: `git checkout -- <file>` for the affected template. Every change here is a working-tree edit on tracked files, so reverting is a checkout with no history rewrite and no remote step.
+- **Procedure**: restore the affected template from the copy kept beside the work, not from git. Every change here is an uncommitted working-tree edit, so `git checkout -- <file>` would restore the last commit and throw away the phase along with the failure. Keep a copy before mutating anything, and put the copy back.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -207,7 +218,7 @@ Setup (baseline, per-form table) ──► Tooltip ──┐
 |-------|------------|------------------|
 | Setup and baseline | Low | 20 minutes |
 | Tooltip across seven forms | Medium | 2 hours |
-| Legend across five forms | Medium | 1 hour |
+| Legend across four forms | Medium | 1 hour |
 | Dim across five forms | Low | 40 minutes |
 | Hygiene and contract text | Low | 30 minutes |
 | Verification and the determinism proof | Medium | 1 hour |
@@ -220,13 +231,13 @@ Setup (baseline, per-form table) ──► Tooltip ──┐
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline corpus check captured before any edit, with its `RESULT:` line read
-- [ ] The figure-region hash of every interactive form captured before any edit
-- [ ] Nothing committed, so the working tree is the only state to revert
+- [x] Baseline corpus check captured before any edit, with its `RESULT:` line read
+- [x] The painted picture of every interactive form captured from the committed state, which is what the before-and-after comparison reads
+- [x] Nothing committed, so the working tree is the only state to revert, and the only state a careless restore can destroy
 
 ### Rollback Procedure
 1. Identify the failing file from the `RESULT:` block of the corpus check.
-2. `git checkout -- <file>` to restore it from the index or `HEAD`.
+2. Copy the affected template aside before touching it, and restore it from that copy. Never from `git checkout --`: the phase is uncommitted, so a checkout restores the last commit and takes the work with it.
 3. Re-run `node scripts/check-corpus.cjs --render` and read the `RESULT:` line.
 4. Record the reverted change in the implementation summary as not applied, with the reason.
 
@@ -249,13 +260,13 @@ Setup (baseline, per-form table) ──► Tooltip ──┐
 | Rule | Requirement |
 |------|-------------|
 | TASK-SEQ | Build the tooltip on one form and prove it before it reaches the other six. A recipe applied seven times before it is checked once is seven reverts. |
-| TASK-SCOPE | Edits stay inside the thirteen named templates and `references/template-contract.md`. `scripts/check-corpus.cjs` belongs to phase 007. |
+| TASK-SCOPE | Edits stay inside the twelve named templates and `references/template-contract.md`. `scripts/check-corpus.cjs` belongs to phase 007. |
 | TASK-GATE | No template edit is claimed until `node scripts/check-corpus.cjs --render` prints `RESULT: PASSED` from the state that includes it. |
 | TASK-COLOUR | A tooltip, a swatch or a dim value never introduces a colour literal. Everything reads a palette role, and a derived value goes through `color-mix`. |
 
 ### Status Reporting Format
 
-Report phase status as: `Phase 004 status <Planned|Applying|Complete>, tooltip N/7, legend M/5, dim K/5, gate <PASSED|FAILED>`.
+Report phase status as: `Phase 004 status <Planned|Applying|Complete>, tooltip N/7, legend M/4, dim K/5, gate <PASSED|FAILED>`.
 
 ### Blocked Task Protocol
 

@@ -1,0 +1,3 @@
+clean paint : e9c9d79937934ca4
+mutated     : eb68afdab461da58
+harness reports DIFFERENT, so the comparison bites

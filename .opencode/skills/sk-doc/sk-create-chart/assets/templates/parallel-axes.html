@@ -73,11 +73,35 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .axis { stroke: var(--chart-rule); stroke-width: 2; }
 .axis-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
 .bound { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-.key { fill: var(--chart-muted); font-size: 12px; }
+.key { fill: var(--chart-muted); font-size: 11px; }
+/* The key blocks carry the ladder's mark corner, so the swatch beside a supplier's name reads
+   as a small copy of the marks on its line. */
+.key-swatch { rx: var(--chart-radius-mark); }
 /* Every figure a reader compares is set in one mono face, so an axis rung, a value label
    and a table cell line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. The axis names and the legend keep the body face, because they are names rather than figures. */
 .bound, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* One series at a time. Pointing at a line, or at its entry in the key, drops the other lines
+   to a third of their strength, which on this form is the whole reading: four lines crossing
+   five axes are unreadable until three of them step back. Clicking an entry holds that state
+   until the same entry is clicked again. Nothing dims until a reader asks: the attribute is
+   empty until a pointer or a key press fills it, so the file paints what it always painted. */
+[data-series] { transition: opacity 0.2s ease; }
+svg[data-chart-dim="1"] [data-series]:not([data-series="1"]) { opacity: 0.3; }
+svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
+svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
+svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
+/* A reader who clicks a control inside the figure should not be left looking at a ring they
+   never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
+   the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
+   are there to be copied out of it. */
+.figure svg :focus:not(:focus-visible) { outline: none; }
+/* A reader whose system asks for less motion gets the dim with no fade. The motion is removed
+   rather than shortened, because a fast fade is still a fade to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  [data-series] { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -85,9 +109,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <h1 class="headline" data-chart-part="headline">The cheapest supplier is the worst on every measure that is not price</h1>
   <p class="subtitle" data-chart-part="subtitle">Four shortlisted suppliers across five measures, each on its own scale. The axes are not pointed the same way, so a high line is not a good line. Read each axis on its own and read the crossings between them. Each line is named where it ends.</p>
   <div class="figure" data-chart-part="figure">
-    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart" data-chart-dim="">
       <title id="fig-title">Four suppliers across five measures</title>
-      <desc id="fig-desc">Five vertical axes, one per measure, with a line per supplier crossing all five. Alpha is lowest on unit price at 4.10 pounds and is also the longest lead time, the highest defect rate, the lowest on-time delivery and the slowest support. The table below the chart carries every value.</desc>
+      <desc id="fig-desc">Five vertical axes, one per measure, with a line per supplier crossing all five. Each supplier takes the swatch printed beside its name where its line ends on the right. Alpha is lowest on unit price at 4.10 pounds and is also the longest lead time, the highest defect rate, the lowest on-time delivery and the slowest support. The table below the chart carries every value.</desc>
+      <g data-chart-legend id="legend-parallel-axes"></g>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
@@ -187,15 +212,42 @@ AXES.forEach(function (axis, j) {
   node('text', { x: ax(j), y: BOTTOM + 16, 'text-anchor': anchor }, 'bound').textContent = fmt(axis.min);
 });
 
+// The key on this form is not a detached row. A line is named where it ends, which is where
+// the reader's eye already is, so the swatch joins the name it is already reading rather than
+// sending it back to the top of the frame. Each pair is a button as well as a label, because
+// it is the control for the dim and a control a pointer can reach has to be reachable from a
+// keyboard too.
+const legend = document.getElementById('legend-parallel-axes');
+const entries = [];
 DATA.forEach(function (d, s) {
   const points = d.values.map(function (v, j) { return ax(j) + ',' + ay(j, v); });
-  node('path', { d: 'M' + points.join(' L') }, 'line-' + (s + 1));
+  node('path', { d: 'M' + points.join(' L'), 'data-series': s + 1 }, 'line-' + (s + 1));
   d.values.forEach(function (v, j) {
-    tip(node('circle', { cx: ax(j), cy: ay(j, v), r: 4 }, 'dot-' + (s + 1)),
+    tip(node('circle', { cx: ax(j), cy: ay(j, v), r: 4, 'data-series': s + 1 }, 'dot-' + (s + 1)),
       d.label + ', ' + AXES[j].name + ': ' + fmt(v) + ' ' + AXES[j].unit);
   });
-  node('text', { x: RIGHT + 10, y: ay(AXES.length - 1, d.values[AXES.length - 1]) + 4 }, 'key')
-    .textContent = d.label;
+
+  const endY = ay(AXES.length - 1, d.values[AXES.length - 1]);
+  const entry = document.createElementNS(SVG, 'g');
+  entry.setAttribute('data-series', s + 1);
+  entry.setAttribute('tabindex', '0');
+  entry.setAttribute('role', 'button');
+  entry.setAttribute('aria-pressed', 'false');
+  const swatch = document.createElementNS(SVG, 'rect');
+  swatch.setAttribute('x', RIGHT + 8);
+  swatch.setAttribute('y', endY - 4);
+  swatch.setAttribute('width', 8);
+  swatch.setAttribute('height', 8);
+  swatch.setAttribute('class', 'key-swatch dot-' + (s + 1));
+  entry.appendChild(swatch);
+  const label = document.createElementNS(SVG, 'text');
+  label.setAttribute('x', RIGHT + 20);
+  label.setAttribute('y', endY + 4);
+  label.setAttribute('class', 'key');
+  label.textContent = d.label;
+  entry.appendChild(label);
+  legend.appendChild(entry);
+  entries.push(entry);
 });
 
 const headRow = document.getElementById('head-row');
@@ -220,6 +272,42 @@ DATA.forEach(function (d) {
     tr.appendChild(td);
   });
   rows.appendChild(tr);
+});
+
+// Pointing at a mark or at a key entry is a hover and clears itself. Clicking an entry holds
+// the same state until the same entry is clicked again. Leaving the drawing clears a hover, so
+// no chart can be left permanently dimmed by a pointer that wandered off the page.
+let latched = null;
+
+function dimTo(series) {
+  svg.setAttribute('data-chart-dim', series === null ? '' : series);
+}
+
+function latch(series) {
+  latched = latched === series ? null : series;
+  dimTo(latched);
+  entries.forEach(function (entry) {
+    entry.setAttribute('aria-pressed', entry.getAttribute('data-series') === latched ? 'true' : 'false');
+  });
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (latched !== null) return;
+  const owner = e.target.closest ? e.target.closest('[data-series]') : null;
+  dimTo(owner ? owner.getAttribute('data-series') : null);
+});
+svg.addEventListener('pointerleave', function () {
+  if (latched === null) dimTo(null);
+});
+entries.forEach(function (entry) {
+  entry.addEventListener('click', function () { latch(entry.getAttribute('data-series')); });
+  // A group in a drawing does not turn a key press into a click the way a button element does,
+  // so the two keys a button answers to are wired by hand.
+  entry.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    latch(entry.getAttribute('data-series'));
+  });
 });
 </script>
 </body>

@@ -1,0 +1,18 @@
+fmt( call sites per template, committed state against working state.
+Counted as occurrences rather than matching lines, because one call site was split across
+two lines when the box plot's five readings became five rows.
+
+form                      before  after
+scatter                        8      8
+heat-matrix                    8      8
+calendar-grid                  4      4
+candlestick                    7      7
+box-plot                       8      8
+distribution-strip             4      5
+treemap                        4      4
+grouped-bars                   3      3
+stacked-bars                   3      3
+stacked-area                   4      4
+parallel-axes                  5      5
+daily-line                     5      5
+independent-percentages        3      3

@@ -75,6 +75,34 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    and a table cell line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. The group names keep the body face, because they are names rather than figures. */
 .tick, .note, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* The hover card. It is drawn inside the figure, in the same coordinates as the mark it
+   describes, so it travels with the drawing when a narrow screen pans it sideways instead of
+   drifting off its mark. Its border is half the rule's strength, because a full-weight
+   outline around a floating card reads as a second chart element rather than as a note about
+   the first one. It carries no text until a reader points at something, so a file nobody
+   touches paints exactly what it painted before the card existed. */
+[data-chart-tooltip] { opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+[data-chart-tooltip][data-open] { opacity: 1; }
+.tip-card { fill: var(--chart-surface); stroke: color-mix(in srgb, var(--chart-rule) 50%, transparent); stroke-width: 1; rx: var(--chart-radius-track); }
+.tip-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.tip-label { fill: var(--chart-muted); font-size: 12px; }
+/* The figures in the card take the same mono face as the axis and the table, so a value read
+   off a mark and the same value read out of the table sit digit under digit. */
+.tip-value { fill: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+/* The median rule is drawn across its strip, so it lets the pointer through to the dots
+   underneath rather than reading as a gap in the middle of the band. */
+.median { pointer-events: none; }
+/* A reader who clicks a control inside the figure should not be left looking at a ring they
+   never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
+   the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
+   are there to be copied out of it. */
+.figure svg :focus:not(:focus-visible) { outline: none; }
+/* A reader whose system asks for less motion gets the card with no fade. The motion is
+   removed rather than shortened, because a fast fade is still a fade to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  [data-chart-tooltip] { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -85,6 +113,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 268" id="chart">
       <title id="fig-title">Time to first response by cohort</title>
       <desc id="fig-desc">Three horizontal strips of dots, one dot per ticket, jittered vertically so overlapping records stay countable. The first cohort runs from 28 to 53 minutes and the third runs from 8 to 76, around a median that sits between the other two. The table below the chart carries the five-number summary for each cohort.</desc>
+      <g data-chart-tooltip id="tip-distribution-strip"></g>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
@@ -155,6 +184,88 @@ function fmt(v, decimals) {
   return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
 }
 
+// The hover card, built once and refilled on each hover so a pointer crossing the plot does
+// not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
+// and returns an em dash for a reading nobody took, so the card can never disagree with the
+// axis or with the table under the chart.
+//
+// This form is the one where the card earns the most: a hundred and forty-four dots carry one
+// record each and not one of them can hold a label.
+const TIP_PAD = 10;
+const TIP_LINE = 16;
+const TIP_FLOOR = 128;
+const TIP_ROWS = 1;
+const tipLayer = document.getElementById('tip-distribution-strip');
+const MARKS = new Map();
+
+function tipNode(name, cls) {
+  const el = document.createElementNS(SVG, name);
+  el.setAttribute('class', cls);
+  tipLayer.appendChild(el);
+  return el;
+}
+
+const tipCard = tipNode('rect', 'tip-card');
+const tipName = tipNode('text', 'tip-name');
+const tipRows = [];
+for (let r = 0; r < TIP_ROWS; r += 1) {
+  tipRows.push({ label: tipNode('text', 'tip-label'), value: tipNode('text', 'tip-value') });
+}
+tipName.setAttribute('x', TIP_PAD);
+tipName.setAttribute('y', TIP_PAD + 12);
+tipRows.forEach(function (row, i) {
+  row.label.setAttribute('x', TIP_PAD);
+  row.label.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
+  row.value.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
+  row.value.setAttribute('text-anchor', 'end');
+});
+
+// A mark answers a pointer only once it is registered here. That is what keeps the forms
+// that earn a card apart from the ones whose marks already print their own value.
+function markable(el, name, rows) {
+  el.setAttribute('data-mark', '');
+  MARKS.set(el, { name: name, rows: rows });
+  return el;
+}
+
+// The card is sized from the text that is actually in it. A character count assumes an
+// advance this font stack does not promise, and the floor stops a short reading collapsing
+// into a chip narrow enough to break a two-word label across two lines.
+function openTip(mark) {
+  const info = MARKS.get(mark);
+  tipName.textContent = info.name;
+  tipRows.forEach(function (row, i) {
+    row.label.textContent = info.rows[i][0];
+    row.value.textContent = info.rows[i][1];
+  });
+  let width = Math.max(TIP_FLOOR, (tipName.getComputedTextLength() || 0) + TIP_PAD * 2);
+  tipRows.forEach(function (row) {
+    const used = (row.label.getComputedTextLength() || 0) + (row.value.getComputedTextLength() || 0);
+    width = Math.max(width, used + TIP_PAD * 2 + 18);
+  });
+  const height = TIP_PAD * 2 + 12 + TIP_LINE * tipRows.length;
+  tipCard.setAttribute('width', width);
+  tipCard.setAttribute('height', height);
+  tipRows.forEach(function (row) { row.value.setAttribute('x', width - TIP_PAD); });
+
+  // A card that would open past the right edge or above the top opens on the other side of
+  // its mark instead, so it is never drawn outside the frame the chart is allowed to use.
+  const view = svg.getAttribute('viewBox').split(' ');
+  const box = mark.getBBox();
+  let x = box.x + box.width + 12;
+  if (x + width > Number(view[2])) x = box.x - width - 12;
+  if (x < 0) x = 0;
+  let y = box.y + box.height / 2 - height / 2;
+  if (y < 0) y = 0;
+  if (y + height > Number(view[3])) y = Number(view[3]) - height;
+  tipLayer.setAttribute('transform', 'translate(' + x + ',' + y + ')');
+  tipLayer.setAttribute('data-open', '');
+}
+
+function closeTip() {
+  tipLayer.removeAttribute('data-open');
+}
+
 function spread(n) {
   let x = n | 0;
   x = Math.imul(x ^ (x >>> 16), 2246822507);
@@ -190,7 +301,8 @@ DATA.forEach(function (group, gi) {
   // that is a budget of about 20 characters before a group name runs off the left edge.
   node('text', { x: LEFT - 14, y: cy + 5, 'text-anchor': 'end' }, 'cat').textContent = group.label;
   group.values.forEach(function (v, i) {
-    node('circle', { cx: x(v), cy: cy + spread(gi * 733 + i * 29 + 5) * JITTER, r: 3 }, 'dot');
+    markable(node('circle', { cx: x(v), cy: cy + spread(gi * 733 + i * 29 + 5) * JITTER, r: 3 }, 'dot'),
+      group.label, [[UNIT, fmt(v)]]);
   });
   const mid = median(group.values);
   node('line', { x1: x(mid), y1: cy - JITTER / 2 - 6, x2: x(mid), y2: cy + JITTER / 2 + 6 }, 'median');
@@ -213,6 +325,45 @@ DATA.forEach(function (group) {
   });
   rows.appendChild(tr);
 });
+
+// One delegated listener on the drawing rather than one per mark. A matrix carries a hundred
+// cells and a calendar three hundred and sixty-four, and a listener each is a cost the reader
+// pays for nothing.
+let pinned = null;
+
+function markAt(target) {
+  return target && target.closest ? target.closest('[data-mark]') : null;
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (pinned) return;
+  const mark = markAt(e.target);
+  if (mark) openTip(mark); else closeTip();
+});
+svg.addEventListener('pointerleave', function () {
+  if (!pinned) closeTip();
+});
+// A touch device never hovers. A tap opens the card, the same tap again closes it, and a tap
+// anywhere else closes it too, which is the gesture a reader already expects.
+svg.addEventListener('click', function (e) {
+  const mark = markAt(e.target);
+  if (!mark || mark === pinned) {
+    pinned = null;
+    closeTip();
+    return;
+  }
+  pinned = mark;
+  openTip(mark);
+});
+document.addEventListener('click', function (e) {
+  if (pinned && !svg.contains(e.target)) {
+    pinned = null;
+    closeTip();
+  }
+});
+// The card is raised above the marks once the drawing is finished, so it is never painted
+// underneath the mark it is describing.
+svg.appendChild(tipLayer);
 </script>
 </body>
 </html>

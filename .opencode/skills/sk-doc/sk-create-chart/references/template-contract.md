@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 1.3.0.0
+version: 1.4.0.0
 ---
 
 # Chart Template Contract
@@ -242,10 +242,45 @@ Stated plainly, so nobody reads a green run as more than it is.
 - **Without `--render` it has not opened anything.** The summary line says so on every run. A structural pass is not a rendering pass.
 - **It does not watch the motion.** With `--render` it opens each file twice after the settle time and confirms the two documents are identical, which catches a picture that is still changing when the review screenshots it. It does not see the animation itself, so whether the wipe reads as an entrance is a review question.
 - **It does not measure a narrow screen.** Rule 14 is asserted from the stylesheet, not from a rendered page, because a headless browser hands back the DOM and the DOM does not say whether the page overflowed. The check proves the pan affordance is declared and that its floor is not above the drawing's natural width. Whether the chart is legible at that floor is a review question, and the floor itself is a judgement nobody has measured per form.
+- **It does not point at anything.** Both opens are made with no pointer input, which is exactly what makes them a fair test of the settled picture and exactly what leaves everything in section 10 unchecked. Whether a card opens on the right mark, whether it flips at an edge and whether a key entry latches are all walked by hand.
 
 ---
 
-## 10. RELATED DOCUMENTS
+## 10. WHAT A FILE MAY DO WITH A POINTER
+
+A chart answers a pointer. Twelve forms do, and the eight that do not are the ones whose marks already print their own value, where a card would repeat what the reader is looking at.
+
+Nothing in this section is checked. It is a register, which is a rule written down before anything asserts it, and it is marked as one so nobody reads a green run as agreement with it.
+
+### The three registers
+
+| Attribute | Where it goes | What it means |
+| --- | --- | --- |
+| `data-chart-tooltip` | a group inside the drawing | The form carries a hover card. The group is declared in the markup, empty, and the drawing code fills it and raises it above the marks |
+| `data-chart-legend` | a group inside the drawing | The form carries its key inside the figure. Each entry is a button, because the key is also the control for the dim |
+| `data-chart-dim` | the `svg` element | The form can hold one series against the rest. The attribute is empty until a reader asks, and the series index fills it |
+
+A form that gains any of the three also carries one line of interaction hygiene: `:focus:not(:focus-visible) { outline: none; }`. That drops the focus ring for a reader who clicked and keeps it for a reader who tabbed. Text stays selectable. A delivered chart is a document, and the numbers in it are meant to be copied out.
+
+### What a handler may do
+
+- Show something that is already in the document, and hide it again.
+- Change opacity, so one series can be held against the rest.
+- Hold a selection until the reader clears it.
+- Measure the text it has just written, so a card is sized to fit rather than to a guess.
+
+### What a handler may not do
+
+- Read the clock or a random source. Rule 12 bans both, and interaction is not an exemption from it: a reader choosing to look closer is not the picture changing on its own.
+- Change what the file paints before anyone touches it. Two opens with no pointer input have to agree, and a file that gained a pointer has to paint what it painted before it gained one.
+- Move a mark, a label or a printed value. The card floats above the drawing; it does not rearrange it.
+- Print a figure the table below the chart does not also carry. The table is the complete reading and stays the accessibility floor, so nothing may exist only inside a card.
+- Format a number any way but through the file's own formatter. A locale-dependent one makes a delivered file read differently on the machine that opens it, which is the failure the fixed-comma formatter exists to prevent.
+- Take a focus ring away from anything a reader can reach with a keyboard, and never add a control a pointer can use that a keyboard cannot.
+
+---
+
+## 11. RELATED DOCUMENTS
 
 | Document | Purpose |
 | --- | --- |

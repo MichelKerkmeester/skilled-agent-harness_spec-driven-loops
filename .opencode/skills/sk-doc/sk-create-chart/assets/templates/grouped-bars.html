@@ -77,7 +77,22 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    and a table cell line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. The category and legend names keep the body face, because they are names rather than figures. */
 .tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
-.key { fill: var(--chart-muted); font-size: 12px; }
+.key { fill: var(--chart-muted); font-size: 11px; }
+
+/* One series at a time. Pointing at a column, or at its entry in the key, drops the other
+   series to a third of its strength so the one being read stands clear of it. Clicking an
+   entry holds that state until the same entry is clicked again, which is what a reader
+   comparing this chart against another one needs. Nothing dims until a reader asks: the
+   attribute is empty until a pointer or a key press fills it, so the file paints what it
+   always painted. */
+[data-series] { transition: opacity 0.2s ease; }
+svg[data-chart-dim="1"] [data-series]:not([data-series="1"]) { opacity: 0.3; }
+svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
+/* A reader who clicks a control inside the figure should not be left looking at a ring they
+   never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
+   the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
+   are there to be copied out of it. */
+.figure svg :focus:not(:focus-visible) { outline: none; }
 
 /* Each mark grows from the anchor it is measured against over half a second, and consecutive
    marks start slightly apart so the eye follows the order the chart is arranged in. The delay
@@ -98,17 +113,19 @@ path.past, path.current {
    to somebody it makes ill. */
 @media (prefers-reduced-motion: reduce) {
   path.past, path.current { animation: none; }
+  [data-series] { transition: none; }
 }
 </style>
 </head>
 <body>
 <div class="card">
   <h1 class="headline" data-chart-part="headline">Every channel grew this year except the one we spent the budget on</h1>
-  <p class="subtitle" data-chart-part="subtitle">Signups by acquisition channel, this year against last. The darker bar of each pair is this year, which is the series the reader is here for.</p>
+  <p class="subtitle" data-chart-part="subtitle">Signups by acquisition channel, last year against this year. Every channel is read as a pair, so the gap inside a pair is the finding and the height of the pair is the context it sits in.</p>
   <div class="figure" data-chart-part="figure">
-    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart" data-chart-dim="">
       <title id="fig-title">Signups by channel, two years compared</title>
       <desc id="fig-desc">Five channels, each with a pair of columns for last year and this year. Each year takes the swatch printed beside its name in the key, and within every pair the left column is last year and the right column is this year. Paid search is the only channel where this year is lower. The table below the chart carries both years as text.</desc>
+      <g data-chart-legend id="legend-grouped-bars"></g>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
@@ -213,11 +230,40 @@ for (let t = 0; t <= TICKS; t += 1) {
   node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }
 
+// The key sits inside the drawing rather than in the sentence above it, so a reader maps a
+// colour to a name without leaving the picture. It is also the control for the dim, which is
+// why each entry is a button rather than a label: a control a pointer can reach has to be
+// reachable from a keyboard too. Entries are laid out left to right, measured, then pushed to
+// the right edge, which is the corner of the frame no column reaches.
+const legend = document.getElementById('legend-grouped-bars');
+const entries = [];
+let cursor = 0;
 SERIES.forEach(function (name, s) {
-  const x = LEFT + s * 130;
-  node('rect', { x: x, y: 8, width: 14, height: 14 }, RANK[s]);
-  node('text', { x: x + 20, y: 20 }, 'key').textContent = name;
+  const entry = document.createElementNS(SVG, 'g');
+  entry.setAttribute('data-series', s + 1);
+  entry.setAttribute('tabindex', '0');
+  entry.setAttribute('role', 'button');
+  entry.setAttribute('aria-pressed', 'false');
+  const swatch = document.createElementNS(SVG, 'rect');
+  swatch.setAttribute('x', cursor);
+  swatch.setAttribute('y', 6);
+  swatch.setAttribute('width', 8);
+  swatch.setAttribute('height', 8);
+  swatch.setAttribute('class', RANK[s]);
+  entry.appendChild(swatch);
+  const label = document.createElementNS(SVG, 'text');
+  label.setAttribute('x', cursor + 12);
+  label.setAttribute('y', 14);
+  label.setAttribute('class', 'key');
+  label.textContent = name;
+  entry.appendChild(label);
+  legend.appendChild(entry);
+  // The gap after an entry is the label's real width, measured once it is in the document.
+  // A character count assumes every glyph is one width, which this font stack does not promise.
+  cursor += 12 + (label.getComputedTextLength() || name.length * 6.2) + 16;
+  entries.push(entry);
 });
+legend.setAttribute('transform', 'translate(' + (RIGHT - (cursor - 16)) + ',0)');
 
 const slot = (RIGHT - LEFT) / DATA.length;
 const barWidth = slot * 0.30;
@@ -233,7 +279,8 @@ DATA.forEach(function (d, i) {
     // The stylesheet grows each column from the axis and staggers it by this index.
     node('path', {
       d: topRounded(x, y(v), barWidth, BASE - y(v), MARK_R),
-      style: '--mark-index:' + drawn
+      style: '--mark-index:' + drawn,
+      'data-series': s + 1
     }, RANK[s]);
     drawn += 1;
   });
@@ -254,6 +301,42 @@ DATA.forEach(function (d) {
     tr.appendChild(td);
   });
   rows.appendChild(tr);
+});
+
+// Pointing at a mark or at a key entry is a hover and clears itself. Clicking an entry holds
+// the same state until the same entry is clicked again. Leaving the drawing clears a hover, so
+// no chart can be left permanently dimmed by a pointer that wandered off the page.
+let latched = null;
+
+function dimTo(series) {
+  svg.setAttribute('data-chart-dim', series === null ? '' : series);
+}
+
+function latch(series) {
+  latched = latched === series ? null : series;
+  dimTo(latched);
+  entries.forEach(function (entry) {
+    entry.setAttribute('aria-pressed', entry.getAttribute('data-series') === latched ? 'true' : 'false');
+  });
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (latched !== null) return;
+  const owner = e.target.closest ? e.target.closest('[data-series]') : null;
+  dimTo(owner ? owner.getAttribute('data-series') : null);
+});
+svg.addEventListener('pointerleave', function () {
+  if (latched === null) dimTo(null);
+});
+entries.forEach(function (entry) {
+  entry.addEventListener('click', function () { latch(entry.getAttribute('data-series')); });
+  // A group in a drawing does not turn a key press into a click the way a button element does,
+  // so the two keys a button answers to are wired by hand.
+  entry.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    latch(entry.getAttribute('data-series'));
+  });
 });
 </script>
 </body>

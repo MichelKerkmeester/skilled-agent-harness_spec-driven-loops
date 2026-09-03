@@ -1,0 +1,6 @@
+acceptance-criteria.md         hard blockers:          0
+decision-record.md             hard blockers:          0
+goal.md                        hard blockers:          0
+plan.md                        hard blockers:          0
+spec.md                        hard blockers:          0
+tasks.md                       hard blockers:          2
