@@ -130,7 +130,7 @@ Set up all state files for a new review session. Discover the scope, order dimen
    - Review Dimensions checklist
    - Files Under Review table
    - Cross-Reference Status table grouped by core vs overlay
-   - Known Context from `memory_context()` results (if any)
+   - Known Context from the continuity ladder and ripgrep recipes (if any)
    - Resource-map snapshot when `{spec_folder}/resource-map.md` exists at init
    - `resource-map.md not present. Skipping coverage gate` when it does not
    - Review Boundaries from config

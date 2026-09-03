@@ -47,7 +47,7 @@ Validate deep-review finalization, memory-save routing, LEAF-only behavior, and 
 ### Commands
 1. `bash: rg -n 'generate-context.js|memory.*save|synthesis_complete|review-report|memory' .opencode/commands/deep/review.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md`
 2. `bash: rg -n 'LEAF-only|Task tool|NEVER.*sub|NEVER.*dispatch|read.only|NEVER.*modify|observation.*only' .claude/agents/deep-review.md .opencode/agents/deep-review.md .opencode/skills/system-deep-loop/deep-review/SKILL.md`
-3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|memory_save|review-report' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|continuity_save|review-report' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
 ### Expected
 Synthesis produces `review/review-report.md`, memory save calls `generate-context.js`, agent is LEAF-only, target files are read-only.
 ### Evidence

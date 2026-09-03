@@ -348,7 +348,7 @@ Feature file: [DAC-025](../manual-testing-playbook/council-graph-integration/cou
 
 ### DAC-026 | Council graph MCP surface retired
 
-Verify system-spec-memory has no council graph MCP entries and council graph operations route through `runtime/ --loop-type council`.
+Verify no MCP surface exposes council graph tools and council graph operations route through `runtime/ --loop-type council`.
 
 Feature file: [DAC-026](../manual-testing-playbook/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md)
 

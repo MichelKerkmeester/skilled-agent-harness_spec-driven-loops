@@ -147,15 +147,15 @@ See [`loop-lifecycle/run-now-control.md`](../feature-catalog/loop-lifecycle/run-
 
 ---
 
-### Per-iteration memory upsert
+### Per-iteration lineage context refresh
 
 #### Description
 
-Indexes completed iteration evidence before the next prompt render.
+Refreshes the next prompt's context line from lineage-local state.
 
 #### How It Works
 
-After iteration validation, reducer refresh, and graph upsert, the auto workflow calls `memory_save()` on the canonical iteration evidence file. It then refreshes focused memory context before the next dispatch prompt, treating MCP errors and timeouts as advisory so an indexing problem does not kill the loop.
+After iteration validation, reducer refresh, and graph upsert, the auto workflow reads the dashboard, findings registry and strategy file the reducer has just rewritten, and turns them into the context line for the next dispatch prompt. A missing or unreadable state file is advisory: the previous context line stands and the loop continues.
 
 #### Source Files
 

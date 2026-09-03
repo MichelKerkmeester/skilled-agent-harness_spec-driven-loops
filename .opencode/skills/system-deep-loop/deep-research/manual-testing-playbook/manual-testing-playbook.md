@@ -690,15 +690,15 @@ Expected signals: Default run produces `research/resource-map.md` with category 
 #### Test Execution
 > **Feature File:** [DR-035](../manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md)
 
-### DR-062 | Per-iteration memory upsert
+### DR-062 | Per-iteration lineage context refresh
 
 #### Description
-Verify that each completed iteration is upserted to memory and refreshed into the next prompt context.
+Verify that each completed iteration is persisted lineage-locally and refreshed into the next prompt context.
 
 #### Scenario Contract
-Prompt summary: Validate per-iteration memory upsert ordering and non-fatal memory context refresh behavior.
+Prompt summary: Validate lineage context refresh ordering and non-fatal state-read behavior.
 
-Expected signals: `step_memory_upsert_iteration` runs before `step_refresh_memory_context`, both run before result evaluation, and MCP errors are advisory.
+Expected signals: `step_reduce_state` and `step_graph_upsert` run before `step_refresh_lineage_context`, which runs before result evaluation, and state-read failures are advisory.
 
 #### Test Execution
 > **Feature File:** [DR-062](../manual-testing-playbook/synthesis-save-and-guardrails/per-iteration-memory-upsert.md)

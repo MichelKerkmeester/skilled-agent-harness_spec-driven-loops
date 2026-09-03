@@ -57,7 +57,7 @@ Operator contract source of truth for this page:
 |----------|-----|
 | Deep unknown topic, multi-round needed | `/deep:research` |
 | Simple question, 1-2 sources | Direct search with `@context` |
-| Check prior work only | `memory_context()` |
+| Check prior work only | The continuity ladder, then the ripgrep recipes in `retrieval-conventions.md` |
 | Exhaustive critical research | `/deep:research --max-iterations 15 --convergence 0.02` |
 
 ---
@@ -154,7 +154,7 @@ Quality guards (source diversity, focus alignment, no single-weak-source) must p
 Each @deep-research iteration:
 1. Read `deep-research-state.jsonl` and `deep-research-strategy.md`
 2. Determine focus from reducer-owned strategy "Next Focus"
-3. Execute 3-5 research actions (WebFetch, Grep, Read, memory_search)
+3. Execute 3-5 research actions (WebFetch, Grep, Read)
 4. Write `research/iterations/iteration-NNN.md` with findings
 5. Append iteration record to `deep-research-state.jsonl`
 6. Let the workflow reducer update `deep-research-strategy.md`, `findings-registry.json`, and `deep-research-dashboard.md`
@@ -226,8 +226,8 @@ Signals: RollingAvg=STOP MAD=CONTINUE Entropy=CONTINUE
 |----------|---------|
 | `@context` | Single-pass codebase search (not iterative) |
 | `@orchestrate` | Multi-agent coordination |
-| `memory_context()` | Prior work retrieval |
-| `generate-context.js` | Supported memory save script |
+| `references/retrieval/retrieval-conventions.md` (system-spec-kit) | Prior work retrieval: the continuity ladder and the ripgrep recipes |
+| `generate-context.js` | The continuity writer for the bound spec folder |
 | `references/convergence/convergence-signals.md` | Convergence signal details |
 | `references/state/state-jsonl.md` | JSONL state record details |
 

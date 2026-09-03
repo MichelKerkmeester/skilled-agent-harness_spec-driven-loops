@@ -79,7 +79,7 @@ Set up all state files for a new research session.
 6. **Initialize strategy**: `research/deep-research-strategy.md` from template with:
    - Topic from user input
    - Initial key questions (3-5, from topic analysis)
-   - Known context from `memory_context()` results (if any), injected only after the strategy file exists
+   - Known context from the continuity ladder and ripgrep recipes (if any), injected only after the strategy file exists
    - Research boundaries from config
 6a. **Detect resource-map integration state**:
    - Check `{spec_folder}/resource-map.md` once during init

@@ -1,13 +1,13 @@
 ---
 title: "Council graph MCP surface retired"
-description: "Verify council graph MCP entries are absent and the runtime council CLI remains covered."
+description: "Verify council graph operations have no MCP surface at all and the runtime council CLI remains covered."
 trigger_phrases:
   - "council graph mcp surface retired"
   - "runtime/ --loop-type council"
   - "council graph no mcp context"
-  - "system-spec-memory council graph absent"
   - "council graph runtime cli only"
-version: 2.3.0.10
+  - "council graph derived projection ownership"
+version: 2.3.0.11
 ---
 
 # Council graph MCP surface retired
@@ -16,9 +16,9 @@ version: 2.3.0.10
 
 ## 1. OVERVIEW
 
-Verify council graph operations no longer consume system-spec-memory MCP tool slots and remain available through `runtime/ --loop-type council`.
+Verify council graph operations consume no MCP tool slots anywhere and remain available through `runtime/ --loop-type council`.
 
-ADR-001 still keeps council graph semantics separate from research/review graph semantics; the ownership boundary moved from system-spec-memory MCP handlers to runtime CLI scripts.
+ADR-001 still keeps council graph semantics separate from research/review graph semantics; the ownership boundary moved from MCP handlers to runtime CLI scripts.
 
 Operators use this feature when the real request is: Confirm council graph operations no longer consume MCP context while still supporting replay/query/status/convergence.
 
@@ -28,9 +28,9 @@ Operators use this feature when the real request is: Confirm council graph opera
 
 The shipped surface is anchored by `runtime//scripts/{upsert,query,status,convergence}.cjs --loop-type council`, plus `deep-ai-council/scripts/replay-graph-from-artifacts.cjs` for artifact replay. The playbook scenario `council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-026.
 
-Current behavior is grounded in `.opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts`, where the live registry now imports at 35 tools and has no council graph entries. Validation is anchored by `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`, covering runtime script behavior for upsert, query, status, convergence, and error contracts.
+Council state is a runtime-owned derived SQLite projection, rebuilt from `ai-council/**` artifacts. Validation is anchored by `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`, covering runtime script behavior for upsert, query, status, convergence, and error contracts.
 
-The user-visible contract is concrete: council graph behavior remains available, but system-spec-memory no longer exposes a council graph MCP family.
+The user-visible contract is concrete: council graph behavior remains available, and no MCP tool family carries any part of it.
 
 ---
 
@@ -44,7 +44,6 @@ The user-visible contract is concrete: council graph behavior remains available,
 | `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | Runtime CLI | Council graph query modes |
 | `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs` | Runtime CLI | Council readiness and recovery payload |
 | `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Runtime CLI | Council convergence bridge fields |
-| `.opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts` | MCP registry | 35-tool live inventory without council graph entries |
 
 ### Validation And Tests
 

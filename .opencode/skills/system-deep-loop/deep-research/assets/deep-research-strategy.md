@@ -155,7 +155,7 @@ Generated from the reducer registry. Add external or late questions through `{sp
 
 <!-- MACHINE-OWNED: END -->
 ## 12. KNOWN CONTEXT
-[Populated during initialization from memory_context() results, if any prior work exists]
+[Populated during initialization from the continuity ladder and ripgrep recipes, if any prior work exists]
 
 ### Bounded Context Snapshot
 

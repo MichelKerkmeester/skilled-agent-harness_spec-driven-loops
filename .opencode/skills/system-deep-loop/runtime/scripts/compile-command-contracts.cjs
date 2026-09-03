@@ -146,9 +146,9 @@ const COMMANDS = {
       ],
     },
     tools: {
-      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search'],
+      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task'],
       permittedByExecutor: {
-        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search'],
+        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task'],
         'cli-opencode': ['headless command execution through YAML-owned audited dispatch only'],
         'cli-claude-code': ['headless command execution through YAML-owned audited dispatch only'],
       },
@@ -248,9 +248,9 @@ const COMMANDS = {
       ],
     },
     tools: {
-      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search'],
+      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task'],
       permittedByExecutor: {
-        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'memory_context', 'memory_search'],
+        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob'],
         'cli-opencode': ['headless command execution through YAML-owned audited dispatch only'],
         'cli-claude-code': ['headless command execution through YAML-owned audited dispatch only'],
       },
@@ -349,9 +349,9 @@ const COMMANDS = {
       ],
     },
     tools: {
-      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'WebFetch', 'memory_context', 'memory_search'],
+      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'WebFetch'],
       permittedByExecutor: {
-        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'WebFetch', 'memory_context', 'memory_search'],
+        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'WebFetch'],
         'cli-opencode': ['headless command execution through YAML-owned audited dispatch only'],
         'cli-claude-code': ['headless command execution through YAML-owned audited dispatch only'],
       },
