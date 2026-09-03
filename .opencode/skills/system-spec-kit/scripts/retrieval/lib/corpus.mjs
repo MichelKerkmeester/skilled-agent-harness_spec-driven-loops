@@ -25,6 +25,8 @@ export const EXCLUSIONS = Object.freeze([
   '**/node_modules/**',
   '**/scratch/**',
   '**/research/lineages/**',
+  '**/tests/fixtures/**',
+  '**/{fixtures,__fixtures__,test-fixtures,*-fixtures}/** outside specs/',
   '.git',
 ]);
 
@@ -47,6 +49,25 @@ export const IGNORED_PATHS = Object.freeze([
 
 /** Directory names pruned wherever they appear. */
 const EXCLUDED_DIR_NAMES = Object.freeze(new Set(['z_archive', 'node_modules', 'scratch', '.git']));
+
+/**
+ * Test-fixture directory names. A fixture tree holds documents written to be
+ * wrong on purpose, so indexing one is harmful twice over: the deliberately
+ * unparseable frontmatter fails publication closed for the whole corpus, and
+ * the parseable fixtures inject test phrases into real postings, where a
+ * lookup cannot tell them from an author's.
+ */
+const FIXTURE_DIR_PATTERN = /^(?:fixtures|__fixtures__|test-fixtures|[a-z][a-z0-9]*(?:-[a-z0-9]+)*-fixtures)$/;
+
+/**
+ * The root under which a directory is a document rather than tooling. Inside a
+ * spec packet, a folder named `fixtures` is part of what the packet documents
+ * and belongs in the index; the same name inside the skills tree is test data.
+ * Scoping the fixture rule this way is not a nicety — an unscoped rule prunes
+ * packet directories such as `002-contracts-and-fixtures` and silently drops
+ * real specification documents out of retrieval.
+ */
+const DOCUMENT_ROOT = 'specs';
 
 /**
  * Paths under this prefix are the same documents as the corresponding `specs/`
@@ -75,15 +96,19 @@ export function canonicalRelativePath(relativePath) {
 
 /**
  * Directory pruning rule. `research/lineages` is pruned only under a `research`
- * parent so an unrelated directory named `lineages` still gets walked.
+ * parent so an unrelated directory named `lineages` still gets walked, and a
+ * fixture directory is pruned only outside the document root for the reason
+ * recorded at DOCUMENT_ROOT.
  *
  * @param {string} name Directory name.
  * @param {string} parentName Parent directory name.
+ * @param {string} [relativePath] Repo-relative path of the directory.
  * @returns {boolean} True when the directory must not be walked.
  */
-export function isExcludedDirectory(name, parentName) {
+export function isExcludedDirectory(name, parentName, relativePath = '') {
   if (EXCLUDED_DIR_NAMES.has(name)) return true;
-  return name === 'lineages' && parentName === 'research';
+  if (name === 'lineages' && parentName === 'research') return true;
+  return FIXTURE_DIR_PATTERN.test(name) && relativePath.split('/')[0] !== DOCUMENT_ROOT;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -166,7 +191,7 @@ function walkDirectory(repoRoot, directory, byRealPath, skipped) {
     }
 
     if (entry.isDirectory()) {
-      if (isExcludedDirectory(entry.name, parentName)) {
+      if (isExcludedDirectory(entry.name, parentName, relative)) {
         skipped.push({ path: relative, reason: 'excluded directory' });
         continue;
       }

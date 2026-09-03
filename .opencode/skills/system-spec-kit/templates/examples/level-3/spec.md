@@ -2,13 +2,10 @@
 title: "Feature Specification: Add User Authentication [template:examples/level-3/spec.md]"
 description: "documentation. Note the addition of Executive Summary, Risk Matrix, User Stories"
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "add"
-  - "user"
-  - "authentication"
-  - "template"
-  - "spec"
+  - "feature specification"
+  - "problem statement"
+  - "requirements and scope"
+  - "user authentication"
 importance_tier: "normal"
 contextType: "general"
 ---

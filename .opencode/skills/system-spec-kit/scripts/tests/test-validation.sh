@@ -722,10 +722,28 @@ fi
 # ───────────────────────────────────────────────────────────────
 
 # ─────────────────────────────────────────────────────────────────
+# FOLDER-TOKEN NOTE
+# ─────────────────────────────────────────────────────────────────
+# The 053 fixture expects "warn" rather than "pass" everywhere it appears.
+# It declares the author-chosen phrase "template", which is also a token of
+# its own directory name, so the grep-convention rule reports it as a
+# folder-token trigger. That rule is documented as a false-positive-tolerant
+# warning: it names the resemblance rather than claiming to know where the
+# phrase came from, which is why it warns instead of failing.
+#
+# The fixture stays byte-identical and frozen. Five test files plus the
+# retrieval parity probes pin its content and its generated metadata, and
+# editing any document in it invalidates the metadata fingerprint, which
+# turns a warning into a hard integrity error. Change the expectation here,
+# never the fixture.
+# ─────────────────────────────────────────────────────────────────
+
+# ─────────────────────────────────────────────────────────────────
 # POSITIVE TESTS
 # ─────────────────────────────────────────────────────────────────
 if begin_category "Positive Tests (should PASS or WARN)"; then
-    run_test "Compliant Level 2 template fixture" "053-template-compliant-level2" "pass"
+    # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
+    run_test "Compliant Level 2 template fixture" "053-template-compliant-level2" "warn"
     run_test "Extra-header fixture warns without failing" "054-template-extra-header" "warn"
 fi
 
@@ -733,7 +751,8 @@ fi
 # LEVEL_DECLARED RULE TESTS
 # ─────────────────────────────────────────────────────────────────
 if begin_category "Level Declaration Tests (should PASS or WARN)"; then
-    run_test "Explicit level declaration on compliant fixture" "053-template-compliant-level2" "pass"
+    # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
+    run_test "Explicit level declaration on compliant fixture" "053-template-compliant-level2" "warn"
 fi
 
 # ─────────────────────────────────────────────────────────────────
@@ -771,7 +790,8 @@ fi
 # ANCHOR EDGE CASE TESTS
 # ─────────────────────────────────────────────────────────────────
 if begin_category "Anchor Edge Cases"; then
-    run_test "Compliant anchor order passes" "053-template-compliant-level2" "pass"
+    # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
+    run_test "Compliant anchor order passes" "053-template-compliant-level2" "warn"
     run_test "Missing required anchor fails" "057-template-missing-anchor" "fail" "ANCHORS_VALID"
     run_test "Reordered required anchor fails" "058-template-reordered-anchor" "fail" "ANCHORS_VALID"
 fi
@@ -780,7 +800,8 @@ fi
 # PLACEHOLDER_FILLED EDGE CASE TESTS
 # ─────────────────────────────────────────────────────────────────
 if begin_category "Placeholder Edge Cases"; then
-    run_test "Compliant fixture stays placeholder-free" "053-template-compliant-level2" "pass"
+    # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
+    run_test "Compliant fixture stays placeholder-free" "053-template-compliant-level2" "warn"
     run_test "Multiple placeholders across files (all detected)" "036-multiple-placeholders" "fail"
     run_test "Placeholder case variations (detected)" "037-placeholder-case-variations" "fail"
 fi
@@ -789,14 +810,17 @@ fi
 # CLI OPTIONS TESTS
 # ─────────────────────────────────────────────────────────────────
 if begin_category "CLI Options Tests"; then
-    run_test_json_valid "--json produces valid JSON with required fields" "053-template-compliant-level2" "pass"
+    # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
+    run_test_json_valid "--json produces valid JSON with required fields" "053-template-compliant-level2" "warn"
 
     run_test_with_flags "--strict mode: warnings stay advisory" "054-template-extra-header" "warn" "--strict"
 
-    run_test_quiet "--quiet mode: minimal output" "053-template-compliant-level2" "pass"
+    # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
+    run_test_quiet "--quiet mode: minimal output" "053-template-compliant-level2" "warn"
 
     run_test_with_flags "Env var: SPECKIT_STRICT=true" "054-template-extra-header" "warn" "" "SPECKIT_STRICT=true"
-    run_test "Compliant fixture remains stable across default rule order" "053-template-compliant-level2" "pass"
+    # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
+    run_test "Compliant fixture remains stable across default rule order" "053-template-compliant-level2" "warn"
 fi
 
 if begin_category "Exact Exit Code Tests"; then

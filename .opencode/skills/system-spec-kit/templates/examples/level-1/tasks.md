@@ -2,11 +2,10 @@
 title: "Tasks: Add User Authentication [template:examples/level-1/tasks.md]"
 description: "needed for a simple authentication feature. Note the straightforward task numbering"
 trigger_phrases:
-  - "tasks"
-  - "add"
-  - "user"
-  - "authentication"
-  - "template"
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "user authentication"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,12 +2,10 @@
 title: "Implementation Plan: Add User Authentication [template:examples/level-3+/plan.md]"
 description: "Note the AI Execution Framework, Workstream Coordination, and Communication Plan"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "add"
-  - "user"
-  - "authentication"
-  - "template"
+  - "implementation plan"
+  - "technical approach"
+  - "testing strategy"
+  - "user authentication"
 importance_tier: "normal"
 contextType: "general"
 ---

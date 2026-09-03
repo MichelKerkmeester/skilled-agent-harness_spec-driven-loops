@@ -2,12 +2,10 @@
 title: "Implementation Plan: Add User Authentication [template:examples/level-1/plan.md]"
 description: "planning required for a simple authentication feature. Note the straightforward"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "add"
-  - "user"
-  - "authentication"
-  - "template"
+  - "implementation plan"
+  - "technical approach"
+  - "testing strategy"
+  - "user authentication"
 importance_tier: "normal"
 contextType: "general"
 ---

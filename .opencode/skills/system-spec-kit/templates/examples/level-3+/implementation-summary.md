@@ -2,10 +2,10 @@
 title: "Implementation Summary [template:examples/level-3+/implementation-summary.md]"
 description: "metrics, workstream performance, AI execution analysis, and comprehensive lessons"
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
   - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "user authentication"
 importance_tier: "normal"
 contextType: "general"
 ---

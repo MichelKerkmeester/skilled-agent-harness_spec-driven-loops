@@ -2,11 +2,10 @@
 title: "Tasks: Add User Authentication [template:examples/level-3/tasks.md]"
 description: "including dependencies, milestone mapping, and detailed verification tasks. -->"
 trigger_phrases:
-  - "tasks"
-  - "add"
-  - "user"
-  - "authentication"
-  - "template"
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "user authentication"
 importance_tier: "normal"
 contextType: "general"
 ---

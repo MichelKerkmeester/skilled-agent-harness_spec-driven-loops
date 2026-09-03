@@ -2,11 +2,10 @@
 title: "Tasks: Add User Authentication [template:examples/level-2/tasks.md]"
 description: "including effort estimates and explicit verification tasks for each feature. -->"
 trigger_phrases:
-  - "tasks"
-  - "add"
-  - "user"
-  - "authentication"
-  - "template"
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "user authentication"
 importance_tier: "normal"
 contextType: "general"
 ---

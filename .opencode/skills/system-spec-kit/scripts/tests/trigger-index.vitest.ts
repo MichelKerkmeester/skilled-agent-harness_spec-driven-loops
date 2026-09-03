@@ -323,6 +323,29 @@ describe('walkCorpus', () => {
     expect(canonicalRelativePath('.opencode/specs/track/a.md')).toBe('specs/track/a.md');
     expect(canonicalRelativePath('.opencode/skills/demo/SKILL.md')).toBe('.opencode/skills/demo/SKILL.md');
   });
+
+  it('prunes fixture trees in the skills tree while keeping a spec packet named for fixtures', () => {
+    const root = makeTempDir('speckit-trigger-fixtures-');
+    writeDoc(root, '.opencode/skills/demo/tests/fixtures/broken.md', '---\ntrigger_phrases:\n');
+    writeDoc(root, '.opencode/skills/demo/tests/fixtures/nested/also-broken.md', '---\ntrigger_phrases:\n');
+    writeDoc(root, '.opencode/skills/demo/scripts/__fixtures__/sample.md', frontmatter(['fixture phrase']));
+    writeDoc(root, '.opencode/skills/demo/test-fixtures/sample.md', frontmatter(['fixture phrase']));
+    writeDoc(root, '.opencode/skills/demo/tests/advisor-fixtures/sample.md', frontmatter(['fixture phrase']));
+    writeDoc(root, '.opencode/skills/demo/SKILL.md', frontmatter(['skill']));
+    // A spec packet may legitimately be named for fixtures, or hold a folder of
+    // them it documents. Those are documents, and pruning them would drop real
+    // specifications out of retrieval.
+    writeDoc(root, 'specs/track/002-contracts-and-fixtures/spec.md', frontmatter(['contracts']));
+    writeDoc(root, 'specs/track/003-scaffold/fixtures/routing-parity.md', frontmatter(['routing parity']));
+
+    const { files } = walkCorpus(root);
+
+    expect(files).toEqual([
+      '.opencode/skills/demo/SKILL.md',
+      'specs/track/002-contracts-and-fixtures/spec.md',
+      'specs/track/003-scaffold/fixtures/routing-parity.md',
+    ]);
+  });
 });
 
 // ───────────────────────────────────────────────────────────────

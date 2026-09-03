@@ -211,6 +211,18 @@
     "description": "Validates YAML frontmatter structure and required semantic values."
   },
   {
+    "rule_id": "GREP_CONVENTION",
+    "aliases": [
+      "GREP",
+      "GREPPABLE",
+      "RETRIEVAL_CONVENTION"
+    ],
+    "script_path": "rules/check-grep-convention.sh",
+    "severity": "error",
+    "category": "authored_template",
+    "description": "Checks every markdown document in a spec folder against the greppable-corpus convention: frontmatter variant, trigger phrase quality, anchor grammar and naming."
+  },
+  {
     "rule_id": "LEVEL_MATCH",
     "aliases": [],
     "script_path": "rules/check-level-match.sh",

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8f6a6935a0f569ac858b4346051334c66294e8ed00df478b6cec75aec50a9790",
+  "manifestHash": "d69f453d0c77987c3669f43aa24c4b80556e795af1b2925d8f38130656f5a463",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9677,9 +9677,6 @@
     "advisor fix task list": [
       "advisor fix task list"
     ],
-    "advisor fixtures": [
-      "advisor fixtures"
-    ],
     "advisor freshness": [
       "advisor freshness"
     ],
@@ -9749,9 +9746,6 @@
     "advisor hook tasks": [
       "advisor hook tasks"
     ],
-    "advisor hook test data": [
-      "advisor hook test data"
-    ],
     "advisor hook validation playbook": [
       "advisor hook validation playbook"
     ],
@@ -9817,12 +9811,6 @@
     ],
     "advisor lifecycle": [
       "advisor lifecycle"
-    ],
-    "advisor lifecycle fixtures": [
-      "advisor lifecycle fixtures"
-    ],
-    "advisor lifecycle test data": [
-      "advisor lifecycle test data"
     ],
     "advisor manifest closure plan": [
       "advisor manifest closure plan"
@@ -10076,9 +10064,6 @@
     ],
     "advisor routing decision": [
       "advisor routing decision"
-    ],
-    "advisor routing dogfood": [
-      "advisor routing dogfood"
     ],
     "advisor routing fixes decision record": [
       "advisor routing fixes decision record"
@@ -10490,9 +10475,6 @@
     ],
     "agent hard boundary missing": [
       "agent hard boundary missing"
-    ],
-    "agent improve 001 fixture": [
-      "agent_improve_001 fixture"
     ],
     "agent improvement": [
       "agent-improvement"
@@ -11687,6 +11669,9 @@
     "anchor generator": [
       "anchor generator"
     ],
+    "anchor marker grammar": [
+      "anchor marker grammar"
+    ],
     "anchor miss returnedtokens zero": [
       "anchor-miss returnedTokens zero"
     ],
@@ -11834,9 +11819,6 @@
     ],
     "apache devendoring tasks": [
       "apache devendoring tasks"
-    ],
-    "api": [
-      "api"
     ],
     "api call trace": [
       "api call trace"
@@ -13452,9 +13434,6 @@
     "authorization decision replay": [
       "authorization decision replay"
     ],
-    "authorized ledger fixtures": [
-      "authorized ledger fixtures"
-    ],
     "authorized ledger verification": [
       "authorized ledger verification"
     ],
@@ -14120,12 +14099,6 @@
     ],
     "before after template": [
       "before-after template"
-    ],
-    "before and after diff example": [
-      "before and after diff example"
-    ],
-    "before and after markdown fixture": [
-      "before and after markdown fixture"
     ],
     "before claiming a color change works": [
       "before claiming a color change works"
@@ -15045,6 +15018,9 @@
     "bm25f field weights": [
       "bm25f field weights"
     ],
+    "body preservation invariant": [
+      "body preservation invariant"
+    ],
     "boilerplate": [
       "boilerplate"
     ],
@@ -15437,9 +15413,6 @@
     ],
     "broader default excludes": [
       "broader default excludes"
-    ],
-    "broken": [
-      "broken"
     ],
     "broken edges dependency cycles": [
       "broken edges dependency cycles"
@@ -16187,6 +16160,9 @@
     ],
     "canonical first spec root resolution": [
       "canonical-first spec-root resolution"
+    ],
+    "canonical frontmatter keys": [
+      "canonical frontmatter keys"
     ],
     "canonical iconic ruleset": [
       "canonical iconic ruleset"
@@ -17715,9 +17691,6 @@
     "checkpointallwal summary": [
       "checkpointAllWal summary"
     ],
-    "child": [
-      "child"
-    ],
     "child changelog creation": [
       "child changelog creation"
     ],
@@ -17768,9 +17741,6 @@
     ],
     "childpid lease field": [
       "childPid lease field"
-    ],
-    "children": [
-      "children"
     ],
     "children ids append only": [
       "children ids append only"
@@ -22823,9 +22793,6 @@
     "coderankembed jina v3 hybrid rrf defaults": [
       "CodeRankEmbed Jina v3 hybrid RRF defaults"
     ],
-    "codesight": [
-      "codesight"
-    ],
     "codesight adopt adapt reject": [
       "codesight adopt adapt reject"
     ],
@@ -24173,9 +24140,6 @@
     "comment hygiene checker tasks": [
       "comment hygiene checker tasks"
     ],
-    "comment hygiene clean fixture": [
-      "comment hygiene clean fixture"
-    ],
     "comment hygiene doc": [
       "comment hygiene doc"
     ],
@@ -24196,9 +24160,6 @@
     ],
     "comment hygiene tasks": [
       "comment hygiene tasks"
-    ],
-    "comment hygiene violation fixture": [
-      "comment hygiene violation fixture"
     ],
     "comment lint guard implementation plan": [
       "comment lint guard implementation plan"
@@ -25837,9 +25798,6 @@
     "context first intake": [
       "context-first intake"
     ],
-    "context generation": [
-      "context generation"
-    ],
     "context index": [
       "context index"
     ],
@@ -26403,9 +26361,6 @@
     "copilot tier2 review": [
       "copilot tier2 review"
     ],
-    "copilot user prompt submit fixtures": [
-      "copilot user prompt submit fixtures"
-    ],
     "copilot user prompt submit hook": [
       "copilot user-prompt-submit hook"
     ],
@@ -26906,12 +26861,6 @@
     ],
     "council validator graduation": [
       "council validator graduation"
-    ],
-    "council value fixtures": [
-      "council value fixtures"
-    ],
-    "council value scenario data": [
-      "council value scenario data"
     ],
     "council vantage targets": [
       "council vantage targets"
@@ -27539,9 +27488,6 @@
     "create diff file divider implementation": [
       "create diff file divider implementation"
     ],
-    "create diff fixtures": [
-      "create diff fixtures"
-    ],
     "create diff flags": [
       "create-diff flags"
     ],
@@ -27577,12 +27523,6 @@
     ],
     "create diff no op rename phase": [
       "create-diff no-op rename phase"
-    ],
-    "create diff onboarding after fixture": [
-      "create-diff onboarding after fixture"
-    ],
-    "create diff onboarding before fixture": [
-      "create-diff onboarding before fixture"
     ],
     "create diff py commands": [
       "create_diff.py commands"
@@ -34177,9 +34117,6 @@
     "deep skill graph metadata path fix": [
       "deep skill graph-metadata path fix"
     ],
-    "deep skill routing endpoint": [
-      "deep-skill-routing endpoint"
-    ],
     "deeppi manual testing": [
       "deeppi manual testing"
     ],
@@ -35134,9 +35071,6 @@
     "description depends on": [
       "description depends_on"
     ],
-    "description fixtures": [
-      "description fixtures"
-    ],
     "description governance block": [
       "description governance block"
     ],
@@ -35153,7 +35087,6 @@
       "description.json omitted children parity"
     ],
     "description json repair": [
-      "description json repair",
       "description.json repair"
     ],
     "description json scoping fix": [
@@ -36129,9 +36062,6 @@
     ],
     "deterministic extractor": [
       "deterministic extractor"
-    ],
-    "deterministic fixture replay": [
-      "deterministic fixture replay"
     ],
     "deterministic gauge reducer plan": [
       "deterministic gauge reducer plan"
@@ -37980,9 +37910,6 @@
     ],
     "doc truth test fidelity disposition": [
       "doc truth test fidelity disposition"
-    ],
-    "docs": [
-      "docs"
     ],
     "docs alignment 023 010": [
       "docs alignment 023/010"
@@ -41077,12 +41004,6 @@
     "evidence ledger runtime for system deep loop": [
       "evidence-ledger runtime for system-deep-loop"
     ],
-    "evidence marker audit test data": [
-      "evidence marker audit test data"
-    ],
-    "evidence marker fixtures": [
-      "evidence marker fixtures"
-    ],
     "evidence marker lint": [
       "evidence marker lint",
       "evidence-marker lint"
@@ -41479,9 +41400,6 @@
     ],
     "expected source path correctness": [
       "expected_source_path correctness"
-    ],
-    "expected verdict fixture": [
-      "expected verdict fixture"
     ],
     "expected workflow mode omitted": [
       "expected workflow mode omitted"
@@ -43225,6 +43143,9 @@
     "feature snippet scaffold": [
       "feature snippet scaffold"
     ],
+    "feature specification": [
+      "feature specification"
+    ],
     "feature specification 028 drift remediation": [
       "feature specification: 028 drift remediation"
     ],
@@ -43296,9 +43217,6 @@
     ],
     "fence direction serving prior": [
       "fence direction serving-prior"
-    ],
-    "fence edge case fixtures": [
-      "fence edge case fixtures"
     ],
     "fence fix plan": [
       "fence fix plan"
@@ -44172,9 +44090,6 @@
     ],
     "fixme sa star stress test cleanup": [
       "FIXME sa-star stress test cleanup"
-    ],
-    "fixture": [
-      "fixture"
     ],
     "fixture audit plan": [
       "fixture audit plan"
@@ -45560,6 +45475,9 @@
     "frontmatter validator path": [
       "frontmatter validator path"
     ],
+    "frontmatter variant taxonomy": [
+      "frontmatter variant taxonomy"
+    ],
     "frontmatter version gaps": [
       "frontmatter version gaps"
     ],
@@ -46391,9 +46309,6 @@
     ],
     "getrerankerfallback helper": [
       "getRerankerFallback helper"
-    ],
-    "getscenariodata": [
-      "getScenarioData"
     ],
     "getunresolveddisagreements": [
       "getUnresolvedDisagreements"
@@ -47747,9 +47662,6 @@
     "graph traversal index regression": [
       "graph traversal index regression"
     ],
-    "graph value scenarios": [
-      "graph value scenarios"
-    ],
     "grapharc": [
       "GraphARC"
     ],
@@ -47842,6 +47754,9 @@
     ],
     "grep convention": [
       "grep convention"
+    ],
+    "grep convention for spec docs": [
+      "grep convention for spec docs"
     ],
     "grep convention research": [
       "grep convention research"
@@ -48145,9 +48060,6 @@
     ],
     "hard exclusion audit memory health shipped": [
       "hard exclusion audit memory_health shipped"
-    ],
-    "hard partial credit fixtures": [
-      "hard partial-credit fixtures"
     ],
     "hardcoded checkout root": [
       "hardcoded checkout root"
@@ -48487,9 +48399,6 @@
     ],
     "held out routing corpus approach": [
       "held-out routing corpus approach"
-    ],
-    "here": [
-      "here"
     ],
     "hermetic code graph db cleanup": [
       "hermetic code graph db cleanup"
@@ -48835,9 +48744,6 @@
     ],
     "hook feature flags tasks": [
       "hook feature flags tasks"
-    ],
-    "hook fixtures": [
-      "hook fixtures"
     ],
     "hook flags guard implementation": [
       "hook-flags guard implementation"
@@ -51047,9 +50953,6 @@
     "insufficient context abort constitutional": [
       "INSUFFICIENT_CONTEXT_ABORT constitutional"
     ],
-    "insufficient sample fixture": [
-      "insufficient sample fixture"
-    ],
     "insufficient vantage diversity": [
       "insufficient vantage diversity"
     ],
@@ -52289,9 +52192,6 @@
     "kit": [
       "kit"
     ],
-    "kit 026": [
-      "kit/026"
-    ],
     "knn benchmark": [
       "knn benchmark"
     ],
@@ -52568,9 +52468,6 @@
     ],
     "lane weight sweep": [
       "lane weight sweep"
-    ],
-    "lane weight sweep fixtures": [
-      "lane weight sweep fixtures"
     ],
     "lane weight sweep harder set": [
       "lane weight sweep harder set"
@@ -53407,9 +53304,6 @@
     "legacy 065 child alias cleanup": [
       "legacy 065 child alias cleanup"
     ],
-    "legacy advisor fixtures": [
-      "legacy advisor fixtures"
-    ],
     "legacy advisor tool bridge": [
       "legacy advisor tool bridge"
     ],
@@ -53621,29 +53515,14 @@
     "lenis scrollto snippet": [
       "lenis scrollto snippet"
     ],
-    "level 1 fixture": [
-      "level 1 fixture"
-    ],
     "level 1 template rename": [
       "level_1 template rename"
-    ],
-    "level 2": [
-      "level 2"
     ],
     "level 2 3 3 required docs": [
       "level 2 3 3+ required docs"
     ],
     "level 2 3 3 template contract": [
       "level 2 3 3+ template contract"
-    ],
-    "level 2 fixture": [
-      "level 2 fixture"
-    ],
-    "level 3": [
-      "level 3"
-    ],
-    "level 3 fixture": [
-      "level 3 fixture"
     ],
     "level agnostic file path ledger": [
       "level-agnostic file path ledger"
@@ -53737,9 +53616,6 @@
     "lexical idf": [
       "lexical idf"
     ],
-    "lexical mode routing check": [
-      "lexical mode routing check"
-    ],
     "lexical normalizer fts5": [
       "lexical normalizer fts5"
     ],
@@ -53812,9 +53688,6 @@
     "lifecycle fix tasks": [
       "lifecycle fix tasks"
     ],
-    "lifecycle fixtures": [
-      "lifecycle fixtures"
-    ],
     "lifecycle gated implementation summary": [
       "lifecycle-gated implementation summary"
     ],
@@ -53844,9 +53717,6 @@
     ],
     "lifecycle taxonomy guards runtime": [
       "lifecycle taxonomy guards runtime"
-    ],
-    "lifecyclefixtures": [
-      "lifecycleFixtures"
     ],
     "lifecyclerequireddocs": [
       "lifecycleRequiredDocs"
@@ -53965,9 +53835,6 @@
     "link resolver task": [
       "link resolver task"
     ],
-    "links": [
-      "links"
-    ],
     "lint baseline 115 problems": [
       "lint baseline 115 problems"
     ],
@@ -54076,9 +53943,6 @@
     ],
     "list vaults": [
       "List vaults"
-    ],
-    "listscenarioids": [
-      "listScenarioIds"
     ],
     "listsupporteddimensions embeddermanifest": [
       "listSupportedDimensions EmbedderManifest"
@@ -54878,9 +54742,6 @@
     ],
     "louvain naming decision": [
       "louvain naming decision"
-    ],
-    "low sample benchmark fixture": [
-      "low-sample-benchmark fixture"
     ],
     "low signal query": [
       "low signal query"
@@ -59554,9 +59415,6 @@
     "merge tasks": [
       "merge tasks"
     ],
-    "mergepreserverepair fixtures": [
-      "mergePreserveRepair fixtures"
-    ],
     "mermaid extract": [
       "mermaid_extract"
     ],
@@ -59976,9 +59834,6 @@
     ],
     "misreading guard": [
       "misreading guard"
-    ],
-    "missing": [
-      "missing"
     ],
     "missing active vector success": [
       "missing active vector success"
@@ -60742,9 +60597,6 @@
     "mobile viewport testing cli": [
       "mobile viewport testing cli"
     ],
-    "mock advisor responses": [
-      "mock advisor responses"
-    ],
     "mockup": [
       "mockup"
     ],
@@ -60780,9 +60632,6 @@
     ],
     "mode 010 shadow harness": [
       "mode 010 shadow harness"
-    ],
-    "mode a fixtures dir corpus": [
-      "Mode A fixtures-dir corpus"
     ],
     "mode a mode b plan": [
       "mode-a mode-b plan"
@@ -62427,9 +62276,6 @@
     ],
     "nine step fix plan tasks": [
       "nine step fix plan tasks"
-    ],
-    "no": [
-      "no"
     ],
     "no active session error": [
       "no active session error"
@@ -64519,17 +64365,8 @@
     "onboard the phone": [
       "onboard the phone"
     ],
-    "onboarding baseline fixture": [
-      "onboarding baseline fixture"
-    ],
-    "onboarding comparison fixture": [
-      "onboarding comparison fixture"
-    ],
     "onboarding completion states": [
       "onboarding completion states"
-    ],
-    "onboarding diff fixture": [
-      "onboarding diff fixture"
     ],
     "onboarding flow": [
       "Onboarding flow"
@@ -65359,9 +65196,6 @@
     ],
     "optimization": [
       "optimization"
-    ],
-    "optimization 001": [
-      "optimization/001"
     ],
     "optimization workflows index": [
       "optimization workflows index"
@@ -66878,9 +66712,6 @@
     ],
     "parseflagtristate shared helper": [
       "parseFlagTristate shared helper"
-    ],
-    "parsemarkers fixtures": [
-      "parseMarkers fixtures"
     ],
     "parser error graph preservation": [
       "parser error graph preservation"
@@ -68960,9 +68791,6 @@
     ],
     "phase child contract unify": [
       "phase child contract unify"
-    ],
-    "phase child header": [
-      "phase child header"
     ],
     "phase child naming": [
       "phase child naming"
@@ -71975,6 +71803,9 @@
     "problem first readme": [
       "problem-first readme"
     ],
+    "problem statement": [
+      "problem statement"
+    ],
     "procedural benchmark gate task": [
       "procedural benchmark gate task"
     ],
@@ -72998,9 +72829,6 @@
     ],
     "public private fixture pair": [
       "public private fixture pair"
-    ],
-    "public private fixture split": [
-      "public private fixture split"
     ],
     "public repo security audit": [
       "Public repo security audit"
@@ -77041,6 +76869,9 @@
     "requirement wording contradicts phase map": [
       "requirement wording contradicts phase map"
     ],
+    "requirements and scope": [
+      "requirements and scope"
+    ],
     "requirements rules and checklist": [
       "requirements rules and checklist"
     ],
@@ -77747,9 +77578,6 @@
     ],
     "residual backlog roadmap charter": [
       "residual backlog roadmap charter"
-    ],
-    "residual cleanup": [
-      "residual cleanup"
     ],
     "residual command asset naming": [
       "residual command asset naming"
@@ -78625,6 +78453,9 @@
     "retroactive time log": [
       "retroactive time log"
     ],
+    "retrofit diagnostics schema": [
+      "retrofit diagnostics schema"
+    ],
     "retry helper": [
       "retry helper"
     ],
@@ -78949,9 +78780,6 @@
     "review packet reference closure": [
       "review packet reference closure"
     ],
-    "review packet type": [
-      "review packet type"
-    ],
     "review packet type plan": [
       "review packet type plan"
     ],
@@ -78987,9 +78815,6 @@
     ],
     "review quality gates": [
       "review quality gates"
-    ],
-    "review record fixture": [
-      "review record fixture"
     ],
     "review record fixture tasks": [
       "review-record fixture tasks"
@@ -79152,9 +78977,6 @@
     ],
     "reviewer prompt fixture template": [
       "reviewer-prompt fixture template"
-    ],
-    "reviewer prompt regression": [
-      "reviewer prompt regression"
     ],
     "reviewer read budget": [
       "reviewer read-budget"
@@ -80161,9 +79983,6 @@
     "routing parity remediation": [
       "routing parity remediation"
     ],
-    "routing precision probe": [
-      "routing precision probe"
-    ],
     "routing registry drift guard": [
       "routing registry drift guard"
     ],
@@ -80424,9 +80243,6 @@
     ],
     "run connectivity gate": [
       "run connectivity gate"
-    ],
-    "run create diff example": [
-      "run create diff example"
     ],
     "run design extraction": [
       "run design extraction"
@@ -80713,9 +80529,6 @@
     "runtime feature catalog": [
       "runtime/ feature catalog"
     ],
-    "runtime fixtures": [
-      "runtime fixtures"
-    ],
     "runtime flags": [
       "runtime flags"
     ],
@@ -80928,9 +80741,6 @@
     ],
     "runtime sync manifest template": [
       "runtime sync manifest template"
-    ],
-    "runtime test fixtures": [
-      "runtime test fixtures"
     ],
     "runtime test helpers": [
       "runtime test helpers"
@@ -81256,9 +81066,6 @@
     "same path duplicate row": [
       "same-path duplicate row"
     ],
-    "sample audit": [
-      "sample audit"
-    ],
     "sandbox baseline comparison": [
       "sandbox baseline comparison"
     ],
@@ -81432,12 +81239,6 @@
     ],
     "scaffold rehearsal task": [
       "scaffold rehearsal task"
-    ],
-    "scaffold signature clean fixture": [
-      "scaffold signature clean fixture"
-    ],
-    "scaffold signature violation fixture": [
-      "scaffold signature violation fixture"
     ],
     "scaffold sk create frontmatter": [
       "scaffold sk-create-frontmatter"
@@ -81615,9 +81416,6 @@
     ],
     "scenarios by failure mode": [
       "scenarios by failure mode"
-    ],
-    "scenarios cjs": [
-      "scenarios.cjs"
     ],
     "scenarios mjs registration": [
       "scenarios.mjs registration"
@@ -83227,9 +83025,6 @@
     ],
     "session stop autosave canonical": [
       "session-stop autosave canonical"
-    ],
-    "session stop replay": [
-      "session stop replay"
     ],
     "session teardown sweep": [
       "session teardown sweep"
@@ -88780,9 +88575,6 @@
     "skill advisor fix plan handoff": [
       "skill advisor fix plan handoff"
     ],
-    "skill advisor fixtures": [
-      "skill advisor fixtures"
-    ],
     "skill advisor freshness audit": [
       "skill advisor freshness audit"
     ],
@@ -88848,9 +88640,6 @@
     ],
     "skill advisor jsdoc": [
       "skill advisor jsdoc"
-    ],
-    "skill advisor json fixtures": [
-      "skill advisor json fixtures"
     ],
     "skill advisor kebab snake": [
       "skill_advisor kebab snake"
@@ -89262,9 +89051,6 @@
     "skill benchmark excluded by design": [
       "skill benchmark excluded by design"
     ],
-    "skill benchmark fixtures": [
-      "skill-benchmark fixtures"
-    ],
     "skill benchmark hub re layer": [
       "skill-benchmark hub re-layer"
     ],
@@ -89627,9 +89413,6 @@
     ],
     "skill embedding cache invalidation": [
       "skill embedding cache invalidation"
-    ],
-    "skill embedding seeder": [
-      "skill embedding seeder"
     ],
     "skill entry documentation alignment": [
       "skill entry documentation alignment"
@@ -91052,9 +90835,6 @@
     "spec folder description discovery": [
       "spec folder description discovery"
     ],
-    "spec folder description test data": [
-      "spec folder description test data"
-    ],
     "spec folder detection": [
       "spec folder detection"
     ],
@@ -91123,9 +90903,6 @@
     ],
     "spec folder state classification": [
       "spec folder state classification"
-    ],
-    "spec folder test scenarios": [
-      "spec folder test scenarios"
     ],
     "spec folder workflow": [
       "spec folder workflow"
@@ -95896,6 +95673,9 @@
     "team wide task listing": [
       "team-wide task listing"
     ],
+    "technical approach": [
+      "technical approach"
+    ],
     "telemetry and process verification harness": [
       "telemetry and process verification harness",
       "telemetry-and-process-verification-harness"
@@ -96401,9 +96181,6 @@
     "test fixture singular skill": [
       "test fixture singular skill"
     ],
-    "test fixtures": [
-      "test fixtures"
-    ],
     "test generation from specs": [
       "test generation from specs"
     ],
@@ -96518,6 +96295,9 @@
     "testing record replay cassette harness": [
       "testing record-replay cassette harness"
     ],
+    "testing strategy": [
+      "testing strategy"
+    ],
     "tests that cannot fail": [
       "tests that cannot fail"
     ],
@@ -96607,9 +96387,6 @@
     ],
     "thirty three code readmes": [
       "thirty-three code readmes"
-    ],
-    "this": [
-      "this"
     ],
     "three corpus metric lanes": [
       "three corpus metric lanes"
@@ -96770,9 +96547,6 @@
     "tiered error recovery": [
       "tiered error recovery"
     ],
-    "tiered fixture taxonomy": [
-      "tiered fixture taxonomy"
-    ],
     "tiered fixture template": [
       "tiered fixture template"
     ],
@@ -96808,15 +96582,6 @@
     ],
     "timer status": [
       "timer status"
-    ],
-    "tiny catalog sync": [
-      "tiny catalog sync"
-    ],
-    "tiny notes export": [
-      "tiny notes export"
-    ],
-    "tiny reminder toggle": [
-      "tiny reminder toggle"
     ],
     "tion": [
       "tion"
@@ -97572,8 +97337,8 @@
     "trigger phrase configuration": [
       "trigger phrase configuration"
     ],
-    "trigger phrase migration": [
-      "trigger phrase migration"
+    "trigger phrase generic negatives": [
+      "trigger phrase generic negatives"
     ],
     "trigger phrase quality": [
       "trigger phrase quality"
@@ -98634,6 +98399,9 @@
     "user": [
       "user"
     ],
+    "user authentication": [
+      "user authentication"
+    ],
     "user authored dispatch override": [
       "user-authored dispatch override"
     ],
@@ -98901,12 +98669,6 @@
     "vague query model benchmark": [
       "vague query model benchmark"
     ],
-    "valid": [
-      "valid"
-    ],
-    "valid baseline": [
-      "valid baseline"
-    ],
     "valid status names for list": [
       "valid status names for list"
     ],
@@ -99091,14 +98853,11 @@
     "validation enforce graduation tasks": [
       "validation enforce graduation tasks"
     ],
+    "validation evidence": [
+      "validation evidence"
+    ],
     "validation first workflow": [
       "validation first workflow"
-    ],
-    "validation fixture pack": [
-      "validation fixture pack"
-    ],
-    "validation fixtures": [
-      "validation fixtures"
     ],
     "validation gate acceptance criteria": [
       "validation gate acceptance criteria"
@@ -99249,9 +99008,6 @@
     ],
     "validator warn heuristics": [
       "validator-warn heuristics"
-    ],
-    "value": [
-      "value"
     ],
     "value embedding in prose": [
       "value embedding in prose"
@@ -99498,6 +99254,9 @@
     ],
     "verification blocker decision": [
       "verification blocker decision"
+    ],
+    "verification checklist": [
+      "verification checklist"
     ],
     "verification confidence scoring": [
       "verification confidence scoring"
@@ -100750,6 +100509,9 @@
     "what plugins are installed": [
       "what plugins are installed"
     ],
+    "what shipped": [
+      "what shipped"
+    ],
     "when does a folder need code md": [
       "when does a folder need code.md"
     ],
@@ -101649,9 +101411,6 @@
     ],
     "yaml template anchors": [
       "yaml template anchors"
-    ],
-    "your": [
-      "your"
     ],
     "ystem": [
       "ystem"

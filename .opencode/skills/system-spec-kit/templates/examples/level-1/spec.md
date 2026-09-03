@@ -2,13 +2,10 @@
 title: "Feature Specification: Add User Authentication [template:examples/level-1/spec.md]"
 description: "required for a simple authentication feature (~80 LOC). Use this as a reference when"
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "add"
-  - "user"
-  - "authentication"
-  - "template"
-  - "spec"
+  - "feature specification"
+  - "problem statement"
+  - "requirements and scope"
+  - "user authentication"
 importance_tier: "normal"
 contextType: "general"
 ---
