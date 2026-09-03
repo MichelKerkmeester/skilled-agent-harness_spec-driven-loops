@@ -11,15 +11,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/007-spec-kit-residue"
-    last_updated_at: "2026-09-02T23:50:00Z"
+    last_updated_at: "2026-09-03T05:00:00Z"
     last_updated_by: "spec-kit-residue-implementer"
-    recent_action: "Implemented ADR-005 and ADR-008. Closed the other six against 049"
-    next_safe_action: "Rule on adjacent findings A1 and A2"
+    recent_action: "Resolved adjacent findings A1, A2 and A3. The coverage-graph suite is fully green"
+    next_safe_action: "Close the packet"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
       - ".opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts"
       - ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts"
+      - ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-kit-residue-decisions"
@@ -71,10 +72,27 @@ name. The fourth, `session-isolation.vitest.ts`, also imported five `handlers/co
 modules that were genuinely retired with no aliases and no relocated equivalent, so it was
 deleted.
 
-Forty-seven assertions came back. Two failed, and both are real drift that accumulated while
+Forty-seven assertions came back. Two failed, and both were real drift that accumulated while
 the tests were dark, an empty-graph verification rate and the direction of a review coverage
-gap. Neither assertion was edited to make the run green. Both are written up as contract
-questions in the decision record.
+gap. They were written up as contract questions rather than silenced.
+
+### The two contract questions, ruled
+
+The operator ruled that the tests follow the producer, and that no `system-deep-loop` runtime
+code changes. Both producers were read first, and both already document the behaviour the tests
+were contradicting. `computeResearchClaimVerificationRateFromData` carries a doc comment saying
+an empty claim set is a vacuous pass returning `1.0`, because scoring it `0` would raise a
+blocker no unverified claim can clear and loop a converged graph forever.
+`getCoverageGapRequirements` pairs `{ DIMENSION, outgoing }` with `{ FILE, incoming }`, and the
+runtime's own `tests/unit/coverage-graph-query.vitest.ts:182` asserts that direction on purpose.
+The cross-layer fixture's single `review-dimension --COVERS--> review-file` edge satisfies both
+requirements at once, so the right expectation there is no gap at all.
+
+Neither assertion was loosened. Each now states the current contract with its reason in a
+one-line comment, and the empty-graph test was renamed to name the vacuous pass it checks. The
+parity comment in `lib/coverage-graph-convergence.cjs` still pointed at the pre-move MCP handler
+path, so that dangling pointer was repaired in the same pass. It is comment-only, in the file
+both repaired tests load as their parity subject.
 
 ### A project root you can point somewhere else
 
@@ -96,7 +114,8 @@ Production behavior is unchanged, and the suite no longer depends on the shape o
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Modified | Repoint one import at the deep-loop runtime. Correct the stale layer name in the header |
-| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts` | Modified | Repoint three imports at the deep-loop runtime |
+| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts` | Modified | Repoint three imports at the deep-loop runtime. Align the two drifted expectations with their producers |
+| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs` | Modified | Repoint the stale parity comment at the deep-loop runtime. Comment only |
 | `.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts` | Modified | Repoint one import at the deep-loop runtime |
 | `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts` | Deleted | Depends on five MCP handler modules retired with no relocated equivalent |
 | `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modified | `main()` takes a defaulted project root and binds it before parsing |
@@ -146,6 +165,8 @@ command proves the change. Output and exit status were read on every run.
 |-------|--------|
 | ADR-005 baseline, four files | FAIL as expected, `Test Files 4 failed (4)`, `Tests no tests`, each `Cannot find module '../../mcp-server/lib/coverage-graph/…'` |
 | ADR-005 after repoint, three files | `Test Files 1 failed \| 2 passed (3)`, `Tests 2 failed \| 47 passed (49)`. The two failures are adjacent findings A1 and A2 |
+| A1 and A2, three files plus the ADR-008 control | PASS, `Test Files 4 passed (4)`, `Tests 60 passed (60)`, exit 0 |
+| Deep-loop runtime coverage-graph suite, query, signals and db | PASS, `Tests 42 passed (42)`, exit 0. Runtime assertions unchanged |
 | ADR-008 baseline | FAIL as expected, `Tests 7 failed \| 4 passed (11)`, all seven `process.exit unexpectedly called with "1"` |
 | ADR-008 after change | PASS, `Tests 11 passed (11)`, exit 0 |
 | `npm run typecheck` (`system-spec-kit/scripts`) | PASS, exit 0 |
@@ -157,9 +178,8 @@ command proves the change. Output and exit status were read on every run.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Two coverage-graph assertions stay red.** Adjacent findings A1 and A2 are contract
-   questions in `system-deep-loop` runtime, outside this phase's scope, and are recorded rather
-   than fixed.
+1. **Six documents still print the pre-move coverage-graph path.** Only the parity comment in
+   `lib/coverage-graph-convergence.cjs` was repaired. The prose copies are recorded, not fixed.
 2. **The workspace typecheck lane does not cover test files.** `scripts/tsconfig.json` excludes
    `tests/**/*.vitest.ts`, so the two edited test files were verified by running them, not by
    type-checking them. Adjacent finding A4.

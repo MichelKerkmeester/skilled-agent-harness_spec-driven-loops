@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-09-02T23:50:00Z"
     last_updated_by: "spec-kit-residue-implementer"
     recent_action: "Re-read every ADR against 049, implemented ADR-005 and ADR-008, closed the rest as superseded"
-    next_safe_action: "Rule on adjacent findings A1 and A2"
+    next_safe_action: "Close the packet; A1, A2 and A3 are resolved"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/lib/search/bm25-index.ts"
@@ -28,10 +28,9 @@ _memory:
       session_id: "spec-kit-residue-decisions"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "Adjacent finding A1: does an empty research graph score claimVerificationRate 0 or 1?"
-      - "Adjacent finding A2: is a review coverage gap a FILE with no incoming COVERS, or no outgoing COVERS/EVIDENCE_FOR?"
+    open_questions: []
     answered_questions:
+      - "Adjacent findings A1 and A2 are resolved by operator ruling: the tests follow the producer, and no system-deep-loop runtime code is touched."
       - "ADR-001 through ADR-004 and ADR-007 are superseded by 049-memory-decommission: every file they would edit is inside the mcp-server delete."
       - "ADR-005 and ADR-008 sit outside 049 and are implemented."
       - "The daemon recycle is superseded: 049 deletes the launcher, the plugin and the hook concern."
@@ -751,7 +750,7 @@ depends on it.
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | The repointed tests fail on real drift | M | Triage as its own finding; do not weaken the assertions |
-| `scripts/lib/coverage-graph-convergence.cjs:2` and six docs still print the pre-move path | L | Adjacent finding, recorded not fixed |
+| `scripts/lib/coverage-graph-convergence.cjs:2` and six docs still print the pre-move path | L | The `.cjs` comment pointer was repaired 2026-09-03 (A3). The six docs remain recorded, not fixed |
 <!-- /ANCHOR:adr-005-consequences -->
 
 ---
@@ -815,7 +814,23 @@ half months now run.
 
 Both producers live in `system-deep-loop/runtime/lib/coverage-graph/`, outside this packet's
 frozen scope, and this ADR's own risk row says to triage such drift as its own finding rather
-than weaken an assertion. They are recorded in Adjacent Findings below and left red.
+than weaken an assertion. They were recorded in Adjacent Findings below and left red.
+
+**Resolved 2026-09-03 by operator ruling: the tests follow the producer, and no runtime code
+is touched.** Both producers were read before either expectation moved, and both document the
+behaviour the tests were contradicting. `computeResearchClaimVerificationRateFromData` carries
+a doc comment saying an empty claim set is a vacuous pass returning `1.0`, because scoring it
+`0` raises a blocker no unverified claim can ever clear and loops a converged graph forever.
+`getCoverageGapRequirements` pairs `{ DIMENSION, outgoing }` with `{ FILE, incoming }`, and the
+runtime's own `tests/unit/coverage-graph-query.vitest.ts:182` asserts that direction under the
+title *"findCoverageGaps treats incoming COVERS edges as FILE coverage in review graphs"*. The
+cross-layer fixture's single `review-dimension --COVERS--> review-file` edge therefore satisfies
+both requirements at once, so the correct expectation is no gap. Neither assertion was loosened:
+each states the current contract, with the reason in a one-line comment beside it. The empty-graph
+test was renamed to name the convention it checks. The isolation test kept its title, which
+describes namespace isolation rather than the gap rule and is still accurate. Verified green:
+`Test Files 4 passed (4)`, `Tests 60 passed (60)`, exit 0, with the runtime's own coverage-graph
+suite unchanged at `Tests 42 passed (42)`, exit 0.
 
 <!-- /ANCHOR:adr-005 -->
 
@@ -1296,8 +1311,8 @@ Recorded, not fixed. Each sits outside this packet's frozen scope.
 
 | # | Where | What | Why it is not fixed here |
 |---|-------|------|--------------------------|
-| A1 | `system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:599` | `computeResearchClaimVerificationRateFromData` returns `1.0` for a graph with no CLAIM nodes. The restored cross-layer test asserts `0` | The producer is `system-deep-loop` runtime, outside the files this phase was scoped to, and which side is right is a contract question |
-| A2 | `system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:286` | The review coverage-gap requirement is a FILE with no **incoming** COVERS. The restored test asserts the older **outgoing** COVERS/EVIDENCE_FOR rule | Same tree, same reason. The direction looks like a deliberate correction, which would make the assertion the stale side, but nobody has ruled |
-| A3 | `system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:2` | The *"do not diverge"* parity comment still names the pre-move MCP handler path | A comment fix in a file this phase did not otherwise touch |
+| A1 | `system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:599` | `computeResearchClaimVerificationRateFromData` returns `1.0` for a graph with no CLAIM nodes. The restored cross-layer test asserted `0` | **Resolved 2026-09-03.** Operator ruling: the test follows the producer. The producer's own doc comment states the convention, so the test now asserts `1` and its title names the vacuous pass |
+| A2 | `system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:286` | The review coverage-gap requirement is a FILE with no **incoming** COVERS. The restored test asserted the older **outgoing** COVERS/EVIDENCE_FOR rule | **Resolved 2026-09-03.** Operator ruling: the test follows the producer. The runtime's own `coverage-graph-query.vitest.ts:182` asserts the incoming rule deliberately, so the test now expects no gap for a covered file |
+| A3 | `system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:2` | The *"do not diverge"* parity comment named the pre-move MCP handler path | **Resolved 2026-09-03.** Comment-only repair of a dangling pointer, in the file both repaired tests load as the parity subject. No code changed |
 | A4 | `system-spec-kit/scripts/tsconfig.json` | `exclude` carries `tests/**/*.vitest.ts`, so `npm run typecheck` never type-checks any test file, including the two this phase edited | AC-003 already tracks it. Adding a tests typecheck lane is its own change with its own blast radius |
 <!-- /ANCHOR:adjacent-findings -->

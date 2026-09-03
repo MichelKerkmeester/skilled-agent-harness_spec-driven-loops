@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/007-spec-kit-residue"
-    last_updated_at: "2026-09-02T23:50:00Z"
+    last_updated_at: "2026-09-03T05:00:00Z"
     last_updated_by: "spec-kit-residue-implementer"
-    recent_action: "Ruled every ADR against 049 and implemented ADR-005 and ADR-008"
-    next_safe_action: "Rule on adjacent findings A1 and A2 in decision-record.md"
+    recent_action: "Resolved adjacent findings A1, A2 and A3; the coverage-graph suite is green"
+    next_safe_action: "Close the packet"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-02-052-007-spec-kit-residue"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -66,7 +66,7 @@ Frozen choices. Changing one is an amendment.
 Copy these into the objective verbatim. Nothing dereferences a path.
 
 - [x] Every ADR in `decision-record.md` carries an implementation commit or a superseded note naming 049
-- [x] ADR-005 and ADR-008 are implemented. ADR-008's seven tests pass, and ADR-005 restored 47 of 49 assertions with the two failures named as drift rather than silenced
+- [x] ADR-005 and ADR-008 are implemented. ADR-008's seven tests pass, and ADR-005 restored 47 of 49 assertions with the two failures named as drift rather than silenced. Those two are now ruled and green: `Tests 60 passed (60)`, exit 0
 - [ ] The suite completes without a bound killing the run
 - [ ] The typecheck lane covers test files, and the 25 missing references are gone or explained
 - [x] The ADR-008 suite leaves `git status` clean. A full suite run was not attempted
@@ -122,6 +122,8 @@ before you act on it, because 049 is itself still Pending and its scope can move
 |------|------|
 | Four decided ADRs may cost more than they return | Confirmed and acted on: ADR-001 through ADR-004 all edit files 049 deletes, and each is now closed as superseded with its decision text preserved |
 | The ADR-005 repoint surfaced two real drifts | An empty graph now scores `claimVerificationRate` 1 rather than 0, and a review coverage gap is now a FILE with no *incoming* COVERS rather than no outgoing one. Both producers are in `system-deep-loop` runtime, outside scope. Recorded as adjacent findings A1 and A2, left red |
+| A1 and A2 ruled, 2026-09-03 | Operator ruling: the tests follow the producer, and no runtime code is touched. Both producers document the behaviour the tests contradicted, `coverage-graph-signals.ts:~599` in its own doc comment and `coverage-graph-query.ts:286` in the runtime's own `tests/unit/coverage-graph-query.vitest.ts:182`. Red was reproduced first (`Tests 2 failed \| 47 passed (49)`, exit 1), then green (`Test Files 4 passed (4)`, `Tests 60 passed (60)`, exit 0). Deep-loop runtime coverage-graph suite unchanged at `Tests 42 passed (42)`, exit 0. `npm run typecheck` exit 0, though its `tsconfig.json` excludes `tests/**/*.vitest.ts`, so it never saw the edited file |
+| A3 fixed in the same pass | The parity comment at `scripts/lib/coverage-graph-convergence.cjs:2` named the deleted `mcp-server` path. Comment-only repair, in the file both repaired tests load as their parity subject. The six prose copies of the stale path are still recorded, not fixed |
 | The typecheck lane never sees a test file | `scripts/tsconfig.json` excludes `tests/**/*.vitest.ts`, so the two edited test files were proven by running them, not by type-checking them. Adjacent finding A4 |
 | The ADR-008 suite can flake under contention | The first test now does real filesystem work, so on a loaded machine it once exceeded the 30s bound during module import and its lingering `main()` left a lock that failed the next test. A rerun of the same four files finished in 8 seconds, 58 of 60 passing, with only the two known drift failures |
 | The ADR-008 fixture needed track-level metadata | A track folder holding `NNN-` children is a phase parent, so the save path rewrites its pointers. The first temp workspace failed on ENOENT until it carried a `graph-metadata.json` like a real track folder does |
