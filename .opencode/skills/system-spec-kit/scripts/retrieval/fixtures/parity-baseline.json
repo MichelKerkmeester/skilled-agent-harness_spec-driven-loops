@@ -1,0 +1,3962 @@
+{
+  "cases": [
+    {
+      "class": "exact-phrase",
+      "divergences": [],
+      "expectedBehaviour": "The whole normalized prompt equals a declared phrase, so both lexical arms return its owning document at the exact class.",
+      "expectedMisses": [],
+      "expectedPaths": [
+        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+      ],
+      "id": "case-01-exact-phrase",
+      "index": {
+        "candidatePhraseCount": 203,
+        "comparedPaths": [
+          "specs/agents/001-terminal-proof-discipline/decision-record.md"
+        ],
+        "discardedTokens": [],
+        "normalizedQuery": "terminal proof decisions",
+        "outsideIntersection": [],
+        "returnedPathCount": 193,
+        "scoredPathCount": 1,
+        "tokens": [
+          "terminal",
+          "proof",
+          "decisions"
+        ],
+        "zeroScorePathCount": 192
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [
+          {
+            "importanceTier": "important",
+            "matchClass": "exact",
+            "matchScore": 1,
+            "path": "specs/agents/001-terminal-proof-discipline/decision-record.md",
+            "score": 1
+          }
+        ],
+        "normalizedQuery": "terminal proof decisions",
+        "outsideIntersection": [],
+        "saturated": true,
+        "tokens": [
+          "terminal",
+          "proof",
+          "decisions"
+        ],
+        "unwindowedScoredPaths": 1
+      },
+      "query": "terminal proof decisions",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'terminal proof decisions' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 1,
+            "matchedPathCount": 1,
+            "outcome": "match",
+            "pattern": "terminal proof decisions",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "exact",
+                "path": "specs/agents/001-terminal-proof-discipline/decision-record.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- terminal specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 2351,
+            "matchedPathCount": 2351,
+            "outcome": "match",
+            "pattern": "terminal",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-diagram/assets/templates/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 11,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-pi/README.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/cli.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- proof specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 4223,
+            "matchedPathCount": 4223,
+            "outcome": "match",
+            "pattern": "proof",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-obsidian/references/verification.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/mcp-tooling/017-mcp-magicpath/001-cli-transport-proof/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-code/007-sk-code-obsidian-surface/003-hub-wiring/plan.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- decisions specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 5108,
+            "matchedPathCount": 5108,
+            "outcome": "match",
+            "pattern": "decisions",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/references/review-core.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/mcp-server/data/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet/decision-record.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 4,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/030-cli-cursor-creation/003-cli-cursor-skill-packet/decision-record.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/mcp-tooling/011-routing-remediation/decision-record.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 11683
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "uppercase-case-fold",
+      "divergences": [],
+      "expectedBehaviour": "Both arms lowercase before matching, so an all-caps prompt resolves identically to the exact-phrase case.",
+      "expectedMisses": [],
+      "expectedPaths": [
+        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+      ],
+      "id": "case-02-uppercase-case-fold",
+      "index": {
+        "candidatePhraseCount": 203,
+        "comparedPaths": [
+          "specs/agents/001-terminal-proof-discipline/decision-record.md"
+        ],
+        "discardedTokens": [],
+        "normalizedQuery": "terminal proof decisions",
+        "outsideIntersection": [],
+        "returnedPathCount": 193,
+        "scoredPathCount": 1,
+        "tokens": [
+          "terminal",
+          "proof",
+          "decisions"
+        ],
+        "zeroScorePathCount": 192
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [
+          {
+            "importanceTier": "important",
+            "matchClass": "exact",
+            "matchScore": 1,
+            "path": "specs/agents/001-terminal-proof-discipline/decision-record.md",
+            "score": 1
+          }
+        ],
+        "normalizedQuery": "terminal proof decisions",
+        "outsideIntersection": [],
+        "saturated": true,
+        "tokens": [
+          "terminal",
+          "proof",
+          "decisions"
+        ],
+        "unwindowedScoredPaths": 1
+      },
+      "query": "TERMINAL PROOF DECISIONS",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'terminal proof decisions' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 1,
+            "matchedPathCount": 1,
+            "outcome": "match",
+            "pattern": "terminal proof decisions",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "exact",
+                "path": "specs/agents/001-terminal-proof-discipline/decision-record.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- terminal specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 2351,
+            "matchedPathCount": 2351,
+            "outcome": "match",
+            "pattern": "terminal",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-diagram/assets/templates/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 11,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-pi/README.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/cli.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- proof specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 4223,
+            "matchedPathCount": 4223,
+            "outcome": "match",
+            "pattern": "proof",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-obsidian/references/verification.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/mcp-tooling/017-mcp-magicpath/001-cli-transport-proof/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-code/007-sk-code-obsidian-surface/003-hub-wiring/plan.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- decisions specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 5108,
+            "matchedPathCount": 5108,
+            "outcome": "match",
+            "pattern": "decisions",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/references/review-core.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/mcp-server/data/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet/decision-record.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 4,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/030-cli-cursor-creation/003-cli-cursor-skill-packet/decision-record.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/mcp-tooling/011-routing-remediation/decision-record.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 11683
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "punctuation-separator",
+      "divergences": [],
+      "expectedBehaviour": "Every run of non-alphanumeric characters collapses to one separator, so hyphens and slashes resolve to the same normalized phrase.",
+      "expectedMisses": [],
+      "expectedPaths": [
+        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+      ],
+      "id": "case-03-punctuation-separator",
+      "index": {
+        "candidatePhraseCount": 203,
+        "comparedPaths": [
+          "specs/agents/001-terminal-proof-discipline/decision-record.md"
+        ],
+        "discardedTokens": [],
+        "normalizedQuery": "terminal proof decisions",
+        "outsideIntersection": [],
+        "returnedPathCount": 193,
+        "scoredPathCount": 1,
+        "tokens": [
+          "terminal",
+          "proof",
+          "decisions"
+        ],
+        "zeroScorePathCount": 192
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [
+          {
+            "importanceTier": "important",
+            "matchClass": "exact",
+            "matchScore": 1,
+            "path": "specs/agents/001-terminal-proof-discipline/decision-record.md",
+            "score": 1
+          }
+        ],
+        "normalizedQuery": "terminal proof decisions",
+        "outsideIntersection": [],
+        "saturated": true,
+        "tokens": [
+          "terminal",
+          "proof",
+          "decisions"
+        ],
+        "unwindowedScoredPaths": 1
+      },
+      "query": "terminal-proof/decisions",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'terminal proof decisions' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 1,
+            "matchedPathCount": 1,
+            "outcome": "match",
+            "pattern": "terminal proof decisions",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "exact",
+                "path": "specs/agents/001-terminal-proof-discipline/decision-record.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- terminal specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 2351,
+            "matchedPathCount": 2351,
+            "outcome": "match",
+            "pattern": "terminal",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-diagram/assets/templates/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 11,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-pi/README.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/cli.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- proof specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 4223,
+            "matchedPathCount": 4223,
+            "outcome": "match",
+            "pattern": "proof",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-obsidian/references/verification.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/mcp-tooling/017-mcp-magicpath/001-cli-transport-proof/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-code/007-sk-code-obsidian-surface/003-hub-wiring/plan.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- decisions specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 5108,
+            "matchedPathCount": 5108,
+            "outcome": "match",
+            "pattern": "decisions",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/references/review-core.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/mcp-server/data/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet/decision-record.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 4,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/030-cli-cursor-creation/003-cli-cursor-skill-packet/decision-record.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/mcp-tooling/011-routing-remediation/decision-record.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 11683
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "three-char-partial-token",
+      "divergences": [],
+      "expectedBehaviour": "A three-character token is admitted mid-token by the substring gate, so both arms return the documents whose phrases merely contain it. The scope keeps the case bounded so the admission itself is what is measured.",
+      "expectedMisses": [],
+      "expectedPaths": [],
+      "id": "case-04-three-char-partial-token",
+      "index": {
+        "candidatePhraseCount": 309,
+        "comparedPaths": [
+          "specs/agents/001-terminal-proof-discipline/decision-record.md",
+          "specs/agents/001-terminal-proof-discipline/implementation-summary.md",
+          "specs/agents/001-terminal-proof-discipline/plan.md",
+          "specs/agents/001-terminal-proof-discipline/spec.md",
+          "specs/agents/001-terminal-proof-discipline/tasks.md"
+        ],
+        "discardedTokens": [],
+        "normalizedQuery": "roo",
+        "outsideIntersection": [],
+        "returnedPathCount": 5,
+        "scoredPathCount": 5,
+        "tokens": [
+          "roo"
+        ],
+        "zeroScorePathCount": 0
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 7,
+        "comparedRows": [
+          {
+            "importanceTier": "important",
+            "matchClass": "phrase-containment",
+            "matchScore": 0.94,
+            "path": "specs/agents/001-terminal-proof-discipline/spec.md",
+            "score": 0.985176
+          },
+          {
+            "importanceTier": "important",
+            "matchClass": "phrase-containment",
+            "matchScore": 0.94,
+            "path": "specs/agents/001-terminal-proof-discipline/decision-record.md",
+            "score": 0.985176
+          },
+          {
+            "importanceTier": "normal",
+            "matchClass": "phrase-containment",
+            "matchScore": 0.94,
+            "path": "specs/agents/001-terminal-proof-discipline/plan.md",
+            "score": 0.982176
+          },
+          {
+            "importanceTier": "normal",
+            "matchClass": "phrase-containment",
+            "matchScore": 0.94,
+            "path": "specs/agents/001-terminal-proof-discipline/tasks.md",
+            "score": 0.979176
+          },
+          {
+            "importanceTier": "important",
+            "matchClass": "phrase-containment",
+            "matchScore": 0.94,
+            "path": "specs/agents/001-terminal-proof-discipline/implementation-summary.md",
+            "score": 0.979176
+          }
+        ],
+        "normalizedQuery": "roo",
+        "outsideIntersection": [
+          {
+            "path": "specs/agents/001-terminal-proof-discipline/description.json",
+            "reason": "non-markdown-row"
+          },
+          {
+            "path": "specs/agents/001-terminal-proof-discipline/checklist.md",
+            "reason": "absent-from-index-corpus"
+          }
+        ],
+        "saturated": false,
+        "tokens": [
+          "roo"
+        ],
+        "unwindowedScoredPaths": 7
+      },
+      "query": "roo",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- roo specs/agents/001-terminal-proof-discipline",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 101,
+            "matchedPathCount": 6,
+            "outcome": "match",
+            "pattern": "roo",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/decision-record.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/spec.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- roo specs/agents/001-terminal-proof-discipline",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 6,
+            "matchedPathCount": 6,
+            "outcome": "match",
+            "pattern": "roo",
+            "rankedSample": [
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/decision-record.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/implementation-summary.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/plan.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/spec.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/tasks.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs/agents/001-terminal-proof-discipline"
+        ],
+        "totalMatchRecords": 107
+      },
+      "specFolder": "specs/agents/001-terminal-proof-discipline",
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "multi-word-subset",
+      "divergences": [],
+      "expectedBehaviour": "A contiguous subset of a longer declared phrase scores as phrase containment in both arms.",
+      "expectedMisses": [],
+      "expectedPaths": [
+        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+      ],
+      "id": "case-05-multi-word-subset",
+      "index": {
+        "candidatePhraseCount": 185,
+        "comparedPaths": [
+          "specs/agents/001-terminal-proof-discipline/decision-record.md"
+        ],
+        "discardedTokens": [],
+        "normalizedQuery": "proof decisions",
+        "outsideIntersection": [],
+        "returnedPathCount": 177,
+        "scoredPathCount": 1,
+        "tokens": [
+          "proof",
+          "decisions"
+        ],
+        "zeroScorePathCount": 176
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [
+          {
+            "importanceTier": "important",
+            "matchClass": "phrase-containment",
+            "matchScore": 0.94,
+            "path": "specs/agents/001-terminal-proof-discipline/decision-record.md",
+            "score": 0.985176
+          }
+        ],
+        "normalizedQuery": "proof decisions",
+        "outsideIntersection": [],
+        "saturated": true,
+        "tokens": [
+          "proof",
+          "decisions"
+        ],
+        "unwindowedScoredPaths": 1
+      },
+      "query": "proof decisions",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'proof decisions' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 1,
+            "matchedPathCount": 1,
+            "outcome": "match",
+            "pattern": "proof decisions",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/decision-record.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- proof specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 4223,
+            "matchedPathCount": 4223,
+            "outcome": "match",
+            "pattern": "proof",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-obsidian/references/verification.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/mcp-tooling/017-mcp-magicpath/001-cli-transport-proof/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-code/007-sk-code-obsidian-surface/003-hub-wiring/plan.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- decisions specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 5108,
+            "matchedPathCount": 5108,
+            "outcome": "match",
+            "pattern": "decisions",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/references/review-core.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/mcp-server/data/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet/decision-record.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 4,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/030-cli-cursor-creation/003-cli-cursor-skill-packet/decision-record.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/mcp-tooling/011-routing-remediation/decision-record.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 9332
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "short-token-rule",
+      "divergences": [
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/agents/001-terminal-proof-discipline/plan.md"
+        },
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 0.919326 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/agents/003-communication-quality/implementation-summary.md"
+        },
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/agents/003-communication-quality/plan.md"
+        },
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 0.925326 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/agents/003-communication-quality/spec.md"
+        },
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 0.919326 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/agents/003-communication-quality/tasks.md"
+        },
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 0.793878 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/agents/004-agents-md-bloat-audit/plan.md"
+        },
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 0.793861 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/hooks/007-fable-governor-pi-hook/005-agents-md-pi-row/plan.md"
+        },
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 0.792325 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/system-speckit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment/plan.md"
+        }
+      ],
+      "expectedBehaviour": "The two-character token is dropped from the candidate gate and reported as discarded, while the full normalized prompt still scores as an exact match against the declared phrase.",
+      "expectedMisses": [
+        {
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "missingFrom": "legacy",
+          "path": "specs/agents/001-terminal-proof-discipline/plan.md"
+        },
+        {
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "missingFrom": "legacy",
+          "path": "specs/agents/003-communication-quality/plan.md"
+        }
+      ],
+      "expectedPaths": [
+        "specs/agents/001-terminal-proof-discipline/plan.md",
+        "specs/agents/003-communication-quality/plan.md",
+        "specs/agents/005-git-workspace-repo-agnostic/plan.md"
+      ],
+      "id": "case-06-short-token-rule",
+      "index": {
+        "candidatePhraseCount": 3493,
+        "comparedPaths": [
+          "specs/agents/001-terminal-proof-discipline/plan.md",
+          "specs/agents/003-communication-quality/plan.md",
+          "specs/agents/005-git-workspace-repo-agnostic/plan.md",
+          "specs/agents/003-communication-quality/implementation-summary.md",
+          "specs/agents/003-communication-quality/spec.md",
+          "specs/agents/003-communication-quality/tasks.md",
+          "specs/agents/005-git-workspace-repo-agnostic/spec.md",
+          "specs/agents/004-agents-md-bloat-audit/plan.md",
+          "specs/hooks/007-fable-governor-pi-hook/005-agents-md-pi-row/plan.md",
+          "specs/system-speckit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment/plan.md"
+        ],
+        "discardedTokens": [
+          {
+            "reason": "below-min-token-length",
+            "token": "md"
+          }
+        ],
+        "normalizedQuery": "agents md plan",
+        "outsideIntersection": [
+          {
+            "path": "specs/agents/006-restraint-and-routing-gates/plan.md",
+            "reason": "absent-from-database"
+          },
+          {
+            "path": "specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/008-agents-md/plan.md",
+            "reason": "absent-from-database"
+          },
+          {
+            "path": "specs/agents/006-restraint-and-routing-gates/decision-record.md",
+            "reason": "absent-from-database"
+          },
+          {
+            "path": "specs/agents/006-restraint-and-routing-gates/implementation-summary.md",
+            "reason": "absent-from-database"
+          },
+          {
+            "path": "specs/agents/006-restraint-and-routing-gates/spec.md",
+            "reason": "absent-from-database"
+          },
+          {
+            "path": "specs/agents/006-restraint-and-routing-gates/tasks.md",
+            "reason": "absent-from-database"
+          }
+        ],
+        "returnedPathCount": 2182,
+        "scoredPathCount": 16,
+        "tokens": [
+          "agents",
+          "plan"
+        ],
+        "zeroScorePathCount": 2166
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [
+          {
+            "importanceTier": "normal",
+            "matchClass": "exact",
+            "matchScore": 1,
+            "path": "specs/agents/005-git-workspace-repo-agnostic/plan.md",
+            "score": 1
+          },
+          {
+            "importanceTier": "normal",
+            "matchClass": "query-containment",
+            "matchScore": 0.88,
+            "path": "specs/agents/005-git-workspace-repo-agnostic/spec.md",
+            "score": 0.92925
+          }
+        ],
+        "normalizedQuery": "agents md plan",
+        "outsideIntersection": [
+          {
+            "path": "specs/agents/005-git-workspace-repo-agnostic/graph-metadata.json",
+            "reason": "non-markdown-row"
+          }
+        ],
+        "saturated": true,
+        "tokens": [
+          "agents",
+          "plan"
+        ],
+        "unwindowedScoredPaths": 13
+      },
+      "query": "agents md plan",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'agents md plan' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 2,
+            "matchedPathCount": 2,
+            "outcome": "match",
+            "pattern": "agents md plan",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/008-agents-md/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/000-release-cleanup/008-agents-md/plan.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- agents specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 4274,
+            "matchedPathCount": 4274,
+            "outcome": "match",
+            "pattern": "agents",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/shared/references/universal/multi-agent-research.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/008-orchestrate-external-cli-delegation/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 4,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/027-cli-codex-revival/spec.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/029-cli-devin-revival/spec.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- plan specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 14759,
+            "matchedPathCount": 14759,
+            "outcome": "match",
+            "pattern": "plan",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-task-listing/filter-week.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 19035
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "nine-token-truncation",
+      "divergences": [
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures/decision-record.md"
+        }
+      ],
+      "expectedBehaviour": "Tokens past the eighth eligible one are reported as discarded, and the untruncated normalized prompt still scores as an exact match.",
+      "expectedMisses": [
+        {
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "missingFrom": "legacy",
+          "path": "specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures/decision-record.md"
+        }
+      ],
+      "expectedPaths": [
+        "specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures/decision-record.md"
+      ],
+      "id": "case-07-nine-token-truncation",
+      "index": {
+        "candidatePhraseCount": 1230,
+        "comparedPaths": [
+          "specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures/decision-record.md"
+        ],
+        "discardedTokens": [
+          {
+            "reason": "below-min-token-length",
+            "token": "a"
+          },
+          {
+            "reason": "beyond-max-query-tokens",
+            "token": "immutable"
+          },
+          {
+            "reason": "beyond-max-query-tokens",
+            "token": "originals"
+          }
+        ],
+        "normalizedQuery": "use a self contained fixture first contract package with immutable originals",
+        "outsideIntersection": [],
+        "returnedPathCount": 1230,
+        "scoredPathCount": 1,
+        "tokens": [
+          "use",
+          "self",
+          "contained",
+          "fixture",
+          "first",
+          "contract",
+          "package",
+          "with"
+        ],
+        "zeroScorePathCount": 1229
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [],
+        "normalizedQuery": "use a self contained fixture first contract package with immutable originals",
+        "outsideIntersection": [],
+        "saturated": true,
+        "tokens": [
+          "use",
+          "self",
+          "contained",
+          "fixture",
+          "first",
+          "contract",
+          "package",
+          "with"
+        ],
+        "unwindowedScoredPaths": 5
+      },
+      "query": "use a self contained fixture first contract package with immutable originals",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'use a self contained fixture first contract package with immutable originals' specs .opencode",
+            "exitCode": 1,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 0,
+            "matchedPathCount": 0,
+            "outcome": "no-match",
+            "pattern": "use a self contained fixture first contract package with immutable originals",
+            "rankedSample": [],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- use specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 22121,
+            "matchedPathCount": 22121,
+            "outcome": "match",
+            "pattern": "use",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-task-listing/filter-team.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/mcp-high-priority/get-workspace.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- self specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 7779,
+            "matchedPathCount": 7779,
+            "outcome": "match",
+            "pattern": "self",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 11,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-design-md-generator/references/writing-style-guide.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/feature-flag-reference/launcher-idle-timeout.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/032-per-mode-provider-model-reference/003-trim-duplicates/spec.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/032-per-mode-provider-model-reference/003-trim-duplicates/tasks.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- contained specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 1233,
+            "matchedPathCount": 1233,
+            "outcome": "match",
+            "pattern": "contained",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-diff/references/accessibility-contract.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-doc/016-create-diff-mode/001-research-and-requirements/spec.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/commands/create/diff.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-notion/examples/README.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-diagram/README.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- fixture specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 6229,
+            "matchedPathCount": 6229,
+            "outcome": "match",
+            "pattern": "fixture",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/scripts/test-fixtures/072-scaffold-never-touched-violation/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook/spec.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": "specs/mcp-tooling/011-routing-remediation/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/tasks.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- first specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 11640,
+            "matchedPathCount": 11640,
+            "outcome": "match",
+            "pattern": "first",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/obsidian-tables/troubleshooting.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/references/review-ux-single-pass.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-design/references/build-procedure.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-quality-control/references/workflows.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-readme/references/install-guide/section-examples.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- contract specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 13570,
+            "matchedPathCount": 13570,
+            "outcome": "match",
+            "pattern": "contract",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/mcp-low-priority/manage-guests.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/shared/references/universal/code-quality-standards.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/references/review-core.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-design-md-generator/feature-catalog/write-design-md/write-design-md.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-design-md-generator/references/quality-checklist.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- package specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 4514,
+            "matchedPathCount": 4514,
+            "outcome": "match",
+            "pattern": "package",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-opencode/references/typescript/quality-standards/tsconfig-and-modules.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-communication/001-sk-communication-creation/032-packaging-and-activation-fixes/tasks.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-doc/023-feature-catalog-integrity/spec.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization/implementation-summary.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- with specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 24733,
+            "matchedPathCount": 24733,
+            "outcome": "match",
+            "pattern": "with",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-code-mode/references/workflows.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/dom-and-screenshot/screenshot-capture.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-tag-management/add-tag.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/mcp-medium-priority/time-tracking.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 91819
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "no-hit",
+      "divergences": [],
+      "expectedBehaviour": "No token appears anywhere in the corpus, so both arms return an empty result rather than a degraded guess.",
+      "expectedMisses": [],
+      "expectedPaths": [],
+      "id": "case-08-no-hit",
+      "index": {
+        "candidatePhraseCount": 0,
+        "comparedPaths": [],
+        "discardedTokens": [],
+        "normalizedQuery": "zzqx qwvbn xkjfp",
+        "outsideIntersection": [],
+        "returnedPathCount": 0,
+        "scoredPathCount": 0,
+        "tokens": [
+          "zzqx",
+          "qwvbn",
+          "xkjfp"
+        ],
+        "zeroScorePathCount": 0
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 0,
+        "comparedRows": [],
+        "normalizedQuery": "zzqx qwvbn xkjfp",
+        "outsideIntersection": [],
+        "saturated": false,
+        "tokens": [
+          "zzqx",
+          "qwvbn",
+          "xkjfp"
+        ],
+        "unwindowedScoredPaths": 0
+      },
+      "query": "zzqx qwvbn xkjfp",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'zzqx qwvbn xkjfp' specs .opencode",
+            "exitCode": 1,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 0,
+            "matchedPathCount": 0,
+            "outcome": "no-match",
+            "pattern": "zzqx qwvbn xkjfp",
+            "rankedSample": [],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- zzqx specs .opencode",
+            "exitCode": 1,
+            "kind": "token",
+            "matchRecordCount": 0,
+            "matchedPathCount": 0,
+            "outcome": "no-match",
+            "pattern": "zzqx",
+            "rankedSample": [],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- qwvbn specs .opencode",
+            "exitCode": 1,
+            "kind": "token",
+            "matchRecordCount": 0,
+            "matchedPathCount": 0,
+            "outcome": "no-match",
+            "pattern": "qwvbn",
+            "rankedSample": [],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- xkjfp specs .opencode",
+            "exitCode": 1,
+            "kind": "token",
+            "matchRecordCount": 0,
+            "matchedPathCount": 0,
+            "outcome": "no-match",
+            "pattern": "xkjfp",
+            "rankedSample": [],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 0
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "scope-collision",
+      "divergences": [],
+      "expectedBehaviour": "The same phrase is declared in several packets. Scoping to one packet must return only that packet's documents in both arms, with no leakage from the others.",
+      "expectedMisses": [],
+      "expectedPaths": [
+        "specs/agents/003-communication-quality/plan.md"
+      ],
+      "id": "case-09-scope-collision",
+      "index": {
+        "candidatePhraseCount": 3493,
+        "comparedPaths": [
+          "specs/agents/003-communication-quality/plan.md",
+          "specs/agents/003-communication-quality/implementation-summary.md",
+          "specs/agents/003-communication-quality/spec.md",
+          "specs/agents/003-communication-quality/tasks.md"
+        ],
+        "discardedTokens": [
+          {
+            "reason": "below-min-token-length",
+            "token": "md"
+          }
+        ],
+        "normalizedQuery": "agents md plan",
+        "outsideIntersection": [],
+        "returnedPathCount": 4,
+        "scoredPathCount": 4,
+        "tokens": [
+          "agents",
+          "plan"
+        ],
+        "zeroScorePathCount": 0
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 5,
+        "comparedRows": [
+          {
+            "importanceTier": "normal",
+            "matchClass": "exact",
+            "matchScore": 1,
+            "path": "specs/agents/003-communication-quality/plan.md",
+            "score": 1
+          },
+          {
+            "importanceTier": "normal",
+            "matchClass": "query-containment",
+            "matchScore": 0.88,
+            "path": "specs/agents/003-communication-quality/spec.md",
+            "score": 0.925326
+          },
+          {
+            "importanceTier": "normal",
+            "matchClass": "query-containment",
+            "matchScore": 0.88,
+            "path": "specs/agents/003-communication-quality/tasks.md",
+            "score": 0.919326
+          },
+          {
+            "importanceTier": "normal",
+            "matchClass": "query-containment",
+            "matchScore": 0.88,
+            "path": "specs/agents/003-communication-quality/implementation-summary.md",
+            "score": 0.919326
+          }
+        ],
+        "normalizedQuery": "agents md plan",
+        "outsideIntersection": [],
+        "saturated": false,
+        "tokens": [
+          "agents",
+          "plan"
+        ],
+        "unwindowedScoredPaths": 4
+      },
+      "query": "agents md plan",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'agents md plan' specs/agents/003-communication-quality",
+            "exitCode": 1,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 0,
+            "matchedPathCount": 0,
+            "outcome": "no-match",
+            "pattern": "agents md plan",
+            "rankedSample": [],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- agents specs/agents/003-communication-quality",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 4,
+            "matchedPathCount": 4,
+            "outcome": "match",
+            "pattern": "agents",
+            "rankedSample": [
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/003-communication-quality/implementation-summary.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/003-communication-quality/plan.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/003-communication-quality/spec.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/003-communication-quality/tasks.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- plan specs/agents/003-communication-quality",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 5,
+            "matchedPathCount": 5,
+            "outcome": "match",
+            "pattern": "plan",
+            "rankedSample": [
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/003-communication-quality/plan.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/003-communication-quality/context/How I deal with 5.6's language _ r_codex.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 66,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/003-communication-quality/implementation-summary.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 138,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/003-communication-quality/spec.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 56,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/003-communication-quality/tasks.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs/agents/003-communication-quality"
+        ],
+        "totalMatchRecords": 9
+      },
+      "specFolder": "specs/agents/003-communication-quality",
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "archived-path",
+      "divergences": [],
+      "expectedBehaviour": "The legacy arm returns an archived document at the exact class and the index returns nothing, because the archived tree is outside the index corpus.",
+      "expectedMisses": [],
+      "expectedPaths": [],
+      "id": "case-10-archived-path",
+      "index": {
+        "candidatePhraseCount": 1482,
+        "comparedPaths": [],
+        "discardedTokens": [],
+        "normalizedQuery": "gemini cli checklist",
+        "outsideIntersection": [],
+        "returnedPathCount": 1066,
+        "scoredPathCount": 0,
+        "tokens": [
+          "gemini",
+          "cli",
+          "checklist"
+        ],
+        "zeroScorePathCount": 1066
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [],
+        "normalizedQuery": "gemini cli checklist",
+        "outsideIntersection": [
+          {
+            "path": "specs/cli-external-orchestration/z_archive/001-cli-gemini-creation/checklist.md",
+            "reason": "excluded-tree"
+          }
+        ],
+        "saturated": true,
+        "tokens": [
+          "gemini",
+          "cli",
+          "checklist"
+        ],
+        "unwindowedScoredPaths": 2
+      },
+      "query": "gemini cli checklist",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'gemini cli checklist' specs .opencode",
+            "exitCode": 1,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 0,
+            "matchedPathCount": 0,
+            "outcome": "no-match",
+            "pattern": "gemini cli checklist",
+            "rankedSample": [],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- gemini specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 860,
+            "matchedPathCount": 860,
+            "outcome": "match",
+            "pattern": "gemini",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 11,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 11,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 11,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners/spec.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 11,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners/tasks.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/changelog/004-code-graph/changelog-002-013-post-deprecation-deep-review.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- cli specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 12292,
+            "matchedPathCount": 12292,
+            "outcome": "match",
+            "pattern": "cli",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "exact",
+                "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/migration/F-MIG-001-junk-residual.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/hooks/goal/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/automation-and-performance/multi-viewport-test.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- checklist specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 8409,
+            "matchedPathCount": 8409,
+            "outcome": "match",
+            "pattern": "checklist",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-mobile-cli/references/conventions/editability-guardrails.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/references/quick-reference.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-webflow/references/css/patterns/quick-reference-and-related.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-webflow/references/css/quality-standards/focus-has-print-and-quick-reference.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-webflow/references/implementation/security-patterns/overview-and-checklist.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 21561
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "expired-row",
+      "divergences": [],
+      "expectedBehaviour": "The lane filters on an expiry column the index does not model at all. The owning row has no expiry, so both arms return it; the baseline records how many rows in the snapshot are actually expired, since a filter that matches nothing proves nothing on its own.",
+      "expectedMisses": [],
+      "expectedPaths": [
+        "specs/system-speckit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/spec.md"
+      ],
+      "id": "case-11-expired-row",
+      "index": {
+        "candidatePhraseCount": 170,
+        "comparedPaths": [
+          "specs/system-speckit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/spec.md"
+        ],
+        "discardedTokens": [],
+        "normalizedQuery": "cache expiry",
+        "outsideIntersection": [],
+        "returnedPathCount": 126,
+        "scoredPathCount": 1,
+        "tokens": [
+          "cache",
+          "expiry"
+        ],
+        "zeroScorePathCount": 125
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [
+          {
+            "importanceTier": "important",
+            "matchClass": "exact",
+            "matchScore": 1,
+            "path": "specs/system-speckit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/spec.md",
+            "score": 1
+          }
+        ],
+        "normalizedQuery": "cache expiry",
+        "outsideIntersection": [],
+        "saturated": true,
+        "tokens": [
+          "cache",
+          "expiry"
+        ],
+        "unwindowedScoredPaths": 1
+      },
+      "query": "cache expiry",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'cache expiry' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 15,
+            "matchedPathCount": 9,
+            "outcome": "match",
+            "pattern": "cache expiry",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "exact",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/spec.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 186,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/decision-record.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/scratch/phase-research-prompt.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 77,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/scratch/phase-research-prompt.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 177,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime/research/FINAL-synthesis-and-review.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- cache specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 3228,
+            "matchedPathCount": 3228,
+            "outcome": "match",
+            "pattern": "cache",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/hooks/008-pi-caching-like-reasonix/005-verification-and-decision-reconciliation/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/hooks/008-pi-caching-like-reasonix/005-verification-and-decision-reconciliation/tasks.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": "specs/hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements/001-correctness-floor/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": "specs/hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements/003-maintainability-and-provenance/spec.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- expiry specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 526,
+            "matchedPathCount": 526,
+            "outcome": "match",
+            "pattern": "expiry",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/spec.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-mobile-cli/references/operations/incident-playbooks.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/lease-single-writer.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/bug-fixes-and-data-integrity/guards-and-edge-cases.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/scoring-and-calibration/tool-level-ttl-cache.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 3769
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "malformed-frontmatter-document",
+      "divergences": [],
+      "expectedBehaviour": "A document whose leading block is not YAML frontmatter contributes no phrases, so neither lexical arm returns it while ripgrep still finds the text in its body.",
+      "expectedMisses": [],
+      "expectedPaths": [],
+      "id": "case-12-malformed-frontmatter-document",
+      "index": {
+        "candidatePhraseCount": 25,
+        "comparedPaths": [],
+        "discardedTokens": [],
+        "normalizedQuery": "exact invocation",
+        "outsideIntersection": [],
+        "returnedPathCount": 32,
+        "scoredPathCount": 0,
+        "tokens": [
+          "exact",
+          "invocation"
+        ],
+        "zeroScorePathCount": 32
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 59,
+        "comparedRows": [],
+        "normalizedQuery": "exact invocation",
+        "outsideIntersection": [],
+        "saturated": false,
+        "tokens": [
+          "exact",
+          "invocation"
+        ],
+        "unwindowedScoredPaths": 0
+      },
+      "query": "exact invocation",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'exact invocation' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 36,
+            "matchedPathCount": 35,
+            "outcome": "match",
+            "pattern": "exact invocation",
+            "rankedSample": [
+              {
+                "evidenceField": "body",
+                "line": 25,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-design-md-generator/references/extraction-workflow.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 96,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 68,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support/spec.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 108,
+                "matchClass": "phrase-containment",
+                "path": "specs/hooks/003-goal-hooks-cross-runtime/002-capability-probes/implementation-summary.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 57,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/plan.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- exact specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 11112,
+            "matchedPathCount": 11112,
+            "outcome": "match",
+            "pattern": "exact",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-communication/feature-catalog/fidelity-and-render/protected-span-fidelity-validation.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-design/012-sk-design-program/002-style-database/005-growth/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-design/012-sk-design-program/002-style-database/005-growth/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-design/012-sk-design-program/002-style-database/005-growth/spec.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-design/012-sk-design-program/002-style-database/005-growth/tasks.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- invocation specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 2922,
+            "matchedPathCount": 2922,
+            "outcome": "match",
+            "pattern": "invocation",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp/handover.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/self-invocation.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/references/providers-and-models.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 14070
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "duplicate-phrase-across-paths",
+      "divergences": [],
+      "expectedBehaviour": "One phrase declared by four documents returns all four in both arms; the mapping is many-to-many and no owner is collapsed away.",
+      "expectedMisses": [],
+      "expectedPaths": [
+        "specs/agents/003-communication-quality/implementation-summary.md",
+        "specs/agents/003-communication-quality/plan.md",
+        "specs/agents/003-communication-quality/spec.md",
+        "specs/agents/003-communication-quality/tasks.md"
+      ],
+      "id": "case-13-duplicate-phrase-across-paths",
+      "index": {
+        "candidatePhraseCount": 467,
+        "comparedPaths": [
+          "specs/agents/003-communication-quality/implementation-summary.md",
+          "specs/agents/003-communication-quality/plan.md",
+          "specs/agents/003-communication-quality/spec.md",
+          "specs/agents/003-communication-quality/tasks.md"
+        ],
+        "discardedTokens": [],
+        "normalizedQuery": "communication quality",
+        "outsideIntersection": [],
+        "returnedPathCount": 365,
+        "scoredPathCount": 4,
+        "tokens": [
+          "communication",
+          "quality"
+        ],
+        "zeroScorePathCount": 361
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [
+          {
+            "importanceTier": "normal",
+            "matchClass": "exact",
+            "matchScore": 1,
+            "path": "specs/agents/003-communication-quality/tasks.md",
+            "score": 1
+          },
+          {
+            "importanceTier": "normal",
+            "matchClass": "exact",
+            "matchScore": 1,
+            "path": "specs/agents/003-communication-quality/spec.md",
+            "score": 1
+          },
+          {
+            "importanceTier": "normal",
+            "matchClass": "exact",
+            "matchScore": 1,
+            "path": "specs/agents/003-communication-quality/plan.md",
+            "score": 1
+          },
+          {
+            "importanceTier": "normal",
+            "matchClass": "exact",
+            "matchScore": 1,
+            "path": "specs/agents/003-communication-quality/implementation-summary.md",
+            "score": 1
+          }
+        ],
+        "normalizedQuery": "communication quality",
+        "outsideIntersection": [
+          {
+            "path": "specs/agents/003-communication-quality/checklist.md",
+            "reason": "absent-from-index-corpus"
+          },
+          {
+            "path": "specs/sk-communication/001-sk-communication-creation/031-improvement-research/graph-metadata.json",
+            "reason": "non-markdown-row"
+          },
+          {
+            "path": "specs/sk-communication/001-sk-communication-creation/031-improvement-research/checklist.md",
+            "reason": "absent-from-index-corpus"
+          }
+        ],
+        "saturated": true,
+        "tokens": [
+          "communication",
+          "quality"
+        ],
+        "unwindowedScoredPaths": 9
+      },
+      "query": "communication quality",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'communication quality' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 37,
+            "matchedPathCount": 14,
+            "outcome": "match",
+            "pattern": "communication quality",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "exact",
+                "path": "specs/agents/003-communication-quality/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "exact",
+                "path": "specs/agents/003-communication-quality/plan.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "exact",
+                "path": "specs/agents/003-communication-quality/spec.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "exact",
+                "path": "specs/agents/003-communication-quality/tasks.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/003-communication-quality/implementation-summary.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- communication specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 451,
+            "matchedPathCount": 451,
+            "outcome": "match",
+            "pattern": "communication",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-communication/feature-catalog/packaging-and-release/compatibility-doctor.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-communication/feature-catalog/packaging-and-release/release-readiness-and-rollback.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-communication/feature-catalog/runtime-adapters/six-runtime-adapter-matrix.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-communication/001-sk-communication-creation/014-code-and-doc-conformance/spec.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": "specs/sk-communication/001-sk-communication-creation/018-projection-runtime-core/spec.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- quality specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 8502,
+            "matchedPathCount": 8502,
+            "outcome": "match",
+            "pattern": "quality",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 12,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/hooks/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-opencode/references/rust/quality-standards/build-and-organization.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-opencode/references/rust/quality-standards/determinism-and-parity.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-opencode/references/rust/quality-standards/docs-errors-and-async.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-opencode/references/rust/quality-standards/modeling-collections-and-api.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 8990
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "accented-or-cjk",
+      "divergences": [
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/implementation-summary.md"
+        },
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/plan.md"
+        },
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/spec.md"
+        },
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/tasks.md"
+        }
+      ],
+      "expectedBehaviour": "A non-ASCII separator is folded to a space by both normalizers, so the prompt resolves to the same normalized phrase its documents declare.",
+      "expectedMisses": [
+        {
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "missingFrom": "legacy",
+          "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/implementation-summary.md"
+        },
+        {
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "missingFrom": "legacy",
+          "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/plan.md"
+        },
+        {
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "missingFrom": "legacy",
+          "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/spec.md"
+        },
+        {
+          "evidence": "legacy scores this path at 1 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "missingFrom": "legacy",
+          "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/tasks.md"
+        }
+      ],
+      "expectedPaths": [
+        "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/implementation-summary.md",
+        "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/plan.md",
+        "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/spec.md",
+        "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/tasks.md"
+      ],
+      "id": "case-14-accented-or-cjk",
+      "index": {
+        "candidatePhraseCount": 632,
+        "comparedPaths": [
+          "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/implementation-summary.md",
+          "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/plan.md",
+          "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/spec.md",
+          "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/tasks.md"
+        ],
+        "discardedTokens": [],
+        "normalizedQuery": "feature executor matrix",
+        "outsideIntersection": [
+          {
+            "path": "specs/system-speckit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-002-006-runtime-matrix-execution-validation.md",
+            "reason": "absent-from-database"
+          },
+          {
+            "path": "specs/system-speckit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-003-030-clean-infrastructure-full-matrix-stress-design.md",
+            "reason": "absent-from-database"
+          }
+        ],
+        "returnedPathCount": 596,
+        "scoredPathCount": 6,
+        "tokens": [
+          "feature",
+          "executor",
+          "matrix"
+        ],
+        "zeroScorePathCount": 590
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [],
+        "normalizedQuery": "feature executor matrix",
+        "outsideIntersection": [],
+        "saturated": true,
+        "tokens": [
+          "feature",
+          "executor",
+          "matrix"
+        ],
+        "unwindowedScoredPaths": 5
+      },
+      "query": "feature × executor matrix",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'feature executor matrix' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 2,
+            "matchedPathCount": 2,
+            "outcome": "match",
+            "pattern": "feature executor matrix",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "exact",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-002-006-runtime-matrix-execution-validation.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-003-030-clean-infrastructure-full-matrix-stress-design.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- feature specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 11663,
+            "matchedPathCount": 11663,
+            "outcome": "match",
+            "pattern": "feature",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/shared/references/evergreen-packet-id-rule.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/evaluation-and-measurement/agent-consumption-instrumentation.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/implement-and-remove-deprecated-features/category-stub.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/scoring-and-calibration/learned-stage2-weight-combiner.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/references/config/environment-variables.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- executor specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 4797,
+            "matchedPathCount": 4797,
+            "outcome": "match",
+            "pattern": "executor",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "exact",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime/research/research.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/ROUTER.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-cursor/references/agent-delegation.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/runtime/feature-catalog/scoring/bayesian-scorer.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": "specs/cli-external-orchestration/026-cli-external-parent/002-architecture-decision/plan.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- matrix specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 4620,
+            "matchedPathCount": 4620,
+            "outcome": "match",
+            "pattern": "matrix",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-mobile-cli/references/release/release-verification.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-webflow/assets/webflow-verification-checklist.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-design-md-generator/feature-catalog/interaction-capture/interaction-capture.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 11,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-design-md-generator/references/component-taxonomy.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 12,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-design-md-generator/references/quality-checklist.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 21082
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "anchor-marker-text",
+      "divergences": [
+        {
+          "direction": "indexOnly",
+          "evidence": "legacy scores this path at 0.789221 without the pre-scoring limit of 60, and read 60 rows with it",
+          "mechanism": "legacy-candidate-window",
+          "path": "specs/sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/003-anchor-comment-removal/implementation-summary.md"
+        }
+      ],
+      "expectedBehaviour": "Anchor markup normalizes to its identifier tokens for the lexical arms; the marker itself is ripgrep's evidence, and the ranked output labels those lines as anchor evidence.",
+      "expectedMisses": [],
+      "expectedPaths": [],
+      "id": "case-15-anchor-marker-text",
+      "index": {
+        "candidatePhraseCount": 1724,
+        "comparedPaths": [
+          "specs/sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/003-anchor-comment-removal/implementation-summary.md"
+        ],
+        "discardedTokens": [],
+        "normalizedQuery": "anchor summary",
+        "outsideIntersection": [
+          {
+            "path": "specs/system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor/implementation-summary.md",
+            "reason": "absent-from-database"
+          }
+        ],
+        "returnedPathCount": 1487,
+        "scoredPathCount": 2,
+        "tokens": [
+          "anchor",
+          "summary"
+        ],
+        "zeroScorePathCount": 1485
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [],
+        "normalizedQuery": "anchor summary",
+        "outsideIntersection": [],
+        "saturated": true,
+        "tokens": [
+          "anchor",
+          "summary"
+        ],
+        "unwindowedScoredPaths": 3
+      },
+      "query": "<!-- ANCHOR:summary -->",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'anchor summary' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 1,
+            "matchedPathCount": 1,
+            "outcome": "match",
+            "pattern": "anchor summary",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor/implementation-summary.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- anchor specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 14767,
+            "matchedPathCount": 14767,
+            "outcome": "match",
+            "pattern": "anchor",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/state-management/strategy-tracking.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-research/references/state/state-outputs.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/state-management/strategy-tracking.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/README.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- summary specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 15665,
+            "matchedPathCount": 15665,
+            "outcome": "match",
+            "pattern": "summary",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 12,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/data-model.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/references/common-pitfalls.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-git/assets/pr-template.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/analysis/learning-history-memorygetlearninghistory.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 30433
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "body-only-match",
+      "divergences": [],
+      "expectedBehaviour": "The phrase appears in body prose and in no trigger list, so both lexical arms return nothing and ripgrep is the only arm with evidence. This is the boundary between a keyed lookup and a scan.",
+      "expectedMisses": [],
+      "expectedPaths": [],
+      "id": "case-16-body-only-match",
+      "index": {
+        "candidatePhraseCount": 692,
+        "comparedPaths": [],
+        "discardedTokens": [],
+        "normalizedQuery": "the smallest complete result early",
+        "outsideIntersection": [],
+        "returnedPathCount": 636,
+        "scoredPathCount": 0,
+        "tokens": [
+          "the",
+          "smallest",
+          "complete",
+          "result",
+          "early"
+        ],
+        "zeroScorePathCount": 636
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [],
+        "normalizedQuery": "the smallest complete result early",
+        "outsideIntersection": [],
+        "saturated": true,
+        "tokens": [
+          "the",
+          "smallest",
+          "complete",
+          "result",
+          "early"
+        ],
+        "unwindowedScoredPaths": 0
+      },
+      "query": "the smallest complete result early",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'the smallest complete result early' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 2,
+            "matchedPathCount": 1,
+            "outcome": "match",
+            "pattern": "the smallest complete result early",
+            "rankedSample": [
+              {
+                "evidenceField": "body",
+                "line": 132,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/review-report.md"
+              },
+              {
+                "evidenceField": "body",
+                "line": 289,
+                "matchClass": "phrase-containment",
+                "path": "specs/agents/001-terminal-proof-discipline/review-report.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- the specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 29456,
+            "matchedPathCount": 29456,
+            "outcome": "match",
+            "pattern": "the",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-authentication/auth-status.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-authentication/interactive-auth.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/cli/search-note-content.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/shared/references/universal-debugging-checklist.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-mobile-cli/references/release/ai-deploy-playbook.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- smallest specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 683,
+            "matchedPathCount": 683,
+            "outcome": "match",
+            "pattern": "smallest",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 2,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/commands/rewrite/explain-visually.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-mobbin/examples/smoke-search-limit-1.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/token-cost-baseline/floor-single-resource.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-communication/README.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- complete specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 16060,
+            "matchedPathCount": 16060,
+            "outcome": "match",
+            "pattern": "complete",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-mobile-cli/assets/bem-rename-checklist.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-mobile-cli/references/design-system/component-tokens.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 6,
+                "matchClass": "phrase-containment",
+                "path": "specs/hooks/008-pi-caching-like-reasonix/012-implement-non-deepseek-fixes/implementation-summary.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- result specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 11803,
+            "matchedPathCount": 11803,
+            "outcome": "match",
+            "pattern": "result",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-task-listing/exclude-tag.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/mcp-medium-priority/manage-goals.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-presentation-template.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/bug-fixes-and-data-integrity/chunk-collapse-deduplication.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- early specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 2322,
+            "matchedPathCount": 2322,
+            "outcome": "match",
+            "pattern": "early",
+            "rankedSample": [
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/subagents/missing-profile-negative.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-figma/manual-testing-playbook/detection-setup/figma-desktop-required.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/mcp-verification/prerequisite-boundary.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-design-md-generator/manual-testing-playbook/setup/tool-readiness.md"
+              },
+              {
+                "evidenceField": "title-or-description",
+                "line": 3,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-git/manual-testing-playbook/commit-formation/mixed-concerns-split-or-warn.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 60326
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "generic-phrase-negative",
+      "divergences": [],
+      "expectedBehaviour": "Generic workflow words admit a very large candidate set through the substring gate and none of it scores, in either arm. The candidate counts are recorded because that gap is the cost of generic phrases in a precision corpus.",
+      "expectedMisses": [],
+      "expectedPaths": [],
+      "id": "case-17-generic-phrase-negative",
+      "index": {
+        "candidatePhraseCount": 1441,
+        "comparedPaths": [],
+        "discardedTokens": [],
+        "normalizedQuery": "session context memory",
+        "outsideIntersection": [],
+        "returnedPathCount": 1161,
+        "scoredPathCount": 0,
+        "tokens": [
+          "session",
+          "context",
+          "memory"
+        ],
+        "zeroScorePathCount": 1161
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [],
+        "normalizedQuery": "session context memory",
+        "outsideIntersection": [],
+        "saturated": true,
+        "tokens": [
+          "session",
+          "context",
+          "memory"
+        ],
+        "unwindowedScoredPaths": 0
+      },
+      "query": "session context memory",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'session context memory' specs .opencode",
+            "exitCode": 0,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 1,
+            "matchedPathCount": 1,
+            "outcome": "match",
+            "pattern": "session context memory",
+            "rankedSample": [
+              {
+                "evidenceField": "body",
+                "line": 57,
+                "matchClass": "phrase-containment",
+                "path": "specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/iterations/iteration-004.md"
+              }
+            ],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- session specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 13107,
+            "matchedPathCount": 13107,
+            "outcome": "match",
+            "pattern": "session",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-codex/references/cli-reference.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 10,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-devin/references/cli-reference.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- context specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 19639,
+            "matchedPathCount": 19639,
+            "outcome": "match",
+            "pattern": "context",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "exact",
+                "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference/implementation-summary.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/hooks/injection-contract.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-codex/references/hook-contract.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 11,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-design-md-generator/references/quality-checklist.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- memory specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 16749,
+            "matchedPathCount": 16749,
+            "outcome": "match",
+            "pattern": "memory",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/bin/README.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/state-management/strategy-tracking.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-spec-kit/feature-catalog/context-preservation/passive-context-enrichment.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 49496
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    },
+    {
+      "class": "nested-path-punctuation",
+      "divergences": [],
+      "expectedBehaviour": "A phrase carrying a section sign and a hyphenated identifier normalizes cleanly; the sub-three-character tokens are reported as discarded and the full prompt still resolves.",
+      "expectedMisses": [],
+      "expectedPaths": [],
+      "id": "case-18-nested-path-punctuation",
+      "index": {
+        "candidatePhraseCount": 2146,
+        "comparedPaths": [],
+        "discardedTokens": [
+          {
+            "reason": "below-min-token-length",
+            "token": "sk"
+          },
+          {
+            "reason": "below-min-token-length",
+            "token": "4"
+          }
+        ],
+        "normalizedQuery": "sk code 4 enforcement",
+        "outsideIntersection": [
+          {
+            "path": "specs/system-speckit/026-graph-and-context-optimization/changelog/003-memory-and-causal-runtime/changelog-011-007-ephemeral-pointer-guard-and-sweep.md",
+            "reason": "absent-from-database"
+          }
+        ],
+        "returnedPathCount": 1525,
+        "scoredPathCount": 1,
+        "tokens": [
+          "code",
+          "enforcement"
+        ],
+        "zeroScorePathCount": 1524
+      },
+      "legacy": {
+        "candidateLimit": 60,
+        "candidateRowCount": 60,
+        "comparedRows": [],
+        "normalizedQuery": "sk code 4 enforcement",
+        "outsideIntersection": [
+          {
+            "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/description.json",
+            "reason": "non-markdown-row"
+          },
+          {
+            "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/003-mcp-tooling/description.json",
+            "reason": "non-markdown-row"
+          },
+          {
+            "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/description.json",
+            "reason": "non-markdown-row"
+          },
+          {
+            "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/001-contract-and-fleet-audit/description.json",
+            "reason": "non-markdown-row"
+          }
+        ],
+        "saturated": true,
+        "tokens": [
+          "code",
+          "enforcement"
+        ],
+        "unwindowedScoredPaths": 96
+      },
+      "query": "sk-code §4 enforcement",
+      "ripgrep": {
+        "invocations": [
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'sk code 4 enforcement' specs .opencode",
+            "exitCode": 1,
+            "kind": "normalized-phrase",
+            "matchRecordCount": 0,
+            "matchedPathCount": 0,
+            "outcome": "no-match",
+            "pattern": "sk code 4 enforcement",
+            "rankedSample": [],
+            "recipe": "structured-jsonl",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- code specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 24591,
+            "matchedPathCount": 24591,
+            "outcome": "match",
+            "pattern": "code",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/hooks/coverage-rationale.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          },
+          {
+            "command": "rg --no-config --fixed-strings --ignore-case --json --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- enforcement specs .opencode",
+            "exitCode": 0,
+            "kind": "token",
+            "matchRecordCount": 2109,
+            "matchedPathCount": 2109,
+            "outcome": "match",
+            "pattern": "enforcement",
+            "rankedSample": [
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 8,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-code/sk-code-review/assets/code-quality-checklist.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 5,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/sk-git/feature-catalog/worktree-naming/pre-push-naming-enforcement.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 7,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/scope-boundaries/planning-only-boundary-rejects-implementation-writes.md"
+              },
+              {
+                "evidenceField": "trigger_phrases",
+                "line": 9,
+                "matchClass": "phrase-containment",
+                "path": ".opencode/skills/system-deep-loop/runtime/feature-catalog/council/cost-guards.md"
+              }
+            ],
+            "recipe": "structured-jsonl-max-count-1",
+            "unparsedLines": 0
+          }
+        ],
+        "roots": [
+          "specs",
+          ".opencode"
+        ],
+        "totalMatchRecords": 26700
+      },
+      "specFolder": null,
+      "undeclaredMechanisms": [],
+      "unexplainedCount": 0,
+      "verdict": "PASS"
+    }
+  ],
+  "clock": {
+    "pinnedTo": "2026-09-02T21:41:54.823Z",
+    "reason": "newest COALESCE(updated_at, created_at) in the snapshot; the shipped lane reads the process clock here"
+  },
+  "comparisonPolicy": [
+    "each arm is restricted to the database and manifest intersection, then cut at the result limit",
+    "the index arm is compared on its scoring candidates only, because the replayed lane drops a zero-score row while the lookup library labels it partial and returns it"
+  ],
+  "databasePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite",
+  "durationMs": 387719,
+  "indexHash": "7b72e91fe8f2a68b5868ef530cd57662d7d25312ded34c980b805226be61de37",
+  "intersection": {
+    "coldTierRows": 428,
+    "comparablePaths": 5544,
+    "databaseInManifest": 5566,
+    "databaseOutsideManifest": 5715,
+    "databasePathsWithPhrases": 11281,
+    "databaseRowsWithPhrases": 11734,
+    "deletedRows": 0,
+    "expiredRows": 0,
+    "indexOutsideDatabase": 8053,
+    "indexOwningPaths": 13597,
+    "manifestIncludedPaths": 28555,
+    "manifestOutsideDatabase": 22989
+  },
+  "limit": 20,
+  "manifestHash": "c0806077f0d2e22ae7b0e9b6f8ab4e17244fac5aef0f6da59c95f7fe0938d370",
+  "mechanisms": [
+    "corpus-drift",
+    "excluded-tree",
+    "index-result-window",
+    "legacy-candidate-window",
+    "non-markdown-row"
+  ],
+  "node": "v26.8.1",
+  "platform": "darwin-arm64",
+  "promptSetHash": "ae629454847b0ad1cb8183de37528af766b21c31d3be1e253921ad4a27daae42",
+  "promptSetPath": ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/prompt-set.json",
+  "ripgrepVersion": "ripgrep 14.1.1 (rev 4649aa9700)",
+  "schemaVersion": 2,
+  "totals": {
+    "cases": 18,
+    "divergencesExplained": 14,
+    "expectedMisses": 7,
+    "expectedPaths": 18,
+    "failed": [],
+    "indexOnly": 14,
+    "legacyOnly": 0,
+    "passed": 18,
+    "unexplained": 0,
+    "verdict": "PASS"
+  }
+}

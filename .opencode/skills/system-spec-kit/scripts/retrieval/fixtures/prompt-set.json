@@ -1,0 +1,239 @@
+{
+  "cases": [
+    {
+      "allowedDivergence": [],
+      "class": "exact-phrase",
+      "expectedBehaviour": "The whole normalized prompt equals a declared phrase, so both lexical arms return its owning document at the exact class.",
+      "expectedPaths": [
+        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+      ],
+      "id": "case-01-exact-phrase",
+      "query": "terminal proof decisions",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [],
+      "class": "uppercase-case-fold",
+      "expectedBehaviour": "Both arms lowercase before matching, so an all-caps prompt resolves identically to the exact-phrase case.",
+      "expectedPaths": [
+        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+      ],
+      "id": "case-02-uppercase-case-fold",
+      "query": "TERMINAL PROOF DECISIONS",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [],
+      "class": "punctuation-separator",
+      "expectedBehaviour": "Every run of non-alphanumeric characters collapses to one separator, so hyphens and slashes resolve to the same normalized phrase.",
+      "expectedPaths": [
+        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+      ],
+      "id": "case-03-punctuation-separator",
+      "query": "terminal-proof/decisions",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [],
+      "class": "three-char-partial-token",
+      "expectedBehaviour": "A three-character token is admitted mid-token by the substring gate, so both arms return the documents whose phrases merely contain it. The scope keeps the case bounded so the admission itself is what is measured.",
+      "expectedPaths": [],
+      "id": "case-04-three-char-partial-token",
+      "query": "roo",
+      "specFolder": "specs/agents/001-terminal-proof-discipline"
+    },
+    {
+      "allowedDivergence": [],
+      "class": "multi-word-subset",
+      "expectedBehaviour": "A contiguous subset of a longer declared phrase scores as phrase containment in both arms.",
+      "expectedPaths": [
+        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+      ],
+      "id": "case-05-multi-word-subset",
+      "query": "proof decisions",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [
+        {
+          "mechanism": "legacy-candidate-window",
+          "reason": "Four documents declare this phrase and the two eligible tokens are common, so the lane reads its pre-scoring row cap and cannot see every owner. The index scores the whole corpus and returns all of them."
+        }
+      ],
+      "class": "short-token-rule",
+      "expectedBehaviour": "The two-character token is dropped from the candidate gate and reported as discarded, while the full normalized prompt still scores as an exact match against the declared phrase.",
+      "expectedPaths": [
+        "specs/agents/001-terminal-proof-discipline/plan.md",
+        "specs/agents/003-communication-quality/plan.md",
+        "specs/agents/005-git-workspace-repo-agnostic/plan.md"
+      ],
+      "id": "case-06-short-token-rule",
+      "query": "agents md plan",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [
+        {
+          "mechanism": "legacy-candidate-window",
+          "reason": "Eight common tokens make the gate very wide, so the lane's pre-scoring row cap fills with rows that do not score before it reaches the owning document."
+        }
+      ],
+      "class": "nine-token-truncation",
+      "expectedBehaviour": "Tokens past the eighth eligible one are reported as discarded, and the untruncated normalized prompt still scores as an exact match.",
+      "expectedPaths": [
+        "specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures/decision-record.md"
+      ],
+      "id": "case-07-nine-token-truncation",
+      "query": "use a self contained fixture first contract package with immutable originals",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [],
+      "class": "no-hit",
+      "expectedBehaviour": "No token appears anywhere in the corpus, so both arms return an empty result rather than a degraded guess.",
+      "expectedPaths": [],
+      "id": "case-08-no-hit",
+      "query": "zzqx qwvbn xkjfp",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [],
+      "class": "scope-collision",
+      "expectedBehaviour": "The same phrase is declared in several packets. Scoping to one packet must return only that packet's documents in both arms, with no leakage from the others.",
+      "expectedPaths": [
+        "specs/agents/003-communication-quality/plan.md"
+      ],
+      "id": "case-09-scope-collision",
+      "query": "agents md plan",
+      "specFolder": "specs/agents/003-communication-quality"
+    },
+    {
+      "allowedDivergence": [
+        {
+          "mechanism": "excluded-tree",
+          "reason": "The only document declaring this phrase lives under an archived tree. The database still indexes it; the corpus walk excludes it by glob, so the index cannot carry it. This is a declared loss, not a lookup fault."
+        }
+      ],
+      "class": "archived-path",
+      "expectedBehaviour": "The legacy arm returns an archived document at the exact class and the index returns nothing, because the archived tree is outside the index corpus.",
+      "expectedPaths": [],
+      "id": "case-10-archived-path",
+      "query": "gemini cli checklist",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [],
+      "class": "expired-row",
+      "expectedBehaviour": "The lane filters on an expiry column the index does not model at all. The owning row has no expiry, so both arms return it; the baseline records how many rows in the snapshot are actually expired, since a filter that matches nothing proves nothing on its own.",
+      "expectedPaths": [
+        "specs/system-speckit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/spec.md"
+      ],
+      "id": "case-11-expired-row",
+      "query": "cache expiry",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [],
+      "class": "malformed-frontmatter-document",
+      "expectedBehaviour": "A document whose leading block is not YAML frontmatter contributes no phrases, so neither lexical arm returns it while ripgrep still finds the text in its body.",
+      "expectedPaths": [],
+      "id": "case-12-malformed-frontmatter-document",
+      "query": "exact invocation",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [],
+      "class": "duplicate-phrase-across-paths",
+      "expectedBehaviour": "One phrase declared by four documents returns all four in both arms; the mapping is many-to-many and no owner is collapsed away.",
+      "expectedPaths": [
+        "specs/agents/003-communication-quality/implementation-summary.md",
+        "specs/agents/003-communication-quality/plan.md",
+        "specs/agents/003-communication-quality/spec.md",
+        "specs/agents/003-communication-quality/tasks.md"
+      ],
+      "id": "case-13-duplicate-phrase-across-paths",
+      "query": "communication quality",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [
+        {
+          "mechanism": "legacy-candidate-window",
+          "reason": "Normalization folds the multiplication sign to a separator, so the prompt no longer matches the raw stored text the lane sorts its candidate window by. The owners fall outside that window while the index still scores them."
+        }
+      ],
+      "class": "accented-or-cjk",
+      "expectedBehaviour": "A non-ASCII separator is folded to a space by both normalizers, so the prompt resolves to the same normalized phrase its documents declare.",
+      "expectedPaths": [
+        "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/implementation-summary.md",
+        "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/plan.md",
+        "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/spec.md",
+        "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation/tasks.md"
+      ],
+      "id": "case-14-accented-or-cjk",
+      "query": "feature × executor matrix",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [
+        {
+          "mechanism": "legacy-candidate-window",
+          "reason": "The marker normalizes to two common tokens, so the lane's pre-scoring row cap fills before it reaches the few phrases that actually score."
+        }
+      ],
+      "class": "anchor-marker-text",
+      "expectedBehaviour": "Anchor markup normalizes to its identifier tokens for the lexical arms; the marker itself is ripgrep's evidence, and the ranked output labels those lines as anchor evidence.",
+      "expectedPaths": [],
+      "id": "case-15-anchor-marker-text",
+      "query": "<!-- ANCHOR:summary -->",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [],
+      "class": "body-only-match",
+      "expectedBehaviour": "The phrase appears in body prose and in no trigger list, so both lexical arms return nothing and ripgrep is the only arm with evidence. This is the boundary between a keyed lookup and a scan.",
+      "expectedPaths": [],
+      "id": "case-16-body-only-match",
+      "query": "the smallest complete result early",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [],
+      "class": "generic-phrase-negative",
+      "expectedBehaviour": "Generic workflow words admit a very large candidate set through the substring gate and none of it scores, in either arm. The candidate counts are recorded because that gap is the cost of generic phrases in a precision corpus.",
+      "expectedPaths": [],
+      "id": "case-17-generic-phrase-negative",
+      "query": "session context memory",
+      "specFolder": null
+    },
+    {
+      "allowedDivergence": [
+        {
+          "mechanism": "non-markdown-row",
+          "reason": "The database rows the lane returns for this prompt are generated descriptor files. The index corpus is Markdown only, so they can never appear on the index side."
+        }
+      ],
+      "class": "nested-path-punctuation",
+      "expectedBehaviour": "A phrase carrying a section sign and a hyphenated identifier normalizes cleanly; the sub-three-character tokens are reported as discarded and the full prompt still resolves.",
+      "expectedPaths": [],
+      "id": "case-18-nested-path-punctuation",
+      "query": "sk-code §4 enforcement",
+      "specFolder": null
+    }
+  ],
+  "daemonProbe": {
+    "prompts": [
+      "terminal proof decisions",
+      "communication quality",
+      "zzqx qwvbn xkjfp"
+    ]
+  },
+  "description": "Frozen prompt set for the three-arm retrieval parity harness. Each case pins one behaviour of the substring trigger lane that the generated index has to reproduce. Queries are drawn from phrases the corpus actually declares, so a case that returns nothing is evidence about the lane rather than about the fixture.",
+  "divergencePolicy": "allowedDivergence declares the mechanisms this case predicts. The harness verifies a mechanism for every diverging path individually; a path no mechanism accounts for is unexplained and fails the run, whatever the case declared.",
+  "recipeProbe": {
+    "hitPhrase": "trigger index generator",
+    "missPhrase": "qzx-absent-marker-7f3a1c",
+    "missPhraseNote": "This literal has to stay out of every Markdown document in the corpus. The moment one quotes it, the no-match probe starts exiting 0 and stops distinguishing a clean miss from a broken command."
+  },
+  "version": 1
+}

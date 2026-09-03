@@ -1,0 +1,39 @@
+{
+  "contract": "the lookup path reads a committed file; a running daemon is recorded, never consulted",
+  "lookups": [
+    {
+      "command": "node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json --no-index-hash -- \"terminal proof decisions\"",
+      "exitCode": 0,
+      "prompt": "terminal proof decisions",
+      "resultCount": 20
+    },
+    {
+      "command": "node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json --no-index-hash -- \"communication quality\"",
+      "exitCode": 0,
+      "prompt": "communication quality",
+      "resultCount": 20
+    },
+    {
+      "command": "node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json --no-index-hash -- \"zzqx qwvbn xkjfp\"",
+      "exitCode": 1,
+      "prompt": "zzqx qwvbn xkjfp",
+      "resultCount": 0
+    }
+  ],
+  "processProbes": [
+    {
+      "command": "pgrep -fl system-spec-memory",
+      "exitCode": 1,
+      "matchCount": 0,
+      "name": "system-spec-memory",
+      "running": false
+    },
+    {
+      "command": "pgrep -fl context-server",
+      "exitCode": 0,
+      "matchCount": 1,
+      "name": "context-server",
+      "running": true
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "exitMapping": {
+    "0": "match",
+    "1": "no-match",
+    "2+": "execution or configuration error"
+  },
+  "ripgrepVersion": "ripgrep 14.1.1 (rev 4649aa9700)",
+  "runs": [
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'trigger index generator' specs .opencode",
+      "exitCode": 0,
+      "input": "real-phrase",
+      "outcome": "match",
+      "pattern": "trigger index generator",
+      "recipe": "structured-jsonl",
+      "stderrFirstLine": [],
+      "stdoutFirstLines": [
+        "{\"type\":\"begin\",\"data\":{\"path\":{\"text\":\"specs/system-speckit/049-memory-decommission/spec.md\"}}}",
+        "{\"type\":\"match\",\"data\":{\"path\":{\"text\":\"specs/system-speckit/049-memory-decommission/spec.md\"},\"lines\":{\"text\":\"| `.opencode/skills/system-spec-kit/scripts/memory/` | Create | 001 | Trigger index generator |\\n\"},\"line_number\":140,\"absolute_offset\":6223,\"submatches\":[{\"match\":{\"text\":\"Trigger index generator\"},\"start\":70,\"end\":93}]}}",
+        "{\"type\":\"end\",\"data\":{\"path\":{\"text\":\"specs/system-speckit/049-memory-decommission/spec.md\"},\"binary_offset\":null,\"stats\":{\"elapsed\":{\"secs\":0,\"nanos\":26584,\"human\":\"0.000027s\"},\"searches\":1,\"searches_with_match\":1,\"bytes_searched\":11841,\"bytes_printed\":432,\"matched_lines\":1,\"matches\":1}}}"
+      ]
+    },
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- qzx-absent-marker-7f3a1c specs .opencode",
+      "exitCode": 1,
+      "input": "no-hit-phrase",
+      "outcome": "no-match",
+      "pattern": "qzx-absent-marker-7f3a1c",
+      "recipe": "structured-jsonl",
+      "stderrFirstLine": [],
+      "stdoutFirstLines": [
+        "{\"data\":{\"elapsed_total\":{\"human\":\"4.190206s\",\"nanos\":190206167,\"secs\":4},\"stats\":{\"bytes_printed\":0,\"bytes_searched\":0,\"elapsed\":{\"human\":\"0.000000s\",\"nanos\":0,\"secs\":0},\"matched_lines\":0,\"matches\":0,\"searches\":0,\"searches_with_match\":0}},\"type\":\"summary\"}"
+      ]
+    },
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --json --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'trigger index generator' no-such-search-root",
+      "exitCode": 2,
+      "input": "nonexistent-root",
+      "outcome": "error",
+      "pattern": "trigger index generator",
+      "recipe": "structured-jsonl",
+      "stderrFirstLine": [
+        "rg: no-such-search-root: IO error for operation on no-such-search-root: No such file or directory (os error 2)"
+      ],
+      "stdoutFirstLines": [
+        "{\"data\":{\"elapsed_total\":{\"human\":\"0.001124s\",\"nanos\":1123959,\"secs\":0},\"stats\":{\"bytes_printed\":0,\"bytes_searched\":0,\"elapsed\":{\"human\":\"0.000000s\",\"nanos\":0,\"secs\":0},\"matched_lines\":0,\"matches\":0,\"searches\":0,\"searches_with_match\":0}},\"type\":\"summary\"}"
+      ]
+    },
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'trigger index generator' specs .opencode",
+      "exitCode": 0,
+      "input": "real-phrase",
+      "outcome": "match",
+      "pattern": "trigger index generator",
+      "recipe": "path-only",
+      "stderrFirstLine": [],
+      "stdoutFirstLines": [
+        "specs/system-speckit/049-memory-decommission/spec.md",
+        "specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md",
+        "specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/implementation-summary.md"
+      ]
+    },
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- qzx-absent-marker-7f3a1c specs .opencode",
+      "exitCode": 1,
+      "input": "no-hit-phrase",
+      "outcome": "no-match",
+      "pattern": "qzx-absent-marker-7f3a1c",
+      "recipe": "path-only",
+      "stderrFirstLine": [],
+      "stdoutFirstLines": []
+    },
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'trigger index generator' no-such-search-root",
+      "exitCode": 2,
+      "input": "nonexistent-root",
+      "outcome": "error",
+      "pattern": "trigger index generator",
+      "recipe": "path-only",
+      "stderrFirstLine": [
+        "rg: no-such-search-root: IO error for operation on no-such-search-root: No such file or directory (os error 2)"
+      ],
+      "stdoutFirstLines": []
+    },
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --count --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'trigger index generator' specs .opencode",
+      "exitCode": 0,
+      "input": "real-phrase",
+      "outcome": "match",
+      "pattern": "trigger index generator",
+      "recipe": "count",
+      "stderrFirstLine": [],
+      "stdoutFirstLines": [
+        "specs/system-speckit/049-memory-decommission/spec.md:1",
+        "specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:1",
+        "specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/implementation-summary.md:1"
+      ]
+    },
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --count --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- qzx-absent-marker-7f3a1c specs .opencode",
+      "exitCode": 1,
+      "input": "no-hit-phrase",
+      "outcome": "no-match",
+      "pattern": "qzx-absent-marker-7f3a1c",
+      "recipe": "count",
+      "stderrFirstLine": [],
+      "stdoutFirstLines": []
+    },
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --count --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'trigger index generator' no-such-search-root",
+      "exitCode": 2,
+      "input": "nonexistent-root",
+      "outcome": "error",
+      "pattern": "trigger index generator",
+      "recipe": "count",
+      "stderrFirstLine": [
+        "rg: no-such-search-root: IO error for operation on no-such-search-root: No such file or directory (os error 2)"
+      ],
+      "stdoutFirstLines": []
+    }
+  ],
+  "source": ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+}
