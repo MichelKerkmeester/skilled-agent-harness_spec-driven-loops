@@ -10,7 +10,7 @@ trigger_phrases:
   - "chart colour system"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # sk-create-chart
@@ -27,7 +27,7 @@ version: 1.1.0.0
 | **Invoke with** | "create a chart", "plot the data", a named form such as "treemap" or a direct read of `SKILL.md` |
 | **Works on** | A dataset and the comparison someone wants to make from it |
 | **Produces** | One self-contained HTML file, built from a form file and one colour system |
-| **Corpus** | Twenty chart forms across six question families, plus three colour systems |
+| **Corpus** | Twenty-one chart forms across six question families, plus three colour systems |
 
 ---
 

@@ -38,6 +38,23 @@
     "card": "The card that holds the chart.",
     "notALadderRung": "A corner computed from a mark's own geometry, such as a range bar rounded to half its width, is geometry rather than a shared value. It stays in the drawing code."
   },
+  "typeScale": {
+    "note": "Six named roles and three named departures. Not colours, and like the corner ladder they sit in their own object for that reason: they are the other half of the vocabulary a template reads, and they live here so the check that rejects a size off the scale reads a value rather than restating one. In-figure text steps down a rung as a form gets denser, which is the scale working: the rung is chosen for the space the text has, out of six rungs rather than out of the air.",
+    "roles": {
+      "headline": "21px",
+      "body": "15px",
+      "subtitle": "14px",
+      "label": "13px",
+      "note": "12px",
+      "tick": "11px"
+    },
+    "departureNote": "Each departure below is a single number that is the point of its chart rather than a label on it, or a strip too narrow for the tick size to sit in. A departure is named here so it stays a decision rather than becoming a drift.",
+    "departures": {
+      "hero": "56px",
+      "ringTotal": "34px",
+      "monthStrip": "10px"
+    }
+  },
   "gates": {
     "note": "Every gate is computed once per theme, against that theme's own surface. A value that clears on paper has proved nothing about the dark ground, and the two runs print as separate lines.",
     "textOnSurface": 4.5,

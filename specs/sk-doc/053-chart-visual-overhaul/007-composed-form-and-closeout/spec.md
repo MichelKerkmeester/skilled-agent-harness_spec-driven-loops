@@ -32,7 +32,7 @@ The last phase does three jobs. It builds the one form both research lineages ag
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-03 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -122,6 +122,8 @@ The catalog answers the count-and-rate question with one form. Every rule this p
 | `.opencode/skills/sk-doc/sk-create-chart/references/*.md` | Modify | Version bump |
 | `.opencode/skills/sk-doc/sk-create-chart/scripts/README.md` | Modify | Version bump, and the new checks described |
 | `.opencode/skills/sk-doc/sk-create-chart/changelog/v1.2.0.0.md` | Create | The changelog entry for the whole overhaul |
+| `.opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json` | Modify | Added during implementation. `type-scale` needs the nine published sizes from structured data, and restating them inside the check would create the drift the scale exists to prevent. Named as a deviation in ADR-004 |
+| `.opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/manual-testing-playbook.md` | Modify | Added during implementation. It states the corpus count, which the new form changed |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -158,10 +160,10 @@ The catalog answers the count-and-rate question with one form. Every rule this p
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs` reports `chart forms under assets/templates: 21`.
-- **SC-002**: `grep -c 'bar-line-composed' .opencode/skills/sk-doc/sk-create-chart/references/catalog.md` prints a number greater than `0`, and the `catalog` check reports zero failures.
-- **SC-003**: `grep -c 'version: 1.2.0.0' .opencode/skills/sk-doc/sk-create-chart/SKILL.md` prints `1`, and `.opencode/skills/sk-doc/sk-create-chart/changelog/v1.2.0.0.md` exists.
-- **SC-004**: `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED`.
+- **SC-001**: `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs` reports `chart forms under assets/templates: 21`. **Met.** The final run reports it, over thirty files.
+- **SC-002**: `grep -c 'bar-line-composed' .opencode/skills/sk-doc/sk-create-chart/references/catalog.md` prints a number greater than `0`, and the `catalog` check reports zero failures. **Met.** Two matches, the index row and the reader-name row, with `catalog` at 43 assertions and 0 failures.
+- **SC-003**: `grep -c 'version: 1.2.0.0' .opencode/skills/sk-doc/sk-create-chart/SKILL.md` prints `1`, and `.opencode/skills/sk-doc/sk-create-chart/changelog/v1.2.0.0.md` exists. **Met.** Both.
+- **SC-004**: `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED`. **Met.** Twenty-eight named checks, zero errors, exit 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -229,10 +231,12 @@ Scored with `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.
 
 The first item is an operator decision the adjudication named, and this phase does not assume an answer to it.
 
-- **The composed form.** Whether the catalog gains a bar-and-line form with a second scale. One lineage proposed building it and the other proposed recording it as a catalog gap, and the cross-lineage adjudication settled that split in favour of building it late. The adjudication still lists the catalog addition among the four operator decisions, so both are true: the implementer question is settled and the product question is not. The operator answers yes or no. A no leaves phase 006's gap entry standing and closes this phase on the checker extension and the version bump alone.
-- Which family the new row belongs to. `relationship` fits the reader's question, which is whether the rate moved with the count, and the family already covers whether two variables move together. `time` fits the axis, since the periods run left to right. The default this phase carries is `relationship`, and the implementer settles it against the catalog's own family prose rather than against preference.
-- The draggable range window. The adjudication allows it last and only where a form is genuinely dense, at more than thirty points, opening at the full range so first paint is identical every time. The catalog's documented shape for `daily-line` is thirty readings or fewer, and `stacked-area` is two to five series over a continuous axis with no point ceiling stated. On today's shapes no form clears the threshold, so the window has no consumer unless a documented shape is raised first. That is a finding rather than an omission, and it is recorded either way.
-- Whether the six family deliveries need any change at all. All six already carry scenario filenames and headlines that state a conclusion. What the recommendation asks for may already be satisfied, and the honest work is an audit with a written verdict rather than a rewrite in search of one.
+All four are answered. The answers are below, each pointing at the record that carries the reasoning.
+
+- **The composed form.** **Answered yes by the operator on 2026-09-03.** The catalog gained the row, the gap entry phase 006 wrote was deleted whole as it was written to be, and the corpus went to twenty-one.
+- **Which family the new row belongs to.** **`relationship`,** settled on the catalog's own family prose, which reads "Do two variables move together" and is this form's question word for word. The catalog also states outright that a family is a group of questions rather than a rendering style, and a period axis is a rendering fact. Two edits keep the shelf findable: the family entry now says "including across a run of periods", and section 5 gained the three names a reader actually arrives with. ADR-001.
+- **The draggable range window.** **Refused, on two grounds.** No form in the corpus is dense past thirty points on a continuous axis, with a per-form table in ADR-006. The second ground is the one that survives a raised ceiling: contract section 10 already forbids a handler from moving a mark, and a range window rescales an axis and moves every mark on it. If the window comes back, that clause is what to answer.
+- **Whether the six family deliveries need any change at all.** **They do not.** All six were read one at a time against the headline rule, and all six pass. Six verdicts with the headline quoted each are in the implementation summary, and nothing was changed.
 <!-- /ANCHOR:questions -->
 
 ---

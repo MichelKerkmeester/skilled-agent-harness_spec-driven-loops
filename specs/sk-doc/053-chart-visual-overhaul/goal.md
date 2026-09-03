@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-03T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the durable directive and bound all seven phases"
-    next_safe_action: "Work phase 001 against its own goal document"
+    next_safe_action: "None open. All seven phases are complete"
     blockers:
       - "The line weight and glow fork is unanswered and phase 001 stops on it"
     key_files:
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-03-053-chart-visual-overhaul"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Line weight and glow, answered by rendered comparison in phase 001"
       - "Dark theme, which amends the one-palette-block rule"
@@ -119,13 +119,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| 001 visual proof and forks | Pending | `001-visual-proof-and-forks/goal.md` |
-| 002 chrome rollout | Pending | `002-chrome-rollout/goal.md` |
-| 003 motion layer | Pending | `003-motion-layer/goal.md` |
-| 004 interaction layer | Pending | Phase map row in `spec.md` |
-| 005 dark theme | Pending | Phase map row in `spec.md` |
-| 006 catalog and contract | Pending | Phase map row in `spec.md` |
-| 007 composed form and closeout | Pending | Phase map row in `spec.md` |
+| 001 visual proof and forks | Done | `001-visual-proof-and-forks/goal.md` |
+| 002 chrome rollout | Done | `002-chrome-rollout/goal.md` |
+| 003 motion layer | Done | `003-motion-layer/goal.md` |
+| 004 interaction layer | Done | Phase map row in `spec.md` |
+| 005 dark theme | Done | Phase map row in `spec.md` |
+| 006 catalog and contract | Done | Phase map row in `spec.md` |
+| 007 composed form and closeout | Done | Phase map row in `spec.md` |
 
 ### Deviations and findings
 

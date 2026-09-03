@@ -8,7 +8,7 @@ trigger_phrases:
   - "check-corpus"
 importance_tier: normal
 contextType: reference
-version: 1.4.0.0
+version: 1.5.0.0
 ---
 
 # sk-create-chart Scripts
@@ -57,6 +57,15 @@ Each open pins its colour scheme with a browser flag rather than inheriting the 
 
 Per template file, one check name each: `document-shape`, `identity`, `palette-block`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `narrow-viewport`, `motion`, `radius`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
 
+Six more run per file and enforce clauses the contract states outside its numbered table. Each of the six existed as a written rule before it existed as a check, and a rule the tooling does not check is a wish:
+
+- `empty-notice` requires every chart form to carry the `CHART_EMPTY_NOTICE` guard, to sit below the data block it reads, and to carry the labelled block and the break that let it stop the drawing. A guard that prints the notice and then draws anyway prints it over the empty frame it was warning about.
+- `interaction-hygiene` requires the one hygiene line in any file whose markup declares an interaction register, and separately rejects an unconditional `outline: none` on a focus and any `user-select: none`. Those are the two ways the line could be widened into taking a focus ring or a copyable number away from a reader, and both pass every other rule here.
+- `interaction-state` requires the dim attribute to ship empty and the tooltip group to ship without content. Neither failure is visible to the render path: a file that opens already dimmed paints the same picture on both of its pointer-free opens, so `settled-render` agrees with it exactly as it agrees with a correct file.
+- `number-format` rejects any host-locale formatter anywhere in the corpus, and requires a file carrying a hover card to define a formatter of its own. A locale-dependent formatter is invisible on the machine that authored the file and changes the grouping mark, the decimal mark and the digits on the machine that opens it.
+- `type-scale` rejects a font size that is on neither the six published rungs nor the three named departures. The nine values live in the palette source beside the corner ladder, so the check reads them rather than restating them, and both routes are covered: a size declared in the stylesheet and a size set as an attribute from the drawing code.
+- `gradient-sweep` resolves a gradient's stops through the classes that carry them and rejects a gradient naming two different series values in a file whose declared system is not `ordered`. A gradient naming one series value at two opacities is a fade and is left alone.
+
 With `--render` three more run, and all three need a browser:
 
 - `render` opens each file once and asserts the figure region holds real elements after the script ran, which catches a chart that opens as an empty box.
@@ -69,6 +78,8 @@ Two checks are about the corpus rather than about one file:
 - `palette-source-dark` runs the same gates against the dark surface. It prints as its own line with its own assertion count, so one theme's pass cannot be read as covering both, and a run that reports nothing on this line has gated one ground rather than two.
 - `narrow-viewport` is asserted from the stylesheet rather than from a rendered page, and that limit is deliberate rather than lazy. A headless run returns the DOM, and the DOM does not say whether the page overflowed. The numbers that would answer it live in layout. So the check proves the figure region can scroll sideways and that its drawing declares a floor no wider than its own `viewBox`, which is the part an author forgets. Whether the chart is legible at that floor stays a review question, and the contract says so.
 - `catalog` resolves the index in both directions: every catalog row reaches a file that identifies itself with the same id, and every chart form on disk appears in the catalog. A row that exists is not a row that points anywhere, and an index checked in one direction only rots on the first rename.
+- `catalog-system` holds the index's other hand-kept cell against the file it describes. Every row's system has to name a system the palette source defines and has to match what the template declares. The cell mirrors the file rather than judging it, which is exactly why the two can drift apart with nothing noticing, and a hand reading of both documents is what found that out the first time.
+- `geometry-block` compares the shared geometry record byte for byte across every chart form and every proof sheet. The set is derived from the two directories rather than listed, so a new form joins it by existing, and a corpus where the block had been scattered over some of the files would fail rather than pass a count of them.
 
 ---
 
@@ -209,6 +220,46 @@ cp /tmp/keep.html assets/templates/daily-line.html
 That one is worth running at least once. It is the only check in the set that observes the
 painted picture rather than the file or the document, and a check nobody has watched fail is
 a check nobody should quote.
+
+The eight checks added last are the ones worth breaking before quoting, because they are the
+newest and because six of them existed as prose for several releases before anything enforced
+them. Every recipe below was run, watched failing and restored.
+
+```bash
+cp assets/templates/grouped-bars.html /tmp/keep.html
+
+# a form that answers a pointer and carries no hygiene line
+sed -i '' 's|^.figure svg :focus:not(:focus-visible) { outline: none; }$||' assets/templates/grouped-bars.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on interaction-hygiene
+cp /tmp/keep.html assets/templates/grouped-bars.html
+
+# a form shipped already dimmed, which every render check agrees with
+sed -i '' 's|id="chart" data-chart-dim=""|id="chart" data-chart-dim="1"|' assets/templates/grouped-bars.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on interaction-state
+cp /tmp/keep.html assets/templates/grouped-bars.html
+
+# a size off the published scale
+sed -i '' 's|font-size: 11px|font-size: 16px|' assets/templates/grouped-bars.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on type-scale
+cp /tmp/keep.html assets/templates/grouped-bars.html
+
+# the shared geometry record drifting in one file
+sed -i '' 's|     drawing frame   720 units|     drawing frame   760 units|' assets/templates/grouped-bars.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on geometry-block
+cp /tmp/keep.html assets/templates/grouped-bars.html
+```
+
+The other four break elsewhere. Replace the grouping in any template's `fmt` with a
+`toLocaleString()` call, or rename `fmt` in a form that carries a hover card, and
+`number-format` fires on each. Delete the `CHART_EMPTY_NOTICE` block from a form, or take away
+the `break figure;` inside it, and `empty-notice` fires on each: the second is the more
+interesting half, because the sentinels are still there and the guard can no longer stop the
+drawing. Change one row's system cell in `../references/catalog.md` and `catalog-system` fires.
+And give `daily-line`'s area fade a second series value on one of its stops, which turns a fade
+into a sweep on a file that declares `neutral`, and `gradient-sweep` fires.
+
+**Restore from a copy every time.** Several of these mutations are one character, and
+`git checkout --` on an uncommitted tree throws the working state away rather than the mutation.
 
 ---
 

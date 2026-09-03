@@ -33,10 +33,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [B] Put the catalog decision from spec section 10 to the operator, and record the answer in `goal.md`
-- [ ] T002 Capture the baseline corpus check before any edit, and read its `RESULT:` line (.opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs)
-- [ ] T003 Write down every invariant phases 004, 005 and 006 introduced, and mark which already carry an assertion (scratch/)
-- [ ] T004 Record the before-state version inventory with `grep -rn '^version:'` over the packet (scratch/)
+- [x] T001 Answered yes by the operator on 2026-09-03 and recorded in `goal.md` decision D1a. The catalog gains the composed form, taking the corpus to twenty-one
+- [x] T002 `RESULT: PASSED` at 20 checks, 29 files, 20 forms, 0 errors, exit 0, captured before any edit. `scratch/baseline-render.txt`
+- [x] T003 Inventory read against the check before any assertion was coded. Two of the eight planned rows were already enforced by `palette-block` and `palette-source-dark`, and a third was narrowed to the half `settled-render` cannot see. Full mapping in ADR-003
+- [x] T004 Recorded, and it overturned the premise the task rested on. Nineteen files carry a version and they are per-document rather than seven copies of one number. ADR-005
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,24 +44,24 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Assert that every file carrying an interaction marker also carries both hygiene rules, and prove it fails on a mutated copy (scripts/check-corpus.cjs)
-- [ ] T006 Assert that no file calls a locale-dependent number formatter, and prove it fails on a mutated copy (scripts/check-corpus.cjs)
-- [ ] T007 Assert that an interactive file paints the same figure region across two loads, and prove it fails on a mutated copy (scripts/check-corpus.cjs)
-- [ ] T008 Assert the palette-region count per file and the projection match per region, and prove it fails on a drifted block (scripts/check-corpus.cjs)
-- [ ] T009 Assert that every contrast gate ran per theme, and prove it fails when the dark run is suppressed (scripts/check-corpus.cjs)
-- [ ] T010 Assert that every catalog row's system matches the file's own declaration and exists in the palette source, and prove it fails on a mismatched row (scripts/check-corpus.cjs)
-- [ ] T011 Assert that every form carries the empty-data guard above its drawing code, and prove it fails on a form with the guard removed (scripts/check-corpus.cjs)
-- [ ] T012 Assert that a stroke gradient appears only on an ordered-system form, and prove it fails on a categorical form given one (scripts/check-corpus.cjs)
-- [ ] T013 Revert every mutation from T005 through T012 and confirm the check is green again (scratch/)
-- [ ] T014 [B] Author `bar-line-composed.html` through the documented workflow, starting from the skeleton (assets/templates/bar-line-composed.html)
-- [ ] T015 Compute both scales from the data block, and draw the second axis only when the two maxima differ by an order, with the arithmetic written beside the condition (assets/templates/bar-line-composed.html)
-- [ ] T016 Write the headline as a conclusion, and give the form a title, an accessible role, a resolving label and a hidden data table carrying both series (assets/templates/bar-line-composed.html)
-- [ ] T017 [B] Add the catalog row and remove the composed gap entry phase 006 wrote (references/catalog.md)
-- [ ] T018 Read each of the six family deliveries against the headline-as-argument rule and write a verdict per delivery, fixing only what the verdict says is wrong (assets/examples/)
-- [ ] T019 Record the disposition on the draggable range window, with the arithmetic that decides whether any form is dense enough to need one (goal.md)
-- [ ] T020 Bump the version across `SKILL.md`, `README.md`, the four reference documents and `scripts/README.md` (.opencode/skills/sk-doc/sk-create-chart/)
-- [ ] T021 Describe the new checks in the scripts README, so a reader knows what a green run now covers (scripts/README.md)
-- [ ] T022 Write `changelog/v1.2.0.0.md` covering all seven phases of the overhaul (changelog/v1.2.0.0.md)
+- [x] T005 `interaction-hygiene`, at 60 assertions. Phase 004's ADR-002 settled the hygiene as one line rather than two, so the check asserts that line and separately rejects the two widenings that would take a focus ring or a copyable number away. Watched failing on `grouped-bars` and on `scatter`
+- [x] T006 `number-format`, at 180 assertions over five locale routes plus the hover-card formatter rule. Watched failing on `heat-matrix` and on `treemap`
+- [x] T007 `settled-render` has compared two loads since phase 003, so this became `interaction-state`, which holds the half a render comparison cannot see: a file that ships already dimmed agrees with itself on both pointer-free opens. Watched failing on `stacked-bars`
+- [x] T008 Already asserted by `palette-block`, which counts regions per theme, rejects a repeated sentinel pair and matches each region against its own projection in both directions. No second check written. ADR-003
+- [x] T009 Already asserted by `palette-source-dark`, which prints its own line at 34 assertions. No second check written. ADR-003
+- [x] T010 `catalog-system`, at 22 assertions. Watched failing on a `scatter` row switched to `categorical`
+- [x] T011 `empty-notice`, at 63 assertions over the sentinel pair, its position below the data block and the labelled block plus break that let it stop the drawing. Watched failing twice on `bar-rows`, once with the block deleted and once with only the break removed
+- [x] T012 `gradient-sweep`, at 33 assertions. Stops are resolved through the classes that carry them, a fade at one series value is left alone, and it was watched failing on `daily-line`'s fade given a second series value
+- [x] T013 `diff -r` against the kept copy reports one difference across `assets/` and `references/`, the `typeScale` object added on purpose, and the check prints `RESULT: PASSED`
+- [x] T014 Authored from the skeleton through the contract's own eight-step route. It inherits the chrome, the corner ladder, both palette blocks, the geometry record, the empty guard, the key, the dim, the hygiene line and the reveal wipe
+- [x] T015 The file divides the larger peak by the smaller and draws the right ladder at ten or more. The arithmetic sits under a heading in the drawing code with the shipped numbers worked through. Exercised on both sides. ADR-002
+- [x] T016 Headline states the finding rather than the subject. `accessibility` passes over the new file, and the table carries both series as text
+- [x] T017 Row added under `relationship`, gap entry deleted whole as it was written to be, and section 6's count corrected from three forms to two. ADR-001
+- [x] T018 Six verdicts with the headline quoted each, in the implementation summary. All six pass and nothing was changed
+- [x] T019 Refused on two grounds, with a per-form density table and the contract clause that survives a raised ceiling. ADR-006
+- [x] T020 Eight documents moved, each by one step from where it actually was rather than to a single shared string. ADR-005 records why the shared string was the wrong target
+- [x] T021 Section 4 gained all eight and section 5 gained break recipes for them. Four of the recipes were then run verbatim against the file they name
+- [x] T022 Written, covering all seven phases, including the version convention and the one rename this release carries forward
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,13 +69,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T023 Re-run the corpus check with `--render` from the final state and read the `RESULT:` line
-- [ ] T024 Confirm the run reports twenty-one chart forms and zero `catalog` failures
-- [ ] T025 Exercise the composed form at both sides of the order-of-magnitude condition and at a zero period
-- [ ] T026 Confirm every mutation from the failure proofs is reverted, by a clean working tree diff over `scratch/`
-- [ ] T027 Re-run the version inventory and confirm one string appears everywhere
-- [ ] T028 Run `hvr_scan.py` over every document in this folder and record zero hard blockers on each
-- [ ] T029 Reconcile spec, plan, tasks, acceptance criteria and goal, and confirm the parent phase map reads Complete for this phase
+- [x] T023 `RESULT: PASSED`, read from a file rather than through a pipe. `scratch/final-render-rerun.txt`. The run before it flaked on one browser open and both are kept
+- [x] T024 `chart forms under assets/templates: 21`, with `catalog` and `catalog-system` both at zero failures
+- [x] T025 Four fixtures rendered and read. The gap notice was drawn outside the frame on the first pass and the frame now grows for it
+- [x] T026 Confirmed by `diff -r` against the kept copy rather than against the last commit, since nothing here is committed
+- [x] T027 Re-run, and the criterion it serves was replaced. One string everywhere would require a changelog entry to misname the release it documents. ADR-005
+- [x] T028 Zero hard blockers on every document in this folder and on all nine edited package documents
+- [x] T029 This folder reconciled. The parent phase map is the orchestrator's to reconcile and is flagged in the goal log
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -83,9 +83,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining, or T014 and T017 recorded as refused with the operator's answer
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining. The operator answered yes, so T014 and T017 were built rather than refused
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -117,10 +117,10 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P0] The invariant inventory written down before any assertion was coded
-- [ ] CHK-004 [P0] The operator answered the catalog decision before the form gained a row
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P0] Written first, and it shortened the list before it lengthened it. Two rows were already asserted. ADR-003
+- [x] CHK-004 [P0] Answered yes on 2026-09-03, recorded as D1a before the row was written
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -128,12 +128,12 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The new form passes every corpus check, including the ones added in this phase
-- [ ] CHK-011 [P0] Both scales are computed from the data block, so an editor changing the numbers still gets a chart that fits
-- [ ] CHK-012 [P0] Every new assertion was watched failing before it was trusted
-- [ ] CHK-013 [P1] The new form gained no remote dependency and no runtime fetch
-- [ ] CHK-014 [P1] The new form follows the four-part card order and carries one colour system
-- [ ] CHK-015 [P1] The second-scale condition is visible where an editor will meet it, with its arithmetic beside it
+- [x] CHK-010 [P0] All 28 named checks at 0 failures, over a run that includes the eight added here
+- [x] CHK-011 [P0] Both ceilings come from the series peaks through the corpus ladder, and the second ladder appears only when the peaks are an order apart. Exercised on both sides and at a rate above one hundred
+- [x] CHK-012 [P0] Fourteen mutations, each red before it was green. `scratch/negative-controls.txt`
+- [x] CHK-013 [P1] `no-external` passes over the new file at 150 assertions corpus-wide
+- [x] CHK-014 [P1] `card-parts` and `identity` both pass, and the file declares `categorical` once
+- [x] CHK-015 [P1] In the drawing code under its own heading, with the arithmetic and the shipped numbers worked through
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -141,12 +141,12 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] `check-corpus.cjs --render` run and its `RESULT:` line read, over twenty-one forms
-- [ ] CHK-022 [P0] Each of the eight new assertions proved to fail on a mutated fixture, then restored
-- [ ] CHK-023 [P1] The composed form exercised on both sides of the order-of-magnitude condition
-- [ ] CHK-024 [P1] The composed form exercised with a zero period, so the bar has no height and the line still draws
-- [ ] CHK-025 [P1] A rate above one hundred percent confirmed to raise the axis rather than clip
+- [x] CHK-020 [P0] Twelve `Met` and one `Superseded` by ADR-005, none `Unmet`
+- [x] CHK-021 [P0] `RESULT: PASSED`, read from `scratch/final-render-rerun.txt`, over twenty-one forms. The first run flaked on a browser open and was discriminated by opening the named file by hand
+- [x] CHK-022 [P0] Fourteen mutations across the eight, each restored from the kept copy rather than from a checkout
+- [x] CHK-023 [P1] At a spread of 510 and at a spread of 6.4, both rendered and read
+- [x] CHK-024 [P1] The zero period keeps its slot with no column, and the line crosses it. This fixture also found the clipped gap notice
+- [x] CHK-025 [P1] A peak of 131 raises the right ladder to 160
 <!-- /ANCHOR:testing -->
 
 ---
@@ -154,13 +154,13 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] The version bump is classed `cross-consumer`: seven files carry the string and a reader trusts the first one they find
-- [ ] CHK-FIX-002 [P0] Producer inventory completed by `grep -rn '^version:'` over the packet, before and after
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed by the corpus check's `catalog` assertion count, which rises by the new row in both directions
-- [ ] CHK-FIX-004 [P1] Not applicable. No security, path, parser or redaction surface is touched
-- [ ] CHK-FIX-005 [P1] The axes are the new template, the catalog, the checker, the six deliveries and seven version-bearing files, all enumerated in plan.md
-- [ ] CHK-FIX-006 [P1] Nothing here reads process-wide state, a clock or a random source
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the working-tree state, since this phase commits nothing
+- [x] CHK-FIX-001 [P0] Nineteen files carry a version, not seven, and they are per-document rather than copies of one string. The class holds and the target changed. ADR-005
+- [x] CHK-FIX-002 [P0] Run before and after. Eight documents moved by one step each and eleven correctly did not
+- [x] CHK-FIX-003 [P0] `catalog` rose from 41 to 43, which is the row and the file, and `catalog-system` reports 22
+- [x] CHK-FIX-004 [P1] Not applicable, and still true after the build
+- [x] CHK-FIX-005 [P1] Enumerated, with two additions recorded in the spec's file table: the palette source and the playbook
+- [x] CHK-FIX-006 [P1] `determinism` passes over thirty files
+- [x] CHK-FIX-007 [P1] Nothing committed, and every restore was verified against a kept copy rather than against a commit
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -168,9 +168,9 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets. The new template carries literal chart data and nothing else
-- [ ] CHK-031 [P1] Not applicable. A template takes no input at runtime
-- [ ] CHK-032 [P1] Not applicable. There is no auth surface
+- [x] CHK-030 [P0] The data block holds eight weeks of demo figures and two series names
+- [x] CHK-031 [P1] Not applicable, and still true
+- [x] CHK-032 [P1] Not applicable, and still true
 <!-- /ANCHOR:security -->
 
 ---
@@ -178,12 +178,12 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan and tasks synchronized
-- [ ] CHK-041 [P1] No ephemeral artifact label entered any code comment
-- [ ] CHK-042 [P1] The scripts README describes what the new checks cover, so a green run is not read as more than it is
-- [ ] CHK-043 [P1] The changelog entry covers all seven phases rather than this one
-- [ ] CHK-044 [P1] The scenario audit verdict recorded per delivery, including the ones that needed nothing
-- [ ] CHK-045 [P2] The parent's aggregate file table flagged for reconciliation, since it omits this phase for the family deliveries
+- [x] CHK-040 [P1] Spec status, success criteria, open questions and file table reconciled, and this document carries evidence per row
+- [x] CHK-041 [P1] No spec path, packet number, requirement id or task id appears in the new template or in the checker additions
+- [x] CHK-042 [P1] All eight described in section 4, with break recipes in section 5 and four of them run verbatim
+- [x] CHK-043 [P1] All seven, plus the version convention and the one rename carried forward
+- [x] CHK-044 [P1] All six, each quoting its headline, and all six needed nothing
+- [x] CHK-045 [P2] The audit changed no delivery, so the parent's row is correct as it stands. The parent phase map still needs this phase marked Complete, flagged in the goal log
 <!-- /ANCHOR:docs -->
 
 ---
@@ -191,9 +191,9 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
-- [ ] CHK-052 [P0] Every mutated fixture from the failure proofs removed, confirmed by a green run and a clean diff
+- [x] CHK-050 [P1] Every fixture, kept copy and run output is under `scratch/`
+- [x] CHK-051 [P1] Kept: the baseline run, two intermediate runs, both final runs, the negative-control log and the four boundary fixtures with their renders. All of it is cited evidence. The working copy the restores were verified against was removed once the final comparison was written into the log, since it was a duplicate of the corpus rather than a record of anything
+- [x] CHK-052 [P0] `diff -r` against the kept copy reports one difference across `assets/` and `references/`, the `typeScale` object added on purpose, and the check prints `RESULT: PASSED`
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -203,9 +203,9 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 18 | 0/18 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 18 | 18/18 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: pending
+**Verification Date**: 2026-09-03
 <!-- /ANCHOR:summary -->

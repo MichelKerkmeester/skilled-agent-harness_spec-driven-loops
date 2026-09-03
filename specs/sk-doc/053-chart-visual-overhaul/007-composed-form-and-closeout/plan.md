@@ -40,16 +40,16 @@ The order matters in one place only. The checker extension runs before the new f
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phases 004, 005 and 006 closed, so every invariant this phase asserts exists
-- [ ] The operator has answered the catalog decision in spec section 10
-- [ ] Baseline corpus check captured before any edit
+- [x] Phases 004, 005 and 006 closed
+- [x] The operator answered yes on 2026-09-03
+- [x] Baseline captured before any edit at 20 checks, 29 files, 20 forms, 0 errors
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state, over twenty-one forms
-- [ ] Every new assertion was watched failing on a mutated fixture, and every mutation reverted
-- [ ] The version string is identical across every file that carries one
-- [ ] Docs updated (spec, plan, tasks, acceptance-criteria, goal)
+- [x] Twelve acceptance rows `Met` and one `Superseded` by ADR-005, none `Unmet`
+- [x] `RESULT: PASSED` from the final state over twenty-one forms, exit 0
+- [x] Fourteen mutations watched failing, every one reverted and verified against the kept copy
+- [x] Superseded. The packet keeps per-document versions, so eight documents moved by one step and eleven correctly did not. ADR-005
+- [x] Docs updated, plus a decision record and an implementation summary
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -223,9 +223,9 @@ Setup ──► Checker extension ──► Composed form ──► Closeout ─
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline corpus check captured before any edit, with its `RESULT:` line read
-- [ ] The invariant inventory written down, so the assertion list is a conclusion rather than a memory
-- [ ] Nothing committed, so the working tree is the only state to revert
+- [x] Baseline captured and its `RESULT:` line read
+- [x] Inventory written down first, and it changed two of the eight rows
+- [x] Nothing committed
 
 ### Rollback Procedure
 1. Read the failing check name and the file it names from the `RESULT:` block.
@@ -243,9 +243,9 @@ Setup ──► Checker extension ──► Composed form ──► Closeout ─
 ## 8. AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
-- [ ] Confirm the invariant inventory from phases 004, 005 and 006 is written down before any assertion is coded.
-- [ ] Confirm the operator has answered the catalog decision before the composed form gains a row.
-- [ ] Confirm the baseline corpus check was captured before any edit, and its `RESULT:` line read.
+- [x] Inventory written before any assertion was coded. ADR-003
+- [x] Answered yes on 2026-09-03, before the row was written.
+- [x] Captured before any edit and read from a file.
 
 ### Execution Rules
 

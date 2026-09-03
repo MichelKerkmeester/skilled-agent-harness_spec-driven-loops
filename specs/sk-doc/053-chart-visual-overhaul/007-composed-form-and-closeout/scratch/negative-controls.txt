@@ -1,0 +1,134 @@
+=== NC-1 interaction-hygiene: the hygiene line removed from a form that carries a register ===
+  exit=1
+RESULT: FAILED
+  FAIL [interaction-hygiene] assets/templates/grouped-bars.html: the markup declares data-chart-legend, data-chart-dim and the stylesheet carries no ":focus:not(:focus-visible)" rule. A form that answers a pointer drops the focus ring for the reader who clicked and keeps it for the reader who tabbed, and a form that skips the line leaves a ring on every click
+  total FAIL lines: 1
+
+=== NC-2 interaction-hygiene: an unconditional focus suppression and a selection lock ===
+  exit=1
+RESULT: FAILED
+  FAIL [interaction-hygiene] assets/templates/scatter.html: the markup declares data-chart-tooltip and the stylesheet carries no ":focus:not(:focus-visible)" rule. A form that answers a pointer drops the focus ring for the reader who clicked and keeps it for the reader who tabbed, and a form that skips the line leaves a ring on every click
+  FAIL [interaction-hygiene] assets/templates/scatter.html: ".figure svg :focus" removes the outline from every focus, including a reader who arrived by keyboard. The suppression is scoped through :focus:not(:focus-visible), which is the selector that tells a click from a tab
+  FAIL [interaction-hygiene] assets/templates/scatter.html: ".figure svg" locks text selection. A delivered chart is a document and the numbers in it are meant to be copied out, so the selection half of the borrowed hygiene pair is refused here
+  total FAIL lines: 3
+
+=== NC-3 interaction-state: a form shipped already dimmed ===
+  exit=1
+RESULT: FAILED
+  FAIL [interaction-state] assets/templates/stacked-bars.html: the drawing ships data-chart-dim="1", so it opens with one series already held against the rest. The attribute is empty until a reader asks
+  total FAIL lines: 1
+
+=== NC-4 number-format: a host-locale formatter reaches a printed figure ===
+1
+  exit=1
+RESULT: FAILED
+  FAIL [number-format] assets/templates/heat-matrix.html: the drawing code calls toLocaleString(). A delivered file has to read on the machine that opens it exactly as it read on the machine that made it, and a host locale decides the grouping mark, the decimal mark and the digits
+  total FAIL lines: 1
+
+=== NC-5 number-format: a hover card with no formatter behind it ===
+  exit=1
+RESULT: FAILED
+  FAIL [number-format] assets/templates/treemap.html: the file carries a hover card and defines no fmt() of its own, so the figures it prints have nothing formatting them
+  total FAIL lines: 1
+
+=== NC-6 empty-notice: a form that can no longer say it has nothing to draw ===
+  exit=1
+RESULT: FAILED
+  FAIL [empty-notice] assets/templates/bar-rows.html: expected exactly one CHART_EMPTY_NOTICE sentinel pair inside a script and found 0 begin and 0 end. Every form says so when the data block holds nothing readable
+  total FAIL lines: 2
+
+=== NC-6b empty-notice: the guard left in place but unable to stop the drawing ===
+  exit=1
+RESULT: FAILED
+  FAIL [empty-notice] assets/templates/bar-rows.html: the empty-data guard cannot stop the drawing. It carries no labelled block and no break out of it, so a form with nothing to draw would print the notice and then draw an empty frame under it
+  ALL:   FAIL [empty-notice] assets/templates/bar-rows.html: the empty-data guard cannot stop the drawing. It carries no labelled block and no break out of it, so a form with nothing to draw would print the notice and then draw an empty frame under it
+
+=== NC-7 geometry-block: one file's shared block drifts from the rest ===
+  exit=1
+RESULT: FAILED
+  FAIL [geometry-block] assets/templates/waterfall.html: the GEOMETRY DEFAULTS block differs from the one in assets/templates/bar-columns.html. The block is a record of what every file shares, so two versions of it mean the corpus no longer agrees about a number it claims to hold in common
+  ALL:   FAIL [geometry-block] assets/templates/waterfall.html: the GEOMETRY DEFAULTS block differs from the one in assets/templates/bar-columns.html. The block is a record of what every file shares, so two versions of it mean the corpus no longer agrees about a number it claims to hold in common
+
+=== NC-8 catalog-system: a row's system cell disagrees with the file it points at ===
+  exit=1
+RESULT: FAILED
+  FAIL [catalog-system] references/catalog.md: row "scatter" says the system is "categorical" and assets/templates/scatter.html declares "neutral". The cell mirrors the file, so the file is the side that decides and the row is the side that drifted
+  ALL:   FAIL [catalog-system] references/catalog.md: row "scatter" says the system is "categorical" and assets/templates/scatter.html declares "neutral". The cell mirrors the file, so the file is the side that decides and the row is the side that drifted
+
+=== NC-9 type-scale: a form invents a size off the published scale ===
+  exit=1
+RESULT: FAILED
+  FAIL [type-scale] assets/templates/candlestick.html: sets 16px, which is not one of the published rungs (10, 11, 12, 13, 14, 15, 21, 34, 56). A size off the scale is a size chosen out of the air, and the scale is what stops the next form guessing
+  ALL:   FAIL [type-scale] assets/templates/candlestick.html: sets 16px, which is not one of the published rungs (10, 11, 12, 13, 14, 15, 21, 34, 56). A size off the scale is a size chosen out of the air, and the scale is what stops the next form guessing
+
+=== NC-10 gradient-sweep: a fade on a neutral form given a second series value ===
+  exit=1
+RESULT: FAILED
+  FAIL [gradient-sweep] assets/templates/daily-line.html: a gradient runs between --chart-series-1 and --chart-series-3 in a file declaring "neutral". A sweep between two series values restates an ordering, and only a system that encodes magnitude has one to restate. A gradient naming one series value at two opacities is a fade and is left alone
+  ALL:   FAIL [gradient-sweep] assets/templates/daily-line.html: a gradient runs between --chart-series-1 and --chart-series-3 in a file declaring "neutral". A sweep between two series values restates an ordering, and only a system that encodes magnitude has one to restate. A gradient naming one series value at two opacities is a fade and is left alone
+
+=== RESTORE: every mutated file compared against the kept copy ===
+diff -r specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout/scratch/keep/assets/color/palettes.json .opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json
+40a41,57
+>   "typeScale": {
+>     "note": "Six named roles and three named departures. Not colours, and like the corner ladder they sit in their own object for that reason: they are the other half of the vocabulary a template reads, and they live here so the check that rejects a size off the scale reads a value rather than restating one. In-figure text steps down a rung as a form gets denser, which is the scale working: the rung is chosen for the space the text has, out of six rungs rather than out of the air.",
+>     "roles": {
+>       "headline": "21px",
+>       "body": "15px",
+>       "subtitle": "14px",
+>       "label": "13px",
+>       "note": "12px",
+>       "tick": "11px"
+>     },
+>     "departureNote": "Each departure below is a single number that is the point of its chart rather than a label on it, or a strip too narrow for the tick size to sit in. A departure is named here so it stays a decision rather than becoming a drift.",
+>     "departures": {
+>       "hero": "56px",
+>       "ringTotal": "34px",
+>       "monthStrip": "10px"
+>     }
+>   },
+diff exit for references/catalog.md: 0
+restored run exit=0
+RESULT: PASSED
+
+=== NC-11..14: the four scripts/README recipes run verbatim on grouped-bars.html ===
+  [interaction-hygiene] exit=1
+RESULT: FAILED
+  FAIL [interaction-hygiene] assets/templates/grouped-bars.html: the markup declares data-chart-legend, data-chart-dim and the stylesheet carries no ":focus:not(:focus-visible)" rule. A form that answers a pointer drops the focus ring for the reader who clicked and keeps it for the reader who tabbed, and a form that skips the line leaves a ring on every click
+  [interaction-state] exit=1
+RESULT: FAILED
+  FAIL [interaction-state] assets/templates/grouped-bars.html: the drawing ships data-chart-dim="1", so it opens with one series already held against the rest. The attribute is empty until a reader asks
+  [type-scale] exit=1
+RESULT: FAILED
+  FAIL [type-scale] assets/templates/grouped-bars.html: sets 16px, which is not one of the published rungs (10, 11, 12, 13, 14, 15, 21, 34, 56). A size off the scale is a size chosen out of the air, and the scale is what stops the next form guessing
+  [geometry-block] exit=1
+RESULT: FAILED
+  FAIL [geometry-block] assets/templates/grouped-bars.html: the GEOMETRY DEFAULTS block differs from the one in assets/templates/bar-columns.html. The block is a record of what every file shares, so two versions of it mean the corpus no longer agrees about a number it claims to hold in common
+  restored byte-identical to both copies
+
+RESULT: PASSED
+
+=== FINAL RESTORE VERIFICATION, taken before the working copy was removed ===
+-- diff -r keep/assets against the live assets, excluding the file this phase created:
+diff -r specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout/scratch/keep/assets/color/palettes.json .opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json
+40a41,57
+>   "typeScale": {
+>     "note": "Six named roles and three named departures. Not colours, and like the corner ladder they sit in their own object for that reason: they are the other half of the vocabulary a template reads, and they live here so the check that rejects a size off the scale reads a value rather than restating one. In-figure text steps down a rung as a form gets denser, which is the scale working: the rung is chosen for the space the text has, out of six rungs rather than out of the air.",
+>     "roles": {
+>       "headline": "21px",
+>       "body": "15px",
+>       "subtitle": "14px",
+>       "label": "13px",
+>       "note": "12px",
+>       "tick": "11px"
+>     },
+>     "departureNote": "Each departure below is a single number that is the point of its chart rather than a label on it, or a strip too narrow for the tick size to sit in. A departure is named here so it stays a decision rather than becoming a drift.",
+>     "departures": {
+>       "hero": "56px",
+>       "ringTotal": "34px",
+>       "monthStrip": "10px"
+>     }
+>   },
+   (a difference in palettes.json below is the typeScale object added on purpose)
+-- diff keep/references/catalog.md against the live catalog: content changed by this phase, not by a mutation
+-- every file mutated for a negative control was compared byte for byte and matched

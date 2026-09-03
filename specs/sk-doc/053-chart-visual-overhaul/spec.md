@@ -60,7 +60,7 @@ _memory:
 | **Packet Level** | 3. The parent's own document set is the lean trio, and the Level 3 depth is carried by the children |
 | **Level Score** | 83 of 100, phase score 40 of 50, both thresholds met |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-03 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -130,7 +130,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/skills/sk-doc/sk-create-chart/assets/templates/*.html` | Modify | 001, 002, 003, 004, 005, 006, 007 | The twenty chart forms. Phase 006 adds the empty-data notice |
+| `.opencode/skills/sk-doc/sk-create-chart/assets/templates/*.html` | Modify | 001, 002, 003, 004, 005, 006, 007 | The chart forms, twenty at the start and twenty-one after the composed form lands |
 | `.opencode/skills/sk-doc/sk-create-chart/assets/examples/*.html` | Modify | 002, 005, 007 | The six family deliveries. Phase 007 audits every headline and edits where the verdict says so |
 | `.opencode/skills/sk-doc/sk-create-chart/assets/color/*.html` | Modify | 002, 005, 006 | The skeleton and the palette proof sheets. Phase 006 adds the shared geometry defaults to the skeleton |
 | `.opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json` | Modify | 002, 005 | Radius roles, then the dark values |
@@ -149,13 +149,13 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-visual-proof-and-forks/ | Apply the agreed static chrome to one line form and one bar form, then render the weight and glow forks side by side so the operator chooses by looking | Draft |
-| 2 | 002-chrome-rollout/ | Roll the settled chrome across all twenty templates, the six family deliveries and the skeleton, with a radius ladder expressed as tokens | Draft |
-| 3 | 003-motion-layer/ | The first-paint reveal wipe and the bar growth, both gated on the reduce-motion preference, both settling to a deterministic final state | Draft |
-| 4 | 004-interaction-layer/ | Hover tooltip, in-figure legend, hover dim and the two lines of interaction hygiene | Draft |
-| 5 | 005-dark-theme/ | A media-scoped palette twin with re-chosen hues, the contrast gates re-run per theme and the checker extended | Draft |
-| 6 | 006-catalog-and-contract/ | The catalog system reassignment, the gap prose, the type scale, the empty-data notice and the shared geometry defaults | Draft |
-| 7 | 007-composed-form-and-closeout/ | The composed bar and line form, the scenario naming, a check per new invariant, then the version bump and close | Draft |
+| 1 | 001-visual-proof-and-forks/ | Apply the agreed static chrome to one line form and one bar form, then render the weight and glow forks side by side so the operator chooses by looking | Complete |
+| 2 | 002-chrome-rollout/ | Roll the settled chrome across all twenty templates, the six family deliveries and the skeleton, with a radius ladder expressed as tokens | Complete |
+| 3 | 003-motion-layer/ | The first-paint reveal wipe and the bar growth, both gated on the reduce-motion preference, both settling to a deterministic final state | Complete |
+| 4 | 004-interaction-layer/ | Hover tooltip, in-figure legend, hover dim and the two lines of interaction hygiene | Complete |
+| 5 | 005-dark-theme/ | A media-scoped palette twin with re-chosen hues, the contrast gates re-run per theme and the checker extended | Complete |
+| 6 | 006-catalog-and-contract/ | The catalog system reassignment, the gap prose, the type scale, the empty-data notice and the shared geometry defaults | Complete |
+| 7 | 007-composed-form-and-closeout/ | The composed bar and line form, the scenario naming, a check per new invariant, then the version bump and close | Complete |
 
 ### Phase Transition Rules
 

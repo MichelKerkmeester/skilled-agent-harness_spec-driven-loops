@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 1.6.0.0
+version: 1.7.0.0
 ---
 
 # Chart Template Contract
@@ -88,7 +88,14 @@ The sentinels are how the corpus check finds the three regions it has an opinion
 
 Five sizes were in use across the corpus before any document named them, which made the size of
 a twenty-first template's axis tick a guess. The roles below record what the corpus already
-does. They are a reading of the files rather than a proposal, so adopting them moves nothing.
+does. They are a reading of the files rather than a proposal, so adopting them moved nothing.
+
+The twenty-first template has since landed and took every size from this table, which is the
+scale doing the one job it was published for. `type-scale` now holds it: the nine values live in
+the palette source beside the corner ladder, for the same reason the ladder sits there, and a
+size a file sets that is on neither list fails. Both routes are read, a `font-size` declared in
+the stylesheet and one set as an attribute from the drawing code, because they are the same
+decision wearing two syntaxes.
 
 | Role | Size | What is set in it |
 | --- | --- | --- |
@@ -125,8 +132,10 @@ are per-form, because a left inset is sized to the widest label a form actually 
 copying one form's inset into another buys uniformity by cutting a label off. A form that
 departs from a shared value says why beside the value it uses instead.
 
-Nothing asserts the block yet. It is a register in the sense section 10 uses the word, and the
-check that compares the copies against each other is the next phase's work.
+`geometry-block` asserts it. Every chart form and every proof sheet has to carry the block and
+every copy has to match the others byte for byte. The set is derived from the two directories
+rather than listed, so a new form joins it by existing rather than by being remembered, and a
+corpus where the block had been scattered over some files would fail rather than pass a count.
 
 ---
 
@@ -171,7 +180,7 @@ chart, not a developer console.
 
 ### An empty data block says so, on every form
 
-All twenty forms carry the same guard, marked `CHART_EMPTY_NOTICE`, above their drawing code.
+All twenty-one forms carry the same guard, marked `CHART_EMPTY_NOTICE`, above their drawing code.
 When the data block holds nothing readable, the form prints one line in the middle of the frame
 and draws nothing else.
 
@@ -190,8 +199,11 @@ The notice is a text element inside the drawing, so a screen reader reaches it e
 reaches the ceiling notices. Its wording is fixed rather than assembled from the data block, so
 nothing a reader pastes into the file can reach the picture as text.
 
-Nothing asserts this yet either. The guard was proved on a fixture and proved silent on the
-shipped block, form by form, and the check that will do it on every run is the next phase's work.
+`empty-notice` asserts it on every run, and it asserts more than the sentinel. The guard has to
+sit below the data block it reads, because a guard above it tests a name that is not defined yet,
+and it has to carry the labelled block and the break that let it stop the drawing. A guard that
+prints the notice and then draws anyway prints it over an empty frame, which is the picture the
+notice exists to prevent.
 
 ---
 
@@ -336,7 +348,7 @@ Stated plainly, so nobody reads a green run as more than it is.
 - **It does not watch the motion.** With `--render` it opens each file twice after the settle time and confirms the two documents are identical, which catches a picture that is still changing when the review screenshots it. It does not see the animation itself, so whether the wipe reads as an entrance is a review question.
 - **It does not measure a narrow screen.** Rule 14 is asserted from the stylesheet, not from a rendered page, because a headless browser hands back the DOM and the DOM does not say whether the page overflowed. The check proves the pan affordance is declared and that its floor is not above the drawing's natural width. Whether the chart is legible at that floor is a review question, and the floor itself is a judgement nobody has measured per form.
 - **It does not judge either theme by eye.** With `--render` it opens each file with the colour scheme pinned light, twice, and again with the scheme pinned dark, and it asserts that the dark open paints a different picture from the light one. That proves the second block reaches the paint rather than merely sitting in the file, which no reading of the text can prove. It says nothing about whether the dark values are the right ones, and it forces the preference with a browser flag rather than reading an operating system, so what a particular reader's machine resolves is still a question for a real browser.
-- **It does not point at anything.** Both opens are made with no pointer input, which is exactly what makes them a fair test of the settled picture and exactly what leaves everything in section 10 unchecked. Whether a card opens on the right mark, whether it flips at an edge and whether a key entry latches are all walked by hand.
+- **It does not point at anything.** Both opens are made with no pointer input, which is exactly what makes them a fair test of the settled picture and exactly what leaves most of section 10 to be walked by hand. Whether a card opens on the right mark, whether it flips at an edge and whether a key entry latches are all read by a person. What a pointer-free run can see is the state a file ships in, and that half is now asserted: `interaction-state` fails a drawing that opens already dimmed or with a card already filled, neither of which a settled comparison would catch, because both opens agree with each other exactly as a correct file's do.
 
 ---
 
@@ -344,7 +356,11 @@ Stated plainly, so nobody reads a green run as more than it is.
 
 A chart answers a pointer. Twelve forms do, and the eight that do not are the ones whose marks already print their own value, where a card would repeat what the reader is looking at.
 
-Nothing in this section is checked. It is a register, which is a rule written down before anything asserts it, and it is marked as one so nobody reads a green run as agreement with it.
+Three of the rules below are now checked and the rest are still a register, which is a rule written down before anything asserts it. The split is marked here so nobody reads a green run as agreement with the whole section.
+
+`interaction-hygiene` requires the hygiene line in any file whose markup declares one of the three registers, and separately fails an unconditional `outline: none` on a focus and any `user-select: none`, which are the two ways the line could be widened into taking something away from a reader. `interaction-state` requires the dim attribute to ship empty and the tooltip group to ship without content. `number-format` fails any host-locale formatter anywhere in the corpus, and requires a file carrying a hover card to define a formatter of its own.
+
+Everything else here is unasserted. What a handler may do, where a card flips, whether a figure inside a card is also in the table, and whether a selection latches are all read by a person.
 
 ### The three registers
 

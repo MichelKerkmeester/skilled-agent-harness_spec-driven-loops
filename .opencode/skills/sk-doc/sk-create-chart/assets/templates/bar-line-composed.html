@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="bar-line-composed">
+<meta name="chart-color-system" content="categorical">
+<title>A count and a rate over the same periods</title>
+<style>
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+
+/* CHART_PALETTE_DARK:BEGIN system=categorical */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --chart-surface: #161513;
+    --chart-ink: #F2F0EC;
+    --chart-muted: #A8A5A0;
+    --chart-rule: #F2F0EC17;
+    --chart-series-1: #DBBD6D;
+    --chart-series-2: #57AABF;
+    --chart-series-3: #D25F4D;
+    --chart-series-4: #7657BF;
+    --chart-emphasis: #F2F0EC;
+  }
+}
+/* CHART_PALETTE_DARK:END */
+
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
+
+/* Two measures, two marks, and the mark type carries as much of the difference as the hue
+   does. A count is an amount and reads as a column standing on its baseline; a rate is a
+   level and reads as a line running across the plot. Give both the same mark and a reader
+   has to consult the key to learn which is which, and give both the same colour and the two
+   scales stop being tellable apart at a glance. */
+.bars { fill: var(--chart-series-1); }
+.rate-line { fill: none; stroke: var(--chart-series-2); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+/* The dot ring is the ground, so a reading sits on the line instead of merging into it. */
+.rate-dot { fill: var(--chart-series-2); stroke: var(--chart-surface); stroke-width: 1.5; }
+/* Dashed and drawn below full strength, because the rule token is also the card border and
+   a grid at the same weight competes with the frame around it. The grid is the thing a
+   reader looks past, so it gives way first. */
+.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+.cat { fill: var(--chart-ink); font-size: 12px; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+/* An axis on a two-scale chart has to say which measure it belongs to, and it says it in the
+   colour of the marks it carries. That is the one place in this file where a text element
+   takes a series value: the name of a scale is part of the scale rather than a label on the
+   drawing, and a reader who cannot tell which axis the line is measured against is reading a
+   chart that means nothing. */
+.axis-name { font-size: 12px; font-weight: 600; }
+.axis-count { fill: var(--chart-series-1); }
+.axis-rate { fill: var(--chart-series-2); }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The
+   period names and the key entries keep the body face, because they are names rather than
+   figures. */
+.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+.key { fill: var(--chart-muted); font-size: 11px; }
+.key-swatch { rx: var(--chart-radius-mark); }
+.key-rule { stroke: var(--chart-series-2); stroke-width: 2; stroke-linecap: round; }
+
+/* One measure at a time. Pointing at a column or at the line, or at either entry in the key,
+   drops the other measure to a third of its strength. On this form that does more work than
+   on a single-scale chart: with two ladders running, holding one measure still is how a
+   reader checks that the shape they think they see belongs to the series they think it does.
+   Clicking an entry holds the state until the same entry is clicked again. Nothing dims until
+   a reader asks: the attribute is empty until a pointer or a key press fills it, so the file
+   paints what it always painted. */
+[data-series] { transition: opacity 0.2s ease; }
+svg[data-chart-dim="1"] [data-series]:not([data-series="1"]) { opacity: 0.3; }
+svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
+/* A reader who clicks a control inside the figure should not be left looking at a ring they
+   never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
+   the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
+   are there to be copied out of it. */
+.figure svg :focus:not(:focus-visible) { outline: none; }
+
+/* The figure reveals itself left to right on first paint, so a reader watches the periods
+   arrive in reading order instead of finding them already there. The wipe takes the whole
+   figure rather than the marks alone, and on this form that is the only motion that works:
+   a per-column growth would leave the line hanging above columns that have not arrived yet,
+   which reads as two charts drawn at different speeds rather than as one chart arriving.
+   It runs once and it ends unclipped, which is the picture this file would paint with no
+   animation in it at all. That is what lets the fallback below remove the motion instead of
+   replacing it with a second design. */
+@keyframes chart-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+/* backwards, not both: the clip applies before the first frame and is gone once the
+   animation ends, so the settled file carries no trace of having moved. */
+.figure svg { animation: chart-reveal 1s cubic-bezier(0, 0.7, 0.5, 1) backwards; }
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  .figure svg { animation: none; }
+  [data-series] { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Orders grew every week and the rate that won them fell every week too</h1>
+  <p class="subtitle" data-chart-part="subtitle">Orders placed, and the share of sessions that ended in one, over the eight weeks to 24 August. The columns are read against the left scale and the line against the right, because the two measures are hundreds of times apart and one scale would press the rate flat onto the baseline.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart" data-chart-dim="">
+      <title id="fig-title">Orders and conversion rate over eight weeks</title>
+      <desc id="fig-desc">Eight weekly columns for orders placed, read against the left scale, with a line for the conversion rate read against the right scale. Each measure takes the colour of the axis it is measured against. Orders rise every week from 1,180 to 2,040 while the conversion rate falls every week from 4.0 to 2.6 percent, so the growth came from more sessions rather than from better ones. The table below the chart carries both series as text.</desc>
+      <g data-chart-legend id="legend-bar-line-composed"></g>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Orders placed and conversion rate, eight weeks.</caption>
+    <thead><tr><th scope="col">Week</th><th scope="col">Orders</th><th scope="col">Conversion rate, percent</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const SERIES = ['Orders', 'Conversion rate'];
+const UNITS = ['orders', 'percent'];
+const DATA = [
+  { label: 'W1', count: 1180, rate: 4.0 },
+  { label: 'W2', count: 1290, rate: 3.8 },
+  { label: 'W3', count: 1360, rate: 3.7 },
+  { label: 'W4', count: 1520, rate: 3.4 },
+  { label: 'W5', count: 1610, rate: 3.3 },
+  { label: 'W6', count: 1740, rate: 3.0 },
+  { label: 'W7', count: 1880, rate: 2.8 },
+  { label: 'W8', count: 2040, rate: 2.6 }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. Two measures is the ceiling for this form. A third would need a
+// third ladder, and a reader cannot hold three scales at once: past two, the honest answer is
+// two charts side by side.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return Number.isFinite(d.count) || Number.isFinite(d.rate); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
+// the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+const TOP = 48;
+const BASE = 264;
+const TICKS = 4;
+const LEFT = 56;
+
+const countPeak = DATA.reduce(function (m, d) { return Number.isFinite(d.count) ? Math.max(m, d.count) : m; }, 0);
+const ratePeak = DATA.reduce(function (m, d) { return Number.isFinite(d.rate) ? Math.max(m, d.rate) : m; }, 0);
+
+// THE SECOND SCALE, AND THE ONE CONDITION THAT EARNS IT.
+//
+// A second axis is the easiest way to lie with a chart. Two ladders can be placed so the marks
+// cross wherever the author wants them to, and a reader takes the crossing for a finding. So
+// the second axis is not an authoring choice here. It is a condition computed from the block
+// above, and an editor who changes the numbers gets whichever answer the numbers give.
+//
+// The arithmetic: divide the larger of the two peaks by the smaller. At a factor of ten or
+// more the two measures are an order of magnitude apart, and one shared ladder sized for the
+// larger measure leaves the smaller one lying along the baseline, where it has no shape a
+// reader can read at all. Below ten, one ladder carries both and the comparison is direct,
+// which is always the more honest picture when it is available. The shipped block divides
+// 2,040 orders by a 4.0 percent rate, which is 510, so this file draws two.
+//
+// A peak of zero means one of the measures has nothing to place, so there is nothing to
+// separate and one ladder carries both.
+const SPREAD = Math.min(countPeak, ratePeak) > 0 ? Math.max(countPeak, ratePeak) / Math.min(countPeak, ratePeak) : 1;
+const SECOND_SCALE = SPREAD >= 10;
+
+// The right inset opens up only when there is a second ladder to print in it. A form that
+// reserved the gutter either way would carry a permanent empty margin on the single-scale
+// picture, which reads as a chart that has lost something.
+const RIGHT = SECOND_SCALE ? 654 : 706;
+
+// A ceiling of zero has no ladder, so a chart of nothing but zeroes still gets rungs to
+// stand on rather than a division that has no answer.
+function ceilingFor(peak) {
+  return peak > 0 ? niceStep(peak / TICKS) * TICKS : TICKS;
+}
+// On one ladder the ceiling has to clear both measures, which is what makes the smaller of
+// the two flat rather than absent. That flatness is the picture the condition above is
+// deciding about, and it is the correct picture whenever the two measures are comparable.
+const LEFT_MAX = ceilingFor(SECOND_SCALE ? countPeak : Math.max(countPeak, ratePeak));
+const RIGHT_MAX = SECOND_SCALE ? ceilingFor(ratePeak) : LEFT_MAX;
+
+// Every rung prints to the same decimal count as the gap between rungs, so a ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const decimalsFor = function (max) { return (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length; };
+const LEFT_DP = decimalsFor(LEFT_MAX);
+const RIGHT_DP = decimalsFor(RIGHT_MAX);
+
+const yCount = function (v) { return BASE - (BASE - TOP) * (v / LEFT_MAX); };
+const yRate = function (v) { return BASE - (BASE - TOP) * (v / RIGHT_MAX); };
+const slot = (RIGHT - LEFT) / DATA.length;
+const cx = function (i) { return LEFT + slot * i + slot / 2; };
+
+// One set of gridlines, drawn once, with a rung printed on each side of it. Two sets would
+// draw a second grid a fraction of a unit off the first, which is a moire pattern rather than
+// a scale, so the two ladders share their lines and differ only in what the ends say.
+for (let t = 0; t <= TICKS; t += 1) {
+  const at = BASE - (BASE - TOP) * (t / TICKS);
+  node('line', { x1: LEFT, y1: at, x2: RIGHT, y2: at }, 'grid');
+  node('text', { x: LEFT - 10, y: at + 4, 'text-anchor': 'end' }, 'tick')
+    .textContent = fmt((LEFT_MAX / TICKS) * t, LEFT_DP);
+  if (!SECOND_SCALE) continue;
+  node('text', { x: RIGHT + 10, y: at + 4, 'text-anchor': 'start' }, 'tick')
+    .textContent = fmt((RIGHT_MAX / TICKS) * t, RIGHT_DP);
+}
+
+// An axis says what its rungs are counted in, in the colour of the marks measured against it.
+// The unit rather than the series name, because the key already says which mark is which and a
+// ladder printing the same two words twenty units below the key tells a reader nothing they did
+// not just read. What the key cannot say is which ladder a mark is measured against, and on a
+// two-scale chart that is the whole question.
+//
+// Both names are anchored to the edges of the frame rather than to the plot, so a longer unit
+// grows inward across empty space instead of off the side of the drawing where it is cut in
+// half. The band between the key and the top gridline is free at every data shape.
+const NAME_Y = TOP - 14;
+if (SECOND_SCALE) {
+  node('text', { x: 6, y: NAME_Y, 'text-anchor': 'start' }, 'axis-name axis-count').textContent = UNITS[0];
+  node('text', { x: 714, y: NAME_Y, 'text-anchor': 'end' }, 'axis-name axis-rate').textContent = UNITS[1];
+} else {
+  // One ladder carrying two units is worth saying out loud. A reader who takes it for a single
+  // measure reads one of the two series against the wrong unit and never finds out.
+  node('text', { x: 6, y: NAME_Y, 'text-anchor': 'start' }, 'axis-name axis-count')
+    .textContent = UNITS[0] + ' and ' + UNITS[1];
+}
+
+// The columns. A column rounds only the end that meets nothing: the end on the baseline stays
+// square, because a rounded corner there reads as a column stopping short of the axis it is
+// measured from. A column shorter than its own corner has the corner clamped to its height, so
+// a small value stays a column rather than collapsing into a lozenge. A period with no count
+// draws no column, which is what leaves the line visibly crossing an empty slot.
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-mark')) || 0;
+const barWidth = slot * 0.42;
+
+function topRounded(x, y, w, h, r) {
+  const k = Math.max(0, Math.min(r, w / 2, h));
+  return 'M' + x + ',' + (y + h) + ' V' + (y + k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + k) + ',' + y +
+    ' H' + (x + w - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w) + ',' + (y + k) +
+    ' V' + (y + h) + ' Z';
+}
+
+DATA.forEach(function (d, i) {
+  if (!Number.isFinite(d.count)) return;
+  const top = yCount(d.count);
+  node('path', {
+    d: topRounded(cx(i) - barWidth / 2, top, barWidth, BASE - top, MARK_R),
+    'data-series': 1
+  }, 'bars');
+});
+
+// A period with no rate breaks the line rather than dragging it through a value nobody
+// recorded. Interpolating across the gap invents the reading, and closing the gap up moves
+// every later period to the wrong place on the axis. The line restarts on the far side, which
+// is what a reader needs to see. A period standing alone between two gaps has no segment to
+// belong to, so it is drawn as a round cap on a path of no length.
+const segments = [];
+let run = [];
+DATA.forEach(function (d, i) {
+  if (Number.isFinite(d.rate)) { run.push(cx(i) + ',' + yRate(d.rate)); return; }
+  if (run.length) segments.push(run);
+  run = [];
+});
+if (run.length) segments.push(run);
+const omitted = DATA.length - segments.reduce(function (n, s) { return n + s.length; }, 0);
+
+segments.forEach(function (points) {
+  node('path', {
+    d: 'M' + points.join(' L') + (points.length === 1 ? ' L' + points[0] : ''),
+    'data-series': 2
+  }, 'rate-line');
+});
+
+// A dot per reading says where a value was actually recorded. A line alone leaves that to be
+// guessed from its corners, and a corner is also what a steep pair of readings makes where
+// nothing was recorded at all.
+DATA.forEach(function (d, i) {
+  if (!Number.isFinite(d.rate)) return;
+  node('circle', { cx: cx(i), cy: yRate(d.rate), r: 3, 'data-series': 2 }, 'rate-dot');
+});
+
+// A line with a hole in it and a line that is simply short look the same, so the count is
+// stated inside the figure rather than left to the table to imply. The notice grows the frame
+// rather than sitting inside the plot, which is what the ceiling notices elsewhere in this
+// corpus do and it is right for the same two reasons: a line printed inside the plot lands on
+// a mark, and a frame sized for a notice that is usually absent carries a permanent empty
+// strip under every chart that has nothing to report.
+if (omitted) {
+  const box = svg.getAttribute('viewBox').split(' ');
+  const grown = Number(box[3]) + 22;
+  svg.setAttribute('viewBox', box[0] + ' ' + box[1] + ' ' + box[2] + ' ' + grown);
+  node('text', { x: LEFT, y: grown - 6 }, 'notice').textContent =
+    omitted === 1 ? '1 period has no rate and is left out of the line.'
+                  : fmt(omitted) + ' periods have no rate and are left out of the line.';
+}
+
+DATA.forEach(function (d, i) {
+  node('text', { x: cx(i), y: BASE + 20, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
+});
+
+// The key sits inside the drawing rather than in the sentence above it, so a reader maps a
+// mark to a measure without leaving the picture. Each entry carries the mark its measure is
+// drawn with, a block for the columns and a line with a dot for the rate, because on a chart
+// with two mark types the shape is half of what tells them apart and the key that shows only
+// colour throws that half away. It is also the control for the dim, which is why each entry
+// is a button: a control a pointer can reach has to be reachable from a keyboard too.
+const legend = document.getElementById('legend-bar-line-composed');
+const entries = [];
+let cursor = 0;
+SERIES.forEach(function (name, s) {
+  const entry = document.createElementNS(SVG, 'g');
+  entry.setAttribute('data-series', s + 1);
+  entry.setAttribute('tabindex', '0');
+  entry.setAttribute('role', 'button');
+  entry.setAttribute('aria-pressed', 'false');
+  if (s === 0) {
+    const swatch = document.createElementNS(SVG, 'rect');
+    swatch.setAttribute('x', cursor);
+    swatch.setAttribute('y', 6);
+    swatch.setAttribute('width', 10);
+    swatch.setAttribute('height', 10);
+    swatch.setAttribute('class', 'key-swatch bars');
+    entry.appendChild(swatch);
+  } else {
+    const stroke = document.createElementNS(SVG, 'line');
+    stroke.setAttribute('x1', cursor);
+    stroke.setAttribute('y1', 11);
+    stroke.setAttribute('x2', cursor + 10);
+    stroke.setAttribute('y2', 11);
+    stroke.setAttribute('class', 'key-rule');
+    entry.appendChild(stroke);
+    const knot = document.createElementNS(SVG, 'circle');
+    knot.setAttribute('cx', cursor + 5);
+    knot.setAttribute('cy', 11);
+    knot.setAttribute('r', 3);
+    knot.setAttribute('class', 'rate-dot');
+    entry.appendChild(knot);
+  }
+  const label = document.createElementNS(SVG, 'text');
+  label.setAttribute('x', cursor + 15);
+  label.setAttribute('y', 15);
+  label.setAttribute('class', 'key');
+  label.textContent = name;
+  entry.appendChild(label);
+  legend.appendChild(entry);
+  // The gap after an entry is the label's real width, measured once it is in the document.
+  // A character count assumes every glyph is one width, which this font stack does not promise.
+  cursor += 15 + (label.getComputedTextLength() || name.length * 6.2) + 16;
+  entries.push(entry);
+});
+legend.setAttribute('transform', 'translate(' + (RIGHT - (cursor - 16)) + ',0)');
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  tr.appendChild(th);
+  [fmt(d.count), fmt(d.rate, 1)].forEach(function (text) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = text;
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+
+// Pointing at a mark or at a key entry is a hover and clears itself. Clicking an entry holds
+// the same state until the same entry is clicked again. Leaving the drawing clears a hover, so
+// no chart can be left permanently dimmed by a pointer that wandered off the page.
+let latched = null;
+
+function dimTo(series) {
+  svg.setAttribute('data-chart-dim', series === null ? '' : series);
+}
+
+function latch(series) {
+  latched = latched === series ? null : series;
+  dimTo(latched);
+  entries.forEach(function (entry) {
+    entry.setAttribute('aria-pressed', entry.getAttribute('data-series') === latched ? 'true' : 'false');
+  });
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (latched !== null) return;
+  const owner = e.target.closest ? e.target.closest('[data-series]') : null;
+  dimTo(owner ? owner.getAttribute('data-series') : null);
+});
+svg.addEventListener('pointerleave', function () {
+  if (latched === null) dimTo(null);
+});
+entries.forEach(function (entry) {
+  entry.addEventListener('click', function () { latch(entry.getAttribute('data-series')); });
+  // A group in a drawing does not turn a key press into a click the way a button element does,
+  // so the two keys a button answers to are wired by hand.
+  entry.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    latch(entry.getAttribute('data-series'));
+  });
+});
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
+</script>
+</body>
+</html>

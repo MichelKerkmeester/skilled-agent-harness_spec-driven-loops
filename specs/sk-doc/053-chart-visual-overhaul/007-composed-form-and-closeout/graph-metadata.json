@@ -39,19 +39,28 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/final-render-rerun.txt",
       "scripts/README.md",
+      "scratch/negative-controls.txt",
+      "scratch/fixtures/shipped-light.png",
+      "scratch/fixtures/within-an-order.png",
+      "scratch/fixtures/zero-period-and-a-gap.png",
+      "scratch/fixtures/rate-above-one-hundred.png",
+      "scratch/fixtures/nothing-readable.png",
+      "scratch/fixtures/shipped-dark.png",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-line-composed.html",
       ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
       ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
-      ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-chart/README.md",
-      ".opencode/skills/sk-doc/sk-create-chart/scripts/README.md"
+      ".opencode/skills/sk-doc/sk-create-chart/SKILL.md"
     ],
     "entities": [
       {
@@ -85,9 +94,75 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-render-rerun.txt",
+        "kind": "file",
+        "path": "scratch/final-render-rerun.txt",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "negative-controls.txt",
+        "kind": "file",
+        "path": "scratch/negative-controls.txt",
+        "source": "derived"
+      },
+      {
+        "name": "shipped-light.png",
+        "kind": "file",
+        "path": "scratch/fixtures/shipped-light.png",
+        "source": "derived"
+      },
+      {
+        "name": "within-an-order.png",
+        "kind": "file",
+        "path": "scratch/fixtures/within-an-order.png",
+        "source": "derived"
+      },
+      {
+        "name": "zero-period-and-a-gap.png",
+        "kind": "file",
+        "path": "scratch/fixtures/zero-period-and-a-gap.png",
+        "source": "derived"
+      },
+      {
+        "name": "rate-above-one-hundred.png",
+        "kind": "file",
+        "path": "scratch/fixtures/rate-above-one-hundred.png",
+        "source": "derived"
+      },
+      {
+        "name": "nothing-readable.png",
+        "kind": "file",
+        "path": "scratch/fixtures/nothing-readable.png",
+        "source": "derived"
+      },
+      {
+        "name": "shipped-dark.png",
+        "kind": "file",
+        "path": "scratch/fixtures/shipped-dark.png",
+        "source": "derived"
+      },
+      {
+        "name": "bar-line-composed.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-line-composed.html",
         "source": "derived"
       },
       {
@@ -131,77 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Three",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Headless Chrome",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three problems, and they close the packet together",
     "created_at": "2026-09-03T08:01:46.788Z",
-    "last_save_at": "2026-09-03T09:05:56.505Z",
+    "last_save_at": "2026-09-03T21:58:31.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +218,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7982b5104c5049a98bc65b0162a80ff9fe053c0a4df1c2e28bb5d0cc8790399c",
+    "source_fingerprint": "sha256:0f1174109786fbf848e1bf8c900c98f37cbb7138b5cefca9277a65b1a6ee950a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c57ab60f879fc6a6d4ae160e336049cd66667836c544cd0c4c422eb7476b758d",
-      "plan.md": "b13c928f82e50a3a07ed7b497fd542de59992806209294c6d490dcca980a9b15",
-      "tasks.md": "62f34bb0dd3c9f907397c1a171d0d723b63f47ed5251b6ce455fe0dd2469a6da"
+      "spec.md": "a1063dc83638f57c1961d822c381e2030bbfc949742a7ebc0cda420f632d9395",
+      "plan.md": "d9f1bbcdc126e1722805f886b2f031d5c4aee9ae3751cec59ee94e155b3b3df0",
+      "tasks.md": "1d50bdcd0fb2c8d73fcbc60cc3c6b2aed98432f540fc13ec25f0f7902777324d",
+      "decision-record.md": "fa757fc915fddf1edcb6cf98eedb3cf769a767d332f10c982e3bcc3524ce9a52",
+      "implementation-summary.md": "a992840ac843bce59f2a98464dea69b09479c652b1885f89732995fe74eb3094"
     },
     "last_active_child_id": null,
     "last_active_at": null

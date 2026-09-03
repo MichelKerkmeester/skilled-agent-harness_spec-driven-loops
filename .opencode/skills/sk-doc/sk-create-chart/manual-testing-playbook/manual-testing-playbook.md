@@ -1,7 +1,7 @@
 ---
 title: "sk-create-chart: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, the review protocol, the orchestration guide and the per-feature validation files for the sk-create-chart sk-doc workflow packet."
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # sk-create-chart: Manual Testing Playbook
@@ -47,7 +47,7 @@ So the inverted rule for this package is that **a run reporting a pass from the 
 
 ### Family Coverage
 
-The corpus holds twenty chart forms across six question families. Every family is named below with the scenario that carries it and the reason, because the failure modes here cut across families rather than along them. A per-family scenario set would produce six near-identical documents that all fail for the same reason, which is the bar a scenario has to clear to earn its place.
+The corpus holds twenty-one chart forms across six question families. Every family is named below with the scenario that carries it and the reason, because the failure modes here cut across families rather than along them. A per-family scenario set would produce six near-identical documents that all fail for the same reason, which is the bar a scenario has to clear to earn its place.
 
 | Family | Carried by | Why that scenario is the one |
 |---|---|---|

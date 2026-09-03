@@ -865,6 +865,285 @@ function checkMotion(file, src) {
   }
 }
 
+/* -------------------------------------------- interaction, format, notice */
+
+// A stylesheet walked as blocks rather than matched as a pattern. A rule nested inside an
+// at-rule is still a rule, and a regex that stops at the first closing brace reads the
+// wrapper and swallows the first rule inside it, which is exactly where a suppression would
+// sit if somebody wanted one out of sight.
+function styleRules(css) {
+  const out = [];
+  const stack = [];
+  let selectorStart = 0;
+  for (let i = 0; i < css.length; i += 1) {
+    if (css[i] === '{') {
+      stack.push({ selector: css.slice(selectorStart, i).trim(), bodyStart: i + 1 });
+      selectorStart = i + 1;
+    } else if (css[i] === '}') {
+      const open = stack.pop();
+      if (open) out.push({ selector: open.selector, body: css.slice(open.bodyStart, i) });
+      selectorStart = i + 1;
+    }
+  }
+  return out;
+}
+
+// The three attributes a form declares when it answers a pointer. They are read out of the
+// markup alone: every one of them also appears in a stylesheet selector, so a file that
+// merely styles the register would otherwise read as a file that carries it.
+const INTERACTION_REGISTERS = ['data-chart-tooltip', 'data-chart-legend', 'data-chart-dim'];
+const HYGIENE_RULE = /:focus\s*:not\(\s*:focus-visible\s*\)/;
+
+// A form that gains a pointer carries one line of interaction hygiene, and it is the narrowed
+// form: the focus ring is dropped for a reader who clicked and kept for a reader who tabbed.
+// The second half of this check is the one worth having. An unconditional `outline: none` and
+// a `user-select: none` both pass every other rule in this file, and both take something away
+// from a reader — a keyboard indicator, and the ability to copy a number out of a document.
+function checkInteractionHygiene(file, src) {
+  const { styles, markup } = regionsOf(stripHtmlComments(src));
+  const css = stripJsComments(styles.join('\n'));
+  tally('interaction-hygiene', 2);
+
+  const carried = INTERACTION_REGISTERS.filter(function (attr) {
+    return new RegExp('\\b' + attr + '\\b').test(markup);
+  });
+  if (carried.length && !HYGIENE_RULE.test(css)) {
+    record('interaction-hygiene', 'error', file,
+      `the markup declares ${carried.join(', ')} and the stylesheet carries no ":focus:not(:focus-visible)" rule. A form that answers a pointer drops the focus ring for the reader who clicked and keeps it for the reader who tabbed, and a form that skips the line leaves a ring on every click`);
+  }
+
+  for (const rule of styleRules(css)) {
+    if (rule.selector.startsWith('@')) continue;
+    if (/:focus\b/.test(rule.selector) && !/:focus-visible/.test(rule.selector) && /outline\s*:\s*none/i.test(rule.body)) {
+      record('interaction-hygiene', 'error', file,
+        `"${rule.selector}" removes the outline from every focus, including a reader who arrived by keyboard. The suppression is scoped through :focus:not(:focus-visible), which is the selector that tells a click from a tab`);
+    }
+    if (/user-select\s*:\s*none/i.test(rule.body)) {
+      record('interaction-hygiene', 'error', file,
+        `"${rule.selector}" locks text selection. A delivered chart is a document and the numbers in it are meant to be copied out, so the selection half of the borrowed hygiene pair is refused here`);
+    }
+  }
+}
+
+// What a file paints before anyone touches it has to be what it painted before it gained a
+// pointer, and the two registers that ship in the markup are where that can go wrong. Neither
+// failure is visible to the render path: a file that opens already dimmed, or with a card
+// already showing, paints the same picture on both of its pointer-free opens and passes the
+// settled comparison exactly as a correct file does.
+function checkInteractionState(file, src) {
+  const { markup } = regionsOf(stripHtmlComments(src));
+  tally('interaction-state', 2);
+
+  const dim = /data-chart-dim\s*=\s*"([^"]*)"/g;
+  let m;
+  while ((m = dim.exec(markup)) !== null) {
+    if (m[1].trim() === '') continue;
+    record('interaction-state', 'error', file,
+      `the drawing ships data-chart-dim="${m[1]}", so it opens with one series already held against the rest. The attribute is empty until a reader asks`);
+  }
+
+  const tooltip = /<g\b[^>]*\bdata-chart-tooltip\b[^>]*>([\s\S]*?)<\/g>/gi;
+  while ((m = tooltip.exec(markup)) !== null) {
+    if (!m[1].trim()) continue;
+    record('interaction-state', 'error', file,
+      'the tooltip group ships with content in it, so a card is on screen before a reader has pointed at anything. The group is declared empty and the drawing code fills it');
+  }
+}
+
+// Every number a reader sees comes from the file's own formatter. A locale-dependent one makes
+// a delivered file read differently on the machine that opens it, which is the whole failure
+// the fixed-comma formatter exists to prevent, and it is invisible on the machine that authored
+// the file.
+const LOCALE_FORMATTERS = [
+  [/\btoLocaleString\s*\(/, 'toLocaleString()'],
+  [/\btoLocaleDateString\s*\(/, 'toLocaleDateString()'],
+  [/\btoLocaleTimeString\s*\(/, 'toLocaleTimeString()'],
+  [/\bIntl\s*\.\s*NumberFormat\b/, 'Intl.NumberFormat'],
+  [/\bIntl\s*\.\s*DateTimeFormat\b/, 'Intl.DateTimeFormat'],
+];
+
+function checkNumberFormat(file, src) {
+  const { scripts, markup } = regionsOf(stripHtmlComments(src));
+  const code = scripts.map(stripJsComments).join('\n');
+  tally('number-format', LOCALE_FORMATTERS.length + 1);
+
+  for (const [re, what] of LOCALE_FORMATTERS) {
+    if (!re.test(code)) continue;
+    record('number-format', 'error', file,
+      `the drawing code calls ${what}. A delivered file has to read on the machine that opens it exactly as it read on the machine that made it, and a host locale decides the grouping mark, the decimal mark and the digits`);
+  }
+
+  // A hover card prints a figure that is nowhere else in the picture, so it is the one place a
+  // raw value would reach a reader with no formatter between them.
+  if (!/\bdata-chart-tooltip\b/.test(markup)) return;
+  if (/function\s+fmt\s*\(/.test(code)) return;
+  record('number-format', 'error', file,
+    'the file carries a hover card and defines no fmt() of its own, so the figures it prints have nothing formatting them');
+}
+
+// Rule: an empty data block says so, in the picture. An empty frame and a chart whose values
+// are all zero look identical, and a reader shown an empty box cannot tell which one they
+// hold. The guard has to sit below the data it reads and it has to be able to stop the
+// drawing, so both are asserted rather than the sentinel alone: a guard that prints a notice
+// and then draws anyway prints the notice over an empty frame.
+const EMPTY_BEGIN = '/* CHART_EMPTY_NOTICE:BEGIN */';
+const EMPTY_END = '/* CHART_EMPTY_NOTICE:END */';
+
+function checkEmptyNotice(file, src) {
+  const { scripts } = regionsOf(src);
+  const joined = scripts.join('\n');
+  tally('empty-notice', 3);
+
+  const begins = occurrences(joined, EMPTY_BEGIN);
+  const ends = occurrences(joined, EMPTY_END);
+  if (begins !== 1 || ends !== 1) {
+    record('empty-notice', 'error', file,
+      `expected exactly one CHART_EMPTY_NOTICE sentinel pair inside a script and found ${begins} begin and ${ends} end. Every form says so when the data block holds nothing readable`);
+    return;
+  }
+  const start = joined.indexOf(EMPTY_BEGIN);
+  if (start < joined.indexOf(DATA_END)) {
+    record('empty-notice', 'error', file,
+      'the empty-data guard sits above the data block it reads, so it tests a name that is not defined yet');
+  }
+  const guard = joined.slice(start);
+  if (/\bfigure\s*:\s*\{/.test(guard) && /\bbreak\s+figure\s*;/.test(guard)) return;
+  record('empty-notice', 'error', file,
+    'the empty-data guard cannot stop the drawing. It carries no labelled block and no break out of it, so a form with nothing to draw would print the notice and then draw an empty frame under it');
+}
+
+// The five measurements every form shares, written into every file rather than imported,
+// because a delivered file has no runtime to import from and neither place these numbers are
+// used can read a custom property. Copies are only worth having when something compares them,
+// so the block is asserted byte for byte across the exact set that carries it rather than
+// across at least so many files: a corpus where the block was scattered would pass a count.
+const GEOMETRY_BEGIN = '/* GEOMETRY DEFAULTS';
+
+function geometryBlockOf(src) {
+  const start = src.indexOf(GEOMETRY_BEGIN);
+  if (start === -1) return null;
+  const end = src.indexOf('*/', start);
+  if (end === -1) return null;
+  return src.slice(start, end + 2);
+}
+
+function checkGeometryBlock(files) {
+  tally('geometry-block', files.length);
+  let reference = null;
+  let referenceFile = null;
+  for (const file of files) {
+    const block = geometryBlockOf(fs.readFileSync(file, 'utf8'));
+    const name = rel(file);
+    if (!block) {
+      record('geometry-block', 'error', name,
+        'no GEOMETRY DEFAULTS block. Every chart form and every proof sheet records the measurements it shares with the rest of the corpus, so a file that departs from one says so beside the value it uses instead');
+      continue;
+    }
+    if (reference === null) {
+      reference = block;
+      referenceFile = name;
+      continue;
+    }
+    if (block === reference) continue;
+    record('geometry-block', 'error', name,
+      `the GEOMETRY DEFAULTS block differs from the one in ${referenceFile}. The block is a record of what every file shares, so two versions of it mean the corpus no longer agrees about a number it claims to hold in common`);
+  }
+}
+
+// The published type scale: six named roles and three named departures, each departure a single
+// number that is the point of its chart rather than a label on it. The scale exists so the size
+// of the next template's axis tick is a choice out of six rungs rather than a guess, which only
+// holds while something rejects a seventh rung.
+function checkTypeScale(file, src, palette) {
+  const scale = palette.typeScale || {};
+  const allowed = new Map();
+  for (const [role, value] of Object.entries(scale.roles || {})) allowed.set(parseFloat(value), role);
+  for (const [role, value] of Object.entries(scale.departures || {})) allowed.set(parseFloat(value), role);
+
+  const { styles, scripts } = regionsOf(stripHtmlComments(src));
+  const sizes = [];
+  const css = stripJsComments(styles.join('\n'));
+  let m;
+  const declared = /font-size\s*:\s*([\d.]+)px/g;
+  while ((m = declared.exec(css)) !== null) sizes.push(Number(m[1]));
+  // An SVG text element can also take its size as an attribute, where the number is unitless
+  // user units rather than pixels. It is the same scale and the same decision, so it is held
+  // to the same rungs.
+  const attribute = /setAttribute\(\s*['"]font-size['"]\s*,\s*['"]?([\d.]+)/g;
+  const code = scripts.map(stripJsComments).join('\n');
+  while ((m = attribute.exec(code)) !== null) sizes.push(Number(m[1]));
+
+  tally('type-scale', sizes.length);
+  if (!allowed.size) {
+    record('type-scale', 'error', rel(PALETTE_SOURCE),
+      'the palette source publishes no type scale, so nothing says which sizes a file may set');
+    return;
+  }
+  for (const size of sizes) {
+    if (allowed.has(size)) continue;
+    record('type-scale', 'error', file,
+      `sets ${size}px, which is not one of the published rungs (${[...allowed.keys()].sort(function (a, b) { return a - b; }).join(', ')}). A size off the scale is a size chosen out of the air, and the scale is what stops the next form guessing`);
+  }
+}
+
+// A single mark may sweep along its own ramp, and only where the system already encodes
+// magnitude. A sweep restates an ordering the data has; the same sweep on an unordered or a
+// merely ranked series invents one.
+//
+// The rule is mechanical rather than judged, which is what makes it assertable at all. A
+// gradient whose stops name two different series values is a sweep. A gradient whose stops name
+// one series value at two opacities is a fade, which is what the area under a line already is,
+// and the rule leaves it alone.
+const GRADIENT = /<(linearGradient|radialGradient)\b[^>]*>([\s\S]*?)<\/\1>/gi;
+const SERIES_TOKEN = /var\(\s*(--chart-series-\d+)\s*\)/;
+
+function checkGradientSweep(file, src, declaredSystem) {
+  const { styles, markup } = regionsOf(stripHtmlComments(src));
+  const css = stripJsComments(styles.join('\n'));
+
+  // A stop reaches its colour through a class the way every other mark does, so the class has
+  // to be resolved before the stops can be read.
+  const stopColour = new Map();
+  for (const rule of styleRules(css)) {
+    const colour = /stop-color\s*:\s*([^;]+)/i.exec(rule.body);
+    if (!colour) continue;
+    const token = SERIES_TOKEN.exec(colour[1]);
+    if (!token) continue;
+    for (const selector of rule.selector.split(',')) {
+      const cls = /^\.([A-Za-z0-9_-]+)$/.exec(selector.trim());
+      if (cls) stopColour.set(cls[1], token[1]);
+    }
+  }
+
+  let gradients = 0;
+  let m;
+  GRADIENT.lastIndex = 0;
+  while ((m = GRADIENT.exec(markup)) !== null) {
+    gradients += 1;
+    const values = new Set();
+    const stops = /<stop\b[^>]*>/gi;
+    let s;
+    while ((s = stops.exec(m[2])) !== null) {
+      const cls = /\bclass\s*=\s*"([^"]*)"/i.exec(s[0]);
+      if (cls) {
+        for (const name of cls[1].trim().split(/\s+/)) {
+          if (stopColour.has(name)) values.add(stopColour.get(name));
+        }
+      }
+      const inline = /\bstop-color\s*=\s*"([^"]*)"/i.exec(s[0]);
+      if (inline) {
+        const token = SERIES_TOKEN.exec(inline[1]);
+        if (token) values.add(token[1]);
+      }
+    }
+    if (values.size < 2) continue;
+    if (declaredSystem === 'ordered') continue;
+    record('gradient-sweep', 'error', file,
+      `a gradient runs between ${[...values].join(' and ')} in a file declaring "${declaredSystem}". A sweep between two series values restates an ordering, and only a system that encodes magnitude has one to restate. A gradient naming one series value at two opacities is a fade and is left alone`);
+  }
+  tally('gradient-sweep', gradients + 1);
+}
+
 /* ------------------------------------------------------------------- catalog */
 
 function parseCatalog() {
@@ -888,6 +1167,10 @@ function parseCatalog() {
   const headers = cells(lines[0]);
   const idCol = headers.indexOf('id');
   const fileCol = headers.indexOf('file');
+  // The system cell is read as well as the id and the file. It is a mirror of what a template
+  // declares rather than a second opinion, which is precisely why it can drift: nothing about a
+  // cell copied by hand keeps it agreeing with the file it describes.
+  const systemCol = headers.indexOf('system');
   if (idCol === -1 || fileCol === -1) {
     record('catalog', 'error', rel(CATALOG),
       `the index table needs an "id" column and a "file" column and has [${headers.join(', ')}]`);
@@ -898,9 +1181,9 @@ function parseCatalog() {
     if (/^\|[\s:|-]+\|$/.test(line)) continue;
     const c = cells(line);
     if (!c[idCol]) continue;
-    rows.push({ id: c[idCol], file: c[fileCol] });
+    rows.push({ id: c[idCol], file: c[fileCol], system: systemCol === -1 ? null : c[systemCol] });
   }
-  return { rows, headers };
+  return { rows, headers, systemCol };
 }
 
 function checkCatalogResolves(catalog, templateIdentities) {
@@ -931,6 +1214,38 @@ function checkCatalogResolves(catalog, templateIdentities) {
     if (seen.has(id)) continue;
     record('catalog', 'error', rel(CATALOG),
       `${rel(file)} identifies as "${id}" and no catalog row lists it. A chart nothing indexes is a chart nobody finds`);
+  }
+}
+
+// Every row's system cell has to agree with the file it points at and has to name a system the
+// palette source defines. The cell is a hand-kept copy of a template's own declaration, so the
+// two can disagree with nothing catching it, which is the state this corpus was in until both
+// documents were read against each other by hand. A check is what stops the next one.
+function checkCatalogSystem(catalog, palette) {
+  if (!catalog) return;
+  tally('catalog-system', catalog.rows.length + 1);
+  if (catalog.systemCol === -1) {
+    record('catalog-system', 'error', rel(CATALOG),
+      'the index table carries no "system" column, so no row says which colour system its form declares');
+    return;
+  }
+  for (const row of catalog.rows) {
+    if (!row.file) continue;
+    const target = path.join(PACKAGE_ROOT, row.file);
+    if (!fs.existsSync(target)) continue;
+    if (!row.system) {
+      record('catalog-system', 'error', rel(CATALOG), `row "${row.id}" names no colour system`);
+      continue;
+    }
+    if (!palette.systems[row.system]) {
+      record('catalog-system', 'error', rel(CATALOG),
+        `row "${row.id}" names colour system "${row.system}", which the palette source does not define`);
+      continue;
+    }
+    const declared = metaContent(fs.readFileSync(target, 'utf8'), 'chart-color-system');
+    if (declared === row.system) continue;
+    record('catalog-system', 'error', rel(CATALOG),
+      `row "${row.id}" says the system is "${row.system}" and ${row.file} declares "${declared}". The cell mirrors the file, so the file is the side that decides and the row is the side that drifted`);
   }
 }
 
@@ -1101,10 +1416,25 @@ function main() {
     checkDeterminism(name, src);
     checkNarrowViewport(name, src);
     checkMotion(name, src);
+    checkInteractionHygiene(name, src);
+    checkInteractionState(name, src);
+    checkNumberFormat(name, src);
+    checkTypeScale(name, src, palette);
+    checkGradientSweep(name, src, systemId);
+    // The empty-data notice is a chart form's obligation. A proof sheet draws its own palette
+    // rather than a data block, and a delivery carries the notice of the form it was built from.
+    if (file.startsWith(TEMPLATE_DIR + path.sep)) checkEmptyNotice(name, src);
     if (id && file.startsWith(TEMPLATE_DIR + path.sep)) templateIdentities.set(id, file);
   }
 
-  checkCatalogResolves(parseCatalog(), templateIdentities);
+  // The block belongs to the files that draw in the shared frame: every chart form and every
+  // proof sheet. The set is derived from the two directories rather than listed, so a new form
+  // joins it by existing.
+  checkGeometryBlock([...htmlFilesUnder(TEMPLATE_DIR), ...htmlFilesUnder(path.join(ASSET_ROOT, 'color'))]);
+
+  const catalog = parseCatalog();
+  checkCatalogResolves(catalog, templateIdentities);
+  checkCatalogSystem(catalog, palette);
   if (wantRender) checkRenders(files);
 
   const errors = findings.filter((f) => f.level === 'error');

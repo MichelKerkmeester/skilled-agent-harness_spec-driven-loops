@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
-version: 1.4.0.0
+version: 1.5.0.0
 ---
 
 # Chart Colour Systems
@@ -212,12 +212,11 @@ Enforced by `scripts/check-corpus.cjs`, on every run:
 - No colour literal appears anywhere outside a palette block.
 - No corner value appears anywhere outside a palette block: a stylesheet corner resolves through a rung, and the drawing code computes a corner rather than typing one.
 
-Stated as a rule and not yet asserted:
-
-- The sweep rule above. The predicate is mechanical, being a gradient with two different series
-  values in a file whose declared system is not `ordered`, and the corpus was scanned against it
-  by hand rather than on every run. Folding it into the check is the next phase's work, and until
-  that lands a file could break the rule and pass.
+The sweep rule was the last entry on this list and it has moved up onto it. `gradient-sweep`
+resolves each gradient's stops through the classes that carry them, counts the distinct series
+values it finds and fails a gradient naming two of them in a file whose declared system is not
+`ordered`. A gradient naming one series value at two opacities is a fade and is left alone,
+which is what keeps the area under a line untouched.
 
 Advisory, and reviewed by a person:
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "chart index"
 importance_tier: normal
 contextType: reference
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # Chart Catalog
@@ -59,6 +59,7 @@ Prose outside the sentinels is never asserted on. Rewrite this page freely. Only
 | distribution-strip | distribution | How are the individual values spread | Tens to a few hundred records of one variable, grouped | neutral | assets/templates/distribution-strip.html |
 | box-plot | distribution | What does the spread look like as a summary | Grouped records where a five-number summary is legitimate | neutral | assets/templates/box-plot.html |
 | scatter | relationship | Do these two variables move together | 20 or fewer points across two dimensions | neutral | assets/templates/scatter.html |
+| bar-line-composed | relationship | Did the rate move with the count over the same periods | One count and one rate per period, 6 to 12 periods | categorical | assets/templates/bar-line-composed.html |
 | parallel-axes | relationship | How does one entity set compare across several dimensions | The same entities across 3 to 6 continuous dimensions | categorical | assets/templates/parallel-axes.html |
 | heat-matrix | matrix | Which combinations are hot | Two discrete dimensions by value, 100 cells or fewer | ordered | assets/templates/heat-matrix.html |
 
@@ -106,7 +107,7 @@ A family here is a group of questions, not a rendering style. Every form in the 
 | composition | How does a whole divide up, or how do several independent measures stand |
 | time | What happened over days, weeks or a year, how a period opened and closed, and how far along a target is |
 | distribution | How are individual values spread |
-| relationship | Do two variables move together, and how do a few entities compare across several measures |
+| relationship | Do two variables move together, including across a run of periods, and how do a few entities compare across several measures |
 | matrix | Which combinations of two discrete dimensions are hot |
 
 `assets/examples/` carries one finished delivery per family, chosen to show that family at its most characteristic. Those files are deliveries rather than forms, so they carry no row here.
@@ -127,8 +128,9 @@ Every name in the left column already routes to this packet, so a request carryi
 | donut chart | `unit-ring` | Same question, same ring, same total in the middle. The ring is built from countable ticks rather than from continuous arcs, which is the point: a reader counts marks instead of estimating angles. Parts that arrive as percentages rather than as whole-number counts belong in `unit-grid` |
 | waffle chart | `unit-grid` | The same chart under a different name. One hundred squares, one per percent, filled in reading order |
 | parallel coordinates | `parallel-axes` | The same chart under a different name. One vertical axis per dimension, one line per entity, every axis on its own scale |
+| combo chart, dual axis chart, bar and line chart | `bar-line-composed` | The same chart under three names a reader is more likely to use than the row id. Columns for a count and a line for a rate over the same periods. The second scale is not a setting: the file draws one only when the two measures are an order of magnitude apart, and one ladder otherwise |
 
-Two of those rows are substitutions rather than matches, and the difference is worth saying plainly. **This corpus draws no binned histogram and no arc-based pie or donut.** Each of the two rows names what arrives instead and why it answers the question the reader asked. The other four rows are the same chart wearing a name the index happens not to use.
+Two of those rows are substitutions rather than matches, and the difference is worth saying plainly. **This corpus draws no binned histogram and no arc-based pie or donut.** Each of the two rows names what arrives instead and why it answers the question the reader asked. The other five rows are the same chart wearing a name the index happens not to use.
 
 A name that reaches neither this table nor a row in the index is still a gap to report. Sending a reader to a chart that answers a different question costs more than telling them the corpus has no form for it.
 
@@ -137,9 +139,13 @@ A name that reaches neither this table nor a row in the index is still a gap to 
 ## 6. THE FORMS THIS CORPUS DOES NOT DRAW
 
 Section 5 covers a reader who asks for a chart the corpus draws under another name. This section
-covers the other case, where the corpus has no answer at all. Three forms come up often enough
+covers the other case, where the corpus has no answer at all. Two forms come up often enough
 that silence about them reads as an oversight rather than as a decision, so each is named with
 the reason it is absent.
+
+Both are refusals with a reason rather than gaps waiting to be filled. The one entry here that
+was a reported gap is gone, because the form that answers it now has a row: a count and a rate
+over the same periods is `bar-line-composed`.
 
 Nothing here is a row. These forms have no file, and the index above stays the list of what
 renders.
@@ -148,17 +154,6 @@ renders.
 | --- | --- |
 | sankey | The contract excludes forms that need a layout engine, and a flow diagram is one. A hand-drawn approximation of a sankey is less honest than saying the corpus does not draw one, because the thing a reader trusts in a flow diagram is that the ribbon widths were solved rather than eyeballed. If flow is ever genuinely wanted, the exclusion in the contract is what to revisit, not this row |
 | radar | `parallel-axes` answers the same question with one scale per axis. A radar normalises every dimension onto one radial scale, which is honest when the dimensions share a unit and misleading when they do not, and the request that reaches this corpus almost always mixes units. The area a radar encloses also reads as a quantity and is not one, since it changes when the axes are reordered |
-
-### The dual-axis composed form
-
-A reported gap rather than a refusal, and the only entry in this section that is expected to
-disappear. `waterfall` covers signed steps against a running total, and nothing in the corpus puts
-two measures with different units on one time axis. A reader asking for revenue against conversion
-rate has no row.
-
-This paragraph and its heading are written to be deleted whole when that form lands, rather than
-edited into a row. A gap entry that gets rewritten into a description of the thing it was a gap
-for is how a document ends up describing a form twice.
 
 ---
 
