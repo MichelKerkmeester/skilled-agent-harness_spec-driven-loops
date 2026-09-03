@@ -271,7 +271,7 @@ Full multi-tool examples live in [references/workflows.md](references/workflows.
 **IMPORTANT**: Code Mode only accesses tools in `.utcp_config.json`. Native MCP tools are NOT accessed through Code Mode.
 
 **1. Native MCP** (`opencode.json`) - Direct tools (call directly, NOT through Code Mode):
-- **Spec Kit continuity + memory**: `/speckit:resume` for recovery; native Spec Kit Memory tools such as `session_bootstrap()`, `session_resume()`, `memory_context()`, and `memory_search()` when canonical packet sources need deeper support
+- **Spec Kit continuity**: `/speckit:resume` for recovery, which reads `handover.md`, then `_memory.continuity`, then packet-first spec docs. Beyond those, run the ripgrep recipes in `system-spec-kit/references/retrieval/retrieval-conventions.md` yourself — retrieval is a command you run, not a tool you call
 - **Code Mode server**: The Code Mode tool itself
 - **Note**: Some AI environments have built-in extended thinking capabilities, which is why the former Sequential Thinking server was decommissioned rather than replaced.
 

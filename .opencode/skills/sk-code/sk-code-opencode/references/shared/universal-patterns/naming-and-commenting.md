@@ -69,7 +69,7 @@ type MemoryState = 'active' | 'archived';
 # Python
 calculate_memory_score()
 validate_input_lengths()
-handle_memory_search()
+handle_trigger_lookup()
 ```
 
 **Bad**:

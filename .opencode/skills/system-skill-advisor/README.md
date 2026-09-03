@@ -145,7 +145,7 @@ Flag unset (the default) changes nothing: no harvest, no watch targets, identica
 
 ### The Embedder
 
-The `semantic_shadow` lane runs against a pluggable embedder layer shared with `system-spec-memory`. The registry holds text-tuned embedding models and defaults through a local-first cascade to a local model when no embedder is explicitly set. For the full model registry, the cascade tier table and the swap workflow, see `INSTALL-GUIDE.md` §12.
+The `semantic_shadow` lane runs against the pluggable embedder layer in `@spec-kit/shared/embeddings/`, which the advisor owns. The registry holds text-tuned embedding models and defaults through a local-first cascade to a local model when no embedder is explicitly set. For the full model registry, the cascade tier table and the swap workflow, see `INSTALL-GUIDE.md` §12.
 
 ### The Nine Tools
 

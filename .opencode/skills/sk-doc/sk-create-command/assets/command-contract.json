@@ -150,8 +150,8 @@
         "argument_hint": "per-command: save <spec-folder>; search <query> | preflight | dashboard; learn [rule] | list | edit | remove | budget; manage [scan] | [cleanup] | ..."
       },
       "execution_targets": [
-        { "selector": "save", "target": "generate-context.js metadata refresh, then memory_index_scan / memory_save / memory_update" },
-        { "selector": "search (retrieval)", "target": "memory_context / memory_quick_search / memory_search / memory_match_triggers" },
+        { "selector": "save", "target": "generate-context.js continuity-metadata refresh; no index hand-off" },
+        { "selector": "search (retrieval)", "target": "lookup-trigger-index.mjs for declared trigger phrases; the ripgrep recipes in retrieval-conventions.md for free text" },
         { "selector": "search (analysis)", "target": "task_preflight / task_postflight / memory_drift_why / eval_run_ablation / eval_reporting_dashboard" },
         { "selector": "learn", "target": "constitutional-rule filesystem writes plus memory_save / memory_list / memory_delete" },
         { "selector": "manage", "target": "per-mode memory MCP tools (memory_stats / retention_sweep / checkpoint_* / ingest_*)" }

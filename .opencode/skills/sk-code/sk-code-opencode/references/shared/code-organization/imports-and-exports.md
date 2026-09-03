@@ -143,13 +143,13 @@ Use object literal at end of file for non-plugin `.js/.cjs` utilities:
 
 module.exports = {
   // Primary exports (camelCase)
-  handleMemorySearch,
-  handleMemorySave,
+  handleTriggerLookup,
+  handleContextWrite,
   validateInput,
 
   // Backward-compatible aliases (snake_case) — MCP handlers only
-  handle_memory_search: handleMemorySearch,
-  handle_memory_save: handleMemorySave,
+  handle_trigger_lookup: handleTriggerLookup,
+  handle_context_write: handleContextWrite,
   validate_input: validateInput,
 };
 ```

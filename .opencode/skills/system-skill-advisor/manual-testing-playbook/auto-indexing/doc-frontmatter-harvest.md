@@ -54,7 +54,7 @@ sqlite3 .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sq
 ```
 
 3. Call `advisor_recommend({ prompt: "coverage graph script exit codes" })` (MCP or CLI) and read the top candidate.
-4. Negative boundary check: `memory_match_triggers({ prompt: "coverage graph script exit codes" })` must return spec-doc memories only.
+4. Negative boundary check: `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "coverage graph script exit codes"` must return spec-doc packets only, never a skill doc.
 5. Flag-off invariance probe: in an isolated workspace copy without the flag, rerun steps 1-3.
 
 ### Expected Signals
@@ -72,7 +72,7 @@ sqlite3 .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sq
 | Scan shows no `docs` counters with flag set in configs | `skill_docs` has 0 rows | Daemon child never received the flag: verify `CHILD_ENV_ALLOWLIST` in `system-skill-advisor-launcher.cjs` and respawn via fresh session. |
 | `matchedDocs` missing while harvest counters look right | Evidence shows no `doc:` entries | Inspect projection flag gate and `lanes/derived.ts` scoring. |
 | Doc-heavy skill outranks curated matches | doc evidence dominates attribution | Audit top-3/tier-weight/0.45-cap constants in `lanes/derived.ts`. |
-| Skill docs appear in memory results | `memory_match_triggers` returns skill paths | Block release — the memory boundary is an operator directive. |
+| Skill docs appear in spec-doc retrieval results | the trigger index lookup returns skill paths | Block release — that boundary is an operator directive. |
 
 ### Evidence
 
@@ -170,7 +170,7 @@ Observed output:
 }
 ```
 
-Step 4 MCP call:
+Step 4 as originally run, against the since-retired memory MCP:
 
 ```text
 memory_match_triggers({ prompt: "coverage graph script exit codes", limit: 10 })

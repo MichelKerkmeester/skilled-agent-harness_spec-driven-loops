@@ -841,7 +841,7 @@ The memory, speckit, create, doctor, and deep command families split each comman
 | `assets/<ns>_<command>_presentation.txt` | Startup prompts, dashboards and checkpoints, result templates, and next-step wording. The display source of truth. |
 
 - The router contains a **Presentation Boundary** section naming what lives only in the presentation asset; it must contain no inline startup-question wording, dashboard templates, or result templates. The split is behavior-preserving — relocate display content, never change routing semantics.
-- In `allowed-tools`, MCP tools use the fully-qualified `mcp__<server>__<tool>` form (e.g. `mcp__system_spec_memory__memory_context`), matching the `opencode.json` MCP namespace. Bare tool IDs (e.g. `memory_context`) belong in instruction prose, never in `allowed-tools`.
+- In `allowed-tools`, MCP tools use the fully-qualified `mcp__<server>__<tool>` form (e.g. `mcp__system_skill_advisor__advisor_recommend`), matching the `opencode.json` MCP namespace. Bare tool IDs (e.g. `advisor_recommend`) belong in instruction prose, never in `allowed-tools`.
 
 **Workflow-backed families (speckit, create, deep)** additionally own `:auto` / `:confirm` workflow YAML that the router routes modes to:
 

@@ -222,7 +222,7 @@ Prefer established standard-library vocabulary such as `is_empty`, `contains`, a
 **Style**: `snake_case` with `.rs`
 
 ```text
-memory_search.rs
+trigger_lookup.rs
 vector_index.rs
 path_security.rs
 embedding_provider.rs
@@ -315,7 +315,7 @@ struct ModelDto {
 | Modules | `snake_case` | `score_normalization` |
 | Constants | `SCREAMING_SNAKE_CASE` | `MAX_RETRIES` |
 | Statics | `SCREAMING_SNAKE_CASE` | `SUPPORTED_TARGETS` |
-| Files | `snake_case.rs` | `memory_search.rs` |
+| Files | `snake_case.rs` | `trigger_lookup.rs` |
 | Crate packages | `kebab-case` | `ranking-core` |
 | JavaScript exports | Existing contract | `calculateDecayScore` |
 | Serialized fields | Existing contract | `includeMetadata` |

@@ -34,11 +34,11 @@ reference set or none at all.
 
 - Objective: confirm SKILL.md's `INTENT_SIGNALS["CROSS_AI_HANDBACK"]` entry matches this scenario's expected_intent, and RESOURCE_MAP["CROSS_AI_HANDBACK"] resolves on disk.
 - Stage: `routing`
-- Prompt: `Hand back to spec kit and code graph so the memory_search index stays current after this run.`
+- Prompt: `Hand back to spec kit and code graph so the structural code index stays current after this run.`
 
 **Exact prompt**:
 ```text
-Hand back to spec kit and code graph so the memory_search index stays current after this run.
+Hand back to spec kit and code graph so the structural code index stays current after this run.
 ```
 
 - Expected execution process: the hub scores the prompt against every `INTENT_SIGNALS` keyword list and resolves `CROSS_AI_HANDBACK` at its documented weight, then conditional-loads `RESOURCE_MAP["CROSS_AI_HANDBACK"]`.
@@ -52,7 +52,7 @@ Hand back to spec kit and code graph so the memory_search index stays current af
 
 ### Prompt
 
-- Prompt: `Hand back to spec kit and code graph so the memory_search index stays current after this run.`
+- Prompt: `Hand back to spec kit and code graph so the structural code index stays current after this run.`
 
 ### Commands
 

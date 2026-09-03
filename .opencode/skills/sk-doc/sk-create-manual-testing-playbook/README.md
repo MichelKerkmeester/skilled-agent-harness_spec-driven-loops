@@ -87,7 +87,7 @@ Confirm the target skill or system, its feature set and whether a feature catalo
 
 ### Key Concept: Prompt Synchronization
 
-A scenario's prompt lives in three places: the `SCENARIO CONTRACT`'s `Exact Prompt` field, the `Exact Prompt` column in the root's execution table and any root category summary that previews it. All three must read identically, word for word. For example, if a scenario's contract sets `Exact Prompt: "Use memory_context in auto mode for the flaky index scan retry issue, capture the returned bounded context and return a concise pass/fail verdict"`, that exact sentence has to appear unchanged in the root playbook's execution-table row for the same feature ID. Tighten the wording in one place and forget the other and the playbook now describes two different tests under one ID, so an operator reproducing the scenario from the root table alone gets a different result than the one who read the per-feature file.
+A scenario's prompt lives in three places: the `SCENARIO CONTRACT`'s `Exact Prompt` field, the `Exact Prompt` column in the root's execution table and any root category summary that previews it. All three must read identically, word for word. For example, if a scenario's contract sets `Exact Prompt: "Use advisor_recommend for the flaky routing-threshold issue, capture the returned recommendation set and return a concise pass/fail verdict"`, that exact sentence has to appear unchanged in the root playbook's execution-table row for the same feature ID. Tighten the wording in one place and forget the other and the playbook now describes two different tests under one ID, so an operator reproducing the scenario from the root table alone gets a different result than the one who read the per-feature file.
 
 ### Verdict Discipline
 

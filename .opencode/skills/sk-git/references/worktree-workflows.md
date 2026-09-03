@@ -539,19 +539,18 @@ NOT contain them. Toolchains that depend on them break **silently**:
 `main` AFTER the merge. NEVER trust a strict-validate run executed inside a bare worktree
 — treat its exit code as meaningless.
 
-### Caveat 2: The memory / vector DBs are a SINGLE global instance
+### Caveat 2: Continuity metadata is packet-local, and its generator still belongs on `main`
 
-The continuity DB and vector DBs live under
-`.opencode/skills/system-spec-kit/mcp-server/database/` and are **gitignored** — there is
-exactly one instance shared across the repo, NOT one per worktree. Consequences:
+`generate-context.js` writes a packet's continuity metadata beside the documents it
+describes, so the metadata travels with any folder `git mv` moves. The toolchain does not
+travel: run the generators from a bare worktree and they crash or no-op (Caveat 1).
+Consequences:
 
-- DB-dependent ops (`memory_index_scan`, `generate-context.js` indexing, re-embed) read
-  and write the same global DB regardless of which worktree you run them from.
-- Running them from a worktree mid-reorg indexes paths that do not yet exist on `main`,
-  producing stale/duplicate rows once the merge lands.
+- Running them from a worktree mid-reorg records paths that do not exist on `main` yet, so
+  the metadata attests a tree nobody has.
 
-**Rule:** The worktree is for file/rename ops only. Run ALL memory reindex / re-embed /
-indexing on `main` AFTER the merge, so the DB reflects the final tree exactly once.
+**Rule:** The worktree is for file/rename ops only. Run every metadata regeneration on
+`main` AFTER the merge, so the metadata records the final tree exactly once.
 
 ### Caveat 3: `git mv` leaves gitignored files behind
 

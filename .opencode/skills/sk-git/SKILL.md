@@ -288,7 +288,7 @@ When a git workspace trigger fires, the AI MUST ask the user to explicitly choos
 
 The ask-first rule above governs **in-session** decisions: once running, an AI must not autonomously create a worktree. `.opencode/bin/worktree-session.sh`, a **launch wrapper** the operator opts into at the shell, is different: it runs *before* the AI starts, placing each top-level session in its own worktree + branch + isolated MCP databases (orchestrated children with `AI_SESSION_CHILD=1`, or already inside a linked worktree, exec in place) — acting pre-session at operator opt-in, so it doesn't violate the ask-first rule.
 
-**Deliberate per-session deps override.** The wrapper **symlinks** the shared `node_modules`/`dist` into each worktree and gives each its own MCP DBs (via `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`) — an intentional exception to the §4 "bare worktree lacks gitignored deps" guidance, which targets *ad-hoc* large-reorg worktrees, not this one. Strict-validate and memory reindex run on `main` only.
+**Deliberate per-session deps override.** The wrapper **symlinks** the shared `node_modules`/`dist` into each worktree and gives each its own MCP DBs (via `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`) — an intentional exception to the §4 "bare worktree lacks gitignored deps" guidance, which targets *ad-hoc* large-reorg worktrees, not this one. Strict-validate and metadata regeneration run on `main` only.
 
 ### Continuous Integration — the always-current live branch
 
@@ -360,7 +360,7 @@ Setup (worktree created) → Work → Complete (committed, tests passing) → ba
 5. **Reference spec folder in commits** - Include spec folder path in commit body when applicable
 6. **Clean up after merge** - Delete local and remote feature branches after successful merge
 7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
-8. **Defer toolchain + DB work to main on large reorgs** - Do file/`git mv` ops in the worktree, but run the spec-kit toolchain and ALL memory reindex/re-embed on `main` after merge: a bare worktree lacks gitignored deps (`node_modules`/`dist`), and the memory/vector DBs are a single global instance, never per-worktree. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
+8. **Defer toolchain + DB work to main on large reorgs** - Do file/`git mv` ops in the worktree, but run the spec-kit toolchain and ALL metadata regeneration on `main` after merge: a bare worktree lacks gitignored deps (`node_modules`/`dist`), so the generators there crash or silently no-op. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
 9. **Scan for gitignored leftovers after a rename wave** - After `git mv` + merge, detect dirs with disk files but 0 tracked files (`git ls-files <dir>` empty, `git status --porcelain --untracked-files=all` clean) and `rm -rf` them — stale cruft left by `git mv`.
 10. **Verify rename history is preserved** - After a rename wave confirm `R`-status (not delete+add) before commit, and after merge confirm the tree has no old+new duplicate folders.
 11. **GitHub release bodies never start with an H1** - The release title field already renders `vX.X.X.X — Title`, so a body-leading `# vX.X.X.X` duplicates it — the H1 belongs ONLY to the repo's changelog md. When publishing from a changelog, strip the leading H1 (and blank lines) into a temp notes file before `gh release create/edit --notes-file`. Full mechanics: [finish-workflows.md](references/finish-workflows.md) Step 6.
@@ -583,15 +583,19 @@ This skill operates within the framework in [AGENTS.md](../../../AGENTS.md):
 
 ### Continuity Integration
 
-Recovery sequence (Memory MCP only once packet-native sources are exhausted):
+Recovery sequence (widen with ripgrep only once packet-native sources are exhausted):
 
 ```text
 // Recover the active packet before planning git work
 /speckit:resume
 // Recovery order: handover.md -> _memory.continuity -> spec docs
 
-// If packet-native sources are exhausted, use Spec Kit Memory MCP for wider lookups
-memory_search({ query: "branch strategy decisions", includeContent: true })
+// If packet-native sources are exhausted, widen with the ripgrep recipe in
+// system-spec-kit/references/retrieval/retrieval-conventions.md §2.1.
+// Exit 1 is a clean no-hit, not an error.
+rg --no-config --json --fixed-strings --ignore-case \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'branch strategy decisions' specs .opencode
 
 // After major commits or workflow completion
 // Save context with: /memory:save or "save context to [spec-folder]"

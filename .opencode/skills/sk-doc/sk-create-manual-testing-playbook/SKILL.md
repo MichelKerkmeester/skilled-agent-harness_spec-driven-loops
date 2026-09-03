@@ -388,7 +388,7 @@ Test search
 Acceptable prompt:
 
 ```text
-Use memory_context in auto mode for the flaky index scan retry issue, capture the returned bounded context, and return a concise pass/fail verdict with the main reason.
+Use advisor_recommend for the flaky routing-threshold issue, capture the returned recommendation set, and return a concise pass/fail verdict with the main reason.
 ```
 
 ### Natural-Human vs RCAF Voice

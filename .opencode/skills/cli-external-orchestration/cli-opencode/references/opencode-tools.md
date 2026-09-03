@@ -61,10 +61,10 @@ opencode run \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
-  "Analyze the spec-kit memory database health using memory_health, then propose three improvements with concrete file:line citations."
+  "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
 ```
 
-The dispatched session loads `system-spec-kit` skill, calls `memory_health` (an MCP tool), inspects the database, and writes the proposal back through Spec Kit Memory's normal save pipeline.
+The dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/memory:save` continuity pipeline.
 
 ---
 

@@ -140,7 +140,7 @@ Related references:
 - Use `importance_tier: "important"` only for features that must surface in every relevant search — omit for standard catalog entries.
 
 **H1 heading**
-- Include the tool or command name in parentheses when the feature maps to a named MCP tool, CLI command, or function: `# Memory indexing (memory_save)`.
+- Include the tool or command name in parentheses when the feature maps to a named MCP tool, CLI command, or function: `# Skill recommendation (advisor_recommend)`.
 - Omit the parenthetical if the feature is a subsystem behavior with no single named entry point.
 
 **OVERVIEW**

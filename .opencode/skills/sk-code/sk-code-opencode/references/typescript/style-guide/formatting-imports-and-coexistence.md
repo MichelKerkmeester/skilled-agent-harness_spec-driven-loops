@@ -334,11 +334,11 @@ During migration, modules may export both old (`snake_case`) and new (`camelCase
 
 ```typescript
 // Primary exports
-export { memorySearch, loadConfig };
+export { triggerLookup, loadConfig };
 
 // Backward-compatible aliases — remove after migration completes
 export {
-  memorySearch as memory_search,
+  triggerLookup as trigger_lookup,
   loadConfig as load_config,
 };
 ```

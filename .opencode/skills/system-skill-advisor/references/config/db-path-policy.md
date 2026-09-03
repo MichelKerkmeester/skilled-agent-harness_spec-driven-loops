@@ -83,7 +83,7 @@ Production and operator docs should treat the package-local path as the default.
 
 ### Child-process `MEMORY_DB_PATH` pointer
 
-`system-skill-advisor-launcher.cjs`'s `createChildEnv()` sets the advisor MCP child's `MEMORY_DB_PATH` (the env var `@spec-kit/shared/embeddings/factory.ts` reads to resolve which database's `active_embedder_*` pointer to use) explicitly to this policy's package-local `skill-graph.sqlite` path by default. A bare ambient `MEMORY_DB_PATH` in the parent process — including one set for system-spec-memory's own, unrelated use of that same name — is never honored as an override, since that would silently re-collocate the advisor's embedder-pointer resolution with `system-spec-kit`'s own database, defeating this policy's separation. To override for tests/CI only, set the dedicated `SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH` var instead.
+`system-skill-advisor-launcher.cjs`'s `createChildEnv()` sets the advisor MCP child's `MEMORY_DB_PATH` (the env var `@spec-kit/shared/embeddings/factory.ts` reads to resolve which database's `active_embedder_*` pointer to use) explicitly to this policy's package-local `skill-graph.sqlite` path by default. A bare ambient `MEMORY_DB_PATH` in the parent process is never honored as an override, whoever set it, since that would silently re-collocate the advisor's embedder-pointer resolution with another package's database and defeat this policy's separation. To override for tests/CI only, set the dedicated `SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH` var instead.
 
 ---
 

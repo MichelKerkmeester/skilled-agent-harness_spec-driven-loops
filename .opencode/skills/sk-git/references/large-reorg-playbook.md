@@ -157,17 +157,12 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 NEVER reuse a strict-validate result from inside the worktree — treat it as meaningless.
 
-#### 4c. Reindex / re-embed memory ON MAIN
+#### 4c. Refresh continuity metadata ON MAIN
 
-The global DB now needs to reflect the final tree exactly once:
-
-```bash
-# via MCP: memory_index_scan({ specFolder: "<spec-folder>" })
-# generate-context.js (4b) also refreshes index + embeddings for the folder it targets
-```
-
-Because the DB is a single global instance, running this on `main` post-merge indexes the
-real paths once — running it from the worktree would index paths that did not yet exist.
+Continuity metadata is packet-local. `generate-context.js` in 4b writes it beside the
+documents it describes, so a moved folder carries its own metadata and there is no separate
+index to rebuild. Run 4b on `main` post-merge so the metadata records the real final paths —
+running it from the worktree records paths that do not yet exist.
 
 ### Step 5: Verify
 
@@ -175,8 +170,8 @@ real paths once — running it from the worktree would index paths that did not 
 - [ ] Tree has NO old+new duplicate folders (step 3 grep returns "no old paths tracked").
 - [ ] Leftover-dir scan (4a) returns nothing on a re-run — all ignored cruft removed.
 - [ ] `validate.sh --strict` on `main` exits 0/1 (NOT a worktree run).
-- [ ] `memory_index_scan` / generators ran on `main`; spot-check a moved folder resolves
-      in `memory_search`.
+- [ ] Generators (4b) ran on `main`; spot-check that a moved folder resolves with the
+      path-only ripgrep recipe (`retrieval-conventions.md` §2.2).
 - [ ] DB snapshot (step 0) can be deleted once the above all pass.
 - [ ] Worktree removed: `git worktree remove .worktrees/<NNN>-reorg && git branch -d worktrees/<NNN>-reorg`.
 
@@ -188,7 +183,7 @@ real paths once — running it from the worktree would index paths that did not 
 |---------|-------|------------|
 | "Double" / empty folders after merge | `git mv` left ignored cruft in old dirs | 4a leftover scan + `rm -rf` |
 | Strict-validate "passes" but touched 0 files | Ran in bare worktree (no deps) or via symlinked deps | Run toolchain on `main` (4b) |
-| Stale/duplicate memory rows | Reindex ran from worktree against global DB | Reindex on `main` post-merge (4c) |
+| Metadata attests paths that do not exist | Generators ran from the worktree | Run the generators on `main` post-merge (4b, 4c) |
 | Renames show as add/delete, blame lost | Content edits mixed into rename commit | Separate rename + edit commits (step 2) |
 | Cannot roll back a corrupted DB | DBs are gitignored; `git revert` can't restore | Restore from step 0 snapshot |
 

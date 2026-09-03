@@ -78,12 +78,12 @@ to OpenCode plugin paths; those use `export default`.
 module.exports = {
   // Primary exports (camelCase)
   loadConfig,
-  memorySearch,
+  triggerLookup,
   validateInput,
 
   // Backward-compatible aliases (snake_case) — MCP handlers only
   load_config: loadConfig,
-  memory_search: memorySearch,
+  trigger_lookup: triggerLookup,
   validate_input: validateInput
 };
 ```

@@ -7,7 +7,7 @@ description: "Bootstrap, verification, runtime hooks, compatibility shim, rollba
 
 <!-- sk-doc-template: skill_reference_install_guide -->
 
-This is the canonical install + setup guide for the standalone Skill Advisor MCP server. The advisor runs as `system_skill_advisor`, separate from `system-spec-memory`. It preserves the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` plus one internal trusted-caller tool `skill_graph_propagate_enhances`. This document merges the previously-separate `SET-UP_GUIDE.md` (runtime hooks, rollback CLI, operator states, reference commands) into the install bootstrap so there is a single source of truth.
+This is the canonical install + setup guide for the standalone Skill Advisor MCP server. The advisor runs as `system_skill_advisor`, a standalone server owning its own database and tools. It preserves the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` plus one internal trusted-caller tool `skill_graph_propagate_enhances`. This document merges the previously-separate `SET-UP_GUIDE.md` (runtime hooks, rollback CLI, operator states, reference commands) into the install bootstrap so there is a single source of truth.
 
 ---
 
@@ -49,7 +49,7 @@ The native advisor is a TypeScript package under `.opencode/skills/system-skill-
 
 - Node.js and npm available for the standalone system-skill-advisor MCP server.
 - Repository root as the working directory.
-- Runtime MCP configuration includes both `system-spec-memory` and `system_skill_advisor`.
+- Runtime MCP configuration includes `system_skill_advisor`.
 - Native MCP trusted mutations require `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon environment; callers cannot supply this trust grant per request.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless intentionally testing rollback.
 - The local shared package at `.opencode/skills/system-spec-kit/shared` is present; `npm install` links it into `mcp-server/node_modules/@spec-kit/shared`.
@@ -89,7 +89,7 @@ system_skill_advisor.advisor_recommend({"prompt":"save this conversation context
 system_skill_advisor.advisor_validate({"confirmHeavyRun":true,"skillSlug":null})
 ```
 
-Also verify the active runtime lists both MCP servers: `system-spec-memory` for memory/context tools and `system_skill_advisor` for advisor tools.
+Also verify the active runtime lists `system_skill_advisor` for the advisor tools.
 
 Expected:
 
@@ -292,7 +292,7 @@ python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_r
 
 ## 12. CHOOSING AN EMBEDDER
 
-The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer. As of phase `003/006` the contract surface (adapter interface, types, manifest registry, Ollama adapter) lives in `@spec-kit/shared/embeddings/` and is shared with `system-spec-memory`. Skill-advisor's local `mcp-server/lib/embedders/` files are thin re-export shims plus a skill-advisor-specific `schema.ts` integration that targets the package-local SQLite database at `mcp-server/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical multi-MCP narrative lives at [embedder-pluggability.md](../system-spec-kit/references/memory/embedder-pluggability.md).
+The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer. As of phase `003/006` the contract surface (adapter interface, types, manifest registry, Ollama adapter) lives in `@spec-kit/shared/embeddings/`, which the advisor now owns. Skill-advisor's local `mcp-server/lib/embedders/` files are thin re-export shims plus a skill-advisor-specific `schema.ts` integration that targets the package-local SQLite database at `mcp-server/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical embedder narrative lives at [embedder-pluggability.md](../system-spec-kit/references/memory/embedder-pluggability.md).
 
 ### 12.1 Current active default
 
@@ -351,7 +351,7 @@ Effect of the call:
 - `hasActiveEmbedderPointer(db)` returns `true`, so both read path (`semantic-shadow.ts`, `loadSkillEmbeddings()`) and write path (`refreshSkillEmbeddingsViaAdapter`) target `vec_<active.dim>`
 - The shared cascade is skipped on subsequent restarts (a manual override pins the pointer)
 
-The system-spec-memory `embedder_set` / `embedder_status` MCP tools are intentionally NOT mirrored here. Skill-advisor's surface is one database helper plus the cascade-driven sentinel. Operator discipline owns any manual swap workflow; there is no async re-index orchestrator on the skill-advisor side.
+There are intentionally no `embedder_set` / `embedder_status` MCP tools here. Skill-advisor's surface is one database helper plus the cascade-driven sentinel. Operator discipline owns any manual swap workflow; there is no async re-index orchestrator on the skill-advisor side.
 
 ### 12.4 Operator-safe swap runbook
 
@@ -379,7 +379,7 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 
 ### 12.6 Cross-references
 
-- Canonical shared-embedder narrative: [`embedder-pluggability.md`](../system-spec-kit/references/memory/embedder-pluggability.md) — covers `system-spec-memory`, skill-advisor and shared design rationale.
+- Canonical shared-embedder narrative: [`embedder-pluggability.md`](../system-spec-kit/references/memory/embedder-pluggability.md) — covers skill-advisor and the shared design rationale.
 - Shared contract surface: [`@spec-kit/shared/embeddings/`](../system-spec-kit/shared/embeddings/) — the canonical adapter, types, registry and Ollama adapter.
 - Shared cascade: [`@spec-kit/shared/embeddings/auto-select.ts`](../system-spec-kit/shared/embeddings/auto-select.ts) — file-locked Ollama → hf-local → OpenAI → Voyage probe chain (ADR-014 local-first). Accepts optional `contentType: 'text' \| 'code'` parameter (default `'text'`).
 - Memory-side analog (full MCP tool surface): [`system-spec-kit/mcp-server/INSTALL-GUIDE.md`](../system-spec-kit/mcp-server/INSTALL-GUIDE.md).

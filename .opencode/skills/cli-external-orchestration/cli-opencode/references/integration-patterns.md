@@ -39,12 +39,12 @@ The cycle ADR-001 protects against is the operator inside OpenCode asking cli-op
 
 ### When to use
 
-The calling AI is Claude Code, OpenCode, Copilot, or a raw shell. The task needs the project's full plugin / skill / MCP / Spec Kit Memory runtime — not just a raw model dispatch. Examples:
+The calling AI is Claude Code, OpenCode, Copilot, or a raw shell. The task needs the project's full plugin / skill / MCP runtime — not just a raw model dispatch. Examples:
 
-- Run `memory_search` against the project's spec-doc database
+- Run the ripgrep retrieval recipes from `system-spec-kit/references/retrieval/retrieval-conventions.md` against the project's spec docs
 - Call Code Graph for semantic code search across the repo
 - Dispatch a `@deep-research` or `@deep-review` agent loop with externalized state
-- Run a sub-agent that needs Spec Kit Memory for continuity across iterations
+- Run a sub-agent that needs the continuity ladder — `handover.md`, then `_memory.continuity`, then packet-first spec docs — across iterations
 
 ### Smart-router signal
 

@@ -61,10 +61,9 @@ The standalone boundary is a process boundary, not only a folder move.
 
 ```text
 system_skill_advisor -> advisor tools and skill graph DB
-system-spec-memory      -> memory, continuity and spec-kit tools
 ```
 
-The memory MCP server may keep a temporary bridge for legacy `advisor_*` calls during migration. It must not remain the long-term owner of advisor implementation modules or database writes.
+No other server owns advisor implementation modules or advisor database writes. Any bridge that proxies legacy `advisor_*` calls is a migration convenience, never the owner.
 
 ---
 

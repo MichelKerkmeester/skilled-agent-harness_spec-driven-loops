@@ -598,7 +598,7 @@ permission:
   task: deny
   patch: deny
 mcpServers:
-  - system-spec-memory
+  - system_skill_advisor
 ---
 ```
 

@@ -337,21 +337,22 @@ wait
 
 ---
 
-## 10. TEMPLATE 9 — SPEC KIT MEMORY SEARCH VIA OPENCODE
+## 10. TEMPLATE 9 — SPEC-DOC RETRIEVAL VIA OPENCODE
 
 **Framework:** RCAF
 **Agent:** `general`
 **Use case:** 3 (cross-AI handback) or 1 (external runtime)
 
 ```text
-Search the project's Spec Kit Memory database for <query>.
+Search the project's spec docs for <query>.
 
 Spec folder context: <path> (pre-approved, skip Gate 3).
 
 Action:
-- Call memory_search with the query.
-- Filter results to importance_tier in [critical, important].
-- Return the top 5 hits with their packet pointers.
+- Run the path-only ripgrep recipe from `system-spec-kit/references/retrieval/retrieval-conventions.md` §2.2, scoped to the spec folder above.
+- Read the frontmatter of each hit and keep the ones whose `importance_tier` is critical or important.
+- Rank what survives with the caller-side tuple in §5 and return the top 5 with their packet pointers.
+- An empty result is a clean no-hit. Say so; do not guess a nearest match.
 
 Format: structured JSON event stream. Memory Epilogue at the end.
 ```

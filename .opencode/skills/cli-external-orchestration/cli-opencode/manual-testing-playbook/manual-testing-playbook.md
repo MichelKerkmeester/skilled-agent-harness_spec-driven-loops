@@ -69,7 +69,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-g
 4. The OpenCode Go gateway (`opencode-go`) is configured so the canonical default `opencode-go/deepseek-v4-flash` resolves (confirm via `opencode models opencode-go`). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
 5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
 6. The skill's reference and asset files exist at `.opencode/skills/cli-external-orchestration/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
-7. The project's MCP servers (Spec Kit Memory, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) and use case 3 (CO-021, CO-022) scenarios can call `memory_health`, Code Graph search and `memory_search`.
+7. The project's MCP servers (Skill Advisor, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) can call `advisor_status` and Code Graph search. Use case 3 (CO-021) additionally needs `.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs` present on disk.
 8. The operator's repo root resolves via `REPO_ROOT="$(pwd)"` (run from the project root). Most scenarios pass `--dir "$(pwd)"` directly so they portably target whichever repo the operator runs them in. The `<repo-root>` placeholders in prose refer to the same value. Adapt to a different absolute path only if a scenario explicitly requires a non-default repo (e.g., CO-029 cross-repo dispatch derives a sibling path via `dirname "$(pwd)"`).
 9. Destructive scenarios involving `--share` (CO-026, CO-027, CO-028) MUST follow strict sandboxing and recovery rules. Each MUST run with `--dir /tmp/co-share-sandbox-NNN/` (where NNN is the scenario ID). Each MUST NOT run with `--dir` pointing at the operator project tree. Each MUST NOT publish the share URL to anyone without explicit operator confirmation per CHK-033. Recovery is mandatory after every run (pass or fail). Step (a) revoke every captured share URL via `opencode session revoke ${SESSION_ID}`. Step (b) remove the sandbox tmpdir via `rm -rf /tmp/co-share-sandbox-NNN/`. The test only validates the session-creation path. No real URL publication occurs.
 
@@ -281,13 +281,13 @@ This category covers 3 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify a Claude Code-led dispatch via cli-opencode reaches a fresh OpenCode session that loads the project's full plugin / skill / MCP runtime, with the dispatched session demonstrating access to a project-specific MCP tool (memory_health) it could not call without the runtime.
+Verify a Claude Code-led dispatch via cli-opencode reaches a fresh OpenCode session that loads the project's full plugin / skill / MCP runtime, with the dispatched session demonstrating access to a project-specific MCP tool (advisor_status) it could not call without the runtime.
 
 #### Scenario Contract
 
-Prompt summary: You are Claude Code dispatching from a fresh shell into a new OpenCode session via cli-opencode use case 1. Goal: have OpenCode call the memory_health MCP tool and return the database status. Context: spec folder `<repo-root>/<spec-folder>` (pre-approved, skip Gate 3). Plugin runtime required (Spec Kit Memory MCP). Constraints: must load system-spec-kit skill. Must call memory_health and return its result. Success criteria: dispatched session emits a tool.call event for memory_health, returns the database status. The session.completed event includes the status summary. Memory Epilogue is NOT required for this test.
+Prompt summary: You are Claude Code dispatching from a fresh shell into a new OpenCode session via cli-opencode use case 1. Goal: have OpenCode call the advisor_status MCP tool and return the daemon status. Context: spec folder `<repo-root>/<spec-folder>` (pre-approved, skip Gate 3). Plugin runtime required (Skill Advisor MCP). Constraints: must load system-spec-kit skill. Must call advisor_status and return its result. Success criteria: dispatched session emits a tool.call event for advisor_status, returns the daemon status. The session.completed event includes the status summary. Memory Epilogue is NOT required for this test.
 
-Expected signals: Dispatch exits 0. Tool.call event for memory_health appears. Session.completed references the database status.
+Expected signals: Dispatch exits 0. Tool.call event for advisor_status appears. Session.completed references the daemon status.
 
 #### Test Execution
 
@@ -530,19 +530,19 @@ Expected signals: Both exit 0. SID1 != SID2. SKILL.md NEVER rule 2 cites the `--
 
 ## 12. INTEGRATION PATTERNS (`CO-021..CO-022`)
 
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented integration patterns. Use case 3 cross-AI handback (OpenCode calling OpenCode for spec-kit memory) and the Memory Epilogue handback to `generate-context.js`.
+This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented integration patterns. Use case 3 cross-AI handback (OpenCode calling OpenCode for spec-kit retrieval) and the Memory Epilogue handback to `generate-context.js`.
 
 ### CO-021 | Cross-AI orchestration handback (use case 3)
 
 #### Description
 
-Verify a OpenCode-originated cli-opencode dispatch routes to use case 3 (cross-AI handback) when the prompt names a spec-kit subsystem (memory_search) and the dispatched OpenCode session calls the named MCP tool successfully.
+Verify a OpenCode-originated cli-opencode dispatch routes to use case 3 (cross-AI handback) when the prompt names a spec-kit subsystem (the trigger index lookup) and the dispatched OpenCode session runs it successfully.
 
 #### Scenario Contract
 
-Prompt summary: You are OpenCode (or a non-Anthropic external runtime) dispatching from a fresh shell into OpenCode for a spec-kit-specific workflow via cli-opencode use case 3. Goal: have OpenCode call memory_search for the query "self-invocation guard" and return the top 3 results filtered by importance_tier in [critical, important].
+Prompt summary: You are OpenCode (or a non-Anthropic external runtime) dispatching from a fresh shell into OpenCode for a spec-kit-specific workflow via cli-opencode use case 3. Goal: have OpenCode run `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "self-invocation guard"` and return the top 3 packet pointers.
 
-Expected signals: Exit 0. Tool.call for memory_search appears. Session.completed references results (or no-results attestation).
+Expected signals: Exit 0. A tool.call running the lookup script appears. Session.completed references results, or attests a clean no-hit.
 
 #### Test Execution
 

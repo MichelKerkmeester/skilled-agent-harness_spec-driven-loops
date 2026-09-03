@@ -216,7 +216,7 @@ Rules:
 - List every tool the command actually uses in `allowed-tools`.
 - Do not add broad tools just in case.
 - For MCP tools in `allowed-tools`, use fully qualified names such as `mcp__<server>__<tool>`.
-- Bare tool names such as `memory_context` belong in prose only, not `allowed-tools`.
+- Bare tool names such as `advisor_recommend` belong in prose only, not `allowed-tools`.
 
 ### Step 7: Add Mandatory Input Gates
 

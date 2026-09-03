@@ -78,15 +78,15 @@ A feature catalog fails quietly. Structure validation passes, links resolve, and
 
 **Symptom**: A per-feature file ships without a `trigger_phrases` list.
 
-**Why it breaks**: The skill advisor harvests doc triggers from that frontmatter (memory deliberately does not index skill docs), so a file with no triggers is invisible to routing.
+**Why it breaks**: The skill advisor harvests doc triggers from that frontmatter (the spec-doc trigger index deliberately does not carry skill docs), so a file with no triggers is invisible to routing.
 
 **Fix**: Add at least three phrases, leading with the exact H3 heading used in the root catalog, then natural-language alternates and the tool or command name:
 
 ```yaml
 trigger_phrases:
-  - "memory indexing"          # matches the root-catalog H3
-  - "index a saved memory"     # natural-language alternate
-  - "memory_save"              # tool name
+  - "skill recommendation"     # matches the root-catalog H3
+  - "which skill handles this" # natural-language alternate
+  - "advisor_recommend"        # tool name
 ```
 
 ---

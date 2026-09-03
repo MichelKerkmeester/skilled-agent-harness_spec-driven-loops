@@ -180,7 +180,7 @@ The removed `system-spec-kit/mcp-server/hooks/opencode/` suite is not present in
 | Skill advisor plugin | `.opencode/plugins/system-skill-advisor.js` | Exposes `experimental.chat.system.transform`, an `event` handler, and `spec_kit_skill_advisor_status`. |
 | Skill advisor bridge | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Subprocess bridge from the plugin to `system_skill_advisor`; stdin JSON in, single stdout JSON response out. |
 
-`system-spec-kit/mcp-server/hooks/README.md` is explicit: OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not by a subfolder in that directory. `hook-system.md` also describes OpenCode plugin-based transport through `.opencode/plugins/system-skill-advisor.js`, `.opencode/plugins/system-spec-memory.js`, and `.opencode/plugins/opencode-goal.js`.
+`system-spec-kit/mcp-server/hooks/README.md` is explicit: OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not by a subfolder in that directory. `hook-system.md` also describes OpenCode plugin-based transport through `.opencode/plugins/system-skill-advisor.js` and `.opencode/plugins/opencode-goal.js`.
 
 Deprecated/stale references to `system-spec-kit/mcp-server/hooks/opencode/*` should be treated as legacy documentation until the authoritative hook contract names a new migration path. The current advisor bridge path is `system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`.
 
