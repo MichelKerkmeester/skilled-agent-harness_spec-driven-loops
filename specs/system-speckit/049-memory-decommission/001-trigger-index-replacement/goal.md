@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-09-02T20:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Criteria re-baselined against the ripgrep research"
-    next_safe_action: "Freeze the corpus manifest and prompt set"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-02-049-memory-decommission"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The index is a versioned JSON artifact committed to the repository, sorted keys, no timestamps, phrase plus token plus trigram postings |
+| D1 | The index is a versioned JSON artifact committed to the repository, sorted keys, no timestamps, a path table with integer postings per phrase; partial-substring candidates are computed at lookup over the phrase keys, not stored |
 | D2 | No stop-words, no stemming and no semantic claims in v1: the live substring lane is the parity baseline |
 | D3 | Ripgrep is an evidence producer, never the relevance ranker; the caller ranks and maps exit codes 0, 1 and 2 or more |
 | D4 | This phase adds files only; no consumer is repointed and nothing is deleted, so both mechanisms stay live for comparison |
@@ -88,11 +88,15 @@ and findings belong here.
 |------|-------|----------|
 | Research input | Done | `../005-ripgrep-retrieval-research/research/lineages/luna-max/research.md` sections 6, 7, 10 and 11 |
 | Spec, plan, tasks and acceptance amended | Done | REQ-008 to REQ-013, T015 and T016, AC-001 to AC-008 rewritten; validate --strict 0 errors |
-| Build | Pending | - |
+| Generator, lookup, manifest, diagnostics | Done | schema 2 artifact 3,814,726 bytes, three runs byte-identical, 40 tests |
+| Cold-start latency | Done | 36 fresh-process runs, p95 83.7 ms, max 91.0 ms, budget 200 ms |
+| Retrieval conventions | Done | `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`, three recipes executed |
+| Parity harness and acceptance | Done | 18 cases PASS, legacyOnly 0, unexplained 0; AC-001 to AC-008 Met |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Parity check widened from one-way to two-way | The research showed a one-way `missing: 0` check cannot detect index-only extras or lifecycle leakage |
+| Trigram postings dropped for a lookup-time key scan | Schema 1 measured 37 MB and 237 ms p95; the scan costs at most 12 ms at the eight-token cap and the artifact fell to 3.8 MB with identical answers over 120 probes |
 <!-- /ANCHOR:log -->

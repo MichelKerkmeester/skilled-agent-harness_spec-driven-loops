@@ -39,7 +39,7 @@
       "generate-trigger-index"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,7 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "mcp-server/lib/search/hybrid-search.ts"
+      "data/trigger-index.json",
+      "references/retrieval/retrieval-conventions.md",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/measure-cold-lookup.mjs",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs",
+      ".opencode/skills/system-spec-kit/data/trigger-index.json",
+      ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/lib/normalize.mjs",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/lib/frontmatter.mjs",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/lib/artifact.mjs",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/corpus-manifest.json",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/generation-diagnostics.json"
     ],
     "entities": [
       {
@@ -87,9 +100,75 @@
         "source": "derived"
       },
       {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "mcp-server/lib/search/hybrid-search.ts",
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-trigger-index.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "measure-cold-lookup.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/measure-cold-lookup.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "parity-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "normalize.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/lib/normalize.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/lib/frontmatter.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "artifact.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/lib/artifact.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "generation-diagnostics.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/generation-diagnostics.json",
         "source": "derived"
       },
       {
@@ -127,77 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Walk",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Generate",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Index Shape One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`AGENTS.md` Gate 1 mandates `memorymatchtriggers(prompt)` on every user message, and that tool is",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-09-02T20:07:58.790Z",
+    "last_save_at": "2026-09-03T06:43:53.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90e3785e22ed39a7f59d4857cc8fee4a937113bd6b209fbfcf1f50ad14106b5f",
+    "source_fingerprint": "sha256:753b2ca0bbbd9bb13dc8710fc85fffdac9c193cf9a910b4e218cbe666678dac2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "60d6426d29864aa96c1e9dd36df363d1edf41bf8fc650dbe33f856a74a2f4a52",
-      "plan.md": "cd8108203765696a0f216aaefde700ccf472d15385b8a6dda5f5d0c511bbcba6",
-      "tasks.md": "86342c9a6168161e13a25597ec006c24dff4e1e68a79db6fc10f2ea6e9433d6a",
-      "implementation-summary.md": "499a97e124edd0f1a86b6dcdb36054a282903d6e7c4d594c8099d4a72ee5bd9b"
+      "spec.md": "5b711f7ef1c372a72bd1173300815e4ace0340be65935f5f830609dc07eab6d0",
+      "plan.md": "7b3636a82134c40bcf5559bdaf56e129702e06371891af4ed207b93321517a11",
+      "tasks.md": "82241f205140cac6e2042b1a537442d50bdd829e660a5b5162fe2d8ce5c6360e",
+      "implementation-summary.md": "fd74a9a4630a6759a97f8888999b9d1cd18ee66ce577acb7d473f9a7e969dffe"
     },
     "last_active_child_id": null,
     "last_active_at": null

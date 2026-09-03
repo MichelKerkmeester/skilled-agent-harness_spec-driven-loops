@@ -37,7 +37,7 @@ equivalent mechanism must exist and be proven to return at least what the curren
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `claude/speckit-memory-db-review-3gheky` |
 | **Parent Spec** | ../spec.md |
@@ -125,46 +125,76 @@ substring lane carried, verified by direct comparison before anything is removed
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` | Create | Frontmatter walker and index emitter |
-| `.opencode/skills/system-spec-kit/data/trigger-index.json` | Create | Committed index artifact |
-| `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Create | Ripgrep retrieval contract |
-| `.opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs` | Create | Parity harness against the live lane |
-| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/prompt-set.json` | Create | Frozen prompt set for parity |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` | Create | Frontmatter walker and index emitter. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs` | Create | Lookup library plus CLI over the committed index. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/measure-cold-lookup.mjs` | Create | Fresh-process latency harness for REQ-012. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/lib/normalize.mjs` | Create | Case folding, separator rules, token rules, phrase scoring. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/lib/frontmatter.mjs` | Create | Strict read-only frontmatter reader and diagnostic categories. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs` | Create | Corpus walk, exclusions, manifest hashing. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/lib/artifact.mjs` | Create | Stable stringify and atomic same-directory publish. Shipped |
+| `.opencode/skills/system-spec-kit/data/trigger-index.json` | Create | Committed index artifact, schema 2, 3,814,726 bytes. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/corpus-manifest.json` | Create | Frozen corpus manifest for REQ-008. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/generation-diagnostics.json` | Create | Full diagnostic stream for REQ-010. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/phrase-variants.json` | Create | Raw phrase variants, moved out of the index by schema 2. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/latency-report.json` | Create | Measured REQ-012 distribution. Shipped |
+| `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Create | Ripgrep retrieval contract. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/tests/trigger-index.vitest.ts` | Create | 40 tests over normalization, parsing, walk, encoding, publish, lookup. Shipped |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs` | Create | Three-arm parity harness against the live lane. Planned |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/lib/legacy-lane.mjs` | Create | Legacy `exactTriggerSearch` arm and its captured baseline reader. Planned |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/lib/rg-lane.mjs` | Create | Ripgrep arm executing the documented recipes. Planned |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/prompt-set.json` | Create | Frozen prompt set for parity. Planned |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/parity-baseline.json` | Create | Recorded parity report, both directions. Planned |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/semantic-probes.json` | Create | Boundary probe rows for REQ-009. Planned |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/recipe-execution.json` | Create | Recipe exit-status record for SC-005. Planned |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/daemon-off-proof.json` | Create | Daemon-stopped Gate 1 evidence for SC-003. Planned |
+| `.opencode/skills/system-spec-kit/scripts/tests/parity-check.vitest.ts` | Create | Tests over the parity harness arms and reporting. Planned |
 
 ### Index Artifact Design
 
-The artifact is one versioned deterministic object unless the measured size forces sharding. Phrase
-keys, raw variants, tokens, paths and trigram postings are all sorted. No generation timestamp is
-written, because a timestamp defeats the byte-identical rerun in REQ-002.
+The artifact is one versioned deterministic object. Schema 2 is what shipped. Phrase keys, the path
+table and every posting array are sorted. No generation timestamp is written, because a timestamp
+defeats the byte-identical rerun in REQ-002.
 
 ```json
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
+  "manifestHash": "c0806077f0d2e22ae7b0e9b6f8ab4e17244fac5aef0f6da59c95f7fe0938d370",
   "normalization": {
     "case": "lower",
     "separators": "non-ascii-alnum-to-space",
     "minQueryTokenLength": 3,
     "maxQueryTokens": 8,
+    "maxPhraseLength": 120,
     "stopWords": [],
     "stemming": "none"
   },
+  "paths": ["specs/example/doc.md"],
   "phrases": {
-    "normalized phrase": {
-      "raw": ["Original Phrase"],
-      "tokens": ["normalized", "phrase"],
-      "paths": ["specs/example/doc.md"]
-    }
-  },
-  "tokenTrigrams": {
-    "phr": ["normalized phrase"]
+    "normalized phrase": [0]
   }
 }
 ```
 
-Raw values exist for diagnostics, normalized values for matching, tokens for overlap scoring and
-trigram postings for the partial-substring behavior the current SQL lane admits through `%token%`.
-Version 1 removes no stop words and applies no stemming, because the baseline lane does neither and
-either one would change the relation the parity harness is testing.
+Each phrase key maps to the integer ids of the paths declaring it, resolved against the sorted
+`paths` table. Per-phrase tokens are re-derived from the key at lookup instead of being stored,
+because the key is already normalized and splitting it costs nothing. Raw variants moved out to
+`fixtures/phrase-variants.json`, so diagnostics keep them without the Gate 1 read path paying for
+them. There is no trigram block: partial `%token%` candidates now come from an `includes()` scan
+over the sorted phrase keys, measured at 1.4 ms for one token and 12.3 ms at the eight-token cap
+across 35,481 keys.
+
+Schema 1 stored per-phrase raw and token arrays plus a `tokenTrigrams` posting block, and measured
+37,017,883 bytes with the trigram postings alone at 21.9 MB. Its cold lookup ran p95 237 ms and max
+239 ms, over the 200 ms budget. Schema 2 measures 3,814,726 bytes with the two-space pretty-print
+retained and the `stableStringify` round-trip validation intact. Sharding was rejected because it
+multiplies files without fixing the encoding, so the same bytes would only be spread across more
+diffs. Equivalence was proven rather than asserted: a schema 1 index rebuilt from schema 2 plus the
+variants file produced identical lookups over 120 prompt and scope pairs.
+
+Trigrams had been defined per token rather than across separators, because a query token is
+alphanumeric-only so a substring match can only land inside one token. That reasoning carries over
+to the key-scan replacement. Schema 2 removes no stop words and applies no stemming, because the
+baseline lane does neither and either one would change the relation the parity harness is testing.
 
 ### Capability Boundary
 
@@ -200,6 +230,14 @@ retired surface also carried. No downstream reader should treat it as though it 
 | REQ-011 | Publication is fail-closed and atomic. The generator writes a same-directory temporary file, validates it, then renames. A run that meets any non-ignored malformed document leaves the last known-good committed index untouched rather than publishing a partial one |
 | REQ-012 | Fresh-process single-prompt lookup holds p95 **and** max under 200ms across at least 30 runs, each started in a new Node process, with p50, p99, corpus bytes, index bytes, runtime and platform recorded alongside. Sharpens the single cold measurement REQ-007 asked for |
 
+> **REQ-011 exemption list.** Fail-closed publication needs a way to name a document that is
+> genuinely malformed rather than newly broken, or one bad file blocks every run forever. The
+> manifest carries an `ignoredPaths` list with a reason per entry, and each entry joins the manifest
+> identity, so an exemption cannot be added without changing the hash every claim is measured
+> against. An ignored path still emits its diagnostic row, flagged as ignored rather than dropped,
+> and `ignoredPathsUnmatched` reports a dead exemption whose path no longer resolves. Anything not
+> on that list still fails the run closed. The list currently holds one entry.
+
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
@@ -211,6 +249,7 @@ retired surface also carried. No downstream reader should treat it as though it 
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
+> **Ripgrep resolution.** This machine has no ripgrep on PATH; the shell's `rg` is a tool wrapper that a spawned process cannot see. `lib/rg-lane.mjs` therefore resolves the binary through `SPECKIT_RG_BIN`, then PATH, then the copies vendored by opencode and codex, and only then the bare name. A clean install needs `brew install ripgrep` or that variable set.
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -219,7 +258,7 @@ retired surface also carried. No downstream reader should treat it as though it 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Parity harness reports zero unexplained differences in both directions across the frozen prompt set, with no scope, archive or expiry leakage. The recorded output is committed as the baseline
-- **SC-002**: `node generate-trigger-index.mjs && git diff --exit-code` returns clean on a second run. Both runs hash identically
+- **SC-002**: Consecutive generator runs leave the full artifact set byte-identical and SHA-256 identical, covering `data/trigger-index.json`, `fixtures/corpus-manifest.json` and `fixtures/phrase-variants.json`, and `git diff --exit-code` returns clean after the rerun. Measured over three consecutive runs
 - **SC-003**: The full Gate 1 path runs with the MCP server stopped
 - **SC-004**: Fresh-process lookup latency is recorded over at least 30 runs. Both p95 and max land under 200ms against the named manifest
 - **SC-005**: Each documented ripgrep recipe is executed once, its exit status is read. The 0/1/2+ mapping is recorded
@@ -232,8 +271,9 @@ retired surface also carried. No downstream reader should treat it as though it 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Index artifact size: 97,529 phrases and ~4.1 MB of phrase text before paths and JSON structure | Med — a multi-megabyte committed file adds diff noise on every doc change | Measure the real emitted size first; if it exceeds a set budget, shard per track or store phrase-to-path pairs in a compact line-oriented format that greps well |
-| Risk | Malformed or absent `trigger_phrases` in some docs | Med — silent gaps in Gate 1 coverage | REQ-006 makes the generator report them; the count goes in the baseline |
+| Risk | Index artifact size: 97,529 phrases and ~4.1 MB of phrase text before paths and JSON structure | Med — a multi-megabyte committed file adds diff noise on every doc change | Closed by measurement. Schema 1 emitted 37,017,883 bytes, schema 2 emits 3,814,726 across 35,481 phrases and 13,597 paths. Sharding was rejected as file multiplication rather than an encoding fix |
+| Risk | Malformed or absent `trigger_phrases` in some docs | Med — silent gaps in Gate 1 coverage | REQ-006 makes the generator report them; the count goes in the baseline. Measured: ok 13,505, missing-frontmatter 14,955, duplicate-phrase 92, valid-empty-list 2, non-yaml-frontmatter 1 |
+| Risk | One genuinely malformed corpus document: the captured model transcript at `specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md`, whose leading rule pair is not frontmatter | Low. One file in 28,555, though fail-closed publication would otherwise block every generator run on it | The manifest exempts it by path with a stated reason and the exemption joins the manifest identity, so it cannot be added silently. The diagnostic row is still emitted, flagged ignored. Repairing the document itself is phase 004's work, not this phase's |
 | Risk | Parity harness needs the live daemon, which is documented as flapping | High — cannot measure parity if the comparison target will not start | Capture the live lane's output once into a fixture while the daemon is up, keep its availability and corpus metadata with it, then compare against the fixture thereafter. An unavailable live arm is a blocked measurement, never a green parity result |
 | Dependency | `trigger_phrases` frontmatter convention | Blocks the whole approach if inconsistent | Phase 004 standardizes it; this phase consumes what exists and records the gaps |
 <!-- /ANCHOR:risks -->
@@ -293,9 +333,10 @@ retired surface also carried. No downstream reader should treat it as though it 
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | Committed index is too large to be comfortable in diffs | M | H | Measure, then shard or compact |
+| R-001 | Committed index is too large to be comfortable in diffs | M | H | Closed. Compact encoding, 3,814,726 bytes, no sharding |
 | R-002 | Live daemon unavailable when parity must be captured | H | M | Snapshot the live lane into a fixture early |
 | R-003 | Frontmatter inconsistency hides Gate 1 coverage gaps | M | M | Generator reports; baseline records the count |
+| R-004 | One malformed transcript document would block fail-closed publication permanently | L | H | Named in the manifest `ignoredPaths` with a reason, still diagnosed, repaired in phase 004 |
 
 ---
 
@@ -319,10 +360,10 @@ retired surface also carried. No downstream reader should treat it as though it 
 
 ## 12. OPEN QUESTIONS
 
-- Should the index be one file or sharded per track? The size measurement in R-001 decides it, and the answer changes the generator's output contract.
-- Does the parity set need prompts drawn from real session history, or is a hand-authored set defensible? Real prompts are stronger evidence but are not currently retained anywhere outside the DB being removed.
-- Should Unicode handling stay exactly compatible with the current ASCII-only normalization or take an explicitly versioned extension? Compatibility keeps parity testable. An extension changes the relation the harness measures.
-- Which machine, runtime and sample count make the REQ-012 gate reproducible? The 30-run protocol is a proposed shape, not yet a measurement.
+- **Answered. One file, not sharded.** Schema 1 measured 37,017,883 bytes, of which the `tokenTrigrams` block alone was 21.9 MB, and its cold lookup missed the budget at p95 237 ms and max 239 ms. Schema 2 measures 3,814,726 bytes over 35,481 phrases, 13,597 paths and 45,578 declarations, with pretty-printing and round-trip validation kept. Sharding was rejected because it multiplies files without touching the encoding that caused the size.
+- Does the parity set need prompts drawn from real session history, or is a hand-authored set defensible? Real prompts are stronger evidence but are not currently retained anywhere outside the DB being removed. Still open, and owned by the parity work.
+- Should Unicode handling stay exactly compatible with the current ASCII-only normalization or take an explicitly versioned extension? Compatibility keeps parity testable. An extension changes the relation the harness measures. Still open.
+- **Answered. 36 runs on a pinned manifest.** 36 measured fresh-process runs after 2 reported warm-ups, nearest-rank percentiles with no interpolation, Node v26.8.1 on darwin arm64: p50 71.3 ms, p95 83.7 ms, p99 91.0 ms, max 91.0 ms against the 200 ms budget. Recorded alongside are the corpus at 232,996,380 bytes over 28,555 documents, the index at 3,814,726 bytes and manifest hash `c0806077f0d2e22ae7b0e9b6f8ab4e17244fac5aef0f6da59c95f7fe0938d370`.
 <!-- /ANCHOR:questions -->
 
 ---

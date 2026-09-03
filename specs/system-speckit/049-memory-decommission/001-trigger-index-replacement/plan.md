@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Language/Stack** | Node ESM (`.mjs`), no TypeScript build step |
 | **Framework** | None — plain Node, standard library only |
 | **Storage** | A committed JSON file. No database, no daemon, no embedding provider |
-| **Testing** | Node's built-in `node:test`, plus a parity harness against the live lane |
+| **Testing** | Vitest, matching the existing `scripts/tests/*.vitest.ts` suite, plus a parity harness against the live lane |
 
 ### Overview
 
@@ -55,7 +55,7 @@ The index shape, the ripgrep recipes, the ranking contract and the parity arms b
 ### Definition of Done
 - [ ] All acceptance criteria met
 - [ ] Parity harness reports zero unexplained rows in both directions, output committed as baseline
-- [ ] Second generator run leaves the artifact byte-identical, with a matching hash
+- [x] Second generator run leaves the artifact byte-identical, with a matching hash. Measured over three consecutive runs, across the index, the manifest and the variants file
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -74,24 +74,51 @@ removed, whose `.sqlite` was gitignored and therefore absent from every fresh cl
 
 - **`generate-trigger-index.mjs`**: walks the corpus, parses frontmatter, emits the artifact. Pure,
   deterministic, no network, no daemon. Writes a same-directory temporary file, validates it, then
-  renames, so a failed run never replaces the last known-good index.
+  renames, so a failed run never replaces the last known-good index. Four libraries under `lib/`
+  carry the pieces: `normalize.mjs` (case folding, separators, token rules, phrase scoring),
+  `frontmatter.mjs` (the strict read-only reader and its diagnostic categories), `corpus.mjs` (walk,
+  exclusions, manifest hashing) and `artifact.mjs` (stable stringify, atomic publish).
 - **`trigger-index.json`**: the committed artifact. Many-to-many: one phrase maps to every path
   declaring it. Object keys and every array are sorted. No generation timestamp is emitted, so
   two runs over one manifest are byte-identical and hash the same.
+- **`lookup-trigger-index.mjs`**: the read path, a library plus a CLI. It loads the committed index
+  once, re-derives per-phrase tokens from the key, and answers exact, containment, overlap and
+  partial-token queries. Gate 1 and the parity index arm both call it, so there is one matcher
+  rather than two that can drift.
+- **`measure-cold-lookup.mjs`**: the REQ-012 harness. Spawns one fresh Node process per run, reports
+  warm-ups separately from measured runs, and computes nearest-rank percentiles with no
+  interpolation. Its output is `fixtures/latency-report.json`.
+- **`fixtures/corpus-manifest.json`**: the frozen manifest REQ-008 asks for. Roots, exclusions,
+  included paths, corpus hash and its stated recipe, parser version, index schema version, prompt-set
+  hash, plus the `skippedPaths` and `ignoredPaths` lists. Its hash is the identity every parity,
+  diagnostic and latency claim names.
+- **`fixtures/generation-diagnostics.json`**: the full REQ-010 stream. Every row carries `path`, a
+  one-based `line`, a `category` and a `reason`, with per-category counts and the ignored-path
+  bookkeeping alongside.
+- **`fixtures/phrase-variants.json`**: the raw phrase spellings, keyed by normalized phrase. They
+  left the index under schema 2 and live here for diagnostics.
 - **`retrieval-conventions.md`**: the ripgrep contract replacing `memory_search`,
   `memory_context`, and `memory_quick_search`.
 - **`parity-check.mjs`**: runs a frozen prompt set against three arms and reports differences in
-  both directions.
+  both directions. Planned, with `lib/legacy-lane.mjs` and `lib/rg-lane.mjs` behind it.
 
 ### Index Shape
 
-One versioned object per `spec.md` §3 Index Artifact Design: `schemaVersion`, a `normalization`
-block (lower case, non-ASCII-alnum separators, three-character minimum token, eight-token cap, empty
-stop-word list, stemming `none`), a `phrases` map carrying `raw`, `tokens` and `paths` plus a
-`tokenTrigrams` posting list. Phrase postings answer exact and containment matches, token postings
-answer overlap. Three-character trigram postings answer the partial `%token%` candidates the SQL
-lane admits. No stop-word removal and no stemming in v1, because the baseline does neither and
-either one would change the relation the harness measures.
+Schema 2, per `spec.md` §3 Index Artifact Design. A versioned object carrying `schemaVersion`, the
+`manifestHash` it was generated against, a `normalization` block (lower case, non-ASCII-alnum
+separators, three-character minimum token, eight-token cap, 120-character phrase cap, empty
+stop-word list, stemming `none`), a sorted `paths` table, and a `phrases` map whose every value is
+an array of integer ids into that table.
+
+Phrase keys answer exact and containment matches. Tokens are re-derived from the key at lookup, so
+overlap scoring needs no stored token arrays. Partial `%token%` candidates come from an `includes()`
+scan over the sorted keys, which measured 1.4 ms for one token and 12.3 ms at the eight-token cap
+over 35,481 keys, replacing the trigram posting block schema 1 carried. Raw spellings moved to
+`fixtures/phrase-variants.json`. No stop-word removal and no stemming, because the baseline does
+neither and either one would change the relation the harness measures.
+
+Measured: 3,814,726 bytes over 35,481 phrases, 13,597 paths and 45,578 declarations, against
+37,017,883 bytes for schema 1. ADR-003 records why the fix was the encoding and not sharding.
 
 ### Parity Arms
 
@@ -187,8 +214,8 @@ Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and V
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Frontmatter parsing: well-formed, malformed, absent, valid empty list, alias spelling, generic phrase, duplicate phrases, oversized phrase | `node:test` |
-| Integration | Full generation over the frozen manifest, determinism across two runs, byte and hash equality, atomic publication with no partial replacement | `node:test` + `git diff --exit-code` + `shasum` |
+| Unit | Normalization, query tokens, phrase scoring, frontmatter parsing (well-formed, malformed, absent, valid empty list, alias spelling, generic phrase, duplicate phrases, oversized phrase) | Vitest |
+| Integration | Full generation over the frozen manifest, determinism across consecutive runs, byte and hash equality, atomic publication with no partial replacement, lookup over the published artifact | Vitest + `git diff --exit-code` + `shasum` |
 | Parity | Frozen prompt set across all three arms. Both `legacyOnly` and `indexOnly` must be empty of unexplained rows, with no scope, archive or expiry leakage | `parity-check.mjs` |
 | Boundary | Semantic paraphrase rows reported separately from the lexical gate, as evidence rather than as a pass criterion | `parity-check.mjs` boundary report |
 | Latency | At least 30 fresh Node processes, one prompt each, reporting p50, p95, p99 and max against the 200ms gate | timed harness run |
@@ -370,6 +397,42 @@ Config (size budget decision) ──┘
 
 **Alternatives Rejected**:
 - Keep a minimal FTS5 index: reintroduces a build artifact and a staleness problem for a channel the ablation measured at exactly 0.0000 delta.
+
+### ADR-003: Compact encoding instead of sharding
+
+**Status**: Accepted
+
+**Context**: Schema 1 stored, for every phrase, a `raw` array, a `tokens` array and a `paths` array of full relative path strings, plus a `tokenTrigrams` posting block. Over the real corpus it emitted 37,017,883 bytes, of which the trigram block alone was 21.9 MB, and cold lookup measured p95 237 ms and max 239 ms against a 200 ms budget. R-001 had pre-authorized sharding as the mitigation.
+
+**Decision**: Keep one file and change the encoding. Schema 2 adds a sorted `paths` table and stores integer ids in each phrase posting, re-derives tokens from the phrase key at lookup, moves raw variants to `fixtures/phrase-variants.json`, and drops the trigram block in favor of an `includes()` scan over the sorted phrase keys.
+
+**Consequences**:
+- 37,017,883 bytes to 3,814,726 bytes over the same corpus, with the two-space pretty-print and the `stableStringify` round-trip validation both retained.
+- Cold lookup moved from p95 237 ms to p95 83.7 ms, inside budget with room.
+- The partial-token scan costs 1.4 ms for one token and 12.3 ms at the eight-token cap over 35,481 keys, which is the whole price of removing 21.9 MB of postings.
+- Diagnostics that want the original spelling read a second file. That is a real cost, paid only on the diagnostic path and never on the Gate 1 read path.
+- Equivalence is proven, not asserted: a schema 1 index rebuilt from schema 2 plus the variants file returned identical lookups over 120 prompt and scope pairs.
+
+**Alternatives Rejected**:
+- Shard per track: multiplies files without fixing the encoding, so the same bytes land in more diffs and every reader gains a shard-selection step.
+- Drop pretty-printing to save bytes: saves far less than the encoding change and makes the artifact unreadable in exactly the diffs R-001 was worried about.
+
+### ADR-004: Strict read-only frontmatter reader instead of reusing the migration parser
+
+**Status**: Accepted
+
+**Context**: `scripts/lib/frontmatter-migration.ts` already parses frontmatter in this repository, so reuse was the first thing checked. Two problems: it is TypeScript reachable only through a build step, which contradicts the no-build-step constraint this phase is built on, and it collapses every failure shape into a single `undefined`, which cannot satisfy REQ-010's requirement that each skipped document report a distinct category.
+
+**Decision**: Write a read-only reader in `lib/frontmatter.mjs` that returns a typed diagnostic per failure mode, and relax three of the migration tool's guards.
+
+**Consequences**:
+- The block length cap, the two-space indent floor and the blanket heading rejection were dropped, because run against the real corpus they misclassified 75 valid documents as malformed.
+- Dropping them is safe here and would not be safe there: the migration tool rewrites files, so a wrong parse corrupts a document, while this reader only reads and a wrong parse costs one index entry.
+- Two parsers now exist over one file format. They are kept honest by the diagnostic counts, which state exactly what the reader accepted: ok 13,505, missing-frontmatter 14,955, duplicate-phrase 92, valid-empty-list 2, non-yaml-frontmatter 1, across 28,555 documents.
+
+**Alternatives Rejected**:
+- Reuse the migration parser as-is: 75 valid documents lost, and no way to report why any of them were skipped.
+- Add a build step so the TypeScript parser is importable: reintroduces the build-before-Gate-1 dependency that is one of the failure modes this packet exists to remove.
 
 ---
 
