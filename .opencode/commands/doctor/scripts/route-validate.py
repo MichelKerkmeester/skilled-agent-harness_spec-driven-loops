@@ -53,14 +53,12 @@ REQUIRED_KEYS = {
 VALID_MUTATING = {"read-only", "add-only", "mutates"}
 
 # Matches repo-relative local script paths inside script_invocations prose,
-# e.g. ".opencode/bin/spec-memory.cjs" or ".opencode/commands/doctor/scripts/x.py"
+# e.g. ".opencode/bin/skill-advisor.cjs" or ".opencode/commands/doctor/scripts/x.py"
 SCRIPT_PATH_RE = re.compile(r"\.opencode/[^\s\"']+\.(?:cjs|mjs|js|py|sh)")
 
 # MCP tools known to mutate state (indexing/rebuild/link/scan writers), used by
 # assertion K to flag a `mutating: read-only` route that over-grants a mutator.
 KNOWN_MUTATING_MCP_TOOLS = {
-    "mcp__system_spec_memory__memory_index_scan",
-    "mcp__system_spec_memory__memory_causal_link",
     "mcp__system_skill_advisor__advisor_rebuild",
     "mcp__system_skill_advisor__skill_graph_scan",
 }

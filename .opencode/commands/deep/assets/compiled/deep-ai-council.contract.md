@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/ai-council.md",
-      "sha256": "a34c392331537e423ff8bc26006e79f36703794d2ec76e85e903a07c794866a5",
+      "sha256": "87feedaff90266c39dc9daf33225555b548561da3e0c372030b6d7f851af7c2e",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
-      "sha256": "110ee6b749bcfa60072ae80a03256d1f9a0241363c6fef67d5e31f8051e0c116",
+      "sha256": "b18d96afc7a902722bf6b5b1f9be04b968d32b8f8d676532f6eccb002c1b8d61",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-auto.yaml",
-      "sha256": "ded0f808b8d61fdf9d122427cfad7026e5c1bdd5b1d2fc06f964cfe505370467",
+      "sha256": "ef8f1ae6dec7d2679abd1f88a0c5afe40b1f5d49feb9a929a033ff61cd2dc7f6",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
-      "sha256": "10cbb9befb02a199d5792d014835bc457f16b32b5b4696db81ceb2d54a168c52",
+      "sha256": "e24d211c46f4f16d06857e41ef7be39852676048b53374248cd8cae94c1dced8",
       "section": "full"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "path": ".opencode/agents/ai-council.md",
-      "sha256": "122af0747895edf6f621313c50dc469667a4913c94712a16679ed6701c1c8382",
+      "sha256": "d98702b746b5734b47b752c4c3a6ae7345ca20a93807e2f4107263f6b54960a4",
       "section": "full"
     },
     {
@@ -146,7 +146,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "016d653be2e8173562471d3a4dad1614500559507b6872a3907c71484b99e261"
+  "compiledBodyDigest": "e4bb1660d7ff40d22171b384c02af855fe2aeed788c5b25fedd1b072cb742c9e"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council
@@ -341,7 +341,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 4 -type d 2>/dev/null | sort | tail -10
 
 5. Search for prior work (background):
-   - memory_context({ input: deliberation_topic OR "deep-ai-council", mode: "focused", includeContent: true })
+   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$DELIBERATION_TOPIC" specs .opencode
+   - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
 6. ASK with SINGLE prompt (include only applicable questions):
@@ -524,8 +525,6 @@ allowed:
   - "Grep"
   - "Glob"
   - "Task"
-  - "memory_context"
-  - "memory_search"
 permittedByExecutor:
   native:
     - "Read"
@@ -535,8 +534,6 @@ permittedByExecutor:
     - "Grep"
     - "Glob"
     - "Task"
-    - "memory_context"
-    - "memory_search"
   cli-opencode:
     - "headless command execution through YAML-owned audited dispatch only"
   cli-claude-code:

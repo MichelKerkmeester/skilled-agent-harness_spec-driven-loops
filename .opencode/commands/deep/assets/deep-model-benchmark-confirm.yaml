@@ -69,10 +69,17 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 context_loading:
   trigger: "At workflow START, before phase_init"
-  mcp_integration:
-    tool: memory_search
-    note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters: { query: "model benchmark context for {profile}", specFolder: "{spec_folder}", anchors: ['summary', 'decisions', 'state', 'improvement'] }
+  retrieval:
+    mechanism: "continuity-ladder-then-ripgrep"
+    note: "File reads only. Nothing here needs a running daemon, and every step is reproducible by hand."
+    ladder:
+      - "{spec_folder}/handover.md when present"
+      - "the _memory.continuity frontmatter block in {spec_folder}/implementation-summary.md"
+      - "the packet's canonical spec docs, spec.md and decision-record.md, for what the first two steps leave open"
+    free_text_recipe: "rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'model benchmark {profile}' {spec_folder}"
+    recipe_contract: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    exit_status: "0 is a hit set, 1 is a clean no-hit, 2 or higher is a failure that must be surfaced instead of reported as no-hit"
+    ranking: "Ripgrep does not rank. Order the hits caller-side with the tuple in retrieval-conventions.md section 5."
   command_reference: "/memory:search"
   when_to_skip: ["First-time benchmark of this profile", "User explicitly says 'skip context' or 'fresh start'", "No spec folder context exists"]
   behavior:

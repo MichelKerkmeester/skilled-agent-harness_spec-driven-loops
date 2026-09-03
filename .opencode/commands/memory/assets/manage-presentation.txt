@@ -1,346 +1,74 @@
-# Memory Manage Presentation Contract
+# Memory Manage Presentation Contract — RETIRING
 
-Single source of truth for `/memory:manage` dashboards, confirmations, and results.
+`/memory:manage` is retiring. The indexed-continuity database it administered is being
+decommissioned, so every dashboard, confirmation gate and result envelope this contract once
+defined described a store that no longer answers. Enumerating them here as live render shapes
+would be a false promise, so they are gone rather than kept as decoration.
+
+This asset now defines exactly one display: the retiring notice.
 
 ## 1. General Display Rules
 
-- Use stable labels and a single `STATUS=` line.
-- Ask confirmation before scans, deletes, restores, and mutating retention sweeps, learned-trigger expiry, learned-trigger clear, and ledger-sweep applies.
-- Never suggest raw SQL recovery.
-- Keep dashboards compact enough for model dispatch.
-
-## 2. Stats Dashboard
-
-```text
-MEMORY:STATS
---------------------------------------------------
-Total       <count>
-Size        <size>
-Indexed     <date>
-
-Tier distribution
-critical       <count>
-important      <count>
-normal         <count>
-temporary      <count>
-deprecated     <count>
-
-Top folders
-<folder_1> <count>
-<folder_2> <count>
-<folder_3> <count>
-
-Actions: scan | cleanup | health | checkpoint
-STATUS=OK ACTION=stats
-```
-
-Filled example:
-
-```text
-MEMORY:STATS
---------------------------------------------------
-Total       1284
-Size        42.6 MB
-Indexed     2026-06-12
-
-Tier distribution
-critical       42
-important      311
-normal         846
-temporary      51
-deprecated     16
-
-Top folders
-system-spec-kit 612
-skilled-agent-orchestration 244
-memory-upgrade 97
-
-Actions: scan | cleanup | health | checkpoint
-STATUS=OK ACTION=stats
-```
-
-Field mapping:
-
-| Source field | Template slot |
-| --- | --- |
-| `memory_stats.totalMemories` or total indexed record count | `Total <count>` |
-| `memory_stats.dbSize`, `dbFileSize`, or formatted store size | `Size <size>` |
-| `memory_stats.lastIndexed`, `lastScanAt`, or latest indexed timestamp | `Indexed <date>` |
-| `memory_stats.byTier.critical` | `critical <count>` |
-| `memory_stats.byTier.important` | `important <count>` |
-| `memory_stats.byTier.normal` | `normal <count>` |
-| `memory_stats.byTier.temporary` | `temporary <count>` |
-| `memory_stats.byTier.deprecated` | `deprecated <count>` |
-| `memory_stats.topFolders[].folder` | `<folder_n>` |
-| `memory_stats.topFolders[].count` | Top-folder `<count>` |
-
-## 3. Scan Confirmation and Result
-
-```text
-MEMORY:SCAN
---------------------------------------------------
-Mode choices
-[n] normal incremental scan
-[f] force full re-index
-[b] back
-
-STATUS=AWAITING_INPUT ACTION=scan
-```
-
-```text
-MEMORY:SCAN
---------------------------------------------------
-Mode        <normal|force>
-Indexed     <count>
-Skipped     <count>
-Updated     <count>
-Errors      <count>
-
-STATUS=OK INDEXED=<count> SKIPPED=<count> UPDATED=<count>
-```
-
-## 4. Cleanup Display
-
-```text
-MEMORY:CLEANUP
---------------------------------------------------
-Candidates  <count>
-
-ID    Tier          Title                  Age       Accesses
-<id>  <tier>        <title>                <age>     <count>
-
-Protected: critical <count> | important <count>
-Actions: [a] remove all | [r] review each | [n] keep all | [b] back
-STATUS=AWAITING_INPUT ACTION=cleanup
-```
-
-```text
-MEMORY:CLEANUP
---------------------------------------------------
-Checkpoint  <checkpoint_name>
-Removed     <count>
-Kept        <count>
-Undo        /memory:manage checkpoint restore <checkpoint_name>
-
-STATUS=OK REMOVED=<count> KEPT=<count> CHECKPOINT=<name>
-```
-
-## 5. Retention, Learned-Trigger Maintenance, Ledger Sweeps, and Bulk Delete
-
-```text
-MEMORY:RETENTION-SWEEP
---------------------------------------------------
-Mode        <dry-run|apply>
-Expired     <count>
-Deleted     <count>
-
-STATUS=OK ACTION=retention-sweep EXPIRED=<count> DELETED=<count>
-```
-
-Learned-trigger expiry runs dry-run by default. Show the preview, then gate the mutating pass behind confirmation.
-
-```text
-MEMORY:LEARNED-EXPIRE
---------------------------------------------------
-Mode        preview (dry-run)
-Expired     <count> learned trigger term(s)
-Updated     <count> memory row(s)
-
-Confirm: [y] expire now | [n] cancel
-STATUS=AWAITING_INPUT ACTION=learned-expire
-```
-
-```text
-MEMORY:LEARNED-EXPIRE
---------------------------------------------------
-Mode        <dry-run|apply>
-Expired     <count> learned trigger term(s)
-Updated     <count> memory row(s)
-
-STATUS=OK ACTION=learned-expire MODE=<dry-run|apply> EXPIRED=<count> UPDATED=<count>
-```
-
-Learned-trigger clear removes learned triggers from every memory row. There is no preview count available before confirmation; always gate behind an explicit yes/no.
-
-```text
-MEMORY:LEARNED-CLEAR
---------------------------------------------------
-Action      Clear ALL learned triggers on every memory row
-
-Confirm: [y] clear all | [n] cancel
-STATUS=AWAITING_INPUT ACTION=learned-clear
-```
-
-```text
-MEMORY:LEARNED-CLEAR
---------------------------------------------------
-Affected    <count> memory row(s) had learned triggers
-Cleared     <count> memory row(s) cleared
-
-STATUS=OK ACTION=learned-clear AFFECTED=<count> CLEARED=<count>
-```
-
-Ledger sweeps default to dry-run and touch seven bounded feedback/audit ledgers. Always report matched and deleted counts per ledger, even when a count is zero.
-
-```text
-MEMORY:LEDGER-SWEEP
---------------------------------------------------
-Mode        preview (dry-run)
-
-Ledger                  Matched   Deleted
-feedback_events         <count>   <count>
-shadow_scoring_log      <count>   <count>
-batch_learning_log      <count>   <count>
-learned_feedback_audit  <count>   <count>
-memory_promotion_audit  <count>   <count>
-memory_conflicts        <count>   <count>
-adaptive_signal_events  <count>   <count>
-
-Confirm: [y] apply sweep | [n] cancel
-STATUS=AWAITING_INPUT ACTION=ledger-sweep
-```
-
-```text
-MEMORY:LEDGER-SWEEP
---------------------------------------------------
-Mode        <dry-run|apply>
-
-Ledger                  Matched   Deleted
-feedback_events         <count>   <count>
-shadow_scoring_log      <count>   <count>
-batch_learning_log      <count>   <count>
-learned_feedback_audit  <count>   <count>
-memory_promotion_audit  <count>   <count>
-memory_conflicts        <count>   <count>
-adaptive_signal_events  <count>   <count>
-
-STATUS=OK ACTION=ledger-sweep MODE=<dry-run|apply>
-```
-
-```text
-MEMORY:BULK-DELETE
---------------------------------------------------
-Tier        <tier>
-Scope       <all|folder>
-Age Filter  <all|older than N days>
-Affected    <count> spec-doc records
-
-Confirm: [y] delete all | [n] cancel
-STATUS=AWAITING_INPUT ACTION=bulk-delete
-```
-
-```text
-MEMORY:BULK-DELETE
---------------------------------------------------
-Tier        <tier>
-Removed     <count>
-Checkpoint  <checkpoint_name>
-
-STATUS=OK REMOVED=<count> TIER=<tier>
-```
-
-## 6. Tier, Triggers, Validate, Delete
-
-```text
-MEMORY:TIER
---------------------------------------------------
-Record      #<id> "<title>"
-Old Tier    <old_tier>
-New Tier    <new_tier>
-
-STATUS=OK ID=<id> TIER=<tier>
-```
-
-```text
-MEMORY:TRIGGERS
---------------------------------------------------
-Record      #<id> "<title>"
-
-Current triggers
-1. <phrase_1>
-2. <phrase_2>
-
-Actions: [a] add | [r] remove number | [s] save | [b] back
-STATUS=OK ID=<id> TRIGGERS=<count>
-```
-
-```text
-MEMORY:VALIDATE
---------------------------------------------------
-Record      #<id> "<title>"
-Feedback    <true|false>
-Confidence  <old> -> <new>
-
-STATUS=OK ID=<id> USEFUL=<true|false>
-```
-
-```text
-MEMORY:DELETE
---------------------------------------------------
-Record      #<id> "<title>"
-Tier        <tier>
-
-Confirm: [y] delete | [n] cancel
-STATUS=AWAITING_INPUT ACTION=delete
-```
-
-```text
-MEMORY:DELETE
---------------------------------------------------
-Removed     #<id> "<title>"
-
-STATUS=OK DELETED=<id>
-```
-
-## 7. Health Dashboard
-
-```text
-MEMORY:HEALTH
---------------------------------------------------
-Status      <healthy|degraded>
-Schema      v<version>
-Total       <count>
-
-Index
-Summary     <summary>
-Pending     <count>
-Failed      <count>
-
-Checks
-<check_name> <PASS|WARN|FAIL>
-
-STATUS=OK HEALTH=<status> SCHEMA=v<version>
-```
-
-## 8. Checkpoint and Ingest
-
-```text
-MEMORY:CHECKPOINT
---------------------------------------------------
-Action      <create|restore|list|delete>
-Name        <checkpoint_name>
-Status      <status>
-
-STATUS=OK ACTION=<action> CHECKPOINT=<name>
-```
-
-```text
-MEMORY:INGEST
---------------------------------------------------
-Job ID      <jobId>
-Status      <running|completed|cancelled|failed>
-Progress    <completed>/<total> files
-
-STATUS=OK ACTION=ingest JOB=<jobId>
-```
-
-## 9. Error Display
+- Render the notice below and stop. There is no mode to route, no confirmation to gate and no
+  result to envelope.
+- Use a single `STATUS=` line.
+- Never suggest raw SQL recovery, and never offer to reach the retired store by another route.
+
+## 2. Retiring Notice Display
 
 ```text
 MEMORY:MANAGE
 --------------------------------------------------
-FAIL        <short reason>
-Recovery    <next safe action>
+RETIRING     The indexed-continuity database is being decommissioned.
+Removed by   phase 003 of the memory decommission
 
-STATUS=FAIL ERROR="<message>"
+Instead
+  /memory:search                find a phrase in spec docs and skill docs
+  /memory:save                  write session context into a packet
+  /speckit:resume               recover a session and get one next step
+  /doctor memory                check the trigger index and the retrieval conventions
+
+Trigger-index maintenance
+  node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+
+STATUS=OK ACTION=retiring
 ```
+
+## 3. Former Subcommand Redirects
+
+When the operator types a former subcommand, name its successor rather than failing silently.
+
+| Former subcommand | Line to render under `Instead` |
+| --- | --- |
+| `stats`, `health`, `validate` | `/doctor memory` — index present, lookup runs, recipes resolve |
+| `scan [--force]` | `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` |
+| `cleanup`, `retention-sweep`, `bulk-delete`, `delete` | No successor. Packet documents are the record and are managed as files |
+| `learned-expire`, `learned-clear` | No successor. `trigger_phrases` is an author-controlled frontmatter field |
+| `tier`, `triggers` | Edit the document's frontmatter, then rerun the generator |
+| `checkpoint create/list/restore/delete` | Git. The packet documents are versioned files |
+| `ingest start/status/cancel` | No successor. The generator reads frontmatter directly |
+| `ledger-sweep` | No successor. The ledgers lived in the same database |
+
+## 4. Capability Loss Wording
+
+When the operator asks for something the retired store provided and nothing replaces, say so plainly
+rather than substituting a keyword search:
+
+```text
+MEMORY:MANAGE
+--------------------------------------------------
+UNSUPPORTED  <capability>
+Why          <what the retired mechanism did that text matching cannot>
+Instead      <the nearest honest alternative, or "none">
+
+STATUS=OK ACTION=unsupported
+```
+
+Semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal
+traversal are unsupported. Retrieval is lexical: a phrase that is not written in the corpus is not
+found, and a miss is reported as a miss.
+
+## 5. Forbidden Vocabulary
+
+Never render a dashboard, count, tier distribution, health verdict or checkpoint list. There is no
+store behind them, and a rendered shape implies one exists.

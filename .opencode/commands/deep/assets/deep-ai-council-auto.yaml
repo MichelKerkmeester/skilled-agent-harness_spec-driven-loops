@@ -29,11 +29,18 @@ user_inputs:
 
 context_loading:
   trigger: "At workflow START, before phase_init"
-  purpose: "Load prior council context and memory hints for the deliberation topic"
-  mcp_integration:
-    tool: memory_context
-    note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters: { input: "{deliberation_topic}", mode: "focused", intent: "understand", includeContent: true }
+  purpose: "Load prior council context for the deliberation topic from the packet's own documents"
+  retrieval:
+    mechanism: "continuity-ladder-then-ripgrep"
+    note: "File reads only. Nothing here needs a running daemon, and every step is reproducible by hand."
+    ladder:
+      - "{spec_folder}/handover.md when present"
+      - "the _memory.continuity frontmatter block in {spec_folder}/implementation-summary.md"
+      - "the packet's canonical spec docs, spec.md and decision-record.md, for what the first two steps leave open"
+    free_text_recipe: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '{deliberation_topic}' specs .opencode"
+    recipe_contract: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    exit_status: "0 is a hit set, 1 is a clean no-hit, 2 or higher is a failure that must be surfaced instead of reported as no-hit"
+    ranking: "Ripgrep does not rank. Order the hits caller-side with the tuple in retrieval-conventions.md section 5."
   when_to_skip: ["User says 'skip context' or 'fresh start'"]
 
 skill_reference:
@@ -194,11 +201,12 @@ workflow:
           - stop_reason
 
   phase_save:
-    purpose: "Route completion context into memory save"
+    purpose: "Route completion context into the packet's canonical continuity documents"
     steps:
-      step_memory_save:
-        action: "Invoke memory:save routing after synthesis"
-        command_hint: "/memory:save spec_folder={spec_folder} recent_action='deep-ai-council multi-topic session complete'"
+      step_write_continuity:
+        action: "Write the session's continuity update with the continuity writer after synthesis"
+        command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
+        payload_note: "Compose the session JSON yourself and write it before invoking the writer; the loader fails closed when the explicit JSON file is absent. Use a session-scoped temp filename."
         writes:
           - "{spec_folder}/description.json"
           - "{spec_folder}/graph-metadata.json"

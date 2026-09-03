@@ -105,11 +105,14 @@ checkpoint_options:
 context_loading:
   trigger: "During UNIFIED SETUP PHASE, when memory_choice is answered and prior context exists"
   applies_when: "source_packet_path contains handover.md or _memory.continuity in implementation-summary.md, or operation is update and the selected target already exists; not applicable to fresh authoring with no prior continuity"
-  mcp_integration:
-    tool: memory_context
-    note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters: { input: "resume previous work on {source_packet_path}", mode: "resume", profile: "resume", specFolder: "{source_packet_path}", includeContent: true }
-    transport_fallback: "If MCP tools are missing or erroring while the daemon is otherwise warm, use: node .opencode/bin/spec-memory.cjs memory_context --json '{\"input\":\"resume previous work\",\"mode\":\"resume\"}' --format json --timeout-ms 3000 --warm-only. Exit 75 = retryable backend unavailability."
+  continuity_ladder:
+    note: "Read the packet's own files in order. No background service is involved."
+    order:
+      - "Read {source_packet_path}/handover.md when present and recent"
+      - "Read the _memory.continuity frontmatter block in {source_packet_path}/implementation-summary.md"
+      - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+      - "Only for a still-missing named gap, run the packet-scoped context recipe from .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {source_packet_path} as the search root"
+    unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
   behavior:
     memory_choice_A: "Load handover.md (if <24h old) plus _memory.continuity from implementation-summary.md in {source_packet_path}; sets memory_loaded: handover+continuity"
     memory_choice_B: "Load canonical spec docs (decision-record.md, implementation-summary.md, tasks.md) in {source_packet_path} up to a recent cap (3 most recently modified); sets memory_loaded: spec-docs"

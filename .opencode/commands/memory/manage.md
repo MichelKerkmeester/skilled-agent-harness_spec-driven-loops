@@ -1,103 +1,69 @@
 ---
-description: "Manage indexed-continuity DB: stats, scan, cleanup, retention, learned triggers, ledger sweeps, validate, checkpoint, ingest."
-argument-hint: "[scan [--force]] | [cleanup] | [retention-sweep [--dry-run]] | [learned-expire [--dry-run]] | [learned-clear] | [ledger-sweep [--dry-run] [--apply]] | [bulk-delete <tier> [--older-than <days>] [--folder <spec>]] | [tier <id> <tier>] | [triggers <id>] | [validate <id> <true|false>] | [delete <id>] | [health] | [checkpoint <subcommand>] | [ingest <subcommand>]"
-allowed-tools: Read, mcp__system_spec_memory__memory_stats, mcp__system_spec_memory__memory_list, mcp__system_spec_memory__memory_search, mcp__system_spec_memory__memory_index_scan, mcp__system_spec_memory__memory_validate, mcp__system_spec_memory__memory_update, mcp__system_spec_memory__memory_delete, mcp__system_spec_memory__memory_bulk_delete, mcp__system_spec_memory__memory_retention_sweep, mcp__system_spec_memory__memory_learned_expire, mcp__system_spec_memory__memory_learned_clear, mcp__system_spec_memory__memory_health, mcp__system_spec_memory__checkpoint_create, mcp__system_spec_memory__checkpoint_restore, mcp__system_spec_memory__checkpoint_list, mcp__system_spec_memory__checkpoint_delete, mcp__system_spec_memory__memory_ingest_start, mcp__system_spec_memory__memory_ingest_status, mcp__system_spec_memory__memory_ingest_cancel
+description: "RETIRING — the indexed-continuity database is being decommissioned; this command no longer administers it."
+argument-hint: "(retiring — no active routes)"
+allowed-tools: Read, Glob
 ---
 
-# /memory:manage
+# /memory:manage — RETIRING
 
-Thin router for indexed-continuity database management.
+> **RETIRING.** This command administered the indexed-continuity database: stats, index scans,
+> cleanup, retention sweeps, learned triggers, ledger sweeps, tier and trigger edits, validation,
+> deletes, health, checkpoints and ingest. **That database is being decommissioned.** Every route
+> above operated on a store that is going away, so none of them is offered any more. Phase 003 of
+> the memory decommission deletes the server and this command with it.
 
-## 1. ROUTER CONTRACT
-
-Guardrails:
-- Never query the database with Bash or raw `sqlite3`.
-- All database access goes through the allowed MCP tools.
-- Do not fall back to raw SQL when MCP fails; report the MCP error and operator fallback guidance.
-- Protected tiers require the confirmation gates described in the presentation asset.
-- Learned-trigger expiry and ledger sweeps default to dry-run. Mutation requires an explicit apply/confirmation gate and must report matched/deleted counts for every touched ledger.
-- This is a direct-dispatch command with no workflow YAML by design; do not create or modify workflow YAML from this command.
+The file is retained only because command routing may still reference it. Do not restore database
+administration behavior from it.
 
 ---
 
-## 2. OWNED ASSETS
+## 1. WHAT CHANGED
 
-| Purpose | Asset |
-|---------|-------|
-| Presentation | `.opencode/commands/memory/assets/manage-presentation.txt` |
+Retrieval and continuity no longer run through a database, so there is no lifecycle left to manage.
 
-This is a direct-dispatch command: it routes straight to the memory MCP tools and owns no workflow YAML by design.
-
-Before rendering any dashboard, confirmation prompt, or result block, read the presentation asset and follow it as the display source of truth.
-
----
-
-## 3. MODE ROUTING
-
-Default mode is `stats` when `$ARGUMENTS` is empty.
-
-Recognized modes:
-- `stats`
-- `scan [--force]`
-- `cleanup`
-- `retention-sweep [--dry-run]`
-- `learned-expire [--dry-run]`
-- `learned-clear`
-- `ledger-sweep [--dry-run] [--apply]`
-- `bulk-delete <tier> [--older-than <days>] [--folder <spec>]`
-- `tier <id> <tier>`
-- `triggers <id>`
-- `validate <id> <true|false>`
-- `delete <id>`
-- `health`
-- `checkpoint create|restore|list|delete <name>`
-- `ingest start|status|cancel ...`
-
-On an unknown mode, return `STATUS=FAIL ERROR="Unknown mode: <mode>"` and list the valid modes.
+| Retired here | Where the work lives now |
+|---|---|
+| `stats`, `health`, `validate` | `/doctor memory` — diagnoses the generated trigger index and the ripgrep conventions: index present, lookup runs, recipes resolve. |
+| `scan` (index refresh) | `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` — regenerates the trigger index from document frontmatter in one local pass. This is the trigger-index maintenance path. |
+| `cleanup`, `retention-sweep`, `bulk-delete`, `delete` | Nothing. There are no stored records to age out or delete. Packet documents are the record, and they are managed as files. |
+| `learned-expire`, `learned-clear` | Nothing. Learned triggers were a database tier. `trigger_phrases` is now an author-controlled frontmatter field, edited in the document. |
+| `tier`, `triggers` | Edit the document's `trigger_phrases` frontmatter directly, then rerun the generator above. |
+| `checkpoint create/restore/list/delete` | Git. The packet documents are versioned files. |
+| `ingest start/status/cancel` | Nothing. There is no corpus ingestion step; the generator reads frontmatter directly. |
+| `ledger-sweep` | Nothing. The feedback and audit ledgers lived in the same database. |
 
 ---
 
-## 4. EXECUTION TARGETS
+## 2. WHAT TO USE INSTEAD
 
-Each recognized mode dispatches to the memory MCP tools below and applies the listed confirmation gate:
-
-| Mode | Primary Tooling | Confirmation |
-| --- | --- | --- |
-| `stats` | `memory_stats` plus `memory_list` | No |
-| `scan` | `memory_index_scan` | Yes |
-| `cleanup` | `memory_list`, `checkpoint_create`, `memory_delete` | Yes |
-| `retention-sweep` | `memory_retention_sweep` | Yes for mutating sweep |
-| `learned-expire` | `memory_learned_expire` | Yes for mutating expiry |
-| `learned-clear` | `memory_learned_clear` | Yes |
-| `ledger-sweep` | Feedback/audit ledger sweep entry points | Yes for `--apply`; default is dry-run |
-| `bulk-delete` | `memory_bulk_delete` | Yes |
-| `tier` | `memory_update` | No |
-| `triggers` | `memory_update` | User saves explicitly |
-| `validate` | `memory_validate` | No |
-| `delete` | `memory_delete` | Yes |
-| `health` | `memory_health` | No |
-| `checkpoint` | checkpoint tools | Restore/delete require confirmation |
-| `ingest` | ingest tools | Cancel requires explicit job id |
+| Need | Command |
+|---|---|
+| Find a phrase in spec docs or skill docs | `/memory:search` |
+| Match a prompt against author-declared trigger phrases | `/memory:search --triggers` |
+| Write session context into a packet's continuity surfaces | `/memory:save` |
+| Recover a session and get one next step | `/speckit:resume` |
+| Check that the trigger index and retrieval conventions are healthy | `/doctor memory` |
+| Regenerate the trigger index | `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` |
 
 ---
 
-## 5. PRESENTATION BOUNDARY
+## 3. CAPABILITY LOSS
 
-The following content lives only in `.opencode/commands/memory/assets/manage-presentation.txt`:
+Some of what the database offered has no replacement, and saying so is the point of this notice.
 
-- Stats, scan, cleanup, retention, learned-trigger maintenance, ledger sweeps, bulk-delete, tier, trigger, validation, delete, health, checkpoint, ingest, and error displays.
-- Confirmation prompts, protected-tier gates, dashboard layouts, result envelopes, and next-step text.
-- Valid-mode menu wording for unknown-mode recovery.
-- Stats dashboard render contract: `.opencode/commands/memory/assets/manage-presentation.txt` Section 2.
-
-The router must not invent visible wording for those surfaces; it only resolves mode, tooling, and confirmation requirements.
+Semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal
+traversal are **unsupported**. Retrieval is lexical: a phrase that is not written in the corpus is
+not found, and the honest answer is a clean no-hit rather than a nearest guess. Lineage questions
+are answered by a packet's `decision-record.md` and its explicit Markdown cross-links, not by a
+graph the tooling can traverse.
 
 ---
 
-## 6. WORKFLOW SUMMARY
+## 4. STATUS
 
-The router resolves one recognized mode (defaulting to `stats`), applies the mode's confirmation gate, and dispatches to the allowed memory MCP tools for the continuity-DB lifecycle — stats, indexing, cleanup, retention, learned-trigger maintenance, ledger sweeps, tier/trigger/validation edits, deletes, health, checkpoints, and ingest — rendering every user-facing string through the presentation asset. It is a direct-dispatch command with no workflow YAML by design.
+```text
+STATUS=OK ACTION=retiring
+```
 
-Embedding-status repair is intentionally NOT a `/memory:manage` mode: it is the direct `memory_ln` MCP maintenance tool (`memory_ln({ mode: "apply" })`), which reconciles stored embeddings against the active embedder shard inside one guarded transaction and runs dry-run by default. Run it directly when `memory_health` reports `degraded_needs_repair` — this command manages the continuity-DB lifecycle, not embedding reconciliation.
-
-Related commands: `/memory:search` (intent-aware context retrieval and analysis tools); `/memory:save` (save conversation context); `/speckit:resume` (session recovery and continuation). (`/memory:learn` is deprecated — the constitutional-memory layer was retired.)
+This command performs no database access, holds no mutating tool grants, and writes nothing.
+It is deleted in phase 003 of the memory decommission.

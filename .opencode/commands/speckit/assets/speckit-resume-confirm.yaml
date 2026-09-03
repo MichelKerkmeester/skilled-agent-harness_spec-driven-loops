@@ -64,11 +64,11 @@ session_detection:
     tier_1b_ranked_candidates:
       method: "Enumerate candidate folders from both roots, normalize aliases, filter non-active folders, rank deterministically"
       fallback: "tier_2"
-    tier_2_semantic:
-      method: "memory_list({ limit: 3, sortBy: 'updated_at' })"
+    tier_2_recent_packets:
+      method: "glob {.opencode/,}specs/**/implementation-summary.md | filter active folders | sort by mtime | head -3"
       fallback: "tier_3"
     tier_3_triggers:
-      method: "memory_match_triggers({ prompt: 'resume work session context' })"
+      method: "node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- \"resume work session context\" (exit 0 = hits, 1 = clean no-hit, 2+ = error; a no-hit falls through, never guesses)"
       fallback: "tier_4"
     tier_4_recent_artifacts:
       method: "glob {.opencode/,}specs/**/{handover.md,implementation-summary.md,tasks.md} | filter active folders | sort by mtime | head -1"
@@ -85,10 +85,9 @@ session_detection:
 # CONTEXT LOADING
 # ─────────────────────────────────────────────────────────────────
 context_loading_priority:
-  # 026: session_bootstrap() is preferred over plain memory_context() for interrupted-session recovery
-  # It provides graph-aware context injection and keeps recovery on the canonical resume/bootstrap ladder
-  order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/checklist/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: session_bootstrap() or memory_context(mode: resume, profile: resume)", "Secondary: memory_search() with resume anchors"]
-  note: "Recover from the canonical packet first, then let the user choose whether MCP enrichment is needed"
+  # The canonical packet is the recovery ladder. Grep only fills a gap the packet named and did not answer.
+  order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/checklist/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
+  note: "Recover from the canonical packet first, then let the user choose whether a scoped ripgrep pass is needed"
 
 packet_graph_metadata:
   role: "secondary packet hint"
@@ -97,17 +96,20 @@ packet_graph_metadata:
 
 memory_loading:
   mode: interactive
-  behavior: "Check handover.md (<24h) first, then run session_bootstrap() or memory_context() in resume mode with profile=resume and only ask for extra memory when the recovery packet is still missing something important"
+  behavior: "Check handover.md (<24h) first, then walk the continuity ladder below, and only ask for extra context when the recovery packet is still missing something important"
   options:
     - { id: A, label: "Fast resume", description: "Just enough context to continue safely" }
     - { id: B, label: "Fill missing next step / blockers", description: "Target only the missing recovery gaps" }
     - { id: C, label: "Deep context", description: "Load up to 3 recent files for a fuller picture" }
-    - { id: D, label: "Artifacts only", description: "Use handover, _memory.continuity, and supporting spec docs without extra MCP context" }
-  mcp_integration:
-    tool: memory_context
-    note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters: { input: "resume previous work continue session", mode: "resume", profile: "resume", specFolder: "{spec_folder_path}", includeContent: true }
-    transport_fallback: "If the MCP tools are missing or erroring while the daemon is otherwise warm, use the daemon-backed CLI: node .opencode/bin/spec-memory.cjs memory_context --json '{\"input\":\"resume previous work\",\"mode\":\"resume\"}' --format json --timeout-ms 3000 --warm-only. Exit 75 = retryable backend unavailability; the file-based recovery ladder needs no MCP."
+    - { id: D, label: "Artifacts only", description: "Use handover, _memory.continuity, and supporting spec docs with no supplemental search" }
+  continuity_ladder:
+    note: "Read the packet's own files in order. No background service is involved."
+    order:
+      - "Read {spec_folder_path}/handover.md when present and recent"
+      - "Read the _memory.continuity frontmatter block in {spec_folder_path}/implementation-summary.md"
+      - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, resource-map.md"
+      - "Only for a still-missing named gap, run the context recipe from .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_folder_path} as the search root"
+    unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. Recovery is lexical and file-local; a miss is a clean no-hit reported as such, never an inferred session state."
 
 smart_memory_logic:
   objective: "Recover enough state to continue safely, then let the user choose whether to deepen context"
@@ -115,7 +117,7 @@ smart_memory_logic:
   sufficiency_rule: "Stop and present the resume brief once next safe action is known plus any two supporting essentials"
   gap_fill_order:
     - "If current phase or task is missing, inspect tasks.md/checklist.md/handover.md"
-    - "If next safe action is missing, use session_bootstrap() or memory_context(mode: resume, profile: resume) then targeted memory_search on next-steps/state"
+    - "If next safe action is missing, read `_memory.continuity`, then run the packet-scoped ripgrep context recipe on next-steps/state anchors"
     - "If blockers are missing, target blockers/summary"
     - "If a concrete starting point is missing, use tasks.md or implementation-summary.md before loading more memory"
     - "If ambiguity remains, show the uncertainty and ask the user which direction to investigate"
@@ -179,11 +181,11 @@ workflow:
     activities:
       - Check for handover.md in spec_folder (<24h old)
       - If recent handover exists, load and display contents
-      - Attempt session_bootstrap() or memory_context() with mode="resume" and profile="resume" for the resolved spec folder
+      - Walk the continuity ladder for the resolved spec folder: handover.md, then _memory.continuity, then the packet-first spec docs
       - Extract Resume Essentials (current phase/task, last confirmed action, next safe action, blockers, relevant artifact/file)
       - Present targeted depth options instead of raw file-loading choices
       - Present numbered options to user, wait for selection
-    context_priority: ["handover.md", "_memory.continuity", "supporting spec docs", "session_bootstrap()", "memory_context(mode: resume, profile: resume)", "memory_search() with resume anchors"]
+    context_priority: ["handover.md", "_memory.continuity", "supporting spec docs", "packet-scoped ripgrep context recipe", "packet-scoped ripgrep anchor recipe"]
     outputs: { handover_loaded: "true|false", primary_recovery_loaded: "true|false", selected_memory: user_choice, load_count: number }
     checkpoint:
       question: "Do you want more context, or is the resume brief already enough?"
@@ -192,23 +194,23 @@ workflow:
         - { label: "A) Fast resume", description: "Current resume brief is enough" }
         - { label: "B) Fill missing next step / blockers", description: "Target only the missing recovery gaps" }
         - { label: "C) Deep context", description: "Load up to 3 recent files for a fuller picture" }
-        - { label: "D) Artifacts only", description: "Continue with the canonical packet and no extra MCP context" }
+        - { label: "D) Artifacts only", description: "Continue with the canonical packet and no supplemental search" }
 
   step_3_load_memory:
     purpose: Fill specific recovery gaps instead of broad-loading memory by default
     activities:
       - If the user chose Fast resume, keep the current recovery packet and do not load more
-      - If the user chose Fill missing next step / blockers, run targeted anchored memory_search() only for those gaps
-      - If the user chose Deep context, use `session_bootstrap()`/`memory_context()` plus targeted `memory_search()` to enrich the canonical packet
-      - If the user chose Artifacts only, rely on handover, `_memory.continuity`, and supporting spec docs and skip supplemental MCP context
+      - If the user chose Fill missing next step / blockers, run the anchor recipe (retrieval-conventions.md section 2.4) only for those gaps
+      - If the user chose Deep context, run the packet-scoped context recipe plus the anchor recipe to enrich the canonical packet
+      - If the user chose Artifacts only, rely on handover, `_memory.continuity`, and supporting spec docs and skip supplemental search
       - Merge supplemental results with handover and primary recovery context
       - Extract Project State Snapshot (Phase, Active File, Last confirmed action, Next safe action, Blockers)
       - Parse and summarize combined context
-    mcp_tool:
-      name: memory_context
-      note: "Call directly - NEVER through Code Mode. Use it only after the canonical packet is still thin; use anchored memory_search() only when more detail is still needed."
-      parameters: { input: "resume previous work continue session", mode: "resume", profile: "resume", specFolder: "{detected_spec_folder}", includeContent: true }
-    outputs: { memory_loaded: true, context_source: "handover|continuity|spec_docs|memory_context|memory_search|combined", context_summary: extracted_context, resume_packet: "now|last|next|blockers|artifact" }
+    retrieval_recipe:
+      reference: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+      note: "Use it only after the canonical packet is still thin, scoped to {detected_spec_folder}. Exit 1 is a clean no-hit and is reported as such; exit 2 or higher is an error with stderr attached, never reported as no-hit."
+      command: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'resume previous work continue session' {detected_spec_folder}"
+    outputs: { memory_loaded: true, context_source: "handover|continuity|spec_docs|ripgrep_context|ripgrep_anchor|combined", context_summary: extracted_context, resume_packet: "now|last|next|blockers|artifact" }
     validation: context_loaded
 
   step_4_calculate_progress:
@@ -274,7 +276,7 @@ crash_recovery:
 error_recovery:
   no_active_session: "Report no session, suggest /speckit:complete"
   spec_folder_missing: "Report not found, ask user to specify or create"
-  memory_search_failed: { action: "Report that supplemental anchored recovery failed", fallback: "Offer to continue with the current /speckit:resume context or start fresh" }
+  retrieval_failed: { action: "Report that supplemental anchored recovery failed; a ripgrep exit of 2 or higher is an error with stderr, an exit of 1 is a clean no-hit", fallback: "Offer to continue with the current /speckit:resume context or start fresh" }
   stale_session_detected: "Present stale session options to user"
   user_cancels: "Acknowledge cancellation, exit gracefully"
   crash_detected: "Continue with the built-in resume recovery chain"

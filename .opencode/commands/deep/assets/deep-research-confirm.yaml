@@ -69,10 +69,17 @@ dry_run_control:
 context_loading:
   trigger: "At workflow START, before phase_init"
   purpose: "Load prior research context for the topic and buffer it until strategy.md exists"
-  mcp_integration:
-    tool: memory_context
-    note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters: { input: "{research_topic}", mode: "focused", intent: "understand", includeContent: true }
+  retrieval:
+    mechanism: "continuity-ladder-then-ripgrep"
+    note: "File reads only. Nothing here needs a running daemon, and every step is reproducible by hand."
+    ladder:
+      - "{spec_folder}/handover.md when present"
+      - "the _memory.continuity frontmatter block in {spec_folder}/implementation-summary.md"
+      - "the packet's canonical spec docs, spec.md and decision-record.md, for what the first two steps leave open"
+    free_text_recipe: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '{research_topic}' specs .opencode"
+    recipe_contract: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    exit_status: "0 is a hit set, 1 is a clean no-hit, 2 or higher is a failure that must be surfaced instead of reported as no-hit"
+    ranking: "Ripgrep does not rank. Order the hits caller-side with the tuple in retrieval-conventions.md section 5."
   when_to_skip: ["User says 'skip context' or 'fresh start'"]
   behavior:
     if_context_found: "Store full results as prior_context plus a concise prior_context_summary; inject after strategy.md is created."
@@ -103,7 +110,7 @@ agent_config:
   model: opus
   leaf_only: true
   tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
-  mcp_servers: [system-spec-memory]
+  mcp_servers: []
   tool_call_budget: { target: 8, max: 12 }
 
 # ─────────────────────────────────────────────────────────────────
@@ -1689,14 +1696,6 @@ workflow:
         command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
         critical_rule: "NEVER manually author files under retired memory/ paths (the runtime rejects them); use generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md"
 
-      step_index_memory:
-        action: "Index the routed canonical spec document with memory_save when immediate MCP visibility is required"
-        dry_run_boundary: "state-mutation"
-        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_index_memory","detail":"The routed canonical document would be indexed into memory.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-        mcp_tool: memory_save
-        invocation: 'memory_save({ filePath: "[routed-canonical-spec-doc-path]" })'
-        note: "Use the actual canonical spec-doc path returned by generate-context.js (decision-record.md, implementation-summary.md, or handover.md); memory_index_scan remains the bulk fallback"
-
       step_verify_save:
         action: "Verify canonical save routed content into the correct spec document"
         check: "Does {spec_folder}/implementation-summary.md, {spec_folder}/decision-record.md, or {spec_folder}/handover.md carry the new continuity update?"
@@ -1747,21 +1746,21 @@ error_recovery:
   agent_dispatch_timeout: "Retry once with reduced scope. If second timeout, mark as 'timeout' and show to user for decision."
   state_file_missing: "If JSONL missing, reconstruct from iteration files. If strategy missing, create minimal version."
   consecutive_failures: "After 3 consecutive errors, halt and present to user with options: Retry / Skip / Cancel."
-  memory_save_failure: "Preserve the research/ packet as backup. Inform user."
+  continuity_save_failure: "Preserve the research/ packet as backup. Inform user."
 
 # ─────────────────────────────────────────────────────────────────
 # RULES
 # ─────────────────────────────────────────────────────────────────
 rules:
   DRY_RUN_OVERRIDES:
-    - "When dry_run is true, dry_run_control overrides default dispatch, write, reducer, memory-save, and child-spawn requirements."
+    - "When dry_run is true, dry_run_control overrides default dispatch, write, reducer, continuity-save, and child-spawn requirements."
     - "Dry-run preview events are emitted to terminal output only and are not persisted."
   ALWAYS:
     - follow_workflow_phases_in_order
     - dispatch_deep_research_agent_per_iteration
     - check_convergence_before_each_iteration
     - write_all_state_to_files
-    - save_memory_context_after_synthesis
+    - write_continuity_after_synthesis
     - respect_max_iterations_cap
     - pause_at_approval_gates
     - present_clear_options_at_each_gate

@@ -131,7 +131,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
 
 5. Search for prior work (background):
-   - memory_context({ input: research_topic OR "deep-research", mode: "focused", includeContent: true })
+   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$RESEARCH_TOPIC" specs .opencode
+   - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
 6. ASK with SINGLE prompt (include only applicable questions):
@@ -251,15 +252,16 @@ Run an iterative loop for deep research: Initialize state under `{artifact_dir}`
 | `:confirm` | `/deep:research:confirm "topic"` | Multi-gate review at setup, iteration, and synthesis |
 | (default) | `/deep:research "topic"` | Ask user to choose mode during setup |
 
-### Memory Integration Before Starting
+### Context Loading Before Starting
 
-- `memory_context({ input: topic, intent: "understand" })` -- Load prior research
+- Read the continuity ladder for the bound packet: `handover.md`, then the `_memory.continuity` block in `implementation-summary.md`, then `spec.md` and `decision-record.md`
+- Widen with the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` when the packet docs leave the topic open
 - Inject results into strategy.md "Known Context" section
 
 ### Code Context Bootstrap
 
 - Query: 2-5 word concept descriptions related to the research topic
-- Inject discovered code patterns into strategy.md "Known Context" section alongside memory findings
+- Inject discovered code patterns into strategy.md "Known Context" section alongside the continuity-ladder findings
 
 ## 3. Results Display
 

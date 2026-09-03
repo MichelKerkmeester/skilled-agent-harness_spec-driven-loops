@@ -1,17 +1,17 @@
 ---
 title: "Memory Commands"
-description: "Slash commands for managing the Spec Kit Memory system including search, session recovery, database operations, and async ingestion. (The constitutional-memory command /memory:learn is deprecated — that layer was retired.)"
+description: "Slash commands for packet continuity: lexical retrieval over spec docs and skill docs, and the continuity writer. (/memory:manage and /memory:learn are retiring — the database they administered is being removed.)"
 trigger_phrases:
   - "memory command"
   - "memory save"
   - "memory search"
-  - "memory learn"
-  - "memory manage"
+  - "continuity writer command"
+  - "trigger index lookup command"
 ---
 
 # Memory Commands
 
-> Slash commands for managing the Spec Kit Memory system across sessions.
+> Slash commands for preserving and retrieving packet continuity across sessions.
 
 ---
 
@@ -35,15 +35,22 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The `memory` command group provides operations for the Spec Kit Memory MCP system. These commands cover context preservation, unified knowledge retrieval and analysis, and database maintenance plus async ingest. Session recovery now lives under `/speckit:resume`. `/memory:learn` is deprecated — the constitutional-memory layer (an always-surface, search-boosted rule tier) was retired; the former rule files were deleted from the repository.
+The `memory` command group covers packet continuity: writing session context into a packet's own documents, and finding text in spec docs and skill docs. Session recovery lives under `/speckit:resume`.
 
-All commands interact with the memory MCP server tools (`system_spec_memory_*`). They follow a gate-based argument validation pattern: if required arguments are missing, the command prompts the user before proceeding.
+Two commands are live. `/memory:save` is the writer front door and `/memory:search` is the retrieval front door. `/memory:manage` and `/memory:learn` are retiring: the indexed-continuity database they administered is being decommissioned, and phase 003 of the memory decommission deletes them.
 
-The memory backend is dual-stack: when the MCP tools are missing from the runtime or the transport is down while the daemon is still warm, the daemon-backed `spec-memory` CLI (`node .opencode/bin/spec-memory.cjs <tool> --json '{...}' --format json --warm-only`) reaches the same daemon and tool surface. Warm-only invocations never start a daemon; exit 75 means the backend is unavailable (retry after MCP reconnect or daemon prewarm).
+Retrieval runs on two local mechanisms and no background service:
+
+- **The generated trigger index**, read by `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`. It matches a prompt against author-declared `trigger_phrases`.
+- **The ripgrep recipes** in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`, which find a phrase anywhere in the corpus with no index at all.
+
+Both are lexical. A phrase that is not written in the corpus is not found, and the commands say so rather than returning a nearest guess. Section 6 lists what that costs.
+
+Writing goes through one script: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`. It keeps atomic same-directory update and lock semantics, needs no daemon, and has no indexing handoff after it. Ripgrep cannot write, so no retrieval recipe substitutes for it.
 
 ### Canonical Section Order
 
-All 4 memory commands keep routing prose above presentation appendices: purpose or assets first, then router/workflow contract, hard rules, presentation boundary, and related commands.
+All memory commands keep routing prose above presentation appendices: purpose or assets first, then router/workflow contract, hard rules, presentation boundary, and related commands.
 
 Visible dashboards, prompts, examples, and errors live in each command's presentation asset so routers stay thin.
 
@@ -56,43 +63,29 @@ Visible dashboards, prompts, examples, and errors live in each command's present
 
 | Command | Invocation | Description |
 |---------|------------|-------------|
-| **search** | `/memory:search <query> [--intent <type>\|--intent=<type>]` or `/memory:search <subcommand>` | Unified retrieval and analysis: intent-aware search, epistemic baselines, causal graph, ablation, dashboard |
+| **search** | `/memory:search <query> [--packet <specFolder>] [--triggers] [--paths] [--count]` | Lexical retrieval: trigger-index lookup and the ripgrep recipes over spec docs and skill docs |
+| **save** | `/memory:save <spec-folder>` | Write session context into the packet's continuity surfaces |
+| **manage** | `/memory:manage` | RETIRING — the indexed-continuity database is being decommissioned; no active routes |
 | **learn** | `/memory:learn` | DEPRECATED — the constitutional-memory layer was retired; no active routes |
-| **manage** | `/memory:manage <subcommand>` | Database operations (scan, cleanup, tier, health, checkpoint, ingest) |
-| **save** | `/memory:save <spec-folder>` | Update packet continuity with semantic indexing |
 
-### Intent Types for Search Command (Retrieval Mode)
+### Search Lanes
 
-| Intent | Trigger Keywords | Weight Focus |
-|--------|-----------------|--------------|
-| `add_feature` | implement, add new, create new | Implementation, architecture, patterns |
-| `fix_bug` | bug, error, fix, broken, debug | Decisions, implementation, errors |
-| `refactor` | refactor, restructure, optimize | Architecture, patterns, decisions |
-| `security_audit` | security, vulnerability, auth | Decisions, implementation, security |
-| `understand` | how, why, what, explain | Architecture, decisions, overview |
-| `find_spec` | spec, specification, find spec | Spec docs, architecture, overview |
-| `find_decision` | decision, rationale, why did we | Decisions, rationale, context |
+The two lanes answer different questions. Prompt-to-declared-phrase matching is a keyed lookup over an author-controlled field; grepping prose is a scan. Using the scan for trigger matching loses precision, and using the index for free text loses everything the author never declared.
 
-### Learn Subcommands (DEPRECATED)
+| Lane | Flag | Mechanism |
+|------|------|-----------|
+| Trigger index | `--triggers` | `lookup-trigger-index.mjs` over the generated index |
+| Free-text evidence | default | Structured JSONL recipe, `retrieval-conventions.md` Section 2.1 |
+| Which files mention it | `--paths` | Path-only recipe, Section 2.2 |
+| How many times | `--count` | Count recipe, Section 2.3 |
 
-`/memory:learn` is deprecated. The constitutional-memory layer (the always-surface, search-boosted
-rule tier it managed) was retired and removed from the code, so its create/list/edit/remove/budget
-routes no longer exist. The former rule files were deleted from the repository. Use
-`/memory:save` to preserve scoped context instead.
+Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` replaces the search roots with that packet.
 
-### Search Subcommands
+### Retiring Subcommands
 
-| Subcommand | Invocation | Description |
-|------------|------------|-------------|
-| preflight | `/memory:search preflight <specFolder> <taskId>` | Capture epistemic baseline before task |
-| postflight | `/memory:search postflight <specFolder> <taskId>` | Calculate learning delta after task |
-| causal | `/memory:search causal <memoryId>` | Trace causal chain for a memory |
-| link | `/memory:search link <source> <target> <relation>` | Create causal relationship |
-| unlink | `/memory:search unlink <edgeId>` | Remove causal relationship |
-| causal-stats | `/memory:search causal-stats` | View causal graph statistics |
-| ablation | `/memory:search ablation` | Run channel ablation study |
-| dashboard | `/memory:search dashboard` | View reporting dashboard |
-| history | `/memory:search history <specFolder>` | View learning history and LI trends |
+`/memory:manage` no longer accepts subcommands. Its stats, scan, cleanup, retention, learned-trigger, ledger, tier, trigger, validation, delete, health, checkpoint and ingest routes all operated on the database being removed. See Section 5 for where each one went.
+
+`/memory:learn` is deprecated. The constitutional-memory layer it managed — an always-surface, search-boosted rule tier — was retired and removed from the code, and the former rule files were deleted from the repository. Use `/memory:save` to preserve scoped context instead.
 
 <!-- /ANCHOR:commands -->
 
@@ -103,11 +96,11 @@ routes no longer exist. The former rule files were deleted from the repository. 
 
 ```text
 memory/
-├── README.txt      # This file, 4-command index and coverage matrix
-├── search.md       # /memory:search - Unified retrieval + analysis (intent-aware search, epistemic, causal, eval)
-├── learn.md        # /memory:learn - DEPRECATED (constitutional-memory layer retired)
-├── manage.md       # /memory:manage - Database management and ingest
-└── save.md         # /memory:save - Context saving
+├── README.txt      # This file, command index and capability map
+├── search.md       # /memory:search - Trigger-index lookup + ripgrep recipes
+├── save.md         # /memory:save - Continuity writer front door
+├── manage.md       # /memory:manage - RETIRING (database being decommissioned)
+└── learn.md        # /memory:learn - DEPRECATED (constitutional-memory layer retired)
 ```
 
 The `assets/` folder contains the presentation contracts for memory commands. Workflows are defined inline within each command file until a separate workflow asset is introduced.
@@ -123,11 +116,20 @@ The `assets/` folder contains the presentation contracts for memory commands. Wo
 # Save context to a spec folder
 /memory:save specs/007-feature-name
 
-# Retrieve context with auto-detected intent
+# Find a phrase anywhere in spec docs and skill docs
 /memory:search "how does the auth system work"
 
-# Retrieve context with explicit intent
-/memory:search "auth flow" --intent fix_bug
+# Scope the search to one packet
+/memory:search "auth flow" --packet specs/007-feature-name
+
+# List which files mention a phrase, without the matching lines
+/memory:search "trigger index generator" --paths
+
+# Count matches per file
+/memory:search "retrieval conventions" --count
+
+# Match a prompt against author-declared trigger phrases
+/memory:search "resume work session context" --triggers
 
 # Recover from a crashed or interrupted session
 /speckit:resume
@@ -135,51 +137,28 @@ The `assets/` folder contains the presentation contracts for memory commands. Wo
 # Auto-recovery mode
 /speckit:resume :auto
 
-# View database stats
-/memory:manage stats
-
-# Scan for new or updated canonical spec documents
-/memory:manage scan
-
-# Force re-index all files
-/memory:manage scan --force
-
-# Check system health
-/memory:manage health
-
-# View learning history for a spec folder
-/memory:search history specs/007-auth
-
-# Capture epistemic baseline before a task
-/memory:search preflight specs/007-auth T1
-
-# Calculate learning delta after a task
-/memory:search postflight specs/007-auth T1
-
-# Trace causal chain for a memory
-/memory:search causal 42
-
-# Create causal link between memories
-/memory:search link 42 43 caused
-
-# View causal graph statistics
-/memory:search causal-stats
-
-# Run channel ablation study
-/memory:search ablation
-
-# View reporting dashboard
-/memory:search dashboard
-
-# Start async ingestion of multiple files
-/memory:manage ingest start /path/to/file1.md /path/to/file2.md
-
-# Check ingestion job progress
-/memory:manage ingest status abc-123
-
-# Cancel a running ingestion job
-/memory:manage ingest cancel abc-123
+# Check that the trigger index and the retrieval conventions are healthy
+/doctor memory
 ```
+
+Both retrieval mechanisms are runnable by hand, which is the point — you can check exactly what the command saw:
+
+```bash
+# The trigger-index lane
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+  --json -- "resume work session context"
+
+# The free-text lane, path-only recipe, scoped to one packet
+rg --no-config --fixed-strings --ignore-case \
+  --files-with-matches --max-count 1 \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'trigger index generator' specs/007-feature-name
+
+# Regenerate the trigger index after editing a document's trigger_phrases
+node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+```
+
+Copy the recipe flags literally. `--no-config` stops `RIPGREP_CONFIG_PATH` from injecting arguments you never wrote, the two exclusion globs keep archived packets and vendored trees out of the result set, and `--` makes a phrase beginning with a hyphen a pattern rather than a parse error.
 
 <!-- /ANCHOR:usage-examples -->
 
@@ -188,25 +167,19 @@ The `assets/` folder contains the presentation contracts for memory commands. Wo
 <!-- ANCHOR:manage-subcommands -->
 ## 5. MANAGE SUBCOMMANDS
 
-The `/memory:manage` command accepts these subcommands:
+`/memory:manage` is retiring and accepts no subcommands. Each former route is listed here with its successor so an operator who remembers the old surface lands somewhere real.
 
-| Subcommand | Arguments | Description |
-|------------|-----------|-------------|
-| `stats` | (none) | Show memory database statistics |
-| `scan` | `[--force]` | Scan workspace for new/changed continuity artifacts and canonical spec docs |
-| `cleanup` | (none) | Remove orphaned or invalid entries |
-| `retention-sweep` | `[--dry-run]` | Sweep expired records past retention policy; dry-run by default, mutation requires confirmation |
-| `learned-expire` | `[--dry-run]` | Expire aged learned-trigger terms; dry-run by default, mutation requires confirmation |
-| `learned-clear` | (none) | Clear all learned triggers from every memory row; requires confirmation |
-| `ledger-sweep` | `[--dry-run] [--apply]` | Age-based sweep across the seven bounded feedback/audit ledgers; dry-run by default, `--apply` requires confirmation |
-| `bulk-delete` | `<tier> [--older-than <days>] [--folder <spec>]` | Bulk delete by tier |
-| `tier` | `<id> <tier>` | Change importance tier of a memory |
-| `triggers` | `<id>` | View trigger phrases for a memory |
-| `validate` | `<id> <true\|false>` | Record validation feedback for a memory |
-| `delete` | `<id>` | Delete a specific memory |
-| `health` | (none) | Check memory system health status |
-| `checkpoint` | `create\|list\|restore\|delete` | Manage named checkpoints of memory state |
-| `ingest` | `start\|status\|cancel` | Async bulk ingestion of specific files |
+| Former subcommand | Where the work lives now |
+|------------|-----------|
+| `stats`, `health`, `validate` | `/doctor memory` — diagnoses the trigger index and the retrieval conventions: index present, lookup runs, recipes resolve |
+| `scan [--force]` | `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` — regenerates the index from document frontmatter in one local pass. This is the trigger-index maintenance path |
+| `cleanup`, `retention-sweep`, `bulk-delete`, `delete` | Nothing. There are no stored records to age out or delete; packet documents are the record and are managed as files |
+| `learned-expire`, `learned-clear` | Nothing. Learned triggers were a database tier. `trigger_phrases` is an author-controlled frontmatter field, edited in the document |
+| `tier`, `triggers` | Edit the document's `trigger_phrases` frontmatter, then rerun the generator |
+| `checkpoint create/list/restore/delete` | Git. The packet documents are versioned files |
+| `ingest start/status/cancel` | Nothing. There is no ingestion step; the generator reads frontmatter directly |
+| `ledger-sweep` | Nothing. The feedback and audit ledgers lived in the same database |
+
 <!-- /ANCHOR:manage-subcommands -->
 
 ---
@@ -214,68 +187,44 @@ The `/memory:manage` command accepts these subcommands:
 <!-- ANCHOR:tool-coverage -->
 ## 6. TOOL COVERAGE MATRIX
 
-Primary MCP tools mapped to their command home:
+The retired continuity server exposed 41 tools across seven layers. They are replaced by two local mechanisms and one writer, and several capabilities are not replaced at all. This table maps capability to owner, because an honest map is shorter than the inventory it replaces.
 
+| Capability | Owner now | Command |
+|------------|-----------|---------|
+| Prompt-to-declared-phrase matching | Generated trigger index, read by `lookup-trigger-index.mjs` | `/memory:search --triggers` |
+| Free-text search over spec docs and skill docs | Ripgrep recipes, `retrieval-conventions.md` Section 2 | `/memory:search` |
+| Path-only and count retrieval | Ripgrep recipes, Sections 2.2 and 2.3 | `/memory:search --paths`, `--count` |
+| Context and anchor evidence | Ripgrep recipe, Section 2.4, plus the caller-side ranking tuple in Section 5 | `/memory:search` |
+| Resume and context assembly | The continuity ladder: `handover.md`, then `_memory.continuity`, then packet-first spec docs and bounded anchors. No session inference | `/speckit:resume` |
+| Continuity frontmatter writing | `generate-context.js`, keeping atomic same-directory update and lock semantics | `/memory:save` |
+| Index maintenance | `generate-trigger-index.mjs` | (script) |
+| Index and convention health | Trigger-index and retrieval-convention diagnostics | `/doctor memory` |
+| Embedder and model-server status | The skill advisor, which owns the shared model server | `/doctor embeddings` |
 
-| # | Tool | Layer | Primary Command |
-|---|------|-------|-----------------|
-| 1 | `memory_context` | L1 | `/memory:search` |
-| 2 | `memory_quick_search` | L2 | `/memory:search` |
-| 3 | `memory_search` | L2 | `/memory:search` |
-| 4 | `memory_match_triggers` | L2 | `/memory:search` |
-| 5 | `memory_save` | L2 | `/memory:save` |
-| 6 | `memory_list` | L3 | `/memory:manage` |
-| 7 | `memory_stats` | L3 | `/memory:manage` |
-| 8 | `memory_health` | L3 | `/memory:manage` |
-| 9 | `memory_delete` | L4 | `/memory:manage` |
-| 10 | `memory_update` | L4 | `/memory:manage` |
-| 11 | `memory_validate` | L4 | `/memory:manage` |
-| 12 | `memory_bulk_delete` | L4 | `/memory:manage` |
-| 13 | `memory_retention_sweep` | L4 | `/memory:manage` |
-| 14 | `memory_learned_expire` | L4 | `/memory:manage` |
-| 15 | `memory_learned_clear` | L4 | `/memory:manage` |
-| 16 | `memory_embedding_reconcile` | L4 | MCP direct (maintenance) |
-| 17 | `checkpoint_create` | L5 | `/memory:manage` |
-| 18 | `checkpoint_list` | L5 | `/memory:manage` |
-| 19 | `checkpoint_restore` | L5 | `/memory:manage` |
-| 20 | `checkpoint_delete` | L5 | `/memory:manage` |
-| 21 | `task_preflight` | L6 | `/memory:search` |
-| 22 | `task_postflight` | L6 | `/memory:search` |
-| 23 | `memory_drift_why` | L6 | `/memory:search` |
-| 24 | `memory_causal_link` | L6 | `/memory:search` |
-| 25 | `memory_causal_stats` | L6 | `/memory:search` |
-| 26 | `memory_causal_unlink` | L6 | `/memory:search` |
-| 27 | `eval_run_ablation` | L6 | `/memory:search` |
-| 28 | `eval_reporting_dashboard` | L6 | `/memory:search` |
-| 29 | `memory_index_scan` | L7 | `/memory:manage` |
-| 30 | `memory_index_scan_status` | L7 | MCP direct (maintenance) |
-| 31 | `memory_index_scan_cancel` | L7 | MCP direct (maintenance) |
-| 32 | `memory_get_learning_history` | L7 | `/memory:search` |
-| 33 | `memory_ingest_start` | L7 | `/memory:manage ingest` |
-| 34 | `memory_ingest_status` | L7 | `/memory:manage ingest` |
-| 35 | `memory_ingest_cancel` | L7 | `/memory:manage ingest` |
-| 36 | `embedder_list` | L7 | MCP direct (maintenance) |
-| 37 | `embedder_set` | L7 | MCP direct (maintenance) |
-| 38 | `embedder_status` | L7 | `/doctor embeddings` |
-| 39 | `session_bootstrap` | L1 | `/speckit:resume` |
-| 40 | `session_health` | L3 | `/memory:manage` |
-| 41 | `session_resume` | L1 | MCP direct (session recovery) |
+### Declared Losses
+
+These had no replacement, and no recipe approximates one. The commands report them as unsupported rather than degrading into a guess.
+
+| Capability | Boundary |
+|------------|----------|
+| Semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup | Deliberate lexical-only loss. A phrase that is not written in the corpus is not found, and a miss is a clean no-hit |
+| Causal graph traversal, lineage and drift analysis | Grep cannot traverse or statefully update graph edges. Explicit Markdown cross-links and a packet's `decision-record.md` are what remain |
+| Epistemic baselines and learning history | Removed with the database. A packet's `tasks.md` and `implementation-summary.md` are the record |
+| Channel ablations and eval dashboards | Removed with the database. There are no stored eval snapshots and no channels to ablate |
+| Resource maps as a dynamic graph | A static generated path catalog, not a graph |
 
 ### Coverage by Command
 
-| Command | Tools Owned | Helper Tools | Layers |
-|---------|-------------|--------------|--------|
-| `/memory:search` | 15 | (none) | L1, L2, L6, L7 |
-| `/memory:save` | 1 | 3 (index_scan, stats, update) | L2 |
-| `/memory:manage` | 23 | 1 (search) | L3, L4, L5, L7 |
-| `/memory:learn` (deprecated) | 0 | (none) | (none) |
-| `/doctor embeddings` | 1 | (none) | L7 |
-| MCP direct maintenance | 5 | (none) | L4, L7 |
-| `/speckit:resume` | 1 | uses search/manage tools | L1 |
-| MCP direct session recovery | 1 | (none) | L1 |
-| **Total** | **45 listed** | | **L1-L7** |
+| Command | Mechanisms | Writes |
+|---------|-------------|--------|
+| `/memory:search` | Trigger index + 4 ripgrep recipes | none (read-only) |
+| `/memory:save` | `generate-context.js` | continuity frontmatter, `description.json`, `graph-metadata.json` |
+| `/memory:manage` (retiring) | none | none |
+| `/memory:learn` (deprecated) | none | none |
+| `/speckit:resume` | continuity ladder + scoped ripgrep recipe | none |
+| `/doctor memory` | index probe + recipe probe | packet-scratch report only |
 
-> **Note:** Commands may include helper tools in their `allowed-tools` frontmatter beyond their primary ownership. Helper tools are borrowed from other command scopes for operational needs (e.g., `/memory:save` uses `memory_index_scan` from `/memory:manage` for post-save indexing). The coverage matrix above shows primary ownership. Each command file's `allowed-tools` shows the full operational set.
+> **Note:** Every mechanism above is a local script or a `rg` invocation the operator can run by hand. Nothing in this command group depends on a background service, so a stopped daemon is not a degraded session.
 
 <!-- /ANCHOR:tool-coverage -->
 
@@ -286,15 +235,19 @@ Primary MCP tools mapped to their command home:
 
 **Q: What is the difference between `/memory:search` and `/speckit:resume`?**
 
-`/memory:search` retrieves and searches indexed knowledge using a query or subcommand. `/speckit:resume` handles session continuation and interrupted-session recovery: it reconstructs packet context from `handover.md`, then `_memory.continuity`, then canonical spec docs before deeper memory tools engage. Use `search` for knowledge lookup and `resume` when you need to continue prior work.
+`/memory:search` finds text: it matches a prompt against declared trigger phrases, or runs one ripgrep recipe over spec docs and skill docs. `/speckit:resume` handles session continuation and interrupted-session recovery: it walks the continuity ladder — `handover.md`, then `_memory.continuity`, then canonical spec docs — and falls back to a packet-scoped ripgrep recipe only for a gap the packet named and did not answer. Use `search` for lookup and `resume` when you need to continue prior work.
 
-**Q: Can I still use `/memory:learn` to create constitutional memories?**
+**Q: Why did `/memory:search` return nothing for a query I know is covered?**
 
-No. `/memory:learn` is deprecated. The constitutional-memory layer — an always-surface, search-boosted rule tier — was retired and removed from the code, so there are no constitutional memories to create, list, or budget. The former rule files were deleted from the repository. Use `/memory:save` to preserve session context, implementation decisions, and research findings tied to a specific spec folder.
+Retrieval is lexical. It matches the text you typed, not the meaning. The retired backend could match a paraphrase; this one cannot, and it reports a miss as a miss rather than returning something adjacent. Rephrase using the wording that actually appears in the documents, or widen the search roots.
 
-**Q: What happens if I run `/memory:manage scan --force` on a large workspace?**
+**Q: Can I still use `/memory:manage` or `/memory:learn`?**
 
-The scan re-indexes all previously indexed continuity artifacts and canonical spec docs regardless of whether their content has changed. This is slower than incremental scanning but useful after bulk renames or moves. For routine maintenance, omit `--force` to skip files whose content hash is unchanged.
+No. `/memory:manage` administered the indexed-continuity database, which is being decommissioned; Section 5 maps each former subcommand to its successor. `/memory:learn` managed the constitutional-memory rule tier, which was retired and removed from the code. Use `/memory:save` to preserve context and `/memory:search` to find it.
+
+**Q: How do I refresh retrieval after editing a document?**
+
+For the free-text lane, you do not: `rg` reads the files directly, so an edit is visible immediately. For the trigger lane, rerun `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` after changing a document's `trigger_phrases`.
 
 <!-- /ANCHOR:faq -->
 
@@ -305,15 +258,14 @@ The scan re-indexes all previously indexed continuity artifacts and canonical sp
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
-| "No results" from knowledge | Query too narrow or no matching memories | Broaden query or try different intent |
-| Save fails | Spec folder path invalid or missing | Verify path exists under `specs/` |
-| Resume finds no session | No saved context from prior session | Use `/speckit:plan` to start fresh or `/memory:search` with a manual query |
-| Manage scan finds 0 files | No continuity sources found in expected directories | Check canonical spec docs under `specs/` |
-| Search ablation fails | `SPECKIT_ABLATION=true` not set | Set environment variable and retry |
-| Ablation warns about missing IDs | `groundTruthQueryIds` do not exist in the active static dataset | Fix the requested IDs or rerun `scripts/evals/map-ground-truth-ids.ts` after DB rebuild/swap |
-| Ablation shows `Token budget overflow` with fewer than `recallK` candidates | Candidate truncation made Recall@K unreliable | Treat the run as investigation-only until truncation is fixed |
-| Ingest job not found | Invalid or expired job ID | Start a new job with `/memory:manage ingest start` |
-| History returns empty | No PREFLIGHT/POSTFLIGHT records | Use `/memory:search preflight` before tasks, view with `/memory:search history` |
+| "No match" from search | The phrase is not written in the searched roots | Rephrase with wording that appears in the documents, or widen the roots. Exit `1` means the command worked and found nothing |
+| Search reports an error with stderr | Ripgrep exited `2` or higher: a search root that does not exist, or a malformed pattern | Read the stderr. Exit `1` and exit `2` both produce empty stdout, so the exit status is the only discriminator |
+| Trigger lookup fails with an error | The generated index is missing or unreadable | Run `/doctor memory`, then regenerate with `generate-trigger-index.mjs` |
+| A new document never matches a trigger prompt | Its `trigger_phrases` are absent, generic, or the index predates the edit | Add distinctive phrases per `retrieval-conventions.md` Section 8, then regenerate the index |
+| Results look filtered in a way you did not ask for | A recipe was run without `--no-config`, or with the globs reordered | Copy the recipe literally: positive glob first, exclusions last, `--no-config` always |
+| A recipe returns an unexpected output shape | Two output-mode flags were combined; the last one wins silently | Use exactly one output mode per invocation |
+| Save fails | Spec folder path invalid or missing | Verify the path exists under `specs/` |
+| Resume finds no session | No saved context from a prior session | Use `/speckit:plan` to start fresh, or `/memory:search` with a manual query |
 
 <!-- /ANCHOR:troubleshooting -->
 
@@ -325,9 +277,10 @@ The scan re-indexes all previously indexed continuity artifacts and canonical sp
 | Document | Purpose |
 |----------|---------|
 | [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
-| [system-spec-kit SKILL.md](../../skills/system-spec-kit/SKILL.md) | Memory system architecture and spec folder workflow |
-| [Spec Kit Memory MCP](../../skills/system-spec-kit/mcp-server/) | MCP server implementation for memory operations |
-| [Tool Schemas](../../skills/system-spec-kit/mcp-server/tool-schemas.ts) | Canonical 41-tool inventory and property definitions |
-| [Tool Input Schemas](../../skills/system-spec-kit/mcp-server/schemas/tool-input-schemas.ts) | Zod validation schemas and ALLOWED_PARAMETERS |
+| [system-spec-kit SKILL.md](../../skills/system-spec-kit/SKILL.md) | Spec folder workflow and validation entry point |
+| [Ripgrep Retrieval Conventions](../../skills/system-spec-kit/references/retrieval/retrieval-conventions.md) | The recipes, scoping rules, exit-status mapping and ranking tuple |
+| [Trigger index lookup](../../skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs) | The keyed Gate 1 lane over the generated index |
+| [Trigger index generator](../../skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs) | Regenerates the index from document frontmatter |
+| [Continuity writer](../../skills/system-spec-kit/scripts/dist/memory/generate-context.js) | The named packet-local writer for continuity frontmatter |
 
 <!-- /ANCHOR:related-documents -->

@@ -165,10 +165,13 @@ packet_graph_metadata:
 # ─────────────────────────────────────────────────────────────────
 context_loading:
   trigger: "At workflow START, before Step 1"
-  mcp_integration:
-    tool: memory_search
-    note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters: { query: "planning context for {spec_folder_name}", specFolder: "{spec_folder_path}", anchors: ['summary', 'decisions', 'state', 'planning'] }
+  retrieval_recipe:
+    reference: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    command: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'planning context for {spec_folder_name}' {spec_folder_path}"
+    anchors: ['summary', 'decisions', 'state', 'planning']
+    anchor_command: "rg --no-config --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '<!-- ANCHOR:<id> -->' {spec_folder_path}"
+    exit_status: "0 = matches, 1 = clean no-hit reported as an empty result, 2 or higher = error with stderr attached and never reported as no-hit"
+    unsupported: "Lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available; an unmatched phrase is a no-hit, not a weaker guess."
   command_reference: "/memory:search"
   when_to_skip: ["New spec folder (no prior context)", "User says 'skip context' or 'fresh start'"]
   behavior: { if_found: "Surface relevant decisions/state before proceeding", if_none: "Proceed to Step 1" }
@@ -356,7 +359,7 @@ circuit_breaker:
   enabled: true
   thresholds: { failures: 3, recovery_s: 60, success_to_close: 1 }
   states: { CLOSED: normal_operation, OPEN: workflow_halted, HALF_OPEN: single_retry }
-  tracked_errors: [task_dispatch, file_write, agent_routing, memory_save]
+  tracked_errors: [task_dispatch, file_write, agent_routing, continuity_write]
 
 # ─────────────────────────────────────────────────────────────────
 # CONFIDENCE & CLARIFICATION FRAMEWORK
@@ -587,7 +590,7 @@ workflow:
 
             Explore codebase architecture for: {task_description}
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "project architecture entry points").
-            Verify hits with Read; do not use memory_search for arbitrary code.
+            Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
             Return: 1) Architecture hypothesis 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         feature_explorer:
@@ -607,7 +610,7 @@ workflow:
 
             Explore codebase for similar features/patterns for: {task_description}
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "similar feature implementation patterns").
-            Verify hits with Read; do not use memory_search for arbitrary code.
+            Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
             Return: 1) Similar features hypothesis 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         dependency_explorer:
@@ -627,7 +630,7 @@ workflow:
 
             Explore dependencies and integration points for: {task_description}
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "module imports dependencies").
-            Verify hits with Read; do not use memory_search for arbitrary code.
+            Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
             Return: 1) Affected modules hypothesis 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         test_explorer:
@@ -647,7 +650,7 @@ workflow:
 
             Explore test patterns and testing infrastructure.
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "test infrastructure patterns").
-            Verify hits with Read; do not use memory_search for arbitrary code.
+            Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
             Return: 1) Testing hypothesis 2) Full test file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
       verification:
@@ -684,19 +687,18 @@ workflow:
 
   step_6_save_context:
     purpose: Save conversation context for planning documentation
-    activities: [Invoke system-spec-kit skill, Preserve requirements/clarifications, Preserve technical approach decisions, Preserve architecture discussions, Index the routed canonical spec document]
+    activities: [Invoke system-spec-kit skill, Preserve requirements/clarifications, Preserve technical approach decisions, Preserve architecture discussions, Refresh the routed canonical spec document with the continuity writer]
     tool_invocation:
       command: Read(".opencode/skills/system-spec-kit/SKILL.md")
       note: 'Read SKILL.md to activate context saving'
-    outputs: ["Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) and indexed via memory_save"]
+    outputs: ["Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) by the continuity writer"]
     validation: context_saved_successfully
     post_save_indexing:
       pre_index_instruction:
         command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json {spec_path}"
-        note: "First compose structured JSON, then run generate-context.js before MCP indexing"
-      mcp_tool: memory_save
-      invocation: 'memory_save({ filePath: "[routed-canonical-spec-doc-path]" })'
-      critical_note: "Then index via memory_save or memory_index_scan. Call semantic memory MCP DIRECTLY - NEVER through Code Mode"
+        note: "First compose structured JSON, then run generate-context.js. Nothing else runs after it."
+      writer: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+      critical_note: "generate-context.js is the whole write. There is no indexing handoff, no daemon to wait for and no launcher file to check. Regenerate the trigger index with node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs when the packet's trigger_phrases changed."
       # Narrative timing moved from `when:` to `after:` (T-YML-PLN-04 — separates predicate-`when:` from prose-`after:`).
       after: "Immediately after the canonical spec document is refreshed on disk"
     anchor_requirements:
@@ -715,7 +717,7 @@ workflow:
       reference: "See the system-spec-kit save workflow for full anchor documentation"
     importance_tier:
       assign: normal
-      promotion_note: "Use memory_update() to promote to 'important' or 'critical' if warranted"
+      promotion_note: "Edit the document's importance_tier frontmatter and rerun the continuity writer to promote to 'important' or 'critical' if warranted"
       tier_reference: "critical > important > normal > temporary > deprecated"
 
   step_7_handover_check:

@@ -1,7 +1,7 @@
 ---
 description: Create or update OpenCode slash command sets with :auto/:confirm workflow assets.
 argument-hint: "<command_invocation> [command_request] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__system_spec_memory__memory_save
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
 # /create:command Router

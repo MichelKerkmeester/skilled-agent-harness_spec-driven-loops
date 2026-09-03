@@ -1,7 +1,7 @@
 ---
 description: "Benchmark a model or prompt framework: fixtures, pattern, 5dim, or reviewer scoring; deterministic or graded runs. :auto/:confirm."
 argument-hint: "<profile_path> [:auto|:confirm] [--spec-folder=PATH] [--scorer=pattern|5dim|reviewer] [--grader=noop|mock|llm] [--iterations=N] [--executor=NAME --model=NAME] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__system_spec_memory__memory_search
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
 # Deep Start Model Benchmark Loop

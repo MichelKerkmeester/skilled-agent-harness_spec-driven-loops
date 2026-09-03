@@ -36,18 +36,15 @@ routes:
     allowed_flags: ["--incremental=true|false"]
     mutating: add-only
     gate3_location: "<packet_scratch>/doctor-memory-report.<timestamp>.md + <packet_scratch>/doctor-memory-state.<timestamp>.json"
-    mcp_tools:
-      - mcp__system_spec_memory__memory_health
-      - mcp__system_spec_memory__memory_drift_why
-      - mcp__system_spec_memory__memory_search
-      - mcp__system_spec_memory__memory_stats
+    mcp_tools: []   # file-and-script diagnostic; no MCP calls and no background service
     script_invocations:
-      - 'Warm-only: probe the existing system-spec-memory IPC socket first; only when it answers, run node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
+      - 'node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "resume work session context"  # index present AND lookup runs: exit 0 = hits, 1 = clean no-hit, 2+ = missing or unreadable index, reported with stderr and never as a no-hit'
+      - "rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'trigger index generator' specs .opencode  # conventions resolve"
     trigger_phrases:
-      - "memory continuity index drift"
-      - "memory health rebuild"
-      - "context-index doctor"
-      - "voyage embedding rebuild"
+      - "trigger index drift"
+      - "trigger index lookup fails"
+      - "retrieval conventions doctor"
+      - "ripgrep recipe check"
 
   - target: embeddings
     yaml: doctor-embeddings.yaml
@@ -56,27 +53,28 @@ routes:
     mutating: read-only
     gate3_location: "n/a (read-only provider and model-server status)"
     mcp_tools:
-      - mcp__system_spec_memory__embedder_status
+      - mcp__system_skill_advisor__advisor_status   # the shared HF model-server's surviving owner
     trigger_phrases:
       - "embedding provider status"
       - "hf-local model-server health"
-      - "embedder_status diagnostics"
+      - "advisor embedder status"
 
+  # RETIRING. The causal graph lived in the retired continuity database. Grep cannot
+  # traverse or statefully update graph edges, so the capability is unsupported rather
+  # than replaced. This route reports that and does nothing else; it is deleted with the
+  # subsystem in phase 003 of the memory decommission.
   - target: causal-graph
     yaml: doctor-causal-graph.yaml
-    setup_vars: [execution_mode, intent, confidence_threshold]
-    allowed_flags: ["--confidence-threshold=N"]
-    mutating: add-only
-    gate3_location: "<packet_scratch>/doctor-causal-graph-state.<timestamp>.json"
-    mcp_tools:
-      - mcp__system_spec_memory__memory_causal_stats
-      - mcp__system_spec_memory__memory_drift_why
-      - mcp__system_spec_memory__memory_search
+    setup_vars: [execution_mode]
+    allowed_flags: []
+    mutating: read-only
+    gate3_location: "n/a (retiring notice only; writes nothing)"
+    status: retiring
+    mcp_tools: []
     trigger_phrases:
       - "causal edges drift"
       - "causal graph doctor"
       - "lineage coverage"
-      - "memory_causal_stats"
 
 
   - target: deep-loop
@@ -111,8 +109,6 @@ routes:
       - mcp__system_skill_advisor__skill_graph_validate
       - mcp__system_skill_advisor__skill_graph_query
       - mcp__system_skill_advisor__skill_graph_status
-      - mcp__system_spec_memory__memory_context
-      - mcp__system_spec_memory__memory_search
     script_invocations:
       - 'Warm-only: probe the existing system-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:

@@ -34,6 +34,26 @@ mcp_install_doctor_invariant: |
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
+# RETIRING SERVER NOTICE
+# ─────────────────────────────────────────────────────────────────
+# The Spec Kit Memory server is being decommissioned. Its retrieval tools have
+# already been replaced across every consumer by the generated trigger index
+# (.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs)
+# and the ripgrep recipes in references/retrieval/retrieval-conventions.md, and
+# its continuity write path is now the standalone writer
+# (scripts/dist/memory/generate-context.js). Phase 003 of the memory
+# decommission deletes the server and removes every row naming it from the
+# rosters below. Until then the rows stay so the still-running server remains
+# repairable — do not add new callers, and do not treat a row here as a reason
+# to reintroduce a retired tool.
+retiring_servers:
+  - name: "Spec Kit Memory"
+    successor_retrieval: ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs plus the ripgrep recipes in references/retrieval/retrieval-conventions.md"
+    successor_write: ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+    removed_by: "phase 003 of the memory decommission"
+    unsupported_after_removal: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal. No replacement; a miss is a clean no-hit."
+
 upstream_assets:
   contract: "local command design contract"
   files:

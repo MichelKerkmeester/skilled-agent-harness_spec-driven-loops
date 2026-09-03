@@ -30,7 +30,7 @@ Use these prompts verbatim. Do not paraphrase, summarize, or split them into mul
 
 ```text
 Medium-tier steps next:
-   eval_run_ablation    ~2-4 min   (mutates speckit-eval.db)
+   speckit-eval rebuild  ~2-4 min   (mutates speckit-eval.db)
 
 Phase 3 snapshots in place -> auto-rollback on gold-battery regression.
 
@@ -42,14 +42,14 @@ Accept `1`, `A`, `Y`, or `Proceed` as both. Accept `X`, `N`, or `Cancel` as roll
 
 ### Q-LONG - Long-Pole ETA Prompt
 
-When: before `memory_index_scan` over context-index and vector-index. Suppressed if `--force=true`.
+When: before the trigger-index regeneration over the spec-doc and skill-doc corpus. Suppressed if `--force=true`.
 
 ```text
-LONG-POLE: memory_index_scan over the active profile DBs (Memory MCP + vector index if Voyage/OpenAI keyed).
+LONG-POLE: trigger-index regeneration over the spec-doc and skill-doc corpus.
 
-   ETA      5-15 min  (depends on corpus size; Voyage/OpenAI add API throughput when keyed)
-   Mutates  full re-index   (rollback available via Phase 3 snapshot)
-   Network  Voyage/OpenAI API required only when keyed - confirm credentials
+   ETA      1-5 min   (depends on corpus size; the generator is local and single-pass)
+   Mutates  full index rewrite   (rollback available via Phase 3 snapshot)
+   Network  none - the generator reads frontmatter from disk and needs no API
 
    1) Proceed
    2) Skip   (advisor -> STALE; deep-loop init still runs)

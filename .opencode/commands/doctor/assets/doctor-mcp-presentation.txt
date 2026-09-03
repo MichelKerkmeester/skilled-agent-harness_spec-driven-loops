@@ -176,6 +176,12 @@ Next Steps: [next_steps]
 STATUS=[OK|CANCELLED|FAIL]
 ```
 
+> RETIRING: the Spec Kit Memory server is being decommissioned. Retrieval now runs through
+> the generated trigger index and the ripgrep recipes in `retrieval-conventions.md`, and
+> continuity is written by `generate-context.js`. Phase 003 of the memory decommission
+> deletes the server and drops it from the examples below. Until then it stays installable
+> so the running instance remains repairable.
+
 ## 6. Examples Display
 
 ```text

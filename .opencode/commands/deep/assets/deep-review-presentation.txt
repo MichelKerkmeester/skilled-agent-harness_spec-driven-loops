@@ -157,7 +157,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
 
 5. Search for prior work (background):
-   - memory_context({ input: review_target OR "deep-review", mode: "focused", includeContent: true })
+   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$REVIEW_TARGET" specs .opencode
+   - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
 6. ASK with SINGLE prompt (include only applicable questions):
@@ -312,15 +313,16 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 - Documents user decisions at each checkpoint
 - Allows course correction of dimensions, depth, or scope throughout
 
-### Memory Integration
+### Context Loading
 
 #### Before Starting
-- `memory_context({ input: review_target, intent: "understand" })` -- Load prior review context
+- Read the continuity ladder for the bound packet: `handover.md`, then the `_memory.continuity` block in `implementation-summary.md`, then `spec.md` and `decision-record.md`
+- Widen with the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` when the packet docs leave the target open
 - Inject results into strategy.md "Known Context" section
 
 #### Code Context Bootstrap
 - Query: 2-5 word concept descriptions related to the review target
-- Inject discovered code patterns into strategy.md "Known Context" section alongside memory findings
+- Inject discovered code patterns into strategy.md "Known Context" section alongside the continuity-ladder findings
 
 #### After Completing
 - `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]`

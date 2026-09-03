@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/review.md",
-      "sha256": "846bf047f7c9db436957e48550d1be661f993258da933f8771077efcc4170113",
+      "sha256": "5f642b6fbc9380085404ac0976442e9e7b3a04c39277ba3c018edb3e1a463f14",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "4e90e82527d3af0d4d42994fb8b0cc1e76b0b63a9863a1e555dc9665a409346f",
+      "sha256": "8240bf5b59fea68555daa67e3685429f682c7ea241e016e74b3b7ab5070b39c8",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "000ccca373fa45a47fd2501be8d4d4bc399614385419d24d50e2c8799b67720d",
+      "sha256": "755e41cbc0e4041cbb1d2f25402045e5111979987de84983d97f0d9e9c2a66cc",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "40672cd363b0ad5a0fa0f5fbfc43fab9f7e161f7cf81571bdb4b3a8fc65a9ef4",
+      "sha256": "495577f06adfb0fac286d66e4f3e08aa302dae790e9917b8db774ce8a4428ab5",
       "section": "full"
     },
     {
@@ -42,12 +42,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "52e57b3657259169466c7bf9226c37fbd9c1edc0f1de0d98a999e647dc83e6ec",
+      "sha256": "9fe68db8458e09dbea91553be959aa1ba573a1d419036700e663e5a36b850c13",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "72ae8a349f62343b9e2f9dc9b7f7d38847d7f4439d4f979e8d8ed63a61d14f7a",
+      "sha256": "97465022e434997c9a2bc06a96ae4d26cffb28ac01fe770fa3c4620e500c1f63",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".opencode/agents/deep-review.md",
-      "sha256": "9ddd3ba14c88e8a4a3c5c4cead5dc8bf2d3848f033f8b8c7cab79475b8b849bb",
+      "sha256": "91773b04cc8cd56e1175e82b182a4707da30e99f80b613473ccd8ca78ee5d277",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "e1394a2c1ad394cfb3c0c3edfbbab9be3744e944b12341021da422b92db401ef"
+  "compiledBodyDigest": "056981efa1a419f60b7b7a9f2f32ffbd9a5430c0c9d157ae044a973326139965"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -308,7 +308,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
 
 5. Search for prior work (background):
-   - memory_context({ input: review_target OR "deep-review", mode: "focused", includeContent: true })
+   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$REVIEW_TARGET" specs .opencode
+   - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
 6. ASK with SINGLE prompt (include only applicable questions):
@@ -497,8 +498,6 @@ allowed:
   - "Grep"
   - "Glob"
   - "Task"
-  - "memory_context"
-  - "memory_search"
 permittedByExecutor:
   native:
     - "Read"
@@ -507,8 +506,6 @@ permittedByExecutor:
     - "Bash"
     - "Grep"
     - "Glob"
-    - "memory_context"
-    - "memory_search"
   cli-opencode:
     - "headless command execution through YAML-owned audited dispatch only"
   cli-claude-code:

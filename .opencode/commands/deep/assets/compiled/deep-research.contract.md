@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/research.md",
-      "sha256": "2b0ecf6282dfc49edee5c4a735c9edf1cab149ca52f8a0aa36e2a9d3ef032720",
+      "sha256": "6aeacec9faaad8ab8dbbf6229c5c95502c6720983f073dfa6ccd22c26c8368a0",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "d4e661fdb76278ecbfb799c0333923e1ab6795bbdaf7437f544cbea07087ff97",
+      "sha256": "69f729ff993aeef85b51bb8efc0ec833b5393dd6f6380e7a6218e6f99a5873e6",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "547280c78e793450640ee86d0c5a3108eb88e1f59a7f358e6f5d296a19bd544a",
+      "sha256": "e9f4469b2fbfe5fa3a76d8999011d93e4f227b87457e1782b948d2714d844991",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "ed6aa41151410f85659d46dac84116dda45d1557076fd4ca4d35bbe57bdffc2a",
+      "sha256": "a2f099cd433b59cb4fb2322d3d1ceff423ebd5c1b7cd136228543d29219a8c86",
       "section": "full"
     },
     {
@@ -42,12 +42,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "a1f111711db73b3b27cf29c1bebc778cf1c644ac71804f9ac0f4201f78198c79",
+      "sha256": "e22fd3cecc356aa598a39da19f4737f7e8ffe773e1934ca267e0a8676ede7af9",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "facc2b4dbfdfbc1e03217d7ef664cab49f878d6dcc36c170a6c258cd0ac15f4e",
+      "sha256": "c513808d642da55b828b03af285b34f187cbda44ddc19b2a9c9c06839769fc64",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
-      "sha256": "ee645fc39e876f967943df8497d098dc63eca2b0c33d7dd78763071c65defacd",
+      "sha256": "07c877f1fbde3c6e95f0d8ff9c12aa0c11fd14da28eac1f20e9b066e3ac9e50b",
       "section": "full"
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "path": ".opencode/agents/deep-research.md",
-      "sha256": "fbb3502aa0830a03de2e358261c3e757d49a3254d768bfe251cd6f67f4308f0c",
+      "sha256": "7b0817c3f214e0d4471a99565413e304900436f41f43dd56975da53d363ef4d1",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "6194dc4963d1ac19f4e4ff92d6cc5fdd63ee9bc622aa012fbb76880125a54dcb"
+  "compiledBodyDigest": "5c8176204daa5f1aeec2a2c334589c8c9846348f1c5bc5472d8bdb1755a111d5"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -288,7 +288,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
 
 5. Search for prior work (background):
-   - memory_context({ input: research_topic OR "deep-research", mode: "focused", includeContent: true })
+   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$RESEARCH_TOPIC" specs .opencode
+   - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
 6. ASK with SINGLE prompt (include only applicable questions):
@@ -457,8 +458,6 @@ allowed:
   - "Glob"
   - "Task"
   - "WebFetch"
-  - "memory_context"
-  - "memory_search"
 permittedByExecutor:
   native:
     - "Read"
@@ -468,8 +467,6 @@ permittedByExecutor:
     - "Grep"
     - "Glob"
     - "WebFetch"
-    - "memory_context"
-    - "memory_search"
   cli-opencode:
     - "headless command execution through YAML-owned audited dispatch only"
   cli-claude-code:

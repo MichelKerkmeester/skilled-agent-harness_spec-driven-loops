@@ -171,10 +171,14 @@ workflow:
     council_line: 0
     approval: "auto-acknowledge before database flock; this phase uses Bash/Node only, no MCP tools"
     purpose: "Resolve the fresh-start paradox: OpenCode can only register MCP tools at process startup, so missing dist/layout must be fixed before MCP-dependent phases run."
+    # RETIRING: the continuity-server launcher entry is being decommissioned. Phase 003 of the
+    # memory decommission removes the launcher and its MCP config entry outright. Until then the
+    # entry stays as-is so the still-running server can be repaired; do not add new callers to it.
     launcher_contract:
-      mcp_config_entrypoint: ".opencode/bin/system-spec-memory-launcher.cjs"
-      invariant: "MCP configs MUST point to the stable launcher, not directly to mcp-server/dist/context-server.js."
-      launcher_behavior: "resolve singular/plural skill layout, build @spec-kit/mcp-server and @spec-kit/scripts when dist is missing, then exec the real MCP server"
+      status: retiring
+      invariant: "MCP configs that still carry the continuity-server entry MUST point at its stable launcher rather than the built server directly, for as long as the entry exists."
+      launcher_behavior: "resolve singular/plural skill layout, build the packages when dist is missing, then exec the real MCP server"
+      successor: "The retrieval lane has no launcher and no daemon: node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs reads a generated file and exits."
     command_preflight:
       script: ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
       command: "bash .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root . --json"
@@ -293,7 +297,7 @@ workflow:
       idempotency: "if .opencode/skill is already a symlink to skills, skip"
     spec_metadata_backfill:
       precondition: "signal_d positive (spec folders exist but lack description.json) OR signal_c positive (legacy memory/ folders detected)"
-      rationale: "v3.3 spec packets lack the description.json + graph-metadata.json files that v3.4 requires for memory_index_scan visibility. Without backfill, Phase 5.2 silently skips all v3.3 packets — see Issue 11 in council Round 2 backlog."
+      rationale: "v3.3 spec packets lack the description.json + graph-metadata.json files that v3.4 requires for trigger-index visibility. Without backfill, Phase 5.2 silently skips all v3.3 packets — see Issue 11 in council Round 2 backlog."
       mutation_boundary_exception: "Phase 8 INVOKES the sanctioned backfill scripts (generate-description.js + backfill-graph-metadata.js). The orchestrator does not edit description.json/graph-metadata.json directly; it delegates to maintained tooling per migration-manifest M-3.3.0.0-002 fallback_operation."
       step_a_graph_metadata_backfill:
         command: |
@@ -392,7 +396,7 @@ workflow:
       state_log_requirement: "Record injected_failure=true, failed_step=<step>, and final_status=rolled_back when rollback is selected."
     execute:
       context-index:
-        action: "memory_index_scan({ incremental: false, force: true })"
+        action: "node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs  # full regeneration; the generator reads frontmatter and writes the index file, with no daemon and no incremental mode"
         post_run_count_skipped: |
           # Coverage gap = on-disk spec folders (those containing spec.md) the index
           # does not cover, computed as a set-difference (NOT total-minus-indexed: the
@@ -448,11 +452,11 @@ workflow:
               console.log('  run Phase 8 backfill OR /memory:save per affected packet to fix (or add the path to the index-scope exclusions if intentional)');
             " "$LOG"
           fi
-      causal-edges-init: "memory_causal_link(...) for high-confidence missing lineage"
+      causal-edges-init: "RETIRING — the causal-edge store lived in the continuity database being decommissioned. Grep cannot traverse or statefully update graph edges, so this step is a no-op that reports the capability as unsupported. Phase 003 of the memory decommission removes it from the dependency order."
       skill-graph: "system_skill_advisor.skill_graph_scan({})"
       advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"
       deep-loop-graph: "deep_loop_graph_upsert(...)"
-      speckit-eval: "eval_run_ablation({})"
+      speckit-eval: "RETIRING — channel ablation scored the retrieval channels of the continuity database being decommissioned. There are no channels left to ablate, so this step is a no-op that reports the capability as unsupported. Phase 003 removes it from the dependency order."
     failure:
       council_line: 5
       retry: "one retry with 5-sec backoff"

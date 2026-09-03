@@ -14,6 +14,13 @@
 #   --fix               Attempt auto-repair for failures
 #   --server <name>     Diagnose a single server only
 #                       Names: system-spec-memory, system_skill_advisor, code_mode
+#
+# RETIRING: the Spec Kit Memory server is being decommissioned. Retrieval moved to the
+# generated trigger index (scripts/retrieval/lookup-trigger-index.mjs) plus the ripgrep
+# recipes in references/retrieval/retrieval-conventions.md; continuity is written by
+# scripts/dist/memory/generate-context.js. Removing the server deletes its rows here.
+# Until then it stays diagnosable so the running instance remains repairable. Do not add
+# new callers.
 #   --root <path>       Override project root
 #
 # Exit Codes:

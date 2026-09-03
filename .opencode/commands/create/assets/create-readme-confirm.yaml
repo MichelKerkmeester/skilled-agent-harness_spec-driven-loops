@@ -643,15 +643,14 @@ readme_workflow:
       - label: "View summary"
         description: "Show final summary"
 
-    # -- SEMANTIC MEMORY INTEGRATION -----------------------------------------
-    post_save_indexing:
-      purpose: "Index the canonical spec document immediately for search availability"
-      mcp_tool: memory_save
+    # -- CONTINUITY WRITE -----------------------------------------
+    write_continuity:
+      purpose: "Refresh the packet continuity frontmatter and generated metadata"
+      writer: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
       invocation: |
-        memory_save({
-          filePath: "[SPEC_FOLDER]/implementation-summary.md"
-        })
-      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode. The save target is a canonical spec document; standalone memory/*.md files are retired and the runtime rejects them."
+        node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
+          /tmp/save-context-data-<session-id>.json [SPEC_FOLDER]
+      critical_note: "The writer is the whole write: it keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it. The target is the canonical spec packet; standalone memory/*.md files are retired and the runtime rejects them."
       when: "Immediately after implementation-summary.md is written to disk"
 
     anchor_requirements:
@@ -690,7 +689,7 @@ readme_workflow:
     importance_tier:
       assign: normal
       rationale: "README creation is standard documentation task"
-      promotion_note: "Use memory_update() to promote to 'important' if README becomes a key reference"
+      promotion_note: "Edit the document's importance_tier frontmatter and rerun the continuity writer to promote to 'important' if README becomes a key reference"
       tier_reference: |
         critical: Foundational decisions (high priority in search)
         important: Significant work like implementations
@@ -1188,15 +1187,14 @@ install_guide_workflow:
       - label: "View summary"
         description: "Show final summary"
 
-    # -- SEMANTIC MEMORY INTEGRATION -----------------------------------------
-    post_save_indexing:
-      purpose: "Index the canonical spec document immediately for search availability"
-      mcp_tool: memory_save
+    # -- CONTINUITY WRITE -----------------------------------------
+    write_continuity:
+      purpose: "Refresh the packet continuity frontmatter and generated metadata"
+      writer: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
       invocation: |
-        memory_save({
-          filePath: "[SPEC_FOLDER]/implementation-summary.md"
-        })
-      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode. The save target is a canonical spec document; standalone memory/*.md files are retired and the runtime rejects them."
+        node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
+          /tmp/save-context-data-<session-id>.json [SPEC_FOLDER]
+      critical_note: "The writer is the whole write: it keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it. The target is the canonical spec packet; standalone memory/*.md files are retired and the runtime rejects them."
       when: "Immediately after implementation-summary.md is written to disk"
 
     anchor_requirements:
@@ -1236,7 +1234,7 @@ install_guide_workflow:
     importance_tier:
       assign: important
       rationale: "Installation guides capture valuable setup knowledge for future reference"
-      promotion_note: "Use memory_update() to promote to 'critical' if this becomes a frequently referenced guide"
+      promotion_note: "Edit the document's importance_tier frontmatter and rerun the continuity writer to promote to 'critical' if this becomes a frequently referenced guide"
       tier_reference: |
         critical: Foundational decisions (high priority in search)
         important: Significant work like installation guides (this workflow)

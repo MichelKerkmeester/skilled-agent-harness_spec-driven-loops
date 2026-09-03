@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator running embeddings provider and model-server status diagnostics
 purpose: Read-only status surface for active embedder provider selection and hf-local model-server health
-action: Call embedder_status -> inspect provider/model-server fields -> report operator actions
+action: Call advisor_status -> inspect provider/model-server fields -> report operator actions
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
@@ -14,13 +14,14 @@ operating_mode:
   execution: interactive
   approvals: none
   tracking: diagnostic_report
-  validation: embedder_status_response_shape
+  validation: advisor_status_response_shape
   read_only: true
 
 embeddings_doctor_invariant: |
-  Embeddings doctor is strictly read-only. It calls embedder_status and reports
-  provider resolution, fallback reason, and model-server metadata already exposed
-  by the MCP server. It never manages model-server lifecycle; launchers own that.
+  Embeddings doctor is strictly read-only. It calls mcp__system_skill_advisor__advisor_status
+  and reports provider resolution, fallback reason, and model-server metadata already exposed
+  by the advisor, which is the surviving owner of the shared HF model server after the
+  continuity server's decommission. It never manages model-server lifecycle; launchers own that.
 
 # ─────────────────────────────────────────────────────────────────
 # USER INPUTS
@@ -36,7 +37,7 @@ mutation_boundaries:
   allowed_targets: []
   forbidden_targets:
     - "**/*"
-  invariant: "This workflow is report-only. It may call embedder_status and print output, but it must not write files, change databases, alter env, or manage processes."
+  invariant: "This workflow is report-only. It may call mcp__system_skill_advisor__advisor_status and print output, but it must not write files, change databases, alter env, or manage processes."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -45,7 +46,7 @@ workflow:
   phase_0_status:
     purpose: "Read the current embedding provider and model-server status."
     activities:
-      - "Call: embedder_status({})"
+      - "Call: mcp__system_skill_advisor__advisor_status({})"
       - "Read data.embeddings.provider.requestedProvider, effectiveProvider, fallbackReason, and dimensionChanged."
       - "If data.embeddings.modelServer is present, read model, dim, dtype, healthy, serverState, loaded, baseUrl, loadStartedAt, loadProgressAt, and loadTimeMs."
       - "Report any data.embeddings.modelServerError as diagnostic context."
@@ -62,7 +63,9 @@ workflow:
 # OUTPUT FORMAT
 # ─────────────────────────────────────────────────────────────────
 output_format: |
-  STATUS=OK when embedder_status returns a structured embeddings payload.
-  STATUS=FAIL ERROR="<message>" only if embedder_status itself fails.
+  STATUS=OK when advisor_status returns a structured embeddings payload.
+  STATUS=FAIL ERROR="<message>" only if advisor_status itself fails.
+  Field names come from the advisor's own payload; read what it returns rather than
+  assuming the retired server's shape.
   Include: requestedProvider, effectiveProvider, fallbackReason, dimensionChanged,
   and hf-local model-server metadata when present.

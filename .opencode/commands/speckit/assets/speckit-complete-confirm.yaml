@@ -410,7 +410,7 @@ quality_gates:
       - { id: feature_description, points: 30 }
       - { id: spec_path_valid, points: 30 }
       - { id: execution_mode_set, points: 20 }
-      - { id: memory_context, points: 20 }
+      - { id: continuity_ladder_walked, points: 20 }
     on_fail: "Pre-execution gate below threshold. Missing: {missing_checks}. Hard block."
   planning_gate:
     location: "Between Step 7 and Step 8"
@@ -515,10 +515,13 @@ checkpoint_options:
 # ─────────────────────────────────────────────────────────────────
 context_loading:
   trigger: "At workflow START, before Step 1"
-  mcp_integration:
-    tool: memory_search
-    note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters: { query: "context for {spec_folder_name}", specFolder: "{spec_folder_path}", anchors: ['summary', 'decisions', 'state'] }
+  retrieval_recipe:
+    reference: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    command: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'context for {spec_folder_name}' {spec_folder_path}"
+    anchors: ['summary', 'decisions', 'state']
+    anchor_command: "rg --no-config --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '<!-- ANCHOR:<id> -->' {spec_folder_path}"
+    exit_status: "0 = matches, 1 = clean no-hit reported as an empty result, 2 or higher = error with stderr attached and never reported as no-hit"
+    unsupported: "Lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available; an unmatched phrase is a no-hit, not a weaker guess."
   command_reference: "/memory:search"
   when_to_skip: ["New spec folder (no prior context)", "User says 'skip context' or 'fresh start'"]
   behavior: { if_context_found: "Present context summary to user for confirmation", if_no_context: "Proceed to Step 1" }
@@ -768,7 +771,7 @@ workflow:
           prompt: |
             Explore codebase architecture for: {task_description}
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "project architecture entry points").
-            Verify hits with Read; do not use memory_search for arbitrary code.
+            Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
             Return: 1) Architecture hypothesis 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         feature_explorer:
@@ -776,7 +779,7 @@ workflow:
           prompt: |
             Explore codebase for similar features/patterns for: {task_description}
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "similar feature implementation patterns").
-            Verify hits with Read; do not use memory_search for arbitrary code.
+            Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
             Return: 1) Similar features hypothesis 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         dependency_explorer:
@@ -784,7 +787,7 @@ workflow:
           prompt: |
             Explore dependencies and integration points for: {task_description}
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "module imports dependencies").
-            Verify hits with Read; do not use memory_search for arbitrary code.
+            Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
             Return: 1) Affected modules hypothesis 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         test_explorer:
@@ -792,7 +795,7 @@ workflow:
           prompt: |
             Explore test patterns and testing infrastructure.
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "test infrastructure patterns").
-            Verify hits with Read; do not use memory_search for arbitrary code.
+            Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
             Return: 1) Testing hypothesis 2) Full test file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
       verification:
@@ -940,8 +943,9 @@ workflow:
 
   step_9_5_preflight:
     name: "PREFLIGHT Capture"
-    purpose: "Capture epistemic baseline before implementation"
-    tool: "task_preflight"
+    purpose: "Record the epistemic baseline before implementation in the packet's own documents"
+    target: "{spec_folder}/implementation-summary.md"
+    method: "Append a PREFLIGHT row under an anchor: taskId, knowledgeScore, uncertaintyScore, contextScore. The database that once stored these is retired; the packet document is now the record."
     parameters: "specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore"
     skip_conditions: ["Less than 10 LOC change", "User says skip preflight"]
     checkpoint: { type: "user_checkpoint", message: "Epistemic scores captured. Continue?" }
@@ -1057,8 +1061,9 @@ workflow:
 
   step_11_5_postflight:
     name: "POSTFLIGHT Capture"
-    purpose: "Capture learning delta after implementation"
-    tool: "task_postflight"
+    purpose: "Record the learning delta after implementation in the packet's own documents"
+    target: "{spec_folder}/implementation-summary.md"
+    method: "Append a POSTFLIGHT row beside the matching PREFLIGHT row and compute the delta from the two rows. The database that once stored these is retired; the packet document is now the record."
     parameters: "specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore"
     skip_conditions: ["Less than 10 LOC change", "No PREFLIGHT was captured"]
     checkpoint: { type: "user_checkpoint", message: "Epistemic scores captured. Continue?" }
@@ -1118,17 +1123,17 @@ workflow:
     - Preserve development decisions
     - Preserve debugging insights
     - Preserve code changes
-    - Index the routed canonical spec document for immediate search availability
+    - Refresh the routed canonical spec document with the continuity writer for immediate search availability
     memory_creation:
       enforcement: HARD_BLOCK
       method: "MUST use structured JSON input with generate-context.js"
       command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]"
       forbidden: { tools: [Write, Edit], action: "NEVER manually author files under retired memory/ paths (the runtime rejects them)", paths: ["*/memory/*.md", "specs/*/memory/*"] }
-      violation_recovery: "DELETE the manually authored file -> run generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md -> verify ANCHORs -> index via memory_save"
+      violation_recovery: "DELETE the manually authored file -> run generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md -> verify ANCHORs"
     tool_invocation:
       command: 'Read(".opencode/skills/system-spec-kit/SKILL.md")'
     outputs:
-    - context_file: "Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) and indexed via memory_save"
+    - context_file: "Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) by the continuity writer"
     validation: context_saved_successfully
     checkpoint:
       question: "Step 13 Complete: Context saved. Proceed to workflow finish?"
@@ -1137,10 +1142,10 @@ workflow:
       - { label: "Continue", description: "Proceed to workflow finish" }
       - { label: "Finish Now", description: "Complete without another continuity refresh" }
 
-    post_save_indexing:
-      mcp_tool: memory_save
-      invocation: 'memory_save({ filePath: "[routed-canonical-spec-doc-path]" })'
-      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"
+    write_continuity:
+      writer: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+      invocation: 'node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]'
+      critical_note: "The writer is the whole write. It keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it."
       after: "Immediately after the canonical spec document is refreshed on disk"
 
     anchor_requirements:

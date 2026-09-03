@@ -331,13 +331,16 @@ context_loading:
   trigger: "During UNIFIED SETUP PHASE, non-interactive resolution before Step 1"
   applies_when: "spec_path resolves to an existing spec folder (Q3 choice A - Existing, C - Update related, or D - Extend phased packet) that contains handover.md or _memory.continuity in implementation-summary.md; not applicable to a freshly created spec folder (Q3 choice B - New) or when spec_choice is E (Skip)"
   auto_resolution:
-    default: "If prior context exists (handover.md <24h old, or _memory.continuity present in {spec_path}), load it automatically via memory_context (mode: resume); sets memory_loaded: handover+continuity. Otherwise skip; sets memory_loaded: skipped."
+    default: "If prior context exists (handover.md <24h old, or _memory.continuity present in {spec_path}), load it automatically via the continuity ladder in this file (handover.md, then _memory.continuity, then packet-first spec docs); sets memory_loaded: handover+continuity. Otherwise skip; sets memory_loaded: skipped."
     override: "Honor memory_choice if explicitly supplied as a command argument or pre-bound setup answer (A/B/C)"
-  mcp_integration:
-    tool: memory_context
-    note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters: { input: "resume previous work on {spec_path}", mode: "resume", profile: "resume", specFolder: "{spec_path}", includeContent: true }
-    transport_fallback: "If MCP tools are missing or erroring while the daemon is otherwise warm, use: node .opencode/bin/spec-memory.cjs memory_context --json '{\"input\":\"resume previous work\",\"mode\":\"resume\"}' --format json --timeout-ms 3000 --warm-only. Exit 75 = retryable backend unavailability."
+  continuity_ladder:
+    note: "Read the packet's own files in order. No background service is involved."
+    order:
+      - "Read {spec_path}/handover.md when present and recent"
+      - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+      - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+      - "Only for a still-missing named gap, run the packet-scoped context recipe from .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+    unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
   output: memory_loaded
 
 workflow:
@@ -481,14 +484,13 @@ workflow:
     - implementation_summary: "[spec_path]/implementation-summary.md"
     validation: context_saved
 
-    post_save_indexing:
-      purpose: "Index the canonical spec document immediately for search availability"
-      mcp_tool: memory_save
+    write_continuity:
+      purpose: "Refresh the packet continuity frontmatter and generated metadata"
+      writer: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
       invocation: |
-        memory_save({
-          filePath: "[spec_path]/implementation-summary.md"
-        })
-      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode. The save target is a canonical spec document; standalone memory/*.md files are retired and the runtime rejects them."
+        node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
+          /tmp/save-context-data-<session-id>.json [spec_path]
+      critical_note: "The writer is the whole write: it keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it. The target is the canonical spec packet; standalone memory/*.md files are retired and the runtime rejects them."
       when: "Immediately after implementation-summary.md is written to disk"
 
   step_6_completion:

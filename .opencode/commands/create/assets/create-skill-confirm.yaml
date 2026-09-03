@@ -108,11 +108,14 @@ checkpoint_options:
 context_loading:
   trigger: "During UNIFIED SETUP PHASE, when memory_choice is answered (Q4 if applicable) and prior context exists"
   applies_when: "spec_path resolves to an existing spec folder (Q3 choice A - Existing, C - Update related, or D - Extend phased packet) that contains handover.md or _memory.continuity in implementation-summary.md; not applicable to a freshly created spec folder (Q3 choice B - New) or when spec_choice is E (Skip)"
-  mcp_integration:
-    tool: memory_context
-    note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters: { input: "resume previous work on {spec_path}", mode: "resume", profile: "resume", specFolder: "{spec_path}", includeContent: true }
-    transport_fallback: "If MCP tools are missing or erroring while the daemon is otherwise warm, use: node .opencode/bin/spec-memory.cjs memory_context --json '{\"input\":\"resume previous work\",\"mode\":\"resume\"}' --format json --timeout-ms 3000 --warm-only. Exit 75 = retryable backend unavailability."
+  continuity_ladder:
+    note: "Read the packet's own files in order. No background service is involved."
+    order:
+      - "Read {spec_path}/handover.md when present and recent"
+      - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+      - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+      - "Only for a still-missing named gap, run the packet-scoped context recipe from .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+    unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
   behavior:
     memory_choice_A: "Load handover.md (if <24h old) plus _memory.continuity from implementation-summary.md in {spec_path}; sets memory_loaded: handover+continuity"
     memory_choice_B: "Load canonical spec docs (tasks.md, plan.md, checklist.md, decision-record.md) in {spec_path} up to a recent cap (3 most recently modified); sets memory_loaded: spec-docs"
@@ -477,14 +480,14 @@ workflow:
     condition: "spec_path exists"
     activities:
       - Save context using generate-context.js
-      - Index memory for immediate retrieval
-      - Log save path and indexing method used
-    memory_save:
+      - Regenerate the trigger index when trigger_phrases changed
+      - Log the writer path and whether the trigger index was regenerated
+    write_continuity:
       command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js [spec_path]"
       hard_rule: "Do not create memory files manually"
     indexing:
-      preferred: "memory_index_scan({ specFolder: [spec_path] })"
-      alternate: "memory_save({ filePath: [generated_memory_file] })"
+      preferred: "node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs"
+      note: "generate-context.js writes the continuity frontmatter; the trigger index is regenerated from that frontmatter. There is no daemon to hand off to and no background indexing step to wait for."
     outputs:
       - context_saved
       - context_indexed

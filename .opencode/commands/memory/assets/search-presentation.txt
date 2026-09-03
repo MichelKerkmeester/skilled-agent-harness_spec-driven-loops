@@ -1,6 +1,6 @@
 # Memory Search Presentation Contract
 
-Single source of truth for `/memory:search` startup questions, analysis dashboards, and result displays.
+Single source of truth for `/memory:search` startup questions and result displays.
 
 Register (COSTAR): these contracts are written objective-first for an automated-pipeline audience — fixed response shapes, no preamble, no conversational framing inside the rendered block. This is the wording style of the contract itself, not a prompt framework imposed on callers.
 
@@ -8,319 +8,178 @@ Register (COSTAR): these contracts are written objective-first for an automated-
 
 Start with the matching render contract before drafting any response:
 
-- Retrieval results: Section 2, `MEMORY:SEARCH "<query>" ... STATUS=OK RESULTS=<count>`.
-- Empty results: Section 3, trigger fallback rows.
-- Analysis overview: Section 5.
-- Analysis subcommands: Section 6.
+- Trigger-index results: Section 2, `MEMORY:SEARCH TRIGGERS "<query>" ... STATUS=OK CANDIDATES=<count>`.
+- Free-text evidence results: Section 3, `MEMORY:SEARCH "<query>" ... STATUS=OK RESULTS=<count>`.
+- No-hit results: Section 4, the clean empty result.
+- Unsupported requests: Section 6.
 - Errors: Section 7.
 
 ## 1. Startup Question Policy
 
-This section applies ONLY when the command's `ARGUMENT RESOLUTION` header reported `ARGS_PRESENT=false`. If `ARGS_PRESENT=true`, skip this section entirely and render the retrieval or analysis result for the resolved `QUERY` — never ask the startup question over a populated query.
+This section applies ONLY when the command's `ARGUMENT RESOLUTION` header reported `ARGS_PRESENT=false`. If `ARGS_PRESENT=true`, skip this section entirely and render the result for the resolved `QUERY` — never ask the startup question over a populated query.
 
 When `ARGS_PRESENT=false` (bare invocation), ask one open-ended question:
 
 ```text
-What would you like to retrieve or analyze?
+What phrase should I look for?
 ```
 
-Accept any natural-language answer as the retrieval query. Do not dump the full intent or subcommand menu at startup.
+Accept any natural-language answer as the query. Do not dump a menu at startup.
 
 Ask a targeted follow-up only when genuinely ambiguous:
 
 | Ambiguity | Targeted question |
 | --- | --- |
-| User asks for `history` without a folder | `Which spec folder should I show learning history for?` |
-| User asks for `causal` without an id | `Which spec-doc record ID should I trace?` |
-| User asks for `preflight` or `postflight` without required fields | `Which spec folder and task id should I use?` |
-| User says `dashboard` or `ablation` | Route directly to analysis mode. |
+| The query is a single generic workflow word (`session`, `context`, `memory`, `summary`) | `That phrase is too generic to be distinctive. What specific term, decision, symbol or failure symptom should I look for?` |
+| The user names a packet but no phrase | `Which phrase should I look for inside that packet?` |
+| The user asks for lineage, drift, ablations or dashboards | Render the unsupported notice in Section 6. |
 
-If the user asks what is available, show the analysis overview in Section 5.
+## 2. Trigger-Index Result Display
 
-## 2. Retrieval Result Display
-
-Use compact, parseable output for model dispatch. No option dumps, score bars, long previews, or hidden metadata unless trace was requested.
+The keyed lane. Renders the output of `lookup-trigger-index.mjs` — a match against author-declared `trigger_phrases`, not a scan of prose.
 
 ```text
-MEMORY:SEARCH "<query>" intent=<detected_intent> results=<count>
+MEMORY:SEARCH TRIGGERS "<query>"
 --------------------------------------------------
-<specFolder>/
-  <score>  #<id>  <title>
-  <score>  #<id>  <title>
+index     <indexHash short>   manifest <manifestHash short>
+scope     <specFolder or (unscoped)>
+<score>  <matchClass>  <path>
+<score>  <matchClass>  <path>
 
-<specFolder>/
-  <score>  #<id>  <title>
-
-STATUS=OK RESULTS=<count> INTENT=<detected_intent>
-```
-
-Filled example:
-
-```text
-MEMORY:SEARCH "deep research remediation handover" intent=find_spec results=3
---------------------------------------------------
-system-speckit/028-memory-search-intelligence/005-L8-command-adherence/
-  0.91  #1842  Command adherence remediation handover
-  0.87  #1819  Dynamic presentation contract findings
-
-system-deep-loop/029-deep-research-remediation/
-  0.74  #1763  Research-based refinement implementation summary
-
-STATUS=OK RESULTS=3 INTENT=find_spec
+STATUS=OK CANDIDATES=<count> LANE=trigger-index
 ```
 
 Field mapping:
 
 | Source field | Template slot |
 | --- | --- |
-| User query or `memory_context.input` | `"<query>"` |
-| Detected or explicit intent | `intent=<detected_intent>` and `INTENT=<detected_intent>` |
-| Count of result rows actually rendered | `results=<count>` and `RESULTS=<count>`. When rows are omitted under the output budget render `<shown> of <total>` (for example `RESULTS=2 of 5`) so the count never exceeds the visible rows |
-| `result.specFolder` | `<specFolder>/` |
-| `result.score`, `result.similarity`, or normalized relevance score | `<score>` — render as 0–1 similarity with two decimals (`0.79`, never `79.44`; divide percentage-scaled scores by 100) |
-| `result.id` or `result.memory_id` | `#<id>` |
-| `result.title` | `<title>` |
+| The resolved `QUERY` | `"<query>"` |
+| `indexHash`, `manifestHash` | `index` / `manifest`, first 12 characters each |
+| `specFolder` | `scope`, or `(unscoped)` |
+| `result.score` | `<score>` — the lookup's own score, three decimals, exactly as the tool emits it |
+| `result.matchClass` | `<matchClass>` — `exact`, `query-containment`, `partial`, verbatim from the tool |
+| `result.path` | `<path>` — the repo-relative document path |
+| `results.length` | `CANDIDATES=<count>` |
 
-Core-slot mandate (all five, every result, every surface):
-- `"<query>"` query echo
-- `<score>` similarity
-- `#<id>`
-- `<title>`
-- `STATUS` footer carrying `RESULTS` and `INTENT`
+Rules:
+- Render candidates in the order the tool returned them. The lookup is deterministic; do not re-sort.
+- Never rename `score` to `confidence`, `similarity` or `relevance`, and never render it as a percentage. It is the tool's own score, not a probability.
+- `matchClass` is a label, not a rank. Do not translate it into a quality adjective.
 
-None of the five is optional. Render every one for any non-empty result set; the only omission path is the empty-result fallback in Section 3.
+## 3. Free-Text Evidence Display
 
-Score mandate — one score, one scale, one name:
-- The sole ranking metric is `similarity`, on a 0–1 scale, two decimals (`0.79`). It is the only score shown per row.
-- BANNED in rendered output: `confidence` as a metric name, and any percentage score. Divide a percentage-scaled value by 100 before emitting (`79.44` → `0.79`).
-- Do not add a second ranking number under any other name, and do not relabel `similarity` as `confidence`.
-
-Surface-parity clause:
-- The core-slot set and the 0–1 / two-decimal similarity scale are mandatory when this command contract is loaded through `--command` dispatch or another route that explicitly reads this presentation asset.
-- Raw one-shot natural-language prompts that bypass this command contract cannot guarantee the same render policy. Prefer the command form when diffable, comparable rows are required.
-- Conversational answers may wrap the block in prose, but once this contract is loaded the field set, field names, and scale do not change.
-
-Verdict render slots:
-- `requestQuality` and `citationPolicy` are the only sanctioned extras beyond the core slots.
-- When present, render each as a named trailing field between the scored result block and the `STATUS` footer, so the footer stays the terminal line:
+The scan lane. Renders parsed ripgrep output, addressed by path and one-based line.
 
 ```text
-<specFolder>/
-  <score>  #<id>  <title>
-
-requestQuality <value>
-citationPolicy <value>
-
-STATUS=OK RESULTS=<count> INTENT=<detected_intent>
-```
-
-- Use these exact field names, never an unnamed, renamed, or ad-hoc metric, and never folded into the `<score>` slot.
-- Under the default contract their absence is valid. `SPECKIT_ENVELOPE_FIDELITY` is default-ON; set it to `false`, `0`, or `off` to opt out. When enabled, the two fields are conditionally-mandatory render slots, required-when-present: a verdict field the tool response carries MUST appear unaltered in the rendered block. The tool ships a ready-to-paste `data.envelopeRender` fragment carrying these exact two lines, so the render pastes it verbatim instead of transcribing the fields. Re-emit from `data.envelopeRender` any verdict field the tool shipped but the render dropped.
-
-Folder display rules:
-- Group by spec folder.
-- Show the full `specFolder` breadcrumb.
-- Each result line shows only score, id, and title.
-- Render the full folder path as the group header; keep `<title>` to the record title.
-- Include trace/provenance only when requested or needed to explain a degraded result.
-
-Truncation-resilient rendering:
-- When `meta.tokenBudgetTruncated` is true (or `meta.returnedResultCount` < `meta.originalResultCount`),
-  the fully-materialized `data.results` array was trimmed to fit the token budget. Render every entry
-  from `data.progressiveDisclosure.results` (id + title from the snippet), not just the 1–2 detailed rows
-  that survived truncation, so the rendered rows match `meta.originalResultCount`. If rows are still
-  omitted under the output budget, render `<shown> of <total>` for `results=<count>` (shown =
-  `meta.returnedResultCount`, total = `meta.originalResultCount`) so the footer never claims more rows
-  than are visible.
-
-## 3. Empty Result Fallback
-
-```text
-MEMORY:SEARCH "<query>" intent=<detected_intent> results=0
+MEMORY:SEARCH "<query>"
 --------------------------------------------------
-No spec-doc records matched this query via semantic or lexical search.
+recipe    <section id from retrieval-conventions.md>
+roots     <positional search roots>
+<path>:<line>  <field>  <matchClass>
+<path>:<line>  <field>  <matchClass>
 
-Trigger-matched spec-doc records
-  <specFolder>/
-    #<id>  <title>
-
-STATUS=OK RESULTS=0 TRIGGERED=<n>
+STATUS=OK RESULTS=<count> LANE=ripgrep
 ```
 
-After the block, ask at most one clarifying follow-up if the query was broad.
+Filled example:
 
-## 4. Forbidden Vocabulary
+```text
+MEMORY:SEARCH "trigger index generator"
+--------------------------------------------------
+recipe    2.2 path-only
+roots     specs/system-speckit/049-memory-decommission
+specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:14  trigger_phrases  exact
+specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34  body  containment
+
+STATUS=OK RESULTS=2 LANE=ripgrep
+```
+
+Field mapping:
+
+| Source | Template slot |
+| --- | --- |
+| The resolved `QUERY` | `"<query>"` |
+| The recipe actually run | `recipe` — its section number and name from `retrieval-conventions.md` Section 2 |
+| The positional search roots | `roots` |
+| Parsed match path and one-based line | `<path>:<line>` |
+| Evidence field per the ranking tuple | `<field>` — `trigger_phrases`, `title`, `description`, `anchor`, or `body` |
+| Normalized match class per the ranking tuple | `<matchClass>` — `exact`, `containment`, or `token-coverage` |
+
+Rules:
+- Ripgrep produces matches, never a relevance ranking. Order rows with the Section 5 ranking tuple from `retrieval-conventions.md`: evidence field, then match class, then path and line. Never imply the tool ranked anything.
+- Do not invent a numeric score for this lane. There is none. A row carries a field, a class, a path and a line, and that is the whole record.
+- Label a line inside an `<!-- ANCHOR:id -->` block as `anchor`, established by searching for the marker itself.
+- Report an unmatched or orphan anchor marker as a diagnostic line, never by silently dropping it.
+- One output mode per invocation. Never combine `--json` with the path-only or count modes; the last flag wins silently and a JSONL parser reads count output as empty.
+
+## 4. No-Hit Display
+
+Ripgrep exit `1` and a lookup with zero candidates are the same thing: a correct empty answer. Render it plainly and stop.
+
+```text
+MEMORY:SEARCH "<query>"
+--------------------------------------------------
+No match. The phrase does not appear in the searched roots.
+
+roots     <positional search roots>
+recipe    <section id>
+
+STATUS=OK RESULTS=0 LANE=<trigger-index|ripgrep>
+```
+
+Rules:
+- A no-hit is `STATUS=OK`, never `STATUS=FAIL`. Exit `1` means the command worked and found nothing.
+- Never soften a no-hit into a paraphrase, a nearest neighbour or a guess. Retrieval here is lexical: if the phrase is not present, the honest answer is that it is not present.
+- Offer at most one narrower or broader phrase as a follow-up, and only when the query was plainly too generic.
+
+## 5. Forbidden Vocabulary
 
 Never emit legacy labels that combine trigger wording with the generic noun `memory` or `memories`.
 
 Required labels:
-- Trigger fallback rows: `Trigger-matched spec-doc records` or `Trigger-matched spec-doc record`.
+- Trigger-lane rows: `Trigger-matched spec-doc records` or `Trigger-matched spec-doc record`.
 - Generic result-class label: `Spec-doc record`.
 
-Pre-render gate: scan the candidate output case-insensitively for legacy trigger labels, then rewrite them before emitting.
+Also banned, because the mechanism no longer exists: `semantic match`, `similarity`, `confidence`, `relevance score`, `fused`, `reranked`, `recalled`, `decayed`, and any phrasing that implies the result set was ranked by meaning rather than matched by text.
 
-## 5. Analysis Overview
+Pre-render gate: scan the candidate output case-insensitively for these labels, then rewrite them before emitting.
 
-Show only when requested or when the user selected analysis tools.
+## 6. Unsupported Capability Display
 
-```text
-MEMORY:SEARCH ANALYSIS
---------------------------------------------------
-Epistemic
-  preflight <specFolder> <taskId>
-  postflight <specFolder> <taskId>
-  history <specFolder>
-
-Causal graph
-  causal <memoryId>
-  link <sourceId> <targetId> <relation>
-  unlink <edgeId>
-  causal-stats
-
-Evaluation
-  ablation
-  dashboard
-
-STATUS=OK ACTION=overview
-```
-
-## 6. Analysis Result Displays
-
-### Preflight
+These capabilities lived in the retired continuity database. None has a replacement, and no recipe approximates one. Say so and stop.
 
 ```text
-MEMORY:SEARCH PREFLIGHT
+MEMORY:SEARCH
 --------------------------------------------------
-Spec        <specFolder>
-Task        <taskId>
-Knowledge   <score>/100
-Uncertainty <score>/100
-Context     <score>/100
+UNSUPPORTED  <capability>
+Why          <one line: what the retired mechanism did that text matching cannot>
+Instead      <the nearest honest alternative, or "none">
 
-Gaps
-- <gap>
-
-STATUS=OK ACTION=preflight
+STATUS=OK ACTION=unsupported
 ```
 
-### Postflight
-
-```text
-MEMORY:SEARCH POSTFLIGHT
---------------------------------------------------
-Spec        <specFolder>
-Task        <taskId>
-Knowledge   <pre> -> <post> (delta <delta>)
-Uncertainty <pre> -> <post> (delta <delta>)
-Context     <pre> -> <post> (delta <delta>)
-Learning    <value> (<interpretation>)
-
-STATUS=OK ACTION=postflight LI=<value>
-```
-
-### History
-
-```text
-MEMORY:SEARCH HISTORY
---------------------------------------------------
-Spec        <specFolder>
-Records     <count>
-
-<taskId>  K <pre>-><post>  U <pre>-><post>  C <pre>-><post>  LI <value>
-
-STATUS=OK ACTION=history
-```
-
-### Causal
-
-```text
-MEMORY:SEARCH CAUSAL
---------------------------------------------------
-Record      #<id> "<title>"
-Depth       <maxDepth>
-Direction   <direction>
-
-Chain
-- #<id> "<title>" --<relation>--> #<id2> "<title2>"
-
-STATUS=OK ACTION=causal EDGES=<count>
-```
-
-### Link and Unlink
-
-```text
-MEMORY:SEARCH LINK
---------------------------------------------------
-Source      #<sourceId>
-Target      #<targetId>
-Relation    <relation>
-
-STATUS=OK ACTION=link
-```
-
-```text
-MEMORY:SEARCH UNLINK
---------------------------------------------------
-Removed     Edge #<edgeId>
-
-STATUS=OK ACTION=unlink
-```
-
-### Causal Stats
-
-```text
-MEMORY:SEARCH CAUSAL-STATS
---------------------------------------------------
-Total Edges <count>
-Coverage    <pct>% (<linked>/<total> spec-doc records)
-
-By relation
-caused       <count>
-enabled      <count>
-supersedes   <count>
-contradicts  <count>
-derived_from <count>
-supports     <count>
-
-STATUS=OK ACTION=causal-stats COVERAGE=<pct>%
-```
-
-### Evaluation
-
-```text
-MEMORY:SEARCH ABLATION
---------------------------------------------------
-Recall@<K> deltas
--vector   <delta>
--bm25     <delta>
--fts5     <delta>
--graph    <delta>
--trigger  <delta>
-
-STATUS=OK ACTION=ablation
-```
-
-```text
-MEMORY:SEARCH DASHBOARD
---------------------------------------------------
-Sprint trends
-<sprint>  Recall@20 <value>  MRR <value>
-
-Channel performance
-vector <value>
-bm25   <value>
-fts5   <value>
-
-STATUS=OK ACTION=dashboard
-```
+| Requested capability | What to say |
+| --- | --- |
+| Semantic or paraphrase search | Retrieval is lexical. A phrase that is not written in the corpus is not found. Rephrase with the exact wording. |
+| Vector and BM25 fusion, reranking, decay, access tracking, session dedup | Removed with the database. There is no ranking channel to blend, no usage history and no dedup state. |
+| Causal graph, lineage, drift analysis (`causal`, `link`, `unlink`, `causal-stats`) | Grep cannot traverse or statefully update graph edges. Read the packet's `decision-record.md` and its explicit Markdown cross-links instead. |
+| Epistemic baselines (`preflight`, `postflight`, `history`) | Removed with the database. The packet's own `tasks.md` and `implementation-summary.md` are the record. |
+| Channel ablations and eval dashboards (`ablation`, `dashboard`) | Removed with the database. There are no stored eval snapshots and no channels to ablate. |
 
 ## 7. Error Display
+
+Reserved for a genuine execution failure: ripgrep exit `2` or higher, or a lookup exit `2`. Never used for a no-hit.
 
 ```text
 MEMORY:SEARCH
 --------------------------------------------------
 FAIL        <short reason>
+stderr      <the tool's stderr, verbatim>
 Recovery    <next safe action>
 
 STATUS=FAIL ERROR="<message>"
 ```
+
+Rules:
+- Always attach stderr. Exit `1` and exit `2` both produce empty stdout, so stdout alone cannot tell a clean miss from a broken invocation — the exit status is the only discriminator, and hiding stderr destroys the evidence.
+- A missing or unreadable trigger index is an error, not a no-hit. Say the index is absent and name `/doctor memory` as the diagnostic.
