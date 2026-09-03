@@ -19,7 +19,7 @@ Formal contract for the direct `.cjs` script entry points under `.opencode/skill
 
 ## 1. OVERVIEW
 
-The 118 FULL_ISOLATE_NO_MCP arc removed the four `mcp__system_spec_memory__deep_loop_graph_*` tools. Their live replacement is direct process invocation through four `.cjs` scripts.
+The 118 FULL_ISOLATE_NO_MCP arc removed the four deep-loop graph tools the retired memory server used to expose. Their live replacement is direct process invocation through four `.cjs` scripts.
 
 | Script | Replaces | Purpose |
 |---|---|---|
