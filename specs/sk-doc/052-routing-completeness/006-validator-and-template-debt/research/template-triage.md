@@ -333,6 +333,13 @@ scanner reads lines 204 and 207 as prose outside any fence when they are payload
 scanned those lines here, so the count is unaffected. On a payload holding a `bash` sample the same
 inversion would mask the wrong side.
 
+**Fixed on 2026-09-03.** A fence now closes only on a run of the same character at least as long as
+the one that opened it, which is the rule the format itself uses. The fleet count is unchanged at
+530 across 54 detected templates, which is what a latent defect should do, so a regression test is
+the only thing that can prove the fix. The test builds a four-backtick payload holding a shell
+sample and asserts the semicolon inside it stays masked. It fails against the previous scanner and
+passes against the current one.
+
 ---
 
 ## 11. THE ASK

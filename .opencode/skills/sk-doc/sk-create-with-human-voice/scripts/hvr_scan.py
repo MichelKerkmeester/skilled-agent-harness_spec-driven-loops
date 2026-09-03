@@ -209,8 +209,8 @@ def load_rules(rules_path):
 # 3. MASKING WHAT HVR DOES NOT GOVERN
 # ───────────────────────────────────────────────────────────────
 
-FENCE = re.compile(r"^\s*(```|~~~)")
-FENCE_INFO = re.compile(r"^\s*(?:```|~~~)\s*([A-Za-z0-9_+.-]*)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
+FENCE_INFO = re.compile(r"^\s*(?:`{3,}|~{3,})\s*([A-Za-z0-9_+.-]*)")
 
 # Fence tags that mark a sample of code rather than a payload of prose. Inside a
 # template the tag is the only thing separating the document the template emits
@@ -294,16 +294,28 @@ def mask_untargeted(lines, include_code, template_payload=False):
 
     in_fence = False
     fence_is_code = True
+    fence_marker = ""
     paragraph = []
     for index in range(start, len(masked)):
         line = masked[index]
-        if FENCE.match(line):
+        marker_match = FENCE.match(line)
+        if marker_match:
+            marker = marker_match.group(1)
+            # A fence closes only on a run of the same character at least as long as
+            # the one that opened it. Toggling on any marker lets a short fence nested
+            # inside a longer one close it, which inverts every line after it: payload
+            # reads as prose and prose reads as payload.
+            if in_fence and (marker[0] != fence_marker[0] or len(marker) < len(fence_marker)):
+                if fence_is_code:
+                    masked[index] = " " * len(line)
+                continue
             _mask_inline_spans(masked, paragraph)
             paragraph = []
             if in_fence:
                 in_fence = False
             else:
                 in_fence = True
+                fence_marker = marker
                 info = (FENCE_INFO.match(line).group(1) or "").lower()
                 fence_is_code = not template_payload or info in CODE_FENCE_LANGUAGES
             if fence_is_code:

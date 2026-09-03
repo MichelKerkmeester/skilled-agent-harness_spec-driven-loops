@@ -82,6 +82,24 @@ The scanner reports the error string `cannot delve into a
 robust tapestry` when the parse fails, which is expected.
 """
 
+NESTED_FENCE = """# Draft
+
+Prose above the payload.
+
+````markdown
+The payload opens with four backticks so it can carry a fence of its own.
+
+```bash
+echo "a shell sample lives here"; echo done
+```
+
+The payload continues after the inner fence closes.
+````
+
+Prose below the payload.
+"""
+
+
 STRAY_BACKTICK = """# Draft
 
 A lone ` backtick opens nothing, so delve on the next line
@@ -110,6 +128,12 @@ def run() -> int:
         check(
             'a markdown-tagged payload fence is still scanned',
             prose_report['templatePayload'] and prose_report['hardBlockers'] == 1,
+        )
+
+        nested_report = _scan(_prose(tmp, NESTED_FENCE))
+        check(
+            'a shorter fence nested inside a longer one does not close it',
+            nested_report['hardBlockers'] == 0,
         )
 
         wrapped_report = _scan(_prose(tmp, WRAPPED_SPAN))
