@@ -47,7 +47,11 @@ function conforming(title: string): string[] {
 
 function seedCorpus(root: string): void {
   write(root, 'specs/track/001-packet/spec.md', conforming('Packet'));
+  // A canonical basename with no block: refused, because a partial block is a
+  // worse validation state than none. Its non-canonical sibling below is the
+  // one the insert handler still acts on.
   write(root, 'specs/track/001-packet/plan.md', ['# Plan With No Frontmatter', '', 'Prose that must not move.', '']);
+  write(root, 'specs/track/001-packet/research/notes.md', ['# Notes With No Frontmatter', '', 'Prose that must not move.', '']);
   write(root, 'specs/track/001-packet/tasks.md', [
     '---', 'title: "Tasks"', 'triggerPhrases:', '  - "task breakdown"', '---', '', '# Tasks', '',
   ]);
@@ -77,6 +81,7 @@ describe('scope walk', () => {
 
     expect(walked.files).toEqual([
       'specs/track/001-packet/plan.md',
+      'specs/track/001-packet/research/notes.md',
       'specs/track/001-packet/spec.md',
       'specs/track/001-packet/tasks.md',
     ]);
@@ -117,11 +122,11 @@ describe('enumerate', () => {
     seedCorpus(root);
     const { report } = enumerate(options(root));
 
-    expect(report.manifestCount).toBe(3);
-    expect(report.inventory.sum).toBe(3);
+    expect(report.manifestCount).toBe(4);
+    expect(report.inventory.sum).toBe(4);
     expect(report.inventory.sumMatchesManifest).toBe(true);
     expect(report.inventory.unclassified).toEqual([]);
-    expect(report.inventory.counts.missing).toBe(1);
+    expect(report.inventory.counts.missing).toBe(2);
     expect(report.inventory.counts['valid-empty']).toBe(2);
   });
 
@@ -131,7 +136,7 @@ describe('enumerate', () => {
     const { artifacts } = enumerate(options(root));
     const captured = JSON.parse(fs.readFileSync(artifacts.preimageManifest, 'utf8'));
 
-    expect(Object.keys(captured.digests)).toHaveLength(3);
+    expect(Object.keys(captured.digests)).toHaveLength(4);
     const spec = fs.readFileSync(path.join(root, 'specs/track/001-packet/spec.md'), 'utf8');
     expect(captured.digests['specs/track/001-packet/spec.md']).toBe(bodyPreimage(spec).digest);
   });
@@ -277,7 +282,7 @@ describe('pipeline', () => {
     const verified = verifyPreimage(options(root));
     expect(verified.report.mismatchCount).toBe(0);
     expect(verified.report.missing).toEqual([]);
-    expect(verified.report.verified).toBe(3);
+    expect(verified.report.verified).toBe(4);
   });
 
   it('refuses a document that moved since the manifest was frozen', () => {

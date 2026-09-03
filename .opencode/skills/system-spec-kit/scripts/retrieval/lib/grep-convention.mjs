@@ -118,6 +118,19 @@ export const UNPARSEABLE_VARIANTS = Object.freeze(new Set([
   'malformed-or-unclosed', 'non-yaml', 'wrong-list-type', 'non-string-members',
 ]));
 
+/**
+ * The five canonical document basenames the frontmatter contract inspects.
+ * Their required scalars are checked as errors once a block is present, so a
+ * block carrying only a title and an empty trigger list validates worse than no
+ * block at all: an absent block is a continuity warning, a partial one is a
+ * failure. The retrofit cannot author the missing scalars — a description or an
+ * importance tier it invented would be indistinguishable from one a human
+ * chose — so on these documents it declines to start a block it cannot finish.
+ */
+export const CANONICAL_DOCUMENT_BASENAMES = Object.freeze(new Set([
+  'spec.md', 'plan.md', 'tasks.md', 'decision-record.md', 'implementation-summary.md',
+]));
+
 /** Canonical frontmatter keys, in the order a created block writes them. */
 export const CANONICAL_KEYS = Object.freeze([
   'title',
@@ -1043,6 +1056,28 @@ export function planDocument(document) {
   const row = (category, line, reason, rawKey = null) => {
     diagnostics.push({ category, line, path: relativePath, rawKey, reason, severity: CATEGORY_SEVERITY[category] });
   };
+
+  // Checked before the handlers, because the only safe treatment is to not
+  // start the edit. A block this tool cannot finish is worse than no block.
+  const basename = relativePath.split('/').pop() ?? '';
+  if (classification.variant === 'missing'
+    && classification.detail === 'no-frontmatter-block'
+    && CANONICAL_DOCUMENT_BASENAMES.has(basename)) {
+    return {
+      actions: ['skipped', 'refused-partial-canonical-block'],
+      anchors: analyzeAnchors(text),
+      classification,
+      diagnostics: [{
+        category: 'missing',
+        line: classification.line,
+        path: relativePath,
+        rawKey: basename,
+        reason: `edit refused: ${basename} needs an authored frontmatter block, because a partial one fails the frontmatter contract that an absent one only warns on`,
+        severity: CATEGORY_SEVERITY.missing,
+      }],
+      nextText: text,
+    };
+  }
 
   switch (classification.variant) {
     case 'missing':

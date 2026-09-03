@@ -248,6 +248,38 @@ describe('frontmatter creation', () => {
     expect(planned.diagnostics.some((row: { reason: string }) => /edit refused/.test(row.reason))).toBe(true);
   });
 
+  it('refuses to start a block on a canonical document it cannot finish', () => {
+    // A block holding only a title and an empty list fails the frontmatter
+    // contract's required scalars, where an absent block is a continuity
+    // warning. Half a block is a worse validation state than none, and the
+    // scalars it lacks are an author's to write, not this tool's to invent.
+    const body = doc(['# Feature Specification', '', 'Prose the retrofit never rewrites.', '']);
+
+    for (const basename of ['spec.md', 'plan.md', 'tasks.md', 'decision-record.md', 'implementation-summary.md']) {
+      const planned = planDocument({ relativePath: `specs/track/001-packet/${basename}`, text: body });
+      expect(planned.nextText, basename).toBe(body);
+      expect(planned.actions, basename).toContain('refused-partial-canonical-block');
+      expect(planned.diagnostics.some((row: { reason: string }) => /needs an authored frontmatter block/.test(row.reason)), basename).toBe(true);
+    }
+  });
+
+  it('still creates a block on a non-canonical document', () => {
+    const body = doc(['# Research Note', '', 'Prose.', '']);
+    const planned = planDocument({ relativePath: 'specs/track/001-packet/research/research.md', text: body });
+    expect(planned.nextText).not.toBe(body);
+    expect(planned.actions).toContain('inserted-frontmatter-block');
+  });
+
+  it('still adds the missing key when a canonical document already has a block', () => {
+    // Those documents already carry the other scalars, so completing the block
+    // moves them toward the contract instead of half-starting one.
+    const source = doc(['---', 'title: "Spec"', 'description: "A spec."', 'importance_tier: "normal"', 'contextType: "general"', '---', '', '# Spec', '']);
+    const planned = planDocument({ relativePath: 'specs/track/001-packet/spec.md', text: source });
+    expect(planned.actions).toContain('inserted-trigger-key');
+    expect(planned.nextText).toContain('trigger_phrases: []');
+    expect(bodyPreimage(planned.nextText).digest).toBe(bodyPreimage(source).digest);
+  });
+
   it('reports no degradation for an edit that leaves the block parseable', () => {
     const source = doc(['---', 'title: "Doc"', '---', '', '# Doc', '']);
     const next = insertTriggerDeclaration(source, 'no-trigger-key');

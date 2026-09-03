@@ -132,8 +132,21 @@ export function writeDriftMarker(input: DriftMarkerWriteInput): string | null {
   }
 }
 
+// The hook streams the diff on stdin because a large commit's diff exceeds the
+// combined argument-and-environment limit. The environment variable is still
+// read first so an in-process caller can supply the diff directly, and stdin is
+// only touched when it is a real pipe.
+function readDiffFromStdin(): string {
+  if (process.stdin.isTTY) return '';
+  try {
+    return fs.readFileSync(0, 'utf8');
+  } catch {
+    return '';
+  }
+}
+
 export function runDriftMarkerWrite(): void {
-  const diff = process.env.MEMORY_DRIFT_DIFF || '';
+  const diff = process.env.MEMORY_DRIFT_DIFF || readDiffFromStdin();
   const repoRoot = process.env.MEMORY_DRIFT_REPO_ROOT || '';
   if (!repoRoot || !diff.trim()) {
     return;

@@ -112,8 +112,13 @@ const SKIP_VARIANTS = Object.freeze(new Set([
 /** Variants a completed run must have cleared from the corpus. */
 const RESOLVABLE_VARIANTS = Object.freeze(new Set(['missing', 'duplicate']));
 
-/** Skip bucket for a document whose only available edit was refused as unsafe. */
-const REFUSED_SKIP = 'refused-unsafe-edit';
+/**
+ * Skip buckets for documents the processor declined to write. They are kept
+ * apart rather than merged because they need different follow-up: an unsafe
+ * edit needs a parser-aware repair, while a partial canonical block needs an
+ * author to write the scalars this tool must not invent.
+ */
+const REFUSAL_SKIPS = Object.freeze(['refused-unsafe-edit', 'refused-partial-canonical-block']);
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 
@@ -777,7 +782,7 @@ export function rescan(options) {
   // Skips are reported by path, not merely counted: a skip is a document a
   // human has to look at, and a count alone cannot be acted on.
   const skippedByDesign = Object.fromEntries(
-    [...SKIP_VARIANTS, REFUSED_SKIP].map((key) => [key, { count: 0, paths: [] }]),
+    [...SKIP_VARIANTS, ...REFUSAL_SKIPS].map((key) => [key, { count: 0, paths: [] }]),
   );
   const counts = Object.fromEntries(VARIANTS.map((variant) => [variant, 0]));
 
@@ -810,9 +815,10 @@ export function rescan(options) {
       // processor would have written it. Re-plan to tell the two apart: a
       // refusal is a decision the pipeline already made and recorded.
       const planned = planDocument({ relativePath: entry.path, text });
-      if (planned.actions.includes('refused-unsafe-edit')) {
-        skippedByDesign[REFUSED_SKIP].count += 1;
-        skippedByDesign[REFUSED_SKIP].paths.push(entry.path);
+      const refusal = REFUSAL_SKIPS.find((skip) => planned.actions.includes(skip));
+      if (refusal) {
+        skippedByDesign[refusal].count += 1;
+        skippedByDesign[refusal].paths.push(entry.path);
         continue;
       }
       residue.push({ path: entry.path, reason: classification.reason, variant: classification.variant });
