@@ -20,7 +20,7 @@ contextType: "implementation"
 
 Both research lineages recommended a dark theme, from different halves of the vendored source, and both landed on the same construction: a second block of custom properties behind the operating system preference, with the series hues re-chosen for the dark ground rather than lightened, and the rules drawn as ink at an alpha rather than as a solid grey. Neither lineage could ship it, because the template contract says exactly one palette block per file and a media-scoped twin makes two.
 
-**Key Decisions**: none. The dark theme is one of the four calls the adjudication left to the operator, and this phase names it rather than assuming it. The plan is written so the decision is a yes or a no on a drafted amendment rather than on an idea.
+**Key Decisions**: the operator approved the amendment on 2026-09-03, so a file now carries one palette block per theme and two at most. The phase made five calls of its own, and all six are written up in `decision-record.md`.
 
 **Critical Dependencies**: phase 002 owns the chrome the dark values have to answer, so the light palette must be settled before its twin is derived.
 
@@ -32,7 +32,7 @@ Both research lineages recommended a dark theme, from different halves of the ve
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-03 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -251,11 +251,11 @@ Scored with `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.
 
 ## 12. OPEN QUESTIONS
 
-The first item on this list is an operator decision the adjudication named, and this phase does not assume an answer to it.
+All three are answered. Each answer is written up in `decision-record.md` with what it cost.
 
-- **The contract amendment.** The template contract says exactly one palette block per file, matched against the source in both directions, and a media-scoped twin makes two. Both research lineages recommend shipping the dark theme anyway. The counter is that a delivered document has already picked a theme, and that a second block doubles the surface a drift can hide in. The drafted amendment reads: a file carries one palette block per theme and no more than two, each matched against its own projection of the palette source in both directions. The operator answers yes or no. A no closes this phase with the amendment recorded and nothing applied.
-- Whether the dark chrome keeps the warm cast the light chrome has. The light surface is a warm paper and the vendored dark ground is neutral. Warm on dark can read as muddy, and neutral on dark abandons the product voice the light theme was built around.
-- Whether the six family deliveries and the three proof sheets need the same treatment as the twenty forms. They are deliveries and proof sheets rather than forms, and a reader meets a delivery more often than a form, which argues for including them.
+- **The contract amendment.** Answered yes by the operator on 2026-09-03. Rule 4 now reads that a file carries one palette block per theme and no more than two, each matched against its own projection of the palette source in both directions. The ceiling stayed a ceiling, and the check counts the sentinel pairs rather than trusting the count. ADR-002.
+- **Whether the dark chrome keeps the warm cast.** It keeps the paper's hue angle and cuts its chroma, because thirty-three percent saturation reads as paper at 97 percent lightness and reads as brown at 8 percent. The ground is a value the corpus already had: the light theme's own ink carries the same cast, and the dark ground sits one step deeper than it. ADR-003.
+- **Whether the deliveries and the proof sheets need the same treatment.** All twenty-nine, with the proof sheets first. A delivery is what a reader meets, and a proof sheet is the skeleton every future template copies, so one without a dark block would make every new template non-conformant on creation. ADR-004.
 <!-- /ANCHOR:questions -->
 
 ---

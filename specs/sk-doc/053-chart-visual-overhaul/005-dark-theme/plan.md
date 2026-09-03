@@ -40,16 +40,16 @@ Doing it in that order is the whole plan. Editing twenty-nine files against a ch
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 002 closed, so the light chrome the dark twin answers is settled
-- [ ] The operator has answered the contract amendment in spec section 12
-- [ ] Baseline corpus check captured before any edit
+- [x] Phase 002 closed at `28d3defea8`, so the light chrome the dark twin answers is settled
+- [x] The operator answered the contract amendment on 2026-09-03
+- [x] Baseline corpus check captured before any edit: 18 checks, 0 failures, `RESULT: PASSED`
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state
-- [ ] The dark gate section reports a nonzero assertion count and zero failures
-- [ ] The dark section is proved able to fail, then restored
-- [ ] Docs updated (spec, plan, tasks, acceptance-criteria, goal)
+- [x] All thirteen acceptance criteria met, none waived and none superseded
+- [x] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state, at 20 checks and 0 errors
+- [x] The dark gate section reports 34 assertions and zero failures
+- [x] The dark section proved able to fail six ways, each restored from a copy
+- [x] Docs updated (spec, plan, tasks, acceptance-criteria, goal, decision record, implementation summary)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -292,14 +292,14 @@ This phase carries one decision that is not the operator's, and it names the ope
 
 ### ADR-001: Re-hue across themes rather than lighten
 
-**Status**: Proposed
+**Status**: Accepted on 2026-09-03, once every dark value cleared its own gate
 
 **Context**: the colour system says a lighter value comes from mixing the chosen colour toward `surface` and a darker one from mixing it toward `ink`, and that borrowing a value from another system breaks the encoding. That rule was written for one ground. Applied across two, it produces washed dark values that fail the mark gate, because mixing toward a near-black surface is what makes a mark disappear on it.
 
 **Decision**: a system's dark values are re-chosen for the dark ground, under the same gates and the same capacity, rather than derived from the light ones. The existing derivation rule keeps governing light and dark steps within one theme, and the colour document gains a sentence saying that a theme change is the one boundary a hue may cross.
 
 **Consequences**:
-- Every dark value has to clear every gate on its own, computed rather than assumed.
+- Every dark value has to clear every gate on its own, computed rather than assumed. The rule that did it in practice is one sentence: a dark value is re-chosen at a hue the dark ground can carry, and its lightness is set so it holds the same ratio against near-black that its light counterpart holds against paper.
 - Two sets of values now exist per system, so a colour edit has two places to reach. The check catches a half-edit in both directions.
 - The rule stops being stated as an absolute, which is a real cost. The mitigation is that the exception is named and bounded to a theme boundary.
 
@@ -313,9 +313,9 @@ This phase carries one decision that is not the operator's, and it names the ope
 ## L3: AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
-- [ ] Confirm the operator has answered the contract amendment. No file changes before that answer.
-- [ ] Confirm the baseline corpus check was captured before any edit, and its `RESULT:` line read.
-- [ ] Confirm phase 002 is closed, so the light values being answered are final.
+- [x] The operator answered on 2026-09-03, before the first edit.
+- [x] The baseline was captured with `--render` before any edit and its `RESULT:` line read.
+- [x] Phase 002 closed at `28d3defea8`, with 003 and 004 landed after it.
 
 ### Execution Rules
 

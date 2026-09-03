@@ -33,7 +33,7 @@ Operators run the exact prompt and command sequence for `CHT-005` and confirm th
 - Real user request: `Restyle these charts to our brand colours.`
 - Prompt: `Change the chart palette to our colours, then prove every chart followed and nothing kept an old value.`
 - Expected execution process: the palette source is edited rather than any template, the corpus check reports which blocks have drifted and prints the exact block to paste, each template's block is replaced from that output and the check is re-run until it passes.
-- Expected signals: the `palette-block` check reports one assertion per scanned file. The `colour-literals` check reports hundreds of assertions across the corpus, which is the count of places a value could have been hardcoded and was not. Both report zero failures.
+- Expected signals: the `palette-block` check reports four assertions per scanned file, two per theme, because each file carries a light block and a dark one. The `colour-literals` check reports hundreds of assertions across the corpus, which is the count of places a value could have been hardcoded and was not. Both report zero failures.
 - Desired user-visible outcome: the user changes a colour in one place and the whole corpus follows, with a check that says so.
 - Pass/fail: PASS when the shipped corpus passes both checks and each break below produces `RESULT: FAILED` on its own named check. FAIL when a break passes, when a check reports zero assertions or when the tree is left modified.
 
@@ -77,8 +77,8 @@ Capture the prompt as typed, all four output files, the exit status of each run 
 
 1. A break that passes means the check was edited to accept a file it was right to reject, or the break landed inside a region the check ignores. Read which check reported the assertion count for that file.
 2. A check reporting zero assertions ran on nothing. That is not a pass, and the scanned file count at the top of the run is where it shows.
-3. When the drifted block fails but names the wrong file, the palette block sentinels are duplicated somewhere. The contract allows exactly one block per file.
-4. When the literal is not caught, check whether it sits inside the palette block. A value there is correct and expected, and the check is right to allow it.
+3. When the drifted block fails but names the wrong file, the palette block sentinels are duplicated somewhere. The contract allows one block per theme and two at most, and the check names which region it was reading.
+4. When the literal is not caught, check whether it sits inside either palette block. A value there is correct and expected, and the check is right to allow it.
 5. When the final run disagrees with the baseline, the restore was partial. Read `git status --porcelain` before concluding anything about the checks.
 
 ### Optional Supplemental Checks

@@ -9,12 +9,14 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # Chart Colour Systems
 
-Every colour in this packet comes from `assets/color/palettes.json`. A template never invents one, and the corpus check fails a template that carries a colour literal anywhere except its palette block.
+Every colour in this packet comes from `assets/color/palettes.json`. A template never invents one, and the corpus check fails a template that carries a colour literal anywhere except a palette block.
+
+Every role holds two values, one per ground. A file paints the light set by default and the dark set when the reader's operating system asks for one, and both sets come from the same file and clear the same gates.
 
 ---
 
@@ -30,7 +32,7 @@ A colour system is an answer to "what does colour mean in this chart". That is t
 
 | System | Colour encodes | Use it when | Capacity |
 | --- | --- | --- | --- |
-| `neutral` | Nothing. Lightness ranks the series, darkest first | The default, and the fallback whenever hue would carry no stable meaning | 4 series |
+| `neutral` | Nothing. Lightness ranks the series, starting furthest from the ground: darkest first on paper, brightest first on ink | The default, and the fallback whenever hue would carry no stable meaning | 4 series |
 | `ordered` | Position on a scale | The data is ordered: a value, a rank, a time position, a progress figure | 5 steps |
 | `categorical` | Category membership | The categories are unordered and there are four or fewer | 4 categories |
 
@@ -50,6 +52,12 @@ A template reads a role, never a value. Every system defines the same roles, so 
 | ink | `--chart-ink` | Primary text: the headline, and any label read exactly |
 | muted | `--chart-muted` | Secondary text: the subtitle, the axis labels, the source line |
 | rule | `--chart-rule` | Gridlines, axis lines, card borders. Structure, never data |
+
+Each of these carries a second value under `chromeDark`, chosen against the dark ground rather than
+copied from the light one. The dark surface is the light theme's near-black taken one step deeper,
+the dark ink and muted values are set to hold the ratio their light counterparts hold against paper,
+and the dark rule is ink at an alpha rather than a solid grey, so a card edge sits on the ground
+instead of drawing a second line over the data.
 
 ### Corner roles, identical in all three systems
 
@@ -89,7 +97,15 @@ A palette built from a client's brand colours defines the same six roles or it i
 
 **Capacity is a ceiling, not a suggestion.** Four unordered categories is comfortable and five is not offered. A request for eleven categories is answered with the neutral system and labels, or by merging the tail before drawing. The ceiling lives in the palette file as the length of the series array, so an agent cannot reach a fifth slot without editing the source and failing the check.
 
-**Derive light and dark, never introduce a hue.** A lighter value comes from mixing the chosen colour toward `surface`. A darker one comes from mixing it toward `ink`. Borrowing a value from another system to fill a gap breaks the encoding, because the borrowed value carries the other system's meaning. Every value shipped here was derived that way.
+**Derive light and dark, never introduce a hue.** A lighter value comes from mixing the chosen colour toward `surface`. A darker one comes from mixing it toward `ink`. Borrowing a value from another system to fill a gap breaks the encoding, because the borrowed value carries the other system's meaning. Every value shipped here was derived that way, inside one theme.
+
+**A theme boundary is the one place a hue may be re-chosen.** That rule above was written when there was one ground, and mixing toward the surface is exactly what makes a mark disappear when the surface is near-black. So a system's dark values are chosen for the dark ground rather than derived from its light ones, under one stated rule: a dark value is re-chosen at a hue the dark ground can carry, and its lightness is set so it holds the same ratio against near-black that its light counterpart holds against paper.
+
+The reason a hue has to move is arithmetic rather than taste. A hue reaches its own ceiling of lightness: pure blue tops out near a tenth of the luminance pure yellow reaches, so the categorical system's navy, which carries the brightest slot on paper, cannot carry the brightest slot on ink without desaturating into a pale grey-blue. Each hue therefore lands in the slot whose lightness it can reach with its chroma intact, and the set rotates: navy, rust, green and violet on paper become gold, cyan, rose and violet-blue on ink.
+
+Two things do not rotate, and both refusals are as deliberate as the rotation. The `neutral` system has no hue to move, so its dark values stay warm greys. The `ordered` ramp stays in the teal family, because a magnitude ramp needs one hue and teal is a family that reaches the lightness the dark carrying end needs without washing out. What changes there is direction and chroma, not hue.
+
+**Index 0 is always the value furthest from that theme's ground.** On paper the first series value is the darkest and on ink it is the brightest, and in both cases it is the one that carries most. That is what keeps `neutral` ranking importance the same way on both grounds and keeps `ordered` reading as more in the same direction. A dark ramp that simply reversed the light array would satisfy the gates and still be wrong, because the light ramp's chroma was placed for a light ground.
 
 **Shapes that touch are separated by a stroke in `surface`.** Stacked segments, pie slices and treemap cells all carry a surface-coloured separator, so no two data colours ever share an edge. This is what makes the contrast gate satisfiable: with the separator, every mark is read against the ground rather than against its neighbour. Without it, four categories on a light ground is arithmetically impossible, because all-pairs separation at 3:1 runs out of room after two values.
 
@@ -101,14 +117,30 @@ A palette built from a client's brand colours defines the same six roles or it i
 
 These are computed from the palette file on every run, never restated in a test. A test that copies the values goes stale the first time somebody edits a colour.
 
-| Gate | Threshold | Applies to |
+Every gate runs twice, once per theme, against that theme's own surface. A run prints the two as separate lines, `palette-source` and `palette-source-dark`, each with its own assertion count, so nobody reads one theme's pass as covering both. A value that clears on paper has proved nothing about ink.
+
+| Gate | Threshold | Applies to, on either ground |
 | --- | --- | --- |
-| `textOnSurface` | 4.5:1 | `ink` and `muted` against `surface` |
+| `textOnSurface` | 4.5:1 | `ink` and `muted` against that theme's `surface` |
 | `markOnSurface` | 3.0:1 | Every series value in an `importance` or `category` system, and every emphasis value |
-| `rampDarkestOnSurface` | 3.0:1 | The darkest step of a `magnitude` system |
-| `rampLightestOnSurface` | 1.15:1 | The lightest step, so a low cell is distinguishable from an empty one |
+| `rampDarkestOnSurface` | 3.0:1 | The step of a `magnitude` system furthest from the ground, which is the darkest on paper and the brightest on ink |
+| `rampLightestOnSurface` | 1.15:1 | The step nearest the ground, so a low cell is distinguishable from an empty one |
 | `rampStepSeparation` | 1.3:1 | Adjacent steps of a `magnitude` system |
 | `emphasisAgainstFirstSeries` | 1.5:1 | Emphasis against `series-1` |
+
+Two of those names were written when there was one ground and now read wrong on the other: on ink
+the step this table calls the darkest is the brightest one. The check tests the end by its distance
+from the ground rather than by its position in the array, and it says which end it tested in the
+failure it prints. Renaming the two keys would be the honest fix and it is left as a proposal
+rather than folded in here, because the names reach the palette source and the phase record that
+set them.
+
+### Which end of a ramp the gates hold
+
+A ramp's array runs from the value furthest from the ground to the value nearest it, and the check
+asserts that ordering before it gates either end. That is what stops a reversed array from passing:
+reversal keeps every step separation intact, so a check that gated whichever end happened to be
+lighter would accept a ramp that now reads backwards.
 
 ### Why a ramp is gated differently
 
@@ -124,10 +156,11 @@ A ramp step is read as part of a group, against its legend and its neighbours. A
 
 Enforced by `scripts/check-corpus.cjs`, on every run:
 
-- Every gate in the table above, computed from the palette file.
-- Every system defines as many series values as its declared capacity.
-- A `magnitude` system is strictly monotonic in lightness.
-- A template's palette block matches the palette file exactly, in both directions.
+- Every gate in the table above, computed from the palette file, once per theme against that theme's own surface.
+- Every system defines as many series values as its declared capacity, on both grounds.
+- A `magnitude` system runs from the step furthest from the ground to the step nearest it, without reversing.
+- The dark `rule` value is that theme's ink at an alpha, rather than a solid grey that a card edge would have to sit over.
+- Each of a template's palette blocks matches the palette file exactly, in both directions, and no file carries more than one block per theme.
 - No colour literal appears anywhere outside a palette block.
 - No corner value appears anywhere outside a palette block: a stylesheet corner resolves through a rung, and the drawing code computes a corner rather than typing one.
 

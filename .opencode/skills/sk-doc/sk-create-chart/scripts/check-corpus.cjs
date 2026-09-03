@@ -30,6 +30,9 @@ const ASSET_ROOT = path.join(PACKAGE_ROOT, 'assets');
 
 const PALETTE_BEGIN = /\/\*\s*CHART_PALETTE:BEGIN\s+system=([a-z0-9-]+)\s*\*\//;
 const PALETTE_END = '/* CHART_PALETTE:END */';
+const PALETTE_DARK_BEGIN = /\/\*\s*CHART_PALETTE_DARK:BEGIN\s+system=([a-z0-9-]+)\s*\*\//;
+const PALETTE_DARK_END = '/* CHART_PALETTE_DARK:END */';
+const DARK_QUERY = /@media[^{]*prefers-color-scheme\s*:\s*dark/i;
 const DATA_BEGIN = '/* CHART_DATA:BEGIN */';
 const DATA_END = '/* CHART_DATA:END */';
 const CATALOG_BEGIN = '<!-- CHART_CATALOG:BEGIN -->';
@@ -109,7 +112,9 @@ function customProperties(palette, systemId) {
   // carries that block and compares it against the source in both directions. It lives in
   // its own object in the source rather than inside chrome, because chrome means colour:
   // a length that cannot differ between a light and a dark theme has no business in the
-  // one structure whose whole purpose is to differ between them.
+  // one structure whose whole purpose is to differ between them. That is also why the rungs
+  // are emitted into the light block alone: a corner repeated under a second ground would be
+  // a second copy of a value that cannot differ, which is a place for the two to disagree.
   for (const [role, value] of Object.entries(palette.radius || {})) {
     props.set(`${palette.customPropertyPrefix}radius-${role}`, value);
   }
@@ -117,6 +122,23 @@ function customProperties(palette, systemId) {
     props.set(`${palette.customPropertyPrefix}series-${i + 1}`, value);
   });
   props.set(`${palette.customPropertyPrefix}emphasis`, system.emphasis);
+  return props;
+}
+
+// The dark projection redeclares the colour roles and nothing else. A file paints these only
+// when the reader's operating system asks for a dark scheme, which is the one signal a
+// self-contained document can read: it has nowhere to keep a preference and no place for a
+// control, and a browser that never resolves the query is left painting the light block.
+function customPropertiesDark(palette, systemId) {
+  const system = palette.systems[systemId];
+  const props = new Map();
+  for (const [role, value] of Object.entries(palette.chromeDark || {})) {
+    props.set(`${palette.customPropertyPrefix}${role}`, value);
+  }
+  (system.seriesDark || []).forEach((value, i) => {
+    props.set(`${palette.customPropertyPrefix}series-${i + 1}`, value);
+  });
+  if (system.emphasisDark) props.set(`${palette.customPropertyPrefix}emphasis`, system.emphasisDark);
   return props;
 }
 
@@ -132,89 +154,209 @@ function canonicalBlock(palette, systemId) {
   return lines.join('\n');
 }
 
-function checkPaletteSource(palette) {
-  const surface = palette.chrome.surface;
-  const g = palette.gates;
-  let checked = 0;
-
-  for (const role of ['surface', 'ink', 'muted', 'rule']) {
-    if (!palette.chrome[role]) {
-      record('palette-source', 'error', rel(PALETTE_SOURCE), `chrome role "${role}" is missing`);
-    }
+function canonicalDarkBlock(palette, systemId) {
+  const lines = [];
+  lines.push(`/* CHART_PALETTE_DARK:BEGIN system=${systemId} */`);
+  lines.push('@media (prefers-color-scheme: dark) {');
+  lines.push('  :root {');
+  for (const [prop, value] of customPropertiesDark(palette, systemId)) {
+    lines.push(`    ${prop}: ${value};`);
   }
+  lines.push('  }');
+  lines.push('}');
+  lines.push(PALETTE_DARK_END);
+  return lines.join('\n');
+}
+
+// One region description per theme. Everything that differs between the light block and its
+// dark twin lives here, so the two are checked by one routine rather than by two that drift.
+const PALETTE_REGIONS = [
+  {
+    theme: 'light',
+    begin: PALETTE_BEGIN,
+    beginName: 'CHART_PALETTE:BEGIN',
+    endMarker: PALETTE_END,
+    projection: customProperties,
+    canonical: canonicalBlock,
+    required: true,
+    mediaQuery: null,
+  },
+  {
+    theme: 'dark',
+    begin: PALETTE_DARK_BEGIN,
+    beginName: 'CHART_PALETTE_DARK:BEGIN',
+    endMarker: PALETTE_DARK_END,
+    projection: customPropertiesDark,
+    canonical: canonicalDarkBlock,
+    required: true,
+    mediaQuery: DARK_QUERY,
+  },
+];
+
+// The corner ladder is gated once rather than per theme. A rung is a length, and a length
+// cannot answer a ground.
+function checkRadiusRungs(palette) {
+  let checked = 0;
   for (const [role, value] of Object.entries(palette.radius || {})) {
     checked += 1;
     if (/^\d+(?:\.\d+)?px$/.test(value)) continue;
     record('palette-source', 'error', rel(PALETTE_SOURCE),
       `radius rung "${role}" is ${value}, and a rung has to be a pixel length the stylesheet can use directly`);
   }
+  tally('palette-source', checked);
+}
+
+// One theme description per ground. Every gate is computed from the palette file against the
+// surface named here, so a value that clears on paper still has to clear on ink and neither
+// run can be read as covering the other.
+const THEMES = [
+  {
+    check: 'palette-source',
+    chrome: 'chrome',
+    series: 'series',
+    emphasis: 'emphasis',
+    ground: 'the light ground',
+    alphaRule: false,
+  },
+  {
+    check: 'palette-source-dark',
+    chrome: 'chromeDark',
+    series: 'seriesDark',
+    emphasis: 'emphasisDark',
+    ground: 'the dark ground',
+    alphaRule: true,
+  },
+];
+
+function checkPaletteSource(palette, theme) {
+  const chrome = palette[theme.chrome];
+  const g = palette.gates;
+  let checked = 0;
+
+  if (!chrome) {
+    record(theme.check, 'error', rel(PALETTE_SOURCE),
+      `no "${theme.chrome}" object, so ${theme.ground} has no chrome to gate`);
+    tally(theme.check, 1);
+    return;
+  }
+
+  for (const role of ['surface', 'ink', 'muted', 'rule']) {
+    checked += 1;
+    if (chrome[role]) continue;
+    record(theme.check, 'error', rel(PALETTE_SOURCE), `${theme.chrome} role "${role}" is missing`);
+  }
+  const surface = chrome.surface;
+  if (!surface) {
+    tally(theme.check, checked);
+    return;
+  }
+
   for (const role of ['ink', 'muted']) {
-    const ratio = contrast(palette.chrome[role], surface);
+    if (!chrome[role]) continue;
+    const ratio = contrast(chrome[role], surface);
     checked += 1;
     if (ratio < g.textOnSurface) {
-      record('palette-source', 'error', rel(PALETTE_SOURCE),
-        `chrome.${role} reads ${round2(ratio)}:1 on surface, below the ${g.textOnSurface}:1 text gate`);
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `${theme.chrome}.${role} reads ${round2(ratio)}:1 on ${theme.ground}, below the ${g.textOnSurface}:1 text gate`);
+    }
+  }
+
+  // A card edge on a near-black ground is ink at an alpha rather than a solid colour. A grey
+  // dark enough to sit quietly is a second line drawn over the data; an alpha lets the ground
+  // show through, which is what keeps the edge readable without competing with the marks.
+  if (theme.alphaRule && chrome.rule) {
+    checked += 1;
+    const parts = /^#([0-9A-Fa-f]{6})([0-9A-Fa-f]{2})$/.exec(chrome.rule);
+    if (!parts) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `${theme.chrome}.rule is ${chrome.rule}, and on this ground the rule is ink at an alpha rather than a solid value`);
+    } else if (chrome.ink && `#${parts[1]}`.toUpperCase() !== chrome.ink.toUpperCase()) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `${theme.chrome}.rule is ${chrome.rule}, whose colour is not ${theme.chrome}.ink (${chrome.ink}). The edge is this theme's ink held back by an alpha, not a third colour`);
+    } else if (parseInt(parts[2], 16) === 255) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `${theme.chrome}.rule carries a full alpha, which makes it a solid value wearing an alpha channel`);
     }
   }
 
   for (const [id, system] of Object.entries(palette.systems)) {
-    if (system.series.length !== system.capacity) {
-      record('palette-source', 'error', rel(PALETTE_SOURCE),
-        `system "${id}" declares capacity ${system.capacity} and defines ${system.series.length} series values`);
-    }
-    const emphasisRatio = contrast(system.emphasis, surface);
+    const series = system[theme.series];
+    const emphasis = system[theme.emphasis];
     checked += 1;
-    if (emphasisRatio < g.markOnSurface) {
-      record('palette-source', 'error', rel(PALETTE_SOURCE),
-        `system "${id}" emphasis reads ${round2(emphasisRatio)}:1 on surface, below the ${g.markOnSurface}:1 mark gate`);
+    if (!Array.isArray(series) || !series.length) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `system "${id}" defines no ${theme.series} values, so it has nothing to paint on ${theme.ground}`);
+      continue;
     }
-    const againstFirst = contrast(system.emphasis, system.series[0]);
-    checked += 1;
-    if (againstFirst < g.emphasisAgainstFirstSeries) {
-      record('palette-source', 'error', rel(PALETTE_SOURCE),
-        `system "${id}" emphasis reads ${round2(againstFirst)}:1 against series[0], below the ${g.emphasisAgainstFirstSeries}:1 separation floor. An emphasised mark that matches the base mark in lightness disappears in greyscale`);
+    if (series.length !== system.capacity) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `system "${id}" declares capacity ${system.capacity} and defines ${series.length} ${theme.series} values`);
+    }
+    if (!emphasis) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `system "${id}" defines no ${theme.emphasis}, and emphasis is required in every system on every ground`);
+    } else {
+      const emphasisRatio = contrast(emphasis, surface);
+      checked += 1;
+      if (emphasisRatio < g.markOnSurface) {
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" emphasis reads ${round2(emphasisRatio)}:1 on ${theme.ground}, below the ${g.markOnSurface}:1 mark gate`);
+      }
+      const againstFirst = contrast(emphasis, series[0]);
+      checked += 1;
+      if (againstFirst < g.emphasisAgainstFirstSeries) {
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" emphasis reads ${round2(againstFirst)}:1 against series[0] on ${theme.ground}, below the ${g.emphasisAgainstFirstSeries}:1 separation floor. An emphasised mark that matches the base mark in lightness disappears in greyscale`);
+      }
     }
 
     if (system.encodes === 'magnitude') {
-      // A ramp is read as a group against its legend, so only the dark end has to clear
-      // the mark gate. Requiring it of every step would delete the light end of every
-      // sequential scale, which is the half that encodes "low".
-      const darkest = contrast(system.series[0], surface);
-      checked += 1;
-      if (darkest < g.rampDarkestOnSurface) {
-        record('palette-source', 'error', rel(PALETTE_SOURCE),
-          `system "${id}" darkest ramp step reads ${round2(darkest)}:1 on surface, below ${g.rampDarkestOnSurface}:1`);
-      }
-      const lightest = contrast(system.series[system.series.length - 1], surface);
-      checked += 1;
-      if (lightest < g.rampLightestOnSurface) {
-        record('palette-source', 'error', rel(PALETTE_SOURCE),
-          `system "${id}" lightest ramp step reads ${round2(lightest)}:1 on surface, below ${g.rampLightestOnSurface}:1. A low cell has to be distinguishable from an empty one`);
-      }
-      for (let i = 0; i < system.series.length - 1; i += 1) {
-        const step = contrast(system.series[i], system.series[i + 1]);
+      // A ramp is read as a group against its legend, so only the end furthest from the ground
+      // has to clear the mark gate. Requiring it of every step would delete the end that encodes
+      // "low", which is the half nearest the ground on either theme.
+      //
+      // Which end that is depends on the theme, and the array says so rather than the arithmetic:
+      // index 0 is always the value furthest from that theme's ground. Asserting that ordering
+      // first is what stops a reversed ramp from passing. Reversal preserves every step
+      // separation, so a check that gated whichever end happened to be lighter would accept a
+      // scale that had quietly started reading backwards.
+      for (let i = 0; i < series.length - 1; i += 1) {
+        const step = contrast(series[i], series[i + 1]);
         checked += 1;
         if (step < g.rampStepSeparation) {
-          record('palette-source', 'error', rel(PALETTE_SOURCE),
-            `system "${id}" steps ${i + 1} and ${i + 2} differ by ${round2(step)}:1, below the ${g.rampStepSeparation}:1 rank-readability floor`);
+          record(theme.check, 'error', rel(PALETTE_SOURCE),
+            `system "${id}" steps ${i + 1} and ${i + 2} differ by ${round2(step)}:1 on ${theme.ground}, below the ${g.rampStepSeparation}:1 rank-readability floor`);
         }
-        if (luminance(system.series[i]) < luminance(system.series[i + 1])) continue;
-        record('palette-source', 'error', rel(PALETTE_SOURCE),
-          `system "${id}" is not monotonic in lightness at steps ${i + 1} and ${i + 2}. An ordered scale that reverses encodes nothing`);
+        checked += 1;
+        if (contrast(series[i], surface) > contrast(series[i + 1], surface)) continue;
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" does not move toward ${theme.ground} at steps ${i + 1} and ${i + 2}. The array runs from the value furthest from the surface to the value nearest it, and an ordered scale that reverses encodes nothing`);
+      }
+      const far = contrast(series[0], surface);
+      checked += 1;
+      if (far < g.rampDarkestOnSurface) {
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" step 1, the end furthest from ${theme.ground}, reads ${round2(far)}:1 on it, below ${g.rampDarkestOnSurface}:1`);
+      }
+      const near = contrast(series[series.length - 1], surface);
+      checked += 1;
+      if (near < g.rampLightestOnSurface) {
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" step ${series.length}, the end nearest ${theme.ground}, reads ${round2(near)}:1 on it, below ${g.rampLightestOnSurface}:1. A low cell has to be distinguishable from an empty one`);
       }
     } else {
       // Marks a reader identifies one at a time each have to clear the gate alone.
-      system.series.forEach((value, i) => {
+      series.forEach((value, i) => {
         const ratio = contrast(value, surface);
         checked += 1;
         if (ratio < g.markOnSurface) {
-          record('palette-source', 'error', rel(PALETTE_SOURCE),
-            `system "${id}" series[${i}] reads ${round2(ratio)}:1 on surface, below the ${g.markOnSurface}:1 mark gate`);
+          record(theme.check, 'error', rel(PALETTE_SOURCE),
+            `system "${id}" ${theme.series}[${i}] reads ${round2(ratio)}:1 on ${theme.ground}, below the ${g.markOnSurface}:1 mark gate`);
         }
       });
     }
   }
-  tally('palette-source', checked);
+  tally(theme.check, checked);
 }
 
 /* ------------------------------------------------------------- html templates */
@@ -283,56 +425,104 @@ function checkIdentity(file, src, palette) {
   return { id, systemId };
 }
 
-function paletteBlockOf(src) {
-  const begin = PALETTE_BEGIN.exec(src);
+function regionOf(src, spec) {
+  const begin = spec.begin.exec(src);
   if (!begin) return null;
   const start = begin.index;
-  const end = src.indexOf(PALETTE_END, start);
+  const end = src.indexOf(spec.endMarker, start);
   if (end === -1) return null;
-  return { systemId: begin[1], start, end: end + PALETTE_END.length, text: src.slice(start, end + PALETTE_END.length) };
+  return {
+    theme: spec.theme,
+    systemId: begin[1],
+    start,
+    end: end + spec.endMarker.length,
+    text: src.slice(start, end + spec.endMarker.length),
+  };
 }
 
+const occurrences = (src, needle) => src.split(needle).length - 1;
+
+// Rule 4: one palette block per theme, two at most, each matched against its own projection of
+// the source in both directions.
+//
+// The ceiling is the part worth stating. One block per file used to be the rule, and it was the
+// right one while there was one ground: one block is one place a colour can drift and a diff
+// shows it. A file that answers a dark system needs a second set of values and a self-contained
+// document has nowhere else to put them, so the ceiling moved to two and stayed a ceiling. The
+// region count is asserted rather than assumed, because a widened check that stopped counting is
+// how a third block, or a repeated sentinel pair, would start passing unseen.
 function checkPaletteBlock(file, src, palette, declaredSystem) {
-  tally('palette-block', 1);
-  const block = paletteBlockOf(src);
-  if (!block) {
-    record('palette-block', 'error', file,
-      `no CHART_PALETTE sentinel pair. Expected block:\n${canonicalBlock(palette, declaredSystem || 'neutral')}`);
-    return null;
-  }
-  if (declaredSystem && block.systemId !== declaredSystem) {
-    record('palette-block', 'error', file,
-      `palette block declares system "${block.systemId}" and the meta tag declares "${declaredSystem}"`);
-    return block;
-  }
-  if (!palette.systems[block.systemId]) return block;
+  const blocks = [];
+  for (const spec of PALETTE_REGIONS) {
+    tally('palette-block', 2);
+    const begins = occurrences(src, spec.beginName);
+    const ends = occurrences(src, spec.endMarker);
+    if (begins > 1 || ends > 1) {
+      record('palette-block', 'error', file,
+        `the ${spec.theme} palette sentinel appears ${begins} time(s) with ${ends} closing marker(s). A file carries one block per theme, so nothing can say which region a drifted value came from once a pair is used twice`);
+    }
 
-  const expected = customProperties(palette, block.systemId);
-  const actual = new Map();
-  const propRe = /(--[a-z0-9-]+)\s*:\s*([^;]+);/gi;
-  let m;
-  while ((m = propRe.exec(block.text)) !== null) actual.set(m[1], m[2].trim());
+    const block = regionOf(src, spec);
+    if (!block) {
+      if (!spec.required) continue;
+      record('palette-block', 'error', file,
+        `no ${spec.beginName} sentinel pair. Expected block:\n${spec.canonical(palette, declaredSystem || 'neutral')}`);
+      continue;
+    }
+    blocks.push(block);
 
-  const problems = [];
-  for (const [prop, value] of expected) {
-    if (!actual.has(prop)) problems.push(`missing ${prop}`);
-    else if (actual.get(prop).toUpperCase() !== value.toUpperCase()) {
-      problems.push(`${prop} is ${actual.get(prop)} and the palette source says ${value}`);
+    if (declaredSystem && block.systemId !== declaredSystem) {
+      record('palette-block', 'error', file,
+        `the ${spec.theme} palette block declares system "${block.systemId}" and the meta tag declares "${declaredSystem}"`);
+      continue;
+    }
+    if (!palette.systems[block.systemId]) continue;
+
+    // A dark block outside its media query paints on every reader, which is the one way a
+    // second block can be right in every value and still wrong in every file.
+    if (spec.mediaQuery && !spec.mediaQuery.test(block.text)) {
+      record('palette-block', 'error', file,
+        `the ${spec.theme} palette block carries no prefers-color-scheme query, so its values would paint on every reader rather than on the one who asked for them.\nExpected block:\n${spec.canonical(palette, block.systemId)}`);
+      continue;
+    }
+
+    const expected = spec.projection(palette, block.systemId);
+    const actual = new Map();
+    const propRe = /(--[a-z0-9-]+)\s*:\s*([^;]+);/gi;
+    let m;
+    while ((m = propRe.exec(block.text)) !== null) actual.set(m[1], m[2].trim());
+
+    const problems = [];
+    for (const [prop, value] of expected) {
+      if (!actual.has(prop)) problems.push(`missing ${prop}`);
+      else if (actual.get(prop).toUpperCase() !== value.toUpperCase()) {
+        problems.push(`${prop} is ${actual.get(prop)} and the palette source says ${value}`);
+      }
+    }
+    for (const prop of actual.keys()) {
+      if (!expected.has(prop)) problems.push(`unexpected ${prop}`);
+    }
+    if (problems.length) {
+      record('palette-block', 'error', file,
+        `the ${spec.theme} palette block drifted from the source: ${problems.join('; ')}.\nExpected block:\n${spec.canonical(palette, block.systemId)}`);
     }
   }
-  for (const prop of actual.keys()) {
-    if (!expected.has(prop)) problems.push(`unexpected ${prop}`);
-  }
-  if (problems.length) {
-    record('palette-block', 'error', file,
-      `palette block drifted from the source: ${problems.join('; ')}.\nExpected block:\n${canonicalBlock(palette, block.systemId)}`);
-  }
-  return block;
+  return blocks;
 }
 
-function checkColourLiterals(file, src, block) {
-  const withoutBlock = block ? src.slice(0, block.start) + src.slice(block.end) : src;
-  const cleaned = stripHtmlComments(withoutBlock)
+// A colour and a corner are both read from a palette region, so both strippers have to remove
+// every region before they judge what is left. Slicing runs from the last region backwards, so
+// an earlier region's offsets still describe the string when its turn comes.
+function withoutBlocks(src, blocks) {
+  let out = src;
+  for (const block of [...blocks].sort((a, b) => b.start - a.start)) {
+    out = out.slice(0, block.start) + out.slice(block.end);
+  }
+  return out;
+}
+
+function checkColourLiterals(file, src, blocks) {
+  const cleaned = stripHtmlComments(withoutBlocks(src, blocks))
     .replace(/x?link:href\s*=\s*"#[^"]*"/gi, ' ')
     .replace(/href\s*=\s*"#[^"]*"/gi, ' ')
     .replace(/url\(\s*#[^)]*\)/gi, ' ');
@@ -387,9 +577,8 @@ const RADIUS_DECLARATION = /(?:^|[;{\s])(border-radius|border-[a-z-]+-radius|rx|
 const RADIUS_IN_ATTRS = /(?:^|[{,\s])(rx|ry)\s*:\s*(-?\d+(?:\.\d+)?)\s*(?=[,}\n])/g;
 const RADIUS_IN_SETATTR = /setAttribute\(\s*['"](rx|ry)['"]\s*,\s*['"]?(-?\d+(?:\.\d+)?)/g;
 
-function checkRadiusTokens(file, src, block) {
-  const withoutBlock = block ? src.slice(0, block.start) + src.slice(block.end) : src;
-  const { styles, scripts } = regionsOf(stripHtmlComments(withoutBlock));
+function checkRadiusTokens(file, src, blocks) {
+  const { styles, scripts } = regionsOf(stripHtmlComments(withoutBlocks(src, blocks)));
   tally('radius', styles.length + scripts.length);
 
   for (const text of styles) {
@@ -768,15 +957,21 @@ const RENDER_BUDGET_MS = 3000;
 // the document.
 const RENDER_WINDOW = '900,6000';
 
+// The colour scheme a headless run inherits is the one the operator's machine happens to be
+// set to, which would make the picture two people compare depend on their system settings. Both
+// schemes are pinned instead, so a run means the same thing on any machine.
+const SCHEME_LIGHT = '--blink-settings=preferredColorScheme=1';
+const SCHEME_DARK = '--blink-settings=preferredColorScheme=0';
+
 // One open of one file: the document the browser built, and the picture it painted.
-function openOnce(browser, file, shot) {
+function openOnce(browser, file, shot, scheme) {
   // Clear the target first. A browser that dies without writing leaves the previous file's
   // picture sitting at this path, and comparing a stale artifact is how a check reports a pass
   // on something it never looked at.
   fs.rmSync(shot, { force: true });
   try {
     const dom = execFileSync(browser, [
-      '--headless=new', '--disable-gpu', '--no-sandbox', '--hide-scrollbars',
+      '--headless=new', '--disable-gpu', '--no-sandbox', '--hide-scrollbars', scheme,
       `--window-size=${RENDER_WINDOW}`, `--virtual-time-budget=${RENDER_BUDGET_MS}`,
       '--dump-dom', `--screenshot=${shot}`, `file://${file}`,
     ], { encoding: 'utf8', timeout: 45000, stdio: ['ignore', 'pipe', 'ignore'] });
@@ -802,10 +997,16 @@ function checkRenders(files) {
   // catches a drawing that is still building itself, and the picture catches motion that has
   // not settled, which no document dump can see because a CSS animation never touches the DOM.
   tally('settled-render', files.length * 2);
+  // Rule 4's rendered half. Every file carries a second palette block that only paints when the
+  // reader's system asks for a dark scheme, and no reading of the file can prove that block
+  // reaches the paint: a block nested wrong, or pasted outside its media query, matches the
+  // source in both directions and still changes nothing on screen. Opening each file a third
+  // time with the scheme pinned dark, and requiring a different picture, is what observes it.
+  tally('dark-render', files.length);
   const shots = fs.mkdtempSync(path.join(os.tmpdir(), 'chart-corpus-render-'));
   try {
     for (const file of files) {
-      const first = openOnce(browser, file, path.join(shots, 'first.png'));
+      const first = openOnce(browser, file, path.join(shots, 'first.png'), SCHEME_LIGHT);
       if (first.error) {
         record('render', 'error', rel(file), `the browser did not return a document: ${first.error}`);
         continue;
@@ -821,7 +1022,7 @@ function checkRenders(files) {
         }
       }
 
-      const second = openOnce(browser, file, path.join(shots, 'second.png'));
+      const second = openOnce(browser, file, path.join(shots, 'second.png'), SCHEME_LIGHT);
       if (second.error) {
         record('settled-render', 'error', rel(file),
           `the second open did not return a document, so nothing could be compared: ${second.error}`);
@@ -836,9 +1037,25 @@ function checkRenders(files) {
           'the browser returned no picture, so the settled state could not be compared. The document alone cannot see an animation, because a stylesheet animation never touches the DOM');
         continue;
       }
-      if (first.pixels.equals(second.pixels)) continue;
-      record('settled-render', 'error', rel(file),
-        `two opens of this file painted different pictures after ${RENDER_BUDGET_MS}ms. Either something moves without settling or the motion outruns the budget, and either way two screenshots of one chart disagree`);
+      if (!first.pixels.equals(second.pixels)) {
+        record('settled-render', 'error', rel(file),
+          `two opens of this file painted different pictures after ${RENDER_BUDGET_MS}ms. Either something moves without settling or the motion outruns the budget, and either way two screenshots of one chart disagree`);
+      }
+
+      const dark = openOnce(browser, file, path.join(shots, 'dark.png'), SCHEME_DARK);
+      if (dark.error) {
+        record('dark-render', 'error', rel(file),
+          `the open under a dark colour scheme did not return a document: ${dark.error}`);
+        continue;
+      }
+      if (!dark.pixels) {
+        record('dark-render', 'error', rel(file),
+          'the dark open returned no picture, so nothing could be compared against the light one');
+        continue;
+      }
+      if (!dark.pixels.equals(first.pixels)) continue;
+      record('dark-render', 'error', rel(file),
+        'this file paints the same picture under a dark colour scheme as under a light one, so its second palette block never reached the paint. Either the block sits outside its media query, or the browser did not honour the pinned scheme');
     }
   } finally {
     fs.rmSync(shots, { recursive: true, force: true });
@@ -861,7 +1078,8 @@ function htmlFilesUnder(dir) {
 function main() {
   const wantRender = process.argv.includes('--render');
   const palette = loadPalette();
-  checkPaletteSource(palette);
+  checkRadiusRungs(palette);
+  for (const theme of THEMES) checkPaletteSource(palette, theme);
 
   const files = htmlFilesUnder(ASSET_ROOT);
   const templateIdentities = new Map();
@@ -871,9 +1089,9 @@ function main() {
     const name = rel(file);
     checkDocumentShape(name, src);
     const { id, systemId } = checkIdentity(name, src, palette);
-    const block = checkPaletteBlock(name, src, palette, systemId);
-    checkColourLiterals(name, src, block);
-    checkRadiusTokens(name, src, block);
+    const blocks = checkPaletteBlock(name, src, palette, systemId);
+    checkColourLiterals(name, src, blocks);
+    checkRadiusTokens(name, src, blocks);
     checkNoExternalResources(name, src);
     checkScriptParses(name, src);
     checkDataBlock(name, src);

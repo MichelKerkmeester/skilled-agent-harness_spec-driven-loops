@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 1.4.0.0
+version: 1.5.0.0
 ---
 
 # Chart Template Contract
@@ -59,6 +59,12 @@ Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a wor
     :root { every colour role and every corner rung, pasted from the palette source }
     /* CHART_PALETTE:END */
 
+    /* CHART_PALETTE_DARK:BEGIN system=<system> */
+    @media (prefers-color-scheme: dark) {
+      :root { every colour role again, pasted from the same source's dark values }
+    }
+    /* CHART_PALETTE_DARK:END */
+
     everything else, referring only to var(--chart-…)
   </style>
 </head>
@@ -76,7 +82,7 @@ Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a wor
 </html>
 ```
 
-The sentinels are how the corpus check finds the two regions it has an opinion about. Do not rename them and do not use them twice in one file.
+The sentinels are how the corpus check finds the three regions it has an opinion about. Do not rename them, and use each pair once. The dark pair carries its own name for that reason: a second block under the light block's name would be the same sentinel twice, and then nothing can say which region a drifted value came from.
 
 ---
 
@@ -135,9 +141,19 @@ The check enforces this by failing any remote `src` or `href`, any `@import` and
 
 ## 6. WHERE COLOUR COMES FROM
 
-The palette block is the only place in the file where a colour value appears. Everything else refers to `var(--chart-…)`.
+A palette block is the only place in the file where a colour value appears. Everything else refers to `var(--chart-…)`.
 
-Take the block from the corpus check: when a template's block is missing or has drifted, the failure message prints the exact block to paste. That is the whole workflow, and it is why there is no generation step.
+Take the block from the corpus check: when a template's block is missing or has drifted, the failure message prints the exact block to paste. That is the whole workflow, and it is why there is no generation step. The dark block works the same way and prints the same way.
+
+### The second block answers a dark system
+
+A file carries one palette block per theme and no more than two, each matched against its own projection of the palette source in both directions.
+
+The second block sits inside the same style element, immediately after the light one, wrapped in a `prefers-color-scheme: dark` media query and its own sentinel pair. It redeclares the six colour roles and nothing else. The corner rungs stay in the light block alone, because a corner cannot differ between two grounds and a value copied into a second place is a value that can disagree with the first.
+
+Nothing in the file switches themes. A delivered chart has no state to keep a preference in and no place to put a control, so the reader's operating system is the only signal, and a browser that never resolves the query paints the light block. That is also what makes the print path work: the query does not apply to print, so a chart printed from a dark browser goes onto paper the way it always did.
+
+Two blocks double the surface a drift can hide in, which is the cost of the amendment and the reason the ceiling is two rather than open. The check counts the sentinels and fails a third block, a repeated pair and a value that disagrees with the source in either direction.
 
 To show a colour value as text, read it at runtime with `getComputedStyle(document.documentElement).getPropertyValue('--chart-series-1')`. A hex typed into the markup is a second copy that drifts, and the check fails it.
 
@@ -145,10 +161,11 @@ Which system to pick, what the roles mean and where the ceilings are: `color-sys
 
 ### The corner ladder rides in the same block
 
-The block carries one more kind of shared value: the five corner rungs, `--chart-radius-mark`
+The light block carries one more kind of shared value: the five corner rungs, `--chart-radius-mark`
 through `--chart-radius-card`. They are not colours and they live in their own object in the
 palette source, but they are emitted into the same block because every file already carries that
-block and the check already compares it against the source in both directions.
+block and the check already compares it against the source in both directions. They appear once
+and only in that block, since a corner is the same corner on either ground.
 
 A corner is never typed into a file. A stylesheet reaches a rung the way it reaches a colour, and
 SVG marks take theirs from CSS too: `rx` is a geometry property, so `.box { rx: var(--chart-radius-mark); }`
@@ -171,7 +188,7 @@ Every rule is enforced. The check name is what appears in the corpus check outpu
 | 1 | Complete document: doctype, `lang`, charset, viewport, a non-empty title | `document-shape` | Shipping a fragment as a deliverable |
 | 2 | Identity tag present, lower-case kebab, equal to the filename stem | `identity` | A file nothing can index |
 | 3 | Declared colour system exists in the palette source | `identity` | A template pointing at a system nobody defined |
-| 4 | Exactly one palette block, matching the source in both directions | `palette-block` | Silent theme drift, invisible in a diff |
+| 4 | One palette block per theme, two at most, each matching its own projection of the source in both directions | `palette-block` | Silent theme drift, invisible in a diff |
 | 5 | No colour literal outside the palette block | `colour-literals` | A palette edit that reaches half the file |
 | 6 | No remote resource and no runtime fetch | `no-external` | A chart that stops working away from the network |
 | 7 | Every inline script compiles | `script-parses` | A file that throws on open, which no reading catches |
@@ -183,6 +200,14 @@ Every rule is enforced. The check name is what appears in the corpus check outpu
 | 13 | A file that animates carries a `prefers-reduced-motion` fallback that removes the motion, the motion never repeats, and it settles within one second of first paint | `motion` | Motion shipped to a reader who asked their system for none, and a review that screenshots a chart still moving |
 | 14 | The figure region can scroll sideways, and its drawing declares a `min-width` no wider than its own `viewBox` | `narrow-viewport` | A phone-width screen shrinking a chart until its labels sit on top of each other |
 | 15 | No corner value outside the palette block: a stylesheet corner resolves through a rung, and the drawing code computes a corner rather than typing one | `radius` | Twenty files agreeing on one corner by coincidence, and the twenty-first quietly disagreeing |
+
+Rule 4 used to say exactly one block, and it said so for a good reason: one block per file is one
+place a colour can drift, and a diff shows it. A theme is the one thing that argument does not
+survive, because a file that answers a dark system needs a second set of values and there is
+nowhere else in a self-contained document to put them. So the ceiling moved from one to two and
+stayed a ceiling. Two is every theme this corpus has, the check counts the regions rather than
+trusting the count, and each region is matched against its own projection of the source in both
+directions, which is the property the old rule was protecting.
 
 Rule 13 carries a number, and the number is what makes rule 12 checkable. One second is the
 settle time: every animation in the corpus finishes inside it, and the render check opens each
@@ -222,7 +247,7 @@ Rule 10 is the one worth doing first rather than last. A title inside the vector
 1. Find the question in `catalog.md`. If no row answers it, that is a gap to report rather than a chart to improvise.
 2. Copy `assets/color/palette-sheet-neutral.html` to `assets/templates/<id>.html`.
 3. Set the identity tag and the title. The id, the filename stem and the catalog row all carry the same string.
-4. Choose the colour system, and paste its palette block from the corpus check output.
+4. Choose the colour system, and paste both of its palette blocks from the corpus check output. The check prints the light block and the dark one, each against the block it expected to find.
 5. Replace the data block with the real shape, and write the drawing code below it.
 6. Write the headline as a conclusion.
 7. Add the catalog row.
@@ -242,6 +267,7 @@ Stated plainly, so nobody reads a green run as more than it is.
 - **Without `--render` it has not opened anything.** The summary line says so on every run. A structural pass is not a rendering pass.
 - **It does not watch the motion.** With `--render` it opens each file twice after the settle time and confirms the two documents are identical, which catches a picture that is still changing when the review screenshots it. It does not see the animation itself, so whether the wipe reads as an entrance is a review question.
 - **It does not measure a narrow screen.** Rule 14 is asserted from the stylesheet, not from a rendered page, because a headless browser hands back the DOM and the DOM does not say whether the page overflowed. The check proves the pan affordance is declared and that its floor is not above the drawing's natural width. Whether the chart is legible at that floor is a review question, and the floor itself is a judgement nobody has measured per form.
+- **It does not judge either theme by eye.** With `--render` it opens each file with the colour scheme pinned light, twice, and again with the scheme pinned dark, and it asserts that the dark open paints a different picture from the light one. That proves the second block reaches the paint rather than merely sitting in the file, which no reading of the text can prove. It says nothing about whether the dark values are the right ones, and it forces the preference with a browser flag rather than reading an operating system, so what a particular reader's machine resolves is still a question for a real browser.
 - **It does not point at anything.** Both opens are made with no pointer input, which is exactly what makes them a fair test of the settled picture and exactly what leaves everything in section 10 unchecked. Whether a card opens on the right mark, whether it flips at an edge and whether a key entry latches are all walked by hand.
 
 ---
