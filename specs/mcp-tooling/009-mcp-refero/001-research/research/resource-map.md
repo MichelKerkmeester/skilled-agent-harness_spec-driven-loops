@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Refero MCP developer surface for the mcp-refero transport packet (fan-out consolidation: sol + glm + luna)"
 description: "Consolidated research resource map merged from fan-out lineage resource maps and lineage-cited source inventories."
+trigger_phrases: []
 ---
 # Resource Map
 

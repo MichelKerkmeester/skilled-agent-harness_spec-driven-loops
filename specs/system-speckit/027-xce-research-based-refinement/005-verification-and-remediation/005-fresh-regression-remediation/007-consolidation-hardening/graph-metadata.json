@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Remediate the two deep-review consolidation.ts findings deferred from 001 as a structural refactor: the read-only contradiction scan holds the BEGIN IMMEDIATE write lock (blocking other writers ~5s/cycle), and the DB handle is threaded inconsistently (latent atomicity risk). Both on the default-ON weekly consolidation cycle, so they need their own concurrency safety gate.",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:34.389Z",
+    "last_save_at": "2026-09-03T22:23:29.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fd6c019ce518d5dcfcde9ab6ef5d0e736e92491e7049657bfb665ea65402485",
+    "source_fingerprint": "sha256:9a76836a11e84ba84f1bdb039d564832b3a27955490f12d881106e679f11d1ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ca6cf88480eb4ae9349715f94e09a920ad56d0318057b5f6a82472ab3b4e1538",
-      "plan.md": "c4f33b003b34681559b371e99d1f41190015f807dd8254bc00ab55beb18c416f",
-      "tasks.md": "0c3fab847680aab98384af15c7182f790f3fdced5a84a16ed6cff08e518edfa1",
-      "implementation-summary.md": "8b293ba032e2c6e43ecc1e596eb903452ab4c4caec863a8e2ebd37807bf2a528"
+      "plan.md": "5af75ba2631d5f94182af12033b07829c1ae73fab3e8f87c1223f3c7a2ad9e88",
+      "tasks.md": "2254f272c2677d1bcbd0ed2b0c1efbbeaa8335c6e21f01f81e859bcbb11192f2",
+      "implementation-summary.md": "ebc7205ede4fadecd8645f31c5cec5be20b2ea201e99bd9406161498a14433fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

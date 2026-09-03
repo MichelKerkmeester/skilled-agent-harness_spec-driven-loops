@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - Post-Remediation Re-Review"
+trigger_phrases: []
+---
 # Deep Review Report - Post-Remediation Re-Review
 
 Source: `review/iterations/iteration-*.md` from `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/023-post-remediation-re-review`.

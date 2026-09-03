@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Great question! Based on what I found, both Pi and Reasonix have prompt caching, but they take notably different approaches:Reasonix — Cache-First by DesignReasonix is built specifically around DeepSeek's prefix-caching mechanism. Its entire architecture is engineered to maximize cache-hit rates, and it shows:
 ~99.8% cache hit rate reported in a real single-day workload
 Cost dropped from ~$61 to ~$12 on the same workload thanks to caching

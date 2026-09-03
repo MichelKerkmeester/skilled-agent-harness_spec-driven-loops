@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Weak models do not obey the deep-loop's observation-only leaf contract, and today the runtime can only catch the breach after the fact — it cannot let such a model succeed",
     "created_at": "2026-08-16T09:11:48.617Z",
-    "last_save_at": "2026-08-30T15:39:22.119Z",
+    "last_save_at": "2026-09-03T22:21:13.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:838be96fc86ef810e21c306e897fc7ade54ea776e46da6a99b11cb2a2b50e2bf",
+    "source_fingerprint": "sha256:3dbf4f607ba83a22cf651b03e62cbaa79171ef3840441dec81dc6fd90bde9287",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50d124a05fcdfc64f1f7d7579d4cc990cdc24afc063e332cc2f1664056f43b2f",
-      "plan.md": "bdfa3309904ed8d68e25cfba80de556405b26e9793ee6a77d35cf9da803b48d0",
-      "tasks.md": "69f3c31c84128f3fdf2a0866549378bb542433c9fc39b8053a802ca889dd474a",
-      "implementation-summary.md": "6d830fe5b9f398e5f3cc7096cc6b401f4a5364dcc471a753d29121524f7157e2"
+      "plan.md": "6d1a0d3945cd5314c1cabca1067ad5e1d25a2ce1e9670a64bb1fb08b438d50e4",
+      "tasks.md": "1cc9c8617bcb3a5601fd996f4289758bddc8a54e9395f4941acc2c36be9f9780",
+      "implementation-summary.md": "eb90ac8e426c9c88e45f6a16cf3f19ddce6d5c8db152fd6ad81ea19aab2dd9d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

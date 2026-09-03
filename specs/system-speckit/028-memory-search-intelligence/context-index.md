@@ -1,3 +1,7 @@
+---
+title: "Context Index — Packet 028 Migration and Alias Bridge"
+trigger_phrases: []
+---
 # Context Index — Packet 028 Migration and Alias Bridge
 
 > Current navigation, historical migration record and exact alias guidance for

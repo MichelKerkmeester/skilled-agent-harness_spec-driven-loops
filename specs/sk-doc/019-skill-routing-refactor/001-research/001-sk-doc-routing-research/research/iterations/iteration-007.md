@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Typed public-ID edge-case hardening"
+trigger_phrases: []
+---
 # Iteration 7: Typed public-ID edge-case hardening
 
 ## Focus

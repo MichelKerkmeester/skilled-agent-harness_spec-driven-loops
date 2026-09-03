@@ -15,6 +15,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->

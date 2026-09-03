@@ -1,3 +1,7 @@
+---
+title: "Import from draw.io"
+trigger_phrases: []
+---
 # Import from draw.io
 
 Turn a `.drawio` file into an editorial-quality diagram at the format, size, and detail level the destination needs.

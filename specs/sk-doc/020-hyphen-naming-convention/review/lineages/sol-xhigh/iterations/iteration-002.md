@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Security - rename apply boundary"
+trigger_phrases: []
+---
 # Iteration 2: Security - rename apply boundary
 
 ## Dispatcher

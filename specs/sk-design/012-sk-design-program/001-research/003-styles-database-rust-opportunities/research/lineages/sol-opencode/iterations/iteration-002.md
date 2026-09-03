@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Measured Migration Gates for Vector Retrieval"
+trigger_phrases: []
+---
 # Iteration 2: Measured Migration Gates for Vector Retrieval
 
 ## Focus

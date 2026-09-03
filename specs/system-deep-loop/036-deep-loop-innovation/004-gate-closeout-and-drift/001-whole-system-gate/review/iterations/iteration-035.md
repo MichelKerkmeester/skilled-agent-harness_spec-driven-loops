@@ -1,3 +1,7 @@
+---
+title: "Iteration 035 — maintainability"
+trigger_phrases: []
+---
 # Iteration 035 — maintainability
 
 - Executor: cli-codex gpt-5.6-sol effort=high service_tier=fast sandbox=read-only

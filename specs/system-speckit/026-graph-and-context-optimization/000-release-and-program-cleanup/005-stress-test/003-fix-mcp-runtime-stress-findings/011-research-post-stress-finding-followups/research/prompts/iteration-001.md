@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 001 — Initial Grounding"
+trigger_phrases: []
+---
 # Deep Research Iteration 001 — Initial Grounding
 
 You are iteration 001 of a 10-iteration deep-research loop. Your job is to ground 5 open questions in real source-of-evidence artifacts and surface 2-3 candidate fix approaches per question.

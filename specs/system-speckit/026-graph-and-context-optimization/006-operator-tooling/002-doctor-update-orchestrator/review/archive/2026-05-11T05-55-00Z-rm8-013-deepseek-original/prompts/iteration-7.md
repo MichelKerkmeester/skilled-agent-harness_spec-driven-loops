@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 7 (of 10) — traceability overlay (skill_agent + agent_cross_runtime + playbook_capability)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 7 (of 10) — traceability overlay (skill_agent + agent_cross_runtime + playbook_capability)
 
 ## TARGET AUTHORITY (read first)

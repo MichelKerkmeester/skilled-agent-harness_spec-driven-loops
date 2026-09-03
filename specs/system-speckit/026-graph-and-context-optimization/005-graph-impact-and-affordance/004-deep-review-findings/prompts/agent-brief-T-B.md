@@ -1,3 +1,7 @@
+---
+title: "Agent Brief — T-B Verification Evidence Sync"
+trigger_phrases: []
+---
 # Agent Brief — T-B Verification Evidence Sync
 
 You are an autonomous implementation agent. **No conversation context.**

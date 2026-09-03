@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 006"
+trigger_phrases: []
+---
 # Deep Research Iteration 006
 
 > Audited changelog: `changelog-025-tool-layer-map-unlink.md`

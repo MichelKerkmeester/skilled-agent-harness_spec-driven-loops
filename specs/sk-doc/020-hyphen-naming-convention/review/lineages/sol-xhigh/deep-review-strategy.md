@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - sol-xhigh lineage"
+trigger_phrases: []
+---
 # Deep Review Strategy - sol-xhigh lineage
 
 ## 1. TOPIC

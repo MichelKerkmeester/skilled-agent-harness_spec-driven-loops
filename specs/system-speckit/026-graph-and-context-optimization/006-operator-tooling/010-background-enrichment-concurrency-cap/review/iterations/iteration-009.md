@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 9 (gpt-5.5 xhigh) — observability / operability"
+trigger_phrases: []
+---
 # Deep-Review Iteration 9 (gpt-5.5 xhigh) — observability / operability
 
 ## Verdict: No P0/P1. 3 NEW P2 (observability) — all reinforce F-006 (hung-run).

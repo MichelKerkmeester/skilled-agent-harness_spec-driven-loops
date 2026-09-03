@@ -1,3 +1,7 @@
+---
+title: "Handover: 036/004/003 drift-census-and-plan-revalidation (effectively complete — one process deferral)"
+trigger_phrases: []
+---
 # Handover: 036/004/003 drift-census-and-plan-revalidation (effectively complete — one process deferral)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->

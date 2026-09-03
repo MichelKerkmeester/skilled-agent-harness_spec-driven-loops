@@ -1,3 +1,7 @@
+---
+title: "Iteration 10 — minimax/MiniMax-M3 — focus: benchmark"
+trigger_phrases: []
+---
 # Iteration 10 — minimax/MiniMax-M3 — focus: benchmark
 
 # Iteration 10 — gpt-5.6-sol high — focus: benchmark drift classification + per-hub serving-status readout

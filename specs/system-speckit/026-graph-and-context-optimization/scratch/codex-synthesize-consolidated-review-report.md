@@ -1,3 +1,7 @@
+---
+title: "Codex CLI Prompt — Synthesize all per-phase reviews into one consolidated report"
+trigger_phrases: []
+---
 # Codex CLI Prompt — Synthesize all per-phase reviews into one consolidated report
 
 You are running as codex CLI (`gpt-5.4`, `reasoning_effort=high`, `service_tier=fast`, `sandbox=workspace-write`). Self-contained prompt. Pure synthesis task — you do NOT run any new review iterations. You read every per-phase review-report that currently exists under `026/review/<phase-slug>/` and produce ONE consolidated report at `026/review/batch-phase-review-consolidated.md`.

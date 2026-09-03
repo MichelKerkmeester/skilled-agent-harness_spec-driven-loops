@@ -1,3 +1,7 @@
+---
+title: "Baz"
+trigger_phrases: []
+---
 # Baz
 
 ## 4. SOURCE METADATA

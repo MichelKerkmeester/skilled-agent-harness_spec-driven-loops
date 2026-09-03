@@ -1,3 +1,7 @@
+---
+title: "17--governance"
+trigger_phrases: []
+---
 # 17--governance
 
 - Total: 7

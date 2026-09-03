@@ -1,3 +1,7 @@
+---
+title: "Iteration 10 - Synthesis: aggregate findings and final verdict"
+trigger_phrases: []
+---
 # Iteration 10 - Synthesis: aggregate findings and final verdict
 
 ## Focus

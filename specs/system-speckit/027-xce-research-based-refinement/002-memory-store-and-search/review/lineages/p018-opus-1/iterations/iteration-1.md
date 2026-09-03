@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All artifacts are in place and well-formed. The review loop is complete.
 
 **Review complete — lineage p018-opus-1**

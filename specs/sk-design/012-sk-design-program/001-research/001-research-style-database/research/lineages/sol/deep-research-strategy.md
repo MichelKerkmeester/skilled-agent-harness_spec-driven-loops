@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Indexed Style Database"
+trigger_phrases: []
+---
 # Deep Research Strategy: Indexed Style Database
 
 ## 1. RESEARCH TOPIC

@@ -1,3 +1,7 @@
+---
+title: "Iteration 18 (Round L): Content-addressed-identity shared-infra synthesis (Q2+Q10 thread)"
+trigger_phrases: []
+---
 # Iteration 18 (Round L): Content-addressed-identity shared-infra synthesis (Q2+Q10 thread)
 
 ## Focus

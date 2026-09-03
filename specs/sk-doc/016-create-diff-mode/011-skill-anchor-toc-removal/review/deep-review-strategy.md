@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: 117 Skill Anchor + TOC Removal"
+trigger_phrases: []
+---
 # Deep Review Strategy: 117 Skill Anchor + TOC Removal
 
 ## Review Charter

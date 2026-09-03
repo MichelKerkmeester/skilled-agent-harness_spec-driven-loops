@@ -1,3 +1,7 @@
+---
+title: "Deep Review v3 Iteration 039 - secrets and residual v2 checks"
+trigger_phrases: []
+---
 # Deep Review v3 Iteration 039 - secrets and residual v2 checks
 
 **Dimension:** security  

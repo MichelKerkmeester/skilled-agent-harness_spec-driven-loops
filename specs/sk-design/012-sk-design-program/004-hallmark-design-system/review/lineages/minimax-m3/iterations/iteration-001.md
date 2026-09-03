@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: D3 Traceability — Parent vs. Child Status Consistency"
+trigger_phrases: []
+---
 # Iteration 1: D3 Traceability — Parent vs. Child Status Consistency
 
 ## Focus

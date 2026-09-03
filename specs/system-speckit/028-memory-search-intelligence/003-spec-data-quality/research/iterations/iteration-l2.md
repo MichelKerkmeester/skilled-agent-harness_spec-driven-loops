@@ -1,3 +1,7 @@
+---
+title: "Iteration L2 - Rollup-Node Design and Set-Merge Necessity (deepseek, retrieval)"
+trigger_phrases: []
+---
 # Iteration L2 - Rollup-Node Design and Set-Merge Necessity (deepseek, retrieval)
 
 ## TITLE

@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Fresh joined RRF calibration and bounded proposal"
+trigger_phrases: []
+---
 # Iteration 8: Fresh joined RRF calibration and bounded proposal
 
 ## Focus

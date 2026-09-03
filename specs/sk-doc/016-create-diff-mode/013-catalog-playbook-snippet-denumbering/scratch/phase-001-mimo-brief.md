@@ -1,3 +1,7 @@
+---
+title: "Phase 001 — sk-doc Standards & Templates De-Numbering (MiMo authoring brief)"
+trigger_phrases: []
+---
 # Phase 001 — sk-doc Standards & Templates De-Numbering (MiMo authoring brief)
 
 ## Context

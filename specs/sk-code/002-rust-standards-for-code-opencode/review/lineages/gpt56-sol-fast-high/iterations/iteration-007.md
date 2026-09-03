@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Stabilization and Adversarial Replay"
+trigger_phrases: []
+---
 # Iteration 7: Stabilization and Adversarial Replay
 
 ## Dispatcher

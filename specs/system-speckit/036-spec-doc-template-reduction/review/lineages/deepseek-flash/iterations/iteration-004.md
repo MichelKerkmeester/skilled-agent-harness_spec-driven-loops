@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: D3 Traceability — spec_code Protocol Sweep (002-006 claims vs shipped surfaces)"
+trigger_phrases: []
+---
 # Iteration 004: D3 Traceability — spec_code Protocol Sweep (002-006 claims vs shipped surfaces)
 
 ## Focus

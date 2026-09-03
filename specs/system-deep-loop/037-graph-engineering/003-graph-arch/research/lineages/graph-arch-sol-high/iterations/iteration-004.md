@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Sealed Materialization and TOCTOU Closure"
+trigger_phrases: []
+---
 # Iteration 4: Sealed Materialization and TOCTOU Closure
 
 ## Focus

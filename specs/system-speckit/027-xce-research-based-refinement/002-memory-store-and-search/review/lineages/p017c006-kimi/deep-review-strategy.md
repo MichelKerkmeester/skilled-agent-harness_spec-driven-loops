@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - 006-command-contract-structural"
+trigger_phrases: []
+---
 # Deep Review Strategy - 006-command-contract-structural
 
 ## 1. TOPIC

@@ -1,3 +1,7 @@
+---
+title: "1. EXACT INVOCATION & NAVIGATION"
+trigger_phrases: []
+---
 Now let me read the model profiles and index:
 Here is the full verification report:
 

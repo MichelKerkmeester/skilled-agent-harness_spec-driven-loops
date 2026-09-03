@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 027/021 hybrid-search scope-then-limit"
+trigger_phrases: []
+---
 # Deep Review Report — 027/021 hybrid-search scope-then-limit
 
 **Target:** the `bm25Search` fix (over-fetch → filter → slice) in `hybrid-search.ts`.

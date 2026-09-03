@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Initial Grounding"
+trigger_phrases: []
+---
 # Iteration 001 — Initial Grounding
 
 ## Status

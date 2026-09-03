@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard - Session Overview"
+trigger_phrases: []
+---
 # Deep Review Dashboard - Session Overview
 
 ## STATUS

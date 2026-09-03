@@ -1,3 +1,7 @@
+---
+title: "020 Execution Parallelization Strategy — Epochal Wavefront"
+trigger_phrases: []
+---
 # 020 Execution Parallelization Strategy — Epochal Wavefront
 
 > **Status:** Planning reference for the 020 migration EXECUTION (phases 006–011). This is authored guidance, not an

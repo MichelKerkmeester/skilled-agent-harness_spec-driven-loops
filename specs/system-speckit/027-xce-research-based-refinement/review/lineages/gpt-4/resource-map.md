@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map: gpt-4 Lineage"
+trigger_phrases: []
+---
 # Review Resource Map: gpt-4 Lineage
 
 - Entries touched: parent `spec.md`, `description.json`, `graph-metadata.json`, `resource-map.md`, `context-index.md`, `timeline.md`, `changelog/README.md`, child `011-command-presentation-workflow-separation/spec.md`, sampled child status specs for `002`, `008`, and `009`.

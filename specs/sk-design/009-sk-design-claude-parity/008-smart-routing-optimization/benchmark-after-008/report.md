@@ -1,3 +1,7 @@
+---
+title: "Skill Benchmark Report — sk-design"
+trigger_phrases: []
+---
 # Skill Benchmark Report — sk-design
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-a-router-replay` · trace mode: `router`.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — External Reference Migration & Advisor Corpus"
+trigger_phrases: []
+---
 # Iteration 004 — External Reference Migration & Advisor Corpus
 
 **Focus:** Validate child 003's external-reference surface (Q4), especially the highest-risk `system-skill-advisor` routing corpus (constants + divergences ledger + parity tests).

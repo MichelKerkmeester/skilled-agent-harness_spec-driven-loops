@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - Fallback-Router GLM-5.2 To MiMo-v2.5-Pro Wiring Feasibility"
+trigger_phrases: []
+---
 # Iteration 004 - Fallback-Router GLM-5.2 To MiMo-v2.5-Pro Wiring Feasibility
 
 ## Focus

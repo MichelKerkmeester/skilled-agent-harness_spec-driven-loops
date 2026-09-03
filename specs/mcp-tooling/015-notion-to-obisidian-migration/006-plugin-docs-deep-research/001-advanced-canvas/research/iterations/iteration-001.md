@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Extended .canvas JSON Schema from main.js v6.5.4 (Cross-Portal Edges + Non-Standard Keys)"
+trigger_phrases: []
+---
 # Iteration 1: Extended .canvas JSON Schema from main.js v6.5.4 (Cross-Portal Edges + Non-Standard Keys)
 
 ## Focus

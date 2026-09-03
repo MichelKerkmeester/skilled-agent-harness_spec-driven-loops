@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 12 | model luna (gpt-5.6-luna) | angle: LangGraph persistence/checkpointing internals | 2026-07-14T22:15:21.252Z -->
 
 LangGraph’s transferable abstraction is a checkpointed continuation, not a serialized state blob.

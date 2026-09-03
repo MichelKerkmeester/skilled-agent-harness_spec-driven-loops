@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — B2: CLI orchestrator skill correctness"
+trigger_phrases: []
+---
 # Iteration 007 — B2: CLI orchestrator skill correctness
 
 ## Focus

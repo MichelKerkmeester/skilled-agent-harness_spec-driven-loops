@@ -1,3 +1,7 @@
+---
+title: "Decomposition"
+trigger_phrases: []
+---
 # Decomposition
 
 `gr check` verifies structure. It cannot verify judgment. Everything here is

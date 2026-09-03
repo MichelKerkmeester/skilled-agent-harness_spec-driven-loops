@@ -1,3 +1,7 @@
+---
+title: "Spec — mcp-obsidian + hub post-audit fixes"
+trigger_phrases: []
+---
 # Spec — mcp-obsidian + hub post-audit fixes
 
 ## Status

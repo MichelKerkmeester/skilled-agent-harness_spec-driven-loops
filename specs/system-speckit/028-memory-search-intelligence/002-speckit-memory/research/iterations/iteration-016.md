@@ -1,3 +1,7 @@
+---
+title: "Iteration 16: Round C Feasibility — Memory Governance / Retention / Forgetting + C3-D-vs-erasure Reconciliation"
+trigger_phrases: []
+---
 # Iteration 16: Round C Feasibility — Memory Governance / Retention / Forgetting + C3-D-vs-erasure Reconciliation
 
 ## Focus

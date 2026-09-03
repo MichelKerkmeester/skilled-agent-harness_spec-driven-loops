@@ -1,3 +1,7 @@
+---
+title: "Iteration 18: Define the minimum feasible plugin architecture"
+trigger_phrases: []
+---
 # Iteration 18: Define the minimum feasible plugin architecture
 
 ## Focus

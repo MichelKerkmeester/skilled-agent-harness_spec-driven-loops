@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 37 | SOL xhigh | mode: skill-benchmark | angle: A2-moat skill-benchmark :: unique value / moat | 2026-07-15T11:10:43.719Z -->
 
 The moat is causal release certification for a versioned skill bundle—not another model leaderboard.

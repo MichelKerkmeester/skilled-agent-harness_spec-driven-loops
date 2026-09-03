@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 021-cooperative-heavy-phases"
+trigger_phrases: []
+---
 # Deep Review Report: 021-cooperative-heavy-phases
 
 ---

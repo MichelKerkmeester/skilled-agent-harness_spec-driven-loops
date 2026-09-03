@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The sk-communication projection layer rewrites CLI output through a model, but a user has no way to ask the active AI to re-render its own reply in that plain-English style without invoking any model",
     "created_at": "2026-08-19T04:33:57.686Z",
-    "last_save_at": "2026-08-30T15:39:11.942Z",
+    "last_save_at": "2026-09-03T22:17:14.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c91a002ba65e51f8d45a8ef1d98e38f4540f87f515d3dbf7901e7a2fc83de2f1",
+    "source_fingerprint": "sha256:504876da9dd70a1e5930397b351e4b66c3a2556e77b81db27b19c7d83bb12b72",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f811273877ef4b0820d63ed1d632e7edd80b85a2d5a525be629a43c6ff426a07",
-      "plan.md": "ff10b0a390c205da6f8cb0a7575110d8c907045178e85320f2c0471812a1952e",
-      "tasks.md": "3b16b63f3b27ffe2eedc9bfc3c7c752cdde599c55c53835c06f9364d4424f4ed",
-      "implementation-summary.md": "6fb116ff5fefcb9765557f6e60dc931972da163d0bc1c044a2c73479a2d3a046"
+      "plan.md": "a744e485ffb21b94ad2ffa1daeaf225497ed6c04092cbc2cd62528ae2535326c",
+      "tasks.md": "eb776bdb84ee8cd1b94ad8b72be72dfe9e1eae1e6ce1ba0705281103b625c055",
+      "implementation-summary.md": "ae8b6465a9cef94125694ae42a5814b310a88b2aa76a5d553ece4110aad299a1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Other skills with mcp-coco-index references"
+trigger_phrases: []
+---
 # Iteration 008 — Other skills with mcp-coco-index references
 
 **Scope:** .opencode/skills/sk-code/SKILL.md, .opencode/skills/sk-doc/SKILL.md, .opencode/skills/sk-prompt/SKILL.md, plus grep for stale module paths across .opencode/skills/

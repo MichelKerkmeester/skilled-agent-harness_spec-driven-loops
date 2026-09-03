@@ -1,3 +1,7 @@
+---
+title: "Spec — mcp-obsidian feature-catalog divider conformance"
+trigger_phrases: []
+---
 # Spec — mcp-obsidian feature-catalog divider conformance
 
 ## Status

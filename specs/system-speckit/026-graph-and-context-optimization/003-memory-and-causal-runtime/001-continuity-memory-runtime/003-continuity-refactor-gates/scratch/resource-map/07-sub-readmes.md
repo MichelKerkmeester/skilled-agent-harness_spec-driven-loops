@@ -16,6 +16,7 @@ excluded:
   - mcp_server/database/README.md (agent A)
   - mcp_server/configs/README.md (agent E)
 rows: 111
+trigger_phrases: []
 ---
 
 # Phase 018 Resource Map — Exhaustive Sub-README Scan

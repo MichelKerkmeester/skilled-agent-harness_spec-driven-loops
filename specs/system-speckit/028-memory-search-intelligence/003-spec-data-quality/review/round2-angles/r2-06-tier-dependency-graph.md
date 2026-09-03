@@ -1,3 +1,7 @@
+---
+title: "r2-06 tier-dependency-graph (architecture)"
+trigger_phrases: []
+---
 # r2-06 tier-dependency-graph (architecture)
 
 **Angle summary:** The 5 inviolable edges form a clean acyclic graph and the two edges the brief calls out (census-before-gate, engine-before-doors) are both correct, but the governance layer mis-scopes the set it orders (claims 18 phases against an authoritative 28), its edge model is heterogeneous so 3 of 5 edges cannot be the stage boundaries REQ-001 demands, and the live folder numbering encodes the INVERSE of both cross-phase safety edges.

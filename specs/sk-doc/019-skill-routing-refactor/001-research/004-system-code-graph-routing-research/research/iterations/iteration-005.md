@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Explicit Resource Map and Dependency-Ordered Rollout"
+trigger_phrases: []
+---
 # Iteration 5: Explicit Resource Map and Dependency-Ordered Rollout
 
 ## Focus

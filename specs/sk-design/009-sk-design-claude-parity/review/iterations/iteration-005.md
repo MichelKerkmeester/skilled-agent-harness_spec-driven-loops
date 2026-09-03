@@ -1,6 +1,7 @@
 ---
 title: Deep Review Iteration 005 - Maintainability
 description: Maintainability review narrative for sk-design 009 Claude-parity deep review.
+trigger_phrases: []
 ---
 
 # Deep Review Iteration 005 - Maintainability

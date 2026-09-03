@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The skill tree carries two metadata systems that reuse the filenames `description.json` and `graph-metadata.json` with incompatible schemas: spec-folder continuity metadata and skill-advisor hub-identity metadata",
     "created_at": "2026-07-22T08:55:19.438Z",
-    "last_save_at": "2026-08-30T15:39:15.498Z",
+    "last_save_at": "2026-09-03T22:19:12.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3c148f07b1f5ecb80ec1314e83a1bac90dc46bad60bf934d29070b79f1dc8f8",
+    "source_fingerprint": "sha256:9e3568d43e3930800c88885d89838e341664551453ee6f1a303f21b0bbbdeaa3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c72ee79587f490817c0b1857dd465b61b2cbabe1d12e37feb74242335c896018",
-      "plan.md": "f5e41fefb2e52f01aef931d597900df9d203fb4cf305e607b9b4ca801b9430ab",
-      "tasks.md": "beb3cc41d620508ff2a5082a1aee488995fa19caa668905dd65c9ad297841d55",
+      "plan.md": "b497bbf0ea46e8148b3b7c9595e6d17f5d470e8a6ac9575527300f5db1399627",
+      "tasks.md": "48fb84e4c2041ba2a76e414353b82b04492e51a658ebdc18a508ce4092e18e1c",
       "implementation-summary.md": "bbf4d396921b0e510ebf1e715e177a6483df99d9012176da17896aa3b0fc7a42"
     },
     "last_active_child_id": null,

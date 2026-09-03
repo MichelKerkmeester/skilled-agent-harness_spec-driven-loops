@@ -1,3 +1,7 @@
+---
+title: "Feed Functions"
+trigger_phrases: []
+---
 # Feed Functions
 
 * * *

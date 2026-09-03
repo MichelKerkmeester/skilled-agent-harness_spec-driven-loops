@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: SessionStart context and Pi-only subagent dispatch policy"
+trigger_phrases: []
+---
 # Iteration 7: SessionStart context and Pi-only subagent dispatch policy
 
 ## Focus

@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-007.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 007 — Features 2, 12, 13: Retrieval Substrate

@@ -1,3 +1,7 @@
+---
+title: "000-release-cleanup / 006-research: Deep research charters"
+trigger_phrases: []
+---
 # 000-release-cleanup / 006-research: Deep research charters
 
 Investigations, automation-self research, supplemental research.

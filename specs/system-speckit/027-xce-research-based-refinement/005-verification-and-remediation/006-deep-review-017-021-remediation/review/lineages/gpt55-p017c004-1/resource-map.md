@@ -1,3 +1,7 @@
+---
+title: "Deep Review Resource Map - gpt55-p017c004-1"
+trigger_phrases: []
+---
 # Deep Review Resource Map - gpt55-p017c004-1
 
 ## Resource Map Coverage Gate

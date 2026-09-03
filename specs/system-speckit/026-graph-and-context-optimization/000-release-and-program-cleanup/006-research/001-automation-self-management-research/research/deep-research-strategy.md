@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Automation & Self-Management"
+trigger_phrases: []
+---
 # Deep Research Strategy: Automation & Self-Management
 
 ## Topic

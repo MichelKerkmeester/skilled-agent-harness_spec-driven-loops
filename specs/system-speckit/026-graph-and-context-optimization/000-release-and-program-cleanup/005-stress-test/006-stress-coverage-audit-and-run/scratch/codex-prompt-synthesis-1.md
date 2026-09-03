@@ -1,3 +1,7 @@
+---
+title: "Coverage Synthesis — Stress-Test vs Feature Catalogs"
+trigger_phrases: []
+---
 # Coverage Synthesis — Stress-Test vs Feature Catalogs
 
 You are producing two artifacts for spec-kit packet 042. Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`. Stay inside the workspace; only write files inside the packet folder.

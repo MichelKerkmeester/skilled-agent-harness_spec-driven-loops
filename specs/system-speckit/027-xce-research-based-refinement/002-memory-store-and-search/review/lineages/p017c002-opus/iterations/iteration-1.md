@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All artifacts are authored and structurally validated (grep/tail confirm the canonical final verdict line, 4 JSONL records, and the report verdict). `node`/`python3` parse-checks are permission-blocked in this fan-out runtime, but the files were authored as well-formed single-line JSON / JSON objects and verified by structural inspection.
 
 ## Review complete — lineage `p017c002-opus`

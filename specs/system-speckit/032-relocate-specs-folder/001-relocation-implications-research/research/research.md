@@ -1,3 +1,7 @@
+---
+title: "Research: Implications of Relocating `.opencode/specs` to a Top-Level `specs/` Directory"
+trigger_phrases: []
+---
 # Research: Implications of Relocating `.opencode/specs` to a Top-Level `specs/` Directory
 
 **Spec folder:** `.opencode/specs/system-speckit/032-relocate-specs-folder/001-relocation-implications-research`

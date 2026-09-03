@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 34 | SOL xhigh | mode: model-benchmark | angle: A4-fail model-benchmark :: failure modes & guardrails | 2026-07-15T10:58:41.075Z -->
 
 Validity should become a promotion-blocking artifact, separate from benchmark score. Repeatability proves the harness repeats itself; it does not prove uncontaminated items, independent judges, adequate power, a faithful rubric, or correct gold labels.

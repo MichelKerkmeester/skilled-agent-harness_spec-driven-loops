@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 011 — daemon lifecycle"
+trigger_phrases: []
+---
 # Codex Iteration 011 — daemon lifecycle
 
 ## Sequential-thinking preflight

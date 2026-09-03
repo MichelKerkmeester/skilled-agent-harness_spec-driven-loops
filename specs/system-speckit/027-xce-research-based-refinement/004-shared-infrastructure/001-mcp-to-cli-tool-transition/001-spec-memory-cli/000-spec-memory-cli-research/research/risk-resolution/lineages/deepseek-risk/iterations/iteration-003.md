@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: RQ5-RQ11 (remaining seed RQs)"
+trigger_phrases: []
+---
 # Iteration 3: RQ5-RQ11 (remaining seed RQs)
 
 **Focus:** RQ5 (hook latency), RQ6 (spawn overhead measured), RQ7 (session-identity), RQ8 (build drift), RQ9 (dual-client load), RQ10 (effort reconciliation), RQ11 (platform constraints)

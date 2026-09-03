@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Marginal value and redundancy of the always-on directive capsule"
+trigger_phrases: []
+---
 # Iteration 4: Marginal value and redundancy of the always-on directive capsule
 
 ## Focus

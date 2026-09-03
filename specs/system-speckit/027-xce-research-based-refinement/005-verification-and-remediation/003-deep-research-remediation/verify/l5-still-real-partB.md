@@ -1,3 +1,7 @@
+---
+title: "Batch Still-Real Verification — L5 Advisor Correctness, Part B (17 findings)"
+trigger_phrases: []
+---
 # Batch Still-Real Verification — L5 Advisor Correctness, Part B (17 findings)
 
 > Fresh-context Fable 5 verifier pass, 2026-06-12. Every finding re-checked against current code at HEAD (branch `028-mcp-to-cli-tool-transition`); banked line numbers re-derived from live reads. `memory_health` overage reproduced live against the warm daemon.

@@ -1,3 +1,7 @@
+---
+title: "Review Iteration 007 — Template metadata residue"
+trigger_phrases: []
+---
 # Review Iteration 007 — Template metadata residue
 
 ## Route

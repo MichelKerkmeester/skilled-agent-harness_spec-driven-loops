@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 1 | model luna (gpt-5.6-luna) | angle: Loop control & termination policies | 2026-07-14T21:17:34.588Z -->
 
 The state of the art is asymmetric: production runtimes mostly combine hard caps with repeated-pattern guards, while semantic saturation and deliberate broadening remain less mature. A robust `system-deep-loop` controller should layer all four: progress, quality, pathology, and resource limits.

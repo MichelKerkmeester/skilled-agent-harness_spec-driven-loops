@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 001-template-level-consolidation-research"
+trigger_phrases: []
+---
 # Deep Review Report: 001-template-level-consolidation-research
 
 **Date**: 2026-05-04

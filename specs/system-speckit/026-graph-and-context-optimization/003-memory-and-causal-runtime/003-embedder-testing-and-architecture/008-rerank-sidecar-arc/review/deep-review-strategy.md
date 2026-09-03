@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy — arc 008-rerank-sidecar-arc
 description: Session-tracking strategy for the 20-iter deep review of arc 008 (cli-codex gpt-5.5 xhigh fast).
+trigger_phrases: []
 ---
 
 # Deep Review Strategy — arc 008-rerank-sidecar-arc

@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Improving the Packet 008 Pi Forks"
+trigger_phrases: []
+---
 # Research Synthesis: Improving the Packet 008 Pi Forks
 
 ## 1. Executive Summary

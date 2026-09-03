@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 001 — 006-bge-m3-hybrid-evaluation"
+trigger_phrases: []
+---
 # Deep Review Iteration 001 — 006-bge-m3-hybrid-evaluation
 
 **Dimension:** documentation accuracy

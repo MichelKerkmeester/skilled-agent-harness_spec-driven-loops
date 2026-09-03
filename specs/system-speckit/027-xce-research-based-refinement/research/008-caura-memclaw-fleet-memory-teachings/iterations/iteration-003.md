@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — governance / trust tiers / scoping / audit"
+trigger_phrases: []
+---
 # Iteration 003 — governance / trust tiers / scoping / audit
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.68 · **tokens:** 129486 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

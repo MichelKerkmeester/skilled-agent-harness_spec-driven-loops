@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 4 of 25 - Supply-Chain pip/cargo/uv/brew"
+trigger_phrases: []
+---
 # Deep Research Iteration 4 of 25 - Supply-Chain pip/cargo/uv/brew
 
 ## SITUATION

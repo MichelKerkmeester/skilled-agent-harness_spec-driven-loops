@@ -1,6 +1,7 @@
 ---
 title: Deep Review Iteration 004 - Traceability
 description: Traceability review narrative for sk-design 009 Claude-parity deep review.
+trigger_phrases: []
 ---
 
 # Deep Review Iteration 004 - Traceability

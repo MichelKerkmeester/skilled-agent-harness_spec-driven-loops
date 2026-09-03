@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 006-verify-rollout (memory-redesign packet, phase 6)"
+trigger_phrases: []
+---
 # Deep Review Report: 006-verify-rollout (memory-redesign packet, phase 6)
 
 **Session:** fanout-deepseek-flash-1787807016319-a8sfw4 · generation 1 · lineage new

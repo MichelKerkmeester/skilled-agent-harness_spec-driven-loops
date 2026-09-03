@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 20 of 25 - Final Synthesis + Remediation Playbook"
+trigger_phrases: []
+---
 # Deep Research Iteration 20 of 25 - Final Synthesis + Remediation Playbook
 
 ## SITUATION

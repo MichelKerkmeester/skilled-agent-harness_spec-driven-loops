@@ -1,3 +1,7 @@
+---
+title: "Compiled-Routing P2 Canary — Profile, Owner, Window, Thresholds & Rollback Trigger"
+trigger_phrases: []
+---
 # Compiled-Routing P2 Canary — Profile, Owner, Window, Thresholds & Rollback Trigger
 
 > **Contract (REQ-006 / CF-ACT-11, canary half).** Names the P2 canary's profile,

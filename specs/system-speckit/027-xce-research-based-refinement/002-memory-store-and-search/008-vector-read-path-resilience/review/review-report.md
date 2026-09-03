@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 013 Vector Read-Path Resilience"
+trigger_phrases: []
+---
 # Deep Review Report — 013 Vector Read-Path Resilience
 
 Review target: `system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience` (shard probe/quarantine, auto-rebuild repair, `recallDegradation.degradedVector`, dimension-source precedence; commit 157b95c213).

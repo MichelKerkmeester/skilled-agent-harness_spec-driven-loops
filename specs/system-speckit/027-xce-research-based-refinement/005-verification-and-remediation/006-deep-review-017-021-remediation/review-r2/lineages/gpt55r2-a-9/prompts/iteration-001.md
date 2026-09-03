@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 Prompt Record"
+trigger_phrases: []
+---
 # Iteration 001 Prompt Record
 
 Review target: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval`.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Broaden Angles — Gating/Rate-Limits, Auth Lifecycle, and Transport-Packet Layout"
+trigger_phrases: []
+---
 # Iteration 2: Broaden Angles — Gating/Rate-Limits, Auth Lifecycle, and Transport-Packet Layout
 
 **Lineage:** glm (fanout-glm-1784198125985-iw9229) · **Iteration:** 2 of 2 (final) · **Executor:** cli-opencode zai-coding-plan/glm-5.2 · **stopPolicy:** max-iterations (convergence telemetry-only → angles broadened, not synthesized early)

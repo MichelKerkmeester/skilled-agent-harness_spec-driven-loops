@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Replay History, Checkpoints, and External Effects"
+trigger_phrases: []
+---
 # Iteration 8: Replay History, Checkpoints, and External Effects
 
 ## Focus

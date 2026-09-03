@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 007"
+trigger_phrases: []
+---
 # Deep Research Iteration 007
 
 > Audited changelog: `changelog-026-relation-backfill-review-remediation.md`

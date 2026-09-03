@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Diagnose system-deep-loop skill-routing and apply the sk-doc typed-pair routing optimizations. It is a parent hub with 7 workflowModes over 5 child packets; each child SKILL.md carries per-mode pseudocode routers whose leaf paths are flat child-relative (references/...) rather than packet-qualified (<mode>/references/...); baseline aggregate ~71; 0 typed gold across ~319 scenarios. Investigate a hub-level surface router with packet-qualified typed pairs, how the skill-benchmark scores routing, and concrete optimizations to the routing config. Produce findings and a resource-map."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: RQ1 — Workflow-YAML canonical schema (_auto.yaml / _confirm.yaml) + corpus divergence"
+trigger_phrases: []
+---
 # Iteration 1: RQ1 — Workflow-YAML canonical schema (_auto.yaml / _confirm.yaml) + corpus divergence
 
 ## Focus

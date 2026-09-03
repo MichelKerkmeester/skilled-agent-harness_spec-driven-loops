@@ -1,3 +1,7 @@
+---
+title: "Iteration 027 — Angle 27"
+trigger_phrases: []
+---
 # Iteration 027 — Angle 27
 
 **Angle:** code_graph_apply default routing safety: bare apply routes to staleness-based rescan — observed long-running call; confirm guards, document expected duration, consider explicit-operation requirement at the CLI layer.

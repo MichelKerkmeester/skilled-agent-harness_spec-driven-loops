@@ -1,3 +1,7 @@
+---
+title: "Iteration 33: Round H Rust Reference — aionforge-security/redteam → C8 wrapper + injection filter + probe gate"
+trigger_phrases: []
+---
 # Iteration 33: Round H Rust Reference — aionforge-security/redteam → C8 wrapper + injection filter + probe gate
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I've completed the security-focused deep-review iteration for the phase-parent scope. The review found 2 P2 findings related to documentation gaps for path traversal validation and PID reuse collision as a known security limitation. No P0 or P1 security issues were identified. The arc adequately addresses core security concerns (race-window correctness, privilege boundaries, signal-handling, env-var parsing) in phases 003 and 004.
 
 **Review verdict: PASS**

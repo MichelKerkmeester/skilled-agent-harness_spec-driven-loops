@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - system-spec-kit Validation, Context Generation, Indexing"
+trigger_phrases: []
+---
 # Iteration 003 - system-spec-kit Validation, Context Generation, Indexing
 
 ## Focus

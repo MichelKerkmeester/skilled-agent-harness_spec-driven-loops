@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 - Stabilization replay: cross-findings dedupe and severity check"
+trigger_phrases: []
+---
 # Iteration 6 - Stabilization replay: cross-findings dedupe and severity check
 
 Session: fanout-codex-4-1780596001496-dj6z7c

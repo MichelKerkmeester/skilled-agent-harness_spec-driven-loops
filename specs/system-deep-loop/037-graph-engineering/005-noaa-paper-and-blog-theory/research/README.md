@@ -1,3 +1,7 @@
+---
+title: "Study 5 · noaa-paper-and-blog-theory — research folder"
+trigger_phrases: []
+---
 # Study 5 · noaa-paper-and-blog-theory — research folder
 
 > **Loop / harness layer.** Study 5 of the [037 graph-engineering program](../../context-index.md) — the counterpart to the four graph-layer studies. 20-iteration deep-research run (gpt-5.6-sol high/fast, `stopReason: maxIterationsReached`). Subject: NVIDIA's Object-Oriented Agents (NOOA) paper + the 12 blogs' loop/harness first principles.

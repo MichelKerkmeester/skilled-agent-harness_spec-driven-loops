@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Implements the sk-doc-command peer adapter on the deep-alignment three-method contract, extends the reusable reference checks to every command topology, and proves exact fixture outcomes without duplicating generic document validation.",
     "created_at": "2026-07-14T20:36:59.179Z",
-    "last_save_at": "2026-08-30T15:39:20.245Z",
+    "last_save_at": "2026-09-03T22:20:08.391Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c34c424b90454536c8eee4bf389a67f4471b52a74cca02678f744549a9bf308d",
+    "source_fingerprint": "sha256:13f1d6d06994fefdca2e061fe34bbe3b41d6da37ba13e1458e18cb97f7973023",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bca3288107d68c0c2a259994e5857766879ce9c4319b134e03792a2da9a10f6b",
-      "plan.md": "775f34c98138c5b31eeb3410bfaa76f214c7ed7d67800ce8744465bdbf11b38e",
-      "tasks.md": "0ad3823d34b9a0ee4fe65725bbae6a31d409a87cbd6d0aa54ca5aad25e2d6e06",
+      "plan.md": "d38eceed3488c7c90c687b8cd2a3b31de4de50273e79e4405b5b0444a0cc1b64",
+      "tasks.md": "f1f5a19f9f71be9805234915828e73831a651c85354cfbe2e902454136202f95",
       "implementation-summary.md": "140732b57145813acb93eea6a5163ca89e4ead2f6826c44776e458f9b065fee6"
     },
     "last_active_child_id": null,

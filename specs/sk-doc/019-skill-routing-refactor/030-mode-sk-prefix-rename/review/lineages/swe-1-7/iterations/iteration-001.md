@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 - Correctness: mode-registries, hub-routers, leaf-manifests vs rename map"
+trigger_phrases: []
+---
 # Iteration 1 - Correctness: mode-registries, hub-routers, leaf-manifests vs rename map
 
 ## Focus

@@ -17,6 +17,7 @@ _memory:
       - ".opencode/commands/scripts/validate-command-references.cjs"
       - ".opencode/specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs"
       - ".opencode/skills/sk-doc/create-command/SKILL.md"
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
 

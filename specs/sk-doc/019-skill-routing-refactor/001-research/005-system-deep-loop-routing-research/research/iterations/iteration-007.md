@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Smallest mode-complete authored typed-gold slice"
+trigger_phrases: []
+---
 # Iteration 7: Smallest mode-complete authored typed-gold slice
 
 ## Focus

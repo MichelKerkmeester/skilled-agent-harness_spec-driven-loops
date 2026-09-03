@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — KQ8 (adversarial): which novel candidates actually survive the truncation law and earn a GO distinct from the reuse-first program"
+trigger_phrases: []
+---
 # Iteration 008 — KQ8 (adversarial): which novel candidates actually survive the truncation law and earn a GO distinct from the reuse-first program
 
 ## Focus

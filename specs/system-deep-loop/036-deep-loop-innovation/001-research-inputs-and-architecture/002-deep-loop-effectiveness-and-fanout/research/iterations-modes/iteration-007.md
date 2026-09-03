@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 7 | SOL xhigh | mode: deep-review | angle: A2-moat deep-review :: unique value / moat | 2026-07-15T08:34:42.237Z -->
 
 The moat should be “proof-carrying defect closure,” not merely more review passes. A single-shot reviewer emits plausible comments; deep-review should emit revision-bound findings that survived an explicit attempt to disprove them.

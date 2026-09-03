@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - 016 Coverage and Hygiene Audit
 description: Strategy tracker for the 10-iteration cli-codex deep-research run auditing UNSHIPPED, DEAD, BUGGED, and MISSED items across the 013-embedder-testing-and-architecture umbrella.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking

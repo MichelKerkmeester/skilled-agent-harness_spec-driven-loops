@@ -1,3 +1,7 @@
+---
+title: "CONTEXT"
+trigger_phrases: []
+---
 # CONTEXT
 READ-ONLY codebase-context analyzer, deep-context loop iteration 4 (final planned sweep). Iters 1–2
 mapped the 026 narrative/decisions; iter 3 mapped the code-graph/memory/embedder CODE. THIS iteration

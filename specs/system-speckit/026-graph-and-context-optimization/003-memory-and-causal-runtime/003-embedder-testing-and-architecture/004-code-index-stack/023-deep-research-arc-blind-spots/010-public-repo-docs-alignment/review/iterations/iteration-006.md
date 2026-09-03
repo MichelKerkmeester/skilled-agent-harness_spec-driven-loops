@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — system-spec-kit skill canonical surface"
+trigger_phrases: []
+---
 # Iteration 006 — system-spec-kit skill canonical surface
 
 **Scope:** .opencode/skills/system-spec-kit/README.md, .opencode/skills/system-spec-kit/SKILL.md

@@ -1,3 +1,7 @@
+---
+title: "Context Report: system-skill-advisor README rewrite"
+trigger_phrases: []
+---
 # Context Report: system-skill-advisor README rewrite
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only). Both models read the SKILL.md, README, ARCHITECTURE, INSTALL_GUIDE, the references tree, the tool descriptors, the lane registry and the freshness contract, citing file:line evidence. They converge on the nine MCP tools, the five-lane scorer with its live weights, the four-value trust model and the boundary with system-spec-kit. They diverged on one point (the embedder manifest count), which the host resolved against source. This is a voice and structure rewrite that preserves accurate facts and corrects three small stale claims.

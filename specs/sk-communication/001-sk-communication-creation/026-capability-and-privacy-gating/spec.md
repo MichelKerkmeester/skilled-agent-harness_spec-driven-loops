@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 026 Capability and Privacy Gating"
 description: "Wire the Phase 008 compatibility doctor into every activation path at the projection seam, gating each runtime, provider, and model combination on capability support, privacy class, and privacy-fact freshness, and failing closed to the exact original on any unknown, stale, or incapable critical fact."
 trigger_phrases:
   - "capability-and-privacy-gating"
-  - "capability and privacy gating"
   - "compatibility doctor pre-projection gate"
   - "privacy-fact freshness gate"
   - "original-only fail-closed gate"

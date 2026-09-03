@@ -1,3 +1,7 @@
+---
+title: "021/001 — Audit remediation tracker"
+trigger_phrases: []
+---
 # 021/001 — Audit remediation tracker
 
 > Tracks which of the 14 audit findings shipped inline (P0/P1) vs deferred (P1 cascade-related + P2).

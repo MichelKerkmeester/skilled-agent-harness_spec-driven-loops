@@ -1,6 +1,7 @@
 ---
 title: Deep Review Evidence Resource Map
 description: Evidence map emitted from codex-1 review deltas.
+trigger_phrases: []
 ---
 
 # Deep Review Evidence Resource Map

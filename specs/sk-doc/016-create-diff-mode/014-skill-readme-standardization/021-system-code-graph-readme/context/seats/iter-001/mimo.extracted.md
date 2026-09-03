@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 1. PURPOSE
 
 Structural AST indexing of source code into a SQLite graph, exposed through the standalone `mk-code-index` MCP server, so agents can query callers, imports, blast radius, and affected symbols with a readiness contract that refuses to answer when the graph is stale.

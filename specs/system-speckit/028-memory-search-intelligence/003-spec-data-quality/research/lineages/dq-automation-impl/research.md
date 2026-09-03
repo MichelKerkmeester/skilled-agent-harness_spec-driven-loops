@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis (lineage dq-automation-impl): the build-ready implementation of the keystone DQ automations"
+trigger_phrases: []
+---
 # Research Synthesis (lineage dq-automation-impl): the build-ready implementation of the keystone DQ automations
 
 <!-- ANCHOR:dq-automation-impl-index -->

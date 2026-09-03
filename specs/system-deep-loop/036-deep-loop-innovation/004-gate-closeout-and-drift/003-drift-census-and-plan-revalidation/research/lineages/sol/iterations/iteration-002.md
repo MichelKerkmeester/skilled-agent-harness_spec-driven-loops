@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: First-Order Resolution Census and Clean Control"
+trigger_phrases: []
+---
 # Iteration 002: First-Order Resolution Census and Clean Control
 
 ## Focus

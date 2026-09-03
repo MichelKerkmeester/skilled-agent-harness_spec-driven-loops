@@ -3,6 +3,7 @@ iteration: 2
 focus: RQ2 - W4 conditional rerank wiring
 newInfoRatio: 0.84
 status: complete
+trigger_phrases: []
 ---
 
 # Iteration 002 - W4 Conditional Rerank Wiring

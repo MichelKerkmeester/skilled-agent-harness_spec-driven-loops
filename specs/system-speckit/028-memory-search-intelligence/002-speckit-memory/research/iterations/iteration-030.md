@@ -1,3 +1,7 @@
+---
+title: "Iteration 30: Round H Rust Reference — aionforge-consolidate → C4-C/C-G1/durable-retry"
+trigger_phrases: []
+---
 # Iteration 30: Round H Rust Reference — aionforge-consolidate → C4-C/C-G1/durable-retry
 
 ## Focus

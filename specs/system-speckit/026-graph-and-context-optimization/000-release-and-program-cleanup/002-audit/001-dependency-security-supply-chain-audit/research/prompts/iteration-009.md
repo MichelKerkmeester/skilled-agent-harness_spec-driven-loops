@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 9 of 25 - Git Hooks + core.hooksPath"
+trigger_phrases: []
+---
 # Deep Research Iteration 9 of 25 - Git Hooks + core.hooksPath
 
 ## SITUATION

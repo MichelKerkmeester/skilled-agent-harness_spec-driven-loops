@@ -1,3 +1,7 @@
+---
+title: "MCP Live Probe Template"
+trigger_phrases: []
+---
 # MCP Live Probe Template
 
 > Canonical probe queries per subsystem. Copy these into your implementation-summary.md "Verification" section after MCP daemon restart.

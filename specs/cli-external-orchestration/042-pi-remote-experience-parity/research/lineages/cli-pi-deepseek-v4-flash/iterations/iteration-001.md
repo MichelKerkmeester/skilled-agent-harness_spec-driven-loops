@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Prior-Art Landscape Survey"
+trigger_phrases: []
+---
 # Iteration 1: Prior-Art Landscape Survey
 
 ## Focus

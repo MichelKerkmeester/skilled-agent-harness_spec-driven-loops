@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 — MCP surface design + API surface governance"
+trigger_phrases: []
+---
 # Iteration 011 — MCP surface design + API surface governance
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.78 · **tokens:** 93128 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

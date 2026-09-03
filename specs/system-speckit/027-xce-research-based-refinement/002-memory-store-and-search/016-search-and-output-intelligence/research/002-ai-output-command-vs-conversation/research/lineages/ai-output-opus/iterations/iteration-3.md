@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The fan-out research lineage is complete. All artifacts written within the `ai-output-opus` lineage dir only (no paths outside it touched):
 
 - `deep-research-config.json`, `deep-research-strategy.md` (with charter), `deep-research-state.jsonl` (init → 5 iterations → convergence → synthesis), `deep-research-findings-registry.json`, `deep-research-dashboard.md`

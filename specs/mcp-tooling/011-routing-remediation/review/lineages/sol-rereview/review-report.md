@@ -1,3 +1,7 @@
+---
+title: "Terminal Re-Review Report — mcp-tooling Routing Remediation"
+trigger_phrases: []
+---
 # Terminal Re-Review Report — mcp-tooling Routing Remediation
 
 ## 1. Executive Summary

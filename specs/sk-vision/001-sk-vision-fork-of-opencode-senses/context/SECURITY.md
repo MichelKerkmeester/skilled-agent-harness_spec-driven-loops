@@ -1,3 +1,7 @@
+---
+title: "Security Policy"
+trigger_phrases: []
+---
 # Security Policy
 
 OpenCode Senses is a **local-first** vision plugin. Images and analysis never leave your machine unless you explicitly opt into a remote provider (`senses_reverse` with `yandex`, or Moondream hosted finetunes via `MOONDREAM_API_KEY`).

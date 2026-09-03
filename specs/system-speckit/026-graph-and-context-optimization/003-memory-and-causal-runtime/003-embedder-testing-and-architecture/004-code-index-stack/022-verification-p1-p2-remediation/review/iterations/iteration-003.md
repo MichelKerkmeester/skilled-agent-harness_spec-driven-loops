@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Regression Hunt: Daemon Lifecycle + Reranker Dispatch"
+trigger_phrases: []
+---
 # Iteration 003 — Regression Hunt: Daemon Lifecycle + Reranker Dispatch
 
 ## Files / DBs / commands read

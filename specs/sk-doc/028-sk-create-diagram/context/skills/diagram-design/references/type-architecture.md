@@ -1,3 +1,7 @@
+---
+title: "Architecture"
+trigger_phrases: []
+---
 # Architecture
 
 **Best for:** system overviews, data-flow diagrams, integration maps, infra topology.

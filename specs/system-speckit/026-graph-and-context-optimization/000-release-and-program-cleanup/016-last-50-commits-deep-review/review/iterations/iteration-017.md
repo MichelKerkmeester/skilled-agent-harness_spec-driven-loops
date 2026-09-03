@@ -1,3 +1,7 @@
+---
+title: "Iteration 017 — Traceability A8-deepen (gemini-removal dangling refs — settle severity)"
+trigger_phrases: []
+---
 # Iteration 017 — Traceability A8-deepen (gemini-removal dangling refs — settle severity)
 
 ## Dispatcher

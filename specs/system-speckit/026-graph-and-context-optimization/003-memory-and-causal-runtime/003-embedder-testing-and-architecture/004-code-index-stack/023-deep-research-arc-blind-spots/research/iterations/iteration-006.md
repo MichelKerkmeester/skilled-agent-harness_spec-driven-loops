@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 - Implicit contracts"
+trigger_phrases: []
+---
 # Iteration 006 - Implicit contracts
 
 ## Preflight reasoning

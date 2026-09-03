@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 — traceability core (spec_code + checklist_evidence)"
+trigger_phrases: []
+---
 # Iteration 6 — traceability core (spec_code + checklist_evidence)
 
 **Date**: 2026-05-11T19-30-00Z

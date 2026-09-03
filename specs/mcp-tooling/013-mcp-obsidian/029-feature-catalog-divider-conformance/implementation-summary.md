@@ -1,3 +1,7 @@
+---
+title: "Implementation Summary — mcp-obsidian feature-catalog divider conformance"
+trigger_phrases: []
+---
 # Implementation Summary — mcp-obsidian feature-catalog divider conformance
 
 ## Final state: complete — shipped to v4

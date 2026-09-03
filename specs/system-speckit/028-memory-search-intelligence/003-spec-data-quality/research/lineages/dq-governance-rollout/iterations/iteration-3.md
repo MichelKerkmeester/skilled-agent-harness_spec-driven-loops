@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The fan-out lineage is complete and verified. All artifacts are written within the target lineage directory only; prior lineages and the parent were read-only inputs.
 
 **Lineage `dq-governance-rollout` — summary**

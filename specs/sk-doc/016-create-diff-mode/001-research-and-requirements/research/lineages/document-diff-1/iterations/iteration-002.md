@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Diff Algorithms and Noise Suppression"
+trigger_phrases: []
+---
 # Iteration 2: Diff Algorithms and Noise Suppression
 
 ## Focus

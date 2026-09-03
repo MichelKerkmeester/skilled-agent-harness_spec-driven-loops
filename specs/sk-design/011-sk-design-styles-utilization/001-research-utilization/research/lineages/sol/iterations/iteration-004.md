@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Per-Mode Consumption and Coherent-Reference Contract"
+trigger_phrases: []
+---
 # Iteration 4: Per-Mode Consumption and Coherent-Reference Contract
 
 ## Focus

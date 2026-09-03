@@ -1,3 +1,7 @@
+---
+title: "Iter 003 — z_archive doc/test propagation audit"
+trigger_phrases: []
+---
 # Iter 003 — z_archive doc/test propagation audit
 
 ## Focus

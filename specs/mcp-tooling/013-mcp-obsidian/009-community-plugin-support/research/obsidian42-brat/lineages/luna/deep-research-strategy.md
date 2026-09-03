@@ -3,6 +3,7 @@ title: Deep Research Strategy - obsidian42-BRAT
 description: Detached lineage strategy for source-backed BRAT vault-file research.
 contextType: planning
 version: 1.14.0.19
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking

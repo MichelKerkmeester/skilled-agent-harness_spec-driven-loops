@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — pi-flash-b"
+trigger_phrases: []
+---
 # Deep Research Dashboard — pi-flash-b
 
 ## Iteration table

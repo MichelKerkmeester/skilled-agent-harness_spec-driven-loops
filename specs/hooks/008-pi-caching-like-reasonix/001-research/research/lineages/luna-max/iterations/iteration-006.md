@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Compare Anthropic prompt caching"
+trigger_phrases: []
+---
 # Iteration 6: Compare Anthropic prompt caching
 
 ## Focus

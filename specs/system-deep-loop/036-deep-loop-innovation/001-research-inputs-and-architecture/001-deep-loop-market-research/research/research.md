@@ -1,3 +1,7 @@
+---
+title: "Deep-Loop Market Research — The Loop-Engineering Landscape"
+trigger_phrases: []
+---
 # Deep-Loop Market Research — The Loop-Engineering Landscape
 
 > A 45-iteration, non-converging (broadening) research synthesis on the state of the art in **loop engineering** for agentic / iterative AI systems, mined for transferable lessons to improve `system-deep-loop` and its modes.

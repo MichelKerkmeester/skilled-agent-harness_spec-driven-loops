@@ -1,3 +1,7 @@
+---
+title: "Findings — Search Intelligence Stress-Test (Corpus v1.0.0, run 2026-04-26)"
+trigger_phrases: []
+---
 # Findings — Search Intelligence Stress-Test (Corpus v1.0.0, run 2026-04-26)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: findings | playbook 006 sub-phase 002 -->

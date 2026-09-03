@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — Arc 009 Memory Leak Remediation"
+trigger_phrases: []
+---
 # Deep Review Strategy — Arc 009 Memory Leak Remediation
 
 ## Scope

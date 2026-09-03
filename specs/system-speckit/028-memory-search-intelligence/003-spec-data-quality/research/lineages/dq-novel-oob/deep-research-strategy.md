@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: dq-novel-oob"
+trigger_phrases: []
+---
 # Deep Research Strategy: dq-novel-oob
 
 ## Topic

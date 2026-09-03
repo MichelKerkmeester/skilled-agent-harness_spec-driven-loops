@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 Prompt Record"
+trigger_phrases: []
+---
 # Iteration 002 Prompt Record
 
 Focus: security pass over `memory_search` scoped retrieval and community fallback behavior.

@@ -1,6 +1,7 @@
 ---
 title: "Deep Review Report: 032 hyphen naming convention (terra-max lineage)"
 description: "Five-pass detached review synthesis for the 032 phase-parent packet."
+trigger_phrases: []
 ---
 
 # Deep Review Report

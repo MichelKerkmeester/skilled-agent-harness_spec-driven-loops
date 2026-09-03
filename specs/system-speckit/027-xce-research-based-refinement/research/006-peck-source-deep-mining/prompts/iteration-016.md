@@ -1,3 +1,7 @@
+---
+title: "Iteration 016 — Adversarially verify T10 (benchmark-substrate novelty)"
+trigger_phrases: []
+---
 DEEP-RESEARCH — CROSS-MODEL VERIFY (MiniMax M3)
 
 # Iteration 016 — Adversarially verify T10 (benchmark-substrate novelty)

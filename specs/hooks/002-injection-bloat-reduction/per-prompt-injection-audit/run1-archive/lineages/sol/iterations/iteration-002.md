@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Claude Code Hook Adapter End-to-End Audit"
+trigger_phrases: []
+---
 # Iteration 2: Claude Code Hook Adapter End-to-End Audit
 
 ## Focus

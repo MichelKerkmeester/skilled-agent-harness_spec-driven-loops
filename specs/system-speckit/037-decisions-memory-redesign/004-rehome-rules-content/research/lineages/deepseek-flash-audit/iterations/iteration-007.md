@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: DB — the 21 indexed constitutional rows + learned-triggers confirmation"
+trigger_phrases: []
+---
 # Iteration 7: DB — the 21 indexed constitutional rows + learned-triggers confirmation
 
 ## Focus

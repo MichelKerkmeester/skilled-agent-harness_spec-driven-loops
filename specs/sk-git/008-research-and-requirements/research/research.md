@@ -1,3 +1,7 @@
+---
+title: "Reconciled Research: Concurrent AI Publication to One Shared Git Branch"
+trigger_phrases: []
+---
 # Reconciled Research: Concurrent AI Publication to One Shared Git Branch
 
 > **Phase:** `skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements`

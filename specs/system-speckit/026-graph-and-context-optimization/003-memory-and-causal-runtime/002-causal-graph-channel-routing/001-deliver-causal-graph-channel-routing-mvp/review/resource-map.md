@@ -3,6 +3,7 @@ title: "Review-Packet Resource Map — 012 Causal Graph Channel Routing Utilizat
 description: "Resource map for the 10-iteration deep-review packet of 012; lists every state file, iteration artifact, log, and report produced by the session."
 session_id: "2026-05-11T05:42:00Z"
 generated_at: "2026-05-11T09:50:00Z"
+trigger_phrases: []
 ---
 
 # Review-Packet Resource Map — 012 Causal Graph Channel Routing Utilization

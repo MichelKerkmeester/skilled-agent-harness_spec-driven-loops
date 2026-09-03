@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Community CLI and MCP identity audit"
+trigger_phrases: []
+---
 # Iteration 2: Community CLI and MCP identity audit
 
 ## Focus

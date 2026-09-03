@@ -1,3 +1,7 @@
+---
+title: "deepseek-v4-pro-max — iteration 4: Two containment layers shipped post-v3.6.0.0 (repo-root.mjs + hoistAboveOpencodeTree) but the primary leak path — the hook entry → freshness → generation counter chain — is completely unguarded; the 017 spec remains Draft at 0%."
+trigger_phrases: []
+---
 # deepseek-v4-pro-max — iteration 4: Two containment layers shipped post-v3.6.0.0 (repo-root.mjs + hoistAboveOpencodeTree) but the primary leak path — the hook entry → freshness → generation counter chain — is completely unguarded; the 017 spec remains Draft at 0%.
 
 ## Findings

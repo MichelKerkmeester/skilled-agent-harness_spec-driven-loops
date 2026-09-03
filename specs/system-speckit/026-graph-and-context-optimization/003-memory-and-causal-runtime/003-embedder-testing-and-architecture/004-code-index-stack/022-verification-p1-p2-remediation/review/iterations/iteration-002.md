@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — P2 Closure Verification"
+trigger_phrases: []
+---
 # Iteration 002 — P2 Closure Verification
 
 ## Files / DBs / commands read

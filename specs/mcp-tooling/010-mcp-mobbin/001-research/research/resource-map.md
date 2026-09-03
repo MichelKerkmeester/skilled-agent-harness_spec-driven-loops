@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Mobbin MCP fan-out research (consolidated)"
 description: "Deduplicated consolidation of the sol and luna lineage resource maps plus glm's cited source inventory."
+trigger_phrases: []
 ---
 
 # Resource Map

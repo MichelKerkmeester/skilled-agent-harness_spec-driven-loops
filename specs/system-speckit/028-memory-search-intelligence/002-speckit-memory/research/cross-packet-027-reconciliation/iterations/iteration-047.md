@@ -1,3 +1,7 @@
+---
+title: "Iteration 47 (Round O adversarial): two-primitive content-id module — COUPLING-RISK"
+trigger_phrases: []
+---
 # Iteration 47 (Round O adversarial): two-primitive content-id module — COUPLING-RISK
 
 ## Focus

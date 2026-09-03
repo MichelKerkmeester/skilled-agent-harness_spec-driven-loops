@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Retained in-process state behind iteration 001 findings"
+trigger_phrases: []
+---
 # Iteration 002 — Retained in-process state behind iteration 001 findings
 
 ## Focus

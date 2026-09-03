@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Diagnose sk-design skill-routing faults and apply the sk-doc typed-pair routing optimizations. Investigate the per-mode INTENT_SIGNALS/RESOURCE_MAP config, how the skill-benchmark scores routing, whether generating a leaf-manifest plus typed gold would lift measured routing, and concrete optimizations. Produce findings and a resource-map."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

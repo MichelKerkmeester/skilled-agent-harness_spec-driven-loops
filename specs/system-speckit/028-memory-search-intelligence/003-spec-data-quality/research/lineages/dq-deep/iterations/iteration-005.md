@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - KQ5: Skill-doc corpus quality automation"
+trigger_phrases: []
+---
 # Iteration 005 - KQ5: Skill-doc corpus quality automation
 
 **Focus:** What skill-doc corpus quality automation exists (SKILL.md + references + assets, advisor metadata, smart-router coverage) and what is missing.

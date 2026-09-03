@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - fanout-gpt-1-1781110469935-pc6f9l"
+trigger_phrases: []
+---
 # Deep Review Strategy - fanout-gpt-1-1781110469935-pc6f9l
 
 ## 1. Topic

@@ -1,3 +1,7 @@
+---
+title: "Playbook procedure, followed literally"
+trigger_phrases: []
+---
 # Playbook procedure, followed literally
 
 ## What was missing

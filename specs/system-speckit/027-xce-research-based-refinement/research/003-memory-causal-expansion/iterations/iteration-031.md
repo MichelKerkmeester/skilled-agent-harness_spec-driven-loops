@@ -4,6 +4,7 @@ rq: RQ-N2
 phase_target: 003-incremental-index-foundation
 newInfoRatio: 0.72
 verdict: ADAPT
+trigger_phrases: []
 ---
 
 # Iteration 031 — RQ-N2: Memoization and Fingerprint Primitive Audit

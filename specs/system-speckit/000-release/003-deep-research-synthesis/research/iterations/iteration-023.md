@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Rust language support and reference-file hygiene
 The sk-code OpenCode surface now treats Rust as a first-class language: `.rs` files and Cargo.toml/Cargo.lock markers trigger detection, a RUST intent with napi-rs/wasm-bindgen keywords selects the Rust references, and a new Rust standard (style guide, quality standards, quick reference, and checklist) guides boundary-safe code — including the iron rules that `unsafe` requires a documented `// SAFETY` invariant and panics never cross the interop boundary as errors. Rust+TypeScript parity work loads both language trios, and the Rust-to-TypeScript contract is preserved as a surface non-negotiable. In a second workstream, every reference and asset document over 500 lines across both surfaces was split into topic-cohesive sub-files — 33 documents became 104 parts, each capped near 500 lines — and the machine-readable router maps were rewired to the new paths. The result: router drift guards pass 21/21 with zero regressions, and a fail-closed router-replay report confirms the Rust scenario selects the correct intent and resources. A duplicate scenario id was renamed (OC-004 to OC-009) to keep the playbook integrity gate green.
 

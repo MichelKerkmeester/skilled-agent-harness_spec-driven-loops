@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 5 | SOL xhigh | thread: fan-out-automation | angle: Bias-free reduction of heterogeneous multi-model leaves | 2026-07-15T04:37:13.729Z -->
 
 The current reducer is deterministic, but not yet model-neutral. In [fanout-merge.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:89), identity ignores evidence/provenance fields; optional near-dedup uses exact normalized body equality plus title-token overlap. When records collapse, one lexically selected record survives with merged `_lineages`. Two models can state the same claim using different sources, and one evidence set can disappear.

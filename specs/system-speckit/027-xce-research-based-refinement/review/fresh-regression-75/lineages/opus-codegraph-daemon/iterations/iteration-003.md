@@ -1,3 +1,7 @@
+---
+title: "Seat opus-codegraph-daemon — iteration 3 (global #18)"
+trigger_phrases: []
+---
 # Seat opus-codegraph-daemon — iteration 3 (global #18)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: opus-codegraph-daemon

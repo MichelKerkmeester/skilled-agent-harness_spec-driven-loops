@@ -1,3 +1,7 @@
+---
+title: "SOL-fast Research Report (dispatch 1: design-tool command patterns)"
+trigger_phrases: []
+---
 # SOL-fast Research Report (dispatch 1: design-tool command patterns)
 
 > cli-opencode openai/gpt-5.6-sol-fast, high; 30 webfetch + 7 read; web-informed, file:line-cited.

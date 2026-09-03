@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Audit Q1 concurrency and race-condition surfaces across Stop-hook state, `/memory:save`, `generate-context`, and deep-research packet locking.

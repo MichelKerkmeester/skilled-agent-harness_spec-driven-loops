@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Auth model, plan gating, exact tool surface, and packet/manual shape"
+trigger_phrases: []
+---
 # Iteration 2: Auth model, plan gating, exact tool surface, and packet/manual shape
 
 **Focus:** Resolve auth/API-key model and free-vs-Pro gating; capture the exact tool surface; derive the `mcp-mobbin` transport-packet contract and the `.utcp_config.json` mobbin manual shape. Broaden review angles rather than converge early.

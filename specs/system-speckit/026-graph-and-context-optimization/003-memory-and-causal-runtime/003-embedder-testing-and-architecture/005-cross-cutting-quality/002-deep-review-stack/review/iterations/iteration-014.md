@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — SECURITY (adversarial threat-model pass)"
+trigger_phrases: []
+---
 # Iteration 014 — SECURITY (adversarial threat-model pass)
 
 ## P0 Findings

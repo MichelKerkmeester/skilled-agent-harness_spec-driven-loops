@@ -1,3 +1,7 @@
+---
+title: "032 Pre-Merge Deep-Review — Resolution Note"
+trigger_phrases: []
+---
 # 032 Pre-Merge Deep-Review — Resolution Note
 
 Pre-merge deep review of the 175-node `sk-doc/020-hyphen-naming-convention` spec tree.

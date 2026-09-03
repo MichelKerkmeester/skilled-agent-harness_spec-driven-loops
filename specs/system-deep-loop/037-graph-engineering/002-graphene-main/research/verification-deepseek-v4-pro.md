@@ -1,3 +1,7 @@
+---
+title: "DeepSeek V4 Pro — Independent Verification of the Graphene Synthesis"
+trigger_phrases: []
+---
 # DeepSeek V4 Pro — Independent Verification of the Graphene Synthesis
 
 > Adversarial verification of `research.md` by DeepSeek V4 Pro (cli-pi `--provider deepseek --model deepseek-v4-pro --thinking high`), a second, different model. Verdict: **PASS-WITH-FIXES**. All flagged fixes were applied to research.md (grounding block added; overclaims hedged; Decision-2 verdict corrected; body P1–P7 renumbered; staged-delivery table marked as an 8→9 reconstruction). Produced 2026-08-13.

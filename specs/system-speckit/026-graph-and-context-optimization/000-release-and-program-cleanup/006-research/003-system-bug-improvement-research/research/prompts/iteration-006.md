@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 006 — Angle B1: Hook contract drift across runtimes"
+trigger_phrases: []
+---
 # Deep-Research Iteration 006 — Angle B1: Hook contract drift across runtimes
 
 You are the deep-research LEAF agent for iteration 006 of 20. The packet root is `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-bug-improvement-research/`.

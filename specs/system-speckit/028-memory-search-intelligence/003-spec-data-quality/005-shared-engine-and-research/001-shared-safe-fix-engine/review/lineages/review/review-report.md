@@ -1,3 +1,7 @@
+---
+title: "Review Report — Shared Safe-Fix Engine (026)"
+trigger_phrases: []
+---
 # Review Report — Shared Safe-Fix Engine (026)
 
 **Target:** `.opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine`

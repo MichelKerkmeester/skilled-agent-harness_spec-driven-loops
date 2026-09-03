@@ -1,3 +1,7 @@
+---
+title: "Adherence Research — Wave 2 (gpt-5.5-fast xhigh, 5 iterations)"
+trigger_phrases: []
+---
 # Adherence Research — Wave 2 (gpt-5.5-fast xhigh, 5 iterations)
 
 > **Context:** run after the disposition's superseding result revealed the prior "3/3 envelope failure" was a probe-harness artifact (`opencode run "<slash text>"` never invokes the command runtime, so the render contract never reached the model; with `--command` dispatch the same gpt-5.5 medium renders the envelope 3/3). This wave investigated the *true mechanical* solution independently with a higher-reasoning model.

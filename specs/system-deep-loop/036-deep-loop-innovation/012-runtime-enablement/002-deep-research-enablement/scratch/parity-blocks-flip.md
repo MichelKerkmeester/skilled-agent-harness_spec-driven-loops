@@ -1,3 +1,7 @@
+---
+title: "A deferral that was wrong about testability, not about the flip"
+trigger_phrases: []
+---
 # A deferral that was wrong about testability, not about the flip
 
 ## What the record said

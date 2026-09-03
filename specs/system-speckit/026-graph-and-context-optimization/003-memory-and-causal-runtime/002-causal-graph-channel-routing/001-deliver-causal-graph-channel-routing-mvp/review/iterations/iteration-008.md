@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 — Traceability Replay"
+trigger_phrases: []
+---
 # Iteration 8 — Traceability Replay
 
 **Date**: 2026-05-11

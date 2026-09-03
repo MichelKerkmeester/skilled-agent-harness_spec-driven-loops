@@ -1,3 +1,7 @@
+---
+title: "Implementation Summary — mcp-obsidian + hub post-audit fixes"
+trigger_phrases: []
+---
 # Implementation Summary — mcp-obsidian + hub post-audit fixes
 
 ## Final state: complete — shipped to v4

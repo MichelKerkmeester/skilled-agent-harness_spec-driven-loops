@@ -1,3 +1,7 @@
+---
+title: "sk-prompt (CP4) — checkpoint receipt"
+trigger_phrases: []
+---
 # sk-prompt (CP4) — checkpoint receipt
 
 - Hub: sk-prompt

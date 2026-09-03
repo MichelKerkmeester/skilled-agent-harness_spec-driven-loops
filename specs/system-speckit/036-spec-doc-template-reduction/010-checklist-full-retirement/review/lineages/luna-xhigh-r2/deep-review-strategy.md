@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — Luna XHigh R2"
+trigger_phrases: []
+---
 # Deep Review Strategy — Luna XHigh R2
 
 ## Topic

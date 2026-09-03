@@ -1,3 +1,7 @@
+---
+title: "P5 — Graph, Subgraph, and LEAF Execution Boundary"
+trigger_phrases: []
+---
 # P5 — Graph, Subgraph, and LEAF Execution Boundary
 
 ## Ownership

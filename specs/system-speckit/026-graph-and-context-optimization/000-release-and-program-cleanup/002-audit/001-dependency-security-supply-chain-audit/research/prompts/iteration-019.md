@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 19 of 25 - Hidden Network Exposure"
+trigger_phrases: []
+---
 # Deep Research Iteration 19 of 25 - Hidden Network Exposure
 
 ## SITUATION

@@ -4,6 +4,7 @@ description: "Delivered externally licensed calibration attachment and projectio
 importance_tier: "critical"
 contextType: "implementation"
 status: "shadow-partial"
+trigger_phrases: []
 ---
 # Implementation Summary
 

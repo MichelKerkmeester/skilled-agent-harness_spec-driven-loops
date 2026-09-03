@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 013 — non-conflict cross-check + new-child numbering"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 013 — non-conflict cross-check + new-child numbering

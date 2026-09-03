@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Telemetry and Non-Interactive Observability"
+trigger_phrases: []
+---
 # Iteration 4: Telemetry and Non-Interactive Observability
 
 ## Focus

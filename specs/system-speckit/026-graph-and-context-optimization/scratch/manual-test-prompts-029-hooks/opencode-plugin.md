@@ -3,6 +3,7 @@ title: "Manual Tests — OpenCode Plugin Deep-Dive"
 description: "Paste-ready prompts for verifying all three OpenCode plugin surfaces: experimental.chat.system.transform (startup digest), experimental.chat.messages.transform (retrieval injection), experimental.session.compacting (compaction resume note). Also validates the bridge contract post-029/A."
 importance_tier: "high"
 contextType: "manual-testing"
+trigger_phrases: []
 ---
 
 # OpenCode Plugin — Full Feature Tests

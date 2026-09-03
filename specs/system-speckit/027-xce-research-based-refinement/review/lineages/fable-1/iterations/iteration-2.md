@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The fable-1 deep-review lineage is complete. Summary of the run:
 
 **Verdict: CONDITIONAL** — 0 P0, 3 P1, 5 P2 (advisories). Stop reason: maxIterations (5) reached with full dimension coverage; stabilization pass was clean (ratio 0.60 → 0.15 → 0.45 → 0.35 → 0.08).

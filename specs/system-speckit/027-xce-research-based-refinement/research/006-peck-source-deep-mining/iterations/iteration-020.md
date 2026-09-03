@@ -1,3 +1,7 @@
+---
+title: "Iteration 020 — UX integration: how each rule surfaces to the user"
+trigger_phrases: []
+---
 # Iteration 020 — UX integration: how each rule surfaces to the user
 
 **Focus:** per-rule UX design (surface, message, interaction, friction) reusing existing spec-kit UX hooks.

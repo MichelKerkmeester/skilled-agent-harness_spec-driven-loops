@@ -1,3 +1,7 @@
+---
+title: "Phase 002 — Tool Validation Findings"
+trigger_phrases: []
+---
 # Phase 002 — Tool Validation Findings
 
 ## Tool status: VALIDATED

@@ -1,3 +1,7 @@
+---
+title: "Synthesis — Project Manager plugin docs (deprecated)"
+trigger_phrases: []
+---
 # Synthesis — Project Manager plugin docs (deprecated)
 
 **Reviewer:** fresh eyes, no prior context

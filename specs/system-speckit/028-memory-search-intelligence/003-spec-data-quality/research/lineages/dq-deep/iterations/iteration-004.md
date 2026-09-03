@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - KQ4: Spec-doc auto-refinement (beyond validation)"
+trigger_phrases: []
+---
 # Iteration 004 - KQ4: Spec-doc auto-refinement (beyond validation)
 
 **Focus:** How spec docs themselves can be auto-refined — summary, trigger-phrases, EARS, HVR, structure — i.e. document refinement, not just gate-and-reject.

@@ -1,3 +1,7 @@
+---
+title: "Pre-change Baseline — graph_channel_invocation_rate"
+trigger_phrases: []
+---
 # Pre-change Baseline — graph_channel_invocation_rate
 
 Captured: 2026-05-08

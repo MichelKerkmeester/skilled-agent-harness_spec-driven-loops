@@ -1,3 +1,7 @@
+---
+title: "RSS Probe Evidence — Realistic-Fixture Budget Re-Validation (2026-06-11)"
+trigger_phrases: []
+---
 # RSS Probe Evidence — Realistic-Fixture Budget Re-Validation (2026-06-11)
 
 After replacing the stop-word `FIXTURE_FILLER` (which indexed **zero** body

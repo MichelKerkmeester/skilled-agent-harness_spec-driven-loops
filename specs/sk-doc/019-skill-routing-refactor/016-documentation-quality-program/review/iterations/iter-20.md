@@ -1,3 +1,7 @@
+---
+title: "Iteration 20: whole-program coherence + completion-honesty synthesis"
+trigger_phrases: []
+---
 # Iteration 20: whole-program coherence + completion-honesty synthesis
 
 > dimension: coherence+honesty | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

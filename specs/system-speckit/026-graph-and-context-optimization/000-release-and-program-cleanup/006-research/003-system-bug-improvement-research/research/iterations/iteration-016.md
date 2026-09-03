@@ -1,3 +1,7 @@
+---
+title: "Iteration 016 — D1: mcp_server/lib/ boundary discipline"
+trigger_phrases: []
+---
 # Iteration 016 — D1: mcp_server/lib/ boundary discipline
 
 ## Focus

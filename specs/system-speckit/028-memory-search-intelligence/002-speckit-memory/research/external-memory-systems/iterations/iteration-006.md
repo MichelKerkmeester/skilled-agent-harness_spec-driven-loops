@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 (Opus lineage — NATIVE): adversarial-verify the top candidates vs live internal code"
+trigger_phrases: []
+---
 # Iteration 6 (Opus lineage — NATIVE): adversarial-verify the top candidates vs live internal code
 
 > Model: **Opus 4.8 NATIVE** (Agent tool `model: opus`, read-only; NOT claude2 — operator directive). Orchestrator-written. newInfoRatio 0.7 (net-deflationary verify). Opened the cited internal seams in live `mcp_server/` code.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-RESEARCH ITERATION 1
 
 STATE SUMMARY: Iteration 1 of 5; 0/5 questions answered; stop policy is max-iterations.

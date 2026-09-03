@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: Embedding-Stack Hardening Program"
+trigger_phrases: []
+---
 # Deep Review Strategy: Embedding-Stack Hardening Program
 
 <!-- ANCHOR:deep-review-embedding-stack -->

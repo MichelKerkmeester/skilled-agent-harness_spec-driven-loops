@@ -16,6 +16,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
       - ".opencode/commands/scripts/validate-command-references.cjs"
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

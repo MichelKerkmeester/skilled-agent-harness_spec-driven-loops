@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Safest integration boundary in Pi CLI and OpenCode CLI"
+trigger_phrases: []
+---
 # Iteration 3: Safest integration boundary in Pi CLI and OpenCode CLI
 
 ## Focus

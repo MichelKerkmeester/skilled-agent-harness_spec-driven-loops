@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Policy delivery confirmation semantics"
+trigger_phrases: []
+---
 # Iteration 5: Policy delivery confirmation semantics
 
 ## Dimension

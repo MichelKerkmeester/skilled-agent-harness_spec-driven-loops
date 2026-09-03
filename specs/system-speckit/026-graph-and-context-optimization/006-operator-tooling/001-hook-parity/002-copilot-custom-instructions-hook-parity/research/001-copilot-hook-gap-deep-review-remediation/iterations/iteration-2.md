@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Custom agents and ACP server surface"
+trigger_phrases: []
+---
 # Iteration 2: Custom agents and ACP server surface
 ## Focus
 This iteration narrowed the gap around Q2 and Q6 by checking whether Copilot CLI custom agents or ACP server mode can act like Claude-style prompt/session hooks. The goal was to separate documented subagent/session transport features from any real text-injection channel.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Command and Agent Contract Drift"
+trigger_phrases: []
+---
 # Iteration 002 - Command and Agent Contract Drift
 
 ## Focus

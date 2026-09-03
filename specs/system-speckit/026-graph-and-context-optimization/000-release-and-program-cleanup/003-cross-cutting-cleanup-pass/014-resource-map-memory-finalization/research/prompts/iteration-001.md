@@ -1,3 +1,7 @@
+---
+title: "Find commits matching packet ID"
+trigger_phrases: []
+---
 ## Packet 041: resource-maps-and-memory-finalization — Tier B finalization
 
 You are cli-codex (gpt-5.5 high fast) implementing **014-resource-map-memory-finalization**.

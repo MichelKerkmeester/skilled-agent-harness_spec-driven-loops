@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 36 | SOL xhigh | mode: skill-benchmark | angle: A1-sota skill-benchmark :: 2025-2026 state of the art | 2026-07-15T11:06:20.952Z -->
 
 The main gap is causal attribution. Cross-executor scores can show where a skill works, but they do not yet separate skill availability, activation, correct use, bundle-component value, executor compatibility, and final task success.

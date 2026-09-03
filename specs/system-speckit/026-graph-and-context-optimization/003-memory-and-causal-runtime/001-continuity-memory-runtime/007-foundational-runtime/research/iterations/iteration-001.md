@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 — Session lifecycle continuity seam (1/10)"
+trigger_phrases: []
+---
 # Iteration 1 — Session lifecycle continuity seam (1/10)
 
 ## Investigation Thread

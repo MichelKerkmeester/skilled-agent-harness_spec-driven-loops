@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: system-deep-loop Merge Design Stress Test"
+trigger_phrases: []
+---
 # Deep Research Strategy: system-deep-loop Merge Design Stress Test
 
 ## Research Topic

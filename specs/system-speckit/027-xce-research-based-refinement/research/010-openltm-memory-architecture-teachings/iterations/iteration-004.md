@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Lifecycle hooks + context-injection envelope"
+trigger_phrases: []
+---
 # Iteration 004 — Lifecycle hooks + context-injection envelope
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.66 · **tokens:** 95251 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

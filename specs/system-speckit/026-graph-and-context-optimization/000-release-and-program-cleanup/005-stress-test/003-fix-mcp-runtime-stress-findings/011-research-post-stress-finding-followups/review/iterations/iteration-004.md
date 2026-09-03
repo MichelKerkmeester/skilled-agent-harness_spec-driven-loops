@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - Catalog/Playbook Drift + Coverage Audit (Q-DOC + Q-COV)"
+trigger_phrases: []
+---
 # Iteration 004 - Catalog/Playbook Drift + Coverage Audit (Q-DOC + Q-COV)
 
 ## Status

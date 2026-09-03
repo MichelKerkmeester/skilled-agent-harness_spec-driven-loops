@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 — indirect playbook-language sweep"
+trigger_phrases: []
+---
 # Iteration 5 — indirect playbook-language sweep
 
 ## Focus

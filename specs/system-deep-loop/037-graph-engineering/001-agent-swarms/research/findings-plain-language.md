@@ -1,3 +1,7 @@
+---
+title: "Repo #1 (agent-swarms) — All Findings & Recommendations, in Plain Terms"
+trigger_phrases: []
+---
 # Repo #1 (agent-swarms) — All Findings & Recommendations, in Plain Terms
 
 > Plain-language companion to `research.md` (the 20-iteration synthesis). Same conclusions, translated out of the technical vocabulary. Where this doc says "the design says," the authoritative, citation-backed version is the correspondingly-named section of `research.md`.

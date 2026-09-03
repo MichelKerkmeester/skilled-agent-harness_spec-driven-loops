@@ -1,3 +1,7 @@
+---
+title: "<NN>. <Feature Name>"
+trigger_phrases: []
+---
 ## Packet 051: coco-index-feature-catalog — Author full feature catalog for mcp-coco-index
 
 You are cli-codex (gpt-5.5 high fast) implementing **020-cocoindex-feature-catalog**.

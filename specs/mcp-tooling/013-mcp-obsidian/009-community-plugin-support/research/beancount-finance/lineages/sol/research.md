@@ -1,3 +1,7 @@
+---
+title: "Beancount Ledger 2.3.1 — File-Layer AI Knowledge Base"
+trigger_phrases: []
+---
 # Beancount Ledger 2.3.1 — File-Layer AI Knowledge Base
 
 ## 1. Executive summary

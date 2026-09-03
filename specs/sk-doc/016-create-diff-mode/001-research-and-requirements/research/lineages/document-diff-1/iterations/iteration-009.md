@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Cross-Format Comparison and Edge Cases"
+trigger_phrases: []
+---
 # Iteration 9: Cross-Format Comparison and Edge Cases
 
 ## Focus

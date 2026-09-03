@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — C2 Prod-Mode Recall Gate"
+trigger_phrases: []
+---
 # Deep Review Dashboard — C2 Prod-Mode Recall Gate
 
 Lineage: `review` · Session: `fanout-review-1782055949478-i1h3i4` · Executor: cli-claude-code (opus)

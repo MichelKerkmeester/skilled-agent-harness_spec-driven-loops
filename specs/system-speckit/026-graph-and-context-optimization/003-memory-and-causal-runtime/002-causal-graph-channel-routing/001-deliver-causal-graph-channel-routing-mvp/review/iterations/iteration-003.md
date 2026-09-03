@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — Security Pass"
+trigger_phrases: []
+---
 # Iteration 3 — Security Pass
 
 **Focus:** Security (Injection, auth bypass, secrets, unsafe deserialization, DoS surfaces)

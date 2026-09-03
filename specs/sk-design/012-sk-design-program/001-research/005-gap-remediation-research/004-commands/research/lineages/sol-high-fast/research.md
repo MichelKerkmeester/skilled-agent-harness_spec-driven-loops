@@ -1,3 +1,7 @@
+---
+title: "Literal `/interface:*` Command Prompts: Final Research"
+trigger_phrases: []
+---
 # Literal `/interface:*` Command Prompts: Final Research
 
 ## 1. Executive Summary

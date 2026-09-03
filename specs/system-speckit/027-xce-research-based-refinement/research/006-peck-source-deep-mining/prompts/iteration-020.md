@@ -1,3 +1,7 @@
+---
+title: "Iteration 020 — UX integration: how each rule surfaces to the user (minimize friction)"
+trigger_phrases: []
+---
 DEEP-RESEARCH — INTEGRATION & IMPACT (gpt-5.5-fast)
 
 # Iteration 020 — UX integration: how each rule surfaces to the user (minimize friction)

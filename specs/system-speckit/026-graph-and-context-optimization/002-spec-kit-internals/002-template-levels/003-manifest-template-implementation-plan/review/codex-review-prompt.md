@@ -1,3 +1,7 @@
+---
+title: "Independent Review Request — Implementation Packet 012"
+trigger_phrases: []
+---
 # Independent Review Request — Implementation Packet 012
 
 You are a fresh agent. Review the implementation planning packet at:

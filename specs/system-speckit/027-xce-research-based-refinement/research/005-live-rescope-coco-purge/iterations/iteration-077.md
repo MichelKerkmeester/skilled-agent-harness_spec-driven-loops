@@ -1,3 +1,7 @@
+---
+title: "Iteration 077 — ordering NEEDS-UPDATE (minor): core edges hold; add 007-last global edge; purge stale 028/coco coupling from amendments text"
+trigger_phrases: []
+---
 # Iteration 077 — ordering NEEDS-UPDATE (minor): core edges hold; add 007-last global edge; purge stale 028/coco coupling from amendments text
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.34. **Findings:** 4.

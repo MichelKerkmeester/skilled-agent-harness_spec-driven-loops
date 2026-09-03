@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Rust rewrite research packet opens
 Internal: this packet is a research-only phase parent, so it changes no runtime behavior. It stands up a planned 20-round deep-research investigation into whether the framework's roughly 244K-line TypeScript backend should be rewritten in Rust, with the charter and 16 predefined angles living in the research child. The question is grounded in the current split: performance-critical primitives (vector search, local embeddings, code parsing) are already native, while the CPU-bound compute core (ranking and fusion math, chunking, trigger extraction) is pure TypeScript. The goal is a cited, decision-ready recommendation between a full rewrite, a targeted native module, or no rewrite. Status is Not Started; this is the first commit of the rewrite question, not an answer.
 

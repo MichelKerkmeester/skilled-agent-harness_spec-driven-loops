@@ -1,3 +1,7 @@
+---
+title: "Review Report — 012-copilot-target-authority-gate-helper"
+trigger_phrases: []
+---
 # Review Report — 012-copilot-target-authority-gate-helper
 
 > **Reviewer:** GitHub Copilot CLI 1.0.36 — `gpt-5.5` model, `--effort high`

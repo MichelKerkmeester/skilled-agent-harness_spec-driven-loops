@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 4 — Continuity-refactor Gates A–F enforcement (Q3)"
+trigger_phrases: []
+---
 # Deep-Research Iteration 4 — Continuity-refactor Gates A–F enforcement (Q3)
 
 ## YOUR ROLE

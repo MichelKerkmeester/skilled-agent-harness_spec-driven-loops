@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — fable-1"
+trigger_phrases: []
+---
 # Deep Review Strategy — fable-1
 
 Lineage: `fanout-fable-1-1781112180955-4japyt` | Executor: cli-claude-code / claude-fable-5 | Max iterations: 5

@@ -1,3 +1,7 @@
+---
+title: "Finding: deep-research router over-activates on generic keywords"
+trigger_phrases: []
+---
 # Finding: deep-research router over-activates on generic keywords
 
 > Discovered while attempting the anti-circularity fixture strengthening (Sonnet Finding 1).

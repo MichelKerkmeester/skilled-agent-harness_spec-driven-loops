@@ -1,6 +1,7 @@
 ---
 title: Deep Review Iteration 003 - Security
 description: Security review narrative for sk-design 009 Claude-parity deep review.
+trigger_phrases: []
 ---
 
 # Deep Review Iteration 003 - Security

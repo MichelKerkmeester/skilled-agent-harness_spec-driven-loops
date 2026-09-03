@@ -1,3 +1,7 @@
+---
+title: "Review Report — 018-reindex-scan-responsiveness-and-cancellation"
+trigger_phrases: []
+---
 # Review Report — 018-reindex-scan-responsiveness-and-cancellation
 
 **Generated**: 2026-06-17T14:15:00Z

@@ -7,6 +7,7 @@ review_target_type: "spec-folder"
 executor: "cli-opencode deepseek/deepseek-v4-pro reasoning=high"
 max_iterations: 10
 convergence_threshold: 0.10
+trigger_phrases: []
 ---
 
 # Deep Review Strategy — 012 Causal Graph Channel Routing Utilization

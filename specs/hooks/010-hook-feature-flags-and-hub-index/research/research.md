@@ -1,3 +1,7 @@
+---
+title: "Hook Feature-Flag Coverage and Hub Index Research"
+trigger_phrases: []
+---
 # Hook Feature-Flag Coverage and Hub Index Research
 
 > Canonical synthesis for `specs/hooks/010-hook-feature-flags-and-hub-index`. The Cursor/Grok lineage completed all 10 forced iterations. The Devin/GLM lineage failed before creating state after six attempts, so findings below are complete single-lineage evidence, not two-model consensus. See `orchestration-summary.json` and `lineages/glm52-max/logs/fanout-lineage.out`.

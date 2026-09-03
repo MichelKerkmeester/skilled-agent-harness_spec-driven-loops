@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 8/10 cross-validation pass for packet 027.
 
 ITER 8 FOCUS: IRQ8 — code_packages necessity escalation triggers.

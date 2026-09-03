@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### sk-code-review promoted to first-class review baseline
 The single-hyphen `legacy-single-hyphen-review` skill was hard-renamed to `sk-code-review` and rebuilt as a stack-agnostic review baseline with weighted intent scoring, ambiguity handling, and a baseline+overlay precedence matrix. Review now loads the universal baseline first, detects the stack, then layers one stack-specific overlay, so universal security and correctness minimums are enforced alongside per-stack standards. `@review` runtime docs across all agent profiles (OpenCode, ChatGPT, Gemini, Claude, Codex) were rewritten to the explicit four-step loading order, all 18 review-dispatch YAML assets gained a `standards_contract`, and advisor routing now tops `sk-code-review` for review prompts while preserving git behavior. **Breaking:** the legacy skill was hard-renamed with no compatibility alias, so any existing pointer to the old path must be updated.
 

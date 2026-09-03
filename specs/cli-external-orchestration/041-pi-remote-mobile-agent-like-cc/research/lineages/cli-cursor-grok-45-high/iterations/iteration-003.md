@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Streaming deltas, tool activity, and approval dialogs"
+trigger_phrases: []
+---
 # Iteration 3: Streaming deltas, tool activity, and approval dialogs
 
 ## Focus

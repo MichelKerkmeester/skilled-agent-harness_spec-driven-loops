@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Adversarial deep-review worker, iteration 4 of 10. Review the committed fix (commit 25587fa412) — read the source (read-only):
 - .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts (scheduleBackgroundEnrichment ~2931-2978: `start`, `run`, the queue, MAX_BACKGROUND_ENRICHMENTS; and runPostInsertEnrichment in handlers/save/post-insert.ts)
 - .opencode/skills/system-spec-kit/mcp_server/context-server.ts (startupScan loop ~1518-1537)

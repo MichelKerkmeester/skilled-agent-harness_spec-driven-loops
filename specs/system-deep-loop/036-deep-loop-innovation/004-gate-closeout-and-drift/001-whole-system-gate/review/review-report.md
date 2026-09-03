@@ -1,3 +1,7 @@
+---
+title: "Review Report — pre-cutover validation gate over the whole deep-loop skill"
+trigger_phrases: []
+---
 # Review Report — pre-cutover validation gate over the whole deep-loop skill
 
 **This is a pre-cutover validation run, not this phase's gate execution.** See

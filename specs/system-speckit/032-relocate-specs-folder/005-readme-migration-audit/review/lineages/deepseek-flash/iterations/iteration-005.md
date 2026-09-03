@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Symlink Correctness Verification (angle: correct-as-is cases)"
+trigger_phrases: []
+---
 # Iteration 5: Symlink Correctness Verification (angle: correct-as-is cases)
 
 ## Focus

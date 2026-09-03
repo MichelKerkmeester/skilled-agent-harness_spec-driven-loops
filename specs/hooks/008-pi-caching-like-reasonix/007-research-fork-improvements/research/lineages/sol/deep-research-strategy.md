@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Pi Fork Improvements"
+trigger_phrases: []
+---
 # Deep Research Strategy: Pi Fork Improvements
 
 ## Research Topic

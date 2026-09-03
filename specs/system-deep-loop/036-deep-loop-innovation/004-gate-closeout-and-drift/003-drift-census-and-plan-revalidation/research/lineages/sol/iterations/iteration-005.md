@@ -1,3 +1,7 @@
+---
+title: "Iteration 005: Current-Runtime Capability Census for Phases 006-012"
+trigger_phrases: []
+---
 # Iteration 005: Current-Runtime Capability Census for Phases 006-012
 
 ## Focus

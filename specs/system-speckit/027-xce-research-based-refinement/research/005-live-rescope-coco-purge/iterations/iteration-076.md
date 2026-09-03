@@ -1,3 +1,7 @@
+---
+title: "Iteration 076 — XCE EXHAUSTED for 027 memory scope: no net-new signal; remains evidence-only (negative confirmation)"
+trigger_phrases: []
+---
 # Iteration 076 — XCE EXHAUSTED for 027 memory scope: no net-new signal; remains evidence-only (negative confirmation)
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.05. **Findings:** 5.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Maintainability and integration boundaries"
+trigger_phrases: []
+---
 # Iteration 006 — Maintainability and integration boundaries
 
 ## Focus

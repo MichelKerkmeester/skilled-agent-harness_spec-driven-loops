@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness — Reorganization Structural Integrity"
+trigger_phrases: []
+---
 # Iteration 1: Correctness — Reorganization Structural Integrity
 
 ## Focus

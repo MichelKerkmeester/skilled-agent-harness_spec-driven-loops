@@ -1,3 +1,7 @@
+---
+title: "Autonomous Deep Research Loop"
+trigger_phrases: []
+---
 <!-- iteration 10 | SOL xhigh | thread: recommendation-deep-dive | angle: R5 cheap-checks-before-judges + regression-gated self-repair | 2026-07-15T05:03:56.204Z -->
 
 R5 should become two linked state machines: an Eval-DAG decides whether an artifact merits an expensive judge; a Repair-DAG decides whether a proposed fix merits promotion. A single aggregate score is unsafe because it can conceal invariant failures.

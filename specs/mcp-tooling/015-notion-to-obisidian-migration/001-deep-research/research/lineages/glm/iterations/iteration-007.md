@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Multi-View Databases & Nested Hierarchy"
+trigger_phrases: []
+---
 # Iteration 7: Multi-View Databases & Nested Hierarchy
 
 ## Focus

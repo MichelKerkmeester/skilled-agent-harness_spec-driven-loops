@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — graphene-main"
+trigger_phrases: []
+---
 # Deep Research Strategy — graphene-main
 
 ## 1. OVERVIEW

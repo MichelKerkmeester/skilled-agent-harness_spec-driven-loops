@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: sk-design Drift and Improvement Audit"
+trigger_phrases: []
+---
 # Deep Research Strategy: sk-design Drift and Improvement Audit
 
 ## Known Context

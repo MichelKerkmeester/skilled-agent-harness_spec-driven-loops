@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Evidence-Anchored Symlink/No-Symlink Fixture and Assertion Matrix"
+trigger_phrases: []
+---
 # Iteration 8: Evidence-Anchored Symlink/No-Symlink Fixture and Assertion Matrix
 
 ## Focus

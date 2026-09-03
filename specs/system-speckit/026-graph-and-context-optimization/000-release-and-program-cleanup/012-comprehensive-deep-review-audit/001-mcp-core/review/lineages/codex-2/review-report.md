@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - codex-2 MCP Core Lineage"
+trigger_phrases: []
+---
 # Deep Review Report - codex-2 MCP Core Lineage
 
 ## 1. Executive Summary

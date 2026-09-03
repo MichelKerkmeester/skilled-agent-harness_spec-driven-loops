@@ -1,3 +1,7 @@
+---
+title: "Iter 3 — fusion.py deep-read — RRF + weights + top-K cutoff to rerank window"
+trigger_phrases: []
+---
 # Iter 3 — fusion.py deep-read — RRF + weights + top-K cutoff to rerank window
 
 ## TL;DR (2-3 sentences)

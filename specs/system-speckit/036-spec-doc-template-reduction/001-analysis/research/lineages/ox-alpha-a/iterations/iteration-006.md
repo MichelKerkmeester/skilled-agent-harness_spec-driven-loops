@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Angle (f): acceptance-criteria single-source vs duplication given validator coupling"
+trigger_phrases: []
+---
 # Iteration 006 — Angle (f): acceptance-criteria single-source vs duplication given validator coupling
 
 **Focus:** Q-A6 — Where do acceptance criteria actually live, which copies are machine-consumed, and what should single-sourcing look like after the tasks+checklist merge?

@@ -1,3 +1,7 @@
+---
+title: "Scale and limits"
+trigger_phrases: []
+---
 # Scale and limits
 
 The question this page answers is **"will this handle my data?"** — asked before

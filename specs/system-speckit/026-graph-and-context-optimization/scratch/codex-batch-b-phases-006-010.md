@@ -1,3 +1,7 @@
+---
+title: "Codex CLI Prompt — Batch B: deep-review phases 006-010 (5 phases × 5 iterations)"
+trigger_phrases: []
+---
 # Codex CLI Prompt — Batch B: deep-review phases 006-010 (5 phases × 5 iterations)
 
 You are running as codex CLI (`gpt-5.4`, `reasoning_effort=high`, `service_tier=fast`, `sandbox=workspace-write`). Self-contained prompt. This is **Batch B of 3** in a split batch deep-review of 026 phases 002-014. You review 5 phases here; Batches A and C review the remaining 8. All 3 batches share a single state file and whichever batch finishes last writes the consolidated report.

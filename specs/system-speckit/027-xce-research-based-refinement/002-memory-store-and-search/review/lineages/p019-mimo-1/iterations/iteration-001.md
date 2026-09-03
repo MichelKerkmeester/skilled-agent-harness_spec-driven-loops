@@ -1,3 +1,7 @@
+---
+title: "Review Iteration 001: Correctness Dimension"
+trigger_phrases: []
+---
 # Review Iteration 001: Correctness Dimension
 
 **Focus**: D1 Correctness — logic, behavior, error handling

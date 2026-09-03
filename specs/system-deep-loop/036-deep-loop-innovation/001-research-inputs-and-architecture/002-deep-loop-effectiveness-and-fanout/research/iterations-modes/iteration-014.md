@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 14 | SOL xhigh | mode: deep-ai-council | angle: A4-fail deep-ai-council :: failure modes & guardrails | 2026-07-15T09:10:20.882Z -->
 
 False consensus is not high semantic similarity. It is agreement caused by social cues rather than new evidence. The current two-of-three rule cannot distinguish those cases, so it can certify the exact failure it is meant to prevent.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Adversarial Replay"
+trigger_phrases: []
+---
 # Iteration 005 — Adversarial Replay
 
 ## Scope

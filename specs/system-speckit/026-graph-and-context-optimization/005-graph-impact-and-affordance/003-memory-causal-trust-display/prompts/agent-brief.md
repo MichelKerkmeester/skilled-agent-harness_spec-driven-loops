@@ -1,3 +1,7 @@
+---
+title: "Agent Brief — 012/005 Memory Causal Trust Display"
+trigger_phrases: []
+---
 # Agent Brief — 012/005 Memory Causal Trust Display
 
 You are an autonomous implementation agent. **No conversation context.** This brief is everything you need.

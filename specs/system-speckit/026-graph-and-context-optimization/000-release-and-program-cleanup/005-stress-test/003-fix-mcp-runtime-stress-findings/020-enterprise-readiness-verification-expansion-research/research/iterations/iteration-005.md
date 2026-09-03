@@ -3,6 +3,7 @@ iteration: 5
 focus: RQ5 - W7 degraded-readiness coverage
 newInfoRatio: 0.62
 status: complete
+trigger_phrases: []
 ---
 
 # Iteration 005 - W7 Degraded-Readiness Coverage

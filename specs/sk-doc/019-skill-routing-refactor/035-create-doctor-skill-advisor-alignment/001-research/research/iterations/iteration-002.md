@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — linked-worktree hook drift and runtime-mirror boundaries"
+trigger_phrases: []
+---
 # Iteration 002 — linked-worktree hook drift and runtime-mirror boundaries
 
 ## Focus

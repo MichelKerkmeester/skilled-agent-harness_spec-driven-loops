@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Adversarial Verification — Convergence-Bonus Channel-Interdependence (C-X1 ↔ C2-B)"
+trigger_phrases: []
+---
 # Iteration 8: Adversarial Verification — Convergence-Bonus Channel-Interdependence (C-X1 ↔ C2-B)
 
 ## Focus

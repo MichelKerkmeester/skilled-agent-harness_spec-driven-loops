@@ -22,6 +22,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 
 # Research Summary: Native Bridge Paths for Cursor & Devin Models in cli pi

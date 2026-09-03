@@ -2,6 +2,7 @@
 title: "Deep-review report: 020 snake_case→kebab-case migration execution"
 description: "Convergence-driven deep-review of the executed repo-wide filesystem-naming migration; GPT-5.6-SOL, read-only, 4 iterations."
 contextType: "review"
+trigger_phrases: []
 ---
 
 # Deep-Review Report — 020 Migration Execution

@@ -1,3 +1,7 @@
+---
+title: "Tasks — Mass-Deletion Guard"
+trigger_phrases: []
+---
 # Tasks — Mass-Deletion Guard
 
 - [x] **T1** Author `lib/mass-deletion-guard.sh` (count/verdict/report helpers),

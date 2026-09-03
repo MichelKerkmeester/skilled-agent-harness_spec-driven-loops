@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: REQ-005 scope-adherence rule — behavior verification and false-positive analysis"
+trigger_phrases: []
+---
 # Iteration 8: REQ-005 scope-adherence rule — behavior verification and false-positive analysis
 
 ## Focus

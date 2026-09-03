@@ -1,3 +1,7 @@
+---
+title: "Peck → system-spec-kit: Teachings Analysis"
+trigger_phrases: []
+---
 # Peck → system-spec-kit: Teachings Analysis
 
 > What the external repo `gytis-ivaskevicius/peck` does well, which of those mechanisms map onto

@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: skill/mode READMEs (part 2: remaining modes + sk-code surfaces)"
+trigger_phrases: []
+---
 # Iteration 7: skill/mode READMEs (part 2: remaining modes + sk-code surfaces)
 
 > dimension: accuracy+conformance | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

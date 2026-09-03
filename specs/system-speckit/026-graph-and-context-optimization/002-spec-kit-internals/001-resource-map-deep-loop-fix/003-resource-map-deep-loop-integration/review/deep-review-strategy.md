@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy
 description: Runtime review strategy for 003-resource-map-deep-loop-integration.
+trigger_phrases: []
 ---
 
 # Deep Review Strategy - Session Tracking Template

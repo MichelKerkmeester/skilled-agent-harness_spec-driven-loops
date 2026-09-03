@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Command, Agent, and Skill-Reference Surfaces for Post-016 Memory Repair Awareness"
+trigger_phrases: []
+---
 # Iteration 9: Command, Agent, and Skill-Reference Surfaces for Post-016 Memory Repair Awareness
 
 ## Focus

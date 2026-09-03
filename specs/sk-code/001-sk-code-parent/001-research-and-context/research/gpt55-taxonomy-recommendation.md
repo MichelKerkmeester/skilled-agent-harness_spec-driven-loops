@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## R1 Mode Taxonomy
 
 **Option A: activity lanes only (`implement`, `review`, `verify`, `debug`)**

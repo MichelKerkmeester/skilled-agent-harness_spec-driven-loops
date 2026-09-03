@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Long-Running Scan and Apply Semantics"
+trigger_phrases: []
+---
 # Iteration 5: Long-Running Scan and Apply Semantics
 
 ## Focus

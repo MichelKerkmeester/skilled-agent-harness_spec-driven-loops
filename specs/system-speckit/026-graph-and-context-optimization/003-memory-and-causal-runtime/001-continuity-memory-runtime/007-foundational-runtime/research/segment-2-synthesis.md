@@ -1,3 +1,7 @@
+---
+title: "Segment 2 Synthesis — Phase 017 Deep-Review Meta-Research"
+trigger_phrases: []
+---
 # Segment 2 Synthesis — Phase 017 Deep-Review Meta-Research
 
 **Session**: 2026-04-17T112720Z-p1-remediation-research

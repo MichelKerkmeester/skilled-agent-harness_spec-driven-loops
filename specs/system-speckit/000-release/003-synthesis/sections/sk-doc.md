@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### Documentation (sk-doc)
 
 - The `/create:*` command family now covers every documentation artifact, adding `/create:command`, `/create:benchmark`, `/create:diagram` (27 HTML/SVG diagram types plus ASCII/markdown flowcharts), and `/create:diff` for self-contained local before/after document reports.

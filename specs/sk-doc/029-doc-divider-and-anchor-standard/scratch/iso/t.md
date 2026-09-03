@@ -2,6 +2,7 @@
 description: Author or update family-keyed benchmark packages. Modes :auto, :confirm.
 argument-hint: "<skill-or-mode> <spec-packet> [create|update] --family=<FAMILIES-key> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
+trigger_phrases: []
 ---
 
 # /create:benchmark Router

@@ -14,6 +14,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/archive/research-v1-iter010-snapshot.md"]
 
+trigger_phrases: []
 ---
 
 # Memory Quality Backend Improvements — Deep Research Report

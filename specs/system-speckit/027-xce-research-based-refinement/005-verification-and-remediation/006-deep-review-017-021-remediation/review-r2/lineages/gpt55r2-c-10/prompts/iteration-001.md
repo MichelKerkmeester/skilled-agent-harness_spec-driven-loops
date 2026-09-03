@@ -1,3 +1,7 @@
+---
+title: "Rendered Prompt Snapshot - Iteration 1"
+trigger_phrases: []
+---
 # Rendered Prompt Snapshot - Iteration 1
 
 STATE SUMMARY (auto-generated, review mode):

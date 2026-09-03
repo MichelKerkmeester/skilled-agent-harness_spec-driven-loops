@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 1. EXACT INVOCATION
 
 **CLI path (bdg):**

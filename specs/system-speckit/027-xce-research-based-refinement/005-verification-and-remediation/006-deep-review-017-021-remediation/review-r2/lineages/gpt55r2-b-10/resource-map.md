@@ -1,3 +1,7 @@
+---
+title: "Resource Map - gpt55r2-b-10"
+trigger_phrases: []
+---
 # Resource Map - gpt55r2-b-10
 
 ## Scope Entry

@@ -1,3 +1,7 @@
+---
+title: "Implementation Prompt — 001-fix-memory-indexer-storage-boundary"
+trigger_phrases: []
+---
 # Implementation Prompt — 001-fix-memory-indexer-storage-boundary
 
 **GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-fix-memory-indexer-storage-boundary`. The orchestrator (Claude) has authorized this folder for the entire implementation session. DO NOT re-ask Gate 3. Proceed directly to implementation.

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - Session Overview (deepseek-go lineage)"
+trigger_phrases: []
+---
 # Deep Research Dashboard - Session Overview (deepseek-go lineage)
 
 Auto-generated from JSONL state log and strategy file. Regenerated after every iteration evaluation.

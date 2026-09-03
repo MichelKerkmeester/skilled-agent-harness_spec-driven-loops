@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Flat Leaf-ID Collisions and Canonical Typed Coordinates"
+trigger_phrases: []
+---
 # Iteration 2: Flat Leaf-ID Collisions and Canonical Typed Coordinates
 
 ## Focus

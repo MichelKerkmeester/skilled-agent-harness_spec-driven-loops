@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: Memory Search Fusion, Token Budgets, Weak Retrieval Policy"
+trigger_phrases: []
+---
 # Iteration 002: Memory Search Fusion, Token Budgets, Weak Retrieval Policy
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Deterministic Reducers and Fail-Closed Branches"
+trigger_phrases: []
+---
 # Iteration 3: Deterministic Reducers and Fail-Closed Branches
 
 ## Focus

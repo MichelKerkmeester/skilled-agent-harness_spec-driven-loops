@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Command-Split Cost Quantification"
+trigger_phrases: []
+---
 # Iteration 4: Command-Split Cost Quantification
 
 ## Focus

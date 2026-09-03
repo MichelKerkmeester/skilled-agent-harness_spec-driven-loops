@@ -1,3 +1,7 @@
+---
+title: "019 Review Synthesis"
+trigger_phrases: []
+---
 # 019 Review Synthesis
 
 **Phase:** `019-maintenance-grace-daemon-survives-reelection` (027 XCE / 002-memory-store-and-search track)

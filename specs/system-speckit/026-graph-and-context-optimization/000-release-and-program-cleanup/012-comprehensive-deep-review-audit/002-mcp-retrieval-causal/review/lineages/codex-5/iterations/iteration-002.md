@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Security - Scoped Retrieval Fallback"
+trigger_phrases: []
+---
 # Iteration 2: Security - Scoped Retrieval Fallback
 
 ## Focus

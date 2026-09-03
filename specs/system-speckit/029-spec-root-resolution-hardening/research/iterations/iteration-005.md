@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Claude Stop Source/Dist Parity and Symlink-Absent Autosave Chain"
+trigger_phrases: []
+---
 # Iteration 5: Claude Stop Source/Dist Parity and Symlink-Absent Autosave Chain
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Review — 005-memory-causal-trust-display"
+trigger_phrases: []
+---
 # Deep Review — 005-memory-causal-trust-display
 
 You are an autonomous code-review agent. **No conversation context.** This brief is everything you need.

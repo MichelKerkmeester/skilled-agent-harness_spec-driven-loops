@@ -1,3 +1,7 @@
+---
+title: "Autonomous Deep Research Loop"
+trigger_phrases: []
+---
 <!-- iteration 1 | SOL xhigh | thread: fan-out-automation | angle: Per-leaf CLI flag + model + live-tool parametrization | 2026-07-15T04:20:26.339Z -->
 
 The narrow fix is not arbitrary per-leaf argv. It is a typed capability descriptor compiled by each executor adapter.

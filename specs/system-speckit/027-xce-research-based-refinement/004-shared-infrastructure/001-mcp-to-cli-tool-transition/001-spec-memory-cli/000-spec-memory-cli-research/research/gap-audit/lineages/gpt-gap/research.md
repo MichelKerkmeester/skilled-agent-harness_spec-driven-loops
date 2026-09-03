@@ -1,3 +1,7 @@
+---
+title: "Gap Audit: spec-memory CLI Workstream - gpt-gap"
+trigger_phrases: []
+---
 # Gap Audit: spec-memory CLI Workstream - gpt-gap
 
 ## Executive Verdict

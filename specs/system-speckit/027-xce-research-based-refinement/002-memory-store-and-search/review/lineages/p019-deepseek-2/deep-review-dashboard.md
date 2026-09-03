@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard: maintenance-grace daemon survives re-election"
+trigger_phrases: []
+---
 # Deep Review Dashboard: maintenance-grace daemon survives re-election
 
 ## Status

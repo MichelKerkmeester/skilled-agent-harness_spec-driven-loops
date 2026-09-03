@@ -3,6 +3,7 @@ title: "Deep Research: 026 Changelog Accuracy and Folder-Alignment Audit"
 description: "20-iteration, 5-way-parallel gpt-5.5-fast-high audit of changelog-to-spec-folder accuracy in the 003-memory-and-causal-runtime track. Verdicts plus verified findings split by ownership."
 importance_tier: "important"
 contextType: "research"
+trigger_phrases: []
 ---
 
 # Deep Research: 026 Changelog Accuracy Audit

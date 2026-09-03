@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — MCP Contract & API Parity (dimension: traceability, angle: A7)"
+trigger_phrases: []
+---
 # Iteration 008 — MCP Contract & API Parity (dimension: traceability, angle: A7)
 
 ## Dispatcher

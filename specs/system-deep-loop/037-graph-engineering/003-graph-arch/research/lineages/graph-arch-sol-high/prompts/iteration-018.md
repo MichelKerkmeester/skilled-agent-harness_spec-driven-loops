@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 18 of 20"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true
 

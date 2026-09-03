@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Establish Pi’s core versus extension boundary"
+trigger_phrases: []
+---
 # Iteration 7: Establish Pi’s core versus extension boundary
 
 ## Focus

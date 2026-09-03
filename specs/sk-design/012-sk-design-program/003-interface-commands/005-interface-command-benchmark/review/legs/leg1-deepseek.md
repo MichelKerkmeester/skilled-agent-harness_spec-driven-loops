@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now loading the required design hub and shared resources.---
 
 ## Route Proof

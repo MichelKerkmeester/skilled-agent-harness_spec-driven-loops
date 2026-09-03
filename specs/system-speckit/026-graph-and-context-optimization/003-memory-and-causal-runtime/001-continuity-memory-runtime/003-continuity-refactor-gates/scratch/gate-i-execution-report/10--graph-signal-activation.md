@@ -1,3 +1,7 @@
+---
+title: "10--graph-signal-activation"
+trigger_phrases: []
+---
 # 10--graph-signal-activation
 
 - Total: 17

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 3/10 SCOPE-EXPANSION pass for packet .opencode/specs/system-spec-kit/027-xce-research-based-refinement.
 
 CONTEXT: Iter 1-2 covered RQ-A1 (intent steering) + RQ-A2 (HLD/LLD rerank fusion). This iter covers RQ-A3.

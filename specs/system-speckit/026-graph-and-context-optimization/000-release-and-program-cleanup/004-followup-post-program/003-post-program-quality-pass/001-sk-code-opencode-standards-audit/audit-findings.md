@@ -1,3 +1,7 @@
+---
+title: "sk-code-opencode Audit Findings"
+trigger_phrases: []
+---
 # sk-code-opencode Audit Findings
 
 ## Summary

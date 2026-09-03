@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map"
+trigger_phrases: []
+---
 # Review Resource Map
 
 `resource-map.md` was not present in the target packet at init, so the deep-review resource-map coverage gate was marked not applicable. This emitted review map captures the files and checks used by this lineage.

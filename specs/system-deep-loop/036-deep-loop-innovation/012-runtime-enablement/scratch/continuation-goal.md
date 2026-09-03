@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Finish 036/012-runtime-enablement, now on a DELETION-FIRST direction (operator switch 2026-08-23).
 You ORCHESTRATE; executors write/delete code, you verify. Worktree .worktrees/022-012-runtime-enablement-build.
 Do not push. READ scratch/direction-switch-delete-overengineering.md FIRST — it holds the decision, the

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Refresh Correctness Adjudication"
+trigger_phrases: []
+---
 # Iteration 6: Refresh Correctness Adjudication
 
 ## Files Reviewed

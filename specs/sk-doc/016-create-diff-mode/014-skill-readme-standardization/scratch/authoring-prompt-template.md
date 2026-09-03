@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- Reusable dual-draft authoring prompt for the README rewrite marathon.
      Substitute {{SKILL}}, {{SKILL_DIR}}, {{CONTEXT_REPORT_PATH}} per skill.
      Dispatched to DeepSeek (deepseek/deepseek-v4-pro --variant high) and MiMo

@@ -1,3 +1,7 @@
+---
+title: "Per-block and Per-runtime Rollback Procedure"
+trigger_phrases: []
+---
 # Per-block and Per-runtime Rollback Procedure
 
 Rollback is scoped to one matrix cell and one injected block. It never disables unrelated runtime/candidate cells. The matrix's safe state after rollback is `emit`, meaning the runtime returns to full baseline emission.

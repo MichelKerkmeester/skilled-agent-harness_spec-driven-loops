@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final — Adversarial replay, registry reconciliation, convergence telemetry"
+trigger_phrases: []
+---
 # Iteration 10: Final — Adversarial replay, registry reconciliation, convergence telemetry
 
 ## Focus

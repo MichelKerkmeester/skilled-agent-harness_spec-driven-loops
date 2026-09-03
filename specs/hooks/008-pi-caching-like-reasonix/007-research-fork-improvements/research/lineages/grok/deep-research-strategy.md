@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Grok Fan-out Lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy — Grok Fan-out Lineage
 
 ## Boundaries

@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: P4 Closed Local Action Set"
+trigger_phrases: []
+---
 # Iteration 10: P4 Closed Local Action Set
 
 ## Focus

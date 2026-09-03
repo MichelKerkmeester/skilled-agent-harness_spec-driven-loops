@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Skill & Advisor JSON Optimization (glm-high lineage)"
+trigger_phrases: []
+---
 # Research Synthesis: Skill & Advisor JSON Optimization (glm-high lineage)
 
 > Findings-only investigation. No implementation. Ranked opportunity map of the highest-leverage optimization, automation, effectiveness, testing, and integration gaps across every skill- and skill-advisor-related JSON in `.opencode/skills/`. Evidence cited as `file:line`. Single-lineage view (glm-high); cross-lineage synthesis merges this with sol-high and grok-high.

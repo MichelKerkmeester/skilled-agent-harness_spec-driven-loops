@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Q3 / Thread 4 — Safe `defaultMode` Migration and Rollback"
+trigger_phrases: []
+---
 # Iteration 3: Q3 / Thread 4 — Safe `defaultMode` Migration and Rollback
 
 ## Focus

@@ -3,6 +3,7 @@ title: "Plan: Memory Causal Trust Display (012/005)"
 description: "Display-only badges on MemoryResultEnvelope."
 importance_tier: "important"
 contextType: "implementation"
+trigger_phrases: []
 ---
 # Plan: 012/005
 

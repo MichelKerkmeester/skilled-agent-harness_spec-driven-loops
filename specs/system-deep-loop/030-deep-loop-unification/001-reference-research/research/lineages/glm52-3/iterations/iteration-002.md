@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Coupling Count + system-spec-kit Tooling-Borrow Depth Math"
+trigger_phrases: []
+---
 # Iteration 002 — Coupling Count + system-spec-kit Tooling-Borrow Depth Math
 
 **Lineage:** glm52-3 | **Iteration:** 2 of 5 | **Focus:** Q2 coupling count + Q3 tooling-borrow depth math + REQ-003 coverage-hole risk

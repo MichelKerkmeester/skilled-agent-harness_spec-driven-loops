@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The review loop is complete. All outputs are confined to the bound `review/lineages/review` artifact directory; no target file was modified.
 
 ## Summary

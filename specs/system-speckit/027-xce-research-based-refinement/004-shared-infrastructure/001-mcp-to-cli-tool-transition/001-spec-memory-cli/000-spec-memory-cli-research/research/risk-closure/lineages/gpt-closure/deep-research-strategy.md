@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: gpt-closure"
+trigger_phrases: []
+---
 # Deep Research Strategy: gpt-closure
 
 ## Research Topic

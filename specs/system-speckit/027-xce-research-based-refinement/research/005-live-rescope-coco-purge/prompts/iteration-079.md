@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 079 — re-plan sequencing & risk (clean-ship vs rescope-first)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 079 — re-plan sequencing & risk (clean-ship vs rescope-first)

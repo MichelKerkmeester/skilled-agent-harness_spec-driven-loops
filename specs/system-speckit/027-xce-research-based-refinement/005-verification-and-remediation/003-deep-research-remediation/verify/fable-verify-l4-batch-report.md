@@ -1,3 +1,7 @@
+---
+title: "Batch Still-Real Verification — L4 launcher lifecycle parity (15 findings)"
+trigger_phrases: []
+---
 # Batch Still-Real Verification — L4 launcher lifecycle parity (15 findings)
 
 > **Verifier:** fresh Fable 5 pass against CURRENT code, 2026-06-12.

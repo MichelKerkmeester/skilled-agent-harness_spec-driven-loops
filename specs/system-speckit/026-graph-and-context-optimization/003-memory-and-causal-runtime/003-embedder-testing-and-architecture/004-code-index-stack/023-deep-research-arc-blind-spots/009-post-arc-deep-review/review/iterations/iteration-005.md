@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — 023/003 (upstream spike) + 023/004 (metadata-fingerprint)"
+trigger_phrases: []
+---
 # Iteration 005 — 023/003 (upstream spike) + 023/004 (metadata-fingerprint)
 
 ## Hypotheses going in

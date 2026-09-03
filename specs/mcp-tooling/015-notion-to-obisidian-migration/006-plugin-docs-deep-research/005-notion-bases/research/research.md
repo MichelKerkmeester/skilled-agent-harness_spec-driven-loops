@@ -1,3 +1,7 @@
+---
+title: "Research: Optimizing the mcp-obsidian Notion Bases reference docs for AI operation"
+trigger_phrases: []
+---
 # Research: Optimizing the mcp-obsidian Notion Bases reference docs for AI operation
 
 > **Provenance / how this report was produced.** This deep-research run completed one full,

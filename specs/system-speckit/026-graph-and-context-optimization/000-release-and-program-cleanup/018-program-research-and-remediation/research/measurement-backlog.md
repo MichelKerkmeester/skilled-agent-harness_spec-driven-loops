@@ -1,3 +1,7 @@
+---
+title: "Measurement Backlog — 028 Deep-Research Experiments"
+trigger_phrases: []
+---
 # Measurement Backlog — 028 Deep-Research Experiments
 
 The 028 research found that 026 shipped mechanisms but deferred the measurements that prove them optimal. These are the deferred *runs* (not code fixes — the code fixes landed in 029). Ranked by value/cost. Each names the angle, the concrete command/approach, the current status/blocker, and the decision it unblocks.

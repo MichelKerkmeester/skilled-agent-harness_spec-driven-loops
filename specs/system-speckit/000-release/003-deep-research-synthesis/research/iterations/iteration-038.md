@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Benchmark folders: one dated convention, results into reports
 All 78 benchmark run folders now follow a single dated naming scheme — `<date>--<subject>--<variant>` by execution date, with `baseline/` as the only carve-out — and the validators that previously rejected the separator now enforce the grammar while still refusing dots, underscores, uppercase and the frozen anchor. A run that specifies no output location writes its machine record, rendered report, result table, failure list, grouped findings, and a source map into `<skill>/benchmark/reports/<dated-run>/`, and the index row is appended by the same code path that writes the report, so a same-day rerun takes the next free ordinal instead of overwriting its own evidence. The scaffolder now gives every new skill a `benchmark/reports/` folder with an index, and 6,401 path-shaped references across the repo (spec packets included) were repaired to the renamed folders, with old names left intact only inside historical run logs. Users get run folders that sort, validate, and self-document their results, plus evidence that cannot be silently lost. **Breaking:** the 78 run folders were renamed to the dated grammar; update anything that points at an old folder name.
 

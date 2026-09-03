@@ -1,3 +1,7 @@
+---
+title: "Import examples"
+trigger_phrases: []
+---
 # Import examples
 
 Surrounding prose must not become diagram content.

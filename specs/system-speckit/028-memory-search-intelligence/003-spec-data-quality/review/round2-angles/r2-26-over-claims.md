@@ -1,3 +1,7 @@
+---
+title: "r2-26 Over-claims (adversarial)"
+trigger_phrases: []
+---
 # r2-26 Over-claims (adversarial)
 
 **Angle summary:** Where the data-quality program dresses a structural inference as a measured result, frames net-new green-field construction as trivial reuse, or makes a default-safe claim its own phases contradict.

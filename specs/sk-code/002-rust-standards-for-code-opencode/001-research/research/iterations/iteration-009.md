@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- provenance: manual cli-opencode orchestration | executor openai/gpt-5.6-sol-fast --variant high | round 9 angle A8+A4(2nd pass) — Validation surface + Rust packaging -->
 
 The round is read-only and repo-grounded. I’ll load the deep-research contract, inspect the benchmark/validation and rewrite-research evidence, then verify every cited line and command before producing the single Markdown deliverable.

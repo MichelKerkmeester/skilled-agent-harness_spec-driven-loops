@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 — Cross-model proposal review (MiniMax M3): second opinion on 009/010/011"
+trigger_phrases: []
+---
 # Iteration 018 — Cross-model proposal review (MiniMax M3): second opinion on 009/010/011
 
 **Focus:** Independent MiniMax M3 review of sub-packet-proposal.md (decomposition, numbering, sequencing, coordination).

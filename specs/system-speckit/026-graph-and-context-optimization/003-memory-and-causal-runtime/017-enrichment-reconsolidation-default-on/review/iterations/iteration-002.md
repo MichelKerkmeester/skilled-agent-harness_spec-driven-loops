@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 — correctness — async-enrichment"
+trigger_phrases: []
+---
 # Iteration 2 — correctness — async-enrichment
 
 Dispatch: `gpt-5.5-fast` (variant high) via cli-opencode. Real verdict returned (dispatchOk=true).

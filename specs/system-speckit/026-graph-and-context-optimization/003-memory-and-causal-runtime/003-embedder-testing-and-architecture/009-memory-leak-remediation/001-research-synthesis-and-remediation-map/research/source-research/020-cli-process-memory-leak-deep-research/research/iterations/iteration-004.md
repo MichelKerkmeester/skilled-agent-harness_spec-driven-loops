@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: cli-X self-invocation guards, nested routing rules, and cross-CLI loop risks"
+trigger_phrases: []
+---
 # Iteration 004: cli-X self-invocation guards, nested routing rules, and cross-CLI loop risks
 
 ## Focus

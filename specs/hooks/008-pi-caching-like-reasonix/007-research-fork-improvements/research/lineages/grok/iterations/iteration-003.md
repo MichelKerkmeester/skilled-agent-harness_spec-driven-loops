@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Telemetry and observability"
+trigger_phrases: []
+---
 # Iteration 003 — Telemetry and observability
 
 ## Focus

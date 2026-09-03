@@ -1,3 +1,7 @@
+---
+title: "Research Resource Map — obsidian42-BRAT"
+trigger_phrases: []
+---
 # Research Resource Map — obsidian42-BRAT
 
 ## Repository Source

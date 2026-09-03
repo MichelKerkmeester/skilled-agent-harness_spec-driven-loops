@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — dq-automation-impl"
+trigger_phrases: []
+---
 # Deep Research Dashboard — dq-automation-impl
 
 **Status:** CONVERGED · **Stop reason:** all_questions_answered · **Iterations:** 7/15

@@ -1,3 +1,7 @@
+---
+title: "Iteration 35: Round I Validation Plan — C3-A (the \"clean flip\" claim is KILLED)"
+trigger_phrases: []
+---
 # Iteration 35: Round I Validation Plan — C3-A (the "clean flip" claim is KILLED)
 
 ## Focus

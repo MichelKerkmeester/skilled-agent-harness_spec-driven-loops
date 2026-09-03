@@ -1,3 +1,7 @@
+---
+title: "Stress Test Results — routing-telemetry full coverage"
+trigger_phrases: []
+---
 # Stress Test Results — routing-telemetry full coverage
 
 Captured: 2026-05-08T17:30Z (scenario 3 of handover §6, full coverage pass)

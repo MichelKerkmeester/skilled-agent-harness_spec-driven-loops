@@ -3,6 +3,7 @@ title: "Plan: Phase 007 — Related References, All Skills"
 description: "Python script specification for adding prev/next neighbor links to all snippet SOURCE METADATA sections."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Plan: Phase 007 — Related References, All Skills
 

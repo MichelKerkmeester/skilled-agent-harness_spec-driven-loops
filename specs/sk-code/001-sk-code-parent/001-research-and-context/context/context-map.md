@@ -1,3 +1,7 @@
+---
+title: "Context Map — sk-code parent conversion (Track C)"
+trigger_phrases: []
+---
 # Context Map — sk-code parent conversion (Track C)
 
 **Purpose:** authoritative current-state classification + full blast-radius inventory for the sk-code → parent-hub conversion (folding `sk-code-review` in as a mode).

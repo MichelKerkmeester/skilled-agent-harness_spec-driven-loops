@@ -4,6 +4,7 @@ description: "Fresh-reviewer synthesis that turns the 006-meta-bind deep-researc
 importance_tier: "normal"
 contextType: "analysis"
 version: "0.1.0.0"
+trigger_phrases: []
 ---
 
 # Meta Bind docs — research synthesis and edit plan

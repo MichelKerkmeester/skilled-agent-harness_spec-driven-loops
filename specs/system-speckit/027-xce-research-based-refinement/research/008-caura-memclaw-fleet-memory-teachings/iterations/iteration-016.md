@@ -1,3 +1,7 @@
+---
+title: "Iteration 016 — DEEP relationship + lifecycle/tombstone -> 027/004+005 design"
+trigger_phrases: []
+---
 # Iteration 016 — DEEP relationship + lifecycle/tombstone -> 027/004+005 design
 
 **Status:** insight · **Findings:** 10 · **newInfoRatio:** 0.64 · **tokens:** 97955 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - gpt55r2-b-10"
+trigger_phrases: []
+---
 # Iteration 001 - gpt55r2-b-10
 
 ## Verdict

@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 005 — anti-verdict-softening + anti-gaming discipline"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 005 — anti-verdict-softening + anti-gaming discipline

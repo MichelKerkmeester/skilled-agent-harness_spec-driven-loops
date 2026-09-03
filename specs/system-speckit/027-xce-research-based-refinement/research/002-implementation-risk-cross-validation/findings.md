@@ -1,3 +1,7 @@
+---
+title: "027 XCE Research — Merged Findings (pt-01 + pt-02)"
+trigger_phrases: []
+---
 # 027 XCE Research — Merged Findings (pt-01 + pt-02)
 
 ## From Research Part 01

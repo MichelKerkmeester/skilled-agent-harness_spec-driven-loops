@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis: Portable CLI Communication Projection (deepseek-go lineage)"
+trigger_phrases: []
+---
 # Deep Research Synthesis: Portable CLI Communication Projection (deepseek-go lineage)
 
 Lineage: deepseek-go | executor: cli-opencode / opencode-go/deepseek-v4-flash | session: fanout-deepseek-go-1786433150940-mdbr01 | stop: max-iterations (7/7)

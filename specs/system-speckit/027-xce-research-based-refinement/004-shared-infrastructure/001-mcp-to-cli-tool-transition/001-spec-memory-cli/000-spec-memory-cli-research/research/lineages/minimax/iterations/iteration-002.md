@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: KQ2 — Daemon-dependency audit + per-architecture loss table"
+trigger_phrases: []
+---
 # Iteration 2: KQ2 — Daemon-dependency audit + per-architecture loss table
 
 | Field | Value |

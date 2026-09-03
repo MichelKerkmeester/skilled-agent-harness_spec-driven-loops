@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - Document Diff v1 Architecture"
+trigger_phrases: []
+---
 # Deep Research Strategy - Document Diff v1 Architecture
 
 ## 2. TOPIC

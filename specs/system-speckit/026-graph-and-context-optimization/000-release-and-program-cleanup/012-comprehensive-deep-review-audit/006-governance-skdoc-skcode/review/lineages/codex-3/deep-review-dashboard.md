@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard"
+trigger_phrases: []
+---
 # Deep Review Dashboard
 
 Session: `fanout-codex-3-1780595350529-mur2m0`

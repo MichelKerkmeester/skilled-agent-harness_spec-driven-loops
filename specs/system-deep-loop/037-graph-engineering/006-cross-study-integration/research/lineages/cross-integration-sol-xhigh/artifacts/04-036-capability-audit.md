@@ -1,3 +1,7 @@
+---
+title: "P4 — 036 Capability and Ownership Gap Audit"
+trigger_phrases: []
+---
 # P4 — 036 Capability and Ownership Gap Audit
 
 ## Classification rule

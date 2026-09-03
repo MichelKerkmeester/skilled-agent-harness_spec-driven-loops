@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Verify pi-cache-optimizer"
+trigger_phrases: []
+---
 # Iteration 10: Verify pi-cache-optimizer
 
 ## Focus

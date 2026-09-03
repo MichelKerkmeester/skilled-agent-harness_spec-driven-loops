@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Shared Hook Architecture and Cadence"
+trigger_phrases: []
+---
 # Iteration 1: Shared Hook Architecture and Cadence
 
 ## Focus

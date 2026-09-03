@@ -14,7 +14,6 @@
       "sk design mcp open design readme",
       "open design readme revisit",
       "open design readme rewrite",
-      "sk-design-mcp-open-design readme",
       "phase 20 plan",
       "open design readme plan",
       "sk-design-mcp-open-design plan",
@@ -31,9 +30,9 @@
       "readme",
       "revisit",
       "rewrite",
-      "sk-design-mcp-open-design",
       "phase",
       "plan",
+      "sk-design-mcp-open-design",
       "tasks",
       "implementation",
       "summary"
@@ -49,8 +48,7 @@
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/020-sk-design-mcp-open-design/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/020-sk-design-mcp-open-design/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
@@ -87,12 +85,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -196,11 +188,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-obsidian README pilot proved the standard for mode skill READMEs: narrative, purpose-first documents in the Human Voice Rules, validated by the sk-doc README validator",
     "created_at": "2026-08-04T08:34:46.275Z",
-    "last_save_at": "2026-08-30T15:39:17.760Z",
+    "last_save_at": "2026-09-03T22:19:45.380Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9a56b5f4c0fc9ebeed4ca1f6d8077d89e694c7fba21d3a2d892fb47a0856ede",
+    "source_fingerprint": "sha256:71a9cc0b6b0c31618bfe998ae99b2282dd7f0047387d96a50b63840f6f56ee18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca381848f40882ec74ccdd693b5df94b0e66a368398a3e5965b57e6b40619f93",
+      "spec.md": "8d4f831b5c5f6030311df6ffd8c83bc14543ffcf58f69e50de890f6b7de724bd",
       "plan.md": "44cbc64dd9983e4fc4d27cb7089d90fe65fab622a3b97af5600f063a0105b11e",
       "tasks.md": "af82ac34b34f9b877fac1c24cc926f322a4e559da9220b77515c6e8a275076cf",
       "implementation-summary.md": "f34d5991eb4dd026d281bdff54f3104e089d1f6f4e635be35ffaeb971f45e5f5"

@@ -1,3 +1,7 @@
+---
+title: "Approved finding set"
+trigger_phrases: []
+---
 # Approved finding set
 
 6 findings dispositioned CONFIRMED by phase 001 triage.

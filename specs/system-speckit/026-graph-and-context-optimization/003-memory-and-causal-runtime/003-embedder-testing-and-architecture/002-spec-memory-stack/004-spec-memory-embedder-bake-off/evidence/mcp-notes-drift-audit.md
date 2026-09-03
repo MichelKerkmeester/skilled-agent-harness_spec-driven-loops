@@ -1,3 +1,7 @@
+---
+title: "MCP Notes Drift Audit"
+trigger_phrases: []
+---
 # MCP Notes Drift Audit
 
 Date: 2026-05-17

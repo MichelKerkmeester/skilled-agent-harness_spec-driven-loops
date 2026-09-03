@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: D4 Maintainability — Test suite, eval metrics, residual literals"
+trigger_phrases: []
+---
 # Iteration 7: D4 Maintainability — Test suite, eval metrics, residual literals
 
 ## Focus

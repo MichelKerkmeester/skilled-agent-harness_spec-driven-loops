@@ -1,3 +1,7 @@
+---
+title: "Review Report: maintenance-grace daemon survives re-election"
+trigger_phrases: []
+---
 # Review Report: maintenance-grace daemon survives re-election
 
 **Spec folder**: `019-maintenance-grace-daemon-survives-reelection`

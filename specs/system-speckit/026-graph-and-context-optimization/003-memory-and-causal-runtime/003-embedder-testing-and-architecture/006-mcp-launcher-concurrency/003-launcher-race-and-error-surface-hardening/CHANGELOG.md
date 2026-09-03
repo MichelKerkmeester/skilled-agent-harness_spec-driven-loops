@@ -1,3 +1,7 @@
+---
+title: "Lease Hardening From Review"
+trigger_phrases: []
+---
 # Lease Hardening From Review
 
 **Date:** 2026-05-18

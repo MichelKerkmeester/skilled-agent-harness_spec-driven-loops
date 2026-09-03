@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 — DeepSeek-v4-Pro (RCAF) — correctness"
+trigger_phrases: []
+---
 # Iteration 1 — DeepSeek-v4-Pro (RCAF) — correctness
 
 Dispatched: 2026-06-28T07:40:18.914Z | wall: 130s | billing: paid

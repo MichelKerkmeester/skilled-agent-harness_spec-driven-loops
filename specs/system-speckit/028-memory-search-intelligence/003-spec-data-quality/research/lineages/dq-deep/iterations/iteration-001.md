@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - KQ1: On-write automation in the write path and its data-quality gaps"
+trigger_phrases: []
+---
 # Iteration 001 - KQ1: On-write automation in the write path and its data-quality gaps
 
 **Focus:** Map what on-write/validation automation already runs in the spec-kit write path and find where it fails to maximize data quality for retrieval, adherence, and logic.

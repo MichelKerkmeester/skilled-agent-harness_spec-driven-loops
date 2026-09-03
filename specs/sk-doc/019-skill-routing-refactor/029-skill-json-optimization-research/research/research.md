@@ -1,3 +1,7 @@
+---
+title: "Cross-Lineage Synthesis — Skill & Advisor JSON Optimization"
+trigger_phrases: []
+---
 # Cross-Lineage Synthesis — Skill & Advisor JSON Optimization
 
 Three independent deep-research lineages, 5 iterations each, no early convergence (`stop-policy=max-iterations`), run concurrently:

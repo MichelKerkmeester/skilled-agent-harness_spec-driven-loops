@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 9 | SOL xhigh | mode: deep-review | angle: A4-fail deep-review :: failure modes & guardrails | 2026-07-15T08:46:18.651Z -->
 
 The central risk is “productive-looking noise”: repeated passes feel thorough because they keep emitting findings, while precision, severity calibration, and bug-class coverage silently degrade. Deep-review should optimize verified evidence—not finding count or reviewer agreement.

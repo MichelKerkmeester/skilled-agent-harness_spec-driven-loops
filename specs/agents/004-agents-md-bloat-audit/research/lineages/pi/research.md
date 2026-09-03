@@ -1,3 +1,7 @@
+---
+title: "Deep Research: AGENTS.md Bloat Audit — Ranked Findings Report"
+trigger_phrases: []
+---
 # Deep Research: AGENTS.md Bloat Audit — Ranked Findings Report
 
 Lineage: `pi` (fan-out) | Session: `fanout-pi-1786112914544-75cprl` | Spec: `specs/agents/004-agents-md-bloat-audit` | Stop: maxIterations (5)

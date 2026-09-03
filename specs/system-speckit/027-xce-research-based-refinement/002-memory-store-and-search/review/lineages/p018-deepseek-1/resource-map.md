@@ -1,3 +1,7 @@
+---
+title: "Resource Map (from review delta evidence)"
+trigger_phrases: []
+---
 # Resource Map (from review delta evidence)
 # Generated during synthesis of deep-review lineage p018-deepseek-1
 # Session: fanout-p018-deepseek-1-1781718236450-bbehhf

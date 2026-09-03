@@ -1,3 +1,7 @@
+---
+title: "Research Phase 001: XCE Adoption Matrix"
+trigger_phrases: []
+---
 # Research Phase 001: XCE Adoption Matrix
 
 Initial XCE feature triage for the 027 packet.

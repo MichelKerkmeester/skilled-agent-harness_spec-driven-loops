@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: External Mining — aionforge consolidation.md + capture.md → Memory"
+trigger_phrases: []
+---
 # Iteration 13: External Mining — aionforge consolidation.md + capture.md → Memory
 
 ## Focus

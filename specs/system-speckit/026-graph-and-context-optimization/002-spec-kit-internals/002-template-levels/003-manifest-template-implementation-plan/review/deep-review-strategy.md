@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - 003-manifest-template-implementation-plan"
+trigger_phrases: []
+---
 # Deep Review Strategy - 003-manifest-template-implementation-plan
 
 ## 1. OVERVIEW

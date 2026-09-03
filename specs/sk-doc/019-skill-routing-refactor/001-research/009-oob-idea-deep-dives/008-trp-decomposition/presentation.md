@@ -1,3 +1,7 @@
+---
+title: "Idea 8 — The (T, R, P) Decomposition"
+trigger_phrases: []
+---
 # Idea 8 — The (T, R, P) Decomposition
 
 > **`defaultMode` isn't a knob — it's three different knobs jammed into one field. Pull them apart into Threshold, Recovery, and Provenance, and the whole keep-vs-null debate turns into a coordinate you can just read off.**

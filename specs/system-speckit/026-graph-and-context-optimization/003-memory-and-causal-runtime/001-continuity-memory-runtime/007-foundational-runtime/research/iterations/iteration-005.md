@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 — Ensure-ready contract honesty (5/10)"
+trigger_phrases: []
+---
 # Iteration 5 — Ensure-ready contract honesty (5/10)
 
 ## Investigation Thread

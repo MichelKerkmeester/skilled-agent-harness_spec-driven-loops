@@ -1,3 +1,7 @@
+---
+title: "Iteration 021: RQ-M2 PRD write-back / requirements-drift"
+trigger_phrases: []
+---
 # Iteration 021: RQ-M2 PRD write-back / requirements-drift
 
 **Focus:** RQ-M2 PRD write-back / requirements-drift  

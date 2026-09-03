@@ -1,3 +1,7 @@
+---
+title: "Dist Marker Grep Cheatsheet"
+trigger_phrases: []
+---
 # Dist Marker Grep Cheatsheet
 
 > Grep patterns to verify rebuilt dist contains the expected new code markers. Run after `npm run build`, before claiming completion.

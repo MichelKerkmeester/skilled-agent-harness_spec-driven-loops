@@ -2,6 +2,7 @@
 _memory:
   continuity:
     next_safe_action: "Iter 008 should drill 010/007 T-A..T-F closure integrity against shipped code, prioritizing the 33 claimed closures and known F12/F14/F17 contradictions."
+trigger_phrases: []
 ---
 # Iteration 007 — 010/006 umbrella docs vs code reality
 

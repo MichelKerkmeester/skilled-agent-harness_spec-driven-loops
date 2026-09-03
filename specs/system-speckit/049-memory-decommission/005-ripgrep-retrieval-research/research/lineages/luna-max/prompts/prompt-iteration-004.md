@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 prompt: parity, frozen probes, and measurable gates"
+trigger_phrases: []
+---
 # Iteration 4 prompt: parity, frozen probes, and measurable gates
 
 Read the current lineage state, strategy, and iterations 1-3 before researching. Close the remaining parity question with repository evidence. Inspect the existing trigger/search fixtures and tests, phase 001 tasks and acceptance criteria, and the relevant ripgrep flag contracts already identified. Produce amendment-ready recommendations for phases 001 and 004 covering:

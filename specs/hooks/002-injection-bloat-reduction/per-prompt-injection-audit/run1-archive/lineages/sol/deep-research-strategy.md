@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Per-Prompt Injection Audit"
+trigger_phrases: []
+---
 # Deep Research Strategy — Per-Prompt Injection Audit
 
 ## 1. OVERVIEW

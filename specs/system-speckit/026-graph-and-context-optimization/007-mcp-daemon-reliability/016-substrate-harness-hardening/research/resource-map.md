@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Validate the behavioral claims of the skip-not-fail-on-live-owner fix to the substrate stress harness (run-substrate-stress-harness.mjs + substrate-runner-harness.vitest.ts)"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

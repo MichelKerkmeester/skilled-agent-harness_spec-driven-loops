@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: Hierarchical Budgets, Locks, and Fencing Composition"
+trigger_phrases: []
+---
 # Iteration 14: Hierarchical Budgets, Locks, and Fencing Composition
 
 ## Focus

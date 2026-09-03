@@ -1,3 +1,7 @@
+---
+title: "Review Report — Skill-Metadata Program Deep Review (glm-high lineage)"
+trigger_phrases: []
+---
 # Review Report — Skill-Metadata Program Deep Review (glm-high lineage)
 
 **Spec folder:** `sk-doc/019-skill-routing-refactor/027-program-deep-review`

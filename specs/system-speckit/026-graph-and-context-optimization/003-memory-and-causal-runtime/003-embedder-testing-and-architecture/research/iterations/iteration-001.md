@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Iteration 1 audited arc `008-rerank-sidecar-arc`, with emphasis on phase `006-cocoindex-dedup-from-shared-sidecar`, phase `007-spec-memory-mps-rerank-promotion`, and commit `9349f5f4a` (`feat(rerank-sidecar): multi-model serving + per-consumer model selection`). The pass treated the current working tree as evidence, but flagged uncommitted/source-drift cases as `SUSPECTED` where the shipped commit and current files diverged.

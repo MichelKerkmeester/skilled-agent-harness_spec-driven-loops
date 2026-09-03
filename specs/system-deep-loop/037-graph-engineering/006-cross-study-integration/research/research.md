@@ -1,3 +1,7 @@
+---
+title: "The Integrated Graph-Based Agent-Loop Design: Cross-Study Synthesis (Study 6, Capstone)"
+trigger_phrases: []
+---
 # The Integrated Graph-Based Agent-Loop Design: Cross-Study Synthesis (Study 6, Capstone)
 
 ## Grounding (terms and sources)

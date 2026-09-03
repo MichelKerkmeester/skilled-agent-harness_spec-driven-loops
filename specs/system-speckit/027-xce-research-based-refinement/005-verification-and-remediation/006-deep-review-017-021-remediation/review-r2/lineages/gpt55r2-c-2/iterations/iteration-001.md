@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness / Fail-Closed Server Contracts"
+trigger_phrases: []
+---
 # Iteration 1: Correctness / Fail-Closed Server Contracts
 
 ## Focus

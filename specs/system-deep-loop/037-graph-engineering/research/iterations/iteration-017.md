@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: When-not-to-use validation and direct residual verification"
+trigger_phrases: []
+---
 # Iteration 17: When-not-to-use validation and direct residual verification
 
 ## Focus

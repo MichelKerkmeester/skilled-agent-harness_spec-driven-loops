@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: REQ-001 gating completeness — per-level render contract for research.md.tmpl"
+trigger_phrases: []
+---
 # Iteration 5: REQ-001 gating completeness — per-level render contract for research.md.tmpl
 
 ## Focus

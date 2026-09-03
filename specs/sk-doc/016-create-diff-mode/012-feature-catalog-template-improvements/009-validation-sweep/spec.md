@@ -3,6 +3,7 @@ title: "Phase 009: Validation Sweep — All Skills"
 description: "Final compliance check across all 370 catalog files. Run the validation script, review the report, apply targeted fixes, confirm 95%+ compliance on all 6 checks before closing the rework project."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Phase 009: Validation Sweep — All Skills
 

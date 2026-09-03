@@ -1,3 +1,7 @@
+---
+title: "Contributor Covenant Code of Conduct"
+trigger_phrases: []
+---
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge

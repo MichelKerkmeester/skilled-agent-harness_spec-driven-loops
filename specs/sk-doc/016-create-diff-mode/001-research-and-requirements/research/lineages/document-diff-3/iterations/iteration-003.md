@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Snapshot Lifecycle Design"
+trigger_phrases: []
+---
 # Iteration 3: Snapshot Lifecycle Design
 
 ## Focus

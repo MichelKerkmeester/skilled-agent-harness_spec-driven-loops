@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — Schema/DB design + migration discipline"
+trigger_phrases: []
+---
 # Iteration 009 — Schema/DB design + migration discipline
 
 **Status:** insight · **Findings:** 6 · **newInfoRatio:** 0.55 · **tokens:** 142818 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

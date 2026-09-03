@@ -1,3 +1,7 @@
+---
+title: "Implementation Plan: Pi Remote Experience Parity Research"
+trigger_phrases: []
+---
 # Implementation Plan: Pi Remote Experience Parity Research
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 (Round K): Q7 Daemon Re-election / Reconnect / IPC × graceful-degrade + reliability trust"
+trigger_phrases: []
+---
 # Iteration 7 (Round K): Q7 Daemon Re-election / Reconnect / IPC × graceful-degrade + reliability trust
 
 ## Focus

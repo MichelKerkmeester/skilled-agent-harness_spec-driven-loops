@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Direct Layer-0-to-Mode Selection"
+trigger_phrases: []
+---
 # Iteration 1: Direct Layer-0-to-Mode Selection
 
 ## Focus

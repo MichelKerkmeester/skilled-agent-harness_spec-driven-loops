@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 — DeepSeek-v4-Pro (RCAF) — traceability"
+trigger_phrases: []
+---
 # Iteration 5 — DeepSeek-v4-Pro (RCAF) — traceability
 
 Dispatched: 2026-06-28T07:52:47.809Z | wall: 159s | billing: paid

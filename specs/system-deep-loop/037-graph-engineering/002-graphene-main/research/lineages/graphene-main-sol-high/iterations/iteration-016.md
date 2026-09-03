@@ -1,3 +1,7 @@
+---
+title: "Iteration 016 — Exact Cross-Adapter Trace Schema and Adversarial Parity Matrix"
+trigger_phrases: []
+---
 # Iteration 016 — Exact Cross-Adapter Trace Schema and Adversarial Parity Matrix
 
 ## Focus

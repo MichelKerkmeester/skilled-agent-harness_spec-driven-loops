@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Dimension
 
 Traceability cross-cutting pass for both targets.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — over-engineering (executor: cli-opencode-deepseek-v4-pro)"
+trigger_phrases: []
+---
 # Iteration 010 — over-engineering (executor: cli-opencode-deepseek-v4-pro)
 
 ## Metadata

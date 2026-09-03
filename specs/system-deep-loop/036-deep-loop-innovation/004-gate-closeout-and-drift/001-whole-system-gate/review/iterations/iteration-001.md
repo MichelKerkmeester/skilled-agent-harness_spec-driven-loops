@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — inventory"
+trigger_phrases: []
+---
 # Iteration 001 — inventory
 
 - Executor: cli-codex gpt-5.6-luna effort=xhigh service_tier=fast sandbox=read-only

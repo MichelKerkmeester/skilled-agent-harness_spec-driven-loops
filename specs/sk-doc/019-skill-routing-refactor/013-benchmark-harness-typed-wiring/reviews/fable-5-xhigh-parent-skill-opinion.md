@@ -1,3 +1,7 @@
+---
+title: "Parent-skill routing architecture — Fable-5 (xhigh)"
+trigger_phrases: []
+---
 # Parent-skill routing architecture — Fable-5 (xhigh)
 
 Independent architectural opinion on the best method for parent-skill routing. The failure was reproduced live, not trusted from the brief.

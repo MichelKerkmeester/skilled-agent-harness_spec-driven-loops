@@ -1,3 +1,7 @@
+---
+title: "Finding Disposition Register"
+trigger_phrases: []
+---
 # Finding Disposition Register
 
 Every audit finding from the four legs (deep-review lineages `glm-high`,

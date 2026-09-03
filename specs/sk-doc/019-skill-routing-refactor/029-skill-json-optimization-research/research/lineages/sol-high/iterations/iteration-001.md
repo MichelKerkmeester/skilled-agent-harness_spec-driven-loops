@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: JSON inventory and current state"
+trigger_phrases: []
+---
 # Iteration 1: JSON inventory and current state
 
 ## Focus

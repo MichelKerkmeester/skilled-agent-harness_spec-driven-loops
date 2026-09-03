@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Caches, Vector Representation, and Determinism"
+trigger_phrases: []
+---
 # Iteration 8: Caches, Vector Representation, and Determinism
 
 ## Focus

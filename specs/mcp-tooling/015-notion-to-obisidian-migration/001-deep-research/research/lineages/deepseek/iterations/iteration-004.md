@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: File Uploads, Attachments, Comments, and Multi-View Databases"
+trigger_phrases: []
+---
 # Iteration 4: File Uploads, Attachments, Comments, and Multi-View Databases
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 - MCP Server Allowlist"
+trigger_phrases: []
+---
 # Iteration 011 - MCP Server Allowlist
 
 ## Summary

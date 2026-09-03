@@ -1,3 +1,7 @@
+---
+title: "Live-Activation Goal — Unified Router from Shadow to Production"
+trigger_phrases: []
+---
 # Live-Activation Goal — Unified Router from Shadow to Production
 
 > **Mission:** Take the unified router from a proven-in-shadow replacement to a **live, activated** router across all skills. **Hyphen-naming migration is the first priority**, then green the benchmark suite, finish the incomplete compiled projections, and finally activate each hub one at a time behind a reversible fenced gate — with **real models running human-like playbook prompts** as the primary correctness gate. Execution fans out **maximally-parallel GPT agents** on the mechanical phases and strictly serializes the live activation.

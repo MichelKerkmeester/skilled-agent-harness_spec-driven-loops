@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Hallmark to sk-design"
+trigger_phrases: []
+---
 # Deep Research Strategy: Hallmark to sk-design
 
 ## 2. TOPIC

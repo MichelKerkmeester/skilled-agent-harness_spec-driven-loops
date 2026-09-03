@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Synthesis preparation for the final `research/research.md`: a 17-section outline, consolidated risk register, concrete file/LOC delta arithmetic, and coverage check for Q1-Q10.

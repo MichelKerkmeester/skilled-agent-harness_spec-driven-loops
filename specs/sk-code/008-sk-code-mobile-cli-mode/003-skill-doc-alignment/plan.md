@@ -11,6 +11,7 @@ _memory:
     next_safe_action: "Operator approves; execute A-D in an isolated Public worktree."
     blockers: []
     completion_pct: 0
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

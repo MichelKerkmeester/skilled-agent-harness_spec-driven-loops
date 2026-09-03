@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 011 Meaning-Judge Wiring"
 description: "Compose the missing production path so a local reject-only meaning judge runs after restoration, with any failure staying exact-original and no hosted egress of restored values."
 trigger_phrases:
   - "meaning-judge-wiring"
-  - "meaning judge wiring"
   - "reject-only meaning gate"
   - "projection quality"
 importance_tier: "important"

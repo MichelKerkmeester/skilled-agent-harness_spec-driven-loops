@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: Classify plan mode"
+trigger_phrases: []
+---
 # Iteration 14: Classify plan mode
 
 ## Focus

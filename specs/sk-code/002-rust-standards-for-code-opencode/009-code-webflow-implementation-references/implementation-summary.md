@@ -12,6 +12,7 @@ _memory:
     blockers: []
     completion_pct: 100
     status: "Complete"
+trigger_phrases: []
 ---
 # Implementation Summary
 

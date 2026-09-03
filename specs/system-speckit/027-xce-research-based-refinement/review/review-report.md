@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 027 XCE Research-Based Refinement"
+trigger_phrases: []
+---
 # Deep Review Report — 027 XCE Research-Based Refinement
 
 Review target: `system-spec-kit/027-xce-research-based-refinement` (full epic, post-implementation release readiness)

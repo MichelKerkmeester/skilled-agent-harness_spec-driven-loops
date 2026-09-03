@@ -1,3 +1,7 @@
+---
+title: "Agent Brief — T-D Sanitization Hardening"
+trigger_phrases: []
+---
 # Agent Brief — T-D Sanitization Hardening
 
 You are an autonomous implementation agent. **No conversation context.**

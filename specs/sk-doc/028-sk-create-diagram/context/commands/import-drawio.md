@@ -7,6 +7,7 @@ allowed-tools:
   - Edit
   - Bash
   - Glob
+trigger_phrases: []
 ---
 
 Redraw the draw.io file at `$1` as a diagram in this skill's design system, following [`skills/diagram-design/references/import-drawio.md`](../skills/diagram-design/references/import-drawio.md) and [`skills/diagram-design/references/output-spec.md`](../skills/diagram-design/references/output-spec.md). Treat those references as the source of truth — don't reimplement the logic here.

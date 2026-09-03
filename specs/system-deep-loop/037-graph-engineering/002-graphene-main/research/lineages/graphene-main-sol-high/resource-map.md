@@ -1,3 +1,7 @@
+---
+title: "Resource Map — graphene-main-sol-high"
+trigger_phrases: []
+---
 # Resource Map — graphene-main-sol-high
 
 ## Lineage Artifacts

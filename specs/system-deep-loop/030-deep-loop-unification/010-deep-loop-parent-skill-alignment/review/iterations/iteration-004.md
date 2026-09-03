@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 — MiniMax-M3 (TIDD-EC) — traceability"
+trigger_phrases: []
+---
 # Iteration 4 — MiniMax-M3 (TIDD-EC) — traceability
 
 Dispatched: 2026-06-28T07:50:08.480Z | wall: 263s | billing: paid

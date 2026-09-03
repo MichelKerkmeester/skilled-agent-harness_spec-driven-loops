@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 - LaunchAgents + LaunchDaemons"
+trigger_phrases: []
+---
 # Iteration 006 - LaunchAgents + LaunchDaemons
 
 ## Summary

@@ -1,3 +1,7 @@
+---
+title: "End-to-end smoke"
+trigger_phrases: []
+---
 # End-to-end smoke
 
 Path: JSON-RPC stdio call to `.opencode/bin/spec-kit-memory-launcher.cjs`

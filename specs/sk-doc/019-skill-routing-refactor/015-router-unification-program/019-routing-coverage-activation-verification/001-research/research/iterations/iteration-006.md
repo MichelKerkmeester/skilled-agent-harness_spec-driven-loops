@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 — minimax/MiniMax-M3 — focus: sk-code-align"
+trigger_phrases: []
+---
 # Iteration 6 — minimax/MiniMax-M3 — focus: sk-code-align
 
 I've gathered enough evidence. Let me synthesize the findings.

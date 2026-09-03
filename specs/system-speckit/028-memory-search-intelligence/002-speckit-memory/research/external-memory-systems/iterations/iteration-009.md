@@ -1,3 +1,7 @@
+---
+title: "Iteration 9 (Opus lineage — NATIVE): adversarial verify-2 of the remaining banked candidates"
+trigger_phrases: []
+---
 # Iteration 9 (Opus lineage — NATIVE): adversarial verify-2 of the remaining banked candidates
 
 > Model: **Opus 4.8 NATIVE** (Agent tool `model: opus`, read-only; NOT claude2). Orchestrator-written. newInfoRatio **0.5** (refute-by-default verify against live `mcp_server/` code). 12 verdicts: **7 GO, 5 REFINE, 0 hard-refute.** Complements iter-6 (which verified the H/S "cheap wins"); this pass covers the iter-1..5 remainder.

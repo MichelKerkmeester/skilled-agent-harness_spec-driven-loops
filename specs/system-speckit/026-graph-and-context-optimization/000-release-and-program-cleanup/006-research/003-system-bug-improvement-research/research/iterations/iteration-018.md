@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 — D3: Type / schema duplication"
+trigger_phrases: []
+---
 # Iteration 018 — D3: Type / schema duplication
 
 ## Focus

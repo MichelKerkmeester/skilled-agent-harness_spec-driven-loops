@@ -1,6 +1,7 @@
 ---
 title: "Deep Review Strategy: .opencode/specs/sk-prompt/007-sk-prompt-parent"
 description: "Review strategy for the sk-prompt parent-hub merge program + post-merge benchmark work."
+trigger_phrases: []
 ---
 
 # Deep Review Strategy

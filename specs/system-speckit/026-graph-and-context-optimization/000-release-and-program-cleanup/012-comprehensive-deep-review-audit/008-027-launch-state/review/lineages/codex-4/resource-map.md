@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map - codex-4"
+trigger_phrases: []
+---
 # Review Resource Map - codex-4
 
 ## Summary

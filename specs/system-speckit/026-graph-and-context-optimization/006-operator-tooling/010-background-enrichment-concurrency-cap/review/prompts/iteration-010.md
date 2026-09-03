@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Adversarial deep-review worker, iteration 10 of 10 (gpt-5.5 xhigh) — FINAL COMPLETENESS CRITIC. Review the committed fix (commit 25587fa412), read-only:
 - .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts (scheduleBackgroundEnrichment, the full function + call site)
 - .opencode/skills/system-spec-kit/mcp_server/context-server.ts (startupScan loop)

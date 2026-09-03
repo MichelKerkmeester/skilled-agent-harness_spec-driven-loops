@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 21 | model luna (gpt-5.6-luna) | angle: Reducer / aggregator design patterns | 2026-07-14T22:56:08.543Z -->
 
 The reducer is the policy boundary, not a final formatting step. The strongest transfer pattern is:

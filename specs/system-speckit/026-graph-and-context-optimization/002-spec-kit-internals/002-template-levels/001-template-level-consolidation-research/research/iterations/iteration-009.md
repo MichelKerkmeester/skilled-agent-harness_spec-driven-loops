@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Close the final synthesis gaps and draft the canonical research synthesis at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-template-consolidation-investigation/research/research.md`.

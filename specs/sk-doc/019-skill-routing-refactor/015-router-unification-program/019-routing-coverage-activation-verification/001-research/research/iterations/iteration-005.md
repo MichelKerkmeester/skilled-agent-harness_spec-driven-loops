@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 — gpt-5.6-sol high — focus: activation"
+trigger_phrases: []
+---
 # Iteration 5 — gpt-5.6-sol high — focus: activation
 
 Headline finding: the P0→P4 direction is sound, but two blockers make it non-executable as written. The advisor launcher removes the feature flag before spawning the live daemon, and the two default predicates are fleet-global—so they cannot support a hub-by-hub cutover.

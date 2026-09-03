@@ -1,3 +1,7 @@
+---
+title: "The one goal prompt"
+trigger_phrases: []
+---
 # The one goal prompt
 
 Paste this to run the whole thing hands-off (cheap models only, no Opus):

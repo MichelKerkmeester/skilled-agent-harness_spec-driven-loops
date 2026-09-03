@@ -4,6 +4,7 @@ rq: RQ-N6
 phase_target: 004-semantic-trigger-fallback
 newInfoRatio: 0.62
 verdict: ADAPT
+trigger_phrases: []
 ---
 
 # Iteration 035 — RQ-N6: Optimal Hybrid Lexical+Semantic Shape for memory_match_triggers

@@ -1,3 +1,7 @@
+---
+title: "Decision Record: Code README Structure And Durability Sweep"
+trigger_phrases: []
+---
 # Decision Record: Code README Structure And Durability Sweep
 
 <!-- SPECKIT_LEVEL: 3 -->

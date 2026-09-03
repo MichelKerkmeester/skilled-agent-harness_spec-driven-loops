@@ -1,3 +1,7 @@
+---
+title: "Status and Benchmark Documentation Alignment — Evidence Log"
+trigger_phrases: []
+---
 # Status and Benchmark Documentation Alignment — Evidence Log
 
 ## Scope and path resolution

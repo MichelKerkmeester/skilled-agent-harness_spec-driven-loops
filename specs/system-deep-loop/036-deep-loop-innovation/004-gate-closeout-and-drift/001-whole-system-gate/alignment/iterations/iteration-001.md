@@ -1,3 +1,7 @@
+---
+title: "Alignment iteration 001 — sk-code"
+trigger_phrases: []
+---
 # Alignment iteration 001 — sk-code
 
 - Lane: sk-code::code::.opencode/skills/system-deep-loop/runtime/lib, .opencode/skills/system-deep-loop/runtime/scripts

@@ -1,3 +1,7 @@
+---
+title: "r2-18 changelog-parent-accuracy"
+trigger_phrases: []
+---
 # r2-18 changelog-parent-accuracy
 
 **Angle summary:** The 28 per-phase changelogs, the root rollup and the three grandparent weave-ins (before-vs-after section 9, benchmark-status Track C, feature-flags section 6) are scrupulously honest about research-only status with zero un-negated shipped language. The only defects are three minor internal-consistency nits, no over-claim of shipped.

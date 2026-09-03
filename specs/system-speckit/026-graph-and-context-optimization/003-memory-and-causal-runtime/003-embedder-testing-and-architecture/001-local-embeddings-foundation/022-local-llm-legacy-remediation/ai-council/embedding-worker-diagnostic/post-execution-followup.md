@@ -1,3 +1,7 @@
+---
+title: "Post-execution follow-up — actual root cause was H4, not H1/H2"
+trigger_phrases: []
+---
 # Post-execution follow-up — actual root cause was H4, not H1/H2
 
 After executing the 6-step repair plan from `convergence.md` and verifying the substrate via memory_search + memory_save round-trips, **the real root cause of the 0/15 PASS rate on the 24-- scenario runs turned out to be a different bug** than what the council diagnosed.

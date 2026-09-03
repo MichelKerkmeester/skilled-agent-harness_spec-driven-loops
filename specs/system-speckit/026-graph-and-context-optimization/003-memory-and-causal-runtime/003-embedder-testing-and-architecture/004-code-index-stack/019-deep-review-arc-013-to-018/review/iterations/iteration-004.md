@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Embedder-Agnosticism and Reranker-Agnosticism"
+trigger_phrases: []
+---
 # Iteration 004 — Embedder-Agnosticism and Reranker-Agnosticism
 
 ## Files reviewed

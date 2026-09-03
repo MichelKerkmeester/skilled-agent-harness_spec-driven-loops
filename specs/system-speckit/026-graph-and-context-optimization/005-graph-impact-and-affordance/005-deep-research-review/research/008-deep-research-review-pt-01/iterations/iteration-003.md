@@ -2,6 +2,7 @@
 _memory:
   continuity:
     next_safe_action: "Iteration 004 should drill minConfidence boundary values and force each of the five failureFallback.code branches with targeted fixtures."
+trigger_phrases: []
 ---
 # Iteration 003 - 010/003 edge explanation + blast_radius round-trip audit
 

@@ -1,3 +1,7 @@
+---
+title: "L2 Doc-Only Batch — Adversarial Re-Verification Verdict (12 findings)"
+trigger_phrases: []
+---
 # L2 Doc-Only Batch — Adversarial Re-Verification Verdict (12 findings)
 
 > **Verifier:** fresh Fable 5 pass, 2026-06-12. Every doc claim re-read against CURRENT code (uncommitted worktree). Hunted specifically for the doc-fix failure mode: new claims the code does not satisfy.

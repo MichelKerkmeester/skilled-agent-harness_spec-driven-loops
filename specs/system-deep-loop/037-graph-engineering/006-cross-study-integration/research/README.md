@@ -1,3 +1,7 @@
+---
+title: "Study 6 · cross-study-integration — research folder (CAPSTONE)"
+trigger_phrases: []
+---
 # Study 6 · cross-study-integration — research folder (CAPSTONE)
 
 > **The capstone.** Study 6 of the [037 graph-engineering program](../../context-index.md) — not a new repo study. It welds studies S1–S5 into ONE coherent graph-based agent-loop design. 10-round integration run (gpt-5.6-sol **xhigh**/fast, `stopReason: maxIterationsReached`).

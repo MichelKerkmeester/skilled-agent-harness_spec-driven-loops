@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Diff Algorithms and Format Adapter Libraries"
+trigger_phrases: []
+---
 # Iteration 2: Diff Algorithms and Format Adapter Libraries
 
 ## Focus

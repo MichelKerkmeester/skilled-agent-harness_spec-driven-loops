@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "runtime-adapters-and-clients",
-      "runtime adapters and clients",
       "portable cli projection",
       "implementation phase",
       "implementation plan",
@@ -22,13 +21,11 @@
       "use client-owned presentation whenever native interception is not explicitly safe",
       "implementation status",
       "current state",
-      "phase 006 handover"
+      "phase 006 handover",
+      "runtime adapters handover"
     ],
     "key_topics": [
       "runtime-adapters-and-clients",
-      "runtime",
-      "adapters",
-      "clients",
       "portable",
       "cli",
       "projection",
@@ -36,7 +33,10 @@
       "phase",
       "plan",
       "tasks",
-      "architecture"
+      "architecture",
+      "decision",
+      "client-owned",
+      "presentation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Integrate the projection core with six CLIs through their safest supported event and presentation boundaries",
     "created_at": "2026-08-11T10:04:31Z",
-    "last_save_at": "2026-08-30T15:39:11.712Z",
+    "last_save_at": "2026-09-03T22:16:43.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:62413b41d640a7e51d89b5162b057e31647e84e4f24b1819eca3d09317906a72",
+    "source_fingerprint": "sha256:df8bdfc162b92b71962c9bc73c9f043c26bf6551a26bd848dc10b6cc5e34ecd8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0037187b6e15174c4ad957e7fe86d4186350afd56771646bd17c83909bb95649",
+      "spec.md": "97b647f6a39495cf8a9bb4563f40fde2801c2eb2dcbc53341c0a89d4ea219231",
       "plan.md": "9702a181c0a72d95b057bf9c1d9ee70ec5d5fc8190576f65f6d98d0b137da6cd",
       "tasks.md": "313f678ad0a9a57579becbc46f9c2a8fc40e788a460267049677939ee51f3fc5",
       "decision-record.md": "ef4bd1bff60b154c4869ea6fb16242a42e242d3041a28409ff072f90989a2c7e",

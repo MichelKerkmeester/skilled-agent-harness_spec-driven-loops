@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 prompt pack"
+trigger_phrases: []
+---
 # Iteration 1 prompt pack
 
 Focus: verify the plugin-owned contract at source level: persisted settings, commands, structured vault layout, directive writers, and subprocess boundary.

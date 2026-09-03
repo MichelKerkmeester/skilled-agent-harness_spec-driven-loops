@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-Research iteration 1 of 10 for the 027 XCE adoption-research packet.
 
 PACKET: .opencode/specs/system-spec-kit/027-xce-research-based-refinement

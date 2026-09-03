@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: Traceability — spec_code protocol, comment hygiene, REQ-004/005 verification"
+trigger_phrases: []
+---
 # Iteration 003: Traceability — spec_code protocol, comment hygiene, REQ-004/005 verification
 
 ## Focus

@@ -181,7 +181,7 @@
     ],
     "causal_summary": "Decision packet answering whether the Mobile CLI verification tooling in scripts/ (token-identity, the *-cdp render gates, naming/scan-*, release-verify, 26 scripts) should move into the sk-code-mobile-cli surface skill. It should not: the skill is a read-only surface leaf that cannot own or run executable tooling, the scripts are coupled to the app tree and CI and wired as npm scripts, and the skill already references them by name. Analysis only — no files move.",
     "created_at": "2026-08-25T19:45:00.000Z",
-    "last_save_at": "2026-08-30T15:39:11.322Z",
+    "last_save_at": "2026-09-03T22:16:32.013Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,13 +190,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a8bc3dcb083805b71747081283cd030462c10c99e2bb8be3643950defed197c",
+    "source_fingerprint": "sha256:9b9a7ae6812622195cd5acca1cec8adb19f981be076e53cd3c92ca82de8a4af4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4f33e7d5e841379e0daae42d48d3e41d568ca0f5781efb91413643783996e9a3",
-      "plan.md": "c85c6c423664da08cd77b282796ebcf97e2f09bc73e476c5f8843c84e9f1cd5e",
-      "tasks.md": "81815c59ff89bc43154d1155bf60cf2e3f93802c3755a603827fbaa283d24ac5",
-      "implementation-summary.md": "ab4cef2c6120ea079fe114ef67c283906704c923a1f6f2058da973795fe686bb"
+      "spec.md": "0982699ea7ae791a5cdff948613f9e074e15e8e6162f1a36671602fcc2ac0305",
+      "plan.md": "1fd6f9f18331120669b4ec87ba2cea1a5b18bacfa9f4badd6ec48c6d272ca78f",
+      "tasks.md": "6ac2955b63e6f85afa55f2b4fd3fe443305c667ee72e8a21f9c96dfb04279f46",
+      "implementation-summary.md": "5c1c9bef9a3690d9f783ba6e24663dc7c7271276ba9790eaa642deff478c0d38"
     },
     "last_active_child_id": null,
     "last_active_at": null

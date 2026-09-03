@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now I need to deep-read key implementation files for precise evidence. Let me read the critical files for each question.
 Now let me check for non-test/non-spec usage of `unionMode:'multi'` and the launcher lease TTL values.
 I have now gathered sufficient evidence across all five questions. Here is the report.

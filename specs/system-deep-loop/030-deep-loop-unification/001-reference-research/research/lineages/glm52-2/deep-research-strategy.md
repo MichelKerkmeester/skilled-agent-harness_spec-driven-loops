@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — glm52-2 (detached fan-out lineage)"
+trigger_phrases: []
+---
 # Deep Research Strategy — glm52-2 (detached fan-out lineage)
 
 > Lineage: `glm52-2` (family `glm52`, replica 2/5). Executor: cli-opencode `zai-coding-plan/glm-5.2` (reasoningEffort max). stopPolicy: convergence. maxIterations: 5.

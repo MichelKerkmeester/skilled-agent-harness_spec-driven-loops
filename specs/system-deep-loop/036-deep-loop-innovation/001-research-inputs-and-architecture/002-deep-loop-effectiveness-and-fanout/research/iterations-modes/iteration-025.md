@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 25 | SOL xhigh | mode: deep-alignment | angle: A5-synth deep-alignment :: synthesis & highest-leverage recs | 2026-07-15T10:07:13.497Z -->
 
 ### Thesis

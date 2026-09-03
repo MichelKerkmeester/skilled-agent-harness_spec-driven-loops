@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: D1 Correctness — Requirement logic, completion claims, and gate integrity"
+trigger_phrases: []
+---
 # Iteration 1: D1 Correctness — Requirement logic, completion claims, and gate integrity
 
 ## Focus

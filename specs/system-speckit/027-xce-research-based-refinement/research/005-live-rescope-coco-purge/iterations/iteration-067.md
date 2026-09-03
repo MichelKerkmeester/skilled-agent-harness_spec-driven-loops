@@ -1,3 +1,7 @@
+---
+title: "Iteration 067 — 007 rescope: cache/schema IDENTITY to profile_key+input_kind Nomic-768; +coco refs in 007 docs"
+trigger_phrases: []
+---
 # Iteration 067 — 007 rescope: cache/schema IDENTITY to profile_key+input_kind Nomic-768; +coco refs in 007 docs
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.86. **Findings:** 6.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Cross-Cutting Consolidation"
+trigger_phrases: []
+---
 # Iteration 9: Cross-Cutting Consolidation
 
 **Date:** 2026-05-21  

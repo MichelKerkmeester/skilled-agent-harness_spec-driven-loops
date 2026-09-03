@@ -1,3 +1,7 @@
+---
+title: "Iteration 48 (Round O): Completeness sweep — coverage complete in-mandate + 2 sibling-subsystem follow-ups"
+trigger_phrases: []
+---
 # Iteration 48 (Round O): Completeness sweep — coverage complete in-mandate + 2 sibling-subsystem follow-ups
 
 ## Focus

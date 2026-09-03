@@ -1,3 +1,7 @@
+---
+title: "Iteration 11 (verify-harness): is the eval harness really \"~80% built\"?"
+trigger_phrases: []
+---
 # Iteration 11 (verify-harness): is the eval harness really "~80% built"?
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only, refute-by-default). Orchestrator-written. newInfoRatio **0.5**. **CONFIRMS the load-bearing "extend-not-greenfield" claim for the *ranking* harness, with honest refinements: the host is built, the 3 new lanes are greenfield metrics.**

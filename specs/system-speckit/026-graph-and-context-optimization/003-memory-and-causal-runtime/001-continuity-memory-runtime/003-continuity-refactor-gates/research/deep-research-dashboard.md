@@ -12,6 +12,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/deep-research-dashboard.md"]
 
+trigger_phrases: []
 ---
 
 # Deep Research Dashboard — Phase 018

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Standalone CLI, Installation, and Session Surface"
+trigger_phrases: []
+---
 # Iteration 1: Standalone CLI, Installation, and Session Surface
 
 ## Focus

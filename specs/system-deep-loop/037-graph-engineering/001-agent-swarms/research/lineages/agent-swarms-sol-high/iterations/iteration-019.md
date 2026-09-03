@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: Integrated Graph-Based Deep-Loop Architecture"
+trigger_phrases: []
+---
 # Iteration 19: Integrated Graph-Based Deep-Loop Architecture
 
 ## Focus

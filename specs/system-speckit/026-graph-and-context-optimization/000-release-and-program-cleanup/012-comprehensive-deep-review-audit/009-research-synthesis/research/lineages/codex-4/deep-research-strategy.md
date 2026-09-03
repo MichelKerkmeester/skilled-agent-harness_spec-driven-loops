@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - codex-4"
+trigger_phrases: []
+---
 # Deep Research Strategy - codex-4
 
 ## 1. OVERVIEW

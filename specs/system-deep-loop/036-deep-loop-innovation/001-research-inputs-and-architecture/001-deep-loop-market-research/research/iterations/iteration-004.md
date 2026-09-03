@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 4 | model luna (gpt-5.6-luna) | angle: Evaluator / critic / verifier loops | 2026-07-14T21:34:35.683Z -->
 
 Five new layers are useful here: execution/scoring separation, evaluator-driven optimization, adversarial attack generation, judge meta-evaluation, and process-level verification. GitHub signals: [Inspect AI](https://github.com/UKGovernmentBEIS/inspect_ai) ~2.3k stars, active through 2026; [DSPy](https://github.com/stanfordnlp/dspy) ~36.1k, active through July 2026; [DeepTeam](https://github.com/confident-ai/deepteam) ~2.2k, active through June 2026; [JudgeBench](https://github.com/ScalerLab/JudgeBench) ~120, last commit 2024; [PRM800K](https://github.com/openai/prm800k) ~2.1k, archived May 2026.

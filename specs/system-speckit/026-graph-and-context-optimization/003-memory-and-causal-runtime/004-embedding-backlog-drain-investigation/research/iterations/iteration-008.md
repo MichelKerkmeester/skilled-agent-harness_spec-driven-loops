@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Acceptance Spec for `memory_embedding_reconcile`"
+trigger_phrases: []
+---
 # Iteration 8: Acceptance Spec for `memory_embedding_reconcile`
 
 ## Focus

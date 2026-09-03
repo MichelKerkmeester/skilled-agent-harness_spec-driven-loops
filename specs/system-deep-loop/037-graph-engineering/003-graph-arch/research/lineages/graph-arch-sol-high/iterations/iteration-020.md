@@ -1,3 +1,7 @@
+---
+title: "Iteration 20: Independent Final Cross-Check and Synthesis Handoff"
+trigger_phrases: []
+---
 # Iteration 20: Independent Final Cross-Check and Synthesis Handoff
 
 ## Focus

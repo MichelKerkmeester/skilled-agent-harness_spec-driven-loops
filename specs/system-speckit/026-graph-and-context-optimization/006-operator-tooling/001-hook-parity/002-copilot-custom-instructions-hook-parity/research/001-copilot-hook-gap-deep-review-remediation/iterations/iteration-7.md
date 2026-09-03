@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: hooks, agents, and startup-instruction boundaries"
+trigger_phrases: []
+---
 # Iteration 7: hooks, agents, and startup-instruction boundaries
 
 ## Focus

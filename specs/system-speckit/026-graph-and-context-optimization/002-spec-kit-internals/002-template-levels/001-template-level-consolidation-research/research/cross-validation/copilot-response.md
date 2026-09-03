@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I’ll frame this as a scoped research plan only, not a conclusion. I’ll quickly surface relevant repo memory/skill routing context, then answer directly with concrete questions, options, experiments, and convergence criteria.
 
 ● advisor_recommend (MCP: spec_kit_memory) · prompt: "Research scope proposal for greenfield redesi…

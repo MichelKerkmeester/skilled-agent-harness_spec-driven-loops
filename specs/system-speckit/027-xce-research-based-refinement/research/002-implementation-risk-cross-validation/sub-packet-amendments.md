@@ -1,3 +1,7 @@
+---
+title: "027 pt-02 Proposed Sub-Packet Amendments"
+trigger_phrases: []
+---
 # 027 pt-02 Proposed Sub-Packet Amendments
 
 These are proposals only. They are not applied to the five phase specs in this dispatch.

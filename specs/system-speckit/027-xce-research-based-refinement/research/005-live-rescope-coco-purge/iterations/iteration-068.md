@@ -1,3 +1,7 @@
+---
+title: "Iteration 068 — 003 STILL-RELEVANT: 026 scan/enrichment is hygiene only; memo/DAG/chunk-fingerprint foundation unbuilt"
+trigger_phrases: []
+---
 # Iteration 068 — 003 STILL-RELEVANT: 026 scan/enrichment is hygiene only; memo/DAG/chunk-fingerprint foundation unbuilt
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.42. **Findings:** 5.

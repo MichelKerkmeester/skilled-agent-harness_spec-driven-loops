@@ -4,6 +4,7 @@ manifestHash: 27320de96b9d3692954b18268d93704e30dc6b99b7dcf16dd946b7f6017b73d0
 resolver: EffectivePolicy
 soleResolver: true
 terminal: DOCUMENT_ONLY_UNATTESTED
+trigger_phrases: []
 ---
 # Fleet Policy Card
 

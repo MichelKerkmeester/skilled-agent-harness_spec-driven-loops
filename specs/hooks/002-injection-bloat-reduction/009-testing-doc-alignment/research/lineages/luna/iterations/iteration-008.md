@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 — catalog ownership and scope challenge"
+trigger_phrases: []
+---
 # Iteration 8 — catalog ownership and scope challenge
 
 ## Focus

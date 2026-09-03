@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 14 | model luna (gpt-5.6-luna) | angle: DSPy / TextGrad — optimization-as-loop | 2026-07-14T22:23:31.182Z -->
 
 Optimization-as-loop is best represented as:

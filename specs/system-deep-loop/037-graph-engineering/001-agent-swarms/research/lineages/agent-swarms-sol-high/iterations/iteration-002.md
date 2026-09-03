@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Minimum Versioned Executable Graph IR"
+trigger_phrases: []
+---
 # Iteration 2: Minimum Versioned Executable Graph IR
 
 ## Focus

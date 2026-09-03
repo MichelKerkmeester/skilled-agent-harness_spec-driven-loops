@@ -1,3 +1,7 @@
+---
+title: "Writing the `task.v1` document"
+trigger_phrases: []
+---
 # Writing the `task.v1` document
 
 You write **local names**. Graphene derives content-anchored ids. You never type

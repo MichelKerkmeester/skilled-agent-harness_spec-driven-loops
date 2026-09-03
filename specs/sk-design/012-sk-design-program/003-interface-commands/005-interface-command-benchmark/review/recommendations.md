@@ -1,3 +1,7 @@
+---
+title: "Recommendations & Remaining-Work Synthesis"
+trigger_phrases: []
+---
 # Recommendations & Remaining-Work Synthesis
 
 > Synthesized from the `/interface:*` benchmark (v1→v5: 4 build-parity rounds + 6 blind judge-configs across

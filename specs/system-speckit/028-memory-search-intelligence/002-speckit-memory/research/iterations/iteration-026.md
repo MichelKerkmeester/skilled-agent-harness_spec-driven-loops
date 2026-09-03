@@ -1,3 +1,7 @@
+---
+title: "Iteration 26: Round F Cross-System Verification — The PROMOTE-Off-State Meta-Spine (PARTIAL: 0 of 4 true flips)"
+trigger_phrases: []
+---
 # Iteration 26: Round F Cross-System Verification — The PROMOTE-Off-State Meta-Spine (PARTIAL: 0 of 4 true flips)
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Receipt cost on a promotion — measured before and after"
+trigger_phrases: []
+---
 # Receipt cost on a promotion — measured before and after
 
 Measured 2026-08-19 on the operator's machine. Reproduction scripts are beside

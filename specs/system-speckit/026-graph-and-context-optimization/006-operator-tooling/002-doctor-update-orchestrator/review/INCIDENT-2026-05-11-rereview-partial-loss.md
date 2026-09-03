@@ -4,6 +4,7 @@ description: "Documents the 2026-05-11 worktree destruction event during the 013
 date: 2026-05-11
 event_type: data_loss
 severity: low
+trigger_phrases: []
 ---
 
 # Incident — 013 Re-Review Partial Data Loss (2026-05-11)

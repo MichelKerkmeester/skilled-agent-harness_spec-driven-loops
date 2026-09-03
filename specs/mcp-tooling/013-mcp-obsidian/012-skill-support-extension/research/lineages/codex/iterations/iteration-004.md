@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Summary, roll-up, dictionary, and lossless boundaries"
+trigger_phrases: []
+---
 # Iteration 4: Summary, roll-up, dictionary, and lossless boundaries
 
 ## Focus

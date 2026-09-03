@@ -1,3 +1,7 @@
+---
+title: "T001 — Confirm-Before-Build Disposition (Packet 025: Artifact & Certificate Binding)"
+trigger_phrases: []
+---
 <!-- SPECKIT_LEVEL: 3 -->
 
 # T001 — Confirm-Before-Build Disposition (Packet 025: Artifact & Certificate Binding)

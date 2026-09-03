@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Review loop complete. All canonical artifacts are written within the lineage directory only.
 
 **Summary** — `018-reindex-scan-responsiveness-and-cancellation`, lineage `p018-opus-3`, single iteration (maxIterations=1), all 4 dimensions covered.

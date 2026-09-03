@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: `/interface:motion` Creation Template"
+trigger_phrases: []
+---
 # Iteration 10: `/interface:motion` Creation Template
 
 ## Focus

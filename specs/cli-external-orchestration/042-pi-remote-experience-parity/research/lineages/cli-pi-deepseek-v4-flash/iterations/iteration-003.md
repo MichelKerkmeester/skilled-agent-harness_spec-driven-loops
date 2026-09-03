@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Axis 1b — Diff Streaming + Token/Cost Rendering Vocabulary"
+trigger_phrases: []
+---
 # Iteration 3: Axis 1b — Diff Streaming + Token/Cost Rendering Vocabulary
 
 ## Focus

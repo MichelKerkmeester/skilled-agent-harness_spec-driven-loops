@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: header-uppercase transform — did it mangle anything?"
+trigger_phrases: []
+---
 # Iteration 5: header-uppercase transform — did it mangle anything?
 
 > dimension: correctness | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

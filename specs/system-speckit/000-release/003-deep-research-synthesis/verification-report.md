@@ -1,3 +1,7 @@
+---
+title: "v4.0.0.0 Changelog — Verification Report"
+trigger_phrases: []
+---
 # v4.0.0.0 Changelog — Verification Report
 
 > 41 features × 2 independent cli-devin verifiers (deepseek-v4-flash-max + glm-5-2-max), each investigating the real repo. Summary: 17 OK · 13 minor · 4 review · 7 flagged.

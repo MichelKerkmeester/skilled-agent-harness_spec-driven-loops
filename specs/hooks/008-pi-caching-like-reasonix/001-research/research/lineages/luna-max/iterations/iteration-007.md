@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Audit OpenAI-compatible cache identity"
+trigger_phrases: []
+---
 # Iteration 7: Audit OpenAI-compatible cache identity
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 006 -- Adversarial Recheck + Stabilization"
+trigger_phrases: []
+---
 # Deep Review Iteration 006 -- Adversarial Recheck + Stabilization
 
 ## Dimension Focus

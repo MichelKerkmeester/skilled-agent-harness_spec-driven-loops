@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW
 
 Review target: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout

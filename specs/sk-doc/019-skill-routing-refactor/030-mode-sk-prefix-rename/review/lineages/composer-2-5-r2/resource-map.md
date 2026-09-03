@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — .opencode/specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

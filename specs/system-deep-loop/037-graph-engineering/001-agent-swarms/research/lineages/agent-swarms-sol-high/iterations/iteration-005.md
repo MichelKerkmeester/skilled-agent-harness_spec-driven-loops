@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Conflict-Safe Wave Admission"
+trigger_phrases: []
+---
 # Iteration 5: Conflict-Safe Wave Admission
 
 ## Focus

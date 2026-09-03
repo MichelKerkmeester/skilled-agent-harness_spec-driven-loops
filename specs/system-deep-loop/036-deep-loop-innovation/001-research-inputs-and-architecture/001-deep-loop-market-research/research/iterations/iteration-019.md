@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 19 | model luna (gpt-5.6-luna) | angle: Query reformulation & source diversification | 2026-07-14T22:47:16.829Z -->
 
 Query reformulation should be a typed, lineage-preserving branch family—not an opaque prompt rewrite. HyDE generates a fictional document for retrieval, while Query2doc concatenates an LLM-generated pseudo-document with the original query; the synthetic text should receive zero evidence credit until grounded by real sources. [HyDE](https://github.com/texttron/hyde), [Query2doc](https://aclanthology.org/2023.emnlp-main.585/)

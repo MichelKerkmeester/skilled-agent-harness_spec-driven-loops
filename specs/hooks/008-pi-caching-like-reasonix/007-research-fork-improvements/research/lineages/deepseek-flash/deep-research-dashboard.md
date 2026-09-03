@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — deepseek-flash lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — deepseek-flash lineage
 
 ## Lifecycle

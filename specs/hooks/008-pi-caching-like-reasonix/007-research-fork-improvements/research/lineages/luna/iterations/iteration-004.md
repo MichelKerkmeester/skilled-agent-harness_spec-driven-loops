@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Telemetry and observability surfaces"
+trigger_phrases: []
+---
 # Iteration 004 — Telemetry and observability surfaces
 
 ## Focus

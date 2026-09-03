@@ -1,3 +1,7 @@
+---
+title: "Reviewed consumer manifest (phase 002)"
+trigger_phrases: []
+---
 # Reviewed consumer manifest (phase 002)
 
 BASE: `1ec0ad2947b19ac3053c7b031b7d43e67bf42bbe`

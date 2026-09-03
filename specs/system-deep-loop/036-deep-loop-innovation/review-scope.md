@@ -1,3 +1,7 @@
+---
+title: "036 Deep-Loop-Innovation — Conformance Review Scope"
+trigger_phrases: []
+---
 # 036 Deep-Loop-Innovation — Conformance Review Scope
 
 Focused acceptance criteria for this review. The review target is this packet, but most artifacts

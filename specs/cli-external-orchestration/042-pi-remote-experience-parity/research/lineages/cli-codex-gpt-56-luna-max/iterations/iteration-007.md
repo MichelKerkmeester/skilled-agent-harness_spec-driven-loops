@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Content-free attention push"
+trigger_phrases: []
+---
 # Iteration 007 — Content-free attention push
 
 ## Question

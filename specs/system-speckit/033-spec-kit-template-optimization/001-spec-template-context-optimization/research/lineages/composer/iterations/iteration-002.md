@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Agent Engineering harness vs doc-logic + memory system"
+trigger_phrases: []
+---
 # Iteration 2: Agent Engineering harness vs doc-logic + memory system
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Loop"
+trigger_phrases: []
+---
 # Loop
 
 **Best for:** reinforcing cycles, flywheels, feedback loops, and operating loops — anything where the last step feeds the first and a shared hub accumulates state. Use Loop when the reader must see both motions at once: work advances clockwise around the ring, while each pass writes durable state back to one common center.

@@ -41,7 +41,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/bin/lib/launcher-session-proxy.cjs",
-      "lib/runtime/memory-runtime-guard.ts",
       "tests/launcher-session-proxy.vitest.ts"
     ],
     "entities": [
@@ -73,12 +72,6 @@
         "name": "launcher-session-proxy.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "memory-runtime-guard.ts",
-        "kind": "code",
-        "path": "lib/runtime/memory-runtime-guard.ts",
         "source": "derived"
       },
       {
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A 2026-06-04 incident left `mk-spec-memory` stuck at `connecting…` in new sessions after an operator externally SIGTERM-killed the daemon child during a from-source DB rebuild",
     "created_at": "2026-06-04T09:30:00Z",
-    "last_save_at": "2026-08-30T15:39:31.930Z",
+    "last_save_at": "2026-09-03T22:23:00.931Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e169076040fd516fa2adbfa96123b21bfbfbfe1b258294d5b9729cd7f7ddd21",
+    "source_fingerprint": "sha256:638619f9989dbc49bdc0f643d6461c40ba0da1ec3dd790106bb61714cf28d3e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f8ac70fd6e704b43628b22fb0cc697a9731d46ccce0172554b9135765d17ee88",
-      "plan.md": "68faf76da6c0fc2c4f9bfccb5ed65b23a420bc3b08653392c4924e505eeea426",
-      "tasks.md": "7a91670043b63a0285366e2c0edbaccc991b7e40fc81f8893759a625fd19012b",
-      "implementation-summary.md": "102a6a2a38f74577306ab1c805bb2e0b52ff758831b85ea7c312e970881624d9"
+      "plan.md": "21d2c2b7ce08706eb8eb715a453409fdab9f7a26c004d53aa948a9377685e7b8",
+      "tasks.md": "eb84c981950b9ac7ccd7d4fd8e7e19b4fcaecd455bf1f17ce16fc6ec3925ecaa",
+      "implementation-summary.md": "86d0f33c4bfd8b84a30a254850c62a3969c5f444b72057ac204e66b0f432e4a0"
     },
     "last_active_child_id": null,
     "last_active_at": null

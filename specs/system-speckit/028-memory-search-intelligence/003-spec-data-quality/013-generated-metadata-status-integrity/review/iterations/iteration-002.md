@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Dimension
 
 Correctness determinism pass for Target 1 only: determine whether `create.sh --phase --phase-parent` corrupts an existing parent packet's `description.json` on every append invocation or only under narrower conditions.

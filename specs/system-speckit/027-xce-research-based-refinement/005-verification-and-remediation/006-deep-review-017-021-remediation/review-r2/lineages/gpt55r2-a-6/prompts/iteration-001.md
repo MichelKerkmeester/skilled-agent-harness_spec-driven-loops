@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 Dispatch Prompt - gpt55r2-a-6"
+trigger_phrases: []
+---
 # Iteration 001 Dispatch Prompt - gpt55r2-a-6
 
 BINDING: target=.opencode/skills/system-spec-kit/mcp_server search/retrieval surface

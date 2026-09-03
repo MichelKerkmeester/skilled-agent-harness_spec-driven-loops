@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 7/10 cross-validation pass for packet 027.
 
 ITER 7 FOCUS: IRQ7 — TESTED_BY edge ground-truth.

@@ -1,3 +1,7 @@
+---
+title: "Command Surface Router Awareness — Root ROUTER.md Standard Audit"
+trigger_phrases: []
+---
 # Command Surface Router Awareness — Root ROUTER.md Standard Audit
 
 **Lineage:** `dsflashgo` · **Spec:** `specs/sk-doc/031-command-surface-router-awareness` · **Date:** 2026-08-16

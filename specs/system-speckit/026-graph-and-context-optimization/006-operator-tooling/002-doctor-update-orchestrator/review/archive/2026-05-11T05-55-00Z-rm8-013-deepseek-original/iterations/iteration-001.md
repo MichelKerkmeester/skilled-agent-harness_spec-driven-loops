@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 — Inventory Pass"
+trigger_phrases: []
+---
 # Iteration 1 — Inventory Pass
 
 **Date**: 2026-05-11

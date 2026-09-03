@@ -1,3 +1,7 @@
+---
+title: "Style Guide"
+trigger_phrases: []
+---
 # Style Guide
 
 **The single source of truth for colors, typography, and tokens.** Every diagram draws from this — not from hex values inlined in other reference files. If you want to change the visual skin of Schematic, change this file.

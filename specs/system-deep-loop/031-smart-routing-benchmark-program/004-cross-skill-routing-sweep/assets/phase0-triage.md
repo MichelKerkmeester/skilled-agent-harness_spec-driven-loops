@@ -1,3 +1,7 @@
+---
+title: "Phase 0 — Cross-Skill Routing Triage (read-only)"
+trigger_phrases: []
+---
 # Phase 0 — Cross-Skill Routing Triage (read-only)
 
 Two inputs: a computed `D3-ex-default` diagnostic (waste minus the skill's always-loaded DEFAULT tier) and a read-only orphan classification. No skill was mutated.

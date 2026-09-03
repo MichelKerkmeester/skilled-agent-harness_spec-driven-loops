@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Track 2: Quick Start Installation Verification"
+trigger_phrases: []
+---
 # Iteration 006 — Track 2: Quick Start Installation Verification
 
 ## Summary

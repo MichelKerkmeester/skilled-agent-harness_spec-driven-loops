@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy - luna-max lineage
 description: Bounded strategy state for the detached plugin coverage review.
+trigger_phrases: []
 ---
 
 # Deep Review Strategy - Session Tracking

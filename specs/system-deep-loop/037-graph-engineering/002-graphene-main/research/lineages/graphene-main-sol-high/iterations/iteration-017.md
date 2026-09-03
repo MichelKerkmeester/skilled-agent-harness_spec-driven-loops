@@ -1,3 +1,7 @@
+---
+title: "Iteration 017 — Adversarial Safety Audit of P1–P7 Contracts"
+trigger_phrases: []
+---
 # Iteration 017 — Adversarial Safety Audit of P1–P7 Contracts
 
 ## Focus

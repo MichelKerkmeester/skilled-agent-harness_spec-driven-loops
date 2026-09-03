@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 - 768d schema-lock quantitative falsification [PASS-2]"
+trigger_phrases: []
+---
 # Iteration 011 - 768d schema-lock quantitative falsification [PASS-2]
 
 ## Pass 1 claim under attack

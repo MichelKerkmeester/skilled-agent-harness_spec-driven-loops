@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 High-blast documentation-alignment review with writes confined to the bound review packet. I will follow the fixed `deep-review` iteration contract, inspect the prescribed slice and prior review state, then emit the three required artifacts.
 The retry state is inconsistent with later completed iterations, so this pass is being recorded as iteration 004 without changing their records. The slice exposes three evidence/status contradictions and two template placeholders; I am confirming the cited lines before writing the retry artifacts.
 I will write the five confirmed findings only to the approved review artifacts: three P1 documentation/evidence contradictions and two P2 frontmatter placeholders. No reviewed documentation or code will be modified.

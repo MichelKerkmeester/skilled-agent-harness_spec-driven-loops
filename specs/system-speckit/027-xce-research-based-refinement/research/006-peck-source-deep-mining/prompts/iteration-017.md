@@ -1,3 +1,7 @@
+---
+title: "Iteration 017 — Completeness critic: what did the gpt-5.5 run miss in peck-master?"
+trigger_phrases: []
+---
 DEEP-RESEARCH — CROSS-MODEL GAP SWEEP (MiniMax M3)
 
 # Iteration 017 — Completeness critic: what did the gpt-5.5 run miss in peck-master?

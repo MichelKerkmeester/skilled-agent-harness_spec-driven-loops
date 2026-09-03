@@ -1,3 +1,7 @@
+---
+title: "Iteration 10 — Final Synthesis"
+trigger_phrases: []
+---
 # Iteration 10 — Final Synthesis
 
 **Iteration:** 10 of 10

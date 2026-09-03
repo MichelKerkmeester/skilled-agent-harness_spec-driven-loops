@@ -1,3 +1,7 @@
+---
+title: "Iter {ITER_NUM} — Track {TRACK}: {RQ_SHORT}"
+trigger_phrases: []
+---
 # Iter {ITER_NUM} — Track {TRACK}: {RQ_SHORT}
 
 ## SITUATION

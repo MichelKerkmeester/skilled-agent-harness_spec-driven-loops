@@ -1,3 +1,7 @@
+---
+title: "Detached lineage phase log"
+trigger_phrases: []
+---
 # Detached lineage phase log
 
 - phase_init: complete. artifact_dir was bound directly to the configured fanout_lineage_artifact_dir; resolveArtifactRoot was not run. The 041 packet and local lineage boundary were read before initialization.

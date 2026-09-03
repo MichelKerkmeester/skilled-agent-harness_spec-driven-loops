@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Status snapshot closure and P0/P1 contradiction check"
+trigger_phrases: []
+---
 # Iteration 007 — Status snapshot closure and P0/P1 contradiction check
 
 ## Status

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Bounded STUDY Protocol for Safe Exemplars"
+trigger_phrases: []
+---
 # Iteration 3: Bounded STUDY Protocol for Safe Exemplars
 
 ## Focus

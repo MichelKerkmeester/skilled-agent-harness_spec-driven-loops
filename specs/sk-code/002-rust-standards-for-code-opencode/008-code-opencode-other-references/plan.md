@@ -2,6 +2,7 @@
 title: "Implementation Plan: Phase 8 — Split code-opencode Other-Language & Shared References"
 description: "Deterministic split of 9 code-opencode docs + tool-driven lockstep rewire of the language RESOURCE_MAPs, shared tier, parent union, vitest TS_TRIO, and playbook expected_resources."
 contextType: "implementation"
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 8 — Split code-opencode Other-Language & Shared References

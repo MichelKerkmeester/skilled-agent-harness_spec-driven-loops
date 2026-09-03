@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 1 — Inventory Pass"
+trigger_phrases: []
+---
 DEEP-REVIEW
 
 # Deep-Review Iteration 1 — Inventory Pass

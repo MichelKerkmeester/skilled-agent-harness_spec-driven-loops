@@ -16,6 +16,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

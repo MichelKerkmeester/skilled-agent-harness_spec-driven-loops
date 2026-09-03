@@ -2,6 +2,7 @@
 _memory:
   continuity:
     next_safe_action: "Iteration 003 should focus on 010/003 reason/step round-trip and blast_radius enrichment per strategy.md."
+trigger_phrases: []
 ---
 # Iteration 002 — 010/002 defensive input validation audit
 

@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - obsidian-tables fan-out lineage
 description: Persistent research plan for the obsidian-tables file-layer knowledge base.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking

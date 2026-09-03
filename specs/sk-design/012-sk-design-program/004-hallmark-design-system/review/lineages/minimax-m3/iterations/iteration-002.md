@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: D1 Correctness — Verify Each Child Claim Against the Code"
+trigger_phrases: []
+---
 # Iteration 2: D1 Correctness — Verify Each Child Claim Against the Code
 
 ## Focus

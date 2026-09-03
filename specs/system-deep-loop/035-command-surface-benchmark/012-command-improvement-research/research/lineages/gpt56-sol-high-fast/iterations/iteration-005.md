@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Authoring ergonomics and prioritized deltas"
+trigger_phrases: []
+---
 # Iteration 005 — Authoring ergonomics and prioritized deltas
 
 ## Focus

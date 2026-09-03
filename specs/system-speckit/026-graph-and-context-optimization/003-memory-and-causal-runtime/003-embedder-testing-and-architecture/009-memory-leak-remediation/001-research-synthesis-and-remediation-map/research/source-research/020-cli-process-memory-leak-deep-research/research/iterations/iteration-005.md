@@ -1,3 +1,7 @@
+---
+title: "Iteration 005: Apple Silicon swap, wired memory, sidecar/reranker/embedder/Ollama, and expected-daemon classification"
+trigger_phrases: []
+---
 # Iteration 005: Apple Silicon swap, wired memory, sidecar/reranker/embedder/Ollama, and expected-daemon classification
 
 ## Focus

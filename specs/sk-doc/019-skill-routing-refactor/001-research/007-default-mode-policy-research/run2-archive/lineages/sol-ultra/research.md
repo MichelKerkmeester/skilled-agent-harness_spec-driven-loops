@@ -1,3 +1,7 @@
+---
+title: "Parent-Hub defaultMode Policy: Divergent Run 2 Synthesis"
+trigger_phrases: []
+---
 # Parent-Hub defaultMode Policy: Divergent Run 2 Synthesis
 
 ## 1. Executive Summary

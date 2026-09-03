@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 5 | SOL xhigh | mode: deep-research | angle: A5-synth deep-research :: synthesis & highest-leverage recs | 2026-07-15T08:25:16.656Z -->
 
 The synthesis points to one priority: turn `deep-research` from an iterative answer generator into a living, claim-addressable evidence system. Its current progressive synthesis deduplicates prose and preserves gaps, while JSONL, reducers, and the findings registry already provide the right substrate. What is missing is an intermediate representation connecting atomic claims to evidence spans, contradictions, source versions, and later invalidation.

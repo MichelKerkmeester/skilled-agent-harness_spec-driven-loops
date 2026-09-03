@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### sk-design gains Claude-parity manager shell and procedure cards
 The sk-design hub was refactored to behave more like Claude's Design workflow while preserving OpenCode-native routing, mode packets, and proof gates. It now makes an intake step, a visible plan, proof expectations, missing-proof blocking, a verifier cadence, and the separation between transport and taste explicit before any mode handoff or ready claim. Fourteen private procedure cards (one per design procedure, from discovery through design-system extraction) were added across the five modes under a shared schema, and each mode packet now carries procedure-card selection and direct-fallback guidance. The router registry was synchronized: token artifact ownership moved from the foundations mode to the design-md-generator mode, and hub-identity was dropped as interface routing evidence. Six README files were aligned to the shipped behavior, 23 manual-testing scenarios were added across the hub and modes, and feature catalogs were completed. The parity benchmark closed with a conditional verdict: router, advisor, and procedure-selection invariants pass, but live, manual, and browser-mode scenarios remain operator follow-up before a READY claim.
 

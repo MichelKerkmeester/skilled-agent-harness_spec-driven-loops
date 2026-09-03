@@ -1,3 +1,7 @@
+---
+title: "T001 — Confirm-First Disposition"
+trigger_phrases: []
+---
 # T001 — Confirm-First Disposition
 
 Re-graded every requirement (spec.md REQ-001..REQ-011) and checklist item against live code at

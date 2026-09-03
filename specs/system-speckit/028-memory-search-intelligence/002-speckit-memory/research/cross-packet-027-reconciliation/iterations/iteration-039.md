@@ -1,3 +1,7 @@
+---
+title: "Iteration 39 (Round N adversarial): Completeness + honesty audit at ~140 iterations"
+trigger_phrases: []
+---
 # Iteration 39 (Round N adversarial): Completeness + honesty audit at ~140 iterations
 
 ## Focus

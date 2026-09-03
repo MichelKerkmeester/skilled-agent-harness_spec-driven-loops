@@ -1,3 +1,7 @@
+---
+title: "Deep-Research SYNTHESIS — 007 MCP Runtime Improvement"
+trigger_phrases: []
+---
 # Deep-Research SYNTHESIS — 007 MCP Runtime Improvement
 
 ## CONTEXT

@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 — Beancount directive and inventory model"
+trigger_phrases: []
+---
 # Iteration 2 — Beancount directive and inventory model
 
 ## Focus

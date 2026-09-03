@@ -1,3 +1,7 @@
+---
+title: "Iteration 11: code READMEs — sk-prompt, advisor, mcp-tooling, code-graph, cli, mcp-code-mode"
+trigger_phrases: []
+---
 # Iteration 11: code READMEs — sk-prompt, advisor, mcp-tooling, code-graph, cli, mcp-code-mode
 
 > dimension: accuracy | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

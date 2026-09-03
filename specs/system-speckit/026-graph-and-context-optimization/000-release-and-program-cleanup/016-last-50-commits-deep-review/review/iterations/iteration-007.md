@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Test Integrity & Verification Honesty (dimension: maintainability, angle A6)"
+trigger_phrases: []
+---
 # Iteration 007 — Test Integrity & Verification Honesty (dimension: maintainability, angle A6)
 
 ## Dispatcher

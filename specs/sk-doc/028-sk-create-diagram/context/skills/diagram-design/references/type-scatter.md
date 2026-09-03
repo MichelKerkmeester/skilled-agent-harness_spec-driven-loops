@@ -1,3 +1,7 @@
+---
+title: "Scatter Plot"
+trigger_phrases: []
+---
 # Scatter Plot
 
 **Best for:** correlation and distribution — two continuous variables plotted against each other. Use when the relationship (or lack of one) between variables is the message, or when you need to identify clusters, outliers, and high/low performers.

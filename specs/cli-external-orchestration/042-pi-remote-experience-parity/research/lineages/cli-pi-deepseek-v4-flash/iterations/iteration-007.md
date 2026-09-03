@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Axis 5 — Browsable, Renamable Session List under Opaque-Id/Redaction"
+trigger_phrases: []
+---
 # Iteration 7: Axis 5 — Browsable, Renamable Session List under Opaque-Id/Redaction
 
 ## Focus

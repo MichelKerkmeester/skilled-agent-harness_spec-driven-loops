@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — hook contracts + alignment verifier (Facets 3+4)"
+trigger_phrases: []
+---
 # Iteration 004 — hook contracts + alignment verifier (Facets 3+4)
 _Executor: GLM-5.2, read-only; orchestrated by Opus._
 

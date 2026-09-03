@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 SKILL ROUTING: User directed → `deep-review`. Spec folder is supplied in the request; artifact writes are constrained to the provided lineage directory.Reading the review protocol resources and the supplied scope next; artifact writes will stay under the lineage directory.The scope folder contains only `spec.md`; no prior lineage state exists in the artifact root aside from `.executor-state/`.Starting the single review iteration with a correctness/security emphasis on the search pipeline, scoring, and handler seams named by the scope.BINDING: artifact_dir=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/lineages/gpt55r2-a-7
 BINDING: spec_folder=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval
 BINDING: resolveArtifactRoot skipped per fanout_lineage_artifact_dir override.## Goal

@@ -1,3 +1,7 @@
+---
+title: "Round-2 Deep Review: Data-Quality Subsystem"
+trigger_phrases: []
+---
 # Round-2 Deep Review: Data-Quality Subsystem
 
 > 30 review iterations across 6 angles (code quality, architecture, wiring, documentation, effectiveness, adversarial), run as parallel opus seats. Each seat read the LIVE system-spec-kit code the program grounds in, not only the 005 docs, since 005 ships nothing. Findings are tagged SPEC-PREMISE (the docs claim X) versus LIVE-CODE (the real tree shows Y).

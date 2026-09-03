@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Aside CLI Command Surface + MCP Server Mechanics"
+trigger_phrases: []
+---
 # Iteration 1: Aside CLI Command Surface + MCP Server Mechanics
 
 ## Focus

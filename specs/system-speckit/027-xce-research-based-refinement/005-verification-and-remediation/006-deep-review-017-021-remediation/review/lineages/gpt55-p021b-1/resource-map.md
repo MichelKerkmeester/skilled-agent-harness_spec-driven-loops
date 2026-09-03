@@ -1,3 +1,7 @@
+---
+title: "Resource Map - Fanout Lineage gpt55-p021b-1"
+trigger_phrases: []
+---
 # Resource Map - Fanout Lineage gpt55-p021b-1
 
 Resource-map coverage gate: N/A.

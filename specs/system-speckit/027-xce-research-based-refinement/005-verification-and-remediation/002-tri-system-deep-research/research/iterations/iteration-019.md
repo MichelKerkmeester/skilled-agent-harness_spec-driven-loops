@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 — Angle 19"
+trigger_phrases: []
+---
 # Iteration 019 — Angle 19
 
 **Angle:** mcp_server INSTALL_GUIDE and README accuracy against the dual-stack (MCP + CLI front door) reality.

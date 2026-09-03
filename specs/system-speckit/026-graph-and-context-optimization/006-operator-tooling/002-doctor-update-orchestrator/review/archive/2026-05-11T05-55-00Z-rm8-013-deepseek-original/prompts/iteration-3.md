@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 3 (of 10) — correctness (002-sandbox-testing-playbook + cross-phase integration)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 3 (of 10) — correctness (002-sandbox-testing-playbook + cross-phase integration)
 
 ## TARGET AUTHORITY (read first)

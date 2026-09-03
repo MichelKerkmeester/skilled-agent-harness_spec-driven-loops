@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The review loop is complete. All canonical artifacts are written within the lineage directory only.
 
 **Verdict: PASS** (`hasAdvisories: true`) — 0 P0, 0 P1, 4 P2 advisories across the 020-maintenance-grace-background-embedding deliverables.

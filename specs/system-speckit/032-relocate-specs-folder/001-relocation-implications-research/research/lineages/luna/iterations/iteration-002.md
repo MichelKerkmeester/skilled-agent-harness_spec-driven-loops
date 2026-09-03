@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Git, symlink, and ignore behavior"
+trigger_phrases: []
+---
 # Iteration 2: Git, symlink, and ignore behavior
 
 ## Focus

@@ -4,6 +4,7 @@ description: "7-iteration scoped review with P0/P1/P2 findings."
 generated_by: cli-codex gpt-5.5 high fast
 generated_at: 2026-04-25T13:19:55Z
 iteration_count: 7
+trigger_phrases: []
 ---
 
 # Deep Review — 005-memory-causal-trust-display

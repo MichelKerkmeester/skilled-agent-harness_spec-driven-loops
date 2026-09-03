@@ -1,3 +1,7 @@
+---
+title: "13--memory-quality-and-indexing"
+trigger_phrases: []
+---
 # 13--memory-quality-and-indexing
 
 - Total: 29

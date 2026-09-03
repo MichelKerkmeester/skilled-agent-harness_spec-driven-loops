@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Axis 2 — Low-Friction Phone Approval with Exact-Action Binding"
+trigger_phrases: []
+---
 # Iteration 4: Axis 2 — Low-Friction Phone Approval with Exact-Action Binding
 
 ## Focus

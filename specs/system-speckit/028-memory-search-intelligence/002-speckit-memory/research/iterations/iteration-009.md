@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Adversarial Verification — RRF k=40-vs-60 Tuning Coupling"
+trigger_phrases: []
+---
 # Iteration 9: Adversarial Verification — RRF k=40-vs-60 Tuning Coupling
 
 ## Focus

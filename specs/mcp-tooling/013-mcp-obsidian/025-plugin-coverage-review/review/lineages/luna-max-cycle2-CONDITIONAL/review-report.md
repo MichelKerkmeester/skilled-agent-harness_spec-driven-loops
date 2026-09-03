@@ -1,6 +1,7 @@
 ---
 title: Deep Review Report — mcp-obsidian Plugin Coverage
 description: Final synthesis for the detached luna-max review lineage.
+trigger_phrases: []
 ---
 
 # Deep Review Report

@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Eight Out-of-Box Idea Child Packets"
+trigger_phrases: []
+---
 # Iteration 7: Eight Out-of-Box Idea Child Packets
 
 ## Focus

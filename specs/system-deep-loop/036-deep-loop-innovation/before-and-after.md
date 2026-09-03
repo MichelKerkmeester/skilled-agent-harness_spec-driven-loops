@@ -1,3 +1,7 @@
+---
+title: "The Deep-Loop Systems: Before and After"
+trigger_phrases: []
+---
 # The Deep-Loop Systems: Before and After
 
 A plain-language tour of every deep-loop system this program touches — what it did before, what it does after, and why the change was worth making. Written for someone who wants to understand the shape of the change without reading the spec.

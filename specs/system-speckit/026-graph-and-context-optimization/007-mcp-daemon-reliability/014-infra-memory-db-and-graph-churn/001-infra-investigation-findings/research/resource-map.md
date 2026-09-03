@@ -1,3 +1,7 @@
+---
+title: "Resource Map — 032 infra root-cause deep research"
+trigger_phrases: []
+---
 # Resource Map — 032 infra root-cause deep research
 
 Evidence sources consulted across iterations 001–003, grouped by sub-question. All references are read-only; no source/git/DB mutations were made during research.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 06 — AGENTS triad sync + distributed governance rule"
+trigger_phrases: []
+---
 # Iteration 06 — AGENTS triad sync + distributed governance rule
 
 **Executor:** cli-copilot (gpt-5.4, reasoning: high) + direct Read/Grep

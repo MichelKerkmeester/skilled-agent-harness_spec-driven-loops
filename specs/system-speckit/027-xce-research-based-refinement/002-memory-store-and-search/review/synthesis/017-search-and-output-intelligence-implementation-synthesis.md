@@ -1,3 +1,7 @@
+---
+title: "017 Review Synthesis (parent + 7 children)"
+trigger_phrases: []
+---
 # 017 Review Synthesis (parent + 7 children)
 
 **Phase reviewed:** `027/002/017-search-and-output-intelligence-implementation` — a **phase-parent** with 7 child sub-phases.

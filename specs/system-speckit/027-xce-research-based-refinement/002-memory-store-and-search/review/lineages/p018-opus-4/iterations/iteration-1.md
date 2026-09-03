@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All artifacts are written and confined to the lineage directory. Review complete.
 
 **Summary — lineage p018-opus-4** (target: 027/002/018-reindex-scan-responsiveness-and-cancellation):

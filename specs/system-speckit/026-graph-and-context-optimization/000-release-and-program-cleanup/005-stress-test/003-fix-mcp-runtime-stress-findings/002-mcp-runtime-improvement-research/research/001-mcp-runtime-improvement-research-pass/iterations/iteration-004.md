@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - Q3 CocoIndex source-vs-markdown ranking imbalance"
+trigger_phrases: []
+---
 # Iteration 004 - Q3 CocoIndex source-vs-markdown ranking imbalance
 
 ## Focus

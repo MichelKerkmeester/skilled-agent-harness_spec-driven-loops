@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Correctness Audit — statsModel/ctxModel Consolidation and Virtual Routing"
+trigger_phrases: []
+---
 # Iteration 3: Correctness Audit — statsModel/ctxModel Consolidation and Virtual Routing
 
 ## Focus

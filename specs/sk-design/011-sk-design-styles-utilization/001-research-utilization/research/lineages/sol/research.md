@@ -1,6 +1,7 @@
 ---
 title: "Deep Research: sk-design Styles Library Utilization"
 description: "Evidence-backed strategy for indexing, retrieving, and consuming the 1,290-style design-token corpus across the sk-design hub and five modes."
+trigger_phrases: []
 ---
 
 # sk-design Styles Library Utilization

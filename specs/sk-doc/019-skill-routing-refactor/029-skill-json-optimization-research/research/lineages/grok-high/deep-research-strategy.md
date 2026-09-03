@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - grok-high lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy - grok-high lineage
 
 ## 2. TOPIC

@@ -1,3 +1,7 @@
+---
+title: "Review Report — 019-maintenance-grace-daemon-survives-reelection"
+trigger_phrases: []
+---
 # Review Report — 019-maintenance-grace-daemon-survives-reelection
 
 Lineage `fanout-p019-opus-1` · executor `cli-claude-code` model `claude-opus-4-8` · 1 iteration (maxIterations=1) · observation-only.

@@ -1,3 +1,7 @@
+---
+title: "Foo (M-219)"
+trigger_phrases: []
+---
 # Foo (M-219)
 
 Feature ID `M-219` must NOT change (no .md, letter prefix).

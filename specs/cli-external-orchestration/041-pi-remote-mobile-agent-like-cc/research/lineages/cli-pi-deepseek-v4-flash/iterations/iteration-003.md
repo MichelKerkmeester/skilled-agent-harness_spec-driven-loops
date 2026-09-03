@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Disconnect-safe state model and reconnection protocol"
+trigger_phrases: []
+---
 # Iteration 3: Disconnect-safe state model and reconnection protocol
 
 ## Focus

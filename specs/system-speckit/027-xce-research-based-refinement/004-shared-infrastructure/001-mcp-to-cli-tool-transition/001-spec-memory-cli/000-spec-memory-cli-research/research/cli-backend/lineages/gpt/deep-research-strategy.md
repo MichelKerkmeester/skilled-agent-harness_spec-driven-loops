@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - GPT Lineage, CLI Back-End Design"
+trigger_phrases: []
+---
 # Deep Research Strategy - GPT Lineage, CLI Back-End Design
 
 ## Research Topic

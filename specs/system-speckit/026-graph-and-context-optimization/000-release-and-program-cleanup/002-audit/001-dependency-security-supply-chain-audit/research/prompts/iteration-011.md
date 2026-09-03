@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 11 of 25 - MCP Server Allowlist"
+trigger_phrases: []
+---
 # Deep Research Iteration 11 of 25 - MCP Server Allowlist
 
 ## SITUATION

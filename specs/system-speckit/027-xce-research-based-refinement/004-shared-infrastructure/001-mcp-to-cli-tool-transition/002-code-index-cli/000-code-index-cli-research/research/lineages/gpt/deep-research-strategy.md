@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - Code-Index CLI Feasibility"
+trigger_phrases: []
+---
 # Deep Research Strategy - Code-Index CLI Feasibility
 
 ## Research Topic

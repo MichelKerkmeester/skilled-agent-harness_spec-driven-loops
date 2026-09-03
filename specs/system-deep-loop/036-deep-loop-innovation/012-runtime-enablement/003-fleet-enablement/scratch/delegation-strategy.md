@@ -1,3 +1,7 @@
+---
+title: "Delegation strategy"
+trigger_phrases: []
+---
 # Delegation strategy
 
 What actually works for dispatching this build, and why. Every constraint below

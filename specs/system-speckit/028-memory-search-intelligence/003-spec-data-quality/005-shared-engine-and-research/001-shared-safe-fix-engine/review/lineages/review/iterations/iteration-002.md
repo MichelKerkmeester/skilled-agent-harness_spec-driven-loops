@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Security + Maintainability + checklist_evidence (stabilization)"
+trigger_phrases: []
+---
 # Iteration 002 — Security + Maintainability + checklist_evidence (stabilization)
 
 **Target:** `026-shared-safe-fix-engine` (spec-folder, status PLANNED)

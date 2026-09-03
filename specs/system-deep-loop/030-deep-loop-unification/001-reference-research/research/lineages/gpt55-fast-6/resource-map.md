@@ -1,3 +1,7 @@
+---
+title: "Resource Map: gpt55-fast-6"
+trigger_phrases: []
+---
 # Resource Map: gpt55-fast-6
 
 ## Scope

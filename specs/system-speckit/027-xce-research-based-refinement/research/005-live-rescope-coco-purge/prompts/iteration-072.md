@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 072 — ADDITIONS: shipped 026 mechanisms 027 should BUILD ON"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 072 — ADDITIONS: shipped 026 mechanisms 027 should BUILD ON

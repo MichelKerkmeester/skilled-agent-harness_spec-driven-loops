@@ -1,3 +1,7 @@
+---
+title: "Iteration [9]: TheBinaryGuy pi-fast-mode edge cases — adopt vs reject"
+trigger_phrases: []
+---
 # Iteration [9]: TheBinaryGuy pi-fast-mode edge cases — adopt vs reject
 
 ## Focus

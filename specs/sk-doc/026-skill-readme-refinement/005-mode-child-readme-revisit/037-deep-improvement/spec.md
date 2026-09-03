@@ -4,7 +4,6 @@ description: "Rewrite the deep-improvement README at .opencode/skills/system-dee
 trigger_phrases:
   - "deep improvement readme revisit"
   - "deep-improvement readme rewrite"
-  - "deep improvement readme rewrite"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

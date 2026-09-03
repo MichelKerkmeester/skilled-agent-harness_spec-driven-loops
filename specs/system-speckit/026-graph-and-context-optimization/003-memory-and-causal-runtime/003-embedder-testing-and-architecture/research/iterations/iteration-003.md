@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Iteration 3 audited arc `002-spec-memory-stack`, the mk-spec-memory TypeScript MCP embedder stack under `013-embedder-testing-and-architecture`. The pass focused on parent/child metadata consistency, ADR-014 local-first default claims, and source alignment for the adapter, auto-select, factory, registry, and reindex paths.

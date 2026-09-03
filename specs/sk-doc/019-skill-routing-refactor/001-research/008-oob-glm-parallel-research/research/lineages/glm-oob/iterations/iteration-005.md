@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Contrarian Frame-Break + Radical Simplification"
+trigger_phrases: []
+---
 # Iteration 5: Contrarian Frame-Break + Radical Simplification
 
 **Lineage:** glm-oob (cli-opencode / GLM-5.2)

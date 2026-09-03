@@ -15,6 +15,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Implementation Summary: Execute the 111-File Snippet Rename + Stage Injection
 

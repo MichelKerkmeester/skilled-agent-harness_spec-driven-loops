@@ -6,6 +6,7 @@ lens: Pragmatic
 status: complete
 timestamp: "2026-05-24T23:00:00Z"
 simulated: false
+trigger_phrases: []
 ---
 
 # Seat 003: Pragmatic Operator Assessment

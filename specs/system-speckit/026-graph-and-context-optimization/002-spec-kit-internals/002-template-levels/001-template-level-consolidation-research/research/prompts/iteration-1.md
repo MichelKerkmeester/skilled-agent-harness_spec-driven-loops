@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration Prompt Pack"
+trigger_phrases: []
+---
 # Deep-Research Iteration Prompt Pack
 
 This prompt pack renders the per-iteration context for the deep-research LEAF agent (cli-codex executor: `gpt-5.5` / reasoning=high / service-tier=fast).

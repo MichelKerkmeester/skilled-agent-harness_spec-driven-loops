@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 35 | SOL xhigh | mode: model-benchmark | angle: A5-synth model-benchmark :: synthesis & highest-leverage recs | 2026-07-15T11:01:48.729Z -->
 
 Model-benchmark should become the controlled model-substitution laboratory embedded inside the workflow—not a smaller private leaderboard.

@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-015.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 015 — Conflict Handling and Arbitration

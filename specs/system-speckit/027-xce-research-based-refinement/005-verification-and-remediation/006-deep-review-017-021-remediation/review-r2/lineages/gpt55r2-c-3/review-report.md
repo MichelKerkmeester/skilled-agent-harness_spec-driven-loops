@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - Scope C Rest Of Server"
+trigger_phrases: []
+---
 # Deep Review Report - Scope C Rest Of Server
 
 ## Executive Summary

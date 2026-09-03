@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 `SKILL ROUTING: User directed -> deep-review`. The review is scoped to documentation claims; I will inspect the strategy, review doctrine, README, and named handlers, then write only the three required review artifacts.
 The handler README’s substantive claims are supported by the reviewed implementations: scan coalescing and unscoped orphan/suspect recovery, query-time existence filtering, the save mutex, and mode-aware context routing. I found no new P0/P1/P2 documentation-drift finding in this slice; I am recording the ruled-out directions and coverage evidence.
 **Review Verdict: PASS**

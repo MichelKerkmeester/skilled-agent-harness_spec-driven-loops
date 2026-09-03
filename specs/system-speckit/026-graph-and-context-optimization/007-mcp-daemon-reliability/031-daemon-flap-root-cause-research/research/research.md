@@ -1,3 +1,7 @@
+---
+title: "Deep Research — daemon-flap root cause + fix (mk-spec-memory / mk-skill-advisor / mk-code-index)"
+trigger_phrases: []
+---
 # Deep Research — daemon-flap root cause + fix (mk-spec-memory / mk-skill-advisor / mk-code-index)
 
 Synthesis of a 10-iteration deep-research effort (`openai/gpt-5.5-fast --variant xhigh`, read-only seats, orchestrator-written) + live orchestrator verification. Question: why do the shared MCP daemons (here: mk-skill-advisor + mk-spec-memory) keep dying with stale sockets while mk-code-index survives, and what is the definitive root-cause fix? This continues the 30-phase `007-mcp-daemon-reliability` saga.

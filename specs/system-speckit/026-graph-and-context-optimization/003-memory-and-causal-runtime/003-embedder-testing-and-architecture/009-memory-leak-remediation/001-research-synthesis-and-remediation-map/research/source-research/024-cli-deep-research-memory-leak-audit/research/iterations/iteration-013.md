@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Validate process-sweep and rerank-sidecar lifecycle recommendations for safety and operator usability. This pass checks the metadata needed to distinguish active sessions from stale child processes, the dry-run and confirmation gates required before termination, sidecar ownership across PID/port/health/lineage surfaces, unsafe `pkill`/pattern-matching risks, and whether sweep and sidecar lifecycle can share inventory code without becoming one overcoupled controller.

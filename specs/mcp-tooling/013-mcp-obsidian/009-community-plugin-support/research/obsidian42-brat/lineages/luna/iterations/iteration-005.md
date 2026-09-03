@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Command and Install Gap Closure"
+trigger_phrases: []
+---
 # Iteration 5: Command and Install Gap Closure
 
 ## Focus

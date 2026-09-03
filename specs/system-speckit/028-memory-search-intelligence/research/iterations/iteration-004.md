@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Command presentation alignment for `/memory:search` envelope and eval outputs"
+trigger_phrases: []
+---
 # Iteration 4: Command presentation alignment for `/memory:search` envelope and eval outputs
 
 ## Focus

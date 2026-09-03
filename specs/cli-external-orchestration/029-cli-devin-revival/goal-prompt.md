@@ -1,3 +1,7 @@
+---
+title: "Goal Prompt: Continue cli-devin Revival"
+trigger_phrases: []
+---
 # Goal Prompt: Continue cli-devin Revival
 
 Continue the phased `cli-devin` revival from `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/`.

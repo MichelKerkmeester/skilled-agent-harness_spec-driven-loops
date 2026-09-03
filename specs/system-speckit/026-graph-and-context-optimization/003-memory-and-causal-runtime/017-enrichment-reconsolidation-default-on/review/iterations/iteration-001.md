@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 — correctness — e081-classification"
+trigger_phrases: []
+---
 # Iteration 1 — correctness — e081-classification
 
 **Dispatch:** `gpt-5.5-fast` (variant high) via cli-opencode. dispatchOk: true (real verdict returned).

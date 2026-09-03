@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - Security / Integrity: path and link safety"
+trigger_phrases: []
+---
 # Iteration 003 - Security / Integrity: path and link safety
 
 ## State Read

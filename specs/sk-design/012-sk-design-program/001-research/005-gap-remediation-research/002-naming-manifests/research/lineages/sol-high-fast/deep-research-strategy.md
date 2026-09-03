@@ -3,6 +3,7 @@ title: "Deep Research Strategy: Styles Naming and Manifest Consolidation"
 description: "Detached five-iteration research strategy for kebab-case migration and single-manifest design."
 importance_tier: important
 contextType: research
+trigger_phrases: []
 ---
 
 # Deep Research Strategy: Styles Naming and Manifest Consolidation

@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The 1,291-style library in `.opencode/skills/sk-design/styles/` is ~13k flat files with only a file-walking retrieval engine (`styles/engine`, packet 011)",
     "created_at": "2026-07-19T06:17:50.113Z",
-    "last_save_at": "2026-08-30T15:39:12.614Z",
+    "last_save_at": "2026-09-03T22:17:31.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,14 +196,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9d5c0a353f4577377138d42727e744909061bbb4bc89c0d91cb6335ce45699b6",
+    "source_fingerprint": "sha256:6ac69a09bb30be9e401189558a0784a1dd504ca52c46d6aee34f1e3f7b4070ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0164d47aa85080a9e77c32dd68432b367f88dc22ed32bfbb1e40118ca492f810",
-      "plan.md": "35f7174e2e57094f96e8d70ee3e4a0ac29f94ab12e3f3d264978fe6152de3e34",
-      "tasks.md": "9004d9b704ecd66fabfd59ca3ce3ae9b523c27057e63d574488ecbe77af45b85",
-      "implementation-summary.md": "c47db92bd76670969713f0787dcad3346fc161e182464035778ac726a6e7f52b",
-      "research/research.md": "c618e7234954d4ecf4430a2ad94214dab9311af01c599fae45f8d6cc5e45a714"
+      "plan.md": "129ea67a39b1b94d31d6f3e379378e2695f089959be376b31804004660cc37ac",
+      "tasks.md": "8eaf6b1848697084aa033832b648c3e3dbcba35dd89e1c63ec627c216f14011e",
+      "implementation-summary.md": "c50691a807992d36f842e01032e1c7b7ca877052406b0139ff64e937854a4f6d",
+      "research/research.md": "f698d9f7d013c748469a56aac4e77c5d62dd8429532357ccc97cce97393d1749"
     },
     "last_active_child_id": null,
     "last_active_at": null

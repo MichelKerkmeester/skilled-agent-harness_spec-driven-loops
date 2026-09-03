@@ -1,3 +1,7 @@
+---
+title: "T011 — live `devin -p` smoke dispatch on `glm-5-2`"
+trigger_phrases: []
+---
 # T011 — live `devin -p` smoke dispatch on `glm-5-2`
 
 Run 2026-08-18T19:40:13Z by the orchestrator, on the operator's authenticated

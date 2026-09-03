@@ -1,3 +1,7 @@
+---
+title: "Running Notes"
+trigger_phrases: []
+---
 # Running Notes
 
 Observations from operating the research program itself. These are not research findings; they are

@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Security — path, symlink, and repair boundaries"
+trigger_phrases: []
+---
 # Iteration 2: Security — path, symlink, and repair boundaries
 
 ## Dispatcher

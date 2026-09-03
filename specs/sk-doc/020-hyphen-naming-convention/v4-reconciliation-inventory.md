@@ -1,3 +1,7 @@
+---
+title: "020 ↔ v4 Reconciliation Inventory"
+trigger_phrases: []
+---
 # 020 ↔ v4 Reconciliation Inventory
 
 > Where concurrent v4 work has moved **ahead of** the 020 kebab-naming plan, and what the plan

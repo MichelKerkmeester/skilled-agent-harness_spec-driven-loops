@@ -11,6 +11,7 @@ _memory:
     next_safe_action: "Operator approves; execute the groups in order in a Public worktree."
     blockers: []
     completion_pct: 0
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

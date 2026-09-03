@@ -1,3 +1,7 @@
+---
+title: "Iteration 10 — Compact-cache provenance replay seam (10/10)"
+trigger_phrases: []
+---
 # Iteration 10 — Compact-cache provenance replay seam (10/10)
 
 ## Investigation Thread

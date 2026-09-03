@@ -1,3 +1,7 @@
+---
+title: "Concurrent AI Session Git Autosync — Research Synthesis"
+trigger_phrases: []
+---
 # Concurrent AI Session Git Autosync — Research Synthesis
 
 ## 1. Executive Summary

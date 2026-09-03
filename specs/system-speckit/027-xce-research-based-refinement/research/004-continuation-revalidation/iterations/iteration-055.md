@@ -1,3 +1,7 @@
+---
+title: "Iteration 055: Command Naming and Root Normalization"
+trigger_phrases: []
+---
 # Iteration 055: Command Naming and Root Normalization
 
 ## Focus

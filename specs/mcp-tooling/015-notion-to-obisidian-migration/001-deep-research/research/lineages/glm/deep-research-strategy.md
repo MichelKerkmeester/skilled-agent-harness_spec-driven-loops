@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — GLM Lineage (Track A)"
+trigger_phrases: []
+---
 # Deep Research Strategy — GLM Lineage (Track A)
 
 > Lineage `glm` (cli-devin / GLM-5.2 High). Sibling lineage: `deepseek`. Stop policy: `max-iterations` (10); convergence is telemetry only — broaden review angles instead of synthesizing early.

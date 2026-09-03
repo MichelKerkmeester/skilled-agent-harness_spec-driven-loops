@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: REQ-006 memory_search budget — test verification and acceptance check"
+trigger_phrases: []
+---
 # Iteration 7: REQ-006 memory_search budget — test verification and acceptance check
 
 ## Focus

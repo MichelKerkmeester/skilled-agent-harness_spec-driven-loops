@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 - KQ8: The best-possible automated DQ program, floor-aware ROI tiering"
+trigger_phrases: []
+---
 # Iteration 008 - KQ8: The best-possible automated DQ program, floor-aware ROI tiering
 
 **Focus:** Assemble the automation findings into one program, tiered by truncation-law-aware ROI.

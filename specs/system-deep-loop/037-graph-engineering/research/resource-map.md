@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Current status of the system-deep-loop system and what the 036-deep-loop-innovation changes introduce; how to evolve deep-loop workflows into graph-engineering-based loops aligned with the GraphARC and graph-engineering-master repositories and the LangChain graph concepts"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

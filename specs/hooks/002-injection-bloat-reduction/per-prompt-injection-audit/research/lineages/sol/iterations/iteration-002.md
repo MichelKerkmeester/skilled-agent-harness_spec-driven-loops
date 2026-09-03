@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Exact per-turn payload inventory and composition order"
+trigger_phrases: []
+---
 # Iteration 2: Exact per-turn payload inventory and composition order
 
 ## Focus

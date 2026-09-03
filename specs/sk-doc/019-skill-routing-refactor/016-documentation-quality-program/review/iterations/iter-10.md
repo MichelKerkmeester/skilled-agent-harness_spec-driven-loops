@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: code READMEs — system-spec-kit + sk-code"
+trigger_phrases: []
+---
 # Iteration 10: code READMEs — system-spec-kit + sk-code
 
 > dimension: accuracy | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

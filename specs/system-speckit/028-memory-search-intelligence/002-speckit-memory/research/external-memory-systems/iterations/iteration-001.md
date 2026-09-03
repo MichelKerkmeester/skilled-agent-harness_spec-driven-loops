@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 (DeepSeek lineage): Mem0 — extraction / fusion / scoring"
+trigger_phrases: []
+---
 # Iteration 1 (DeepSeek lineage): Mem0 — extraction / fusion / scoring
 
 > Model: **DeepSeek v4 Pro** (`deepseek/deepseek-v4-pro --variant high`), read-only opencode seat; orchestrator-written. newInfoRatio 0.9, 5 findings.

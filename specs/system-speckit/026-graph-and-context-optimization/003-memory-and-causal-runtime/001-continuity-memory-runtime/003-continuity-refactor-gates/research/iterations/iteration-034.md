@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-034.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 034 — Feature-flag state machine and rollback transitions

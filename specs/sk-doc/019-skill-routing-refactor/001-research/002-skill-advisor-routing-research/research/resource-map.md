@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — system-skill-advisor usefulness and routing integration"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

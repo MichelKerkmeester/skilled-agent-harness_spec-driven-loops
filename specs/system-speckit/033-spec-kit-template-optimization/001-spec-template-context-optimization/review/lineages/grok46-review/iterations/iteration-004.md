@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: D4 Maintainability — consolidation architecture, phase numbering, stale plan text"
+trigger_phrases: []
+---
 # Iteration 4: D4 Maintainability — consolidation architecture, phase numbering, stale plan text
 
 ## Focus

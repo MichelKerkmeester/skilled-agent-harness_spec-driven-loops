@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW ITERATION 005
 
 Focus: maintainability drift from duplicated routing semantics and stale default-on telemetry.

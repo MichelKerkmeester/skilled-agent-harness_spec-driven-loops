@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Bounded Relevance and Context-Cost Validation"
+trigger_phrases: []
+---
 # Iteration 3: Bounded Relevance and Context-Cost Validation
 
 ## Focus

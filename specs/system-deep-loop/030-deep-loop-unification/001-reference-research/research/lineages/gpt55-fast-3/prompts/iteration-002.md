@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY (auto-generated):
 Segment: 1 | Iteration: 2 of 10
 Questions: 3/5 answered | Last focus: Structural layout and bidirectional path-coupling repair

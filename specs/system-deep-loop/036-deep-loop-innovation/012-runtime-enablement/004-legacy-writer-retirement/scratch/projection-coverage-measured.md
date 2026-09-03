@@ -1,3 +1,7 @@
+---
+title: "Projection coverage, measured through the shipped CLI"
+trigger_phrases: []
+---
 # Projection coverage, measured through the shipped CLI
 
 ## Why this was checked

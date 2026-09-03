@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — correctness / A4 (shutdown durability & resource lifecycle)"
+trigger_phrases: []
+---
 # Iteration 005 — correctness / A4 (shutdown durability & resource lifecycle)
 
 ## Dispatcher

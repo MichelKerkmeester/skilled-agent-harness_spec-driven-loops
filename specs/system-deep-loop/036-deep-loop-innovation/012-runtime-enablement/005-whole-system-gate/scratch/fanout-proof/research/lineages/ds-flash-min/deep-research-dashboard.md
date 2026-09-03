@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — ds-flash-min lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — ds-flash-min lineage
 
 ## Session

@@ -1,3 +1,7 @@
+---
+title: "AI Council Executor Instructions — Next 3 Phases"
+trigger_phrases: []
+---
 # AI Council Executor Instructions — Next 3 Phases
 
 **Council verdict:** Execute phases 002b → 003 → 004 in sequence, per the OPERATIONAL ordering adopted by convergence. These are the momentum phases + the first heavy phase.

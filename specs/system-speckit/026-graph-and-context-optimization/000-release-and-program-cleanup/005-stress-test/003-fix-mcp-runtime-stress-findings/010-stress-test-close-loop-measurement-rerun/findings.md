@@ -1,3 +1,7 @@
+---
+title: "Findings — Stress-Test Rerun v1.0.2 (post-fix sweep)"
+trigger_phrases: []
+---
 # Findings — Stress-Test Rerun v1.0.2 (post-fix sweep)
 
 > **Status**: complete as of 2026-04-27T17:30Z. All 30 cells dispatched (exit_code:0) and scored.

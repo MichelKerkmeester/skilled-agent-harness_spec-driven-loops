@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Durable Human Approval Gate"
+trigger_phrases: []
+---
 # Iteration 6: Durable Human Approval Gate
 
 ## Focus

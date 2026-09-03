@@ -1,3 +1,7 @@
+---
+title: "AI Council Seat Briefs — Round 001"
+trigger_phrases: []
+---
 # AI Council Seat Briefs — Round 001
 
 **Topic:** Execution strategy for remaining 8 phases (002b–010) + convergence of 022-hardcoded-default-remediation-arc.

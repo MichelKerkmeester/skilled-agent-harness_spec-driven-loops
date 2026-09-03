@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — See topic above (two-target files review: create.sh corruption bug + phase-010 deriveStatus fix audit)"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

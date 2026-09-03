@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — simplification (executor: cli-devin-swe-1.6)"
+trigger_phrases: []
+---
 # Iteration 005 — simplification (executor: cli-devin-swe-1.6)
 
 ## Metadata

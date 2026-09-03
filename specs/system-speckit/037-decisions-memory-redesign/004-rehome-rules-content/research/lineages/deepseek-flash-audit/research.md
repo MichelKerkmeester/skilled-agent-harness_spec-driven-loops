@@ -1,3 +1,7 @@
+---
+title: "Constitutional-Memory DEPRECATION-COMPLETENESS Audit — Final Research Synthesis"
+trigger_phrases: []
+---
 # Constitutional-Memory DEPRECATION-COMPLETENESS Audit — Final Research Synthesis
 
 **Lineage:** `deepseek-flash-audit` (cli-devin, deepseek-v4-flash-max) · session `fanout-deepseek-flash-audit-1787763040724-qklgls`

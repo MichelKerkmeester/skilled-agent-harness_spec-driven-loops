@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Spec folder: sk-doc/014-skill-readme-standardization/023-system-spec-kit-readme (pre-approved, skip Gate 3). OUTPUT-ONLY task: do NOT write, create or edit any file. Return ONLY markdown in a single fenced ```markdown block as your final message. No preamble, no commentary.
 
 Role: You are a technical writer reshaping the TOP of a large reference README into the repo's narrative house voice. The skill is `system-spec-kit`. Its README is a 1084-line reference manual that will KEEP its reference depth; your job is only the reframed opening and a section-header scheme, not the whole document.

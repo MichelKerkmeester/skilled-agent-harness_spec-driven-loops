@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 37 | model glm (zai-coding-plan/glm-5.2) | angle: Workflow engines & DAG schedulers | 2026-07-15T00:21:07.902Z -->
 
 I'll verify the key workflow engines I plan to feature (Airflow, Dagster, Metaflow, Flyte, Luigi) via the GitHub API for real star counts, then synthesize.

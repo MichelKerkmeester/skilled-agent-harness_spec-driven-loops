@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 2 | SOL xhigh | thread: fan-out-automation | angle: Heterogeneous multi-model fan-out orchestration | 2026-07-15T04:26:45.694Z -->
 
 The existing scheduler should stay. `system-deep-loop` already accepts heterogeneous `executors[]`; each lineage carries its own `kind` and `model`, and `fanout-run.cjs` builds the corresponding command. A single configuration can therefore run LUNA, SOL, and GLM today. The missing abstraction is `models × branches`, plus a contract boundary before heterogeneous results enter `fanout-merge.cjs`.

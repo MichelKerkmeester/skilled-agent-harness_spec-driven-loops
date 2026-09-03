@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — Tier-2 Luna Routing Findings & Recommendations"
+trigger_phrases: []
+---
 # Deep Review Report — Tier-2 Luna Routing Findings & Recommendations
 
 > Session `2026-07-15T19:42:12.593Z` · generation 1 · 5/5 iterations (stop: maxIterationsReached, stop_policy=max-iterations) · executor: cli-codex / gpt-5.6-sol (ultra, fast) · dimensions: correctness, traceability, maintainability · target READ-ONLY: `.opencode/specs/system-deep-loop/034-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md`

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Graph-Based Agent Loops"
+trigger_phrases: []
+---
 # Deep Research Strategy — Graph-Based Agent Loops
 
 ## 2. TOPIC

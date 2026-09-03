@@ -1,3 +1,7 @@
+---
+title: "Merged Research Index"
+trigger_phrases: []
+---
 # Merged Research Index
 
 ## 028 research phases folded into subsystem parents

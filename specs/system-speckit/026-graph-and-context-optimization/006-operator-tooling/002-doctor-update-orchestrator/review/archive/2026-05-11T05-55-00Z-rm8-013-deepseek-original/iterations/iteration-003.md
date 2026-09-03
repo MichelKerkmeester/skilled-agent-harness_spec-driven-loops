@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — correctness (002-sandbox-testing-playbook + cross-phase integration)"
+trigger_phrases: []
+---
 # Iteration 3 — correctness (002-sandbox-testing-playbook + cross-phase integration)
 
 ## Files Reviewed

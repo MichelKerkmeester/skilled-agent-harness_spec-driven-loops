@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Cross-runtime mirrors and Gate-3 path language"
+trigger_phrases: []
+---
 # Iteration 2: Cross-runtime mirrors and Gate-3 path language
 
 ## Focus

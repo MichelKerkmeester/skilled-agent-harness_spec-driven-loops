@@ -1,3 +1,7 @@
+---
+title: "Deep-Loop Per-Mode Deepening — Dashboard (SOL xhigh, 005 run-2)"
+trigger_phrases: []
+---
 # Deep-Loop Per-Mode Deepening — Dashboard (SOL xhigh, 005 run-2)
 
 Updated: 2026-07-15T11:26:16.677Z

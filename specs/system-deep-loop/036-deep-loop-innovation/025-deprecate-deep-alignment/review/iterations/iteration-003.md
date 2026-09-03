@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 003 — Traceability (Removal-Completeness Core Pass)"
+trigger_phrases: []
+---
 # Deep Review Iteration 003 — Traceability (Removal-Completeness Core Pass)
 
 ## Dimension

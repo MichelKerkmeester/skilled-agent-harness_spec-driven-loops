@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-027.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 027 — Q5/Q6 Latency Budget

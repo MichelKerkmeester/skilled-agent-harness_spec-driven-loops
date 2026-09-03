@@ -1,3 +1,7 @@
+---
+title: "Rust Style Guide"
+trigger_phrases: []
+---
 <!-- provenance: manual cli-opencode orchestration | executor openai/gpt-5.6-sol-fast --variant high | round 6 angle A6 — code-opencode language-standard convention -->
 
 The round is read-only and tightly scoped to six repository artifacts. I’ll load the mandated deep-research workflow, then extract the exact document architecture and line-anchored Rust template without modifying files.

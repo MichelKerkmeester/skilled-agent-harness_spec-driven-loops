@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Intent-Scoring Collision Analysis: Do Prompts Route Wrong?"
+trigger_phrases: []
+---
 # Iteration 008 — Intent-Scoring Collision Analysis: Do Prompts Route Wrong?
 
 **Focus:** Systematically test whether the substring-based intent scoring with ambiguity delta 1.0 produces wrong routing — where a prompt scores multiple unrelated intents equally and loads the wrong resources.

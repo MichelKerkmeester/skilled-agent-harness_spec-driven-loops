@@ -1,3 +1,7 @@
+---
+title: "Review Iteration 005 — Generator input boundary"
+trigger_phrases: []
+---
 # Review Iteration 005 — Generator input boundary
 
 ## Route

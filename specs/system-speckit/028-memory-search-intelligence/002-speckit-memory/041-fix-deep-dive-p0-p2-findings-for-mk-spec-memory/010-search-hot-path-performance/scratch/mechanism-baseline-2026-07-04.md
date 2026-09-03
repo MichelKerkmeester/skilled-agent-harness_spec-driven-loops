@@ -1,3 +1,7 @@
+---
+title: "Mechanism Baseline And Verification"
+trigger_phrases: []
+---
 # Mechanism Baseline And Verification
 
 Accepted limitation: `database/context-index.sqlite` is unavailable in this worktree, so live p50/p95/RSS/scan-lag were not measured here. This scratch note records mechanism-level counters from unit fixtures only.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 prompt"
+trigger_phrases: []
+---
 # Iteration 2 prompt
 
 Audit the parent routing-reference documents against the live compiled-routing runtime and all seven declared hubs. Verify every suspected drift directly on disk, excluding research, benchmark, lineage, log, and run-record artifacts. Report only findings with file:line evidence, P1/P2 severity, and NEW or PRE-EXISTING classification.

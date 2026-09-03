@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Full Notion REST API Surface Beyond MCP Tools"
+trigger_phrases: []
+---
 # Iteration 2: Full Notion REST API Surface Beyond MCP Tools
 
 ## Focus

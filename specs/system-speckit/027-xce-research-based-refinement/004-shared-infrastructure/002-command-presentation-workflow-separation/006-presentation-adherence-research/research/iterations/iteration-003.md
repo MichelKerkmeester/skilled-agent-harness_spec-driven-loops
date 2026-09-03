@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 (mimo-v2.5-pro)"
+trigger_phrases: []
+---
 # Iteration 003 (mimo-v2.5-pro)
 
 **Summary:** The doctor/ family's high render-contract adherence correlates with three phrasing patterns absent from the memory/ family: (1) an explicit 'Presentation Boundary' section enumerating what content lives only in the presentation asset, (2) contrast phrasing ('the presentation contract, not this router') that creates an either-or mental model, and (3) a numbered execution-order step that mandates reading the presentation asset before any rendering. The memory/ family uses softer descriptive language ('use it as the display source of truth') without enumeration or contrast, which mid-tier models interpret as advisory rather than binding. Standardizing memory/ commands to match the doctor/ pattern — Presentation Boundary section, contrast phrasing, and numbered read-first step — should measurably improve render-contract adherence for dispatched mid-tier models.

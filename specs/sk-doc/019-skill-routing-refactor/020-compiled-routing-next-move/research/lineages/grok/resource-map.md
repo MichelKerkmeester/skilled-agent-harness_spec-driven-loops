@@ -1,3 +1,7 @@
+---
+title: "Resource Map — grok lineage (evidence-derived)"
+trigger_phrases: []
+---
 # Resource Map — grok lineage (evidence-derived)
 
 ## Scripts

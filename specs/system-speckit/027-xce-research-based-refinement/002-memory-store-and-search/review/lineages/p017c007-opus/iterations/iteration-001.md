@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Full-spectrum review — 007-output-surface-parity contract"
+trigger_phrases: []
+---
 # Iteration 1: Full-spectrum review — 007-output-surface-parity contract
 
 ## Focus

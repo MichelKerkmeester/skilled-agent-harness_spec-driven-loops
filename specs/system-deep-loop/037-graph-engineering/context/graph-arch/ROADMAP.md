@@ -1,3 +1,7 @@
+---
+title: "GraphARC — live build list"
+trigger_phrases: []
+---
 # GraphARC — live build list
 
 Everything between today and a full-fledged general-purpose agent runtime, as

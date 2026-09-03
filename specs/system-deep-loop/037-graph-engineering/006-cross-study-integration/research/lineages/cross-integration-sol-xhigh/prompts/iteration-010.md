@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 Prompt Pack"
+trigger_phrases: []
+---
 # Iteration 010 Prompt Pack
 
 - Focus: capstone closure after exactly ten iterations.

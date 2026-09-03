@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Diff Algorithm Comparison"
+trigger_phrases: []
+---
 # Iteration 3: Diff Algorithm Comparison
 
 ## Focus

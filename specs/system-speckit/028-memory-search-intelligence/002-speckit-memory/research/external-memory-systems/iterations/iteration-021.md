@@ -1,3 +1,7 @@
+---
+title: "Iteration 21 (Opus lineage — NATIVE): Graphiti resolve_extracted_edge dedup + verify iter-15 invalidation"
+trigger_phrases: []
+---
 # Iteration 21 (Opus lineage — NATIVE): Graphiti resolve_extracted_edge dedup + verify iter-15 invalidation
 
 > Model: **Opus 4.8 NATIVE** (read-only). Orchestrator-written. newInfoRatio **0.5**. Task A mines Graphiti's edge-resolution; Task B verifies the two iter-15 invalidation candidates against live internal code (both **GO**). Path note: `temporal-edges.ts` lives at `lib/graph/`, not `lib/storage/`.

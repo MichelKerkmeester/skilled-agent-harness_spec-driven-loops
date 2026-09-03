@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Cross-Cluster Correctness + Security + Byte-Identity"
+trigger_phrases: []
+---
 # Iteration 001: Cross-Cluster Correctness + Security + Byte-Identity
 
 **Date:** 2026-06-24

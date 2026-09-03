@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — glm52-2 (FINAL)"
+trigger_phrases: []
+---
 # Deep Research Dashboard — glm52-2 (FINAL)
 
 | Field | Value |

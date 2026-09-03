@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Spec Kit tooling and resolver assumptions"
+trigger_phrases: []
+---
 # Iteration 1: Spec Kit tooling and resolver assumptions
 
 ## Focus

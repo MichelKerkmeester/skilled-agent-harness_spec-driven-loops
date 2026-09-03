@@ -1,3 +1,7 @@
+---
+title: "Phase 002 refutations — caught at re-verification"
+trigger_phrases: []
+---
 # Phase 002 refutations — caught at re-verification
 
 Two of six approved findings were refuted before execution. Both were deletions, and both would

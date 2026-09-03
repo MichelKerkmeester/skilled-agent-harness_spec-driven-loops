@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 13 | model luna (gpt-5.6-luna) | angle: AutoGen/AG2 + CrewAI orchestration patterns | 2026-07-14T22:18:57.335Z -->
 
 This pass found three new, directly relevant repos. GitHub currently shows AG2 at ~4.8k stars with a July 2026 release, CrewAI at ~55.5k with a July 2026 release, and AutoGen at ~59.7k with its latest release in September 2025; AutoGen is now maintenance-mode. [AG2](https://github.com/ag2ai/ag2), [CrewAI](https://github.com/crewAIInc/crewAI), [AutoGen](https://github.com/microsoft/autogen)

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: 013 Doctor Update Orchestrator (phase parent + 001 + 002)"
+trigger_phrases: []
+---
 # Deep Review Strategy: 013 Doctor Update Orchestrator (phase parent + 001 + 002)
 
 ## Review Charter

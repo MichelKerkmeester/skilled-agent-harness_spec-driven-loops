@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - Hub Catalog, Changelog, And Manual Playbook"
+trigger_phrases: []
+---
 # Iteration 004 - Hub Catalog, Changelog, And Manual Playbook
 
 ## Dimension

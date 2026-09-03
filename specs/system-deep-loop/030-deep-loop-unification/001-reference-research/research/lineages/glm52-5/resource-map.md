@@ -1,3 +1,7 @@
+---
+title: "Resource Map — glm52-5 Lineage"
+trigger_phrases: []
+---
 # Resource Map — glm52-5 Lineage
 
 Emitted from converged research-delta evidence (`config.resource_map.emit: true`). resource-map.md was NOT present at init (`config.resource_map_present: false`); this file is the post-synthesis coverage map, not a pre-existing exclusion set.

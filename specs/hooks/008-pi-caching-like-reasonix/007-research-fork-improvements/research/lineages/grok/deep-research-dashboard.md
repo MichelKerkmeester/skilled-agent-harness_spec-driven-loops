@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — Grok Fan-out Lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — Grok Fan-out Lineage
 
 ## 2. STATUS

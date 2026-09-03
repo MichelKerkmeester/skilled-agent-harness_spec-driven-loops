@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### sk-prompt becomes a two-mode parent hub
 `sk-prompt` is now a single two-mode parent hub instead of two separate skills. The standalone `sk-prompt-models` skill was folded in as a `prompt-models` mode in one atomic 2,616-file move, the old `/prompt` command became `/prompt-improve`, and the prompt-improvement engine relocated into a `prompt-improve` packet with full git history intact across all 47 content files. The hub passes strict parent-hub checks with zero warnings, becoming the fifth canon-clean hub beside sk-code, sk-design, sk-doc, and system-deep-loop, and a deterministic router benchmark scores routing 100/100 across both modes — confirming the `prompt-models` mode keeps its metadata-based routing with no special carve-out. The benchmark also surfaced two real bugs during the fold, one in the hub's own router weighting and one in shared benchmark tooling, both fixed. In a follow-up, `/prompt:improve` shrank from a 28KB monolith into a thin router with a dispatch-context check and separate auto, confirm, and presentation assets. **Breaking:** the `sk-prompt-models` skill path and the `/prompt` command are gone; migrate references to `sk-prompt/prompt-models` and `/prompt-improve`.
 

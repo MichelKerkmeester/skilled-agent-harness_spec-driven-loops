@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 013"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 013
 
 Focus: Pi core’s deliberate omissions

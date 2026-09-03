@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: sk-code/019 Split-Doc Template Alignment"
+trigger_phrases: []
+---
 # Deep Review Report: sk-code/019 Split-Doc Template Alignment
 
 ## Executive Summary

@@ -1,3 +1,7 @@
+---
+title: "P3 — Memory, Knowledge, and Belief Layering"
+trigger_phrases: []
+---
 # P3 — Memory, Knowledge, and Belief Layering
 
 ## Non-collision rule

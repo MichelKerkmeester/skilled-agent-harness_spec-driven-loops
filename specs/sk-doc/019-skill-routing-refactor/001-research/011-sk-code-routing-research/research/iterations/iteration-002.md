@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Benchmark Pipeline, Typed Recall, and Generalization"
+trigger_phrases: []
+---
 # Iteration 2: Benchmark Pipeline, Typed Recall, and Generalization
 
 ## Focus

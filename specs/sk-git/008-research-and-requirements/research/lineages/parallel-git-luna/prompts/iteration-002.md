@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 002 Prompt"
+trigger_phrases: []
+---
 # Deep-Research Iteration 002 Prompt
 
 Resolved route: mode=research target_agent=deep-research. Agent definition loaded: yes.

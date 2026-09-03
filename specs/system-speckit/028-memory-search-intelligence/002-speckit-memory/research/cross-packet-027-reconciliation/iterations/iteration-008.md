@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 (Round K): Q8 Search Resilience / Score-scale / Response-policy × deterministic RRF + active-channel denominator"
+trigger_phrases: []
+---
 # Iteration 8 (Round K): Q8 Search Resilience / Score-scale / Response-policy × deterministic RRF + active-channel denominator
 
 ## Focus

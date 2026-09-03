@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY (auto-generated, review mode):
 Iteration: 4 of 7 | Mode: review
 Target: 026 integrity audit slice (spec-folder)

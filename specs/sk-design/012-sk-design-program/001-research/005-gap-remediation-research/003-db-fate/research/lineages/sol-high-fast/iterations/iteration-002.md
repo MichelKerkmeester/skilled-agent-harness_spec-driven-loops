@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Persistent Backend Readiness and Missing Wiring"
+trigger_phrases: []
+---
 # Iteration 2: Persistent Backend Readiness and Missing Wiring
 
 ## Focus

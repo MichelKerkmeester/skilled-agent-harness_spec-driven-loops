@@ -1,3 +1,7 @@
+---
+title: "Root Cause Investigation — Memory Save Quality Gates"
+trigger_phrases: []
+---
 # Root Cause Investigation — Memory Save Quality Gates
 
 ## Executive Summary

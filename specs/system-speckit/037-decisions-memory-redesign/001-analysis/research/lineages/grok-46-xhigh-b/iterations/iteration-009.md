@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Separate yet integrated — where it lives, spec and skill binding"
+trigger_phrases: []
+---
 # Iteration 9: Separate yet integrated — where it lives, spec and skill binding
 
 ## Focus

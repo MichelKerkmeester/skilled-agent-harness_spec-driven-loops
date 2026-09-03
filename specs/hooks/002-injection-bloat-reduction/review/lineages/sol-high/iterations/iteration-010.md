@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Fail-open and fail-closed boundaries"
+trigger_phrases: []
+---
 # Iteration 10: Fail-open and fail-closed boundaries
 
 ## Dimension

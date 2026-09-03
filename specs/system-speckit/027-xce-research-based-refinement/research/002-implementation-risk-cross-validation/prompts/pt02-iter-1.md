@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 1/10 cross-validation pass for packet .opencode/specs/system-spec-kit/027-xce-research-based-refinement.
 
 CONTEXT: 5 implementation phases (001-005) were scaffolded based on pass-1 findings from cli-opencode/deepseek-v4-pro. THIS PASS uses cli-codex/gpt-5.5/high/fast as cross-validator. Goal: find implementation risks, schema gaps, edge cases, and alternative approaches the first AI missed.

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — glm52-max lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — glm52-max lineage
 
 > Auto-generated operator summary. Not manually edited.

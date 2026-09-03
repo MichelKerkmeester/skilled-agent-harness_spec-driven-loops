@@ -19,6 +19,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 
 # Deep Research Synthesis — v1.0.2 Post-Stress Follow-Up

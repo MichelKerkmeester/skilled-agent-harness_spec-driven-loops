@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — RQ3: Impact Analysis Schema"
+trigger_phrases: []
+---
 # Iteration 003 — RQ3: Impact Analysis Schema
 
 **Started**: 2026-05-08T11:55:00Z

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 003-manifest-template-implementation-plan"
+trigger_phrases: []
+---
 # Deep Review Report: 003-manifest-template-implementation-plan
 
 ## Executive Summary

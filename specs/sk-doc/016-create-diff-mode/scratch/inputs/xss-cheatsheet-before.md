@@ -1,3 +1,7 @@
+---
+title: "XSS Cheatsheet (internal)"
+trigger_phrases: []
+---
 # XSS Cheatsheet (internal)
 
 Payloads our WAF must block. These are documented as text, never executed.

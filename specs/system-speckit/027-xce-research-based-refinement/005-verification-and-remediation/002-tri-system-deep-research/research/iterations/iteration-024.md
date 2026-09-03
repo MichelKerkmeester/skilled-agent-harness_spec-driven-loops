@@ -1,3 +1,7 @@
+---
+title: "Iteration 024 — Angle 24"
+trigger_phrases: []
+---
 # Iteration 024 — Angle 24
 
 **Angle:** Envelope token budgeting: "Response exceeds token budget" hints observed on memory_health — budget consistency across tools and what callers should do.

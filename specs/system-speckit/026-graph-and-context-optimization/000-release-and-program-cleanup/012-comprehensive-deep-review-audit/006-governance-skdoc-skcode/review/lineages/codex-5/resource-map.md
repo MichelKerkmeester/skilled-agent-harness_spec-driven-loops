@@ -1,3 +1,7 @@
+---
+title: "Deep Review Evidence Map"
+trigger_phrases: []
+---
 # Deep Review Evidence Map
 
 Generated at: 2026-06-04T17:58:13Z

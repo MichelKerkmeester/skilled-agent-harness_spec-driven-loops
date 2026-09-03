@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 — security (doctor command surface)"
+trigger_phrases: []
+---
 # Iteration 4 — security (doctor command surface)
 
 ## Files Reviewed

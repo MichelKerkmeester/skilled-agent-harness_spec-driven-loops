@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: Cross-Dimension Stabilization"
+trigger_phrases: []
+---
 # Iteration 006: Cross-Dimension Stabilization
 
 ## Focus

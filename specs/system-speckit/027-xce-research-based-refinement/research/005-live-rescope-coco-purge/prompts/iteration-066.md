@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 066 — packet-wide path-drift map (live → corrected)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 066 — packet-wide path-drift map (live → corrected)

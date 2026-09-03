@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Official Skill and Design-Research Workflow Surface"
+trigger_phrases: []
+---
 # Iteration 2: Official Skill and Design-Research Workflow Surface
 
 ## Focus

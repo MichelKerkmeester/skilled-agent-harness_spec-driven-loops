@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Binding, stop-gate asymmetry, drift and size cap"
+trigger_phrases: []
+---
 # Iteration 3: Binding, stop-gate asymmetry, drift and size cap
 
 ## Focus

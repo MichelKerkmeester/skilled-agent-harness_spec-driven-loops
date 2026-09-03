@@ -3,6 +3,7 @@ title: Deep Research Strategy — 009 Gem Team Integration & Impact
 session: 2026-06-06-027-gem-team-integration-impact
 executor: cli-opencode openai/gpt-5.5-fast --variant high (read-only); orchestrator-written artifacts
 iterations: 001-005 (packet-local)
+trigger_phrases: []
 ---
 
 # 009 — Gem Team Integration & Impact

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - Sol Lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard - Sol Lineage
 
 - Status: complete

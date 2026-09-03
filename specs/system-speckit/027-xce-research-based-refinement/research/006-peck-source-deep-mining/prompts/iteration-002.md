@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 002 — verdict-freshness binding (code change invalidates green)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 002 — verdict-freshness binding (code change invalidates green)

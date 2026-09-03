@@ -1,3 +1,7 @@
+---
+title: "Layer Stack"
+trigger_phrases: []
+---
 # Layer Stack
 
 **Best for:** OSI model, CSS cascade, context hierarchy, tech stack, abstraction layers, memory hierarchy.

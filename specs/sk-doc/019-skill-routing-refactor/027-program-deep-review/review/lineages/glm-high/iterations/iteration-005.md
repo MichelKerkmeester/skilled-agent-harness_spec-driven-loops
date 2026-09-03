@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: CI/Hooks Wiring (broaden angles) — Trigger Coverage + Pre-push Semantics"
+trigger_phrases: []
+---
 # Iteration 5: CI/Hooks Wiring (broaden angles) — Trigger Coverage + Pre-push Semantics
 
 ## Focus

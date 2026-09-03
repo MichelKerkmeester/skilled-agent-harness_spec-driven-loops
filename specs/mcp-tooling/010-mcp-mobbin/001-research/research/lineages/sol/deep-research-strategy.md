@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy — Mobbin MCP Sol Lineage
 description: Detached five-iteration research strategy for the Mobbin MCP developer surface.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Mobbin MCP Sol Lineage

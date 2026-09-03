@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ROLE: Independent read-only auditor providing a second opinion. DO NOT modify, create, or delete ANY file. Produce an audit report only.
 
 Spec folder: system-spec-kit/026-graph-and-context-optimization (pre-approved, skip Gate 3).

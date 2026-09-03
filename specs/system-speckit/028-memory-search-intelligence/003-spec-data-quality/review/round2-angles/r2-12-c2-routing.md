@@ -1,3 +1,7 @@
+---
+title: "r2-12 c2-routing"
+trigger_phrases: []
+---
 # r2-12 c2-routing
 
 **Angle summary:** The benchmark doc claims 014, 016, 017 and 018 route their metric through the 015 C2 gate, but the gate exposes no candidate-activation seam and no downstream phase names the gate's consumption artifacts, so the routing is a governance dependency rather than a wired path. The 014 dual-cache-key gotcha is the one part that is correctly identified and grounded.

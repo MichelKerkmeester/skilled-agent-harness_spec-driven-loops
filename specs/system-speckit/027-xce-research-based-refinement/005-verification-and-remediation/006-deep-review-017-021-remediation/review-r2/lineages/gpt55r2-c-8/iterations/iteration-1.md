@@ -1,1 +1,4 @@
+---
+trigger_phrases: []
+---
 FANOUT_LINEAGE_COMPLETE:gpt55r2-c-8

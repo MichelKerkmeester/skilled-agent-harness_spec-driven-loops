@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Hook layer gains master kill-switch and per-concern flags
 The cross-runtime hook layer now runs on one default-on operator contract for every repo-authored concern, where before each runtime decided its own disable semantics. Setting `MK_HOOKS_DISABLED` silences the whole layer, while any of 20 canonical concern flags isolates a single surface — runtime adapters (skill advisor, spec gate, completion, watchdog, permission, directive), shell/git consumers, install, cleanup, and freshness checks. Supported legacy alias names keep working, and a POSIX shell helper mirrors the Node truthy/default behavior so shell and git hooks behave identically. Operators can persist personal defaults in `.opencode/hooks/hook-flags.env` (or a custom `HOOK_FLAGS_CONFIG` path); live environment values win, and missing or unreadable files fail open. `.opencode/hooks/README.md` is now the single canonical index of all 20 concerns, and the gitignored real config is paired with a fully commented `.example` template.
 

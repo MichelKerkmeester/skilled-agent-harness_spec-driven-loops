@@ -1,3 +1,7 @@
+---
+title: "Context: Extension Source Snapshots"
+trigger_phrases: []
+---
 # Context: Extension Source Snapshots
 
 Pinned source snapshots of the three researched pi fast-mode extensions, used as

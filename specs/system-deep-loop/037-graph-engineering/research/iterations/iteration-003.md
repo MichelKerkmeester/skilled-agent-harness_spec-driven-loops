@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Core graph-engineering concepts and patterns"
+trigger_phrases: []
+---
 # Iteration 3: Core graph-engineering concepts and patterns
 
 ## Focus

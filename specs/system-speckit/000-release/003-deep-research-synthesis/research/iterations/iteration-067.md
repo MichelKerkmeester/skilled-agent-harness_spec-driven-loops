@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Advisor audit and state containment scoped for two phases
 This packet is internal planning tooling rather than shipped behavior. It scaffolds a phase parent for two advisor workstreams: containing the stray nested state directories that runtime writers leak (40 currently exist to be cleaned), and auditing the advisor's own code surface, which has nine open findings to disposition. The spec body is still template placeholders, so nothing user-visible shipped this cycle. Framework users see no change yet; the value is a recorded plan that keeps the two workstreams independently executable and individually validated. (Internal tooling.)
 

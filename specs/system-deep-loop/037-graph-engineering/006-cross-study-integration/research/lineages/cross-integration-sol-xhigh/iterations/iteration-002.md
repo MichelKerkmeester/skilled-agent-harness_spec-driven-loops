@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Conjunctive Promotion Evidence"
+trigger_phrases: []
+---
 # Iteration 002 — Conjunctive Promotion Evidence
 
 ## Focus

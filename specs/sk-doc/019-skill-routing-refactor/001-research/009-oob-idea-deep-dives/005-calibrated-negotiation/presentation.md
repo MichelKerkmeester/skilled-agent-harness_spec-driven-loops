@@ -1,3 +1,7 @@
+---
+title: "Idea 5 — Calibrated One-Turn Routing Negotiation"
+trigger_phrases: []
+---
 # Idea 5 — Calibrated One-Turn Routing Negotiation
 
 > **The router's "confidence" is a ranking number, not a probability. Stop pretending it means "80% sure" — and when the router isn't sure, ask exactly one well-formed question, under a hard budget.**

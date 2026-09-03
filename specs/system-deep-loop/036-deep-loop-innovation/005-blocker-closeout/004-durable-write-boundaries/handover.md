@@ -1,3 +1,7 @@
+---
+title: "Handover: 036/024 durable-write-boundaries (CLOSED — zero open items)"
+trigger_phrases: []
+---
 # Handover: 036/024 durable-write-boundaries (CLOSED — zero open items)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->

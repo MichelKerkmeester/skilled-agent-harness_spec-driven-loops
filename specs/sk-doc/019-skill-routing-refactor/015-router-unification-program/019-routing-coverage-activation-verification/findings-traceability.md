@@ -1,3 +1,7 @@
+---
+title: "Findings Traceability — every research finding → owning child → status"
+trigger_phrases: []
+---
 # Findings Traceability — every research finding → owning child → status
 
 > One row per consolidated finding from `001-research/synthesis-v1.md` (48 CF-* findings across 7 workstreams + the ranked unnamed gaps). Findings are implemented as **requirements inside their workstream child**, not as separate folders — per the spec-kit Gate-3 phase-qualification guard (a phase child needs complexity ≥25/50 AND doc-level ≥3) and the synthesis §6 child breakdown. This matrix is the single-place audit that nothing was dropped.

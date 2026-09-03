@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: Phase 5 cosine-topn-reorder"
+trigger_phrases: []
+---
 # Deep Review Strategy: Phase 5 cosine-topn-reorder
 
 ## Topic

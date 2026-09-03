@@ -1,6 +1,7 @@
 ---
 title: "Deep Review Dashboard - sk-design hallmark-design-system (minimax-m3 lineage)"
 description: Auto-generated review session overview for the minimax-m3 detached fan-out lineage.
+trigger_phrases: []
 ---
 
 # Deep Review Dashboard - minimax-m3 lineage

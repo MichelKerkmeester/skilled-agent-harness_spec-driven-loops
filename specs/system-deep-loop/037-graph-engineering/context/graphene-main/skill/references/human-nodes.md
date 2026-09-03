@@ -1,3 +1,7 @@
+---
+title: "Human nodes"
+trigger_phrases: []
+---
 # Human nodes
 
 A human node blocks **its dependents**. It does not block the graph. Everything

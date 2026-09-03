@@ -9,6 +9,7 @@ hasAdvisories: true
 activeP0: 1
 activeP1: 3
 activeP2: 1
+trigger_phrases: []
 ---
 
 # Single-Pass Deep Review: 006/001 Clean-Room License Audit

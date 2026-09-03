@@ -1,3 +1,7 @@
+---
+title: "Review Lineage Resource Map"
+trigger_phrases: []
+---
 # Review Lineage Resource Map
 
 Scope folder resource-map.md was not present at init, so the formal resource-map coverage gate was skipped.

@@ -1,3 +1,7 @@
+---
+title: "r2-16 research-soundness"
+trigger_phrases: []
+---
 # r2-16 research-soundness
 
 Angle summary: research/research.md is internally near-coherent on its convergence math (5 lineages, 37 iterations, 1 unconditional GO all reconcile) but its load-bearing truncation-law claim mischaracterizes the live code it cites, and three GO/CONDITIONAL/NO-GO counts disagree between the executive verdict and the tier tables.

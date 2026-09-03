@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: Search and Retrieval Scope"
+trigger_phrases: []
+---
 # Deep Review Strategy: Search and Retrieval Scope
 
 BINDING: spec_folder=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval

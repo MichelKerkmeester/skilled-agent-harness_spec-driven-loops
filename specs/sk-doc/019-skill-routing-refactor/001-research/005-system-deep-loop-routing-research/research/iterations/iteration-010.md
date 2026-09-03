@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final Dependency-Ordered Resource Map and Implementation Handoff"
+trigger_phrases: []
+---
 # Iteration 10: Final Dependency-Ordered Resource Map and Implementation Handoff
 
 ## Focus

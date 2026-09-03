@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — 007 Gem Team Adoption Matrix"
+trigger_phrases: []
+---
 # Deep Research Dashboard — 007 Gem Team Adoption Matrix
 
 Orchestrator-maintained summary. **Run COMPLETE.**

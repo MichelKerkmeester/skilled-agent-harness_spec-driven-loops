@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- provenance: manual cli-opencode orchestration | executor openai/gpt-5.6-sol-fast --variant high | round 3 angle A3 — Testing & benchmarking (TS<->Rust parity) -->
 
 The round is read-only and bounded to testing/benchmarking evidence. I’m grounding recommendations in the repository’s actual parity surfaces first, then canonical Rust, napi-rs, wasm-bindgen, Criterion, proptest, and insta documentation; no repository artifacts will be modified.

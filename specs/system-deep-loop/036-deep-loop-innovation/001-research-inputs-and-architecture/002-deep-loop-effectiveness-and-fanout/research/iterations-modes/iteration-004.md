@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 4 | SOL xhigh | mode: deep-research | angle: A4-fail deep-research :: failure modes & guardrails | 2026-07-15T08:20:42.446Z -->
 
 The main weakness is structural: deep-research evaluates source quality mainly when considering STOP. A fabricated, poisoned, or weakly supported iteration can therefore update strategy and progressive synthesis before those guards run. Novelty is also self-reported, so false claims can increase `newInfoRatio` and distort convergence.

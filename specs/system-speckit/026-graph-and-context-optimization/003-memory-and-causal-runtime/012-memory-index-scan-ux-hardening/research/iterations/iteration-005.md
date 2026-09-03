@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 A5 self-healing and observability for the memory indexing subsystem: orphan-row GC, rename/move reconciliation, index-freshness/health surface, auto-reindex triggers, and cross-angle synthesis.

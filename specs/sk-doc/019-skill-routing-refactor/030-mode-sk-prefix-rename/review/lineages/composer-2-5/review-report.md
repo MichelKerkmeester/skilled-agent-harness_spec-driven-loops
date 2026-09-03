@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: sk- Prefix Mode Packet Rename (030-mode-sk-prefix-rename)"
+trigger_phrases: []
+---
 # Deep Review Report: sk- Prefix Mode Packet Rename (030-mode-sk-prefix-rename)
 
 Lineage: `composer-2-5` | Session: `fanout-composer-2-5-1785217654899-ls3rh2` | Executor: cli-cursor (composer-2.5)

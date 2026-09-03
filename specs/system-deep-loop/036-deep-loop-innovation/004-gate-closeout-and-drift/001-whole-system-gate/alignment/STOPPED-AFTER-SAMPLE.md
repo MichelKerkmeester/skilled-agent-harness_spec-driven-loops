@@ -1,3 +1,7 @@
+---
+title: "Alignment half — stopped after one iteration, deliberately"
+trigger_phrases: []
+---
 # Alignment half — stopped after one iteration, deliberately
 
 This run was configured for 22 forced-depth iterations (batch 60, full corpus

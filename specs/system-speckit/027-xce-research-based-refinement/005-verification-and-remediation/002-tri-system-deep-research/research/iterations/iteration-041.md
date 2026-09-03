@@ -1,3 +1,7 @@
+---
+title: "Iteration 041 — Angle 41"
+trigger_phrases: []
+---
 # Iteration 041 — Angle 41
 
 **Angle:** Lane architecture transparency: shadowOnly lanes, lane weights, projection caps — operator-facing explanation and tuning surface.

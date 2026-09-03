@@ -1,3 +1,7 @@
+---
+title: "Deep Review v3 Iteration 034 - cross-packet recipe integrity"
+trigger_phrases: []
+---
 # Deep Review v3 Iteration 034 - cross-packet recipe integrity
 
 **Dimension:** docs  

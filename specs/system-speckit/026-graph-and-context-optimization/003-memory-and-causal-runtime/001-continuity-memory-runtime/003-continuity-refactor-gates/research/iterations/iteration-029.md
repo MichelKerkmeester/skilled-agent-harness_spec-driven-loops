@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-029.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 029 — Q9: Test Catalog Descriptions

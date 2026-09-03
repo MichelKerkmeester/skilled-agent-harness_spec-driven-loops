@@ -1,3 +1,7 @@
+---
+title: "Phase 005 dispositions — three applied, two refuted, three routed on"
+trigger_phrases: []
+---
 # Phase 005 dispositions — three applied, two refuted, three routed on
 
 ## Applied

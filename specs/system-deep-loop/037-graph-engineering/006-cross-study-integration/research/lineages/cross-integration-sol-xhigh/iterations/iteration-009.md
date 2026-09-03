@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — Cross-Angle Contradiction and No-Bypass Audit"
+trigger_phrases: []
+---
 # Iteration 009 — Cross-Angle Contradiction and No-Bypass Audit
 
 ## Focus

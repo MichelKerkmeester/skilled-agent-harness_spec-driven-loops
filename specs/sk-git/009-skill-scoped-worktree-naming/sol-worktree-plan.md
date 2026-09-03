@@ -1,3 +1,7 @@
+---
+title: "CHECK → REFINE → PLAN"
+trigger_phrases: []
+---
 # CHECK → REFINE → PLAN
 
 **Recommendation:** replace the human `wt/{NNNN}-{name}` branch namespace with `<owner>/wt/{NNNN}-{name}`, while retaining one repository-wide counter and a flat matching directory `.worktrees/{NNNN}-{owner}-{name}`. Keep `work/{runtime}/{slug}` as a narrow, local-only launch-wrapper exception.

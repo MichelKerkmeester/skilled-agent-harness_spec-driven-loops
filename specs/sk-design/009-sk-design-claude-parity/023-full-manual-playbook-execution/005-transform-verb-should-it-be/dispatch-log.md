@@ -1,3 +1,7 @@
+---
+title: "Dispatch Log: Wave 005 - Transform Verb \"should it be\" Framing"
+trigger_phrases: []
+---
 # Dispatch Log: Wave 005 - Transform Verb "should it be" Framing
 
 Model: `openai/gpt-5.5-fast` (variant `medium`), one dispatch at a time, `opencode run --format json --dir <repo>`.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Deterministic Ranking Core and Oracle Parity"
+trigger_phrases: []
+---
 # Iteration 9: Deterministic Ranking Core and Oracle Parity
 
 ## Focus

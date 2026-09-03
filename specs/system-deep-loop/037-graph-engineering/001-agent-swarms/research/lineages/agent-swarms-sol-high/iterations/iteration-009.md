@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Resumable Human Gates"
+trigger_phrases: []
+---
 # Iteration 9: Resumable Human Gates
 
 ## Focus

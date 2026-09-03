@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Traceability - Schema and Spec Alignment"
+trigger_phrases: []
+---
 # Iteration 4: Traceability - Schema and Spec Alignment
 
 ## Focus

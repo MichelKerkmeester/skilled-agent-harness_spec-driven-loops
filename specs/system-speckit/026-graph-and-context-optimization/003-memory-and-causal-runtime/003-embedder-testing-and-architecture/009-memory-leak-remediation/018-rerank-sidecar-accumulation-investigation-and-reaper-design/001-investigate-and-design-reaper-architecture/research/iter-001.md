@@ -5,6 +5,7 @@ reasoning_effort: xhigh
 iter: 1
 target_dimension: lifecycle-map
 timestamp: "2026-05-23T10:45:00Z"
+trigger_phrases: []
 ---
 # Iteration 001: Rerank-Sidecar Lifecycle Map
 

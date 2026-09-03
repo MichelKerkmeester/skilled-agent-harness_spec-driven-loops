@@ -1,3 +1,7 @@
+---
+title: "Iteration 022 — Rollout sequencing & backward-compat"
+trigger_phrases: []
+---
 # Iteration 022 — Rollout sequencing & backward-compat
 
 **Focus:** the concrete phased rollout (order, flags, grandfathering, coordination).

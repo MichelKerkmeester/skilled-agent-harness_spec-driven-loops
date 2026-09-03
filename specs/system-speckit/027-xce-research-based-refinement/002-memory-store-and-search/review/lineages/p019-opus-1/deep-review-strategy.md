@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — 019-maintenance-grace-daemon-survives-reelection"
+trigger_phrases: []
+---
 # Deep Review Strategy — 019-maintenance-grace-daemon-survives-reelection
 
 Lineage: `fanout-p019-opus-1` · executor `cli-claude-code` model `claude-opus-4-8` · maxIterations 1

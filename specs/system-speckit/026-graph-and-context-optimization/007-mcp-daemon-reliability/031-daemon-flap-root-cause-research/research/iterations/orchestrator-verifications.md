@@ -1,3 +1,7 @@
+---
+title: "Orchestrator verifications (live, beyond the gpt-5.5 seats) — daemon-flap research"
+trigger_phrases: []
+---
 # Orchestrator verifications (live, beyond the gpt-5.5 seats) — daemon-flap research
 
 Facts I confirmed by running commands/greps this session, correcting or sharpening seat + my own earlier claims. Date 2026-06-14.

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — NOOA Loop/Harness Theory"
+trigger_phrases: []
+---
 # Deep Research Strategy — NOOA Loop/Harness Theory
 
 ## 1. OVERVIEW

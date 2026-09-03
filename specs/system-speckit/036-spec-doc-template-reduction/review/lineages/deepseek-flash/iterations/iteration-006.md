@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: D4 Maintainability — Bloat Measurements & Legibility (quantitative)"
+trigger_phrases: []
+---
 # Iteration 006: D4 Maintainability — Bloat Measurements & Legibility (quantitative)
 
 ## Focus

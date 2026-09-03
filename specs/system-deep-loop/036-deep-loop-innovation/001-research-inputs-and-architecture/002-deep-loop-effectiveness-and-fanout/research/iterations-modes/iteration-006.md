@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 6 | SOL xhigh | mode: deep-review | angle: A1-sota deep-review :: 2025-2026 state of the art | 2026-07-15T08:31:28.740Z -->
 
 The competitive baseline has moved: fresh multi-pass review is no longer a moat. Cursor and Qodo already parallelize discovery and validate findings; CodeRabbit and Greptile maintain cross-commit context; Semgrep learns suppressions. Deep-review’s defensible opportunity is a transparent, longitudinal proof ledger that turns review claims into reproducible evidence and follows them through remediation.

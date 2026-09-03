@@ -1,3 +1,7 @@
+---
+title: "Exercise record — what the mode actually did"
+trigger_phrases: []
+---
 # Exercise record — what the mode actually did
 
 ## Refusal path — PASSED, and by the predicted test

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — A2: Code-graph SQLite contention"
+trigger_phrases: []
+---
 # Iteration 002 — A2: Code-graph SQLite contention
 
 ## Focus

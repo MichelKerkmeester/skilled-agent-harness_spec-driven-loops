@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - gpt55-fast-3"
+trigger_phrases: []
+---
 # Deep Research Dashboard - gpt55-fast-3
 
 ## Iteration Table

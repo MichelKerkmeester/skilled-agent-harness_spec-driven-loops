@@ -1,3 +1,7 @@
+---
+title: "Iteration 18 — Domain 1: Silent Fail-Open Patterns (8/10)"
+trigger_phrases: []
+---
 # Iteration 18 — Domain 1: Silent Fail-Open Patterns (8/10)
 
 ## Investigation Thread

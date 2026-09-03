@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Make the spec-kit memory indexing subsystem (memory_index_scan + embedding-index pipeline) future-proof, best-UX, and hardened in all situations: no caller foot-guns, never times out regardless of repo size, self-heals after spec-folder moves, degrades gracefully when the embedder is slow/absent."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

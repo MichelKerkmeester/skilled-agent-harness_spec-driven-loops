@@ -2,6 +2,7 @@
 description: Fully conformant command-shaped fixture doc, the clean-lane counterpart to docs/commands/lint-docs.md.
 argument-hint: <target> [--dry-run]
 allowed-tools: Read
+trigger_phrases: []
 ---
 
 # Well-Formed Command

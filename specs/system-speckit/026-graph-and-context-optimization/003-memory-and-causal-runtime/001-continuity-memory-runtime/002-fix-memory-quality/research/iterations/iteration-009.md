@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: D6 Verification + Skeptical Pass"
+trigger_phrases: []
+---
 # Iteration 9: D6 Verification + Skeptical Pass
 
 ## Focus

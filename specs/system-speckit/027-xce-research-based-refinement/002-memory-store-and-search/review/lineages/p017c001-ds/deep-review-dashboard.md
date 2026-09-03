@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — Token Budget Truncation Safety"
+trigger_phrases: []
+---
 # Deep Review Dashboard — Token Budget Truncation Safety
 
 ## Status

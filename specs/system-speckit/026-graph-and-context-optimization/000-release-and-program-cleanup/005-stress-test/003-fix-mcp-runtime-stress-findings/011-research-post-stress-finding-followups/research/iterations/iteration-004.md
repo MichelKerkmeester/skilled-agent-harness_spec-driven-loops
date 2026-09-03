@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Copilot authority helper placement and CocoIndex telemetry boundary"
+trigger_phrases: []
+---
 # Iteration 004 — Copilot authority helper placement and CocoIndex telemetry boundary
 
 ## Status

@@ -1,3 +1,7 @@
+---
+title: "Direction Switch — Delete the Over-Engineered Rollback / Migration / Back-Compat Machinery"
+trigger_phrases: []
+---
 # Direction Switch — Delete the Over-Engineered Rollback / Migration / Back-Compat Machinery
 
 **Date:** 2026-08-23

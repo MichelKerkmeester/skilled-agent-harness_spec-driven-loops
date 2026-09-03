@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - Install guides / scripts / doctor realignment
 description: Session tracking for the cli-codex gpt-5.5 deep-research audit of install guides, scripts, and /doctor commands post-CocoIndex-deprecation + 116 deep-skill-evolution impact.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking

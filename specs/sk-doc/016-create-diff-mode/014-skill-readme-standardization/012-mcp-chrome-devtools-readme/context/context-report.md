@@ -1,3 +1,7 @@
+---
+title: "Context Report: mcp-chrome-devtools README rewrite"
+trigger_phrases: []
+---
 # Context Report: mcp-chrome-devtools README rewrite
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only). Both iterations converge with cited file:line evidence on the two paths, the routing rule, the command surface and the outputs. This skill carries heavy internal drift (two command conventions, three method counts, three version numbers), so the host recorded the authoritative value for each and the rewrite drops the brittle ones.

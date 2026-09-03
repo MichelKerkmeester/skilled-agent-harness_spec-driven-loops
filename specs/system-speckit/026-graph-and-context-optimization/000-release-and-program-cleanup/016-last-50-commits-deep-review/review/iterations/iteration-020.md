@@ -1,3 +1,7 @@
+---
+title: "Iteration 020 — Completeness Critic + Verdict Inputs (dimension: traceability, angle: completeness-critic)"
+trigger_phrases: []
+---
 # Iteration 020 — Completeness Critic + Verdict Inputs (dimension: traceability, angle: completeness-critic)
 
 ## Dispatcher

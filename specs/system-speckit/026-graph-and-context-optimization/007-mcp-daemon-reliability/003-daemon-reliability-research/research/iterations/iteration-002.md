@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Deepen + design (4 Opus sub-agents, parallel)"
+trigger_phrases: []
+---
 # Iteration 002 — Deepen + design (4 Opus sub-agents, parallel)
 
 Each fix from iteration-1 was deepened into a concrete, code-grounded design. Source: workflow `wf_60883ac5-906`, phase "Iteration A". Verdicts on these designs are in `iteration-003.md`.

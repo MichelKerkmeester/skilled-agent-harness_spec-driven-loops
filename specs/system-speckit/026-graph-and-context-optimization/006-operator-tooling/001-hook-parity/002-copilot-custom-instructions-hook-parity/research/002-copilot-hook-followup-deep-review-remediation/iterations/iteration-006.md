@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 - Claude Compatibility Check and Convergence"
+trigger_phrases: []
+---
 # Iteration 006 - Claude Compatibility Check and Convergence
 
 ## Focus

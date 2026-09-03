@@ -1,3 +1,7 @@
+---
+title: "Deep Review v3 Iteration 032 - 011 verification and dist"
+trigger_phrases: []
+---
 # Deep Review v3 Iteration 032 - 011 verification and dist
 
 **Dimension:** traceability  

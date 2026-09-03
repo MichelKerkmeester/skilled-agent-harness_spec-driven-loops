@@ -1,3 +1,7 @@
+---
+title: "Grounding Evidence — Search Intelligence Research"
+trigger_phrases: []
+---
 # Grounding Evidence — Search Intelligence Research
 
 > Seeded from a live diagnostic + remediation session (packet 015). These are

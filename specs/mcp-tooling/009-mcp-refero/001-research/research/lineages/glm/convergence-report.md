@@ -1,3 +1,7 @@
+---
+title: "Convergence Report — lineage:glm"
+trigger_phrases: []
+---
 # Convergence Report — lineage:glm
 
 **Session:** `fanout-glm-1784198125985-iw9229` · **Executor:** cli-opencode zai-coding-plan/glm-5.2 · **stopPolicy:** max-iterations

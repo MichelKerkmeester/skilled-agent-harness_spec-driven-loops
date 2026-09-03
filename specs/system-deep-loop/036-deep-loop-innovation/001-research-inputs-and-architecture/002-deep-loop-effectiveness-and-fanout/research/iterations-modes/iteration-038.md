@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 38 | SOL xhigh | mode: skill-benchmark | angle: A3-mech skill-benchmark :: mechanisms & reference impls | 2026-07-15T11:17:03.370Z -->
 
 The current Lane C measures router health better than skill effectiveness. Packet-056’s validity lesson should become a machine-enforced gate, not more rubric prose.

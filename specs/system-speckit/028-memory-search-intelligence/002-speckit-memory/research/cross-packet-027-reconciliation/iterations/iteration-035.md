@@ -1,3 +1,7 @@
+---
+title: "Iteration 35 (Round N adversarial): bi-temporal dissolution — PARTIAL (holds on current-memory axis)"
+trigger_phrases: []
+---
 # Iteration 35 (Round N adversarial): bi-temporal dissolution — PARTIAL (holds on current-memory axis)
 
 ## Focus

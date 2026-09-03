@@ -1,3 +1,7 @@
+---
+title: "Icons (primitive)"
+trigger_phrases: []
+---
 # Icons (primitive)
 
 A monochrome 24×24 icon library for IT/cloud diagrams. Each icon uses `currentColor` so it inherits ink from its parent SVG and adapts to the editorial skin or any user-onboarded brand palette.

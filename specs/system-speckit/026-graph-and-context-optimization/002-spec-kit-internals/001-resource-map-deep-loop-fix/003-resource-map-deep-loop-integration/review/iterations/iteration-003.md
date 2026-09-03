@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: traceability - packet verification closure audit"
+trigger_phrases: []
+---
 # Iteration 003: traceability - packet verification closure audit
 
 ## Dispatcher

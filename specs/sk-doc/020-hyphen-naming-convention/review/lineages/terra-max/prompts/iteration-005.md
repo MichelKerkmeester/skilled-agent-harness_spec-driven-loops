@@ -1,3 +1,7 @@
+---
+title: "Deep-review iteration 005"
+trigger_phrases: []
+---
 # Deep-review iteration 005
 
 Configured executor: `cli-codex`, model `gpt-5.6-terra`.

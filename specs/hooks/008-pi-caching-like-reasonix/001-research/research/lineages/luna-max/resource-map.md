@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Verify the lumo.md Reasonix vs Pi prompt-caching claims and scope feasibility of a Reasonix-style Pi caching plugin"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

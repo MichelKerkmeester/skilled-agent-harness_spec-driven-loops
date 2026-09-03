@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis - gpt55-fast-2"
+trigger_phrases: []
+---
 # Research Synthesis - gpt55-fast-2
 
 ## 1. Executive Summary

@@ -7,6 +7,7 @@ executor: cli-opencode (zai-coding-plan/glm-5.2)
 importance_tier: important
 contextType: research
 version: 1
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — GLM-OOB Lateral Lineage

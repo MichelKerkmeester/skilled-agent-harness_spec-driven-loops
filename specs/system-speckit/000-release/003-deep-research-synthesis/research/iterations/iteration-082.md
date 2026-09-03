@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Archived hybrid-memory phases normalized to current docs
 The archived working-memory project's seven child phases each received a refreshed, standards-compliant documentation set as concise archive records. Before: every phase still leaned on outdated package scaffolding and stale cross-references. After: the core planning documents were rewritten to the current template, and any retained checklist or decision files became brief compatibility notes instead of heavyweight governance documents. The normalization was verified until error-level issues were cleared. This is internal housekeeping with no runtime or user-visible behavior change; it only makes the archived phases readable and auditable without depending on obsolete scaffolding.
 

@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 013 of 15: Re-test the row-write teachings under the doc lens (skeptical)"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 013 of 15: Re-test the row-write teachings under the doc lens (skeptical)
 The prior pass proposed several WRITE-side teachings that may be row-coupled. Re-test each against our deliberate-save, document-based model — be skeptical and decide TRANSFERS / DOC-ANALOG / ROW-COUPLED with evidence. Read the relevant source:

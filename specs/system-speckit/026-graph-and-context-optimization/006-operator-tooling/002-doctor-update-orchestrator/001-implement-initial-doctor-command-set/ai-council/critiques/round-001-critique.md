@@ -1,3 +1,7 @@
+---
+title: "Round 001 Cross-Critique"
+trigger_phrases: []
+---
 # Round 001 Cross-Critique
 
 ## Prior Round Plan

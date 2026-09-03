@@ -1,3 +1,7 @@
+---
+title: "Draw.io import output spec — format × size × detail × audience"
+trigger_phrases: []
+---
 # Draw.io import output spec — format × size × detail × audience
 
 Four dials decide what an imported diagram becomes. Set them **before** redrawing — they change the deliverable, layout, type ramp, node count, and wording, so retrofitting them afterwards means redrawing.

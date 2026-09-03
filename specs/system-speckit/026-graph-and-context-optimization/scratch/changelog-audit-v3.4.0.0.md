@@ -1,3 +1,7 @@
+---
+title: "Changelog Audit: v3.4.0.0.md"
+trigger_phrases: []
+---
 # Changelog Audit: v3.4.0.0.md
 
 > **Status: partially resolved via 015 → 012 merge (2026-04-15).** The P0 gap identified in this audit — "packet 015-start-into-plan-merger missing from changelog" — was closed by absorbing packet 015's content into packet 012 as Phase B of the command-graph evolution (see ADR-014 in `012-spec-kit-commands/decision-record.md`). References to "packet 015-start-into-plan-merger" in this audit now point to content folded into `012-spec-kit-commands/`. This audit is preserved as historical evidence of the gap detection and resolution path.

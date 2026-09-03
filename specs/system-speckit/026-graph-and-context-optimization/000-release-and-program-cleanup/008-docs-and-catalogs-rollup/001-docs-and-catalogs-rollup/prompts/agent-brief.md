@@ -1,3 +1,7 @@
+---
+title: "Agent Brief — 012/006 Docs and Catalogs Rollup"
+trigger_phrases: []
+---
 # Agent Brief — 012/006 Docs and Catalogs Rollup
 
 You are an autonomous documentation agent. **No conversation context.** This brief is everything you need.

@@ -1,3 +1,7 @@
+---
+title: "Research Phase 008: caura-memclaw (MemClaw) Fleet-Memory Teachings"
+trigger_phrases: []
+---
 # Research Phase 008: caura-memclaw (MemClaw) Fleet-Memory Teachings
 
 Deep-research pass mining the vendored `external/caura-memclaw-main` ("MemClaw — fleet memory for AI agents") for design teachings transferable to the **local, single-user Spec Kit Memory system**, mapped to 027 children 002-008, ending in a sub-packet proposal for 027.

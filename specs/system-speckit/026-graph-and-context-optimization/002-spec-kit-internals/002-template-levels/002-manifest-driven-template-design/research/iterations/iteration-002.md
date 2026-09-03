@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Addon Lifecycle Classification And Level-Validator Survey"
+trigger_phrases: []
+---
 # Iteration 2: Addon Lifecycle Classification And Level-Validator Survey
 
 ## Focus

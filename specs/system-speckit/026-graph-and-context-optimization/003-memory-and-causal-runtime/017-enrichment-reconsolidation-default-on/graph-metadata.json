@@ -41,11 +41,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/search/search-flags.ts",
-      "handlers/save/post-insert.ts",
-      "handlers/memory-save.ts",
-      "tests/search-flags.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,30 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-insert.ts",
-        "kind": "code",
-        "path": "handlers/save/post-insert.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.vitest.ts",
-        "kind": "test",
-        "path": "tests/search-flags.vitest.ts",
         "source": "derived"
       },
       {
@@ -191,11 +163,35 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Inline",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three save-time \"planner-first\" features ship behind opt-in flags that default to OFF",
     "created_at": "2026-06-04T04:55:00Z",
-    "last_save_at": "2026-08-30T15:39:31.923Z",
+    "last_save_at": "2026-09-03T22:22:58.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb8afd97cc98160298b347602b3bb5844227906e9368ccef86b63b58ecf1a53c",
+    "source_fingerprint": "sha256:67df6ea9e1e5356da4e8f7bd9d6becb8d1249423d66338cc658bb9de56a849ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3fbb4d130fe843d483317d86267e4ed2dce9e0e1d0ae0aa4b13cd2a09b34f10",
       "plan.md": "798b83d5cba10b86c7278b0f607f31862c8bcaaf42272611efad9332106cf602",
       "tasks.md": "f881f4e13863d9f6196833154ee4b68dafb00305d8918d8169abea091e2073d3",
-      "implementation-summary.md": "b3ec881bcaac3b9e41df750e9f2f5b00bfdd2df0d34469d880925f00520cd0c7"
+      "implementation-summary.md": "cdfee6db2a52099d235d610d21429d77071337f34efdbd5d717281d219b408cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

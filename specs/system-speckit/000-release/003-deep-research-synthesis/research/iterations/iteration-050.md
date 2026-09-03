@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### sk-git docs corrected to verified GitHub MCP syntax
 A documentation-only pass fixed incorrect GitHub MCP examples across the sk-git documentation set, replacing them with the verified `github.github_*` command form and clarifying when remote GitHub MCP operations are needed versus plain local git. The before state was guidance that could lead users to mistype MCP calls for PRs, issues, repo reads, and CI/CD checks; after, the examples are trustworthy and the local-versus-remote tool distinction is explicit. For a framework user this means copy-pasteable, correct examples for remote GitHub workflows instead of plausible-but-wrong ones. No runtime behavior changed, so nothing is breaking.
 

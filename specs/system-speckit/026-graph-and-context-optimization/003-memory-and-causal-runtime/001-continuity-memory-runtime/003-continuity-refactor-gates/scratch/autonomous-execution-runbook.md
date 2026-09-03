@@ -8,6 +8,7 @@ scope: Implement + verify + test Gates A–E autonomously; Gate F runs as observ
 total_active_wall_clock: ~8–14 hours serial + 2-week D0 observation gap
 notes:
   - v2 (2026-04-11T20:30Z) — adjusted for parent packet now having root-level spec/plan/tasks/checklist/implementation-summary (L2 coordination packet); dropped .md extension from /tmp/execute-*.prompt paths to avoid validator false-positive markdown link detection; added parent packet coordination wrap-up steps to Sessions 1, 2, 3; preflight check for child phase linkage (PHASE_LINKS 13-warning requirement)
+trigger_phrases: []
 ---
 
 # Phase 018 — Autonomous Execution Runbook

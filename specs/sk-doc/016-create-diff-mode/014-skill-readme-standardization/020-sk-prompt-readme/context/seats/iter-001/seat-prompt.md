@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Spec folder: sk-doc/014-skill-readme-standardization/020-sk-prompt-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file, and do not run the skill. Return findings as your final assistant message only.
 
 Role: You are a documentation analyst gathering an accurate factual map of one skill so its README can be rewritten.

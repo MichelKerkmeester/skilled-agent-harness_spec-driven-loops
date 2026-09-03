@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard: dq-novel-oob"
+trigger_phrases: []
+---
 # Deep Research Dashboard: dq-novel-oob
 
 Auto-generated. Do not edit by hand.

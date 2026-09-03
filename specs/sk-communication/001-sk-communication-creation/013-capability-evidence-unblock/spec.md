@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 013 Capability-Evidence Unblock"
 description: "Supply fresh confirmed capability evidence so provider control knobs (temperature, thinking, tier) are reachable through the shipped path instead of failing closed to exact-original before transport."
 trigger_phrases:
   - "capability-evidence-unblock"
-  - "capability evidence unblock"
   - "control knobs fail-closed"
   - "projection quality"
 importance_tier: "important"

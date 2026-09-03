@@ -1,3 +1,7 @@
+---
+title: "000-release-cleanup / 001-release-readiness: Release readiness validation"
+trigger_phrases: []
+---
 # 000-release-cleanup / 001-release-readiness: Release readiness validation
 
 Deep review programs, synthesis of readiness findings, P1/P2 remediation.

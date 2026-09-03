@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 — Verification matrix and adversarial review"
+trigger_phrases: []
+---
 # Iteration 019 — Verification matrix and adversarial review
 
 ## Question

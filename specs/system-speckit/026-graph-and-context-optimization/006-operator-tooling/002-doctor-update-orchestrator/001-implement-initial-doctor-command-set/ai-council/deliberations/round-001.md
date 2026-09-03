@@ -1,3 +1,7 @@
+---
+title: "Round 001 Deliberation"
+trigger_phrases: []
+---
 # Round 001 Deliberation
 
 ## Composition

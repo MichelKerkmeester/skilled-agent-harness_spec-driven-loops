@@ -1,3 +1,7 @@
+---
+title: "Task 7A — Root Current-Truth Alignment Evidence"
+trigger_phrases: []
+---
 # Task 7A — Root Current-Truth Alignment Evidence
 
 ## Scope

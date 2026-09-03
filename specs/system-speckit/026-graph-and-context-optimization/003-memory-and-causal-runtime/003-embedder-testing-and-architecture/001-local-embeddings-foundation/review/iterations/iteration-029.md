@@ -1,3 +1,7 @@
+---
+title: "Deep Review v2 Iteration 029 — handover redactions"
+trigger_phrases: []
+---
 # Deep Review v2 Iteration 029 — handover redactions
 
 **Dimension:** security

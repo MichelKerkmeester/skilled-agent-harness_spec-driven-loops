@@ -1,3 +1,7 @@
+---
+title: "Iteration 10 — synthesis: ranked optimization plan + measurable impact estimates + trade-offs"
+trigger_phrases: []
+---
 # Iteration 10 — synthesis: ranked optimization plan + measurable impact estimates + trade-offs
 
 ## Summary

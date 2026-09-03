@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Anthropic Creation Prompt Anatomy"
+trigger_phrases: []
+---
 # Iteration 3: Anthropic Creation Prompt Anatomy
 
 ## Focus

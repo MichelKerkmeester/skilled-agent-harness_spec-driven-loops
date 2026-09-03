@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Nested MCP server READMEs resynced to real tool sets
 The nested reference READMEs inside the skill-advisor and code-graph MCP servers now list the full tool sets their code actually registers, after a QA cross-check found the rewritten top-level docs had outpaced the subpages. Before, the tools page named four skill-graph tools, the handlers page documented only the advisor handlers with no `skill-graph/` subdirectory, and the code-graph entrypoints table ran seven rows, missing `code_graph_classify_query_intent`. After, the fifth tool `skill_graph_propagate_enhances` appears in the overview, key-files, and entrypoints tables with its trusted-caller gate, the handler subdirectory is documented, and the missing entrypoint is added. A framework user now gets an accurate answer to "what can I call here" from the skill docs instead of having to diff them against source. This is internal documentation-only; no runtime behavior or tool surfaces changed.
 

@@ -3,6 +3,7 @@ title: "Task Breakdown: Visual Explanation Lane for sk-communication"
 description: "Ordered tasks to author the explain-visually command, its reference doc, and the Lane B section of the skill, then verify the projection lane is untouched."
 importance_tier: "medium"
 contextType: "general"
+trigger_phrases: []
 ---
 # Task Breakdown: Visual Explanation Lane for sk-communication
 

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 22 | model luna (gpt-5.6-luna) | angle: Partial-failure tolerance, retries, idempotency | 2026-07-14T22:58:56.795Z -->
 
 The strongest pattern is not “exactly-once agents.” It is explicit failure semantics: stable operation identity, replay boundaries, retry classification, and compensating recovery.

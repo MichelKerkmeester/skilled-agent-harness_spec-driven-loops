@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-039.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 039 — Fingerprint mismatch forensics and retry loop safeguards

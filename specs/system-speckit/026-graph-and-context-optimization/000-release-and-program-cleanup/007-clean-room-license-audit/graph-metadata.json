@@ -42,8 +42,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".claude/settings.local.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,12 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "pt-02 §12 ranks license contamination from direct External Project reuse as a P0 risk",
     "created_at": "2026-04-25T10:48:06.447Z",
-    "last_save_at": "2026-08-30T15:39:28.832Z",
+    "last_save_at": "2026-09-03T22:22:30.047Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +202,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df280a343d87f4c625428f89ce8e5aedcb1d515a272f225cdf09d958d07a7b4a",
+    "source_fingerprint": "sha256:b8ff77c460acd3ad539ffcb22c652fb75c6aef6e9a8037f7f8e826a57dd455bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ee1b3ea18db59b5b0d20de7fc0b78ca419118ddb6061b058c17199b64f6a454d",
-      "plan.md": "97d50ee8f45d620ef3efa19bd2e6f23cf49c3722543bf697d19f53861734eb6d",
-      "tasks.md": "bcbcaf2e83686ce2908efb1382081ca4bb6ce09b8ebb4f376e36dce057cb755c",
+      "plan.md": "56299c7e18dc7f857c481a36502c700772f9f9f60038125fb3ae21855f02a025",
+      "tasks.md": "a0dc3fe626654a872bf71a8d501e477dbd7ddd042c3f38ee73d812a31ba93eb1",
       "decision-record.md": "d21905c0ae2d8789a17d7857e45df829e44cca4a946a4aeb63808b6f19049b2f",
       "implementation-summary.md": "522fa94d8725285832ff3de95237273471f13746b4f52428e92e5bee831df140"
     },

@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Axis 7 — Onboarding/Pairing Simpler than Tailscale + Ticket"
+trigger_phrases: []
+---
 # Iteration 9: Axis 7 — Onboarding/Pairing Simpler than Tailscale + Ticket
 
 ## Focus

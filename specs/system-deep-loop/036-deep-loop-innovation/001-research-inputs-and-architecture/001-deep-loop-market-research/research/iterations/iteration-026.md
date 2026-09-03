@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 26 | model sol (gpt-5.6-sol) | angle: Contradiction audit: convergent vs divergent | 2026-07-14T23:19:47.327Z -->
 
 The contradiction dissolves once stopping is hierarchical. A stabilized branch can stop without implying that the parent search frontier is exhausted. Certaindex supports branch-local early exit, while Large Language Monkeys shows that rare-solution coverage can keep growing after majority and reward-model selection have saturated. [Certaindex](https://arxiv.org/abs/2412.20993), [Large Language Monkeys](https://arxiv.org/abs/2407.21787).

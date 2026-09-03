@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 9 | SOL xhigh | thread: recommendation-deep-dive | angle: R4 conditional budget-aware fan-in + determinism | 2026-07-15T04:58:15.619Z -->
 
 R4 needs a persisted fan-in decision machine between pool execution and merge. The current runtime has deterministic output ordering, but not deterministic branch identity, selection, or partial-failure semantics.

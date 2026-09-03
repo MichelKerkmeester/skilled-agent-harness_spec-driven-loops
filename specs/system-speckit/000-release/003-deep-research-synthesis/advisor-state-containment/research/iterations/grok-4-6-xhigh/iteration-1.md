@@ -1,3 +1,7 @@
+---
+title: "grok-4-6-xhigh — iteration 1: Live main Public has 23 nested specs/.opencode dirs; only 3 are advisor-written .advisor-state leaks (gitignored, absent from this worktree)."
+trigger_phrases: []
+---
 # grok-4-6-xhigh — iteration 1: Live main Public has 23 nested specs/.opencode dirs; only 3 are advisor-written .advisor-state leaks (gitignored, absent from this worktree).
 
 ## Findings

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Trace the root-path contract across standalone routers, parent hubs, packet routers, and benchmark gold"
+trigger_phrases: []
+---
 # Iteration 4: Trace the root-path contract across standalone routers, parent hubs, packet routers, and benchmark gold
 
 ## Focus

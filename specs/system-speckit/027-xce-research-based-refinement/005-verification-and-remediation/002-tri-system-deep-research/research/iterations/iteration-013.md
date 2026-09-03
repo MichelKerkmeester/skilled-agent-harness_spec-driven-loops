@@ -1,3 +1,7 @@
+---
+title: "Iteration 013 — Angle 13"
+trigger_phrases: []
+---
 # Iteration 013 — Angle 13
 
 **Angle:** Save-path parity: generate-context.js full save vs memory_save MCP vs CLI front door — divergence in scrubbing, provenance, metadata refresh.

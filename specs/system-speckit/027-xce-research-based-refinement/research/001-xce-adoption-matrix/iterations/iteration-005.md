@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — RQ5: PRAT Reverse-Engineering"
+trigger_phrases: []
+---
 # Iteration 005 — RQ5: PRAT Reverse-Engineering
 
 **Started**: 2026-05-08T13:00:00Z

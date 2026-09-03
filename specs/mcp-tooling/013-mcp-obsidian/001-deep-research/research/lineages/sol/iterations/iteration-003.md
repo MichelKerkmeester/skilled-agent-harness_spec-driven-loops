@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: MCP identities, transports, and app boundaries"
+trigger_phrases: []
+---
 # Iteration 3: MCP identities, transports, and app boundaries
 
 ## Focus

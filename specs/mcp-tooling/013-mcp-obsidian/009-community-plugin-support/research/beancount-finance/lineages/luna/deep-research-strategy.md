@@ -1,6 +1,7 @@
 ---
 title: Beancount Ledger Plugin Research Strategy
 description: Detached five-iteration research strategy for the Beancount Ledger Obsidian plugin.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Beancount Ledger / beancount-finance

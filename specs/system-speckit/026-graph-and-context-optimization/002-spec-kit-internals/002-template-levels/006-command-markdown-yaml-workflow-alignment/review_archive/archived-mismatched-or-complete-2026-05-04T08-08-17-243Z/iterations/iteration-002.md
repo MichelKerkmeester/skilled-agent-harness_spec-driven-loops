@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: template-rendering-correctness → correctness plus maintainability"
+trigger_phrases: []
+---
 # Iteration 2: template-rendering-correctness → correctness plus maintainability
 
 ## Dispatcher

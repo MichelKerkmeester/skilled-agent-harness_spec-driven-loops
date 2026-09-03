@@ -1,3 +1,7 @@
+---
+title: "Iteration 013 — Adversarial verify: F-A5-01 / F-A5-03 socket-tail TOCTOU (dimension: security)"
+trigger_phrases: []
+---
 # Iteration 013 — Adversarial verify: F-A5-01 / F-A5-03 socket-tail TOCTOU (dimension: security)
 
 ## Dispatcher

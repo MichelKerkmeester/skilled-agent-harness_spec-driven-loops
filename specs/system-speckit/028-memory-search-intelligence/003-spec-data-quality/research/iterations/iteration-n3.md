@@ -1,3 +1,7 @@
+---
+title: "Iteration N3 — Retrieval Measurement: the re-index mechanics and the proof"
+trigger_phrases: []
+---
 # Iteration N3 — Retrieval Measurement: the re-index mechanics and the proof
 
 The header-path / global-id prefix is the brief's highest-ROI retrieval win, but it is the one candidate that cannot ship on an eval-mode number. Both production truncation gates — the 3-result confidence floor and the token budget — run only when `evaluationMode` is off, so a prefix that lifts recall@K in the labelled lens can deliver nothing to the reader the floor protects. This iteration designs the injection seam, the cache-key versioning that forces a real re-embed, the coverage-guard gating that 028 named as a precondition, and the dual-mode proof that separates a true prod gain from an eval-lens flatter. The crux: do not measure recall@K (the floor hides it); measure the eval-vs-prod completeRecall@3 delta on eval-v2.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Exhaustive stale-token and path scan"
+trigger_phrases: []
+---
 # Iteration 007 — Exhaustive stale-token and path scan
 
 ## Focus

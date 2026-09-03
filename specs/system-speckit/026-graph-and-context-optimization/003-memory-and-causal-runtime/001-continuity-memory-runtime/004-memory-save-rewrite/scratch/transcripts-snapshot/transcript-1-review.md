@@ -5,6 +5,7 @@ title: "Transcript 1 Review"
 description: "Alignment review for transcript 1 planner-first prototype."
 importance_tier: "important"
 contextType: "verification"
+trigger_phrases: []
 ---
 # Transcript 1 Review
 

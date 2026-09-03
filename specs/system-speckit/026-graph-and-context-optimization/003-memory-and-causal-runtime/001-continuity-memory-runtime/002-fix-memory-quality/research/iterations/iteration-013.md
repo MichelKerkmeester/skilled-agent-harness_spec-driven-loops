@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: D2 Call-graph and Precedence Gate Design (Q10)"
+trigger_phrases: []
+---
 # Iteration 13: D2 Call-graph and Precedence Gate Design (Q10)
 
 ## Focus

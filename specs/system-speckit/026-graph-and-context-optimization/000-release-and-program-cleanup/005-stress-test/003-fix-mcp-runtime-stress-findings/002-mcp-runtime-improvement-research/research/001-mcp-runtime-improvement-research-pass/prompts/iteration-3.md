@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 3 (007 MCP Runtime Improvement)"
+trigger_phrases: []
+---
 # Deep-Research Iteration 3 (007 MCP Runtime Improvement)
 
 ## STATE

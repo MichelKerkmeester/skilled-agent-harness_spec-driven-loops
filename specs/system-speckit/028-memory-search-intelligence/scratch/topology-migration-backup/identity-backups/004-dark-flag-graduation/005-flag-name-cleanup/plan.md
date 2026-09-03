@@ -14,6 +14,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
     completion_pct: 100
+trigger_phrases: []
 ---
 # Implementation Plan: Version-Suffix Flag-Name Cleanup
 

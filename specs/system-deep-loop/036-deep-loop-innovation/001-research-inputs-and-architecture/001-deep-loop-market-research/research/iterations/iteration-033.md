@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 33 | model sol (gpt-5.6-sol) | angle: Deterministic replay guarantees & their cost | 2026-07-14T23:56:08.202Z -->
 
 Deterministic replay should be a graded contract, not one boolean:

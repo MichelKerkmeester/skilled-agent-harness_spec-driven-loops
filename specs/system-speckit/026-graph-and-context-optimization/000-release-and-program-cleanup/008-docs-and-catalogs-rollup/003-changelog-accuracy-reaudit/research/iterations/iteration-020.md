@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 020"
+trigger_phrases: []
+---
 # Deep Research Iteration 020
 
 > Audited changelog: `changelog-017-005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep.md`

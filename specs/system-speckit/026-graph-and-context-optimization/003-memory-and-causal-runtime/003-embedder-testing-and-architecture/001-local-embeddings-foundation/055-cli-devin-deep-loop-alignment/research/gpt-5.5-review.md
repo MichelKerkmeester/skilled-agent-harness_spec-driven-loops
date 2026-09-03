@@ -1,3 +1,7 @@
+---
+title: "gpt-5.5 xhigh fast Scaffold Review — packet 059"
+trigger_phrases: []
+---
 # gpt-5.5 xhigh fast Scaffold Review — packet 059
 
 Date: 2026-05-15

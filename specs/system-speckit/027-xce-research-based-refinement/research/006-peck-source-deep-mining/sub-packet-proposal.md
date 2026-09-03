@@ -3,6 +3,7 @@ title: "Sub-packet proposal for 027 — peck-source verification discipline, ben
 source_research: "research/006-peck-source-deep-mining/research.md (iterations 001-013)"
 session: "2026-06-06-027-peck-source-deep-mining"
 status: "proposal (cross-model endorsed by MiniMax M3 at iter 018 — one must-fix + T1 refinements applied) — awaiting operator approval before any Gate-3 packet creation"
+trigger_phrases: []
 ---
 
 # Sub-packet proposal for 027 (from peck-source mining)

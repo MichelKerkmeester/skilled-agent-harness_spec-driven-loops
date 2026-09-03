@@ -2,6 +2,7 @@
 _memory:
   continuity:
     next_safe_action: "Synthesize research.md and resource-map.md from iter 010 + prior 9; orchestrator runs canonical save"
+trigger_phrases: []
 ---
 # Iteration 010 — Cross-Cutting Synthesis + Adopt/Adapt/Reject/Defer Matrix
 

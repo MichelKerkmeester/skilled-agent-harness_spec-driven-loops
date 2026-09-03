@@ -13,6 +13,7 @@ _memory:
     next_safe_action: "Reconcile, refresh the catalogs, validate."
     blockers: []
     key_files: []
+trigger_phrases: []
 ---
 
 # Implementation Plan: Code READMEs (System-Deep-Loop Batch)

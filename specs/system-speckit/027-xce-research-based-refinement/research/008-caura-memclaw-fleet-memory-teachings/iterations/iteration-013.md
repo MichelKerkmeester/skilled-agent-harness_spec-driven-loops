@@ -1,3 +1,7 @@
+---
+title: "Iteration 013 — DEEP write-safety internals + SQLite adoption sketch"
+trigger_phrases: []
+---
 # Iteration 013 — DEEP write-safety internals + SQLite adoption sketch
 
 **Status:** insight · **Findings:** 12 · **newInfoRatio:** 0.82 · **tokens:** 127246 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

@@ -1,3 +1,7 @@
+---
+title: "Iteration 012 — T4 current-state generalization residue + product.md analog"
+trigger_phrases: []
+---
 # Iteration 012 — T4 current-state generalization residue + product.md analog
 
 **Focus:** peck product.md "current-state living doc" vs what 003-current-state-discipline shipped + live PHASE_PARENT_CONTENT + description.json.

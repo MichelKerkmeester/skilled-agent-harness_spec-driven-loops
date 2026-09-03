@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Trace Mode-B gold, observations, scoring, and the 19-row loss distribution"
+trigger_phrases: []
+---
 # Iteration 3: Trace Mode-B gold, observations, scoring, and the 19-row loss distribution
 
 ## Focus

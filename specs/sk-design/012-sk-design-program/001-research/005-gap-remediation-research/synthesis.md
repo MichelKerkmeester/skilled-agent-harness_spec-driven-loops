@@ -1,3 +1,7 @@
+---
+title: "Gap-Remediation Research — Consolidated Synthesis"
+trigger_phrases: []
+---
 # Gap-Remediation Research — Consolidated Synthesis
 
 > Pulls the four forced 5-iteration GPT-5.6-SOL research runs into one remediation

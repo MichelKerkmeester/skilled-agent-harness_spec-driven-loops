@@ -1,3 +1,7 @@
+---
+title: "Iteration 22 (Opus lineage — NATIVE): blast-radius scoping of the top-3 GOs"
+trigger_phrases: []
+---
 # Iteration 22 (Opus lineage — NATIVE): blast-radius scoping of the top-3 GOs
 
 > Model: **Opus 4.8 NATIVE** (read-only). Orchestrator-written. newInfoRatio **0.5** (no new candidate — deflates optimistic finder lev/eff against real call-site reality, iter-10-style). **Materially corrects two top-7 effort estimates.**

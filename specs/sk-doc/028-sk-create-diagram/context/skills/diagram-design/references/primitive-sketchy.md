@@ -1,3 +1,7 @@
+---
+title: "Sketchy Filter (hand-drawn variant)"
+trigger_phrases: []
+---
 # Sketchy Filter (hand-drawn variant)
 
 Optional displacement filter that wobbles every stroke and edge slightly — turns any minimal variant into a hand-drawn "editorial" register without changing layout. Use when the diagram accompanies an essay rather than technical docs.

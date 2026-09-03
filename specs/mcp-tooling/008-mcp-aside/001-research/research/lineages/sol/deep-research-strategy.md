@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Aside Developer Surface"
+trigger_phrases: []
+---
 # Deep Research Strategy — Aside Developer Surface
 
 ## 1. Overview

@@ -1,3 +1,7 @@
+---
+title: "cli-external-orchestration (CP2) — checkpoint receipt"
+trigger_phrases: []
+---
 # cli-external-orchestration (CP2) — checkpoint receipt
 
 - Hub: cli-external-orchestration

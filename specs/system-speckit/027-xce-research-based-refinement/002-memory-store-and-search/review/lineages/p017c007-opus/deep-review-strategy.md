@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — 007-output-surface-parity (lineage p017c007-opus)"
+trigger_phrases: []
+---
 # Deep Review Strategy — 007-output-surface-parity (lineage p017c007-opus)
 
 ## Topic

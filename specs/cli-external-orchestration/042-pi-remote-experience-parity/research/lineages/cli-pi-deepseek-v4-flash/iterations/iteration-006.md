@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Axis 4 — Scoped Accept-Edits / Session Allow-List Bound to Lease/CAS"
+trigger_phrases: []
+---
 # Iteration 6: Axis 4 — Scoped Accept-Edits / Session Allow-List Bound to Lease/CAS
 
 ## Focus

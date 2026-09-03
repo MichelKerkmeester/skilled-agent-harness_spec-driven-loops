@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: Gap Check 2 — Waiting Affordance, Error Attention, Fallback Surface"
+trigger_phrases: []
+---
 # Iteration 19: Gap Check 2 — Waiting Affordance, Error Attention, Fallback Surface
 
 ## Focus

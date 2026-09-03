@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Devin CLI MCP host surface"
+trigger_phrases: []
+---
 # Iteration 001: Devin CLI MCP host surface
 
 ## Focus

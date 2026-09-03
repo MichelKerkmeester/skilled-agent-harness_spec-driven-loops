@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Workflow Modes, Owning Packets, and Typed-Pair Surface"
+trigger_phrases: []
+---
 # Iteration 1: Workflow Modes, Owning Packets, and Typed-Pair Surface
 
 ## Focus

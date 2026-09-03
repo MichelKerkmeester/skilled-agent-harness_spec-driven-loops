@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Confidence-First Architecture + Learned/Adaptive Routing"
+trigger_phrases: []
+---
 # Iteration 4: Confidence-First Architecture + Learned/Adaptive Routing
 
 **Lineage:** glm-oob (cli-opencode / GLM-5.2)

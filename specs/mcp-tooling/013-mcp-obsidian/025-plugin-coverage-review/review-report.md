@@ -1,3 +1,7 @@
+---
+title: "Review Report — mcp-obsidian plugin coverage (FINAL)"
+trigger_phrases: []
+---
 # Review Report — mcp-obsidian plugin coverage (FINAL)
 
 > Two `/deep:review` cycles (cli-codex gpt-5.6-luna, max/fast, `--stop-policy=max-iterations`) against the `mcp-obsidian` skill, plus remediation. All findings were **independently re-verified against the real files** before acting (finding = hypothesis).

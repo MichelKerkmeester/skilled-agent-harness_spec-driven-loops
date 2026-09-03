@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: mcp-notion-reads / mcp-obsidian-writes Division of Labor — Inventory and Import Steps"
+trigger_phrases: []
+---
 # Iteration 1: mcp-notion-reads / mcp-obsidian-writes Division of Labor — Inventory and Import Steps
 
 ## Focus

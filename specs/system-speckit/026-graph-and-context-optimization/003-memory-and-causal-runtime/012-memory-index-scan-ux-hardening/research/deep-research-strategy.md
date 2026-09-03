@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - memory_index_scan UX hardening
 description: Session tracking for the convergence-gated deep-research loop into making the spec-kit memory indexing subsystem future-proof, best-UX, and hardened in all situations.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking

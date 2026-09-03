@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Let me also check for the playbook and any additional files.
 Now I have all the data. Here is the verification report:
 

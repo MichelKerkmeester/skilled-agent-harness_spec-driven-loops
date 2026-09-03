@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 - IRQ6 Cross-Phase Integration Contract"
+trigger_phrases: []
+---
 # Iteration 006 - IRQ6 Cross-Phase Integration Contract
 
 ## Focus

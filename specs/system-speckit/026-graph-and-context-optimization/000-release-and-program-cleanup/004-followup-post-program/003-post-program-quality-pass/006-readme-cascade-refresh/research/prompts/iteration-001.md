@@ -1,3 +1,7 @@
+---
+title: "All README files in scope"
+trigger_phrases: []
+---
 ## Packet 037/006: readme-cascade-refresh — Tier B doc
 
 You are cli-codex (gpt-5.5 high fast) implementing **037/006-readme-cascade-refresh**.

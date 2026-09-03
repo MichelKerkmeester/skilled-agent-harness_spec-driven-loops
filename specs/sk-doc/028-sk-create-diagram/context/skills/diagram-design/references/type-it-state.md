@@ -1,3 +1,7 @@
+---
+title: "IT current-state"
+trigger_phrases: []
+---
 # IT current-state
 
 **Best for:** documenting the *before* picture of a modernization proposal — the legacy IT landscape grouped by phase or department (Collection → Processing → Dissemination, or Frontend / Backend / Storage, or Survey → Analysts → Reports), with pain-points flagged, file-based hand-offs labelled (CSV / Excel / Email / Copy), and pre-platform tooling visible. The companion to `type-dp-integration.md`: this type shows the gap that a data-platform proposal is going to close.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Generated-manifest reproducibility and fixture attribution"
+trigger_phrases: []
+---
 # Iteration 8: Generated-manifest reproducibility and fixture attribution
 
 ## Focus

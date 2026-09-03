@@ -1,3 +1,7 @@
+---
+title: "Iteration 072 — ADDITIONS: per-phase build-on-026 table; risks (005 internal conflict, 007 cache identity, 006 async preserve, 004 checkpoint)"
+trigger_phrases: []
+---
 # Iteration 072 — ADDITIONS: per-phase build-on-026 table; risks (005 internal conflict, 007 cache identity, 006 async preserve, 004 checkpoint)
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.62. **Findings:** 7.

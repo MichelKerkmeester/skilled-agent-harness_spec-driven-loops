@@ -13,6 +13,7 @@ _memory:
     next_safe_action: "Proceed to phase 005 (code READMEs)."
     blockers: []
     key_files: []
+trigger_phrases: []
 ---
 
 # Tasks: Skill and Mode README Overhaul

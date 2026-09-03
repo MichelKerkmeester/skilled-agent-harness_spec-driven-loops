@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - Mini Shai-Hulud IOCs"
+trigger_phrases: []
+---
 # Iteration 001 - Mini Shai-Hulud IOCs
 
 ## Summary

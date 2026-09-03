@@ -1,3 +1,7 @@
+---
+title: "Task 7B Historical Documentation Evidence"
+trigger_phrases: []
+---
 # Task 7B Historical Documentation Evidence
 
 ## Scope and Dependency

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Workflow-Owned Resource Map Emitter Contract"
+trigger_phrases: []
+---
 # Iteration 3: Workflow-Owned Resource Map Emitter Contract
 
 ## Focus

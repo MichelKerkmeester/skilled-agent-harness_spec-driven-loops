@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Scenario S1 — cli-opencode-pure-1
 
 | Dimension | Score | Evidence |

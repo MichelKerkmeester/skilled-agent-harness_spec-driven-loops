@@ -1,3 +1,7 @@
+---
+title: "pi CLI — Cline provider feasibility findings"
+trigger_phrases: []
+---
 # pi CLI — Cline provider feasibility findings
 
 Investigation worker report. Scope: can the `pi` CLI register/authenticate the Cline provider

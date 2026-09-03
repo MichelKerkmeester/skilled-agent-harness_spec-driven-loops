@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Skill-Benchmark Typed-Gold Producer-to-Consumer Path"
+trigger_phrases: []
+---
 # Iteration 3: Skill-Benchmark Typed-Gold Producer-to-Consumer Path
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — GLM Lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — GLM Lineage
 
 ## Iteration Table

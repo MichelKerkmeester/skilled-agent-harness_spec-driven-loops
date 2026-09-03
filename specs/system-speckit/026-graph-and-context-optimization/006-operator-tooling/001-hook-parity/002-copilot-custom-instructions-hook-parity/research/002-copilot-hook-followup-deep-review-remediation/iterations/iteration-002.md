@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Locate Rejected Hook Object and Validator Source"
+trigger_phrases: []
+---
 # Iteration 002 - Locate Rejected Hook Object and Validator Source
 
 ## Focus

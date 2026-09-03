@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: T2 — Why packet 012's daemon IPC bridge socket is not serving at runtime"
+trigger_phrases: []
+---
 # Iteration 1: T2 — Why packet 012's daemon IPC bridge socket is not serving at runtime
 
 ## Focus

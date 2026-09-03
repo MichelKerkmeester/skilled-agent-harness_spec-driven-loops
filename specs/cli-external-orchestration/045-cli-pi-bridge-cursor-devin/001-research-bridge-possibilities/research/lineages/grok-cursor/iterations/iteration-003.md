@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Devin CLI auth, credentials.toml, and public API shape"
+trigger_phrases: []
+---
 # Iteration 3: Devin CLI auth, credentials.toml, and public API shape
 
 ## Focus

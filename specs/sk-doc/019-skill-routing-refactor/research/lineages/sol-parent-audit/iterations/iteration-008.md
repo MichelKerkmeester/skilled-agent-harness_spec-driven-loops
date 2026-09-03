@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Lifecycle status-authority reconciliation"
+trigger_phrases: []
+---
 # Iteration 008 — Lifecycle status-authority reconciliation
 
 ## Focus

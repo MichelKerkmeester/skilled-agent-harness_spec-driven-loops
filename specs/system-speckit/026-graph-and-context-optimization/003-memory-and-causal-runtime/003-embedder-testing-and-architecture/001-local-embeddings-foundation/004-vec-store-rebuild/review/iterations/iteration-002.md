@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 002 — 004-vec-store-rebuild"
+trigger_phrases: []
+---
 # Deep Review Iteration 002 — 004-vec-store-rebuild
 
 **Dimension:** reversibility

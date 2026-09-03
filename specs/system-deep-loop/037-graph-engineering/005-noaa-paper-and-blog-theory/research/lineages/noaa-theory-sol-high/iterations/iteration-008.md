@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: P3 Read-Only Context Capability Facade"
+trigger_phrases: []
+---
 # Iteration 8: P3 Read-Only Context Capability Facade
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Advanced Canvas Docs — Research-to-Edit Synthesis"
+trigger_phrases: []
+---
 # Advanced Canvas Docs — Research-to-Edit Synthesis
 
 > Fresh-reviewer synthesis turning the 4-iteration deep-research loop into an actionable, evidence-cited edit plan for the shipped Advanced Canvas reference docs. Read-only on all shipped docs; this file is the only write.

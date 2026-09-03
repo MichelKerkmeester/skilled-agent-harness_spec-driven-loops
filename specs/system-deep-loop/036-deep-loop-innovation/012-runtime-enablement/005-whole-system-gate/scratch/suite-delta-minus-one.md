@@ -1,3 +1,7 @@
+---
+title: "The delta says one fewer failure. It is not an improvement."
+trigger_phrases: []
+---
 # The delta says one fewer failure. It is not an improvement.
 
 ## What the receipt shows

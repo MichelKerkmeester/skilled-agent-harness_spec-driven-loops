@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 16 | model luna (gpt-5.6-luna) | angle: Eval harnesses as loops (Inspect/promptfoo) | 2026-07-14T22:33:25.983Z -->
 
 The useful transfer is a verifier pipeline: agent run → evidence capture → scoring/scanning → aggregate → retry or promote. Inspect separates dense per-sample scorers from sparse scanners for reward hacking, evaluator awareness, and environment faults; it also supports offline rescoring and resumable eval sets. That maps naturally to `deep-review` findings versus `deep-improvement` promotion scores. ([scoring](https://inspect.aisi.org.uk/scoring.html), [scanners](https://inspect.aisi.org.uk/scanners.html), [eval sets](https://inspect.aisi.org.uk/eval-sets.html))

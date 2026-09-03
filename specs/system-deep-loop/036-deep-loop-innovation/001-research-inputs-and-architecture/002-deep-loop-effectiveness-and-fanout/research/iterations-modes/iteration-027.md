@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 27 | SOL xhigh | mode: agent-improvement | angle: A2-moat agent-improvement :: unique value / moat | 2026-07-15T10:15:18.244Z -->
 
 The moat is not “better prompt optimization.” It is behavioral change control for executable agent policies.

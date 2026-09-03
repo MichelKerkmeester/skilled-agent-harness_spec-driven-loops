@@ -3,6 +3,7 @@ title: "Decision Record: Track Access Production Enablement"
 description: "Decision record for whether this phase should enable memory search access tracking in production paths."
 importance_tier: "normal"
 contextType: "decision"
+trigger_phrases: []
 ---
 # Decision Record: Track Access Production Enablement
 

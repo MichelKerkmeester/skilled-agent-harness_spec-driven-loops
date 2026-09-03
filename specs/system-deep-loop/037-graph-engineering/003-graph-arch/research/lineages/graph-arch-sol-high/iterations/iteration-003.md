@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: GraphAdmissionProofV1 Before 036 Authorization"
+trigger_phrases: []
+---
 # Iteration 3: GraphAdmissionProofV1 Before 036 Authorization
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Task"
+trigger_phrases: []
+---
 Independent code review (READ-ONLY). You may run git, read files, run `python3`/`node` for validation only (no writes). Do NOT modify any file.
 
 # Task

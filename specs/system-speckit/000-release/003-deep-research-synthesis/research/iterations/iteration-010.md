@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Harmonize cli-* skill surfaces with shared patterns
 Internal. The four sibling CLI executor skills (claude-code, codex, copilot, gemini) were aligned on the structural surface cli-opencode already had: each gained a Default Invocation block (pinned model plus flags) and a Provider Auth Pre-Flight subsection that detects credentials once before dispatch and routes through an ask-not-substitute three-state decision tree instead of silently picking a fallback. cli-copilot additionally gained an Error Handling table. Every skill kept its native flags and agent-routing syntax, and a do-not-collapse grep gate confirmed all 33 unique per-skill terms survived with counts equal to or above baseline, so the harmonization added consistency without flattening provider-specific value. For framework users, this means whichever CLI they drive, the pre-dispatch auth guidance and invocation defaults now read identically.
 

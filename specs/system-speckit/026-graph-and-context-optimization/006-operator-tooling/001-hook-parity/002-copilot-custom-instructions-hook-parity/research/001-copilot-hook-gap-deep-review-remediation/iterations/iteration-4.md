@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Custom instructions, skills, and ACP transport"
+trigger_phrases: []
+---
 # Iteration 4: Custom instructions, skills, and ACP transport
 ## Focus
 This iteration targeted the remaining main-session injection surfaces around Copilot CLI custom instructions, skills, and `--acp`. The goal was to determine whether any of them can carry Spec Kit Memory startup/advisor payloads into the active session without patching Copilot itself.

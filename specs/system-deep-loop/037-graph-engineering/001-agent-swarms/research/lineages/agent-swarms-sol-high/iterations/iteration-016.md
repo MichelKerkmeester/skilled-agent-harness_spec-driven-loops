@@ -1,3 +1,7 @@
+---
+title: "Iteration 16: Temporal Provenance and Contradiction"
+trigger_phrases: []
+---
 # Iteration 16: Temporal Provenance and Contradiction
 
 ## Focus

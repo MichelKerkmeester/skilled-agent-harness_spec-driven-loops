@@ -1,3 +1,7 @@
+---
+title: "Study #5 (NOOA paper + blog theory) — All Findings & Recommendations, in Plain Terms"
+trigger_phrases: []
+---
 # Study #5 (NOOA paper + blog theory) — All Findings & Recommendations, in Plain Terms
 
 > Plain-language companion to `research.md` (the 20-iteration synthesis by GPT-5.6-SOL xhigh, independently verified by DeepSeek V4 Pro). This is the **loop/harness-layer** study — the counterpart to the four *graph-layer* studies. Subject: NVIDIA's "Object-Oriented Agents" (NOOA) research paper (primary) + the 12 blogs' loop/harness first principles.

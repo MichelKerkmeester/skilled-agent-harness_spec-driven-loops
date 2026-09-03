@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 Prompt Record"
+trigger_phrases: []
+---
 # Iteration 004 Prompt Record
 
 Focus: maintainability and data-integrity review of automatic causal-link resolution.

@@ -1,3 +1,7 @@
+---
+title: "50 Research Angles — Work Done in 026 (graph-and-context-optimization)"
+trigger_phrases: []
+---
 # 50 Research Angles — Work Done in 026 (graph-and-context-optimization)
 
 Open, falsifiable research questions spawned by the closed 026 program. Each is tied to real shipped work. Grouped by theme; the executor column is the assigned deep-research model.

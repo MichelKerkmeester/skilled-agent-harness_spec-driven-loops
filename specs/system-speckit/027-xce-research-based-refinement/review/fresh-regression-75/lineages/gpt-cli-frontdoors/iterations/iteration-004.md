@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-cli-frontdoors — iteration 4 (global #47)"
+trigger_phrases: []
+---
 # Seat gpt-cli-frontdoors — iteration 4 (global #47)
 
 - Model: `kimi-for-coding/k2p7` · Executor: opencode · Angle: gpt-cli-frontdoors

@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: RQ6 diagnose-then-fix enforcement"
+trigger_phrases: []
+---
 # Iteration 006: RQ6 diagnose-then-fix enforcement
 
 **Focus:** RQ6 diagnose-then-fix enforcement  

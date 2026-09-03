@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Cursor auth stores, api2.cursor.sh, and ToS boundary"
+trigger_phrases: []
+---
 # Iteration 2: Cursor auth stores, api2.cursor.sh, and ToS boundary
 
 ## Focus

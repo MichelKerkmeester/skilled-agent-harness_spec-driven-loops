@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 050: feature-catalog-shape-realignment — Tier B doc realignment
 
 You are cli-codex (gpt-5.5 high fast) implementing **019-feature-catalog-shape-realignment**.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Final Candidate Matrix and Noise Threshold"
+trigger_phrases: []
+---
 # Iteration 5: Final Candidate Matrix and Noise Threshold
 
 ## Canonical Route Proof

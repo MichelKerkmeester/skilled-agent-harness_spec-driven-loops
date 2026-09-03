@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - fanout gpt55-p020-2"
+trigger_phrases: []
+---
 # Deep Review Strategy - fanout gpt55-p020-2
 
 ## 1. OVERVIEW

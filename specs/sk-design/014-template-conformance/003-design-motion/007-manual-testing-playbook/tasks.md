@@ -17,6 +17,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Tasks: design-motion manual-testing-playbook/ conformance
 

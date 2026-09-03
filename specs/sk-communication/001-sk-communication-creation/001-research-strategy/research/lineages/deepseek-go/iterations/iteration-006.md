@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Fidelity validation, protected spans, exact-original fallback, evaluation methods"
+trigger_phrases: []
+---
 # Iteration 6: Fidelity validation, protected spans, exact-original fallback, evaluation methods
 
 ## Focus

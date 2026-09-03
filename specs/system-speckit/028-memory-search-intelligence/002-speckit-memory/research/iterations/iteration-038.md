@@ -1,3 +1,7 @@
+---
+title: "Iteration 38: Round J Cross-System — Shared-Infra Map + Critical Path (build-once-reuse-N)"
+trigger_phrases: []
+---
 # Iteration 38: Round J Cross-System — Shared-Infra Map + Critical Path (build-once-reuse-N)
 
 ## Focus

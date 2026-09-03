@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Recall Serialization (Q5) + Injection-Hardening (Q8) + Embedder-Degrade (Q9), + Q3 residual"
+trigger_phrases: []
+---
 # Iteration 3: Recall Serialization (Q5) + Injection-Hardening (Q8) + Embedder-Degrade (Q9), + Q3 residual
 
 ## Focus

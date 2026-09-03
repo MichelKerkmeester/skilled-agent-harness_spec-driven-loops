@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — live supervision code trace"
+trigger_phrases: []
+---
 # Iteration 002 — live supervision code trace
 
 - **Wave:** 1 (of 5) · **Executor:** `openai/gpt-5.5-fast --variant xhigh` (read-only, exit 0) · **Seat:** b9vfj5114 · **Date:** 2026-06-14

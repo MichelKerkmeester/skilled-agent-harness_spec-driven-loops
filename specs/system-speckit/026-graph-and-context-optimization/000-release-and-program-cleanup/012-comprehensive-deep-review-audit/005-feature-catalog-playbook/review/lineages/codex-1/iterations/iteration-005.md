@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Stabilization Replay"
+trigger_phrases: []
+---
 # Iteration 005 - Stabilization Replay
 
 Focus: re-check highest-risk findings and look for P0/P1 escalation.

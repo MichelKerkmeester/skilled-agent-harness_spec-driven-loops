@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Refactored Mode / Procedure Architecture"
+trigger_phrases: []
+---
 # Iteration 6: Refactored Mode / Procedure Architecture
 
 ## Focus

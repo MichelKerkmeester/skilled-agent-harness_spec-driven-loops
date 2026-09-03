@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Standalone Local AI Document Diff Skill"
+trigger_phrases: []
+---
 # Research Synthesis: Standalone Local AI Document Diff Skill
 
 **Status**: Complete | **Iterations**: 10 | **Stop Reason**: maxIterationsReached

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Shipped Command Anatomy and Literal-Prompt Gap"
+trigger_phrases: []
+---
 # Iteration 1: Shipped Command Anatomy and Literal-Prompt Gap
 
 ## Focus

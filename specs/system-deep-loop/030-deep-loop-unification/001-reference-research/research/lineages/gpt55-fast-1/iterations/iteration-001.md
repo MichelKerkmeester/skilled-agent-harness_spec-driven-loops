@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Structural Layout and Ownership Seams"
+trigger_phrases: []
+---
 # Iteration 1: Structural Layout and Ownership Seams
 
 ## Focus

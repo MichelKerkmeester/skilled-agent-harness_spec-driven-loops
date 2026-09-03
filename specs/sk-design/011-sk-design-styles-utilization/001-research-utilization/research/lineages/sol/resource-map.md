@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — How should the sk-design skill and its five nested modes (interface, foundations, motion, audit, md-generator) smartly index, retrieve, and consume the ~1,290-style design-token library at .opencode/skills/sk-design/styles/?"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Deterministic output experiment, latency benchmark, and compatibility cache design for replacing checked-in `templates/level_N/` outputs with generation from `core/` and `addendum/`.

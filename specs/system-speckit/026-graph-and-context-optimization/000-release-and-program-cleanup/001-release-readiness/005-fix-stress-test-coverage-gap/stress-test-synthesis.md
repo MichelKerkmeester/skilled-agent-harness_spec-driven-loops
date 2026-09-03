@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### §1 — Executive Summary
 
 The stress suite progressed from 28 files / 69 tests before packet 042, to 38 files / 94 tests after packet 043, to 56 files / 159 tests after packet 044. The coverage backlog is clear: the 54-row matrix now has 0 P0, 0 P1, and 0 P2 gaps remaining, with every row at `gap_classification=none`. The latest run passed with 56/56 test files and 159/159 tests, exit 0, 0 failures, and 0 skips reported in the run log. The primary stress axes now cover concurrency and leases, DoS/capacity pressure, large-corpus scaling, degraded-readiness fallbacks, perf budgets, filesystem isolation, subprocess boundaries, and consolidated cross-feature harness behavior.

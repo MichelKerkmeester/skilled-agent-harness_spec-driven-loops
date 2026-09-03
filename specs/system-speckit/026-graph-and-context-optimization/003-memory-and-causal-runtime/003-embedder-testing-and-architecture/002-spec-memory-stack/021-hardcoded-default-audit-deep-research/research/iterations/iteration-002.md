@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — CocoIndex Python Subsystem Audit"
+trigger_phrases: []
+---
 # Iteration 002 — CocoIndex Python Subsystem Audit
 
 **Date:** 2026-05-23

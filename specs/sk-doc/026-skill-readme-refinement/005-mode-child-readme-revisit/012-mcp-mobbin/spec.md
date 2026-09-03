@@ -5,7 +5,6 @@ trigger_phrases:
   - "mcp mobbin readme"
   - "mobbin readme rewrite"
   - "mobbin readme revisit"
-  - "mcp-mobbin readme"
   - "mode readme mcp-mobbin"
 importance_tier: "normal"
 contextType: "implementation"

@@ -3,6 +3,7 @@ title: "Plan: Clean-Room License Audit (012/001)"
 description: "Steps to read external/LICENSE and produce the clean-room allow-list ADR."
 importance_tier: "important"
 contextType: "implementation"
+trigger_phrases: []
 ---
 # Plan: Clean-Room License Audit (012/001)
 

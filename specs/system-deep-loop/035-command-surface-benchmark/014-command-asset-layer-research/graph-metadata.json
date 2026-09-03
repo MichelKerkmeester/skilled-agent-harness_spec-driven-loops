@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A two-lineage deep-research fan-out (5x GPT-5.6-Sol xhigh/fast via cli-codex + 5x GLM-5.2 max via cli-opencode, 10 forced iterations, non-convergence) drilling the command asset layer — the _auto.yaml / _confirm.yaml workflow YAMLs, the _presentation.txt display assets, and the doctor route-manifest _routes.yaml — and producing a cross-model asset-layer backlog (A-K/A-W/A-G) at research/research.md that refines the 013 remediation phases.",
     "created_at": "2026-07-16T07:48:40.216Z",
-    "last_save_at": "2026-08-30T15:39:20.356Z",
+    "last_save_at": "2026-09-03T22:20:43.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1863e9757ab4c12e444220bc546dac2d27d918ae88c891ee3eadd23e80f5fe82",
+    "source_fingerprint": "sha256:5cfc86345b70260a24a0a580a8a5f9dd39ce90b4c651e3a94f5163e34b17fc55",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "72f8e50fce2fc050393c2c0587137a86cdcc5898414f14fa635ae564e5ac69c1",
-      "plan.md": "8ae4597e1367626796fd2813847e63bb21bb5f09fdadb85d0cffd06dbcc43461",
-      "tasks.md": "dd3d44b8651baac8d153b0e3f9870becd4e84daffddcb75ef8f465cbae04373f",
+      "plan.md": "dd61728793b7a8418b37e6dae090c10c9597e03212c0a506dcd85b54c85a5944",
+      "tasks.md": "0dd3cc521c7926ea16857ae94e11a681e6fa07ff1e2ab88437030d089c736a3c",
       "implementation-summary.md": "18ac7a5639b00d028a2dddba359f7abadad01e4fd1481851f964502a1dd37729",
-      "research/research.md": "d0bbab66ccac682778cb56da5512eda2f20f109f0fb8a3786df9295a836b78aa"
+      "research/research.md": "ba9bac13cdae7cc6702e723ca7ac0a8d5e596aa1a90a7bdf1f519a2cfd504a54"
     },
     "last_active_child_id": null,
     "last_active_at": null

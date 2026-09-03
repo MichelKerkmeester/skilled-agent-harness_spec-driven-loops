@@ -3,6 +3,7 @@ iteration: 6
 focus: RQ6 - Cross-W composition opportunities
 newInfoRatio: 0.49
 status: complete
+trigger_phrases: []
 ---
 
 # Iteration 006 - Cross-W Composition

@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Test Pi extension-hook feasibility"
+trigger_phrases: []
+---
 # Iteration 9: Test Pi extension-hook feasibility
 
 ## Focus

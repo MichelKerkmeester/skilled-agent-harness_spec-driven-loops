@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Template weight after renderInlineGates + Reducer Engineering prior art"
+trigger_phrases: []
+---
 # Iteration 1: Template weight after renderInlineGates + Reducer Engineering prior art
 
 ## Focus

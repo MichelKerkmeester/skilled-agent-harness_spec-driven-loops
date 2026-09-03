@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ROLE: ADVERSARIAL verifier. Your job is to REFUTE, not confirm. Default position: "this should NOT be adopted as-is." READ-ONLY. Do NOT write/edit/create files or run code. Spec folder: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings (pre-approved; skip Gate 3).
 
 TARGET (verify against real code): caura-memclaw at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/caura-memclaw-main . CONSUMER: Spec Kit Memory (LOCAL single-user, SQLite).

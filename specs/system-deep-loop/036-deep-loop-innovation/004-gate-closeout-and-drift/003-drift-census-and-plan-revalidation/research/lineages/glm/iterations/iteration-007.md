@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Phases 016-017 drift + OPEN QUESTION B (packet-033 renumber)"
+trigger_phrases: []
+---
 # Iteration 7: Phases 016-017 drift + OPEN QUESTION B (packet-033 renumber)
 
 ## Focus

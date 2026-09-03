@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy
 description: Meta Bind plugin reference-docs optimization research
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Meta Bind Plugin Docs

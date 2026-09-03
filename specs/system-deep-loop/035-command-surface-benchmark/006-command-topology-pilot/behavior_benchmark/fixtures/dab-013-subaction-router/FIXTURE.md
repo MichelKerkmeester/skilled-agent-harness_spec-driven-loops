@@ -1,3 +1,7 @@
+---
+title: "Subaction-router fixture"
+trigger_phrases: []
+---
 # Subaction-router fixture
 
 Frozen input for a read-only parent-skill diagnostic. The nested target is intentionally minimal so the diagnostic has stable structural findings while route selection remains the measured behavior.

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: memory_context Structural Channel Routing"
+trigger_phrases: []
+---
 # Deep Research Strategy: memory_context Structural Channel Routing
 
 ## Topic

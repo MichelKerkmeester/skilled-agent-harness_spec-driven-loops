@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: mcp-obsidian Capability Set — Full Parity Baseline"
+trigger_phrases: []
+---
 # Iteration 3: mcp-obsidian Capability Set — Full Parity Baseline
 
 ## Focus

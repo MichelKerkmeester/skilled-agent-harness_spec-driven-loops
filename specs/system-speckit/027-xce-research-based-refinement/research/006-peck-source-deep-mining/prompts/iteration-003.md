@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 003 — numeric weighted severity rubric (score >=4 blocks)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 003 — numeric weighted severity rubric (score >=4 blocks)

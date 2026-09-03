@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The system-deep-loop workflows are iteration-based loops with linear dispatch, externalized JSONL state, and convergence detection",
     "created_at": "2026-08-08T14:32:54.230Z",
-    "last_save_at": "2026-08-30T15:39:22.386Z",
+    "last_save_at": "2026-09-03T22:22:22.019Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:2e8e095e857c7957f9aa2a93941b5eb22a617f088f2c1897c6363901ceadb410",
+    "source_fingerprint": "sha256:a0ba9054b0485a029a85b1621a774658815075195fa8c41e580dd5671eaaf976",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "74c7673b161eea5ba5d02d5d86a948ca038d3d2d3100844ac42eaa6177c4a1ac",
-      "research/research.md": "b793ff079f3843c08e3440e063c033132815ae278042d8fd9a036e2b2f755c3c",
-      "handover.md": "d9980466885b6169cdf47262c1cb57b1ac155076c3aaffcbc541419152565385"
+      "research/research.md": "34d2b59134710f40f86ce95f5648047d653e16b4b387d4a4c35e7377598cdbb7",
+      "handover.md": "19667fabd6e3a3e3f10fc1d31be7a55532feb05bdc7c264719b9f5aeb274f6e4"
     },
     "last_active_child_id": "system-deep-loop/037-graph-engineering/001-agent-swarms",
     "last_active_at": null

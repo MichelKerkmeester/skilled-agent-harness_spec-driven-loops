@@ -1,1 +1,4 @@
+---
+trigger_phrases: []
+---
 Now I'll execute the deep-review phases. Starting with **phase_init**.Now **phase_main_loop** — iteration 1, reviewing correctness across all files.Now **phase_synthesis** — writing the final report and findings registry.FANOUT_LINEAGE_COMPLETE:p017c003-mimo

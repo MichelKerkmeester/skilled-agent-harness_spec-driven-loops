@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - gpt-gap Lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy - gpt-gap Lineage
 
 ## Research Topic

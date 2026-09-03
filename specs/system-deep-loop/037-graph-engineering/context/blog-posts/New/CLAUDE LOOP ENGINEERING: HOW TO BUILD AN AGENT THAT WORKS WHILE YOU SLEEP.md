@@ -1,3 +1,7 @@
+---
+title: "Loop state · ci-triage"
+trigger_phrases: []
+---
 Source Link: https://x.com/polydao/status/2083061585858158636?s=12
 
 CLAUDE LOOP ENGINEERING: HOW TO BUILD AN AGENT THAT WORKS WHILE YOU SLEEP

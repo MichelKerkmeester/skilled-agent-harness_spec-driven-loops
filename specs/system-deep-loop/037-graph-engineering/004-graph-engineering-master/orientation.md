@@ -12,6 +12,7 @@ provenance:
     - "specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/research.md"
     - "specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md"
   note: "graph-engineering-master is documentary — a teaching/skill package with no runnable implementation. This study is a doctrine + completeness check, not a code study."
+trigger_phrases: []
 ---
 
 # Orientation Seed — graph-engineering-master → graph-based deep-loop (Repo Study 4, final)

@@ -1,3 +1,7 @@
+---
+title: "Data sources & connectors"
+trigger_phrases: []
+---
 # Data sources & connectors
 
 > Part of the [AgentSwarms docs](../README.md#documentation).

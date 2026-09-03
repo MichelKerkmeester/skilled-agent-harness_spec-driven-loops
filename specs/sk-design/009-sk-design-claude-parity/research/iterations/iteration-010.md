@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final Synthesis and Refactor Blueprint"
+trigger_phrases: []
+---
 # Iteration 10: Final Synthesis and Refactor Blueprint
 
 ## Focus

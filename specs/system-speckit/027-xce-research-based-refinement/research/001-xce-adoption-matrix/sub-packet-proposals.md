@@ -3,6 +3,7 @@ title: "XCE Research — Sub-Packet Proposals"
 packet: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement"
 totalProposals: 5
 created: "2026-05-08T18:00:00Z"
+trigger_phrases: []
 ---
 
 # Sub-Packet Proposals

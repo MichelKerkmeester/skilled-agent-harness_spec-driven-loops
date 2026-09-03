@@ -1,3 +1,7 @@
+---
+title: "Beancount Ledger v2.3.1 — verified file-layer knowledge base"
+trigger_phrases: []
+---
 # Beancount Ledger v2.3.1 — verified file-layer knowledge base
 
 ## Scope, confidence, and source boundary

@@ -1,3 +1,7 @@
+---
+title: "Iteration 10 — maintainability — tests-and-gaps"
+trigger_phrases: []
+---
 # Iteration 10 — maintainability — tests-and-gaps
 
 **Dispatch:** gpt-5.5-fast high (cli-opencode), real verdict returned (dispatchOk=true).

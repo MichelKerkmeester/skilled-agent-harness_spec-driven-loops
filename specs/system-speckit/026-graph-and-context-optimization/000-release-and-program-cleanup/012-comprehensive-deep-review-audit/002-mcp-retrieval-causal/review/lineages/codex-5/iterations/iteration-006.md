@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Stabilization Replay - Active Finding Validation"
+trigger_phrases: []
+---
 # Iteration 6: Stabilization Replay - Active Finding Validation
 
 ## Focus

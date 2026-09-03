@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - Session Overview"
+trigger_phrases: []
+---
 # Deep Research Dashboard - Session Overview
 
 Auto-generated from state + registry. Regenerated after every iteration. Never manually edited.

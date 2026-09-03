@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Traceability — Fifteen-Finding Closure and Six-Mode Projection"
+trigger_phrases: []
+---
 # Iteration 3: Traceability — Fifteen-Finding Closure and Six-Mode Projection
 
 ## Dispatcher

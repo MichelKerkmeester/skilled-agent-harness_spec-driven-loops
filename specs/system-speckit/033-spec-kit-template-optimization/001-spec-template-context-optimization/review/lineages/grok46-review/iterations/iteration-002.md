@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: D2 Security — Trust boundaries of shipped validation and budget code"
+trigger_phrases: []
+---
 # Iteration 2: D2 Security — Trust boundaries of shipped validation and budget code
 
 ## Focus

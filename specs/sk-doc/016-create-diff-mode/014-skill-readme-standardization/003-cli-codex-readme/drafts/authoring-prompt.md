@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Spec folder: sk-doc/014-skill-readme-standardization/003-cli-codex-readme (pre-approved, skip Gate 3). OUTPUT-ONLY task: do NOT write, create or edit any file. Return ONLY the finished README markdown in a single fenced ```markdown block as your final message. No preamble, no commentary.
 
 Role: You are a technical writer rewriting the README for the `cli-codex` skill in a specific house voice.

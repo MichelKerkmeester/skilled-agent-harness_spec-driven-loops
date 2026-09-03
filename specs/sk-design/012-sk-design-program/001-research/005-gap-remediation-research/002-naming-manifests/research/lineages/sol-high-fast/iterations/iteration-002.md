@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Manifest Schemas, Ownership, and Lifecycle"
+trigger_phrases: []
+---
 # Iteration 2: Manifest Schemas, Ownership, and Lifecycle
 
 ## Focus

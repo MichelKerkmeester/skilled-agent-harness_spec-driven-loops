@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Archived documentation-quality upgrade folder normalized to Level 1
 This folder documented an earlier documentation-quality upgrade effort and was archived. In this cycle its structure was rebuilt from the current Level 1 templates, replacing the obsolete higher-level shell that no longer matched the validator. The core documents — spec, plan, tasks, and implementation summary — were recreated to preserve a compact, trustworthy historical record of the feature. The folder now passes strict validation with zero errors and clean markdown reference integrity. Internal maintenance only; no user-visible behavior changed.
 

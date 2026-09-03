@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Receipt producer and sink"
+trigger_phrases: []
+---
 # Iteration 2: Receipt producer and sink
 
 ## Dimension

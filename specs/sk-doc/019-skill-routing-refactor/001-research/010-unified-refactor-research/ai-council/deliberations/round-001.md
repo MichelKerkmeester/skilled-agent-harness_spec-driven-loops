@@ -1,3 +1,7 @@
+---
+title: "Multi-AI Council Deliberation round-001"
+trigger_phrases: []
+---
 # Multi-AI Council Deliberation round-001
 
 ## Council composition

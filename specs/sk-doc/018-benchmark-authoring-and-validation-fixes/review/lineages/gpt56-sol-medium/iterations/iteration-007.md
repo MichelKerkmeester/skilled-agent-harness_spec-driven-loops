@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Security Stabilization"
+trigger_phrases: []
+---
 # Iteration 7: Security Stabilization
 
 ## Focus

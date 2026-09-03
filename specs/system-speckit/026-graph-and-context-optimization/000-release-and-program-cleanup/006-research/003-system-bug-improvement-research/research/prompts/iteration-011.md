@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 011 — Angle C1: Search-quality W3-W13 latency and accuracy"
+trigger_phrases: []
+---
 # Deep-Research Iteration 011 — Angle C1: Search-quality W3-W13 latency and accuracy
 
 You are the deep-research LEAF agent for iteration 011 of 20. The packet root is `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-bug-improvement-research/`.

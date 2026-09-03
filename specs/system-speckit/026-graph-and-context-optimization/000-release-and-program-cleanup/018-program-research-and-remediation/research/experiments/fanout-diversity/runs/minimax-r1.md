@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now I have sufficient evidence to compose the pre-plan and report. Let me write the pre-plan first, then execute.
 
 <pre-plan>

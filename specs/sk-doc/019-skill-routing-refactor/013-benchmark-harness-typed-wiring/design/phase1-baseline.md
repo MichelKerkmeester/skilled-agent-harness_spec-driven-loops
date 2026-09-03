@@ -1,3 +1,7 @@
+---
+title: "Phase 1 — Regression Baseline (skill-benchmark vitest)"
+trigger_phrases: []
+---
 # Phase 1 — Regression Baseline (skill-benchmark vitest)
 
 Captured on the isolated worktree `skilled/0063-router-collapse`, before any runtime change, so the build's "no new failures" gate is a **delta** against this floor, not an absolute.

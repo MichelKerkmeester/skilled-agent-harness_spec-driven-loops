@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Preserve Unique OpenCode Features"
+trigger_phrases: []
+---
 # Iteration 4: Preserve Unique OpenCode Features
 
 ## Focus

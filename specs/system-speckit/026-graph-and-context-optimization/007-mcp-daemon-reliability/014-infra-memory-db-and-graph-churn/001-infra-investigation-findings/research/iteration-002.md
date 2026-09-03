@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - SQ2 memory constraint recurrence and unclean-shutdown lifecycle"
+trigger_phrases: []
+---
 # Iteration 002 - SQ2 memory constraint recurrence and unclean-shutdown lifecycle
 
 ## Question

@@ -1,3 +1,7 @@
+---
+title: "Review Report - MCP Retrieval and Causal Slice"
+trigger_phrases: []
+---
 # Review Report - MCP Retrieval and Causal Slice
 
 ## 1. Executive Verdict

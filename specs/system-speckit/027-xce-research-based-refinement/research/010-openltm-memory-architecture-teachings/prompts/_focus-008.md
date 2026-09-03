@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 008 of 10: Embedding provider abstraction + graceful degradation"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 008 of 10: Embedding provider abstraction + graceful degradation
 Read (stay scoped to this subsystem):

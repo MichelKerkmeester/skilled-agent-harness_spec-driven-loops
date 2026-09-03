@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Reference-Migration Surface + Advisor-Corpus Risk"
+trigger_phrases: []
+---
 # Iteration 003 — Reference-Migration Surface + Advisor-Corpus Risk
 
 **Lineage:** glm52-3 | **Iteration:** 3 of 5 | **Focus:** Q4 full reference-migration surface, highest-risk advisor corpus, incomplete-migration risk

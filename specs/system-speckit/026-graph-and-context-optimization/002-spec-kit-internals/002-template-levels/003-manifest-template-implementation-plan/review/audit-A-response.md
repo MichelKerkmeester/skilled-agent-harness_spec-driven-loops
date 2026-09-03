@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## `.opencode/agents/`
 
 | Path | Action | Reason | Lines (if MODIFY) |

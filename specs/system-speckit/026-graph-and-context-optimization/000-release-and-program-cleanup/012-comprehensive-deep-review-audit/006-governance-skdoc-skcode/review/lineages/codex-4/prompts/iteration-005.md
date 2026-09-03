@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 Prompt"
+trigger_phrases: []
+---
 # Iteration 005 Prompt
 
 Focus: stabilization.

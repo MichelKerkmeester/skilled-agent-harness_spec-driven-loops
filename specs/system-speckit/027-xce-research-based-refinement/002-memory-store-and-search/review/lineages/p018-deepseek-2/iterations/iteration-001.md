@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Correctness — Yield safety, abort-path completeness, cancel-flag lifecycle"
+trigger_phrases: []
+---
 # Iteration 001: Correctness — Yield safety, abort-path completeness, cancel-flag lifecycle
 
 ## Focus

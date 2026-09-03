@@ -1,6 +1,7 @@
 ---
 title: Deep Research Dashboard
 description: Auto-generated reducer view over the research packet.
+trigger_phrases: []
 ---
 
 # Deep Research Dashboard - Session Overview

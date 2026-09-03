@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration Prompt Pack"
+trigger_phrases: []
+---
 DEEP-REVIEW
 
 # Deep-Review Iteration Prompt Pack

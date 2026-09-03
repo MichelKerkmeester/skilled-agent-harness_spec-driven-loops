@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Manifest Schema, Scaffold Matrix, and Golden Tests"
+trigger_phrases: []
+---
 # Iteration 4: Manifest Schema, Scaffold Matrix, and Golden Tests
 
 ## Focus

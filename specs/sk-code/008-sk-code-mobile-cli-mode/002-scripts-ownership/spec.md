@@ -11,6 +11,7 @@ _memory:
     next_safe_action: "None — decision packet complete; no code change follows."
     blockers: []
     completion_pct: 100
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

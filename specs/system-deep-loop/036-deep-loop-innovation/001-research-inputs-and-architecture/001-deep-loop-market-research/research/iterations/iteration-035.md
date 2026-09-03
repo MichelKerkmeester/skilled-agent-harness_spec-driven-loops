@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 35 | model sol (gpt-5.6-sol) | angle: GAP-SWEEP #2: missing sources & open contradictions | 2026-07-15T00:12:34.001Z -->
 
 Five threads advanced; one remains notably open.

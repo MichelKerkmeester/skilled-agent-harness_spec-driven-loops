@@ -1,3 +1,7 @@
+---
+title: "claudish-to-english"
+trigger_phrases: []
+---
 # claudish-to-english
 
 A Claude Code plugin that shows a **plain-English rewrite** of each assistant

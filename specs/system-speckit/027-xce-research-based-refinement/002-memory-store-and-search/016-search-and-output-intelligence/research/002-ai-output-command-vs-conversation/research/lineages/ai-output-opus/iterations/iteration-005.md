@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — KQ5: Per-model prompt-framework fit + convergence"
+trigger_phrases: []
+---
 # Iteration 005 — KQ5: Per-model prompt-framework fit + convergence
 
 **Focus:** Does the right prompt framework per model reduce the command-adherence gap?

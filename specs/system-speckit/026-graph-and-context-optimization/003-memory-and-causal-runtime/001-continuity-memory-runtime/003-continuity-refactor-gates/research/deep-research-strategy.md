@@ -15,6 +15,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/deep-research-strategy.md"]
 
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Phase 018 Implementation Design

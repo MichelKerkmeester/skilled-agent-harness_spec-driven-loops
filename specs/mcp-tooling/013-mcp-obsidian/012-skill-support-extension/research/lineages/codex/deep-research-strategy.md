@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — health-md plugin deep dive"
+trigger_phrases: []
+---
 # Deep Research Strategy — health-md plugin deep dive
 
 ## 1. Overview

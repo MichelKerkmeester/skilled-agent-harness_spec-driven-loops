@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - Search/Retrieval Fan-out Lineage"
+trigger_phrases: []
+---
 # Deep Review Strategy - Search/Retrieval Fan-out Lineage
 
 ## 1. Topic

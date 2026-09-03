@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — A1: Daemon concurrency edge cases"
+trigger_phrases: []
+---
 # Iteration 001 — A1: Daemon concurrency edge cases
 
 ## Focus

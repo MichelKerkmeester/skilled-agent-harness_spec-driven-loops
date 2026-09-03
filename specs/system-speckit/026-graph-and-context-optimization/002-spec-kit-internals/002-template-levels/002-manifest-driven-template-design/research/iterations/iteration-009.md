@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Final Synthesis"
+trigger_phrases: []
+---
 # Iteration 9: Final Synthesis
 
 ## Focus

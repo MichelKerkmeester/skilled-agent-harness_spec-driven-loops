@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### External CLI hub consolidated under canonical path
 The external CLI dispatch hub was renamed in place, making `.opencode/skills/cli-external-orchestration/` the single canonical home for all CLI-executor modes while preserving repository history via `git mv`. Advisor routing, live references, and consumer registries were swept to point at the new hub identity, while concrete executor references such as `cli-opencode` kept their name where the semantics called for it. For users, the change is invisible at the command level: routing behavior is unchanged, only the directory identity and internal pointers were reconciled. This is internal tooling reorganization; targeted rename checks pass, while full validation closeout remains blocked by a stale compiled distribution and unrelated graph prerequisites outside this change's control.
 

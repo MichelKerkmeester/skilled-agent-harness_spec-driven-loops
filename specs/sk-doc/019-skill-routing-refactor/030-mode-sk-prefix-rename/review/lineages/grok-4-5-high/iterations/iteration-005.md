@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Correctness follow-up — hub SKILL residual inventory"
+trigger_phrases: []
+---
 # Iteration 5: Correctness follow-up — hub SKILL residual inventory
 
 ## Focus

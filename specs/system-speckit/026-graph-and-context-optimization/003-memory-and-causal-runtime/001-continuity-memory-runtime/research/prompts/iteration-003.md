@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 3 — /memory:save planner-first routing drift (Q2)"
+trigger_phrases: []
+---
 # Deep-Research Iteration 3 — /memory:save planner-first routing drift (Q2)
 
 ## YOUR ROLE

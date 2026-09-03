@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — skills hub metadata and mode registries"
+trigger_phrases: []
+---
 # Iteration 004 — skills hub metadata and mode registries
 
 **Focus:** Parent-hub `mode-registry.json`, `hub-router.json`, `description.json`/`graph-metadata.json` placement, compiled-routing activation manifests.

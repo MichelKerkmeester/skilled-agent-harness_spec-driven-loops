@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 002 — sk-doc assets & templates"
+trigger_phrases: []
+---
 # Deep-Review Iteration 002 — sk-doc assets & templates
 
 **Executor:** DeepSeek-v4-pro (cli-opencode, --pure, read-only)

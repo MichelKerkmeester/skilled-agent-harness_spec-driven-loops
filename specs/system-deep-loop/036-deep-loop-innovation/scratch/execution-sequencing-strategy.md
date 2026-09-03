@@ -1,3 +1,7 @@
+---
+title: "Execution & Sequencing Strategy"
+trigger_phrases: []
+---
 # Execution & Sequencing Strategy
 
 > How the 15 implementation phases (003-017) order, what parallelizes, and the discipline that keeps the running system consistent at every commit. Research phases 001-002 are read-only inputs. Derived from the GPT-5.6-sol (ultra) design review. Mechanics live in each phase child; this is the coordinator's map.

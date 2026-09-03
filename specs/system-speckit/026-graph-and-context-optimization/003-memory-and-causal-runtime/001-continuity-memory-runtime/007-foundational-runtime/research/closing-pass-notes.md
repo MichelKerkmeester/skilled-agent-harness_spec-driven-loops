@@ -1,3 +1,7 @@
+---
+title: "Phase 016 Closing-Pass Audit — T-PRE-04"
+trigger_phrases: []
+---
 # Phase 016 Closing-Pass Audit — T-PRE-04
 
 **Scope:** Targeted inspection of the 11 files/surfaces flagged in `FINAL-synthesis-and-review.md §8.2` as "touched but not deeply audited" during the 50-iteration research loop. Read-only audit. Minimum bar: confirm no NEW findings beyond those already on the remediation backlog. If a new finding surfaces, document it; do NOT fix.

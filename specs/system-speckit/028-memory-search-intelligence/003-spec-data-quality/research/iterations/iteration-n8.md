@@ -1,3 +1,7 @@
+---
+title: "Iteration N8 - Adversarial Prove-First Tiering: MEASURED vs HYPOTHESIS (opus, cross-cutting audit)"
+trigger_phrases: []
+---
 # Iteration N8 - Adversarial Prove-First Tiering: MEASURED vs HYPOTHESIS (opus, cross-cutting audit)
 
 ## TITLE

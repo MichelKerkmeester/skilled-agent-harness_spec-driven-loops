@@ -1,3 +1,7 @@
+---
+title: "Research Phase 005: Live Rescope And Coco Purge"
+trigger_phrases: []
+---
 # Research Phase 005: Live Rescope And Coco Purge
 
 Current canonical Continuation 22 research pass for 027.

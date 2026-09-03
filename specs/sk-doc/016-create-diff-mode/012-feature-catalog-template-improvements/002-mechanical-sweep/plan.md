@@ -3,6 +3,7 @@ title: "Plan: Phase 002 — Mechanical Sweep"
 description: "Script specifications and execution order for the three mechanical bulk-fix scripts plus the long-section audit."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Plan: Phase 002 — Mechanical Sweep
 

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — A1: extend the live quality machinery to the authored spec-doc + metadata-JSON write surface"
+trigger_phrases: []
+---
 # Iteration 001 — A1: extend the live quality machinery to the authored spec-doc + metadata-JSON write surface
 
 Focus: the exact code seams to wire data-quality scoring/refinement into `generate-context.ts` (the metadata-JSON + canonical-doc write surface) and `validate.sh` (the completion gate), reusing the two shipped machineries, with the destructive-auto-fix rail enforced. Reader class: A (adherence) + L (logic), plus R via trigger/description fields. Floor: BYPASS (write-time/metadata) — ships on cost, inherits no prod-mode gate.

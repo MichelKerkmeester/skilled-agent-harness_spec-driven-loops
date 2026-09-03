@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Finish 036/012-runtime-enablement on a DELETION-FIRST switch (2026-08-23). You ORCHESTRATE; executors write/delete, you verify. Worktree .worktrees/022-012-runtime-enablement-build. Do NOT push. Read scratch/direction-switch-delete-overengineering.md first (decision, inventory, import audit, order).
 
 MISSION: the ledger loop IS the system. Delete the over-engineered rollback/migration/back-compat machinery that was never needed and dragged the epic out (~45-50k LOC, ~1/4 of runtime). Honest SIMPLIFICATION — remove ceremony, never fabricate a closed safety window.

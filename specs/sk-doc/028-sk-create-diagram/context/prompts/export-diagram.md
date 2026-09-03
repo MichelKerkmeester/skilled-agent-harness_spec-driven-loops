@@ -1,6 +1,7 @@
 ---
 description: Export a diagram-design HTML file to SVG and PNG
 argument-hint: "<html-file> [--svg-only|--png-only] [--scale=N] [--output=<path>]"
+trigger_phrases: []
 ---
 
 Export diagram HTML at `$1` to `.svg` or `.png`. Locate available `diagram-design` skill using its `SKILL.md` path advertised by Pi. Read that `SKILL.md`, then read `references/export.md` relative to its directory. Treat that reference as source of truth. Do not assume the package lives under the current working directory.

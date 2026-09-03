@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map - gpt-3 Lineage"
+trigger_phrases: []
+---
 # Review Resource Map - gpt-3 Lineage
 
 Resource-map coverage was not active because the target spec folder did not contain `resource-map.md` at initialization.

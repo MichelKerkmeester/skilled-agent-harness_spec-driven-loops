@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Dimension
 
 Security pass 2: stress isolation boundaries, secret/credential leakage in docs, and operator-recovery safety claims.

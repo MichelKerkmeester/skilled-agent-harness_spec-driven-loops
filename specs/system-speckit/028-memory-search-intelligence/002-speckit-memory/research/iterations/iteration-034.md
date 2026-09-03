@@ -1,3 +1,7 @@
+---
+title: "Iteration 34: Round I Implementation Sketch — C9 graceful embedder-degrade (needs-validation-first)"
+trigger_phrases: []
+---
 # Iteration 34: Round I Implementation Sketch — C9 graceful embedder-degrade (needs-validation-first)
 
 ## Focus

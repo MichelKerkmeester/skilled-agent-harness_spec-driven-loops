@@ -1,3 +1,7 @@
+---
+title: "Iteration 017 — ADVERSARIAL refute write-safety/indexing/reconciliation teachings"
+trigger_phrases: []
+---
 # Iteration 017 — ADVERSARIAL refute write-safety/indexing/reconciliation teachings
 
 **Status:** insight · **Findings:** 4 · **newInfoRatio:** 0.7 · **tokens:** 69506 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

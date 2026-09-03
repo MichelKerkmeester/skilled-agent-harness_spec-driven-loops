@@ -1,3 +1,7 @@
+---
+title: "Agent Brief — T-F Doc + Label Cleanup"
+trigger_phrases: []
+---
 # Agent Brief — T-F Doc + Label Cleanup
 
 You are an autonomous implementation agent. **No conversation context.**

@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: Skeptical audit of reductions, cache claims, and enforcement preservation"
+trigger_phrases: []
+---
 # Iteration 14: Skeptical audit of reductions, cache claims, and enforcement preservation
 
 ## Focus

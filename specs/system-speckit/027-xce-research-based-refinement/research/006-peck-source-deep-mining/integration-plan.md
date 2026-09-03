@@ -5,6 +5,7 @@ iterations: "019-023 (5, gpt-5.5-fast --variant high, read-only; orchestrator-wr
 session: "2026-06-06-027-peck-source-deep-mining"
 status: "integration synthesis — feeds the scaffolded packets 009/010/011 (peck); cross-refs 010 (caura) + 009 (gem-team)"
 priorities: "UX and automation are the system's #1 priorities (operator directive)"
+trigger_phrases: []
 ---
 
 # Integration & Impact Plan — peck adoptions into spec-kit

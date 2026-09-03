@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Rate Limits, Batching, Large-Workspace Scalability, and Remaining Gaps"
+trigger_phrases: []
+---
 # Iteration 10: Rate Limits, Batching, Large-Workspace Scalability, and Remaining Gaps
 
 ## Focus

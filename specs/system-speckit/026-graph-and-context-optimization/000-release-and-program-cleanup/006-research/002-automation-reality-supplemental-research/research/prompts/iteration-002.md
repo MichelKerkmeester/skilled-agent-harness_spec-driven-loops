@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: CCC + Eval + Ablation Reality"
+trigger_phrases: []
+---
 ## Deep Research Iteration 2 (013 — Automation Reality Supplemental, continuation of 012)
 
 You are deep-research agent dispatched for iteration 2 of 5. Iter 1 completed (deep-loop graph automation reality).

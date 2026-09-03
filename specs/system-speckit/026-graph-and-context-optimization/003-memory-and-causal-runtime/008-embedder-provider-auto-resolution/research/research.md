@@ -1,3 +1,7 @@
+---
+title: "Deep Research: Why `EMBEDDINGS_PROVIDER=auto` silently resolves to hf-local instead of the active ollama embedder"
+trigger_phrases: []
+---
 # Deep Research: Why `EMBEDDINGS_PROVIDER=auto` silently resolves to hf-local instead of the active ollama embedder
 
 > **Executor:** cli-codex `gpt-5.5`, reasoning `high`, service tier `fast` (focused single-pass investigation, read-only).

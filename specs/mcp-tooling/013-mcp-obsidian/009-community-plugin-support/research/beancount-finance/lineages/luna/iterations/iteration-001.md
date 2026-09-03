@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 — plugin-owned contract"
+trigger_phrases: []
+---
 # Iteration 1 — plugin-owned contract
 
 ## Focus

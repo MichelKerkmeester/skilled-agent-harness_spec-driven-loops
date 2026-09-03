@@ -1,3 +1,7 @@
+---
+title: "Iteration 19 (Round L): Bi-temporal shared-store synthesis (Q1+Q3+Q9 thread)"
+trigger_phrases: []
+---
 # Iteration 19 (Round L): Bi-temporal shared-store synthesis (Q1+Q3+Q9 thread)
 
 ## Focus

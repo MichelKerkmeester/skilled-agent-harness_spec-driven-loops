@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Plugin inventory and router correctness"
+trigger_phrases: []
+---
 # Iteration 001: Plugin inventory and router correctness
 
 ## Focus

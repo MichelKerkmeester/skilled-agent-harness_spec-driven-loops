@@ -1,3 +1,7 @@
+---
+title: "Task"
+trigger_phrases: []
+---
 OpenAI Codex v0.133.0
 --------
 workdir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public

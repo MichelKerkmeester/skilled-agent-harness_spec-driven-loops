@@ -1,3 +1,7 @@
+---
+title: "Iteration 24 (Round M): Bi-temporal canonical-supersede-writer → dual-truth risk DISSOLVED"
+trigger_phrases: []
+---
 # Iteration 24 (Round M): Bi-temporal canonical-supersede-writer → dual-truth risk DISSOLVED
 
 ## Focus

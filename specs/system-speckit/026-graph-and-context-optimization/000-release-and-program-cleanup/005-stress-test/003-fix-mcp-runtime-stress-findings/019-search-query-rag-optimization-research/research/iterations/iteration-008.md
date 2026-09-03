@@ -1,3 +1,7 @@
+---
+title: "Iteration 008: RAG Fusion Trust Tree and Citation Boundaries"
+trigger_phrases: []
+---
 # Iteration 008: RAG Fusion Trust Tree and Citation Boundaries
 
 ## Focus

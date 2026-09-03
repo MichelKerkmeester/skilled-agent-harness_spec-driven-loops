@@ -1,3 +1,7 @@
+---
+title: "Codex CLI Prompt — Close the 3 remaining 009 gaps + cosmetic note fix"
+trigger_phrases: []
+---
 # Codex CLI Prompt — Close the 3 remaining 009 gaps + cosmetic note fix
 
 You are running as codex CLI (`gpt-5.4`, `reasoning_effort=high`, `service_tier=fast`, `sandbox=workspace-write`). Self-contained prompt. This is a FOCUSED CORRECTION follow-up to packet `026/003-memory-quality-issues/009-post-save-render-fixes/` which already shipped 7 of 9 lanes working in the wild. Close the remaining 3 gaps, rebuild dist/, re-run the wild save, re-audit, report.

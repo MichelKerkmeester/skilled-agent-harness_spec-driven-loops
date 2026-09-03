@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 009 — 011 playbook scenarios + 17 new vitest cases adversarial completeness"
+trigger_phrases: []
+---
 # Deep-Research Iteration 009 — 011 playbook scenarios + 17 new vitest cases adversarial completeness
 
 You are a fresh-context deep-research executor (cli-codex gpt-5.5 high fast). No memory of prior iterations. Defensive code/test review of internal regression suite. Read-only.

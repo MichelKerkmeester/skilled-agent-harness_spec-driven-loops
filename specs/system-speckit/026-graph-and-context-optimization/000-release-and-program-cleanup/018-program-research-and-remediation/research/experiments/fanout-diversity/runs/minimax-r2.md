@@ -1,3 +1,7 @@
+---
+title: "Research Report: Runtime Subsystem Analysis"
+trigger_phrases: []
+---
 I'll start by mapping the codebase structure to locate the relevant implementation files for each question.
 ## Pre-Plan
 

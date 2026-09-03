@@ -1,3 +1,7 @@
+---
+title: "Iteration 20 (MiMo lineage): Letta sleep-time compute + archival + block internals (Q4 depth)"
+trigger_phrases: []
+---
 # Iteration 20 (MiMo lineage): Letta sleep-time compute + archival + block internals (Q4 depth)
 
 > Model: **MiMo v2.5 Pro** (read-only, via `opencode run`, explicit-path access — worked this time, deep read of the 1185-file Letta repo). Orchestrator-written. newInfoRatio **0.7**. The un-mined Letta depth (sleep-time compute, archival, block versioning) was rich — 6 candidates. Surfaces the **"async sleep-time consolidation"** initiative + the loop-governor for `CG-agentic-tool-loop`.

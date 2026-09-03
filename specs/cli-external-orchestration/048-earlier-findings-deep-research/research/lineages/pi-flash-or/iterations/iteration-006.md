@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — F4: Cursor MCP config-resolution chain (env overrides)"
+trigger_phrases: []
+---
 # Iteration 006 — F4: Cursor MCP config-resolution chain (env overrides)
 
 ## Focus

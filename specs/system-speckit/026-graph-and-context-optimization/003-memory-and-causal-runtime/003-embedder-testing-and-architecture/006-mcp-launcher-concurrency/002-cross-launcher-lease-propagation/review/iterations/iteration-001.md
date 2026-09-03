@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 — correctness"
+trigger_phrases: []
+---
 I'm in a non-interactive mode that prevents file writes. Since this is a read-only review iteration, I'll output the iter file content directly:
 
 ```markdown

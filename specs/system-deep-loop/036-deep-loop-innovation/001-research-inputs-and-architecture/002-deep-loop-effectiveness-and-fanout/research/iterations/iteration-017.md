@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 17 | SOL xhigh | thread: general-effectiveness-and-council | angle: AI-council depth: adjudication + bias mitigation | 2026-07-15T05:30:29.388Z -->
 
 The current council is strong at generating disagreement but weak at adjudicating it. It preserves independent proposals and cross-critique, then collapses them through a fixed rubric and `two-of-three-agree` rule ([scoring rubric](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring_rubric.md), [convergence signals](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence_signals.md)). That final reduction remains vulnerable to presentation quality, correlated seats, and scorer bias.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Maintainability — Shared-Harness Durability and Compatibility"
+trigger_phrases: []
+---
 # Iteration 4: Maintainability — Shared-Harness Durability and Compatibility
 
 ## Dispatcher

@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Static Seven-Row Oracle Matrix Validation"
+trigger_phrases: []
+---
 # Iteration 9: Static Seven-Row Oracle Matrix Validation
 
 ## Focus

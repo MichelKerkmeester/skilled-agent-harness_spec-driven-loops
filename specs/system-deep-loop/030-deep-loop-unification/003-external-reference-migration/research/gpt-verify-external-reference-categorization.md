@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Read-only verification mode. I’ll run the required context/routing gates, then execute the requested `rg` command before inspecting and classifying every returned file.
 
 ---

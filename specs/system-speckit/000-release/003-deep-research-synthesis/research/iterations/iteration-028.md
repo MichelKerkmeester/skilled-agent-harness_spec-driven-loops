@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### 18-scenario manual testing playbook for sk-code-review
 sk-code-review now ships an 18-scenario manual testing playbook, giving operators a deterministic gate before declaring a review-baseline change safe to ship. Before, the review doctrine had no reproducible verification; now each scenario pairs an exact human-AI prompt and command sequence with pass/fail criteria tied to real sk-code-review reference files, so two operators following the same prompt produce the same verdict. Six categories anchor it — baseline review flow, security and correctness minimums, severity and evidence discipline, scope and precedence, re-review and stale context, and cross-CLI orchestration. The cross-CLI category is what makes it portable: scenarios cover native @review, cli-codex delegation, and cli-opencode plus cli-gemini handback reconciliation, all preserving the same severity schema and file:line evidence rule so multi-AI handoffs don't degrade into incompatible buckets. Delivered via a single cli-codex (gpt-5.5 high) dispatch, it passed `validate.sh --strict`, the document validator, and an 18/18 structural sweep; a dogfood DQI review raised two P1s that were fixed, including rewriting identical boilerplate rationales into 18 per-scenario failure-mode explanations.
 

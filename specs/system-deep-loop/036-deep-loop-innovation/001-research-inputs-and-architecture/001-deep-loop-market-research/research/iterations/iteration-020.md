@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 20 | model luna (gpt-5.6-luna) | angle: Cross-iteration memory & knowledge accumulation | 2026-07-14T22:51:29.924Z -->
 
 The strongest transfer is to make memory a versioned knowledge plane, not a single vector store. MemOS’s MemCube abstraction adds provenance/versioning and lifecycle operations; Letta Code goes further with Git-tracked context, background “dreaming,” and self-improvement. That maps cleanly to immutable JSONL memory events plus rebuildable derived indexes, with continuity threads carrying snapshot IDs rather than copied summaries. ([MemOS](https://arxiv.org/abs/2507.03724), [Letta Code](https://github.com/letta-ai/letta-code))

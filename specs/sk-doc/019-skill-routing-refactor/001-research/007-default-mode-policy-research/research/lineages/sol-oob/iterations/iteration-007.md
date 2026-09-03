@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Proof-Carrying, Reversible Route Plans"
+trigger_phrases: []
+---
 # Iteration 7: Proof-Carrying, Reversible Route Plans
 
 ## Focus

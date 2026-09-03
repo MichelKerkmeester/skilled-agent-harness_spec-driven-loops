@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Stress-Test Bidirectional Path-Coupling Repair"
+trigger_phrases: []
+---
 # Iteration 3: Stress-Test Bidirectional Path-Coupling Repair
 
 ## Focus

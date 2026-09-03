@@ -1,3 +1,7 @@
+---
+title: "Iteration 21: Latent Failure Mode Audit (Q18)"
+trigger_phrases: []
+---
 # Iteration 21: Latent Failure Mode Audit (Q18)
 
 ## Focus

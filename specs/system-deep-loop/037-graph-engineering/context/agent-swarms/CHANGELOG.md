@@ -1,3 +1,7 @@
+---
+title: "Changelog"
+trigger_phrases: []
+---
 # Changelog
 
 Notable changes to AgentSwarms. Newest first.

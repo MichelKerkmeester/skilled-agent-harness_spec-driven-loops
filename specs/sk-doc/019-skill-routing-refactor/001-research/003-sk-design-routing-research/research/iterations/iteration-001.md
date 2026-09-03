@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Six-mode typed-pair classification"
+trigger_phrases: []
+---
 # Iteration 1: Six-mode typed-pair classification
 
 ## Focus

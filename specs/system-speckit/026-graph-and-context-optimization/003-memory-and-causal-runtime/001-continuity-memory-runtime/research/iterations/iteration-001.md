@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Map the runtime surface area for the four child packets by turning packet-doc claims, git-lineage hints, and exact on-disk paths into a files x packets matrix ranked by audit risk.

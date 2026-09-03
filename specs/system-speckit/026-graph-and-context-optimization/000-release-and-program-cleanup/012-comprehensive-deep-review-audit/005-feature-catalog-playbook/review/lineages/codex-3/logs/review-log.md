@@ -1,3 +1,7 @@
+---
+title: "Review Log"
+trigger_phrases: []
+---
 # Review Log
 
 - Bound `artifact_dir` directly to `config.fanout_lineage_artifact_dir`.

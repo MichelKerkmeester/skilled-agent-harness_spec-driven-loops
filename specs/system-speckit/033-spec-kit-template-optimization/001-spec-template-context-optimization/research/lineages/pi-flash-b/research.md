@@ -1,3 +1,7 @@
+---
+title: "Deep Research Report — Reducer Engineering & $1.2M Agent Engineering Harness vs. system-speckit"
+trigger_phrases: []
+---
 # Deep Research Report — Reducer Engineering & $1.2M Agent Engineering Harness vs. system-speckit
 
 **Lineage:** pi-flash-b | **Session:** fanout-pi-flash-b-1786517927558-l9mbmd | **Executor:** cli-pi (deepseek-v4-flash)

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: sk-code mode-registry.json + mcp-tooling leaf-manifest.json data"
+trigger_phrases: []
+---
 # Iteration 4: sk-code mode-registry.json + mcp-tooling leaf-manifest.json data
 
 > dimension: correctness+regression | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

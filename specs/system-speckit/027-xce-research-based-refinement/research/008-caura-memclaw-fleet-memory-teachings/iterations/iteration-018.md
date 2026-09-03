@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 — ADVERSARIAL refute self-improving / 027-008 reducer teachings"
+trigger_phrases: []
+---
 # Iteration 018 — ADVERSARIAL refute self-improving / 027-008 reducer teachings
 
 **Status:** insight · **Findings:** 9 · **newInfoRatio:** 0.34 · **tokens:** 71635 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

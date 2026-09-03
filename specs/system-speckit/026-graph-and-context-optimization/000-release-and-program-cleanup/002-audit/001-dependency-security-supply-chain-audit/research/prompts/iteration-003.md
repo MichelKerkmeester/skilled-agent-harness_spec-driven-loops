@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 3 of 25 - Supply-Chain npm"
+trigger_phrases: []
+---
 # Deep Research Iteration 3 of 25 - Supply-Chain npm
 
 ## SITUATION

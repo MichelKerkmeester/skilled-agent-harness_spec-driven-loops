@@ -1,3 +1,7 @@
+---
+title: "The flip is blocked by two states nothing can produce"
+trigger_phrases: []
+---
 # The flip is blocked by two states nothing can produce
 
 ## The lifecycle has six states; four have writers

@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 012 — Angle C2: Scorer fusion accuracy on edge cases"
+trigger_phrases: []
+---
 # Deep-Research Iteration 012 — Angle C2: Scorer fusion accuracy on edge cases
 
 You are the deep-research LEAF agent for iteration 012 of 20. The packet root is `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-bug-improvement-research/`.

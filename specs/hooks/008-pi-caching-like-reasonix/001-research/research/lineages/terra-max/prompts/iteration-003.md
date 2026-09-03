@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 003"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 003
 
 Focus: Reasonix cache-first architecture

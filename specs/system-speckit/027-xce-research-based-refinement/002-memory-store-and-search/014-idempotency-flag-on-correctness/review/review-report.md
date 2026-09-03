@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 027/023 idempotency flag-ON correctness"
+trigger_phrases: []
+---
 # Deep Review Report — 027/023 idempotency flag-ON correctness
 
 **Target:** `lib/storage/idempotency-receipts.ts` + `handlers/memory-save.ts` idempotency path (`SPECKIT_MEMORY_IDEMPOTENCY`, default OFF) + the idempotency test.

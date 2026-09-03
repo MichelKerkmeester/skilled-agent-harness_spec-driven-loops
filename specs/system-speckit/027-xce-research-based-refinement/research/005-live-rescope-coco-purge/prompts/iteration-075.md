@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 075 — vocab/constants: RELATION_TYPES vs DEFAULT_RELATION_TARGETS; STATE_LIMITS"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 075 — vocab/constants: RELATION_TYPES vs DEFAULT_RELATION_TARGETS; STATE_LIMITS

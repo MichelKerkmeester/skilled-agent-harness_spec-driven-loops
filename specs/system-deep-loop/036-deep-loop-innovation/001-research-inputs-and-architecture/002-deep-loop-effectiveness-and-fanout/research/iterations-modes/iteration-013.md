@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 13 | SOL xhigh | mode: deep-ai-council | angle: A3-mech deep-ai-council :: mechanisms & reference impls | 2026-07-15T09:05:34.666Z -->
 
 Majority vote is the wrong abstraction for `deep-ai-council`. The mode needs a typed adjudication router because factual truth, plan preference, constitutional constraints, and value disagreement have different aggregation semantics.

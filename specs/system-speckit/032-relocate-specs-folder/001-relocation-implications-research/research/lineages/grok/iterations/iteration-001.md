@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Spec-kit tooling path contracts (hardcode vs dual-accept)"
+trigger_phrases: []
+---
 # Iteration 1: Spec-kit tooling path contracts (hardcode vs dual-accept)
 
 ## Focus

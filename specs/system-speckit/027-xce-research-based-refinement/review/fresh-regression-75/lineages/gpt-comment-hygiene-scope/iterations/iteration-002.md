@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-comment-hygiene-scope — iteration 2 (global #71)"
+trigger_phrases: []
+---
 # Seat gpt-comment-hygiene-scope — iteration 2 (global #71)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: gpt-comment-hygiene-scope

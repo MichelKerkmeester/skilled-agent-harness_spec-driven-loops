@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Relations & Rollups Recovery Path (single/dual, 14 rollup functions)"
+trigger_phrases: []
+---
 # Iteration 4: Relations & Rollups Recovery Path (single/dual, 14 rollup functions)
 
 ## Focus

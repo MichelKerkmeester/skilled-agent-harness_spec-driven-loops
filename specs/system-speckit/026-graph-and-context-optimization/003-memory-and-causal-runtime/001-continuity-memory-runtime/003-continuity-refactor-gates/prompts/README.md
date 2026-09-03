@@ -1,3 +1,7 @@
+---
+title: "Phase 018 Research Prompts"
+trigger_phrases: []
+---
 # Phase 018 Research Prompts
 
 Two research prompts for investigating Option C (Wiki-Style Spec Kit Updates) from phase 017. Both are designed to be driven by the **sk-deep-research loop engine** — they are **not** self-contained single-shot briefs.

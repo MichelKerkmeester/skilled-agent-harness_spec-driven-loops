@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map - gpt-1"
+trigger_phrases: []
+---
 # Review Resource Map - gpt-1
 
 ## Summary

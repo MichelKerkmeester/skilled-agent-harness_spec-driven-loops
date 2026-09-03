@@ -11,6 +11,7 @@ _memory:
       - "research/research.md"
       - "spec.md"
     completion_pct: 60
+trigger_phrases: []
 ---
 # Implementation Summary: Pi Remote Experience Parity Research
 

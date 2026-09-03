@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Decision Framework and Promotion Gates"
+trigger_phrases: []
+---
 # Iteration 4: Decision Framework and Promotion Gates
 
 ## Focus

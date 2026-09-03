@@ -1,6 +1,7 @@
 ---
 title: "Deep Research: Upgrading design-md-generator with the 1,290-style library"
 description: "Evidence-backed schema, STUDY, validation, fixture, and phased-delivery strategy for corpus-grounded DESIGN.md generation."
+trigger_phrases: []
 ---
 
 # Upgrading design-md-generator with the 1,290-style library

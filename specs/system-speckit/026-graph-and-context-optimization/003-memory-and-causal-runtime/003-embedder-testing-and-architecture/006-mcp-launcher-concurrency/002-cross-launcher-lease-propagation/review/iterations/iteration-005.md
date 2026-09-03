@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I've completed iteration 5 of the deep review, focusing on the correctness dimension. 
 
 **Summary:** I reviewed the cross-launcher lease propagation phase, examining the spec, implementation, tests, and prior iterations. I found one P1 correctness issue specific to the spec-memory launcher's signal handling.

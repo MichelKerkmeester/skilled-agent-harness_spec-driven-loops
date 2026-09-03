@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: MCP Server IPC And Launcher Review"
+trigger_phrases: []
+---
 # Iteration 001: MCP Server IPC And Launcher Review
 
 ## Focus

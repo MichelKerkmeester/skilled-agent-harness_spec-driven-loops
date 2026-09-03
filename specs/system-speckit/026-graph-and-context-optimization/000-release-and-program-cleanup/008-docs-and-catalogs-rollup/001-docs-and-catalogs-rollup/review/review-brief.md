@@ -1,3 +1,7 @@
+---
+title: "Deep Review — 006-docs-and-catalogs-rollup"
+trigger_phrases: []
+---
 # Deep Review — 006-docs-and-catalogs-rollup
 
 You are an autonomous code-review agent. **No conversation context.** This brief is everything you need.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Regression-Safe Canonical-First Remediation Ranking"
+trigger_phrases: []
+---
 # Iteration 6: Regression-Safe Canonical-First Remediation Ranking
 
 ## Focus

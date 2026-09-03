@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Notion API 2.0 Data-Source Model — Impact on Inventory Strategy"
+trigger_phrases: []
+---
 # Iteration 5: Notion API 2.0 Data-Source Model — Impact on Inventory Strategy
 
 ## Focus

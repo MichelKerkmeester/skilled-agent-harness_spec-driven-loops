@@ -1,3 +1,7 @@
+---
+title: "Iteration 075 — vocab NEEDS-FIX: DEFAULT_RELATION_TARGETS diverges from canonical RELATION_TYPES (prod stats bug); STATE_LIMITS export; owners 008/003,008/004,005"
+trigger_phrases: []
+---
 # Iteration 075 — vocab NEEDS-FIX: DEFAULT_RELATION_TARGETS diverges from canonical RELATION_TYPES (prod stats bug); STATE_LIMITS export; owners 008/003,008/004,005
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.72. **Findings:** 5.

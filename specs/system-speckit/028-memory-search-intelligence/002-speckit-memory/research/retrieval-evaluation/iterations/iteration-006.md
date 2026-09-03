@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 (A5): re-measure cold-tier surfacing post-015 admission"
+trigger_phrases: []
+---
 # Iteration 6 (A5): re-measure cold-tier surfacing post-015 admission
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only; relaunched at 1200s + read-cap after a 600s over-exploration timeout). Orchestrator-written. newInfoRatio **0.6**. **Honest result: post-015 admission does shift the distribution, but the re-measurement is BLOCKED by two preconditions — so 016's "inert" holds *operationally* (un-observable), not *disproven*.** Refuted two of the brief's premises.

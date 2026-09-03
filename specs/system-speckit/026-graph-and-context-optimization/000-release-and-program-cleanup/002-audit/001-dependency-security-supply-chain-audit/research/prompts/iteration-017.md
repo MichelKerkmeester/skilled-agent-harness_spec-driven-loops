@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 17 of 25 - CI/CD Workflows"
+trigger_phrases: []
+---
 # Deep Research Iteration 17 of 25 - CI/CD Workflows
 
 ## SITUATION

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Cross-skill overlap and lifecycle seams"
+trigger_phrases: []
+---
 # Iteration 4: Cross-skill overlap and lifecycle seams
 
 ## Focus

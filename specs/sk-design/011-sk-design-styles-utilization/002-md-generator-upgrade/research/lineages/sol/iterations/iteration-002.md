@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Corpus-Calibrated Schema and Vocabulary"
+trigger_phrases: []
+---
 # Iteration 2: Corpus-Calibrated Schema and Vocabulary
 
 ## Focus

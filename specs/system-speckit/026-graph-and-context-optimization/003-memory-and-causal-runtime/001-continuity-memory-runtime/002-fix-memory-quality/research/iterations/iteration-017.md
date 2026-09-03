@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: Refactor Dependency Map for Shared Helpers (Q14)"
+trigger_phrases: []
+---
 # Iteration 17: Refactor Dependency Map for Shared Helpers (Q14)
 
 ## Focus

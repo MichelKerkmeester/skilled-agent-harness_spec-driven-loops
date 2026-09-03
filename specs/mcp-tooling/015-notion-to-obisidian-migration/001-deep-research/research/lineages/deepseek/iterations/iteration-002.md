@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: mcp-obsidian Reconstruction Surface — Relations, Rollups, .base Files, and Dataview"
+trigger_phrases: []
+---
 # Iteration 2: mcp-obsidian Reconstruction Surface — Relations, Rollups, .base Files, and Dataview
 
 ## Focus

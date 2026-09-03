@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Canonical schema and column storage"
+trigger_phrases: []
+---
 # Iteration 1: Canonical schema and column storage
 
 ## Focus

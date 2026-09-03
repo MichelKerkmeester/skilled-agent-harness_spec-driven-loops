@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: HVR compliance + adversarial header re-check"
+trigger_phrases: []
+---
 # Iteration 19: HVR compliance + adversarial header re-check
 
 > dimension: hvr+correctness | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

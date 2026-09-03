@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Trace validator coverage from hub registry to benchmark evidence"
+trigger_phrases: []
+---
 # Iteration 5: Trace validator coverage from hub registry to benchmark evidence
 
 ## Focus

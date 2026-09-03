@@ -1,3 +1,7 @@
+---
+title: "Monolithic-command fixture"
+trigger_phrases: []
+---
 # Monolithic-command fixture
 
 Frozen prompt input for the command-owned setup procedure. The unresolved save and dispatch choices require one consolidated question before any improvement or write.

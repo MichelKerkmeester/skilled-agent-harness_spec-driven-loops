@@ -1,3 +1,7 @@
+---
+title: "22--context-preservation-and-code-graph"
+trigger_phrases: []
+---
 # 22--context-preservation-and-code-graph
 
 - Total: 20

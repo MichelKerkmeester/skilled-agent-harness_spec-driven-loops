@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - RQ-A3 ccc_feedback graduation to active rerank-weight loop"
+trigger_phrases: []
+---
 # Iteration 003 - RQ-A3 ccc_feedback graduation to active rerank-weight loop
 
 ## Focus

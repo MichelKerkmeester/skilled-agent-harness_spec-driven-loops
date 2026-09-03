@@ -1,3 +1,7 @@
+---
+title: "Iteration 020 — Track 7: Residual Catch-All"
+trigger_phrases: []
+---
 # Iteration 020 — Track 7: Residual Catch-All
 
 ## Finding 1: "Cross-Runtime Hooks" tagline pillar lacks dedicated section

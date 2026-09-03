@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Ledger-First Graph Observability and OTel Projection"
+trigger_phrases: []
+---
 # Iteration 8: Ledger-First Graph Observability and OTel Projection
 
 ## Focus

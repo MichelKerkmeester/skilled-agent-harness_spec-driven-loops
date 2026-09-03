@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Maintainability Stabilization"
+trigger_phrases: []
+---
 # Iteration 9: Maintainability Stabilization
 
 ## Dispatcher

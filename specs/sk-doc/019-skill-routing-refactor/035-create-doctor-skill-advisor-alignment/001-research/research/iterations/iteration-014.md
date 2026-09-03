@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: Contract coverage for standalone skill creation"
+trigger_phrases: []
+---
 # Iteration 14: Contract coverage for standalone skill creation
 
 ## Focus

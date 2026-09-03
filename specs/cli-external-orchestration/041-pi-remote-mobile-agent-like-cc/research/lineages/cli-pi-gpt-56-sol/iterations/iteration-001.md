@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Pi RPC lifecycle and minimum relay/process architecture"
+trigger_phrases: []
+---
 # Iteration 1: Pi RPC lifecycle and minimum relay/process architecture
 
 ## Focus

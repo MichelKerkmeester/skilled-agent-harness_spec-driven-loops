@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Strategy: 017 mk-spec-memory Rename"
+trigger_phrases: []
+---
 # Deep-Review Strategy: 017 mk-spec-memory Rename
 
 ## Prior Context

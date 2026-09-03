@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy - 008 z-archive marker validation sweep
 description: Runtime strategy for /deep:start-review-loop:auto implementation-code audit.
+trigger_phrases: []
 ---
 
 # Deep Review Strategy - 008 z-archive marker validation sweep

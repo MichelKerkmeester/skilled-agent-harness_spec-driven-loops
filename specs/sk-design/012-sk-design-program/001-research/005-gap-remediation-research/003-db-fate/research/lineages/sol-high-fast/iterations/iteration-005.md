@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Adversarial Validation and Both Execution Plans"
+trigger_phrases: []
+---
 # Iteration 5: Adversarial Validation and Both Execution Plans
 
 ## Focus

@@ -1,6 +1,7 @@
 ---
 title: "Tasks: 017/001 Playbook fairness audit"
 description: "Task checklist for playbook fairness audit."
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

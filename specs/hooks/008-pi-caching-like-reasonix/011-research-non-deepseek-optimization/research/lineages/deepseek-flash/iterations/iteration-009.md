@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Cache Economics / Token Accounting Accuracy (Non-DeepSeek)"
+trigger_phrases: []
+---
 # Iteration 9: Cache Economics / Token Accounting Accuracy (Non-DeepSeek)
 
 ## Focus

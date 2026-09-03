@@ -3,6 +3,7 @@ title: Deep Research Strategy — Template System Consolidation
 description: Runtime strategy for the 008-template-levels deep-research session. Tracks topic, key questions, non-goals, stop conditions, and reducer-owned progress sections.
 session_id: 2026-05-01-07-55-00-template-consolidation
 spec_folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Template System Consolidation

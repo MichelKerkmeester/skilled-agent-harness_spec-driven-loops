@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Canonical-First Contract and Legacy-Consumer Regressions"
+trigger_phrases: []
+---
 # Iteration 2: Canonical-First Contract and Legacy-Consumer Regressions
 
 ## Focus

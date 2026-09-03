@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Adversarial verification of the load-bearing seams"
+trigger_phrases: []
+---
 # Iteration 007 — Adversarial verification of the load-bearing seams
 
 Focus: stress the claims the whole program rests on, by reading the exact lines rather than trusting the inferences from iters 1-6. Two confirmed, two corrected. Status: thought/verification (no new design, sharpens existing).

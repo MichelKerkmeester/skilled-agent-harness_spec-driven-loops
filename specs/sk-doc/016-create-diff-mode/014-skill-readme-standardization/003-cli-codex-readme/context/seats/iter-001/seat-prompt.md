@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Spec folder: sk-doc/014-skill-readme-standardization/003-cli-codex-readme (pre-approved, skip Gate 3). This task is READ-ONLY: do not write, create or edit any file, and do not run the skill. Return your findings as your final assistant message only.
 
 Role: You are a documentation analyst gathering an accurate factual map of one skill so its README can be rewritten.

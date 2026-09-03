@@ -4,6 +4,7 @@ rq: RQ-N9
 phase_target: implementation-sequencing
 newInfoRatio: 0.62
 verdict: ADAPT
+trigger_phrases: []
 ---
 
 # Iteration 038 — RQ-N9: Optimal Implementation Sequence for 027 Memory Phases 002-008

@@ -1,3 +1,7 @@
+---
+title: "Resource Map - Post-Remediation Re-Review"
+trigger_phrases: []
+---
 # Resource Map - Post-Remediation Re-Review
 
 Reported file counts are summed from the relevant iteration summaries. They are not unique-file cardinalities.

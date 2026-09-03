@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map"
+trigger_phrases: []
+---
 # Review Resource Map
 
 Resource-map coverage gate source: not present in the review-scope spec folder at init.

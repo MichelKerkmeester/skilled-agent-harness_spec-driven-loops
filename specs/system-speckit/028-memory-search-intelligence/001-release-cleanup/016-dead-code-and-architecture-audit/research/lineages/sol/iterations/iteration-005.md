@@ -1,3 +1,7 @@
+---
+title: "Iteration 005: Deep-command representations"
+trigger_phrases: []
+---
 # Iteration 005: Deep-command representations
 
 ## Focus

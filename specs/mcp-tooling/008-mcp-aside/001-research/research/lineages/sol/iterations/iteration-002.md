@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: MCP Transport, Authentication Boundary, and Daemon Lifecycle"
+trigger_phrases: []
+---
 # Iteration 2: MCP Transport, Authentication Boundary, and Daemon Lifecycle
 
 ## Focus

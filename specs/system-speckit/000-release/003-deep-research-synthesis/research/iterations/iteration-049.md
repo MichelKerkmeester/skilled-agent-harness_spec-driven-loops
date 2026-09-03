@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Documented the maintainer-flags content filter
 Added a reference document explaining the `maintainer-flags` content filter that previously shipped with no explanation. It maps the four files the filter rewrites and the five keys it transforms, and makes explicit why the on-disk form deliberately differs from the committed form — so operators stop concluding something is broken. It also lists the commands that show the committed form, and leads with the filter's intent before the mechanics. Verified the advisory fires on all four mapped files. This is a documentation-only change; filter behavior is untouched. **Breaking:** none.
 

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — GraphProjectionReducerV1 replay and audit-preserving compaction"
+trigger_phrases: []
+---
 # Iteration 002 — GraphProjectionReducerV1 replay and audit-preserving compaction
 
 ## Focus

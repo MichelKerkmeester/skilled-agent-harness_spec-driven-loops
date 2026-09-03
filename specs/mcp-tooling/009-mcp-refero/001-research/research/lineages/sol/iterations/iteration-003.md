@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: mcp-remote OAuth, local state, and failure boundary"
+trigger_phrases: []
+---
 # Iteration 3: mcp-remote OAuth, local state, and failure boundary
 
 ## Focus

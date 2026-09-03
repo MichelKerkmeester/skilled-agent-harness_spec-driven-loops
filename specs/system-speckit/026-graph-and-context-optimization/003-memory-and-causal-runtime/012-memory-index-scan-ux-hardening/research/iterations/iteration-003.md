@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: A3 Concurrency and Multi-Writer Correctness"
+trigger_phrases: []
+---
 # Iteration 3: A3 Concurrency and Multi-Writer Correctness
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — sk-design Comprehensive Review"
+trigger_phrases: []
+---
 # Deep Review Strategy — sk-design Comprehensive Review
 
 ## Rotation Plan (20 iterations, 6 waves, parallel dispatch)

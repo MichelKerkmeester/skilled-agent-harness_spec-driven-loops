@@ -1,3 +1,7 @@
+---
+title: "Iteration 9 — maintainability (doc-code drift + resource-map accuracy)"
+trigger_phrases: []
+---
 # Iteration 9 — maintainability (doc-code drift + resource-map accuracy)
 
 ## Files Reviewed

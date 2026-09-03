@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Deprecate cli-copilot skill due to price hike
 The cli-copilot skill was entirely removed from the framework, driven by GitHub Copilot's price increase versus the cli-codex executor. Before, Copilot was one of five routable CLI executors; after, it no longer exists — the skill tree, changelog, hooks, matrix-runner adapter, and ~50 supporting files were physically deleted, and the skill advisor now routes "copilot" queries to the nearest sibling, cli-claude-code. The four surviving cli-* skills had their peer lists scrubbed, the multi-ai-council agent mirrors were updated across all four runtimes, and the executor configuration was refactored to drop the Copilot executor kind and its prompt-building code. The change touched 303 files netting roughly 10,900 deletions. **Breaking:** any workflow, agent, or automation that dispatched to `cli-copilot` must migrate to another `cli-*` executor (for example, `cli-codex`); two test files still reference the removed executor and will fail to compile until their Copilot test cases are removed.
 

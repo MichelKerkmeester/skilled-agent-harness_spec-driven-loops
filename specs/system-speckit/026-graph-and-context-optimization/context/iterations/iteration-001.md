@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Docs band: program narrative"
+trigger_phrases: []
+---
 # Iteration 001 — Docs band: program narrative
 
 - **Focus (shared):** anchors 1–11 (root `spec.md`, `context-index.md`, and the 9 phase `spec.md` files)

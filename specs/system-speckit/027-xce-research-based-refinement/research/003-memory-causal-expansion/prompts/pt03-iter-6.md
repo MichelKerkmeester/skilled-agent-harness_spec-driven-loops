@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 6/10 SCOPE-EXPANSION pass for packet .opencode/specs/system-spec-kit/027-xce-research-based-refinement.
 
 CONTEXT: Iter 1-5 covered RQ-A1..A5 (coco-index group). Iter 6 transitions to Group B — memory backend / causal graph.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: Stabilization Replay"
+trigger_phrases: []
+---
 # Iteration 006: Stabilization Replay
 
 ## Focus

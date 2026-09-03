@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 5 | model luna (gpt-5.6-luna) | angle: Reflection & self-improvement | 2026-07-14T21:38:35.548Z -->
 
 The strongest transfer is to treat reflection as a first-class state transition, not extra prompt text: attempt → feedback → reflection candidate → validated memory delta → next attempt.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### AGENTS.md bloat audit with safe trims applied
 A read-only deep-research loop audited the root `AGENTS.md` (555 lines) and produced a ranked reduction report: 40 findings grouped into Tier 1/2/3 candidates totaling ~75 removable lines (≈13.5%), a section map, an eliminated-alternatives set, and a preserve set protecting every unique normative constraint. The verified-safe subset was then applied directly: seven broken `constitutional/*.md` links were fixed, three duplicate-removal trims cut 9 net lines, two obsolete Dispatch Rules rows (Fable subagent, Open Design) were removed from `AGENTS.md` plus a matching Open Design row from `BARTER.md`, and the runtime-directory table gained its missing Cursor and Devin rows. A follow-up review compressed one §9 block into a one-line pointer (−5 lines) and corrected the advisor-metadata wording so only `graph-metadata.json` is claimed for both parent-hub and standalone roots. For framework users the outcome is a leaner, more accurate dispatch contract with no normative content lost; the audit trail itself is internal evidence. Landed as commits `c20561d5d0` and `1be805c0af` on `skilled/v4.0.0.0`.
 

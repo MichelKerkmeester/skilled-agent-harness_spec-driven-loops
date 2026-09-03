@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 **Findings**
 
 P1 | parent-skill-registry-template.json | `resourceContractVersion` is omitted. Generation silently defaults it, but Doctor rejects a hub with `leaf-manifest.json` unless the registry explicitly declares a numeric value; `init_skill.py` repeats the omission. | `.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-registry-template.json:1-5`; `.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:204-207`; `.opencode/commands/doctor/scripts/parent-skill-check.cjs:1085-1093`; `.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:453-477`

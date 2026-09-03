@@ -1,3 +1,7 @@
+---
+title: "Implementation Design — Phase 018 Canonical Continuity Refactor"
+trigger_phrases: []
+---
 # Implementation Design — Phase 018 Canonical Continuity Refactor
 
 > **One-page executive summary** of the 20-iteration implementation design research.

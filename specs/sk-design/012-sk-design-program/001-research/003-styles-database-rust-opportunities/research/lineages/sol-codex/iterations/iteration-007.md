@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Cross-System Search Core"
+trigger_phrases: []
+---
 # Iteration 7: Cross-System Search Core
 
 ## Focus

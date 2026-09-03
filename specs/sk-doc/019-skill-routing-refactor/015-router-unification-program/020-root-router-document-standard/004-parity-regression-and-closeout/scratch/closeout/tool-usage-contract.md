@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Tools used in phase 004 (usage contract read before invocation):
 - .opencode/bin/compiled-route-manifest.cjs  refresh | freshness --hub <hub> --skill-root .opencode/skills/<hub>
 - .opencode/bin/compiled-route-sync.cjs      --check (read-only trace) | default promotion | --verify | --revert <rollback> | --finalize <rollback>

@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: P2 Identity Proposal versus Truth Maintenance"
+trigger_phrases: []
+---
 # Iteration 9: P2 Identity Proposal versus Truth Maintenance
 
 ## Focus

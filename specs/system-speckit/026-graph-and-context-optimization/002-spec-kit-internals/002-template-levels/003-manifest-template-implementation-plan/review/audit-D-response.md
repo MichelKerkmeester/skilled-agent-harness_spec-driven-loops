@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Read-only audit completed. I found no DELETE candidates. Impact is mostly stale composer/template-path docs plus banned-vocabulary leaks in AI-readable catalog/playbook surfaces; `mcp_server/stress_test` code fixtures are internal test data and should stay untouched.
 
 **1. Feature Catalog Audit**

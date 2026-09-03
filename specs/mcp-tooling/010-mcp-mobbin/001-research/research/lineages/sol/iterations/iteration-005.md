@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Adversarial Completeness and Risk Audit"
+trigger_phrases: []
+---
 # Iteration 5: Adversarial Completeness and Risk Audit
 
 ## Focus

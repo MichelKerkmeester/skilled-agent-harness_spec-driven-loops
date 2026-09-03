@@ -3,6 +3,7 @@ title: "Research resource map — injection-bloat testing/document alignment"
 status: complete
 external_resources: 0
 local_sources: 9
+trigger_phrases: []
 ---
 
 # Resource Map

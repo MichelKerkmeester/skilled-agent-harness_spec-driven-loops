@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Completed iteration 3 for the traceability dimension. Found 2 P1 traceability gaps:
 
 1. **REQ-004 stale-PID reclamation lacks test coverage** - The implementation exists (lease.ts:165-166, launcher.cjs:367-368) but there's no vitest case verifying the `staleReclaimed: true` behavior when a dead PID is detected.

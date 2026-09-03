@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Dimension
 
 Correctness inventory pass for Target 1: identify the exact `create.sh --phase --phase-parent` code path that can overwrite an existing parent packet's `description.json` while adding new child phases.

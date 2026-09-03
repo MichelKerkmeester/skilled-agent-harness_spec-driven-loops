@@ -1,3 +1,7 @@
+---
+title: "Embedding Worker Diagnostic - Seat Statements"
+trigger_phrases: []
+---
 # Embedding Worker Diagnostic - Seat Statements
 
 All three seats are simulated inline by cli-codex, per the binding trace. No external CLI or subagent participated.

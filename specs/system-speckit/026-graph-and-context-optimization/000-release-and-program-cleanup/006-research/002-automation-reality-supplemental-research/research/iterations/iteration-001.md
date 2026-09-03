@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Deep-loop Graph Automation Reality"
+trigger_phrases: []
+---
 # Iteration 1: Deep-loop Graph Automation Reality
 
 ## Status

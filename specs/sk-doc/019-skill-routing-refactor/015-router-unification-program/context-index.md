@@ -1,3 +1,7 @@
+---
+title: "Context Index — Router-Unification Program"
+trigger_phrases: []
+---
 # Context Index — Router-Unification Program
 
 The current topology is authoritative on disk: `015-router-unification-program/` has twenty direct children. The former unified-refactor grouping was dissolved after the committed move; its implementation children are now direct children of this parent. Children `019-routing-coverage-activation-verification/` and `020-root-router-document-standard/` retain their own internal children and numbering.

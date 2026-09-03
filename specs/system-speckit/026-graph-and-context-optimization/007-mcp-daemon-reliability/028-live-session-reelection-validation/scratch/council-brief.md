@@ -1,3 +1,7 @@
+---
+title: "Council brief: daemon re-election fresh-session double-writer"
+trigger_phrases: []
+---
 # Council brief: daemon re-election fresh-session double-writer
 
 ## Repo

@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 — Cross-model verify (MiniMax M3): T1 adoptability + AC-format prereq"
+trigger_phrases: []
+---
 # Iteration 015 — Cross-model verify (MiniMax M3): T1 adoptability + AC-format prereq
 
 **Focus:** Independent MiniMax M3 stress-test of iter 008 (T1 adoptable, reuse-heavy) + iter 011 (AC-format prereq).

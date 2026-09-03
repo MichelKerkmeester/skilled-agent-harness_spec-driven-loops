@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — System-Deep-Loop Broad Audit"
+trigger_phrases: []
+---
 # Deep Review Report — System-Deep-Loop Broad Audit
 
 - Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review`

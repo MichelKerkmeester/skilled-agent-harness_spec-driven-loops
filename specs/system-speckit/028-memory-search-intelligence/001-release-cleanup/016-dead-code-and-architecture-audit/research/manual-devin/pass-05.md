@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### F1 — CAT-1: Test file `detector-regression-floor.vitest.ts.test.ts` is never collected by vitest (malformed extension) and has no importer
 **Path:** `.opencode/skills/system-spec-kit/scripts/tests/detector-regression-floor.vitest.ts.test.ts`
 **Evidence:** The vitest config `include` glob is `scripts/tests/**/*.vitest.ts` (`.opencode/skills/system-spec-kit/vitest.config.ts:7-11`), which matches files whose name ends in `.vitest.ts`. This file's name ends in `.vitest.ts.test.ts`, so vitest never collects it. No `*.vitest.ts` file imports it (grep for `detector-regression-floor` across `**/*.vitest.ts` under `system-spec-kit` returns zero matches). The file's own imports are otherwise valid — `../../mcp-server/lib/search/deterministic-extractor.ts` and `../../mcp-server/lib/search/evidence-gap-detector.ts` both exist on disk — so the only defect is the trailing `.test.ts` suffix that hides it from the runner. The intended name was `detector-regression-floor.vitest.ts` (the spec that created it, `026-graph-and-context-optimization/007-detector-provenance-and-regression-floor`, lists it under that name).

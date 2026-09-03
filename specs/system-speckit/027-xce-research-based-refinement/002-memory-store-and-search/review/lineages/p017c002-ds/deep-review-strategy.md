@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - Session Tracking"
+trigger_phrases: []
+---
 # Deep Review Strategy - Session Tracking
 
 ## 1. Topic

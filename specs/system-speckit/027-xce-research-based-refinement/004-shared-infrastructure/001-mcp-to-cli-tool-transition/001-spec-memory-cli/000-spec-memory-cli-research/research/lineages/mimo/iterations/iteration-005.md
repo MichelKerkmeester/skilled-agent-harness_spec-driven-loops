@@ -1,3 +1,7 @@
+---
+title: "Iteration 005: KQ5 — Architecture Comparison, Risk Register, Go/No-Go"
+trigger_phrases: []
+---
 # Iteration 005: KQ5 — Architecture Comparison, Risk Register, Go/No-Go
 
 ## Focus

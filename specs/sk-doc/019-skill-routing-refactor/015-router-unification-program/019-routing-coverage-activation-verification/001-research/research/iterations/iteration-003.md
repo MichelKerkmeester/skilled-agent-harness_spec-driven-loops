@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — gpt-5.6-sol high — focus: playbooks"
+trigger_phrases: []
+---
 # Iteration 3 — gpt-5.6-sol high — focus: playbooks
 
 The new-router manual coverage belongs in eight root playbooks, not all 39: the seven compiled-eligible hub playbooks plus `system-skill-advisor`. Child-mode playbooks should remain focused on packet behavior. The fixed eligibility set is `sk-code`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`, `sk-prompt`, `sk-design`, and `sk-doc` (`system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:41-49`). Hub playbooks already define the correct ownership boundary: advisor identity followed by hub-mode resolution, excluding child internals (`cli-external-orchestration/manual-testing-playbook/manual-testing-playbook.md:11-19`, `mcp-tooling/manual-testing-playbook/manual-testing-playbook.md:11-19`, `sk-prompt/manual-testing-playbook/manual-testing-playbook.md:11-19`).

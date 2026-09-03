@@ -1,3 +1,7 @@
+---
+title: "Dark Flag Validation: Real-World Scenario Coverage of 007 Graduation Winners"
+trigger_phrases: []
+---
 # Dark Flag Validation: Real-World Scenario Coverage of 007 Graduation Winners
 
 ## Executive Summary

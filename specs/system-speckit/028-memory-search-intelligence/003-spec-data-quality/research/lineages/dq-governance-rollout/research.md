@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis (lineage dq-governance-rollout): the governance and rollout layer that makes the whole DQ program shippable and safe"
+trigger_phrases: []
+---
 # Research Synthesis (lineage dq-governance-rollout): the governance and rollout layer that makes the whole DQ program shippable and safe
 
 <!-- ANCHOR:dq-governance-rollout-index -->

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 006 — Correctness (Broadened Angle 2: Executor Single-Dispatch Routing Parity)"
+trigger_phrases: []
+---
 # Deep Review Iteration 006 — Correctness (Broadened Angle 2: Executor Single-Dispatch Routing Parity)
 
 ## Dimension

@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 — Independent second opinion on the sub-packet proposal"
+trigger_phrases: []
+---
 DEEP-RESEARCH — CROSS-MODEL PROPOSAL REVIEW (MiniMax M3)
 
 # Iteration 018 — Independent second opinion on the sub-packet proposal

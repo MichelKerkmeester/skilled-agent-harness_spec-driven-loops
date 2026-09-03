@@ -1,3 +1,7 @@
+---
+title: "Claim Sweep: 036 Against The Built System"
+trigger_phrases: []
+---
 # Claim Sweep: 036 Against The Built System
 
 Method: every claim below was tested against code, not against a plan. The

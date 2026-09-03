@@ -1,3 +1,7 @@
+---
+title: "OpenCode Senses — Design Specification"
+trigger_phrases: []
+---
 # OpenCode Senses — Design Specification
 
 **Project:** OpenCode Senses

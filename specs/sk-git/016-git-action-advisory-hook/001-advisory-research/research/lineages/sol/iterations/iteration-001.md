@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Git Operation Families and Pre-Execution State"
+trigger_phrases: []
+---
 # Iteration 1: Git Operation Families and Pre-Execution State
 
 ## Focus

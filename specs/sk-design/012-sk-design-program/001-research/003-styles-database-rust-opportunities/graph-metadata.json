@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The styles database (`styles/db/`, SQLite + FTS5 + rebuildable vector projection over ~1,290 style bundles) works, but the question is whether Rust could make it materially better — not whether to port it",
     "created_at": "2026-07-20T07:00:06.322Z",
-    "last_save_at": "2026-08-30T15:39:12.630Z",
+    "last_save_at": "2026-09-03T22:17:34.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ea9a97a89d661917ab59980c6055de822f88fb688a14f5a7b4c549ee6cd26d6",
+    "source_fingerprint": "sha256:492a1a1ff7e11b7c34c3b34e16a4338848b86696c7dd460d9c7debd85b865aa9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f9abaede7a6b3f50ed569d53f5650af10a8568ffb6449707022e12a9ae55f381",
-      "plan.md": "c3a53b1b312e2e7fc6de07b39fa2460f20beaf317f5ecf5decbc1dba277f0b90",
-      "tasks.md": "ee13703ef37c592c51b123fb0c76729c05cdd8b1d2a1e6844d226f8f7b2bb859",
-      "implementation-summary.md": "ea84a25e23f3ff58275e05c52e516dc8a491b737791c4553b32b724e54c1a6ad"
+      "plan.md": "932a8f4af8036884eeb539c2dc384a90bb8220395a4a9127addd4f8314ba4cfd",
+      "tasks.md": "71b09940c35f19e31baf257c1b4b949f8b20c08aa0d702f1108a342613ae8623",
+      "implementation-summary.md": "a02507713d4604a0bf461ce741e186f483e39fe652a97ff5a2942bb5354f31d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

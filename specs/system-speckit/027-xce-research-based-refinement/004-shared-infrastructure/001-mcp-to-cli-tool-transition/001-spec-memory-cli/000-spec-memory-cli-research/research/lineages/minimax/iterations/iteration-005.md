@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: KQ5 — Architecture comparison + go/no-go recommendation"
+trigger_phrases: []
+---
 # Iteration 5: KQ5 — Architecture comparison + go/no-go recommendation
 
 | Field | Value |

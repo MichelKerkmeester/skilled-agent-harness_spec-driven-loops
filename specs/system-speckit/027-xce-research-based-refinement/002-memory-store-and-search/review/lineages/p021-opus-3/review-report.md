@@ -1,3 +1,7 @@
+---
+title: "Review Report — 021-cooperative-heavy-phases (lineage p021-opus-3)"
+trigger_phrases: []
+---
 # Review Report — 021-cooperative-heavy-phases (lineage p021-opus-3)
 
 **Target:** `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases`

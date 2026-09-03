@@ -4,6 +4,7 @@ rq: RQ-N10-SYNTHESIS
 phase_target: all-synthesis
 newInfoRatio: 0.35
 verdict: ADAPT
+trigger_phrases: []
 ---
 
 # Iteration 039 — Final Synthesis: 027 XCE-Derived Memory System Refinement

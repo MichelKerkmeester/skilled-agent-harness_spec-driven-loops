@@ -1,3 +1,7 @@
+---
+title: "000-release-cleanup / 004-followup-post-program: Followup + post-program work"
+trigger_phrases: []
+---
 # 000-release-cleanup / 004-followup-post-program: Followup + post-program work
 
 Quality passes, post-program cleanup, iterative improvements.

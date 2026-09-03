@@ -1,3 +1,7 @@
+---
+title: "008 — Closure narrative for cat-24/409 (51/51 FAILs)"
+trigger_phrases: []
+---
 # 008 — Closure narrative for cat-24/409 (51/51 FAILs)
 
 > Retrospective single-doc summary of the 008 mk-spec-memory stress-test closure path. Chains 8 commits + 4 ADRs into one read.

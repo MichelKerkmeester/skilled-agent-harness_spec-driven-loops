@@ -1,3 +1,7 @@
+---
+title: "Integration Research: caura-memclaw (008) → Spec Kit Memory (UX + Automation first)"
+trigger_phrases: []
+---
 # Integration Research: caura-memclaw (008) → Spec Kit Memory (UX + Automation first)
 
 <!-- ANCHOR:deep-research-008-integration -->

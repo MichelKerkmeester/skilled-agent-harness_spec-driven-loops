@@ -1,3 +1,7 @@
+---
+title: "Pre-014 Clearance Verdict — Did WS1 (026–033) Clear the 014-Blocking Findings?"
+trigger_phrases: []
+---
 # Pre-014 Clearance Verdict — Did WS1 (026–033) Clear the 014-Blocking Findings?
 
 **Scope of this record.** This is a targeted follow-up to Stage A (`PRE-014-VALIDATION-RUN.md`

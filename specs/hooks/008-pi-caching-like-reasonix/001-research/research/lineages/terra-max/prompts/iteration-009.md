@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 009"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 009
 
 Focus: pi-cache-optimizer operational scope

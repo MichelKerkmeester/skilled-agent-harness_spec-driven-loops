@@ -1,3 +1,7 @@
+---
+title: "Deep Research — Obsidian CLI / REST API / MCP landscape"
+trigger_phrases: []
+---
 # Deep Research — Obsidian CLI / REST API / MCP landscape
 
 A 3-lineage cli-codex fan-out (GPT-5.6 SOL/TERRA/LUNA) converged on the same shape for the new `mcp-obsidian` mode: **adopt existing providers on both surfaces and build only a thin router/safety facade — do not build a vault engine.** For the CLI, adopt the official first-party `obsidian` binary (app-backed) with `notesmd-cli` as a genuinely headless filesystem profile. For MCP, the coddingtonbear Local REST API community plugin is the shared data plane; adopt the verified `obsidian-mcp-server` (cyanheads) stdio wrapper for today's stdio-only Code Mode, and migrate to the plugin's built-in Streamable HTTP `/mcp/` endpoint once Code Mode's HTTP-manual + custom-header schema is proven. The single decisive constraint is **runtime, not package selection**: every rich surface (official CLI, Local REST API, all reviewed MCP wrappers) requires a running Obsidian desktop app plus the enabled plugin and a bearer token; only `notesmd-cli` and one filesystem MCP candidate are truly headless. Package identity is a hard release gate — the sibling ClickUp packet records a public-npm 404 for its configured `@clickup/mcp-server`, so no name enters `.utcp_config.json` without a live registry check.

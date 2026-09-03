@@ -1,3 +1,7 @@
+---
+title: "004 closeout handoff"
+trigger_phrases: []
+---
 # 004 closeout handoff
 
 - Fleet gate: 7/7 owner rebuilds built; 7/7 canaries green.

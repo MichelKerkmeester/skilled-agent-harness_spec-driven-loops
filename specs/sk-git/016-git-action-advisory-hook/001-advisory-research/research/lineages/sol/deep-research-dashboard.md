@@ -1,6 +1,7 @@
 ---
 title: Deep Research Dashboard
 description: Auto-generated view of the detached git advisory research lineage.
+trigger_phrases: []
 ---
 
 # Deep Research Dashboard

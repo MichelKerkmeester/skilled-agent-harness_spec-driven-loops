@@ -2,6 +2,7 @@
 title: "Kebab-Case Styles Backend and Manifest Consolidation Research"
 description: "Five-iteration synthesis of the exact rename map, safe reference cutover, and single-source manifest design."
 status: complete
+trigger_phrases: []
 ---
 
 # Kebab-Case Styles Backend and Manifest Consolidation

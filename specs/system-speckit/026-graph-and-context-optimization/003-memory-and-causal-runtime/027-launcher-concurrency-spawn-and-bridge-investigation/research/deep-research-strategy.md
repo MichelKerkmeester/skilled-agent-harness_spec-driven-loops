@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - Launcher Concurrency Spawn & Bridge Investigation
 description: Validate two launcher/MCP/embedder runtime root causes (T1 hf-local spurious spawn; T2 code-index+advisor daemon bridge not serving) and produce a unified design-conformance fix plan.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking

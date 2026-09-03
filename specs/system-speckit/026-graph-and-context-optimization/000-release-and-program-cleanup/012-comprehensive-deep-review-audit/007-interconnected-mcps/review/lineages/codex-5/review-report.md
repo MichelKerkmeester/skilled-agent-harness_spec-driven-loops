@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: Interconnected MCPs"
+trigger_phrases: []
+---
 # Deep Review Report: Interconnected MCPs
 
 ## 1. Executive Summary

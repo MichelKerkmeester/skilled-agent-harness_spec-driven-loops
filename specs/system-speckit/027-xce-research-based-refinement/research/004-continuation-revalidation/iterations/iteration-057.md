@@ -1,3 +1,7 @@
+---
+title: "Iteration 057: memory_context Curator Phase Decision"
+trigger_phrases: []
+---
 # Iteration 057: memory_context Curator Phase Decision
 
 ## Focus

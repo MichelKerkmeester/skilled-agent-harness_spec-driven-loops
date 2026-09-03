@@ -1,3 +1,7 @@
+---
+title: "Drift Census and Plan Revalidation — Merged Synthesis"
+trigger_phrases: []
+---
 # Drift Census and Plan Revalidation — Merged Synthesis
 
 > Consolidated across two independent lineages (`sol` = gpt-5.6-sol-fast @ high, `glm` = glm-5.2 @ max),

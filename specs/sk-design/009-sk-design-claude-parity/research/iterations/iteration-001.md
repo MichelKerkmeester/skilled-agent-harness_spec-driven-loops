@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: External/Core Inventory"
+trigger_phrases: []
+---
 # Iteration 1: External/Core Inventory
 
 ## Focus

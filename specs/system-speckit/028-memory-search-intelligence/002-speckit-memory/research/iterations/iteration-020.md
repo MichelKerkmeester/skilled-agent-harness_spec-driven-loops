@@ -1,3 +1,7 @@
+---
+title: "Iteration 20: Round D Adversarial Verification — Memory Determinism FIX Candidates"
+trigger_phrases: []
+---
 # Iteration 20: Round D Adversarial Verification — Memory Determinism FIX Candidates
 
 ## Focus

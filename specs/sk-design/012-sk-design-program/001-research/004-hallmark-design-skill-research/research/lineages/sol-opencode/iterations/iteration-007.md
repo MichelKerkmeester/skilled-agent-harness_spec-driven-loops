@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Curated Themes And Extracted Corpus Coexistence"
+trigger_phrases: []
+---
 # Iteration 7: Curated Themes And Extracted Corpus Coexistence
 
 ## Focus

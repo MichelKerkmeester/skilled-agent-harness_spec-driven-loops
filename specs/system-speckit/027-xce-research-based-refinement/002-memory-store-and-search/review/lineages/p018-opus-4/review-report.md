@@ -1,3 +1,7 @@
+---
+title: "Review Report — reindex-scan responsiveness and cancellation (lineage p018-opus-4)"
+trigger_phrases: []
+---
 # Review Report — reindex-scan responsiveness and cancellation (lineage p018-opus-4)
 
 Session: `fanout-p018-opus-4-1781718236450-bbehhf` | Executor: cli-claude-code (claude-opus-4-8)

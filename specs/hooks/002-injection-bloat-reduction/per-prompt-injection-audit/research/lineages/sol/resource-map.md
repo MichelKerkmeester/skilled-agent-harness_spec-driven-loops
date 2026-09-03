@@ -1,3 +1,7 @@
+---
+title: "Resource Map — Per-Prompt Injection Audit"
+trigger_phrases: []
+---
 # Resource Map — Per-Prompt Injection Audit
 
 Derived from the 15 iteration narratives and `deltas/iter-001.jsonl` through `iter-015.jsonl`. Paths are evidence sources, not new write authority.

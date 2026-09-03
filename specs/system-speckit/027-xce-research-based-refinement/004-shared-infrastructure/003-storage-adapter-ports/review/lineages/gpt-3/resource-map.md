@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map"
+trigger_phrases: []
+---
 # Review Resource Map
 
 Source packet `resource-map.md` was not present at init, so the formal resource-map coverage gate was skipped.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 11: Deep-Review and AI-Council Fallback/Staleness Contracts"
+trigger_phrases: []
+---
 # Iteration 11: Deep-Review and AI-Council Fallback/Staleness Contracts
 
 ## Focus

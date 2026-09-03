@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Q2: Does the false-green guard still fire in a clean env?"
+trigger_phrases: []
+---
 # Iteration 002 — Q2: Does the false-green guard still fire in a clean env?
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis: Spec-Kit Templates & Context Reducer"
+trigger_phrases: []
+---
 # Deep Research Synthesis: Spec-Kit Templates & Context Reducer
 
 **Packet:** `specs/system-speckit/034-spec-template-context-optimizations/research` (research originally conducted as packet 033)

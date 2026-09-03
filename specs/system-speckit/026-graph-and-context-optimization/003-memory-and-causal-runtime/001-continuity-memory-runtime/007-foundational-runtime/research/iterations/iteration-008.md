@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 — Post-insert status truthfulness (8/10)"
+trigger_phrases: []
+---
 # Iteration 8 — Post-insert status truthfulness (8/10)
 
 ## Investigation Thread

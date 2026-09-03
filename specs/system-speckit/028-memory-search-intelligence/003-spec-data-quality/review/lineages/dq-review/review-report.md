@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: Spec-Kit Data Quality by Default (003-spec-data-quality)"
+trigger_phrases: []
+---
 # Deep Review Report: Spec-Kit Data Quality by Default (003-spec-data-quality)
 
 Lineage: `dq-review` | Session: `fanout-dq-review-1782054325586-hj96cb` | Executor: cli-claude-code (opus)

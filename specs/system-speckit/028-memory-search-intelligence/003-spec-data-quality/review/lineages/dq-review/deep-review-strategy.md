@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: 003-spec-data-quality (lineage dq-review)"
+trigger_phrases: []
+---
 # Deep Review Strategy: 003-spec-data-quality (lineage dq-review)
 
 ## Topic

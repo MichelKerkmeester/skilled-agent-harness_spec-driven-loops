@@ -1,3 +1,7 @@
+---
+title: "Alignment Iteration 7"
+trigger_phrases: []
+---
 # Alignment Iteration 7
 
 - Lane: sk-doc::docs::.opencode/skills/*/feature-catalog/**, .opencode/skills/sk-doc/create-*/SKILL.md

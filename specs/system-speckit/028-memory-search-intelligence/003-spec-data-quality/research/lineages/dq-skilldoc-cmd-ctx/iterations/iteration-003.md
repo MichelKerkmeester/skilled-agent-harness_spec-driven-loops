@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — KQ3: COMMANDS surface DQ automation"
+trigger_phrases: []
+---
 # Iteration 003 — KQ3: COMMANDS surface DQ automation
 
 **Focus:** Argument-grammar/mode validation, router-manifest contract tests, mutation_class discipline, command-doc ↔ skill consistency, YAML-workflow schema validation across the 28 command docs + ~30 workflow YAMLs.

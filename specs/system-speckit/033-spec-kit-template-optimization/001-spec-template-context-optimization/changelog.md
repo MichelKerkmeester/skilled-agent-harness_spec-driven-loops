@@ -1,6 +1,7 @@
 ---
 title: "Changelog: Spec-Template & Context Optimization"
 description: "Full record of this packet: the deep-research phase (formerly 033), the four-phase implementation of six verified optimizations (formerly 034), the two adversarial deep-reviews and their remediations, the architecture decisions, and the consolidation of the two packets into one under 033."
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: packet-changelog | v1 -->
 # Changelog: Spec-Template & Context Optimization

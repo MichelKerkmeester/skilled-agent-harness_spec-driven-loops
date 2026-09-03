@@ -1,3 +1,7 @@
+---
+title: "model-benchmark: Lane B benchmark data"
+trigger_phrases: []
+---
 <!-- iteration 33 | SOL xhigh | mode: model-benchmark | angle: A3-mech model-benchmark :: mechanisms & reference impls | 2026-07-15T10:51:51.935Z -->
 
 The mode should become a task-conditional evidence and routing system, not a private leaderboard. Its strongest moat is combining private workflow items, deterministic execution receipts, calibrated judgments, real costs, and longitudinal drift into a defensible model-selection policy.

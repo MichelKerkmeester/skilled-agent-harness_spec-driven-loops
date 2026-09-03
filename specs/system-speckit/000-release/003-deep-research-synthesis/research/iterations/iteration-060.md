@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Deep-context loop ships as the fourth deep loop
 deep-context joins the family as a new `/deep` loop for inward codebase context gathering: it fans out native analyzer seats in parallel and converges on cross-executor agreement to produce a reuse-first Context Report, backed by a coverage-graph context layer that keeps it distinct from the research and review loops. It then reached durability parity with those mature siblings, wiring in five deep-loop-runtime features — atomic state writes, JSONL repair, post-dispatch validation, loop locking, and an executor-audit recursion guard — all gated to context loops so research and review behavior is untouched. The `@deep-context` analyzer seat now dispatches from Claude and Codex as well as OpenCode, every `/deep:` command opens with two un-skippable gates (an orchestrator-verification phase and a unified setup blocker), and a context run can now bind to a spec folder named inline in its scope instead of silently writing to a standalone directory. **Breaking:** `/deep:start-context-loop` now defaults to a native-only executor pool of two seats, so paid CLI executors are no longer spawned by default — choose the Custom pool to restore them — and a context run that names a spec folder now fails closed rather than falling back to a standalone run directory.
 

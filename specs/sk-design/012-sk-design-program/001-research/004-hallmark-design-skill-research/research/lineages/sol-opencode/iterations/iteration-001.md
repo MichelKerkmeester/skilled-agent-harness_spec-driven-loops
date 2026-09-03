@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Licensing and Asset Inventory"
+trigger_phrases: []
+---
 # Iteration 1: Licensing and Asset Inventory
 
 ## Focus

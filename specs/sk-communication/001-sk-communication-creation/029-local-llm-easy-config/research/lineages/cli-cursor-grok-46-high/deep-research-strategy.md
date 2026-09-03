@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - Session Tracking"
+trigger_phrases: []
+---
 # Deep Research Strategy - Session Tracking
 
 Lineage: cli-cursor-grok-46-high | executor: cli-cursor / cursor-grok-4.6-high | session: fanout-cli-cursor-grok-46-high-1786720025911-6qn2nd

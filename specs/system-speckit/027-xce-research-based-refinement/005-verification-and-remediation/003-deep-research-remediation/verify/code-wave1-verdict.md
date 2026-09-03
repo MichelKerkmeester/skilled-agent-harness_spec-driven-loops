@@ -1,3 +1,7 @@
+---
+title: "Code Wave 1 — Adversarial Re-Verification Verdict (UNCOMMITTED diffs)"
+trigger_phrases: []
+---
 # Code Wave 1 — Adversarial Re-Verification Verdict (UNCOMMITTED diffs)
 
 Verifier: fresh Fable 5 seat, 2026-06-12. Scope: tri-006, tri-124, tri-125, tri-179, tri-182 per `/tmp/fable-verify-codewave1.md`. Original proofs consulted: `l9-still-real-partA.md`, `l9-still-real-partC.md`, `l9-still-real-partD.md`.

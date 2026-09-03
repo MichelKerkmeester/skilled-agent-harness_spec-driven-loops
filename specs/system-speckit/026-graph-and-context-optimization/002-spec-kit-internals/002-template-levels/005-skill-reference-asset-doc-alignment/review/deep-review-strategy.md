@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - 005 skill references assets alignment"
+trigger_phrases: []
+---
 # Deep Review Strategy - 005 skill references assets alignment
 
 ## 1. OVERVIEW

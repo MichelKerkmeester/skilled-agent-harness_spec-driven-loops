@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — workflow pitfalls + implement/debug + shared tier (Facet 9)"
+trigger_phrases: []
+---
 # Iteration 008 — workflow pitfalls + implement/debug + shared tier (Facet 9)
 _Executor: GLM-5.2, read-only; orchestrated by Opus._
 

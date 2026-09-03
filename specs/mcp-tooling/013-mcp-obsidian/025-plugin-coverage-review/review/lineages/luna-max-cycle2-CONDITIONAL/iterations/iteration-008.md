@@ -1,3 +1,7 @@
+---
+title: "Iteration 008: Link integrity and metadata consistency"
+trigger_phrases: []
+---
 # Iteration 008: Link integrity and metadata consistency
 
 ## Focus

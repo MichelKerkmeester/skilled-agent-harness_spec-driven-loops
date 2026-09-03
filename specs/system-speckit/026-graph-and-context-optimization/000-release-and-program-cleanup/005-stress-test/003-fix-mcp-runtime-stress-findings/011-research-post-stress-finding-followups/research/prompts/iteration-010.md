@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 010"
+trigger_phrases: []
+---
 # Deep Research Iteration 010
 
 You are iteration 10 of 10 in a deep-research loop. Build on prior iterations and refine fix proposals for the 5 open questions.

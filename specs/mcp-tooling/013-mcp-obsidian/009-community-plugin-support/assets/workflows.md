@@ -1,3 +1,7 @@
+---
+title: "Workflows — operating the three plugins at the file layer"
+trigger_phrases: []
+---
 # Workflows — operating the three plugins at the file layer
 
 > Destined for `mcp-tooling/mcp-obsidian/references/` (or `assets/`) at Phase 5. Each workflow is expressed as `mcp-obsidian` CLI/MCP **file operations**, not UI clicks. `$VAULT` = the vault root.

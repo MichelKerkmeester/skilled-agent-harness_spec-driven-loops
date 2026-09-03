@@ -1,3 +1,7 @@
+---
+title: "fx-001 Alignment Target — Docs Corpus"
+trigger_phrases: []
+---
 # fx-001 Alignment Target — Docs Corpus
 
 ---

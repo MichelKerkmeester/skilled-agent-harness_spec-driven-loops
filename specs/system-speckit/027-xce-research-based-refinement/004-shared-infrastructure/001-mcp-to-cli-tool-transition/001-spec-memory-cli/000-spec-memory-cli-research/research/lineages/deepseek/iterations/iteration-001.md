@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: KQ1 — 37-Tool Parity Matrix"
+trigger_phrases: []
+---
 # Iteration 001: KQ1 — 37-Tool Parity Matrix
 
 ## Focus

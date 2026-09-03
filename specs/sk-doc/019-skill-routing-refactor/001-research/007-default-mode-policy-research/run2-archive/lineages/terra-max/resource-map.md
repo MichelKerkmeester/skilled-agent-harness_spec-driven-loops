@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Parent-hub defaultMode policy, run 2: a divergent multi-model deep dive over the Divergent Exploration Agenda in the packet spec.md."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

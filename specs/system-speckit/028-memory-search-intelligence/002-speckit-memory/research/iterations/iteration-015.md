@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: External Mining — aionforge core-memory.md + procedural-memory.md → Memory"
+trigger_phrases: []
+---
 # Iteration 15: External Mining — aionforge core-memory.md + procedural-memory.md → Memory
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Trigger-index contract and exact-lane parity"
+trigger_phrases: []
+---
 # Iteration 1: Trigger-index contract and exact-lane parity
 
 ## Focus

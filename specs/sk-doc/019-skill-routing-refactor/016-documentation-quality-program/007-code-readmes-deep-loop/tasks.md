@@ -13,6 +13,7 @@ _memory:
     next_safe_action: "Proceed to phase 008 (closeout)."
     blockers: []
     key_files: []
+trigger_phrases: []
 ---
 
 # Tasks: Code READMEs (System-Deep-Loop Batch)

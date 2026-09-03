@@ -1,3 +1,7 @@
+---
+title: "Codex CLI Prompt — Remediate the 7 P1 findings from the batch phase review (packets 002, 003, 008, 010, 013, 014)"
+trigger_phrases: []
+---
 # Codex CLI Prompt — Remediate the 7 P1 findings from the batch phase review (packets 002, 003, 008, 010, 013, 014)
 
 You are running as codex CLI (`gpt-5.4`, `reasoning_effort=high`, `service_tier=fast`, `sandbox=workspace-write`). Self-contained prompt — no prior conversation context. Fix all 7 P1 findings surfaced by the batch phase review at `026/review/batch-phase-review-consolidated.md`. 4 of the lanes are docs-only, 3 have runtime components. Rebuild `scripts/dist/` only if you touch scripts source. Run verification, report results.

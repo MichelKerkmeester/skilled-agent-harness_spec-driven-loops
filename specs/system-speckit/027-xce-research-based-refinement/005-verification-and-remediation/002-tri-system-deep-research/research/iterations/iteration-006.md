@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Angle 6"
+trigger_phrases: []
+---
 # Iteration 006 — Angle 6
 
 **Angle:** Vector dual-write convergence: vec_768 BLOB table vs vec_memories vec0 — single-source-of-truth plan, divergence detection in health, migration cost.

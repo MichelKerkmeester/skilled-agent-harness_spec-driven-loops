@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Result ambiguity versus executor attribution"
+trigger_phrases: []
+---
 # Iteration 9: Result ambiguity versus executor attribution
 
 ## Focus

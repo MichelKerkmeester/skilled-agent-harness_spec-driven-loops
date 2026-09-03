@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — 045 cli-pi Cursor/Devin bridge — grok-cursor lineage"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

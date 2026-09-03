@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Data-model grounding"
+trigger_phrases: []
+---
 # Iteration 2: Data-model grounding
 
 ## Dimension

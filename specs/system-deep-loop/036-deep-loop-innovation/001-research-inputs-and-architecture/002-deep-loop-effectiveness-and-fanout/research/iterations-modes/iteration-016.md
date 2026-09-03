@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 16 | SOL xhigh | mode: deep-improvement | angle: A1-sota deep-improvement :: 2025-2026 state of the art | 2026-07-15T09:18:49.004Z -->
 
 The frozen evaluator is necessary, but no longer sufficient. The 2025–2026 systems add four capabilities deep-improvement still appears to lack: case-level fitness memory, quality-diverse lineages, evolvable mutation policies, and promotion judges protected from candidate-induced anchoring.

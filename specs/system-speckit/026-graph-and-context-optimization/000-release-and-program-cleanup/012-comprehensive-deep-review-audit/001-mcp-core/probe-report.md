@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - MCP Core Review Slice"
+trigger_phrases: []
+---
 # Deep Review Report - MCP Core Review Slice
 
 ## 1. Executive Summary

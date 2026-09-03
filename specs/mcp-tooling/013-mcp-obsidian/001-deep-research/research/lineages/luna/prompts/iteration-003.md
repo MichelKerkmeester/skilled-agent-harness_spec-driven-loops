@@ -1,3 +1,7 @@
+---
+title: "Direct-mode iteration 3 prompt"
+trigger_phrases: []
+---
 # Direct-mode iteration 3 prompt
 
 DEEP-RESEARCH

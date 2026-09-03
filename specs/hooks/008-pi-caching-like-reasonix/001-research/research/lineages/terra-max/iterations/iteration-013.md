@@ -1,3 +1,7 @@
+---
+title: "Iteration 013 — Pi core’s deliberate omissions"
+trigger_phrases: []
+---
 # Iteration 013 — Pi core’s deliberate omissions
 
 ## Focus

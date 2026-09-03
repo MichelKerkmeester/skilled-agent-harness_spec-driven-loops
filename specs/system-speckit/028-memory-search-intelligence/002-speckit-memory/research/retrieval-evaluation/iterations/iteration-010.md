@@ -1,3 +1,7 @@
+---
+title: "Iteration 10 (verify-correctness): adversarial verify of the 4 sharpest mechanisms"
+trigger_phrases: []
+---
 # Iteration 10 (verify-correctness): adversarial verify of the 4 sharpest mechanisms
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only, refute-by-default). Orchestrator-written. newInfoRatio **0.6** (net-deflationary — corrected 2 of the campaign's sharpest claims). **1 REFUTE, 1 REFINE, 2 CONFIRM.**

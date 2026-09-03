@@ -1,3 +1,7 @@
+---
+title: "Deep Research: system-spec-memory Legacy Surface Inventory"
+trigger_phrases: []
+---
 # Deep Research: system-spec-memory Legacy Surface Inventory
 
 Lineage: luna-max (detached fan-out) | Session: fanout-luna-max-1788366600409-l2538s | Spec: .opencode/specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory | Stop: maxIterations (5)

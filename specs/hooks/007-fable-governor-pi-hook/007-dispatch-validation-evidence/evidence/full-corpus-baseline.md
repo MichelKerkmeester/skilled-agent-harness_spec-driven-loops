@@ -1,3 +1,7 @@
+---
+title: "Full-Corpus Baseline"
+trigger_phrases: []
+---
 # Full-Corpus Baseline
 
 ## Scope and command contract

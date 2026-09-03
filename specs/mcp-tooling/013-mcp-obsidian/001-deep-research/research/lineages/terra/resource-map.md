@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Map Obsidian automation surfaces (official help/developer docs and plugin API, community CLIs, MCP servers, the Local REST API community plugin, and the obsidian:// URI scheme) to decide BUILD-vs-ADOPT for (a) an Obsidian CLI tool and (b) an Obsidian MCP tool for a new mcp-obsidian mode that mirrors mcp-click-up (dual CLI+MCP). Must verify each candidate package/binary identity, determine whether tools work headlessly or require a running Obsidian app + Local REST API token, capture the auth/config/env-prefix pattern to mirror in .utcp_config.json + .env.example, and enumerate the feature surface (note CRUD, search, backlinks, daily notes, tags, frontmatter, templates)."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

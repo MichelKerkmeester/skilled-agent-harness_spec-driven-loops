@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — A4: Silent error recovery patterns"
+trigger_phrases: []
+---
 # Iteration 004 — A4: Silent error recovery patterns
 
 ## Focus

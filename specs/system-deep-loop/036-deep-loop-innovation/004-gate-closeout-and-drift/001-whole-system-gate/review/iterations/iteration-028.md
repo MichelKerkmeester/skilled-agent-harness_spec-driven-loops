@@ -1,3 +1,7 @@
+---
+title: "Iteration 028 — traceability"
+trigger_phrases: []
+---
 # Iteration 028 — traceability
 
 - Executor: cli-codex gpt-5.6-luna effort=xhigh service_tier=fast sandbox=read-only

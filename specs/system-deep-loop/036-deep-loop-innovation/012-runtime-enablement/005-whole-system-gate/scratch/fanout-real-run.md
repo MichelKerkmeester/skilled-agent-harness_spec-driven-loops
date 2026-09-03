@@ -1,3 +1,7 @@
+---
+title: "A real fan-out, and a deferral of mine that was wrong"
+trigger_phrases: []
+---
 # A real fan-out, and a deferral of mine that was wrong
 
 ## The deferral I accepted, and why it was wrong

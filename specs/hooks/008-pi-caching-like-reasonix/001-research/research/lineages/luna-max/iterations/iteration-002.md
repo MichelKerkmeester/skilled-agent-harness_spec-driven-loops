@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Reasonix cache invariants"
+trigger_phrases: []
+---
 # Iteration 2: Reasonix cache invariants
 
 ## Focus

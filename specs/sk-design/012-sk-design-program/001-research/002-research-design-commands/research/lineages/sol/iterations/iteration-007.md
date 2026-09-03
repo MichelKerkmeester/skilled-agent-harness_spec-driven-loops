@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Shared Creation Template Contract"
+trigger_phrases: []
+---
 # Iteration 7: Shared Creation Template Contract
 
 ## Focus

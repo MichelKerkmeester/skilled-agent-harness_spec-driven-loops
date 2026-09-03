@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- provenance: manual cli-opencode orchestration | executor openai/gpt-5.6-sol-fast --variant high | round 5 angle A5 — Determinism/parity + async + unsafe -->
 
 I’ll ground the round in the repository’s actual TypeScript parity and native-module conventions, then verify each Rust recommendation against canonical documentation. This is read-only research; no spec-folder write path is needed.

@@ -1,3 +1,7 @@
+---
+title: "Handover — 037 Graph-Engineering Research Program"
+trigger_phrases: []
+---
 # Handover — 037 Graph-Engineering Research Program
 
 > Continuity handover for the phase parent `system-deep-loop/037-graph-engineering`. Read this first on resume, then [context-index.md](context-index.md) for the full map. Written 2026-08-14.

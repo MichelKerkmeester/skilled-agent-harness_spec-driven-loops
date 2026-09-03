@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Beancount semantics, BQL grammar, AI workflows, and failures"
+trigger_phrases: []
+---
 # Iteration 002 — Beancount semantics, BQL grammar, AI workflows, and failures
 
 ## Focus

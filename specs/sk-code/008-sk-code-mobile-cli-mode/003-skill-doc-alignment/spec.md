@@ -11,6 +11,7 @@ _memory:
     next_safe_action: "Merge PR #38 to Public main, then reconcile packet to complete (implementation-summary.md, checklist)."
     blockers: []
     completion_pct: 90
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

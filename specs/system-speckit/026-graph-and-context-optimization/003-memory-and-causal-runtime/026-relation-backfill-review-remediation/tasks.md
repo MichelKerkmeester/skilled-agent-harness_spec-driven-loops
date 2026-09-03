@@ -14,6 +14,7 @@ _memory:
     completion_pct: 90
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Task Breakdown: Relation-Backfill Review Remediation
 

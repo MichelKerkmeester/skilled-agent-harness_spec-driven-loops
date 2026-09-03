@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Dimension
 
 security

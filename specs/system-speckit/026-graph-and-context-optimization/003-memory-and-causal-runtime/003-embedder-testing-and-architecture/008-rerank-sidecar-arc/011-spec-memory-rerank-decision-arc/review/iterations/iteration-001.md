@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness Dimension Review"
+trigger_phrases: []
+---
 # Iteration 1: Correctness Dimension Review
 
 **Date**: 2026-05-21  

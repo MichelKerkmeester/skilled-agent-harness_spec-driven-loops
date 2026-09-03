@@ -1,3 +1,7 @@
+---
+title: "Adversarial review and what it found"
+trigger_phrases: []
+---
 # Adversarial review and what it found
 
 The delivered code passed 38 tests and a 12-guard control pass before this review

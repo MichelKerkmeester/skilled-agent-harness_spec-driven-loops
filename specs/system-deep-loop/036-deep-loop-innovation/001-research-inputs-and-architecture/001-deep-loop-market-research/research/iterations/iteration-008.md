@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 8 | model luna (gpt-5.6-luna) | angle: Budget / cost / depth control | 2026-07-14T21:53:16.185Z -->
 
 The strongest transfer is to make `runtime/budget-cost` a hierarchical, multi-dimensional ledger—not a single round cap. Pydantic AI separates request, token, and tool-call limits, while LiteLLM adds per-agent session budgets, reset windows, and fallback routing. ([Pydantic subagent budgets](https://pydantic.dev/docs/ai/harness/subagents/), [LiteLLM budgets](https://docs.litellm.ai/docs/proxy/users))

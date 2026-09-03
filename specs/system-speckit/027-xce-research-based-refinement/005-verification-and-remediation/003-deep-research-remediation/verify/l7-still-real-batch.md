@@ -1,3 +1,7 @@
+---
+title: "L7 Still-Real Batch Verification — Shadow/Feedback Honesty (19 findings)"
+trigger_phrases: []
+---
 # L7 Still-Real Batch Verification — Shadow/Feedback Honesty (19 findings)
 
 **Verified:** 2026-06-12 · fresh verifier, all citations re-read from current code

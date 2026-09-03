@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - 029 Search-Quality Findings"
+trigger_phrases: []
+---
 # Deep Research Strategy - 029 Search-Quality Findings
 
 ## 1. OVERVIEW

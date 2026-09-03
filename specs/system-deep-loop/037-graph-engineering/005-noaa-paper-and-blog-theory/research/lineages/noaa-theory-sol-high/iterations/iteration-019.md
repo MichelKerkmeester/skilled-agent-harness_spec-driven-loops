@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: When-Not-to-Use and Contradiction Audit"
+trigger_phrases: []
+---
 # Iteration 19: When-Not-to-Use and Contradiction Audit
 
 ## Focus

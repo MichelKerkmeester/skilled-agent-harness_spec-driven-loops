@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — align create/doctor commands with skill-advisor index for easy skill creation"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

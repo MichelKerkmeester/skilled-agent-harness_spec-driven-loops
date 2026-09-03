@@ -3,6 +3,7 @@ title: "SelectiveControllerV1 Reference Contract"
 description: "Normative pure-controller boundary, certificate gate, abstention ladder, friction assertions, and promotion evidence rules."
 importance_tier: "critical"
 contextType: "implementation"
+trigger_phrases: []
 ---
 
 # SelectiveControllerV1 Reference Contract

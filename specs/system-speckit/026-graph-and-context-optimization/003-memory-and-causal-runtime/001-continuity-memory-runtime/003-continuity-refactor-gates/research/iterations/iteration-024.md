@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-024.md"]
 
+trigger_phrases: []
 ---
 # Iteration 024 — Q3 + Q7: Thin Continuity Validation Rules
 ## Goal

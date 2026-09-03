@@ -1,3 +1,7 @@
+---
+title: "Post-Arc Deep Review — Running Synthesis"
+trigger_phrases: []
+---
 # Post-Arc Deep Review — Running Synthesis
 
 ## Iteration 001 — Restructure Import Correctness

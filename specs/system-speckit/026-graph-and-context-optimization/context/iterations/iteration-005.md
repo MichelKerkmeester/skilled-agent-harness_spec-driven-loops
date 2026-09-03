@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Gap-fill / completeness-critic → CONVERGED"
+trigger_phrases: []
+---
 # Iteration 005 — Gap-fill / completeness-critic → CONVERGED
 
 - **Focus:** what a planner still wouldn't know — 000 release/audit/stress track, cross-cutting runtime gotchas, gap closure

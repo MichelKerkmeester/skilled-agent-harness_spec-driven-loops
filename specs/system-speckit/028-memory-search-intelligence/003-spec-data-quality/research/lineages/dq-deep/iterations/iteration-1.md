@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The `dq-deep` lineage loop is complete. All artifacts are in place under `research/lineages/dq-deep/`, scoped entirely within the lineage directory:
 
 - **config** (status: complete), **state.jsonl** (12 records: config + 9 iterations + convergence + synthesis_complete), **strategy.md**, **findings-registry.json**, **dashboard.md**, **research.md** (synthesis), and **9 iteration files**.

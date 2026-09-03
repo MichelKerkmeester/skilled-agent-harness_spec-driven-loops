@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 32 | model sol (gpt-5.6-sol) | angle: Multi-agent debate: when it helps vs hurts | 2026-07-14T23:51:55.448Z -->
 
 The evidence favors debate as an escalation path, not the default council protocol.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: KQ3 — MCP-Only Affordances and CLI Replacements"
+trigger_phrases: []
+---
 # Iteration 003: KQ3 — MCP-Only Affordances and CLI Replacements
 
 ## Focus

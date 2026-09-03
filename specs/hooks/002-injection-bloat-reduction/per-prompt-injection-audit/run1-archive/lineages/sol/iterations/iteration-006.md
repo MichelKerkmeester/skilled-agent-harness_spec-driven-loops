@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: OpenCode Hook/Plugin Adapter Audit"
+trigger_phrases: []
+---
 # Iteration 6: OpenCode Hook/Plugin Adapter Audit
 
 ## Focus

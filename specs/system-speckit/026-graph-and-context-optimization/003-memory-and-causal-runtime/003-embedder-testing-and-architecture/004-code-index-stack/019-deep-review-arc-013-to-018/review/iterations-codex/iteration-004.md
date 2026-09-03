@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 004 — tests"
+trigger_phrases: []
+---
 # Codex Iteration 004 — tests
 
 ## Sequential-thinking preflight

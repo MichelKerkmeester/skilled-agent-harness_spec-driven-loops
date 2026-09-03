@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Version-Aware Assembly and Fidelity Validation"
+trigger_phrases: []
+---
 # Iteration 2: Version-Aware Assembly and Fidelity Validation
 
 ## Focus

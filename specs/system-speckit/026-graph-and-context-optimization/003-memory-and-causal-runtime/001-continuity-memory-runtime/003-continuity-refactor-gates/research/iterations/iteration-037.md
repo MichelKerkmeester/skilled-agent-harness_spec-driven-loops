@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-037.md"]
 
+trigger_phrases: []
 ---
 # Iteration 037 — Migration dry-run pipeline
 

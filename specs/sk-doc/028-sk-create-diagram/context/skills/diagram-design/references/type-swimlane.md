@@ -1,3 +1,7 @@
+---
+title: "Swimlane"
+trigger_phrases: []
+---
 # Swimlane
 
 **Best for:** cross-functional processes, RACI-style flows, vendor handoffs, multi-team shipping workflows.

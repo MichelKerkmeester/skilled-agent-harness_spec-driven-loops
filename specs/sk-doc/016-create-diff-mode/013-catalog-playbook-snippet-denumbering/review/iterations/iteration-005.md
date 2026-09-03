@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 005 — cli-* + remaining catalog/playbook roots"
+trigger_phrases: []
+---
 # Deep-Review Iteration 005 — cli-* + remaining catalog/playbook roots
 
 **Executor:** DeepSeek-v4-pro (cli-opencode, --pure, read-only)

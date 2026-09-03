@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: Round C Feasibility — Memory Determinism / Rank-Time FIX Cluster (baseline-first)"
+trigger_phrases: []
+---
 # Iteration 17: Round C Feasibility — Memory Determinism / Rank-Time FIX Cluster (baseline-first)
 
 ## Focus

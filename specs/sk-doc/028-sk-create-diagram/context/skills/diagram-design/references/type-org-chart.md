@@ -1,3 +1,7 @@
+---
+title: "Org Chart / Responsibility Map"
+trigger_phrases: []
+---
 # Org Chart / Responsibility Map
 
 **Best for:** human teams, agent teams, support escalation maps, role ownership, routing maps, and any hierarchy where the reader needs to know *who owns what* rather than just parent → child structure.

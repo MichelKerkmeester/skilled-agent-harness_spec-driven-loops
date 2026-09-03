@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — Session Work (E081, causal_unlink, checkpoint schema, enrichment default-on)"
+trigger_phrases: []
+---
 # Deep Review Report — Session Work (E081, causal_unlink, checkpoint schema, enrichment default-on)
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` `--variant high` · **Iterations:** 10 (0 dispatch timeouts) · **Adversarial verification:** all P0/P1 default-refute, confirmed only from real code.

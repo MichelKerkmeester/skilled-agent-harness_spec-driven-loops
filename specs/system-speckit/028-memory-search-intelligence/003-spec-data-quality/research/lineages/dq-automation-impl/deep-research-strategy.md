@@ -3,6 +3,7 @@ title: Deep Research Strategy — dq-automation-impl lineage
 description: Build-ready implementation deep-dive of the keystone DQ automations A1/B1/B2/B3/C2.
 importance_tier: important
 contextType: planning
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — dq-automation-impl

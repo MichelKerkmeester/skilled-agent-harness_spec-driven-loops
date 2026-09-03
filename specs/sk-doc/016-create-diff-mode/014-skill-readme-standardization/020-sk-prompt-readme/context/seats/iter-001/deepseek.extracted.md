@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## 1. PURPOSE
 
 `sk-prompt` transforms vague AI prompts into structured, scored outputs by automatically selecting the best-matching framework from a library of seven, applying iterative DEPTH thinking, and validating quality with CLEAR scoring.

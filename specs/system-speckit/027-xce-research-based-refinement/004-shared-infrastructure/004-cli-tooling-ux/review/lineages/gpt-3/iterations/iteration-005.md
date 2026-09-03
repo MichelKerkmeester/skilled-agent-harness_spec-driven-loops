@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Stabilization - Compact Output, Completion, and Errors"
+trigger_phrases: []
+---
 # Iteration 5: Stabilization - Compact Output, Completion, and Errors
 
 ## Focus

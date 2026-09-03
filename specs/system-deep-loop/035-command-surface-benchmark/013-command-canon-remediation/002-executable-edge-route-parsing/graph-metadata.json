@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Backlog K3: replace the route-cycle detector's raw-text edge extraction — which reads YAML comments as dispatch edges and yields false P0 circular-dependency findings — with schema-aware parsing that traverses only declared dispatch fields. Clears the false P0 cycles while keeping real direct/subaction/workflow cycles failing. Independent of the 001 contract chain; can run in parallel.",
     "created_at": "2026-07-16T07:51:58.792Z",
-    "last_save_at": "2026-08-30T15:39:20.336Z",
+    "last_save_at": "2026-09-03T22:20:39.302Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0edd4f733408e9c3bb7413c8bbc9e91ed42a6d87265f53267e4f5b6933f9aab7",
+    "source_fingerprint": "sha256:bf2608b39ecd5b318a4db84b187d830d6a0e35ade30cd1a6323946820873df14",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "57be4bb61909de01144b3449a428949f2b7bf9c89652c7d016820664bf6546e6",
-      "plan.md": "dcf5ac13bc07e5b5a8399610572295512932636368f2ec3d2b26689f239d7ba9",
-      "tasks.md": "43f27d833184bc52cc2e1bf1285eaf83bea5fcda21f9f0aa049cb4de10530ff7",
+      "plan.md": "443d5fec018b32c762db02650c68abce7a4d55cf228ef4467f119f1097c6234a",
+      "tasks.md": "7e6bd9f0c03d8daf5d6d6e66c344adc17058373f55fe5676b002b94316bf44f4",
       "implementation-summary.md": "2a6f751caacb061fe1c7942900d469d07cc852d277c15870ed5ba3fa44e96fd2"
     },
     "last_active_child_id": null,

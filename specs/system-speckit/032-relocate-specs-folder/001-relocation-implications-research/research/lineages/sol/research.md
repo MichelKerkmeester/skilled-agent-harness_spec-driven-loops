@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Relocating `.opencode/specs` to `specs/`"
+trigger_phrases: []
+---
 # Research Synthesis: Relocating `.opencode/specs` to `specs/`
 
 ## Executive Summary

@@ -1,6 +1,7 @@
 ---
 title: "Scratch: llama-cpp Surface Inventory"
 description: "Initial and final grep evidence for 016/002/007 purge work."
+trigger_phrases: []
 ---
 
 # llama-cpp Surface Inventory

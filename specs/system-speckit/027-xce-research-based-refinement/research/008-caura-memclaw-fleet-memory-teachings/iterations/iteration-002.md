@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — recall / search / retrieval architecture"
+trigger_phrases: []
+---
 # Iteration 002 — recall / search / retrieval architecture
 
 **Status:** insight · **Findings:** 4 · **newInfoRatio:** 0.68 · **tokens:** 155800 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

@@ -1,3 +1,7 @@
+---
+title: "Research Phase 004: Continuation Revalidation"
+trigger_phrases: []
+---
 # Research Phase 004: Continuation Revalidation
 
 Continuation pass revalidating 027 against local repository state, root/path drift, and deep-research workflow contracts.

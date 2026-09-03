@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — A3: Resource leaks across mcp_server"
+trigger_phrases: []
+---
 # Iteration 003 — A3: Resource leaks across mcp_server
 
 ## Focus

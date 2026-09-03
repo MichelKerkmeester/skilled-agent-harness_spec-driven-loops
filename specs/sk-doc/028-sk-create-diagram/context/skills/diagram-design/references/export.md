@@ -1,3 +1,7 @@
+---
+title: "Export to PNG / SVG"
+trigger_phrases: []
+---
 # Export to PNG / SVG
 
 Convert a generated diagram HTML file into a portable `.svg` and/or `.png` next to it. **Manual only — never run unprompted.**

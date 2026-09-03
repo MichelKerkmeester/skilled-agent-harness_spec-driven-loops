@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Live Pipeline and Schema/Validator Boundaries"
+trigger_phrases: []
+---
 # Iteration 1: Live Pipeline and Schema/Validator Boundaries
 
 ## Focus

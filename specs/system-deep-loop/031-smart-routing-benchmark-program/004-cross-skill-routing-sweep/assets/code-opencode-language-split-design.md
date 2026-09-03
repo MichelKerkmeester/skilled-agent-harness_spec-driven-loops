@@ -1,3 +1,7 @@
+---
+title: "Turnkey Design: code-opencode / code-webflow Language-Slice Intent Split"
+trigger_phrases: []
+---
 # Turnkey Design: code-opencode / code-webflow Language-Slice Intent Split
 
 > Deferred deliverable of the cross-skill routing sweep. This captures the full diagnosis

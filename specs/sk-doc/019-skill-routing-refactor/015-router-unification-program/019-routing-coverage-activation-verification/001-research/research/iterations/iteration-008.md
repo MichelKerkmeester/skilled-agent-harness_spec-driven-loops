@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 — minimax/MiniMax-M3 — focus: unnamed"
+trigger_phrases: []
+---
 # Iteration 8 — minimax/MiniMax-M3 — focus: unnamed
 
 # Iteration 8 — UNNAMED gaps (hooks/CI/launchers, advisor-hook thread, 4 non-hub routers)

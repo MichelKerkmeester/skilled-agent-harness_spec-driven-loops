@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Docs band deep: decisions, research recs, defect-fix"
+trigger_phrases: []
+---
 # Iteration 002 — Docs band deep: decisions, research recs, defect-fix
 
 - **Focus (shared):** 001 research deliverables, 008 implementation-summary, high-signal decision-records (003/004/007)

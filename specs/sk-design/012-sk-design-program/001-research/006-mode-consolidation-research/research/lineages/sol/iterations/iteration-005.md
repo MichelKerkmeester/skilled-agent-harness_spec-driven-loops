@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Build-Ready Migration Plan"
+trigger_phrases: []
+---
 # Iteration 005 — Build-Ready Migration Plan
 
 ## Focus

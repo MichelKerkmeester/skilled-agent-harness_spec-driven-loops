@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Structural Layout And Path-Coupling Rules"
+trigger_phrases: []
+---
 # Iteration 1: Structural Layout And Path-Coupling Rules
 
 ## Focus

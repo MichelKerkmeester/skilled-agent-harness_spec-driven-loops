@@ -1,6 +1,7 @@
 ---
 title: "Deep Research Strategy: md-generator upgrade via styles library"
 description: "Detached SOL lineage strategy for upgrading design-md-generator with the 1,290-style corpus."
+trigger_phrases: []
 ---
 
 # Deep Research Strategy: md-generator upgrade via styles library

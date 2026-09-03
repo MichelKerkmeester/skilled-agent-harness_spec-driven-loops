@@ -5,6 +5,7 @@ track: 1
 focus: "tool surface count and per-server breakdown"
 status: complete
 newInfoRatio: 0.85
+trigger_phrases: []
 ---
 
 # Iter 001 — Track 1: tool surface count and per-server breakdown

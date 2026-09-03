@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Strategy — Path-Reference Integrity Audit (skills / commands / agents)"
+trigger_phrases: []
+---
 # Deep-Review Strategy — Path-Reference Integrity Audit (skills / commands / agents)
 
 **Target:** all path references across active skills, commands, and agents.

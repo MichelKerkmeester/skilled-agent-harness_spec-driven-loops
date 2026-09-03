@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 076 — XCE residual signal: is external/xce-mcp exhausted for 027 memory scope?"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 076 — XCE residual signal: is external/xce-mcp exhausted for 027 memory scope?

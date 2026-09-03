@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 8 (gpt-5.5 xhigh) — shutdown / WAL / lifecycle"
+trigger_phrases: []
+---
 # Deep-Review Iteration 8 (gpt-5.5 xhigh) — shutdown / WAL / lifecycle
 
 ## Verdict: 2 NEW/escalated P1. CONDITIONAL.

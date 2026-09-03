@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 6 | SOL xhigh | thread: recommendation-deep-dive | angle: R1 multi-signal path-covering termination — mechanisms | 2026-07-15T04:45:21.472Z -->
 
 R1’s missing primitive is a single path-scoped termination authority. The current `system-deep-loop` baseline has useful convergence evidence—novelty, rolling/MAD signals, question coverage, graph quality—and fan-out-local retry/budget limits. I did not find a root bound that demonstrably survives every resume, retry, handoff, recovery, salvage, and tool re-entry. A fresh outer invocation can therefore reset a locally correct counter.

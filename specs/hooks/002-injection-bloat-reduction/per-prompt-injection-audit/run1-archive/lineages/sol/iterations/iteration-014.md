@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: Cross-Runtime Reduction Architecture"
+trigger_phrases: []
+---
 # Iteration 14: Cross-Runtime Reduction Architecture
 
 ## Focus

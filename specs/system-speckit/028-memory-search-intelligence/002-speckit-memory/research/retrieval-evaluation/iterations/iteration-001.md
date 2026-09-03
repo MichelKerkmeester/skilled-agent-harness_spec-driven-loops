@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 (A1 — keystone): a memory-retrieval eval harness"
+trigger_phrases: []
+---
 # Iteration 1 (A1 — keystone): a memory-retrieval eval harness
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only). Orchestrator-written. newInfoRatio **0.8**. **Headline: the eval harness is already ~80% built — the keystone is an extension, not a greenfield build.**

@@ -1,3 +1,7 @@
+---
+title: "r2-09 Right-Sizing (architecture / slice decomposition)"
+trigger_phrases: []
+---
 # r2-09 Right-Sizing (architecture / slice decomposition)
 
 **Angle summary:** The 28-phase tier split is the right top-level decomposition and traces cleanly to the research, but the program over-scaffolds at the leaf level by giving subsumed, gated, and hard-blocked future phases the same full build-doc weight as the proven ones, which quietly undercuts the prove-first discipline the research itself preaches.

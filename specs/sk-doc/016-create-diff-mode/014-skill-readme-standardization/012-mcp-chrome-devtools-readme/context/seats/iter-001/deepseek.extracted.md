@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 以下是 `.opencode/skills/mcp-chrome-devtools/` 的完整事实地图：
 
 ---

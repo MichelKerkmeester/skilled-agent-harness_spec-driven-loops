@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 - Security: secrets and permissions in changed files"
+trigger_phrases: []
+---
 # Iteration 5 - Security: secrets and permissions in changed files
 
 ## Focus

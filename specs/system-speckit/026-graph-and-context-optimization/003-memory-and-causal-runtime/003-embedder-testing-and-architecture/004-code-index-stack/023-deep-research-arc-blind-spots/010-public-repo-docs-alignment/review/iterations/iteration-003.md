@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — mcp-coco-index/feature_catalog/ (configuration)"
+trigger_phrases: []
+---
 # Iteration 003 — mcp-coco-index/feature_catalog/ (configuration)
 
 **Scope:** 08--configuration/01-user-settings.md, 08--configuration/04-environment-overrides.md

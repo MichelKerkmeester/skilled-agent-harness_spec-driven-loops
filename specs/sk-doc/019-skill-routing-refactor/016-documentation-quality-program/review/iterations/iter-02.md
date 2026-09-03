@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: template-rules.json h2UppercaseRequired flips"
+trigger_phrases: []
+---
 # Iteration 2: template-rules.json h2UppercaseRequired flips
 
 > dimension: correctness | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

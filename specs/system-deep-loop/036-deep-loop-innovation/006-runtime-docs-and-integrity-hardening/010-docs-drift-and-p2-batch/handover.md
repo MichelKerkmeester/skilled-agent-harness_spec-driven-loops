@@ -1,3 +1,7 @@
+---
+title: "Handover: 036/006/010 docs-drift-and-p2-batch (COMPLETE — deferred item re-landed)"
+trigger_phrases: []
+---
 # Handover: 036/006/010 docs-drift-and-p2-batch (COMPLETE — deferred item re-landed)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->

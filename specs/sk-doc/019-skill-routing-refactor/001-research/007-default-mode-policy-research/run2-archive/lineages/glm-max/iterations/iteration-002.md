@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Is Detection-Routed the Universal Archetype? (sk-design feasibility test)"
+trigger_phrases: []
+---
 # Iteration 2: Is Detection-Routed the Universal Archetype? (sk-design feasibility test)
 
 **Thread:** 6 (cross-hub generalization) | **Lineage:** glm-max | **Focus:** Q2

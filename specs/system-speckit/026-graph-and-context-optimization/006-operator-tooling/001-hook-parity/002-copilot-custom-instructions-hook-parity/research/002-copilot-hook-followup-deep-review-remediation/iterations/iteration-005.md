@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Claude Wrapper Collision Reproducer and Mitigation"
+trigger_phrases: []
+---
 # Iteration 005 - Claude Wrapper Collision Reproducer and Mitigation
 
 ## Focus

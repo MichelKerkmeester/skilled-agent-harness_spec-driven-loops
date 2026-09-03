@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: sk-create-skill smart-routing String Hits — Legitimate vs Stale"
+trigger_phrases: []
+---
 # Iteration 4: sk-create-skill smart-routing String Hits — Legitimate vs Stale
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Review Delta Resource Map - codex-5"
+trigger_phrases: []
+---
 # Review Delta Resource Map - codex-5
 
 ## Coverage Gate

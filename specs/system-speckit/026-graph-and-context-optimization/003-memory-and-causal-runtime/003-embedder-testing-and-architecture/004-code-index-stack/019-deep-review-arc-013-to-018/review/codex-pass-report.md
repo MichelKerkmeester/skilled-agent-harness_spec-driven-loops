@@ -1,3 +1,7 @@
+---
+title: "Codex Pass Report — 016/004/013-018 Arc + Nomic Promotion"
+trigger_phrases: []
+---
 # Codex Pass Report — 016/004/013-018 Arc + Nomic Promotion
 
 ## Executive Summary

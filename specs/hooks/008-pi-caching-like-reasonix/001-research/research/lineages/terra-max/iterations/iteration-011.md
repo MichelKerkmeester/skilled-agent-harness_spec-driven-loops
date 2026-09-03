@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 — Pi session tree and branch controls"
+trigger_phrases: []
+---
 # Iteration 011 — Pi session tree and branch controls
 
 ## Focus

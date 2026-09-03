@@ -1,3 +1,7 @@
+---
+title: "Pyramid / Funnel"
+trigger_phrases: []
+---
 # Pyramid / Funnel
 
 **Best for:** hierarchy of needs, prioritization ranks, value pyramids, conversion funnels, content importance stacks.

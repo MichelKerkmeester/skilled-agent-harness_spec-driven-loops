@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Per-Runtime Hook Wiring Reality"
+trigger_phrases: []
+---
 # Iteration 005 - Per-Runtime Hook Wiring Reality
 
 ## Focus

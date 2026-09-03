@@ -1,3 +1,7 @@
+---
+title: "$refine TIDD-EC Prompt: 002-codesight"
+trigger_phrases: []
+---
 # $refine TIDD-EC Prompt: 002-codesight
 
 ## 2. Role

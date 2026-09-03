@@ -185,7 +185,7 @@
     ],
     "causal_summary": "`procedures/` holds exactly one file, `design-system-extraction.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:02.062Z",
-    "last_save_at": "2026-08-30T15:39:13.161Z",
+    "last_save_at": "2026-09-03T22:18:20.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4de359b52a18dcc9737fe5202a792e329ca5254ac887023dc7be2c073d5ea78e",
+    "source_fingerprint": "sha256:c888a16ae50ff50efa0666a248a145bc62551929b39c70fda479154c7c3d9f91",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bbe0584e35ba945333ad2fdbf81571ed8b271c5076149059a49c4e1b3a6ee64a",
-      "plan.md": "4963ed4afc989c2e826dbc993ba8bb49a0f25e3c70c3681db6a8d47307de0573",
-      "tasks.md": "f49fc8dd538017b64ce5a6e6b0e27fa9ed2bf57f3eef7eb0faed8df39c049681",
-      "implementation-summary.md": "c21d1cb4e32d171fea133a5692d07d8d4dd8d450be1cf5a3dac34bc96e15d2c6"
+      "plan.md": "42b12bca05c70d2dbf078bcb0cdb28343064f4e66778e898ec15649c17d521d8",
+      "tasks.md": "0adc4847b9cfc162e63d10f9071aecf6c66641aec9c8378d459b69cd85d7f551",
+      "implementation-summary.md": "6ae73a33d1a6253abbfca3362820a6538d492a580a6f3209e7be9de036b60f0a"
     },
     "last_active_child_id": null,
     "last_active_at": null

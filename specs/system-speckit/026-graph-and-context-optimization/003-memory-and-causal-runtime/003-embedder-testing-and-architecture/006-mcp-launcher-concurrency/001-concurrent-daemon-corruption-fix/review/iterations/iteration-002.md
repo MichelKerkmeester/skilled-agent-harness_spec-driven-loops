@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I've completed the security-focused deep review iteration for the concurrent daemon corruption fix phase. 
 
 **Summary of findings:**

@@ -1,3 +1,7 @@
+---
+title: "Concurrent Daemon Corruption Fix"
+trigger_phrases: []
+---
 # Concurrent Daemon Corruption Fix
 
 **Date:** 2026-05-18

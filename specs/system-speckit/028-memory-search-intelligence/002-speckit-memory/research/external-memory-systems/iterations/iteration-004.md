@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 (Letta system; DeepSeek lineage — Kimi reassigned): Letta/MemGPT — memory tiers / compaction / budgeting"
+trigger_phrases: []
+---
 # Iteration 4 (Letta system; DeepSeek lineage — Kimi reassigned): Letta/MemGPT — memory tiers / compaction / budgeting
 
 > Model: **DeepSeek v4 Pro** (`deepseek/deepseek-v4-pro --variant high`), read-only opencode seat; orchestrator-written. **Reassigned from Kimi K2.7** (which timed out 2× at 600s). newInfoRatio 0.8, 5 findings.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Session accept-edits allow-list"
+trigger_phrases: []
+---
 # Iteration 008 — Session accept-edits allow-list
 
 ## Question

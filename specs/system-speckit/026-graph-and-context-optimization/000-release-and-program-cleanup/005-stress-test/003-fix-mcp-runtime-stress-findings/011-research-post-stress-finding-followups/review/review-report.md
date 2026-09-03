@@ -11,6 +11,7 @@ findings_total: 9
 p0: 0
 p1: 2
 p2: 7
+trigger_phrases: []
 ---
 
 # Deep Review Report — 012-015 Integrated Cross-Packet Audit

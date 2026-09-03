@@ -1,3 +1,7 @@
+---
+title: "Root-Level Skill Metadata JSON Contract Research"
+trigger_phrases: []
+---
 # Root-Level Skill Metadata JSON Contract Research
 
 ## 1. Executive Summary

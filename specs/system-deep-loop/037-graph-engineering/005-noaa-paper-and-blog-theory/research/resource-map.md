@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Study the LOOP/HARNESS layer of system-deep-loop by extracting ideas from the NVIDIA Object-Oriented Agents paper as the primary subject, plus the 12 graph-engineering blog posts for loop/harness first principles. Ground every iteration in the orientation seed and build on studies 1-4. Frame every finding as confirm, refine, extend, or contradict against both the studies-1-4 graph design and the live runtime. Investigate P1 typed locally repairable IterationResult, P2 agent-curated memory without truth corruption, P3 model-callable read-only context/event APIs, P4 programmable loop engineering inside fixed LEAF boundaries, P5 three-layer evaluation, P6 typed digest-bound artifact handles and bounded previews, and P7 a loop/harness mutant corpus. Treat NOOA as external idea material, never a controlled dependency, and subordinate all proposals to the 036 authority plane."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

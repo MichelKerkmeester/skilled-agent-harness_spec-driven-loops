@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — F5a: base64 `image` param 'Incorrect padding' root cause + durable fix"
+trigger_phrases: []
+---
 # Iteration 007 — F5a: base64 `image` param 'Incorrect padding' root cause + durable fix
 
 ## Focus

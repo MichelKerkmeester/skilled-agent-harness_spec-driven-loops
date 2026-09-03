@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The single-executor path of the auto loop YAMLs (`deep-review-auto`, `deep-research-auto`, `deep-alignment-auto`) dispatches per iteration via `phasemainloop`'s `branchon: config.executor.kind` (research uses `config.executor.type`)",
     "created_at": "2026-08-27T06:39:36.883Z",
-    "last_save_at": "2026-08-30T15:39:22.368Z",
+    "last_save_at": "2026-09-03T22:22:14.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:feec5ee9438f6fe32898450204e11fd802f7e773134cd1b5437548a9e40a4501",
+    "source_fingerprint": "sha256:2bac1548b9d96d7056d07f6d6d6ef6e332085ef396502e015b90b573f03118d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4eec0beba733544f31759e932a249177351fe945fb2ba585249897ff5c2574ac",
-      "plan.md": "e585bf47d4814b8c1cf3297c0db43bee42bcd14b34ba57a4dffab8762bfbb2f4",
-      "tasks.md": "6a199e7061291a499602d19e3ed76f2c56df83ad0ed3a33bab8c00bfe9f2c670",
+      "plan.md": "93df3c4601274ce87ec236fad1ba714e2d8f37a8533b1f4868a1176de990aee9",
+      "tasks.md": "2d4c2366215c5efcdca0ace7ec15d29ef95f6d48a30a540af80c2bd24c1f0abc",
       "implementation-summary.md": "efabfff43f2f724d4c7ad6fc29d82c84479747596ccf482f08fa9fde09b09490"
     },
     "last_active_child_id": null,

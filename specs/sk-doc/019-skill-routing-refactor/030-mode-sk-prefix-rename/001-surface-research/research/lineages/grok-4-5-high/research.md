@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — sk- prefix rename surface discovery"
+trigger_phrases: []
+---
 # Research Synthesis — sk- prefix rename surface discovery
 
 **Lineage:** grok-4-5-high (`cli-cursor` / `cursor-grok-4.5-high`)  

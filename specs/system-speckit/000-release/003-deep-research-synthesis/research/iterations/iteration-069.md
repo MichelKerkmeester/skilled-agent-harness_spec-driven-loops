@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Semantic similarity lane activates intent-described routing
 The skill advisor now scores semantic similarity between your prompt and each skill's description instead of relying only on author-stated triggers, text matches, and dependency signals. Skill descriptions are embedded into the skill-graph database through an idempotent cache (skipped when the content hash and model match), and each incoming prompt is embedded at recommendation time to produce a cosine match with `cosine:` evidence. The lane shipped live at a conservative 0.05 weight, and the four existing lanes were rebalanced so the live total is exactly 1.00 — previously the live weights summed to 1.05. Weight-sweep and corpus harnesses (a 24-prompt set plus a harder 22-prompt misroute set, and an 84-combination damping sweep) showed no configuration beat the baseline, so 0.05 stands and the experimental damping logic was reverted. The same packet unified threshold and rendering behavior across the OpenCode and Codex surfaces and added durable prompt-safe diagnostics. For a framework user the payoff is a scoring system that can match intent-described requests, tuned by real measurements rather than guesses.
 

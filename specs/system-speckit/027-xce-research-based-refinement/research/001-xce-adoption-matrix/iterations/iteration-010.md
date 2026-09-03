@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — IRQ1 Phase 001 HLD/LLD Determinism + Edge Cases"
+trigger_phrases: []
+---
 # Iteration 001 — IRQ1 Phase 001 HLD/LLD Determinism + Edge Cases
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 - Claim Adjudication"
+trigger_phrases: []
+---
 # Iteration 007 - Claim Adjudication
 
 ## Dimension

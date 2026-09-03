@@ -1,3 +1,7 @@
+---
+title: "Iteration 074 — 008 structural: remove 002 from children/edges/phase-map, rewrite to 001->{003,004}->005, KEEP gap (no renumber)"
+trigger_phrases: []
+---
 # Iteration 074 — 008 structural: remove 002 from children/edges/phase-map, rewrite to 001->{003,004}->005, KEEP gap (no renumber)
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.46. **Findings:** 6.

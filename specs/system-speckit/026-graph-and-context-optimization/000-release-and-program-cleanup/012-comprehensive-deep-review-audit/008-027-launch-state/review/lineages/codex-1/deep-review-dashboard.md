@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard - Session Overview"
+trigger_phrases: []
+---
 # Deep Review Dashboard - Session Overview
 
 Auto-generated lineage summary for `fanout-codex-1-1780596675702-e5bokn`.

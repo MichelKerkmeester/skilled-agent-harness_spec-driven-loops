@@ -1,3 +1,7 @@
+---
+title: "Iteration A2 - EARS plus Constraint Template Diffs and the Cross-Artifact Gate (mimo, adherence)"
+trigger_phrases: []
+---
 # Iteration A2 - EARS plus Constraint Template Diffs and the Cross-Artifact Gate (mimo, adherence)
 
 ## TITLE

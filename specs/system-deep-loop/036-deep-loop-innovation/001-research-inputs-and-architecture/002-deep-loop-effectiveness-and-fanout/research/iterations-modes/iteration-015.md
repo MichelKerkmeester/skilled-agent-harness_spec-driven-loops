@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 15 | SOL xhigh | mode: deep-ai-council | angle: A5-synth deep-ai-council :: synthesis & highest-leverage recs | 2026-07-15T09:15:02.996Z -->
 
 The moat should be a governed plural-decision procedure, not multi-agent answer generation. A strong model or self-consistency can generate alternatives; neither naturally produces accountable disagreement, independently revised beliefs, constitutional objections, minority evidence, and explicit reopen conditions. Deep-research discovers evidence, deep-review finds defects, deep-improvement optimizes candidates, and deep-alignment checks conformance. Deep-ai-council should uniquely decide under distributed information and legitimately competing objectives.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Command Router and Asset Validation"
+trigger_phrases: []
+---
 # Iteration 1: Command Router and Asset Validation
 
 ## Focus

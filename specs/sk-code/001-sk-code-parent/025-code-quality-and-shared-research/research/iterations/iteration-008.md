@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Delta/artifact ownership and boundary decisions"
+trigger_phrases: []
+---
 # Iteration 8: Delta/artifact ownership and boundary decisions
 
 ## Focus

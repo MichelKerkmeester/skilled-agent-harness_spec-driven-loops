@@ -1,3 +1,7 @@
+---
+title: "Deep-Loop Market Research — Dashboard (manual Shape B)"
+trigger_phrases: []
+---
 # Deep-Loop Market Research — Dashboard (manual Shape B)
 
 Updated: 2026-07-15T00:48:28.231Z

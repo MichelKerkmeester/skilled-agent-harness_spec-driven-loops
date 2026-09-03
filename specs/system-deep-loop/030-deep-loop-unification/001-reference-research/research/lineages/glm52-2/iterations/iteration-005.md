@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Fallback-Router Wiring"
+trigger_phrases: []
+---
 # Iteration 005 — Fallback-Router Wiring
 
 **Focus:** Confirm `fallback-router.ts` zero-live-caller status (Q5) and decide wire-into-merge vs defer.

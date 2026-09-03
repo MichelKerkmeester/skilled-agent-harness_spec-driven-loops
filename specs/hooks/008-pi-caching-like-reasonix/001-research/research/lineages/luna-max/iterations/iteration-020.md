@@ -1,3 +1,7 @@
+---
+title: "Iteration 20: Adversarial claim audit"
+trigger_phrases: []
+---
 # Iteration 20: Adversarial claim audit
 
 ## Focus

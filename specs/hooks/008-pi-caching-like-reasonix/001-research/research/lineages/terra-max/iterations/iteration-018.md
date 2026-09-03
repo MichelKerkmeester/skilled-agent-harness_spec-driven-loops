@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 — Smallest credible cache-plugin scope"
+trigger_phrases: []
+---
 # Iteration 018 — Smallest credible cache-plugin scope
 
 ## Focus

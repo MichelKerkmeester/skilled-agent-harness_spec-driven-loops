@@ -1,3 +1,7 @@
+---
+title: "Iteration 12: P7 Human Gates over Live Belief Context"
+trigger_phrases: []
+---
 # Iteration 12: P7 Human Gates over Live Belief Context
 
 ## Focus

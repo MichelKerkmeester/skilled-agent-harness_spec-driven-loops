@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 {
   "_note": "REPRESENTATIVE shape — VERIFY against a real obsidian-tables .table.md generated in-app before programmatic writes. Key names (columns/rows/views + per-column keys) are not schema-confirmed.",
   "columns": [

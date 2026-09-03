@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — Improving Spec-Kit Memory Search Intelligence"
+trigger_phrases: []
+---
 # Research Synthesis — Improving Spec-Kit Memory Search Intelligence
 
 > Lineage: `search-intel-opus` (executor cli-claude-code / opus). Fan-out deep-research loop,

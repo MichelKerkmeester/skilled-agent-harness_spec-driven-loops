@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Lane Classification: Separable Jobs vs Sequential Phases"
+trigger_phrases: []
+---
 # Iteration 002 — Lane Classification: Separable Jobs vs Sequential Phases
 
 **Focus:** Classify the 5 argument lanes and 12 internal lanes as genuinely separable jobs versus phases of one job.

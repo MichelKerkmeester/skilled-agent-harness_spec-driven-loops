@@ -1,3 +1,7 @@
+---
+title: "Dead Code & Architecture Audit — Runtime Mirrors & Root Config"
+trigger_phrases: []
+---
 Now I have enough evidence. Let me compile the report.
 
 ---

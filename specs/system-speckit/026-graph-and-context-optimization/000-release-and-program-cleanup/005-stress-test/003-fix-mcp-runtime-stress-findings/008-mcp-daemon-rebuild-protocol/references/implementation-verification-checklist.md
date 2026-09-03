@@ -1,3 +1,7 @@
+---
+title: "Implementation Verification Checklist (Copy-Paste)"
+trigger_phrases: []
+---
 # Implementation Verification Checklist (Copy-Paste)
 
 > Paste this into your packet's `implementation-summary.md` "Verification" section. Replace placeholders with actual evidence.

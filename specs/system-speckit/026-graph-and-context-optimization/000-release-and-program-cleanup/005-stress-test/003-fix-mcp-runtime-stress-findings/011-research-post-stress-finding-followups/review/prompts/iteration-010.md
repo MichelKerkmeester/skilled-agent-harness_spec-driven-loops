@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 010"
+trigger_phrases: []
+---
 # Deep Review Iteration 010
 
 You are iteration 10 of 10 in a deep-review loop auditing 012-015 + 28 catalog/playbook updates as a cohesive integration unit. Build on prior iterations; don't restate already-resolved findings.

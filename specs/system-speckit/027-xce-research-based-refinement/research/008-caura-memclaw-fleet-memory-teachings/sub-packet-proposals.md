@@ -8,6 +8,7 @@ amendmentsProposed: 7
 created: "2026-06-06T09:15:00Z"
 status: "proposal — not yet scaffolded (operator chose proposal-doc-only)"
 concurrencyNote: "Reconciled across the concurrent 006-peck (children 001) and 007-gem-team (children 009) runs; this proposal uses 010 for its new child."
+trigger_phrases: []
 ---
 
 # caura-memclaw — Sub-Packet Proposal for 027

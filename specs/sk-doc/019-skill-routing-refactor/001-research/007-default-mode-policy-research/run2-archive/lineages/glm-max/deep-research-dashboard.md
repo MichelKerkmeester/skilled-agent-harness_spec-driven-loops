@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — glm-max lineage (COMPLETE)"
+trigger_phrases: []
+---
 # Deep Research Dashboard — glm-max lineage (COMPLETE)
 
 **Lineage:** glm-max (cli-opencode / GLM-5.2) | **Mode:** research, divergent Run 2 | **Status:** complete

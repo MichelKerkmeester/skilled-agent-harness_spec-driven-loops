@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Identify which NEW features, optimizations, automations, and integrations a Rust component could ADD or IMPROVE for the sk-design styles database, explicitly not a like-for-like rewrite."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

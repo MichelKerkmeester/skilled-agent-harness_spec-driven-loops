@@ -1,3 +1,7 @@
+---
+title: "HANDOVER — Deferred Items After Autonomous Run"
+trigger_phrases: []
+---
 # HANDOVER — Deferred Items After Autonomous Run
 
 > Residual work from the 2026-04-26 to 2026-04-27 autonomous run. Updated after item 2.1 was scaffolded into the new `010-stress-test-close-loop-measurement-rerun/` packet on 2026-04-27. Reorganization history (carve-out + renumber) lives in `./context-index.md`, not here.

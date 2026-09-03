@@ -6,6 +6,7 @@ lens: pragmatic (operational)
 status: returned
 timestamp: 2026-05-23T17:17:00.000Z
 simulated: true
+trigger_phrases: []
 ---
 
 # Seat 005 — OPERATIONAL (Pragmatic Lens, simulated cli-codex vantage)

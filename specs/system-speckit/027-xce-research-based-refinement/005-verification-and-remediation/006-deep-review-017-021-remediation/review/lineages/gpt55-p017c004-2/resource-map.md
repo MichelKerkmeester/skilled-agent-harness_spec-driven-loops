@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map"
+trigger_phrases: []
+---
 # Review Resource Map
 
 Target `resource-map.md` was absent at init, so the resource-map coverage gate was skipped.

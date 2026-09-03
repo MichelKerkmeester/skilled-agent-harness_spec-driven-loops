@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Every deep/ command (`review`, `research`, `ai-council`, `alignment`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `command-benchmark`) and `prompt/improve` opened with a Phase-0 dispatch-context gate",
     "created_at": "2026-08-27T05:27:55.303Z",
-    "last_save_at": "2026-08-30T15:39:22.361Z",
+    "last_save_at": "2026-09-03T22:22:11.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9bddb1beabd77030b3508bd65b978f8ea6562a47eacdd54e1f49a52317a33a0",
+    "source_fingerprint": "sha256:80e6b789f8160be4034b683f8f32db9974287167d67f2901a6f53b0d08b83822",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6279398c270dd3817293f7df2ceaad152f2a6251117431cee5e44fe481610abe",
-      "plan.md": "353f9e2831d284be7f9233c5d71417ed08fc36f41f06c55a159d7089dab2610e",
-      "tasks.md": "59565372d8577f4182bf598d7c4608d87baecb7c1e8135f7aaac61aae525a6ce",
+      "plan.md": "b4491885a40b5d0aa46377a7cd3282e9fd1a498887082fa04855b7e7d9c00c95",
+      "tasks.md": "79e45a6c7a2965a9bc81405c076a59d11042840de59b82a1aa91fe59a522899f",
       "implementation-summary.md": "b96f4c5322b4698bc41963e6920bcdfb357e425d61873c7919090827bdcefaa6"
     },
     "last_active_child_id": null,

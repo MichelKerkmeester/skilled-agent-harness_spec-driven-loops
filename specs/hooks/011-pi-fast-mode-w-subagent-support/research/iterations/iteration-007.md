@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Testing Patterns — ExtensionAPI mocks, vitest for raw TS, env-inheritance child-process tests, coverage expectations"
+trigger_phrases: []
+---
 # Iteration 7: Testing Patterns — ExtensionAPI mocks, vitest for raw TS, env-inheritance child-process tests, coverage expectations
 
 ## Focus

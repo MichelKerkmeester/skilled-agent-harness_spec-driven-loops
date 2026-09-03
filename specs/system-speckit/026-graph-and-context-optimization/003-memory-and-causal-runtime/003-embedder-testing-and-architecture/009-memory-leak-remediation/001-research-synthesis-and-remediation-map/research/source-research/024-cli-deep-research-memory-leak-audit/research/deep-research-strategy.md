@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - CLI Memory Leak Audit"
+trigger_phrases: []
+---
 # Deep Research Strategy - CLI Memory Leak Audit
 
 ## 1. OVERVIEW

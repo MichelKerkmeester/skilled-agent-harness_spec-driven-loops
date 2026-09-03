@@ -1,3 +1,7 @@
+---
+title: "Review Report — 002-request-quality-aggregation (lineage p017c002-opus)"
+trigger_phrases: []
+---
 # Review Report — 002-request-quality-aggregation (lineage p017c002-opus)
 
 Fan-out lineage: `p017c002-opus` · Executor: `cli-claude-code` / `claude-opus-4-8` ·

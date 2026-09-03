@@ -1,3 +1,7 @@
+---
+title: "Refero MCP Developer Surface — Canonical Fan-Out Research Synthesis"
+trigger_phrases: []
+---
 # Refero MCP Developer Surface — Canonical Fan-Out Research Synthesis
 
 > **Fan-out synthesis** of 3 detached deep-research lineages, 10 total iterations: **sol** (gpt-5.6-sol, xhigh, 5 iterations), **glm** (glm-5.2, 2 iterations), **luna** (gpt-5.6-luna, max, 3 iterations). Stop policy: `max-iterations` (forced depth; convergence telemetry-only). All lineages completed on the first attempt (scoped-`CODEX_HOME` launch, zero failed attempts). This document supersedes per-lineage syntheses for downstream authoring; lineage files remain under `lineages/` for provenance.

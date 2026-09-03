@@ -1,3 +1,7 @@
+---
+title: "Resource Map (review-derived): 021-cooperative-heavy-phases (lineage p021-opus-2)"
+trigger_phrases: []
+---
 # Resource Map (review-derived): 021-cooperative-heavy-phases (lineage p021-opus-2)
 
 > Target packet has no `resource-map.md`; coverage gate skipped. This map is derived

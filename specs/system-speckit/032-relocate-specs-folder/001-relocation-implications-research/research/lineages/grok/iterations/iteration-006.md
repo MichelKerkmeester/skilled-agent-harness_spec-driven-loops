@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Ranked implications and lean recommendation"
+trigger_phrases: []
+---
 # Iteration 6: Ranked implications and lean recommendation
 
 ## Focus

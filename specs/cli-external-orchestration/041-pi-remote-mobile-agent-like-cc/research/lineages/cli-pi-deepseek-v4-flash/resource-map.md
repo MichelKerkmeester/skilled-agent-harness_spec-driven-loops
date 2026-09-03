@@ -1,3 +1,7 @@
+---
+title: "Resource Map — cli-pi-deepseek-v4-flash lineage"
+trigger_phrases: []
+---
 # Resource Map — cli-pi-deepseek-v4-flash lineage
 
 Emitted from converged research deltas (`deltas/iter-001..006.jsonl`). Sources cited across the lineage:

@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-wip-verification — iteration 2 (global #68)"
+trigger_phrases: []
+---
 # Seat gpt-wip-verification — iteration 2 (global #68)
 
 - Model: `kimi-for-coding/k2p7` · Executor: opencode · Angle: gpt-wip-verification

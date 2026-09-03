@@ -2,6 +2,7 @@
 title: Deep Research Strategy - 020 W3-W7 Verification & Expansion
 description: Final running brain for the 10-iter deep research loop on W3-W7 verification, adjacency, expansion, and empty-folder audit.
 status: complete
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - 020

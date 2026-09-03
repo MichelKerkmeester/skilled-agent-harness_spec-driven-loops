@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Aura Reusable Skill Model"
+trigger_phrases: []
+---
 # Iteration 5: Aura Reusable Skill Model
 
 ## Focus

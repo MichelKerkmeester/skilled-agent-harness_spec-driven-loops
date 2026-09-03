@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — Cheap-model-gates cost architecture"
+trigger_phrases: []
+---
 # Iteration 009 — Cheap-model-gates cost architecture
 
 **Focus:** peck runs blocking reviewers on cheap small models @low (qwen3.6-plus / glm-5.1) vs spec-kit cli-* dispatch + sk-prompt-models + deep-review (defaults to native Opus).

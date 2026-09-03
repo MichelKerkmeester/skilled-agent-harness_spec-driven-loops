@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Advisor dual-vocabulary & description.json"
+trigger_phrases: []
+---
 # Iteration 9: Advisor dual-vocabulary & description.json
 
 ## Focus

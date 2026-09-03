@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Doctor Manifest-Backed Routing and Executable-Edge Traversal"
+trigger_phrases: []
+---
 # Iteration 4: Doctor Manifest-Backed Routing and Executable-Edge Traversal
 
 ## Focus

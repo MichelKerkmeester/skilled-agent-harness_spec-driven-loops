@@ -1,3 +1,7 @@
+---
+title: "Resource Map - gpt55-fast-3"
+trigger_phrases: []
+---
 # Resource Map - gpt55-fast-3
 
 Source `resource-map.md` was absent at init; this artifact records evidence actually consulted by the lineage.

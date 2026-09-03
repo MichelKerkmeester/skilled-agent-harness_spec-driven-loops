@@ -1,3 +1,7 @@
+---
+title: "GLM Cross-Lineage Notes"
+trigger_phrases: []
+---
 # GLM Cross-Lineage Notes
 
 > **A second model (GLM-5.2) explored the same out-of-box agenda in parallel with SOL. This is what it added that the seven SOL ideas did not already cover.**

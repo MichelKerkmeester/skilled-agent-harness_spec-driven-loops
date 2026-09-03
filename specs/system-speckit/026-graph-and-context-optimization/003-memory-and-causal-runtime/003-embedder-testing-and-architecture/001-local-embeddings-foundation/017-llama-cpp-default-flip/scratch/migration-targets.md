@@ -1,3 +1,7 @@
+---
+title: "Migration Targets"
+trigger_phrases: []
+---
 # Migration Targets
 
 ## T002 inventory

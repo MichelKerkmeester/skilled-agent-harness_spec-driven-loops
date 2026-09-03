@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — impact on skills"
+trigger_phrases: []
+---
 # Iteration 002 — impact on skills
 
 **Status:** insight · **Findings:** 4 · **newInfoRatio:** 0.74 · **tokens:** 138157 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

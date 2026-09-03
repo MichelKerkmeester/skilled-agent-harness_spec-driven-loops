@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 — minimax/MiniMax-M3 — focus: archiving"
+trigger_phrases: []
+---
 # Iteration 4 — minimax/MiniMax-M3 — focus: archiving
 
 Read-only routing check: identify the governing research skill before inspecting files; no repository changes will be made.

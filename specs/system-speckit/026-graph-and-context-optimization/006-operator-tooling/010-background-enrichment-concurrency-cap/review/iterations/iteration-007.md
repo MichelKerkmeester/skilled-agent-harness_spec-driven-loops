@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 7 (gpt-5.5 xhigh) — type soundness + emitted-JS"
+trigger_phrases: []
+---
 # Deep-Review Iteration 7 (gpt-5.5 xhigh) — type soundness + emitted-JS
 
 ## Verdict: No findings (P0/P1/P2 all clear for this lens).

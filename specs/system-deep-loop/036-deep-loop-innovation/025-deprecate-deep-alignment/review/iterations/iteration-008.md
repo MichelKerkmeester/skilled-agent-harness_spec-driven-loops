@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Traceability (Broadened Angle 4: Frozen-Fixture Classification + Generated-Metadata Provenance + Spec-Code Consistency)"
+trigger_phrases: []
+---
 # Iteration 008 — Traceability (Broadened Angle 4: Frozen-Fixture Classification + Generated-Metadata Provenance + Spec-Code Consistency)
 
 ## Dimension

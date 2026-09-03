@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: README freshness — in-directory and adjacent READMEs vs the changed delivery/observer contract"
+trigger_phrases: []
+---
 # Iteration 2: README freshness — in-directory and adjacent READMEs vs the changed delivery/observer contract
 
 ## Focus

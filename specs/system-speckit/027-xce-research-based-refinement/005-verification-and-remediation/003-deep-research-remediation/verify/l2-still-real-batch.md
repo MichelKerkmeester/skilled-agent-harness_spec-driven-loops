@@ -1,3 +1,7 @@
+---
+title: "L2 Batch Still-Real Verification — code-graph apply safety (28 findings)"
+trigger_phrases: []
+---
 # L2 Batch Still-Real Verification — code-graph apply safety (28 findings)
 
 > **Verifier:** fresh Fable 5 pass, 2026-06-12. Every verdict re-read against CURRENT code; banked line numbers were not trusted. Shipped changes checked for overtake (single-writer spec-memory DB lock, source-kind guards, repair-nodes eligible>0 confirm gate) — none neutralize any finding in this batch.

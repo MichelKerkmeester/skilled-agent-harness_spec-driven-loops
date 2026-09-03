@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Verified schema, persistence, and file-layer operations"
+trigger_phrases: []
+---
 # Iteration 2: Verified schema, persistence, and file-layer operations
 
 ## Focus

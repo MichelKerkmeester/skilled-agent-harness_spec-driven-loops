@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 036: cli-matrix-adapter-runners — Tier B follow-on to 035
 
 You are cli-codex (gpt-5.5 high fast) implementing remediation packet **011-cli-matrix-adapter-runners**.

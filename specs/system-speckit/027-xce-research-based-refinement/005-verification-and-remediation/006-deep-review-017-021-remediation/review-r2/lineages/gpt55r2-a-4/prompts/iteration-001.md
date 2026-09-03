@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY (review mode):
 Iteration: 1 of 1 | Mode: review
 Target: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval` (spec-folder)

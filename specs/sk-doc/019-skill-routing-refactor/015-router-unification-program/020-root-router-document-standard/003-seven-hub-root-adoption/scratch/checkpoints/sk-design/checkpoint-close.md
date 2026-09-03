@@ -1,3 +1,7 @@
+---
+title: "sk-design (CP3) — checkpoint receipt"
+trigger_phrases: []
+---
 # sk-design (CP3) — checkpoint receipt
 
 - Hub: sk-design

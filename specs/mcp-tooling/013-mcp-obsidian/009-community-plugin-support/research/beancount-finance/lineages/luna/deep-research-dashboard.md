@@ -1,3 +1,7 @@
+---
+title: "Deep-research dashboard"
+trigger_phrases: []
+---
 # Deep-research dashboard
 
 Lineage: `luna`  

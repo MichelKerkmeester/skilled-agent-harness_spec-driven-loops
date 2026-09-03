@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Automation Authority and Conflict Quarantine"
+trigger_phrases: []
+---
 # Iteration 4: Automation Authority and Conflict Quarantine
 
 ## Focus

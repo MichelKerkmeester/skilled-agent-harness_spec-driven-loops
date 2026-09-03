@@ -1,3 +1,7 @@
+---
+title: "P5 Objective Persona-Injection Sweep"
+trigger_phrases: []
+---
 # P5 Objective Persona-Injection Sweep
 
 Deterministic grep/audit across the two in-scope trees (`cli-external-orchestration`, `sk-prompt`) at worktree branch `skilled/v4.0.0.0`. Goal: prove every external-CLI dispatch surface documents + enforces persona injection, and no dispatch instruction sanctions a persona-less dispatch.

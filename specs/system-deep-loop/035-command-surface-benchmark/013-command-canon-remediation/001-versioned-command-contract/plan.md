@@ -17,6 +17,7 @@ _memory:
       - ".opencode/skills/sk-doc/create-command/SKILL.md"
       - ".opencode/skills/sk-doc/create-command/assets/command_router_template.md"
       - ".opencode/skills/sk-doc/create-command/assets/command_template.md"
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

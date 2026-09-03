@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 007 — CLI command mechanics (story-load FILES manifest, verdict ledger)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 007 — CLI command mechanics (story-load FILES manifest, verdict ledger)

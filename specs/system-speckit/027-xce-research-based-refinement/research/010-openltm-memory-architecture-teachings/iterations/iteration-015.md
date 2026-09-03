@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 — Hooks & automation philosophy — auto-mine vs deliberate save"
+trigger_phrases: []
+---
 # Iteration 015 — Hooks & automation philosophy — auto-mine vs deliberate save
 
 **Status:** complete · **Findings:** 5 · **newInfoRatio:** 0.60 · **tokens:** 78806 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

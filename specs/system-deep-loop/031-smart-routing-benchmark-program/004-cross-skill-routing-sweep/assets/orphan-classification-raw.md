@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 | skill | orphan file | class | proposed intent | 1-line rationale |
 |---|---|---|---|---|
 | deep-research | references/protocol/context_snapshot.md | ROUTABLE | codebase-scoped research initialization | Header says to load during INIT for codebase-scoped topics to capture bounded source/symbol pointers before the loop starts. |

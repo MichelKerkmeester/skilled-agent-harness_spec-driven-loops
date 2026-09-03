@@ -1,3 +1,7 @@
+---
+title: "Iteration 044 — Angle 44"
+trigger_phrases: []
+---
 # Iteration 044 — Angle 44
 
 **Angle:** Hook brief quality: UserPromptSubmit advisor latency, ambiguity presentation, and whether agents act on the brief correctly.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — All Dimensions (single-pass fan-out)"
+trigger_phrases: []
+---
 # Iteration 001 — All Dimensions (single-pass fan-out)
 
 **Lineage**: p020-opus-2 | **Executor**: cli-claude-code model=claude-opus-4-8

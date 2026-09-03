@@ -1,3 +1,7 @@
+---
+title: "Research Prompt — Impact Analysis (5 iterations)"
+trigger_phrases: []
+---
 # Research Prompt — Impact Analysis (5 iterations)
 
 > **Subject**: Phase 018 — Wiki-Style Spec Kit Updates Memory Refactor Impact Analysis. A complete, file-level impact matrix covering which files must change, in what way, in what order, and with what migration effort.

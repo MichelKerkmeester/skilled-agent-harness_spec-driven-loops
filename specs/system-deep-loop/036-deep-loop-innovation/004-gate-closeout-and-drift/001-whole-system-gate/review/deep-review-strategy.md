@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — validation gate (claude-runner)"
+trigger_phrases: []
+---
 # Deep Review Strategy — validation gate (claude-runner)
 
 - Target: whole system-deep-loop skill via goal-file-manifest.txt (1985 files)

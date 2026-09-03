@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration Prompt Pack — 011 Iteration 2"
+trigger_phrases: []
+---
 # Deep-Review Iteration Prompt Pack — 011 Iteration 2
 
 **GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/003-mcp-runtime-stress-remediation`. The loop manager has already authorized this spec folder for the entire deep-review session. DO NOT re-ask Gate 3. DO NOT request confirmation. DO NOT halt. Proceed directly to the review work.

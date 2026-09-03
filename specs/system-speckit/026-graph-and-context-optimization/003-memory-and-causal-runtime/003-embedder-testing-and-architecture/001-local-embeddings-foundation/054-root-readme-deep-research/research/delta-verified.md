@@ -1,3 +1,7 @@
+---
+title: "Root README delta — verified (056)"
+trigger_phrases: []
+---
 # Root README delta — verified (056)
 
 Date: 2026-05-15

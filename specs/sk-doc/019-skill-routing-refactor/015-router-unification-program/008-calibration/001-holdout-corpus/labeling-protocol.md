@@ -3,6 +3,7 @@ title: "Intent-Derived Blind Labeling Protocol"
 description: "Independent-author protocol that prevents router-output leakage into held-out calibration gold."
 importance_tier: "critical"
 contextType: "implementation"
+trigger_phrases: []
 ---
 # Intent-Derived Blind Labeling Protocol
 

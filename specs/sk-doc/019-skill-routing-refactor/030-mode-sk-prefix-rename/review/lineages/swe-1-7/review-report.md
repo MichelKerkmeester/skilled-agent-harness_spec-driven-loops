@@ -4,6 +4,7 @@ description: "Deep-review fan-out leaf swe-1-7 final report for 030-mode-sk-pref
 date: 2026-07-28
 session_id: fanout-swe-1-7-1785217654899-ls3rh2
 verdict: CONDITIONAL
+trigger_phrases: []
 ---
 
 # Review Report — One sk- prefix across every mode packet and routing key

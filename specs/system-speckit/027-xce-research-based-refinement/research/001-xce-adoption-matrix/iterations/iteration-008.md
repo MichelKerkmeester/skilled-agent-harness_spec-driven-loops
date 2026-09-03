@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — RQ8: Token Reduction Validation"
+trigger_phrases: []
+---
 # Iteration 008 — RQ8: Token Reduction Validation
 
 **Started**: 2026-05-08T16:00:00Z

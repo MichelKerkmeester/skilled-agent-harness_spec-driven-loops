@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### Prompt (sk-prompt)
 - The `sk-prompt` skill is now the single home for prompt work, merging prompt-improvement and small-model dispatch into one hub with a router benchmark that scores 100/100 across both modes.
 - Run `/prompt-improve` for the full DEPTH-thinking, CLEAR-scored prompt-enhancement engine — it replaces the old `/prompt` command (the `/prompt` command and prompt-improver agent still work; only names changed).

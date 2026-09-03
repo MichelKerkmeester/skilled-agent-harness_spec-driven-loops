@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Terminal Mechanical Verification"
+trigger_phrases: []
+---
 # Iteration 10: Terminal Mechanical Verification
 
 ## Focus

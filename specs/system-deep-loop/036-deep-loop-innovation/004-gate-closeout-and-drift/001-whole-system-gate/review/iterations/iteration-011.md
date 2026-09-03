@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 — correctness"
+trigger_phrases: []
+---
 # Iteration 011 — correctness
 
 - Executor: cli-codex gpt-5.6-luna effort=xhigh service_tier=fast sandbox=read-only

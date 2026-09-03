@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Crash-Safe Publication and Forward Recovery"
+trigger_phrases: []
+---
 # Iteration 3: Crash-Safe Publication and Forward Recovery
 
 ## Focus

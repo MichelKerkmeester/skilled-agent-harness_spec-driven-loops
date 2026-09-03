@@ -1,3 +1,7 @@
+---
+title: "Phase 2 Comparison — 011 Rerank Model Fit Investigation"
+trigger_phrases: []
+---
 # Phase 2 Comparison — 011 Rerank Model Fit Investigation
 
 ## Per-probe hit/miss

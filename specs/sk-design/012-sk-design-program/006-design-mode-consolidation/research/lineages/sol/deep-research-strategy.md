@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — sk-design Refinement"
+trigger_phrases: []
+---
 # Deep Research Strategy — sk-design Refinement
 
 ## 1. OVERVIEW

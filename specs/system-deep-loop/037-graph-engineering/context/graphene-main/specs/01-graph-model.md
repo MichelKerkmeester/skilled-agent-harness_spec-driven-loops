@@ -1,3 +1,7 @@
+---
+title: "Graphene · 01 · The graph model"
+trigger_phrases: []
+---
 # Graphene · 01 · The graph model
 
 ## 1. Definition

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — Phase 017 Review-Findings Remediation"
+trigger_phrases: []
+---
 # Deep Review Report — Phase 017 Review-Findings Remediation
 
 **Session**: `2026-04-17T190000Z-017-phase017-review`

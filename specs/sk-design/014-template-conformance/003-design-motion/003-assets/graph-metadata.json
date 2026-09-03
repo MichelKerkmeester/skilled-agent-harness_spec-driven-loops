@@ -185,7 +185,7 @@
     ],
     "causal_summary": "`assets/` holds 3 files — `animate-presence-checklist.md`, `motion-pattern-cards.md`, `motion-performance-failure-card.md` — none of which was part of the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:13.315Z",
-    "last_save_at": "2026-08-30T15:39:13.082Z",
+    "last_save_at": "2026-09-03T22:18:02.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d1a26cccd8b797505e53d2e1789886fa4c1b9e30679e5c3bf6e381b99663db9",
+    "source_fingerprint": "sha256:467c8b33516df90ad167a2a5808e2a1cebacb106af381fabfd514abf7b1e12eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dbffca594c6485fb2805495ac072ea0732af649509321bc6440c130926a3121e",
-      "plan.md": "3298a812f0db53f61953fd89cece116584d4b736c8aabd877821e3c95e8e3c46",
-      "tasks.md": "409c0c7f0d09e013be6cbe45bbbe21677e2f0f8e1da9e3c43b3dae6df02576f1",
-      "implementation-summary.md": "95bcb7e6b02175e95cbe8e1a15f07d3480efe672945d5d44f5298de0783651c0"
+      "plan.md": "3f3cfe171e9ad3bd7abbfc81c3c4def89e7fd2589aacf64f492a927486edbb07",
+      "tasks.md": "e5f3617e330c8bd2ec80849c6c75d9688db073a7bd9b8f9825d028d5d8775949",
+      "implementation-summary.md": "3020d28ddee74c513c10a03ec0079caa235bafedc81daac8070a0e9b58b659e8"
     },
     "last_active_child_id": null,
     "last_active_at": null

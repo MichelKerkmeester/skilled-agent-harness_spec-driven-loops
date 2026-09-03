@@ -1,3 +1,7 @@
+---
+title: "Resource Map: Literal Interface Command Research"
+trigger_phrases: []
+---
 # Resource Map: Literal Interface Command Research
 
 ## READMEs

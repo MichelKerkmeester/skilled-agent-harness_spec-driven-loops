@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now let me read the test file and then proceed with the review loop.Now let me write the iteration file with my findings from reviewing the correctness dimension.Now let me append the JSONL delta, update the strategy, create the dashboard, and update the findings registry.Now let me finalize by updating the config status and writing the synthesis event.All phases complete. Review artifacts written to `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/review/lineages/p020-mimo-1/`:
 
 - **Config**: `deep-review-config.json` (status=complete, releaseReadinessState=converged)

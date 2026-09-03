@@ -3,6 +3,7 @@ title: "Phase 005: Sub-headings — system-spec-kit"
 description: "Apply H3 sub-headings to system-spec-kit HOW IT WORKS sections that exceed 3 paragraphs. Uses the long_sections_audit.csv from phase 002 to target only files that need restructuring."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Phase 005: Sub-headings — system-spec-kit
 

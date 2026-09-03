@@ -1,3 +1,7 @@
+---
+title: "Review Report — 019-maintenance-grace-daemon-survives-reelection"
+trigger_phrases: []
+---
 # Review Report — 019-maintenance-grace-daemon-survives-reelection
 
 Lineage: `p019-opus-2` (fan-out) · Executor: cli-claude-code model=claude-opus-4-8 · Iterations: 1 (`maxIterations=1`) · Stop reason: maxIterations

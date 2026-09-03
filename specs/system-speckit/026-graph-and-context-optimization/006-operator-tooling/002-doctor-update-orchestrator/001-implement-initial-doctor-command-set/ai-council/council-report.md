@@ -1,3 +1,7 @@
+---
+title: "Multi-AI Council Report: `/doctor:update` v3.3.0.0 → v3.4.1.0+ Hardening"
+trigger_phrases: []
+---
 # Multi-AI Council Report: `/doctor:update` v3.3.0.0 → v3.4.1.0+ Hardening
 
 ### Task Classification

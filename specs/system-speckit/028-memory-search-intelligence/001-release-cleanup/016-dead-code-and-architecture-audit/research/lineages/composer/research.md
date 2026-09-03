@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — composer lineage"
+trigger_phrases: []
+---
 # Research Synthesis — composer lineage
 
 **Session:** fanout-composer-1785133613018-3fbdzo  

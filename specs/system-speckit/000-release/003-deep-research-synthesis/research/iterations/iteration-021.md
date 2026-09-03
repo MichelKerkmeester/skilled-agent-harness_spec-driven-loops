@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Manual testing playbooks for three MCP skills
 Spec-kit gained scripted manual testing playbooks for three MCP skills — mcp-code-mode, mcp-chrome-devtools, and mcp-clickup — alongside an audit of the existing mcp-coco-index playbook, for 75 new or gap-filling per-feature scenarios across 19 categories. Before, only one of these MCP tools had a testing playbook; now all four do, and every scenario follows a shared contract with deterministic prompts, expected outcomes, and failure-triage steps that cross-reference cleanly between skills. That matters because MCP integrations are hard to verify: operators get repeatable, checklist-driven manual tests instead of ad-hoc clicking. Live smoke checks passed for three of the four tools and were skipped for ClickUp because the system's `cu` command is the Taylor UUCP utility and the ClickUp CLI isn't installed — a real-world confirmation of the documented UUCP-conflict scenario. The audit appended three previously missing scenarios (a concurrent-refresh race, a root-path environment-variable override, and helper-script readiness) without touching any of the 23 existing scenarios.
 

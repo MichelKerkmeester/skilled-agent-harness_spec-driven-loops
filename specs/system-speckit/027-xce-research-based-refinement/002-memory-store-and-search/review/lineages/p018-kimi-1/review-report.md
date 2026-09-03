@@ -1,3 +1,7 @@
+---
+title: "Review Report: 018-reindex-scan-responsiveness-and-cancellation"
+trigger_phrases: []
+---
 # Review Report: 018-reindex-scan-responsiveness-and-cancellation
 
 ## 1. Executive Summary

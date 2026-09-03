@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: Devin MCP namespace normalization"
+trigger_phrases: []
+---
 # Iteration 004: Devin MCP namespace normalization
 
 ## Focus

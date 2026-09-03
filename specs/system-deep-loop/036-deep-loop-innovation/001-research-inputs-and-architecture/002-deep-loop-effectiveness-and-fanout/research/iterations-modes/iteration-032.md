@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 32 | SOL xhigh | mode: model-benchmark | angle: A2-moat model-benchmark :: unique value / moat | 2026-07-15T10:44:33.394Z -->
 
 The moat is not “a better leaderboard.” It is a private decision laboratory: public leaderboards nominate candidates; `model-benchmark` decides which model, prompt, and routing path minimizes real failure and operating cost on the user’s own work.

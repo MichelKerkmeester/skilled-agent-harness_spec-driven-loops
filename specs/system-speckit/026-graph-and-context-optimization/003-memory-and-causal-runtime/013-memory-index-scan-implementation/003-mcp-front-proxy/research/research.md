@@ -1,3 +1,7 @@
+---
+title: "MCP Front Proxy Integration Failure Research"
+trigger_phrases: []
+---
 # MCP Front Proxy Integration Failure Research
 
 ## Executive Summary

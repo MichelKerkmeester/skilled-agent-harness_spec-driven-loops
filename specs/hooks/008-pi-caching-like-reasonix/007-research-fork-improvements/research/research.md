@@ -1,3 +1,7 @@
+---
+title: "Research: Further Improvements for the deep-pi and pi-cache-optimizer Forks"
+trigger_phrases: []
+---
 # Research: Further Improvements for the deep-pi and pi-cache-optimizer Forks
 
 **Method**: 4 independent lineages, 24 iterations total, forced to full depth (`--stop-policy max-iterations`, no early convergence) — `gpt-5.6-sol` (high, cli-codex, 7 iterations, 35 source findings), `gpt-5.6-luna` (max, cli-codex, 7 iterations, 28 findings), Grok 4.5 (`cursor-grok-4.5-high-fast`, cli-cursor, 6 iterations, 7 curated findings + a P0/P1/P2 backlog), and a 4th lineage added afterward — `deepseek-v4-flash` (via `opencode-go`, cli-opencode, 4 iterations, 20 findings) — explicitly briefed to read the first 3 lineages' synthesis and either corroborate or refute it, not just restate it. All four read the real source (`.pi/extensions/pi-cache-optimizer/`, `.pi/extensions/deep-pi/`) independently; convergence below means "found the same real issue from a cold start," not "copied from each other."

@@ -1,3 +1,7 @@
+---
+title: "Iteration 020 — Final design review before synthesis"
+trigger_phrases: []
+---
 # Iteration 020 — Final design review before synthesis
 
 ## Final decision

@@ -1,3 +1,7 @@
+---
+title: "028 Benchmark Status (DoD criterion 4) + remaining cleanup (criterion 6)"
+trigger_phrases: []
+---
 # 028 Benchmark Status (DoD criterion 4) + remaining cleanup (criterion 6)
 
 Actionable record of the two open 028 completion items. Everything else (37 phases, all 42 sub-phases

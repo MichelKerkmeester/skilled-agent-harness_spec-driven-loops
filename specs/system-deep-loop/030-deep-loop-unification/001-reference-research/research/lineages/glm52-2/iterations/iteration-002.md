@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Bidirectional Path-Coupling Repair"
+trigger_phrases: []
+---
 # Iteration 002 — Bidirectional Path-Coupling Repair
 
 **Focus:** Verify child 002 §8's directional path-repair rule at every coupling site (Q2). Highest-probability mechanical failure mode per 002 §6.

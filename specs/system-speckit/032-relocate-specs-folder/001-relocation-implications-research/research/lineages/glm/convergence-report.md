@@ -1,3 +1,7 @@
+---
+title: "Convergence Report — GLM Lineage"
+trigger_phrases: []
+---
 # Convergence Report — GLM Lineage
 
 **Session ID:** fanout-glm-1786009077472-i5lfbh

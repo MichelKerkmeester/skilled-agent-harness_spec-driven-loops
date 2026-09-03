@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 prompt pack (lineage grok46-xhigh)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files
 

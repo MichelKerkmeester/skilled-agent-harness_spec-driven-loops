@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: surgically-repaired older READMEs (~64) — do the fixes resolve?"
+trigger_phrases: []
+---
 # Iteration 13: surgically-repaired older READMEs (~64) — do the fixes resolve?
 
 > dimension: broken-refs | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-wip-verification — iteration 1 (global #67)"
+trigger_phrases: []
+---
 # Seat gpt-wip-verification — iteration 1 (global #67)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: gpt-wip-verification

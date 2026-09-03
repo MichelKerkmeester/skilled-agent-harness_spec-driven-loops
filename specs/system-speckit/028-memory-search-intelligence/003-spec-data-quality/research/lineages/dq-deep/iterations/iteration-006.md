@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 - KQ6: Command-doc quality automation"
+trigger_phrases: []
+---
 # Iteration 006 - KQ6: Command-doc quality automation
 
 **Focus:** What command-doc quality automation exists across the command surface and what is missing.

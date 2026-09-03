@@ -1,3 +1,7 @@
+---
+title: "Phase 001 — Adversarial Review (DeepSeek RCAF brief)"
+trigger_phrases: []
+---
 # Phase 001 — Adversarial Review (DeepSeek RCAF brief)
 
 ## Role

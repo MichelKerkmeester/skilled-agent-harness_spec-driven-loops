@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Interface structure, enrichment, assets, and delivery contract"
+trigger_phrases: []
+---
 # Iteration 6: Interface structure, enrichment, assets, and delivery contract
 
 ## Focus

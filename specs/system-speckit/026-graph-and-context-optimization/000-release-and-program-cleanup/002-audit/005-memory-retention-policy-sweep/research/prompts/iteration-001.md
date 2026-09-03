@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 033: memory-retention-sweep — Tier B-α implementation
 
 You are cli-codex (gpt-5.5 high fast) implementing remediation packet **005-memory-retention-policy-sweep**.

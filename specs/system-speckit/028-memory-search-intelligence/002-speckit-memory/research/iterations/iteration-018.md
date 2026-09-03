@@ -1,3 +1,7 @@
+---
+title: "Iteration 18: Round C Feasibility — Memory Procedural/Consolidation + Episode-Boundary Scope Decision"
+trigger_phrases: []
+---
 # Iteration 18: Round C Feasibility — Memory Procedural/Consolidation + Episode-Boundary Scope Decision
 
 ## Focus

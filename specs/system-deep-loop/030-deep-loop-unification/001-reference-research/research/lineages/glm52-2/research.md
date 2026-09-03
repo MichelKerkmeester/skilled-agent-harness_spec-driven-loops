@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — Deep-Loop Unification Merge Validation (glm52-2)"
+trigger_phrases: []
+---
 # Research Synthesis — Deep-Loop Unification Merge Validation (glm52-2)
 
 > **Lineage:** `glm52-2` (family glm52, replica 2/5) · **Executor:** cli-opencode `zai-coding-plan/glm-5.2` (max) · **Session:** `fanout-glm52-2-1783486518892-2qss01`

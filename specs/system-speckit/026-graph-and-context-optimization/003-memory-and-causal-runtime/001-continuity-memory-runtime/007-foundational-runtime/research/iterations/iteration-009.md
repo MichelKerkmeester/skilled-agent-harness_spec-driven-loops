@@ -1,3 +1,7 @@
+---
+title: "Iteration 9 — Shared payload trust seams (9/10)"
+trigger_phrases: []
+---
 # Iteration 9 — Shared payload trust seams (9/10)
 
 ## Investigation Thread

@@ -1,3 +1,7 @@
+---
+title: "Independent adversarial verification — shadow-parity independent derivation"
+trigger_phrases: []
+---
 # Independent adversarial verification — shadow-parity independent derivation
 
 Performed 2026-08-19 by a different actor than the builder, as REQ-U04 requires.

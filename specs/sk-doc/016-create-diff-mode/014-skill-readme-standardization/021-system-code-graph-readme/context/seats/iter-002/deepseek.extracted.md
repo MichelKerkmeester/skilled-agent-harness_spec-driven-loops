@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now I have all the information needed to compile the verification report.
 
 ---

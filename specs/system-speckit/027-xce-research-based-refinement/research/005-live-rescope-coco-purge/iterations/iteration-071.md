@@ -1,3 +1,7 @@
+---
+title: "Iteration 071 — 001 NEEDS-RESCOPE (003 only): mostly INFO already, residual warn wording; 002/004 as-is; 028 folded"
+trigger_phrases: []
+---
 # Iteration 071 — 001 NEEDS-RESCOPE (003 only): mostly INFO already, residual warn wording; 002/004 as-is; 028 folded
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.55. **Findings:** 5.

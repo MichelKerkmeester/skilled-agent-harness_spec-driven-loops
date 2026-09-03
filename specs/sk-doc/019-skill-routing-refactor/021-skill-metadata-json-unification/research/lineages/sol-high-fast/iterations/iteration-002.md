@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Hub Identity and Router Schemas and Consumers"
+trigger_phrases: []
+---
 # Iteration 2: Hub Identity and Router Schemas and Consumers
 
 ## Focus

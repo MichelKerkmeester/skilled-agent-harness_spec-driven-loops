@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Adversarial Verification — FSRS Reinforcement Preservation under C6-A"
+trigger_phrases: []
+---
 # Iteration 10: Adversarial Verification — FSRS Reinforcement Preservation under C6-A
 
 ## Focus

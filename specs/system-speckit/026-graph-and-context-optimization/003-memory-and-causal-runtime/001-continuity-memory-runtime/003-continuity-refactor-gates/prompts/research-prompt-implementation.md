@@ -1,3 +1,7 @@
+---
+title: "Research Prompt — Implementation Design (20 iterations)"
+trigger_phrases: []
+---
 # Research Prompt — Implementation Design (20 iterations)
 
 > **Subject**: HOW to implement Option C (Wiki-Style Spec Kit Updates + thin continuity layer) for the Spec Kit memory refactor, with UX and usefulness at the forefront.

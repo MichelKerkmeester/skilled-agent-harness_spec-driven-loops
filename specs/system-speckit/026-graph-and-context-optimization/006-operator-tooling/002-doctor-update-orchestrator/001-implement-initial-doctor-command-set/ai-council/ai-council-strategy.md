@@ -1,3 +1,7 @@
+---
+title: "AI Council Strategy — /doctor:update v3.3 Hardening"
+trigger_phrases: []
+---
 # AI Council Strategy — /doctor:update v3.3 Hardening
 
 ## Purpose

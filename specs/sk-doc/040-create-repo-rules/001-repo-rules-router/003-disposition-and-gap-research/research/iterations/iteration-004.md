@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — RQ4: Warranted vs Refused Inventory + Subtraction Candidate"
+trigger_phrases: []
+---
 # Iteration 004 — RQ4: Warranted vs Refused Inventory + Subtraction Candidate
 
 ## Focus

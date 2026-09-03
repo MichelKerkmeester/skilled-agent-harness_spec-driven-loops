@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Scenario Q1 — cli-codex-1
 
 | Dimension | Score | Evidence |

@@ -1,3 +1,7 @@
+---
+title: "Iteration 012 - Reranker license quantitative falsification [PASS-2]"
+trigger_phrases: []
+---
 # Iteration 012 - Reranker license quantitative falsification [PASS-2]
 
 ## Pass 1 claim under attack

@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 20 | SOL xhigh | thread: general-effectiveness-and-council | angle: Synthesis pass: highest-leverage NEW recommendations | 2026-07-15T05:42:24.430Z -->
 
 ## Synthesis

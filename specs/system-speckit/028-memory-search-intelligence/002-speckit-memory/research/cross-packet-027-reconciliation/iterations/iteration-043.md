@@ -1,3 +1,7 @@
+---
+title: "Iteration 43 (Round O): C-X1 'configured' branch true delta → marginal"
+trigger_phrases: []
+---
 # Iteration 43 (Round O): C-X1 'configured' branch true delta → marginal
 
 ## Focus

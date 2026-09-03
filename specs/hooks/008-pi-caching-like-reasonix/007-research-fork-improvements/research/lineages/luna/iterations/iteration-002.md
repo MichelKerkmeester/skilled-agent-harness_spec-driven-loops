@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Correctness boundaries in usage, eligibility, and retries"
+trigger_phrases: []
+---
 # Iteration 002 — Correctness boundaries in usage, eligibility, and retries
 
 ## Focus

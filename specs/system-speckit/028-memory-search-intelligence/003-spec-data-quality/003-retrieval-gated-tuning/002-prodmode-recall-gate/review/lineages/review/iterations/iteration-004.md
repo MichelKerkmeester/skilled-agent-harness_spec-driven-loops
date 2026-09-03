@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Maintainability / Completeness"
+trigger_phrases: []
+---
 # Iteration 004 — Maintainability / Completeness
 
 Dimension: Maintainability · Target: `015-prodmode-recall-gate` (spec-folder, PLANNED) · Lineage: review

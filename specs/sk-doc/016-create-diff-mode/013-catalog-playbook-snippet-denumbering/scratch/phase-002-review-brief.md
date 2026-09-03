@@ -1,3 +1,7 @@
+---
+title: "Phase 002 — Tool Review (MiMo COSTAR brief)"
+trigger_phrases: []
+---
 # Phase 002 — Tool Review (MiMo COSTAR brief)
 
 ## Context

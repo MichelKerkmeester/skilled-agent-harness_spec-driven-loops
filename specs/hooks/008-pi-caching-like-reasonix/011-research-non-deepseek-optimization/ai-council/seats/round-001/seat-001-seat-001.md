@@ -6,6 +6,7 @@ lens: "pragmatic"
 status: ok
 timestamp: 1970-01-01T00:00:00.000Z
 simulated: false
+trigger_phrases: []
 ---
 
 # seat-001: pragmatic / undefined

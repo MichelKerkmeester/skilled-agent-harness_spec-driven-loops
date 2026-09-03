@@ -3,6 +3,7 @@ title: "Phase 008: Master Catalog Enrichment — All Skills"
 description: "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope — 3 files, AI edits."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Phase 008: Master Catalog Enrichment — All Skills
 

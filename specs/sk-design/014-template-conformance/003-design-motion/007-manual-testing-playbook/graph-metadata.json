@@ -185,7 +185,7 @@
     ],
     "causal_summary": "`manual-testing-playbook/` is the largest folder in `design-motion`: a root `manual-testing-playbook.md` plus 7 subdirectories (`advanced-craft/`, `decision/`, `micro-interactions/`, `presence/`, `procedure-card-contract/`, `reduced-motion/`, `strategy/`) holding 13 further files, 14 total",
     "created_at": "2026-07-27T14:53:14.129Z",
-    "last_save_at": "2026-08-30T15:39:13.111Z",
+    "last_save_at": "2026-09-03T22:18:11.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60ae4c755b7d03574ca2089fe203e94affb43a469492732d7e5e843a932cd605",
+    "source_fingerprint": "sha256:791a2d437dd5494e67ed32ec2bbbd70cff98536b1681b6a2483f58f1d80c4390",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2318392f54432dd011c8ab3659b1c6a515a5d22731029fdeb85a6edb8ad84100",
-      "plan.md": "86c96c0b6bc3ee8fcd69815460950c9c2d40653399546da5a340e9972e74a57c",
-      "tasks.md": "16f18945edd9e744154458b4e024cf635c5119410532879c50502c05fddf547c",
-      "implementation-summary.md": "e11f48d0431612d7a195052578a16a987d8f1c3262ffd7bd2d058edcaff0d746"
+      "plan.md": "cf5abd6217ccb5135330ee64f3c7ab2959fc6af765aa978f9123eb6b8f15471a",
+      "tasks.md": "e31118414c613ff0322fa5a11b029c5d52e84c91858f867672ab81e5afe43339",
+      "implementation-summary.md": "15188955152221f0258ea668f15e4af93fb8dafa185b3b730b34d280fedd7b15"
     },
     "last_active_child_id": null,
     "last_active_at": null

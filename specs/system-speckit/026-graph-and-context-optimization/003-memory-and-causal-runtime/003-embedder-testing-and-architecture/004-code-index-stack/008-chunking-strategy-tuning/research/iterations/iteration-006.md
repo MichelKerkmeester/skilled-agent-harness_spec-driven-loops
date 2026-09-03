@@ -6,6 +6,7 @@ phase_id: "002-chunking-strategy-tuning"
 executor: cli-devin
 model: swe-1.6
 recipe: agent-config-deep-research-iter.json
+trigger_phrases: []
 ---
 
 # Iter 6 — chunking-strategy-survey

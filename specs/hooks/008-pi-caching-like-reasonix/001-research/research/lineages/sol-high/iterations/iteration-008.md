@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Verify Pi’s built-in cache surface"
+trigger_phrases: []
+---
 # Iteration 8: Verify Pi’s built-in cache surface
 
 ## Focus

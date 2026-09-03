@@ -1,3 +1,7 @@
+---
+title: "Per-Mode Deepening — How Each Deep-Loop Mode Improves and Becomes Uniquely Valuable"
+trigger_phrases: []
+---
 # Per-Mode Deepening — How Each Deep-Loop Mode Improves and Becomes Uniquely Valuable
 
 > A 40-iteration, non-converging follow-on run inside packet 005 (run-2). Single lineage — GPT-5.6 SOL at **xhigh** reasoning (fast tier) via cli-codex `codex --search exec` — seeded with the **290** repos from 001 + 005 run-1 as a do-not-re-list set. Organized as **8 modes × 5 angles** (state-of-the-art → unique-value/moat → mechanisms → failure-modes → synthesis). Every iteration answered two questions about one mode: *how does it get better*, and *what makes it uniquely valuable versus the other deep modes and a generic single-shot alternative*.

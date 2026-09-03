@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Angle 4"
+trigger_phrases: []
+---
 # Iteration 004 — Angle 4
 
 **Angle:** Shadow-evaluation replay starvation: post-PII the query pool is empty by design — privacy-preserving replay pool designs (hashed query classes, synthetic queries, opt-in ring buffer).

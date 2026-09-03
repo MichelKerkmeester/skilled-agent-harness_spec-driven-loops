@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 | skill | D5 score | orphan references (list) | notes |
 |---|---:|---|---|
 | code-opencode | 100 | none | D3 score=48; over-routing rows=7 (OC-007:2/7, OC-008:2/4, OC-004:2/6, OC-005:2/3, OC-001:15/18, ...); verdict=PASS |

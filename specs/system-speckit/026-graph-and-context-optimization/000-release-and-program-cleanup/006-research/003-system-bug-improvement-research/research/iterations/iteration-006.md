@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — B1: Hook contract drift across runtimes"
+trigger_phrases: []
+---
 # Iteration 006 — B1: Hook contract drift across runtimes
 
 ## Focus

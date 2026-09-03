@@ -109,18 +109,18 @@
     ],
     "causal_summary": "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope — 3 files, AI edits.",
     "created_at": "2026-07-09T10:02:46.152Z",
-    "last_save_at": "2026-08-30T15:39:14.342Z",
+    "last_save_at": "2026-09-03T22:18:58.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
-    "source_fingerprint": "sha256:a7210a22aa132cc9cc7ba18808c7b306dd48218307f0ab43fb8b9e76f07ffcaf",
+    "source_fingerprint": "sha256:cf3157fd3814193b7e55b976021c1b8e8e9a742a4caa94346f66b08864e62370",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c27d67eddfa70c2826702c1001d32b6156b448f7d6c695d49f65d33715136700",
-      "plan.md": "fae23394964baf43a7fc62697d1a0973124d8eca79d60fd36e06ae7ed3816526"
+      "spec.md": "9db91d3212c5feb1668d583338af23bdb18b379be9d504187075cbcfeb8782bf",
+      "plan.md": "ad5e3c69d7449bd9cce5a88f8b49ea7079ce301987a9b24d23dae481faa35d1d"
     },
     "last_active_child_id": null,
     "last_active_at": null

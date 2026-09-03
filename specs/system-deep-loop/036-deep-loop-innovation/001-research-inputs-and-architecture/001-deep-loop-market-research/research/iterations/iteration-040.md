@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 40 | model glm (zai-coding-plan/glm-5.2) | angle: Newer 2025-2026 coding-agent loops | 2026-07-15T00:30:17.001Z -->
 
 I'll research newer 2025-2026 coding-agent loops with novel loop-control ideas. Let me search multiple angles in parallel.

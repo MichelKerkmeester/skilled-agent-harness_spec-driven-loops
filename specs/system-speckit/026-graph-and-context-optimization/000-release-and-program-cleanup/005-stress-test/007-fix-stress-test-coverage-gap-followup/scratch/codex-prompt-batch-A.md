@@ -1,3 +1,7 @@
+---
+title: "Batch A — Generate 6 daemon/freshness stress tests for skill_advisor"
+trigger_phrases: []
+---
 # Batch A — Generate 6 daemon/freshness stress tests for skill_advisor
 
 You are generating Vitest stress tests under spec-kit packet 043. Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.

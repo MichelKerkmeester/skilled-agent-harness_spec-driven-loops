@@ -1,3 +1,7 @@
+---
+title: "Parent Packet Audit — Final Research Synthesis"
+trigger_phrases: []
+---
 # Parent Packet Audit — Final Research Synthesis
 
 ## 1. Executive Summary

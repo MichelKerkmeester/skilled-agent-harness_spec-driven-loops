@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — structural coherence + completeness critic"
+trigger_phrases: []
+---
 # Iteration 009 — structural coherence + completeness critic
 _Executor: GLM-5.2, read-only; orchestrated by Opus._
 

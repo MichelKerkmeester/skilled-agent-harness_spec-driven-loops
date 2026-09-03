@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Always-on directive ownership, value, drift, and consolidation"
+trigger_phrases: []
+---
 # Iteration 10: Always-on directive ownership, value, drift, and consolidation
 
 ## Focus

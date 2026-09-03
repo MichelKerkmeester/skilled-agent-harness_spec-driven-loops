@@ -1,3 +1,7 @@
+---
+title: "Synthesis: Governor Hook + Pi Subagent Dispatch Directive"
+trigger_phrases: []
+---
 # Synthesis: Governor Hook + Pi Subagent Dispatch Directive
 
 Date: 2026-08-04. Sources: 10 iterations across 3 tracks (5x GPT-5.6 Luna max, 3x GLM 5.2 via cli-devin, 2x Grok 4.5 via cli-cursor). Full logs: `evidence/iterations.md`.

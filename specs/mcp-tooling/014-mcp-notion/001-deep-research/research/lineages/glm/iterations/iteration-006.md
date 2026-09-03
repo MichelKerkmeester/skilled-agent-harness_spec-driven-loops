@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Notion Knowledge Layer — Databases, Data Sources, and Property Types"
+trigger_phrases: []
+---
 # Iteration 6: Notion Knowledge Layer — Databases, Data Sources, and Property Types
 
 ## Focus

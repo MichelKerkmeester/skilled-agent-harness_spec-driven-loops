@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Registers and configures the sk-doc-command peer adapter as a lane, runs all canonical commands to convergence, and hard-gates raw-delta and reducer agreement so the deterministic verdict is trustworthy.",
     "created_at": "2026-07-14T20:36:59.449Z",
-    "last_save_at": "2026-08-30T15:39:20.251Z",
+    "last_save_at": "2026-09-03T22:20:10.492Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e4885d6306368c124862c7f51a7d4cc33e9f5d4baf586a35b2c3547b8accbe4",
+    "source_fingerprint": "sha256:740c12fcc46eee178e04cb205b968642b49b77e33a2c05b011a0d978b770d669",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d1860d4b3d45b9edb2a7dcfa3b1d0351d9f926018064d249620273f88cb189ca",
-      "plan.md": "cfb8c871cee28c4a035c95ef6aec443f18c6254df136326112db5a011440039b",
-      "tasks.md": "16921044914465df5a33cc5ff2a323c87ba0d65e1f9c48da0828a8cde143eed1",
+      "plan.md": "a277e311ff9175a068ba197afa751e136aec674e483b982f04b22fdd0031c64a",
+      "tasks.md": "99b069082fe3a0de6b8af76363f917254d3c3273ca424b649ec4f85a49a0d1c6",
       "implementation-summary.md": "2d4dbf6bae97d3c949bafcc37b54e185efaa3d8520d932859ea7ba06db0d563f"
     },
     "last_active_child_id": null,

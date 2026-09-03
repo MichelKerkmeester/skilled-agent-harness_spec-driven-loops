@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source Link: https://x.com/ArchiveExplorer/status/2080621294979023358?s=12
 
 LOOP ⭢ GRAPH ⭢ HARNESS: build the whole pipeline in one sitting

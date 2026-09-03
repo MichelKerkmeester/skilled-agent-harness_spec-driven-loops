@@ -1,3 +1,7 @@
+---
+title: "Codex CLI Prompt — Fix all 6 P1 findings from 026 deep review"
+trigger_phrases: []
+---
 # Codex CLI Prompt — Fix all 6 P1 findings from 026 deep review
 
 You are running as codex CLI (`gpt-5.4`, `reasoning_effort=high`, `service_tier=fast`, `sandbox=workspace-write`). This prompt is self-contained — you have no prior conversation context. Read the files I name, fix what I describe, run the verification commands at the end, report results in the exact format at the bottom.

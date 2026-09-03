@@ -1,3 +1,7 @@
+---
+title: "BRIEF: Git Preflight Advisory — Cross-Runtime Adapters + Style Alignment + Code READMEs"
+trigger_phrases: []
+---
 # BRIEF: Git Preflight Advisory — Cross-Runtime Adapters + Style Alignment + Code READMEs
 
 You are GPT-5.6-SOL acting as a senior implementation engineer. Work entirely inside THIS

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Verdict
 Strong design scaffold, but execution should pause until the ablation contract and a few reproducibility gaps are tightened. Total: 23/30.
 

@@ -6,6 +6,7 @@ activeP1: 2
 activeP2: 0
 stopReason: maxIterationsReached
 sessionId: fanout-gpt56-sol-high-1783912216470-zu43f5
+trigger_phrases: []
 ---
 
 # Deep Review Report: sk-code Split-Doc Template Alignment

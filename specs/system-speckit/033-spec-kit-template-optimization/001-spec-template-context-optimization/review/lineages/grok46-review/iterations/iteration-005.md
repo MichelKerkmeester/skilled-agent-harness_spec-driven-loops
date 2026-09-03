@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Broadening pass — adversarial P1 replay, overlays, leftover task wording"
+trigger_phrases: []
+---
 # Iteration 5: Broadening pass — adversarial P1 replay, overlays, leftover task wording
 
 ## Focus

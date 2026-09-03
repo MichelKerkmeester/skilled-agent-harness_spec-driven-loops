@@ -1,6 +1,7 @@
 ---
 title: "Research: system-code-graph Typed-Pair Routing"
 description: "Eight-iteration diagnosis of system-code-graph routing, typed-pair benchmark feasibility, and dependency-ordered optimizations."
+trigger_phrases: []
 ---
 # Research: system-code-graph Typed-Pair Routing
 

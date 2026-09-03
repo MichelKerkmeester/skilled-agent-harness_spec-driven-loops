@@ -1,3 +1,7 @@
+---
+title: "AI Council Report — 013 follow-ups + MCP stability"
+trigger_phrases: []
+---
 # AI Council Report — 013 follow-ups + MCP stability
 
 ## Summary

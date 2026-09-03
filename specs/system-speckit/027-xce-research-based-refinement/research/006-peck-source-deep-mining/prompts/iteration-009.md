@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 009 — cheap-model-gates cost architecture"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 009 — cheap-model-gates cost architecture

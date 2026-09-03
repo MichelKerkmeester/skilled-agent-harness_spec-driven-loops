@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Root + AGENTS + mcp-coco-index trio"
+trigger_phrases: []
+---
 # Iteration 001 — Root + AGENTS + mcp-coco-index trio
 
 **Scope:** README.md (repo root), AGENTS.md (repo root), .opencode/skills/mcp-coco-index/{README.md, SKILL.md, INSTALL_GUIDE.md}

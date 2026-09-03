@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 — TRACEABILITY (testability + diagnostic depth)"
+trigger_phrases: []
+---
 # Iteration 019 — TRACEABILITY (testability + diagnostic depth)
 
 ## P0

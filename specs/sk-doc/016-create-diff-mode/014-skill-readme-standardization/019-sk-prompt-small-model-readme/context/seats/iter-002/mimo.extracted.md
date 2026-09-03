@@ -1,3 +1,7 @@
+---
+title: "1. EXACT INVOCATION & NAVIGATION"
+trigger_phrases: []
+---
 Now let me check a couple more benchmarks for completeness:
 Here is the verification report.
 

@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 001"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 001
 
 Focus: Claim inventory and evidence classes

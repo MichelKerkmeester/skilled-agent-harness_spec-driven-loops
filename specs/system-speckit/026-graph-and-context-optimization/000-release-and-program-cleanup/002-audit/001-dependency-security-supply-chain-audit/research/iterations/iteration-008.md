@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 - Shell Startup Files"
+trigger_phrases: []
+---
 # Iteration 008 - Shell Startup Files
 
 ## Summary

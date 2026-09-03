@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 008 — 010/007 T-A..T-F closure integrity vs shipped code"
+trigger_phrases: []
+---
 # Deep-Research Iteration 008 — 010/007 T-A..T-F closure integrity vs shipped code
 
 You are a fresh-context deep-research executor (cli-codex gpt-5.5 high fast). No memory of prior iterations. Defensive code-review of internal closure claims. Read-only.

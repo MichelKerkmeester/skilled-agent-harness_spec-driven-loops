@@ -1,3 +1,7 @@
+---
+title: "Scope-Readiness Review: 008 Deep-Research Review"
+trigger_phrases: []
+---
 # Scope-Readiness Review: 008 Deep-Research Review
 
 ## 1. Executive Summary

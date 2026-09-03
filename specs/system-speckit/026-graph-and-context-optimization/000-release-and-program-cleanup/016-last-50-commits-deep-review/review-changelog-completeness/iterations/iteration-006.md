@@ -1,3 +1,7 @@
+---
+title: "Iteration 06"
+trigger_phrases: []
+---
 # Iteration 06
 
 ## Angle

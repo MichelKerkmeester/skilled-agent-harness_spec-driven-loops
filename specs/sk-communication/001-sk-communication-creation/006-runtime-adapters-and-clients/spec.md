@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 006 Runtime Adapters and Clients"
 description: "Integrate the projection core with six CLIs through their safest supported event and presentation boundaries."
 trigger_phrases:
   - "runtime-adapters-and-clients"
-  - "runtime adapters and clients"
   - "portable cli projection"
   - "implementation phase"
 importance_tier: "important"

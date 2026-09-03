@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-030.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 030 — Phase 019 Runtime Migration Handover

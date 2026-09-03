@@ -1,3 +1,7 @@
+---
+title: "Research Phase 003: Memory And Causal Expansion"
+trigger_phrases: []
+---
 # Research Phase 003: Memory And Causal Expansion
 
 Exploration pass for memory-backend, causal-graph, trigger, and feedback-reducer opportunities beyond the first code-graph-oriented framing.

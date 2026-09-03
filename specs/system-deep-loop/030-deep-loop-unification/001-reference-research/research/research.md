@@ -1,3 +1,7 @@
+---
+title: "Research: Deep-Loop Unification Merge Design — Validation Synthesis"
+trigger_phrases: []
+---
 # Research: Deep-Loop Unification Merge Design — Validation Synthesis
 
 <!-- ANCHOR:findings -->

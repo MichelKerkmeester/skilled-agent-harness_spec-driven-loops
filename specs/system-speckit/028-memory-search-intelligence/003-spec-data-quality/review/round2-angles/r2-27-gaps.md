@@ -1,3 +1,7 @@
+---
+title: "r2-27 gaps (adversarial / completeness critic)"
+trigger_phrases: []
+---
 # r2-27 gaps (adversarial / completeness critic)
 
 Angle summary: hunt the surfaces, failure modes and dependencies the 28-phase program never names. Focus slices: test docs, the skill-graph, the command runtime.

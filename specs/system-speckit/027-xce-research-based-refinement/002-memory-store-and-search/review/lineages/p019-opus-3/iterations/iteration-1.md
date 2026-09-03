@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All artifacts written and verified — the iteration file ends with the exact `Review verdict: PASS` line, and the full canonical state set is present (config, JSONL with config+iteration+synthesis_complete records, findings registry, strategy, dashboard, resource-map, review-report, iteration-001).
 
 ## Lineage p019-opus-3 — Review Complete

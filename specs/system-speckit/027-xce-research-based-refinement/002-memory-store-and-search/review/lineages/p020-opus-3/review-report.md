@@ -1,3 +1,7 @@
+---
+title: "Review Report — 020-maintenance-grace-background-embedding (lineage p020-opus-3)"
+trigger_phrases: []
+---
 # Review Report — 020-maintenance-grace-background-embedding (lineage p020-opus-3)
 
 **Executor:** cli-claude-code · claude-opus-4-8 · **Mode:** fan-out lineage, single iteration (maxIterations=1)

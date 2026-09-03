@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Test the cost arithmetic"
+trigger_phrases: []
+---
 # Iteration 4: Test the cost arithmetic
 
 ## Focus

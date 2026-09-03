@@ -1,3 +1,7 @@
+---
+title: "Iter 8 — Re-index cost analysis — does the fix require chunking/embedder rework or just env tuning?"
+trigger_phrases: []
+---
 # Iter 8 — Re-index cost analysis — does the fix require chunking/embedder rework or just env tuning?
 
 ## TL;DR (2-3 sentences)

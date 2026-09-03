@@ -14,6 +14,7 @@ _memory:
     completion_pct: 80
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Implementation Plan: Causal Relation-Coverage Reporting Honesty
 

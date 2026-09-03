@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: CocoIndex Semantic Search Dedup and Telemetry"
+trigger_phrases: []
+---
 # Iteration 004: CocoIndex Semantic Search Dedup and Telemetry
 
 ## Focus

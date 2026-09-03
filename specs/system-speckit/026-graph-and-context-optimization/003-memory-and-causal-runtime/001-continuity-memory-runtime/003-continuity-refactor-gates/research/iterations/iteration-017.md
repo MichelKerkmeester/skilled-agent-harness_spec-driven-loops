@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-017.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 017 — Failure Modes and Validation UX

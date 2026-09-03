@@ -1,3 +1,7 @@
+---
+title: "Audit Scope — MCP Server Infrastructure (handlers / providers / daemon)"
+trigger_phrases: []
+---
 # Audit Scope — MCP Server Infrastructure (handlers / providers / daemon)
 
 ## Purpose

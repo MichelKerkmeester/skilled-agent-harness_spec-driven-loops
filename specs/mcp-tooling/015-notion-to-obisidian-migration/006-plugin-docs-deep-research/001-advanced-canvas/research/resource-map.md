@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Optimize the mcp-obsidian advanced-canvas file-layer reference docs for AI operation. Research the real plugin (repo developer-mike/obsidian-advanced-canvas, docs, and the installed main.js v6.5.4) to resolve the VERIFY-flagged cross-portal (interdimensional) edge serialization, confirm the extended .canvas JSON node and edge keys, and find missing workflows and gotchas. Recommend concrete additions or updates to references/plugins/advanced-canvas/."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

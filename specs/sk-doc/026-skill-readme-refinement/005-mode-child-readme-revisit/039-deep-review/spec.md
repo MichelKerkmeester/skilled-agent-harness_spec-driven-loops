@@ -4,7 +4,6 @@ description: "Rewrite the deep-review mode skill README at system-deep-loop/deep
 trigger_phrases:
   - "deep review readme"
   - "mode readme rewrite"
-  - "deep-review readme"
   - "readme revisit deep review"
   - "hvr readme check"
 importance_tier: "normal"

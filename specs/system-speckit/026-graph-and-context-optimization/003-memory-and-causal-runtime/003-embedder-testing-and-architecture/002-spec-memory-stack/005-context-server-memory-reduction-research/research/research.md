@@ -1,3 +1,7 @@
+---
+title: "Deep Research Report — Context-Server Memory Reduction"
+trigger_phrases: []
+---
 # Deep Research Report — Context-Server Memory Reduction
 
 - Topic: context-server.js memory reduction without feature/embedder restriction

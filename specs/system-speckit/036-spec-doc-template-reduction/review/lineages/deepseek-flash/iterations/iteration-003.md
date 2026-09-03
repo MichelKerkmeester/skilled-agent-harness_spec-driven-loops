@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: D2 Security — Validator/Generator Trust Boundaries & Status-Signal Integrity"
+trigger_phrases: []
+---
 # Iteration 003: D2 Security — Validator/Generator Trust Boundaries & Status-Signal Integrity
 
 ## Focus

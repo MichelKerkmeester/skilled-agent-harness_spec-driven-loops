@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source Link: https://x.com/Sprytixl/status/2087066798608752671
 
 The $1.2M Agent Engineering skill is now open source. Here it is.

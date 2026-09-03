@@ -1,3 +1,7 @@
+---
+title: "Iteration 11: Mode-Specific Subgraph Profiles"
+trigger_phrases: []
+---
 # Iteration 11: Mode-Specific Subgraph Profiles
 
 ## Focus

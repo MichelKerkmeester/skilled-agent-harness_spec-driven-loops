@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Re-ground the alias premise and trace the scorer's hub inputs"
+trigger_phrases: []
+---
 # Iteration 2: Re-ground the alias premise and trace the scorer's hub inputs
 
 ## Focus

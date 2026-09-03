@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — KQ1: Command-argument robustness across models (root cause)"
+trigger_phrases: []
+---
 # Iteration 001 — KQ1: Command-argument robustness across models (root cause)
 
 **Focus:** Why do Kimi K2.7 and MiMo v2.5 Pro drop to the startup question under

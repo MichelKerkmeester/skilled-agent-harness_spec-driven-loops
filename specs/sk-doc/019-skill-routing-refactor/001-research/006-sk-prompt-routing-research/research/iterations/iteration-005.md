@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Scenario Classification and Typed-Gold Seed"
+trigger_phrases: []
+---
 # Iteration 5: Scenario Classification and Typed-Gold Seed
 
 ## Focus

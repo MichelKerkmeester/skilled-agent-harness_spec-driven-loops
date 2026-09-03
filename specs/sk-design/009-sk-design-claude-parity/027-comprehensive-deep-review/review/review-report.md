@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — sk-design Comprehensive Review"
+trigger_phrases: []
+---
 # Deep Review Report — sk-design Comprehensive Review
 
 ## 1. Executive Summary

@@ -1,3 +1,7 @@
+---
+title: "Iteration 11: Citation Drift Verification (Q8)"
+trigger_phrases: []
+---
 # Iteration 11: Citation Drift Verification (Q8)
 
 ## Focus

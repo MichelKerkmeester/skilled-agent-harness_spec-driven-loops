@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Packet documents Open Design transport mode
 The Open Design transport mode shipped with intact source but no spec packet in git or memory; this release adds a Level-2 reconstruction draft that makes the source-defined contract inspectable. It records that Open Design generates while `sk-design` decides, the bundled `od` CLI and desktop-hosted daemon model, WIRE/READ/RUN routing, guarded reads and writes, the mandatory `sk-design` pairing for design work, and the gated multi-turn run from discovery form through build to `entryFile` and `previewUrl`. Before, the transport's contracts existed only inside the skill, references, scripts, and server pointer; after, they are documented as a plan with checklist and task breakdown. The packet is explicitly a reconstruction draft and claims no runtime execution, which matters to a framework user because the boundary responsibilities (guarded proxy, freshness, token handling, cross-CLI evidence) are now traceable instead of implicit. Internal documentation packet: no shipped behavior changed.
 

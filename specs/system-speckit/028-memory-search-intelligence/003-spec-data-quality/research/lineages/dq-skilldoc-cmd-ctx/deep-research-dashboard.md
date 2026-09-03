@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — dq-skilldoc-cmd-ctx"
+trigger_phrases: []
+---
 # Deep Research Dashboard — dq-skilldoc-cmd-ctx
 
 _Auto-generated. Lineage: dq-skilldoc-cmd-ctx | Session: fanout-dq-skilldoc-cmd-ctx-1782030808820-w8p65l | Generation: 1_

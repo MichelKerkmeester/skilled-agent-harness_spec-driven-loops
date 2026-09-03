@@ -1,3 +1,7 @@
+---
+title: "Pre-Fix Gate Baselines (Phase 0 regression freeze)"
+trigger_phrases: []
+---
 # Pre-Fix Gate Baselines (Phase 0 regression freeze)
 
 Captured: 2026-07-16, repo HEAD `1508a744d3` (branch `skilled/v4.0.0.0`), BEFORE any WS1 edit.

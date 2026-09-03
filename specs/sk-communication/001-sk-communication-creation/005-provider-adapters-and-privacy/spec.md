@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 005 Provider Adapters and Privacy"
 description: "Add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent."
 trigger_phrases:
   - "provider-adapters-and-privacy"
-  - "provider adapters and privacy"
   - "portable cli projection"
   - "implementation phase"
 importance_tier: "important"

@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Report — phase-parent"
+trigger_phrases: []
+---
 # Deep-Review Report — phase-parent
 
 - Scope: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

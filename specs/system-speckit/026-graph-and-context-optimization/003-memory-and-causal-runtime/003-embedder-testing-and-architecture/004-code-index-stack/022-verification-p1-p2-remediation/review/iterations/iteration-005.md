@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Regression Hunt: FTS5 Escape + Tree-Sitter Chunker"
+trigger_phrases: []
+---
 # Iteration 005 — Regression Hunt: FTS5 Escape + Tree-Sitter Chunker
 
 ## Files / DBs / commands read

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Iteration 2 audited arc `001-local-embeddings-foundation`, with emphasis on the phase-parent claims, child registration metadata, and current local embedding runtime behavior. The pass compared the arc's llama-cpp/EmbeddingGemma-era documentation against the current Ollama/hf-local implementation and the live child-folder inventory.

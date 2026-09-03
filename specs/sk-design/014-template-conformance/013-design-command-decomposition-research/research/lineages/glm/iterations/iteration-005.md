@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Middle Paths: Separating Concerns Without Multiplying Commands"
+trigger_phrases: []
+---
 # Iteration 005 — Middle Paths: Separating Concerns Without Multiplying Commands
 
 **Focus:** Compare middle-path options (richer argument lanes, subcommands, mode-internal routing) against splitting, grounded in the actual command/mode structure.

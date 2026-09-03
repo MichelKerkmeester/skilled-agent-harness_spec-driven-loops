@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — C4: Code-graph staleness detection accuracy"
+trigger_phrases: []
+---
 # Iteration 014 — C4: Code-graph staleness detection accuracy
 
 ## Focus

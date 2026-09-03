@@ -1,3 +1,7 @@
+---
+title: "Lineage Parameters"
+trigger_phrases: []
+---
 # Lineage Parameters
 
 - spec_folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

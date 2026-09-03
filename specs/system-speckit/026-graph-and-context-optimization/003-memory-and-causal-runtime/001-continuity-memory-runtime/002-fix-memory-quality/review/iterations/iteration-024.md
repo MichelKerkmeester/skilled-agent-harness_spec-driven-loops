@@ -1,3 +1,7 @@
+---
+title: "Iteration 24: Phase 4 status-drift stabilization pass"
+trigger_phrases: []
+---
 # Iteration 24: Phase 4 status-drift stabilization pass
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 038 — Angle 38"
+trigger_phrases: []
+---
 # Iteration 038 — Angle 38
 
 **Angle:** Trigger vocabulary hygiene: the sk-git over-matching class — audit all skills for greedy keyword sets that need boundary disambiguation.

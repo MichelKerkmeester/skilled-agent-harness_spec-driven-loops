@@ -1,3 +1,7 @@
+---
+title: "Disposition Table — Advisor Surface Audit"
+trigger_phrases: []
+---
 # Disposition Table — Advisor Surface Audit
 
 Nine findings re-verified against current HEAD. Four applied, five recorded with a reason.

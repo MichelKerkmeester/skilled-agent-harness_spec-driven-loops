@@ -1,3 +1,7 @@
+---
+title: "Iteration 012 (wave 2, gpt-5.5-fast xhigh) — Tool-returns-the-envelope (additive data.presentation)"
+trigger_phrases: []
+---
 # Iteration 012 (wave 2, gpt-5.5-fast xhigh) — Tool-returns-the-envelope (additive data.presentation)
 
 **Verdict:** Yes: move the MEMORY:SEARCH and MEMORY:STATS rendering into tool-side deterministic code, but attach it additively as data.presentation.text and teach CLI text mode to print it. Replacing the current JSON MCP envelope would be a breaking change; additive rendering is low-to-medium migration cost and targets the mechanical failure directly.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 016 — Threat model and redaction boundary"
+trigger_phrases: []
+---
 # Iteration 016 — Threat model and redaction boundary
 
 ## Question

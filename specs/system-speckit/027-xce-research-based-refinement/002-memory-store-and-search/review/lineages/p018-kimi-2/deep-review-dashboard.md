@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard: reindex-scan responsiveness and cancellation"
+trigger_phrases: []
+---
 # Deep Review Dashboard: reindex-scan responsiveness and cancellation
 
 > Auto-generated. Do not edit manually.

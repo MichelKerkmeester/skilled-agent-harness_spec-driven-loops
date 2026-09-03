@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: Devin MCP namespace spelling"
+trigger_phrases: []
+---
 # Iteration 003: Devin MCP namespace spelling
 
 ## Focus

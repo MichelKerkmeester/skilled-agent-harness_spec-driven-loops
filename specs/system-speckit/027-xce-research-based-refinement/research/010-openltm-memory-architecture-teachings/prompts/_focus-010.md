@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 010 of 10: learn() idempotency + cross-plugin write contract"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 010 of 10: learn() idempotency + cross-plugin write contract
 Read (stay scoped to this subsystem):

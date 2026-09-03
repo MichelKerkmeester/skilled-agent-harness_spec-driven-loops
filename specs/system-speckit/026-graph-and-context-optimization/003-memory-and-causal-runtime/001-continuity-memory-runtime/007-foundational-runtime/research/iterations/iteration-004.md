@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 — Hook-state recovery contract (4/10)"
+trigger_phrases: []
+---
 # Iteration 4 — Hook-state recovery contract (4/10)
 
 ## Investigation Thread

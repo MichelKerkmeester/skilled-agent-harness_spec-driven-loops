@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Goal
 - Execute a max-1-iteration deep-review fan-out lineage for A-search-retrieval and write artifacts to the bound lineage directory.
 

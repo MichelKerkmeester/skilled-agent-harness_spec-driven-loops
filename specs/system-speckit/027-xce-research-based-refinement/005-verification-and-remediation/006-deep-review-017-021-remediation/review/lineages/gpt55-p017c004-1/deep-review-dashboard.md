@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard - gpt55-p017c004-1"
+trigger_phrases: []
+---
 # Deep Review Dashboard - gpt55-p017c004-1
 
 Auto-generated from JSONL state log, strategy, and findings registry.

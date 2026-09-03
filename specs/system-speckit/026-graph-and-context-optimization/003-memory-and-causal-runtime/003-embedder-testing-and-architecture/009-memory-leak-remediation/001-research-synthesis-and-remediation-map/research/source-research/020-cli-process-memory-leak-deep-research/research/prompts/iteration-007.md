@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 Prompt"
+trigger_phrases: []
+---
 # Iteration 007 Prompt
 
 Read `iteration-contract.md` in this directory first and follow it exactly.

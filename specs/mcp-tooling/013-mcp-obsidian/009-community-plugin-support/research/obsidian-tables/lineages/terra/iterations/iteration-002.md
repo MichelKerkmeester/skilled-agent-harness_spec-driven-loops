@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Views, Sorting, Filtering, Reordering, Embeds, and Formula Persistence"
+trigger_phrases: []
+---
 # Iteration 2: Views, Sorting, Filtering, Reordering, Embeds, and Formula Persistence
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 004"
+trigger_phrases: []
+---
 # Deep Research Iteration 004
 
 > Audited changelog: `changelog-023-semantic-relation-inference.md`

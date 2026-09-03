@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Diagnose sk-code skill-routing faults and optimize them, applying the sk-doc typed-pair routing standard. Carry in verified evidence that sk-code scores about 65/100 with 18/18 surface routing but about 50% leaf-file recall; packet 015 produced leaf-manifest.json and manifest-gated typed-gold derivation with mean typedPairRecall 0.729 over 14 scenarios; investigate the untyped DEFAULT_RESOURCE preamble routing_contract_error, benchmark scoring, shared manifest qualification, and concrete routing template, logic, and JSON configuration optimizations."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

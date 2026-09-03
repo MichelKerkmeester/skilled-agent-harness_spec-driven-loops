@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 This iteration audited arc 007, `ollama-and-bge-promotion`, under the 016 embedder-testing umbrella. The focus was whether the Ollama adapter, BGE promotion/rebaseline, indexer-surface investigation, and newer text-embedder survey docs still match current code and commit history.

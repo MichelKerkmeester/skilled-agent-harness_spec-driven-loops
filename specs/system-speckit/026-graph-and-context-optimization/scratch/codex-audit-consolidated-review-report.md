@@ -1,3 +1,7 @@
+---
+title: "Audit & Patch: 026 Consolidated Review Report vs Per-Phase Iterations"
+trigger_phrases: []
+---
 # Audit & Patch: 026 Consolidated Review Report vs Per-Phase Iterations
 
 ## Gate 3 — PRE-BOUND (do not ask)

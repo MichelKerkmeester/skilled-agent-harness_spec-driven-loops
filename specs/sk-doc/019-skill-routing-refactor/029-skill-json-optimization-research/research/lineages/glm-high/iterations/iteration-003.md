@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Automation Gaps — What Still Needs Hand-Authoring"
+trigger_phrases: []
+---
 # Iteration 3: Automation Gaps — What Still Needs Hand-Authoring
 
 ## Focus

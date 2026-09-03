@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report"
+trigger_phrases: []
+---
 # Deep Review Report
 
 Session: fanout-codex-4-1780596001496-dj6z7c

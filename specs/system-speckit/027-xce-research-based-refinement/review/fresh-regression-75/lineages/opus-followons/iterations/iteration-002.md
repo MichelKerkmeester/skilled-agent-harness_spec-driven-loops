@@ -1,3 +1,7 @@
+---
+title: "Seat opus-followons — iteration 2 (global #37)"
+trigger_phrases: []
+---
 # Seat opus-followons — iteration 2 (global #37)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: opus-followons

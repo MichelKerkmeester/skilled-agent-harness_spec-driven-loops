@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: FooterMode / Config Persistence Maintainability"
+trigger_phrases: []
+---
 # Iteration 5: FooterMode / Config Persistence Maintainability
 
 ## Focus

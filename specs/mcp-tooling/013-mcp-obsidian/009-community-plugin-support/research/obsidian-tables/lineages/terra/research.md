@@ -1,3 +1,7 @@
+---
+title: "Obsidian Tables: File-Layer AI Knowledge Base"
+trigger_phrases: []
+---
 # Obsidian Tables: File-Layer AI Knowledge Base
 
 ## 1. Scope and Evidence Status

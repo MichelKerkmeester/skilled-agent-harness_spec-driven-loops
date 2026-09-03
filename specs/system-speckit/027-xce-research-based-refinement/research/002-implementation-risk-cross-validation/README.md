@@ -1,3 +1,7 @@
+---
+title: "Research Phase 002: Implementation Risk Cross-Validation"
+trigger_phrases: []
+---
 # Research Phase 002: Implementation Risk Cross-Validation
 
 Cross-validation pass over the candidate implementation packets from the initial XCE adoption matrix.

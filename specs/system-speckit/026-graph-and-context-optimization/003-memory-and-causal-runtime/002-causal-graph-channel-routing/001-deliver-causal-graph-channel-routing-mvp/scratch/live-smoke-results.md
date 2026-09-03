@@ -1,3 +1,7 @@
+---
+title: "Live Smoke Results — graph-channel routing + degree parity"
+trigger_phrases: []
+---
 # Live Smoke Results — graph-channel routing + degree parity
 
 Captured: 2026-05-08T14:47Z (scenario 1 of handover §4)

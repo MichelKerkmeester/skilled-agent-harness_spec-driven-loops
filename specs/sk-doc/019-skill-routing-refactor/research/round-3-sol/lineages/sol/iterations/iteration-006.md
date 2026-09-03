@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Nested Descendants Outside the Primary 019→020→007→015 Path"
+trigger_phrases: []
+---
 # Iteration 6: Nested Descendants Outside the Primary 019→020→007→015 Path
 
 ## Focus

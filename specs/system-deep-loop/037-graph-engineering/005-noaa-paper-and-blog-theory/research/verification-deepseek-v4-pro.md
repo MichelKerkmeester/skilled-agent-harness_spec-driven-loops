@@ -1,3 +1,7 @@
+---
+title: "DeepSeek V4 Pro — Independent Verification of the Loop/Harness (NOOA) Synthesis"
+trigger_phrases: []
+---
 # DeepSeek V4 Pro — Independent Verification of the Loop/Harness (NOOA) Synthesis
 
 > Adversarial verification of `research.md` by DeepSeek V4 Pro (cli-pi deepseek-v4-pro, thinking=high). Verdict: **PASS-WITH-FIXES**. Its most important catch is program-level: the synthesis (inheriting from studies 1-4) framed 036 as an EXISTING operational authority, when 036 actually runs additive/DARK with cutover planned/gated (DarkLedgerAdapter returns the legacy result unchanged) — so 'only 036 may admit' is a target-state invariant, not current enforcement. All fixes applied to research.md: (1) corrected the 036 grounding (designated != operational; runs dark; every subordination guarantee is a design contract, not live enforcement); (2) disambiguated P1's minimal content-digest reference from the deferred P6 ArtifactHandleV1; (3) added P2's authoritative-history read-through rule + corrected the NOOA memory-tool list to all seven tools (remember/recall/search/update_memory/forget/associate/deref); (4) clarified the P5 three-layer count (StopDecision is a separate stop mechanism, not a 4th eval layer); (5) flagged the near-perfectly-monotonic novelty series as executor-generated trajectory metadata, not corpus-exhaustion evidence. Produced 2026-08-14.

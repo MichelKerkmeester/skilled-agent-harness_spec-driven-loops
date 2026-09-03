@@ -4,6 +4,7 @@ rq: RQ-N4
 phase_target: 005-metadata-edge-promoter
 newInfoRatio: 0.82
 verdict: ADAPT
+trigger_phrases: []
 ---
 
 # Iteration 033 — RQ-N4: Deterministic Frontmatter Causal-Edge Promotion

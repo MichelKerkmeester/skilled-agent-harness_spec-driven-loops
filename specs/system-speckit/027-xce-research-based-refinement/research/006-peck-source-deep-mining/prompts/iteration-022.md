@@ -1,3 +1,7 @@
+---
+title: "Iteration 022 — Rollout sequencing & backward-compat (the concrete how-to-integrate)"
+trigger_phrases: []
+---
 DEEP-RESEARCH — INTEGRATION & IMPACT (gpt-5.5-fast)
 
 # Iteration 022 — Rollout sequencing & backward-compat (the concrete how-to-integrate)

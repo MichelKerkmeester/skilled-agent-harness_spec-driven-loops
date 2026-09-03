@@ -1,3 +1,7 @@
+---
+title: "SOL Execution Report: Git Preflight Advisory Runtime Coverage"
+trigger_phrases: []
+---
 # SOL Execution Report: Git Preflight Advisory Runtime Coverage
 
 ## 1. RESULT

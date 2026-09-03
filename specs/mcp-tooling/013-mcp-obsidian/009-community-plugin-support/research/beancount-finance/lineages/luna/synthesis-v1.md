@@ -1,3 +1,7 @@
+---
+title: "Synthesis receipt — lineage `luna`"
+trigger_phrases: []
+---
 # Synthesis receipt — lineage `luna`
 
 ## Inputs consumed

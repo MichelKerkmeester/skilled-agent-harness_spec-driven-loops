@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-025.md"]
 
+trigger_phrases: []
 ---
 # Iteration 025 — Q4 + Q9: Feature Regression Test Scenarios
 ## Goal

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Maintainability - generator provenance and portability"
+trigger_phrases: []
+---
 # Iteration 6: Maintainability - generator provenance and portability
 
 ## Dispatcher

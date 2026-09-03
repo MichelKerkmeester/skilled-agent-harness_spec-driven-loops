@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map"
+trigger_phrases: []
+---
 # Review Resource Map
 
 No packet `resource-map.md` existed at init for `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs`.

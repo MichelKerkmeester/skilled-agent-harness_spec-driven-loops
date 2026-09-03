@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: 028-governance-rollout"
+trigger_phrases: []
+---
 # Deep Review Strategy: 028-governance-rollout
 
 ## Topic

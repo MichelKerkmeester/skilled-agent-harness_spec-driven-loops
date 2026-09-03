@@ -1,3 +1,7 @@
+---
+title: "Deep-Loop-Innovation (036) Gap Analysis — Reconstructed Synthesis"
+trigger_phrases: []
+---
 # Deep-Loop-Innovation (036) Gap Analysis — Reconstructed Synthesis
 
 ## Provenance

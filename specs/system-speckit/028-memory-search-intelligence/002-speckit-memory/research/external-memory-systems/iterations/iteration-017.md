@@ -1,3 +1,7 @@
+---
+title: "Iteration 17 (Opus lineage — NATIVE): verify the iter-11/12 NET-NEW candidates"
+trigger_phrases: []
+---
 # Iteration 17 (Opus lineage — NATIVE): verify the iter-11/12 NET-NEW candidates
 
 > Model: **Opus 4.8 NATIVE** (read-only). Orchestrator-written. newInfoRatio **0.4**. Refute-by-default verify of the 4 NET-NEWs against live `mcp_server/` code. **2 GO, 2 REFINE** — and a confirmed consolidation.

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis - GPT Lineage: CLI Back-End Design"
+trigger_phrases: []
+---
 # Deep Research Synthesis - GPT Lineage: CLI Back-End Design
 
 - Date: 2026-06-06

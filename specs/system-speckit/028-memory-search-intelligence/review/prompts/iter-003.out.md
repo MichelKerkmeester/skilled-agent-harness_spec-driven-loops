@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 SKILL ROUTING: User directed → `deep-review`. The bound review packet authorizes only the three required iteration artifacts plus the registry and strategy; reviewed files remain read-only.
 The persisted packet already contains later iterations, but the bound prompt explicitly requests a retry of iteration 003. I will record only this retry’s independently derived slice evidence and will not alter the pre-existing later records.
 Two traceability defects are independently supported: 011 simultaneously marks the latency benchmark complete and unexecuted; 012 states its refresh test exercises deletion cascades, while that test only queues fresh suspects during the measured sweep. I am running the cited test once, then will write the retry artifacts and registry update.

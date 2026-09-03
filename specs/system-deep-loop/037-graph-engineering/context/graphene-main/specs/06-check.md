@@ -1,3 +1,7 @@
+---
+title: "Graphene · 06 · `gr check`"
+trigger_phrases: []
+---
 # Graphene · 06 · `gr check`
 
 ## 1. The rule

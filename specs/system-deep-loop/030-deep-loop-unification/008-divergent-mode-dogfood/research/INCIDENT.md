@@ -1,3 +1,7 @@
+---
+title: "INCIDENT: Mid-run destruction of the entire 008-divergent-mode-dogfood spec packet"
+trigger_phrases: []
+---
 # INCIDENT: Mid-run destruction of the entire 008-divergent-mode-dogfood spec packet
 
 **Severity: P0 — real data loss during a live dogfood run. Report this to the operator immediately.**

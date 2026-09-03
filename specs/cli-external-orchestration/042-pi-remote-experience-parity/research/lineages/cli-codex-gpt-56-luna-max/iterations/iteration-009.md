@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — Opaque browsable and renamable sessions"
+trigger_phrases: []
+---
 # Iteration 009 — Opaque browsable and renamable sessions
 
 ## Question

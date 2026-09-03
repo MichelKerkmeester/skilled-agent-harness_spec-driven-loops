@@ -1,3 +1,7 @@
+---
+title: "Devin-02: Noise Measurement Against Real Repository History"
+trigger_phrases: []
+---
 # Devin-02: Noise Measurement Against Real Repository History
 
 **Pass:** 2 of 10 — `manual-devin/devin-02`

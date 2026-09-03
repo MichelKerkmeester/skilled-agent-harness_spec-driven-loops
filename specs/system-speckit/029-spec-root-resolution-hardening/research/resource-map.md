@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Harden spec-folder root resolution. Enumerate every root-resolution call site with file and line and its precedence legacy-first vs canonical-first, decide whether canonical-first is the correct universal contract and whether any legacy specs-first caller would regress, determine what created and maintains the specs symlink and whether it is intentional and cross-platform-safe and whether resolution should depend on it, characterize the symlink-absent failure mode for each auto-writer, and produce a ranked regression-safe remediation with migration, rollback, and a validation strategy that passes both with and without the symlink."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

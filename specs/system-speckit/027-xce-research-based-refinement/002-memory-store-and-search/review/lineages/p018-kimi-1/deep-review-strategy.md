@@ -1,3 +1,7 @@
+---
+title: "Review Strategy: 018-reindex-scan-responsiveness-and-cancellation"
+trigger_phrases: []
+---
 # Review Strategy: 018-reindex-scan-responsiveness-and-cancellation
 
 <!-- topic -->

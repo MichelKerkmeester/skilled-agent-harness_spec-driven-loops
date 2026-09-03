@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Completed iteration 7 for the traceability dimension. Found 2 P1 findings:
 
 1. **REQ-005 verification incomplete** — The requirement that existing test suites pass is not verified. Only typecheck and a focused launcher-bootstrap suite (6 tests) were run, but REQ-005 requires the full advisor, daemon, and skill-graph test suites.

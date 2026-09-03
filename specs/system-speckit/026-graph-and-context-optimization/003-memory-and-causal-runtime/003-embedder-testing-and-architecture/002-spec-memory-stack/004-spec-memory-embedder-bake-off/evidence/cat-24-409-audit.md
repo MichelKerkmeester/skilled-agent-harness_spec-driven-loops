@@ -1,3 +1,7 @@
+---
+title: "cat-24/409 Fixture Fairness Audit"
+trigger_phrases: []
+---
 # cat-24/409 Fixture Fairness Audit
 
 ## Verdict

@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 — Angle 18"
+trigger_phrases: []
+---
 # Iteration 018 — Angle 18
 
 **Angle:** Template/validator co-evolution: fixtures silently drifted for months — a CI check that validates the canonical fixtures on every validator change.

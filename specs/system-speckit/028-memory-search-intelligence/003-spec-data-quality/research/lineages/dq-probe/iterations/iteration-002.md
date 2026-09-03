@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Ranking out-of-the-box automated features to perfect data quality across the full surface"
+trigger_phrases: []
+---
 # Iteration 2: Ranking out-of-the-box automated features to perfect data quality across the full surface
 
 ## Focus

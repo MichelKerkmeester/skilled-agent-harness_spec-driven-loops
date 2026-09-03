@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Security Severity and Fan-Out Runtime Blast Radius"
+trigger_phrases: []
+---
 # Iteration 4: Security Severity and Fan-Out Runtime Blast Radius
 
 ## Focus

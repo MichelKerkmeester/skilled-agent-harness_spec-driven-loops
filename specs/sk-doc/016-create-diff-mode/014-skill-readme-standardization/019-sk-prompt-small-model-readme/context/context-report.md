@@ -1,3 +1,7 @@
+---
+title: "Context Report: sk-prompt-models README rewrite"
+trigger_phrases: []
+---
 # Context Report: sk-prompt-models README rewrite
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only). Both iterations converge with cited file:line evidence on the per-model profiles, the craft-versus-mechanics split, the four-way ownership map and the navigation chain. Both flag the same stale facts (version, and a wrong "five executors" claim).

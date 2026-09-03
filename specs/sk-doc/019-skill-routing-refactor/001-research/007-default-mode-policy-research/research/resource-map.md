@@ -1,6 +1,7 @@
 ---
 title: "Resource Map: Parent-Hub Routing Out-of-Box Run 3"
 description: "Canonical resource map for the seven-iteration Run 3 research packet."
+trigger_phrases: []
 ---
 # Resource Map
 

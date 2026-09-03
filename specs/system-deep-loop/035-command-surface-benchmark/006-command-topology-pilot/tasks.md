@@ -15,6 +15,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

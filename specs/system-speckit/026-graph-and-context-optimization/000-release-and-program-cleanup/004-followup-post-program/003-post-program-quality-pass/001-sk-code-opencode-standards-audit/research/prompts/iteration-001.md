@@ -1,3 +1,7 @@
+---
+title: "sk-code-opencode Audit Findings"
+trigger_phrases: []
+---
 ## Packet 037/001: sk-code-opencode-audit — Tier A audit
 
 You are cli-codex (gpt-5.5 high fast) implementing **037/001-sk-code-opencode-standards-audit**.

@@ -1,3 +1,7 @@
+---
+title: "The three missing attestations are one missing reader"
+trigger_phrases: []
+---
 # The three missing attestations are one missing reader
 
 ## Correction to the earlier scope estimate

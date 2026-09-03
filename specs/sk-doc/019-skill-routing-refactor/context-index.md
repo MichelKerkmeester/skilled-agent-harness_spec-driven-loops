@@ -1,3 +1,7 @@
+---
+title: "Context Index — Folder Provenance Bridge"
+trigger_phrases: []
+---
 # Context Index — Folder Provenance Bridge
 
 This bridge records the packet's identity history and the completed folder

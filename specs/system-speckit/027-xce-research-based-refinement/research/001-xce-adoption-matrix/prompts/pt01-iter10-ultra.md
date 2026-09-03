@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 10/10 (FINAL SYNTHESIS) for packet .opencode/specs/system-spec-kit/027-xce-research-based-refinement.
 
 READ FIRST: <packet>/spec.md (especially §6 Success Criteria, REQ-001 through REQ-011), all 9 prior iters: <packet>/research/iterations/iteration-001.md through iteration-009.md.

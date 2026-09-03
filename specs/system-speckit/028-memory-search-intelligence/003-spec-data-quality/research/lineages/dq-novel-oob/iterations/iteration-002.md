@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — KQ2: LLM-as-judge wired to a real ranking consumer + auto-generated answerable-questions/semantic-intent"
+trigger_phrases: []
+---
 # Iteration 002 — KQ2: LLM-as-judge wired to a real ranking consumer + auto-generated answerable-questions/semantic-intent
 
 ## Focus

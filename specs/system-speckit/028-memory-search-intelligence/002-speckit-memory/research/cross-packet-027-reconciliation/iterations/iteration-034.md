@@ -1,3 +1,7 @@
+---
+title: "Iteration 34 (Round N adversarial): C4-B checkpoint restore — clean-additive HOLDS"
+trigger_phrases: []
+---
 # Iteration 34 (Round N adversarial): C4-B checkpoint restore — clean-additive HOLDS
 
 ## Focus

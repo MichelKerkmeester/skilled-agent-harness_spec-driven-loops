@@ -3,6 +3,7 @@ title: "Execution Plane Contract and Operating Decisions"
 description: "Destination-local protocol, proof bindings, ledger retention, role atomicity, fencing, and rollback boundaries."
 importance_tier: "critical"
 contextType: "implementation"
+trigger_phrases: []
 ---
 
 # Execution Plane Contract and Operating Decisions

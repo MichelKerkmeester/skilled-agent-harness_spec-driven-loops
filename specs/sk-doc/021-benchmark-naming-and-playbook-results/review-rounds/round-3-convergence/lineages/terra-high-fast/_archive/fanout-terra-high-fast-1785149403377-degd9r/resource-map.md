@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — .opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

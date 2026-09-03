@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — OS-level supervision (launchd/systemd) as the root-cause fix [Fix A]"
+trigger_phrases: []
+---
 # Iteration 004 — OS-level supervision (launchd/systemd) as the root-cause fix [Fix A]
 
 - **Wave:** 2 (of 5) · **Executor:** `openai/gpt-5.5-fast --variant xhigh` (read-only, exit 0) · **Seat:** byx00oghb · **Date:** 2026-06-14

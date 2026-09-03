@@ -1,6 +1,7 @@
 ---
 title: Deep Review Dashboard - gpt-1
 description: Auto-generated reducer-style view over the fan-out review lineage.
+trigger_phrases: []
 ---
 
 # Deep Review Dashboard - gpt-1

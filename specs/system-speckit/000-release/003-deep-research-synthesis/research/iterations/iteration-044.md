@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Refined extraction exposes CLI resource-path hallucination
 The sk-doc router test matrix was re-run with a refined extractor that filters paragraphs leading with negative markers and matches resource filenames by basename in addition to full paths. The fairer matching moved measured accuracy from 5.6% to 11.1% for cli-copilot and from 43.3% to 47.2% for cli-opencode, while cli-codex was unchanged. The rerun surfaced a new finding: cli-copilot does not just over-list resources, it hallucinates file names that do not exist in the framework, such as `dqi_rubric.md` and `dqi_checklist.md`, where cli-codex and cli-opencode cite only real paths. The qualitative ranking from the prior run holds: cli-codex leads, cli-opencode follows, cli-copilot trails. The extraction output ships as `matrix_v2.csv` and `review-report-v2.md` in the packet. This is internal test tooling, but it sharpens the router's standing guidance to prefer cli-codex for documentation routing.
 

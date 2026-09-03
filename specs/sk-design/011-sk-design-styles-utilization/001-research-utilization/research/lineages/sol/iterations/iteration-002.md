@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Retrieval Substrate Architecture and Repository-Native Precedents"
+trigger_phrases: []
+---
 # Iteration 2: Retrieval Substrate Architecture and Repository-Native Precedents
 
 ## Focus

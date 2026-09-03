@@ -12,6 +12,7 @@ _memory:
     completion_pct: 95
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Tasks: code-opencode Language-Slice Intent Gate
 

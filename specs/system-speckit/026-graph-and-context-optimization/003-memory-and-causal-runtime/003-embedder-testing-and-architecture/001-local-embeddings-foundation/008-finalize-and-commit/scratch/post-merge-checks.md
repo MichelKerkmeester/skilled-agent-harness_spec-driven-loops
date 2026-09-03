@@ -1,6 +1,7 @@
 ---
 title: "014 Post-Merge Verification Checklist"
 description: "Manual verification steps to run after the 014 bundled commit lands on main."
+trigger_phrases: []
 ---
 
 # 014 Post-Merge Verification Checklist

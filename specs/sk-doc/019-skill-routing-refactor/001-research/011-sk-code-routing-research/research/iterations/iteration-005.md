@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Shared Preamble Typed-Identity Contract"
+trigger_phrases: []
+---
 # Iteration 5: Shared Preamble Typed-Identity Contract
 
 ## Focus

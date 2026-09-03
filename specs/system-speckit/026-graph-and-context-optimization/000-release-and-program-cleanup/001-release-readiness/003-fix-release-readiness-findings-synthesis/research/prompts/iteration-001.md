@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 046: release-readiness-synthesis-and-remediation — Tier B synthesis + Tier C implementation
 
 You are cli-codex (gpt-5.5 high fast) implementing **004-release-readiness-findings-synthesis-remediation**.

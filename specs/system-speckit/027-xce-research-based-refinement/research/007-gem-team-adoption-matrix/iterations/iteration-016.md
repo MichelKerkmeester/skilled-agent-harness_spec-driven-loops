@@ -1,3 +1,7 @@
+---
+title: "Iteration 016: RQ-V3 adversarial — resilience (failure taxonomy + pre-mortem)"
+trigger_phrases: []
+---
 # Iteration 016: RQ-V3 adversarial — resilience (failure taxonomy + pre-mortem)
 
 **Focus:** RQ-V3 adversarial — resilience (failure taxonomy + pre-mortem)  

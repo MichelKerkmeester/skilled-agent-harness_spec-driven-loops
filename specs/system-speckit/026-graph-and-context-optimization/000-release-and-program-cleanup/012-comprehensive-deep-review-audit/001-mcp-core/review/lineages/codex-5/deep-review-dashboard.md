@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard - MCP Core"
+trigger_phrases: []
+---
 # Deep Review Dashboard - MCP Core
 
 ## Status

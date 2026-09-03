@@ -1,3 +1,7 @@
+---
+title: "Changelog Rollup — Track 005: Verification and Remediation"
+trigger_phrases: []
+---
 # Changelog Rollup — Track 005: Verification and Remediation
 
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation` (Phase Parent)

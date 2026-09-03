@@ -1,3 +1,7 @@
+---
+title: "The classification manifest is the one evidence input whose verdict is never read"
+trigger_phrases: []
+---
 # The classification manifest is the one evidence input whose verdict is never read
 
 ## What was checked, and why

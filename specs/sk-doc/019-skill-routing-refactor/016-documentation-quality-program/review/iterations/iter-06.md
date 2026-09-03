@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: skill/mode READMEs (part 1: create-* modes)"
+trigger_phrases: []
+---
 # Iteration 6: skill/mode READMEs (part 1: create-* modes)
 
 > dimension: accuracy+conformance | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

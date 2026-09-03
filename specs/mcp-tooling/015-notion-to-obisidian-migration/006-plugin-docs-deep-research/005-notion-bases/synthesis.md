@@ -1,3 +1,7 @@
+---
+title: "Synthesis: Notion Bases reference-doc improvement plan"
+trigger_phrases: []
+---
 # Synthesis: Notion Bases reference-doc improvement plan
 
 > **Role.** Fresh-eyes reviewer turning the completed deep-research (`research/research.md`,

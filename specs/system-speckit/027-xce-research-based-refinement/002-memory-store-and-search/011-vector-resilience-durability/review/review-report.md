@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 027/020 vector-resilience durability"
+trigger_phrases: []
+---
 # Deep Review Report — 027/020 vector-resilience durability
 
 **Target:** commit `1ee9e1e767` — repair-pending sentinel at quarantine, boot resume, clear-stuck-degraded on non-repair reindex.

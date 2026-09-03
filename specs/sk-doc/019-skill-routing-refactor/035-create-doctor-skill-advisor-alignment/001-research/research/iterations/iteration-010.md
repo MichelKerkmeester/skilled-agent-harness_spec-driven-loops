@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Default primary source for the read-only hook check"
+trigger_phrases: []
+---
 # Iteration 010 — Default primary source for the read-only hook check
 
 ## Focus

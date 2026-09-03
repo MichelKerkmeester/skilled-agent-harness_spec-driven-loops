@@ -1,3 +1,7 @@
+---
+title: "Resource Map: gpt55-fast-7 Deep Research Lineage"
+trigger_phrases: []
+---
 # Resource Map: gpt55-fast-7 Deep Research Lineage
 
 ## Summary

@@ -1,3 +1,7 @@
+---
+title: "Phase 014 Batch Plan"
+trigger_phrases: []
+---
 # Phase 014 Batch Plan
 
 Source registry: `../review/deep-review-findings-registry.json`

@@ -1,3 +1,7 @@
+---
+title: "Changelog Rollup — Track 003: Advisor and Code Graph"
+trigger_phrases: []
+---
 # Changelog Rollup — Track 003: Advisor and Code Graph
 
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph` (Phase Parent)

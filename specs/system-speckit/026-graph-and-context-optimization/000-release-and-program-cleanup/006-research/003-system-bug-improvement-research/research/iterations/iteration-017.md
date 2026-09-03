@@ -1,3 +1,7 @@
+---
+title: "Iteration 017 — D2: Module dependency graph health"
+trigger_phrases: []
+---
 # Iteration 017 — D2: Module dependency graph health
 
 ## Focus

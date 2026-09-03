@@ -1,3 +1,7 @@
+---
+title: "Context Index: sk-doc Documentation-Quality Program"
+trigger_phrases: []
+---
 # Context Index: sk-doc Documentation-Quality Program
 
 Per-phase cross-reference for the `016-documentation-quality-program` phase parent. The parent `spec.md` holds root purpose and the phase map; each child below owns its own scope, plan, tasks, checklist, and evidence.

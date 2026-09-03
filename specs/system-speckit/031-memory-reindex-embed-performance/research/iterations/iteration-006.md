@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Adversarial Re-verification of Owner-Lease Races"
+trigger_phrases: []
+---
 # Iteration 6: Adversarial Re-verification of Owner-Lease Races
 
 ## Focus

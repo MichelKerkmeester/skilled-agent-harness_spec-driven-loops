@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 (A8): a unified shadow-eval promotion methodology"
+trigger_phrases: []
+---
 # Iteration 8 (A8): a unified shadow-eval promotion methodology
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only, 1200s + read-cap). Orchestrator-written. newInfoRatio **0.7**. **There is exactly ONE promotion gate, welded to ONE candidate-class; the design keeps its spine and swaps a per-class metric panel.** The methodological keystone (A8) the whole intelligence-class roadmap needs.

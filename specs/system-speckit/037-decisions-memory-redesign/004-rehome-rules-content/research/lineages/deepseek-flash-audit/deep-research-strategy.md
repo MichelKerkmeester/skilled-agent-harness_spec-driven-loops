@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - Constitutional Deprecation Audit (detached fan-out lineage)
 description: Persistent brain for the deepseek-flash-audit lineage; tracks focus, findings, next focus across 10 iterations.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking

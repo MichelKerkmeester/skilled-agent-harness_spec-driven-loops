@@ -1,3 +1,7 @@
+---
+title: "Agent Brief — T-C Public API Surface Gaps"
+trigger_phrases: []
+---
 # Agent Brief — T-C Public API Surface Gaps
 
 You are an autonomous implementation agent. **No conversation context.**

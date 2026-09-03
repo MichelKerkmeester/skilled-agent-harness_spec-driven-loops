@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 018 Projection Runtime Core"
 description: "Build the production projection runtime core so the enablement flag gates a genuinely working transform: a default provider transport, a top-level projectMessage() orchestration, a default reject-only meaning judge, and root-barrel client presentation exports."
 trigger_phrases:
   - "projection-runtime-core"
-  - "projection runtime core"
   - "projectMessage orchestration"
   - "provider transport default"
   - "communication projection runtime"

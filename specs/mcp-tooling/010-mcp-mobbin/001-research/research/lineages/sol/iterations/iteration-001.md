@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Official Server, Transport, and Authorization Baseline"
+trigger_phrases: []
+---
 # Iteration 1: Official Server, Transport, and Authorization Baseline
 
 ## Focus

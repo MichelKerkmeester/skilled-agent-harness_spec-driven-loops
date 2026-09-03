@@ -1,3 +1,7 @@
+---
+title: "Batch Still-Real Verification — L3 Idempotency Flag-ON Blockers"
+trigger_phrases: []
+---
 # Batch Still-Real Verification — L3 Idempotency Flag-ON Blockers
 
 > **Verifier:** Fable 5 (fresh context) · **Date:** 2026-06-12

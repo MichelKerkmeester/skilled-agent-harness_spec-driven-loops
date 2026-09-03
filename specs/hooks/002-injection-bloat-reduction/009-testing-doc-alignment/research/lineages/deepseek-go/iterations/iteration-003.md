@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Codex hook-parity sub-playbooks, advisor catalogs, and the plugin surface"
+trigger_phrases: []
+---
 # Iteration 3: Codex hook-parity sub-playbooks, advisor catalogs, and the plugin surface
 
 ## Focus

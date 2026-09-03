@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: JS Engine API Surface, ButtonContext Interface, and MathJS Date Handling"
+trigger_phrases: []
+---
 # Iteration 002: JS Engine API Surface, ButtonContext Interface, and MathJS Date Handling
 
 ## Focus

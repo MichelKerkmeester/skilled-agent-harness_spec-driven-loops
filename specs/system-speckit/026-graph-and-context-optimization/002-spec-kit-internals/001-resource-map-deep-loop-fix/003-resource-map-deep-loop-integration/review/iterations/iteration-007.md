@@ -1,3 +1,7 @@
+---
+title: "Iteration 007: maintainability stabilization - final advisory sweep"
+trigger_phrases: []
+---
 # Iteration 007: maintainability stabilization - final advisory sweep
 
 ## Dispatcher

@@ -1,3 +1,7 @@
+---
+title: "Reference Inventory: system-spec-kit README Restyle"
+trigger_phrases: []
+---
 # Reference Inventory: system-spec-kit README Restyle
 
 ## 1. PURPOSE

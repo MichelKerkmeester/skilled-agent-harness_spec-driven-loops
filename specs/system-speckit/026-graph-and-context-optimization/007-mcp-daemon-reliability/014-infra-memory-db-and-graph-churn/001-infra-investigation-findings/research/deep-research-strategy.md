@@ -1,3 +1,7 @@
+---
+title: "Deep Research Charter — Remaining system-spec-kit failures (common-cause)"
+trigger_phrases: []
+---
 # Deep Research Charter — Remaining system-spec-kit failures (common-cause)
 
 ## Research Topic

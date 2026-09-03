@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — DECISION RESEARCH: Decide the best next move for the compiled-routing subsystem from the supplied verified state."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

@@ -1,3 +1,7 @@
+---
+title: "Follow-up Design Iteration 02: Multi-client Proxy Routing"
+trigger_phrases: []
+---
 # Follow-up Design Iteration 02: Multi-client Proxy Routing
 
 ## Current Gap

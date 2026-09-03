@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Hooks and agent startup surface"
+trigger_phrases: []
+---
 # Iteration 3: Hooks and agent startup surface
 ## Focus
 This iteration targeted Q1 and Q2: whether Copilot CLI has a documented hook/lifecycle surface comparable to Claude Code hooks, and whether `--agent` can inject startup-level context into the main session.

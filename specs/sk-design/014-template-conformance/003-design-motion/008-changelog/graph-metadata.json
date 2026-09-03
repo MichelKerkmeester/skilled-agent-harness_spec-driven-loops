@@ -35,8 +35,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/shared/assets/changelog-template.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -61,12 +60,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
         "source": "derived"
       },
       {
@@ -182,11 +175,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:14.301Z",
-    "last_save_at": "2026-08-30T15:39:13.120Z",
+    "last_save_at": "2026-09-03T22:18:12.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a8812b8a4d83455c48cacc10cdd567effd2946970731f681ade8656fd2f0f95",
+    "source_fingerprint": "sha256:cac059f4aa016928b82cd460a573c5fbf64f839c0330fcb1d6318137370846d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "089840b052f24fd73975f89d23e3b1184bd6593b886e54f9a9ec2318570839ca",
-      "plan.md": "1aac09fcc56a90b2c45780ddaf132c8200823872eeb5491a745570e199230e99",
-      "tasks.md": "fea28c0d5c81a4b0fc4878ba3cfdfbbf64cdedc03747c957ab1145c03f3e8667",
-      "implementation-summary.md": "702c441fbe2978590f26ac84d9a31f6db01104a2759ed5e348ae366b9c651fa7"
+      "plan.md": "40debf3963cf8dacf99595e8c7439c8842f6df03f4e5bcbd0b3bacad9a52b216",
+      "tasks.md": "748f639e12084bf714930db2328d753b8d1e9597b79d539db63f229a73fe7c04",
+      "implementation-summary.md": "4d135e47c32c3e82a1dcdd5d0d24b88de5fba5b05127f630e76706c5339576ac"
     },
     "last_active_child_id": null,
     "last_active_at": null

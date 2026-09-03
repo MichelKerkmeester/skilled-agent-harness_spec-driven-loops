@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Canon completeness gaps"
+trigger_phrases: []
+---
 # Iteration 001 — Canon completeness gaps
 
 ## Focus

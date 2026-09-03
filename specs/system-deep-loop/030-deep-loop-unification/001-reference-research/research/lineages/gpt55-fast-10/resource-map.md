@@ -1,3 +1,7 @@
+---
+title: "Resource Map - gpt55-fast-10"
+trigger_phrases: []
+---
 # Resource Map - gpt55-fast-10
 
 Generated from this lineage's research deltas. This is an evidence map for the lineage, not the packet root `resource-map.md`.

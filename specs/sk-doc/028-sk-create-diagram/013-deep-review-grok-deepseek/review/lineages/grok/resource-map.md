@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — skill:sk-create-diagram"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

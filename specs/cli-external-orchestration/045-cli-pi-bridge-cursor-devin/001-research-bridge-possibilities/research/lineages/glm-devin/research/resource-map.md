@@ -2,6 +2,7 @@
 title: "Resource Map — Pi Native Bridge to Cursor & Devin CLI Models"
 lineage: glm-devin
 created: 2026-08-17T14:38:10Z
+trigger_phrases: []
 ---
 
 # Resource Map

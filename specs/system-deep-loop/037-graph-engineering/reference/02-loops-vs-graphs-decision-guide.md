@@ -1,3 +1,7 @@
+---
+title: "Loops vs. Graphs: Decision Guide for `system-deep-loop`"
+trigger_phrases: []
+---
 # Loops vs. Graphs: Decision Guide for `system-deep-loop`
 
 Use this guide to decide whether a loop-based mode, phase, or adapter should become a graph.

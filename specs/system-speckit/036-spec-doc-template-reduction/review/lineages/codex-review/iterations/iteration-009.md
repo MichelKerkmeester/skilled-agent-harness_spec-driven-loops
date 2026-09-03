@@ -1,3 +1,7 @@
+---
+title: "Review Iteration 009 — Adversarial stabilization"
+trigger_phrases: []
+---
 # Review Iteration 009 — Adversarial stabilization
 
 ## Route

@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 10 (of 10) — adversarial self-check + finalization"
+trigger_phrases: []
+---
 # Deep-Review Iteration 10 (of 10) — adversarial self-check + finalization
 
 ## TARGET AUTHORITY (read first)

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Resource Map: xhigh-a"
+trigger_phrases: []
+---
 # Deep Review Resource Map: xhigh-a
 
 Converged evidence map generated from the four detached review deltas.

@@ -2,6 +2,7 @@
 title: Deep Research Strategy - Aside CLI and MCP lineage luna
 description: Detached three-iteration research strategy for the Aside browser developer surface.
 version: 1.14.0.0
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Aside CLI and MCP lineage luna

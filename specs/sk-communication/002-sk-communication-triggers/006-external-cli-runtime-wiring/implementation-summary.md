@@ -26,6 +26,7 @@ _memory:
       - "The entrypoint calls projectMessage so the whole route/execute/validate/render tail is reused, not reimplemented."
       - "Prompt delivery is a trailing argument with a closed stdin, the only shape opencode tolerates; the spawn boundary now always closes stdin."
       - "Read-only is enforced only where a CLI supports it without changing the rewrite output (codex runs under a read-only sandbox); the other engines' no-write property rests on the non-mutating rewrite prompt plus fail-closed-to-exact-original, not a sandbox flag. The argv is documentation-verified from each skill's SKILL.md, not live-verified."
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 6: external-cli runtime wiring

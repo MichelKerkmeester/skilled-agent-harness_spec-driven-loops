@@ -26,6 +26,7 @@ _memory:
     answered_questions:
       - "The data-quality research used the official deep-research workflow, opus-via-claude2."
       - "The floor experiment (027) is operator-agreed."
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->

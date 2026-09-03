@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 - Q6 empty and stale code-graph recovery"
+trigger_phrases: []
+---
 # Iteration 007 - Q6 empty and stale code-graph recovery
 
 ## Focus

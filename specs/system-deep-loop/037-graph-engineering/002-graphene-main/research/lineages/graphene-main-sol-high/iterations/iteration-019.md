@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 — When-not-to-use, rollback, shadow/canary, kill-switch, observability, and legacy-consumer boundaries for P1–P7"
+trigger_phrases: []
+---
 # Iteration 019 — When-not-to-use, rollback, shadow/canary, kill-switch, observability, and legacy-consumer boundaries for P1–P7
 
 ## Focus

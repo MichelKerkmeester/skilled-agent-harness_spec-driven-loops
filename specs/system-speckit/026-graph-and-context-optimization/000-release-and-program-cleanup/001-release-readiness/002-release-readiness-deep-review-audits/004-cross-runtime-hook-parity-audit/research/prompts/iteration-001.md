@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 045/005: cross-runtime-hook-parity — Deep-review angle 5 (release-readiness)
 
 ### CRITICAL: Spec folder path

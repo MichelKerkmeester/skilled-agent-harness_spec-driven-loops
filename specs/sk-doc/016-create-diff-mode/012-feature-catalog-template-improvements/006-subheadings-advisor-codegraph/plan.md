@@ -3,6 +3,7 @@ title: "Plan: Phase 006 — Sub-headings, advisor + code-graph"
 description: "Execution plan for applying H3 sub-headings to long HOW IT WORKS sections in system-skill-advisor and system-code-graph."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Plan: Phase 006 — Sub-headings, advisor + code-graph
 

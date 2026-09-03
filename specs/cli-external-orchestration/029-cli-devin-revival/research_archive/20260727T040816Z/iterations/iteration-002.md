@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: Least-privilege Devin MCP policy"
+trigger_phrases: []
+---
 # Iteration 002: Least-privilege Devin MCP policy
 
 ## Focus

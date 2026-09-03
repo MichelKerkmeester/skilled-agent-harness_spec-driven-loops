@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: spec folder — parent + phases 001-004"
+trigger_phrases: []
+---
 # Iteration 14: spec folder — parent + phases 001-004
 
 > dimension: spec-conformance | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

@@ -7,7 +7,6 @@ trigger_phrases:
   - "task prefix"
   - "embedding model prefix"
   - "getPrefixFor"
-  - "PREFIX_REGISTRY"
   - "COCOINDEX_QUERY_PROMPT_NAME"
   - "embedding model swap"
   - "014/001"

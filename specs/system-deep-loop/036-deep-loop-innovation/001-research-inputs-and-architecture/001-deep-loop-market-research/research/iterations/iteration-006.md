@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 6 | model luna (gpt-5.6-luna) | angle: Multi-agent deliberation / debate | 2026-07-14T21:43:35.156Z -->
 
 The main transfer is that council quality depends on independence, protocol, and adjudicator calibration—not raw seat count.

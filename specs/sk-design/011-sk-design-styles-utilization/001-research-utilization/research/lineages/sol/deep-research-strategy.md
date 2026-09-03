@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: sk-design Styles Utilization"
+trigger_phrases: []
+---
 # Deep Research Strategy: sk-design Styles Utilization
 
 ## 1. OVERVIEW

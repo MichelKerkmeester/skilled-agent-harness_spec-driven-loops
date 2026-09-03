@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Word-Cap and Naming Drift"
+trigger_phrases: []
+---
 # Iteration 7: Word-Cap and Naming Drift
 
 ## Focus

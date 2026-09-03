@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-RESEARCH ITERATION 4
 
 STATE SUMMARY: Iteration 4 of 5; 3/5 questions answered; ratios 1.00 -> 0.85 -> 0.72; stop policy is max-iterations.

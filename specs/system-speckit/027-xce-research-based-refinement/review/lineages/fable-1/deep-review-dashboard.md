@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — fable-1"
+trigger_phrases: []
+---
 # Deep Review Dashboard — fable-1
 
 > Auto-generated from `deep-review-state.jsonl` + `deep-review-findings-registry.json`. Lineage `fanout-fable-1-1781112180955-4japyt` (cli-claude-code / claude-fable-5).

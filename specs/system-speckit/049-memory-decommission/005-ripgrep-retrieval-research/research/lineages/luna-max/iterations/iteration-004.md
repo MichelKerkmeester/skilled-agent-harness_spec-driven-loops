@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: parity harness, frozen prompts, and measurable gates"
+trigger_phrases: []
+---
 # Iteration 4: parity harness, frozen prompts, and measurable gates
 
 ## Focus

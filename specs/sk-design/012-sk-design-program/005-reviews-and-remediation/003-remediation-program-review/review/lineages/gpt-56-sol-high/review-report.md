@@ -6,6 +6,7 @@ hasAdvisories: false
 releaseReadinessState: in-progress
 stopReason: maxIterationsReached
 sessionId: fanout-gpt-56-sol-high-1784650021792-031fvi
+trigger_phrases: []
 ---
 
 # Deep Review Report: sk-design Remediation Program

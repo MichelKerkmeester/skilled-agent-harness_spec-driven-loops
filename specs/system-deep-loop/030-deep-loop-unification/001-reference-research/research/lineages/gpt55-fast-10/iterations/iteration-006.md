@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Stress-Test Advisor Projection And Corpus Migration"
+trigger_phrases: []
+---
 # Iteration 6: Stress-Test Advisor Projection And Corpus Migration
 
 ## Focus

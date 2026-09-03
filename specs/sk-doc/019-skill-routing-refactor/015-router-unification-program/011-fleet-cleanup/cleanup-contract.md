@@ -1,3 +1,7 @@
+---
+title: "Fleet Cleanup Contract"
+trigger_phrases: []
+---
 # Fleet Cleanup Contract
 
 The terminal cleanup is a gated teardown, not a new routing plane. It removes

@@ -1,3 +1,7 @@
+---
+title: "Codex CLI Prompt — Implement packet 005-code-graph-upgrades runtime"
+trigger_phrases: []
+---
 # Codex CLI Prompt — Implement packet 005-code-graph-upgrades runtime
 
 You are running as codex CLI (`gpt-5.4`, `reasoning_effort=high`, `service_tier=fast`, `sandbox=workspace-write`). This prompt is self-contained — you have no prior conversation context. Read the files I name, implement the runtime lanes, run the verification commands, report results.

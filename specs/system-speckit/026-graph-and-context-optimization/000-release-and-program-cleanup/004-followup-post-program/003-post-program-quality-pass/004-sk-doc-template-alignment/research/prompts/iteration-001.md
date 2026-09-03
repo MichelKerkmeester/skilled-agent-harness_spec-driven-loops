@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 037/004: sk-doc-template-alignment — Tier B doc audit
 
 You are cli-codex (gpt-5.5 high fast) implementing **037/004-sk-doc-template-alignment**.

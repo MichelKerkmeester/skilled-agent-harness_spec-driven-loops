@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "contracts-and-fixtures",
-      "contracts and fixtures",
       "portable cli projection",
       "implementation phase",
       "implementation plan",
@@ -22,12 +21,11 @@
       "use a self-contained fixture-first contract package with immutable originals",
       "implementation status",
       "current state",
-      "portable cli projection handover"
+      "portable cli projection handover",
+      "resume contracts and fixtures"
     ],
     "key_topics": [
       "contracts-and-fixtures",
-      "contracts",
-      "fixtures",
       "portable",
       "cli",
       "projection",
@@ -36,7 +34,9 @@
       "plan",
       "tasks",
       "architecture",
-      "decision"
+      "decision",
+      "self-contained",
+      "fixture-first"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Define the versioned contracts and golden fixtures that every core, provider, and runtime adapter must share",
     "created_at": "2026-08-11T10:04:28Z",
-    "last_save_at": "2026-08-30T15:39:11.674Z",
+    "last_save_at": "2026-09-03T22:16:36.660Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:4639115e136a106219f58008593b43d04b555dbbe65bc02e2a0129ec04be3b35",
+    "source_fingerprint": "sha256:dd10c9abc17c10068ed2d8c04e1e9e64134815a960148b1decd49070a0d8afc1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ab9939d0ec739137a84add61686b9afd0b85da950d0d1c612969aafe990a5c3",
+      "spec.md": "b7ac15bd650f0f7b473ced5515b1daabfb34f996759f15e5c272b87dc2909ad2",
       "plan.md": "fd4788ee146a5930dbc9044beea6b178d519bdc8ee968815a7a2631ad14d3969",
       "tasks.md": "97e41a1dff39870f5934a7bcb2aa1bd9430fd1e9b489778790e63a523921c145",
       "decision-record.md": "3f0bf0ef3484919cf27787cd76850ffb5537bb7e23f59201dd45df59f1ad7160",

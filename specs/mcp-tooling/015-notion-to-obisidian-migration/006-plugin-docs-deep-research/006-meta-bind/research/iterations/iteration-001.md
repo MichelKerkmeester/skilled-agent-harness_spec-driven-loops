@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Meta Bind Expression Grammar and JS Action Signature"
+trigger_phrases: []
+---
 # Iteration 001: Meta Bind Expression Grammar and JS Action Signature
 
 ## Focus

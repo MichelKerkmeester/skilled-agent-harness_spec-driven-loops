@@ -1,3 +1,7 @@
+---
+title: "Iter 005 — Track 2: File Paths and Environment Variables Verification"
+trigger_phrases: []
+---
 # Iter 005 — Track 2: File Paths and Environment Variables Verification
 
 ## Summary

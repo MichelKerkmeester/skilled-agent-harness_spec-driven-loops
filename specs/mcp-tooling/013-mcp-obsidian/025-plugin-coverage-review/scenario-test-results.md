@@ -1,3 +1,7 @@
+---
+title: "Plugin Playbook Scenario Test Results"
+trigger_phrases: []
+---
 # Plugin Playbook Scenario Test Results
 
 > Headless execution of all 11 `mcp-obsidian` plugin tie-in scenarios (`OBS-011..OBS-021`) by **cli-codex `gpt-5.6-luna` xhigh / fast** agents, run in parallel. Each agent ran in its **own isolated throwaway vault** (codex `--sandbox workspace-write`, cwd = the throwaway dir, `TMPDIR` redirected there) — no real vault and no repo file was written. Verdicts are backed by real command output (jq, schema checks, round-trips, 85k–104k tokens per agent), not model assertion.

@@ -7,6 +7,7 @@ session_id: "2026-05-11T05:42:00Z"
 timestamp: "2026-05-11T06:03:17Z"
 verdict: CONDITIONAL
 hasAdvisories: true
+trigger_phrases: []
 ---
 
 # Iteration 2: Correctness — `shouldPreserveGraph` + `routeQuery` Override

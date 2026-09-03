@@ -6,6 +6,7 @@ lens: pragmatic (velocity)
 status: returned
 timestamp: 2026-05-23T17:08:00.000Z
 simulated: true
+trigger_phrases: []
 ---
 
 # Seat 002 — VELOCITY (Pragmatic Lens, simulated cli-codex vantage)

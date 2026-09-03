@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final Adversarial Replay And Synthesis Readiness"
+trigger_phrases: []
+---
 # Iteration 10: Final Adversarial Replay And Synthesis Readiness
 
 ## Dispatcher

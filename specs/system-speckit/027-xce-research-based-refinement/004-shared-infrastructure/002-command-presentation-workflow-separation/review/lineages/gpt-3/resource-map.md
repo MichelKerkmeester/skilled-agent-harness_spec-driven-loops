@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map - gpt-3"
+trigger_phrases: []
+---
 # Review Resource Map - gpt-3
 
 Resource-map input was absent at init, so this lineage emitted a compact review-derived map.

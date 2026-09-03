@@ -1,3 +1,7 @@
+---
+title: "12--query-intelligence"
+trigger_phrases: []
+---
 # 12--query-intelligence
 
 - Total: 9

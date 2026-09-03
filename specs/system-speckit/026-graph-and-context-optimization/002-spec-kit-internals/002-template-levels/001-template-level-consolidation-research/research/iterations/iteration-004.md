@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Repair-path design for template consolidation:

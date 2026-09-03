@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Styles SQLite Database Fate"
+trigger_phrases: []
+---
 # Deep Research Strategy: Styles SQLite Database Fate
 
 ## 1. Research Topic

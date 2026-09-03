@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 — Complete impact inventory (skills / commands / agents / hooks / configs)"
+trigger_phrases: []
+---
 DEEP-RESEARCH — INTEGRATION & IMPACT (gpt-5.5-fast)
 
 # Iteration 019 — Complete impact inventory (skills / commands / agents / hooks / configs)

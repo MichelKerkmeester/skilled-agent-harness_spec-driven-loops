@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — A1 Extend Quality Loop (Authored)"
+trigger_phrases: []
+---
 # Deep Review Dashboard — A1 Extend Quality Loop (Authored)
 
 _Auto-generated from JSONL + strategy + findings registry. Do not edit by hand._

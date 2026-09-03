@@ -1,3 +1,7 @@
+---
+title: "L9 Still-Real Verification — Part C (17 findings)"
+trigger_phrases: []
+---
 # L9 Still-Real Verification — Part C (17 findings)
 
 Fresh-verifier sweep, 2026-06-12. Each finding re-checked against current code/docs with overtake-honesty against today's shipped lanes (single-writer DB lock, secret scrubber, hash-only fingerprints, --command dispatch protocol, apply-pipeline gates, launcher lifecycle doc reconciliation, detect_changes adoption, advisor doc batch).

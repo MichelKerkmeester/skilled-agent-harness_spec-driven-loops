@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — DaemonClient.index cancellation semantics + remaining `create_task` survey"
+trigger_phrases: []
+---
 # Iteration 004 — DaemonClient.index cancellation semantics + remaining `create_task` survey
 
 ## Focus

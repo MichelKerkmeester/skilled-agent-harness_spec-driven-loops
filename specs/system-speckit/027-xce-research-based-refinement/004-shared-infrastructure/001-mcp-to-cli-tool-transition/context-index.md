@@ -1,3 +1,7 @@
+---
+title: "Context Index: 028-mcp-to-cli-tool-transition"
+trigger_phrases: []
+---
 # Context Index: 028-mcp-to-cli-tool-transition
 
 Reorganization bridge for resume tooling and humans. The phase-parent spec.md stays free of migration narrative by design; the history lives here.

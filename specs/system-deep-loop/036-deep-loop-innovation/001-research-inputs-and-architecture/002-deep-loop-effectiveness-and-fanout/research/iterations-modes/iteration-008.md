@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 8 | SOL xhigh | mode: deep-review | angle: A3-mech deep-review :: mechanisms & reference impls | 2026-07-15T08:40:09.688Z -->
 
 Deep-review’s moat should be “proof-carrying longitudinal review,” not merely more review passes. A material finding should retain identity across revisions, survive active falsification, and eventually carry an immutable fix-verification receipt.

@@ -2,6 +2,7 @@
 description: Read-only lint pass over a markdown directory against the sk-doc authority's structural rules.
 argument-hint: <path> [--json]
 allowed-tools: Read
+trigger_phrases: []
 ---
 
 # Lint Docs

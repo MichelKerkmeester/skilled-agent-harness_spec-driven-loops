@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — RQ5: Hook Latency Budget + RQ6: Per-Call Spawn Overhead"
+trigger_phrases: []
+---
 # Iteration 003 — RQ5: Hook Latency Budget + RQ6: Per-Call Spawn Overhead
 
 - **Date:** 2026-06-06T12:45:00Z

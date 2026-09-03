@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Commit-Scoped Parent Canon Hunk Review"
+trigger_phrases: []
+---
 # Iteration 8: Commit-Scoped Parent Canon Hunk Review
 
 ## Focus

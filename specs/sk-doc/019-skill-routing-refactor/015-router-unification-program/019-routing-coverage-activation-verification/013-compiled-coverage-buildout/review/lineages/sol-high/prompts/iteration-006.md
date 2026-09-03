@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW ITERATION 006
 
 Focus: adversarial same-class lexical sweep across hubs after F005.

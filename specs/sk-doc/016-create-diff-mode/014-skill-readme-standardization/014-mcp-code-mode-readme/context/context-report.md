@@ -1,3 +1,7 @@
+---
+title: "Context Report: mcp-code-mode README rewrite"
+trigger_phrases: []
+---
 # Context Report: mcp-code-mode README rewrite
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only). Both iterations converge with cited file:line evidence on the four tools, the progressive-disclosure workflow, the context-reduction figure and the naming rule. Both agree the canonical call form here is `call_tool_chain({ code })`, and both flag the same version and count drift. This is the engine the other mcp-* skills consume.

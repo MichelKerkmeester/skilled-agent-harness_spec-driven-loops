@@ -1,3 +1,7 @@
+---
+title: "Sequential: each review waits for the previous to finish"
+trigger_phrases: []
+---
 Source: https://flowtivity.ai/blog/graph-engineering-2026-guide-openclaw-codex/
 
 From Loops to Graphs: The Next Paradigm in AI Agent Engineering

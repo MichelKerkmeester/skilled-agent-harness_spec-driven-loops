@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 020"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 020
 
 Focus: Recommendation and residual unknowns

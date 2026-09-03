@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Cross-reference, handoff, and resume audit"
+trigger_phrases: []
+---
 # Iteration 006 — Cross-reference, handoff, and resume audit
 
 ## Focus

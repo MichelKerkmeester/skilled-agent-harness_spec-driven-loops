@@ -4,6 +4,7 @@ description: Persistent brain for the gem-team adoption-research loop. Orchestra
 session: 2026-06-06-027-gem-team-adoption-matrix
 executor: cli-opencode openai/gpt-5.5-fast --variant high (read-only); orchestrator-written artifacts
 iterations: 001-onward (global counter; continues after 005's 061-080)
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — 007 Gem Team Adoption Matrix

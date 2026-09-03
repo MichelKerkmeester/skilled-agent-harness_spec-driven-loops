@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: ROOT DOCS sweep — constitutional links + inlined rules"
+trigger_phrases: []
+---
 # Iteration 5: ROOT DOCS sweep — constitutional links + inlined rules
 
 ## Focus

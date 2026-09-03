@@ -1,6 +1,7 @@
 ---
 title: Deep Review Dashboard — arc 008-rerank-sidecar-arc
 description: Auto-generated session overview. Regenerated after each iteration.
+trigger_phrases: []
 ---
 
 # Deep Review Dashboard — arc 008-rerank-sidecar-arc

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — Gateway-Alignment Surface"
+trigger_phrases: []
+---
 # Deep Review Report — Gateway-Alignment Surface
 
 - Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review`

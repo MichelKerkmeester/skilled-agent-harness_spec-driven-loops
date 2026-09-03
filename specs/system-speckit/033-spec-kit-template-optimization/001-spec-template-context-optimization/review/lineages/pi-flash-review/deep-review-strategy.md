@@ -3,6 +3,7 @@ title: Deep Review Strategy - Session Tracking
 description: Review strategy for the 034-spec-template-context-optimizations fan-out review lineage.
 importance_tier: normal
 contextType: planning
+trigger_phrases: []
 ---
 
 # Deep Review Strategy - Session Tracking

@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Angle 8"
+trigger_phrases: []
+---
 # Iteration 008 — Angle 8
 
 **Angle:** Unclean-shutdown marker lifecycle: probe cost on large DBs at every boot after crash; marker staleness semantics across multiple launchers.

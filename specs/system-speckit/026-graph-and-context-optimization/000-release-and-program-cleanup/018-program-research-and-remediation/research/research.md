@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis — 50 Angles on the 026 Program"
+trigger_phrases: []
+---
 # Deep Research Synthesis — 50 Angles on the 026 Program
 
 - **Date:** 2026-06-05

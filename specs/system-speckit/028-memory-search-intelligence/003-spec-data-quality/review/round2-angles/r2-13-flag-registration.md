@@ -1,3 +1,7 @@
+---
+title: "r2-13 flag-registration"
+trigger_phrases: []
+---
 # r2-13 flag-registration
 
 **Angle summary:** Whether the flags the 005 phases propose can actually register in `search-flags.ts` and survive the `flag-ceiling.vitest.ts` drift guard, and whether any flag is named in one doc but not another or left unnamed where a phase needs one.

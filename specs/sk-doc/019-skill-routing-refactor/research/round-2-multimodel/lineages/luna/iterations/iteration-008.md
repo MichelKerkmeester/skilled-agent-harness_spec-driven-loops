@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Typed resource-contract replay"
+trigger_phrases: []
+---
 # Iteration 8: Typed resource-contract replay
 
 ## Focus

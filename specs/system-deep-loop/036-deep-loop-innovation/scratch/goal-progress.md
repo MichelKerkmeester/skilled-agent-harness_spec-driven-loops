@@ -1,3 +1,7 @@
+---
+title: "036 Autonomous Execution — Progress & Resume Anchor"
+trigger_phrases: []
+---
 # 036 Autonomous Execution — Progress & Resume Anchor
 
 > Live progress for the autonomous two-model run driving the 036 tail. Pairs with `goal-prompt.md` (the operational

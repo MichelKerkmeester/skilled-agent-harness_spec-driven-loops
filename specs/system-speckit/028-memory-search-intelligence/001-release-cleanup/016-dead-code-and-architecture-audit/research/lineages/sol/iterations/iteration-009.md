@@ -1,3 +1,7 @@
+---
+title: "Iteration 009: Adversarial dead-code verification"
+trigger_phrases: []
+---
 # Iteration 009: Adversarial dead-code verification
 
 ## Focus

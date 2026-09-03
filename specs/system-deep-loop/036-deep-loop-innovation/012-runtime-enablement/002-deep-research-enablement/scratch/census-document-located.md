@@ -1,3 +1,7 @@
+---
+title: "The census document exists, and the classification path is buildable"
+trigger_phrases: []
+---
 # The census document exists, and the classification path is buildable
 
 ## The near-miss

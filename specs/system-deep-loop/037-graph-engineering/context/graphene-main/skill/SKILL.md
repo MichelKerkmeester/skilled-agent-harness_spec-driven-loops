@@ -1,6 +1,7 @@
 ---
 name: graphene
 description: Plan work as a graph, run it, coordinate across sessions, and ask humans for input without blocking. Use when a task decomposes into parallel pieces, when work must survive a session ending, when several agents share one job, or when an irreversible action needs a person's approval. Also use when the user pastes a bare `gn_…` id.
+trigger_phrases: []
 ---
 
 # Graphene

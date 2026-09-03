@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: Frontmatter and Data Model — How YAML Values Become Queryable Dataview Data"
+trigger_phrases: []
+---
 # Iteration 002: Frontmatter and Data Model — How YAML Values Become Queryable Dataview Data
 
 ## Focus

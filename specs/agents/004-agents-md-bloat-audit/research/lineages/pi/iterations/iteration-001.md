@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Structural Inventory & Cross-Section Redundancy Scan"
+trigger_phrases: []
+---
 # Iteration 1: Structural Inventory & Cross-Section Redundancy Scan
 
 ## Focus

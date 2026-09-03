@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 — zai-coding-plan/glm-5.2 — focus: benchmark"
+trigger_phrases: []
+---
 # Iteration 2 — zai-coding-plan/glm-5.2 — focus: benchmark
 
 I'll trace the benchmark data flow and identify the minimal additive lane. Let me batch initial reads.

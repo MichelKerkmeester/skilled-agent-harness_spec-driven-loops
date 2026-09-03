@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Hierarchical Graph Budget Lifecycle"
+trigger_phrases: []
+---
 # Iteration 9: Hierarchical Graph Budget Lifecycle
 
 ## Focus

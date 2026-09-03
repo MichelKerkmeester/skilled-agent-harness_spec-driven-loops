@@ -1,3 +1,7 @@
+---
+title: "Task 9 Final Documentation Blockers"
+trigger_phrases: []
+---
 # Task 9 Final Documentation Blockers
 
 ## STATUS and strict-validator blocker ledger

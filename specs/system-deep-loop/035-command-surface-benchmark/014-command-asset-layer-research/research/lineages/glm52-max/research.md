@@ -1,3 +1,7 @@
+---
+title: "Command Asset-Layer Research — glm52-max lineage synthesis"
+trigger_phrases: []
+---
 # Command Asset-Layer Research — glm52-max lineage synthesis
 
 > **Packet:** `066-command-surface-benchmark/014-command-asset-layer-research`

@@ -6,6 +6,7 @@ totalProposals: 3
 deferredItems: 6
 created: "2026-06-06"
 verdict: "VALIDATE-AND-INCREMENTALLY-REFINE — 3 small adapter/gate packets; everything else → tags/aliases/notes"
+trigger_phrases: []
 ---
 
 # Sub-Packet Proposals — Gem Team Adoption

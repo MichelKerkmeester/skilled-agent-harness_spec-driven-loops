@@ -1,3 +1,7 @@
+---
+title: "Resource Map — Aside Developer Surface (Fan-Out Consolidated)"
+trigger_phrases: []
+---
 # Resource Map — Aside Developer Surface (Fan-Out Consolidated)
 
 > **Consolidated from the two lineage resource maps** — `lineages/sol/resource-map.md` (hand-authored, 5-iteration lineage) and `lineages/luna/resource-map.md` (auto-generated, 3-iteration live-probe lineage) — because the base-dir reducer path does not apply to the fan-out layout (per-lineage maps live under `lineages/<label>/`, not the run base dir). The `glm` lineage produced no resource map. Entries are deduplicated; lineage-specific entries are tagged.

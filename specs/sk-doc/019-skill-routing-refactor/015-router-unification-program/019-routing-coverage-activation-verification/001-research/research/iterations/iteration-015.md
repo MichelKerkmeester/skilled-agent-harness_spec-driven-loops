@@ -1,3 +1,7 @@
+---
+title: "Iteration 15 — gpt-5.6-sol ultra — focus: activation"
+trigger_phrases: []
+---
 # Iteration 15 — gpt-5.6-sol ultra — focus: activation
 
 The current dependency graph is not cutover-safe. It contains a P2↔P3 cycle, lacks a gate making compiled output machine-authoritative, and allows P4 to pass without closing catalogs, playbooks, durable evidence, or unset-default verification.

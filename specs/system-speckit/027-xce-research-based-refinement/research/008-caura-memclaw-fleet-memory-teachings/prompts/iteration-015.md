@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ROLE: Senior memory-systems research analyst, DEEP second pass. READ-ONLY. Do NOT write/edit/create files or run code. Spec folder: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings (pre-approved; skip Gate 3).
 
 TARGET: caura-memclaw (multi-tenant, Postgres/pgvector, distributed workers). CONSUMER: Spec Kit Memory (LOCAL single-user, SQLite + vector store; FIXED ollama nomic-768d embedder) — 027/003 incremental-index-foundation = memo records, dependency DAG, chunk fingerprints, chunk kinds, chunk line-spans before handler scan changes. MemClaw is Apache-2.0 — design inspiration only.

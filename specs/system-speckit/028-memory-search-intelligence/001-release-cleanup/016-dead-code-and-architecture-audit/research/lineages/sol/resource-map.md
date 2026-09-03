@@ -1,3 +1,7 @@
+---
+title: "Resource Map - Sol Dead-Code and Architecture Audit"
+trigger_phrases: []
+---
 # Resource Map - Sol Dead-Code and Architecture Audit
 
 ## Scope

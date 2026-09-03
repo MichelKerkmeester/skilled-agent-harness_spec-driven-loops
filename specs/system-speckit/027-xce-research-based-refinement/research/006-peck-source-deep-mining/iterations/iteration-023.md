@@ -1,3 +1,7 @@
+---
+title: "Iteration 023 — Re-rank everything through the UX + automation lens"
+trigger_phrases: []
+---
 # Iteration 023 — Re-rank everything through the UX + automation lens
 
 **Focus:** score every change on friction/automation/value → ship-rank; reshape/defer; net-new UX+auto opportunities.

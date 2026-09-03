@@ -1,3 +1,7 @@
+---
+title: "03--discovery"
+trigger_phrases: []
+---
 # 03--discovery
 
 - Total: 3

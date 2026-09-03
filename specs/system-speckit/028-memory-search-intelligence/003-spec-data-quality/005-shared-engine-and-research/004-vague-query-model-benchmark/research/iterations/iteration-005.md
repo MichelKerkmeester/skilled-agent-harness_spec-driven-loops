@@ -1,3 +1,7 @@
+---
+title: "Iteration 005, Q6: Retrieval is not strictly deterministic; residual wall-clock ranking inputs"
+trigger_phrases: []
+---
 # Iteration 005, Q6: Retrieval is not strictly deterministic; residual wall-clock ranking inputs
 
 **Focus:** Is the pipeline deterministic for a fixed query string, so the benchmark spread is model-driven?

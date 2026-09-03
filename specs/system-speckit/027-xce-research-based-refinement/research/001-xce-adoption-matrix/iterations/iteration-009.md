@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — RQ9: Non-Adoption Boundary"
+trigger_phrases: []
+---
 # Iteration 009 — RQ9: Non-Adoption Boundary
 
 **Started**: 2026-05-08T17:00:00Z

@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 16 | SOL xhigh | thread: general-effectiveness-and-council | angle: 2025-2026 SOTA techniques for more-effective agent loops | 2026-07-15T05:27:35.587Z -->
 
 The strongest new pattern is not another stopping score. It is a multi-action compute controller deciding where the next unit of budget goes: planning, execution, another independent sample, deeper verification, or a stronger model.

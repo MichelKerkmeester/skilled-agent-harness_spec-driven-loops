@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: Deep Benchmark Analysis — Contradictions and Gaps"
+trigger_phrases: []
+---
 # Iteration 004: Deep Benchmark Analysis — Contradictions and Gaps
 
 ## Focus

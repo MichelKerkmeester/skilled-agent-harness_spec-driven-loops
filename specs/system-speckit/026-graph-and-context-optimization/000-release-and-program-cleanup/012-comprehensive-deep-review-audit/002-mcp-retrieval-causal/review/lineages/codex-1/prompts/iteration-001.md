@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 Prompt Record"
+trigger_phrases: []
+---
 # Iteration 001 Prompt Record
 
 Focus: correctness pass over `memory_context`, `memory_search`, `memory_causal_link`, and supporting session/causal edge modules.

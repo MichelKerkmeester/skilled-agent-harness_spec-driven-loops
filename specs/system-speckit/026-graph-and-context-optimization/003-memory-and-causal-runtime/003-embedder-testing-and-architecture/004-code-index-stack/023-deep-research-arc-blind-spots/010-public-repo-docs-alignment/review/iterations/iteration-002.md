@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — mcp-coco-index/feature_catalog/ (root + indexing-pipeline + search-and-ranking)"
+trigger_phrases: []
+---
 # Iteration 002 — mcp-coco-index/feature_catalog/ (root + indexing-pipeline + search-and-ranking)
 
 **Scope:** feature_catalog.md, 03--indexing-pipeline/04-embedding-provider-selection.md, 05--search-and-ranking/07-hybrid-search-bm25-rrf.md, 05--search-and-ranking/08-reranker-cross-encoder.md

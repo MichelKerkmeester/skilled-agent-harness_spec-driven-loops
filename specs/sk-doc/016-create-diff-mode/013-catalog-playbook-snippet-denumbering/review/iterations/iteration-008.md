@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 008 — commands frontmatter + body path refs"
+trigger_phrases: []
+---
 # Deep-Review Iteration 008 — commands frontmatter + body path refs
 
 **Executor:** DeepSeek-v4-pro (cli-opencode, --pure, read-only)

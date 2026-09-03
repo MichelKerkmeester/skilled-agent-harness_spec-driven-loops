@@ -1,3 +1,7 @@
+---
+title: "Direct-append inventory (tree-wide)"
+trigger_phrases: []
+---
 # Direct-append inventory (tree-wide)
 
 captured_at: 2026-08-19T19:46:07Z

@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — Adversarially verify T6 (completion-verdict freshness binding)"
+trigger_phrases: []
+---
 DEEP-RESEARCH — CROSS-MODEL VERIFY (MiniMax M3)
 
 # Iteration 014 — Adversarially verify T6 (completion-verdict freshness binding)

@@ -15,7 +15,7 @@ _memory:
     last_updated_by: "claude-code"
     recent_action: "Delivered and verified"
     next_safe_action: "None"
-    blockers: []
+    blockers:
       - "Execution awaits operator authorization"
     key_files:
       - "spec.md"

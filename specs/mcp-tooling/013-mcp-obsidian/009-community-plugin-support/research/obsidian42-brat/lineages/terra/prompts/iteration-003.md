@@ -1,3 +1,7 @@
+---
+title: "Deep-research dispatch record — iteration 003"
+trigger_phrases: []
+---
 # Deep-research dispatch record — iteration 003
 
 Target agent: `deep-research`

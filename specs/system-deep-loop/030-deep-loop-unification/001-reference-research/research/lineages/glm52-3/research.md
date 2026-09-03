@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis — Deep-Loop Unification Merge Design"
+trigger_phrases: []
+---
 # Deep Research Synthesis — Deep-Loop Unification Merge Design
 
 **Lineage:** glm52-3 (GLM-5.2, cli-opencode, reasoningEffort: max)

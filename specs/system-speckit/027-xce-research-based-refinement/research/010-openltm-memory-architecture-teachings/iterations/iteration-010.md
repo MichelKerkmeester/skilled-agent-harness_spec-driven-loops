@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — learn() idempotency + cross-plugin write contract"
+trigger_phrases: []
+---
 # Iteration 010 — learn() idempotency + cross-plugin write contract
 
 **Status:** complete · **Findings:** 5 · **newInfoRatio:** 0.60 · **tokens:** 94338 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

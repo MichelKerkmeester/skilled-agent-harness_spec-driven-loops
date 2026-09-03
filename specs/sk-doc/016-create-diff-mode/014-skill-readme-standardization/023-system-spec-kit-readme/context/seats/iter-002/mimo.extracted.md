@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now let me get the remaining tool definitions and count them:
 Now let me verify a few remaining details:
 Here is the verification report:

@@ -1,3 +1,7 @@
+---
+title: "Screenshots used by the project README"
+trigger_phrases: []
+---
 # Screenshots used by the project README
 
 The root `README.md` references these five files by exact name. Replacing one

@@ -1,3 +1,7 @@
+---
+title: "Manual Devin pass focuses (gap-driven)"
+trigger_phrases: []
+---
 # Manual Devin pass focuses (gap-driven)
 
 Chosen against the 32 merged fan-out findings, targeting surfaces those findings barely reached.

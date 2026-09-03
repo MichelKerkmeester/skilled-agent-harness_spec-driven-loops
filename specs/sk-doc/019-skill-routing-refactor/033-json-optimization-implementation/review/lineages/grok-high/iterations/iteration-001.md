@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: D1 Correctness — REQ consistency, baseline pin authority, Complete-vs-gate"
+trigger_phrases: []
+---
 # Iteration 1: D1 Correctness — REQ consistency, baseline pin authority, Complete-vs-gate
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Final verification against evidence"
+trigger_phrases: []
+---
 # Iteration 010 — Final verification against evidence
 
 ## Focus

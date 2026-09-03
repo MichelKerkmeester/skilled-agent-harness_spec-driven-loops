@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — SQ4 launcher-swap common cause + SQ3 graph-churn recheck"
+trigger_phrases: []
+---
 # Iteration 003 — SQ4 launcher-swap common cause + SQ3 graph-churn recheck
 
 ## Question

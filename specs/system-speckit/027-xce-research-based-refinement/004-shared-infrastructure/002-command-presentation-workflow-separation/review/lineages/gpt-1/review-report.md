@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: Command Presentation Workflow Separation"
+trigger_phrases: []
+---
 # Deep Review Report: Command Presentation Workflow Separation
 
 ## Executive Summary

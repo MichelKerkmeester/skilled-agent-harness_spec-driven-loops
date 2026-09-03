@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Current Router and Concrete Resource Inventory"
+trigger_phrases: []
+---
 # Iteration 1: Current Router and Concrete Resource Inventory
 
 ## Focus

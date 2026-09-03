@@ -1,3 +1,7 @@
+---
+title: "Deep Review v4 Iteration 044 - EmbeddingProfile consumer alignment"
+trigger_phrases: []
+---
 # Deep Review v4 Iteration 044 - EmbeddingProfile consumer alignment
 
 ## Focus

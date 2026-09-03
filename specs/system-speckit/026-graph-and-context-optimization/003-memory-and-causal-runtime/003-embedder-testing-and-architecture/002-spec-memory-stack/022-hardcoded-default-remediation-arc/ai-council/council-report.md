@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Multi-AI Council Report: 022 Remediation Arc Remaining Execution Strategy
 
 ### Task Classification

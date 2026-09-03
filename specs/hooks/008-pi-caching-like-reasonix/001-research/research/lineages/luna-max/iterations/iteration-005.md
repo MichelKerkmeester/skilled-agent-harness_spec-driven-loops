@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Audit Pi's native caching surface"
+trigger_phrases: []
+---
 # Iteration 5: Audit Pi's native caching surface
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "P2 — Unified Promotion-Evidence Model"
+trigger_phrases: []
+---
 # P2 — Unified Promotion-Evidence Model
 
 ## Certificate

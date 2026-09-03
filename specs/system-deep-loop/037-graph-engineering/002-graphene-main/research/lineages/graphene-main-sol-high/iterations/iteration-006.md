@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: P4 stale-worker successor safety proof and mutation-side fencing"
+trigger_phrases: []
+---
 # Iteration 6: P4 stale-worker successor safety proof and mutation-side fencing
 
 ## Focus

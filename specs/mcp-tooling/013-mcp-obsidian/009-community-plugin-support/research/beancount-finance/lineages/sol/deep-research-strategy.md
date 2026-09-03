@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Beancount Ledger 2.3.1"
+trigger_phrases: []
+---
 # Deep Research Strategy — Beancount Ledger 2.3.1
 
 ## 2. TOPIC

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Second-Order Anti-Patterns of `null + mode-map` (Does the Fix Recreate the Disease?)"
+trigger_phrases: []
+---
 # Iteration 3: Second-Order Anti-Patterns of `null + mode-map` (Does the Fix Recreate the Disease?)
 
 **Thread:** 7 (second-order effects) | **Lineage:** glm-max | **Focus:** Q3

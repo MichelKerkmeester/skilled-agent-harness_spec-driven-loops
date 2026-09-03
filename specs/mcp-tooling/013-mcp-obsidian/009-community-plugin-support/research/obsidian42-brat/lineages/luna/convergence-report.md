@@ -1,6 +1,7 @@
 ---
 title: "BRAT detached research convergence report"
 description: "Terminal report for the luna fan-out lineage."
+trigger_phrases: []
 ---
 
 # Convergence Report

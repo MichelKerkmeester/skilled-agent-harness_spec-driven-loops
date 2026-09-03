@@ -1,6 +1,7 @@
 ---
 title: Obsidian Tables file-layer knowledge-base research strategy
 session_id: fanout-terra-1785673258726-kcaoky
+trigger_phrases: []
 ---
 
 # Deep Research Strategy

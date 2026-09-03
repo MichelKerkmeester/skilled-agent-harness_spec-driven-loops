@@ -1,3 +1,7 @@
+---
+title: "NVIDIA-labs OO Agents"
+trigger_phrases: []
+---
 # NVIDIA-labs OO Agents
 
 ## Native Python Object-Oriented Agents

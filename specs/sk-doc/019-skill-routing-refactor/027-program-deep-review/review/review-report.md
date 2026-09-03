@@ -1,3 +1,7 @@
+---
+title: "Consolidated Review Report — Skill-Metadata Program Deep Review"
+trigger_phrases: []
+---
 # Consolidated Review Report — Skill-Metadata Program Deep Review
 
 **Reviewed tree:** `skilled/v4.0.0.0` @ `a39e6ea716` (program range `2fa9fc480c..a39e6ea716`).

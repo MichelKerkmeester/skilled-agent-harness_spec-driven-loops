@@ -14,7 +14,6 @@
       "mcp mobbin readme",
       "mobbin readme rewrite",
       "mobbin readme revisit",
-      "mcp-mobbin readme",
       "mode readme mcp-mobbin",
       "phase 012 plan",
       "mcp mobbin readme plan",
@@ -22,7 +21,8 @@
       "mobbin readme revisit plan",
       "phase 012 tasks",
       "mcp mobbin readme tasks",
-      "mobbin readme rewrite tasks"
+      "mobbin readme rewrite tasks",
+      "mobbin readme revisit tasks"
     ],
     "key_topics": [
       "mcp",
@@ -30,8 +30,8 @@
       "readme",
       "rewrite",
       "revisit",
-      "mcp-mobbin",
       "mode",
+      "mcp-mobbin",
       "phase",
       "plan",
       "tasks",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/mcp-tooling/mcp-mobbin/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:43.402Z",
-    "last_save_at": "2026-08-30T15:39:17.696Z",
+    "last_save_at": "2026-09-03T22:19:43.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64c4e682fd34dfc2fa8a2eb1b14cac5b94bab7adfa1e431c531c342f013a6a3b",
+    "source_fingerprint": "sha256:24bcf033ac372017e3e1800690776720b8ef8f0ec430278ab90ac066b6124301",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a313903fccd78961edfd989768eb927865e6d99919cb9d83ee4b8ac56de06f41",
+      "spec.md": "031afcc96ac0cb817906bad043a285fa0eb8cccbc3319f197fbb48f38432ac2b",
       "plan.md": "11ab2e0ec9a6c7d17dd705ebe0c794d3fa1c1a0acd542d437a8fb6f394fc096c",
       "tasks.md": "36a11d2a0da30382c2544703c9cf84cc0a0d0c5f037717e1022e7a156d923f5a",
       "implementation-summary.md": "a17598743496e27ddce20edcb1f61539d2859065ec33700670ed0598ff97b740"

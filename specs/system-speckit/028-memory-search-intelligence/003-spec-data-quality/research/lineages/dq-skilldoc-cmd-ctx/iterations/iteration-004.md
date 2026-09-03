@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — KQ4: CONTEXT-ENGINEERING per-turn assembly DQ"
+trigger_phrases: []
+---
 # Iteration 004 — KQ4: CONTEXT-ENGINEERING per-turn assembly DQ
 
 **Focus:** Prompt assets, memory injection, retrieval profiles, resource-map, hook/advisor briefs — the per-turn context-assembly machinery and what automated DQ checks it lacks.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### Skill Advisor
 
 - Routing is markedly more accurate: recommendations now blend semantic similarity, keyword, and graph signals through a single metadata-driven resolver shared by both scoring engines, so intent-described prompts land on the right skill and misroutes (e.g. agent-scoring queries) are fixed.

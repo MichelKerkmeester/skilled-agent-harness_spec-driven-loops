@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis - Sol Lineage"
+trigger_phrases: []
+---
 # Research Synthesis - Sol Lineage
 
 **Session:** `fanout-sol-1785133613018-3fbdzo`  

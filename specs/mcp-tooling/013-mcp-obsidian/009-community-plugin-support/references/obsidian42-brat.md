@@ -1,3 +1,7 @@
+---
+title: "Reference — obsidian42-BRAT (Beta Reviewer's Auto-update Tool)"
+trigger_phrases: []
+---
 # Reference — obsidian42-BRAT (Beta Reviewer's Auto-update Tool)
 
 > Destined for `mcp-tooling/mcp-obsidian/references/` at Phase 5. BRAT is the **installer** for beta plugins not in the community list (e.g. `obsidian-flat-financing`). It is the enabling piece for the other two plugins.

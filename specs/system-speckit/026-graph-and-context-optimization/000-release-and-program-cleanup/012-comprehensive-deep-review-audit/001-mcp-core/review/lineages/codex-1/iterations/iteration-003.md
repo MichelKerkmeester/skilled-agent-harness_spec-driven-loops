@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - Traceability"
+trigger_phrases: []
+---
 # Iteration 003 - Traceability
 
 Focus: spec/code alignment, checklist evidence, public schema parity, feature catalog, and operator playbook drift.

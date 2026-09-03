@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Validator Auto-Fire Surface"
+trigger_phrases: []
+---
 # Iteration 3: Validator Auto-Fire Surface
 
 ## Status

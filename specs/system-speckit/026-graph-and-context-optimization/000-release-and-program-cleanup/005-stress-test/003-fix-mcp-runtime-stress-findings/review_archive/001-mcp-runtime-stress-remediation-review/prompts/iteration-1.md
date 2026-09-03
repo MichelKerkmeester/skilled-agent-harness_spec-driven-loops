@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration Prompt Pack — 011 Iteration 1"
+trigger_phrases: []
+---
 # Deep-Review Iteration Prompt Pack — 011 Iteration 1
 
 You are dispatched as a LEAF deep-review agent (`@deep-review`). This is iteration 1 of a 4-dimension review on `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/`. The packet orchestrates the v1.0.1 → v1.0.2 stress-test cycle: 30-cell corpus, 10-iteration post-stress deep-research, and 4 patch proposals (P0 cli-copilot Gate 3 bypass, P1 graph testability, P2 file-watcher debounce, OPP CocoIndex telemetry).

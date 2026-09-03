@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: Causal Traversal BFS Read Path"
+trigger_phrases: []
+---
 # Deep Review Report: Causal Traversal BFS Read Path
 
 ## Executive Summary

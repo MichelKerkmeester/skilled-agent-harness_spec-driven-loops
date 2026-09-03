@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — canonical checkout selection before global hook install"
+trigger_phrases: []
+---
 # Iteration 003 — canonical checkout selection before global hook install
 
 ## Focus

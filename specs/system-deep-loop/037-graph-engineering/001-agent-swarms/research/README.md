@@ -1,3 +1,7 @@
+---
+title: "Study 1 · agent-swarms — research folder"
+trigger_phrases: []
+---
 # Study 1 · agent-swarms — research folder
 
 > **Graph layer (product runtime).** Study 1 of the [037 graph-engineering program](../../context-index.md). 20-iteration deep-research run (gpt-5.6-sol high/fast, `stopReason: maxIterationsReached`).

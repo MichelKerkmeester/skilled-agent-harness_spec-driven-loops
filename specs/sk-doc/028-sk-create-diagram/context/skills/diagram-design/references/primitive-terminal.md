@@ -1,3 +1,7 @@
+---
+title: "Terminal Window (CLI-chrome variant)"
+trigger_phrases: []
+---
 # Terminal Window (CLI-chrome variant)
 
 Optional full-page skin that wraps any diagram in a fake terminal window — titlebar with three dots, a `$` prompt line, monospace type throughout. Use for dev-tool announcements, CLI-product posts, and technical social cards where a screenshot needs to read as "terminal," not "editorial doc."

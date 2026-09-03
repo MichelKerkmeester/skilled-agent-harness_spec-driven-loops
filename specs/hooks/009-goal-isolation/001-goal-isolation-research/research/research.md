@@ -1,3 +1,7 @@
+---
+title: "Cross-Runtime Goal-State Isolation Research"
+trigger_phrases: []
+---
 # Cross-Runtime Goal-State Isolation Research
 
 > Final synthesis after 3 of 3 forced-depth iterations, with post-loop source corrections recorded below.

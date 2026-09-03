@@ -1,3 +1,7 @@
+---
+title: "Timeline"
+trigger_phrases: []
+---
 # Timeline
 
 **Best for:** release history, project milestones, incident timelines, roadmaps, changelog visualizations.

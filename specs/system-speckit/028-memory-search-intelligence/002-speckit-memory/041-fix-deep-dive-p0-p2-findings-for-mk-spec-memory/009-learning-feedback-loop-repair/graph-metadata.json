@@ -45,22 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "handlers/memory-search.ts",
-      "lib/learning/corrections.ts",
-      "lib/search/auto-promotion.ts",
-      "lib/cognitive/fsrs-scheduler.ts",
-      "handlers/quality-loop.ts",
-      ".opencode/commands/memory/manage.md",
-      "lib/search/search-utils.ts",
-      "lib/search/fsrs.ts",
-      "lib/storage/post-insert-metadata.ts",
-      "lib/search/learned-feedback.ts",
-      "lib/feedback/batch-learning.ts",
-      "lib/governance/memory-retention-sweep.ts",
-      "lib/feedback/shadow-evaluation-runtime.ts",
-      "lib/feedback/shadow-scoring.ts",
-      "lib/feedback/true-citation-emitter.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -94,96 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "corrections.ts",
-        "kind": "code",
-        "path": "lib/learning/corrections.ts",
-        "source": "derived"
-      },
-      {
-        "name": "auto-promotion.ts",
-        "kind": "code",
-        "path": "lib/search/auto-promotion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fsrs-scheduler.ts",
-        "kind": "code",
-        "path": "lib/cognitive/fsrs-scheduler.ts",
-        "source": "derived"
-      },
-      {
-        "name": "quality-loop.ts",
-        "kind": "code",
-        "path": "handlers/quality-loop.ts",
-        "source": "derived"
-      },
-      {
-        "name": "manage.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/manage.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-utils.ts",
-        "kind": "code",
-        "path": "lib/search/search-utils.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fsrs.ts",
-        "kind": "code",
-        "path": "lib/search/fsrs.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-insert-metadata.ts",
-        "kind": "code",
-        "path": "lib/storage/post-insert-metadata.ts",
-        "source": "derived"
-      },
-      {
-        "name": "learned-feedback.ts",
-        "kind": "code",
-        "path": "lib/search/learned-feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "batch-learning.ts",
-        "kind": "code",
-        "path": "lib/feedback/batch-learning.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.ts",
-        "kind": "code",
-        "path": "lib/governance/memory-retention-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shadow-evaluation-runtime.ts",
-        "kind": "code",
-        "path": "lib/feedback/shadow-evaluation-runtime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shadow-scoring.ts",
-        "kind": "code",
-        "path": "lib/feedback/shadow-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "true-citation-emitter.ts",
-        "kind": "code",
-        "path": "lib/feedback/true-citation-emitter.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +101,101 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Repair",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Existing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Track Access Production Enablement",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Deferred",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The memory learning loop is starved of usage signal: only 65 of 33,101 index rows have ever recorded an access, and `trackAccess` is default-off (`memory-search.ts:909`) with zero production enablers, so the loop receives almost no fuel today",
     "created_at": "2026-07-03T09:44:23Z",
-    "last_save_at": "2026-08-30T15:39:35.432Z",
+    "last_save_at": "2026-09-03T22:23:46.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ccf488088741927a60c9b42bef28b4eff679be87db807ad6973b8d5d713721ec",
+    "source_fingerprint": "sha256:3c56eed859d291babc8148dc8334d42ffbcdc5beedde23b232962d0369e4097b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2702c9e7dd05aff8953161366c01edb3b92257f50c70cabd589d0d977bff912b",
       "plan.md": "a9e5956feac325ba7f3bf25cd9817aeb6b0391483b741b47211426549f4f8e8e",
       "tasks.md": "69e74223d0c0689df73977de8050df7080a68a95b75c311520f1b41bd2f13255",
-      "decision-record.md": "c2764d497110ac44b9533540ab5205cc9bca431fa55495f237c4a53ab7631269",
+      "decision-record.md": "2a8cf372087f33e2a9c605b3df68c74343201bb93dfea31714ab71271b61f20a",
       "implementation-summary.md": "170b3b20dbfa9a44b99aae9ad92f11bc9085c9b348dca02ac3ad8b2fefe7aad3"
     },
     "last_active_child_id": null,

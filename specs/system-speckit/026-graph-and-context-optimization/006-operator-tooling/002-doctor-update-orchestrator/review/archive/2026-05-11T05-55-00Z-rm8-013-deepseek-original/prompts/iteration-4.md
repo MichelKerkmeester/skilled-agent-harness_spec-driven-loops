@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 4 (of 10) — security (doctor command surface)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 4 (of 10) — security (doctor command surface)
 
 ## TARGET AUTHORITY (read first)

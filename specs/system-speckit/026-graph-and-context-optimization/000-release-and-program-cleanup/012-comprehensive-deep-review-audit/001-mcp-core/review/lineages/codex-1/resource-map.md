@@ -1,3 +1,7 @@
+---
+title: "Review Evidence Resource Map"
+trigger_phrases: []
+---
 # Review Evidence Resource Map
 
 The source spec folder did not include a `resource-map.md`, so the mandatory Resource Map Coverage Gate was skipped. This emitted map records the converged review evidence discovered by the lineage.

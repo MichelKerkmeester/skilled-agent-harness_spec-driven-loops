@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final Gap Analysis + Verdict Consolidation"
+trigger_phrases: []
+---
 # Iteration 10: Final Gap Analysis + Verdict Consolidation
 
 ## Focus

@@ -1,6 +1,7 @@
 ---
 title: "Deep Research: Launcher Concurrency Spawn & Bridge Investigation"
 description: "Validated root causes of two spec-kit launcher/MCP/embedder runtime defects (T1 hf-local spurious spawn; T2 code-index+advisor daemon bridge not serving) plus a unified design-conformance fix plan. Read-only research; no code changed."
+trigger_phrases: []
 ---
 
 # Deep Research — Launcher Concurrency Spawn & Bridge Investigation

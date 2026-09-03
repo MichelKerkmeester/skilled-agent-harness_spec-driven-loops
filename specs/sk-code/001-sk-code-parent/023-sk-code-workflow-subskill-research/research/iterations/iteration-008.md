@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Final convergence synthesis"
+trigger_phrases: []
+---
 # Iteration 8: Final convergence synthesis
 
 ## Focus

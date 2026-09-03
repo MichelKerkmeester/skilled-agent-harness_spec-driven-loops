@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 Prompt Pack"
+trigger_phrases: []
+---
 # Iteration 002 Prompt Pack
 
 - Focus: P2 — unified promotion-evidence model.

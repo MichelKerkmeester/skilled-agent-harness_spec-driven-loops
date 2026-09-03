@@ -1,3 +1,7 @@
+---
+title: "Phase 002 — Migration Tool (DeepSeek authoring brief, RCAF)"
+trigger_phrases: []
+---
 # Phase 002 — Migration Tool (DeepSeek authoring brief, RCAF)
 
 ## Role

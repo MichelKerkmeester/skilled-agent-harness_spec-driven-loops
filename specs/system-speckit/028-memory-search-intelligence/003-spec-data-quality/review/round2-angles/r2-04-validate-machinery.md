@@ -1,3 +1,7 @@
+---
+title: "R2-04 Validate Machinery (code-quality)"
+trigger_phrases: []
+---
 # R2-04 Validate Machinery (code-quality)
 
 **Angle summary:** The shell `run_check` rule pattern is sound and the warn-to-error flip mechanism works, but three of the proposed phase specs (A1 CONTENT_QUALITY, A4 bypass removal, A7 REQ_COVERAGE) name registration or seam premises that the live dispatch code does not honor as written.

@@ -1,3 +1,7 @@
+---
+title: "Canonical Parent-Hub Contract (124/011) — the ONE method"
+trigger_phrases: []
+---
 # Canonical Parent-Hub Contract (124/011) — the ONE method
 
 > Authoring anchor for Phase 011. GPT template/narrative authoring conforms to

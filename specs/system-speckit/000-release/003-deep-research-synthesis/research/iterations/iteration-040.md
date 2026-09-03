@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Snippet templates migrated to per-feature scaffold
 All 32 routing-gold snippet files under `manual-testing-playbook/` were migrated to the per-feature scaffold: numbered `OVERVIEW` / `SCENARIO CONTRACT` / `TEST EXECUTION` / `SOURCE FILES` / `SOURCE METADATA` sections, prose test execution replacing the old nine-column table, and `description`/`stage` frontmatter added while the dead `category`, `created`, and `expected_token_range_*` fields were dropped. A reviewable migration script drove the transform across four source shapes (18 full-old, 8 minimal, 5 minimal-purpose, 1 variant), and the 13 minimal files received sections but no invented commands or evidence, keeping their execution steps prompt-only. The snippet template itself gained the routing-gold fields it had omitted, so a corpus file can now match the template without breaking the topology gate. **Internal:** this is framework test infrastructure — no user-facing behavior changes, but the playbook files now pass package validation and the topology gate.
 

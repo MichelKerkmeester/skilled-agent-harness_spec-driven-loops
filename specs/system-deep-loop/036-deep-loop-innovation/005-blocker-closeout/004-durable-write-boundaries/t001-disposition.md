@@ -1,3 +1,7 @@
+---
+title: "024 T001 Disposition — confirm-first gate (AUTHORITATIVE over build-spec.md)"
+trigger_phrases: []
+---
 # 024 T001 Disposition — confirm-first gate (AUTHORITATIVE over build-spec.md)
 
 > Read-only confirm-first pass grounded against origin `skilled/v4.0.0.0` = `596495262287`

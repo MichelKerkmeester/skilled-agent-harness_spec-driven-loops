@@ -1,3 +1,7 @@
+---
+title: "Pre-edit baseline, and six ledger-schema suites that no longer assert anything"
+trigger_phrases: []
+---
 # Pre-edit baseline, and six ledger-schema suites that no longer assert anything
 
 ## Baseline

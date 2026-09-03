@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — p018-opus-4"
+trigger_phrases: []
+---
 # Deep Review Dashboard — p018-opus-4
 
 | Metric | Value |

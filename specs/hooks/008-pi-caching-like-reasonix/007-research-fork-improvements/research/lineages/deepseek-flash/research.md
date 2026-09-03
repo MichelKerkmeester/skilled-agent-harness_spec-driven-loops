@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: deepseek-flash Lineage — Further Improvements to the Packet 008 Pi Forks"
+trigger_phrases: []
+---
 # Research Synthesis: deepseek-flash Lineage — Further Improvements to the Packet 008 Pi Forks
 
 ## 1. Executive Summary

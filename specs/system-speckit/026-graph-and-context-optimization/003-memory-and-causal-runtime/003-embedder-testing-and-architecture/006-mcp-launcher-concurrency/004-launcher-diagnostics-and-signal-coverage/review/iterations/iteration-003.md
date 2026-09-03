@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I've completed iteration 3 for the traceability dimension. The iteration file has been written to:
 
 ```

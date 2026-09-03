@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - SearchDecisionEnvelope Coverage Map"
+trigger_phrases: []
+---
 # Iteration 004 - SearchDecisionEnvelope Coverage Map
 
 ## Focus

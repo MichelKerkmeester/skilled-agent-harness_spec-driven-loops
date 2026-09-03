@@ -1,3 +1,7 @@
+---
+title: "Research SKIPPED — Project Manager plugin deprecated"
+trigger_phrases: []
+---
 # Research SKIPPED — Project Manager plugin deprecated
 
 **Status:** intentionally skipped (not researched).

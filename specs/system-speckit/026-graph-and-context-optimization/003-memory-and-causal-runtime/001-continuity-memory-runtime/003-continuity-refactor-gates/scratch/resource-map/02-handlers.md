@@ -10,6 +10,7 @@ scan_roots:
   - .opencode/skills/system-spec-kit/mcp_server/tools/
   - .opencode/skills/system-spec-kit/mcp_server/schemas/
 rows: 31
+trigger_phrases: []
 ---
 
 # Scope Notes

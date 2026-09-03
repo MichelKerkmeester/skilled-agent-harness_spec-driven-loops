@@ -1,3 +1,7 @@
+---
+title: "Autonomous Runbook — 026 Changelog Backfill"
+trigger_phrases: []
+---
 # Autonomous Runbook — 026 Changelog Backfill
 
 Goal (owner, 2026-05-31, going to bed): get ALL of spec 026 to 100 percent changelog completion and verification using agent workflows. Keep going autonomously, do not wait for answers.

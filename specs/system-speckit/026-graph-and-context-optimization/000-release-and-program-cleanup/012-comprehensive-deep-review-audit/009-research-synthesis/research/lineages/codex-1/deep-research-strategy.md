@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: 026 Audit Root-Cause Synthesis"
+trigger_phrases: []
+---
 # Deep Research Strategy: 026 Audit Root-Cause Synthesis
 
 ## Scope

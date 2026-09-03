@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — Lineage pi-flash-a"
+trigger_phrases: []
+---
 # Deep Research Dashboard — Lineage pi-flash-a
 
 ## Iteration Table

@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Corpus completion — graph-engineering-master and article synthesis"
+trigger_phrases: []
+---
 # Iteration 10: Corpus completion — graph-engineering-master and article synthesis
 
 ## Focus

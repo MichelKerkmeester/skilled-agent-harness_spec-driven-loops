@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Skill advisor reference docs aligned to frontmatter contract
 The 15 reference docs of the skill-advisor skill now all carry the canonical frontmatter contract that drives memory-trigger matching and doc priority. Before this, every doc lacked a `contextType`, eight lacked an `importance_tier`, and the hook operator contract had no trigger phrases at all. The contract reserves `important` for true contract/invariant docs, so the legacy tool bridge was promoted (it states a compatibility invariant) while five operational references (decisions history, reconciliation runbook, query cookbook, tuning guide, validation baselines) were demoted to `normal` to keep the tier meaningful. Trigger phrases were repaired where they were single-token or generic, replacing `lib/skill-graph` and `skill graph database` with distinctive multi-word phrases. This is internal tooling with no direct behavior change, but it sharpens retrieval signal so the right docs surface at the right priority; the coverage check passed with 15/15 docs carrying the detailed block and zero violations.
 

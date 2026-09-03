@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Architecture Shape Comparison and Eliminated Alternatives"
+trigger_phrases: []
+---
 # Iteration 8: Architecture Shape Comparison and Eliminated Alternatives
 
 ## Focus

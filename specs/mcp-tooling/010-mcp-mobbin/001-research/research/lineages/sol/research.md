@@ -1,3 +1,7 @@
+---
+title: "Mobbin MCP transport packet research"
+trigger_phrases: []
+---
 # Mobbin MCP transport packet research
 
 Research topic: the official Mobbin MCP server and official Mobbin skills needed to author a read-only, Code Mode-only `mcp-mobbin` transport under `mcp-tooling`, register a `mobbin` manual in `.utcp_config.json`, and pair retrieved evidence with `sk-design` judgment.

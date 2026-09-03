@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — Skill & Advisor JSON Optimization (grok-high lineage)"
+trigger_phrases: []
+---
 # Research Synthesis — Skill & Advisor JSON Optimization (grok-high lineage)
 
 **Lineage:** `grok-high` · **Session:** `fanout-grok-high-1785305275596-oro54j`  

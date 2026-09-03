@@ -1,3 +1,7 @@
+---
+title: "Iteration L1 - Logic Rollup-Nodes plus Set-Merge (deepseek, hierarchy-aggregation feasibility)"
+trigger_phrases: []
+---
 # Iteration L1 - Logic Rollup-Nodes plus Set-Merge (deepseek, hierarchy-aggregation feasibility)
 
 ## TITLE

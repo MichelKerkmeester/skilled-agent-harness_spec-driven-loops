@@ -1,3 +1,7 @@
+---
+title: "Opus 4.8 Cross-Review (claude2) — 013/014 session work + deployed runtime"
+trigger_phrases: []
+---
 # Opus 4.8 Cross-Review (claude2) — 013/014 session work + deployed runtime
 
 <!-- Independent second-model deep review. Executor: cli-claude-code claude-opus-4-8 via the claude2 account, read-only (--permission-mode plan). 4 sessions across 5 lineages (L4 split for timeout). All P1s verified against source by the orchestrator. -->

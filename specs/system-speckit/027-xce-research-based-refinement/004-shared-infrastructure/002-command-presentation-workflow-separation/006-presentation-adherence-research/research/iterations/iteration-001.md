@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 (mimo-v2.5-pro)"
+trigger_phrases: []
+---
 # Iteration 001 (mimo-v2.5-pro)
 
 **Summary:** The Presentation Boundary section — a negative-scope declaration listing content that 'lives only in' the presentation asset — is present in all 13 doctor/speckit/deep commands (where /doctor rendered verbatim) but absent from all 4 memory commands (where /memory:search ignored its template). Memory commands also use weaker 'Routing Assets' naming and bury the presentation-asset-read instruction in prose rather than a numbered execution step, both of which correlate with reduced model adherence to referenced render templates.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Review loop complete. All artifacts written to the lineage dir only.
 
 **Verdict: PASS** (`hasAdvisories: true`) — 0 P0 · 0 P1 · 5 P2, release readiness `converged`.

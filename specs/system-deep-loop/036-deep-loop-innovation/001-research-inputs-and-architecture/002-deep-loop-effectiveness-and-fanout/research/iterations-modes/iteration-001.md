@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 1 | SOL xhigh | mode: deep-research | angle: A1-sota deep-research :: 2025-2026 state of the art | 2026-07-15T08:06:54.013Z -->
 
 The strongest opportunity is not “more iterations.” It is turning the loop into a persistent research system whose plans, claims, evidence, contradictions, and unresolved gaps survive longer than any report.

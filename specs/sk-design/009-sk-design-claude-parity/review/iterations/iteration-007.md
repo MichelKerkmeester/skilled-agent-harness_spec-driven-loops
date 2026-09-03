@@ -1,6 +1,7 @@
 ---
 title: Deep Review Iteration 007 - Non-output Extraction Modules
 description: Correctness/security revisit for md-generator extraction modules outside the output-path seam.
+trigger_phrases: []
 ---
 
 # Deep Review Iteration 007 - Non-output Extraction Modules

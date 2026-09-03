@@ -1,3 +1,7 @@
+---
+title: "Deep Review v4 Iteration 040 - q8 unset path to profile filename"
+trigger_phrases: []
+---
 # Deep Review v4 Iteration 040 - q8 unset path to profile filename
 
 ## Focus

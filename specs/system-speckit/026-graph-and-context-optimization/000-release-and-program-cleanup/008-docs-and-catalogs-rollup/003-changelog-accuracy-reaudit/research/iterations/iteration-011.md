@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 011"
+trigger_phrases: []
+---
 # Deep Research Iteration 011
 
 > Audited changelog: `changelog-016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle-root.md`

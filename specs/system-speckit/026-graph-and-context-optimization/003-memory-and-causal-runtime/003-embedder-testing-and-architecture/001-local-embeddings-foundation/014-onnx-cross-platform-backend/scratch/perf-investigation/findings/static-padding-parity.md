@@ -1,3 +1,7 @@
+---
+title: "Static Padding Parity Check"
+trigger_phrases: []
+---
 # Static Padding Parity Check
 
 This supporting check compares static-padding candidates against `SentenceTransformer("google/embeddinggemma-300m")` on the same 50 chunks.

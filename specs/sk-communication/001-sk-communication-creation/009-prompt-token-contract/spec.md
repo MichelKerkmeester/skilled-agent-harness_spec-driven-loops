@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 009 Prompt Token-Contract"
 description: "Turn the provider prompt into an explicit token-contract copy-editing contract so models reliably carry protected markers and actually rewrite the surrounding prose."
 trigger_phrases:
   - "prompt-token-contract"
-  - "prompt token contract"
   - "token-aware prompt profile"
   - "projection quality"
 importance_tier: "important"

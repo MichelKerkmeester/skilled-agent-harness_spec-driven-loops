@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: sk-code router and manifest contract trace"
+trigger_phrases: []
+---
 # Iteration 1: sk-code router and manifest contract trace
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — impact on commands + agents + hooks"
+trigger_phrases: []
+---
 # Iteration 003 — impact on commands + agents + hooks
 
 **Status:** insight · **Findings:** 28 · **newInfoRatio:** 0.86 · **tokens:** 186653 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

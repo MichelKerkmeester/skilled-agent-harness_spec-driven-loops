@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 002 Contracts and Fixtures"
 description: "Bootstrap the standalone package and define the versioned context, prompt, event, provider, privacy, projection, telemetry, evaluation, benchmark, error, and fixture contracts shared by every adapter."
 trigger_phrases:
   - "contracts-and-fixtures"
-  - "contracts and fixtures"
   - "portable cli projection"
   - "implementation phase"
 importance_tier: "important"

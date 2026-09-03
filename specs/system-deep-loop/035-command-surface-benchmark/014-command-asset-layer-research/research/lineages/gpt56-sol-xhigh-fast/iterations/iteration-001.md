@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Canonical Workflow Schema and Family Divergence"
+trigger_phrases: []
+---
 # Iteration 1: Canonical Workflow Schema and Family Divergence
 
 ## Focus

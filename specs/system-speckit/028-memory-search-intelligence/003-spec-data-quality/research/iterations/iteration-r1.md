@@ -1,3 +1,7 @@
+---
+title: "Iteration R1 - Retrieval Prefix plus Fusion (gpt-5.5, prod-path feasibility)"
+trigger_phrases: []
+---
 # Iteration R1 - Retrieval Prefix plus Fusion (gpt-5.5, prod-path feasibility)
 
 ## TITLE

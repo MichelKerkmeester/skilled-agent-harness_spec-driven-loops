@@ -1,3 +1,7 @@
+---
+title: "Aside Browser Developer Surface — Research Synthesis"
+trigger_phrases: []
+---
 # Aside Browser Developer Surface — Research Synthesis
 
 ## 1. Executive Summary

@@ -1,3 +1,7 @@
+---
+title: "CONTEXT"
+trigger_phrases: []
+---
 When done, your ENTIRE response must be the single JSON block specified below — it is parsed by a script, not read by a human. Do not write any files. Do not modify anything; this is a READ-ONLY audit. Spec folder for this work: .opencode/specs/sk-doc/013-catalog-playbook-snippet-denumbering (pre-approved, skip Gate 3) — but you only READ, you do not write. After producing JSON, the orchestrator writes .opencode/specs/sk-doc/013-catalog-playbook-snippet-denumbering/review/deltas/iter-008.jsonl.
 
 # CONTEXT

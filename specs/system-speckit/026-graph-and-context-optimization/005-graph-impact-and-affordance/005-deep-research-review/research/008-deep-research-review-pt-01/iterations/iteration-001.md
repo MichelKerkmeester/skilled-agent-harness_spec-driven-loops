@@ -2,6 +2,7 @@
 _memory:
   continuity:
     next_safe_action: "Iteration 002 should stay on 010/002 and stress diff-parser/path canonicalization with mixed old/new paths, control characters, and platform path separators."
+trigger_phrases: []
 ---
 # Iteration 001 — 010/001 + 010/002 review
 

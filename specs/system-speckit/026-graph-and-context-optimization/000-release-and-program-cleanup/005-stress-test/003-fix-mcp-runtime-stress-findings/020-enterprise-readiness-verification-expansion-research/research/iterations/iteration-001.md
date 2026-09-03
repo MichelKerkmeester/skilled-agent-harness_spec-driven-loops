@@ -3,6 +3,7 @@ iteration: 1
 focus: RQ1 - W3 trust tree wiring audit
 newInfoRatio: 0.92
 status: complete
+trigger_phrases: []
 ---
 
 # Iteration 001 - W3 Trust Tree Wiring

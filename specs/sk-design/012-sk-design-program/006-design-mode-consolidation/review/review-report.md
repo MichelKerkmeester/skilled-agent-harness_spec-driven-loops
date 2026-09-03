@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: sk-design Mode Consolidation"
+trigger_phrases: []
+---
 # Deep Review Report: sk-design Mode Consolidation
 
 ## 1. Executive Summary

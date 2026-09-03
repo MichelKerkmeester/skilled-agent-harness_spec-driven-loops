@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — DeepSeek Lineage (Track B)"
+trigger_phrases: []
+---
 # Deep Research Dashboard — DeepSeek Lineage (Track B)
 
 ## Iteration Table

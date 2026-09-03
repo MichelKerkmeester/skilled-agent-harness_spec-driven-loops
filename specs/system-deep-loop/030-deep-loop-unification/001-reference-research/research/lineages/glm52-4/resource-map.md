@@ -1,3 +1,7 @@
+---
+title: "Resource Map - glm52-4"
+trigger_phrases: []
+---
 # Resource Map - glm52-4
 
 > Coverage derived from convergence evidence. Detached lineage — read-only investigation of files outside this directory.

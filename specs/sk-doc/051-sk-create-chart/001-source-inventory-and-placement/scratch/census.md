@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 | `SKILL.md` | 8304 | 1097 | adapt |
 | `README.md` | 3180 | 300 | drop |
 | `catalog.md` | 1986 | 316 | adapt |

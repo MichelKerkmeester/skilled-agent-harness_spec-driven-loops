@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Inventory process-spawn entrypoints and background execution patterns"
+trigger_phrases: []
+---
 # Iteration 001: Inventory process-spawn entrypoints and background execution patterns
 
 ## Focus

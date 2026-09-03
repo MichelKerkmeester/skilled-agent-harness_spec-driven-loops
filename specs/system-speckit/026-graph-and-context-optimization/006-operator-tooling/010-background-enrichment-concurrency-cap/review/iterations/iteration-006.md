@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 6 (opus-4.8) — codebase consistency + contract"
+trigger_phrases: []
+---
 # Deep-Review Iteration 6 (opus-4.8) — codebase consistency + contract
 
 ## Verdict: CONDITIONAL — 1 NEW P2 (P1 parity), 1 confirms-prior P2; contract/types SOUND.

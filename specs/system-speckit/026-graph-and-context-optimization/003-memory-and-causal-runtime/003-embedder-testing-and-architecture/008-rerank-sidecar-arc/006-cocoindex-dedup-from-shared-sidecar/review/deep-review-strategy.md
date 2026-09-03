@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy — packet 006 cocoindex dedup PROMOTE
 description: 20-iteration deep review of cocoindex HTTP sidecar dispatch + system-rerank-sidecar feature catalog/playbook docs.
+trigger_phrases: []
 ---
 
 # Deep Review Strategy — Session Tracking

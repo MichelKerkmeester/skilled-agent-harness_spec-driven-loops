@@ -5,6 +5,7 @@ severityCounts: { "P0": 3, "P1": 8, "P2": 4 }
 model: "claude-opus-4-8"
 method: "ten iterative opus passes, loop-until-dry, rotating review lenses"
 target: "028/005-dark-flag-graduation/007-graduation-follow-ups (commit 420c4734f3)"
+trigger_phrases: []
 ---
 # Review Report: Graduation Follow-Ups, Opus Deep Review
 

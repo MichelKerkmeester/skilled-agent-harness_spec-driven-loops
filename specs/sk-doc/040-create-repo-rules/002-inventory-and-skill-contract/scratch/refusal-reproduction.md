@@ -1,3 +1,7 @@
+---
+title: "Reproduction check: do the recovered tests still refuse the original ten?"
+trigger_phrases: []
+---
 # Reproduction check: do the recovered tests still refuse the original ten?
 
 Each candidate is run through `decision-tests.md` and compared against the reason the

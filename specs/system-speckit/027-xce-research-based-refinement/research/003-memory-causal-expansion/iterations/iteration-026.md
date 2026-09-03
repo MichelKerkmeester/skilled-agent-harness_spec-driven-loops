@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 - RQ-B2 Memory backend LLM-curated context assembly"
+trigger_phrases: []
+---
 # Iteration 007 - RQ-B2 Memory backend LLM-curated context assembly
 
 ## Focus

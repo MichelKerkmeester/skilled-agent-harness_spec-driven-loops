@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- provenance: manual cli-opencode orchestration | executor openai/gpt-5.6-sol-fast --variant high | round 2 angle A2 — Tooling & lint tiers -->
 
 I’ll anchor the round in the repo’s actual Rust/interop evidence first, then verify each tooling recommendation against canonical upstream documentation. The output will distinguish confirmed repository facts from inferences and classify every recommendation as CI-gate or advisory.

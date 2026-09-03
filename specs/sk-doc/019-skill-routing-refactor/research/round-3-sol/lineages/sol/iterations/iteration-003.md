@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Parent Routing Canon versus Live Seven-Hub Runtime"
+trigger_phrases: []
+---
 # Iteration 3: Parent Routing Canon versus Live Seven-Hub Runtime
 
 ## Focus

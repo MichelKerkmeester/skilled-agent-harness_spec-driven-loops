@@ -1,3 +1,7 @@
+---
+title: "Resource Map — fable-1 lineage emission"
+trigger_phrases: []
+---
 # Resource Map — fable-1 lineage emission
 
 > Emitted at synthesis from review delta evidence (deep-review convergence contract). This is the reviewed-surface inventory for lineage `fanout-fable-1-1781112180955-4japyt`; it also seeds the per-track skeleton missing from the packet-root `resource-map.md` (finding F005).

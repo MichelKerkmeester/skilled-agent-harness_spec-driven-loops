@@ -2,6 +2,7 @@
 _memory:
   continuity:
     next_safe_action: "Iter 010 cross-cutting synthesis + Adopt/Adapt/Reject/Defer matrix"
+trigger_phrases: []
 ---
 # Iteration 009 — 011 playbook scenarios + 17 new vitest cases adversarial completeness
 

@@ -1,3 +1,7 @@
+---
+title: "Extending agents: skills and tools"
+trigger_phrases: []
+---
 # Extending agents: skills and tools
 
 Two extension points, from lightest to heaviest:

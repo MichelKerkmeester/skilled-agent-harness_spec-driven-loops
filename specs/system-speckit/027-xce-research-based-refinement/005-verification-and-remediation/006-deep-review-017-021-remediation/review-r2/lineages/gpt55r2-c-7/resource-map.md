@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map - gpt55r2-c-7"
+trigger_phrases: []
+---
 # Review Resource Map - gpt55r2-c-7
 
 ## Resource Map Coverage Gate

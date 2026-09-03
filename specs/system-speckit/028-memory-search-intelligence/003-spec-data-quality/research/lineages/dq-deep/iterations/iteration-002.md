@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - KQ2: Retroactive / sweep automation and its gaps"
+trigger_phrases: []
+---
 # Iteration 002 - KQ2: Retroactive / sweep automation and its gaps
 
 **Focus:** Inventory retroactive automation (reindex, backfill, retention, doctor, ingest, drift) and find the missing quality-maximizing retroactive features.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Nested Page Hierarchy — Preservation and Reconstruction"
+trigger_phrases: []
+---
 # Iteration 6: Nested Page Hierarchy — Preservation and Reconstruction
 
 ## Focus

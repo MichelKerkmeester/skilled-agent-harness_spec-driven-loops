@@ -1,3 +1,7 @@
+---
+title: "Beliefs"
+trigger_phrases: []
+---
 # Beliefs
 
 A belief is a fact with a receipt. Three axes, never collapsed.

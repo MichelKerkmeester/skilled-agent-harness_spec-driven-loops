@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Bidirectional Path Coupling"
+trigger_phrases: []
+---
 # Iteration 002 - Bidirectional Path Coupling
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — Context Engine v2 comparison"
+trigger_phrases: []
+---
 # Iteration 014 — Context Engine v2 comparison
 
 ## Focus

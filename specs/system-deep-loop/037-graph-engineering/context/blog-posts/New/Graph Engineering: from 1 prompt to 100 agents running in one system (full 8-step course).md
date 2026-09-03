@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source Link: https://x.com/hanakoxbt/status/2087167924410658912?s=12
 
 A research task comes in at nine in the morning.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Angle (d): instructional HTML comment leakage into rendered bytes"
+trigger_phrases: []
+---
 # Iteration 004 — Angle (d): instructional HTML comment leakage into rendered bytes
 
 **Focus:** Q-A4 — How many instructional (non-gate, non-anchor, non-marker) HTML comments leak through the renderer into packet bytes? Is anything consuming them? What would out-of-band placement cost?

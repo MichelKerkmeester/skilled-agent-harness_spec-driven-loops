@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - Session Tracking"
+trigger_phrases: []
+---
 # Deep Review Strategy - Session Tracking
 
 Fan-out lineage `grok46-review`. Artifact directory bound from `config.fanout_lineage_artifact_dir`; `resolveArtifactRoot` was not run.

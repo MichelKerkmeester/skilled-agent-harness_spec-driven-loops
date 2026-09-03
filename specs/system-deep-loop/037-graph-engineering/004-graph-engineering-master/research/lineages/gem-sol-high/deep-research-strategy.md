@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Graph-Engineering Doctrine Completeness"
+trigger_phrases: []
+---
 # Deep Research Strategy — Graph-Engineering Doctrine Completeness
 
 ## 1. OVERVIEW

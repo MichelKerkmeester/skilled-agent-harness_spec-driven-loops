@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Daemon Dependency and Lease/IPC Audit"
+trigger_phrases: []
+---
 # Iteration 3: Daemon Dependency and Lease/IPC Audit
 
 ## Focus

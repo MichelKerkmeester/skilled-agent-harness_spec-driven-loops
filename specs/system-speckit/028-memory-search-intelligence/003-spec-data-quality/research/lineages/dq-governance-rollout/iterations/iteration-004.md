@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — KQ4: The measurement plan (how each tier earns its keep)"
+trigger_phrases: []
+---
 # Iteration 004 — KQ4: The measurement plan (how each tier earns its keep)
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Context Compaction Summary
 
 **Current Task and Status:**

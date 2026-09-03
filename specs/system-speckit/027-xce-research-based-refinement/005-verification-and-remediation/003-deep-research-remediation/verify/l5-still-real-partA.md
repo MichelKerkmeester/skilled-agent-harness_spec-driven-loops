@@ -1,3 +1,7 @@
+---
+title: "Batch Still-Real Verification — L5 Advisor Correctness, Part A"
+trigger_phrases: []
+---
 # Batch Still-Real Verification — L5 Advisor Correctness, Part A
 
 > Verifier: fresh Fable 5 pass, 2026-06-12. All citations re-read from current working tree (branch `028-mcp-to-cli-tool-transition`). Repro commands re-run live where the banked finding depended on runtime behavior.

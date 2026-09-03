@@ -188,7 +188,7 @@
     ],
     "causal_summary": "sk-doc's reference/asset standard requires numbered ALL-CAPS H2 headers (`## 1",
     "created_at": "2026-07-22T09:47:50.164Z",
-    "last_save_at": "2026-08-30T15:39:15.507Z",
+    "last_save_at": "2026-09-03T22:19:14.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:549ef73c67b967708e16b7607aee672b7c652c3f770ce2e41bae3540e8a0a5cf",
+    "source_fingerprint": "sha256:e8eb70a4def600d37f4da46526f8e99687355bc2bd03ae1f680355f61cb1e3cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54edeccacb256db002018aa0074bf55e4567fcb5b8172354d54c0aaad52e0bd5",
-      "plan.md": "c17af2a18ae25c14e88b78bf05ca96d02015d1ce4d2c0e3b17d0a570db7122cf",
-      "tasks.md": "4e1a62491ce24d551e4ed0dd251a33308993bca8a8eeab082be6d3fa58c1387e",
+      "plan.md": "1c3837406febe5c9f2bada619d3730c629c3b502bf47b9e19e480a0e2d45277d",
+      "tasks.md": "89ec706b45862154556d3bfad2be43584f1b043514a5510f9a79ea534303ed1d",
       "implementation-summary.md": "9992596e158b414f7c58015251f1a5261857216a69fb55a5ac60a9326b85779b"
     },
     "last_active_child_id": null,

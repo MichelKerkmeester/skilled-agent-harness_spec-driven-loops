@@ -1,3 +1,7 @@
+---
+title: "Frontier Cutover Execution Plan"
+trigger_phrases: []
+---
 # Frontier Cutover Execution Plan
 
 > Reversible execution plan for moving canonical authority from the legacy writers to the new dark spine. **This document plans; it flips nothing.** Every authority move, legacy deletion, and merge below is an irreversible/outward-facing step that stops for an explicit operator go-ahead. Grounded in the built runtime (candidate `c42ed8fa28`) and the phase-014/015/016/017 contracts. Derived after the round-4d independent review returned APPROVE with 0 open P0.

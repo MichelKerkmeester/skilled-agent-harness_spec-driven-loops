@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Formulas 2.0 Recovery (~50 functions → Bases / Dataview / plugin)"
+trigger_phrases: []
+---
 # Iteration 5: Formulas 2.0 Recovery (~50 functions → Bases / Dataview / plugin)
 
 ## Focus

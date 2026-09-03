@@ -1,3 +1,7 @@
+---
+title: "Review Report: 045-008 Validator Spec Doc Integrity"
+trigger_phrases: []
+---
 # Review Report: 045-008 Validator Spec Doc Integrity
 
 ## 1. Executive Summary

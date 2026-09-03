@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Sensitive-data persistence boundaries"
+trigger_phrases: []
+---
 # Iteration 9: Sensitive-data persistence boundaries
 
 ## Dimension

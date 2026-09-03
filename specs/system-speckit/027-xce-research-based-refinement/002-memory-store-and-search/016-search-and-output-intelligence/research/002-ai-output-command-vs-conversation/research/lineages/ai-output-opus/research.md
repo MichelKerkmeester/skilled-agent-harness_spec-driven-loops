@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — AI Output Quality: Slash-Commands (`--command`) vs Natural Conversation"
+trigger_phrases: []
+---
 # Research Synthesis — AI Output Quality: Slash-Commands (`--command`) vs Natural Conversation
 
 > Lineage: **ai-output-opus** · Executor: **cli-claude-code model=opus** ·

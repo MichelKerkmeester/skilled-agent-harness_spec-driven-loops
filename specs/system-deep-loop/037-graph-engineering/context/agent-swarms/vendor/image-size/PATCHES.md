@@ -1,3 +1,7 @@
+---
+title: "Local security patches"
+trigger_phrases: []
+---
 # Local security patches
 
 This package is built from `image-size` v2.0.2 with two upstream security fixes that were not published before the repository was archived:

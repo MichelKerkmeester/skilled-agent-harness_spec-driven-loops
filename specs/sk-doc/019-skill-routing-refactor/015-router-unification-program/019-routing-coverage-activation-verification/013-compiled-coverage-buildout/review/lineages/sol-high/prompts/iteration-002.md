@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW ITERATION 002
 
 Focus: correctness of compiled/legacy parity and cutover-gate action semantics.

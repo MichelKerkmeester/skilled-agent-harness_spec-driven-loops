@@ -2,6 +2,7 @@
 title: "Skill-Routing Config & Advisor Reference"
 description: "The definitive explainer for every JSON artifact (and the one authoritative non-JSON surface config) that drives skill routing in this .opencode framework, plus the system-skill-advisor. States exactly how each feeds routing, which skills carry it, and — per artifact — what is LIVE versus documented-but-aspirational, verified against the live tree and its consumer scripts."
 contextType: "reference"
+trigger_phrases: []
 ---
 
 # Skill-Routing Config & Advisor Reference

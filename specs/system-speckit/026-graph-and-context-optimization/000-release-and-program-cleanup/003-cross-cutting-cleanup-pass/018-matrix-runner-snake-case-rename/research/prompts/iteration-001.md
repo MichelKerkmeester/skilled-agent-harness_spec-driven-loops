@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 047: matrix_runners-snake-case-rename — Tier C config + import + doc rename
 
 You are cli-codex (gpt-5.5 high fast) implementing **047-matrix_runners-snake-case-rename**.

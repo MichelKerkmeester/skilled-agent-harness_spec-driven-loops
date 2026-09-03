@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Deep-dive research on the Obsidian plugin obsidian42-BRAT (id obsidian42-brat, author TfTHacker, v2.2.0+, GitHub TfTHacker/obsidian42-brat), for an AI operating the vault at the FILE LAYER. Resolve the EXACT data.json schema under .obsidian/plugins/obsidian42-brat/ (confirmed flags: updateAtStartup, updateThemesAtStartup, enableAfterInstall, loggingEnabled, debuggingMode; plus the beta-plugin list key + frozen-version list — READ the plugin SOURCE in the TfTHacker/obsidian42-brat repo). Cover every command (add beta plugin, add with frozen version/release-tag pin, check for updates, update single, restart, add/remove theme); the FULL install mechanics (GitHub release asset fetch — main.js/manifest.json/styles.css, release vs root, manifest minAppVersion/version handling, writing to .obsidian/plugins/<id>/ and enabling via community-plugins.json); theme install path; file-layer AI workflows (headless install + enable a beta plugin, register in BRAT data.json, frozen-version pin); a full error/edge-case catalog (repo has no releases, asset naming mismatch, plugin not appearing after reload, private repo); AI-usage recipes. Cite sources (repo source + tfthacker.com/BRAT). Produce a verified data-model + workflows + troubleshooting knowledge base."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

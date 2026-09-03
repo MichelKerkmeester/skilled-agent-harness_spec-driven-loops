@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 004 — system-spec-kit manual_testing_playbook"
+trigger_phrases: []
+---
 # Deep-Review Iteration 004 — system-spec-kit manual_testing_playbook
 
 **Executor:** DeepSeek-v4-pro (cli-opencode, --pure, read-only)

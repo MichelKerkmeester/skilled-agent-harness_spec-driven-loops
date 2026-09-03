@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Operational Anti-Slop Proof Gate"
+trigger_phrases: []
+---
 # Iteration 5: Operational Anti-Slop Proof Gate
 
 ## Focus

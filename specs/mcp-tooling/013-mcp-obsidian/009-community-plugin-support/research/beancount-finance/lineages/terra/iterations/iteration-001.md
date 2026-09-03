@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — plugin contract and execution boundary"
+trigger_phrases: []
+---
 # Iteration 001 — plugin contract and execution boundary
 
 ## Result

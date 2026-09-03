@@ -1,3 +1,7 @@
+---
+title: "Research: Optimizing the mcp-obsidian Meta Bind reference docs for AI operation"
+trigger_phrases: []
+---
 # Research: Optimizing the mcp-obsidian Meta Bind reference docs for AI operation
 
 > **Synthesis Provenance:** The deep-research loop completed its investigation (2 iterations,

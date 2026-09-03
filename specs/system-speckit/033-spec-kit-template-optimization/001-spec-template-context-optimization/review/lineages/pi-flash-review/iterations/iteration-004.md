@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: D4 Maintainability — Cross-doc structure, template consolidation quality, naming clarity"
+trigger_phrases: []
+---
 # Iteration 4: D4 Maintainability — Cross-doc structure, template consolidation quality, naming clarity
 
 ## Focus

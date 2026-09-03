@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - codex-3"
+trigger_phrases: []
+---
 # Deep Review Report - codex-3
 
 ## 1. Executive Summary

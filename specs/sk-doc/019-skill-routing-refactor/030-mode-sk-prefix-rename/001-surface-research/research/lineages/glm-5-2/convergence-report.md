@@ -1,3 +1,7 @@
+---
+title: "Convergence Report — lineage glm-5-2"
+trigger_phrases: []
+---
 # Convergence Report — lineage glm-5-2
 
 **Stop reason:** max-iterations (stopPolicy=max-iterations; convergence treated as telemetry only)

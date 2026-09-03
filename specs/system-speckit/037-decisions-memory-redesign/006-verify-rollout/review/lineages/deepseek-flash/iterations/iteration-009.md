@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Broaden — REQ evidence surfaces, packet metadata consistency"
+trigger_phrases: []
+---
 # Iteration 9: Broaden — REQ evidence surfaces, packet metadata consistency
 
 ## Focus

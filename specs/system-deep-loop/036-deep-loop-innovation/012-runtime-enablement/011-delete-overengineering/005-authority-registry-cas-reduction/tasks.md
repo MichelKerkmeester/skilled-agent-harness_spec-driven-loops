@@ -3,6 +3,7 @@ title: "Tasks: Phase 005 Authority Registry CAS Reduction"
 description: "Ordered reduction manifest for F4+F7 — gate on phase 004, fix the known survivor, sever the barrel, remove the mutators, trim tests, delete the flip runner, verify."
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction"
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

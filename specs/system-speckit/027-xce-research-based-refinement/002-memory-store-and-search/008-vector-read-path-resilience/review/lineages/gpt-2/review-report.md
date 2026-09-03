@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: Vector Read-Path Resilience & Performance"
+trigger_phrases: []
+---
 # Deep Review Report: Vector Read-Path Resilience & Performance
 
 ## Executive Summary

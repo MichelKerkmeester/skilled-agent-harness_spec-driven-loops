@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY (auto-generated, review mode):
 Iteration: 1 of 1 | Mode: review
 Target: request-quality aggregation spec folder

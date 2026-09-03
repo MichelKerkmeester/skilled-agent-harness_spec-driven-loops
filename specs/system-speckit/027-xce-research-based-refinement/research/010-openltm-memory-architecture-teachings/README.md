@@ -1,3 +1,7 @@
+---
+title: "Research Phase 010: OpenLTM Memory-Architecture Teachings"
+trigger_phrases: []
+---
 # Research Phase 010: OpenLTM Memory-Architecture Teachings
 
 Deep-research pass mining the vendored `external/OpenLtm-main` (**OpenLTM** — an open-source long-term-memory plugin for AI coding agents; Bun + TypeScript; SQLite WAL + FTS5 BM25 + optional sqlite-vec; pluggable embedding providers; lifecycle hooks; janitor; typed knowledge graph; MIT) for design teachings transferable to the **local, single-user system-spec-kit Memory system** — ending in concrete sub-packet proposals for 027.

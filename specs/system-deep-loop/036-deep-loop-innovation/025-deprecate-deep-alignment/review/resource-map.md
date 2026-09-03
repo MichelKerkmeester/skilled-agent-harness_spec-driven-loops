@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — All work shipped this session on branch skilled/v4.0.0.0 — seven commits (e41aa1878ad, d1a5981b58c, 8849444aa61, 766b59d6bc3, 6303c12ad27, 69d5c223668, b955f937fc9), inspect each with git show <sha>"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

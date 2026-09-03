@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 - Q7 lopsided causal-graph edge growth"
+trigger_phrases: []
+---
 # Iteration 008 - Q7 lopsided causal-graph edge growth
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 Prompt Pack"
+trigger_phrases: []
+---
 # Iteration 008 Prompt Pack
 
 - Focus: P8 — measurement and owner-disagreement arbitration.

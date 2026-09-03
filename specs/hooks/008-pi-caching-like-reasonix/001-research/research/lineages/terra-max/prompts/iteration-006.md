@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 006"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 006
 
 Focus: Pi native cache-control surface

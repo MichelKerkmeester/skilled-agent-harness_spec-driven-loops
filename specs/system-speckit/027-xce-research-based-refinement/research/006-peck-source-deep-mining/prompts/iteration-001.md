@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 001 — implementer escalation / anti-thrash discipline"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 001 — implementer escalation / anti-thrash discipline

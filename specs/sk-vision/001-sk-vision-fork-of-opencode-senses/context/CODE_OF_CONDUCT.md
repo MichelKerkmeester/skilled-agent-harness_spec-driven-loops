@@ -1,3 +1,7 @@
+---
+title: "Code of Conduct"
+trigger_phrases: []
+---
 # Code of Conduct
 
 ## Our pledge

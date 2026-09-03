@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: Final evidence matrix closure and preliminary reduction ranking"
+trigger_phrases: []
+---
 # Iteration 15: Final evidence matrix closure and preliminary reduction ranking
 
 ## Focus

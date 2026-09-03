@@ -1,3 +1,7 @@
+---
+title: "Alignment audit brief: docs vs recent daemon-reliability fixes"
+trigger_phrases: []
+---
 # Alignment audit brief: docs vs recent daemon-reliability fixes
 
 Repo: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`

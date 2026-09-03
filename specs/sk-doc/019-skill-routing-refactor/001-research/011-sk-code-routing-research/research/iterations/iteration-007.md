@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Anti-Gaming Validation Matrix"
+trigger_phrases: []
+---
 # Iteration 7: Anti-Gaming Validation Matrix
 
 ## Route Proof

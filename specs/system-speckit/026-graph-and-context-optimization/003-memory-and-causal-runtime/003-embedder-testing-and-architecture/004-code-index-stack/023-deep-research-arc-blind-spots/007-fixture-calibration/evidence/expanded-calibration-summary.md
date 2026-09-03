@@ -1,3 +1,7 @@
+---
+title: "Expanded Calibration Summary"
+trigger_phrases: []
+---
 # Expanded Calibration Summary
 
 | Lane | Name | Runs | Mean hits | Hit rate mean | Stddev | CI95 | p95 mean ms | p95 stddev ms |

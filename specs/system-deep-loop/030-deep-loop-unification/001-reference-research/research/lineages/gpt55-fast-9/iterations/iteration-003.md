@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: System-Spec-Kit Tooling-Borrow And Hidden Seams"
+trigger_phrases: []
+---
 # Iteration 3: System-Spec-Kit Tooling-Borrow And Hidden Seams
 
 ## Focus

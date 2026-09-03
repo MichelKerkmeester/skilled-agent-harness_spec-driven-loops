@@ -1,3 +1,7 @@
+---
+title: "Research Report: Workstream A — Template Reduction & Optimization (system-spec-kit)"
+trigger_phrases: []
+---
 # Research Report: Workstream A — Template Reduction & Optimization (system-spec-kit)
 
 **Lineage:** `ox-alpha-a` | **Session:** `fanout-ox-alpha-a-1787723389999-m6mva1` | **Iterations:** 10/10 | **Stop reason:** max_iterations (stopPolicy)

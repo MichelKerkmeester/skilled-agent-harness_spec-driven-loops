@@ -1,3 +1,7 @@
+---
+title: "Iteration 04 — Command + YAML wiring consistency"
+trigger_phrases: []
+---
 # Iteration 04 — Command + YAML wiring consistency
 
 **Dimension:** Command MD + YAML workflow-asset consistency for `resource-map.md`

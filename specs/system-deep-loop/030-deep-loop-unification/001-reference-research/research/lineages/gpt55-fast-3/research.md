@@ -1,3 +1,7 @@
+---
+title: "Deep-Loop Unification Research Synthesis - gpt55-fast-3"
+trigger_phrases: []
+---
 # Deep-Loop Unification Research Synthesis - gpt55-fast-3
 
 ## 1. Executive Summary

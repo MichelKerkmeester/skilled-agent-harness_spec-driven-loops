@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness - Freshness Shims and Offline Smoke"
+trigger_phrases: []
+---
 # Iteration 1: Correctness - Freshness Shims and Offline Smoke
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — Final Verification & Synthesis"
+trigger_phrases: []
+---
 # Iteration 3 — Final Verification & Synthesis
 
 **Iteration:** 3 of 3

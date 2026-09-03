@@ -1,3 +1,7 @@
+---
+title: "Handover: Remaining 026 Measurement Experiments"
+trigger_phrases: []
+---
 # Handover: Remaining 026 Measurement Experiments
 
 > Supplementary handover. The committed code fixes are done and live; what remains is **runs** (experiments), not fixes. Full backlog with commands: `research/measurement-backlog.md`. Synthesis: `research/research.md`.

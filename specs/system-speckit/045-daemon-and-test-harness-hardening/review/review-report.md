@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — Packet 045 (daemon-and-test-harness-hardening)"
+trigger_phrases: []
+---
 # Deep Review Report — Packet 045 (daemon-and-test-harness-hardening)
 
 Session: `2026-08-31-auto-deep-review-045` · Generation 1 · lineageMode `resume` · stopPolicy `max-iterations` · maxIterations 4

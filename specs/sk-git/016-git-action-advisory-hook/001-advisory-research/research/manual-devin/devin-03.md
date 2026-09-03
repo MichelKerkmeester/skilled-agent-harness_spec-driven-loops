@@ -1,3 +1,7 @@
+---
+title: "Devin-03: Per-Rule Encodability Map of sk-git's ALWAYS / NEVER / ESCALATE"
+trigger_phrases: []
+---
 # Devin-03: Per-Rule Encodability Map of sk-git's ALWAYS / NEVER / ESCALATE
 
 **Pass:** 3 of 10 — `manual-devin/devin-03`

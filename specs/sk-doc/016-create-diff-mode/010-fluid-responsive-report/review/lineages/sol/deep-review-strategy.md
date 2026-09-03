@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - Fluid Responsive Report"
+trigger_phrases: []
+---
 # Deep Review Strategy - Fluid Responsive Report
 
 ## 1. TOPIC

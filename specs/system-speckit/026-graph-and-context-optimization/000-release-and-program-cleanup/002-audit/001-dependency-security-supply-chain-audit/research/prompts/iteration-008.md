@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 8 of 25 - Shell Startup Files"
+trigger_phrases: []
+---
 # Deep Research Iteration 8 of 25 - Shell Startup Files
 
 ## SITUATION

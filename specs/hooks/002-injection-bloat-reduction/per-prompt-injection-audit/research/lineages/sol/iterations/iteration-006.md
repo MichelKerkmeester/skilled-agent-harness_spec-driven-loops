@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Skill-advisor brief as a per-prompt payload"
+trigger_phrases: []
+---
 # Iteration 6: Skill-advisor brief as a per-prompt payload
 
 ## Focus

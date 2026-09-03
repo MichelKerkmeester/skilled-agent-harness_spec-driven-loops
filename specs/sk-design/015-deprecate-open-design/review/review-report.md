@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: Deprecate sk-design-mcp-open-design"
+trigger_phrases: []
+---
 # Deep Review Report: Deprecate sk-design-mcp-open-design
 
 **Session**: rvw-2026-08-10-deprecate-open-design · **Generation**: 1 · **Mode**: review (files)

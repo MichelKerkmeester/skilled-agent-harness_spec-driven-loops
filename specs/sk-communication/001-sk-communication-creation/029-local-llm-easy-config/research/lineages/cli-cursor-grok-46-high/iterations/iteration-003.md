@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Judge default that permits local accepts"
+trigger_phrases: []
+---
 # Iteration 3: Judge default that permits local accepts
 
 ## Focus

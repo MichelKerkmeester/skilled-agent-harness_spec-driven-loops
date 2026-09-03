@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Security"
+trigger_phrases: []
+---
 # Iteration 002 - Security
 
 Focus: active-shard trust boundary, path authority, transaction safety, and provider/error leakage in the write path.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 16: Activation defaults and kill switches"
+trigger_phrases: []
+---
 # Iteration 16: Activation defaults and kill switches
 
 ## Dimension

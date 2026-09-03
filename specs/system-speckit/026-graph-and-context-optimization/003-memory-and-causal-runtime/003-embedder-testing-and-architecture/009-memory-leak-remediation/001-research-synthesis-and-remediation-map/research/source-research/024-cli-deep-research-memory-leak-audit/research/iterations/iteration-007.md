@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Cross-validate the native runtime measurement log against F-001..F-026, then refine severity and remediation ordering. The measurement log is unsandboxed process-inventory evidence for this pass, not a successful normal-search growth profile, because the measured `ccc status` and `ccc search` commands exited before contacting the CocoIndex daemon.

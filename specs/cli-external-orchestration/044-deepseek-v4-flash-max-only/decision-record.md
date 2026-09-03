@@ -11,6 +11,7 @@ _memory:
     next_safe_action: "None; reference during implementation"
     blockers: []
     completion_pct: 100
+trigger_phrases: []
 ---
 # Decision Record: DeepSeek V4 Flash max-thinking pin
 

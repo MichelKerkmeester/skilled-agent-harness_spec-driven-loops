@@ -1,3 +1,7 @@
+---
+title: "Deep Research: Memory MCP to CLI Feasibility"
+trigger_phrases: []
+---
 # Deep Research: Memory MCP to CLI Feasibility
 
 **Lineage:** DeepSeek (deepseek/deepseek-v4-pro)

@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: P6 Typed Artifact Handles"
+trigger_phrases: []
+---
 # Iteration 13: P6 Typed Artifact Handles
 
 ## Focus

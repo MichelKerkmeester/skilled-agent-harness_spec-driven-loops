@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Standalone Local AI Document Diff Skill"
+trigger_phrases: []
+---
 # Deep Research Strategy: Standalone Local AI Document Diff Skill
 
 ## 2. TOPIC

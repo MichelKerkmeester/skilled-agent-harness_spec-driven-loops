@@ -1,3 +1,7 @@
+---
+title: "Review Iteration 004 — Maintainability (Pattern Inventory + Documentation Quality)"
+trigger_phrases: []
+---
 # Review Iteration 004 — Maintainability (Pattern Inventory + Documentation Quality)
 
 ## Dispatcher

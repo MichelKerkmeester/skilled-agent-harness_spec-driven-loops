@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Consolidated Review (all 4 dimensions)"
+trigger_phrases: []
+---
 # Iteration 001 — Consolidated Review (all 4 dimensions)
 
 **Lineage:** p020-opus-3 (fan-out) · **Executor:** cli-claude-code model=claude-opus-4-8 · **maxIterations:** 1

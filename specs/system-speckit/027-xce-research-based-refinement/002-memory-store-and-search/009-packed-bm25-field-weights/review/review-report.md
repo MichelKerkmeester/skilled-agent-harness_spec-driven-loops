@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 014 Packed BM25 + Field Weights"
+trigger_phrases: []
+---
 # Deep Review Report — 014 Packed BM25 + Field Weights
 
 Review target: `system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights` (packed in-memory BM25 engine + BM25F field weights; commit e78430e7d2).

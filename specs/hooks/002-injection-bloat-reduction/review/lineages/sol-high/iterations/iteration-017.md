@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: Lifecycle adapter coverage"
+trigger_phrases: []
+---
 # Iteration 17: Lifecycle adapter coverage
 
 ## Dimension

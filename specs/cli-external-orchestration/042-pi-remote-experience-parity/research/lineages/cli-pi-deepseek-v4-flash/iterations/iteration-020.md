@@ -1,3 +1,7 @@
+---
+title: "Iteration 20: Final Breadth — Pairing Depth, Coverage Audit, Convergence Telemetry"
+trigger_phrases: []
+---
 # Iteration 20: Final Breadth — Pairing Depth, Coverage Audit, Convergence Telemetry
 
 ## Focus

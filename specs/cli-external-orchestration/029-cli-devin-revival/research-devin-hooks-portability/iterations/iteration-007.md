@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: PreCompact → PostCompaction substitution"
+trigger_phrases: []
+---
 # Iteration 7: PreCompact → PostCompaction substitution
 
 ## Focus

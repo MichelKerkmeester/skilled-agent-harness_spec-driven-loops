@@ -1,3 +1,7 @@
+---
+title: "Research Report - memory_context Structural Channel Routing"
+trigger_phrases: []
+---
 # Research Report - memory_context Structural Channel Routing
 
 ## 1. Executive Summary

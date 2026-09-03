@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 002"
+trigger_phrases: []
+---
 # Deep Research Iteration 002
 
 > Audited changelog: `changelog-021-relation-inference-backfill.md`

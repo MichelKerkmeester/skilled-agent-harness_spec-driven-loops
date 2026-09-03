@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: hooks output contract and custom agent boundaries"
+trigger_phrases: []
+---
 # Iteration 8: hooks output contract and custom agent boundaries
 ## Focus
 This pass targeted Q1 and Q2 by checking whether Copilot CLI hooks can mutate prompt/session context and whether custom agents provide a startup-context injection surface for the main session. It also captured the newly documented local instruction-file channel because it materially affects Q5.

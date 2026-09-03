@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Authoritative Refero MCP surface and live unauthenticated behavior"
+trigger_phrases: []
+---
 # Iteration 1: Authoritative Refero MCP surface and live unauthenticated behavior
 
 ## Focus

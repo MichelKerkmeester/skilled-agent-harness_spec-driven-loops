@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 002"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 002
 
 Focus: DeepSeek cache semantics

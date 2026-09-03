@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Safest integration boundary in Claude CLI and Codex CLI"
+trigger_phrases: []
+---
 # Iteration 2: Safest integration boundary in Claude CLI and Codex CLI
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: D4 Maintainability — Cross-Reference Refresh Path"
+trigger_phrases: []
+---
 # Iteration 3: D4 Maintainability — Cross-Reference Refresh Path
 
 ## Focus

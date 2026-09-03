@@ -1,3 +1,7 @@
+---
+title: "Iteration 012 — Angle 12"
+trigger_phrases: []
+---
 # Iteration 012 — Angle 12
 
 **Angle:** active_memory_projection invariants: which other lookups join the projection while their write guards span all of memory_index (the class behind the scan unique-constraint crash).

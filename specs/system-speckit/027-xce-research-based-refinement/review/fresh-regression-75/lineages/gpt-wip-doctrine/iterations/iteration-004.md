@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-wip-doctrine — iteration 4 (global #66)"
+trigger_phrases: []
+---
 # Seat gpt-wip-doctrine — iteration 4 (global #66)
 
 - Model: `kimi-for-coding/k2p7` · Executor: opencode · Angle: gpt-wip-doctrine

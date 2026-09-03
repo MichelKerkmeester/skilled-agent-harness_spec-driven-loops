@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — .opencode/specs/sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

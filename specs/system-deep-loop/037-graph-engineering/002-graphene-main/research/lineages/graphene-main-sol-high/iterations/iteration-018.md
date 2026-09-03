@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 — Versioned schemas, runtime seams, and staged adoption for P1–P7"
+trigger_phrases: []
+---
 # Iteration 018 — Versioned schemas, runtime seams, and staged adoption for P1–P7
 
 ## Focus

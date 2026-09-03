@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Typed Gate and Evaluation State Machine"
+trigger_phrases: []
+---
 # Iteration 006 — Typed Gate and Evaluation State Machine
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard"
+trigger_phrases: []
+---
 # Deep Review Dashboard
 
 > Auto-generated — do not edit manually.

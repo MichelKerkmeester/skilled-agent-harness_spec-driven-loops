@@ -1,3 +1,7 @@
+---
+title: "Resource Map: System Bugs and Improvements"
+trigger_phrases: []
+---
 # Resource Map: System Bugs and Improvements
 
 This map lists file paths that appeared in the iteration findings, grouped by subsystem. Line ranges are the cited ranges from the findings and supporting evidence inside those finding rows.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Automation gaps"
+trigger_phrases: []
+---
 # Iteration 003 — Automation gaps
 
 ## Focus

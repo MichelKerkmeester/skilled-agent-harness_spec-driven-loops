@@ -1,3 +1,7 @@
+---
+title: "Graph Engineering Primer — Typed graphs for governed agent workflows"
+trigger_phrases: []
+---
 # Graph Engineering Primer — Typed graphs for governed agent workflows
 
 Graph engineering structures agent workflows and durable knowledge as typed, stateful, observable graphs with explicit authority boundaries.

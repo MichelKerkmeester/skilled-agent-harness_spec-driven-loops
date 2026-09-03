@@ -3,6 +3,7 @@ title: "Implementation Plan: Post-rename fallout remediation"
 description: "Repoint the stale rename references in the router-sync test; assess the compiled-routing drift and the strict-validation dist against their documented-alternative outcomes."
 contextType: "planning"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
+trigger_phrases: []
 ---
 # Implementation Plan: Post-Rename Fallout Remediation
 

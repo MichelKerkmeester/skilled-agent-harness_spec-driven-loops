@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: <focus-topic>"
+trigger_phrases: []
+---
 You are executing iteration 10 of 10 of a deep-research loop against the Copilot CLI hook parity question. Operate as a LEAF agent — do not dispatch sub-agents.
 
 ## TOPIC

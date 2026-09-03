@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 (Round K): Q2 Provenance/Write-Safety × content-addressed idempotency + ingest-bypass"
+trigger_phrases: []
+---
 # Iteration 2 (Round K): Q2 Provenance/Write-Safety × content-addressed idempotency + ingest-bypass
 
 ## Focus

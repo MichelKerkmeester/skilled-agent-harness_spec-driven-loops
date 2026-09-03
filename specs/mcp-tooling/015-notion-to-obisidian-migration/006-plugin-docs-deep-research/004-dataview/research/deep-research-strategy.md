@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - Dataview reference docs
 description: Workflow-owned strategy for the bounded Dataview documentation research packet.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Dataview reference docs

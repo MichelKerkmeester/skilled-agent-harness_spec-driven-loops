@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY (auto-generated, review mode):
 Iteration: 3 of 7
 Target: feature catalog and manual testing playbook verification slice

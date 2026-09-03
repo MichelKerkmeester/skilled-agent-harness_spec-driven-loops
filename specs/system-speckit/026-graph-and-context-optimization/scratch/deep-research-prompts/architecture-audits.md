@@ -3,6 +3,7 @@ title: "Deep Research Prompts — Architecture Audits"
 description: "System-mapping research campaigns that produce a grounded architecture document + identified weak points. Use before refactors or when inheriting unfamiliar code."
 importance_tier: "normal"
 contextType: "research-prompts"
+trigger_phrases: []
 ---
 
 # Architecture Audits

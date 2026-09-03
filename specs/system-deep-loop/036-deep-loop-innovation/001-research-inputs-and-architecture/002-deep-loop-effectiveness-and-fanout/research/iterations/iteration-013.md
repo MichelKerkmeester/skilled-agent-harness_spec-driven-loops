@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 13 | SOL xhigh | thread: recommendation-deep-dive | angle: R8 hierarchical typed budgets + exhaustion-as-state | 2026-07-15T05:16:42.392Z -->
 
 R8 should become a shared admission ledger, not another collection of mode-specific counters. The current runtime bounds council rounds/seats, executor time, fan-out retries, and theoretical lineage work, but those controls do not form an atomic, resource-typed hierarchy: [cost-guards.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/runtime/lib/council/cost-guards.cjs:15), [executor-config.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:39), [fanout-run.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:691).

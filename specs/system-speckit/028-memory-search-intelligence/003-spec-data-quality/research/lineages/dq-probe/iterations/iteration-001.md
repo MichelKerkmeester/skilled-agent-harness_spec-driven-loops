@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Inventory of automated quality machinery and its coverage gaps across the spec-kit surface"
+trigger_phrases: []
+---
 # Iteration 1: Inventory of automated quality machinery and its coverage gaps across the spec-kit surface
 
 ## Focus

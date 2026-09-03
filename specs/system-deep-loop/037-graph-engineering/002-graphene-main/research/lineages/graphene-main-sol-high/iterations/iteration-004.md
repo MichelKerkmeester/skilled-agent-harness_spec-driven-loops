@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Golden fixture event-shape and state-oracle audit"
+trigger_phrases: []
+---
 # Iteration 004 — Golden fixture event-shape and state-oracle audit
 
 ## Focus

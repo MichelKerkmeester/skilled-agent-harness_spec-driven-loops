@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard - fanout gpt55-p020-2"
+trigger_phrases: []
+---
 # Deep Review Dashboard - fanout gpt55-p020-2
 
 Auto-generated lineage summary from `deep-review-state.jsonl`, `deep-review-strategy.md`, and `deep-review-findings-registry.json`.

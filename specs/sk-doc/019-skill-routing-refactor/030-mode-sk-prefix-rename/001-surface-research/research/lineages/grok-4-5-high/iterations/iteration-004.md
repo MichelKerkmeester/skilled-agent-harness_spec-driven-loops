@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Commands, agents, runtime mirrors"
+trigger_phrases: []
+---
 # Iteration 004 — Commands, agents, runtime mirrors
 
 ## Focus

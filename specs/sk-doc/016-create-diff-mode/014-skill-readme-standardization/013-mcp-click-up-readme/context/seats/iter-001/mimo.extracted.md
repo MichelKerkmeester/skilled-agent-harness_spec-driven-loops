@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Let me check the remaining directories and files referenced in the README.
 Here is the factual map.
 

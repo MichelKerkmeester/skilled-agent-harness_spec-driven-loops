@@ -1,3 +1,7 @@
+---
+title: "Bundled assets"
+trigger_phrases: []
+---
 # Bundled assets
 
 ## Connector logos

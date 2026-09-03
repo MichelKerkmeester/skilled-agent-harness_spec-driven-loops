@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY: Segment 1 | Iteration 2 of 5 | Next focus: LENS-2 delta and requirement traceability.
 
 Research Topic: code-index CLI gap audit.

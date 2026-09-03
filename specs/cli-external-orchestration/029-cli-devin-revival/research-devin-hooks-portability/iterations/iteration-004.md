@@ -1,6 +1,7 @@
 ---
 title: "Deep Research Iteration 004 — Native Claude Import Coverage Matrix"
 description: "Evidence-backed coverage matrix for importing this repository's Claude hooks into Devin CLI."
+trigger_phrases: []
 ---
 
 ## Focus

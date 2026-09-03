@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: End-to-End Dry-Run"
+trigger_phrases: []
+---
 # Iteration 8: End-to-End Dry-Run
 
 ## Focus

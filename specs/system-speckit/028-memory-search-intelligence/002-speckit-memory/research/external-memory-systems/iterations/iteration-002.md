@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 (Opus lineage): Cognee — ECL graph build / dedup / retrieval + novelty-diff"
+trigger_phrases: []
+---
 # Iteration 2 (Opus lineage): Cognee — ECL graph build / dedup / retrieval + novelty-diff
 
 > Model: **Opus 4.8** (claude2, read-only); orchestrator-written. newInfoRatio 0.85, 8 findings + cross-system novelty-diff.

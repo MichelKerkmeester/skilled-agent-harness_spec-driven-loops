@@ -1,3 +1,7 @@
+---
+title: "Deep-Loop Effectiveness & Fan-out Automation — Targeted Research Synthesis"
+trigger_phrases: []
+---
 # Deep-Loop Effectiveness & Fan-out Automation — Targeted Research Synthesis
 
 > A 20-iteration targeted, non-converging follow-on to 001. Single lineage — GPT-5.6 SOL at **xhigh** reasoning (fast tier) via cli-codex `codex --search exec` — seeded with 001's 216-repo registry so it deepens instead of re-surveying. Three threads: **fan-out automation**, **recommendation deep-dive**, **general effectiveness + AI-council**.

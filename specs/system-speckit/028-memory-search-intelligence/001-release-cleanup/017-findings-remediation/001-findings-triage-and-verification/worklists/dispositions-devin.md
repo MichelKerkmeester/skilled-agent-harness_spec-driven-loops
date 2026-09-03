@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I have enough evidence for all 18 findings. Producing the disposition table.
 
 | # | finding | cat | disposition | command | note |

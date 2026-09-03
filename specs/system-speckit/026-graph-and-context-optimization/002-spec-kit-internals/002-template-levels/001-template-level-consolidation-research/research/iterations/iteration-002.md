@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Trace validator, template header, anchor semantics, provenance parsing, and test fixtures that treat `templates/level_N/` as canonical.

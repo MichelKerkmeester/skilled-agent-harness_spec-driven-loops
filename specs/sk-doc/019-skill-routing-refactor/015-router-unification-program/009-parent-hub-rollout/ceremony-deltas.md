@@ -1,3 +1,7 @@
+---
+title: "Ceremony behavioral deltas"
+trigger_phrases: []
+---
 # Ceremony behavioral deltas
 
 These route-gold differences are recorded without changing their pinned expectations.

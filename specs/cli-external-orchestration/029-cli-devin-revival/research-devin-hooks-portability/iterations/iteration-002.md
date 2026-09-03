@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 — Devin subagent dispatch contract and Task-guard portability"
+trigger_phrases: []
+---
 # Iteration 2 — Devin subagent dispatch contract and Task-guard portability
 
 ## Focus

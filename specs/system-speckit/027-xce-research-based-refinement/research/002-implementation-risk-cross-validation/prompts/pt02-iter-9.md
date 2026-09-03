@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 9/10 cross-validation pass for packet 027.
 
 ITER 9 FOCUS: IRQ9 — LLM-enrichment dispatch shape (Phase 003 P1).

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — Arc 009"
+trigger_phrases: []
+---
 # Deep Review Dashboard — Arc 009
 
 ## Progress

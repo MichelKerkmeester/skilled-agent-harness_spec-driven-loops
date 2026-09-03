@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Commands, settings, file routing, and import paths"
+trigger_phrases: []
+---
 # Iteration 3: Commands, settings, file routing, and import paths
 
 ## Focus

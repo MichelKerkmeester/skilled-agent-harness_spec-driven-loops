@@ -1,3 +1,7 @@
+---
+title: "Iteration 021 — Automation integration: auto vs semi vs manual + wiring"
+trigger_phrases: []
+---
 # Iteration 021 — Automation integration: auto vs semi vs manual + wiring
 
 **Focus:** per-rule automation class + concrete wiring to existing hooks/CI/validators/flags.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Dependency-Ordered Routing and Configuration Fix Plan"
+trigger_phrases: []
+---
 # Iteration 5: Dependency-Ordered Routing and Configuration Fix Plan
 
 ## Focus

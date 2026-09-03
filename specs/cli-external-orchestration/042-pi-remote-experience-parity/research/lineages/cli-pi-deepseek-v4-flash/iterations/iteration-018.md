@@ -1,3 +1,7 @@
+---
+title: "Iteration 18: Gap Check — Transcript Search/Navigation + Session Cost Guard"
+trigger_phrases: []
+---
 # Iteration 18: Gap Check — Transcript Search/Navigation + Session Cost Guard
 
 ## Focus

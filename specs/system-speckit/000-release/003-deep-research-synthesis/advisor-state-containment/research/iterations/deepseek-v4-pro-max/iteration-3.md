@@ -1,3 +1,7 @@
+---
+title: "deepseek-v4-pro-max — iteration 3: Enumerated 9 runtime writers, 4 of which can leak .opencode/.advisor-state into specs/; identified 2 existing guards that are siloed per-component and NOT wired into the hook entry point."
+trigger_phrases: []
+---
 # deepseek-v4-pro-max — iteration 3: Enumerated 9 runtime writers, 4 of which can leak .opencode/.advisor-state into specs/; identified 2 existing guards that are siloed per-component and NOT wired into the hook entry point.
 
 ## Findings

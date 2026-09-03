@@ -1,3 +1,7 @@
+---
+title: "027 Release-Alignment Review — Synthesis (round-1 fan-out + round-2 disposition)"
+trigger_phrases: []
+---
 # 027 Release-Alignment Review — Synthesis (round-1 fan-out + round-2 disposition)
 
 **Date:** 2026-06-18

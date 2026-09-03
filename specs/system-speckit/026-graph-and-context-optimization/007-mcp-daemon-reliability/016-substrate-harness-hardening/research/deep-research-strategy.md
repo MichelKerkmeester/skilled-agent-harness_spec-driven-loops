@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - Substrate skip-not-fail validation
 description: Session tracking for adversarial validation of the skip-not-fail-on-live-owner substrate harness fix.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking

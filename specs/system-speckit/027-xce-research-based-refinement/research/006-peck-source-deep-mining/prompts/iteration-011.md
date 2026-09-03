@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 011 — AC assertion-format gap (prerequisite for T1?)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 011 — AC assertion-format gap (prerequisite for T1?)

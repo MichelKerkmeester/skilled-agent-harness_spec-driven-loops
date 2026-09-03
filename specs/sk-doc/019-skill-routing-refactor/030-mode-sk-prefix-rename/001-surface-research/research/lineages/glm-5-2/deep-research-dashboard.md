@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — lineage glm-5-2"
+trigger_phrases: []
+---
 # Deep Research Dashboard — lineage glm-5-2
 
 **Topic:** sk- prefix rename surface discovery | **Status:** complete | **Stop reason:** max-iterations

@@ -1,3 +1,7 @@
+---
+title: "Iteration 44 (Round O): gauge lag — S, decoupled from C4-C"
+trigger_phrases: []
+---
 # Iteration 44 (Round O): gauge lag — S, decoupled from C4-C
 
 ## Focus

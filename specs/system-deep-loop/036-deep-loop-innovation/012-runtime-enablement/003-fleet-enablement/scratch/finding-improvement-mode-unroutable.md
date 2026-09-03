@@ -1,3 +1,7 @@
+---
+title: "Finding: the improvement mode has no working name on the append CLI"
+trigger_phrases: []
+---
 # Finding: the improvement mode has no working name on the append CLI
 
 Confirmed by execution, not by reading. Both candidate names fail, each rejected

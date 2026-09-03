@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map - gpt55-p021b-2"
+trigger_phrases: []
+---
 # Review Resource Map - gpt55-p021b-2
 
 The target packet did not contain `resource-map.md` at init, so the Resource Map Coverage Gate is skipped for this lineage.

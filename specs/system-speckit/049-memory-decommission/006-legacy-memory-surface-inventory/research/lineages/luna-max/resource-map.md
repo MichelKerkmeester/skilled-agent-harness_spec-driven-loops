@@ -1,3 +1,7 @@
+---
+title: "Resource Map — luna-max detached inventory lineage"
+trigger_phrases: []
+---
 # Resource Map — luna-max detached inventory lineage
 
 This map was emitted during phase_synthesis. It is a pointer catalog for the lineage; the exhaustive path-plus-line record is inventory.external.json.

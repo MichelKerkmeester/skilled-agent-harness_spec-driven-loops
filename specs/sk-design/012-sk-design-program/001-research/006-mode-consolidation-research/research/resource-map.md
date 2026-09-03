@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Consolidate the sk-design skill hub from its current seven modes down to a target four (design-interface, design-motion, design-md-generator, design-mcp-open-design). The full six-question charter is in this packet's spec.md. Determine with utilization evidence the fate of design-foundations, design-audit, and the 7,812-file styles database; whether the four survivors stay hub-modes or become standalone skills; and produce a concrete, risk-assessed migration plan a follow-up build packet can execute."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

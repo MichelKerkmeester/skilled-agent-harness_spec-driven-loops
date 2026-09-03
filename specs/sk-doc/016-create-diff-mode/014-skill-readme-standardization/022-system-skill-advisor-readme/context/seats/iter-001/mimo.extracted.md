@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 1. **PURPOSE** — `system-skill-advisor` scores non-trivial user prompts against indexed skill metadata through a five-lane scorer and a SQLite skill graph, then returns calibrated, prompt-safe skill recommendations via its standalone `mk_skill_advisor` MCP server so the runtime can route to the correct skill without guessing.
 
 2. **PROBLEM** — An agent guessing which skill to use is unreliable because ambiguous prompts silently mis-route to the wrong skill without any confidence signal, wasting cycles on misaligned execution. Without calibrated confidence, hooks that log routing decisions have no way to distinguish a strong match from a coin flip, making telemetry untrustworthy. Routing metadata that goes stale yet continues answering is dangerous because it confidently recommends skills whose metadata has changed, producing correct-looking but wrong routing. A centralized routing surface that has gone stale and answers anyway is dangerous because callers trust its output as authoritative and will act on outdated skill graph edges and lane scores without any staleness signal.

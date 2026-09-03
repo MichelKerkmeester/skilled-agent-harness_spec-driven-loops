@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 - Adversarial / risk pass (gap-close before synthesis)"
+trigger_phrases: []
+---
 # Iteration 009 - Adversarial / risk pass (gap-close before synthesis)
 
 **Focus:** Stress the program — net-negative risks, destructive auto-fix, false signal, double-counting, blast radius — before synthesis.

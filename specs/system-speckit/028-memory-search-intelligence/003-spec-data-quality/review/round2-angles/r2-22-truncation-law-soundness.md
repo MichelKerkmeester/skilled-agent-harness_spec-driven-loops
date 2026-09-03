@@ -1,3 +1,7 @@
+---
+title: "R2-22 Truncation Law Soundness"
+trigger_phrases: []
+---
 # R2-22 Truncation Law Soundness
 
 **Angle summary:** The truncation law's two conclusions (retrieval gated, write-time ships on cost) are sound and corroborated by live code, but the law's stated mechanism mis-reads `minResults=3` as a 3-result cap when the code makes it a floor, and it pins the gate at completeRecall@3 when the live harness and prod window already span 3/5/8.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 10 (Opus lineage — NATIVE): blast-radius of the spearhead GR-llm-fact-invalidation"
+trigger_phrases: []
+---
 # Iteration 10 (Opus lineage — NATIVE): blast-radius of the spearhead GR-llm-fact-invalidation
 
 > Model: **Opus 4.8 NATIVE** (Agent tool `model: opus`, read-only; NOT claude2). Orchestrator-written. newInfoRatio **0.4** (no new candidate — scopes the GO spearhead to an implementable size + names the one trap). This closes the first 10-iter block (DeepSeek + MiMo + Kimi + Opus all proven and banked).

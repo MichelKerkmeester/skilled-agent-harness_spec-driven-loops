@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "evaluation-and-observability",
-      "evaluation and observability",
       "portable cli projection",
       "implementation phase",
       "implementation plan",
@@ -22,12 +21,11 @@
       "gate release with deterministic safety plus blind human non-inferiority",
       "implementation status",
       "current state",
-      "phase 007 handover"
+      "phase 007 handover",
+      "evaluation observability handover"
     ],
     "key_topics": [
       "evaluation-and-observability",
-      "evaluation",
-      "observability",
       "portable",
       "cli",
       "projection",
@@ -36,7 +34,9 @@
       "plan",
       "tasks",
       "architecture",
-      "decision"
+      "decision",
+      "gate",
+      "release"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Measure whether output feels 1:1 with the reference while proving fidelity, latency, cost, privacy, and operational behavior",
     "created_at": "2026-08-11T10:04:32Z",
-    "last_save_at": "2026-08-30T15:39:11.722Z",
+    "last_save_at": "2026-09-03T22:16:46.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:56e724936187a9bbfe7ef4431c09cc123bfa71c7e4f9e943c04866b79ddc48d2",
+    "source_fingerprint": "sha256:7dd90f49457400558ac8d78b4b827197715cd41d916f49ae5a6485817898b509",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a9e2a9b9f176b6f21e189041893b8df9a49a1c34a9faae69c6c7db5e4b41b5a9",
+      "spec.md": "8545848af4fa37a3ccf43c463a5169554ca6d7a4140f4d21c4c1263e90624ab7",
       "plan.md": "b949204b49f98e5e62cf8c62e62e9effd9c256b0ffdd38982a2005fac7de66e3",
       "tasks.md": "b6b968e8590a88da56d8b856f7fa954779406921b7d739d368777675e765e24e",
       "decision-record.md": "5af6b946402dbcd872037e16d3efec71ca46613fdd7906eb0404d1385e2f7967",

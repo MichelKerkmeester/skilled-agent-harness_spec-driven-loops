@@ -1,3 +1,7 @@
+---
+title: "Review Report: Reorg Verification — 027 XCE-Derived Spec Kit Refinement"
+trigger_phrases: []
+---
 # Review Report: Reorg Verification — 027 XCE-Derived Spec Kit Refinement
 
 ## 1. Executive Summary

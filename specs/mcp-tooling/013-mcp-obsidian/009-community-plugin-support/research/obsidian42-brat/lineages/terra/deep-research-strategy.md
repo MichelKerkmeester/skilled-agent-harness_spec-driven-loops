@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy"
+trigger_phrases: []
+---
 # Deep Research Strategy
 
 ## 1. RESEARCH TOPIC

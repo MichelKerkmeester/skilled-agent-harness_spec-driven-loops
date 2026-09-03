@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### Design (sk-design)
 
 - Generate a v3 `DESIGN.md` style reference from any reachable live site, with every color, spacing, font, shadow, and radius value tracing verbatim to `tokens.json` so designs stay truthful to the source rather than invented.

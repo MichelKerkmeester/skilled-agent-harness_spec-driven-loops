@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — performance: latency + token-efficiency"
+trigger_phrases: []
+---
 # Iteration 010 — performance: latency + token-efficiency
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.84 · **tokens:** 107648 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

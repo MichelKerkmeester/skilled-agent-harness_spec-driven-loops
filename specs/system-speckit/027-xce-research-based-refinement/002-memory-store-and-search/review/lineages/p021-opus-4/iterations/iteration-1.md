@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All artifacts are written and the loop is complete. 
 
 **Review summary — lineage p021-opus-4** (target: `021-cooperative-heavy-phases`, Level 1):

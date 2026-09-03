@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Validator Coverage"
+trigger_phrases: []
+---
 # Iteration 4: Validator Coverage
 
 ## Focus

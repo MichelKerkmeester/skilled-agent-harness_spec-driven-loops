@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: T2 — Lock the root cause and define the fix surface (socket-server.ts copy divergence)"
+trigger_phrases: []
+---
 # Iteration 2: T2 — Lock the root cause and define the fix surface (socket-server.ts copy divergence)
 
 ## Focus

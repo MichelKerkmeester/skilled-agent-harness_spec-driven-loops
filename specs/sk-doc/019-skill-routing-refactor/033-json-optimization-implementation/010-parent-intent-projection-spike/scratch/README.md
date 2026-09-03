@@ -1,3 +1,7 @@
+---
+title: "Scratch — experimental spike artifacts, NOT live state"
+trigger_phrases: []
+---
 # Scratch — experimental spike artifacts, NOT live state
 
 Everything in this directory is throwaway working material from the

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard: 021-cooperative-heavy-phases (lineage p021-opus-2)"
+trigger_phrases: []
+---
 # Deep Review Dashboard: 021-cooperative-heavy-phases (lineage p021-opus-2)
 
 _Auto-generated. Do not edit._

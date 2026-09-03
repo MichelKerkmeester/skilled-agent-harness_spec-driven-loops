@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: Verification Pass — Reference Freshness + Notification Mechanics"
+trigger_phrases: []
+---
 # Iteration 13: Verification Pass — Reference Freshness + Notification Mechanics
 
 ## Focus

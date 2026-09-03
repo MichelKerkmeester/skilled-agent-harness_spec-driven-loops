@@ -25,6 +25,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 
 # Consolidated Research: Native Pi `/model` Bridge to Cursor & Devin Subscription Models

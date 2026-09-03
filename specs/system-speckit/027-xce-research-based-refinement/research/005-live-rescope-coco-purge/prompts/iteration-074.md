@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 074 — 008 family STRUCTURAL/metadata re-shape after deleting 002-coco"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 074 — 008 family STRUCTURAL/metadata re-shape after deleting 002-coco

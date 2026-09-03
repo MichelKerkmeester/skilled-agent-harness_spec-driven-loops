@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — daemon-reliability phase ledger + current state"
+trigger_phrases: []
+---
 # Iteration 001 — daemon-reliability phase ledger + current state
 
 - **Wave:** 1 (of 5) · **Executor:** `openai/gpt-5.5-fast --variant xhigh` (read-only, exit 0) · **Seat:** ba07gymu6 · **Date:** 2026-06-14

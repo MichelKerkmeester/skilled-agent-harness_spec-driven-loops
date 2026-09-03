@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Stabilization + Adversarial Replay"
+trigger_phrases: []
+---
 # Iteration 5: Stabilization + Adversarial Replay
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Janitor background-maintenance pipeline (promotion + dedup staging)"
+trigger_phrases: []
+---
 # Iteration 003 — Janitor background-maintenance pipeline (promotion + dedup staging)
 
 **Status:** insight · **Findings:** 6 · **newInfoRatio:** 0.72 · **tokens:** 102477 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

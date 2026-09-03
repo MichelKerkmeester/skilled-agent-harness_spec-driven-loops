@@ -1,6 +1,7 @@
 ---
 title: Deep Review Iteration 009 - Adversarial P1 Re-verification
 description: Final adversarial re-verification of active md-generator P1 findings before synthesis.
+trigger_phrases: []
 ---
 
 # Deep Review Iteration 009 - Adversarial P1 Re-verification

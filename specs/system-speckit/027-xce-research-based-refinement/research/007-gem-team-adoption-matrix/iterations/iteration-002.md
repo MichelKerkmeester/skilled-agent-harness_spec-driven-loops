@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: RQ2 memory architecture"
+trigger_phrases: []
+---
 # Iteration 002: RQ2 memory architecture
 
 **Focus:** RQ2 memory architecture  

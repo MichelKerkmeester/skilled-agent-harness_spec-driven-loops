@@ -1,3 +1,7 @@
+---
+title: "Testing"
+trigger_phrases: []
+---
 # Testing
 
 > Part of the [AgentSwarms docs](../README.md#documentation).

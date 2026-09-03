@@ -1,3 +1,7 @@
+---
+title: "Beancount Ledger 2.3.1 — verified file-layer knowledge base"
+trigger_phrases: []
+---
 # Beancount Ledger 2.3.1 — verified file-layer knowledge base
 
 ## Research status

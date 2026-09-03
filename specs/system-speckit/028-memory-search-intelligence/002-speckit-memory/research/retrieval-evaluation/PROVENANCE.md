@@ -1,3 +1,7 @@
+---
+title: "Merged Research Provenance"
+trigger_phrases: []
+---
 # Merged Research Provenance
 
 ## From 028 retrieval evaluation revisit

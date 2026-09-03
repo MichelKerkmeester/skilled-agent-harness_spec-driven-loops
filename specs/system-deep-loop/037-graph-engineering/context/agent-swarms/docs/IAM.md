@@ -1,3 +1,7 @@
+---
+title: "Access control (IAM) & SSO"
+trigger_phrases: []
+---
 # Access control (IAM) & SSO
 
 > Part of the [AgentSwarms docs](../README.md#documentation).

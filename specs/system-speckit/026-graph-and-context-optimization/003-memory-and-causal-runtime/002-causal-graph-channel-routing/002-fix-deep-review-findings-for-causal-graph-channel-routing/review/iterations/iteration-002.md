@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 — Adversarial Deep Pass"
+trigger_phrases: []
+---
 # Iteration 2 — Adversarial Deep Pass
 
 **Dimension:** adversarial-deep (re-attacking all 8 specified vectors)

@@ -15,6 +15,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Plan: Validate, Re-Benchmark Lane C, Prove Zero Corpus Loss
 

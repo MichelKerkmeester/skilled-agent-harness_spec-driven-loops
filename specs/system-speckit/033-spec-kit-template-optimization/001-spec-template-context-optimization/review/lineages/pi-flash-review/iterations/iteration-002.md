@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: D2 Security — Trust boundaries of uncommitted implementation changes"
+trigger_phrases: []
+---
 # Iteration 2: D2 Security — Trust boundaries of uncommitted implementation changes
 
 ## Focus

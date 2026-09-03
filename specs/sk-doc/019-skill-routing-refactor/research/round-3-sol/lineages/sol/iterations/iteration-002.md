@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Nested Lifecycle and Resume Safety"
+trigger_phrases: []
+---
 # Iteration 2: Nested Lifecycle and Resume Safety
 
 ## Focus

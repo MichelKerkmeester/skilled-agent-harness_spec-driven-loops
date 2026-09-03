@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Degraded Envelope Consolidation Audit (Q-CROSS + Q-REGRESS)"
+trigger_phrases: []
+---
 # Iteration 005 - Degraded Envelope Consolidation Audit (Q-CROSS + Q-REGRESS)
 
 ## Status

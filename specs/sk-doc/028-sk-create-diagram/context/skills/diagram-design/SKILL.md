@@ -4,6 +4,7 @@ description: Create technical and product diagrams — architecture, IT current-
 license: MIT
 metadata:
   version: "2.2"
+trigger_phrases: []
 ---
 
 # Diagram Design

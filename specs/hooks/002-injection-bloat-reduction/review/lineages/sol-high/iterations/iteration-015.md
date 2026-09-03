@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: Restricted-environment negative controls"
+trigger_phrases: []
+---
 # Iteration 15: Restricted-environment negative controls
 
 ## Dimension

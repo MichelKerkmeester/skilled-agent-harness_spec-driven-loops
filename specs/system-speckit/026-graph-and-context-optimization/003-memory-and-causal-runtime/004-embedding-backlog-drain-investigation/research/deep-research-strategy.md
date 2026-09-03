@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - mk-spec-memory embedding-backlog drain investigation
 description: Session tracking for the convergence-gated deep-research loop into mk-spec-memory re-embed non-convergence.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking (Session rsr-2026-05-26T20-43-39Z)

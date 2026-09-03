@@ -1,3 +1,7 @@
+---
+title: "Phase 2 Bench — 011 Rerank Model Fit Investigation"
+trigger_phrases: []
+---
 # Phase 2 Bench — 011 Rerank Model Fit Investigation
 
 ## Probe subset (8 probes)

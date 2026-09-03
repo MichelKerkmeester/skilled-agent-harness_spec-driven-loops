@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Lightweight Reranker Value + FSRS Cold-Tier Tuning"
+trigger_phrases: []
+---
 # Iteration 4: Lightweight Reranker Value + FSRS Cold-Tier Tuning
 
 ## Focus

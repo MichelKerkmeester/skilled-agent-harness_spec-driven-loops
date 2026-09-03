@@ -1,3 +1,7 @@
+---
+title: "Resource Map: 011 MCP Runtime Stress Remediation Review"
+trigger_phrases: []
+---
 # Resource Map: 011 MCP Runtime Stress Remediation Review
 
 ## Files Reviewed

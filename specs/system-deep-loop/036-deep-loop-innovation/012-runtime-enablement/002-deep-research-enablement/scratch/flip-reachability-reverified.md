@@ -1,3 +1,7 @@
+---
+title: "The forward flip, re-verified"
+trigger_phrases: []
+---
 # The forward flip, re-verified
 
 ## Why this was checked again

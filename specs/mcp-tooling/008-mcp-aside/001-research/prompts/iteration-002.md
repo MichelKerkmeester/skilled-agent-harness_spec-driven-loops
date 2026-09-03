@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 2 Prompt"
+trigger_phrases: []
+---
 # Deep Research Iteration 2 Prompt
 
 ## Route proof

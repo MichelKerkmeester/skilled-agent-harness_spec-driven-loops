@@ -1,3 +1,7 @@
+---
+title: "Task 20 Support-Folder Declassification"
+trigger_phrases: []
+---
 # Task 20 Support-Folder Declassification
 
 ## Contract Dry Run

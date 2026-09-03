@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: gpt55-fast-1"
+trigger_phrases: []
+---
 # Research Synthesis: gpt55-fast-1
 
 ## Verdict

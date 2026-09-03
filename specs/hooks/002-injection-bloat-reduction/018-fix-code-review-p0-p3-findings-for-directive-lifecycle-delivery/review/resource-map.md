@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Review the completed phase 018 directive-lifecycle implementation and packet evidence for correctness, security, traceability, maintainability, and regression-proof honesty. Treat unrelated dirty-tree changes as out of scope. Bind all review state to the packet and do not modify implementation files."
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

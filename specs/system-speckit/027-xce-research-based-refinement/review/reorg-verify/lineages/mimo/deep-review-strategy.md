@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — mimo"
+trigger_phrases: []
+---
 # Deep Review Strategy — mimo
 
 Lineage: `fanout-mimo-1781422660235-ysuwb4` | Executor: cli-opencode / xiaomi/mimo-v2.5-pro | Max iterations: 5

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### External CLI Orchestration
 
 - **Six fail-closed CLI executors.** Dispatch coding, review, and deep-loop work through Codex, Claude Code, OpenCode, Cursor, Devin, and Pi — every mode fails closed before dispatch when its binary is missing, and all six share the framework's full hook lifecycle, scope-lock, and spec gates.

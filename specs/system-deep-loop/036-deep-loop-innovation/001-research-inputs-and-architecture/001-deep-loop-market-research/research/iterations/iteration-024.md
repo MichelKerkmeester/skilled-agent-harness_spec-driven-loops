@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 24 | model luna (gpt-5.6-luna) | angle: Cost economics & adaptive-depth scheduling | 2026-07-14T23:08:26.057Z -->
 
 The strongest new signal is an economic controller, not another fixed `max_iterations`. A 2026 formulation prices each possible action by expected accuracy gain versus marginal compute cost, then tunes a Lagrange multiplier to hit a global budget; it reports up to 12.8% relative MATH improvement under matched budgets. [Paper](https://arxiv.org/abs/2604.14853)

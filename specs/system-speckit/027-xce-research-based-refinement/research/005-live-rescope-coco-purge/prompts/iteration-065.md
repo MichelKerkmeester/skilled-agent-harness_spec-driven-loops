@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 065 — 026-dedup: 008.1 aggregator vs shipped batch-learning.ts; STATE_LIMITS export"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 065 — 026-dedup: 008.1 aggregator vs shipped batch-learning.ts; STATE_LIMITS export

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Cross-Study Integration"
+trigger_phrases: []
+---
 # Deep Research Strategy — Cross-Study Integration
 
 ## 1. Overview

@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 6 — Cache-warning hooks transcript identity + replay coverage (Q5)"
+trigger_phrases: []
+---
 # Deep-Research Iteration 6 — Cache-warning hooks transcript identity + replay coverage (Q5)
 
 ## YOUR ROLE

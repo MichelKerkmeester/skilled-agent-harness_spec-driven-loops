@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Section Gates, Manifest Evolution, and Edge-Case Stress Test"
+trigger_phrases: []
+---
 # Iteration 6: Section Gates, Manifest Evolution, and Edge-Case Stress Test
 
 ## Focus

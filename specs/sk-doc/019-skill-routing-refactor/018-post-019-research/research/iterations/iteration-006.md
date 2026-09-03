@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Joining generalization gaps to causal leaf use"
+trigger_phrases: []
+---
 # Iteration 6: Joining generalization gaps to causal leaf use
 
 ## Focus

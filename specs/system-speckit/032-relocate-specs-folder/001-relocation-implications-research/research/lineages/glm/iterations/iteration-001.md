@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Spec-Kit Tooling Path Assumptions (Q1)"
+trigger_phrases: []
+---
 # Iteration 001 — Spec-Kit Tooling Path Assumptions (Q1)
 
 **Focus:** Q1 — Which spec-kit tooling scripts hardcode the `.opencode/specs` path and would break or need patching if `specs/` moved to repo root?

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - 033 JSON Optimization Implementation (glm-high lineage)"
+trigger_phrases: []
+---
 # Deep Review Strategy - 033 JSON Optimization Implementation (glm-high lineage)
 
 ## 2. TOPIC

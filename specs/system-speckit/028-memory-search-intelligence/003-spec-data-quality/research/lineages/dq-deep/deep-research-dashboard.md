@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - lineage dq-deep"
+trigger_phrases: []
+---
 # Deep Research Dashboard - lineage dq-deep
 
 **Status:** COMPLETE (converged) | **Stop reason:** all_questions_answered | **Iterations:** 9 / 40

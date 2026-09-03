@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Every-turn decisions home without an MCP round-trip"
+trigger_phrases: []
+---
 # Iteration 3: Every-turn decisions home without an MCP round-trip
 
 ## Focus

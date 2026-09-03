@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — Document Diff Architecture"
+trigger_phrases: []
+---
 # Deep Research Dashboard — Document Diff Architecture
 
 Auto-generated from JSONL state log and strategy file. Regenerated after every iteration.

@@ -1,3 +1,7 @@
+---
+title: "WU11 PREP — Dead-id retirement & 193-row re-baseline sequencing"
+trigger_phrases: []
+---
 # WU11 PREP — Dead-id retirement & 193-row re-baseline sequencing
 
 > Gate-free PREP for the GATE-ADJACENT WU11. This document makes the post-gate batch

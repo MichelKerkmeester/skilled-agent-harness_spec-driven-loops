@@ -7,6 +7,7 @@ provenance:
   produced_at: "2026-08-13"
   scope: "read-only analysis of context/agent-swarms + context/blog-posts + .opencode/skills/system-deep-loop + specs/system-deep-loop/036-deep-loop-innovation + gen-1 research.md"
   role: "seed for the follow-on /deep:research 20-iteration run over this phase child"
+trigger_phrases: []
 ---
 
 # Orientation Seed — agent-swarms → graph-based deep-loop

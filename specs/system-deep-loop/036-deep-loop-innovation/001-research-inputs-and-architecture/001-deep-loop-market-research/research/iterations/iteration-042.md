@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 42 | model glm (zai-coding-plan/glm-5.2) | angle: Benchmark/eval-driven improvement loops | 2026-07-15T00:37:57.276Z -->
 
 I'll research eval-driven improvement loops — systems that automatically close the loop from evaluation results back into agent/prompt/model improvement. Let me search for real repos not already in the 195 catalogued.

@@ -1,3 +1,7 @@
+---
+title: "Tasks — mcp-obsidian feature-catalog divider conformance"
+trigger_phrases: []
+---
 # Tasks — mcp-obsidian feature-catalog divider conformance
 
 - [x] T1: Confirm dividers are the house convention (cli/mcp leaves + other skills have them) and that the validator does not enforce them for `feature_catalog`. — root cause found.

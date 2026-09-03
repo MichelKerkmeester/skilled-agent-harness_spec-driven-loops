@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 - External-Author Plugins/Skills/Agents"
+trigger_phrases: []
+---
 # Iteration 018 - External-Author Plugins/Skills/Agents
 
 ## Summary

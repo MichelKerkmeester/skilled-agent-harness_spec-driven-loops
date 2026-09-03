@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: RQ1 P1 typed-agent-io-adapter — integration & impact"
+trigger_phrases: []
+---
 # Iteration 001: RQ1 P1 typed-agent-io-adapter — integration & impact
 
 **Focus:** RQ1 P1 typed-agent-io-adapter — integration & impact  

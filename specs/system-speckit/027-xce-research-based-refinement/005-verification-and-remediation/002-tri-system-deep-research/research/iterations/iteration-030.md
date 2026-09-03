@@ -1,3 +1,7 @@
+---
+title: "Iteration 030 — Angle 30"
+trigger_phrases: []
+---
 # Iteration 030 — Angle 30
 
 **Angle:** Graph database lifecycle: growth, compaction, the untracked database/ dir contents, and whether any maintenance is documented or automated.

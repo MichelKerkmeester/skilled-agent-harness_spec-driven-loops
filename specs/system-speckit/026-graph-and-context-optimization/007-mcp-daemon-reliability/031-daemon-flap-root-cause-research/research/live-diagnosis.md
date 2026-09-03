@@ -1,3 +1,7 @@
+---
+title: "Live diagnosis — the current daemon-down state (orchestrator-confirmed, 2026-06-14 ~16:13 UTC)"
+trigger_phrases: []
+---
 # Live diagnosis — the current daemon-down state (orchestrator-confirmed, 2026-06-14 ~16:13 UTC)
 
 This is the concrete failure the root-cause research must explain and fix. All items here were confirmed by running commands this session (not inferred).

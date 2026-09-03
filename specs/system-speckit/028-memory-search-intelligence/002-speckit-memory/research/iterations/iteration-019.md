@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: External Mining — aionforge security-model + namespace-authorization + red-team → Memory"
+trigger_phrases: []
+---
 # Iteration 19: External Mining — aionforge security-model + namespace-authorization + red-team → Memory
 
 ## Focus

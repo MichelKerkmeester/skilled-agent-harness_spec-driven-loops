@@ -1,3 +1,7 @@
+---
+title: "14--pipeline-architecture"
+trigger_phrases: []
+---
 # 14--pipeline-architecture
 
 - Total: 23

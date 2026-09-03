@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 014"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 014
 
 Focus: Context Engine v2 comparison

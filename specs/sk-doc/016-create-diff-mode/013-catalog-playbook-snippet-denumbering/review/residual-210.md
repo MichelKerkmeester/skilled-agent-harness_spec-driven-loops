@@ -1,3 +1,7 @@
+---
+title: "Residual broken links (210) — what I left and why"
+trigger_phrases: []
+---
 # Residual broken links (210) — what I left and why
 
 These are the links the audit left broken on disk after fixing everything reliably-fixable.

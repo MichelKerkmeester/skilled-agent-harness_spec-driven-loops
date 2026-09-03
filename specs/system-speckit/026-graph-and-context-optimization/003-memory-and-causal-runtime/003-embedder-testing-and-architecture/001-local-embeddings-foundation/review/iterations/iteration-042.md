@@ -1,3 +1,7 @@
+---
+title: "Deep Review v4 Iteration 042 - Codex launcher path"
+trigger_phrases: []
+---
 # Deep Review v4 Iteration 042 - Codex launcher path
 
 ## Focus

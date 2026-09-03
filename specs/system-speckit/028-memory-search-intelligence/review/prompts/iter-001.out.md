@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Running the first traceability slice as a read-only review. I will verify the four seed hypotheses and packet-root navigation, then write only the three permitted review artifacts.
 The first pass has identified a real root-navigation divergence: `spec.md` presents only children `000` through `005`, while graph metadata declares `000` through `023`. I am completing the remaining two seed checks and checking the existing review registry before recording the evidence.
 All four seeds are confirmed. Three are P1 documentation contradictions that misstate the current packet topology or implementation state; the stale `# 008` heading is a P2 identity defect. I am recording the evidence and the next slice in the permitted review state only.

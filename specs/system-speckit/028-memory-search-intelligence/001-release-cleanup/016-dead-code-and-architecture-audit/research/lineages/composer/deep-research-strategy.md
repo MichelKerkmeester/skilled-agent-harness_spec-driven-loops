@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — composer lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy — composer lineage
 
 ## 2. TOPIC

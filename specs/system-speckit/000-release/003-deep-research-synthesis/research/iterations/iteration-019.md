@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### New read-only Refero design-reference MCP transport
 
 The Refero design-reference library is now reachable as a read-only MCP transport, the mcp-tooling hub's second design-research source alongside Figma. Where the framework previously had no Refero access at all, the hub now routes design-reference prompts to an eight-tool surface (search_styles, search_screens, search_flows, get_style, get_similar_screens, get_screen_image, get_screen, get_flow) whose exact callable names were captured live in a dated registry fixture rather than guessed. The transport pairs with the design skill for judgment, forbids file mutations outright, and surfaces plan limits up front (Pro gets 8,000 MCP calls a month; Free has no MCP access). Authentication is a browser OAuth handshake, and the docs honestly mark the authenticated path as unverified until an operator authorizes it; an earlier research dispute over the naming scheme is now resolved as negative knowledge.

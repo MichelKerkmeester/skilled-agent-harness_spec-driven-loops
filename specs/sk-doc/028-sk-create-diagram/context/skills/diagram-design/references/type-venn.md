@@ -1,3 +1,7 @@
+---
+title: "Venn / Set Overlap"
+trigger_phrases: []
+---
 # Venn / Set Overlap
 
 **Best for:** intersection of concepts/domains, shared attributes between categories, "where A meets B", ikigai-style frames (desirable × feasible × viable).

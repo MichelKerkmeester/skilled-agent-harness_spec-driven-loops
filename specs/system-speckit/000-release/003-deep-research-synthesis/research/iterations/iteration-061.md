@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Deep-Review Agent Optimization: Kept Baseline
 Ran a 5-iteration improve-agent loop against `@deep-review` using an external orchestrator with 3-parallel concurrency. Each iteration explored a different mutation theme — discipline hardening, concision/clarity, edge-case coverage, integration touchpoints, and a best-of synthesis. All five candidates scored the existing baseline at 100/100/100/100/100 across structural, rule coherence, integration, output quality, and system fitness, producing zero delta. The loop stopped with a `keptBaseline` verdict and iter-1 selected as best via tie-break favoring the earlier, simpler candidate. This confirms the already-mature agent sits at a scoring ceiling that structural-presence checks cannot see past. No promotion was made; the qualitative synthesis candidate is deferred to operator review. Internal tooling — no user-visible behavior change.
 

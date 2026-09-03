@@ -1,3 +1,7 @@
+---
+title: "Autonomous Deep Research Loop"
+trigger_phrases: []
+---
 <!-- iteration 19 | SOL xhigh | thread: general-effectiveness-and-council | angle: Loop failure taxonomy + degeneration vs convergence | 2026-07-15T05:38:57.075Z -->
 
 Internal convergence is not sufficient. Falling novelty and rising agreement can indicate genuine convergence, but the same trace appears under semantic collapse, evaluator gaming, and social conformity. The loop needs an independent health witness before converting `STOP-candidate` into `converged`.

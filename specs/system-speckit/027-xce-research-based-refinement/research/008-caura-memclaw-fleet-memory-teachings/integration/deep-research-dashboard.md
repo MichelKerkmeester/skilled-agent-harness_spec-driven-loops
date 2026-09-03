@@ -1,3 +1,7 @@
+---
+title: "Integration Dashboard — 008 → Spec Kit (UX + automation)"
+trigger_phrases: []
+---
 # Integration Dashboard — 008 → Spec Kit (UX + automation)
 
 **Lineage:** 2026-06-06-008-integration-ux-automation · 1 round of 5 parallel iterations · executor cli-opencode openai/gpt-5.5-fast variant=high read-only

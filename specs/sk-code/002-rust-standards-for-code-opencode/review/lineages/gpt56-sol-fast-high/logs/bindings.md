@@ -1,3 +1,7 @@
+---
+title: "Workflow Bindings"
+trigger_phrases: []
+---
 # Workflow Bindings
 
 BINDING: target=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-code/002-rust-standards-for-code-opencode

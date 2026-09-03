@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Adversarial replay — active P1 findings, completion claims, and missed-P0 search"
+trigger_phrases: []
+---
 # Iteration 5: Adversarial replay — active P1 findings, completion claims, and missed-P0 search
 
 ## Dispatcher

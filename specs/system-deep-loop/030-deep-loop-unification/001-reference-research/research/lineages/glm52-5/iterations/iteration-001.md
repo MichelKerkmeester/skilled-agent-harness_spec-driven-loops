@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - Structural Layout And Detached-Lineage Boundary"
+trigger_phrases: []
+---
 # Iteration 001 - Structural Layout And Detached-Lineage Boundary
 
 ## Focus

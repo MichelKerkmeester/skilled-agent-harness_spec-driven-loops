@@ -1,3 +1,7 @@
+---
+title: "Research: Deep-Loop Unification Merge Design Stress-Test"
+trigger_phrases: []
+---
 # Research: Deep-Loop Unification Merge Design Stress-Test
 
 > **Lineage:** `glm52-1` (GLM-5.2, `reasoningEffort: max`) · **Iterations:** 5 · **Stop reason:** converged (5/5 questions answered) + maxIterationsReached (5/5) · **Loop type:** research · **Session:** `fanout-glm52-1-1783486518892-2qss01`

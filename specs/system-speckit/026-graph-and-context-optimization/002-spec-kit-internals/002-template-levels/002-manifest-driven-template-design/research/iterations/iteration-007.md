@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Integration Probe with Concrete Diffs"
+trigger_phrases: []
+---
 # Iteration 7: Integration Probe with Concrete Diffs
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-RESEARCH ITERATION 5
 
 STATE SUMMARY: Iteration 5 of 5; 4/5 questions answered; ratios 1.00 -> 0.85 -> 0.72 -> 0.58.

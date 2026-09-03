@@ -11,6 +11,7 @@ _memory:
     next_safe_action: "None — decision packet complete."
     blockers: []
     completion_pct: 100
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->

@@ -1,3 +1,7 @@
+---
+title: "REQ-002 Diagnosis — \"FTS/vec Mismatch\" is actually `orphanedFiles`"
+trigger_phrases: []
+---
 # REQ-002 Diagnosis — "FTS/vec Mismatch" is actually `orphanedFiles`
 
 **Date**: 2026-05-08

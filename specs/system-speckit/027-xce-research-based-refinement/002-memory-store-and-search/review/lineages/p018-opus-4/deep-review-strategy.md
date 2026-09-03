@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — p018-opus-4"
+trigger_phrases: []
+---
 # Deep Review Strategy — p018-opus-4
 
 Lineage: `p018-opus-4` | Session: `fanout-p018-opus-4-1781718236450-bbehhf` | Executor: cli-claude-code (claude-opus-4-8)

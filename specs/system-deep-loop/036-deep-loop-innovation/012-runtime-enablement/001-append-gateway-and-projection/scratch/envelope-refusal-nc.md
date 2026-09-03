@@ -1,3 +1,7 @@
+---
+title: "Envelope refusal, and a deferral that was wrong"
+trigger_phrases: []
+---
 # Envelope refusal, and a deferral that was wrong
 
 ## What the record said

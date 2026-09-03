@@ -1,3 +1,7 @@
+---
+title: "Phase 017 Rerun Seed — Findings the phase 018 research can reference"
+trigger_phrases: []
+---
 # Phase 017 Rerun Seed — Findings the phase 018 research can reference
 
 This file captures the 10 key findings from the 10-iteration rerun of phase 017 (`../z_archive/017-memory-refactor-or-deprecation/research/iterations/iteration-001.md` through `iteration-010.md`). Phase 018 iterations should read this seed first and build on it, not re-derive it.

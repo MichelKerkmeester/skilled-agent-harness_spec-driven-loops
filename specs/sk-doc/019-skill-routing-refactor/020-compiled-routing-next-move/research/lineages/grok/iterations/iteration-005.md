@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Minimum Sequenced Work"
+trigger_phrases: []
+---
 # Iteration 5: Minimum Sequenced Work
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 GOAL: Finish packet 015 END TO END — the compiled skill-router GENUINELY SERVING every hub == legacy, then ENABLED BY DEFAULT, verified via tests + a compiled Lane C benchmark + LUNA-HIGH playbooks. All routing code aligned to sk-code:code-opencode; every MD via the right sk-doc mode.
 
 WORKSPACE: work ONLY in worktree .worktrees/0089-sk-doc-default-routing-cutover (branch sk-doc/0089-default-routing-cutover). Commit there. MERGE TO v4 IS OPERATOR-GATED (never merge).

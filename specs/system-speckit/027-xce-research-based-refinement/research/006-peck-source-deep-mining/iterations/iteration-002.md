@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Verdict-freshness binding (code change invalidates green)"
+trigger_phrases: []
+---
 # Iteration 002 — Verdict-freshness binding (code change invalidates green)
 
 **Focus:** peck "code change invalidates prior reviewer verdict; report only from current HEAD + clean tree" vs spec-kit completion gate (validate.sh --strict + checklist + continuity fingerprint).

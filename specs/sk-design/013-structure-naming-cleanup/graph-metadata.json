@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Three structural/naming defects in `sk-design`: (1) a misplaced `styles/docs/` folder holding a stray `manual-testing-playbook.md` whose content the hub playbook already covers under `styles-library-utilization/`; (2) dunder test/fixture folders (`corpus/tests` in five modes plus a backend `tests/fixtures`) that violate the kebab-case sk-doc filesystem naming convention (nodemodules excepted as tool-mandated); (3) the `/interface` command workflow YAML assets that do not conform to the create-command contract that governs `commands/interface/assets/`",
     "created_at": "2026-08-30T15:39:12.961Z",
-    "last_save_at": "2026-08-30T15:39:12.961Z",
+    "last_save_at": "2026-09-03T22:17:58.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73be24af0322fdfa5d487ae7e6e4864eb6daed62e22dac53c9aaab2c00ec6ecb",
+    "source_fingerprint": "sha256:98d1a5efc54cbb5e5d6041f6b6851ed383ef081d76427a6d72b22bad4f5b9775",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37e61880bc333077ceb5919dab3ff73c0cb46a5c0c0280dfb34fa34659df17b4",
-      "plan.md": "774e066dd721bed70bfbed6f8af95ad9279eeb01556dda30aad0d2da16d10ec2",
-      "tasks.md": "3cb900af547fcacc24b9e8af6e06fa2e52d2e439f8e52c78fcb2d19b373daf9f",
-      "implementation-summary.md": "c5e7f664d13039cb212baad4138631cc898d4bd56a21cfe2e7598f7c591934f0"
+      "plan.md": "e4b6fa3d79fe4cceb353e27635658af7b54779b866bcb648a5261860b2fedde5",
+      "tasks.md": "ffe9624bd9db34363a86c9d2b9c856c24fc95f2aa33c1d4feb5e510cf826a7da",
+      "implementation-summary.md": "d78098c6d3a4cabce3bca3697371ab20f69355c885919283705bb6b655ad30bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 - RQ-B4 Feedback-ledger-driven learned retention/decay"
+trigger_phrases: []
+---
 # Iteration 009 - RQ-B4 Feedback-ledger-driven learned retention/decay
 
 ## Focus

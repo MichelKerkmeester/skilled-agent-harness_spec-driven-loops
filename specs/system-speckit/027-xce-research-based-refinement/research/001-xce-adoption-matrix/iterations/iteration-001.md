@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — RQ1: Architectural Context Gap"
+trigger_phrases: []
+---
 # Iteration 001 — RQ1: Architectural Context Gap
 
 **Started**: 2026-05-08T10:57:00Z

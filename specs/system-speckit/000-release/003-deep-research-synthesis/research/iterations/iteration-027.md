@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Motion.dev raised to first-class cross-stack reference category
 Motion.dev is no longer treated as Webflow-only: sk-code now ships a peer `motion_dev/` reference and asset category alongside the Webflow surface, covering install, `animate()`, scroll/in-view, gestures, springs, layout animation, and performance. The manual testing playbook gains animation regression and release-readiness coverage — pinned CDN smoke tests, version/export validation, reduced-motion behavior, visual baselines, browser compatibility, Core Web Vitals, and compositor checks. Webflow docs cross-reference the new Motion material while Webflow-specific CDN and `window.Motion` guidance stays untouched, and the skill's router docs and metadata were refreshed so the category is discoverable. A deep-review pass then remediated the flagged findings, including a documented dynamic-import pattern for Motion+. The cross-CLI routing harness and routing-precision fixes (doc-only markdown edits routed as sk-doc, non-Webflow Motion prompts kept out of Webflow promotion) also shipped, but their Codex rechecks could not complete because nested Codex couldn't reach the OpenAI API from the sandbox, so those phases remain unverified.
 

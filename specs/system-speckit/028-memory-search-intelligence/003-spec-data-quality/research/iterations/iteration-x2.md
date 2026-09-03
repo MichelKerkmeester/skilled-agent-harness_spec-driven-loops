@@ -1,3 +1,7 @@
+---
+title: "Iteration X2 - Rollup Tension Resolution and description.json Schema Go/No-Go (opus, cross-cutting)"
+trigger_phrases: []
+---
 # Iteration X2 - Rollup Tension Resolution and description.json Schema Go/No-Go (opus, cross-cutting)
 
 ## TITLE

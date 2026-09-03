@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: CLI candidate identity and genuine headless boundary"
+trigger_phrases: []
+---
 # Iteration 2: CLI candidate identity and genuine headless boundary
 
 ## Focus

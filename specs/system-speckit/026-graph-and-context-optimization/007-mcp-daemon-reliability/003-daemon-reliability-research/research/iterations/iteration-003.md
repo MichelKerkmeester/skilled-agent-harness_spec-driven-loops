@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Adversarial convergence (4 Opus skeptics, parallel)"
+trigger_phrases: []
+---
 # Iteration 003 — Adversarial convergence (4 Opus skeptics, parallel)
 
 Each iteration-002 design was handed to an Opus agent told to REFUTE it and list the guards it must have. Source: workflow `wf_60883ac5-906`, phase "Iteration B". **Verdict: all three top designs `designHoldsUp: false` (high confidence); RC-5 stays refuted.** The most consequential discovery is the sidecar process-scope error, which reframes RC-1 itself.

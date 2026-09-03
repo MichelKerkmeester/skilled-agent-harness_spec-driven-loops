@@ -1,3 +1,7 @@
+---
+title: "/interface:* Benchmark Scorecard — Structure + Live Multi-Model Quality"
+trigger_phrases: []
+---
 # /interface:* Benchmark Scorecard — Structure + Live Multi-Model Quality
 
 > Hybrid benchmark. Structure axis = deterministic conformance. Live axis = `/interface:design` on one

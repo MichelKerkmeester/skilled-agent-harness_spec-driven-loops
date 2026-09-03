@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 002 — code-quality"
+trigger_phrases: []
+---
 # Codex Iteration 002 — code-quality
 
 ## Sequential-thinking preflight

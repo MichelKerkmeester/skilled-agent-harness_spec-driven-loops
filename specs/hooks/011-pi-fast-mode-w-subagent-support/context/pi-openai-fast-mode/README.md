@@ -1,3 +1,7 @@
+---
+title: "pi-openai-fast-mode"
+trigger_phrases: []
+---
 # pi-openai-fast-mode
 
 Pi package that adds a Fast Mode toggle for GPT-5.6, GPT-5.5, and GPT-5.4.

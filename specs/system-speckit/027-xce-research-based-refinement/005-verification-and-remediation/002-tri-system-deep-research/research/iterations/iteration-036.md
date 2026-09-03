@@ -1,3 +1,7 @@
+---
+title: "Iteration 036 — Angle 36"
+trigger_phrases: []
+---
 # Iteration 036 — Angle 36
 
 **Angle:** Daemon supervision uniformity: launcher watchdog, lease, orphan-reap parity with the spec-memory launcher's hardened behavior.

@@ -4,6 +4,7 @@ rq: RQ-N1
 phase_target: 002-memory-write-safety
 newInfoRatio: 0.72
 verdict: ADOPT
+trigger_phrases: []
 ---
 
 # Iteration 030 — RQ-N1: Minimal Guard Shape for the passes_threshold Gap in render.ts

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Vector Search Architecture by Scale"
+trigger_phrases: []
+---
 # Iteration 1: Vector Search Architecture by Scale
 
 ## Focus

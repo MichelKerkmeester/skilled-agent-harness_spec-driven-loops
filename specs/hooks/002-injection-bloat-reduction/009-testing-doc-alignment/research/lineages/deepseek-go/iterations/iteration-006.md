@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Repo-wide paraphrase net + severity ranking groundwork"
+trigger_phrases: []
+---
 # Iteration 6: Repo-wide paraphrase net + severity ranking groundwork
 
 ## Focus

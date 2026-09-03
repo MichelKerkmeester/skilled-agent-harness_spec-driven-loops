@@ -1,3 +1,7 @@
+---
+title: "r2-23 measured-go"
+trigger_phrases: []
+---
 # r2-23 measured-go
 
 **Angle summary:** Re-ran the real `graphMetadataSchema` and `folderDescriptionSchema` over the live 2059-file corpus to test whether A4 (schema warn-to-error) is genuinely the one unconditional measured GO. The 0-grandfathered census and the zero-retrieval-risk half both verify clean. The 11-invalid-graph-files census does not survive a real run.

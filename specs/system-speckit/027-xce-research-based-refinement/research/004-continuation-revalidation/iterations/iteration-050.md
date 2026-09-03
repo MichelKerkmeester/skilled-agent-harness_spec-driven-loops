@@ -1,3 +1,7 @@
+---
+title: "Iteration 050: Feedback reducers revalidation"
+trigger_phrases: []
+---
 # Iteration 050: Feedback reducers revalidation
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 **Findings**
 P1 | `.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-description-template.json:4` | Misidentifies `description.json` as advisor input | Quote: `"One advisor-facing paragraph..."` Correction: describe it as hub-doctor metadata. The advisor identity input is `graph-metadata.json`; link the canonical contract instead of assigning advisor ownership.
 

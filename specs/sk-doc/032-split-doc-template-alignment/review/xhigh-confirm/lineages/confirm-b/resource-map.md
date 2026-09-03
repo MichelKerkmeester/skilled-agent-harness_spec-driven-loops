@@ -1,3 +1,7 @@
+---
+title: "Review Evidence Resource Map: confirm-b"
+trigger_phrases: []
+---
 # Review Evidence Resource Map: confirm-b
 
 This is a lineage-local synthesis map. The target packet had no source `resource-map.md` at initialization, so the formal Resource Map Coverage Gate is skipped.

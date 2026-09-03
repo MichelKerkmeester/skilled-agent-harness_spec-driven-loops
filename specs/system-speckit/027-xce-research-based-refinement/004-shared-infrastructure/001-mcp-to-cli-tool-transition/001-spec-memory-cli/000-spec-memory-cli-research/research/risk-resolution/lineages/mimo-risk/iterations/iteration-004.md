@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — RQ7: Session-Identity Semantics + RQ8: Build/Activation Drift"
+trigger_phrases: []
+---
 # Iteration 004 — RQ7: Session-Identity Semantics + RQ8: Build/Activation Drift
 
 - **Date:** 2026-06-06T12:50:00Z

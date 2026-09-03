@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Build, Redesign, And Structural Catalogs"
+trigger_phrases: []
+---
 # Iteration 3: Build, Redesign, And Structural Catalogs
 
 ## Focus

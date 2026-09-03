@@ -6,6 +6,7 @@ lens: "Correctness / Safety-hawk (temp 0.2)"
 status: ok
 timestamp: "2026-06-13T00:00:00Z"
 simulated: true
+trigger_phrases: []
 ---
 # Seat 002 — Correctness / Safety-hawk
 

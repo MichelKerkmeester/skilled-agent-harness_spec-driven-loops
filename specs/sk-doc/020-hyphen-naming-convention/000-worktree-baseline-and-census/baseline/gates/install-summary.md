@@ -1,3 +1,7 @@
+---
+title: "Install gate"
+trigger_phrases: []
+---
 # Install gate
 
 BASE: `1ec0ad2947b19ac3053c7b031b7d43e67bf42bbe`

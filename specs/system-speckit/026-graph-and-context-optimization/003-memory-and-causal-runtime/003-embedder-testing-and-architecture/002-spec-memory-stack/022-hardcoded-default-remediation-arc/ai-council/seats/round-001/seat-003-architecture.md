@@ -6,6 +6,7 @@ lens: holistic (architecture)
 status: returned
 timestamp: 2026-05-23T17:11:00.000Z
 simulated: true
+trigger_phrases: []
 ---
 
 # Seat 003 — ARCHITECTURE (Holistic Lens, simulated cli-claude-code vantage)

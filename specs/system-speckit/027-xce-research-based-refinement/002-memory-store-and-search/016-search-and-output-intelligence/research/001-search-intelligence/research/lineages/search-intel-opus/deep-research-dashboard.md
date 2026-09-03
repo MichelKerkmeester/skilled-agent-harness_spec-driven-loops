@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — search-intel-opus"
+trigger_phrases: []
+---
 # Deep Research Dashboard — search-intel-opus
 
 _Auto-generated from JSONL + strategy + registry. Do not edit by hand._

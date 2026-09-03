@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Traceability / Spec-Alignment"
+trigger_phrases: []
+---
 # Iteration 003 — Traceability / Spec-Alignment
 
 Dimension: Traceability · Target: `015-prodmode-recall-gate` (spec-folder, PLANNED) · Lineage: review

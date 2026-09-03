@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Observer-timing line-level verification, negative-control fixtures, and cross-lineage reconciliation"
+trigger_phrases: []
+---
 # Iteration 5: Observer-timing line-level verification, negative-control fixtures, and cross-lineage reconciliation
 
 ## Focus

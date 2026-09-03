@@ -1,3 +1,7 @@
+---
+title: "Skill Benchmark Report — mcp-tooling"
+trigger_phrases: []
+---
 # Skill Benchmark Report — mcp-tooling
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-a-router-replay` · trace mode: `router`.

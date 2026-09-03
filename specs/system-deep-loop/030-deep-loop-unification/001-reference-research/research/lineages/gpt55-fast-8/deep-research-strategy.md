@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - gpt55-fast-8"
+trigger_phrases: []
+---
 # Deep Research Strategy - gpt55-fast-8
 
 ## 1. OVERVIEW

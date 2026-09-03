@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Reviewing the Phase R ENV reference slice as a read-only, traceability-focused iteration. I will write only the three required review artifacts and registry/strategy updates.
 The archive-vector row is internally contradicted by the startup implementation: the reference declares it default-on, while the implementation labels it opt-in/default-off. I am recording this as a documentation P1 and preserving the other checked flag contracts as ruled out.
 ## P1 Finding

@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Expansion Ranking and Planning Packet"
+trigger_phrases: []
+---
 # Iteration 005 - Expansion Ranking and Planning Packet
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Structural Layout And Identity Model"
+trigger_phrases: []
+---
 # Iteration 1: Structural Layout And Identity Model
 
 ## Focus

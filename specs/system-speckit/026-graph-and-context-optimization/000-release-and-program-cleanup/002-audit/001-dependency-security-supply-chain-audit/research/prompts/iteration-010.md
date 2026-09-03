@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 10 of 25 - PATH Integrity + Shadow Binaries"
+trigger_phrases: []
+---
 # Deep Research Iteration 10 of 25 - PATH Integrity + Shadow Binaries
 
 ## SITUATION

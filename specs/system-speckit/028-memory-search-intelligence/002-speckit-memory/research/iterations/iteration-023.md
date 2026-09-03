@@ -1,3 +1,7 @@
+---
+title: "Iteration 23: Round E Verify+Feasibility — Memory Provenance/Identity Hardening (mostly N/A single-tenant)"
+trigger_phrases: []
+---
 # Iteration 23: Round E Verify+Feasibility — Memory Provenance/Identity Hardening (mostly N/A single-tenant)
 
 ## Focus

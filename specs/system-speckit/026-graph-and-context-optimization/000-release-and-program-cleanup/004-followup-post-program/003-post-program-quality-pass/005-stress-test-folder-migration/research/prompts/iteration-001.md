@@ -1,3 +1,7 @@
+---
+title: "Find candidate stress-test files in tests/"
+trigger_phrases: []
+---
 ## Packet 037/005: stress-test-folder-migration — Tier C code+config
 
 You are cli-codex (gpt-5.5 high fast) implementing **037/005-stress-test-folder-migration**.

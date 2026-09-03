@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 006"
+trigger_phrases: []
+---
 # Deep-Review Iteration 006
 
 Target: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/052-mk-spec-memory-rename` at commit `f91da9f1a`.

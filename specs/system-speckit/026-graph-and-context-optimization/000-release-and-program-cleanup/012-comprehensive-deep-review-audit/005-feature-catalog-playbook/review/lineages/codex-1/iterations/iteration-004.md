@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - Maintainability"
+trigger_phrases: []
+---
 # Iteration 004 - Maintainability
 
 Focus: stale source references in sampled catalog leaves and maintainability of the verification surface.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: READMEs + SKILL.md + hooks + skill-advisor render.ts + feature-catalog + manual-testing"
+trigger_phrases: []
+---
 # Iteration 4: READMEs + SKILL.md + hooks + skill-advisor render.ts + feature-catalog + manual-testing
 
 ## Focus

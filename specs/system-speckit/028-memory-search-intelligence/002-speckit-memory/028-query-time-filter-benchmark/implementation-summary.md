@@ -30,7 +30,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The aggregate counter is process-lifetime in-memory telemetry; it resets on daemon restart."
- status: completed
+status: completed
 ---
 # Implementation Summary
 

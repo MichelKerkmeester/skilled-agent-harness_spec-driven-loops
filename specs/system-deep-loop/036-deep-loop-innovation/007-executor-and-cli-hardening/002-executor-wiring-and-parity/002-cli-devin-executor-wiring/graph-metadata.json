@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`EXECUTORKINDS` in `runtime/lib/deep-loop/executor-config.ts` shipped five kinds — `native`, `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor` — with no `cli-devin`",
     "created_at": "2026-07-27T16:55:59Z",
-    "last_save_at": "2026-08-30T15:39:21.831Z",
+    "last_save_at": "2026-09-03T22:20:58.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:7490b2ee58605615c592695a824fc9470d7591f6fe26efcb23e5be92fe325687",
+    "source_fingerprint": "sha256:14c94394577ce1c1b322d5ff8aa510a1534cf9dc9aa0152c9f0291ee69ed4669",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa374386b5753301d54503f03e1e6a2d60e0ca458981ab3d8c54a65fba1fc21f",
       "plan.md": "453ab53098ec312dffe0929bb05fc72ae9a1b2a4b5356cd85cec5265e96877f4",
       "tasks.md": "7a0a76c1fbef2ca1294957ab483e01fa44767b1c77aeebc5e06cdde8b5162dfd",
       "implementation-summary.md": "12adff0b8868344e5ac4fc5455c1aa20bb3b66b8815bcaa3032d190193ce1b8a",
-      "handover.md": "9b7f3af7c2db02f04b0f03b592b92f11f7c9a5a53946e480b70440e8abdff576"
+      "handover.md": "7e2ff8b43a5cb1a8c5df691bed5e3ae25275a762b0b7be0dea9bb67184cc31cd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,3 +1,7 @@
+---
+title: "Plan — mcp-obsidian + hub post-audit fixes"
+trigger_phrases: []
+---
 # Plan — mcp-obsidian + hub post-audit fixes
 
 ## Approach

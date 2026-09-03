@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Standalone Local AI Document Diff Skill — V1 Architecture"
+trigger_phrases: []
+---
 # Research Synthesis: Standalone Local AI Document Diff Skill — V1 Architecture
 
 <!-- ANCHOR:research-synthesis -->

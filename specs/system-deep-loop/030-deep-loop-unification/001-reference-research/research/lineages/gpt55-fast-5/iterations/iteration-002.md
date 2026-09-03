@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Structural Move And Bidirectional Path-Coupling Stress Test"
+trigger_phrases: []
+---
 # Iteration 2: Structural Move And Bidirectional Path-Coupling Stress Test
 
 ## Focus

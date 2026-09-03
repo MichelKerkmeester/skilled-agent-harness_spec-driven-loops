@@ -1,3 +1,7 @@
+---
+title: "Review Report — 007-output-surface-parity (lineage p017c007-opus)"
+trigger_phrases: []
+---
 # Review Report — 007-output-surface-parity (lineage p017c007-opus)
 
 ## 1. Executive Summary

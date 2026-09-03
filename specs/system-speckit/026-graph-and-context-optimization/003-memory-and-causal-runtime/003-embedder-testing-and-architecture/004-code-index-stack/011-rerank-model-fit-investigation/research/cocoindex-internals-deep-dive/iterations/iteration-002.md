@@ -1,3 +1,7 @@
+---
+title: "Iter 2 — indexer.py deep-read — chunking, exclusions, path_class assignment, structural-indexer.ts chunk inspection"
+trigger_phrases: []
+---
 # Iter 2 — indexer.py deep-read — chunking, exclusions, path_class assignment, structural-indexer.ts chunk inspection
 
 ## TL;DR (2-3 sentences)

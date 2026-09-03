@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - Test Brittleness + Maintainability Audit (Q-TEST + Q-MAINT)"
+trigger_phrases: []
+---
 # Iteration 003 - Test Brittleness + Maintainability Audit (Q-TEST + Q-MAINT)
 
 ## Status

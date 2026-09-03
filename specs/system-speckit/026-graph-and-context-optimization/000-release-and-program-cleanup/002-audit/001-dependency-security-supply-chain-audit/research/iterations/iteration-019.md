@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 - Hidden Network Exposure"
+trigger_phrases: []
+---
 # Iteration 019 - Hidden Network Exposure
 
 ## Summary

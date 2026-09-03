@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 JSON validation via interpreter is sandbox-blocked, but the files were authored directly as valid JSON via the Write tool and reviewed. All artifacts are confirmed present and the iteration verdict line is correct.
 
 Review complete. Summary:

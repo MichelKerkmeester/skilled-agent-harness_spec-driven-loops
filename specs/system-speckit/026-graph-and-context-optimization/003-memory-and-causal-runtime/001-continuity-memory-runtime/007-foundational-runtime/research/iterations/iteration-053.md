@@ -1,3 +1,7 @@
+---
+title: "Iteration 053 — P1→P0 escalation under expanded attack scenarios (KQ-51-3)"
+trigger_phrases: []
+---
 # Iteration 053 — P1→P0 escalation under expanded attack scenarios (KQ-51-3)
 
 **Segment**: 2 | **Dimension**: blast-radius | **Dispatched**: Opus 4.7 via Task tool

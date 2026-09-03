@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 010 — reflection bounded-cap / promotion residue (T2 delta)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 010 — reflection bounded-cap / promotion residue (T2 delta)

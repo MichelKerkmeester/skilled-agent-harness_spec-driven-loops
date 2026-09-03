@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard"
+trigger_phrases: []
+---
 # Deep Research Dashboard
 
 Session: fanout-codex-1-1780597406873-0x2cpu

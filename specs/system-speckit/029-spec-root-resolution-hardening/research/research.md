@@ -1,3 +1,7 @@
+---
+title: "Research: Spec Root Resolution Hardening"
+trigger_phrases: []
+---
 # Research: Spec Root Resolution Hardening
 
 > Ten-iteration autonomous synthesis for `008-spec-root-resolution-hardening`.

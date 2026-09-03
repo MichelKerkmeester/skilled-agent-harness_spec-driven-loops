@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map: gpt55-p020-1"
+trigger_phrases: []
+---
 # Review Resource Map: gpt55-p020-1
 
 Target packet `resource-map.md` was absent at init, so the formal Resource Map Coverage Gate was skipped.

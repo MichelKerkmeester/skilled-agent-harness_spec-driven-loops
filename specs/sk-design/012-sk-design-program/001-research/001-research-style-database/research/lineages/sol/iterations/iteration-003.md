@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Normalized style schema and canonical hashes"
+trigger_phrases: []
+---
 # Iteration 3: Normalized style schema and canonical hashes
 
 ## Focus

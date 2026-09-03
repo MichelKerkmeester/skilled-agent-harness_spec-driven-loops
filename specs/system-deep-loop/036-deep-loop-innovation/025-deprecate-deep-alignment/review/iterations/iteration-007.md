@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Security (Broadened Angle 3: Adversarial Replay)"
+trigger_phrases: []
+---
 # Iteration 007 — Security (Broadened Angle 3: Adversarial Replay)
 
 ## Dimension

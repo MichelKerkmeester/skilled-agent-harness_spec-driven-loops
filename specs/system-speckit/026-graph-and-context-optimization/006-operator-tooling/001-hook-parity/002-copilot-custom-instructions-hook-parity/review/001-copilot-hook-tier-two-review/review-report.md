@@ -1,3 +1,7 @@
+---
+title: "Executive Summary"
+trigger_phrases: []
+---
 # Executive Summary
 
 **Verdict: CONDITIONAL.** Active findings: P0=0, P1=2, P2=2. `hasAdvisories: true`.

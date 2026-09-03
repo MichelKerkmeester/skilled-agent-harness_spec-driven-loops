@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Ranked verdict and parent-purpose alignment"
+trigger_phrases: []
+---
 # Iteration 5: Ranked verdict and parent-purpose alignment
 
 ## Focus

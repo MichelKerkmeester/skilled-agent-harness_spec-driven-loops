@@ -1,3 +1,7 @@
+---
+title: "Iteration 11 (Round L): Q2 deep — ingest-bypass full-chain trace → HOLE REFUTED"
+trigger_phrases: []
+---
 # Iteration 11 (Round L): Q2 deep — ingest-bypass full-chain trace → HOLE REFUTED
 
 ## Focus

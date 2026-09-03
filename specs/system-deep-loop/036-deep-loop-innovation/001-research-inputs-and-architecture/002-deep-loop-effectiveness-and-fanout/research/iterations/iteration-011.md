@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 11 | SOL xhigh | thread: recommendation-deep-dive | angle: R6 semantic-community novelty + contradiction-as-version | 2026-07-15T05:07:46.781Z -->
 
 R6 should become a two-layer, version-aware projection. One scalar cannot safely represent both “we learned something settled” and “we found a contradiction that demands broader research.”

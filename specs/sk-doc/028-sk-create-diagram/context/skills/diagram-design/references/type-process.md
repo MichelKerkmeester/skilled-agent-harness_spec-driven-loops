@@ -1,3 +1,7 @@
+---
+title: "Process"
+trigger_phrases: []
+---
 # Process
 
 **Best for:** sequential business processes with multiple actors/divisions where the reader needs to see *who* does *what*, *what data* enters and leaves each step, and *which tools* are used — not just the step order. Covers responsibility audits, data-quality gate reviews, cross-divisional handoff maps, and end-to-end workflow documentation.

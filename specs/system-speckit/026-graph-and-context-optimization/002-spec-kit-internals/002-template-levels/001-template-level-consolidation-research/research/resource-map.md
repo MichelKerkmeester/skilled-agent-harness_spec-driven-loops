@@ -1,3 +1,7 @@
+---
+title: "Template Consolidation Research Resource Map"
+trigger_phrases: []
+---
 # Template Consolidation Research Resource Map
 
 ## READMEs

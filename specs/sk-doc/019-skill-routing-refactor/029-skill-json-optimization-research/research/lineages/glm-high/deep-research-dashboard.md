@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — glm-high lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — glm-high lineage
 
 ## Iteration Table

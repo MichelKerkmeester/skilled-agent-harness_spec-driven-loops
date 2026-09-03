@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 3 (completeness + convergence confirmation)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 3 (completeness + convergence confirmation)
 
 - **Worker**: cli-claude-code · claude-opus-4-8 · account2 · `review` agent · high effort

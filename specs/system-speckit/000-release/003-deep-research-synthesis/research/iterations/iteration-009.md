@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### New cli-opencode skill joins the CLI orchestrator family
 The cli-opencode skill landed as the fifth sibling in the cli-* family, matching the canonical 9-file blueprint of its peers (skill document, README, graph metadata, four reference docs, and two prompt assets). It is now discoverable through the skill advisor: sibling edges at weight 0.5 were added to all four existing CLI skills and the advisor graph was regenerated, so the canonical prompt routes at 0.95 confidence. A layered self-invocation guard (environment variables, process ancestry, lock-file probe) stops the skill from dispatching opencode from inside an opencode session. The framework deliberately skipped a token-boost for the word "opencode" — with 956,946 occurrences repo-wide it would false-positive — and instead relies on intent signals plus derived trigger phrases for discoverability. A v1.0.0.0 changelog and ten line-anchored README patches keep the surrounding documentation current.
 

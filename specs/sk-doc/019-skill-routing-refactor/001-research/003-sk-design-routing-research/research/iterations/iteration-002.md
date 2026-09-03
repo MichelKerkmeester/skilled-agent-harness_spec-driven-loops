@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Leaf-Manifest Feasibility and Byte Stability"
+trigger_phrases: []
+---
 # Iteration 2: Leaf-Manifest Feasibility and Byte Stability
 
 ## Focus

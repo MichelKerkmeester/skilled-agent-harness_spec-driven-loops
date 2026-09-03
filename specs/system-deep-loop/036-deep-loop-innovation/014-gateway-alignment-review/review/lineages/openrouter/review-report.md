@@ -1,3 +1,7 @@
+---
+title: "Review Report — Gateway Alignment Deep-Review (openrouter lineage)"
+trigger_phrases: []
+---
 # Review Report — Gateway Alignment Deep-Review (openrouter lineage)
 
 **Session**: `fanout-openrouter-1787662335600-tvzr08` · **Mode**: review (fan-out lineage, cli-pi / stealth/ox-alpha) · **Iterations**: 10 of 10 (stop-policy max-iterations) · **Target**: gateway-alignment surface — leaf agents ×6 runtimes, 16 orchestrator YAMLs, 8 command docs, AGENTS.md, guard script

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Leaf-Resource and Command Metadata Schemas and Consumers"
+trigger_phrases: []
+---
 # Iteration 3: Leaf-Resource and Command Metadata Schemas and Consumers
 
 ## Focus

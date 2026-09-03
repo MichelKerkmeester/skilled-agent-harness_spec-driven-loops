@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Packet 008 Pi Fork Improvements"
 description: "Evidence inventory for the sol detached research lineage."
+trigger_phrases: []
 ---
 
 # Resource Map

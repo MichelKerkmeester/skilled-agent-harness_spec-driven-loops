@@ -1,3 +1,7 @@
+---
+title: "tri-016 Fix Verdict — CLI Save-Lane Secret Scrubber"
+trigger_phrases: []
+---
 # tri-016 Fix Verdict — CLI Save-Lane Secret Scrubber
 
 VERDICT: CLOSED

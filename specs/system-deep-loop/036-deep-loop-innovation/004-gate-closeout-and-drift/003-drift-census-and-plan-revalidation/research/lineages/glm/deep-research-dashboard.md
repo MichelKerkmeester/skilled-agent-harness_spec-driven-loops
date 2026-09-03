@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - GLM Lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard - GLM Lineage
 
 Auto-generated from JSONL, strategy, and registry state. Do not edit by hand.

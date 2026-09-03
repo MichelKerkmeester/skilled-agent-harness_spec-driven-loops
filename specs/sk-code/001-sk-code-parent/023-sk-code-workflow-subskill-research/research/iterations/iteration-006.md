@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: README and checklist contradiction pass"
+trigger_phrases: []
+---
 # Iteration 6: README and checklist contradiction pass
 
 ## Focus

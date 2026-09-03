@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 004"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 004
 
 Focus: Reasonix 99.8% / cost claim

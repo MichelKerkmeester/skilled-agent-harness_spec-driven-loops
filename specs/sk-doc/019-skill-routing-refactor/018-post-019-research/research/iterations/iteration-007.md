@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Fleet-wide staged-join reproduction and corpus provenance"
+trigger_phrases: []
+---
 # Iteration 7: Fleet-wide staged-join reproduction and corpus provenance
 
 ## Focus

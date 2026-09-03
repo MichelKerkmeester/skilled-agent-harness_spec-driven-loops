@@ -1,3 +1,7 @@
+---
+title: "Research: Implications of Relocating `.opencode/specs` to a Top-Level `specs/` Directory"
+trigger_phrases: []
+---
 # Research: Implications of Relocating `.opencode/specs` to a Top-Level `specs/` Directory
 
 **Lineage:** glm (cli-devin / glm-5-2)

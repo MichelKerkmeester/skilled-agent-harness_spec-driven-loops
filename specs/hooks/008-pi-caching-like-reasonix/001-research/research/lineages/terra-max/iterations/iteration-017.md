@@ -1,3 +1,7 @@
+---
+title: "Iteration 017 — Checkpoint scope and risk"
+trigger_phrases: []
+---
 # Iteration 017 — Checkpoint scope and risk
 
 ## Focus

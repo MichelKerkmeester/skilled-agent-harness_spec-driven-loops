@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 8 (of 10) — maintainability (cross-runtime mirror + phase-parent lean-trio policy)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 8 (of 10) — maintainability (cross-runtime mirror + phase-parent lean-trio policy)
 
 ## TARGET AUTHORITY (read first)

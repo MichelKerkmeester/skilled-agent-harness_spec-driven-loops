@@ -158,6 +158,12 @@
         "source": "derived"
       },
       {
+        "name": "Tasks: Pi Remote Experience Parity Research",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -180,17 +186,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Pi Remote Experience Parity",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 041 Pi remote packet reproduces the engine of the Claude Code + Claude mobile app pairing (local-first relay, cross-device resume, network-resilient replay, steer/stop) but not the app feel",
     "created_at": "2026-08-12T06:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:07.972Z",
+    "last_save_at": "2026-09-03T22:15:27.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +200,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:569e5a620ba2c28e5e596ed346ee77e895de084505d9df630336ebb70f734176",
+    "source_fingerprint": "sha256:a901444b914cf156388b4f9a3031d032f9ce56acb2918346cd3fd6c3a043912c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fcd523ef4862f1d0354e8c426c3a0319aad0fead6de2fad44f373fe89baea05f",
-      "plan.md": "4e7c3c509cd467edda04f9ba66059af25bbf46189be801f7a6c29d577c5286cc",
-      "tasks.md": "fac30e2ff95112ee267dee76b519364103ecb6b244a4a30959b03ffe4f002624",
-      "implementation-summary.md": "35ecb3e2e628c3ed8c822173a61d80fa1064e6c114783ede0b475c131131fd8a",
-      "research/research.md": "acf8fd60c94fcfe7be190972d2528159d65eb6f9a047eafefeb9608f791a4e95"
+      "plan.md": "31aa94b1af6aa2cddd9e37a4be806877bc4a84439b9b12af22ee281a750ffba7",
+      "tasks.md": "e4df7f9a240462e398af94e8ee315fa44d0198cbe8e7f85fba9588e3f3152e8b",
+      "implementation-summary.md": "01dcc98e5469e43c02687589e08ea6e45f06515ede442ca03f0b88a3d522aae6",
+      "research/research.md": "e42c2d7f2930f5051944d99b8942eb9647b19e99b34b51129064061f1ed1ff7a"
     },
     "last_active_child_id": null,
     "last_active_at": null

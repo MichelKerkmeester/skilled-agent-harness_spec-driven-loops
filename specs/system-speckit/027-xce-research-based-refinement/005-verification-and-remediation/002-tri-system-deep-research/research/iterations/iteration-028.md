@@ -1,3 +1,7 @@
+---
+title: "Iteration 028 — Angle 28"
+trigger_phrases: []
+---
 # Iteration 028 — Angle 28
 
 **Angle:** Apply sub-operations truth: rescan/prune-excludes/repair-nodes/recover-sqlite-corruption/rollback-bad-apply vs playbook and docs coverage.

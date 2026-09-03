@@ -1,3 +1,7 @@
+---
+title: "Spec: Deep Review of Session-Shipped Work (3 commits on skilled/v4.0.0.0)"
+trigger_phrases: []
+---
 # Spec: Deep Review of Session-Shipped Work (3 commits on skilled/v4.0.0.0)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

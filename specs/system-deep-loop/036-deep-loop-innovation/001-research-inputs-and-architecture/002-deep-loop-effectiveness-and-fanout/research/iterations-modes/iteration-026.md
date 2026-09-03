@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 26 | SOL xhigh | mode: agent-improvement | angle: A1-sota agent-improvement :: 2025-2026 state of the art | 2026-07-15T10:11:50.402Z -->
 
 The missing layer is a behavioral compiler. Today’s mode already has benchmarks, stress tests, and guarded promotion; the stronger systems add typed optimization surfaces, trace-local credit assignment, population search, and optimization of the improver itself.

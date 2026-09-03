@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: Verification boundaries and package metadata"
+trigger_phrases: []
+---
 # Iteration 004: Verification boundaries and package metadata
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "State Machine"
+trigger_phrases: []
+---
 # State Machine
 
 **Best for:** finite state logic — order status, auth state, connection lifecycle, form wizard, job queue status.

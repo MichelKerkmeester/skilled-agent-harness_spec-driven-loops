@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Custom Claude-App-Style Mobile Client for pi via RPC Mode"
+trigger_phrases: []
+---
 # Deep Research Strategy — Custom Claude-App-Style Mobile Client for pi via RPC Mode
 
 ## Charter

@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — 023/007 (fixture-calibration) + 023/008 (vec0 deferred)"
+trigger_phrases: []
+---
 # Iteration 007 — 023/007 (fixture-calibration) + 023/008 (vec0 deferred)
 
 ## Hypotheses going in

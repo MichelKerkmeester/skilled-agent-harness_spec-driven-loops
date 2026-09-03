@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 004 of 10: Lifecycle hooks + context-injection envelope"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 004 of 10: Lifecycle hooks + context-injection envelope
 Read (stay scoped to this subsystem):

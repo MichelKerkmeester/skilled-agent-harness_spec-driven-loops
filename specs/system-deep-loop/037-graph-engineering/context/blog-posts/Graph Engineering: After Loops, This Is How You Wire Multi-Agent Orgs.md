@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source: https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026
 
 Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs (2026)

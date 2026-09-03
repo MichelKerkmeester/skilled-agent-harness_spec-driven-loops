@@ -1,3 +1,7 @@
+---
+title: "Retrieval Rescue Layer Cost/Benefit Sweep"
+trigger_phrases: []
+---
 # Retrieval Rescue Layer Cost/Benefit Sweep
 
 Date: 2026-05-17

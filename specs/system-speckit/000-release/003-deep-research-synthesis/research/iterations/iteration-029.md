@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### sk-code-review README rewritten with corrected output contract
 
 The sk-code-review README was rewritten from a mechanical reference into a narrative pitch that leads with the skill's distinctive value: a stack-agnostic, findings-first review baseline that always enforces security and correctness minimums and classifies every finding as P0/P1/P2 with file:line evidence. The old README documented the output contract wrong — it ordered Findings before the summary, invented a "Review Context" heading that does not exist, and omitted the mandatory `Review status:` line that automation depends on. The rewrite matches the real contract (Summary, Findings, Removal/Iteration Plan, Next Steps, ending with the exact status line) and adds a QUICK START covering the `@review` dispatch. The version line, a reference count (9 versus the real 10) and a nonexistent `assets/` path were dropped. The result is a single authorable page that gate parsers and humans read consistently.

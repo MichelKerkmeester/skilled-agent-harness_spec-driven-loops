@@ -14,6 +14,7 @@ totalFindings: 9
 stopReason: convergence
 totalIterations: 5
 timestamp: 2026-07-21T06:04:00.000Z
+trigger_phrases: []
 ---
 
 # Deep Review Report — lineage minimax-m3-high

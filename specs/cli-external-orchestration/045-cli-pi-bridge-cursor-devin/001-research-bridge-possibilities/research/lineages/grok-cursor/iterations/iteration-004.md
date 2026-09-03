@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Local OpenAI-compatible gateway fronting official CLIs"
+trigger_phrases: []
+---
 # Iteration 4: Local OpenAI-compatible gateway fronting official CLIs
 
 ## Focus

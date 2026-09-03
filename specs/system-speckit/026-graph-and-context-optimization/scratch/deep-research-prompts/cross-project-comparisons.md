@@ -3,6 +3,7 @@ title: "Deep Research Prompts — Cross-Project Comparisons"
 description: "Comparative research campaigns that contrast approaches across codebases, libraries, or doc sets. Use when choosing between patterns or benchmarking against prior art."
 importance_tier: "normal"
 contextType: "research-prompts"
+trigger_phrases: []
 ---
 
 # Cross-Project Comparisons

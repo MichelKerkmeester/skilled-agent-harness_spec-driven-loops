@@ -1,3 +1,7 @@
+---
+title: "Iteration 12: Adapter/replay fixture, parity gates, and append-boundary fencing"
+trigger_phrases: []
+---
 # Iteration 12: Adapter/replay fixture, parity gates, and append-boundary fencing
 
 ## Focus

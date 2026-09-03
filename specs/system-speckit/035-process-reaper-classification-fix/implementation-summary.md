@@ -22,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Root-cause fix is regex-tightening, not a pipeline reorder — the external-MCP and project-daemon command sets are now disjoint"
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->

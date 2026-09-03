@@ -1,3 +1,7 @@
+---
+title: "Deep Context Iteration 001"
+trigger_phrases: []
+---
 # Deep Context Iteration 001
 
 ## Shared Focus

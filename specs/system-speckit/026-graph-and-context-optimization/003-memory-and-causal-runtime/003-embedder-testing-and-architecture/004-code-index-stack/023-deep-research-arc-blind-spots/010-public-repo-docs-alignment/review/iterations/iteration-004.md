@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — mcp-coco-index/references/ (settings + tool reference)"
+trigger_phrases: []
+---
 # Iteration 004 — mcp-coco-index/references/ (settings + tool reference)
 
 **Scope:** references/settings_reference.md, references/tool_reference.md, references/search_patterns.md

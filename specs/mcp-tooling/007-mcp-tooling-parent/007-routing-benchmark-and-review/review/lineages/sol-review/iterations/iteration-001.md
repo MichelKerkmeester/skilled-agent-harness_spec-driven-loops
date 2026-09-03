@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness — deterministic hub routing"
+trigger_phrases: []
+---
 # Iteration 1: Correctness — deterministic hub routing
 
 ## Focus

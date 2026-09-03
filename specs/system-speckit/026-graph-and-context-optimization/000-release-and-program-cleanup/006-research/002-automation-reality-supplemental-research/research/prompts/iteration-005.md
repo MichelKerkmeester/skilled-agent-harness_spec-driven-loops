@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Synthesis + Sequenced Remediation Backlog"
+trigger_phrases: []
+---
 ## Deep Research Iteration 5 (013 — Automation Reality Supplemental, continuation of 012)
 
 You are deep-research agent dispatched for iteration 5 of 5 — the SYNTHESIS iteration. Iters 1-4 completed.

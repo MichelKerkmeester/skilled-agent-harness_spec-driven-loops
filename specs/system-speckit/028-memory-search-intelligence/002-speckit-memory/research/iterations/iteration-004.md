@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Decay-at-Rank-Time (Q6) + Session-Diversity Cap (Q7), + Q1/Q2 weight-seam deepening"
+trigger_phrases: []
+---
 # Iteration 4: Decay-at-Rank-Time (Q6) + Session-Diversity Cap (Q7), + Q1/Q2 weight-seam deepening
 
 ## Focus

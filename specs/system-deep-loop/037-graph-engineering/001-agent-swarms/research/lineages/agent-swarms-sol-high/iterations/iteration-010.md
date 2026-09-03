@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Loops as Typed Subgraphs"
+trigger_phrases: []
+---
 # Iteration 10: Loops as Typed Subgraphs
 
 ## Focus

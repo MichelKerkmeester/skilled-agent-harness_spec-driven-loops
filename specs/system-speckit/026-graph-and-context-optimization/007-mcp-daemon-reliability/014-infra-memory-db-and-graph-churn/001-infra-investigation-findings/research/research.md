@@ -1,3 +1,7 @@
+---
+title: "Deep Research — Root cause of remaining system-spec-kit failures (common-cause)"
+trigger_phrases: []
+---
 # Deep Research — Root cause of remaining system-spec-kit failures (common-cause)
 
 **Status:** CONVERGED (3 of 10 iterations) · **Executor:** cli-codex · gpt-5.5 · reasoning=high · service-tier=fast

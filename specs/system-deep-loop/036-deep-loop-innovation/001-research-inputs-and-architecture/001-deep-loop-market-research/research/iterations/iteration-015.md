@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 15 | model luna (gpt-5.6-luna) | angle: Coding-agent loop control (OpenHands/SWE-agent/smolagents) | 2026-07-14T22:28:49.019Z -->
 
 The coding-agent evidence sharpens the loop model: convergence should operate on typed action→observation transitions, with separate retry scopes and budgets for model calls, parser errors, attempts, wall time, and executor cost.

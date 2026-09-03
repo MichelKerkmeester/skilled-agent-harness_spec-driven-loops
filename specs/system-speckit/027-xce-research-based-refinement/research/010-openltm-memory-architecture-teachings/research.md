@@ -1,6 +1,7 @@
 ---
 title: "Research — OpenLTM Memory-Architecture Teachings for system-spec-kit Memory"
 description: "10-iteration deep-research synthesis mining OpenLTM (open-source LTM plugin; Bun/TS/SQLite/FTS5; MIT) for design teachings transferable to the local single-user system-spec-kit Memory system, with adversarially-checked adopt/adapt/reject/defer verdicts and first-class negative knowledge."
+trigger_phrases: []
 ---
 
 # Research — OpenLTM Memory-Architecture Teachings for system-spec-kit Memory

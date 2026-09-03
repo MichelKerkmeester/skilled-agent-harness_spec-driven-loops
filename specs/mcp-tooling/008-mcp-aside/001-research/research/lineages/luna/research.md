@@ -2,6 +2,7 @@
 title: Aside CLI and MCP developer surface — luna lineage synthesis
 description: Evidence-backed research for the mcp-aside-devtools packet and aside UTCP manual.
 version: 1.0.0
+trigger_phrases: []
 ---
 
 # Aside CLI and MCP developer surface

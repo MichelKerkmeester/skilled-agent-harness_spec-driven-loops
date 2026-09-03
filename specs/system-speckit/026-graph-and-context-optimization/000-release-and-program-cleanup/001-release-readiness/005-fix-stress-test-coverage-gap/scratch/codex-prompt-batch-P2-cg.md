@@ -1,3 +1,7 @@
+---
+title: "Batch P2-cg — Generate stress tests for 10 code_graph P2 features"
+trigger_phrases: []
+---
 # Batch P2-cg — Generate stress tests for 10 code_graph P2 features
 
 You are generating Vitest stress tests under spec-kit packet 044. Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.

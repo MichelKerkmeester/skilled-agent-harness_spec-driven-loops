@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: mcp-notion-reads / mcp-obsidian-writes Division of Labor"
+trigger_phrases: []
+---
 # Iteration 9: mcp-notion-reads / mcp-obsidian-writes Division of Labor
 
 ## Focus

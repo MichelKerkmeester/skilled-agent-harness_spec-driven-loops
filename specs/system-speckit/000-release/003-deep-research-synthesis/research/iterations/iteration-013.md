@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### MiMo-V2.5-Pro becomes a selectable cli-opencode executor
 MiMo-V2.5-Pro is now a first-class, explicitly selectable model in the cli-opencode tooling. The Xiaomi Token Plan (Europe) provider and its model were wired into the shared small-model registry, the cli-opencode skill, and the prompt-model skill's documentation, mirroring how the MiniMax token-plan model is wired. The deep research, review, and improvement workflows can now dispatch MiMo and MiniMax cleanly, because a hard-coded flag that broke token-plan providers was removed from their dispatch paths. A focused research pass produced seven prioritized efficiency improvements and backfilled the model metadata, then a benchmark of five prompt frameworks on the real model picked COSTAR as the winner (with RACE a statistical tie) and integrated it into the MiMo dispatch path. Notably the result was the opposite of MiniMax, whose guardrail-heavy framework ranked last. The default model is unchanged and MiMo is purely additive, so nothing breaks.
 

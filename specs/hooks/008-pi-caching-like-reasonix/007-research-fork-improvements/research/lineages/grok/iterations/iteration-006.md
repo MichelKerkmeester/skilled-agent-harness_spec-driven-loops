@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Known open limitations → prioritized backlog"
+trigger_phrases: []
+---
 # Iteration 006 — Known open limitations → prioritized backlog
 
 ## Focus

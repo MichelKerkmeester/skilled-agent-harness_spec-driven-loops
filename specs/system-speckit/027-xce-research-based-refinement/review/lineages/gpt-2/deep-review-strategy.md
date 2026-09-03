@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: 027 XCE Research-Based Refinement"
+trigger_phrases: []
+---
 # Deep Review Strategy: 027 XCE Research-Based Refinement
 
 ## Topic

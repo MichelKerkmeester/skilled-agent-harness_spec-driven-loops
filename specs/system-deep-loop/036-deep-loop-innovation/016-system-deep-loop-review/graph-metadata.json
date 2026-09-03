@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 014 review was scoped narrowly to the gateway-alignment surface and surfaced ten real findings; the 015 remediation just landed a P0 fix plus five P1s across the runtime, prompt-packs, SKILLs, YAMLs, and the guard",
     "created_at": "2026-08-26T03:00:56.608Z",
-    "last_save_at": "2026-08-30T15:39:22.299Z",
+    "last_save_at": "2026-09-03T22:21:45.313Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +204,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:816a2e1efbd1b2ef35891a1da9f7ee89a018b3be190214567d98532c0a2c5fbf",
+    "source_fingerprint": "sha256:d176ecab297a902c7b354def8fb6c2abcf357948c74e3797c037b2e278b5c190",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b94f4934d2a7d279e33f47bc62cf8ad2ee1d054dd6eabc28dcaf064288a9f574",
       "plan.md": "88ffb03d2c8cae04819551c5b3ff979dfb147eb765e57d9a5558918f141f58f3",
       "tasks.md": "5d8bbf51861075014ad772d2bb89087a4c5d1f5b6269028a114678a7f30dc8fd",
-      "implementation-summary.md": "d1a36fdb1d6d6de56daa2de37eb5d564050bcb0edd69f8c1bf8136f420f8605f",
-      "research/research.md": "49f198ea81202a3b9f94d9433badaf0bb8cf41833ac7962a83046a3aac420f71"
+      "implementation-summary.md": "baa4ee3fbd9b89cb53df3d068d96062bef893463ac05fa1b40b80d8c306c8857",
+      "research/research.md": "9b8234875a58fa13ffdfd45c5e34683b7c904e31abd0fdf083d5a9f2d36c7329"
     },
     "last_active_child_id": null,
     "last_active_at": null

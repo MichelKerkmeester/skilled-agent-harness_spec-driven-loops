@@ -1,3 +1,7 @@
+---
+title: "Seat opus-memory-track-002 — iteration 5 (global #34)"
+trigger_phrases: []
+---
 # Seat opus-memory-track-002 — iteration 5 (global #34)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: opus-memory-track-002

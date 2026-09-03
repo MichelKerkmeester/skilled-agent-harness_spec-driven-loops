@@ -1,3 +1,7 @@
+---
+title: "Resource Map: sk-design Drift and Improvement Audit"
+trigger_phrases: []
+---
 # Resource Map: sk-design Drift and Improvement Audit
 
 ## Skills

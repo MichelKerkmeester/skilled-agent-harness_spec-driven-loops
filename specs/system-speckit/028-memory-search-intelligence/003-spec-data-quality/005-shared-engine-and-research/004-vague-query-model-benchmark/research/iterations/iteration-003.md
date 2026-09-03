@@ -1,3 +1,7 @@
+---
+title: "Iteration 003, Q5: Dashboard presentation issues (PARTIAL)"
+trigger_phrases: []
+---
 # Iteration 003, Q5: Dashboard presentation issues (PARTIAL)
 
 **Focus:** Root-cause the bare-dash scores, the result-count-versus-rows mismatch, and the truncated titles.

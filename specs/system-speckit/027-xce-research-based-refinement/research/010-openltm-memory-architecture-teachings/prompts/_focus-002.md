@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 002 of 10: Importance-weighted decay"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 002 of 10: Importance-weighted decay
 Read (stay scoped to this subsystem):

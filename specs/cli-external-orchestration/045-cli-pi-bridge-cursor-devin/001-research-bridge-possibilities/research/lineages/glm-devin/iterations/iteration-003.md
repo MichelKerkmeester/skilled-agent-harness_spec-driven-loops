@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Devin OAuth, credentials.toml, session REST, ACP, and Cognition ToS"
+trigger_phrases: []
+---
 # Iteration 3: Devin OAuth, credentials.toml, session REST, ACP, and Cognition ToS
 
 ## Focus

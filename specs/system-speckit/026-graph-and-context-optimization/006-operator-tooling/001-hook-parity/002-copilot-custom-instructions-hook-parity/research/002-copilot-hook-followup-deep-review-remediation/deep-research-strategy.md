@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Copilot CLI 1.0.34 Hook-Config Schema Resolution"
+trigger_phrases: []
+---
 # Deep Research Strategy — Copilot CLI 1.0.34 Hook-Config Schema Resolution
 
 **Topic**: Copilot CLI 1.0.34 hook-config JSON schema. Resolve the `"Neither 'bash' nor 'powershell' specified in hook command configuration"` execution failure blocking `026/009/004 copilot-hook-parity-remediation`. Identify the current schema that Copilot CLI accepts for `sessionStart` / `userPromptSubmitted` / `sessionEnd` / `postToolUse` / `preToolUse` hooks, confirm the config-file path and discovery rules, and produce a concrete JSON patch to `.github/hooks/superset-notify.json` with an empirical reproducer.

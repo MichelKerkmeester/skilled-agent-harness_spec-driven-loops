@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: Maintainability and verification-boundary review"
+trigger_phrases: []
+---
 # Iteration 004: Maintainability and verification-boundary review
 
 ## Focus

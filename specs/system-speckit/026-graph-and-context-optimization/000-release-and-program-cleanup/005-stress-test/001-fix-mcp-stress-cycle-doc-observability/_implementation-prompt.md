@@ -1,3 +1,7 @@
+---
+title: "Implementation Prompt — 001-fix-mcp-stress-cycle-doc-observability"
+trigger_phrases: []
+---
 # Implementation Prompt — 001-fix-mcp-stress-cycle-doc-observability
 
 **GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-fix-mcp-stress-cycle-doc-observability`. The orchestrator has authorized this folder. DO NOT re-ask Gate 3. Proceed directly to implementation.

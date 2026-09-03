@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Automated Data Quality Across the Full Spec-Kit Knowledge Surface (dq-probe lineage)"
+trigger_phrases: []
+---
 # Research Synthesis: Automated Data Quality Across the Full Spec-Kit Knowledge Surface (dq-probe lineage)
 
 <!-- ANCHOR:dq-probe-index -->

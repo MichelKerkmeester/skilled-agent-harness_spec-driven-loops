@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Practical graph workflow implementations and the LangGraph model"
+trigger_phrases: []
+---
 # Iteration 4: Practical graph workflow implementations and the LangGraph model
 
 ## Focus

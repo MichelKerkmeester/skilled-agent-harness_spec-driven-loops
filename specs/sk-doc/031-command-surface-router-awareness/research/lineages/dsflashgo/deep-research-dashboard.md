@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — dsflashgo"
+trigger_phrases: []
+---
 # Deep Research Dashboard — dsflashgo
 
 ## Iteration Table

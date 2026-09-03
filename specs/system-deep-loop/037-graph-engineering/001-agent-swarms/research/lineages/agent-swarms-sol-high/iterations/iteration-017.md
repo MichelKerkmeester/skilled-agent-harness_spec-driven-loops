@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: Observability, Trajectory Evaluation, and Cost"
+trigger_phrases: []
+---
 # Iteration 17: Observability, Trajectory Evaluation, and Cost
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Research Briefing: Git Action Advisory Hook"
+trigger_phrases: []
+---
 # Research Briefing: Git Action Advisory Hook
 
 ## What exists already

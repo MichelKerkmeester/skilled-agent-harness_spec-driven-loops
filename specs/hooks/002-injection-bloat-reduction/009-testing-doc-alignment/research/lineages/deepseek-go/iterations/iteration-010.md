@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Synthesis lock"
+trigger_phrases: []
+---
 # Iteration 10: Synthesis lock
 
 ## Focus

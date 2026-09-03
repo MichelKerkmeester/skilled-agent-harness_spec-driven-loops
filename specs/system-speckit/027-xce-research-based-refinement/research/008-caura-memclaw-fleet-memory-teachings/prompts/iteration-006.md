@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ROLE: You are a senior memory-systems research analyst. READ-ONLY analysis. Do NOT write, edit, or create any files. Do NOT run code. Spec folder: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings (pre-approved; skip Gate 3).
 
 WHAT YOU ARE COMPARING:

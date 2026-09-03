@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Runs both GPT drivers across all command scenarios plus eligible leaf sentinels with explicit skips and contested-cell reruns, building or verifying the alignment fan-out wiring that is not shipped today.",
     "created_at": "2026-07-14T20:37:00.448Z",
-    "last_save_at": "2026-08-30T15:39:20.281Z",
+    "last_save_at": "2026-09-03T22:20:26.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7cf8b355db7727fffa5ccd7cc4cfb4cd9a8e545613f55b47c28a45d2cf6ff68d",
+    "source_fingerprint": "sha256:0f8ab22601d973ee889ab6287ceb2698795060b0424a9fac1ebf8785d9d2b104",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "93d31190e0cf6d0abd3c306e61af734a40ec3a3380e6430e1bb62b79ccf3e604",
-      "plan.md": "be54648c874c4ad7f8240a67561de8cd542000e06c69c3605e78d5c525ea1b86",
-      "tasks.md": "6d4b647aa98c44f7d506feeb27ec81d6752b67076a1ad5f199f17c98024b3556",
+      "plan.md": "beccd74dccd7b779b62d5b114393cb647ce01ae507ca13fb2a09cf076e434a59",
+      "tasks.md": "32af82fcf3580ce6a98fe40c6b19f12607f61df82ad2bf5a8f1c1e395a7b4318",
       "implementation-summary.md": "42e85b0edeb4033403b82962079f2c49cc3cbe836135dadd9883c0a7223ca3bc"
     },
     "last_active_child_id": null,

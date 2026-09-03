@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Specs root relocated to a top-level directory
 The specs root moved out of the skill tree: `specs/` at the repo top level is now the real directory, and `.opencode/specs` is a relative compatibility symlink. The flip came out of dual-executor research that uncovered an existing migration-safety subsystem — but reading it showed its consolidation functions would no-op against the symlinked tree, so a new topology-flip operation was built on five reusable primitives instead. An 11-step runbook flipped 12 planned call sites plus 6 further production files that test-suite inversion exposed, and rebased `.gitignore` for four downstream projects. Memory-index cleanup ran around a daemon/worktree mismatch, resolved via a standalone reindex plus a verified bulk-delete of 10,459 stale-alias rows. The cycle also removed a dead maintainer-mode code-graph flag mechanism, fixed 20 stale-topology README references across 26 files, and landed a regression test for a memory-index dedup scenario. **Breaking:** anything hardcoding `.opencode/specs` (docs, scripts, hooks, downstream projects) must now resolve through `specs/`; an optional `SPEC_KIT_SPECS_DIR` override covers framework-level call sites.
 

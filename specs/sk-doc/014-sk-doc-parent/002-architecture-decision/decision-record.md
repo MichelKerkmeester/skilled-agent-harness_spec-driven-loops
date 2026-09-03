@@ -4,6 +4,7 @@ description: "Locks the sk-doc monolith-to-parent-hub architecture from the phas
 contextType: "implementation"
 importance_tier: "high"
 parent: "skilled-agent-orchestration/125-sk-doc-parent/002-architecture-decision"
+trigger_phrases: []
 ---
 
 # ADR — sk-doc Parent-Hub Architecture

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: P0 Security Severity Calibration Under Local MCP Threat Model"
+trigger_phrases: []
+---
 # Iteration 4: P0 Security Severity Calibration Under Local MCP Threat Model
 
 ## Focus

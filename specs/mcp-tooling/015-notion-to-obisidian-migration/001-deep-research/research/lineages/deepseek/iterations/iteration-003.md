@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Relations, Rollups, and Formulas — Three-Way Recovery Comparison"
+trigger_phrases: []
+---
 # Iteration 3: Relations, Rollups, and Formulas — Three-Way Recovery Comparison
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 015: RQ-V2 adversarial — multi-agent context (context-package + memory taxonomy)"
+trigger_phrases: []
+---
 # Iteration 015: RQ-V2 adversarial — multi-agent context (context-package + memory taxonomy)
 
 **Focus:** RQ-V2 adversarial — multi-agent context (context-package + memory taxonomy)  

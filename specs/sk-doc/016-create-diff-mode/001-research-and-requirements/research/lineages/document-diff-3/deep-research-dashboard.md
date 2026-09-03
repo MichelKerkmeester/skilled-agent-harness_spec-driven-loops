@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — Document Diff v1 Architecture"
+trigger_phrases: []
+---
 # Deep Research Dashboard — Document Diff v1 Architecture
 
 **Lineage**: fanout-document-diff-3 | **Status**: COMPLETE | **Generated**: 2026-07-13T16:15:00Z

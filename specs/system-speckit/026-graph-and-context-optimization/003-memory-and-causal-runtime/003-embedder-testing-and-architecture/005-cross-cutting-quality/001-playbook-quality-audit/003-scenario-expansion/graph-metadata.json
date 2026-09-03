@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Repair stale cat-24 scenarios and add deterministic scenarios for uncovered or happy-path-only tool surfaces.",
     "created_at": "2026-05-17T12:59:59Z",
-    "last_save_at": "2026-08-30T15:39:30.803Z",
+    "last_save_at": "2026-09-03T22:22:46.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3e550e2761b54cf44967b9a15d96da4ed36a6604541289ca756aedd65800a93",
+    "source_fingerprint": "sha256:e89cc8b8d63a96228854ba2ac5d7fbaf20e38e4126b89924a0aaf80930a31970",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fcb94b0b9f0fae3fb86d2e2287495fb42ec56b4acf7db6667be8164f4664a7ee",
-      "plan.md": "376055945525c11250fe9a6c079a7e7455c2810965e2a32396150fe9ac6ceff1",
-      "tasks.md": "85dd5bc7144e0fdce110bea0b87a62ce3c46a3f70ddbfb340849b1e453b5194c",
+      "plan.md": "5579d0e370d2f933b9671fd86727930527e3b365ffb690079e55daa0bc6e81c7",
+      "tasks.md": "3e8b917d0a915d8cd09cd9ba1278ebf403fcd09527afd8c449c8dba8f1291b85",
       "implementation-summary.md": "b4869eff5a9fc2449c5227444603bae03a3885993cb69fea33121fd0a64dce3c"
     },
     "last_active_child_id": null,

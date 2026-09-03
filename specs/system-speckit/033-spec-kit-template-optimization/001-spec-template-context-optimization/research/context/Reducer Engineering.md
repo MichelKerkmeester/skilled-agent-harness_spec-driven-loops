@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source: https://x.com/gippp69/status/2087120797206819322?s=12
 
 Reducer Engineering: Cutting What Your Model Has To Read (Full Guide)

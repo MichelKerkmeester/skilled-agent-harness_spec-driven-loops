@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Minimum Sequenced Next Move"
+trigger_phrases: []
+---
 # Iteration 5: Minimum Sequenced Next Move
 
 ## Focus

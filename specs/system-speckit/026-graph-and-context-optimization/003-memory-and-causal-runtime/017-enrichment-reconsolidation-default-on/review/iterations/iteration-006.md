@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 — security — blast-radius"
+trigger_phrases: []
+---
 # Iteration 6 — security — blast-radius
 
 **Verdict:** FAIL

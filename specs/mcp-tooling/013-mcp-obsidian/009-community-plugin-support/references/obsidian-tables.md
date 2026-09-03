@@ -1,3 +1,7 @@
+---
+title: "Reference — obsidian-tables (interactive JSON tables)"
+trigger_phrases: []
+---
 # Reference — obsidian-tables (interactive JSON tables)
 
 > Destined for `mcp-tooling/mcp-obsidian/references/` at Phase 5. Operate this plugin at the **file layer**: edit the `.table.md` JSON the plugin renders.

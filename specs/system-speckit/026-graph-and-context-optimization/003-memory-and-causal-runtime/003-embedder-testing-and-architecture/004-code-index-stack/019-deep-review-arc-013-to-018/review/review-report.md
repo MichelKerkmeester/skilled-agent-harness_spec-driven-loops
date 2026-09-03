@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 016/004/013-018 CocoIndex Pipeline Arc + Nomic Promotion"
+trigger_phrases: []
+---
 # Deep Review Report — 016/004/013-018 CocoIndex Pipeline Arc + Nomic Promotion
 
 ## Executive Summary

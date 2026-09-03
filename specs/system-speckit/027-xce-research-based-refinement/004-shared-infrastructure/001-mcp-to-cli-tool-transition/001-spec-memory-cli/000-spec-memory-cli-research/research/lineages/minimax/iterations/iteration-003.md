@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: KQ3 — MCP-only affordances and concrete CLI replacements"
+trigger_phrases: []
+---
 # Iteration 3: KQ3 — MCP-only affordances and concrete CLI replacements
 
 | Field | Value |

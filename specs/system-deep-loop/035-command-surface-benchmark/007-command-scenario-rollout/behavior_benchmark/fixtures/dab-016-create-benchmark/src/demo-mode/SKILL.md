@@ -2,6 +2,7 @@
 name: benchmark-fixture-mode
 description: Minimal mode used as a fixture-local benchmark package target.
 allowed-tools: [Read]
+trigger_phrases: []
 ---
 
 # Benchmark fixture mode

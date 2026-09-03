@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Merge web and full-stack skills into single sk-code
 The two legacy code skills (sk-code-web and sk-code-full-stack) were consolidated into one umbrella skill, sk-code. Before, code prompts were split across two skills with an advisor tie-break; after, a single router detects the active stack first (Webflow markers, then Go modules, Swift package files, Expo config, Next config, React, Node, unknown) and only then classifies intent across twelve categories, so words like "test" or "build" mean the right thing per stack. Non-web stacks (React, Node.js, Go, Swift, React Native) surface lightweight placeholder pointers that direct users to canonical content preserved in the old full-stack skill, while shared guidance (error recovery, quality standards, style, multi-agent research) moved into a tightly scoped universal namespace — browser-coupled debugging and verification guides deliberately stayed behind the Webflow route. Advisor scoring, boost tables, and graph metadata were retargeted so every code prompt routes to the umbrella, and the two legacy skills remain on disk with only a deprecated marker plus a zero advisor weight. Narrative-only updates (sister skill cross-references, agent definitions, READMEs) are deferred, and the web smoke test plus the full validation suite still need to run before completion is claimed.
 

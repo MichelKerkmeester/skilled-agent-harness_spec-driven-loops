@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY (auto-generated):
 Iteration: 1 of 1
 Dimension: correctness/security/data-integrity

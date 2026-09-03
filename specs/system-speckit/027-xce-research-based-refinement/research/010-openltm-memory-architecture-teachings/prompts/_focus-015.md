@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 015 of 15: Hooks & automation philosophy — auto-mine vs deliberate save"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 015 of 15: Hooks & automation philosophy — auto-mine vs deliberate save
 The deepest doc-vs-row divide: OpenLTM AUTO-MINES memories from session/git events into rows; we create memories DELIBERATELY as authored docs. Read OpenLTM's automation:

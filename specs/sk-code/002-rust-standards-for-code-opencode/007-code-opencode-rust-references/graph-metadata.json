@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Four `code-opencode` Rust docs exceed 500 lines — `references/rust/styleguide.md` (1987), `references/rust/quickreference.md` (1571), `references/rust/qualitystandards.md` (1475), and `assets/checklists/rustchecklist.md` (1005)",
     "created_at": "2026-07-11T16:27:46.397Z",
-    "last_save_at": "2026-08-30T15:39:11.077Z",
+    "last_save_at": "2026-09-03T22:15:59.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:91f01fd1070548e05abff3ad4489797087eba2629b3b77b4af03da78215c59c7",
+    "source_fingerprint": "sha256:995df9194813c8595f0f91a2af032c2d3e1811f53a00990334541c7dc0507ac5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4ea830a9c66f892648edd5266539e0b377d46d78dbfdc4e6e74431f0e72417f",
-      "plan.md": "41f3c3f87c5076b17208b8844ddf4ced062ee82caea6642929348797bde80b2a",
-      "tasks.md": "31bc72053bb3ef2283b9b6175fe3d6ad2274832362e1fa039a7c83245f3b7adf",
-      "implementation-summary.md": "9791a3d0a434ec5d8e30fdc084022b99c76bdc6608473352a0699feed0a50b59"
+      "plan.md": "66122f041b588b7b64dd98daf0b773512cd6915ab3394a7b259ea80305c85b80",
+      "tasks.md": "20e9c664812c37dfb5d222378072e5f1c9cf3d1a3d74b20f02a4b50d8f993a2c",
+      "implementation-summary.md": "ef095263f9a9f668b5a4d65c8925f376dee198ac53614fdbd315e10ee75fa60e"
     },
     "last_active_child_id": null,
     "last_active_at": null

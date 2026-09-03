@@ -6,6 +6,7 @@ lens: Critical
 status: ok
 timestamp: "2026-05-09T19:42:00Z"
 simulated: true
+trigger_phrases: []
 ---
 
 # Seat 002 — Critical Analysis

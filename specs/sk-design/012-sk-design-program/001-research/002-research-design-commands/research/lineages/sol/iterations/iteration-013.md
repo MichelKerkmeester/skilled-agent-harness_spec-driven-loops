@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: Exemplar Acquisition Contract"
+trigger_phrases: []
+---
 # Iteration 13: Exemplar Acquisition Contract
 
 ## Focus

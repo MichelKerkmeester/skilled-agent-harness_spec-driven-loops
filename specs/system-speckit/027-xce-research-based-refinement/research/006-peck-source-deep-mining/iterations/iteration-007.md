@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — CLI command mechanics (story-load FILES manifest; verdict ledger)"
+trigger_phrases: []
+---
 # Iteration 007 — CLI command mechanics (story-load FILES manifest; verdict ledger)
 
 **Focus:** peck `src/commands/{story,review,init}.ts` + lib/git mechanics vs spec-kit /speckit:resume + graph-metadata + audit model.

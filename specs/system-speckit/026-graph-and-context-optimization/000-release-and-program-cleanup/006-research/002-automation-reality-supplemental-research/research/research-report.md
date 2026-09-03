@@ -1,3 +1,7 @@
+---
+title: "Research Report: Automation Reality Supplemental (Continuation of 012)"
+trigger_phrases: []
+---
 # Research Report: Automation Reality Supplemental (Continuation of 012)
 
 ## 1. Supplemental scope vs 012 baseline

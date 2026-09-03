@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — graphene-main-sol-high"
+trigger_phrases: []
+---
 # Deep Research Dashboard — graphene-main-sol-high
 
 ## Terminal Status

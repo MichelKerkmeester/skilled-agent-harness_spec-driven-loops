@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 prompt pack"
+trigger_phrases: []
+---
 # Iteration 2 prompt pack
 
 Focus: establish the Beancount v3-compatible ledger data model independently of plugin UI code.

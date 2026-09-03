@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — indexing / embedding / enrichment pipeline"
+trigger_phrases: []
+---
 # Iteration 005 — indexing / embedding / enrichment pipeline
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.78 · **tokens:** 96814 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

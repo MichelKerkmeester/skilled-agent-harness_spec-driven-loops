@@ -1,3 +1,7 @@
+---
+title: "Review Report — skill:sk-create-diagram (grok lineage)"
+trigger_phrases: []
+---
 # Review Report — skill:sk-create-diagram (grok lineage)
 
 ## 1. Executive Summary

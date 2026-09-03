@@ -18,6 +18,7 @@ findingsSummary: P0=0, P1=0, P2=1
 newFindingsRatio: 0.17
 timestamp: 2026-07-21T06:02:30.000Z
 durationMs: 90000
+trigger_phrases: []
 ---
 
 # Iteration 4 — Maintainability on 015-P0 + 012/006 + 020

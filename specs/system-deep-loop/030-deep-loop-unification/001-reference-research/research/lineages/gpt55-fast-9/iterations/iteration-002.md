@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Bidirectional Path-Coupling Repair"
+trigger_phrases: []
+---
 # Iteration 2: Bidirectional Path-Coupling Repair
 
 ## Focus

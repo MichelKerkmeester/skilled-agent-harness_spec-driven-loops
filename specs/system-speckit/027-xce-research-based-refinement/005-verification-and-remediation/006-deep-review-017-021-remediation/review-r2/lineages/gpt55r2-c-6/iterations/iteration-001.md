@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — C-rest-of-server daemon IPC and replay review"
+trigger_phrases: []
+---
 # Iteration 001 — C-rest-of-server daemon IPC and replay review
 
 ## Focus

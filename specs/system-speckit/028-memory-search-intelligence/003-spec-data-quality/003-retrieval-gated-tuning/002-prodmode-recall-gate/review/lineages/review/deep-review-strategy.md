@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — C2 Prod-Mode Recall Gate"
+trigger_phrases: []
+---
 # Deep Review Strategy — C2 Prod-Mode Recall Gate
 
 Lineage: `review` (fan-out session `fanout-review-1782055949478-i1h3i4`)

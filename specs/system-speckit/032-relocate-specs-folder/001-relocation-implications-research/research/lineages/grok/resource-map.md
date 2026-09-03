@@ -1,3 +1,7 @@
+---
+title: "Resource Map — Specs Relocation Implications (grok lineage)"
+trigger_phrases: []
+---
 # Resource Map — Specs Relocation Implications (grok lineage)
 
 Generated from converged research deltas for packet

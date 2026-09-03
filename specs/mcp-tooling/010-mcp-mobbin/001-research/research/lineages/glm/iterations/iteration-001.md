@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Broad survey of both Mobbin source repositories"
+trigger_phrases: []
+---
 # Iteration 1: Broad survey of both Mobbin source repositories
 
 **Focus:** Establish the foundational developer surface — transport model, repo structure, and skills workflow — by surveying the two source repositories end-to-end.

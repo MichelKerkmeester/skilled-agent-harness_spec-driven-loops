@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Establish Charter, Scope, And Phase Decomposition"
+trigger_phrases: []
+---
 # Iteration 1: Establish Charter, Scope, And Phase Decomposition
 
 ## Focus

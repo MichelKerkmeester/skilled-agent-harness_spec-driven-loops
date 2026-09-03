@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Enumerate the matched playbook/catalog surface and verify the changed contract against the real code"
+trigger_phrases: []
+---
 # Iteration 1: Enumerate the matched playbook/catalog surface and verify the changed contract against the real code
 
 ## Focus

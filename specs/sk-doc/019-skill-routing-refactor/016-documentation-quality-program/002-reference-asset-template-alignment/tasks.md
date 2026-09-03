@@ -13,6 +13,7 @@ _memory:
     next_safe_action: "Proceed to phase 003."
     blockers: []
     key_files: []
+trigger_phrases: []
 ---
 
 # Tasks: Reference and Asset Template Alignment

@@ -1,3 +1,7 @@
+---
+title: "Flowchart"
+trigger_phrases: []
+---
 # Flowchart
 
 **Best for:** decision logic, algorithms, user-facing branching flows ("Should I…?"), onboarding routing, support-triage trees.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Goal-hook playbooks and live cross-runtime validation
 The goal hook that shipped in packet 003 had no manual-testing-playbook coverage and no live proof its injection reached the model turn; this packet closes both gaps. Five goal-hook scenarios are now named, one per goal-capable CLI runtime (Devin, Cursor, Pi, OpenCode, Claude Code), each under its own id prefix, plus a sixth playbook for the shared goal-manage CLI. Live validation used one proof method: seed an active-goal state with a unique canary token, run the CLI, and grep the raw transcript for the canary and the `[active_goal]` marker. Pi and Devin pass with the canary quoted verbatim by the model; Cursor lands in the RECORDED-EVIDENCE tier — its hook fires, but its injection channel is confirmed non-delivering by contract, so the absent canary is correct behavior, not a failure; OpenCode's native mk-goal and Claude-native `/goal` could not be validated headless at all, a structural limitation, not a regression. Every run used an isolated goal-state directory so no validation could touch real state. Largely internal — users see no behavior change, but every goal-capable runtime now carries a playbook and an evidence-backed verdict.
 

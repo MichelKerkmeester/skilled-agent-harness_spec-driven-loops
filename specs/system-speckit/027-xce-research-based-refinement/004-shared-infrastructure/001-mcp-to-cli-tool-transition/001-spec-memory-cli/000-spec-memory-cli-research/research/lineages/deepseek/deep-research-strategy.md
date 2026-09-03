@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy (DeepSeek Lane)"
+trigger_phrases: []
+---
 # Deep Research Strategy (DeepSeek Lane)
 
 ## Topic

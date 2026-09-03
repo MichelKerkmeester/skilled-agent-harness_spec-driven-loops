@@ -178,7 +178,7 @@
     ],
     "causal_summary": "`sk-code-obsidian/SKILL.md` (phase `004-skill-core`) names twelve references in its §2 REFERENCE",
     "created_at": "2026-08-28T18:17:38Z",
-    "last_save_at": "2026-08-30T15:39:11.236Z",
+    "last_save_at": "2026-09-03T22:16:20.275Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,13 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e16758bd243dbcad64d12fe182703be1125a1751d20345744246b694b3da115",
+    "source_fingerprint": "sha256:ba9ec5bebcc7c23a6b912f5258028682c44f0766bafea60ee642c31c37d1ed0d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8268e421b0f0b6306e810ddfada29c95ecd0c5fe9a165b45a56fea8cec614c0c",
       "plan.md": "84302479eff3a285655071bacafd4d1bb5d1715e4dbf293bbd75e12023abf188",
       "tasks.md": "aeed36c96a21c8659baa3f4b3b9aa51cb9e5787bba078c083d3c89c61f978bed",
-      "implementation-summary.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "implementation-summary.md": "3d54eeb7f98ebb5e9e8e59a44d255e2b360aef017fc2c6795ce0e23946e7f284"
     },
     "last_active_child_id": null,
     "last_active_at": null

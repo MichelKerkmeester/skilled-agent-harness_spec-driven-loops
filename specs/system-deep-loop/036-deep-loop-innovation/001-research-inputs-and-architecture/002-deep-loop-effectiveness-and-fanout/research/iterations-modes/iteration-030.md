@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 30 | SOL xhigh | mode: agent-improvement | angle: A5-synth agent-improvement :: synthesis & highest-leverage recs | 2026-07-15T10:33:08.857Z -->
 
 ## Thesis

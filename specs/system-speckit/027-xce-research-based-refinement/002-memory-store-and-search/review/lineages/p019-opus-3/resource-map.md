@@ -1,3 +1,7 @@
+---
+title: "Resource Map — lineage p019-opus-3 (emitted from review delta evidence)"
+trigger_phrases: []
+---
 # Resource Map — lineage p019-opus-3 (emitted from review delta evidence)
 
 > The target spec folder had no `resource-map.md` at init (`resource_map_present: false`), so the

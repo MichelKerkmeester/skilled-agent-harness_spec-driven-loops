@@ -1,3 +1,7 @@
+---
+title: "Deep Review v3 Iteration 033 - parent integration"
+trigger_phrases: []
+---
 # Deep Review v3 Iteration 033 - parent integration
 
 **Dimension:** cross-stack  

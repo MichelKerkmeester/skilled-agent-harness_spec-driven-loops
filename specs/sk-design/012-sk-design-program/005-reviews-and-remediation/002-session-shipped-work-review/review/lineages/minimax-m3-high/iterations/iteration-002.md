@@ -33,6 +33,7 @@ findingsSummary: P0=0, P1=4, P2=0
 newFindingsRatio: 0.67
 timestamp: 2026-07-21T05:59:30.000Z
 durationMs: 240000
+trigger_phrases: []
 ---
 
 # Iteration 2 — Traceability on 012/006 + sk-doc/020 (REQ-004, REQ-005, packet metadata)

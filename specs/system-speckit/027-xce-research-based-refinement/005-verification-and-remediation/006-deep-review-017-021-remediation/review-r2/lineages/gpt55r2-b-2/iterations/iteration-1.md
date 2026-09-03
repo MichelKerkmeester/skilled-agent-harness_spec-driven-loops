@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Goal
 - Execute one-iteration deep-review fan-out lineage `gpt55r2-b-2` for scope `B-rest-of-002`.
 

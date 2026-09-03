@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - Schema Reproducer and Hook Loader Trace"
+trigger_phrases: []
+---
 # Iteration 003 - Schema Reproducer and Hook Loader Trace
 
 ## Focus

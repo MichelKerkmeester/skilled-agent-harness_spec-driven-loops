@@ -1,3 +1,7 @@
+---
+title: "Research Report — sk- prefix rename surface discovery (lineage glm-5-2)"
+trigger_phrases: []
+---
 # Research Report — sk- prefix rename surface discovery (lineage glm-5-2)
 
 **Spec:** `sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/001-surface-research`

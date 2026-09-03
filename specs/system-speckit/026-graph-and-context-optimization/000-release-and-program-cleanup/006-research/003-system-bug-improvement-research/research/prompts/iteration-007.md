@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 007 — Angle B2: CLI orchestrator skill correctness"
+trigger_phrases: []
+---
 # Deep-Research Iteration 007 — Angle B2: CLI orchestrator skill correctness
 
 You are the deep-research LEAF agent for iteration 007 of 20. The packet root is `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-bug-improvement-research/`.

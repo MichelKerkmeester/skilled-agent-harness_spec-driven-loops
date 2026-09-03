@@ -1,3 +1,7 @@
+---
+title: "Persona-Injection Contract v1"
+trigger_phrases: []
+---
 # Persona-Injection Contract v1
 
 > The shared contract every external-CLI dispatch path must follow. P3 references this per-mode; P4 installs the canonical copy into `sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md`. Architecture-preserving: it ADDS enforcement and reuses existing precedents; it does not restructure routing or the registry.

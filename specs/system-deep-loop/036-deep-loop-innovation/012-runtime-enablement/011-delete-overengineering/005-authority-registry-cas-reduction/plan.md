@@ -3,6 +3,7 @@ title: "Plan: Phase 005 Authority Registry CAS Reduction"
 description: "Approach and verification gates for reducing authority-registry.ts's CAS mutators after phase 004 lands."
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction"
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

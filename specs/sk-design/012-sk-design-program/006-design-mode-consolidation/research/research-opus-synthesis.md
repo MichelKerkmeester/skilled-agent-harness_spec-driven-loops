@@ -1,3 +1,7 @@
+---
+title: "sk-design Consolidation Re-Synthesis (Independent Verification)"
+trigger_phrases: []
+---
 # sk-design Consolidation Re-Synthesis (Independent Verification)
 
 Supersedes `research.md` where the two disagree. Every claim below was re-checked against the live tree on 2026-07-27 by a reviewer with no prior involvement in the consolidation. Commands were executed, not cited from the prior passes.

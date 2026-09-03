@@ -1,3 +1,7 @@
+---
+title: "Multi-AI Council Strategy"
+trigger_phrases: []
+---
 # Multi-AI Council Strategy
 
 ## Purpose

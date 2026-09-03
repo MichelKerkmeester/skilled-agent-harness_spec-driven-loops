@@ -38,7 +38,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "lib/response/profile-formatters.ts",
       ".opencode/commands/memory/search.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "profile-formatters.ts",
-        "kind": "code",
-        "path": "lib/response/profile-formatters.ts",
         "source": "derived"
       },
       {
@@ -189,7 +182,7 @@
     ],
     "causal_summary": "Twelve live SPECKIT feature flags carry a `V1` version suffix in their environment-variable name",
     "created_at": "2026-06-24T06:24:03.473Z",
-    "last_save_at": "2026-08-30T15:39:36.161Z",
+    "last_save_at": "2026-09-03T22:23:51.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd3da493f4dc0d9fea047aa6fee09c1542e013e0525fd29334fc218c007d79c2",
+    "source_fingerprint": "sha256:0b9f885234ac8d73883d73833b5b7b6dec8cf4751403d796a82b6f7e78cd3456",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0369d095ea49e3639b595f2cdabd06fa64f6ccf81e5e93bdb2f9586e9c496acf",
-      "plan.md": "25caf65acd7825b12909678929ae78d03e17b4ba133c897ba68f9103722d653b",
-      "tasks.md": "81230101a87e27ac98db8d5ee6c63e34f658be899258f171e542169e38f60ad1",
-      "implementation-summary.md": "7b23d39291d9e3e440fa55b2c4390e5d9763a7adf22737e47446fde15f51cfdb"
+      "plan.md": "af21dd539298af6e8a1f54012f3486016fa2d1287b2b49510dbb598aa6a0b511",
+      "tasks.md": "1577f3965569183827dabf97df78aba1cbb940424a92560b82d7f277c51973d0",
+      "implementation-summary.md": "7a638c1753df23040d3f71e06c5e90f51597e11bc01f3e222c03f96c52cc3466"
     },
     "last_active_child_id": null,
     "last_active_at": null

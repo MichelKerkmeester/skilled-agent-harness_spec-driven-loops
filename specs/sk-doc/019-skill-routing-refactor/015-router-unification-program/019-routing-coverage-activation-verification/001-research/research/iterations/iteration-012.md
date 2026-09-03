@@ -1,3 +1,7 @@
+---
+title: "Iteration 12 — minimax/MiniMax-M3 — focus: archiving"
+trigger_phrases: []
+---
 # Iteration 12 — minimax/MiniMax-M3 — focus: archiving
 
 I'll start by exploring the relevant files in parallel to understand the current observability + archiving state for compiled routing.

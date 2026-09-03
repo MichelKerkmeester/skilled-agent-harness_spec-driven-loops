@@ -1,3 +1,7 @@
+---
+title: "SOL-fast Research Report (dispatch 2: create-command alignment + benchmarking)"
+trigger_phrases: []
+---
 # SOL-fast Research Report (dispatch 2: create-command alignment + benchmarking)
 
 > cli-opencode openai/gpt-5.6-sol-fast, high; read sk-doc create-command standard + our contract test.

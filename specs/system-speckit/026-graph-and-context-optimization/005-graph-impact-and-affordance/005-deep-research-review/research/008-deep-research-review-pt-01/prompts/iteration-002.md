@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 002 — Defensive audit of 010/002 input validation"
+trigger_phrases: []
+---
 # Deep-Research Iteration 002 — Defensive audit of 010/002 input validation
 
 You are a fresh-context deep-research executor (cli-codex gpt-5.5 high fast). No memory of prior iterations. This is a **defensive code review** of an internal code-graph tool. The goal is to verify the input-validation layer is complete; we are auditing OUR OWN shipped code to find gaps a future user-supplied diff might expose, so we can close them with tests and tighter validators. Read-only — no code changes.

@@ -1,3 +1,7 @@
+---
+title: "ER / Data Model"
+trigger_phrases: []
+---
 # ER / Data Model
 
 **Best for:** database schemas, API resource relationships, domain models.

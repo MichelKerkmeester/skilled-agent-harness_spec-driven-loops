@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: P1 Serving and Hybrid Retrieval"
+trigger_phrases: []
+---
 # Iteration 8: P1 Serving and Hybrid Retrieval
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 006 — Security Integration Boundaries"
+trigger_phrases: []
+---
 # Deep Review Iteration 006 — Security Integration Boundaries
 
 ## Dispatcher

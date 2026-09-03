@@ -1,3 +1,7 @@
+---
+title: "Iteration 11: Candidate reduction set stress-tested by action class"
+trigger_phrases: []
+---
 # Iteration 11: Candidate reduction set stress-tested by action class
 
 ## Focus

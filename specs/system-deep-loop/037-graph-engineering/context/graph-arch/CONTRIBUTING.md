@@ -1,3 +1,7 @@
+---
+title: "Contributing to GraphARC"
+trigger_phrases: []
+---
 # Contributing to GraphARC
 
 Thanks for looking. This file covers the three things that are easy to get

@@ -1,3 +1,7 @@
+---
+title: "06--analysis"
+trigger_phrases: []
+---
 # 06--analysis
 
 - Total: 7

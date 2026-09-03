@@ -1,3 +1,7 @@
+---
+title: "Template System Consolidation Research"
+trigger_phrases: []
+---
 # Template System Consolidation Research
 
 ## 1. TL;DR

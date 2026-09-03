@@ -1,3 +1,7 @@
+---
+title: "Iteration 020 - Verdict robustness and amplifications [PASS-2]"
+trigger_phrases: []
+---
 # Iteration 020 - Verdict robustness and amplifications [PASS-2]
 
 ## Pass 1 claim under attack

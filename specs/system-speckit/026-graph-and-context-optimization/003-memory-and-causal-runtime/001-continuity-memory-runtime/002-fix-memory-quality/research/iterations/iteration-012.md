@@ -1,3 +1,7 @@
+---
+title: "Iteration 12: Repo-wide JSON-mode Memory File Survey (Q9)"
+trigger_phrases: []
+---
 # Iteration 12: Repo-wide JSON-mode Memory File Survey (Q9)
 
 ## Focus

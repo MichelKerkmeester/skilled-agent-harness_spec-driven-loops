@@ -1,3 +1,7 @@
+---
+title: "Review Report: 011 MCP Runtime Stress Remediation"
+trigger_phrases: []
+---
 # Review Report: 011 MCP Runtime Stress Remediation
 
 ## 1. Executive Summary

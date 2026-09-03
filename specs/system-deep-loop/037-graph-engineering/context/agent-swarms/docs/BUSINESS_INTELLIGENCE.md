@@ -1,3 +1,7 @@
+---
+title: "Business Intelligence"
+trigger_phrases: []
+---
 # Business Intelligence
 
 > Part of the [AgentSwarms docs](../README.md#documentation).

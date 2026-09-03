@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### Code (sk-code)
 
 - One `sk-code` skill now routes every code request to the right mode — implement, quality, debug, verify, or review — auto-detecting your stack (Webflow, OpenCode, Rust, React/Next.js, Go, Swift, React Native) and bundling that surface's standards with the workflow.

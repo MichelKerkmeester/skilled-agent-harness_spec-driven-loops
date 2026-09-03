@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 018"
+trigger_phrases: []
+---
 # Deep Research Iteration 018
 
 > Audited changelog: `changelog-019-004-implement-env-knobs-and-skill-docs.md`

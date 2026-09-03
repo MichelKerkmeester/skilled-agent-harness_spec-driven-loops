@@ -10,6 +10,7 @@ convergence_score: 0.09
 verdict: "CONDITIONAL"
 has_advisories: true
 generated_at: "2026-05-11T09:50:00Z"
+trigger_phrases: []
 ---
 
 # Deep Review Report — 012 Causal Graph Channel Routing Utilization

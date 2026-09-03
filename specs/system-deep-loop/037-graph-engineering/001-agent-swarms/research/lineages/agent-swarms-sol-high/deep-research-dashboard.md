@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard"
+trigger_phrases: []
+---
 # Deep Research Dashboard
 
 ## Terminal Status

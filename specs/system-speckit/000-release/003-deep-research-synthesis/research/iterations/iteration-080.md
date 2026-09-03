@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Normalized memory-index-txt-support archive to current template
 The archived Memory Index Txt Support folder was rewritten as a current-template documentation set so it now passes today's validator instead of lingering as drifted historical material. Before, the archive held stale structure, broken markdown references, and mismatched metadata; after, the four core documents (spec, plan, tasks, and implementation summary) follow the active templates and check clean, with leftover top-level notes folded into short archival context files. Anyone opening the archive can now understand the topic and the cleanup scope without tripping over outdated markup. The trade-off is condensed history — the full original narrative lives in git history. This is internal archive hygiene with no change to live behavior.
 

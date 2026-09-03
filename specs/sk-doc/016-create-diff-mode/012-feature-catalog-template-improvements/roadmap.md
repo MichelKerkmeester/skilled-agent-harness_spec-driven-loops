@@ -1,6 +1,7 @@
 ---
 title: "Roadmap: Feature Catalog Retroactive Rework"
 description: "Master overview of all 9 phases — scope, execution model, dependencies, and estimated effort — for bringing 370 feature catalog files into conformance with the new standard."
+trigger_phrases: []
 ---
 
 # Roadmap: Feature Catalog Retroactive Rework

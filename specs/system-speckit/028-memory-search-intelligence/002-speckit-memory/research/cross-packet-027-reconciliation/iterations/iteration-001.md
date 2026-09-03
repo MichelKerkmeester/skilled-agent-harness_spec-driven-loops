@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 (Round K): Q1 Retention/TTL × bi-temporal close + forget-allowlist"
+trigger_phrases: []
+---
 # Iteration 1 (Round K): Q1 Retention/TTL × bi-temporal close + forget-allowlist
 
 ## Focus

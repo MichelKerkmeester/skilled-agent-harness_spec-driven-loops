@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 — correctness / A3-deepen (causal-graph consistency under inference)"
+trigger_phrases: []
+---
 # Iteration 018 — correctness / A3-deepen (causal-graph consistency under inference)
 
 ## Dispatcher

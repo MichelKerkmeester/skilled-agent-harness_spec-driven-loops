@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Memory MCP path resolution and index identity"
+trigger_phrases: []
+---
 # Iteration 4: Memory MCP path resolution and index identity
 
 ## Focus

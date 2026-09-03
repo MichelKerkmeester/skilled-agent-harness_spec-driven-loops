@@ -1,3 +1,7 @@
+---
+title: "GraphARC Governance Patterns for Graph-Based Deep-Loop"
+trigger_phrases: []
+---
 # GraphARC Governance Patterns for Graph-Based Deep-Loop
 
 ## 1. Executive Decision

@@ -1,3 +1,7 @@
+---
+title: "Iteration 20: Final Verification Sweep and Answer Consolidation"
+trigger_phrases: []
+---
 # Iteration 20: Final Verification Sweep and Answer Consolidation
 
 ## Focus

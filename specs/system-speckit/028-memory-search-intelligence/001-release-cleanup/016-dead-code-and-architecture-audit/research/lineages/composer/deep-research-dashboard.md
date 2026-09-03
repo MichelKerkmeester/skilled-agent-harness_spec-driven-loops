@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — composer lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — composer lineage
 
 | Field | Value |

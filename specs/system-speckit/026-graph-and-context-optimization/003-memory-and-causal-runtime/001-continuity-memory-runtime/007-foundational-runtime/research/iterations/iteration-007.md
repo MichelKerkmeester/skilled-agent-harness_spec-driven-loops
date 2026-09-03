@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 — Save-time enrichment replay seam (7/10)"
+trigger_phrases: []
+---
 # Iteration 7 — Save-time enrichment replay seam (7/10)
 
 ## Investigation Thread

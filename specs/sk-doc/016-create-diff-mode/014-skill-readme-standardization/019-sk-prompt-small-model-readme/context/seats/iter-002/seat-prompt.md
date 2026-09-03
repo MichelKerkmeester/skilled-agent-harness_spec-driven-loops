@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Spec folder: sk-doc/014-skill-readme-standardization/019-sk-prompt-models-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file. Return findings as your final assistant message only.
 
 Role: You are verifying exact facts about the `.opencode/skills/sk-prompt-models/` skill so a README rewrite cites them correctly. This pass locks the precise, citable details and finds stale facts.

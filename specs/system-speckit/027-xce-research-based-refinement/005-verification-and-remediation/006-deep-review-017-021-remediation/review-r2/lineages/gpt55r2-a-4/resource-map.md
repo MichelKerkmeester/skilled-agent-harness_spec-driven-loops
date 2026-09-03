@@ -1,3 +1,7 @@
+---
+title: "Resource Map - gpt55r2-a-4"
+trigger_phrases: []
+---
 # Resource Map - gpt55r2-a-4
 
 ## Phase-5 Augmentation

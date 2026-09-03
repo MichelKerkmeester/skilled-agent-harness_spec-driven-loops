@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness and Security Review of Daemon IPC Routing"
+trigger_phrases: []
+---
 # Iteration 1: Correctness and Security Review of Daemon IPC Routing
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: xhigh-b Verification"
+trigger_phrases: []
+---
 # Deep Review Strategy: xhigh-b Verification
 
 ## 1. TOPIC

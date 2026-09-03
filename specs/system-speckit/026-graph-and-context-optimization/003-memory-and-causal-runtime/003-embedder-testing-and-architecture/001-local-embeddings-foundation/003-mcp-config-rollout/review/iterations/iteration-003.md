@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 003 — 003-mcp-config-rollout"
+trigger_phrases: []
+---
 # Deep Review Iteration 003 — 003-mcp-config-rollout
 
 **Dimension:** cross-stack

@@ -1,3 +1,7 @@
+---
+title: "Cell S1 / cli-copilot-1 — Score (v1.0.2)"
+trigger_phrases: []
+---
 # Cell S1 / cli-copilot-1 — Score (v1.0.2)
 
 ## v1.0.1 Rubric (4 dims, 0-2 scale, 8 max)

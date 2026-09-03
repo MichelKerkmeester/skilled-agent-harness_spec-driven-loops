@@ -8,6 +8,7 @@ provenance:
   scope: "read-only analysis of context/graphene-main + context/blog-posts + 001-agent-swarms/research.md (build-on) + system-deep-loop runtime + 036 authority plane"
   role: "seed for the follow-on /deep:research 20-iteration run over this phase child"
   builds_on: "specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/research.md"
+trigger_phrases: []
 ---
 
 # Orientation Seed — graphene-main → graph-based deep-loop (Repo Study 2)

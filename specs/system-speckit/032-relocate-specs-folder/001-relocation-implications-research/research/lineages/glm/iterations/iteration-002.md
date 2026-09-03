@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Spec Kit Memory MCP Server Path Resolution (Q4)"
+trigger_phrases: []
+---
 # Iteration 002 — Spec Kit Memory MCP Server Path Resolution (Q4)
 
 **Focus:** Q4 — How does the Spec Kit Memory MCP server resolve the specs path, and would relocation break its path resolution or require config changes?

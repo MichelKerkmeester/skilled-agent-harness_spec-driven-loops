@@ -1,3 +1,7 @@
+---
+title: "Iteration X3 - description.json schema redesign (opus, cross-cutting)"
+trigger_phrases: []
+---
 # Iteration X3 - description.json schema redesign (opus, cross-cutting)
 
 ## TITLE

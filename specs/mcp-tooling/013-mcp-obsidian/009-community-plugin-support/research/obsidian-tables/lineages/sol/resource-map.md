@@ -1,3 +1,7 @@
+---
+title: "Resource Map — Obsidian Tables"
+trigger_phrases: []
+---
 # Resource Map — Obsidian Tables
 
 ## Canonical schema and persistence

@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — UX-first design"
+trigger_phrases: []
+---
 # Iteration 004 — UX-first design
 
 **Status:** insight · **Findings:** 8 · **newInfoRatio:** 0.82 · **tokens:** 151738 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

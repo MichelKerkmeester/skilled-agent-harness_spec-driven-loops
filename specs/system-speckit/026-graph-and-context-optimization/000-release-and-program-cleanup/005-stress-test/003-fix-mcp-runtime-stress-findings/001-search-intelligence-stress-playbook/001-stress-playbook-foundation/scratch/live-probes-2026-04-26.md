@@ -1,3 +1,7 @@
+---
+title: "Live MCP probes — 2026-04-26 18:49"
+trigger_phrases: []
+---
 # Live MCP probes — 2026-04-26 18:49
 
 Captured during the 006 sweep dispatch phase via direct MCP tool calls. **Note for the findings synthesis: these are out-of-band observations that the dispatched cli-codex / cli-copilot / cli-opencode runs can't capture, but are critical context for interpreting the playbook results.**

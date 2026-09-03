@@ -1,3 +1,7 @@
+---
+title: "Graphene · 09 · The skill"
+trigger_phrases: []
+---
 # Graphene · 09 · The skill
 
 ## 1. The skill is half the product

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All artifacts are in place and the iteration ends with the exact canonical `Review verdict: CONDITIONAL` line. The review loop completed: init → 1 breadth-first iteration (all 4 dimensions) → claim adjudication → synthesis.
 
 **Verdict: CONDITIONAL** (P0:0 · P1:1 · P2:3)

@@ -1,3 +1,7 @@
+---
+title: "Local-LLM Legacy Review Report"
+trigger_phrases: []
+---
 # Local-LLM Legacy Review Report
 
 ## 1. Stop Reason

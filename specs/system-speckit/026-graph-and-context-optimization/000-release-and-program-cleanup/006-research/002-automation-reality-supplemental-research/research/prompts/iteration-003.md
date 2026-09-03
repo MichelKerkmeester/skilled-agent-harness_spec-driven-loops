@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Validator Auto-Fire Surface"
+trigger_phrases: []
+---
 ## Deep Research Iteration 3 (013 — Automation Reality Supplemental, continuation of 012)
 
 You are deep-research agent dispatched for iteration 3 of 5. Iters 1-2 completed (deep-loop graph automation reality + CCC + eval + ablation reality).

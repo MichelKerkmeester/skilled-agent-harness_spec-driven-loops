@@ -1,3 +1,7 @@
+---
+title: "Why the surviving direct appends cannot be routed yet"
+trigger_phrases: []
+---
 # Why the surviving direct appends cannot be routed yet
 
 ## The question

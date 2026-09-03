@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 008 — deferred T1 re-evaluation (per-AC >=90% coverage gate)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 008 — deferred T1 re-evaluation (per-AC >=90% coverage gate)

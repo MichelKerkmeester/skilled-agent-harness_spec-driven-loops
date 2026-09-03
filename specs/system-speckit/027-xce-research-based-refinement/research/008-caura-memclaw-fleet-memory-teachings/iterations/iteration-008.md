@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — event-driven async pipeline + reconciliation/consistency"
+trigger_phrases: []
+---
 # Iteration 008 — event-driven async pipeline + reconciliation/consistency
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.86 · **tokens:** 106739 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

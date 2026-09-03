@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Crash-safe incremental style indexing and publication"
+trigger_phrases: []
+---
 # Iteration 4: Crash-safe incremental style indexing and publication
 
 ## Focus

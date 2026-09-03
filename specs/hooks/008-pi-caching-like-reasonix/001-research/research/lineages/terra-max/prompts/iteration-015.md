@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 015"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 015
 
 Focus: MCP boundary

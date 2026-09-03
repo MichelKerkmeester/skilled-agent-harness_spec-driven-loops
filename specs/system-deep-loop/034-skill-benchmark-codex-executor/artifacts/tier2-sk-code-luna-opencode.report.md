@@ -1,3 +1,7 @@
+---
+title: "Skill Benchmark Report — sk-code"
+trigger_phrases: []
+---
 # Skill Benchmark Report — sk-code
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-b-live` · trace mode: `live`.

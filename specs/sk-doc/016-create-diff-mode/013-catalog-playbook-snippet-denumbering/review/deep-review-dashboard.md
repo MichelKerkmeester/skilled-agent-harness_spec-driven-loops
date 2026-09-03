@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Dashboard — Path-Reference Integrity"
+trigger_phrases: []
+---
 # Deep-Review Dashboard — Path-Reference Integrity
 
 Iterations: 10/10 | Method: deterministic baseline + DeepSeek (cross-checked)

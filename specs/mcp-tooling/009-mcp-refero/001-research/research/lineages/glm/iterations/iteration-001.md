@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Broad Survey — Refero MCP Tool Surface, Auth, and Skill-Repo Conventions"
+trigger_phrases: []
+---
 # Iteration 1: Broad Survey — Refero MCP Tool Surface, Auth, and Skill-Repo Conventions
 
 **Lineage:** glm (fanout-glm-1784198125985-iw9229) · **Iteration:** 1 of 2 · **Executor:** cli-opencode zai-coding-plan/glm-5.2 · **stopPolicy:** max-iterations

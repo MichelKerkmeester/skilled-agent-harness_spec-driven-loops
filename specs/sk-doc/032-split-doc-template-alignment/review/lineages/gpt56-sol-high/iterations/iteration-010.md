@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Cross-Dimensional Final Stabilization"
+trigger_phrases: []
+---
 # Iteration 10: Cross-Dimensional Final Stabilization
 
 ## Dispatcher

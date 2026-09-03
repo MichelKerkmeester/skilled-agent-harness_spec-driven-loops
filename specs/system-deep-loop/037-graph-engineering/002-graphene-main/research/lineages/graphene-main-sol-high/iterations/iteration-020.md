@@ -1,3 +1,7 @@
+---
+title: "Iteration 020 — Terminal completeness audit and synthesis-ready verdicts"
+trigger_phrases: []
+---
 # Iteration 020 — Terminal completeness audit and synthesis-ready verdicts
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Tool Evidence"
+trigger_phrases: []
+---
 # Tool Evidence
 
 This lineage used direct reads and rg searches. Code Graph MCP was unavailable in the session, so graphless fallback was used.

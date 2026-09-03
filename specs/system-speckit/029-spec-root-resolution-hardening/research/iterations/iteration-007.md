@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Read-Only Collision, Persisted-Identity, and Test-Gap Inventory"
+trigger_phrases: []
+---
 # Iteration 7: Read-Only Collision, Persisted-Identity, and Test-Gap Inventory
 
 ## Focus

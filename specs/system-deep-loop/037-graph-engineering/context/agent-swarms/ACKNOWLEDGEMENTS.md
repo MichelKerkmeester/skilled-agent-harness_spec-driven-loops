@@ -1,3 +1,7 @@
+---
+title: "Acknowledgements"
+trigger_phrases: []
+---
 # Acknowledgements
 
 AgentSwarms is built on the shoulders of many excellent open-source

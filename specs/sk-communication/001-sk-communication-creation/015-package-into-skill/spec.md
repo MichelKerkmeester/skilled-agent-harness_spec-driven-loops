@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 015 Package Relocation Into Skill"
 description: "Record the completed relocation of the CLI communication projection package into its owning sk-communication skill, including rename-preserving move and path updates across 24 skill documents."
 trigger_phrases:
   - "package-into-skill"
-  - "package into skill"
   - "cli communication projection relocation"
   - "package relocation evidence"
 importance_tier: "important"

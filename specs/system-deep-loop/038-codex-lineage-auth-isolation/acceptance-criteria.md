@@ -1,3 +1,7 @@
+---
+title: "Acceptance Criteria: Codex Lineage Credential Isolation"
+trigger_phrases: []
+---
 # Acceptance Criteria: Codex Lineage Credential Isolation
 
 Each criterion carries a number with a threshold and was demonstrated failing on the current tree

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Advisor metadata and hub-identity pair"
+trigger_phrases: []
+---
 # Iteration 002 — Advisor metadata and hub-identity pair
 
 ## Focus

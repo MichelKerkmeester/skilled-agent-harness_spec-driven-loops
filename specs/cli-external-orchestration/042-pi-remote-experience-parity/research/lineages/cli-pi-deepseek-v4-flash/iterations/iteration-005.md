@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Axis 3 — Actionable Notification-as-Pull Loop (Content-Free-Push Resolution)"
+trigger_phrases: []
+---
 # Iteration 5: Axis 3 — Actionable Notification-as-Pull Loop (Content-Free-Push Resolution)
 
 ## Focus

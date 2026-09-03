@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — RQ1: Coverage Mapping (AGENTS.md rows → repo-rules expansions)"
+trigger_phrases: []
+---
 # Iteration 001 — RQ1: Coverage Mapping (AGENTS.md rows → repo-rules expansions)
 
 ## Focus

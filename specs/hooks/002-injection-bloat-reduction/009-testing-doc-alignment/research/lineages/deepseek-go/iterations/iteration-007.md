@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Plugins README, shadow-id/receipts API references, and remaining plugins-and-hooks playbooks"
+trigger_phrases: []
+---
 # Iteration 7: Plugins README, shadow-id/receipts API references, and remaining plugins-and-hooks playbooks
 
 ## Focus

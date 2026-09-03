@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Check GLM And MiMo Model Registry Facts"
+trigger_phrases: []
+---
 # Iteration 8: Check GLM And MiMo Model Registry Facts
 
 ## Focus

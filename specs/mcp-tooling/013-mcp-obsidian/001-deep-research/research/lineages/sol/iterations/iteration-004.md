@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Dual-surface architecture, configuration, and final ranking"
+trigger_phrases: []
+---
 # Iteration 4: Dual-surface architecture, configuration, and final ranking
 
 ## Focus

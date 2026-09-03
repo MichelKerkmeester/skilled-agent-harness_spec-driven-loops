@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - fleet-marker-validation-sweep"
+trigger_phrases: []
+---
 # Deep Review Strategy - fleet-marker-validation-sweep
 
 Command-owned deep review of `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/007-marker-validation-unused-scaffold`, with artifacts written only under this packet's local `review/` directory.

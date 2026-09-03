@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 006"
+trigger_phrases: []
+---
 # Deep Research Iteration 006
 
 You are iteration 6 of 10 in a deep-research loop. Build on prior iterations and refine fix proposals for the 5 open questions.

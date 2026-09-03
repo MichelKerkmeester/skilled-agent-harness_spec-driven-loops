@@ -1,3 +1,7 @@
+---
+title: "Iteration 052: Context Bundle Workflow"
+trigger_phrases: []
+---
 # Iteration 052: Context Bundle Workflow
 
 ## Focus

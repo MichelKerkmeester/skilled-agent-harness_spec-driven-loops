@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — mcp-tooling Hub Routing"
+trigger_phrases: []
+---
 # Deep Review Strategy — mcp-tooling Hub Routing
 
 ## 1. TOPIC

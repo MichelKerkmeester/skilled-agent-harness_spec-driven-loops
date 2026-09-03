@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Parent Hub / Session Contract"
+trigger_phrases: []
+---
 # Iteration 3: Parent Hub / Session Contract
 
 ## Focus

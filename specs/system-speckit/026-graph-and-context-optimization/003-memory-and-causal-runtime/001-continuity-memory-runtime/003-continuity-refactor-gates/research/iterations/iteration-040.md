@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-040.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 040 — Cross-cutting integration audit and phase 019 SLA handover

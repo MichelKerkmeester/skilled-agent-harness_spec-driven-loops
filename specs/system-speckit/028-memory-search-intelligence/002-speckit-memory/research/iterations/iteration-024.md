@@ -1,3 +1,7 @@
+---
+title: "Iteration 24: Round E Verify+Feasibility — Memory Capture-Side & Recall-Band"
+trigger_phrases: []
+---
 # Iteration 24: Round E Verify+Feasibility — Memory Capture-Side & Recall-Band
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 026 — Angle 26"
+trigger_phrases: []
+---
 # Iteration 026 — Angle 26
 
 **Angle:** detect_changes adoption: blocked-on-stale refusal is shipped — do agent workflows actually call it before acting on diffs; where should it be wired?

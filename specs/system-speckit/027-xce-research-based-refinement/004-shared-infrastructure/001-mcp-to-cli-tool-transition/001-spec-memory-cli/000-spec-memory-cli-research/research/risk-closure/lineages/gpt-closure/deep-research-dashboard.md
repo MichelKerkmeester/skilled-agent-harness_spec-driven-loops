@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard: gpt-closure"
+trigger_phrases: []
+---
 # Deep Research Dashboard: gpt-closure
 
 ## Lifecycle

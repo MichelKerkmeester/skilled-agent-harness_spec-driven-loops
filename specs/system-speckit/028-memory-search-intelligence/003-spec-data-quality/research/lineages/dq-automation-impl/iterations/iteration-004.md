@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — B3: the retrieval-learning feedback edge (never-retrieved → queued refinement)"
+trigger_phrases: []
+---
 # Iteration 004 — B3: the retrieval-learning feedback edge (never-retrieved → queued refinement)
 
 Focus: the exact `learned-feedback.ts` seams, the queue/store for refinement actions, and how a never-retrieved signal becomes a queued action without falsely paying the floor. Reader class: R/A. Floor: SPLIT (see below — this is the key insight).

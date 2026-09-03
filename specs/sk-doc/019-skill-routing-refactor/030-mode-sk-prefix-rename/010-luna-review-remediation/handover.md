@@ -2,6 +2,7 @@
 title: "Handover: Autonomous implementation of the LUNA review remediation (packet 010)"
 description: "Copy-paste dispatch prompt to implement all three remediation phases autonomously via cli-codex GPT-5.6-SOL high/fast agents."
 contextType: "handover"
+trigger_phrases: []
 ---
 
 # Goal Prompt — Implement packet 010 autonomously (GPT-5.6-SOL high/fast)

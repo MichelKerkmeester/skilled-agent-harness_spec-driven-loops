@@ -1,3 +1,7 @@
+---
+title: "R2-01 quality-loop scorers (code-quality)"
+trigger_phrases: []
+---
 # R2-01 quality-loop scorers (code-quality)
 
 Angle summary: the pure scorer is genuinely pure and reusable as 001 claims and the destructive trim the specs flag is real, but the scorer is markdown-body-shaped so reusing it verbatim on metadata JSON yields a degenerate content-insensitive verdict, and the QUALITY_WEIGHTS give the highest weight to the one optional dimension.

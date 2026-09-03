@@ -1,3 +1,7 @@
+---
+title: "Graph-Based Deep-Loop: GraphARC Governance Synthesis (Repo Study 3)"
+trigger_phrases: []
+---
 # Graph-Based Deep-Loop: GraphARC Governance Synthesis (Repo Study 3)
 
 ## Grounding (terms and sources)

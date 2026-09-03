@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 — hook-state continuity contracts (2/10)"
+trigger_phrases: []
+---
 # Iteration 2 — hook-state continuity contracts (2/10)
 
 ## Investigation Thread

@@ -1,3 +1,7 @@
+---
+title: "Dispatch Log: Phase 002 - Transport and Negative-Control Dispatches"
+trigger_phrases: []
+---
 # Dispatch Log: Phase 002 - Transport and Negative-Control Dispatches
 
 One row per real dispatch. Advisor probe run via `skill_advisor.py --threshold 0.8` against the clean exact prompt; real dispatch run via `opencode run --model openai/gpt-5.5-fast --variant medium --format json` with the phase-023 parent's standalone-evaluation addendum appended. Full transcripts saved at `/tmp/skd-<id>-response.jsonl`.

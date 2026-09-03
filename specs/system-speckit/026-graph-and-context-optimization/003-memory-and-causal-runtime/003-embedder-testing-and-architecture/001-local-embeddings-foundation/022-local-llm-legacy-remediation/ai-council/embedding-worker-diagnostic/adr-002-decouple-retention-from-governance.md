@@ -1,3 +1,7 @@
+---
+title: "ADR-002 — Decouple `retentionPolicy: \"ephemeral\"` from governed-ingest enforcement"
+trigger_phrases: []
+---
 # ADR-002 — Decouple `retentionPolicy: "ephemeral"` from governed-ingest enforcement
 
 Status: **proposed** (behavior change; awaiting user decision)

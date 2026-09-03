@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Graphless-Fallback Contract Replay"
+trigger_phrases: []
+---
 # Iteration 6: Graphless-Fallback Contract Replay
 
 ## Dispatcher

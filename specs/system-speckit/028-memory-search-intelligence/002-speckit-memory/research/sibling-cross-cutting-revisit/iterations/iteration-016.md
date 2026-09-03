@@ -1,3 +1,7 @@
+---
+title: "Iteration 16 (Round Q): PQ4-mcp-transport-idempotency"
+trigger_phrases: []
+---
 # Iteration 16 (Round Q): PQ4-mcp-transport-idempotency
 
 > **Reconstructed file.** Child 006 consolidated its per-iteration findings directly into `../research.md` during the original sprint (a documented deviation). This file was regenerated from `../deep-research-state.jsonl` + `../research.md` to restore structural parity with siblings 001–005. **Authoritative record: `../research.md`** plus this iteration’s row in `../deep-research-state.jsonl`. Prose is condensed (the original per-seat narrative was not separately retained); claims are the ledger one-liners.

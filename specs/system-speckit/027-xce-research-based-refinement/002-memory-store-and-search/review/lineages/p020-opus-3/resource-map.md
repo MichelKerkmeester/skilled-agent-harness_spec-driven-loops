@@ -1,3 +1,7 @@
+---
+title: "Resource Map — p020-opus-3 (emitted from converged review delta)"
+trigger_phrases: []
+---
 # Resource Map — p020-opus-3 (emitted from converged review delta)
 
 > `{spec_folder}/resource-map.md` was **absent at init** (`resource_map_present: false`), so the Resource Map Coverage Gate was skipped. This file is the convergence-emitted delta map (not a coverage audit).

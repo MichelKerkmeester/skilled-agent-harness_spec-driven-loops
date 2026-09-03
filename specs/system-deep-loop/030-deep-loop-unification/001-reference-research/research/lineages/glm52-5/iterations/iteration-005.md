@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Consolidation, Residual Risks, And Execution Order"
+trigger_phrases: []
+---
 # Iteration 005 - Consolidation, Residual Risks, And Execution Order
 
 ## Focus

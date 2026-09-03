@@ -1,3 +1,7 @@
+---
+title: "Command Asset-Layer Research — Cross-Model Synthesis"
+trigger_phrases: []
+---
 # Command Asset-Layer Research — Cross-Model Synthesis
 
 > **Packet:** `066-command-surface-benchmark/014-command-asset-layer-research`

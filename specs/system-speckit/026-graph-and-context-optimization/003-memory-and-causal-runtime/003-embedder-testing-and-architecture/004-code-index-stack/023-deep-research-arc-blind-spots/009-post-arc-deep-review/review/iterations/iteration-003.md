@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Qwen3 Default Flip Soundness"
+trigger_phrases: []
+---
 # Iteration 003 — Qwen3 Default Flip Soundness
 
 ## Hypotheses going in

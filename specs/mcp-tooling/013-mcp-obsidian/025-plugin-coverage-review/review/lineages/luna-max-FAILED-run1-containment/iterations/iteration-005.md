@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Playbook scenarios and isolation"
+trigger_phrases: []
+---
 # Iteration 5: Playbook scenarios and isolation
 
 ## Dimension

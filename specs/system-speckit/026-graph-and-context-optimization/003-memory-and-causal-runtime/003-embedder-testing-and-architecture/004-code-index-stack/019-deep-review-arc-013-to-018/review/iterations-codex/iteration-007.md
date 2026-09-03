@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 007 — reproducibility"
+trigger_phrases: []
+---
 # Codex Iteration 007 — reproducibility
 
 ## Sequential-thinking preflight

@@ -3,6 +3,7 @@ schemaVersion: V1
 effectivePolicyHash: 28e1b13a104b86d59b47843dbfdc90fae9c7321fe089788f2991ebbb9ca47987
 activationGeneration: 5
 terminal: DOCUMENT_ONLY_UNATTESTED
+trigger_phrases: []
 ---
 # CLI External Orchestration Policy Card
 

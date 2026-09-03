@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — F2: Devin -p MCP rejection; per-tool allowlist vs dangerous"
+trigger_phrases: []
+---
 # Iteration 003 — F2: Devin -p MCP rejection; per-tool allowlist vs dangerous
 
 ## Focus

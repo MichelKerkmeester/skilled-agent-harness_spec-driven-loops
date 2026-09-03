@@ -7,6 +7,7 @@ specFolder: specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improveme
 artifactDir: specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements/research/lineages/luna
 sessionId: fanout-luna-1786163355542-f6htbk
 executor: cli-codex / gpt-5.6-luna
+trigger_phrases: []
 ---
 
 # Research Synthesis

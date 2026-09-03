@@ -1,3 +1,7 @@
+---
+title: "Implementation Plan: Fix Doctor Bootstrap Symlink Restart Loop"
+trigger_phrases: []
+---
 # Implementation Plan: Fix Doctor Bootstrap Symlink Restart Loop
 
 > **Spec:** `./spec.md` | **Level:** 1 | **Date:** 2026-06-08

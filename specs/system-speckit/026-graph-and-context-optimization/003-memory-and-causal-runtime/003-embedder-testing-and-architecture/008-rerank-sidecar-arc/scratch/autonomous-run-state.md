@@ -1,3 +1,7 @@
+---
+title: "Arc 008 autonomous run — state"
+trigger_phrases: []
+---
 # Arc 008 autonomous run — state
 
 > Owned by the main orchestrator (Claude Code session). Refreshed after each phase ships.

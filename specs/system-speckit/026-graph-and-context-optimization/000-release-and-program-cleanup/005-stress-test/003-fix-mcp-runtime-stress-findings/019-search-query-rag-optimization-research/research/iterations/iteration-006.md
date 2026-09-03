@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: Causal Graph and Deep-Loop Affordances"
+trigger_phrases: []
+---
 # Iteration 006: Causal Graph and Deep-Loop Affordances
 
 ## Focus

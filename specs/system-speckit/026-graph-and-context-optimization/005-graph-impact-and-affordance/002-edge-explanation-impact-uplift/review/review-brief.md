@@ -1,3 +1,7 @@
+---
+title: "Deep Review — 003-code-graph-edge-explanation-and-impact-uplift"
+trigger_phrases: []
+---
 # Deep Review — 003-code-graph-edge-explanation-and-impact-uplift
 
 You are an autonomous code-review agent. **No conversation context.** This brief is everything you need.

@@ -2,6 +2,7 @@
 title: "Deep Research Strategy: Parent-Hub Routing Out-of-Box Run 3"
 description: "Persistent state for seven forced-depth lateral investigations of parent-hub routing."
 contextType: research
+trigger_phrases: []
 ---
 
 # Deep Research Strategy: Parent-Hub Routing Out-of-Box Run 3

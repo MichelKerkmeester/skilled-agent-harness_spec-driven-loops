@@ -1,3 +1,7 @@
+---
+title: "Dependency Map: sk-design deprecation reference inventory"
+trigger_phrases: []
+---
 # Dependency Map: sk-design deprecation reference inventory
 
 > Authoritative classification of every `sk-design` / `interface:` reference in the repository, each tagged with a reconcile bucket and the action a later phase (002-006) will take. Built from `git grep` over tracked files (fast, excludes node_modules/untracked). This map is the single source of truth for the five downstream phases.

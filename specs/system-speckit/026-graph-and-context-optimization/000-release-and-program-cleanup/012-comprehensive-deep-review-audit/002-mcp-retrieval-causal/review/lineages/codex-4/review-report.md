@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - MCP Retrieval and Causal Review Slice"
+trigger_phrases: []
+---
 # Deep Review Report - MCP Retrieval and Causal Review Slice
 
 ## 1. Executive Summary

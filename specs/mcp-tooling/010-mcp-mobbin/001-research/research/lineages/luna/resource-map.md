@@ -1,3 +1,7 @@
+---
+title: "Resource Map — luna detached lineage"
+trigger_phrases: []
+---
 # Resource Map — luna detached lineage
 
 This map was emitted at synthesis. No parent `resource-map.md` was present at phase initialization, so this lineage treated the source inventory below as newly discovered evidence rather than as a pre-existing exclusion set.

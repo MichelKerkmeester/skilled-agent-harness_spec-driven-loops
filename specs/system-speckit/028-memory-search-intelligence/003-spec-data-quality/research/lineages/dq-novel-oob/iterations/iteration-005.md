@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — KQ5: Cross-doc contradiction + staleness detection, and doc-freshness decay with auto-refresh queueing"
+trigger_phrases: []
+---
 # Iteration 005 — KQ5: Cross-doc contradiction + staleness detection, and doc-freshness decay with auto-refresh queueing
 
 ## Focus

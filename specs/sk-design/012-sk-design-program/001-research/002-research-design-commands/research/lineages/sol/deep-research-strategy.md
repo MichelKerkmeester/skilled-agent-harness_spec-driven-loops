@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Creation-Template Design Commands"
+trigger_phrases: []
+---
 # Deep Research Strategy: Creation-Template Design Commands
 
 ## 2. TOPIC

@@ -1,3 +1,7 @@
+---
+title: "What a real pilot rollback drill needs, resolved"
+trigger_phrases: []
+---
 # What a real pilot rollback drill needs, resolved
 
 Mapping the drill's inputs against what the repository can actually supply, so the runner can

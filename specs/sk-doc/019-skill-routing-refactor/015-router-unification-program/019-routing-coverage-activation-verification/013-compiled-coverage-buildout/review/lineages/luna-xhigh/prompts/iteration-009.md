@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW
 
 Iteration: 9 of 10

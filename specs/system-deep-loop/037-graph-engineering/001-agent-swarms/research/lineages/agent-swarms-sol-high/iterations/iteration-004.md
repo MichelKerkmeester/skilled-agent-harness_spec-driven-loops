@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Barrier Versus Pipeline Scheduling"
+trigger_phrases: []
+---
 # Iteration 4: Barrier Versus Pipeline Scheduling
 
 ## Focus

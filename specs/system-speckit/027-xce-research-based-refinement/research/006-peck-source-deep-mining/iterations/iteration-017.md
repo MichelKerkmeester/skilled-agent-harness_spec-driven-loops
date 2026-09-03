@@ -1,3 +1,7 @@
+---
+title: "Iteration 017 — Cross-model gap sweep (MiniMax M3): completeness critic"
+trigger_phrases: []
+---
 # Iteration 017 — Cross-model gap sweep (MiniMax M3): completeness critic
 
 **Focus:** Independent MiniMax M3 sweep of peck files under-examined by the gpt-5.5 run, for any missed net-new mechanism.

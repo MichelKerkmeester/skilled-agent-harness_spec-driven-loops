@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Batch D Summary
 
 ### Scope

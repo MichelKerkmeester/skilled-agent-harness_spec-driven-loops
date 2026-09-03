@@ -1,3 +1,7 @@
+---
+title: "$refine TIDD-EC Prompt: 003-contextador"
+trigger_phrases: []
+---
 # $refine TIDD-EC Prompt: 003-contextador
 
 ## 1. Header

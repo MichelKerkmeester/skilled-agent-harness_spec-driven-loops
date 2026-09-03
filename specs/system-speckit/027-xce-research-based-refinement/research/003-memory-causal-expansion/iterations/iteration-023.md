@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - RQ-A4 Few-shot example-bank retrieval for CocoIndex"
+trigger_phrases: []
+---
 # Iteration 004 - RQ-A4 Few-shot example-bank retrieval for CocoIndex
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 — correctness — causal-unlink-wiring"
+trigger_phrases: []
+---
 # Iteration 4 — correctness — causal-unlink-wiring
 
 **Verdict:** CONDITIONAL

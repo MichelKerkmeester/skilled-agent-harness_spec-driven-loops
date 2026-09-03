@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Template-Rendering-Correctness"
+trigger_phrases: []
+---
 # Iteration 3: Template-Rendering-Correctness
 
 ## Focus

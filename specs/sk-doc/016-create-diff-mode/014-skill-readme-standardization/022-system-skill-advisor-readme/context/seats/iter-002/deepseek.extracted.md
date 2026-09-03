@@ -1,3 +1,7 @@
+---
+title: "Verification Report: `.opencode/skills/system-skill-advisor`"
+trigger_phrases: []
+---
 Now let me read the tool descriptors and key reference files:
 Now let me check one more thing — whether the embedder manifest claim in the README is stale compared to the INSTALL_GUIDE:
 I now have all the data needed to produce the report.

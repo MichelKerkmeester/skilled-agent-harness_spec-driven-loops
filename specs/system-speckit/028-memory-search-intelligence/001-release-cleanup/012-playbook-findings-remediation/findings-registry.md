@@ -1,3 +1,7 @@
+---
+title: "Playbook Findings Remediation Registry"
+trigger_phrases: []
+---
 # Playbook Findings Remediation Registry
 
 Remediation of the real product findings surfaced by the daemon-skills playbook validation (packet 011) and the core memory-search-intelligence re-run. Fixes are implemented by gpt-5.5-fast high in an isolated worktree, each verified by vitest plus the alignment-drift and comment-hygiene gates, then committed. Isolation artifacts are excluded.

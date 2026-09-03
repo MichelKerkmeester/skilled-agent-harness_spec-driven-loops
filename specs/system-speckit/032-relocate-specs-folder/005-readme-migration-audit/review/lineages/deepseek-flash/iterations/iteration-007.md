@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Full hit-file verification (completeness sweep)"
+trigger_phrases: []
+---
 # Iteration 7: Full hit-file verification (completeness sweep)
 
 ## Focus

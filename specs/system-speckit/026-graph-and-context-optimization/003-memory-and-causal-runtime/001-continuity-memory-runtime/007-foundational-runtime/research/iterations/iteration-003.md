@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — Code-Graph Query Truthfulness (3/10)"
+trigger_phrases: []
+---
 # Iteration 3 — Code-Graph Query Truthfulness (3/10)
 
 ## Investigation Thread

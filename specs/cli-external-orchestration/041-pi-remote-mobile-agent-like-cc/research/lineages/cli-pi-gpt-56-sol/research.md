@@ -1,3 +1,7 @@
+---
+title: "Research: Claude-Style Mobile Client for Pi RPC"
+trigger_phrases: []
+---
 # Research: Claude-Style Mobile Client for Pi RPC
 
 ## 1. Executive Summary

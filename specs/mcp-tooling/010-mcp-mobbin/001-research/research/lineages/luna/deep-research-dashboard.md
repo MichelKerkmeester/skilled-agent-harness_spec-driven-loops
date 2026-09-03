@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - luna lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard - luna lineage
 
 **Session:** `fanout-luna-1784199634206-lfqjyo` · **Executor:** `cli-codex / gpt-5.6-luna` · **Stop policy:** `max-iterations (max 3)` — **REACHED**

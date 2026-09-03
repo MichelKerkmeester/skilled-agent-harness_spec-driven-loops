@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — B2: the /doctor auto-remediation tier"
+trigger_phrases: []
+---
 # Iteration 003 — B2: the /doctor auto-remediation tier
 
 Focus: where the /doctor detector contract lives, how a guarded auto-remediation tier bolts on, which detectors get safe auto-fix vs report-only, and how the shared safe-fix engine is factored with B1. Reader class: A/L/gov. Floor: BYPASS.

@@ -1,3 +1,7 @@
+---
+title: "017 Scenario Validation Report"
+trigger_phrases: []
+---
 # 017 Scenario Validation Report
 
 Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion/`

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis - GPT Lineage: Code-Index CLI Feasibility"
+trigger_phrases: []
+---
 # Deep Research Synthesis - GPT Lineage: Code-Index CLI Feasibility
 
 - Date: 2026-06-06

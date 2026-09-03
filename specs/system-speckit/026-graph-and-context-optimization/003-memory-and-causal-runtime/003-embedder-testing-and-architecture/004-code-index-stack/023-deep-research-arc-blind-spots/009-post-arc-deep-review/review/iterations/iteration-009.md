@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — Adversarial: 023A3 revert completeness"
+trigger_phrases: []
+---
 # Iteration 009 — Adversarial: 023A3 revert completeness
 
 ## Hypotheses going in

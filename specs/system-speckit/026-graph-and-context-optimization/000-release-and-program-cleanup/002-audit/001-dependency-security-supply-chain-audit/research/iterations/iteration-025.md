@@ -1,3 +1,7 @@
+---
+title: "Iteration 025 - FINAL ADJUDICATION"
+trigger_phrases: []
+---
 # Iteration 025 - FINAL ADJUDICATION
 
 ## Summary

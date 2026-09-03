@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Security"
+trigger_phrases: []
+---
 # Iteration 002 — Security
 
 Dimension: Security · Target: `015-prodmode-recall-gate` (spec-folder, PLANNED) · Lineage: review

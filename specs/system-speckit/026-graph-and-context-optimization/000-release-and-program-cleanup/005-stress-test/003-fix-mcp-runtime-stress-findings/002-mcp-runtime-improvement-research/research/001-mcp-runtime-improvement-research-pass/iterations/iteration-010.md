@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 - Q5 memory_context truncation closure"
+trigger_phrases: []
+---
 # Iteration 010 - Q5 memory_context truncation closure
 
 ## Focus

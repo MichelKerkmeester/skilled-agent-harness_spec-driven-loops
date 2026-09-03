@@ -1,3 +1,7 @@
+---
+title: "Iteration 11: External Mining — aionforge retrieval.md + decay-and-importance.md → Memory"
+trigger_phrases: []
+---
 # Iteration 11: External Mining — aionforge retrieval.md + decay-and-importance.md → Memory
 
 ## Focus

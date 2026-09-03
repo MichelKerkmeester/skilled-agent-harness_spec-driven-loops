@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Middle-Path Alternatives"
+trigger_phrases: []
+---
 # Iteration 5: Middle-Path Alternatives
 
 ## Focus

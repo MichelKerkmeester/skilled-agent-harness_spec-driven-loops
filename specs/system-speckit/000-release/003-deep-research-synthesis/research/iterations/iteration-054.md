@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Rename sk-prompt-small-model to sk-prompt-models across repo
 The prompt-craft skill previously called `sk-prompt-small-model` (about 799 files) is now `sk-prompt-models`. The rename used `git mv` so the folder's history is preserved, and swept 826 files / 4,596 occurrences of the old name across the skill's own identity files, 8 referencing skills, specs (669 files), commands, scripts, agents, READMEs, the pre-commit hook, CI workflows, and the cross-runtime mirrors under `.claude/` and `.codex/`. 123 spec and history files that also mention the even older `sk-small-model` name were frozen and left untouched, a broken changelog symlink was repaired, and the advisor index was regenerated so routing resolves the new name (0.95 confidence) with zero live residual. Along the way, 5 pre-existing graph-symmetry validation failures were fixed and spec-memory was re-indexed for both live packets. **Breaking:** any prompt, command, or config referencing `sk-prompt-small-model` should now use `sk-prompt-models`.
 

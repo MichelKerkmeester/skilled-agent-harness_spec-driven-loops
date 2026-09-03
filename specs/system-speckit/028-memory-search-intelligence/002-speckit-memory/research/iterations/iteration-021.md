@@ -1,3 +1,7 @@
+---
+title: "Iteration 21: Round D Adversarial Verification — Memory Procedural Candidates (all REFUTED)"
+trigger_phrases: []
+---
 # Iteration 21: Round D Adversarial Verification — Memory Procedural Candidates (all REFUTED)
 
 ## Focus

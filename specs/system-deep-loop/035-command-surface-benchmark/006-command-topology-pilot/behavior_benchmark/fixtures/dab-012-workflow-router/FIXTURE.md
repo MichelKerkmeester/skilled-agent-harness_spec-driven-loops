@@ -1,3 +1,7 @@
+---
+title: "Workflow-router fixture"
+trigger_phrases: []
+---
 # Workflow-router fixture
 
 Frozen input for a one-iteration review of a small slug utility. The specification requires repeated separators to collapse, while the seed implementation does not yet enforce that rule.

@@ -1,3 +1,7 @@
+---
+title: "Known Context — sk-vision host-adapter findings (research corpus)"
+trigger_phrases: []
+---
 # Known Context — sk-vision host-adapter findings (research corpus)
 
 This packet seeds a deep-research loop over five findings surfaced while running the

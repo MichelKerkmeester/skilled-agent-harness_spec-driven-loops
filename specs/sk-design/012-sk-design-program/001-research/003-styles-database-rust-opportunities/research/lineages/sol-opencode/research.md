@@ -1,3 +1,7 @@
+---
+title: "Rust Opportunities for the sk-design Styles Database"
+trigger_phrases: []
+---
 # Rust Opportunities for the sk-design Styles Database
 
 ## 1. Executive Summary

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Telemetry, Observability, and Cost-Economics"
+trigger_phrases: []
+---
 # Iteration 3: Telemetry, Observability, and Cost-Economics
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: Packed In-Memory BM25 Engine with Field Weights"
+trigger_phrases: []
+---
 # Deep Review Strategy: Packed In-Memory BM25 Engine with Field Weights
 
 ## Topic

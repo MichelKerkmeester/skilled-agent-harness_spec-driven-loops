@@ -1,3 +1,7 @@
+---
+title: "Iteration N6 - Architecture-Fit Audit Against the External Twins (opus, prove-first)"
+trigger_phrases: []
+---
 # Iteration N6 - Architecture-Fit Audit Against the External Twins (opus, prove-first)
 
 ## TITLE

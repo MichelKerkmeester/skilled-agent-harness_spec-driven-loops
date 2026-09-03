@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - IRQ3 Phase 003 Risk-Formula Weight Validation"
+trigger_phrases: []
+---
 # Iteration 003 - IRQ3 Phase 003 Risk-Formula Weight Validation
 
 ## Focus

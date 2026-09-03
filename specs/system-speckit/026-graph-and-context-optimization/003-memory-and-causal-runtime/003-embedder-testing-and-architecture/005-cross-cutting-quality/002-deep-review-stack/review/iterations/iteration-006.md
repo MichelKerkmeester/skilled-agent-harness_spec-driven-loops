@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Iteration 006 — SECURITY (Python)
 
 ### P0

@@ -1,3 +1,7 @@
+---
+title: "007 — Gem Team Adoption Matrix"
+trigger_phrases: []
+---
 # 007 — Gem Team Adoption Matrix
 
 Deep-research phase studying the external multi-agent framework **mubaidr/gem-team** (`../../external/gem-team-main/`) and triaging its mechanisms for adoption into this repo's spec-kit system.

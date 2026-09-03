@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Consumer path class — commands, agents, YAML"
+trigger_phrases: []
+---
 # Iteration 6: Consumer path class — commands, agents, YAML
 
 ## Focus

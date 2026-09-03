@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Implementer escalation / anti-thrash discipline"
+trigger_phrases: []
+---
 # Iteration 001 — Implementer escalation / anti-thrash discipline
 
 **Focus:** peck `implementer` agent's structured escalation gates vs spec-kit sk-code/@debug loop + CLAUDE.md escalation.

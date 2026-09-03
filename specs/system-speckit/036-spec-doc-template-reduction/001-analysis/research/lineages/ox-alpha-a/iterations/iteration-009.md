@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — Re-verification of weakest claims against committed ground truth"
+trigger_phrases: []
+---
 # Iteration 009 — Re-verification of weakest claims against committed ground truth
 
 **Focus:** Harden the two simulation-derived or partially-inferred findings using the committed golden snapshot baseline (no simulation needed — the baseline IS rendered truth).

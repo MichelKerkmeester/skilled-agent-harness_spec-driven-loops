@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — MCP-server trees and database layout"
+trigger_phrases: []
+---
 # Iteration 002 — MCP-server trees and database layout
 
 **Focus:** `system-spec-kit`, `system-skill-advisor`, and `system-code-graph` MCP surfaces; runtime DB/vector layout; hook paths.

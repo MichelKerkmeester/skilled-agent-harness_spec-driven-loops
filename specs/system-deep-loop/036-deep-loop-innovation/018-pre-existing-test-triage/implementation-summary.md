@@ -14,6 +14,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Which pre-existing failures are code-fixable now? Only the sk-prompt census path."
+trigger_phrases: []
 ---
 # Implementation Summary: Pre-Existing Runtime Test-Failure Triage
 

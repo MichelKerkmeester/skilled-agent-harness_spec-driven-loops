@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: OpenCode plugins that cannot port 1:1"
+trigger_phrases: []
+---
 # Iteration 8: OpenCode plugins that cannot port 1:1
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 (deepseek-v4-pro)"
+trigger_phrases: []
+---
 # Iteration 010 (deepseek-v4-pro)
 
 **Summary:** Memory's four routers fail render-contract adherence for two interacting reasons: they lack the 'Presentation Boundary' exclusion-zone section that all 13 non-memory routers have, and they embed inline routing detail that lets mid-tier models produce output without ever reading the presentation file. The minimal patch: add Presentation Boundary sections + HARD RULE binding output to the exact parseable template in the presentation contract — ~8 lines per memory router, highest ROI. The deeper fix (creating YAML workflow assets per memory command) addresses the architectural root cause but requires ~4 new YAML files with 'read presentation contract → execute → render from contract' steps.

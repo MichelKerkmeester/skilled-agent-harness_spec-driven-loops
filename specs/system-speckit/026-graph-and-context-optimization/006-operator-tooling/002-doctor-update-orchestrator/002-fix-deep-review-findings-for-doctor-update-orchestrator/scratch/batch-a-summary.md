@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Batch A Summary
 
 ### Files Modified

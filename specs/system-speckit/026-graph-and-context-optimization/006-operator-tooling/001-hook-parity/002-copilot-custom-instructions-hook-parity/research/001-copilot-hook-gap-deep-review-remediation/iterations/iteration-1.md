@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Documented Copilot CLI injection surfaces"
+trigger_phrases: []
+---
 # Iteration 1: Documented Copilot CLI injection surfaces
 ## Focus
 This iteration mapped the publicly documented Copilot CLI extension surfaces around hooks, custom agents, skills, MCP, and custom-instruction files. The goal was to separate "can run logic or expose tools" from "can inject startup or per-prompt payload text into model context."

@@ -1,3 +1,7 @@
+---
+title: "Iteration 02 - TRACE"
+trigger_phrases: []
+---
 # Iteration 02 - TRACE
 
 ## Trace Table

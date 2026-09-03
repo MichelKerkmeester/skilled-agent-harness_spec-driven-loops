@@ -189,7 +189,7 @@
     ],
     "causal_summary": "sk-doc owns the skill-readme-template, a nine-section narrative model in the same human voice the repo root README uses",
     "created_at": "2026-07-22T12:50:05.876Z",
-    "last_save_at": "2026-08-30T15:39:15.522Z",
+    "last_save_at": "2026-09-03T22:19:17.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:35b495259a004cd2337f4b05eee93eb7c8347124f5a98d3cb71e886f8475f4da",
+    "source_fingerprint": "sha256:618d2b218c5226374687a1990719a4122ee313a80090d288bff79b2ca532b959",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba2a79b8bb8fd95afdb72eafbaf843e218dc552c9017fa72eb22ca352292cecd",
-      "plan.md": "2c4e9bececca6bacdc6a0d53a015981bf0ff0c1688524810fcecb1dcbb8bd5c2",
-      "tasks.md": "15e295ed2c33bc6eaff029c945cc8ef0ca1d944e0ede1e0580697eb1ac13934b",
+      "plan.md": "8c7589d63ae8d647a10a403a42a9203429ea368978abc976b686022afce8df6b",
+      "tasks.md": "bea60c3b6d5dd76077f1a9893a1bbfad37b39db461b0899e4e4c7c0c7e2edefa",
       "implementation-summary.md": "01960d0f6540e6020459626be3b9ecac9d3f0b42ea6160b0adb20c6b90948c1a"
     },
     "last_active_child_id": null,

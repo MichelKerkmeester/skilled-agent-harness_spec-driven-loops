@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — 019-maintenance-grace-daemon-survives-reelection (lineage p019-opus-3)"
+trigger_phrases: []
+---
 # Deep Review Strategy — 019-maintenance-grace-daemon-survives-reelection (lineage p019-opus-3)
 
 ## Topic

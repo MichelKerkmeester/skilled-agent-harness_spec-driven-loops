@@ -1,3 +1,7 @@
+---
+title: "Iteration 014: RQ-V1 adversarial — verification enforcement (contract-first + diagnose-then-fix)"
+trigger_phrases: []
+---
 # Iteration 014: RQ-V1 adversarial — verification enforcement (contract-first + diagnose-then-fix)
 
 **Focus:** RQ-V1 adversarial — verification enforcement (contract-first + diagnose-then-fix)  

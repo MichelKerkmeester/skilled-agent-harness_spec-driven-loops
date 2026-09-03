@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Adversarial Matrix Validation And Synthesis Corrections"
+trigger_phrases: []
+---
 # Iteration 10: Adversarial Matrix Validation And Synthesis Corrections
 
 ## Focus

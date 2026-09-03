@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Security Considerations"
+trigger_phrases: []
+---
 # Iteration 7: Security Considerations
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Risk Closure Fan-Out Synthesis: gpt-closure"
+trigger_phrases: []
+---
 # Risk Closure Fan-Out Synthesis: gpt-closure
 
 Session: `fanout-gpt-closure-1780747019655-imm3qh`

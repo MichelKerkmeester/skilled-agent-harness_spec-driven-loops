@@ -3,6 +3,7 @@ title: "Plan: Phase 009 — Validation Sweep"
 description: "Validation script specification and fix workflow for the final compliance check across all 370 catalog files."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Plan: Phase 009 — Validation Sweep
 

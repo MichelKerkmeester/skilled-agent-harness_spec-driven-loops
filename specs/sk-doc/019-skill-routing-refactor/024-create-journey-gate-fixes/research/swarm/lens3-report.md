@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Journey Table
 
 | Journey step | Result | Evidence |

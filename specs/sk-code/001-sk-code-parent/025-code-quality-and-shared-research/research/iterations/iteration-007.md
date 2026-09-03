@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Workflow and artifact-contract gaps for code-quality integration"
+trigger_phrases: []
+---
 # Iteration 7: Workflow and artifact-contract gaps for code-quality integration
 
 ## Focus

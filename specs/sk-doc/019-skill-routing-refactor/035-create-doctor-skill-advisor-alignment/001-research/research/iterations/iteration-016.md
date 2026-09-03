@@ -1,3 +1,7 @@
+---
+title: "Iteration 16: Doctor validation output and failure policy"
+trigger_phrases: []
+---
 # Iteration 16: Doctor validation output and failure policy
 
 ## Focus

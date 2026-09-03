@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 18 of 25 - External-Author Plugins/Skills/Agents"
+trigger_phrases: []
+---
 # Deep Research Iteration 18 of 25 - External-Author Plugins/Skills/Agents
 
 ## SITUATION

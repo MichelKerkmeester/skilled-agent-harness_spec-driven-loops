@@ -1,3 +1,7 @@
+---
+title: "Iteration 018: RQ-V5 adversarial — security gates + typed I/O contract"
+trigger_phrases: []
+---
 # Iteration 018: RQ-V5 adversarial — security gates + typed I/O contract
 
 **Focus:** RQ-V5 adversarial — security gates + typed I/O contract  

@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 2 (of 10) — correctness (parent + 001-initial-doctor-commands)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 2 (of 10) — correctness (parent + 001-initial-doctor-commands)
 
 ## TARGET AUTHORITY (read first)

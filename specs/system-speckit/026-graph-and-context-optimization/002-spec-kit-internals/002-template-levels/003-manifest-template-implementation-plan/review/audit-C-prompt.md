@@ -1,3 +1,7 @@
+---
+title: "Audit C — `system-spec-kit/references/` + `system-spec-kit/assets/`"
+trigger_phrases: []
+---
 # Audit C — `system-spec-kit/references/` + `system-spec-kit/assets/`
 
 You are a fresh agent doing a focused audit. No conversation context.

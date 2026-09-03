@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Add verification rituals to the sk-code skill
 The verification guidance inside the sk-code skill now carries three new rituals. After a suite goes green, you are told to break the production code and confirm the test actually fails, and to distinguish a genuine failing assertion (true-RED) from a suite that never compiled or ran (compile-RED) — so a green run is only treated as evidence after it has caught something. A verification ladder now runs unit, in-memory, on-server, and live, with each rung's blind spot named up front, so you no longer claim "works" from a rung that never exercised the failing path. Bare TODOs are replaced with named seams that carry a closing condition, dead controls are forbidden, and structural invariants are preferred over disciplinary reminders. The rituals are advisory text confined to the verification section; the smart router is byte-untouched, and promoting the doctrine to always-on rules is left as a gated follow-up.
 

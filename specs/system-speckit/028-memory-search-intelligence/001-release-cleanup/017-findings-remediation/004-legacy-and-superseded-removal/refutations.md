@@ -1,3 +1,7 @@
+---
+title: "Phase 004 dispositions — all four withheld"
+trigger_phrases: []
+---
 # Phase 004 dispositions — all four withheld
 
 Every approved finding in this phase proposed deleting something the repository still uses as

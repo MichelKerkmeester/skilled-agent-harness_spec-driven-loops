@@ -1,3 +1,7 @@
+---
+title: "Resource Map (review-emitted) — p017c002-opus"
+trigger_phrases: []
+---
 # Resource Map (review-emitted) — p017c002-opus
 
 `{spec_folder}/resource-map.md` was **not present** at init, so the Resource Map Coverage

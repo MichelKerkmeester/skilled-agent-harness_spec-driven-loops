@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: Causal Traversal BFS Read Path"
+trigger_phrases: []
+---
 # Deep Review Strategy: Causal Traversal BFS Read Path
 
 ## Topic

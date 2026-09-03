@@ -3,6 +3,7 @@ topic: Governance + sk-doc + sk-code drift review slice
 sessionId: fanout-codex-5-1780595350529-5jk4vx
 mode: review
 createdAt: 2026-06-04T17:51:36Z
+trigger_phrases: []
 ---
 
 # Deep Review Strategy

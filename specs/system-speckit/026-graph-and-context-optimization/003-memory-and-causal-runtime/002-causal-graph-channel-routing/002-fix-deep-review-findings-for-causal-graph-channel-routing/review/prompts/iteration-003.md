@@ -1,3 +1,7 @@
+---
+title: "CONFIRMATION REVIEW — Iteration 3 (Final Sweep)"
+trigger_phrases: []
+---
 # CONFIRMATION REVIEW — Iteration 3 (Final Sweep)
 
 You are dispatched as the @deep-review LEAF agent for the LAST pass of the 012/002 confirmation review.

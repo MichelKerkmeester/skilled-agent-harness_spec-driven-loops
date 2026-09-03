@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 - Interconnected MCP Degradation Replay"
+trigger_phrases: []
+---
 # Iteration 006 - Interconnected MCP Degradation Replay
 
 Session: fanout-codex-5-1780596001496-uhn96t

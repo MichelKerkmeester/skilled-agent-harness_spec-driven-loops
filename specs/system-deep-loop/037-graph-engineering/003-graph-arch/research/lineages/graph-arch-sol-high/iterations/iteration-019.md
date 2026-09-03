@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: Concrete Graph Contract and Protocol Matrix"
+trigger_phrases: []
+---
 # Iteration 19: Concrete Graph Contract and Protocol Matrix
 
 ## Executive result

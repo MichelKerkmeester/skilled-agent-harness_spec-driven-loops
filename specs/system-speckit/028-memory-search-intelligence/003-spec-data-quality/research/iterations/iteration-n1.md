@@ -1,3 +1,7 @@
+---
+title: "Iteration N1: Cross-Artifact Consistency Gate and Self-Verification (Angle adherence)"
+trigger_phrases: []
+---
 # Iteration N1: Cross-Artifact Consistency Gate and Self-Verification (Angle adherence)
 
 Prove-first design for three adherence levers: a /analyze-style coverage-consistency gate, an embedded self-verification step, and generated-from provenance linking. Grounded in the real validator and templates. The loop frame holds: the prod retrieval floor (3 results) taxes RETRIEVAL candidates only, so every lever here is a write-time or completion-time adherence gate that BYPASSES the truncation law. Its value is the adherence and logic registers, not retrieval rank.

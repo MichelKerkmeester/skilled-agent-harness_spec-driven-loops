@@ -1,3 +1,7 @@
+---
+title: "Iteration 002, Q4: Intent classifier inertia and the misleading weights telemetry"
+trigger_phrases: []
+---
 # Iteration 002, Q4: Intent classifier inertia and the misleading weights telemetry
 
 **Focus:** Why does intent classify as `understand` for 132 of 144 cells with `weightsApplied: off`? Bug or by-design?

@@ -1,3 +1,7 @@
+---
+title: "Resource Map — lineage grok (evidence-derived)"
+trigger_phrases: []
+---
 # Resource Map — lineage grok (evidence-derived)
 
 | Resource | Role | Iterations |

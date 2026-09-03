@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - Correctness"
+trigger_phrases: []
+---
 # Iteration 001 - Correctness
 
 Focus: mutation hooks, update/delete cache invalidation, and embedding reconcile dry-run/apply parity.

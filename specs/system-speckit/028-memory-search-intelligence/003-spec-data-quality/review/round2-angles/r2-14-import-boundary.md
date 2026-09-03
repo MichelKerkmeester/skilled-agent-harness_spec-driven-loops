@@ -1,3 +1,7 @@
+---
+title: "r2-14 angle: wiring / import-boundary"
+trigger_phrases: []
+---
 # r2-14 angle: wiring / import-boundary
 
 **Angle summary:** The 026 scripts-to-handlers import-boundary concern is real, CI-enforced and correctly resolved. A direct reuse of the `handlers/quality-loop.ts` scorer from `scripts/dq` would violate the boundary, and the `@spec-kit/mcp-server/api` barrel route 026 chose is a live, already-used escape that clears every gate in `npm run check`.

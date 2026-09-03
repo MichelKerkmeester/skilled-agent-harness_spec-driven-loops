@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: Stable Organization Graph"
+trigger_phrases: []
+---
 # Iteration 13: Stable Organization Graph
 
 ## Focus

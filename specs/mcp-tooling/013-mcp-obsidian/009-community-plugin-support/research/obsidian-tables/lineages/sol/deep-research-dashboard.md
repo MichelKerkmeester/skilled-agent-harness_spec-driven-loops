@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — Obsidian Tables"
+trigger_phrases: []
+---
 # Deep Research Dashboard — Obsidian Tables
 
 ## 2. STATUS

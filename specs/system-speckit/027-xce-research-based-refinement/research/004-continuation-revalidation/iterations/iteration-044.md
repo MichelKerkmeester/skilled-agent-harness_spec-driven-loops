@@ -1,3 +1,7 @@
+---
+title: "Iteration 044: Memory write safety revalidation"
+trigger_phrases: []
+---
 # Iteration 044: Memory write safety revalidation
 
 ## Scope

@@ -1,3 +1,7 @@
+---
+title: "Iteration 12 (Round L): Q3 deep — promoter-fork → CONFIRMED but DORMANT + minimal fix"
+trigger_phrases: []
+---
 # Iteration 12 (Round L): Q3 deep — promoter-fork → CONFIRMED but DORMANT + minimal fix
 
 ## Focus

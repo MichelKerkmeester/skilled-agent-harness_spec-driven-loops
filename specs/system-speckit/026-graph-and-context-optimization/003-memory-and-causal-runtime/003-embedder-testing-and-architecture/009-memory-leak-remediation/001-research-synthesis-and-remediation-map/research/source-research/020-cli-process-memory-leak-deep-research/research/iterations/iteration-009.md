@@ -1,3 +1,7 @@
+---
+title: "Iteration 009: Stale Locks, Pause Files, Interrupted Recovery, Cancellation, Signals, JSONL Recovery, And Resume/Restart Behavior"
+trigger_phrases: []
+---
 # Iteration 009: Stale Locks, Pause Files, Interrupted Recovery, Cancellation, Signals, JSONL Recovery, And Resume/Restart Behavior
 
 ## Focus

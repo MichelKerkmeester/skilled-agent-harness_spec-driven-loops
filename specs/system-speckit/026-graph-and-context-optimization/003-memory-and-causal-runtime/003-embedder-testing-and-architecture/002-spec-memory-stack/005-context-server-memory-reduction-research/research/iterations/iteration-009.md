@@ -1,3 +1,7 @@
+---
+title: "Iteration 9 — architectural alternatives (subprocess pool, separate embed-only daemon, on-disk vector index like LMDB/RocksDB)"
+trigger_phrases: []
+---
 # Iteration 9 — architectural alternatives (subprocess pool, separate embed-only daemon, on-disk vector index like LMDB/RocksDB)
 
 ## Summary

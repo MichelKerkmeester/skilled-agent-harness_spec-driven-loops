@@ -6,6 +6,7 @@ lens: critical (risk-averse)
 status: returned
 timestamp: 2026-05-23T17:05:00.000Z
 simulated: true
+trigger_phrases: []
 ---
 
 # Seat 001 — RISK-AVERSE (Critical Lens, simulated cli-claude-code vantage)

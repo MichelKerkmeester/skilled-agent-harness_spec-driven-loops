@@ -1,3 +1,7 @@
+---
+title: "Research Resource Map - sol-high"
+trigger_phrases: []
+---
 # Research Resource Map - sol-high
 
 ## Contract And Fleet

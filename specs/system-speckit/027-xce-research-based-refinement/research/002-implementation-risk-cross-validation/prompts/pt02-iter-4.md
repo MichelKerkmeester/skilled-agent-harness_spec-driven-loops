@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 4/10 cross-validation pass for packet 027.
 
 ITER 4 FOCUS: IRQ4 — Phase 004 confidence-edge-case stress.

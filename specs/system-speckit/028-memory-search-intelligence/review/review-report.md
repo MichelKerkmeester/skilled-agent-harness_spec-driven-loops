@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 028 Documentation Alignment"
+trigger_phrases: []
+---
 # Deep Review Report — 028 Documentation Alignment
 
 ## Executive Summary

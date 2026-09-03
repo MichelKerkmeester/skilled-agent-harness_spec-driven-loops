@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Freshness Guard Enforcement Placement"
+trigger_phrases: []
+---
 # Iteration 3: Freshness Guard Enforcement Placement
 
 ## Focus

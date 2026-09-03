@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### New cli-codex skill and simplified cli-gemini model reference
 Codex CLI now participates in the same documentation-driven bridge pattern as the other CLI skills: a new `cli-codex` skill package was introduced as a peer to the existing bridge skills, giving framework users a consistent route to send work to Codex CLI from their preferred assistant. At the same time, `cli-gemini` was normalized from multiple model references to a single canonical model reference, removing avoidable model-selection ambiguity from its bridge guidance. Registration surfaces were updated alongside the new skill so discovery stays consistent, and the spec folder itself was later normalized to the current compliance template without altering the original implementation meaning. For a framework user, the CLI bridge family stays uniform as it grows, with one unambiguous model target to follow. The change is additive plus an internal normalization; nothing user-facing was removed or renamed.
 

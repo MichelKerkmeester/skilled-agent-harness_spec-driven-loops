@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Search Intelligence (lineage: search-intel-opus)"
+trigger_phrases: []
+---
 # Deep Research Strategy — Search Intelligence (lineage: search-intel-opus)
 
 ## Research Topic

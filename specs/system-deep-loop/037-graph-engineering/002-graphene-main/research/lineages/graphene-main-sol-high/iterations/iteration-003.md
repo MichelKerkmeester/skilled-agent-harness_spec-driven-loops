@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Authority-plane mapping and disposable-projection adversarial audit"
+trigger_phrases: []
+---
 # Iteration 003 — Authority-plane mapping and disposable-projection adversarial audit
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Level contract for goal.md"
+trigger_phrases: []
+---
 # Iteration 1: Level contract for goal.md
 
 ## Focus

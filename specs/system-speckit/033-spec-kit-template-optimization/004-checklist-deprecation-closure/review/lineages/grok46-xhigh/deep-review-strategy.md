@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - 004-checklist-deprecation-closure"
+trigger_phrases: []
+---
 # Deep Review Strategy - 004-checklist-deprecation-closure
 
 ## 1. OVERVIEW

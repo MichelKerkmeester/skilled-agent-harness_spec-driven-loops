@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Source of Truth and Migration Policy"
+trigger_phrases: []
+---
 # Iteration 6: Source of Truth and Migration Policy
 
 ## Focus

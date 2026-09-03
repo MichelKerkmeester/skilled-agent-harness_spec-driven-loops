@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness - Causal Edge Integrity"
+trigger_phrases: []
+---
 # Iteration 1: Correctness - Causal Edge Integrity
 
 ## Focus

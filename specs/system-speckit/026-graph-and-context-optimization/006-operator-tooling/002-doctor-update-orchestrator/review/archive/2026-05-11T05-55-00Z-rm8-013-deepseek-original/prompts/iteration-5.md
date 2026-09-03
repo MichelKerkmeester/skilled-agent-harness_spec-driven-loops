@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 5 (of 10) — security (sandbox + test fixtures)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 5 (of 10) — security (sandbox + test fixtures)
 
 ## TARGET AUTHORITY (read first)

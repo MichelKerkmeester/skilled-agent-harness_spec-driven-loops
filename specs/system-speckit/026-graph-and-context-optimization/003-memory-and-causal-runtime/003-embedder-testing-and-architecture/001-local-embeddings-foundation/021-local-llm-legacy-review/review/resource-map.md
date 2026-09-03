@@ -1,3 +1,7 @@
+---
+title: "Local-LLM Legacy Review Resource Map"
+trigger_phrases: []
+---
 # Local-LLM Legacy Review Resource Map
 
 Source note: iteration files provide aggregate files-scanned counts per pass, not per surface family. The `Files Scanned` column below is therefore the count of distinct finding-bearing files observed in that surface family.

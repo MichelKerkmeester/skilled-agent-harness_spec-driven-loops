@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: Search and Retrieval Scope"
+trigger_phrases: []
+---
 # Deep Review Report: Search and Retrieval Scope
 
 ## Executive Summary

@@ -1,3 +1,7 @@
+---
+title: "Resource map — Beancount Ledger research lineage"
+trigger_phrases: []
+---
 # Resource map — Beancount Ledger research lineage
 
 ## Plugin source

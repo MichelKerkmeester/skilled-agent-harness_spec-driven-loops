@@ -1,3 +1,7 @@
+---
+title: "Study 4 · graph-engineering-master — research folder"
+trigger_phrases: []
+---
 # Study 4 · graph-engineering-master — research folder
 
 > **Graph layer (knowledge doctrine).** Study 4 of the [037 graph-engineering program](../../context-index.md). 20-iteration deep-research run (gpt-5.6-sol high/fast, `stopReason: maxIterationsReached`).

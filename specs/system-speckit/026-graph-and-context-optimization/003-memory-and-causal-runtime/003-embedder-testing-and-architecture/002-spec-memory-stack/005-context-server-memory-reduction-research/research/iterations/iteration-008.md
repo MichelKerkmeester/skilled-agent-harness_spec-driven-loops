@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 — JS heap profiling (V8 heap snapshots, retained sizes, leak detection, GC tuning via --max-old-space-size)"
+trigger_phrases: []
+---
 # Iteration 8 — JS heap profiling (V8 heap snapshots, retained sizes, leak detection, GC tuning via --max-old-space-size)
 
 ## Summary

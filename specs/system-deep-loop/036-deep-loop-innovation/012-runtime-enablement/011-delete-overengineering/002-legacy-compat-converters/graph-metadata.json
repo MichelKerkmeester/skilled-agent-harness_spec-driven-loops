@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Wave 2 of the over-engineering removal program: delete the seven per-mode legacy-format converters (F1) — decide<Mode>Compatibility + upcastLegacy<Mode>Record and their legacy-compatibility.ts modules — now the ledger is the single writer, and their now-dead test blocks. The deep-research variant is live (append-mode-event.cjs) and stays, along with the shared tests/helpers/legacy-real-log.ts fixture it depends on.",
     "created_at": "2026-08-24T17:06:19.066Z",
-    "last_save_at": "2026-08-30T15:39:22.237Z",
+    "last_save_at": "2026-09-03T22:21:22.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b65b04987ac62ced2d07596dff08beb8ac929e4c668703d9b9842f3577718430",
+    "source_fingerprint": "sha256:dbbb72f433b1cf17589385eccb1fe0fb273e8ebf6d042d30eff8e649218cfa72",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9acc853407e483b34a146e64b1393c83ca1fd231fe947046113f60e7d781eade",
-      "plan.md": "1f2abcf1a707bf728cbedc588a70b6a1d0a2183cf01d24ced6ece46b447d4b0c",
-      "tasks.md": "926113823a2dcbd1a6bb82ad616929a07e99ad1b4449fa9087272533e682da17",
+      "plan.md": "c0bf64f0edeb1e0aaedf5605fd63ab15e117caaca22c00d1148914f03b2dfffa",
+      "tasks.md": "5d2ef9c58ed8f7fbf111eb5cf84ba1c2c7f1fb172b788f6d3564623f9e7388b3",
       "implementation-summary.md": "98c8957bce2a9d2f3c349cd611c0d42a3752687f1b8cf8017455a2ff89983693"
     },
     "last_active_child_id": null,

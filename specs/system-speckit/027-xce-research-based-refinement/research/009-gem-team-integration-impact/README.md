@@ -1,3 +1,7 @@
+---
+title: "009 — Gem Team Integration & Impact"
+trigger_phrases: []
+---
 # 009 — Gem Team Integration & Impact
 
 Bridge research between 007's *proposals* (what to adopt) and `/speckit:plan` (how to build it). For each of 007's 3 surviving proposals (P1 `001-typed-agent-io-adapter`, P2 `002-scoped-preexec-and-handoff-gates`, P3 `003-planner-review-focus-and-drift-hint`), this phase determines **how to integrate it** and **what existing skills/commands/agents/docs it impacts**.

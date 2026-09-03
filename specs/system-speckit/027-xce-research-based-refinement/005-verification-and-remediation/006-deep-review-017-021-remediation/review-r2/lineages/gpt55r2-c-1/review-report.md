@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - gpt55r2-c-1"
+trigger_phrases: []
+---
 # Deep Review Report - gpt55r2-c-1
 
 ## Executive Summary

@@ -1,3 +1,7 @@
+---
+title: "Review Report: 019-maintenance-grace-daemon-survives-reelection"
+trigger_phrases: []
+---
 # Review Report: 019-maintenance-grace-daemon-survives-reelection
 
 ## 1. Executive Summary

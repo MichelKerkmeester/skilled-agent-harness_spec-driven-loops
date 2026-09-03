@@ -1,3 +1,7 @@
+---
+title: "Iteration 017: RQ-V4 adversarial — learning & knowledge (auto-skills + knowledge precedence)"
+trigger_phrases: []
+---
 # Iteration 017: RQ-V4 adversarial — learning & knowledge (auto-skills + knowledge precedence)
 
 **Focus:** RQ-V4 adversarial — learning & knowledge (auto-skills + knowledge precedence)  

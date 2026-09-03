@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Angle 1"
+trigger_phrases: []
+---
 # Iteration 001 — Angle 1
 
 **Angle:** Idempotency flag-ON enablement readiness: receipt key variance per logical update, force-retry conflicts, receipt TTL — what still blocks default-on?

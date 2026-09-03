@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 045/010: upgrade-safety-operability — Deep-review angle 10 (release-readiness)
 
 ### CRITICAL: Spec folder path

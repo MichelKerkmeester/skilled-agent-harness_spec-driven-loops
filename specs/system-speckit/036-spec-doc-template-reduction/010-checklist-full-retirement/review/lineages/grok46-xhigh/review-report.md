@@ -1,3 +1,7 @@
+---
+title: "Review Report — Checklist Full Retirement (lineage grok46-xhigh)"
+trigger_phrases: []
+---
 # Review Report — Checklist Full Retirement (lineage grok46-xhigh)
 
 Lineage: `fanout-grok46-xhigh-1788069812336-30nyvs`  

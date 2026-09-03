@@ -1,3 +1,7 @@
+---
+title: "Changelog"
+trigger_phrases: []
+---
 # Changelog
 
 Defects that have been closed, kept in full rather than summarised: what broke,

@@ -8,6 +8,7 @@ scope: q2_q3_metadata_merge
 status: complete
 focus: "Design how memory metadata (tier, FSRS, causal edges, provenance, fingerprint) attaches to spec docs. Compare 3 options and pick one."
 maps_to_questions: [Q2, Q3]
+trigger_phrases: []
 ---
 
 # Iteration 004 — Frontmatter and Metadata Merge Policy

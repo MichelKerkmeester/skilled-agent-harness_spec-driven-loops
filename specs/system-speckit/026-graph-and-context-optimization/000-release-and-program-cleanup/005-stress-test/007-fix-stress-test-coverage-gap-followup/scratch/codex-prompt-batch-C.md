@@ -1,3 +1,7 @@
+---
+title: "Batch C — sa-037 Python bench wrapper stress test"
+trigger_phrases: []
+---
 # Batch C — sa-037 Python bench wrapper stress test
 
 You are generating ONE Vitest stress test that wraps the Python skill_advisor bench runner. Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.

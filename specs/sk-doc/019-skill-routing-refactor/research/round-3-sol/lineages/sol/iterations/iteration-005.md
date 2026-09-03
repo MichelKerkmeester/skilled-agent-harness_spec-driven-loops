@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Fleet-Wide PASS, Authority, Enforcement, and Completion Claims"
+trigger_phrases: []
+---
 # Iteration 5: Fleet-Wide PASS, Authority, Enforcement, and Completion Claims
 
 ## Focus

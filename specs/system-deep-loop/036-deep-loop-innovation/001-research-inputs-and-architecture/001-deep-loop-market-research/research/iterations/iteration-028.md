@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 28 | model sol (gpt-5.6-sol) | angle: Evaluator reliability: LLM-as-judge failure modes | 2026-07-14T23:33:44.397Z -->
 
 Evaluator reliability should be a state machine, not a scalar score. For `deep-review` and `deep-ai-council`, preserve the raw verdict, order-swapped verdict, rubric vector, length-controlled score, judge family, panel votes, and adversarial replay. `runtime/convergence` should abstain or escalate when these views disagree.

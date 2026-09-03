@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Correctness and security - compatibility lifecycle"
+trigger_phrases: []
+---
 # Iteration 8: Correctness and security - compatibility lifecycle
 
 ## Dispatcher

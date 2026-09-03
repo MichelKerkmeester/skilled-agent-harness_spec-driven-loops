@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Chrome Contrast and Integration Blueprint"
+trigger_phrases: []
+---
 # Iteration 5: Chrome Contrast and Integration Blueprint
 
 ## Focus

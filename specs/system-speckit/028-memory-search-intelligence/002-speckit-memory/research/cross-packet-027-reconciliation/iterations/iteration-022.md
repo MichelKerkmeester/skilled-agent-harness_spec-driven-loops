@@ -1,3 +1,7 @@
+---
+title: "Iteration 22 (Round M): C8 true status post-refutation → REAL RENDER-GAP"
+trigger_phrases: []
+---
 # Iteration 22 (Round M): C8 true status post-refutation → REAL RENDER-GAP
 
 ## Focus

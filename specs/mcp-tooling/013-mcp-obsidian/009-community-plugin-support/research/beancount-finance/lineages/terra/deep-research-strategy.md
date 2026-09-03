@@ -1,3 +1,7 @@
+---
+title: "Research strategy — Beancount Ledger file-layer operation"
+trigger_phrases: []
+---
 # Research strategy — Beancount Ledger file-layer operation
 
 ## Scope and authority

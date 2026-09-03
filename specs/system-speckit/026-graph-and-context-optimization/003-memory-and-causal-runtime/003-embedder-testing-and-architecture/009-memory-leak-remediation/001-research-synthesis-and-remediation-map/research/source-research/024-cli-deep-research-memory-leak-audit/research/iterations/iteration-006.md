@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Confirm `Project.close` / sqlite-vec `ManagedConnection` deep-vs-shallow close behavior and capture runtime daemon RSS / `vm_stat` snapshots across normal daemon usage where feasible. The measurement path stayed non-destructive: no process kills, no forced sidecar failure, no target source edits.

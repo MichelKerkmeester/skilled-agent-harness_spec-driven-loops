@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: validate_document.py — is_uppercase_section refinement"
+trigger_phrases: []
+---
 # Iteration 1: validate_document.py — is_uppercase_section refinement
 
 > dimension: correctness | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

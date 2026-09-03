@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - 027 Launch-State"
+trigger_phrases: []
+---
 # Deep Review Strategy - 027 Launch-State
 
 ## 1. TOPIC

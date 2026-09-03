@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Review iteration 2 is scoped to the three specified child packets. I’ll inspect the persisted strategy and source documents, then write only the required review artifacts.
 The documentation review found cross-packet lifecycle contradictions and a Phase R evidence gap. I’m recording the findings and required state artifacts without touching the reviewed packets.
 **Findings**

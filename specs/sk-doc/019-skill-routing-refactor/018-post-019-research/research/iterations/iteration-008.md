@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Privacy-preserving sealed natural-prompt sampling"
+trigger_phrases: []
+---
 # Iteration 8: Privacy-preserving sealed natural-prompt sampling
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Refero MCP Developer Surface for the `mcp-refero` Transport Mode"
+trigger_phrases: []
+---
 # Research Synthesis: Refero MCP Developer Surface for the `mcp-refero` Transport Mode
 
 **Lineage:** glm (`fanout-glm-1784198125985-iw9229`) · **Loop:** deep-research · **Iterations:** 2 · **stopPolicy:** max-iterations · **Spec folder:** `.opencode/specs/mcp-tooling/009-mcp-refero/001-research`

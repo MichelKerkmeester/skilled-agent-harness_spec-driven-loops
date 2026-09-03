@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 5/10 cross-validation pass for packet 027.
 
 ITER 5 FOCUS: IRQ5 — Phase 005 subprocess reliability at 24-40 sequential dispatches.

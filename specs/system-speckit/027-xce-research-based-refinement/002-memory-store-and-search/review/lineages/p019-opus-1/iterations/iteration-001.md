@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — All Dimensions (Correctness · Security · Traceability · Maintainability)"
+trigger_phrases: []
+---
 # Iteration 001 — All Dimensions (Correctness · Security · Traceability · Maintainability)
 
 Lineage `fanout-p019-opus-1` · executor `cli-claude-code` model `claude-opus-4-8` · single-pass (maxIterations=1).

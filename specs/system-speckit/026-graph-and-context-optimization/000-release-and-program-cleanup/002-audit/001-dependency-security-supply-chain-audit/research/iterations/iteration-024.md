@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now I have all evidence. Let me write the iteration output.
 Iteration 024 complete. Summary:
 

@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — pi-cache-optimizer existence and status"
+trigger_phrases: []
+---
 # Iteration 008 — pi-cache-optimizer existence and status
 
 ## Focus

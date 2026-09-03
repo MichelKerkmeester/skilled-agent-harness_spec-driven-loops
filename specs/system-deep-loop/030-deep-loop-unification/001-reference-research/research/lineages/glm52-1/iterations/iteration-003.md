@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: system-spec-kit Tooling-Borrow Residual"
+trigger_phrases: []
+---
 # Iteration 3: system-spec-kit Tooling-Borrow Residual
 
 ## Focus

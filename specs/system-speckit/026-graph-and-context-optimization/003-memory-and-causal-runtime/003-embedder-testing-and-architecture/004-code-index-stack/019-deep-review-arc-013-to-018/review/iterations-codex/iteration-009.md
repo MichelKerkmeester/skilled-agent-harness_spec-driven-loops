@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 009 — reranker agnosticism"
+trigger_phrases: []
+---
 # Codex Iteration 009 — reranker agnosticism
 
 ## Sequential-thinking preflight

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All artifacts are written and valid. The review loop completed across all three phases.
 
 **Summary — lineage p020-opus-1**

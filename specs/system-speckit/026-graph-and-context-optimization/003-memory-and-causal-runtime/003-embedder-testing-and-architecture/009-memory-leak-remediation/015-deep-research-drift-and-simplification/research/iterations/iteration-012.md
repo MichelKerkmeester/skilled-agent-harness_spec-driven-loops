@@ -1,3 +1,7 @@
+---
+title: "Iteration 012 — refinement (executor: cli-opencode-deepseek-v4-pro)"
+trigger_phrases: []
+---
 # Iteration 012 — refinement (executor: cli-opencode-deepseek-v4-pro)
 
 ## Metadata

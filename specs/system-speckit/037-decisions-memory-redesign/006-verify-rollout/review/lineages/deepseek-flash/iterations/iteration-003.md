@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: D1 Correctness (server layer) — CLI, context-server, API, schemas"
+trigger_phrases: []
+---
 # Iteration 3: D1 Correctness (server layer) — CLI, context-server, API, schemas
 
 ## Focus

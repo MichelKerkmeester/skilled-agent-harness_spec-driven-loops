@@ -1,3 +1,7 @@
+---
+title: "100 Percent Completion Closeout"
+trigger_phrases: []
+---
 # 100 Percent Completion Closeout
 
 ## Final Task Status

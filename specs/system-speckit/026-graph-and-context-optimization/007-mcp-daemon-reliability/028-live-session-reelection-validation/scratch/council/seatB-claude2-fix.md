@@ -1,3 +1,7 @@
+---
+title: "Q1 SANITY-CHECK — VERDICT: **CONFIRMED**"
+trigger_phrases: []
+---
 I have everything I need. Here is my focused analysis.
 
 ---

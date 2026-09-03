@@ -1,3 +1,7 @@
+---
+title: "Iteration 19 (DeepSeek lineage): Cognee ECL ingest + graph_completion retriever depth (Q5)"
+trigger_phrases: []
+---
 # Iteration 19 (DeepSeek lineage): Cognee ECL ingest + graph_completion retriever depth (Q5)
 
 > Model: **DeepSeek v4 Pro** (read-only, via `opencode run`, explicit-path access — worked). Orchestrator-written. newInfoRatio **0.7**. The Cognee ECL/ingest vein was NOT saturated — 6 candidates, several net-new + a cheap win. Two feed the new **"semantic edge layer"** Wave-2 initiative.

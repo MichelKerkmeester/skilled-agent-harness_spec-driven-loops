@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 045/006: mcp-tool-schema-governance — Deep-review angle 6 (release-readiness)
 
 ### CRITICAL: Spec folder path

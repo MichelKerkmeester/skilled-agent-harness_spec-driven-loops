@@ -1,3 +1,7 @@
+---
+title: "Workflow"
+trigger_phrases: []
+---
 # Workflow
 
 ## Which situation are you in?

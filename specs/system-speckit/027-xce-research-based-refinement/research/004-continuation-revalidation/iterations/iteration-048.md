@@ -1,3 +1,7 @@
+---
+title: "Iteration 048: Statediff Write-Path Reconciliation"
+trigger_phrases: []
+---
 # Iteration 048: Statediff Write-Path Reconciliation
 
 ## Focus

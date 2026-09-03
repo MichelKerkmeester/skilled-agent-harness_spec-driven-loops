@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Verify System-Spec-Kit Tooling Borrow"
+trigger_phrases: []
+---
 # Iteration 4: Verify System-Spec-Kit Tooling Borrow
 
 ## Focus

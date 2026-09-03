@@ -1,3 +1,7 @@
+---
+title: "Plan — Mass-Deletion Guard"
+trigger_phrases: []
+---
 # Plan — Mass-Deletion Guard
 
 ## Approach

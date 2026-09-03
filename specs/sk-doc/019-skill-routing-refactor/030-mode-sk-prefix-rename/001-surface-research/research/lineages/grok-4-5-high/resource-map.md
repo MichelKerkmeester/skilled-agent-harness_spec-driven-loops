@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Enumerate every surface, reference and path that must change when 20 mode packet directories and 21 workflowMode keys across sk-code, sk-design, sk-doc and sk-prompt are renamed with an sk- prefix. Classify each occurrence as a typed position safe to sweep, a path position, or free prose where a bare key collides with English. Identify which artifacts are generated and must be rebuilt rather than edited, state ordering constraints, and name the command that verifies each class after the rename."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

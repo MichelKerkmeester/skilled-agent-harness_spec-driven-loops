@@ -1,3 +1,7 @@
+---
+title: "Improvement-project baseline and delta"
+trigger_phrases: []
+---
 # Improvement-project baseline and delta
 
 Captured 2026-08-18. The landed work is additive-dark, so the pre-edit side was

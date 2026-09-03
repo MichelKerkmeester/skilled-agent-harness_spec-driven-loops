@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The forced 20-iteration deep review of the 021 program returned FAIL",
     "created_at": "2026-07-22T20:53:39.733Z",
-    "last_save_at": "2026-08-30T15:39:15.572Z",
+    "last_save_at": "2026-09-03T22:19:31.660Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6591ce4471d370d35860a2b6d2ca13c4f9d6595aa43289ceec25b38fcfa04ec",
+    "source_fingerprint": "sha256:abcec728f10505822b4ed30afd4a67d35680c6b4dff3539d143d85c44a47753f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0c45087dbd7e406ca94d6532c4fec3f7153a6630074610168eb36d3987ffca95",
-      "plan.md": "bb8f7b24a2e50cff25a004eceb8d359a9c15d474f35048e295e32f20d5060773",
-      "tasks.md": "5f7d801523cdb42f500ffd41e996d22bcbad4b7fe05f0be91ab57e9b6a20d879",
+      "plan.md": "6ff55ab0adb5e335aba92bd0988d2b88f88a44a115cb2771fe1f638253d3148b",
+      "tasks.md": "1acc690ffbbdfb007719ef6892673791ca1950827fe5a4dfc8f7721a2fb7930d",
       "implementation-summary.md": "180866c830ee373ab55a71b6c823ad9cc38a228f79b34bceb7f5cf5e16b95233"
     },
     "last_active_child_id": null,

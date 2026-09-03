@@ -1,3 +1,7 @@
+---
+title: "Convergence Report — grok-4-5-high"
+trigger_phrases: []
+---
 # Convergence Report — grok-4-5-high
 
 | Field | Value |

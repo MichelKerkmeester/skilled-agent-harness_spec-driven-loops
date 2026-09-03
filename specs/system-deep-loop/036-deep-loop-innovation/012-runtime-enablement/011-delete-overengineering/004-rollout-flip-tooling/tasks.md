@@ -3,6 +3,7 @@ title: "Tasks: Phase 004 Rollout Tooling"
 description: "Ordered removal manifest for F3 — sever doc cross-refs first, then delete, then verify."
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling"
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

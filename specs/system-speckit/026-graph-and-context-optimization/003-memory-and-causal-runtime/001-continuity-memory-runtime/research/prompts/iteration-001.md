@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 1 — 002-continuity-memory-runtime audit"
+trigger_phrases: []
+---
 # Deep-Research Iteration 1 — 002-continuity-memory-runtime audit
 
 ## YOUR ROLE

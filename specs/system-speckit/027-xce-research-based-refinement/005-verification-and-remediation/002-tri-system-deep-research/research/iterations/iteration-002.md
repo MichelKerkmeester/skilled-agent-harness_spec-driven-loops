@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Angle 2"
+trigger_phrases: []
+---
 # Iteration 002 — Angle 2
 
 **Angle:** Source-kind ingress guard coverage: same-path reindex-retire and feedback auto-promotion remain unguarded ingress paths — exact exposure and minimal guard design.

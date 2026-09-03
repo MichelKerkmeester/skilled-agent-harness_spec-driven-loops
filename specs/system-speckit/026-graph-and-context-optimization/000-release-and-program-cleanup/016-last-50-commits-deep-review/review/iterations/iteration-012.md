@@ -1,3 +1,7 @@
+---
+title: "Iteration 012 — correctness / A4-verify (adversarial settle of F-A4-01)"
+trigger_phrases: []
+---
 # Iteration 012 — correctness / A4-verify (adversarial settle of F-A4-01)
 
 ## Dispatcher

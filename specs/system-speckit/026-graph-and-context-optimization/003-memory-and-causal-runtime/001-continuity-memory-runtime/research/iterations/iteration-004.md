@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Audit **Q3**: which continuity-refactor Gates A-F are actually enforced by live runtime code, which are only asserted in tests, and where the gate reporter contract drifted from the packet specs.

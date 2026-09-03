@@ -3,6 +3,7 @@ title: "Manual Tests — Skill-Advisor Prompt Hook + PreToolUse (all runtimes)"
 description: "Paste-ready prompts for verifying skill-advisor prompt-hook routing, native-first dispatch, stale-advisory fallback, policy-detector fix, and PreToolUse denial (Codex). Covers HOOK-P1-002, HOOK-P1-003, HOOK-P2-002, HOOK-P2-003 + ADR-004, ADR-005, ADR-006."
 importance_tier: "high"
 contextType: "manual-testing"
+trigger_phrases: []
 ---
 
 # Skill-Advisor Hook Tests — All Runtimes

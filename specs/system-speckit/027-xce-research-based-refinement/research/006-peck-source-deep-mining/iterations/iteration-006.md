@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — revim-* reviewer/prompt benchmark harness"
+trigger_phrases: []
+---
 # Iteration 006 — revim-* reviewer/prompt benchmark harness
 
 **Focus:** peck `benchmarks/` (revim-planner/acceptance-reviewer/code-reviewer + models.json) reviewer-prompt regression harness vs spec-kit deep-improvement Lane B/Lane C benchmarks.

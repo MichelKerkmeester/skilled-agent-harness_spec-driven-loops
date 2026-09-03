@@ -1,3 +1,7 @@
+---
+title: "Iteration 23 — gpt-5.6-terra xhigh — focus: benchmark"
+trigger_phrases: []
+---
 # Iteration 23 — gpt-5.6-terra xhigh — focus: benchmark
 
 The first durable compiled-vs-legacy Lane C result needs a run-atomic serving snapshot, portable provenance, and a complete command path. The planned parity module is the right boundary; the frozen replay, scorer, and loader stay untouched.

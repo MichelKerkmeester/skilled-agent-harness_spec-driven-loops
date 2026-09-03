@@ -6,6 +6,7 @@ lens: Pragmatic
 status: ok
 timestamp: "2026-05-09T19:42:00Z"
 simulated: true
+trigger_phrases: []
 ---
 
 # Seat 003 — Pragmatic Analysis

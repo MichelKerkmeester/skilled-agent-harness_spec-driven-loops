@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Command Asset Layer"
+trigger_phrases: []
+---
 # Deep Research Strategy: Command Asset Layer
 
 ## 1. Research Topic

@@ -1,3 +1,7 @@
+---
+title: "The validator's summary and its exit code disagree"
+trigger_phrases: []
+---
 # The validator's summary and its exit code disagree
 
 ## What every phase in this packet has been reading

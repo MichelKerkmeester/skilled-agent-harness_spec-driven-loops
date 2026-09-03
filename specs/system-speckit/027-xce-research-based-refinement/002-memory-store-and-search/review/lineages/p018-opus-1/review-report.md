@@ -1,3 +1,7 @@
+---
+title: "Review Report — 018-reindex-scan-responsiveness-and-cancellation (lineage p018-opus-1)"
+trigger_phrases: []
+---
 # Review Report — 018-reindex-scan-responsiveness-and-cancellation (lineage p018-opus-1)
 
 Executor: cli-claude-code / claude-opus-4-8 · Mode: review · Iterations: 1 (maxIterations=1) · Resource map: not present

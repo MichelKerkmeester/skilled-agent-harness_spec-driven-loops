@@ -1,3 +1,7 @@
+---
+title: "Tasks: Pi Remote Experience Parity Research"
+trigger_phrases: []
+---
 # Tasks: Pi Remote Experience Parity Research
 
 <!-- SPECKIT_LEVEL: 2 -->

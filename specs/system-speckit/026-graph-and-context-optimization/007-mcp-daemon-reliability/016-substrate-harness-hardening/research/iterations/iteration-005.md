@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Q5: SPECKIT_CODE_GRAPH_MAINTAINER_MODE Leak — Sidestepped vs. Hidden"
+trigger_phrases: []
+---
 # Iteration 005 — Q5: SPECKIT_CODE_GRAPH_MAINTAINER_MODE Leak — Sidestepped vs. Hidden
 
 ## Focus

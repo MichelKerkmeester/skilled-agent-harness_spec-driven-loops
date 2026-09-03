@@ -1,3 +1,7 @@
+---
+title: "Phase 007 — Live LLM-judge release-gate demo"
+trigger_phrases: []
+---
 # Phase 007 — Live LLM-judge release-gate demo
 
 > **PROVISIONAL SIGNAL — NOT the human non-inferiority study.** This run uses a real

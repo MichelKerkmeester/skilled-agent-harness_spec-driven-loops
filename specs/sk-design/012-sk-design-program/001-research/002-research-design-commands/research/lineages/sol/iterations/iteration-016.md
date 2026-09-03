@@ -1,3 +1,7 @@
+---
+title: "Iteration 16: Adversarial Template Tests"
+trigger_phrases: []
+---
 # Iteration 16: Adversarial Template Tests
 
 ## Focus

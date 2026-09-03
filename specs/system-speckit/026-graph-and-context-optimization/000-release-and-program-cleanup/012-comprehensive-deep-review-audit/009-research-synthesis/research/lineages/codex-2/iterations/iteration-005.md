@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Deep-Loop Fan-Out Blast Radius"
+trigger_phrases: []
+---
 # Iteration 005 - Deep-Loop Fan-Out Blast Radius
 
 ## Focus

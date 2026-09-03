@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — DEEP self-improving loop -> 027/008 shadow-first reducer design"
+trigger_phrases: []
+---
 # Iteration 014 — DEEP self-improving loop -> 027/008 shadow-first reducer design
 
 **Status:** insight · **Findings:** 15 · **newInfoRatio:** 0.74 · **tokens:** 87222 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

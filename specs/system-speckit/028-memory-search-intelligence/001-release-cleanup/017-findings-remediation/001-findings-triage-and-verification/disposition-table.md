@@ -1,3 +1,7 @@
+---
+title: "Disposition Table — Findings Triage"
+trigger_phrases: []
+---
 # Disposition Table — Findings Triage
 
 Re-tested 83 findings across three model families. Five findings already independently

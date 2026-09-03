@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Root-Level Skill Metadata JSON Contract"
+trigger_phrases: []
+---
 # Deep Research Strategy: Root-Level Skill Metadata JSON Contract
 
 ## 2. TOPIC

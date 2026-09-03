@@ -1,3 +1,7 @@
+---
+title: "Iteration R3 - graph-metadata.json schema redesign (opus, cross-cutting)"
+trigger_phrases: []
+---
 # Iteration R3 - graph-metadata.json schema redesign (opus, cross-cutting)
 
 ## TITLE

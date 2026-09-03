@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Full-coverage pass (D1–D4)"
+trigger_phrases: []
+---
 # Iteration 001 — Full-coverage pass (D1–D4)
 
 **Target:** `020-maintenance-grace-background-embedding` (spec-folder)

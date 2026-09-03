@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy — Refero MCP Luna Lineage
 description: Detached fan-out lineage strategy for the Refero MCP developer-surface investigation.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Refero MCP Luna Lineage

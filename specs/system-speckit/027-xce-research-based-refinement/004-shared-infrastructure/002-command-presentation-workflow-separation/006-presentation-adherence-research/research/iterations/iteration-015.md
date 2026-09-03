@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 (wave 2, gpt-5.5-fast xhigh) — Synthesis: true-solution architecture"
+trigger_phrases: []
+---
 # Iteration 015 (wave 2, gpt-5.5-fast xhigh) — Synthesis: true-solution architecture
 
 **Verdict:** Recommended architecture: mandatory correct command dispatch plus command-local deterministic rendering for dynamic exact envelopes. First implementation step: enforce/use the existing `--command memory/search` gauntlet everywhere, then add `render_search_envelope.cjs` only if dual-stack weaker-executor hardening is required.

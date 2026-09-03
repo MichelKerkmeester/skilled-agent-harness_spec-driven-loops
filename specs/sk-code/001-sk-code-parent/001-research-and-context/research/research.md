@@ -1,3 +1,7 @@
+---
+title: "Phase 001 — Research & Context Synthesis (decision-ready)"
+trigger_phrases: []
+---
 # Phase 001 — Research & Context Synthesis (decision-ready)
 
 **For:** the 002 architecture-decision human-review gate.

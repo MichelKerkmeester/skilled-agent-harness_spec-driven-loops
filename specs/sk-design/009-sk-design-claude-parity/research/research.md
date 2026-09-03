@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis - sk-design Claude Parity"
+trigger_phrases: []
+---
 # Deep Research Synthesis - sk-design Claude Parity
 
 ## Progressive Findings

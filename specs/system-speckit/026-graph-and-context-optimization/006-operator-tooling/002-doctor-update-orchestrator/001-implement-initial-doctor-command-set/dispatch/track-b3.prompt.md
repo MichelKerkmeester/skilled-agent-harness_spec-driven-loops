@@ -1,3 +1,7 @@
+---
+title: "Codex dispatch: Track B3 — full /doctor:deep-loop command + 4 YAMLs"
+trigger_phrases: []
+---
 # Codex dispatch: Track B3 — full /doctor:deep-loop command + 4 YAMLs
 
 ## ROLE

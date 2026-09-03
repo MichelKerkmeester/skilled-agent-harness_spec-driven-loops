@@ -1,6 +1,7 @@
 ---
 title: Deep Alignment Report
 description: Auto-generated reducer view over the alignment packet. Never manually edited.
+trigger_phrases: []
 ---
 
 # Deep Alignment Report

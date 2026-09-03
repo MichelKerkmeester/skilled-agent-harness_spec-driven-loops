@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 10 | model luna (gpt-5.6-luna) | angle: Research-loop specific technique | 2026-07-14T22:03:24.813Z -->
 
 The strongest transfer is to make `deep-research` coverage-driven rather than search-count-driven. STORM uses perspective discovery plus grounded follow-up questions; A-RAG lets the agent choose retrieval granularity; DeepResearchEco exposes breadth/depth as experimental controls. Together they suggest JSONL records should carry `perspective_id`, `query_family`, `target_claim`, `source_family`, `retrieval_granularity`, `depth`, `evidence_gain`, and `context_cost`. ([STORM](https://aclanthology.org/2024.naacl-long.347/), [A-RAG](https://github.com/Ayanami0730/arag), [DeepResearchEco](https://arxiv.org/abs/2507.10522))

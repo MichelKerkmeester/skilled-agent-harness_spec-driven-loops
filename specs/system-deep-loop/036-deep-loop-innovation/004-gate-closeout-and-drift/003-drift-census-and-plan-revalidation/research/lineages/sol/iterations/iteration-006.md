@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: Authority, Retirement, Whole-System Gate, and Final-SHA Revalidation"
+trigger_phrases: []
+---
 # Iteration 006: Authority, Retirement, Whole-System Gate, and Final-SHA Revalidation
 
 ## Focus

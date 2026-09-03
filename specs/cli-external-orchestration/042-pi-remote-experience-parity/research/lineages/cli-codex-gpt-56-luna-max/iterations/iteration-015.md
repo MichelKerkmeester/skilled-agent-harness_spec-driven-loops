@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 — Prior-art comparison and superiority claims"
+trigger_phrases: []
+---
 # Iteration 015 — Prior-art comparison and superiority claims
 
 ## Question

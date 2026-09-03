@@ -1,3 +1,7 @@
+---
+title: "Spec-Kit Data Quality by Default: The Planned Program and the Shipped Build (028 Track C)"
+trigger_phrases: []
+---
 # Spec-Kit Data Quality by Default: The Planned Program and the Shipped Build (028 Track C)
 
 > Track C, the `003-spec-data-quality` parent, is the seventh track under packet 028. It opened as research only, ran an official five-lineage deep research across thirty-seven substantive iterations on opus seeded by a Stage 0 external sweep of about thirty cited sources across seven angles, and turned the converged result into a tiered, dependency-ordered program of twenty-eight Level-2 phases. Every one of those twenty-eight carries a full Level-2 doc set marked PLANNED, no code landed for them and their completion sits at zero. What that program became is not a delivered feature but a costed, fidelity-aware build plan that a future packet inherits, where every candidate already knows whether it runs at the write surface before any truncation applies or has to prove a gain on the prod retrieval path first. The lineage then continued past that scaffold and shipped. A second wave of children, 029 through 040, built and graduated the generated-metadata quality program described in Section 3, and a third wave, 041 through 044, landed the search-quality fix wave and the evidence-gap redesign described in Section 4, so the track is a planned program at its head and a delivered build at its tail.

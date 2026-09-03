@@ -1,3 +1,7 @@
+---
+title: "ALIGNMENT-LOOP Angles After sk-doc/019"
+trigger_phrases: []
+---
 # ALIGNMENT-LOOP Angles After sk-doc/019
 
 019 changed skill routing from loosely comparable prose routers into a measurable fleet surface: typed `(workflowMode, leafResourceId)` identities, per-hub registries and `defaultMode` policy, generated leaf manifests, a frozen scorer/benchmark contract, and a compiled serving engine for seven hubs. It then made that engine default-on behind an explicit `SPECKIT_COMPILED_ROUTING=0` kill-switch and added serving-status, parity, archive, and documentation gates. The current survey covered all 12 top-level skills and their present routing/advisor artifacts. The angles below are conformance checks against those named authorities; observed discrepancies are evidence for running the loop, not assumed diagnoses.

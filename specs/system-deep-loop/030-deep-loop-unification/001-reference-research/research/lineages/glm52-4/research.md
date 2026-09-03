@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis - glm52-4"
+trigger_phrases: []
+---
 # Research Synthesis - glm52-4
 
 > Lineage: `glm52-4` · Executor: `cli-opencode model=zai-coding-plan/glm-5.2` (reasoningEffort: max) · Session: `fanout-glm52-4-1783486518892-2qss01`

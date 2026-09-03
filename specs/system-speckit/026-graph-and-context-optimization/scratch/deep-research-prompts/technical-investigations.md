@@ -3,6 +3,7 @@ title: "Deep Research Prompts — Technical Investigations"
 description: "Paste-ready /deep:start-research-loop :auto prompts for 'how does X actually work' investigations. Use when you need grounded understanding of an unfamiliar subsystem before modifying it."
 importance_tier: "normal"
 contextType: "research-prompts"
+trigger_phrases: []
 ---
 
 # Technical Investigations

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 22 | SOL xhigh | mode: deep-alignment | angle: A2-moat deep-alignment :: unique value / moat | 2026-07-15T09:52:12.493Z -->
 
 The moat is adjudication, not detection. A linter emits pattern matches; a one-shot prompt emits prose. Deep-alignment should emit a replayable determination whose authority version, applicability facts, evidence, verifier, subject identity, and exception decision are all explicit. Without that chain, the mode has little defensible advantage.

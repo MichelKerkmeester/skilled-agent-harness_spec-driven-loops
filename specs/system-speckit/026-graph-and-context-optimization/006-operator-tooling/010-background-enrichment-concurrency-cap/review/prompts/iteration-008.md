@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Adversarial deep-review worker, iteration 8 of 10 (gpt-5.5 xhigh). Review the committed fix (commit 25587fa412), read-only:
 - .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts (scheduleBackgroundEnrichment)
 - .opencode/skills/system-spec-kit/mcp_server/context-server.ts (startupScan + shutdown/close paths)

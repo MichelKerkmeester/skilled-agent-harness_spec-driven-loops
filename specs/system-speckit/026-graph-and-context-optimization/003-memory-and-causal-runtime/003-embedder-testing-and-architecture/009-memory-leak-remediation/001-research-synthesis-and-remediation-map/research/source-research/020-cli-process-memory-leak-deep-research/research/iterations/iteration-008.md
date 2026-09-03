@@ -1,3 +1,7 @@
+---
+title: "Iteration 008: ccc search, sidecars, timeouts, browser helpers, and external MCP cleanup"
+trigger_phrases: []
+---
 # Iteration 008: ccc search, sidecars, timeouts, browser helpers, and external MCP cleanup
 
 ## Focus

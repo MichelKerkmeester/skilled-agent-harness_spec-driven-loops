@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: sk-design Styles Tree Restructure"
+trigger_phrases: []
+---
 # Deep Research Strategy: sk-design Styles Tree Restructure
 
 ## 2. TOPIC

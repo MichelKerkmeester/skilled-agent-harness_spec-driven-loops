@@ -22,6 +22,7 @@ _memory:
     answered_questions:
       - "DB technology: SQLite + FTS5 + vector (not a graph engine)"
       - "Source of truth: flat style files stay authoritative; DB is a rebuildable, generation-stamped projection"
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 (A3): A/B the default-on levers 017 shipped unmeasured"
+trigger_phrases: []
+---
 # Iteration 5 (A3): A/B the default-on levers 017 shipped unmeasured
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only). Orchestrator-written. newInfoRatio **0.7**. **Two findings that alone justify the campaign: a harness blind-spot for S5, and a confirmed silent-regression mechanism in a shipped default-on lever.**

@@ -1,3 +1,7 @@
+---
+title: "Graph-Engineering-Master Doctrine and Four-Study Completeness"
+trigger_phrases: []
+---
 # Graph-Engineering-Master Doctrine and Four-Study Completeness
 
 ## 1. Grounding and Evidence Rules

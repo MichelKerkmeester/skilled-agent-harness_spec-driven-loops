@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Rust Opportunities for the Styles Database"
+trigger_phrases: []
+---
 # Deep Research Strategy: Rust Opportunities for the Styles Database
 
 ## 2. TOPIC

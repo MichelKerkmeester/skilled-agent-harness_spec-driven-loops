@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All artifacts are complete and validated. The fan-out review lineage is done.
 
 **Summary — lineage p021-opus-3, target `021-cooperative-heavy-phases`:**

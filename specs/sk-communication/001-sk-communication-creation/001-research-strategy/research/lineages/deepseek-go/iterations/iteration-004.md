@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Devin CLI + Cursor CLI boundaries and the normalized event/message model"
+trigger_phrases: []
+---
 # Iteration 4: Devin CLI + Cursor CLI boundaries and the normalized event/message model
 
 ## Focus

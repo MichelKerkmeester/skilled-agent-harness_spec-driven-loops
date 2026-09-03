@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Maintainability (Re-pass)"
+trigger_phrases: []
+---
 # Iteration 8: Maintainability (Re-pass)
 
 **Date:** 2026-05-21  

@@ -1,3 +1,7 @@
+---
+title: "DEEP REVIEW LEAF AGENT — Iteration 9 (Adversarial Self-Check)"
+trigger_phrases: []
+---
 # DEEP REVIEW LEAF AGENT — Iteration 9 (Adversarial Self-Check)
 
 You are dispatched as the @deep-review LEAF agent for packet 009-causal-graph-channel-routing.

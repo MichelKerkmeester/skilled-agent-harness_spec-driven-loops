@@ -1,3 +1,7 @@
+---
+title: "L6+L7 Doc-Batch Adversarial Re-Verification — Verdict"
+trigger_phrases: []
+---
 # L6+L7 Doc-Batch Adversarial Re-Verification — Verdict
 
 > Fresh Fable 5 verifier, 2026-06-12. All evidence re-read from the current working tree (uncommitted seat edits); no banked line numbers trusted. Brief: `/tmp/fable-verify-l6l7docs.md`.

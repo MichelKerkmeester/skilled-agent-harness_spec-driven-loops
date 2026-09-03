@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Synthesis Prompt"
+trigger_phrases: []
+---
 # Deep-Review Synthesis Prompt
 
 The 4-dimension iteration loop has converged. You are dispatched to compile the final review-report.md.

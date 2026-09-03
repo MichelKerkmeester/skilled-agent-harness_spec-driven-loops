@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Independent finding re-read and commit-boundary audit"
+trigger_phrases: []
+---
 # Iteration 9: Independent finding re-read and commit-boundary audit
 
 ## Focus

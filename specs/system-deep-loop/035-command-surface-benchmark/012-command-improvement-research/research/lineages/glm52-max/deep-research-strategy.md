@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — glm52-max lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy — glm52-max lineage
 
 ## 2. TOPIC

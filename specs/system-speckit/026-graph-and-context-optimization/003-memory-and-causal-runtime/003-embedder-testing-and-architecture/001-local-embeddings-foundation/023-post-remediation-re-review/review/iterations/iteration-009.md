@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — Local-LLM Legacy Hunt"
+trigger_phrases: []
+---
 # Iteration 009 — Local-LLM Legacy Hunt
 
 ## Focus

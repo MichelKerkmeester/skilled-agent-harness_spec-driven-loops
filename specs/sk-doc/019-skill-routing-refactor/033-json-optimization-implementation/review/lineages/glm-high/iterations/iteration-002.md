@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: D2 Security + D3 Traceability — stale phase map, systemic continuity rot, pin propagation, O1-O11 coverage"
+trigger_phrases: []
+---
 # Iteration 2: D2 Security + D3 Traceability — stale phase map, systemic continuity rot, pin propagation, O1-O11 coverage
 
 ## Focus

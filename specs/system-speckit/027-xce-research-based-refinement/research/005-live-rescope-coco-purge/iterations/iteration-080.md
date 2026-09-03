@@ -1,3 +1,7 @@
+---
+title: "Iteration 080 — Final synthesis (continuation 22)"
+trigger_phrases: []
+---
 # Iteration 080 — Final synthesis (continuation 22)
 
 **Status:** insight. **Method:** orchestrator consolidation of iterations 061-079 into `research/research.md`. No new dispatch.

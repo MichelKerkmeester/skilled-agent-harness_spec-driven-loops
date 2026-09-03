@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-continuity-metadata — iteration 1 (global #49)"
+trigger_phrases: []
+---
 # Seat gpt-continuity-metadata — iteration 1 (global #49)
 
 - Model: `kimi-for-coding/k2p7` · Executor: opencode · Angle: gpt-continuity-metadata

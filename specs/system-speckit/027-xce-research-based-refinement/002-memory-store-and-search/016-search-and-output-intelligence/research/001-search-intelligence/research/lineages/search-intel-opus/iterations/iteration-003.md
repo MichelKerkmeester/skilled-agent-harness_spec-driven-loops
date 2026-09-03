@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Token-Budget Truncation (5→1) — mechanism and fix"
+trigger_phrases: []
+---
 # Iteration 3: Token-Budget Truncation (5→1) — mechanism and fix
 
 ## Focus

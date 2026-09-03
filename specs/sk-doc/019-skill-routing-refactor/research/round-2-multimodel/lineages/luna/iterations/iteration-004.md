@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Nested topology, lifecycle metadata, and resume safety"
+trigger_phrases: []
+---
 # Iteration 4: Nested topology, lifecycle metadata, and resume safety
 
 ## Focus

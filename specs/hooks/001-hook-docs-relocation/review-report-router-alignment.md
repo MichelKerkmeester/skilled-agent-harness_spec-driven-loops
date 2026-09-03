@@ -1,3 +1,7 @@
+---
+title: "Review Report — Router / Routing-Config Alignment after Hook-Doc Relocation"
+trigger_phrases: []
+---
 # Review Report — Router / Routing-Config Alignment after Hook-Doc Relocation
 
 > Audit scope: router & routing-config files in live trees (excluded `.opencode/specs/`, `node_modules`, `z_archive`, `.git`).

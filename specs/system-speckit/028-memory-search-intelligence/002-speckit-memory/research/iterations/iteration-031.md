@@ -1,3 +1,7 @@
+---
+title: "Iteration 31: Round H Rust Reference — aionforge-retrieval → C-X1/C2/C6-A + the fuser adapter"
+trigger_phrases: []
+---
 # Iteration 31: Round H Rust Reference — aionforge-retrieval → C-X1/C2/C6-A + the fuser adapter
 
 ## Focus

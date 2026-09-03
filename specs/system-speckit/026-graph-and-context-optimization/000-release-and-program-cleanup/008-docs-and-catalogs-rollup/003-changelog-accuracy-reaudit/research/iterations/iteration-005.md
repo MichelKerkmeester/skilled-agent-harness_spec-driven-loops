@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 005"
+trigger_phrases: []
+---
 # Deep Research Iteration 005
 
 > Audited changelog: `changelog-024-launcher-lease-integration-test.md`

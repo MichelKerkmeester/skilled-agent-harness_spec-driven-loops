@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — SOL High"
+trigger_phrases: []
+---
 # Deep Research Dashboard — SOL High
 
 - Session: `fanout-sol-high-1786012490410-1dceqj`

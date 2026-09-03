@@ -5,6 +5,7 @@ track: 1
 focus: "MCP server registration inventory"
 status: complete
 newInfoRatio: 0.00
+trigger_phrases: []
 ---
 
 # Iter 003 — Track 1: MCP server registration inventory

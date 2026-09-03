@@ -4,6 +4,7 @@ rq: RQ-N5
 phase_target: 006-write-path-reconciliation
 newInfoRatio: 0.72
 verdict: ADAPT
+trigger_phrases: []
 ---
 
 # Iteration 034 — RQ-N5: 012 Causal Routing Impact on Phase 006 Statediff Scope

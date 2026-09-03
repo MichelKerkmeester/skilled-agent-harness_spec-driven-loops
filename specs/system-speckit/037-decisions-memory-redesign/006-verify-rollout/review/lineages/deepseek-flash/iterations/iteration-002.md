@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: D1 Correctness (deepen) — Handlers, hooks, index scope"
+trigger_phrases: []
+---
 # Iteration 2: D1 Correctness (deepen) — Handlers, hooks, index scope
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW
 Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration
 

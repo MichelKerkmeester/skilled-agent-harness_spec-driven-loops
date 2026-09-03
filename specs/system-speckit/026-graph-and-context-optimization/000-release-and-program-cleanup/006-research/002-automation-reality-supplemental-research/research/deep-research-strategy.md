@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Automation Reality Supplemental (Continuation of 012)"
+trigger_phrases: []
+---
 # Deep Research Strategy: Automation Reality Supplemental (Continuation of 012)
 
 ## Topic

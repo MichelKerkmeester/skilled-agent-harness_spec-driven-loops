@@ -1,3 +1,7 @@
+---
+title: "Goal — Compiled-Routing Coverage Build-Out & Genuine Default-On (015, Path 1)"
+trigger_phrases: []
+---
 # Goal — Compiled-Routing Coverage Build-Out & Genuine Default-On (015, Path 1)
 
 > The standing goal for the **final phase** of packet 015: make the compiled skill-router *genuinely serve* every hub == legacy, then enable it by default. Supersedes the "flip the cohort" framing after the coverage finding. Companions: `goal.md` (the original program goal, 002–012, accurate history), `handover.md` (resume state), `compiled-routing-coverage-diagnosis.md` (the verified technical diagnosis + key files), `001-research/{synthesis,verification}-v1.md` (evidence base).

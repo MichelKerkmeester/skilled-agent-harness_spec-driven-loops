@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — grok lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — grok lineage
 
 | Field | Value |

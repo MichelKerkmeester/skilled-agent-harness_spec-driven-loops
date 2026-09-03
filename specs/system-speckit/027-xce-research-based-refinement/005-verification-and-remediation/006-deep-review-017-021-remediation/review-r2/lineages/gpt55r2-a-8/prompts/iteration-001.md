@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 Prompt Pack"
+trigger_phrases: []
+---
 # Iteration 001 Prompt Pack
 
 STATE SUMMARY (auto-generated, review mode):

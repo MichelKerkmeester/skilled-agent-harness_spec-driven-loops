@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: State-machine, advisory-lock, reducer, and post-dispatch failure-recovery audit"
+trigger_phrases: []
+---
 # Iteration 002: State-machine, advisory-lock, reducer, and post-dispatch failure-recovery audit
 
 ## Focus

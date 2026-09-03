@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-cli-frontdoors — iteration 3 (global #46)"
+trigger_phrases: []
+---
 # Seat gpt-cli-frontdoors — iteration 3 (global #46)
 
 - Model: `openai/gpt-5.5-fast` · Executor: opencode · Angle: gpt-cli-frontdoors

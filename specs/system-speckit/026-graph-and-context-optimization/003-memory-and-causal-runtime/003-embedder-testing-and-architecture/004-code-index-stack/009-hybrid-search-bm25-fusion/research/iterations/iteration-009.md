@@ -6,6 +6,7 @@ phase_id: "003-hybrid-search-bm25-fusion"
 executor: cli-devin
 model: swe-1.6
 recipe: agent-config-deep-research-iter.json
+trigger_phrases: []
 ---
 
 ## 1. RESEARCH QUESTION

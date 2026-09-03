@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Canonical Representation and Extraction Pipelines Per Format"
+trigger_phrases: []
+---
 # Iteration 2: Canonical Representation and Extraction Pipelines Per Format
 
 ## Focus

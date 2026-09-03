@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: DQL Query Grammar and Command Patterns"
+trigger_phrases: []
+---
 # Iteration 001: DQL Query Grammar and Command Patterns
 
 ## Focus

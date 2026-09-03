@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Max-Iteration Replay"
+trigger_phrases: []
+---
 # Iteration 6: Max-Iteration Replay
 
 ## Focus

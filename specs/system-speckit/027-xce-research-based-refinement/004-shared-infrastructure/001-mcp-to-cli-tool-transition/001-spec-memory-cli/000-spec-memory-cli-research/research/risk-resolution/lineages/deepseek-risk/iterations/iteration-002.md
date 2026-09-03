@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: RQ2 (Schema-Drift Mechanics) + RQ4 (Retryable Taxonomy)"
+trigger_phrases: []
+---
 # Iteration 2: RQ2 (Schema-Drift Mechanics) + RQ4 (Retryable Taxonomy)
 
 **Focus:** RQ2 (all 37 arg shapes) + RQ4 (complete error→exit map)

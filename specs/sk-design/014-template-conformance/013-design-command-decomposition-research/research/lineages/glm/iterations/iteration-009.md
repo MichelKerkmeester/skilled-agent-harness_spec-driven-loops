@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — Consolidation Reversal Cost: What Did 010-motion-merge Spend?"
+trigger_phrases: []
+---
 # Iteration 009 — Consolidation Reversal Cost: What Did 010-motion-merge Spend?
 
 **Focus:** Quantify what the 010-motion-merge consolidation spent to retire `/interface:motion`, and what reversing it would cost. The hard constraint says reversing a just-completed consolidation requires a much stronger argument than symmetry.

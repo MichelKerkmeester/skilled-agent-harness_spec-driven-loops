@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 - Security: sandbox defaults and artifact write boundary"
+trigger_phrases: []
+---
 # Iteration 2 - Security: sandbox defaults and artifact write boundary
 
 Session: fanout-codex-4-1780596001496-dj6z7c

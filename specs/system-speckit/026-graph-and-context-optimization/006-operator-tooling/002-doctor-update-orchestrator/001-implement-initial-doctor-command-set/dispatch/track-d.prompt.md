@@ -1,3 +1,7 @@
+---
+title: "Codex dispatch: Track D — migration-manifest.json (3.3.0.0 → 3.4.1.0 chain)"
+trigger_phrases: []
+---
 # Codex dispatch: Track D — migration-manifest.json (3.3.0.0 → 3.4.1.0 chain)
 
 ## ROLE

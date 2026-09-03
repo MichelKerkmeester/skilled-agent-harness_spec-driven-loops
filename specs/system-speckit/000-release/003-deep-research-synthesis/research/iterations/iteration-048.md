@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### GitKraken MCP integration with advisor-routed sk-git utilization
 The GitKraken MCP server is now a first-class git surface: registered with Code Mode, documented inside sk-git, and routed to automatically by the skill advisor. Ground-truth research via the locally installed GitKraken CLI found the server exposes 31 tools where the README names only three, and that full inventory now lives in a dedicated integration reference with a tool-selection guide, a read/write safety carve-out, usage examples, and error handling. sk-git's router gained a GitKraken intent, keyword triggers, a new always-follow rule, and a reference-table row, while the advisor now boosts `gitkraken`- and `gitlens launchpad`-shaped requests toward sk-git. Requests mentioning GitKraken previously had no clear owner; now they land in the right skill without a detour. The skill version moved from 1.1.2.1 to 1.1.3.0.
 

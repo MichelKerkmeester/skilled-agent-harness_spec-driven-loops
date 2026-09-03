@@ -1,3 +1,7 @@
+---
+title: "Decision Record: SQLite reader for the factory metadata probe"
+trigger_phrases: []
+---
 # Decision Record: SQLite reader for the factory metadata probe
 
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->

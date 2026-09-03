@@ -1,3 +1,7 @@
+---
+title: "Iter 1 — CocoIndex retrieval pipeline map — entry → hybrid → rerank → output"
+trigger_phrases: []
+---
 # Iter 1 — CocoIndex retrieval pipeline map — entry → hybrid → rerank → output
 
 ## TL;DR (2-3 sentences)

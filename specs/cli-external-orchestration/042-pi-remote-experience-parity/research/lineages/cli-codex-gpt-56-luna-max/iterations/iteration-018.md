@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 — Integrated end-to-end state machine"
+trigger_phrases: []
+---
 # Iteration 018 — Integrated end-to-end state machine
 
 ## Question

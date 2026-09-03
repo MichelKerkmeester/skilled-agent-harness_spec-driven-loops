@@ -1,6 +1,7 @@
 ---
 title: Deep Review Dashboard
 description: Auto-generated status view for fan-out lineage codex-1.
+trigger_phrases: []
 ---
 
 # Deep Review Dashboard - codex-1

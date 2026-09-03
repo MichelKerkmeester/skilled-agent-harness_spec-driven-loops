@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 1. **Purpose** — The skill is the per-model prompt-craft hub for small-model dispatch: it owns one prompt-craft profile per active small model (framework, scaffold, gotchas) and the unified model registry, while executor mechanics (binary flags, invocation wrappers, budgets, permissions) live in `cli-devin` and `cli-opencode`.
 
 2. **Problem** — Each small model in the rotation (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3, MiMo-V2.5-Pro) responds best to a different prompt framework, scaffold shape, and pre-planning density — MiniMax wins on TIDD-EC with dense pre-planning while MiMo wins on COSTAR with lean pre-planning, the exact opposite. Without a centralized knowledge hub, framework choices would drift across the five executor surfaces, and every new model adoption would require updating multiple disconnected files. Separating prompt-craft (this hub) from executor mechanics (the `cli-*` skills) keeps each concern editable in one place: a profile author never needs to touch invocation flags, and a mechanics author never needs to understand framework selection.

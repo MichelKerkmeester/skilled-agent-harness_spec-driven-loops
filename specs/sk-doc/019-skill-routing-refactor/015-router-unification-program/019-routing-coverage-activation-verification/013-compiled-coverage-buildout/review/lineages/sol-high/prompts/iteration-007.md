@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW ITERATION 007
 
 Focus: replay current completion evidence with live status, tests, hashes, and resolver identity checks.

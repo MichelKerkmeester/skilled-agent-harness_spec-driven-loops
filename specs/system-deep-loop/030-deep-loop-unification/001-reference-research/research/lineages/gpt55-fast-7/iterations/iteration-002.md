@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Tooling-Borrow and Command Contract Repair"
+trigger_phrases: []
+---
 # Iteration 2: Tooling-Borrow and Command Contract Repair
 
 ## Focus

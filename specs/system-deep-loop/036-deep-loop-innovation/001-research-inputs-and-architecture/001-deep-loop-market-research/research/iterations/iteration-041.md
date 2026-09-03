@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 41 | model glm (zai-coding-plan/glm-5.2) | angle: Knowledge-graph / GraphRAG accumulation loops | 2026-07-15T00:33:51.738Z -->
 
 I'll research Knowledge-graph / GraphRAG accumulation loops for this iteration. Let me search for real, current repos and techniques not yet catalogued.

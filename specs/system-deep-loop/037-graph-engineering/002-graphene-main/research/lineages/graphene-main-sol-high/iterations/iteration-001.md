@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Truth-maintaining convergence projection"
+trigger_phrases: []
+---
 # Iteration 001 — Truth-maintaining convergence projection
 
 ## Focus

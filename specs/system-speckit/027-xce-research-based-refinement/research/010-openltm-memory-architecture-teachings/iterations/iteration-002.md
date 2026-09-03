@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Importance-weighted decay (half-life tiers + materialized decay_score)"
+trigger_phrases: []
+---
 # Iteration 002 — Importance-weighted decay (half-life tiers + materialized decay_score)
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.62 · **tokens:** 91909 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

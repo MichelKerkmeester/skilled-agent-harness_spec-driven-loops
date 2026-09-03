@@ -8,6 +8,7 @@ scope: q3_thin_continuity
 status: complete
 focus: "Design the thin continuity layer in detail: fields, lifecycle, storage format, read/write patterns. Complete Band A foundations."
 maps_to_questions: [Q3]
+trigger_phrases: []
 ---
 
 # Iteration 005 — Q3: Thin Continuity Layer Schema

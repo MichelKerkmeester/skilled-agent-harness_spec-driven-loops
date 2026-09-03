@@ -1,3 +1,7 @@
+---
+title: "Skill Docs Alignment Audit Summary"
+trigger_phrases: []
+---
 # Skill Docs Alignment Audit Summary
 
 ## Audit Date

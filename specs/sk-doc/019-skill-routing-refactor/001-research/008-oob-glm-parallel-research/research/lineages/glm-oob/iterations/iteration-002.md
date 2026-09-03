@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Cross-Domain Analogies — The Load-Balancer Health-Check Transfer"
+trigger_phrases: []
+---
 # Iteration 2: Cross-Domain Analogies — The Load-Balancer Health-Check Transfer
 
 **Lineage:** glm-oob (cli-opencode / GLM-5.2)

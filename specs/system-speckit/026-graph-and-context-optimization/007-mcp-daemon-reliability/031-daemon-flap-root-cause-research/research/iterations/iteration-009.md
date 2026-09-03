@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — phased, risk-gated implementation plan"
+trigger_phrases: []
+---
 # Iteration 009 — phased, risk-gated implementation plan
 
 - **Wave:** 5 (of 5) · **Executor:** `openai/gpt-5.5-fast --variant xhigh` (read-only, exit 0) · **Seat:** bmfstkyvq · **Date:** 2026-06-14

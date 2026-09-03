@@ -1,3 +1,7 @@
+---
+title: "BRIEF: Spec Docs + Manual-Testing Playbook Coverage for the Git Preflight Advisory"
+trigger_phrases: []
+---
 # BRIEF: Spec Docs + Manual-Testing Playbook Coverage for the Git Preflight Advisory
 
 You are GLM-5.2 acting as a documentation engineer. Work entirely inside THIS repository

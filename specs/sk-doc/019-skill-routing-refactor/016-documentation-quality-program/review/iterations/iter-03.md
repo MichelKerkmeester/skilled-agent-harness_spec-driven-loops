@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: parent-skill-check.cjs rule 10a path fix"
+trigger_phrases: []
+---
 # Iteration 3: parent-skill-check.cjs rule 10a path fix
 
 > dimension: correctness+regression | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

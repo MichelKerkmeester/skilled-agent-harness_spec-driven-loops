@@ -1,3 +1,7 @@
+---
+title: "Evidence Counts and Command Outputs"
+trigger_phrases: []
+---
 # Evidence Counts and Command Outputs
 
 ## Metadata Graph Counts

@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 003 — maintainability"
+trigger_phrases: []
+---
 # Codex Iteration 003 — maintainability
 
 ## Sequential-thinking preflight

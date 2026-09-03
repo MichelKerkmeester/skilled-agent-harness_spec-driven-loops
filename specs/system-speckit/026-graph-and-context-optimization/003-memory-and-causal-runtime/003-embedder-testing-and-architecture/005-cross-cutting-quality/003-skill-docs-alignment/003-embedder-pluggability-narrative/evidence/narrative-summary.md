@@ -1,3 +1,7 @@
+---
+title: "Narrative Summary — 021/003 Embedder Pluggability"
+trigger_phrases: []
+---
 # Narrative Summary — 021/003 Embedder Pluggability
 
 ## Final LOC count

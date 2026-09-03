@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Copilot dispatch authority and non-mutating status readiness"
+trigger_phrases: []
+---
 # Iteration 003 — Copilot dispatch authority and non-mutating status readiness
 
 ## Status

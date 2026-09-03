@@ -1,3 +1,7 @@
+---
+title: "Iteration 18: adjacent routing/manifest surfaces — regressions"
+trigger_phrases: []
+---
 # Iteration 18: adjacent routing/manifest surfaces — regressions
 
 > dimension: regression | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

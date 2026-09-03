@@ -13,6 +13,7 @@ _memory:
     next_safe_action: "Reconcile and validate the thirty-three READMEs."
     blockers: []
     key_files: []
+trigger_phrases: []
 ---
 
 # Implementation Plan: Code READMEs (Infra and SK Batch)

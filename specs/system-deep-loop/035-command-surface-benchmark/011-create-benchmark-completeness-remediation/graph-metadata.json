@@ -39,7 +39,6 @@
       "implementation-summary.md",
       "evidence/review-sol-ultra-rereview.md",
       ".codex/config.toml",
-      "benchmarks/README.md",
       "evidence/review-sol-ultra.md",
       "evidence/review-fable.md"
     ],
@@ -78,12 +77,6 @@
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "benchmarks/README.md",
         "source": "derived"
       },
       {
@@ -187,11 +180,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Remediate the create-benchmark authoring home against the Fable 5 + GPT-5.6 Sol Ultra dual review: fix the broken smart-router fallback, add a schema-v2 behavior scaffold, complete the live conformance exemplar, first-class the command benchmark, and clear the cross-tree staleness sweep.",
     "created_at": "2026-07-15T17:39:53.112Z",
-    "last_save_at": "2026-08-30T15:39:20.302Z",
+    "last_save_at": "2026-09-03T22:20:33.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:526e140ca18ddace658b6149c93fa89aabe4d2430ade76cb7216612adfc70e4c",
+    "source_fingerprint": "sha256:268ce44b9e87e9ecc468cf056117736927748fb1c6d6e76b87c12d23bbe90ba9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f5ec74bb2d2e48cf5200cdd8a476dfeaade93ee8f79f12d37046ef217c5f76d3",
-      "plan.md": "b332737aec5ee41e3226ef578126cba7b433dec89ddd7a38fc6d3b6aa090e7e6",
-      "tasks.md": "d8338044019b7f86fbb3e179f506fdf19f0e9c7b2006e9fe1919aea1bb419b43",
-      "implementation-summary.md": "b1ed0c7b284d30cfd07f6ed9687795ec5735f0f0d44092364fa862806473258c"
+      "plan.md": "606902c54a7ebb33a98330e61a93c5883e465446745b49f510f96b9d1d73c188",
+      "tasks.md": "6b51043db3a8a6921df2504660559ea40bbf46ac73d5e8750d3876aef336c6d3",
+      "implementation-summary.md": "acb6da6dd321eeaaf43321a90cdf7bfa6614939dda334b1f8120a3881645eed3"
     },
     "last_active_child_id": null,
     "last_active_at": null

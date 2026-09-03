@@ -1,3 +1,7 @@
+---
+title: "Iteration 039 — Angle 39"
+trigger_phrases: []
+---
 # Iteration 039 — Angle 39
 
 **Angle:** Derived freshness maintenance: age haircut now reads graph-metadata last_updated_at — what refreshes that field, and does anything keep it honest?

@@ -1,3 +1,7 @@
+---
+title: "Graphene · 03 · The store"
+trigger_phrases: []
+---
 # Graphene · 03 · The store
 
 ## 1. Why SQLite

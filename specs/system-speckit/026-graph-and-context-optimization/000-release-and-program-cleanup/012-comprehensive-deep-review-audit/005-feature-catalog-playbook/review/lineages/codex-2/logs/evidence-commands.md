@@ -1,3 +1,7 @@
+---
+title: "Evidence Command Notes"
+trigger_phrases: []
+---
 # Evidence Command Notes
 
 ## Annotation Coverage Counts

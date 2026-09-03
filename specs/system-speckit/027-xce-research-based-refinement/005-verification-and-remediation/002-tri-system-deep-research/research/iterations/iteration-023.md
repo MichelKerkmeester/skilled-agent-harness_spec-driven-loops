@@ -1,3 +1,7 @@
+---
+title: "Iteration 023 — Angle 23"
+trigger_phrases: []
+---
 # Iteration 023 — Angle 23
 
 **Angle:** Reducer interaction safety: aggregator, causal reducer, retention reducer — composition order, double-processing guards, idempotency across reducers.

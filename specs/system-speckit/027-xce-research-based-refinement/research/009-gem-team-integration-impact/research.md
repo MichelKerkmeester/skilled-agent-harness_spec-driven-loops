@@ -5,6 +5,7 @@ executor: "cli-opencode openai/gpt-5.5-fast --variant high (read-only); orchestr
 session: "2026-06-06-027-gem-team-integration-impact"
 subject: "How to integrate 007's 3 proposals (P1 typed-agent-io-adapter/012, P2 scoped-gates/013, P3 planner-focus-drift/014) + full impact on existing skills/commands/agents/docs"
 status: "complete; verdict = FEASIBLE, FULLY ADDITIVE — nothing breaks if every field stays optional; @orchestrate is the linchpin; roll out in 4 waves"
+trigger_phrases: []
 ---
 
 # 027 Gem Team Integration & Impact — Phase 009 Synthesis

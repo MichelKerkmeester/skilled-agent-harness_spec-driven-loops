@@ -6,6 +6,7 @@ lens: "Systems / Maintainability (temp 0.4)"
 status: ok
 timestamp: "2026-06-13T00:00:00Z"
 simulated: true
+trigger_phrases: []
 ---
 # Seat 003 — Systems / Maintainability
 

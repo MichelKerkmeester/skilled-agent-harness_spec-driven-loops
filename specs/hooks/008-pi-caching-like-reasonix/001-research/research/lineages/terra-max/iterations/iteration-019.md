@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 — Measurement and failure modes"
+trigger_phrases: []
+---
 # Iteration 019 — Measurement and failure modes
 
 ## Focus

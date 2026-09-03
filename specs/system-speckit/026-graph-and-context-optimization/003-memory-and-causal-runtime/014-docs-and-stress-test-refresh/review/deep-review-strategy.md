@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy"
+trigger_phrases: []
+---
 # Deep Review Strategy
 
 <!-- ANCHOR:deep-review-014-session-work -->

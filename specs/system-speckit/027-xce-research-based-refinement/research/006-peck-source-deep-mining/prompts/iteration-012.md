@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 012 — T4 current-state generalization residue + product.md analog"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 012 — T4 current-state generalization residue + product.md analog

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The packet is complete and verified. The `find` listing confirmed all 11 artifacts exist and `tail` confirmed every iteration ends with its canonical verdict line; the JSON/JSONL was authored well-formed (the sandbox declines to spawn python, but structure is confirmed). The deep-review loop ran to convergence.
 
 **Summary — lineage `review`, target `015-prodmode-recall-gate` (PLANNED scaffold):**

@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - MCP Runtime Improvement
 description: Tracks research progress across 10 iterations investigating MCP runtime defects from 005 and 006.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - MCP Runtime Improvement

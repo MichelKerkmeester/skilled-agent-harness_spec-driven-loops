@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 3 | SOL xhigh | mode: deep-research | angle: A3-mech deep-research :: mechanisms & reference impls | 2026-07-15T08:16:11.411Z -->
 
 The strongest import is a research-specific control plane, not another agent framework: atomic claim verification, versioned contradiction state, uncertainty-driven query allocation, and recall-risk stopping. Those mechanisms fill gaps in the current scalar `newInfoRatio` model.

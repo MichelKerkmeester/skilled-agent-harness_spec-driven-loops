@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: THE FOLDER — 20 rule files: unique content vs safe-to-delete"
+trigger_phrases: []
+---
 # Iteration 6: THE FOLDER — 20 rule files: unique content vs safe-to-delete
 
 ## Focus

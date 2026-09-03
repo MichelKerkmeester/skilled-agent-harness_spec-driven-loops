@@ -1,3 +1,7 @@
+---
+title: "Iteration 36 (Round N): C5-B channel spot-check → S (content_hash already projected)"
+trigger_phrases: []
+---
 # Iteration 36 (Round N): C5-B channel spot-check → S (content_hash already projected)
 
 ## Focus

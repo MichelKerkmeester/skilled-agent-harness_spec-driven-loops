@@ -1,3 +1,7 @@
+---
+title: "Refero MCP Developer Surface — Luna Lineage Synthesis"
+trigger_phrases: []
+---
 # Refero MCP Developer Surface — Luna Lineage Synthesis
 
 > Detached fan-out lineage `luna` (`cli-codex`, `gpt-5.6-luna`), three forced iterations, `stopPolicy: max-iterations`. This is a research handoff for the `mcp-refero` transport packet; it does not modify the existing `refero` manual, skills, hub routing, or packet-authoring files.

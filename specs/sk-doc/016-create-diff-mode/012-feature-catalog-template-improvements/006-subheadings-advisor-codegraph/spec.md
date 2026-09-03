@@ -3,6 +3,7 @@ title: "Phase 006: Sub-headings — system-skill-advisor + system-code-graph"
 description: "Apply H3 sub-headings to long HOW IT WORKS sections in skill-advisor (40 files) and code-graph (14 files). Smaller scale than phase 005 — can be done in a single AI pass per skill."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Phase 006: Sub-headings — system-skill-advisor + system-code-graph
 

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 - Traceability: review graphEvents to convergence graph semantics"
+trigger_phrases: []
+---
 # Iteration 4 - Traceability: review graphEvents to convergence graph semantics
 
 Session: fanout-codex-4-1780596001496-dj6z7c

@@ -1,3 +1,7 @@
+---
+title: "Iteration 060: Final Synthesis for Iterations 040-059"
+trigger_phrases: []
+---
 # Iteration 060: Final Synthesis for Iterations 040-059
 
 ## Focus

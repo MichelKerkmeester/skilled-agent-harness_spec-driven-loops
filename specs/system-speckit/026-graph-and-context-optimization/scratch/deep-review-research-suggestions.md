@@ -1,3 +1,7 @@
+---
+title: "Further Deep-Review / Deep-Research Suggestions"
+trigger_phrases: []
+---
 # Further Deep-Review / Deep-Research Suggestions
 
 > Working analysis doc. §1-5 cover the 026 packet after the 2026-04-18 consolidation. §6 covers system-spec-kit as a whole (templates, validator, gates, skill-advisor, canonical-save pipeline). Each target has rationale, scope, and a ready-to-dispatch `/deep:start-review-loop` or `/deep:start-research-loop` block.

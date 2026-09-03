@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — commands/, agents/, repo-root config, runtime mirrors"
+trigger_phrases: []
+---
 # Iteration 005 — commands/, agents/, repo-root config, runtime mirrors
 
 **Focus:** Doctor command surface, agent mirror drift, MCP registration across `opencode.json` vs `.cursor/mcp.json`, legacy colon-form command files.

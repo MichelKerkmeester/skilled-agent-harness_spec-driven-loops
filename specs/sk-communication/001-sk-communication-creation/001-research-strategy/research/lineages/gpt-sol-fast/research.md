@@ -1,3 +1,7 @@
+---
+title: "Provider-Neutral CLI Display Projection"
+trigger_phrases: []
+---
 # Provider-Neutral CLI Display Projection
 
 ## 1. Executive Summary

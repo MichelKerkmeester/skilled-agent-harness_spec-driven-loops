@@ -1,3 +1,7 @@
+---
+title: "Iteration 18: Audit concurrent-agent cache sharing"
+trigger_phrases: []
+---
 # Iteration 18: Audit concurrent-agent cache sharing
 
 ## Focus

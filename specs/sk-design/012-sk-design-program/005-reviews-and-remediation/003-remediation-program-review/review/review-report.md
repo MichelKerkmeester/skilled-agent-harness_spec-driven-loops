@@ -1,3 +1,7 @@
+---
+title: "Consolidated Deep-Review Report — sk-design Remediation Program (Packets A/B/C)"
+trigger_phrases: []
+---
 # Consolidated Deep-Review Report — sk-design Remediation Program (Packets A/B/C)
 
 > **Verdict: CONDITIONAL** — **0 P0**. The SOL lineage raised 10 P1s; **independent human verification against the code confirms 5 genuinely-actionable, downgrades 3 to minor nits, flags 1 as over-scoped, and refutes 1.** No correctness/security blocker; the real issues are documentation/metadata-honesty gaps left by the restructure plus two minor code edges.

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 005 — Cross-Runtime-Mirror-Consistency"
+trigger_phrases: []
+---
 # Deep Review Iteration 005 — Cross-Runtime-Mirror-Consistency
 
 **Date**: 2026-05-04

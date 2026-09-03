@@ -1,3 +1,7 @@
+---
+title: "Final Program Corpus Capture — 2026-07-29"
+trigger_phrases: []
+---
 # Final Program Corpus Capture — 2026-07-29
 
 All measurements against the hash-pinned corpus (labeled `9f30cc5e…` 195 rows, holdout `88a7f759…` 72 rows, ambiguity `07cd2c76…` 24 rows), after every program phase (001–011) landed and after the live daemon reindex (`advisor_rebuild`: generation 12558→12559, freshness stale→live, 49 edges indexed).

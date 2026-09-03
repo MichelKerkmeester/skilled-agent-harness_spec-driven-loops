@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 10/10 cross-validation pass for packet 027.
 
 ITER 10 FOCUS: IRQ10 — Phasing-order optimization (final IRQ before synthesis).

@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Include Resolution and Final Synthesis Inputs"
+trigger_phrases: []
+---
 # Iteration 5: Include Resolution and Final Synthesis Inputs
 
 ## Focus

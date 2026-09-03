@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 18 | SOL xhigh | thread: general-effectiveness-and-council | angle: AI-council depth: calibration, diversity, seat selection | 2026-07-15T05:36:00.594Z -->
 
 The current council contract chooses 2–3 seats by model/lens diversity and accepts `two-of-three-agree`. That is a weak proxy for independent evidence. The replacement should be a sequential, calibrated seat policy: start with the judge offering the best expected information per unit cost, measure additional seats by their residual-error complementarity, and stop when calibrated risk—not vote count—crosses the acceptance threshold.

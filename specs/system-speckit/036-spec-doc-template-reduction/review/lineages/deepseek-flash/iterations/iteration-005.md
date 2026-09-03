@@ -1,3 +1,7 @@
+---
+title: "Iteration 005: D3 Traceability — Cross-Doc Consistency (tasks/impl-summary/graph metadata/description)"
+trigger_phrases: []
+---
 # Iteration 005: D3 Traceability — Cross-Doc Consistency (tasks/impl-summary/graph metadata/description)
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 010"
+trigger_phrases: []
+---
 # Deep Research Iteration 010
 
 > Audited changelog: `changelog-019-fix-rerank-sidecar-accumulation-with-three-layer-reaper-root.md`

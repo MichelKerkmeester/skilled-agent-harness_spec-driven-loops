@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Iteration 020 complete. I've synthesized findings from 19 primary iterations and identified significant evidence quality gaps and missing remediation coordination.
 
 **Key findings:**

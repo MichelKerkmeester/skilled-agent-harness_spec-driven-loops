@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Upgrade auto-populate archived and normalized to Level 1
 The Upgrade Auto Populate folder was archived and its documentation set rebuilt against the current Level 1 template. Before, the folder had drifted from today's validator: stale structure, broken markdown references, and mismatched metadata; after, it carries a fresh `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` that pass validation with zero errors. Dropping the archive from Level 2/3 to Level 1 removes the heavier enforcement burden while keeping a concise, reliable record of the cleanup scope. Extra top-level notes were condensed into short archival context files, and compatibility stubs were kept only where files already existed. Historical depth is intentionally condensed, so the full original narrative lives in git history. This is an internal, archive-only change with no runtime effect for framework users.
 

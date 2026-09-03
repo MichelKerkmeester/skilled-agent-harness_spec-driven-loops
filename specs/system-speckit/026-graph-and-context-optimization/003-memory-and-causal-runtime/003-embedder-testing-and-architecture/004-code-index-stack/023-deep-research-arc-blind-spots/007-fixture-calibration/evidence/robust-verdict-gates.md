@@ -1,3 +1,7 @@
+---
+title: "ROBUST Verdict Gates"
+trigger_phrases: []
+---
 # ROBUST Verdict Gates
 
 023B defines the measurable release gates for flipping the retrieval stack from regression-grade evidence to a ROBUST verdict.

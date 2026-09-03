@@ -9,6 +9,7 @@ dimensionCoverage: ["correctness", "security", "spec-alignment", "completeness"]
 severityCounts: {"P0": 0, "P1": 1, "P2": 3}
 hasAdvisories: true
 releaseReadinessState: "converged"
+trigger_phrases: []
 ---
 
 # Review Report: Dark Flag Validation — Pre-Graduation Audit

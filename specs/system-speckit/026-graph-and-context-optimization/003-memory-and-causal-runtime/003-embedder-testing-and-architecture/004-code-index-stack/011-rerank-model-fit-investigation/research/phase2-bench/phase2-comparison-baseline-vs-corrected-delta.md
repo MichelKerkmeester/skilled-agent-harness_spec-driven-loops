@@ -1,3 +1,7 @@
+---
+title: "Phase 2 Baseline vs Corrected Delta"
+trigger_phrases: []
+---
 # Phase 2 Baseline vs Corrected Delta
 
 This compares the historical 8-probe Phase 2 result files with the corrected re-bench. The corrected run used the same three lanes, the hardened path extractor, and `code-retrieval-fixture-corrected.json`.

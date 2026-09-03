@@ -2,6 +2,7 @@
 title: "Deep Research Strategy: Hardcoded-Default Audit (021)"
 sessionId: 021-hardcoded-default-audit-20260523T113727Z
 createdAt: 2026-05-23T11:38:11Z
+trigger_phrases: []
 ---
 
 # Deep Research Strategy: Hardcoded-Default Audit (021)

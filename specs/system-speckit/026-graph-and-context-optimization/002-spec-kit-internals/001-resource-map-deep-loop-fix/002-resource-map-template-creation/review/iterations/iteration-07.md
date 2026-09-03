@@ -1,3 +1,7 @@
+---
+title: "Iteration 07 — End-to-end UX + feature_catalog/playbook fidelity"
+trigger_phrases: []
+---
 # Iteration 07 — End-to-end UX + feature_catalog/playbook fidelity
 
 ## Dimension

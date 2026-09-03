@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — deepseek-risk Lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy — deepseek-risk Lineage
 
 ## Topic

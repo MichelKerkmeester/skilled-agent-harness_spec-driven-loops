@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-014.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 014 — Q6: /memory:save User Flow

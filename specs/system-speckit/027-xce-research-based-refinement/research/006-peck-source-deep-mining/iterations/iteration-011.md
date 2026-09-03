@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 — AC assertion-format gap (T1 prerequisite)"
+trigger_phrases: []
+---
 # Iteration 011 — AC assertion-format gap (T1 prerequisite)
 
 **Focus:** peck story.md AC assertion format vs spec-kit AC columns/Given-When-Then + what 002-self-check-templates shipped — is AC-format normalization a T1 prerequisite?

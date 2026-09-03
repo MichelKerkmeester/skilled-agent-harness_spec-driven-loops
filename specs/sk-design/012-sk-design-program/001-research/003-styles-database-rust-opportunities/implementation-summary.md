@@ -21,6 +21,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Should the styles DB be rewritten in Rust? No — the hot path is already native; value is in new JS-first capabilities, Rust only if measured."
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

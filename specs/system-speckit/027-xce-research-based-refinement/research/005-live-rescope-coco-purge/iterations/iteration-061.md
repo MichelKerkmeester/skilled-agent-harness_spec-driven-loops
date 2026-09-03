@@ -1,3 +1,7 @@
+---
+title: "Iteration 061 — CocoIndex purge: the 008 reducer family"
+trigger_phrases: []
+---
 # Iteration 061 — CocoIndex purge: the 008 reducer family
 
 **Focus:** Confirm `008/002-coco-rerank-consumer` is wholly removable dead scope; enumerate every coco reference across the 005-learning-feedback-reducers family with REMOVE/REWRITE classification.

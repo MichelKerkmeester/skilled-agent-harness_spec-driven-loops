@@ -1,3 +1,7 @@
+---
+title: "Batch P1 — Generate 6 P1 stress tests"
+trigger_phrases: []
+---
 # Batch P1 — Generate 6 P1 stress tests
 
 You are generating Vitest stress tests under spec-kit packet 044. Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.

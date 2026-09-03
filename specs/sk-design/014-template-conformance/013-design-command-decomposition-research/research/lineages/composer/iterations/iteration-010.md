@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Motion Seam + Synthesis Prep"
+trigger_phrases: []
+---
 # Iteration 10: Motion Seam + Synthesis Prep
 
 ## Focus

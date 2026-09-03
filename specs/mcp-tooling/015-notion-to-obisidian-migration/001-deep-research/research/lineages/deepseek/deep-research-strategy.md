@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — DeepSeek Lineage (Track B) — Final"
+trigger_phrases: []
+---
 # Deep Research Strategy — DeepSeek Lineage (Track B) — Final
 
 ## 2. TOPIC

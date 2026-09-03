@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All artifacts validate cleanly (7 JSON objects parse, 9 JSONL state records, exact verdict lines on all 5 iterations). The fable-2 lineage run is complete.
 
 **Run summary** — verdict **CONDITIONAL** (0 P0 / 3 P1 / 5 P2, advisories present), 5/5 iterations with full dimension coverage and a clean stabilization replay:

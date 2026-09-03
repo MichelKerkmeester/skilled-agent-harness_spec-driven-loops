@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 012 — final adversarial cross-check"
+trigger_phrases: []
+---
 # Codex Iteration 012 — final adversarial cross-check
 
 ## Sequential-thinking preflight

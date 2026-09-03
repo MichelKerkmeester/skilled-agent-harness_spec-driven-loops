@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map - gpt55r2-c-2"
+trigger_phrases: []
+---
 # Review Resource Map - gpt55r2-c-2
 
 Resource-map coverage gate was skipped because the scope folder did not contain `resource-map.md` at init.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 40 | SOL xhigh | mode: skill-benchmark | angle: A5-synth skill-benchmark :: synthesis & highest-leverage recs | 2026-07-15T11:26:16.674Z -->
 
 ## Thesis

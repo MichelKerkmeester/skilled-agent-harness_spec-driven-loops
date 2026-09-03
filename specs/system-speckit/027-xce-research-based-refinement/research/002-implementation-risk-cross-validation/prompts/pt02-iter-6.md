@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 6/10 cross-validation pass for packet 027.
 
 ITER 6 FOCUS: IRQ6 — Cross-phase integration contract.

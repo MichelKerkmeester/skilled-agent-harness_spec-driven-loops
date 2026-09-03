@@ -1,3 +1,7 @@
+---
+title: "L9 Docs Batch — Adversarial Re-Verification Verdict"
+trigger_phrases: []
+---
 # L9 Docs Batch — Adversarial Re-Verification Verdict
 
 Fresh Fable 5 verifier, 2026-06-12. Scope: every doc-only DONE finding from the two fenced seats (`/tmp/seat-l9ab-docs.log`, `/tmp/seat-l9cd-docs.log`), checked against the four L9 reports (`verify/l9-still-real-partA..D.md`) and current code. 25 DONE items verified; 2 BLOCKED carry-overs confirmed untouched; 4 do-not-touch items confirmed untouched.

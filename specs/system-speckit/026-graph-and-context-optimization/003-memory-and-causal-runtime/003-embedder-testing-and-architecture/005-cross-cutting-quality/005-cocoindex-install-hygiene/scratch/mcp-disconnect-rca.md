@@ -1,3 +1,7 @@
+---
+title: "MCP Disconnect RCA: `mk_code_index` + `mk-spec-memory`"
+trigger_phrases: []
+---
 # MCP Disconnect RCA: `mk_code_index` + `mk-spec-memory`
 
 Date: 2026-05-18

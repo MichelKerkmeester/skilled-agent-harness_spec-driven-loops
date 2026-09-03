@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 23 | SOL xhigh | mode: deep-alignment | angle: A3-mech deep-alignment :: mechanisms & reference impls | 2026-07-15T09:58:48.260Z -->
 
 Deep-alignment should become a versioned authority compiler and temporal conformance ledger. A linter answers whether today’s artifact passes today’s hard-coded rules. Deep-alignment should determine whether a result remains valid after the authority, verifier, artifact, or environment changes—and identify which change caused the delta.

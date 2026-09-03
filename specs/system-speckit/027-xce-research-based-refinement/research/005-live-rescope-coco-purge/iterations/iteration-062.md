@@ -1,3 +1,7 @@
+---
+title: "Iteration 062 — coco-purge: 002/003/004/006 specs enumeration + disappearing-scope"
+trigger_phrases: []
+---
 # Iteration 062 — coco-purge: 002/003/004/006 specs enumeration + disappearing-scope
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.64. **Findings:** 5.

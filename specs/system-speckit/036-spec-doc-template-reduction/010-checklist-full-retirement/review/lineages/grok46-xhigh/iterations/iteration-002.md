@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 - Security: fingerprint skip, path confinement, leftover checklist signals"
+trigger_phrases: []
+---
 # Iteration 2 - Security: fingerprint skip, path confinement, leftover checklist signals
 
 ## Dispatcher

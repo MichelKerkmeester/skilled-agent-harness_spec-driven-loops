@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — bin/ and launcher/daemon surface"
+trigger_phrases: []
+---
 # Iteration 001 — bin/ and launcher/daemon surface
 
 **Focus:** `.opencode/bin/` entrypoints, launcher lifecycle parity, compiled-routing serving closure, install-guide symlinks.

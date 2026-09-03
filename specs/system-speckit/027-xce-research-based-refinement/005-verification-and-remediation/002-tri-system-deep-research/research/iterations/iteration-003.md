@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Angle 3"
+trigger_phrases: []
+---
 # Iteration 003 — Angle 3
 
 **Angle:** FTS5 LIKE-metachar scope hardening: where unescaped LIKE/MATCH metacharacters in user input reach query surfaces.

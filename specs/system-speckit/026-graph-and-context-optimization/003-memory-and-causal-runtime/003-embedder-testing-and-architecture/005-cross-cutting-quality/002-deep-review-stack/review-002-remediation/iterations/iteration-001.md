@@ -8,6 +8,7 @@ recipe: agent-config-deep-review-iter.json
 review_target_commit: ba6816a490b1a20d4f74135179c10096c5348921
 write_mode: loop_manager_persisted_from_stdout
 write_mode_reason: "agent-config Write scope allows <packet-root>/review/iterations/* but this re-review writes to review-002-remediation/iterations/*; loop manager harvests iter content from devin stdout"
+trigger_phrases: []
 ---
 
 # Iter 1 — Regression Risk

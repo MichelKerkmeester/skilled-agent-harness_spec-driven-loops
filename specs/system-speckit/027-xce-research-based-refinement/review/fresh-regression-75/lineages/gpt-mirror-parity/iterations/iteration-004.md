@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-mirror-parity — iteration 4 (global #62)"
+trigger_phrases: []
+---
 # Seat gpt-mirror-parity — iteration 4 (global #62)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: gpt-mirror-parity

@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — DB/cache consumers (spec open question) + .devin scope + cross-check frontier"
+trigger_phrases: []
+---
 # Iteration 005 — DB/cache consumers (spec open question) + .devin scope + cross-check frontier
 
 **Focus:** Resolve the spec open question (DB/cache consumers of mode keys). Resolve whether `.devin/skills/` naming is in scope. Broaden the cross-check frontier and finalize Q5 verification levers.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Axis 6 — Background Sessions and Starting New Work While Away"
+trigger_phrases: []
+---
 # Iteration 8: Axis 6 — Background Sessions and Starting New Work While Away
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 You are iteration 5 of a 10-iter deep-research dispatch on the 016 umbrella under `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/`. Iter-1 audited arc 008 (already on disk). This iter's focus is **arc 004 code-index-stack**.
 
 ## Pre-bindings

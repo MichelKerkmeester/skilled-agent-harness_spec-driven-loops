@@ -1,3 +1,7 @@
+---
+title: "Cross-Run Synthesis — Deep Review + Deep Alignment"
+trigger_phrases: []
+---
 # Cross-Run Synthesis — Deep Review + Deep Alignment
 
 Run date: 2026-07-30. Target: the 12-phase JSON-optimization program (14 commits, 71 changed files).

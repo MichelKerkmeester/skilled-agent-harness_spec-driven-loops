@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — skill:sk-create-diagram"
+trigger_phrases: []
+---
 # Deep Review Report — skill:sk-create-diagram
 
 **Lineage:** `deepseek-go` (fan-out) · **Session:** fanout-deepseek-go-1786561206858-teuyl2 · **Generation:** 1

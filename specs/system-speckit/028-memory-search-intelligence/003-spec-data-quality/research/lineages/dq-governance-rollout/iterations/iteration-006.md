@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — KQ6: Cross-lineage reconciliation into one governance spine"
+trigger_phrases: []
+---
 # Iteration 006 — KQ6: Cross-lineage reconciliation into one governance spine
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 — D4: Spec-kit folder topology sustainability"
+trigger_phrases: []
+---
 # Iteration 019 — D4: Spec-kit folder topology sustainability
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: D3 Traceability — Core protocols: spec_code + checklist_evidence"
+trigger_phrases: []
+---
 # Iteration 3: D3 Traceability — Core protocols: spec_code + checklist_evidence
 
 ## Focus

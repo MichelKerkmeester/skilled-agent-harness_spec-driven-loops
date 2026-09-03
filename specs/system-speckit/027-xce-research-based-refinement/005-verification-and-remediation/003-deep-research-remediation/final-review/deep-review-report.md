@@ -1,3 +1,7 @@
+---
+title: "029 Program — 15-Seat Multi-Model Deep Review"
+trigger_phrases: []
+---
 # 029 Program — 15-Seat Multi-Model Deep Review
 
 **Verdict: PASS (round-2 remediation complete).** No P0. All 18 P1 and 33 P2 findings are now CLOSED — see the round-2 status and remediation sections below for the per-wave commit hashes. The verdict moved from CONDITIONAL PASS to PASS once every P1 and P2 was remediated and re-verified. The original review (preserved below for provenance) surfaced **18 P1 + 33 P2** — overwhelmingly honesty/completeness edges and incomplete corners of the verify-first fixes, not core defects. The security and concurrency floors were independently confirmed solid; the destructive apply-pipeline core, the single-writer DB lock, the secret scrubber's fail-closed contract, and the tri-029 prune blast-radius were all sound. One P1 (a narrow secret-leak in the scrubber regex) had real production impact and was the only must-fix-now item; the rest were flag-gated, doc-honesty, test-gap, or finish-the-edge work.

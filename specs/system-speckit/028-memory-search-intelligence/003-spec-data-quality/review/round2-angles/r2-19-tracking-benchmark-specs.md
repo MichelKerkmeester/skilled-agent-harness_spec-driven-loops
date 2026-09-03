@@ -1,3 +1,7 @@
+---
+title: "R2-19 tracking-benchmark-specs"
+trigger_phrases: []
+---
 # R2-19 tracking-benchmark-specs
 
 Angle summary: benchmark-and-test-status.md is mostly well-grounded and the SPECIFIED-not-run banner holds, but the Benchmark column has cross-phase metric contamination in two rows and one row invents a test filename its phase never names.

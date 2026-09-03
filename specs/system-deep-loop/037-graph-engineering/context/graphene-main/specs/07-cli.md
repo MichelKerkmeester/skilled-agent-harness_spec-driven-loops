@@ -1,3 +1,7 @@
+---
+title: "Graphene · 07 · The CLI"
+trigger_phrases: []
+---
 # Graphene · 07 · The CLI
 
 ## 1. Shape

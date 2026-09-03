@@ -1,3 +1,7 @@
+---
+title: "Reasonix vs Pi Prompt Caching — SOL High Research Synthesis"
+trigger_phrases: []
+---
 # Reasonix vs Pi Prompt Caching — SOL High Research Synthesis
 
 ## 1. Executive Verdict

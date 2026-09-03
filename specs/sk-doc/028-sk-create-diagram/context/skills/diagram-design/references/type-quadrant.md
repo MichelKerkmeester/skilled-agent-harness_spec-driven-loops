@@ -1,3 +1,7 @@
+---
+title: "Quadrant"
+trigger_phrases: []
+---
 # Quadrant
 
 **Best for:** prioritization (Impact × Effort), positioning (Reach × Frequency), portfolio maps, 2×2 decision frames.

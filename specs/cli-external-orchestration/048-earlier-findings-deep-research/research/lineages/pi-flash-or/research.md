@@ -1,3 +1,7 @@
+---
+title: "Deep Research: sk-vision host-adapter findings (pi-flash-or lineage)"
+trigger_phrases: []
+---
 # Deep Research: sk-vision host-adapter findings (pi-flash-or lineage)
 
 Lineage: `pi-flash-or` · Session `fanout-pi-flash-or-1786990303810-r1u8es` · Generation 1

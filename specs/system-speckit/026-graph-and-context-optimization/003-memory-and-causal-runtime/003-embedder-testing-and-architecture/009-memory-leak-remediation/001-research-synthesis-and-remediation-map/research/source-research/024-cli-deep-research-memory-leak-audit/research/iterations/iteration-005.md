@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — RemoveProject-mid-Index cancellation semantics + `_ADAPTERS` mutation audit"
+trigger_phrases: []
+---
 # Iteration 005 — RemoveProject-mid-Index cancellation semantics + `_ADAPTERS` mutation audit
 
 ## Focus

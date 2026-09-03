@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Run 2: CLI Back-End Design (dual-stack)"
+trigger_phrases: []
+---
 # Deep Research Strategy — Run 2: CLI Back-End Design (dual-stack)
 
 ## Topic

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Security"
+trigger_phrases: []
+---
 # Iteration 002 - Security
 
 Focus: operator validation commands and reviewed documentation for unsafe execution surfaces.

@@ -1,3 +1,7 @@
+---
+title: "Amendment review — GPT-5.6-SOL (ultra / fast, via cli-codex)"
+trigger_phrases: []
+---
 # Amendment review — GPT-5.6-SOL (ultra / fast, via cli-codex)
 
 Decision-first verdict on the ADR-001 selection-fix mechanism. Read-only advisory.

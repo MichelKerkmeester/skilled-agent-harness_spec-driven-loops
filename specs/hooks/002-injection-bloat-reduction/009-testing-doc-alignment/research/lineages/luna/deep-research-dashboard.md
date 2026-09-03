@@ -4,6 +4,7 @@ status: "SYNTHESIZED"
 session_id: "fanout-luna-1786120169844-ep05xl"
 iterations_completed: 10
 stop_policy: "max-iterations"
+trigger_phrases: []
 ---
 
 # Deep Research Dashboard

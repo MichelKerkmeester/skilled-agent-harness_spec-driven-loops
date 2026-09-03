@@ -1,6 +1,7 @@
 ---
 title: "Deep Review Strategy: 032 hyphen naming convention (terra-max lineage)"
 description: "Bounded five-pass governance and execution-readiness audit for the 032 phase-parent packet."
+trigger_phrases: []
 ---
 
 # Deep Review Strategy

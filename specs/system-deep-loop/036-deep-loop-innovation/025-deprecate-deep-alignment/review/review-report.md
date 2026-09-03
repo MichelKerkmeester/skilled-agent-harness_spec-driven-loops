@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — Seven Shipped Commits on skilled/v4.0.0.0"
+trigger_phrases: []
+---
 # Deep Review Report — Seven Shipped Commits on skilled/v4.0.0.0
 
 Spec packet: `specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment` · Session `2026-08-27T19:11:40.386Z` (generation 1, lineageMode restart, stop policy max-iterations) · Executor: cli-devin / glm-5-2 · 10 iterations.

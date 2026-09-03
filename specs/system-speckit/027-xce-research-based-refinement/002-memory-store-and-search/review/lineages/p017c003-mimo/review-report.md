@@ -1,3 +1,7 @@
+---
+title: "Review Report — Generic-Query Deep Routing (p017c003-mimo)"
+trigger_phrases: []
+---
 # Review Report — Generic-Query Deep Routing (p017c003-mimo)
 
 ---

@@ -8,6 +8,7 @@ model: glm-5-2
 iterations: 10
 stopReason: maxIterationsReached
 synthesizedAt: 2026-08-21T23:45:00Z
+trigger_phrases: []
 ---
 
 # GLM Lineage Research: Flawless complex Notion→Obsidian migration

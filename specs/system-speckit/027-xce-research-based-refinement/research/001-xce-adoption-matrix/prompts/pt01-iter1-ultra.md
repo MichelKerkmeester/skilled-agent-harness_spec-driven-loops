@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 1/10 for packet .opencode/specs/system-spec-kit/027-xce-research-based-refinement.
 
 READ FIRST: <packet>/spec.md (has 9 RQs + scope + constraints).

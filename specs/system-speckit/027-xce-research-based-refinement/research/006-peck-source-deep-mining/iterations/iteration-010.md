@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Reflection bounded-cap / promotion residue (T2 delta)"
+trigger_phrases: []
+---
 # Iteration 010 — Reflection bounded-cap / promotion residue (T2 delta)
 
 **Focus:** peck reflect SKILL.md (<15 cap, 5/session, twice→promote, prune-stale) vs what 004-constitutional-rule-review actually shipped + the live constitutional tier.

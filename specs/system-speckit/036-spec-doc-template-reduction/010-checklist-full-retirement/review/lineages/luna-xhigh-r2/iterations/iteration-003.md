@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Traceability — packet closure, catalog parity, and generated status"
+trigger_phrases: []
+---
 # Iteration 3: Traceability — packet closure, catalog parity, and generated status
 
 ## Dispatcher

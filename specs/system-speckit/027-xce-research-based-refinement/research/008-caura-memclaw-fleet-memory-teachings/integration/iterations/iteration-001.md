@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — integration surface & sequencing map"
+trigger_phrases: []
+---
 # Iteration 001 — integration surface & sequencing map
 
 **Status:** insight · **Findings:** 16 · **newInfoRatio:** 0.78 · **tokens:** 188496 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

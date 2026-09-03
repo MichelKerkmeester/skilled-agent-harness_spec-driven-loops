@@ -21,6 +21,7 @@ _memory:
     answered_questions:
       - "#2: no production query caller passes a generation pin; the contract was enforced (fail-closed), not removed"
       - "#7: SLO reworded as bounded-sample; full-corpus measurement deferred to the persistent-enable go/no-go"
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

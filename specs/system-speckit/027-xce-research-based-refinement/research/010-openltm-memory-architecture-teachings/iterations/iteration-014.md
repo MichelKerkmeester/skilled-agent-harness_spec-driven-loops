@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — Indexing & freshness for an authored-doc corpus"
+trigger_phrases: []
+---
 # Iteration 014 — Indexing & freshness for an authored-doc corpus
 
 **Status:** insight · **Findings:** 6 · **newInfoRatio:** 0.66 · **tokens:** 115255 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

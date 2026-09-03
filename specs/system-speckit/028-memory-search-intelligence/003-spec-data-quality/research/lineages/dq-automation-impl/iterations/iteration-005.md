@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — C2: the prod-mode completeRecall@3 benchmark + regression loop for the spec corpus"
+trigger_phrases: []
+---
 # Iteration 005 — C2: the prod-mode completeRecall@3 benchmark + regression loop for the spec corpus
 
 Focus: the existing eval harness shape, and how to build a spec-corpus prod-mode completeRecall@3 benchmark + regression gate on it — the harness that UNBLOCKS the entire retrieval tier (A1 prefix, B3 edge-b, metadata fusion). Reader class: R (this is the gate, not a candidate). Floor: this IS the floor-measurement instrument.

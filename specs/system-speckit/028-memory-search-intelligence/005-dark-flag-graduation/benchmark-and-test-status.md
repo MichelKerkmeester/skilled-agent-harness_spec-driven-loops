@@ -1,3 +1,7 @@
+---
+title: "007 Dark Flag Graduation: Benchmark and Test Status"
+trigger_phrases: []
+---
 # 007 Dark Flag Graduation: Benchmark and Test Status
 
 Single-pane record for the dark-flag-graduation suite. One row per child benchmark phase. This is a supplementary record, not a canonical spec doc.

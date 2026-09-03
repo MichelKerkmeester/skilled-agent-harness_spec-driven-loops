@@ -6,6 +6,7 @@ executor: cli-devin
 model: swe-1.6
 recipe: agent-config-deep-review-iter.json
 review_target_commit: ba6816a490b1a20d4f74135179c10096c5348921
+trigger_phrases: []
 ---
 
 # Iter 4 — P1-Group-3 Observability

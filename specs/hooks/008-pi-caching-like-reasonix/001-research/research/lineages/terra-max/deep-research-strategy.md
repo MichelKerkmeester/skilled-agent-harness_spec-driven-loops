@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Terra Max Fan-out Lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy — Terra Max Fan-out Lineage
 
 ## Boundaries

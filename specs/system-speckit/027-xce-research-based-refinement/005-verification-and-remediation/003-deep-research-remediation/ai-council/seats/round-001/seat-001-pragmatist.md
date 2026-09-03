@@ -6,6 +6,7 @@ lens: "Pragmatist / Ship-it (temp 0.3)"
 status: ok
 timestamp: "2026-06-13T00:00:00Z"
 simulated: true
+trigger_phrases: []
 ---
 # Seat 001 — Pragmatist / Ship-it
 

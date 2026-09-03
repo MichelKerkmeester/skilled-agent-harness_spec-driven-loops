@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — Traceability: emitted layout versus packet contract"
+trigger_phrases: []
+---
 # Iteration 3 — Traceability: emitted layout versus packet contract
 
 ## Dispatcher

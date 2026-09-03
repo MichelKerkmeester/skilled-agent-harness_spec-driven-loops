@@ -1,3 +1,7 @@
+---
+title: "mcp-code-mode README Fact Verification Report"
+trigger_phrases: []
+---
 Now let me read the reference files, assets, and key `mcp_server` files:
 Now I have all the data needed. Here is the structured verification report:
 

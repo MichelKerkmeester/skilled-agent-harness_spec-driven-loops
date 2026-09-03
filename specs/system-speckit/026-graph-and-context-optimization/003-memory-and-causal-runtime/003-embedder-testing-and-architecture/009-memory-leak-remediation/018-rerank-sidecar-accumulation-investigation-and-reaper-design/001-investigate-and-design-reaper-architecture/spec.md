@@ -25,7 +25,6 @@ _memory:
       session_id: "scaffold-2026-05-23"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
     open_questions: []
     answered_questions:
       - "Three-layer B+D+A design retained with refined in-flight gate and managed-sidecar policy."

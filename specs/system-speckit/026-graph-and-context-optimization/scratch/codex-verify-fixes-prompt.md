@@ -1,3 +1,7 @@
+---
+title: "Codex CLI Prompt — Verification review of 026 P1 fixes"
+trigger_phrases: []
+---
 # Codex CLI Prompt — Verification review of 026 P1 fixes
 
 You are running as codex CLI (`gpt-5.4`, `reasoning_effort=high`, `service_tier=fast`, `sandbox=workspace-write`). This prompt is self-contained — you have no prior conversation context. You are running a **focused verification review pass** on remediation work that just landed for 6 P1 findings from a deep review of the 026 packet family.

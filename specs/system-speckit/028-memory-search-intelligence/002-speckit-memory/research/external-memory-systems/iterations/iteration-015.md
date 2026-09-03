@@ -1,3 +1,7 @@
+---
+title: "Iteration 15 (DeepSeek lineage): forgetting / decay / contradiction-resolution (Q7)"
+trigger_phrases: []
+---
 # Iteration 15 (DeepSeek lineage): forgetting / decay / contradiction-resolution (Q7)
 
 > Model: **DeepSeek v4 Pro** (read-only, via `opencode run`). Orchestrator-written. newInfoRatio **0.5**. Mined Mem0+Graphiti forgetting/invalidation; deepens the contradiction/invalidation vein around the banked spearhead. 2 genuinely-new, 3 overlap-banked/gated.

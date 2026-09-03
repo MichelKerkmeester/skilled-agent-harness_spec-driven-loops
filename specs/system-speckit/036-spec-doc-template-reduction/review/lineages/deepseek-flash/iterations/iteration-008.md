@@ -1,3 +1,7 @@
+---
+title: "Iteration 008: D3 — Continuity Save-Path Deep-Dive (generate-context behavior + 004 validator-first)"
+trigger_phrases: []
+---
 # Iteration 008: D3 — Continuity Save-Path Deep-Dive (generate-context behavior + 004 validator-first)
 
 ## Focus

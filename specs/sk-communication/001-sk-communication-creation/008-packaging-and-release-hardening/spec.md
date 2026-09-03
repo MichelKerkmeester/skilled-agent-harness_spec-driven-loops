@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 008 Packaging and Release Hardening"
 description: "Package the system with explicit provider privacy choices, a tested compatibility matrix, diagnostics, rollback, and six-runtime release gates."
 trigger_phrases:
   - "packaging-and-release-hardening"
-  - "packaging and release hardening"
   - "portable cli projection"
   - "implementation phase"
 importance_tier: "important"

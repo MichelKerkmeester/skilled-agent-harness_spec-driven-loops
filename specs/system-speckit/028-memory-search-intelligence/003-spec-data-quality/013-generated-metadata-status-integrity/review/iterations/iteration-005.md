@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Dimension
 
 Correctness: TARGET 2 ONLY - REQ-BY-REQ AUDIT of the shipped `deriveStatus` completion-evidence fix.

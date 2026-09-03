@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: 14-Skill Mapping"
+trigger_phrases: []
+---
 # Iteration 2: 14-Skill Mapping
 
 ## Focus

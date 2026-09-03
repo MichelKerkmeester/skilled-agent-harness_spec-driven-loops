@@ -1,3 +1,7 @@
+---
+title: "Review Report — 020-maintenance-grace-background-embedding (lineage p020-opus-1)"
+trigger_phrases: []
+---
 # Review Report — 020-maintenance-grace-background-embedding (lineage p020-opus-1)
 
 **Verdict: PASS** (hasAdvisories: true)

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source: https://x.com/0xCodez/status/2079165300625330317
 
 Graph Engineering with Claude: 14-Step roadmap from 0 to graph architect (Full Course)

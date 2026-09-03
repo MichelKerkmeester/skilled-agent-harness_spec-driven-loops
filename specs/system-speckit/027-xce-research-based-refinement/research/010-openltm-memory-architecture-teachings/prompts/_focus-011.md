@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 011 of 15: Unit-of-memory & storage-model contrast (the transfer filter)"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 011 of 15: Unit-of-memory & storage-model contrast (the transfer filter)
 Characterize OpenLTM's memory unit and write path precisely, so we can classify which of its mechanisms are row-coupled vs storage-agnostic. Read:

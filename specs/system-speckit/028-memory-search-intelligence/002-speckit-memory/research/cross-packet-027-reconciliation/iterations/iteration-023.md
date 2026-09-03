@@ -1,3 +1,7 @@
+---
+title: "Iteration 23 (Round M): C4-B FK blast-radius full re-sweep → additive-UNIQUE confirmed"
+trigger_phrases: []
+---
 # Iteration 23 (Round M): C4-B FK blast-radius full re-sweep → additive-UNIQUE confirmed
 
 ## Focus

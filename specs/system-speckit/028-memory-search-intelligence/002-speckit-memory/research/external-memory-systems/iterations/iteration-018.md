@@ -1,3 +1,7 @@
+---
+title: "Iteration 18 (Opus lineage — NATIVE): consolidation + tiering (synthesis/06 input)"
+trigger_phrases: []
+---
 # Iteration 18 (Opus lineage — NATIVE): consolidation + tiering (synthesis/06 input)
 
 > Model: **Opus 4.8 NATIVE** (read-only). Orchestrator-written. newInfoRatio **0.5** (no new candidate — collapses the banked set into roadmap-ready clusters). This is the synthesis-feeding iteration: 5 consolidations, Wave-0/1/2/DROP tiers, top-7.

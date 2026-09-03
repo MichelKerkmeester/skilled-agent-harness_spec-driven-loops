@@ -1,3 +1,7 @@
+---
+title: "Iteration 046: Causal Edge Tombstones"
+trigger_phrases: []
+---
 # Iteration 046: Causal Edge Tombstones
 
 ## Focus

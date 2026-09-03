@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Graph, Sealed Subgraph, and LEAF Boundary"
+trigger_phrases: []
+---
 # Iteration 005 — Graph, Sealed Subgraph, and LEAF Boundary
 
 ## Focus

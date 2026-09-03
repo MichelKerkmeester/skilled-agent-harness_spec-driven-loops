@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 077 — phase ordering/handoff re-validation (post-coco, post-026-dedup)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 077 — phase ordering/handoff re-validation (post-coco, post-026-dedup)

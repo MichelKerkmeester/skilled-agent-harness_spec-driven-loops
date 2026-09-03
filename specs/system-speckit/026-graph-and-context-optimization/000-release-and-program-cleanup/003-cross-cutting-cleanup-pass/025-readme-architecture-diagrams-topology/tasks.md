@@ -3,6 +3,7 @@ title: "Task Breakdown: Architecture Diagrams & Topology"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 description: "17 files need diagrams/trees. Tasks grouped by code area."
 importance_tier: "normal"
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

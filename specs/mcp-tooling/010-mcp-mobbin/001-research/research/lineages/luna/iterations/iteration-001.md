@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Official server identity, transport, authorization, and plan eligibility"
+trigger_phrases: []
+---
 # Iteration 1: Official server identity, transport, authorization, and plan eligibility
 
 ## Focus

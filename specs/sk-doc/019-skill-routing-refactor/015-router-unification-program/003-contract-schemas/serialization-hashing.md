@@ -3,6 +3,7 @@ title: "Canonical Serialization and Domain-Separated Hashing"
 description: "Normative byte-identity rules for the V1 unified-router contract family."
 importance_tier: "critical"
 contextType: "implementation"
+trigger_phrases: []
 ---
 
 # Canonical Serialization and Domain-Separated Hashing

@@ -1,3 +1,7 @@
+---
+title: "Iteration 31 (Round N adversarial): C8 render-gap — mechanism refuted, substance survives at a different seam"
+trigger_phrases: []
+---
 # Iteration 31 (Round N adversarial): C8 render-gap — mechanism refuted, substance survives at a different seam
 
 ## Focus

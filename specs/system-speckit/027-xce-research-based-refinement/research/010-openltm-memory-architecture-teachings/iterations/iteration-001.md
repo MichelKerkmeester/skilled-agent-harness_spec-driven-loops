@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Hybrid recall + blended scoring + explainability"
+trigger_phrases: []
+---
 # Iteration 001 — Hybrid recall + blended scoring + explainability
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.70 · **tokens:** 93394 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

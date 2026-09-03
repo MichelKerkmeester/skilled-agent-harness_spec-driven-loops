@@ -1,3 +1,7 @@
+---
+title: "r2-07 shared-engine (architecture)"
+trigger_phrases: []
+---
 # r2-07 shared-engine (architecture)
 
 **Angle summary:** The one-engine-three-doors design is architecturally sound and earns its abstraction (a genuinely shared safety-critical decision over git-tracked authored docs, committed consumers, principled build-order), but the spec overstates INV-1 as "mechanical" when it can only cross-check human declarations, and its headline success criterion plus INV-2 are forward-declared against consumers that do not exist this phase.

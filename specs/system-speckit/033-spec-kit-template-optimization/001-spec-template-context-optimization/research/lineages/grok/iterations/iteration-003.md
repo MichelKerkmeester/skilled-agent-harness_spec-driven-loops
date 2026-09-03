@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: memory_context/memory_search budgets + ranked shortlist & refutations"
+trigger_phrases: []
+---
 # Iteration 3: memory_context/memory_search budgets + ranked shortlist & refutations
 
 ## Focus

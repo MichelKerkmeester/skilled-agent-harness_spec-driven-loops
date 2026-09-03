@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — glm52-1 Lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy — glm52-1 Lineage
 
 ## Research Topic

@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 030 Local Provider Loader"
 description: "Add a shared local-provider config loader that turns the operator's enablement.local.json localProvider block into the full projection wiring (a local ProviderModelRecord, a local-only privacy policy, judgeMode required, a concrete local HTTP transport, and a shipped copy-editing prompt), and wire both entry points so a configured local provider projects automatically while any absent or malformed config fails closed to the exact original."
 trigger_phrases:
   - "local-provider-loader"
-  - "local provider loader"
   - "enablement.local.json localProvider"
   - "local LLM easy config build"
 importance_tier: "important"

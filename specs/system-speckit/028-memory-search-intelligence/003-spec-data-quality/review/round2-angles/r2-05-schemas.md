@@ -1,3 +1,7 @@
+---
+title: "R2-05 Schemas (code-quality angle)"
+trigger_phrases: []
+---
 # R2-05 Schemas (code-quality angle)
 
 **Angle summary:** The 003 enum-constrain and 004 warn-to-error premises are mostly accurate about the seams they name, but 003 underspecifies the producer side. The proposed status enum omits a value the live producer actually emits, the importance_tier producer has no normalizer at all, and the default-off enforcement flag cannot gate an enum baked into a schema that the producer parses unconditionally.

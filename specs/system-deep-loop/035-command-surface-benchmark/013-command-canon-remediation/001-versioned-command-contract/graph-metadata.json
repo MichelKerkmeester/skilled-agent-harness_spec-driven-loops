@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Define a versioned, machine-readable command contract as the single source of behavioral truth for the six command families. Populate topology, input and gate owner, execution targets, mode matrix, owned assets, loader requirements, presentation ownership with typed exceptions, destructive policy, timeout bounds, and runtime invocation aliases; align both templates and the skill to consume it; and resolve the required-input contradiction and stale template references.",
     "created_at": "2026-07-16T07:51:58.533Z",
-    "last_save_at": "2026-08-30T15:39:20.329Z",
+    "last_save_at": "2026-09-03T22:20:37.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:093dd0a665f0b6470a1f9f2074ae85752766d5b2c24778b9e80ccea7c084bf77",
+    "source_fingerprint": "sha256:d09dacce14d2bb6b55f55d06453d2f59ed735a18d7c369469632f366647f9ddd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8bd2bd96c2518fd819b000daef977faa518d4b12bd53b02024cb06b19212f7da",
-      "plan.md": "dfe58b8dd7bf940c1f124a16fc532e90892af52f7ba6ea762afdd7a9d630a9d1",
-      "tasks.md": "30c9ad5022c65f441c264fdbd4837565ddebacae13d8fcf434c7aabd24903768",
+      "plan.md": "9f441fd1170c51d22864f731134ff0307619094237ca3df6fd70ff956f3e4e9a",
+      "tasks.md": "32c12242461da385058d5371101dd85975e1b878ac95b72bdb3fc10576007e69",
       "implementation-summary.md": "0843d46e0fdaa2df184ddfc712c7cce7555482a4f62795472d0be0a4a2bdfbd0"
     },
     "last_active_child_id": null,

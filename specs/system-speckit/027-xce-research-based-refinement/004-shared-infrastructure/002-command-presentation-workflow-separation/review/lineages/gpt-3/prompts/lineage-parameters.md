@@ -1,3 +1,7 @@
+---
+title: "Fan-out Lineage Parameters"
+trigger_phrases: []
+---
 # Fan-out Lineage Parameters
 
 spec_folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

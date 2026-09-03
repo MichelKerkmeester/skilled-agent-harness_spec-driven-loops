@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: D3 Traceability — checklist_evidence, feature_catalog_code, playbook_capability, packet hygiene"
+trigger_phrases: []
+---
 # Iteration 6: D3 Traceability — checklist_evidence, feature_catalog_code, playbook_capability, packet hygiene
 
 ## Focus

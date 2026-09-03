@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-012.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 012 — Features 9, 10, 11: Governance, Ablation, Constitutional

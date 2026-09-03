@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Agent and Mode Tool-Surface Parity"
+trigger_phrases: []
+---
 # Iteration 3: Agent and Mode Tool-Surface Parity
 
 ## Focus

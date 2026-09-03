@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis - glm52-5"
+trigger_phrases: []
+---
 # Research Synthesis - glm52-5
 
 ## 1. Executive Summary

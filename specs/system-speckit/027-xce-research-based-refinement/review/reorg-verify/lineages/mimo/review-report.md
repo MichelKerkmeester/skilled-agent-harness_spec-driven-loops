@@ -1,3 +1,7 @@
+---
+title: "Review Report — mimo"
+trigger_phrases: []
+---
 # Review Report — mimo
 
 Lineage: `fanout-mimo-1781422660235-ysuwb4` | Executor: cli-opencode / xiaomi/mimo-v2.5-pro | Completed: 2026-06-14T08:05:00Z

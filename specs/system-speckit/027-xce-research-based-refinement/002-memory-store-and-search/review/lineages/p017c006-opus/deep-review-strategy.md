@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — p017c006-opus"
+trigger_phrases: []
+---
 # Deep Review Strategy — p017c006-opus
 
 ## Topic

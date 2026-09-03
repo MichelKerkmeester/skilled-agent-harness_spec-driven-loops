@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Git and .gitignore Interactions (Q3)"
+trigger_phrases: []
+---
 # Iteration 003 — Git and .gitignore Interactions (Q3)
 
 **Focus:** Q3 — the existing root `specs` symlink, the `!specs` and `!.opencode/` negation rules, and `~/.gitignore_global`'s `/specs` and `/.opencode/` ignores for downstream symlinked repos.

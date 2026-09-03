@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - Search/Retrieval Fan-out Lineage gpt55r2-a-1"
+trigger_phrases: []
+---
 # Deep Review Report - Search/Retrieval Fan-out Lineage gpt55r2-a-1
 
 ## Executive Summary

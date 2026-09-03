@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Resilience and Negative Paths"
+trigger_phrases: []
+---
 # Iteration 8: Resilience and Negative Paths
 
 ## Files Reviewed

@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: Convergence as graph analysis"
+trigger_phrases: []
+---
 # Iteration 13: Convergence as graph analysis
 
 ## Focus

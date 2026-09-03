@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: P2 Observed NOOA Memory Mechanics"
+trigger_phrases: []
+---
 # Iteration 5: P2 Observed NOOA Memory Mechanics
 
 ## Focus

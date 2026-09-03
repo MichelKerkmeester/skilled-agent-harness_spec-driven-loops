@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 (mimo-v2.5-pro)"
+trigger_phrases: []
+---
 # Iteration 002 (mimo-v2.5-pro)
 
 **Summary:** The root cause is that /memory:search lacks the explicit numbered 'Execution Order' section that /doctor and all working commands use to force the model to Read the presentation asset as step 1. The render instruction is buried at step 7 of the retrieval sub-workflow, after the model has already shaped its response, and uses a vague reference ('the presentation asset') instead of inlining the file path. Adding an Execution Order section with the Read as step 1, moving the render-format gate before tool calls, inlining the path, and adding a Presentation Boundary section would make the template unmissable without introducing workflow YAML.

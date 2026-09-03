@@ -1,3 +1,7 @@
+---
+title: "Phase 2 Delta — 015 Tree-sitter vs 016 Query Expansion"
+trigger_phrases: []
+---
 # Phase 2 Delta — 015 Tree-sitter vs 016 Query Expansion
 
 ## Summary

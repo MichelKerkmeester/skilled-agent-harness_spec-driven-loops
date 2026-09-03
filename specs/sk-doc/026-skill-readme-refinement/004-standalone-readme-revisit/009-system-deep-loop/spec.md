@@ -4,7 +4,6 @@ description: "Rewrite the system-deep-loop skill README at .opencode/skills/syst
 trigger_phrases:
   - "system deep loop readme"
   - "deep loop readme rewrite"
-  - "system-deep-loop readme"
   - "deep loop hub readme"
   - "phase 9 spec"
 importance_tier: "normal"

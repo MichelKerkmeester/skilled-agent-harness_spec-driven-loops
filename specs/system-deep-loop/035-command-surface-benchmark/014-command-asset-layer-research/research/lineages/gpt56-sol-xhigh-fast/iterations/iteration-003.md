@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Six-Family Mode Matrix and Completeness Validation"
+trigger_phrases: []
+---
 # Iteration 3: Six-Family Mode Matrix and Completeness Validation
 
 ## Focus

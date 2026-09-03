@@ -1,3 +1,7 @@
+---
+title: "Contributing to AgentSwarms"
+trigger_phrases: []
+---
 # Contributing to AgentSwarms
 
 Thanks for taking the time to contribute!

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ROLE: Senior systems-integration analyst. READ-ONLY analysis — do NOT write/edit/create files or run code. Spec folder: .opencode/specs/system-spec-kit/027-xce-research-based-refinement (pre-approved; skip Gate 3).
 
 WHAT WE ARE INTEGRATING (read this FIRST): the caura-memclaw memory-hardening proposal at

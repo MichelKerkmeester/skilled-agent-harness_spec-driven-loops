@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 — Adversarially verify T1 adoptability + the AC-format prerequisite"
+trigger_phrases: []
+---
 DEEP-RESEARCH — CROSS-MODEL VERIFY (MiniMax M3)
 
 # Iteration 015 — Adversarially verify T1 adoptability + the AC-format prerequisite

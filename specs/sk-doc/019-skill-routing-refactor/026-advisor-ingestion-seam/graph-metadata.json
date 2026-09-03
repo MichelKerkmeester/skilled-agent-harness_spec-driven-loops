@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The creation journey ends at \"gates pass\" — but passing gates does not make a skill routable",
     "created_at": "2026-07-28T15:16:01.067Z",
-    "last_save_at": "2026-08-30T15:39:15.681Z",
+    "last_save_at": "2026-09-03T22:29:04.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a1e70ad0d8504e5367a93c0eb9f7ce129b23035441cf936fb56752d9fac0857",
+    "source_fingerprint": "sha256:4395204eebd801c8cd775135c096e728d4fb643e470d08148daab30c75460572",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eee0d454f5573fb08bc58d58757d597aa23de6ce94b59f1c66d4326a4d4eecc2",
+      "spec.md": "aa63dcb507f4d1ce9db805d04de39c18685252df04954b3f88e4f6d9f3a3f29f",
       "plan.md": "a3edaa72c1ff0e3eaa3bbdeadb93125c3fbe4284993edceea843bb9d71759ff8",
       "tasks.md": "dabba4e2dc2959696c9c19a51f4107c8d0f6a5eb0b945695e9a75318f5ae2af3",
       "decision-record.md": "fa938a8ae4c9cbc34a13e40ec465773bcf397f5ac129ffae9422c339d39481a2",

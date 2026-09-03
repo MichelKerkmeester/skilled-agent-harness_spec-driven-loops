@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Curated Theme Architecture Versus Extracted Corpus"
+trigger_phrases: []
+---
 # Iteration 7: Curated Theme Architecture Versus Extracted Corpus
 
 ## Focus

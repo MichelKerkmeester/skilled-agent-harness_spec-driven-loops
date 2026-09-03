@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: sk-design Remediation Program"
+trigger_phrases: []
+---
 # Deep Review Strategy: sk-design Remediation Program
 
 ## Topic

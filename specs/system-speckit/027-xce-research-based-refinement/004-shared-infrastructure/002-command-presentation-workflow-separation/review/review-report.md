@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 011 Command Presentation / Workflow Separation"
+trigger_phrases: []
+---
 # Deep Review Report — 011 Command Presentation / Workflow Separation
 
 Review target: `system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation` (4 command families: memory, speckit, create, doctor — presentation/router separation, shipped in commits 059284c35b / 1ffc9d12cd / 6d51b894b9 / 1e8715c5e2).

@@ -1,3 +1,7 @@
+---
+title: "RRF Sweep Results"
+trigger_phrases: []
+---
 # RRF Sweep Results
 
 Lane used for deterministic picker: `baseline-bge`.

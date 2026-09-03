@@ -1,3 +1,7 @@
+---
+title: "Adversarial Fix Verification — live-237 (daemon single-instance DB lock)"
+trigger_phrases: []
+---
 # Adversarial Fix Verification — live-237 (daemon single-instance DB lock)
 
 VERDICT: INCOMPLETE

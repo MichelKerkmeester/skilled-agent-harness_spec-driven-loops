@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - gpt-gap"
+trigger_phrases: []
+---
 # Deep Research Dashboard - gpt-gap
 
 ## Lifecycle

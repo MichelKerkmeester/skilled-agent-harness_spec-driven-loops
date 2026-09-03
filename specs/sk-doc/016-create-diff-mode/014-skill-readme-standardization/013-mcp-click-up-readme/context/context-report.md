@@ -1,3 +1,7 @@
+---
+title: "Context Report: mcp-click-up README rewrite"
+trigger_phrases: []
+---
 # Context Report: mcp-click-up README rewrite
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only). Both iterations converge with cited file:line evidence on the two paths, the operation routing, the safety invariants and the outputs. Both independently found that the current README has WRONG MCP integration details (config file, tool naming, call pattern), so this rewrite fixes broken instructions, not just voice.

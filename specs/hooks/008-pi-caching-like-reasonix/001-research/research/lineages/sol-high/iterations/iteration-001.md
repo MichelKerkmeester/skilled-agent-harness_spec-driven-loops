@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Build the lumo.md claim ledger"
+trigger_phrases: []
+---
 # Iteration 1: Build the lumo.md claim ledger
 
 ## Focus

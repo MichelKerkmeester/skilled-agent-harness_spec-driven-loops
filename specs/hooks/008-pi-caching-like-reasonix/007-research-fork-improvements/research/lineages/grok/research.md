@@ -1,3 +1,7 @@
+---
+title: "Improving the Packet-039 Pi Forks — Research Synthesis (Grok Lineage)"
+trigger_phrases: []
+---
 # Improving the Packet-039 Pi Forks — Research Synthesis (Grok Lineage)
 
 ## Verdict

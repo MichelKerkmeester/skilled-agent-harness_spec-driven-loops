@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — Rust Standards for `code-opencode` (Packet 018 / Phase 001)"
+trigger_phrases: []
+---
 # Research Synthesis — Rust Standards for `code-opencode` (Packet 018 / Phase 001)
 
 > Merged synthesis of a 10-round deep-research pass. **Manually orchestrated** through `cli-opencode`: nine parallel-batched evidence rounds plus one synthesis round, every dispatch `openai/gpt-5.6-sol-fast --variant high`, conducted by Claude Code (not the `/deep:research` runner, per operator direction). Research-only — no Rust was written and no skill source was modified.

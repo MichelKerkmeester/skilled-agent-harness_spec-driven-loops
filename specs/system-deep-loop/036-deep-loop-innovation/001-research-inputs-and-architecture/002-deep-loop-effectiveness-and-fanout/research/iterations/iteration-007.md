@@ -1,3 +1,7 @@
+---
+title: "Autonomous Deep Research Loop"
+trigger_phrases: []
+---
 <!-- iteration 7 | SOL xhigh | thread: recommendation-deep-dive | angle: R2 side-effect-receipt resume contract — mechanisms | 2026-07-15T04:48:55.854Z -->
 
 The current resume contract records lineage, not effects. `resumed` says where execution continues, while post-dispatch validation only checks whether an iteration file and JSONL delta appeared. A crash after a tool succeeds but before that append is therefore indistinguishable from “tool never ran.” Reconstruction can repair research evidence, but it cannot safely reconstruct an email, API mutation, charge, deployment, or remote job. This gap is visible in the local [loop protocol](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md) and [JSONL contract](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/references/state/state_jsonl.md).

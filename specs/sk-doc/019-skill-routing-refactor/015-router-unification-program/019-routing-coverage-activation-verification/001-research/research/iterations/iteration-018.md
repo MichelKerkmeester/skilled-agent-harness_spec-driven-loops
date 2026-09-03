@@ -1,3 +1,7 @@
+---
+title: "Iteration 18 — gpt-5.6-sol ultra — focus: verification"
+trigger_phrases: []
+---
 # Iteration 18 — gpt-5.6-sol ultra — focus: verification
 
 Headline finding: the missing component is a promotion-grade evidence chain. Lane C, manual playbooks, and LUNA currently measure different contracts, and their outputs cannot prove that the same compiled-serving build passed every layer.

@@ -1,3 +1,7 @@
+---
+title: "016 llama-cpp retrieval quality probe"
+trigger_phrases: []
+---
 # 016 llama-cpp retrieval quality probe
 
 ## Result

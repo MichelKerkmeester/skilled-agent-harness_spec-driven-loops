@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration Prompt Pack (16 of 20)"
+trigger_phrases: []
+---
 DEEP-REVIEW
 Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; state_source=externalized_files; do_not_switch_mode=true
 

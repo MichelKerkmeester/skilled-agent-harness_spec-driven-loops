@@ -1,3 +1,7 @@
+---
+title: "VERDICT: CONFIRMED — fresh-session double-writer is real"
+trigger_phrases: []
+---
 I have everything needed. Both code-path analysis and a full live repro run confirm the finding. Here is my structured verdict.
 
 ---

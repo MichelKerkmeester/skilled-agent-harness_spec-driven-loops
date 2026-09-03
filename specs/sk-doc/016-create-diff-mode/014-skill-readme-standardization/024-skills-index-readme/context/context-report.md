@@ -1,3 +1,7 @@
+---
+title: "Context Report: skills index README rewrite (phase 024)"
+trigger_phrases: []
+---
 # Context Report: skills index README rewrite (phase 024)
 
 The catalog substrate is sourced directly from the 22 rewritten skill READMEs (their one-line pitches and verified facts), so this report is the orchestrator-built ground truth rather than a fresh deep-context dispatch. The index rewrite runs last so it reflects the children that shipped in phases 001 to 023. The current index has real stale facts to correct.

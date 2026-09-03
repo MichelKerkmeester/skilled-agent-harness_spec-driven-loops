@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Phase 003 of the numbered-prefix deprecation. Author one deterministic migration script that performs the whole de-numbering — git mv the 390 numbered category folders to bare slugs, rewrite the 115 frontmatter category: values, the ~1,052 root index-table path rows, the ~5,298 nav/cross-ref links across ~1,841 files, and the two SKILL.md router-prefix blocks — with a DRY-RUN mode that mutates nothing and emits a rename map, per-file diff, and safety/collision report. Honors the ADR-004 deny-list (z_archive, CHANGELOG, history, this packet's evidence). Tooling-only phase — Phase 004 runs it.",
     "created_at": "2026-07-10T18:51:12.903Z",
-    "last_save_at": "2026-08-30T15:39:13.794Z",
+    "last_save_at": "2026-09-03T22:18:34.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee63e57e1f5c08a3e76322d962266b8b74d6e3d4fb9365a0435f00f5a59bc85d",
+    "source_fingerprint": "sha256:02ec3de62cf2b69d34934c4c03528f402ab2f6ca14eae697e4aee53c2058d4b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5375d3f5bdf8f14a4ba74e9d879a84c102c5981bbb902b4332b32c378e18115",
-      "plan.md": "fecc80e527bd7199301216d8b237fde2cc87222ddd8e7d70ccfefcefdfbe640f",
-      "tasks.md": "47b935682eced21649b6c2ccb24263eaad19a3f30c1717911f8cd4b532d55ec1",
-      "implementation-summary.md": "10bdfe096c3e1e43fcc95287cab0ee5e87fc737d6683a117cb4c26b3f040001c"
+      "plan.md": "5f9725eaf0de5f2b21f9efb046208f14cc6ce19955591243cf4a9ef4d9f2d810",
+      "tasks.md": "fbcde18cbe49e00ca8dc7fedbc09ea58b7d56138b4fad4976fe2d5279b64f935",
+      "implementation-summary.md": "019bdcd0d35b00e65014df236e433a33d7a520c95e8964c54940fb36e45f7961"
     },
     "last_active_child_id": null,
     "last_active_at": null

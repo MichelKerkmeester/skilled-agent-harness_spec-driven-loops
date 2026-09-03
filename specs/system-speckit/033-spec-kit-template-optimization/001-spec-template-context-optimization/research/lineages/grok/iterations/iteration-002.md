@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Agent Engineering harness vs Gate 3 / Levels / validate.sh / Iron Law"
+trigger_phrases: []
+---
 # Iteration 2: Agent Engineering harness vs Gate 3 / Levels / validate.sh / Iron Law
 
 ## Focus

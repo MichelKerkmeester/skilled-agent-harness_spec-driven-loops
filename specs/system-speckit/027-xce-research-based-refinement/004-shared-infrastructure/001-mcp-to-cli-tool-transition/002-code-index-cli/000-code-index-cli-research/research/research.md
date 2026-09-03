@@ -1,3 +1,7 @@
+---
+title: "Deep Research: Code-Index CLI Feasibility (Synthesis)"
+trigger_phrases: []
+---
 # Deep Research: Code-Index CLI Feasibility (Synthesis)
 
 - **Date:** 2026-06-06 · **Session:** `dr-20260606T135000-code-index-cli` · **Mode:** single cli-codex lane (gpt-5.5, reasoning high, service tier fast), forced 10 iterations

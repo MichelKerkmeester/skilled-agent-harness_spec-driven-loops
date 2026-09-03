@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard: gpt55-fast-4"
+trigger_phrases: []
+---
 # Deep Research Dashboard: gpt55-fast-4
 
 ## Status

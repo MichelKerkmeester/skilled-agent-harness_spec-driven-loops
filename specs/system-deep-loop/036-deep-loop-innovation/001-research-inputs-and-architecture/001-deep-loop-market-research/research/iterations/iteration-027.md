@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 27 | model sol (gpt-5.6-sol) | angle: Determinism under concurrency (fan-out correctness) | 2026-07-14T23:25:43.188Z -->
 
 Five new repositories survived the exclusion check. The stronger conclusion is that “sort before reduce” is insufficient: correctness needs separate contracts for value reproducibility, ordering, task identity, lock ownership, and reduction topology.

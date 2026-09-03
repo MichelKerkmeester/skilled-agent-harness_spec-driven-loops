@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Incremental Corpus Automation and Reindex Triggers"
+trigger_phrases: []
+---
 # Iteration 8: Incremental Corpus Automation and Reindex Triggers
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Adversarial Consistency and Rollback Reconciliation"
+trigger_phrases: []
+---
 # Iteration 5: Adversarial Consistency and Rollback Reconciliation
 
 ## Focus

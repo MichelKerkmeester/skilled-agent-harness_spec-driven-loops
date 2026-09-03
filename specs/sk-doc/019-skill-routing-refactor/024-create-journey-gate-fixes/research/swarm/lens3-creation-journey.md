@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Act as an end-to-end workflow reviewer. READ-ONLY — modify nothing (a temp scaffold under /tmp is allowed for testing; delete it after). Scope: does following create-skill's creation guidance actually produce a skill that system-skill-advisor can discover and route to?
 
 Walk both journeys as written:

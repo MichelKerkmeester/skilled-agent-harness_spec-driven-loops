@@ -1,3 +1,7 @@
+---
+title: "Agent Brief — T-E Test Rig Fixes"
+trigger_phrases: []
+---
 # Agent Brief — T-E Test Rig Fixes
 
 You are an autonomous implementation agent. **No conversation context.**

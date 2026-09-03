@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 4 | SOL xhigh | thread: fan-out-automation | angle: Resumable externalized-state fan-out with salvage/merge | 2026-07-15T04:33:59.909Z -->
 
 The gap is now precise: `fanout-merge.cjs` is deterministic only after its input set is chosen. Resume determinism also requires deterministic admission—deciding which prior leaves remain valid after manifest, executor, model, prompt, or topology changes.

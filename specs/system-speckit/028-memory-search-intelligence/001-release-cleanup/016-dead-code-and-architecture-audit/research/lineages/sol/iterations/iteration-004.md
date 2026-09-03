@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: Compiled routing closure"
+trigger_phrases: []
+---
 # Iteration 004: Compiled routing closure
 
 ## Focus

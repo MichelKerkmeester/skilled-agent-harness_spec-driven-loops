@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — TRACEABILITY"
+trigger_phrases: []
+---
 # Iteration 003 — TRACEABILITY
 
 **Dimension:** Observability + Logging + Diagnostics + State Inspectability  

@@ -1,6 +1,7 @@
 ---
 title: "DeepSeek Lineage Synthesis: Flawless Notion→Obsidian Migration — Extended Research Findings"
 description: "10-iteration DeepSeek V4 Flash research extending prior-findings.md: decisive migration method, mcp-notion/mcp-obsidian division of labor, relation/rollup recovery, plugin requirements, parity verification, and AI-vs-human role."
+trigger_phrases: []
 ---
 
 # DeepSeek Lineage Synthesis: Flawless Notion→Obsidian Migration

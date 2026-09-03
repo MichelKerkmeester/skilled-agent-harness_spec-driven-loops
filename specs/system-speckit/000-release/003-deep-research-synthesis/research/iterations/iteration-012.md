@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### cli-devin deep-loop recipes gain enforced reasoning
 This release hardens cli-devin's automated deep-loop runs (internal tooling with no user-facing change). Before, the iteration recipes left reasoning and tool discipline to model judgment; now every iteration mandates a step-by-step reasoning tool, registered both in the tool environment and in the recipe's system instructions so the model actually invokes it, and write access is restricted to just the two file paths each iteration needs. The loop commands also gained a 900-second timeout and detection for a refused tool call, so a rejected action surfaces as a failure instead of silently stalling. Cost is roughly +10 seconds per iteration. Existing in-flight runs keep the previous version; the new behavior applies to future deep-loop runs.
 

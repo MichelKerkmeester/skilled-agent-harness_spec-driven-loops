@@ -1,3 +1,7 @@
+---
+title: "Iteration 11: P5 Three-Layer Evaluator Architecture"
+trigger_phrases: []
+---
 # Iteration 11: P5 Three-Layer Evaluator Architecture
 
 ## Focus

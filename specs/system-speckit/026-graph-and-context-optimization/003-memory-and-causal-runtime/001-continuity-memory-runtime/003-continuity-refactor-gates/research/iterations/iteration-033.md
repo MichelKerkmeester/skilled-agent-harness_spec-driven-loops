@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-033.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 033 — Instrumentation Spec

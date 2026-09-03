@@ -1,3 +1,7 @@
+---
+title: "Graph Primitives and Snippets — Governed Graph-Backed Work"
+trigger_phrases: []
+---
 # Graph Primitives and Snippets — Governed Graph-Backed Work
 
 A practical reference for graph-backed work in `system-deep-loop`, covering typed state, node and edge vocabulary, admission, budgets, fan-out and fan-in, checkpointing, convergence guardrails, replay parity, and migration.

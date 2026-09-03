@@ -1,3 +1,7 @@
+---
+title: "Review Report — A1 Extend the Live Quality Machinery to Authored Specs"
+trigger_phrases: []
+---
 # Review Report — A1 Extend the Live Quality Machinery to Authored Specs
 
 - **Target**: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored`

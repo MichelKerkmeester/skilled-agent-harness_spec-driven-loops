@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Live transcript richness"
+trigger_phrases: []
+---
 # Iteration 002 — Live transcript richness
 
 ## Question

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - MCP Core"
+trigger_phrases: []
+---
 # Deep Review Strategy - MCP Core
 
 ## Topic

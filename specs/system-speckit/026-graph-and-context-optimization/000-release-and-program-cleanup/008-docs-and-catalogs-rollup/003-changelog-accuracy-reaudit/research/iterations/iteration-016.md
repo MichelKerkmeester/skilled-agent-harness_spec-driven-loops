@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 016"
+trigger_phrases: []
+---
 # Deep Research Iteration 016
 
 > Audited changelog: `changelog-019-003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures.md`

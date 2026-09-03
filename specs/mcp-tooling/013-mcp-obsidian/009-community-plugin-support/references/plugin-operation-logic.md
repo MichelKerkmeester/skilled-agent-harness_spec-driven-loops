@@ -1,3 +1,7 @@
+---
+title: "Reference — Plugin operation logic (file-layer model)"
+trigger_phrases: []
+---
 # Reference — Plugin operation logic (file-layer model)
 
 > Destined for `mcp-tooling/mcp-obsidian/references/` at Phase 5. This is the connective principle that makes the per-plugin references usable, and the pattern to extend to any future plugin.

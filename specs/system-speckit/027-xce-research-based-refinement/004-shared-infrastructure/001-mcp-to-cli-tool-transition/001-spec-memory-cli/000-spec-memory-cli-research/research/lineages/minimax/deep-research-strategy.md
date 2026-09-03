@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — `minimax` lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy — `minimax` lineage
 
 > Lane-specific strategy file for the **minimax** fan-out lineage (cli-opencode, model `minimax-coding-plan/MiniMax-M3`).

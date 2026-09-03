@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Traceability: Seven-File vs Six-File Report Contract"
+trigger_phrases: []
+---
 # Iteration 003 — Traceability: Seven-File vs Six-File Report Contract
 
 - **Dimension:** traceability

@@ -1,3 +1,7 @@
+---
+title: "Iteration 042 — XCE Signal and Noise"
+trigger_phrases: []
+---
 # Iteration 042 — XCE Signal and Noise
 
 ## Focus

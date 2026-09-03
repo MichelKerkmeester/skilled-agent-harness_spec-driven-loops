@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 — Cross-Cutting Clusters + P0 Recurrence Re-verification"
+trigger_phrases: []
+---
 # Iteration 5 — Cross-Cutting Clusters + P0 Recurrence Re-verification
 
 ## Dispatcher

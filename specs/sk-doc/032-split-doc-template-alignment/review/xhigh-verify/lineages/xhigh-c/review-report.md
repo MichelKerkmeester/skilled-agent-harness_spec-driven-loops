@@ -1,6 +1,7 @@
 ---
 title: Deep Review Report - xhigh-c
 description: Four-iteration detached verification lineage for sk-code split-document template alignment.
+trigger_phrases: []
 ---
 
 # Deep Review Report - xhigh-c

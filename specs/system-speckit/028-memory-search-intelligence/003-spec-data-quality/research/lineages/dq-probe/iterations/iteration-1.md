@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The `dq-probe` fan-out lineage is complete. All three phases ran, all writes confined to the lineage artifact directory.
 
 **Summary:**

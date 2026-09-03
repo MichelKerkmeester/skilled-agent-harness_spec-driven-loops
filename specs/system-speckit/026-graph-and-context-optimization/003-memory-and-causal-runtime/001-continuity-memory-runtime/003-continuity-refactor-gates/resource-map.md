@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["resource-map.md"]
 
+trigger_phrases: []
 ---
 
 # Phase 006 Canonical Continuity Refactor - Resource Map

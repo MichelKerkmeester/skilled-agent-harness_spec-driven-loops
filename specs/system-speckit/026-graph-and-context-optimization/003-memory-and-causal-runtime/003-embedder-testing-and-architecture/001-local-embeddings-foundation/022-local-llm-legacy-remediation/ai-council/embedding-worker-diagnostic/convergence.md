@@ -1,3 +1,7 @@
+---
+title: "Embedding Worker Diagnostic - Convergence"
+trigger_phrases: []
+---
 # Embedding Worker Diagnostic - Convergence
 
 ## Root-Cause Hypotheses

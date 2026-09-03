@@ -1,3 +1,7 @@
+---
+title: "Discover the harness directory (move whole dir)"
+trigger_phrases: []
+---
 ## Packet 038: stress-test-folder-completion — Tier C content-based migration
 
 You are cli-codex (gpt-5.5 high fast) implementing **004-stress-test-folder-completion**.

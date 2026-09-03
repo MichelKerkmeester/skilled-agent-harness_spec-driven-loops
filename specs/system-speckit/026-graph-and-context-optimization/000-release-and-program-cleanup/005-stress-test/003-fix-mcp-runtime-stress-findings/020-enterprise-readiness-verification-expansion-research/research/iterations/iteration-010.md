@@ -3,6 +3,7 @@ iteration: 10
 focus: RQ10 - Expansion candidates and synthesis
 newInfoRatio: 0.14
 status: complete
+trigger_phrases: []
 ---
 
 # Iteration 010 - Expansion Candidates

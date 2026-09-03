@@ -1,3 +1,7 @@
+---
+title: "Iteration 078 — 028 number REUSED (028-026-program-research); all 027 028/* refs stale: coco DEAD->REMOVE, code-graph MOVED->repoint/evidence-gate; nothing blocks"
+trigger_phrases: []
+---
 # Iteration 078 — 028 number REUSED (028-026-program-research); all 027 028/* refs stale: coco DEAD->REMOVE, code-graph MOVED->repoint/evidence-gate; nothing blocks
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.78. **Findings:** 5.

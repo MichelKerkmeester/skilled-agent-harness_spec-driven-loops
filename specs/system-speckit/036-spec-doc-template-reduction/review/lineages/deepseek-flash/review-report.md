@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 036-spec-doc-template-reduction"
+trigger_phrases: []
+---
 # Deep Review Report — 036-spec-doc-template-reduction
 
 > Lineage: deepseek-flash fan-out | sessionId `fanout-deepseek-flash-1787805958244-hkfwxl` | generation 1 | stop policy: max-iterations (10/10)

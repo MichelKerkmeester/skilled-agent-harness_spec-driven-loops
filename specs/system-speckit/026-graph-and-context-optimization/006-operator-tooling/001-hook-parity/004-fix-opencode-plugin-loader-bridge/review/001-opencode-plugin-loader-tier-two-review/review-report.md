@@ -1,3 +1,7 @@
+---
+title: "Review Report - 005 OpenCode Plugin Loader Remediation"
+trigger_phrases: []
+---
 # Review Report - 005 OpenCode Plugin Loader Remediation
 
 ## 1. Executive Summary

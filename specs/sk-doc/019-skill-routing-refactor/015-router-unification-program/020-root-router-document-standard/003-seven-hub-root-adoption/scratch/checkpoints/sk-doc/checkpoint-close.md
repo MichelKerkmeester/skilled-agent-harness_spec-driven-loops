@@ -1,3 +1,7 @@
+---
+title: "sk-doc (CP5) — checkpoint receipt"
+trigger_phrases: []
+---
 # sk-doc (CP5) — checkpoint receipt
 
 - Hub: sk-doc

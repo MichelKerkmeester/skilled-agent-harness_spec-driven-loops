@@ -1,3 +1,7 @@
+---
+title: "Iteration 22 — gpt-5.6-sol ultra — focus: integration"
+trigger_phrases: []
+---
 # Iteration 22 — gpt-5.6-sol ultra — focus: integration
 
 The integration plan is cyclic as written. P2 must produce parity evidence before P3 can start (`.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision/plan.md:168`, `:252`), but the Lane C alignment requires P3 eligibility before its parity harness can start (`.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/014-benchmark-alignment/spec.md:168`). Pull the pure, read-only eligibility and manifest-discovery API into P0; leave production-consumer cutover in P3.

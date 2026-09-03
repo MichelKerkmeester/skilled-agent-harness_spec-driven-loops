@@ -1,3 +1,7 @@
+---
+title: "Codex dispatch: Track B2 — full /doctor:causal-graph command + 4 YAMLs"
+trigger_phrases: []
+---
 # Codex dispatch: Track B2 — full /doctor:causal-graph command + 4 YAMLs
 
 ## ROLE

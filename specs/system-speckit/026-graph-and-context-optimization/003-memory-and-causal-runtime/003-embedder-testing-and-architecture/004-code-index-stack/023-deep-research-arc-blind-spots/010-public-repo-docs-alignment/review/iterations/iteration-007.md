@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — cli-devin + cli-codex skill consistency"
+trigger_phrases: []
+---
 # Iteration 007 — cli-devin + cli-codex skill consistency
 
 **Scope:** .opencode/skills/cli-devin/SKILL.md, .opencode/skills/cli-codex/SKILL.md

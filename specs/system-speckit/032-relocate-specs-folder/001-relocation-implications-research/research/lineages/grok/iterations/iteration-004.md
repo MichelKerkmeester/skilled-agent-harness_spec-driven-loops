@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Spec Kit Memory MCP path resolution"
+trigger_phrases: []
+---
 # Iteration 4: Spec Kit Memory MCP path resolution
 
 ## Focus

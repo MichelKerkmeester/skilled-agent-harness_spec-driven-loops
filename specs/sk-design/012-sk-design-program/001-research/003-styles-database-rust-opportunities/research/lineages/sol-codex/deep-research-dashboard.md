@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — sol-codex"
+trigger_phrases: []
+---
 # Deep Research Dashboard — sol-codex
 
 ## 1. OVERVIEW

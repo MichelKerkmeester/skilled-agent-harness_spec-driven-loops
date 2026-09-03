@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 - Operator UX"
+trigger_phrases: []
+---
 # Iteration 008 - Operator UX
 
 ## Preflight reasoning

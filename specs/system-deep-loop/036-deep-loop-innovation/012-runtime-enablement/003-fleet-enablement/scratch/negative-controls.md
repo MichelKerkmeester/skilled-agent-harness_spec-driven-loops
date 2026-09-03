@@ -1,3 +1,7 @@
+---
+title: "Negative controls — fleet enablement"
+trigger_phrases: []
+---
 # Negative controls — fleet enablement
 
 Every guard below was removed, the suite re-run, and the guard restored. A guard

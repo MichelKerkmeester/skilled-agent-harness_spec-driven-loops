@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy — 012-015 Integrated Cross-Packet Review
 description: Persistent strategy file for the integrated review of packets 012-015 + their 28 catalog/playbook updates. 10-iteration loop with cli-codex (gpt-5.5 high fast).
+trigger_phrases: []
 ---
 
 # Deep Review Strategy — Session Tracking

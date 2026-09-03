@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: CLI Tooling UX"
+trigger_phrases: []
+---
 # Deep Review Report: CLI Tooling UX
 
 ## Executive Summary

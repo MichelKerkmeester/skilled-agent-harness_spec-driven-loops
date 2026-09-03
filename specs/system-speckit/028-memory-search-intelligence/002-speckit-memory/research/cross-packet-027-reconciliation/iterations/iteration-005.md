@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 (Round K): Q5 Incremental Index / Statediff × determinism + generation watermark"
+trigger_phrases: []
+---
 # Iteration 5 (Round K): Q5 Incremental Index / Statediff × determinism + generation watermark
 
 ## Focus

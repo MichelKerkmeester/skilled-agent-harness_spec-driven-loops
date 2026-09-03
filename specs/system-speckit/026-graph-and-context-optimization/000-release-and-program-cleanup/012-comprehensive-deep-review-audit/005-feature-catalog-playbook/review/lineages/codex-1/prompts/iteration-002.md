@@ -1,1 +1,4 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY: iteration 2 of 7, focus security. Active findings P1:2. Review sampled playbook execution instructions for unsafe destructive commands, credential exposure, and missing sandbox guardrails. Output iteration-002.md and JSONL delta.

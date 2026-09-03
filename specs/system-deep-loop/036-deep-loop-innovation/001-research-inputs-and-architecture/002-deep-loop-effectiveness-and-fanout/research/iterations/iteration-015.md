@@ -1,3 +1,7 @@
+---
+title: "Autonomous Deep Research Loop"
+trigger_phrases: []
+---
 <!-- iteration 15 | SOL xhigh | thread: recommendation-deep-dive | angle: Open gap: durable-execution guarantees under LLM nondeterminism | 2026-07-15T05:24:31.070Z -->
 
 LLM nondeterminism does not invalidate durable replay. It changes the deterministic unit from “run this function again” to “reuse this recorded observation.” The runtime can deterministically replay an accepted LLM result; it cannot guarantee that re-invoking the model produces the same result.

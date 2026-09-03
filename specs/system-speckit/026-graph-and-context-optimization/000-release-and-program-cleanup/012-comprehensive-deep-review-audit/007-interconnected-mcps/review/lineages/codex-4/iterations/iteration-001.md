@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 - Correctness: fanout execution and lineage loop bounds"
+trigger_phrases: []
+---
 # Iteration 1 - Correctness: fanout execution and lineage loop bounds
 
 Session: fanout-codex-4-1780596001496-dj6z7c

@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Views, queries, ordering, exports, and embeds"
+trigger_phrases: []
+---
 # Iteration 2: Views, queries, ordering, exports, and embeds
 
 ## Focus

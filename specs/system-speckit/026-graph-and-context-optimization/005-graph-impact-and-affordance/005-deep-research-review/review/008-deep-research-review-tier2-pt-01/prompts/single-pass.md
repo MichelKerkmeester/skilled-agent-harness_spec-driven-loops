@@ -1,3 +1,7 @@
+---
+title: "Single-Pass SCOPE-READINESS Review — 006/008 Deep-Research-Review"
+trigger_phrases: []
+---
 # Single-Pass SCOPE-READINESS Review — 006/008 Deep-Research-Review
 
 **GATE 3 PRE-ANSWERED — A**: `specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review`. Pre-approved.

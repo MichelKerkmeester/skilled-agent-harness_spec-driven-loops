@@ -1,3 +1,7 @@
+---
+title: "Research Report: Spec-Kit Memory MCP — External Mining"
+trigger_phrases: []
+---
 # Research Report: Spec-Kit Memory MCP — External Mining
 
 > Canonical synthesis of a 7-iteration deep-research loop mining two external memory systems — **AIONFORGE** (Rust; `docs/retrieval.md`, `bi-temporal-model.md`, `consolidation.md`, `decay-and-importance.md`) and **GALADRIEL** (Python; `CACHING.md`, `README.md`, `harness/palace.py`) — for evidence-backed, code-mapped improvements to the Spec-Kit Memory MCP at `.opencode/skills/system-spec-kit/mcp_server/`.

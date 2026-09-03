@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: RQ5 — Generation, ergonomics, fat-router decomposition, and the cross-RQ backlog"
+trigger_phrases: []
+---
 # Iteration 5: RQ5 — Generation, ergonomics, fat-router decomposition, and the cross-RQ backlog
 
 ## Focus

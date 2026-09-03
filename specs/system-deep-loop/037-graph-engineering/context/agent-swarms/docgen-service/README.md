@@ -1,3 +1,7 @@
+---
+title: "AgentSwarms doc-gen service (optional)"
+trigger_phrases: []
+---
 # AgentSwarms doc-gen service (optional)
 
 A small rendering service for the three Office formats:

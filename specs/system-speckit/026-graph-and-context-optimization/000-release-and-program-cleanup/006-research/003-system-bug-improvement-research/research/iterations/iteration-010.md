@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — B5: Workflow command auto-routing"
+trigger_phrases: []
+---
 # Iteration 010 — B5: Workflow command auto-routing
 
 ## Focus

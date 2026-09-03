@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - IRQ5 Phase 005 Subprocess Reliability at 24-40 Sequential Dispatches"
+trigger_phrases: []
+---
 # Iteration 005 - IRQ5 Phase 005 Subprocess Reliability at 24-40 Sequential Dispatches
 
 ## Focus

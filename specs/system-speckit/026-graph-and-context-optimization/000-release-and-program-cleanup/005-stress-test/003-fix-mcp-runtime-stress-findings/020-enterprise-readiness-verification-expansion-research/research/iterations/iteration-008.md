@@ -3,6 +3,7 @@ iteration: 8
 focus: RQ8 - Empty/dead folder audit
 newInfoRatio: 0.30
 status: complete
+trigger_phrases: []
 ---
 
 # Iteration 008 - Empty Folder Audit

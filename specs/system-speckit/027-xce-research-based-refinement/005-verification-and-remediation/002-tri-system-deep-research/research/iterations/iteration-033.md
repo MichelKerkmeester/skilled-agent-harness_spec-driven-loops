@@ -1,3 +1,7 @@
+---
+title: "Iteration 033 — Angle 33"
+trigger_phrases: []
+---
 # Iteration 033 — Angle 33
 
 **Angle:** Gold-query battery freshness: do the battery queries still represent the tree after the epic's renames and the agents/skills/commands pluralization?

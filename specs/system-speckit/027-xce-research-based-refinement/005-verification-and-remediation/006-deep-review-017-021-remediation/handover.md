@@ -1,3 +1,7 @@
+---
+title: "Handover — 027/005/006 deep-review remediation (broaden round DEPLOYED; #1/#3/#4 done — only soft-delete remains)"
+trigger_phrases: []
+---
 # Handover — 027/005/006 deep-review remediation (broaden round DEPLOYED; #1/#3/#4 done — only soft-delete remains)
 
 ## Continuation prompt (paste into the new chat)

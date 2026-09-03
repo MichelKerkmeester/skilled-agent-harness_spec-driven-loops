@@ -1,3 +1,7 @@
+---
+title: "Iteration 45 (Round O adversarial): C4-A flip-safety → flip + deferred-wiring"
+trigger_phrases: []
+---
 # Iteration 45 (Round O adversarial): C4-A flip-safety → flip + deferred-wiring
 
 ## Focus

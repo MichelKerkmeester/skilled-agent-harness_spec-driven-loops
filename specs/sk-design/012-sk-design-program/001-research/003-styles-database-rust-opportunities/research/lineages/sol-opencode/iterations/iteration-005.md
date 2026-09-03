@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Shared Rust Inference and Search Core"
+trigger_phrases: []
+---
 # Iteration 5: Shared Rust Inference and Search Core
 
 ## Focus

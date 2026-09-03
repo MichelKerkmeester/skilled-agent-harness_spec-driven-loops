@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Strategy: System Bugs and Improvements (20 iterations)"
+trigger_phrases: []
+---
 # Deep-Research Strategy: System Bugs and Improvements (20 iterations)
 
 **Topic**: Systematic 20-iteration deep research across `system-spec-kit`, `mcp_server`, `code_graph`, and `skill_advisor` to surface latent production bugs, miswired automation, refinement opportunities, and architectural shortcuts.

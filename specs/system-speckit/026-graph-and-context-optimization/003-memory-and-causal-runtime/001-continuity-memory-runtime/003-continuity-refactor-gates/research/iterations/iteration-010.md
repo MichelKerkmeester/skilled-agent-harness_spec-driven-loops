@@ -8,6 +8,7 @@ scope: q4_feature6_causal_graph
 status: complete
 focus: "Retarget the causal edge graph (6 relations, 2-hop BFS) to point at (spec_folder, doc, anchor) tuples instead of memory_ids."
 maps_to_questions: [Q4]
+trigger_phrases: []
 ---
 
 # Iteration 010 — Feature 6: Causal Graph

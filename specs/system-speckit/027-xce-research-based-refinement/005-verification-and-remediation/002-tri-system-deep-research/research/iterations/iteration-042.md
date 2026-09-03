@@ -1,3 +1,7 @@
+---
+title: "Iteration 042 — Angle 42"
+trigger_phrases: []
+---
 # Iteration 042 — Angle 42
 
 **Angle:** skill-graph.sqlite operational runbook: rebuild, migration, corruption recovery (JSON export is ignored at runtime — single point of failure).

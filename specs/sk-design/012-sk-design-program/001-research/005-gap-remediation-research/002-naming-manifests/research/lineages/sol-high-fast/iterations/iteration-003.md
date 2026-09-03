@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Canonical Manifest Architecture and Migration Consequences"
+trigger_phrases: []
+---
 # Iteration 3: Canonical Manifest Architecture and Migration Consequences
 
 ## Focus

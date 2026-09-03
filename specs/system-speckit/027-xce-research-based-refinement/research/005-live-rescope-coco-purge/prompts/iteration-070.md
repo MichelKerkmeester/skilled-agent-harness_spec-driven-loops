@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 070 — 006 write-path/statediff rescope to async post-insert-enrichment model"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 070 — 006 write-path/statediff rescope to async post-insert-enrichment model

@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — Angle 14"
+trigger_phrases: []
+---
 # Iteration 014 — Angle 14
 
 **Angle:** Graph/degree channel utilization: memory_health routing telemetry — are the graph channels earning their cost in real retrieval?

@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — 023/005 (doctor) + 023/006 (registry) closure"
+trigger_phrases: []
+---
 # Iteration 006 — 023/005 (doctor) + 023/006 (registry) closure
 
 ## Hypotheses going in

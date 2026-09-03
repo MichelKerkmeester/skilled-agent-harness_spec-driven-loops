@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: AI-Council Graph Documentation and Test-Depth Claims"
+trigger_phrases: []
+---
 # Iteration 14: AI-Council Graph Documentation and Test-Depth Claims
 
 ## Focus

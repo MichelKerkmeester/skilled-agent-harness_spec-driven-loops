@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Two review lenses independently proved the parent-hub creation journey cannot succeed as documented",
     "created_at": "2026-07-28T15:11:50.262Z",
-    "last_save_at": "2026-08-30T15:39:15.668Z",
+    "last_save_at": "2026-09-03T22:29:13.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:132c138763977858dc2de2265406899edd94ab44eaed589b899b56a54c5c1b61",
+    "source_fingerprint": "sha256:dfe36a9c2863ae467e2a999a8cf9e15405552685b2edaa4143af19c29e12dbb0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b8924e97eaa1443ff384ca98ef9e50cda17fd87dd8f87309a7edd802a02581c4",
+      "spec.md": "fb4fcf431c90a8ab35f30428ede41789e9d63b67cc929f42c92084f770ad211f",
       "plan.md": "4059a792e9ab7984b6585b1b7975b32b4cf5f1100227b0767cf8e95cf864ae1c",
       "tasks.md": "6ec1ea5781c42fb150eeeb12b8a8d4c88f313fbb149f9e2c4f2b7c1219de22cc",
       "implementation-summary.md": "a2cd5126279a95174d63b67c6dcc3dbce8a5d376f1f00eeab75c313b8ab0c80f"

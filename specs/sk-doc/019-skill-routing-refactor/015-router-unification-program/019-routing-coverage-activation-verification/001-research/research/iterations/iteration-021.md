@@ -1,3 +1,7 @@
+---
+title: "Iteration 21 — gpt-5.6-sol high — focus: playbooks"
+trigger_phrases: []
+---
 # Iteration 21 — gpt-5.6-sol high — focus: playbooks
 
 The minimal complete playbook expansion is seven hub-local compiled-routing scenarios, not a duplicate of every legacy routing case. The compiled layer is additive metadata over the legacy recommendation (`advisor-recommend.ts:362-371`), while the approved rollout preserves byte-identical decisions and requires staged per-hub verification (`012-default-on-decision/plan.md:57-60`, `:176-179`). Existing single-route, holdout, and disambiguation cases therefore remain behavior-identical.

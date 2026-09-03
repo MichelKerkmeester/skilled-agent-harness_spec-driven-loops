@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 010 — cross-skill references (skill A → skill B)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 010 — cross-skill references (skill A → skill B)
 
 **Executor:** DeepSeek-v4-pro (cli-opencode, --pure, read-only)

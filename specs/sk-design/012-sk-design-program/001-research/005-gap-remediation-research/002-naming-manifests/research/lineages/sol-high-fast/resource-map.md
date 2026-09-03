@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Bring the styles backend into kebab-case conformance per filesystem-naming-convention.md by renaming _db, _engine, _harness, _manifest.json, _retrieval-manifest.json, and reconcile the two overlapping manifests (crawl _manifest.json plus DB _retrieval-manifest.json, both listing 1290 styles) into a single source of truth. Deliver the exact rename map, the import and reference update plan so nothing breaks, and the manifest consolidation design. Ground in the naming canon and the two manifest schemas; see gap-analysis.md in the parent 007 folder."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

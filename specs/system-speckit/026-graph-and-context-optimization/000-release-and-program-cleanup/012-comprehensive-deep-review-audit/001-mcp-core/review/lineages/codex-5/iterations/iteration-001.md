@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - Correctness"
+trigger_phrases: []
+---
 # Iteration 001 - Correctness
 
 Focus: mutation cache freshness and reconcile dry-run/apply predicate parity.

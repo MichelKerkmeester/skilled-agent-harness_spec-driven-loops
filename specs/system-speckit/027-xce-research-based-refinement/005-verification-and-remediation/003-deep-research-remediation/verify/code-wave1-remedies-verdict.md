@@ -1,3 +1,7 @@
+---
+title: "Code Wave 1 — Remedies Re-Verification Verdict (UNCOMMITTED diffs)"
+trigger_phrases: []
+---
 # Code Wave 1 — Remedies Re-Verification Verdict (UNCOMMITTED diffs)
 
 Verifier: fresh Fable 5 seat, 2026-06-12. Scope: ONLY the two remedies for the INCOMPLETEs in `code-wave1-verdict.md` (tri-006 survivor fix, tri-182 marker reachability fix) plus the 021 coherence sentence.

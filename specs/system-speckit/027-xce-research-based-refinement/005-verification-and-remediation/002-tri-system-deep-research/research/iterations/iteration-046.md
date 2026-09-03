@@ -1,3 +1,7 @@
+---
+title: "Iteration 046 — Angle 46"
+trigger_phrases: []
+---
 # Iteration 046 — Angle 46
 
 **Angle:** Cross-session reconnect verification: the owner-lease + reconnecting proxy under multi-session contention.

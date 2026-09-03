@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Final Stabilization"
+trigger_phrases: []
+---
 # Iteration 6: Final Stabilization
 
 ## Focus

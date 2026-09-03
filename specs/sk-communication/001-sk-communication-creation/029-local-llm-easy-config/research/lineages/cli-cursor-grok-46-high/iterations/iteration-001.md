@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Config discovery format against shipped enablement surfaces"
+trigger_phrases: []
+---
 # Iteration 1: Config discovery format against shipped enablement surfaces
 
 ## Focus

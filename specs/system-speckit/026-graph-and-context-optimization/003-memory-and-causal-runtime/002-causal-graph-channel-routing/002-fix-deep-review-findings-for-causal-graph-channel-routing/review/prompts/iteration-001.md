@@ -1,3 +1,7 @@
+---
+title: "CONFIRMATION REVIEW — 012/002 Deep-Review Remediation (Iteration 1 of 3)"
+trigger_phrases: []
+---
 # CONFIRMATION REVIEW — 012/002 Deep-Review Remediation (Iteration 1 of 3)
 
 You are dispatched as the @deep-review LEAF agent for a CONFIRMATION pass on packet `012/002-deep-review-remediation`. This is NOT a fresh deep review — the 10-iteration packet-level review already ran on 012/001 and produced `001-initial-delivery/review/review-report.md` with 42 findings (0 P0, 3 P1, 39 P2). Packet 012/002 claims to have CLOSED every one of them.

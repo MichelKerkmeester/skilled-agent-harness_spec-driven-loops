@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: Generated Metadata And Advisor/Search-Index Documentation"
+trigger_phrases: []
+---
 # Iteration 19: Generated Metadata And Advisor/Search-Index Documentation
 
 ## Focus

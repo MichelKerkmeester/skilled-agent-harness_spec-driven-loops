@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Layer-0 ↔ Layer-1 Coupling Under a Null `defaultMode`"
+trigger_phrases: []
+---
 # Iteration 1: Layer-0 ↔ Layer-1 Coupling Under a Null `defaultMode`
 
 **Thread:** 2 (Layer-0 ↔ Layer-1 interaction) | **Lineage:** glm-max | **Focus:** Q1

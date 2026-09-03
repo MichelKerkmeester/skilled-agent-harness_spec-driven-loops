@@ -1,3 +1,7 @@
+---
+title: "Resource Map: Parent-Hub defaultMode Policy, sol-ultra"
+trigger_phrases: []
+---
 # Resource Map: Parent-Hub defaultMode Policy, sol-ultra
 
 ## Documents

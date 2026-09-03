@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 001 — 001-prefix-registry-architecture"
+trigger_phrases: []
+---
 # Deep Review Iteration 001 — 001-prefix-registry-architecture
 
 **Dimension:** correctness

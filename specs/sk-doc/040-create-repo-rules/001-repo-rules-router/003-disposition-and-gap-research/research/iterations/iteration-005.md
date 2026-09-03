@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — RQ5: Critique of `delegation-and-orchestration.md` + Final Ranked Synthesis"
+trigger_phrases: []
+---
 # Iteration 005 — RQ5: Critique of `delegation-and-orchestration.md` + Final Ranked Synthesis
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 011"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 011
 
 Focus: Pi session tree and branch controls

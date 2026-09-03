@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard: dq-governance-rollout"
+trigger_phrases: []
+---
 # Deep Research Dashboard: dq-governance-rollout
 
 Auto-generated. Do not edit by hand.

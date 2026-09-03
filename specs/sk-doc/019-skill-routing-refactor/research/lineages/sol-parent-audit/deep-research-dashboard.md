@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — Parent Packet Audit"
+trigger_phrases: []
+---
 # Deep Research Dashboard — Parent Packet Audit
 
 - Status: complete

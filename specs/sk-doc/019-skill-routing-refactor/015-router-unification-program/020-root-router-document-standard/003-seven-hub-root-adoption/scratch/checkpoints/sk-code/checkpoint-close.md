@@ -1,3 +1,7 @@
+---
+title: "sk-code (CP7) — checkpoint receipt"
+trigger_phrases: []
+---
 # sk-code (CP7) — checkpoint receipt
 
 - Hub: sk-code

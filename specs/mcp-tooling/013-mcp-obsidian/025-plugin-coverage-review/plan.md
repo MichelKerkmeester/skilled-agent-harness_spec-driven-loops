@@ -1,3 +1,7 @@
+---
+title: "Plan — mcp-obsidian plugin-coverage review + scenario testing"
+trigger_phrases: []
+---
 # Plan — mcp-obsidian plugin-coverage review + scenario testing
 
 ## Approach (as executed)

@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Approximate Nearest-Neighbor Search"
+trigger_phrases: []
+---
 # Iteration 2: Approximate Nearest-Neighbor Search
 
 ## Focus

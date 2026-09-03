@@ -1,3 +1,7 @@
+---
+title: "Bar / Column Chart"
+trigger_phrases: []
+---
 # Bar / Column Chart
 
 **Best for:** comparing discrete quantities across categories or time intervals — sprint velocity, monthly revenue, feature adoption, cohort counts. Use when each category has a single numeric value and the comparison between bars is the primary message.

@@ -1,3 +1,7 @@
+---
+title: "Search, Query Intelligence, and RAG Fusion Optimization Research Report"
+trigger_phrases: []
+---
 # Search, Query Intelligence, and RAG Fusion Optimization Research Report
 
 Session: `dr-20260428T204226Z-019-search-query-rag-optimization`  

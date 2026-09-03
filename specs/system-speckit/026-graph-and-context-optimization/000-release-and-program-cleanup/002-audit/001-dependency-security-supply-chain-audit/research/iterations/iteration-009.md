@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 - Git Hooks + core.hooksPath"
+trigger_phrases: []
+---
 # Iteration 009 - Git Hooks + core.hooksPath
 
 ## Summary

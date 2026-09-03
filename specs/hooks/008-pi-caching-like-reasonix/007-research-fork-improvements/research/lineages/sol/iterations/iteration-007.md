@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Adversarial Prioritization"
+trigger_phrases: []
+---
 # Iteration 7: Adversarial Prioritization
 
 ## Focus

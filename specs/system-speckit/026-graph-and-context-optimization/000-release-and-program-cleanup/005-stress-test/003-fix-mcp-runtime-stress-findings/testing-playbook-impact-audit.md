@@ -14,6 +14,7 @@ scope:
   - .opencode/skills/sk-deep-research/manual_testing_playbook/
   - .opencode/skills/sk-deep-review/manual_testing_playbook/
   - .gemini/skills/system-spec-kit/manual_testing_playbook/ (hardlinked to .opencode mirror)
+trigger_phrases: []
 ---
 
 # Testing Playbook Impact Audit — Phase 011 (MCP Runtime Stress Remediation)

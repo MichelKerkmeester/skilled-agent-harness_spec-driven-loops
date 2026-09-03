@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: sk-code Alignment and README Freshness Audit"
+trigger_phrases: []
+---
 # Research Synthesis: sk-code Alignment and README Freshness Audit
 
 Lineage: `fanout-deepseek-flash-1786111571873-6f2oyc` · Executor: `cli-opencode` model `deepseek/deepseek-v4-flash`

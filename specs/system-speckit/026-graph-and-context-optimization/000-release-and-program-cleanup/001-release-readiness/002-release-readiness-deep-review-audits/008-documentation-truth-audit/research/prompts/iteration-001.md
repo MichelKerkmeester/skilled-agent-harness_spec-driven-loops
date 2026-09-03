@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 045/009: documentation-truth — Deep-review angle 9 (release-readiness)
 
 ### CRITICAL: Spec folder path

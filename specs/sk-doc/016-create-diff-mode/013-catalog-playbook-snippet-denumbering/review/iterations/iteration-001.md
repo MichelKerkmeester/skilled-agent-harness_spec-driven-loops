@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 001 — sk-code checklists → references"
+trigger_phrases: []
+---
 # Deep-Review Iteration 001 — sk-code checklists → references
 
 **Executor:** DeepSeek-v4-pro (cli-opencode, --pure, read-only)

@@ -33,6 +33,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 
 # Final: Flawless complex Notion→Obsidian migration via mcp-notion + mcp-obsidian + plugins

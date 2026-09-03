@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 - External MCP Transports"
+trigger_phrases: []
+---
 # Iteration 015 - External MCP Transports
 
 ## Summary

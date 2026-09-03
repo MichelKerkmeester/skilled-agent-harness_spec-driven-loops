@@ -1,3 +1,7 @@
+---
+title: "Line Chart"
+trigger_phrases: []
+---
 # Line Chart
 
 **Best for:** continuous trends over time or a sequential index — signups over weeks, revenue by month, latency over releases. Use when the direction and rate of change between points is the primary message.

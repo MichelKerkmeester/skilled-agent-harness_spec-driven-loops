@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy (MiMo Lane)"
+trigger_phrases: []
+---
 # Deep Research Strategy (MiMo Lane)
 
 ## Topic

@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 Prompt Pack"
+trigger_phrases: []
+---
 # Iteration 003 Prompt Pack
 
 - Focus: P3 — memory/knowledge/belief non-collision layering.

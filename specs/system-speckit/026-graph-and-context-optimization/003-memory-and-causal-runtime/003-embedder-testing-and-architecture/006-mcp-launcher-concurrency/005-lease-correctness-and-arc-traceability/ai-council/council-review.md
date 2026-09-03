@@ -1,3 +1,7 @@
+---
+title: "AI Council Review — Phase 005 lease-correctness-and-arc-traceability"
+trigger_phrases: []
+---
 # AI Council Review — Phase 005 lease-correctness-and-arc-traceability
 
 **Council**: cli-codex gpt-5.5 xhigh

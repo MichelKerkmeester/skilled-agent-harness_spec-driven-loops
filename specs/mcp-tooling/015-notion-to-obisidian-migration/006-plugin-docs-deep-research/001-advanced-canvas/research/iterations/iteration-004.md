@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Final Convergence Pass — VERIFY Flag Audit, Q1/Q5 Closure, Complete Recommendation Synthesis"
+trigger_phrases: []
+---
 # Iteration 4: Final Convergence Pass — VERIFY Flag Audit, Q1/Q5 Closure, Complete Recommendation Synthesis
 
 ## Focus

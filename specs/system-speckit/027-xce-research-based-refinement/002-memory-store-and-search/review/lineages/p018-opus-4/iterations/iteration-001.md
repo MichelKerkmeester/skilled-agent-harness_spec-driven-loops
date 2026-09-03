@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — reindex-scan responsiveness and cancellation"
+trigger_phrases: []
+---
 # Iteration 001 — reindex-scan responsiveness and cancellation
 
 Lineage: `p018-opus-4` | Executor: cli-claude-code (claude-opus-4-8) | Dimensions: correctness + security + spec-alignment + completeness (single fan-out pass)

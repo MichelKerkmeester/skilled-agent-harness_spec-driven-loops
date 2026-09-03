@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 — Unit-of-memory & storage-model contrast (transfer filter)"
+trigger_phrases: []
+---
 # Iteration 011 — Unit-of-memory & storage-model contrast (transfer filter)
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.72 · **tokens:** 134288 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

@@ -6,6 +6,7 @@ severity_model: P0/P1/P2
 iterations: 10
 session_id: fanout-luna-1786120169844-ep05xl
 executor: cli-codex model=gpt-5.6-luna
+trigger_phrases: []
 ---
 
 # Verdict

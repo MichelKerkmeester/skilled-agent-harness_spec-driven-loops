@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: template-rendering-correctness"
+trigger_phrases: []
+---
 # Iteration 003: template-rendering-correctness
 
 **Dimension**: template-rendering-correctness  

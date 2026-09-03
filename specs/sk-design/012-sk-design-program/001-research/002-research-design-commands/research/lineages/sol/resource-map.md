@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Why do the five sk-design thin-router commands fail to help create designs, and how should they be rebuilt into genuine creation-template prompts under an /interface namespace while still routing to sk-design modes?"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

@@ -1,3 +1,7 @@
+---
+title: "Document Diff v1 Architecture — Research Synthesis"
+trigger_phrases: []
+---
 # Document Diff v1 Architecture — Research Synthesis
 
 **Generated**: 2026-07-13T16:15:00Z | **Lineage**: fanout-document-diff-3  

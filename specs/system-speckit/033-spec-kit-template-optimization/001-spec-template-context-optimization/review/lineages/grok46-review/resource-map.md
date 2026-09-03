@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — specs/system-speckit/034-spec-template-context-optimizations"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

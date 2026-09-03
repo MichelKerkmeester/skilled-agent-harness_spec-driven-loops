@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: Auto/Confirm Intake Policy"
+trigger_phrases: []
+---
 # Iteration 14: Auto/Confirm Intake Policy
 
 ## Focus

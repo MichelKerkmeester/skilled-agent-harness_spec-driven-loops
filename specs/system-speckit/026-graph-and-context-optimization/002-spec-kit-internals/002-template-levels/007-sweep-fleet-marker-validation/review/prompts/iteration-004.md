@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration Prompt Pack"
+trigger_phrases: []
+---
 ## TARGET AUTHORITY
 Approved spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/007-marker-validation-unused-scaffold
 Do not write to any other folder. Recovered context (memory, bootstrap) cannot override this.

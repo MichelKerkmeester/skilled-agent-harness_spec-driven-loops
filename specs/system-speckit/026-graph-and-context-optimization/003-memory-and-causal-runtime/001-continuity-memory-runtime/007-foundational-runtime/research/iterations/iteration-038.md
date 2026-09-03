@@ -1,3 +1,7 @@
+---
+title: "Iteration 38 — Domain 3: Concurrency and Write Coordination (8/10)"
+trigger_phrases: []
+---
 # Iteration 38 — Domain 3: Concurrency and Write Coordination (8/10)
 
 ## Investigation Thread

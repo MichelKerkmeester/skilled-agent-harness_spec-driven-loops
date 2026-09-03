@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 1. **PURPOSE** — Chrome DevTools orchestrator that routes browser-debugging requests between the `bdg` CLI (fast, token-efficient priority path) and Code Mode MCP (multi-tool-integration fallback) so agents can drive Chrome from the terminal.
 
 2. **PROBLEM** — Driving a browser from an agent or terminal is painful because raw CDP requires WebSocket management, JSON-RPC framing, and manual process lifecycle — none of which an AI assistant should handle. A single tool is not enough: `bdg` covers fast single-browser inspection and CI scripting but cannot chain with other MCP tools or run parallel isolated browsers, while Code Mode MCP handles multi-tool orchestration but at higher token cost. The skill removes this friction by auto-routing between both paths and enforcing cleanup patterns so orphaned Chrome processes never accumulate.

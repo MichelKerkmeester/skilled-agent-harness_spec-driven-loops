@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness and Template Structure"
+trigger_phrases: []
+---
 # Iteration 1: Correctness and Template Structure
 
 ## Dispatcher

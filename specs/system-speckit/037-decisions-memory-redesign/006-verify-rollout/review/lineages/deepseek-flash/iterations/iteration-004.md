@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: D2 Security — Input validation, path handling, secrets, boundaries"
+trigger_phrases: []
+---
 # Iteration 4: D2 Security — Input validation, path handling, secrets, boundaries
 
 ## Focus

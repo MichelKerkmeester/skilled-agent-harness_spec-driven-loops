@@ -1,3 +1,7 @@
+---
+title: "Why the classification observer cannot be written truthfully today"
+trigger_phrases: []
+---
 # Why the classification observer cannot be written truthfully today
 
 The previous note called the observer "the only thing genuinely missing" and described it as

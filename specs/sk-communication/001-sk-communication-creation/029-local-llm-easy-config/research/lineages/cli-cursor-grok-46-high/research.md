@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis: Local LLM Easy Config (cli-cursor-grok-46-high lineage)"
+trigger_phrases: []
+---
 # Deep Research Synthesis: Local LLM Easy Config (cli-cursor-grok-46-high lineage)
 
 Lineage: cli-cursor-grok-46-high | executor: cli-cursor / cursor-grok-4.6-high | session: fanout-cli-cursor-grok-46-high-1786720025911-6qn2nd | stop: max-iterations (5/5)

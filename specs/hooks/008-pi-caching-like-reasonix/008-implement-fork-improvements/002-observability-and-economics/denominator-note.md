@@ -1,3 +1,7 @@
+---
+title: "Cache Hit-Rate Denominator Note"
+trigger_phrases: []
+---
 # Cache Hit-Rate Denominator Note
 
 The two forks expose different token denominators. Their percentages must not be combined directly.

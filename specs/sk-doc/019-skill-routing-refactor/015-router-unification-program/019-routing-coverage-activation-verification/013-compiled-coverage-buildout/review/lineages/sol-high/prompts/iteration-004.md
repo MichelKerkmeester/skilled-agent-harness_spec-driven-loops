@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW ITERATION 004
 
 Focus: traceability across canonical status, checklist evidence, sign-off, implementation summary, and tests.

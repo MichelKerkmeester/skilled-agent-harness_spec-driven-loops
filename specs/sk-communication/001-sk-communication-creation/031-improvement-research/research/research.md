@@ -1,3 +1,7 @@
+---
+title: "Deep Research: Phase 031 Communication Projection Improvement — Ranked Recommendations"
+trigger_phrases: []
+---
 # Deep Research: Phase 031 Communication Projection Improvement — Ranked Recommendations
 
 > Canonical deep-research deliverable. Grounded in the current shipped Phase 030 tree (this worktree ships the `localProvider` loader). Source evidence: `research/iterations/iteration-001.md` … `iteration-005.md` and the findings registry.

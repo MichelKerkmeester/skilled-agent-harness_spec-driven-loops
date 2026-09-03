@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: Classify the MCP claim"
+trigger_phrases: []
+---
 # Iteration 13: Classify the MCP claim
 
 ## Focus

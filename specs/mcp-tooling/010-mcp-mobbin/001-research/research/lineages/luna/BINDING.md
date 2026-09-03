@@ -1,3 +1,7 @@
+---
+title: "Detached lineage binding"
+trigger_phrases: []
+---
 # Detached lineage binding
 
 - artifact_dir: `.opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/lineages/luna`

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Manual testing playbook coverage for late 028 flags and verdict behavior"
+trigger_phrases: []
+---
 # Iteration 3: Manual testing playbook coverage for late 028 flags and verdict behavior
 
 ## Focus

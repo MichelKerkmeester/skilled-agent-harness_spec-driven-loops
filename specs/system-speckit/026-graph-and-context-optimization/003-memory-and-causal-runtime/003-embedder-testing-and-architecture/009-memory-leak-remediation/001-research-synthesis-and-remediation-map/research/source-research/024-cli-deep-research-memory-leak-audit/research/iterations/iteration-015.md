@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Integrated recommendation review after iterations 011-014: final reorder, merge/split decisions, implementation readiness, exact next packet, and what continuation synthesis should add to `research.md`.

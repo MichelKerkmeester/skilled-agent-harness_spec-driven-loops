@@ -1,3 +1,7 @@
+---
+title: "Batch B Summary - Security Hardening"
+trigger_phrases: []
+---
 # Batch B Summary - Security Hardening
 
 Spec folder:

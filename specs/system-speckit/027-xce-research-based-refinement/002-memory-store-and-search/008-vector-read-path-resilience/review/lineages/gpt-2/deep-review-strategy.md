@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: Vector Read-Path Resilience & Performance"
+trigger_phrases: []
+---
 # Deep Review Strategy: Vector Read-Path Resilience & Performance
 
 <!-- ANCHOR:topic -->

@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — Adversarial Verify of F-A6-01 (dimension: maintainability, angle: A6-verify)"
+trigger_phrases: []
+---
 # Iteration 014 — Adversarial Verify of F-A6-01 (dimension: maintainability, angle: A6-verify)
 
 ## Dispatcher

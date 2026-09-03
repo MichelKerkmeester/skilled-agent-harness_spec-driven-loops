@@ -1,3 +1,7 @@
+---
+title: "Iteration 007: In-process MCP resource lifetime audit"
+trigger_phrases: []
+---
 # Iteration 007: In-process MCP resource lifetime audit
 ## Focus
 Inspect MCP server, context server, memory save/search/index handlers, reducer scripts, background timers, caches, retry jobs, and file handles for long-lived resources that can accumulate or keep processes alive unexpectedly.

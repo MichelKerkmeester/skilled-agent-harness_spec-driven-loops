@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 6 (of 10) — traceability core (spec_code + checklist_evidence)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 6 (of 10) — traceability core (spec_code + checklist_evidence)
 
 ## TARGET AUTHORITY (read first)

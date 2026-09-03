@@ -1,3 +1,7 @@
+---
+title: "MCP Front Proxy Follow-up Implementation Designs"
+trigger_phrases: []
+---
 # MCP Front Proxy Follow-up Implementation Designs
 
 ## Summary

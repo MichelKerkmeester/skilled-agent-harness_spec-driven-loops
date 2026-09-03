@@ -8,6 +8,7 @@ scan_roots:
   - .opencode/skills/system-spec-kit/templates/
   - .opencode/skills/system-spec-kit/scripts/spec/validate.sh
 rows: 30
+trigger_phrases: []
 ---
 
 Scope note: this map stays inside template and validator surfaces. Where phase 018 depends on `create.sh`, save handlers, or runtime merge logic, those are called out only as dependencies, not audited targets here.

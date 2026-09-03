@@ -13,6 +13,7 @@ _memory:
     next_safe_action: "Baseline the validator corpus before changing the gate."
     blockers: []
     key_files: []
+trigger_phrases: []
 ---
 
 # Tasks: Deep-Review Remediation

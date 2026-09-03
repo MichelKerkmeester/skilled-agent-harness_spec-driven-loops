@@ -1,3 +1,7 @@
+---
+title: "Consolidated Deep-Review Report — Session-Shipped Work (3 commits on skilled/v4.0.0.0)"
+trigger_phrases: []
+---
 # Consolidated Deep-Review Report — Session-Shipped Work (3 commits on skilled/v4.0.0.0)
 
 > **Verdict: CONDITIONAL** (both lineages independently converged on CONDITIONAL)

@@ -1,3 +1,7 @@
+---
+title: "Sequence"
+trigger_phrases: []
+---
 # Sequence
 
 **Best for:** request/response flows, protocol exchanges, multi-actor interactions over time, API call traces, incident reconstructions, auth/token refresh paths with branching.

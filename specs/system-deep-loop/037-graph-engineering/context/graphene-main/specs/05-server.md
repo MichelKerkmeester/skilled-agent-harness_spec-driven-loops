@@ -1,3 +1,7 @@
+---
+title: "Graphene · 05 · The server"
+trigger_phrases: []
+---
 # Graphene · 05 · The server
 
 ## 1. Why it exists

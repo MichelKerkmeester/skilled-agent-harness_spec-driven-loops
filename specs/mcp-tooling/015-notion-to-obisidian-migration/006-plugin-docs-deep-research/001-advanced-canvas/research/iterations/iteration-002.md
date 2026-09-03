@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Byte-Level Confirmation, GitHub Repo Pass, Doc-Gap Analysis"
+trigger_phrases: []
+---
 # Iteration 2: Byte-Level Confirmation, GitHub Repo Pass, Doc-Gap Analysis
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Research: Memory MCP → CLI Feasibility (Merged Synthesis)"
+trigger_phrases: []
+---
 # Deep Research: Memory MCP → CLI Feasibility (Merged Synthesis)
 
 - **Date:** 2026-06-06 · **Session:** `dr-20260606T105055-fanout028` · **Mode:** 3-lane heterogeneous fan-out, forced 5 iterations per lane

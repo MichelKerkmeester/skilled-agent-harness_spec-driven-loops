@@ -1,3 +1,7 @@
+---
+title: "Iteration 20: Adversarial Coverage and Decision Audit"
+trigger_phrases: []
+---
 # Iteration 20: Adversarial Coverage and Decision Audit
 
 ## Focus

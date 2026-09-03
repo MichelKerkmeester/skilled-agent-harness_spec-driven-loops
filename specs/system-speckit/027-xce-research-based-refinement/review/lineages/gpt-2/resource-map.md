@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map"
+trigger_phrases: []
+---
 # Review Resource Map
 
 - Touched entries: `spec.md`, `description.json`, `graph-metadata.json`, `resource-map.md`, `timeline.md`, `changelog/README.md`, and `011-command-presentation-workflow-separation/spec.md`.

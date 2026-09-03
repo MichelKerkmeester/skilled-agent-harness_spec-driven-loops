@@ -1,6 +1,7 @@
 ---
 title: Deep Review Iteration 001 - Inventory Pass
 description: Inventory-pass narrative for the sk-design Claude-parity deep review.
+trigger_phrases: []
 ---
 
 # Deep Review Iteration 001 - Inventory Pass

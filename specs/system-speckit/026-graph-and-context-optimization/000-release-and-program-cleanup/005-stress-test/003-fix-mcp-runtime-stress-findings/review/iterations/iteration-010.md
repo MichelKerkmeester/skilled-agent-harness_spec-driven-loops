@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 - Synthesis prep and adversarial self-check"
+trigger_phrases: []
+---
 # Iteration 010 - Synthesis prep and adversarial self-check
 
 ## Focus

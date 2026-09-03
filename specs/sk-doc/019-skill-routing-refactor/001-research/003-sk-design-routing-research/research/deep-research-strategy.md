@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - sk-design Routing"
+trigger_phrases: []
+---
 # Deep Research Strategy - sk-design Routing
 
 ## 2. TOPIC

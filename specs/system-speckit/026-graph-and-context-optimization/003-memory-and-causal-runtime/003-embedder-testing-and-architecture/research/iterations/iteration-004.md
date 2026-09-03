@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Iteration 4 audited arc `003-skill-advisor-stack`, covering the phase parent plus children `001-pluggable-architecture`, `002-jina-swap-and-reindex`, `003-install-guide-docs`, and `004-skill-graph-db-writer-cross-wire`.

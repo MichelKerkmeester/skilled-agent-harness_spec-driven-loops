@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I've completed iteration 4 focusing on the maintainability dimension. The iteration file has been written to:
 
 `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/002-cross-launcher-lease-propagation/review/iterations/iteration-004.md`

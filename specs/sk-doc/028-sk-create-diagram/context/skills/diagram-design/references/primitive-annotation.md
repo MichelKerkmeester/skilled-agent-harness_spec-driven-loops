@@ -1,3 +1,7 @@
+---
+title: "Annotation Callout (italic-serif aside)"
+trigger_phrases: []
+---
 # Annotation Callout (italic-serif aside)
 
 Use for editorial asides — the "italic pointer" that marks a detail without competing with the primary diagram grammar. Think marginalia: *"structure IS the index"*, *"no imports, no configuration"*.

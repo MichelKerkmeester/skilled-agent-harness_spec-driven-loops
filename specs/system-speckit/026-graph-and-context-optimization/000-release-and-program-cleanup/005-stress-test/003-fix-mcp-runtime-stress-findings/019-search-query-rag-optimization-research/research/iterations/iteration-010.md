@@ -1,3 +1,7 @@
+---
+title: "Iteration 010: Synthesis and Phase D Planning"
+trigger_phrases: []
+---
 # Iteration 010: Synthesis and Phase D Planning
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Legal-Stop Replay"
+trigger_phrases: []
+---
 # Iteration 6: Legal-Stop Replay
 
 ## Focus

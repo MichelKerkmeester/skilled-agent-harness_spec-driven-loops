@@ -1,3 +1,7 @@
+---
+title: "Knowledge Extraction: Entities, Relations, Events"
+trigger_phrases: []
+---
 # Knowledge Extraction: Entities, Relations, Events
 *(Course lectures 4-7, translated and adapted)*
 

@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: /fast command collision - duplicate command/flag registration behavior; safe install/remove ordering; verification method"
+trigger_phrases: []
+---
 # Iteration 5: /fast command collision - duplicate command/flag registration behavior; safe install/remove ordering; verification method
 
 ## Focus

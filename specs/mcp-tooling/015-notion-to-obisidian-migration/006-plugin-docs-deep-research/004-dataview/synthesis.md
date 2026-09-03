@@ -1,3 +1,7 @@
+---
+title: "Dataview Docs Deep-Research Synthesis"
+trigger_phrases: []
+---
 # Dataview Docs Deep-Research Synthesis
 
 > Fresh-reviewer synthesis turning the 3-iteration Dataview research into an actionable, evidence-cited edit plan for the shipped `references/plugins/dataview/*` + `feature-catalog/plugins/dataview.md` surface. Read-only on all shipped docs; this file is the only write. Every `§` anchor below was re-verified against the live shipped files (the research warned they might be stale — they are NOT; see anchor-verification note).

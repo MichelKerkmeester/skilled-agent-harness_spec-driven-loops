@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 PRE-BOUND SETUP ANSWERS:
 review_target: specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure
 review_target_type: spec-folder

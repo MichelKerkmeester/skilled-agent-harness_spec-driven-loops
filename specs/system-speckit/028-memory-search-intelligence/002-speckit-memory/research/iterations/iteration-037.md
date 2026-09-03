@@ -1,3 +1,7 @@
+---
+title: "Iteration 37: Round J Build Sequence — Memory MCP (4-phase, critical path C4-A→C4-C→C-G1)"
+trigger_phrases: []
+---
 # Iteration 37: Round J Build Sequence — Memory MCP (4-phase, critical path C4-A→C4-C→C-G1)
 
 ## Focus

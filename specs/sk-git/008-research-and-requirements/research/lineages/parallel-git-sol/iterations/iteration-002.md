@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Workspace Isolation and Safe Freshness"
+trigger_phrases: []
+---
 # Iteration 2: Workspace Isolation and Safe Freshness
 
 ## Focus

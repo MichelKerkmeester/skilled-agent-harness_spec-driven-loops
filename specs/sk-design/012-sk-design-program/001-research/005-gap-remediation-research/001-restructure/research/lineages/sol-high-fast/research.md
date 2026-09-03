@@ -1,6 +1,7 @@
 ---
 title: "Deep Research: sk-design Styles Tree Restructure"
 description: "Evidence-backed target layout, dependency-ordered migration, verification gates, and git-mv plan for separating style data from source and mutable database state."
+trigger_phrases: []
 ---
 
 # sk-design Styles Tree Restructure

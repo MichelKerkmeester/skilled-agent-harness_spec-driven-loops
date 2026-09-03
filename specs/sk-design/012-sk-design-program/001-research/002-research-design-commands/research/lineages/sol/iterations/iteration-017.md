@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: Namespace Migration and Compatibility"
+trigger_phrases: []
+---
 # Iteration 17: Namespace Migration and Compatibility
 
 ## Focus

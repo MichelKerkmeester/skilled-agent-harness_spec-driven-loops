@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: code READMEs — system-deep-loop"
+trigger_phrases: []
+---
 # Iteration 8: code READMEs — system-deep-loop
 
 > dimension: accuracy | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

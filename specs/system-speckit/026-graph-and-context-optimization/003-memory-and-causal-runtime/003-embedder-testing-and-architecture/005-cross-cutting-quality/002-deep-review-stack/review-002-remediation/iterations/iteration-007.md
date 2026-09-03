@@ -7,6 +7,7 @@ model: swe-1.6
 recipe: agent-config-deep-review-iter.json
 review_target_commit: ba6816a490b1a20d4f74135179c10096c5348921
 is_final_iter: true
+trigger_phrases: []
 ---
 
 # Iter 7 — Adversarial Residual + Test Audit

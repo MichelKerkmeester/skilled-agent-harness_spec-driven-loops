@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Context/Memory System & Reducer Prior Art Verification"
+trigger_phrases: []
+---
 # Iteration 3: Context/Memory System & Reducer Prior Art Verification
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "mcp-tooling (CP1) — golden verification receipt"
+trigger_phrases: []
+---
 # mcp-tooling (CP1) — golden verification receipt
 
 - Hub: mcp-tooling

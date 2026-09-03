@@ -1,3 +1,7 @@
+---
+title: "Iteration 16 (Round L): Q10 deep — causal/derived path content-addressing + C4-B blast-radius"
+trigger_phrases: []
+---
 # Iteration 16 (Round L): Q10 deep — causal/derived path content-addressing + C4-B blast-radius
 
 ## Focus

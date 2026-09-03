@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: Inline Fields and DataviewJS — Access/Query Patterns and File-Layer Syntax"
+trigger_phrases: []
+---
 # Iteration 003: Inline Fields and DataviewJS — Access/Query Patterns and File-Layer Syntax
 
 ## Focus

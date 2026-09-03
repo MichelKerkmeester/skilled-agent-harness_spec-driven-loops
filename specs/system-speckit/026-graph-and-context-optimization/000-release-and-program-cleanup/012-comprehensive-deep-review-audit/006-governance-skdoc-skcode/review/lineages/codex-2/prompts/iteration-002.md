@@ -1,1 +1,4 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY: Iteration 2 of 7. Focus dimension: security. Active findings: F001 P1. Review governance bypass surfaces around constitutional comment hygiene, checker escapes, and hook guidance. Target files are read-only.

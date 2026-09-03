@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Relocating `.opencode/specs`"
+trigger_phrases: []
+---
 # Deep Research Strategy — Relocating `.opencode/specs`
 
 ## 1. OVERVIEW

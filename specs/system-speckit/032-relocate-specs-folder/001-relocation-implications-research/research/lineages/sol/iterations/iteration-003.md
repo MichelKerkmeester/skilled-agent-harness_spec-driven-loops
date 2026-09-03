@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Git, ignore precedence, and downstream repositories"
+trigger_phrases: []
+---
 # Iteration 3: Git, ignore precedence, and downstream repositories
 
 ## Focus

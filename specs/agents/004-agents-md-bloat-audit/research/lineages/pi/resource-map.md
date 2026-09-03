@@ -1,3 +1,7 @@
+---
+title: "Resource Map — AGENTS.md Bloat Audit (lineage pi)"
+trigger_phrases: []
+---
 # Resource Map — AGENTS.md Bloat Audit (lineage pi)
 
 Derived from converged deltas of the research loop. Covers files inventoried as evidence during iterations 1–5.

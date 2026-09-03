@@ -1,3 +1,7 @@
+---
+title: "bash scripts/setup.sh               # core stack only (the app; optional services off)"
+trigger_phrases: []
+---
 <div align="center">
   <img src="public/og-image.png" alt="AgentSwarms" width="140" style="border-radius:28px" />
 

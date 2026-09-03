@@ -1,3 +1,7 @@
+---
+title: "CONTEXT"
+trigger_phrases: []
+---
 # CONTEXT
 READ-ONLY codebase-context analyzer, deep-context loop iteration 5 — a COMPLETENESS-CRITIC / gap-fill
 pass over `system-spec-kit/026-graph-and-context-optimization`. Iters 1–4 already mapped: the program

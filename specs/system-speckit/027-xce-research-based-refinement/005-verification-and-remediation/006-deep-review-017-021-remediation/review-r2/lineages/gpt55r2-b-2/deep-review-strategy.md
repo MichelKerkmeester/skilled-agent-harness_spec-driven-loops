@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - B-rest-of-002"
+trigger_phrases: []
+---
 # Deep Review Strategy - B-rest-of-002
 
 ## 1. Topic

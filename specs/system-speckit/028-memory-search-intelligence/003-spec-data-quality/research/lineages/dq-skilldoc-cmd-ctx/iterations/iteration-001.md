@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — KQ1: SKILL DOCS smart-router fidelity + frontmatter uniformity"
+trigger_phrases: []
+---
 # Iteration 001 — KQ1: SKILL DOCS smart-router fidelity + frontmatter uniformity
 
 **Focus:** Granular per-skill on-write DQ checks beyond the DQI band scorer (the dq-probe F1 headline). What can be automated below that headline.

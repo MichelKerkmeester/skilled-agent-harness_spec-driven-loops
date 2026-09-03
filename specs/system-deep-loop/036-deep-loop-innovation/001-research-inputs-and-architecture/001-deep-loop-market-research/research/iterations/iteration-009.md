@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 9 | model luna (gpt-5.6-luna) | angle: Observability & gauges | 2026-07-14T21:58:37.056Z -->
 
 Iteration 9 conclusion: observability tooling is strong at trace capture, cost/latency metrics, and dashboards, but weak at proving iterative progress. The transferable design is append-only JSONL as the source of truth, typed spans for work, timestamped events for state transitions, and derived gauges for convergence.

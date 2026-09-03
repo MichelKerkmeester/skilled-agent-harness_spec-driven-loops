@@ -1,3 +1,7 @@
+---
+title: "Iteration 11: Audit Pi context-engine capabilities"
+trigger_phrases: []
+---
 # Iteration 11: Audit Pi context-engine capabilities
 
 ## Focus

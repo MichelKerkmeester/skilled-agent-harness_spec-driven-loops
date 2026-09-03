@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 005 — documentation"
+trigger_phrases: []
+---
 # Codex Iteration 005 — documentation
 
 ## Sequential-thinking preflight

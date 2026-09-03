@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: sk- Prefix Mode Packet Rename (030-mode-sk-prefix-rename)"
+trigger_phrases: []
+---
 # Deep Review Report: sk- Prefix Mode Packet Rename (030-mode-sk-prefix-rename)
 
 Lineage: `grok-4-5-high` | Session: `fanout-grok-4-5-high-1785304228962-ywfkk2` | Executor: cli-cursor (cursor-grok-4.5-high)

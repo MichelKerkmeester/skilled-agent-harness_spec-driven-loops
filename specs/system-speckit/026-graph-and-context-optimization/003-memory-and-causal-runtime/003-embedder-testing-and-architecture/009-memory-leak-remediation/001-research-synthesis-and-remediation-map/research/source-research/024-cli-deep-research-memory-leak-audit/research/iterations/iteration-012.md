@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Validate the background-index lifecycle and code-graph launcher single-owner/orphan-reap recommendations. This pass checks whether the existing `daemon-and-mcp-bg-index-task-lifecycle` recommendation should stay as one packet or split by process boundary, what shutdown can safely do when background indexing is already in a ThreadPool worker, and what code-graph launcher tests are needed to prevent duplicate owners or DB corruption.

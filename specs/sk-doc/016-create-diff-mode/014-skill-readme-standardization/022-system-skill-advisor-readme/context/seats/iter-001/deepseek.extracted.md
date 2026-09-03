@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now I have all the data needed. Here is the report:
 
 ---

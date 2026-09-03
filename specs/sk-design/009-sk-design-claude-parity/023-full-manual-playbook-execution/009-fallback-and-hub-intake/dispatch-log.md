@@ -1,3 +1,7 @@
+---
+title: "Dispatch Log: Wave 009 - Fallback & Hub-Manager Intake Dispatches"
+trigger_phrases: []
+---
 # Dispatch Log: Wave 009 - Fallback & Hub-Manager Intake Dispatches
 
 One row per dispatch executed. Advisor probe run via `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "<clean exact prompt>" --threshold 0.8`. Real dispatch run via `timeout 300 opencode run --model openai/gpt-5.5-fast --variant medium --format json --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public "<prompt + addendum>" </dev/null`. Transcripts captured at `/tmp/skd-<dispatch_id>-response.jsonl`.

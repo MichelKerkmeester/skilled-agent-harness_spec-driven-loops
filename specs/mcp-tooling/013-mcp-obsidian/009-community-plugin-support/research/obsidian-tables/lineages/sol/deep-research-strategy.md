@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — obsidian-tables"
+trigger_phrases: []
+---
 # Deep Research Strategy — obsidian-tables
 
 ## 1. OVERVIEW

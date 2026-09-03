@@ -6,6 +6,7 @@ generated_at: "2026-05-21"
 iterations_completed: 10
 review_target: "system-spec-kit/.../011-spec-memory-rerank-decision-arc"
 final_verdict: "PASS (all 15 findings closed; 26/26 touched-vitest pass)"
+trigger_phrases: []
 ---
 
 # Deep Review Report — 011-spec-memory-rerank-decision-arc

@@ -1,3 +1,7 @@
+---
+title: "R2-20 Claim-Honesty (documentation angle)"
+trigger_phrases: []
+---
 # R2-20 Claim-Honesty (documentation angle)
 
 **Angle summary:** Cross-cut every 005 doc for the four overstatement shapes (planned-reads-as-shipped, proposed-flag-reads-as-live, metric-reads-as-measured, the A4 GO overstated). The research-only contract holds almost everywhere and every load-bearing live-code premise verifies. The single soft spot is the word "measured" attached to A4, where a measured census input and an unrun GO outcome blur together in the narrative docs.

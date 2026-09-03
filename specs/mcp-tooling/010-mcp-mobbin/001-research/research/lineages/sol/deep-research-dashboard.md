@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — Mobbin MCP Sol Lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — Mobbin MCP Sol Lineage
 
 ## Lifecycle

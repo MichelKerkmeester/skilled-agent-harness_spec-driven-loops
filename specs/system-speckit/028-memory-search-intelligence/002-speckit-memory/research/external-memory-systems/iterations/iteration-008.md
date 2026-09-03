@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 (MiMo lineage): Graphiti community detection + Cognee retriever zoo"
+trigger_phrases: []
+---
 # Iteration 8 (MiMo lineage): Graphiti community detection + Cognee retriever zoo
 
 > Model: **MiMo v2.5 Pro** (`xiaomi/mimo-v2.5-pro --variant high`, 1M ctx, read-only, via `opencode run`). Orchestrator-written. newInfoRatio **0.8** (freshly-mined surface: Graphiti's community layer + Cognee's retriever classes — neither touched in iters 1-6). **8 candidates, 5 NET-NEW.**

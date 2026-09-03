@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Git Publication Invariants and Integration Strategies"
+trigger_phrases: []
+---
 # Iteration 1: Git Publication Invariants and Integration Strategies
 
 ## Focus

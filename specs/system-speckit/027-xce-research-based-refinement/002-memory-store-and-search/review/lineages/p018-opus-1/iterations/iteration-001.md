@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Full-dimension review of reindex-scan responsiveness + cancellation"
+trigger_phrases: []
+---
 # Iteration 1: Full-dimension review of reindex-scan responsiveness + cancellation
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "system-deep-loop (CP6) — checkpoint receipt"
+trigger_phrases: []
+---
 # system-deep-loop (CP6) — checkpoint receipt
 
 - Hub: system-deep-loop

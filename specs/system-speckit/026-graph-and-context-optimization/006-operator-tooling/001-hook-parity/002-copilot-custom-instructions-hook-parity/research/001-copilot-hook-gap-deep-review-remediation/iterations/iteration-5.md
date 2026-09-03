@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Hook mutation limits and custom agent loading"
+trigger_phrases: []
+---
 # Iteration 5: Hook mutation limits and custom agent loading
 ## Focus
 This iteration focused on Q1 and Q2: whether Copilot CLI's documented lifecycle hooks can inject startup or per-prompt payloads, and whether `/agent` / `--agent` can act as a main-session system-prompt extension point. The goal was to separate true injection surfaces from delegated-subagent surfaces.

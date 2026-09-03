@@ -1,3 +1,7 @@
+---
+title: "Iteration 031 — maintainability"
+trigger_phrases: []
+---
 # Iteration 031 — maintainability
 
 - Executor: cli-codex gpt-5.6-luna effort=xhigh service_tier=fast sandbox=read-only

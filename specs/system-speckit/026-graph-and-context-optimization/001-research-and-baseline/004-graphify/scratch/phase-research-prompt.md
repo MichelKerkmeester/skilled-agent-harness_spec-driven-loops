@@ -1,3 +1,7 @@
+---
+title: "$refine TIDD-EC Prompt: 004-graphify"
+trigger_phrases: []
+---
 # $refine TIDD-EC Prompt: 004-graphify
 
 ## Role

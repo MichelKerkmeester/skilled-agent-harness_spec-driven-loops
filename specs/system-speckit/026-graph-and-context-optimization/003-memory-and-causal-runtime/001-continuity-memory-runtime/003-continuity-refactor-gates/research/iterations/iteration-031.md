@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-031.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 031 — Tier 3 LLM Classifier Contract

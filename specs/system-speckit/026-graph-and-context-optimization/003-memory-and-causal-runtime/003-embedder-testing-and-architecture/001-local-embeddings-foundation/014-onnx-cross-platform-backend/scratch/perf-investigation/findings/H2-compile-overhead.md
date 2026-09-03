@@ -1,3 +1,7 @@
+---
+title: "H2 - Per-call Graph Compilation Overhead"
+trigger_phrases: []
+---
 # H2 - Per-call Graph Compilation Overhead
 
 Verdict: CONFIRMED

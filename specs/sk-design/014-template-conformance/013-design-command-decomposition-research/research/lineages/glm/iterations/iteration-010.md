@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Cross-Cutting View: Ranking All Candidate Seams by Value-to-Cost"
+trigger_phrases: []
+---
 # Iteration 010 — Cross-Cutting View: Ranking All Candidate Seams by Value-to-Cost
 
 **Focus:** Consolidate all candidate seams identified across iterations 1-9, rank each by value-to-cost with explicit confidence, and separate confirmed findings from inferred ones. This is the final broadening angle before synthesis — not the synthesis itself.

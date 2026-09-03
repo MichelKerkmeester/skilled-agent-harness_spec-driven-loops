@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 prompt"
+trigger_phrases: []
+---
 # Iteration 4 prompt
 
 Resolved route: mode=research target_agent=deep-research

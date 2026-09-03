@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 PRE-BOUND SETUP ANSWERS:
 review_target: specs/system-speckit/034-spec-template-context-optimizations
 review_target_type: spec-folder

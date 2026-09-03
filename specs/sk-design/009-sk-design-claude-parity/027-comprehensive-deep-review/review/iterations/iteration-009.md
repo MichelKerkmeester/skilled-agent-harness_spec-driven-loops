@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Dimension
 
 Traceability + maintainability + sk-doc structural conformance for `.opencode/skills/sk-design/design-foundations/**`.

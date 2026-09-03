@@ -1,3 +1,7 @@
+---
+title: "Enrichment Proposals for v3.4.0.0 (Barter copy)"
+trigger_phrases: []
+---
 # Enrichment Proposals for v3.4.0.0 (Barter copy)
 
 ## Search and Ranking Upgrades (proposed replacement)

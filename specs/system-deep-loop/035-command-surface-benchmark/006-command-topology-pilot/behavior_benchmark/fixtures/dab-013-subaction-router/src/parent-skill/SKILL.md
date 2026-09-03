@@ -3,6 +3,7 @@ name: parent-skill-fixture
 description: Minimal parent hub used by a read-only structural diagnostic.
 allowed-tools: [Read]
 version: 1.0.0
+trigger_phrases: []
 ---
 
 # Parent skill fixture

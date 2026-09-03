@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: HTML Report Design — Fidelity, Risk, and Structure"
+trigger_phrases: []
+---
 # Iteration 5: HTML Report Design — Fidelity, Risk, and Structure
 
 ## Focus

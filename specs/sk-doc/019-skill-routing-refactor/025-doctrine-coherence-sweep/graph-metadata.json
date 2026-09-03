@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The doc-coherence lens found 22 places where older prose contradicts the metadata contract",
     "created_at": "2026-07-28T15:14:09.404Z",
-    "last_save_at": "2026-08-30T15:39:15.674Z",
+    "last_save_at": "2026-09-03T22:29:09.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa6e653560cfc309aa0bf30b268c7513912407137366447b0603961592392741",
+    "source_fingerprint": "sha256:2e8090f56d97c400f36e96dd7301b85fa3bea0d7ca38064deee4c66e56cd9e3b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20bce1d116d5ce1edeaf8075c820053957f1826c3c5fc36821276db24f7742e3",
+      "spec.md": "954ca370800f3d886094e930a88251ff5a378acd338280410e5a2e6c07040900",
       "plan.md": "26897b7295c913ebebad702612bb6124a3b46a900983f1e6e4bd2ceafa3a49d0",
       "tasks.md": "82f5411db1799e5bbc451a6bf0efc1d09366490949c11cda154f673df24d3d81",
       "implementation-summary.md": "80d8d8396d676d8f732176187ce6dc19cb17dd99afdf4d2f2323dbc0bd12cbce"

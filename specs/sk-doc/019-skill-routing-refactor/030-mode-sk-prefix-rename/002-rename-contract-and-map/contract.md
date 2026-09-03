@@ -1,3 +1,7 @@
+---
+title: "Frozen rename contract: `sk-` mode and packet prefixes"
+trigger_phrases: []
+---
 # Frozen rename contract: `sk-` mode and packet prefixes
 
 This contract is governed by the frozen 21-row map in

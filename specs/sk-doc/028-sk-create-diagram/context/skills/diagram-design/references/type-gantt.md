@@ -1,3 +1,7 @@
+---
+title: "Gantt Chart"
+trigger_phrases: []
+---
 # Gantt Chart
 
 **Best for:** project plans and roadmaps — tasks with explicit start and end dates, grouped into phases. Use when the reader needs to see temporal overlap, parallel tracks, and milestone sequencing at a glance.

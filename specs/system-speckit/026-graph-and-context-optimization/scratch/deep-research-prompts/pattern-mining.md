@@ -3,6 +3,7 @@ title: "Deep Research Prompts — Pattern Mining"
 description: "Extract canonical patterns and best practices from N existing sources. Use when building a new skill, writing a style guide, or documenting implicit conventions."
 importance_tier: "normal"
 contextType: "research-prompts"
+trigger_phrases: []
 ---
 
 # Pattern Mining

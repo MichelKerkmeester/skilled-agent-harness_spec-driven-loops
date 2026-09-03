@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: Fan-in Verification and Deterministic Branch-to-Join Replay"
+trigger_phrases: []
+---
 # Iteration 15: Fan-in Verification and Deterministic Branch-to-Join Replay
 
 ## Focus

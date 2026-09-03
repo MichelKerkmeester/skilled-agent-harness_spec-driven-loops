@@ -1,3 +1,7 @@
+---
+title: "Deep Review Synthesis — plugin coverage review"
+trigger_phrases: []
+---
 # Deep Review Synthesis — plugin coverage review
 
 ## Outcome

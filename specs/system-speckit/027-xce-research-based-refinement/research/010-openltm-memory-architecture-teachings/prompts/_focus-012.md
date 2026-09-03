@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 012 of 15: OpenLTM's document/continuity surface vs our continuity ladder"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 012 of 15: OpenLTM's document/continuity surface vs our continuity ladder
 This is OpenLTM's CLOSEST architectural analog to us — the parts that are document-ish, not row-ish. Read:

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Hook Latency and Socket Platform Closure"
+trigger_phrases: []
+---
 # Iteration 002 - Hook Latency and Socket Platform Closure
 
 ## Scope

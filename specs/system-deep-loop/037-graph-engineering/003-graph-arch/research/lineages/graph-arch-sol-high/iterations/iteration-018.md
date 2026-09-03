@@ -1,3 +1,7 @@
+---
+title: "Iteration 18: Contradictions, Negative Evidence, and Non-Applicability"
+trigger_phrases: []
+---
 # Iteration 18: Contradictions, Negative Evidence, and Non-Applicability
 
 ## Focus

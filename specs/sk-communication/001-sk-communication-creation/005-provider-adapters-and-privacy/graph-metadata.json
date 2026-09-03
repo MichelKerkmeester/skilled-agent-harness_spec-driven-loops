@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "provider-adapters-and-privacy",
-      "provider adapters and privacy",
       "portable cli projection",
       "implementation phase",
       "implementation plan",
@@ -22,13 +21,11 @@
       "use model-scoped adapters behind a privacy-first router",
       "implementation status",
       "current state",
-      "phase 005 handover"
+      "phase 005 handover",
+      "provider privacy handover"
     ],
     "key_topics": [
       "provider-adapters-and-privacy",
-      "provider",
-      "adapters",
-      "privacy",
       "portable",
       "cli",
       "projection",
@@ -36,7 +33,10 @@
       "phase",
       "plan",
       "tasks",
-      "architecture"
+      "architecture",
+      "decision",
+      "model-scoped",
+      "adapters"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent",
     "created_at": "2026-08-11T10:04:30Z",
-    "last_save_at": "2026-08-30T15:39:11.703Z",
+    "last_save_at": "2026-09-03T22:16:41.286Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:525bcd3a51347a9cdff594d9aef597968d037b28a843541c65ac171c10dcee6e",
+    "source_fingerprint": "sha256:af530fd78b46919605beb2cb7e049b5cfa9858082852a5f318a8a0a367e26c9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4bf6acffc7e27da9d3453d7d75c5af6601e75c2b3b76529d972f95def8f2f3bd",
+      "spec.md": "9dee715d5a6d992e5eb5cc2f86b5e148c4bf08cdfe8a09a37d0706cea25c9f49",
       "plan.md": "52282cd601e9e76abc1932d24e5f4e843f1bb64141610b3123dc90aec9a76ad1",
       "tasks.md": "f180934ff55edf3d847ebce3c20db5134deaf2176e334a06e589f252c23619e9",
       "decision-record.md": "680883d20767bafb9d4a07c97f2d4e55d3f1ac18fb030fc7898265a130426608",

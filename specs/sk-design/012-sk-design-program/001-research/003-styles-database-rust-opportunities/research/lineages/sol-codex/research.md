@@ -1,3 +1,7 @@
+---
+title: "Rust Opportunity Assessment for the sk-design Styles Database"
+trigger_phrases: []
+---
 # Rust Opportunity Assessment for the sk-design Styles Database
 
 > Detached deep-research lineage `sol-codex`; session `fanout-sol-codex-1784520993412-ps7omk`; executor `cli-codex` / `gpt-5.6-sol`; 10/10 iterations; stop reason `max-iterations`. Convergence was telemetry only until the forced cap.

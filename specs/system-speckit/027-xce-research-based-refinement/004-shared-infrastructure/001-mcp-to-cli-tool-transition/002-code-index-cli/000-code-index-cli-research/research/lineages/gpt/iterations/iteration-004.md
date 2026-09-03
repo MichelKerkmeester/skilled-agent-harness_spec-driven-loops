@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: MCP Affordance Replacement Design"
+trigger_phrases: []
+---
 # Iteration 4: MCP Affordance Replacement Design
 
 ## Focus

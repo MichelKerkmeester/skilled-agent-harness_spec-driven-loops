@@ -1,3 +1,7 @@
+---
+title: "Audit D — `feature_catalog/` + `manual_testing_playbook/` + `stress_test/` (templates + mcp_server)"
+trigger_phrases: []
+---
 # Audit D — `feature_catalog/` + `manual_testing_playbook/` + `stress_test/` (templates + mcp_server)
 
 You are a fresh agent doing a focused audit. No conversation context.

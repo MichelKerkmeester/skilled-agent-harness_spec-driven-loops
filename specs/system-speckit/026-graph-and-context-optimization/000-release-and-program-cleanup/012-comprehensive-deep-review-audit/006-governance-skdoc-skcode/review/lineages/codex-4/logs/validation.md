@@ -1,3 +1,7 @@
+---
+title: "Validation Log"
+trigger_phrases: []
+---
 # Validation Log
 
 ## Artifact Validation

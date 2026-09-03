@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 (Round K): Q4 Learning Feedback Reducers × bounded Beta posterior"
+trigger_phrases: []
+---
 # Iteration 4 (Round K): Q4 Learning Feedback Reducers × bounded Beta posterior
 
 ## Focus

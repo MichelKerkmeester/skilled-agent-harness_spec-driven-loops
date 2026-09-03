@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 - Synthesis + cross-cutting amplification"
+trigger_phrases: []
+---
 # Iteration 010 - Synthesis + cross-cutting amplification
 
 ## Preflight reasoning

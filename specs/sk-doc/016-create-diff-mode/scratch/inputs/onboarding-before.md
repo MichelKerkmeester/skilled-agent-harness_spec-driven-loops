@@ -1,3 +1,7 @@
+---
+title: "Onboarding Guide"
+trigger_phrases: []
+---
 # Onboarding Guide
 
 Welcome to the platform. This guide walks new users through setup.

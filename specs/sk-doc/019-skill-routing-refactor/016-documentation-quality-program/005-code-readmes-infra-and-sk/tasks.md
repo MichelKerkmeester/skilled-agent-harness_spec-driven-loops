@@ -13,6 +13,7 @@ _memory:
     next_safe_action: "Proceed to phase 006."
     blockers: []
     key_files: []
+trigger_phrases: []
 ---
 
 # Tasks: Code READMEs (Infra and SK Batch)

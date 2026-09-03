@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — p018-opus-1"
+trigger_phrases: []
+---
 # Deep Review Dashboard — p018-opus-1
 
 **Auto-generated. Do not edit.**

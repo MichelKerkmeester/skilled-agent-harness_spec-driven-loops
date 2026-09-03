@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 1 (of 10) — Inventory + Initial Correctness Pass"
+trigger_phrases: []
+---
 # Deep-Review Iteration 1 (of 10) — Inventory + Initial Correctness Pass
 
 ## TARGET AUTHORITY (read first)

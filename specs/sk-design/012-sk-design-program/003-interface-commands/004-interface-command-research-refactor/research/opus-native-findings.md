@@ -1,3 +1,7 @@
+---
+title: "Native Opus-4.8 Research Findings — Design Commands"
+trigger_phrases: []
+---
 # Native Opus-4.8 Research Findings — Design Commands
 
 > The 2–3 "native Opus-4.8 (max)" research passes, run directly by the orchestrator (Opus 4.8) with

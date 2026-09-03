@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Automatic provider-record construction from a discovered local endpoint"
+trigger_phrases: []
+---
 # Iteration 2: Automatic provider-record construction from a discovered local endpoint
 
 ## Focus

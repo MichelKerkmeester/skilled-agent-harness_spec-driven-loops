@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness — trigger-backfill cancellation, scan instrumentation, and spec-code alignment"
+trigger_phrases: []
+---
 # Iteration 1: Correctness — trigger-backfill cancellation, scan instrumentation, and spec-code alignment
 
 ## Focus

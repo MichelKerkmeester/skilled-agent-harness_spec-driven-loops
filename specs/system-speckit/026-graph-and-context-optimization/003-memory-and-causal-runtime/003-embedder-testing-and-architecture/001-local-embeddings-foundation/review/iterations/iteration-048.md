@@ -1,3 +1,7 @@
+---
+title: "Deep Review v4 Iteration 048 - cross-packet doc currency"
+trigger_phrases: []
+---
 # Deep Review v4 Iteration 048 - cross-packet doc currency
 
 ## Focus

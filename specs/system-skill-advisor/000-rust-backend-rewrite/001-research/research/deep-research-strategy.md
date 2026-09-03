@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Strategy — Skill-Advisor Scoring Core Rust Rewrite (Packet 013 / Phase 001)"
+trigger_phrases: []
+---
 # Deep-Research Strategy — Skill-Advisor Scoring Core Rust Rewrite (Packet 013 / Phase 001)
 
 > Charter the future deep-research loop reads at the start of every round. Single lineage, GPT-5.6-sol (`xhigh`, `fast`) via `cli-codex`, up to 16 rounds. Research-only: **do not write Rust, modify backend source, or redesign the sibling-owned embedder/vector/graph-tool/transport stack.**

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Full playbook typed-gold eligibility partition"
+trigger_phrases: []
+---
 # Iteration 4: Full playbook typed-gold eligibility partition
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 3/10 cross-validation pass for packet 027.
 
 ITER 3 FOCUS: IRQ3 — Phase 003 risk-formula weight validation.

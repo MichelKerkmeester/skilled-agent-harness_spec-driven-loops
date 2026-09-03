@@ -1,3 +1,7 @@
+---
+title: "code-opencode Refinement — Final Review & Implementation Rec Plan"
+trigger_phrases: []
+---
 # code-opencode Refinement — Final Review & Implementation Rec Plan
 
 _Independent final review of the GLM-5.2 research (research.md + iterations 001–009) by a Fable-5 reviewer, read-only, with direct source spot-checks. Orchestrated by the Opus conductor. 2026-07-08._

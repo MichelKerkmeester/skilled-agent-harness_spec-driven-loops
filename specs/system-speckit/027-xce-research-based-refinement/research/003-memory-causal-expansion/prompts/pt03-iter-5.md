@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 5/10 SCOPE-EXPANSION pass for packet .opencode/specs/system-spec-kit/027-xce-research-based-refinement.
 
 CONTEXT: Iter 1-4 covered RQ-A1..A4 (coco-index group internal). This iter covers RQ-A5 — the cross-cut between coco-index and code-graph.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Provenance + audit chain"
+trigger_phrases: []
+---
 # Iteration 007 — Provenance + audit chain
 
 **Status:** insight · **Findings:** 6 · **newInfoRatio:** 0.66 · **tokens:** 95248 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

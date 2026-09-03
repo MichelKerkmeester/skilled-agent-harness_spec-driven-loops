@@ -7,6 +7,7 @@ session: "2026-06-06-027-gem-team-adoption-matrix"
 research_subject: "external/gem-team-main (mubaidr/gem-team) — self-learning multi-agent orchestration framework"
 status: "complete; verdict = VALIDATE-AND-INCREMENTALLY-REFINE — cross-model-corroborated (MiMo agrees); P1 re-scoped to dispatch-input primary"
 depth: "Exhaustive (operator-selected)"
+trigger_phrases: []
 ---
 
 # 027 Gem Team Adoption Matrix — Phase 007 Synthesis

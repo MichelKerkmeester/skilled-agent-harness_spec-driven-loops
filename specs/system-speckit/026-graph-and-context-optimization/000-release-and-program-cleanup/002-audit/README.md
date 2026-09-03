@@ -1,3 +1,7 @@
+---
+title: "000-release-cleanup / 002-audit: System audits + validation"
+trigger_phrases: []
+---
 # 000-release-cleanup / 002-audit: System audits + validation
 
 Runtime wiring, compliance checks, alignment reviews, sweeps. Hosts the absorbed 015-tanstack-security-audit (M10).

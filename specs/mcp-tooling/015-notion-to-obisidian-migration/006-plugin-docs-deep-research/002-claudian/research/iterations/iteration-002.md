@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Reconcile schema facts against shipped docs + verify live vault .claudian/ vs .claude/ state"
+trigger_phrases: []
+---
 # Iteration 2: Reconcile schema facts against shipped docs + verify live vault .claudian/ vs .claude/ state
 
 ## Focus

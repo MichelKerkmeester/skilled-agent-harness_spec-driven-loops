@@ -1,3 +1,7 @@
+---
+title: "Iteration 017 — CORRECTNESS (TS-Python cross-stack contract)"
+trigger_phrases: []
+---
 # Iteration 017 — CORRECTNESS (TS-Python cross-stack contract)
 
 ## P0 Findings

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Frozen Matrix Scope"
+trigger_phrases: []
+---
 # Iteration 001: Frozen Matrix Scope
 
 ## Scope Freeze

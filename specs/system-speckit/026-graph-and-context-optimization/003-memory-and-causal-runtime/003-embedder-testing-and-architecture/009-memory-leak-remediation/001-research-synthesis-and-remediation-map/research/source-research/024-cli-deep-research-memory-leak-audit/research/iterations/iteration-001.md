@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Process spawn & cleanup inventory (mcp-coco-index + system-code-graph)"
+trigger_phrases: []
+---
 # Iteration 001 — Process spawn & cleanup inventory (mcp-coco-index + system-code-graph)
 
 ## Focus

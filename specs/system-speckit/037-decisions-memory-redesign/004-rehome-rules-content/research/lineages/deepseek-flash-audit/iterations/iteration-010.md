@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final verification sweep — missed surfaces + assertions finalization"
+trigger_phrases: []
+---
 # Iteration 10: Final verification sweep — missed surfaces + assertions finalization
 
 ## Focus

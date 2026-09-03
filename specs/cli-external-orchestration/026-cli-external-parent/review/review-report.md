@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — whole-program review (cli-external + mcp-tooling packets + cli-opencode GPT-5.6 rename)"
+trigger_phrases: []
+---
 # Deep Review Report — whole-program review (cli-external + mcp-tooling packets + cli-opencode GPT-5.6 rename)
 
 <!-- ANCHOR:review-dimensions -->

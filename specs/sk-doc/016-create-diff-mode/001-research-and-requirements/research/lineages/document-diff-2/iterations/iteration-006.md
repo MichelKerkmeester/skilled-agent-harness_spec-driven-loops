@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Runtime Selection, Dependency Analysis, and Skill Workflow"
+trigger_phrases: []
+---
 # Iteration 6: Runtime Selection, Dependency Analysis, and Skill Workflow
 
 ## Focus

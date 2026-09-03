@@ -1,3 +1,7 @@
+---
+title: "Codex dispatch: Track C — /doctor:update unified orchestrator + 5 YAMLs (council 10-line spec)"
+trigger_phrases: []
+---
 # Codex dispatch: Track C — /doctor:update unified orchestrator + 5 YAMLs (council 10-line spec)
 
 ## ROLE

@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Adversarial Stabilization"
+trigger_phrases: []
+---
 # Iteration 5: Adversarial Stabilization
 
 ## Dispatcher

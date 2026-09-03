@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Claude Hook and Unhealthy-Transport Fallback"
+trigger_phrases: []
+---
 # Iteration 3: Claude Hook and Unhealthy-Transport Fallback
 
 ## Focus

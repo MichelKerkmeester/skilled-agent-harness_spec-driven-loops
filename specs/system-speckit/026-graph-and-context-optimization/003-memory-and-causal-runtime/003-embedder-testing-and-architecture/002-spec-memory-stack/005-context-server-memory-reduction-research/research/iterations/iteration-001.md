@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 — root memory consumers (RSS attribution: SQLite WAL, llama-cpp model weights, embedding caches, vector store, code-graph mirror, JS heap)"
+trigger_phrases: []
+---
 # Iteration 1 — root memory consumers (RSS attribution: SQLite WAL, llama-cpp model weights, embedding caches, vector store, code-graph mirror, JS heap)
 
 ## Summary

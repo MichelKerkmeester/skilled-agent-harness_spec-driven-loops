@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Empirically Validate Active-Vector Coverage"
+trigger_phrases: []
+---
 # Iteration 7: Empirically Validate Active-Vector Coverage
 
 ## Focus

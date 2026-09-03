@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Regression Evidence and Scope Boundaries"
+trigger_phrases: []
+---
 # Iteration 9: Regression Evidence and Scope Boundaries
 
 ## Files Reviewed

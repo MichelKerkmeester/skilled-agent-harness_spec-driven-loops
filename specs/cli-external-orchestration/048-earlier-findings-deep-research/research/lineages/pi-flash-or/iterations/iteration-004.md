@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — F3a: Root cause of the 1-token moondream2 OCR/VQA truncation"
+trigger_phrases: []
+---
 # Iteration 004 — F3a: Root cause of the 1-token moondream2 OCR/VQA truncation
 
 ## Focus

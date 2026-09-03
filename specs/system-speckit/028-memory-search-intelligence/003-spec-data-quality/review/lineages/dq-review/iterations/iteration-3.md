@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The dq-review lineage is complete. The deep-review loop ran end-to-end within the bound artifact directory.
 
 **Summary**

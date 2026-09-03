@@ -1,3 +1,7 @@
+---
+title: "Resource Map — Aside Developer Surface"
+trigger_phrases: []
+---
 # Resource Map — Aside Developer Surface
 
 Generated from five research iterations for session `fanout-sol-1784196482911-9atmiq`. This map records sources used by the detached lineage; it does not assert that every linked surface is stable or publicly versioned.

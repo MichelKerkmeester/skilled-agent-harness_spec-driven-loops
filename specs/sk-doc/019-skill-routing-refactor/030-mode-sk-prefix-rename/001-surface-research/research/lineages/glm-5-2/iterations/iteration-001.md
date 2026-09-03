@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Consumer classes that read packet dirs / workflowMode keys"
+trigger_phrases: []
+---
 # Iteration 001 — Consumer classes that read packet dirs / workflowMode keys
 
 **Focus (Q1):** Enumerate the consumer classes that read a packet directory name or a `workflowMode` value for the four sk- hubs. Start with the hub-level typed manifests.

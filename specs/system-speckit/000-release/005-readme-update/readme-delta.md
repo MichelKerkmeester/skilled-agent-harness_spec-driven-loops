@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 1. **Line 1311:** `- **[→ Latest System Spec-Kit Release Notes](.opencode/skills/system-spec-kit/changelog/v3.6.0.0.md)** - Most recent shipped release notes` -> `- **[→ Latest System Spec-Kit Release Notes](.opencode/skills/system-spec-kit/changelog/v4.0.0.0.md)** - Most recent shipped release notes`
    Why: The only "release notes" link in the anchors still points at v3.6.0.0; it must target the new v4.0.0.0 notes.
 

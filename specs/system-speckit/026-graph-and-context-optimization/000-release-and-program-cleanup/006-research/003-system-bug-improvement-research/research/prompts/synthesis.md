@@ -1,3 +1,7 @@
+---
+title: "Synthesis: 20-Iteration Deep Research — System Bugs and Improvements"
+trigger_phrases: []
+---
 # Synthesis: 20-Iteration Deep Research — System Bugs and Improvements
 
 You are synthesizing the 20 iteration findings of spec-kit packet 046 into the canonical `research.md` and `resource-map.md` outputs. Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.

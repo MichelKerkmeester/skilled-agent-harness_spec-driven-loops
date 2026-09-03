@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The installed devin CLI (3000.4.25) breaks non-interactive fan-out lineages in two independent ways",
     "created_at": "2026-08-17T11:20:42.518Z",
-    "last_save_at": "2026-08-30T15:39:08.038Z",
+    "last_save_at": "2026-09-03T22:15:37.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db85a34b350aa9f0c23a84bab927869db67116a6d6e2f28ebff4d990748909e6",
+    "source_fingerprint": "sha256:e38de1891a0118d2a68d54915631816cf507487d21a4b8d751b3db8c582173c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe9933ff986503f2b98fc57594034d73eed1bedca260cb8d99abc04a60701421",
-      "plan.md": "e7ae3548ee29e18c3b6862e160869d3addd4e9aca3321a4b8575b81f6a712885",
-      "tasks.md": "958726c1586ea5299b57ca10a74ab4b67ed6c12ffdec75d0009ac1707bf8f278",
-      "implementation-summary.md": "2db990cbf94430ea48cc137637c159524fc2e3a06e4d47ba4c28a1e5adddce52"
+      "plan.md": "81a6952ce18378132aaed99af7b8e44e437bfd2eef212f4f99ad3713aed168ee",
+      "tasks.md": "4cea4bc97c9910c09f49ebd4fd599363414bc4b69b0fd98ed376ca1d9ee23005",
+      "implementation-summary.md": "1f49d02df9174e447f39809dff6c5754ff749d7e99b0ae103390f910729ca70b"
     },
     "last_active_child_id": null,
     "last_active_at": null

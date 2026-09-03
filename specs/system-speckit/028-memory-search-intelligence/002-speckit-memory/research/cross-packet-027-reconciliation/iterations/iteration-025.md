@@ -1,3 +1,7 @@
+---
+title: "Iteration 25 (Round M): TemporalMode recall plumbing — cheap path vs full AsKnownAt"
+trigger_phrases: []
+---
 # Iteration 25 (Round M): TemporalMode recall plumbing — cheap path vs full AsKnownAt
 
 ## Focus

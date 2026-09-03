@@ -1,3 +1,7 @@
+---
+title: "027 Research Phase Index"
+trigger_phrases: []
+---
 # 027 Research Phase Index
 
 This folder is organized by research phase. Each numbered folder contains the iteration artifacts, JSONL deltas, prompts, and synthesis files for one research pass over the 027 XCE-derived Spec Kit refinement packet.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## ASSIGNED FOCUS — MAINTAINABILITY PASS
 
 Audit code/doc maintainability. Open files and quote file:line evidence.

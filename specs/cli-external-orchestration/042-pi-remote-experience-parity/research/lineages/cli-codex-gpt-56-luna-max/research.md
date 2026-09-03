@@ -5,6 +5,7 @@ session_id: "fanout-cli-codex-gpt-56-luna-max-1786514481346-vicu2t"
 loop_type: "research"
 iterations: 20
 stop_policy: "max-iterations"
+trigger_phrases: []
 ---
 
 # 1. Executive Summary

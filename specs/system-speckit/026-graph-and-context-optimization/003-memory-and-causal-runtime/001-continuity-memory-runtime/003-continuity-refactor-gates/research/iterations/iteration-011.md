@@ -8,6 +8,7 @@ scope: q4_features_7_8
 status: complete
 focus: "Retarget FSRS decay lifecycle (HOT→WARM→COLD→DORMANT→ARCHIVED) and memory tiers (constitutional→deprecated)."
 maps_to_questions: [Q4]
+trigger_phrases: []
 ---
 
 # Iteration 011 — Features 7, 8: FSRS Decay + Memory Tiers

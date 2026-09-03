@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Tool calls, results, and file diffs"
+trigger_phrases: []
+---
 # Iteration 004 — Tool calls, results, and file diffs
 
 ## Question

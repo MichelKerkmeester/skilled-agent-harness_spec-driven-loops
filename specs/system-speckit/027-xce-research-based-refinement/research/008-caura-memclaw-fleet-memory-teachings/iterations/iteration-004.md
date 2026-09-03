@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — self-improving memory / outcome propagation loop"
+trigger_phrases: []
+---
 # Iteration 004 — self-improving memory / outcome propagation loop
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.86 · **tokens:** 147463 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

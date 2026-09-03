@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — catalog-to-source contract comparison"
+trigger_phrases: []
+---
 # Iteration 3 — catalog-to-source contract comparison
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 20 — gpt-5.6-terra xhigh — focus: unnamed"
+trigger_phrases: []
+---
 # Iteration 20 — gpt-5.6-terra xhigh — focus: unnamed
 
 Headline: P4 cannot make compiled routing effective in the OpenCode hook as written. The advisor attaches `compiledRoute`, but the hook bridge discards it before injecting the system brief; the fallback chain also drops the future `=0` kill-switch.

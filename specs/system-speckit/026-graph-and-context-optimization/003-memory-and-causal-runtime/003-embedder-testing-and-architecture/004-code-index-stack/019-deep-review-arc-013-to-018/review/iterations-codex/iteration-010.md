@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 010 — tree-sitter adversarial edge cases"
+trigger_phrases: []
+---
 # Codex Iteration 010 — tree-sitter adversarial edge cases
 
 ## Sequential-thinking preflight

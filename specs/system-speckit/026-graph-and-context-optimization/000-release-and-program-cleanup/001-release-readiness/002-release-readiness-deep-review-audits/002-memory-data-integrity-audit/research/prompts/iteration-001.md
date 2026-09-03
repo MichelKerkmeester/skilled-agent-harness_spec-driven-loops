@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 045/002: memory-data-integrity — Deep-review angle 2 (release-readiness)
 
 ### CRITICAL: Spec folder path

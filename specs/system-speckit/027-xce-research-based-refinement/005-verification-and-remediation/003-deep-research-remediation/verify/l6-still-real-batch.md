@@ -1,3 +1,7 @@
+---
+title: "L6 Batch Still-Real Verification — save/continuity truth (17 findings)"
+trigger_phrases: []
+---
 # L6 Batch Still-Real Verification — save/continuity truth (17 findings)
 
 > Verifier: fresh Fable 5 pass, 2026-06-12. Every citation below was re-read from current working-tree code; banked line numbers from the original triage were NOT trusted.

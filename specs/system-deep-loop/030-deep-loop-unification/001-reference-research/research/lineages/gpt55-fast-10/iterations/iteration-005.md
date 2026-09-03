@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Inventory Command And Agent Migration Surfaces"
+trigger_phrases: []
+---
 # Iteration 5: Inventory Command And Agent Migration Surfaces
 
 ## Focus

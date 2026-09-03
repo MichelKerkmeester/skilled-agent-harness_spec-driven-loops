@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Pi hook adapter end-to-end audit"
+trigger_phrases: []
+---
 # Iteration 7: Pi hook adapter end-to-end audit
 
 ## Focus

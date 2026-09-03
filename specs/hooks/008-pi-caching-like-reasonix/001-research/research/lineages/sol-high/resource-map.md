@@ -1,3 +1,7 @@
+---
+title: "SOL High Research Resource Map"
+trigger_phrases: []
+---
 # SOL High Research Resource Map
 
 ## Local Inputs

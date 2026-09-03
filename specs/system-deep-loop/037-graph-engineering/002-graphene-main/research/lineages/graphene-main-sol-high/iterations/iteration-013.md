@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: P7 Durable Fenced Human Decision and Effect Authorization"
+trigger_phrases: []
+---
 # Iteration 13: P7 Durable Fenced Human Decision and Effect Authorization
 
 ## Focus

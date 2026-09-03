@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Structural Layout — Where Does Each Component Land?"
+trigger_phrases: []
+---
 # Iteration 1: Structural Layout — Where Does Each Component Land?
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Stress-Test Result Synthesis Report"
+trigger_phrases: []
+---
 # Stress-Test Result Synthesis Report
 
 You are producing a comprehensive synthesis report covering EVERY test file in the stress test folder. Output destination: `<PACKET_044>/stress-test-synthesis.md`.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Config compatibility & migration — pi-openai-fast-mode schema and self-upgrade; pi-gpt-fast-mode models list; migration path; both-configs-read question"
+trigger_phrases: []
+---
 # Iteration 4: Config compatibility & migration — pi-openai-fast-mode schema and self-upgrade; pi-gpt-fast-mode models list; migration path; both-configs-read question
 
 ## Focus

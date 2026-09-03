@@ -1,3 +1,7 @@
+---
+title: "Resource Map - codex-4"
+trigger_phrases: []
+---
 # Resource Map - codex-4
 
 ## Lineage Outputs

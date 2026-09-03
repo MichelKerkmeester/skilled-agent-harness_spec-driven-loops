@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 031: doc-truth-pass — Tier A doc-only remediation
 
 You are cli-codex (gpt-5.5 high fast) implementing remediation packet **003-documentation-truth-validation**.

@@ -1,3 +1,7 @@
+---
+title: "Dispatch Log: Wave 010 - md-generator Serial Pipeline Dispatches"
+trigger_phrases: []
+---
 # Dispatch Log: Wave 010 - md-generator Serial Pipeline Dispatches
 
 One row per dispatch executed, strictly one at a time in the mandated order. Advisor probe run via `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "<clean exact prompt>" --threshold 0.8`. Real dispatch run via `timeout <300|580> opencode run --model openai/gpt-5.5-fast --variant medium --format json --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public "<prompt + addendum>" </dev/null`. Transcripts captured at `/tmp/skd-<dispatch_id>-response.jsonl`.

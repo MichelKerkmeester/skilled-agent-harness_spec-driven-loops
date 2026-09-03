@@ -1,3 +1,7 @@
+---
+title: "016 Deep-Research Synthesis"
+trigger_phrases: []
+---
 You are iteration 10 (synthesis) of the 016 deep-research dispatch. All 9 prior iters are on disk at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/research/iterations/iteration-NNN.md`. Read every iter file (001-009) and produce a single consolidated synthesis at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/research/research.md`.
 
 Also write `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/research/iterations/iteration-010.md` as a brief audit-trail noting which iters were synthesized.

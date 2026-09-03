@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — glm52-1"
+trigger_phrases: []
+---
 # Deep Research Dashboard — glm52-1
 
 > Auto-generated from JSONL, strategy, and findings registry.

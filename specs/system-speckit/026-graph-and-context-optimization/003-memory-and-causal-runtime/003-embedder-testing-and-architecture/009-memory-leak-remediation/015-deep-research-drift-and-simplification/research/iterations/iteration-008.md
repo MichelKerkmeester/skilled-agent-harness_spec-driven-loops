@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — dead-code (executor: cli-opencode-deepseek-v4-pro)"
+trigger_phrases: []
+---
 # Iteration 008 — dead-code (executor: cli-opencode-deepseek-v4-pro)
 
 ## Metadata

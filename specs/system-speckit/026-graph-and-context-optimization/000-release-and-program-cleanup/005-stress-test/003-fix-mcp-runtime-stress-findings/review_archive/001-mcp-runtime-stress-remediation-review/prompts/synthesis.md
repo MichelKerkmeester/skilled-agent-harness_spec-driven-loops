@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Synthesis Prompt — 003-mcp-runtime-stress-remediation"
+trigger_phrases: []
+---
 # Deep-Review Synthesis Prompt — 003-mcp-runtime-stress-remediation
 
 **GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/003-mcp-runtime-stress-remediation`. The loop manager has authorized this folder. DO NOT re-ask Gate 3. Proceed directly to synthesis.

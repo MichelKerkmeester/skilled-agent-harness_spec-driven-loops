@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 - Search-cost pathological payload [PASS-2]"
+trigger_phrases: []
+---
 # Iteration 015 - Search-cost pathological payload [PASS-2]
 
 ## Pass 1 claim under attack

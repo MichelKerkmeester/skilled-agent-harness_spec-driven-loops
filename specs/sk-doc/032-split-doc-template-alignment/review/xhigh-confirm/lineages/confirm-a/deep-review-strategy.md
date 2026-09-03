@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: sk-code Split-Doc Template Alignment"
+trigger_phrases: []
+---
 # Deep Review Strategy: sk-code Split-Doc Template Alignment
 
 ## 1. OVERVIEW

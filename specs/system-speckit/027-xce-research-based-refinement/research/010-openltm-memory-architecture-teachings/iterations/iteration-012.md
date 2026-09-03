@@ -1,3 +1,7 @@
+---
+title: "Iteration 012 — OpenLTM document/continuity surface vs our continuity ladder"
+trigger_phrases: []
+---
 # Iteration 012 — OpenLTM document/continuity surface vs our continuity ladder
 
 **Status:** insight · **Findings:** 6 · **newInfoRatio:** 0.64 · **tokens:** 82292 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

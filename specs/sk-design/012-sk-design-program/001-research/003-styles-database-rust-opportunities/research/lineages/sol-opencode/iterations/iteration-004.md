@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Rust Residency in Indexing and Embedding Automation"
+trigger_phrases: []
+---
 # Iteration 4: Rust Residency in Indexing and Embedding Automation
 
 ## Focus

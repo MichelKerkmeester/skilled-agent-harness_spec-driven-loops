@@ -1,3 +1,7 @@
+---
+title: "Context Report — `026-graph-and-context-optimization` (all work done)"
+trigger_phrases: []
+---
 # Context Report — `026-graph-and-context-optimization` (all work done)
 
 > Reuse-first map of a **completed** spec-kit program: what 026 delivered (docs narrative + decisions)

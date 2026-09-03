@@ -7,6 +7,7 @@ mode: review
 budgetProfile: scan
 toolCallsUsed: 14
 timestamp: "2026-08-11T22:30:00.000Z"
+trigger_phrases: []
 ---
 
 # Iteration 6 — Overlay Protocols + Final Checklist Closeout

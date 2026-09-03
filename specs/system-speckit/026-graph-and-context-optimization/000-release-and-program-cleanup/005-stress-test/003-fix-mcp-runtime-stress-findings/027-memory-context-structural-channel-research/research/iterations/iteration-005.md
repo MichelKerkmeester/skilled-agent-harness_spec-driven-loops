@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Synthesis and Planning Packet"
+trigger_phrases: []
+---
 # Iteration 005 - Synthesis and Planning Packet
 
 ## Focus

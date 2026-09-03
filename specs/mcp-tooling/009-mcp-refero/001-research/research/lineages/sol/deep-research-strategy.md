@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Refero MCP developer surface"
+trigger_phrases: []
+---
 # Deep Research Strategy — Refero MCP developer surface
 
 ## 2. TOPIC

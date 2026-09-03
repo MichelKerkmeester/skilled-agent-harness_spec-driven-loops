@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — B4: Spec-kit validator correctness"
+trigger_phrases: []
+---
 # Iteration 009 — B4: Spec-kit validator correctness
 
 ## Focus

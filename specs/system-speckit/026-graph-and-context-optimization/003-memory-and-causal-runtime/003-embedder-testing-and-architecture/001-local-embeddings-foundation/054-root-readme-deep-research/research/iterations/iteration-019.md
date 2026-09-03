@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 — Track 7: Copilot support + hook coverage per runtime"
+trigger_phrases: []
+---
 # Iteration 019 — Track 7: Copilot support + hook coverage per runtime
 
 ## Summary

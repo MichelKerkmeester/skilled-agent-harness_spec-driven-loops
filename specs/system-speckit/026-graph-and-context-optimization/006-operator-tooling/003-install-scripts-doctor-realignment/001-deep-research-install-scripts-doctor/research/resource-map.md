@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Are the install guides, setup/launcher scripts, and /doctor commands aligned with post-CocoIndex-deprecation reality, and did the 116 deep-skill-evolution work (sk->deep renames, council, deep-loop-runtime relocation) leave stale references in those surfaces?"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

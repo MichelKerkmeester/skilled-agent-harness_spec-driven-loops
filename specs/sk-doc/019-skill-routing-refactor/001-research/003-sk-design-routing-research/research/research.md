@@ -14,6 +14,7 @@ _memory:
       - "resource-map.md"
       - "deep-research-dashboard.md"
     completion_pct: 100
+trigger_phrases: []
 ---
 # sk-design Typed-Pair Routing Research
 

@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Before this phase, `sk-code-obsidian/` had no `manual-testing-playbook/` at all — `../goal.md` §6",
     "created_at": "2026-08-28T18:17:39Z",
-    "last_save_at": "2026-08-30T15:39:11.252Z",
+    "last_save_at": "2026-09-03T22:16:26.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:247afb789d3883e506ef46a7a7556e083e4d995f26968e7f866324d9759cf528",
+    "source_fingerprint": "sha256:d013902a99ed23f18fbcb136fbeac09dd0e1d28db7e2e85df9fd14fc9e555408",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ffc7a5d07218d015e40469c18893fe7f5ead3f0943202d65b106853e5b575b39",
       "plan.md": "db9c787c57546ef59d668ec78b25aa4e7b96cb86cd5d30c53f275c501559886d",
       "tasks.md": "b38ea91e1d1a09a4b765b84375f8ab75d7845e4b9f5d5d03e41105218063e1a0",
-      "implementation-summary.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "implementation-summary.md": "3d54eeb7f98ebb5e9e8e59a44d255e2b360aef017fc2c6795ce0e23946e7f284"
     },
     "last_active_child_id": null,
     "last_active_at": null

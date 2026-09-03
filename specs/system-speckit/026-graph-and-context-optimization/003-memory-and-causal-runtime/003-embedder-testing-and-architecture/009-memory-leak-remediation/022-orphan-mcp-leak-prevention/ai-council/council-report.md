@@ -1,3 +1,7 @@
+---
+title: "AI Council Report: Round 002 Operational Plan"
+trigger_phrases: []
+---
 # AI Council Report: Round 002 Operational Plan
 
 ## Task Classification

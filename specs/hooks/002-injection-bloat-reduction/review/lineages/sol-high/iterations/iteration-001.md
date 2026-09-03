@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Completion-state baseline"
+trigger_phrases: []
+---
 # Iteration 1: Completion-state baseline
 
 ## Dimension

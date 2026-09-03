@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 — Angle 11"
+trigger_phrases: []
+---
 # Iteration 011 — Angle 11
 
 **Angle:** Causal-edge hygiene after row deletion: 314 orphaned rows were cleaned — do causal edges referencing deleted ids linger; tombstone propagation.

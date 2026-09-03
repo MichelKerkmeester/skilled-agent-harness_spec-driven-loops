@@ -1,3 +1,7 @@
+---
+title: "Iteration N2 - First-Class Rollup Node: Mechanism Already Exists, Content Is The Gap"
+trigger_phrases: []
+---
 # Iteration N2 - First-Class Rollup Node: Mechanism Already Exists, Content Is The Gap
 
 ## TITLE

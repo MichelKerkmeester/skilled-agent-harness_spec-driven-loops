@@ -1,3 +1,7 @@
+---
+title: "Hallmark Design Skill Reuse Research"
+trigger_phrases: []
+---
 # Hallmark Design Skill Reuse Research
 
 ## 1. Executive Verdict

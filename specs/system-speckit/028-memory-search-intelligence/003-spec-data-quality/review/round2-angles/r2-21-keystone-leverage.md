@@ -1,3 +1,7 @@
+---
+title: "R2-21 Keystone Leverage"
+trigger_phrases: []
+---
 # R2-21 Keystone Leverage
 
 **Angle summary:** Pressure-test whether A1 (extend the live quality loop to the authored surface) is truly the highest-leverage keystone, or whether the program's own evidence points at a cheaper higher-value move and whether A1's central deliverable actually measures authored quality.

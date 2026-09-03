@@ -1,3 +1,7 @@
+---
+title: "Iter 4 — query.py deep-read — expansion, candidate assembly, path_class application timing"
+trigger_phrases: []
+---
 # Iter 4 — query.py deep-read — expansion, candidate assembly, path_class application timing
 
 ## TL;DR (2-3 sentences)

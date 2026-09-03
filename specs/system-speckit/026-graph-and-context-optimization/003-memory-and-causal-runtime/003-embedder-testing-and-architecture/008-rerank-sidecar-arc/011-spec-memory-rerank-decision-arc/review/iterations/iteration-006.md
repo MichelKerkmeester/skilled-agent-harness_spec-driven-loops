@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: Security Re-Pass (HTTP Boundary + Provider Plumbing)"
+trigger_phrases: []
+---
 # Iteration 006: Security Re-Pass (HTTP Boundary + Provider Plumbing)
 
 ## Dimension

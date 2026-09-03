@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now I have all the evidence needed. Here is the complete report.
 
 ---

@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Maintainability and Class Scope"
+trigger_phrases: []
+---
 # Iteration 5: Maintainability and Class Scope
 
 ## Dispatcher

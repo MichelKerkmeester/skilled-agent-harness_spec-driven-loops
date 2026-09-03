@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 — Angle 15"
+trigger_phrases: []
+---
 # Iteration 015 — Angle 15
 
 **Angle:** Session trust adoption: resolveTrustedSession coverage across every session-accepting tool surface (search done — context, validate, list, bulk ops?).

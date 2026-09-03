@@ -1,3 +1,7 @@
+---
+title: "Seat Prompt: native-a"
+trigger_phrases: []
+---
 # Seat Prompt: native-a
 
 Gather-subject: MCP-to-CLI transition context for `system-code-graph`, `system-skill-advisor`, and `system-spec-kit`.

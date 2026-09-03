@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — KQ2: SKILL DOCS cross-skill consistency"
+trigger_phrases: []
+---
 # Iteration 002 — KQ2: SKILL DOCS cross-skill consistency
 
 **Focus:** Cross-skill automation — trigger/keyword collision, advisor-routing ambiguity, `[[wikilink]]` skill-graph integrity, enhances-edge propagation hygiene.

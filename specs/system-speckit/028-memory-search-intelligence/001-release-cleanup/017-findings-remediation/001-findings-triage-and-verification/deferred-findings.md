@@ -1,3 +1,7 @@
+---
+title: "Deferred findings — could not be tested"
+trigger_phrases: []
+---
 # Deferred findings — could not be tested
 
 20 findings could not be dispositioned. Deferred means the claim was not testable in this

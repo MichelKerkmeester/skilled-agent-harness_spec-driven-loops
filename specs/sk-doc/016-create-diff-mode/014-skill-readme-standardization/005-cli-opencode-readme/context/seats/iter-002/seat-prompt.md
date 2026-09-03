@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Spec folder: sk-doc/014-skill-readme-standardization/005-cli-opencode-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file. Return findings as your final assistant message only.
 
 Role: You are verifying exact facts about the `.opencode/skills/cli-opencode/` skill so a README rewrite cites them correctly. This pass locks the precise, citable details and finds stale facts.

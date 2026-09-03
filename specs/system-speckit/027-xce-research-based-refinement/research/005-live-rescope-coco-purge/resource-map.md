@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Revalidate/refine 027's 8 phases vs closed-026 + live system-spec-kit reality + CocoIndex deprecation (purge all coco scope) + near-exhausted XCE signal; per-phase update/refine/drift-fix/remove/additions verdicts, coco-reference enumeration, 026-overlap dedup, packet-wide path-drift refresh, 007 embedding-profile rescope."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

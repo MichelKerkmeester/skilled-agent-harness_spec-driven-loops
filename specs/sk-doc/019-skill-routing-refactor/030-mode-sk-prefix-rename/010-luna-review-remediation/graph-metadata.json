@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The live sk-doc feature catalog still publishes pre-rename workflow keys, while closeout documents disagree about the current route-gold and generated-metadata acceptance state",
     "created_at": "2026-07-29T12:41:32Z",
-    "last_save_at": "2026-08-30T15:39:15.779Z",
+    "last_save_at": "2026-09-03T22:19:33.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:60b442816be3160e99fc9d3f0d2a0947b1aeda05c775f7df482adc6dc6a3da26",
+    "source_fingerprint": "sha256:0618133838e9c99ac056520ee73b6cdbc089038cdb5a53aec352098e8033ebda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6340ff097f9da91fab5444d3a26b88cf9e238a09b4c12d35aad8c0662a8111aa",
       "plan.md": "afbb5ba2945ecb80609002e649e2c98062c9b771ced22a7e83ea20a97c55a3f5",
       "tasks.md": "4a07fe1bd4b53285e9e6365470c622eaf86abca8074ae9b239f5b2d71efc6337",
       "implementation-summary.md": "1eb6077c2208b4497c69772ca5278cc8db8e745b0e5851be87412acbf0bb4323",
-      "handover.md": "1e1b4a22ef3a31b4460c38bbeb7ebc2bf7a0e2ed1e898dfde1368b301d4da8b3"
+      "handover.md": "ca71fae7a82ff903ec80b317ba0cf9badba630b99f215ce8fe03918b2d072478"
     },
     "last_active_child_id": null,
     "last_active_at": null

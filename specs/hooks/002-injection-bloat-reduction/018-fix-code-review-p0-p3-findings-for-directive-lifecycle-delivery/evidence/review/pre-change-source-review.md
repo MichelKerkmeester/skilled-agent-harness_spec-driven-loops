@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Review
 
 **Verdict:** Pre-change baseline has **0 active P0 findings**, **7 P1 findings**, and **3 P2 findings**. The main risks are stale suppression, unsafe durable state, untrusted lifecycle/identity signals, and evidence that overstates runtime coverage.

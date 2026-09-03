@@ -1,3 +1,7 @@
+---
+title: "Iteration 37 (Round N adversarial): peck ≈ adversarial-verify convergence — HOLDS"
+trigger_phrases: []
+---
 # Iteration 37 (Round N adversarial): peck ≈ adversarial-verify convergence — HOLDS
 
 ## Focus

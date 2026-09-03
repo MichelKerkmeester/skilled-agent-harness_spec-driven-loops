@@ -1,3 +1,7 @@
+---
+title: "Spec-Kit Memory Search Intelligence — Deep Dive Report"
+trigger_phrases: []
+---
 # Spec-Kit Memory Search Intelligence — Deep Dive Report
 
 **Date:** 2026-07-03 · **Scope:** search intelligence, data quality, indexing, learning loop, commands & presentation

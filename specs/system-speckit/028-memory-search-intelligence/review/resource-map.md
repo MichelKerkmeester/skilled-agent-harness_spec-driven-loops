@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — .opencode/specs/system-speckit/028-memory-search-intelligence"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

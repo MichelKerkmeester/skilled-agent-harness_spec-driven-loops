@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Ships the /deep:command-benchmark workflow-YAML router that composes the deterministic conformance axis through the deep-alignment peer adapter and the behavioral DAB axis through the matrix scheduler over the shared runner behind one command, generates the Codex mirror, and passes hermetic smoke verification, without implementing adapter, scoring, or scheduling logic itself.",
     "created_at": "2026-07-15T04:42:13.560Z",
-    "last_save_at": "2026-08-30T15:39:20.290Z",
+    "last_save_at": "2026-09-03T22:20:29.187Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b262482ebd63cdb7b127ab81c1f3f9fd014d5e06fda1a016f66d784320bfd130",
+    "source_fingerprint": "sha256:cf6f8aef4ea37a59dc18aee01f350ff14af7a2c684755118025362ecb834fa7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e5b5eadabe96f84e4541857c71e017d90b6d34a1ac4cf4f7ec524d7047089c52",
-      "plan.md": "2259e5ddea07bae079b0143928b8bae6b4e9ae4c4f654233f05d1d1a3df4ace6",
-      "tasks.md": "267a13553a094a1c6d8839de8ad23bce0939c9c08522a7969248309479095f13",
+      "plan.md": "8f01de4659b8d2160324b493ad978a3e32f137f51d5e1915019eab8fea176fd3",
+      "tasks.md": "41b1ba0e58fc99c6b68a26d2efa66c7ef669d1683f2f291cb48083fd8e458c32",
       "implementation-summary.md": "1a12e4dcc299cd6e613f20c11a9f1c7d0fc9b73b57ab9adaacc91f94046374ba"
     },
     "last_active_child_id": null,

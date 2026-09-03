@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### Git (sk-git)
 - **Remote push permission policy:** only `main`, `skilled/v*` release branches, and your allowlisted patterns push to origin without asking; every other push needs a fresh confirmation, backstopped by a pre-push hook and a new `validate-remote-allowlist <branch>` command (local branch/worktree creation stays unrestricted).
 - **Live-branch autosync:** every commit from a wrapper-launched AI session auto-publishes to a shared live branch that your primary IDE checkout fast-forwards to — gated to those sessions only, never force-pushing, and behaving identically across Claude, Codex, and OpenCode.

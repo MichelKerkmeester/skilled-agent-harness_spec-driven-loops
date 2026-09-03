@@ -1,6 +1,7 @@
 ---
 title: "Deep Review Strategy: Whole-program review: 125-cli-external + 126-mcp-tooling planning packets + cli-opencode GPT-5.6 rename"
 description: "Review strategy for the sk-prompt parent-hub merge program + post-merge benchmark work."
+trigger_phrases: []
 ---
 
 # Deep Review Strategy

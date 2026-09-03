@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — KQ7: Doc-quality leaderboard/dashboard + per-doc quality SLAs"
+trigger_phrases: []
+---
 # Iteration 007 — KQ7: Doc-quality leaderboard/dashboard + per-doc quality SLAs
 
 ## Focus

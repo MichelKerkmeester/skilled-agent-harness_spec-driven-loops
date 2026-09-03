@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 Prompt Pack"
+trigger_phrases: []
+---
 # Iteration 009 Prompt Pack
 
 - Focus: cross-angle contradiction and no-bypass audit over P1–P8.

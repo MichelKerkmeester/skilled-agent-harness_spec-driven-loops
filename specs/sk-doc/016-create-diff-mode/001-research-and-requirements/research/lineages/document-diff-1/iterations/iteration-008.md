@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: OpenCode Skill Interface Design"
+trigger_phrases: []
+---
 # Iteration 8: OpenCode Skill Interface Design
 
 ## Focus

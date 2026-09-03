@@ -1,3 +1,7 @@
+---
+title: "Iteration 047 — Angle 47"
+trigger_phrases: []
+---
 # Iteration 047 — Angle 47
 
 **Angle:** Tri-daemon lifecycle uniformity: re-election, leases, orphan reaping, persistent logs — behavior matrix across the three launchers and drift between them.

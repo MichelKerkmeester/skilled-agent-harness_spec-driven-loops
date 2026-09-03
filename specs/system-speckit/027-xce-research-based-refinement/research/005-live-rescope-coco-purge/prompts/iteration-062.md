@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 062 — CocoIndex purge: the 002/003/004/006 specs"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 062 — CocoIndex purge: the 002/003/004/006 specs

@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Angle (c): `_memory.continuity` duplication vs resume-ladder read path"
+trigger_phrases: []
+---
 # Iteration 003 — Angle (c): `_memory.continuity` duplication vs resume-ladder read path
 
 **Focus:** Q-A3 — Is the dispatch claim true that only implementation-summary's continuity is read? Which validators/other consumers depend on the per-doc copies? Can 4-7 copies be dropped?

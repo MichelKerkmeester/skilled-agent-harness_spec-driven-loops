@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 4/10 SCOPE-EXPANSION pass for packet .opencode/specs/system-spec-kit/027-xce-research-based-refinement.
 
 CONTEXT: Iter 1-3 covered RQ-A1..A3. This iter covers RQ-A4.

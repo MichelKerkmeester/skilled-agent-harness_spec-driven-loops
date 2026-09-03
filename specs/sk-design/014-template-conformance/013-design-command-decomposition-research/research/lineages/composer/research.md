@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — composer lineage"
+trigger_phrases: []
+---
 # Research Synthesis — composer lineage
 
 **Session:** `fanout-composer-1785175007816-pn5cco` · **Executor:** cli-cursor · composer-2.5  

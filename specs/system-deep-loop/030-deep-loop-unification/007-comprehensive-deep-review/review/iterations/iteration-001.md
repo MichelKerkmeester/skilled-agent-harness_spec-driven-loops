@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - Inventory"
+trigger_phrases: []
+---
 # Iteration 001 - Inventory
 
 ## Dimension

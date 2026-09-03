@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Copilot authority boundary and isolated graph degradation"
+trigger_phrases: []
+---
 # Iteration 002 — Copilot authority boundary and isolated graph degradation
 
 ## Status

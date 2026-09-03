@@ -1,3 +1,7 @@
+---
+title: "Iteration 9 — Adversarial Self-Check"
+trigger_phrases: []
+---
 # Iteration 9 — Adversarial Self-Check
 
 **Dimension**: adversarial

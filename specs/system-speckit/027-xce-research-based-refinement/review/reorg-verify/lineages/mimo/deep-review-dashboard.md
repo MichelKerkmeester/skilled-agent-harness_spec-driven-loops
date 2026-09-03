@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — mimo"
+trigger_phrases: []
+---
 # Deep Review Dashboard — mimo
 
 Lineage: `fanout-mimo-1781422660235-ysuwb4` | Generated: 2026-06-14T08:05:00Z

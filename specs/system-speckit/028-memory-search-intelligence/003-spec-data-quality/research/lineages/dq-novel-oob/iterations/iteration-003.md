@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — KQ3: Retrieval-driven doc auto-rewriting"
+trigger_phrases: []
+---
 # Iteration 003 — KQ3: Retrieval-driven doc auto-rewriting
 
 ## Focus

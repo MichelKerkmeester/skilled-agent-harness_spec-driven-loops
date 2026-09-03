@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: AI-Browser Workflows + Chrome DevTools Contrast + UTCP Registration + Packet Authoring"
+trigger_phrases: []
+---
 # Iteration 2: AI-Browser Workflows + Chrome DevTools Contrast + UTCP Registration + Packet Authoring
 
 ## Focus

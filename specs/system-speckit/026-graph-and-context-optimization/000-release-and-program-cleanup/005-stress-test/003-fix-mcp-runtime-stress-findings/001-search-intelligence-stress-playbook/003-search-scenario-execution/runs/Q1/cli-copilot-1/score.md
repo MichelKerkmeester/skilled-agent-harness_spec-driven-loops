@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Scenario Q1 — cli-copilot-1
 
 | Dimension | Score | Evidence |

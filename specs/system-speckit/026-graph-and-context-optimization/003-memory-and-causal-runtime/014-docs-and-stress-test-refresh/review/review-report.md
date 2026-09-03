@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 014 docs + stress-test refresh (+ 013 reconciliation, serverInfo fix)"
+trigger_phrases: []
+---
 # Deep Review Report — 014 docs + stress-test refresh (+ 013 reconciliation, serverInfo fix)
 
 <!-- ANCHOR:deep-review-014-session-work -->

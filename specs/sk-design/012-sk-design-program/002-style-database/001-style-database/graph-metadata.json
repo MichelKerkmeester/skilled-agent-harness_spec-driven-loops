@@ -37,7 +37,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/specs/sk-design/012-sk-design-program/001-research/001-research-style-database/research/research.md",
-      "lib/storage/incremental-index.ts",
       "shared/algorithms/rrf-fusion.ts"
     ],
     "entities": [
@@ -63,12 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "incremental-index.ts",
-        "kind": "code",
-        "path": "lib/storage/incremental-index.ts",
         "source": "derived"
       },
       {
@@ -184,11 +177,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 1,290-style library (`.opencode/skills/sk-design/styles/`) is served by a file-walking retrieval engine (`styles/engine`) whose read path rebuilds a 5.89 MB denormalized manifest and a disposable in-memory FTS index on every query — a full-corpus query measured at 6,246.5 ms",
     "created_at": "2026-07-19T08:37:30.136Z",
-    "last_save_at": "2026-08-30T15:39:12.686Z",
+    "last_save_at": "2026-09-03T22:17:41.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10447623c41e6cab7d0749ca77daf20be3c6be0ed8418acb7fd025d1530a4dae",
+    "source_fingerprint": "sha256:30b2b5f2bdcfb8dc489cb1b8a5a7d98ce010f050d5050d26f6516c16b0cca421",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1cb6fea7546a98ae512a3f918b2a1e5eb8ee55cd16495d8c5064062a442ae55b",
-      "plan.md": "be787f738cceb72fccc10d4709c4b5626bf1b28fc39a75ed8cb532f4df646451",
-      "tasks.md": "b523d9dec3533e995bad772f4274bb36d996924d71e21e986dd5c66d85e27498",
-      "implementation-summary.md": "17d2c3afd76778b1ca453b587ad8b9fa23b790deac2def97e060233a36c168d6"
+      "plan.md": "8bb17dad34ba4c8e0db4a42434c98ee1490d0eb5b493af37d3ac4f0934ada496",
+      "tasks.md": "12a1e86b26966bf28b1889be237fdc246564e54bd4193ffc6553aaccfc110dde",
+      "implementation-summary.md": "cb91a3250c9683e783156614413291c88891ea5aef2e092fc220f0deaa61b0f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

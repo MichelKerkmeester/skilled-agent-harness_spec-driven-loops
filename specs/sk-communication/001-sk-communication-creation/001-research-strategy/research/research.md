@@ -1,3 +1,7 @@
+---
+title: "Provider-Neutral CLI Display Projection Research"
+trigger_phrases: []
+---
 # Provider-Neutral CLI Display Projection Research
 
 Canonical synthesis for `001-research-strategy`, compiled from the `deepseek-go` 7-iteration lineage and the `gpt-sol-fast` 3-iteration lineage.

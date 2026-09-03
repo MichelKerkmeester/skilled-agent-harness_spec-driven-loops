@@ -1,3 +1,7 @@
+---
+title: "Dispatch Log: Wave 007 - Shared Base & Parity Core"
+trigger_phrases: []
+---
 # Dispatch Log: Wave 007 - Shared Base & Parity Core
 
 One row per real `opencode run` dispatch executed in this wave. All dispatches used `--model openai/gpt-5.5-fast --variant medium --format json --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`, ran strictly one at a time, and captured full JSON-lines stdout under `/tmp/skd-<dispatch-id>-response.jsonl`.

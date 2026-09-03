@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Rename @improve-agent to @deep-agent-improvement
 The `@improve-agent` agent was renamed to `@deep-agent-improvement` across every runtime — `.opencode`, `.claude`, `.gemini`, and `.codex` agent files, plus the `deep_start-agent-improvement-loop_{auto,confirm}.yaml` asset filenames — with ~22 internal references in the `deep-agent-improvement` skill and the public registries (`AGENTS.md`, `README.md`, agents README) migrated in the same pass. Before, the agent was a naming-family outlier; after, skill `deep-agent-improvement` ↔ agent `@deep-agent-improvement` ↔ `/deep:*` command family line up consistently, while the `/deep:start-agent-improvement-loop` slash command keeps its name (mirroring the `/prompt` family pattern). This was a pure semantic rename with no behavior change, verified by zero residual `@improve-agent` references and zero frontmatter hits in active scope. A new skill changelog `v1.5.0.0.md` documents the rename; ~189 historical references in `z_archive` stay verbatim as historical record. **Breaking:** callers referencing the agent as `@improve-agent` must migrate to `@deep-agent-improvement`.
 

@@ -185,7 +185,7 @@
     ],
     "causal_summary": "`corpus/` has no authored sk-doc template — it holds `README.md`, `motion-evidence.mjs`, and `tests/` (`README.md`, `fixtures.mjs`, `motion-evidence.schema.test.mjs`, `motion-evidence.test.mjs`)",
     "created_at": "2026-07-27T14:53:13.735Z",
-    "last_save_at": "2026-08-30T15:39:13.096Z",
+    "last_save_at": "2026-09-03T22:18:06.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:717a4b3d9e574515af0ea3e674bc3cb9da695d76a367bf52e91d2cf75abe41a1",
+    "source_fingerprint": "sha256:a8e02e2604d7e928854e271c1c78cd968764963d5d84e2677ade893f53d97564",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "69c3263ddb88a7bb1a513508c6b1a4065976f52462c9ca466e29be5e17821043",
-      "plan.md": "fc89f25778c003a948ce5da289ba7938e7e5069c739671330672f92f9530c73a",
-      "tasks.md": "2063a30b5f324d58696914d8f2c4d71035b36ece59600f0b0b7ae3839e78b0d0",
-      "implementation-summary.md": "8cefa6f17cca2c5bc849443519320bd7a8cbb29c460bd6418c97423529370f3f"
+      "plan.md": "de3b926a6abf270d357d0836f0397117287d7dca4996e8fc56cf6bc6b8b8f3a0",
+      "tasks.md": "aa69cad7075cb511031dec217e8a25ead1659b792d38fba6540c24df13bb839f",
+      "implementation-summary.md": "f382a3eb94fcfd8e744b44bcadd672d6cc09ba067fa8ef7d52fa596aca669b08"
     },
     "last_active_child_id": null,
     "last_active_at": null

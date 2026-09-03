@@ -15,6 +15,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Tasks: Make validate_document.py Number-Agnostic + Add a No-New-Numbers Guard
 

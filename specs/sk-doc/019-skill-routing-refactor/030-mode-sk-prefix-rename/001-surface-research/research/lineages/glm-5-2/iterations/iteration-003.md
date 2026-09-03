@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Generated artifacts (rebuild) vs hand-edited (Q3)"
+trigger_phrases: []
+---
 # Iteration 003 — Generated artifacts (rebuild) vs hand-edited (Q3)
 
 **Focus (Q3):** Identify which artifacts are generated and must be rebuilt rather than hand-edited. Inspect command bindings under `.opencode/commands/` and locate the generators behind graph-metadata / description / command-metadata.

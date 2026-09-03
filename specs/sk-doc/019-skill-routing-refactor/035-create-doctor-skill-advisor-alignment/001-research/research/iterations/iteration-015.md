@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: Doctor-side graph validation exposure"
+trigger_phrases: []
+---
 # Iteration 15: Doctor-side graph validation exposure
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Gateway Alignment Deep-Review — Review Report (cline lineage)"
+trigger_phrases: []
+---
 # Gateway Alignment Deep-Review — Review Report (cline lineage)
 
 - **Session:** `fanout-cline-1787662335600-tvzr08` (fan-out lineage `cline`, primary)

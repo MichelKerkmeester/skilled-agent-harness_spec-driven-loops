@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - gpt55-fast-10"
+trigger_phrases: []
+---
 # Deep Research Strategy - gpt55-fast-10
 
 ## Research Topic

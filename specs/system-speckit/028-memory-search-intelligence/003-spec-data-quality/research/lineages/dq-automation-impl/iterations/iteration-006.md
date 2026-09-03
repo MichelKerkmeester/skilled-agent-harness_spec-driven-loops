@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Cross-cutting: the shared safe-fix engine, the detector registry, and the end-to-end rollout"
+trigger_phrases: []
+---
 # Iteration 006 — Cross-cutting: the shared safe-fix engine, the detector registry, and the end-to-end rollout
 
 Focus (KQ6): the single shared engine + registry that A1/B1/B2 all consume, and the end-to-end build/rollback order across all five keystones. This is the architecture that makes the five designs ONE program instead of five.

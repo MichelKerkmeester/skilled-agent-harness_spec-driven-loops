@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — F1: Cursor one-time MCP approval"
+trigger_phrases: []
+---
 # Iteration 002 — F1: Cursor one-time MCP approval
 
 ## Focus

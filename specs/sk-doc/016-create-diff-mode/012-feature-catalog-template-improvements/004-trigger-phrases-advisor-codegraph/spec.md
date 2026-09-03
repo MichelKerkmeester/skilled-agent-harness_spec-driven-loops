@@ -3,6 +3,7 @@ title: "Phase 004: Trigger Phrases — system-skill-advisor + system-code-graph"
 description: "Add or improve trigger_phrases in 40 skill-advisor snippets and 14 code-graph snippets. Audit existing phrases for quality; fill all gaps."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Phase 004: Trigger Phrases — system-skill-advisor + system-code-graph
 

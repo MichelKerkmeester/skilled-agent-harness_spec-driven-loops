@@ -1,3 +1,7 @@
+---
+title: "Context Report: system-spec-kit README restyle (keep depth)"
+trigger_phrases: []
+---
 # Context Report: system-spec-kit README restyle (keep depth)
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only). The current README is a 1084-line reference manual and the locked decision is to restyle it into the narrative voice while keeping its reference depth. The gather verified the deep facts against source and found the README remarkably accurate: the only material correction is the version footer, plus a few drift-prone counts to soften and a stale "latest changelog" link. This is a reframe-the-top plus voice-sweep plus preserve-the-body restyle, not a regenerate.

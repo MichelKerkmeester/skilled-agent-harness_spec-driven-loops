@@ -1,3 +1,7 @@
+---
+title: "Synthesis Snapshot v1 — glm52-5"
+trigger_phrases: []
+---
 # Synthesis Snapshot v1 — glm52-5
 
 This is the first-completed synthesis for this lineage (generation 1). It is a snapshot of `research.md` at the `synthesis_complete` event; the canonical synthesis is `research.md`.

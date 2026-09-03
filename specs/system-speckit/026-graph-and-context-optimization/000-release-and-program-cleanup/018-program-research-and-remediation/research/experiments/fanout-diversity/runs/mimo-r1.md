@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now I have enough evidence to compile the report.
 
 ### Q1: Self-maintaining memory-index move-reconciliation under rapid concurrent spec-folder moves across sessions

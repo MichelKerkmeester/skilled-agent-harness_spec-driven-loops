@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 015 — score-scale and final cross-check"
+trigger_phrases: []
+---
 # Codex Iteration 015 — score-scale and final cross-check
 
 ## Sequential-thinking preflight

@@ -1,3 +1,7 @@
+---
+title: "005 Synthesis Digest"
+trigger_phrases: []
+---
 # 005 Synthesis Digest
 
 iterations: 20; new repos: 74; insights: 83; recommendations: 59; contradictions: 64

@@ -1,3 +1,7 @@
+---
+title: "Idea 4 — No-Wrong-Door Bounded Handoff"
+trigger_phrases: []
+---
 # Idea 4 — No-Wrong-Door Bounded Handoff
 
 > **There should be no wrong door. Any mode can accept a request, then hand it to the right one through a small, bounded protocol — and accepting a handoff is never the same as finishing the work.**

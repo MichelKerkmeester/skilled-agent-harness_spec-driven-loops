@@ -1,3 +1,7 @@
+---
+title: "Iteration 023 — Re-rank everything through the UX + automation lens (top priorities)"
+trigger_phrases: []
+---
 DEEP-RESEARCH — INTEGRATION & IMPACT (gpt-5.5-fast)
 
 # Iteration 023 — Re-rank everything through the UX + automation lens (top priorities)

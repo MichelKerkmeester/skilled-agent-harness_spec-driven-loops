@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis: Audit of Runtime Migration, Rollback & Over-Engineering Residue"
+trigger_phrases: []
+---
 # Deep Research Synthesis: Audit of Runtime Migration, Rollback & Over-Engineering Residue
 
 **Lineage:** `gemini-flash`  

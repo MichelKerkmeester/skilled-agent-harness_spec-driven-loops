@@ -7,6 +7,7 @@ allowed-tools:
   - Edit
   - Bash
   - Glob
+trigger_phrases: []
 ---
 
 Export the diagram HTML at `$1` to `.svg` and/or `.png`, following the procedure documented in [`skills/diagram-design/references/export.md`](../skills/diagram-design/references/export.md). Treat that reference as the source of truth — don't reimplement the logic here.

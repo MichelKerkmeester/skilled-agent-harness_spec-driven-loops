@@ -1,3 +1,7 @@
+---
+title: "L9 Still-Real Verification — Part A (17 findings)"
+trigger_phrases: []
+---
 # L9 Still-Real Verification — Part A (17 findings)
 
 Verifier: fresh Fable 5 pass, 2026-06-12. Each finding re-checked against the current working tree (branch `028-mcp-to-cli-tool-transition`). Overtake candidates from today's shipped lanes (single-writer DB lock + exit-86, secret scrubber, hash-only fingerprints, --command dispatch protocol, apply-pipeline confirm gates + retention, launcher lifecycle doc reconciliation, detect_changes review adoption, advisor doc batch) were checked per item — none of those lanes intersect these finding surfaces, except a partial doc touch on tri-056 (noted below).

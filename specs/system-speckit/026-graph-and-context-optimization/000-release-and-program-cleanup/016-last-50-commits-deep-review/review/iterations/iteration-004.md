@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — correctness / A3 (causal & relation-inference integrity)"
+trigger_phrases: []
+---
 # Iteration 004 — correctness / A3 (causal & relation-inference integrity)
 
 ## Dispatcher

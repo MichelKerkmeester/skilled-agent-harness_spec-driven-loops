@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 018"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 018
 
 Focus: Smallest credible cache-plugin scope

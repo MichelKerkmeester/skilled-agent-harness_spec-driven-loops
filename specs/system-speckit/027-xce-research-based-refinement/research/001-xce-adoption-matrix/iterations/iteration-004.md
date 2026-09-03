@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — RQ4: Get-Context Combiner"
+trigger_phrases: []
+---
 # Iteration 004 — RQ4: Get-Context Combiner
 
 **Started**: 2026-05-08T12:30:00Z

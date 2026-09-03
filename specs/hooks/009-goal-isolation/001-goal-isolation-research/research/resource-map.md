@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Cross-runtime goal-state isolation for simultaneous Pi and other runtime sessions"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

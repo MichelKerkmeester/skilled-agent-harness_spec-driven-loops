@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source Link: https://x.com/prasad_pilla/article/2081694592190292143
 
 Updated 2026-07-27

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — 007-hook-parity"
+trigger_phrases: []
+---
 # Deep Research Dashboard — 007-hook-parity
 
 ## Snapshot

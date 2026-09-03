@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Router wiring"
+trigger_phrases: []
+---
 # Iteration 6: Router wiring
 
 ## Dimension

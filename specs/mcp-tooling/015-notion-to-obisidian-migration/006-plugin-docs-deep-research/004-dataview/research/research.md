@@ -1,3 +1,7 @@
+---
+title: "Dataview Research Synthesis"
+trigger_phrases: []
+---
 # Dataview Research Synthesis
 
 > Progressive synthesis from deep-research iterations. Each iteration adds verified findings from the official Dataview documentation compared against local mcp-obsidian references. All findings are grounded in the official repository/docs (`blacksmithgu/obsidian-dataview`) and compared against the local `references/plugins/dataview/*` surface. This run is research-only; the shipped docs were read, never modified.

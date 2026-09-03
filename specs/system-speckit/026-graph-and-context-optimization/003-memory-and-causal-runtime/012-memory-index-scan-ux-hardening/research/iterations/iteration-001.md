@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: A1 Scan Lifecycle and Caller Contract"
+trigger_phrases: []
+---
 # Iteration 1: A1 Scan Lifecycle and Caller Contract
 
 ## Focus

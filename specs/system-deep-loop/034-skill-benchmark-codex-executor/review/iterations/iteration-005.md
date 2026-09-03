@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 005"
+trigger_phrases: []
+---
 BINDING: mode=review target_agent=deep-review
 BINDING: leaf=true target_read_only=true dimension=final-synthesis
 

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Mobbin MCP developer surface"
+trigger_phrases: []
+---
 # Deep Research Strategy: Mobbin MCP developer surface
 
 ## Research Topic

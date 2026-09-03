@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 045/008: validator-spec-doc-integrity — Deep-review angle 8 (release-readiness)
 
 ### CRITICAL: Spec folder path

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The 016 broad audit surfaced one confirmed P0 and roughly nineteen P1 findings across the shipped system-deep-loop runtime",
     "created_at": "2026-08-26T07:42:50.946Z",
-    "last_save_at": "2026-08-30T15:39:22.309Z",
+    "last_save_at": "2026-09-03T22:21:49.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,14 +198,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ba8e71780a6c04dd616fe8ecf6508f5f38642d15d227829ab12e2a2dddd741e",
+    "source_fingerprint": "sha256:081a58c05c8354ee4e8102ebb3b53dd92de7ce03c071214d54c5df696f0d041e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80eb7ad7278eb119bb426e8b648b7f7d4f0855c40de9a93971193cd75d04bc4e",
-      "plan.md": "9902370d37fdd01300f31a8671081dc5269f4ad72fb27a20896b44accb11b18b",
-      "tasks.md": "b3686ade0cd80d903e31897f3b73902fde75922af376feadcddb4c671fa7ffd7",
-      "decision-record.md": "3710063c575daffedac72b5eb5120137b24af486e85201d87695f92ef734dae1",
-      "implementation-summary.md": "df7794b8da6bbb886f8503ca0fa813cc3764ef91e9a1befe6bd6f0eafff6cf3c"
+      "plan.md": "fb6c27b6c90f660c127acbd9ed1b66295b988dd12032424ac41586f0c9689e71",
+      "tasks.md": "910f9baafe0393e8060ac65ac3072108abe6161e9dd76ae4c32f2a0013a6c640",
+      "decision-record.md": "fb31112b46f0d55526179ce613872eca039f337ec3a4cd4b7bd343500dd98ed0",
+      "implementation-summary.md": "345d207cae651440a357d5b392daa358dac0b8290ad9d7b6fb6c3837d92c550e"
     },
     "last_active_child_id": null,
     "last_active_at": null

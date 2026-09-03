@@ -1,3 +1,7 @@
+---
+title: "Tri-System Deep Research — Synthesis"
+trigger_phrases: []
+---
 # Tri-System Deep Research — Synthesis
 
 > **Program:** 50 angles, 50 read-only gpt-5.5 (high) iterations over system-spec-kit, system-skill-advisor, and system-code-graph, grounded in the 027 epic. 193 evidence-bearing findings plus 2 live-incident findings. All 103 P0/P1 claims were adjudicated by a 12-seat refute-first verification wave: **48 confirmed (3 P0, 45 P1), 53 downgraded to P2/P3, 2 refuted.** A later fresh-regression re-verification (2026-06-16) refuted all three code P0s against their full function bodies (see §1) — the only standing P0 is the live-incident cold-spawn daemon race. Machine-readable detail: `findings-registry.json`.

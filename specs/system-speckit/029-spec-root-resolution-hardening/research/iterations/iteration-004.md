@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Symlink-Absent Automatic-Writer Failure Matrix"
+trigger_phrases: []
+---
 # Iteration 4: Symlink-Absent Automatic-Writer Failure Matrix
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 (Kimi lineage — fix proven): Letta char-limit cross-check + Kimi-contract validation"
+trigger_phrases: []
+---
 # Iteration 5 (Kimi lineage — fix proven): Letta char-limit cross-check + Kimi-contract validation
 
 > Model: **Kimi K2.7** (`kimi-for-coding/k2p7`, NO `--variant`, tight scope + ≤4-read cap, 1200s); read-only opencode seat; orchestrator-written. newInfoRatio 0.3 (cross-check/refinement), 1 finding.

@@ -1,3 +1,7 @@
+---
+title: "What the append-site checker's green actually means"
+trigger_phrases: []
+---
 # What the append-site checker's green actually means
 
 ## The recorded state was stale, and stale in the direction that flatters

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Regression + Coverage Audit (Q-REGRESS + Q-COV)"
+trigger_phrases: []
+---
 # Iteration 002 - Regression + Coverage Audit (Q-REGRESS + Q-COV)
 
 ## Status

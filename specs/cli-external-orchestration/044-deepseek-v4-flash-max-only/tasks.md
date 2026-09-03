@@ -11,6 +11,7 @@ _memory:
     next_safe_action: "Packet complete"
     blockers: []
     completion_pct: 100
+trigger_phrases: []
 ---
 # Tasks: DeepSeek V4 Flash pinned to the Max thinking tier
 

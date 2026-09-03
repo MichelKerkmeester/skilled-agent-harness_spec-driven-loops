@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy"
+trigger_phrases: []
+---
 # Deep Review Strategy
 
 Session: `fanout-codex-3-1780595350529-mur2m0`

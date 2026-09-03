@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Maintainability (Final Adversarial Close-Out)"
+trigger_phrases: []
+---
 # Iteration 010 — Maintainability (Final Adversarial Close-Out)
 
 ## Dimension

@@ -1,3 +1,7 @@
+---
+title: "Getting Started With the Fixture Docs Corpus"
+trigger_phrases: []
+---
 # Getting Started With the Fixture Docs Corpus
 
 A practical walkthrough for reading this fixture's `docs/` tree, written the way a real project guide would explain itself.

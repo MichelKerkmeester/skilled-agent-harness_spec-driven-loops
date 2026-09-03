@@ -4,6 +4,7 @@ description: "Final conditional review for the detached sol-high lineage."
 sessionId: "fanout-sol-high-1784691838667-iv78vk"
 verdict: "CONDITIONAL"
 releaseReadinessState: "release-blocking"
+trigger_phrases: []
 ---
 
 # Deep Review Report

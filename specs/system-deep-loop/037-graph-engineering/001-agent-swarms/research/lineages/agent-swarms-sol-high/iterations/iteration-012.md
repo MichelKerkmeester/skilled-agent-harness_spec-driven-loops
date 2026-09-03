@@ -1,3 +1,7 @@
+---
+title: "Iteration 12: Behavioral Parity Across Execution Surfaces"
+trigger_phrases: []
+---
 # Iteration 12: Behavioral Parity Across Execution Surfaces
 
 ## Focus

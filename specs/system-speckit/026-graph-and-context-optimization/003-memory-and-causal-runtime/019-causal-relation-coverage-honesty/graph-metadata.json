@@ -38,9 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/causal/relation-coverage.ts",
-      "handlers/causal-graph.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -65,18 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "relation-coverage.ts",
-        "kind": "code",
-        "path": "lib/causal/relation-coverage.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": "handlers/causal-graph.ts",
         "source": "derived"
       },
       {
@@ -184,7 +170,7 @@
     ],
     "causal_summary": "`memorycausalstats` reports a `relationCoverage` block whose `backfillJob.command` is `memoryhealth({ autoRepair: true, confirmed: true })` and whose `remediationHint` says \"Run … to backfill relation coverage; prioritize caused.\" A code review of the 2026-06-04 \"optimize causal graph\" request found this is a no-op: `lib/causal/relation-coverage.ts` is a pure reporter (no edge writes), and the autoRepair handler (`memory-crud-health.ts`) only does FTS rebuild + orphaned-edge/vector cleanup — it never balances relations",
     "created_at": "2026-06-04T09:45:00Z",
-    "last_save_at": "2026-08-30T15:39:31.939Z",
+    "last_save_at": "2026-09-03T22:23:03.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +179,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28e591704750da22813b73a27d48866dee8602898de899d029caa4e3bf298ec6",
+    "source_fingerprint": "sha256:be89c2758925d7b1a1acd4b89adaceb659e7390489360547e488c7bb93cf50cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "71d02011bf0d2616e02f6b08c06e9d2cba4be5e0ff844e2d21f763f90960ba25",
-      "plan.md": "7e1f433515cad31bccb486e70d19b37dfbed5fe847afb809df9e3c0153956de5",
-      "tasks.md": "428eed9d378960cbb1d09a35dfe5c254c5bf5c53d127d13b3826c0898bf8b880",
-      "implementation-summary.md": "2dbadda6a9936c42244f752e861fbf93ec0b335e717bf9876ec2848f01f91f52"
+      "plan.md": "b5419bdcbaba92b21eeafc183a7cc6b2767fd2d198b012d79fd19f57eca93756",
+      "tasks.md": "4996429468275ef574a0f552d2a3e4a3d54331611681644b603d8b3fa1a7b8cc",
+      "implementation-summary.md": "dae6baf4b335c66b5e0d73c7ab54fc65031d04bb04d7fff70ce1afdbe453f339"
     },
     "last_active_child_id": null,
     "last_active_at": null

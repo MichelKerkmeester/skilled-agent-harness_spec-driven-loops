@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Cross-Runtime Mirror Behavior (Q2)"
+trigger_phrases: []
+---
 # Iteration 005 — Cross-Runtime Mirror Behavior (Q2)
 
 **Focus:** Q2 — How do the cross-runtime mirrors (`.claude`, `.codex`, `.cursor`, `.devin`, `.pi`) resolve or mirror the specs folder, and which would need their own `specs` symlink or path update?

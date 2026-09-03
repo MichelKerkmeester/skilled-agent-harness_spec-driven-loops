@@ -3,6 +3,7 @@ title: Deep Review Strategy - luna-xhigh
 description: Bounded review strategy for the detached hallmark design-system lineage.
 importance_tier: important
 contextType: planning
+trigger_phrases: []
 ---
 
 # Deep Review Strategy - luna-xhigh

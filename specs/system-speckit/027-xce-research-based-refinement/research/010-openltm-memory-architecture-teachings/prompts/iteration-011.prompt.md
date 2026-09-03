@@ -1,3 +1,7 @@
+---
+title: "THE CORRECTED LENS FOR THIS PASS (read carefully — it changes the verdicts)"
+trigger_phrases: []
+---
 You are a senior memory-systems research analyst performing READ-ONLY analysis. Do NOT write, create, edit, or delete any files. Your final answer text IS the deliverable.
 
 # THE CORRECTED LENS FOR THIS PASS (read carefully — it changes the verdicts)

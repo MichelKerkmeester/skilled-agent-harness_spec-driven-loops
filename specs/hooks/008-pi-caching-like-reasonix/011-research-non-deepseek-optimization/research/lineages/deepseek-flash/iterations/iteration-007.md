@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Error Handling / Fallback on the Non-DeepSeek Path"
+trigger_phrases: []
+---
 # Iteration 7: Error Handling / Fallback on the Non-DeepSeek Path
 
 ## Focus

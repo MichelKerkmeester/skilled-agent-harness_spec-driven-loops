@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: Maintainability — Code patterns, duplication, documentation quality, naming"
+trigger_phrases: []
+---
 # Iteration 004: Maintainability — Code patterns, duplication, documentation quality, naming
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: spec folder — phases 005-008"
+trigger_phrases: []
+---
 # Iteration 15: spec folder — phases 005-008
 
 > dimension: spec-conformance | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Git symlink and gitignore interactions"
+trigger_phrases: []
+---
 # Iteration 3: Git symlink and gitignore interactions
 
 ## Focus

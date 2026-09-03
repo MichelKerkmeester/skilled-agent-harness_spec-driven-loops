@@ -1,3 +1,7 @@
+---
+title: "Knowledge bases: sources, scheduled sync & access control"
+trigger_phrases: []
+---
 # Knowledge bases: sources, scheduled sync & access control
 
 > Part of the [AgentSwarms docs](../README.md#documentation).

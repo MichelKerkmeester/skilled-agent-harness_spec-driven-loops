@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - Search/Retrieval Scope A - gpt55r2-a-9"
+trigger_phrases: []
+---
 # Deep Review Report - Search/Retrieval Scope A - gpt55r2-a-9
 
 ## Executive Summary

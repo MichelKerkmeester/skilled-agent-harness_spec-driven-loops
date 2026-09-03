@@ -1,3 +1,7 @@
+---
+title: "037 Graph-Engineering — Program Index"
+trigger_phrases: []
+---
 # 037 Graph-Engineering — Program Index
 
 > **Start here.** This folder is a research program: it studies how to evolve the in-house `system-deep-loop` engine into a **graph-based agent-loop system** over the **036** authority plane. Six studies were run (five source studies + one integration capstone). This index is the map — what each study found, where to read it, and what the program concluded. It is the sanctioned program-narration surface for this phase parent; the parent `spec.md` documents root purpose only.

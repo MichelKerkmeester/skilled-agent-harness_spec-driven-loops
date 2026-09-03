@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: Deep-review, AI council, and multi-agent command process / lock / cleanup audit"
+trigger_phrases: []
+---
 # Iteration 003: Deep-review, AI council, and multi-agent command process / lock / cleanup audit
 
 ## Focus

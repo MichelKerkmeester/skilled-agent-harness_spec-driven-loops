@@ -1,3 +1,7 @@
+---
+title: "Code Workflows - Surface-Aware Smart Router"
+trigger_phrases: []
+---
 Reading additional input from stdin...
 OpenAI Codex v0.137.0
 --------

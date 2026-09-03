@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Destructive History and Recovery Operations"
+trigger_phrases: []
+---
 # Iteration 2: Destructive History and Recovery Operations
 
 ## Focus

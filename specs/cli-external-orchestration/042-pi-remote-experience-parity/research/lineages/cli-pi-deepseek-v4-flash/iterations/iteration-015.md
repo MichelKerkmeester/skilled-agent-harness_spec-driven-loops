@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: Depth Pass — Glance-Class Surfaces (Watch / Lock-Screen Actions)"
+trigger_phrases: []
+---
 # Iteration 15: Depth Pass — Glance-Class Surfaces (Watch / Lock-Screen Actions)
 
 ## Focus

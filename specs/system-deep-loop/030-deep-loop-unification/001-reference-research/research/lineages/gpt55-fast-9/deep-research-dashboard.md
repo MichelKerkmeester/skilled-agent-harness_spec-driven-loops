@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - gpt55-fast-9"
+trigger_phrases: []
+---
 # Deep Research Dashboard - gpt55-fast-9
 
 ## 1. OVERVIEW

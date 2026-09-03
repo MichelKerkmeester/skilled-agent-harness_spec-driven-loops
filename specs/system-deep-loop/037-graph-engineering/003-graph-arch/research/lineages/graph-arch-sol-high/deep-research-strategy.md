@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — GraphARC Governance Extraction"
+trigger_phrases: []
+---
 # Deep Research Strategy — GraphARC Governance Extraction
 
 ## 1. OVERVIEW

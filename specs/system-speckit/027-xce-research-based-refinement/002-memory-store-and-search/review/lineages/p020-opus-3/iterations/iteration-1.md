@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All phases complete. The review loop ran fully within the lineage artifact directory and touched nothing outside it.
 
 **Summary — lineage p020-opus-3, target `020-maintenance-grace-background-embedding`:**

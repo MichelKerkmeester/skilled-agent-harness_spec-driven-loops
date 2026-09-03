@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - OpenCode Capability and Migration Inventory Closure"
+trigger_phrases: []
+---
 # Iteration 003 - OpenCode Capability and Migration Inventory Closure
 
 ## Scope

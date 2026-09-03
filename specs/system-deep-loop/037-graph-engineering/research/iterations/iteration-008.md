@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: GraphARC internals deep verification"
+trigger_phrases: []
+---
 # Iteration 8: GraphARC internals deep verification
 
 ## Focus

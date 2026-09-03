@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Independent validation, residual risks, and acceptance matrix"
+trigger_phrases: []
+---
 # Iteration 6: Independent validation, residual risks, and acceptance matrix
 
 ## Focus

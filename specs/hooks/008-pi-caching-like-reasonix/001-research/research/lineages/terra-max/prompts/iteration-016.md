@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 016"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 016
 
 Focus: Plan-mode boundary

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 027/022 provenance injection"
+trigger_phrases: []
+---
 # Deep Review Report — 027/022 provenance injection
 
 **Target:** `lib/storage/write-provenance.ts` + provenance tagging threaded through the memory write path.

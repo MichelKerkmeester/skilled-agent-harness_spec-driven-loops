@@ -1,3 +1,7 @@
+---
+title: "MCP Daemon Rebuild + Restart Protocol"
+trigger_phrases: []
+---
 # MCP Daemon Rebuild + Restart Protocol
 
 > Canonical 4-part verification contract for every MCP TypeScript fix landing under `.opencode/skills/system-spec-kit/mcp_server/`. Without all 4 parts, completion claims are PROVISIONAL.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 052 — Sibling-asymmetry pattern recurrence (KQ-51-2)"
+trigger_phrases: []
+---
 # Iteration 052 — Sibling-asymmetry pattern recurrence (KQ-51-2)
 
 **Segment**: 2 | **Dimension**: cross-cutting-coverage | **Dispatched**: Opus 4.7 via Task tool

@@ -1,3 +1,7 @@
+---
+title: "Batch B — Generate 3 stress tests (auto-indexing + code_graph convergence)"
+trigger_phrases: []
+---
 # Batch B — Generate 3 stress tests (auto-indexing + code_graph convergence)
 
 You are generating Vitest stress tests under spec-kit packet 043. Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.

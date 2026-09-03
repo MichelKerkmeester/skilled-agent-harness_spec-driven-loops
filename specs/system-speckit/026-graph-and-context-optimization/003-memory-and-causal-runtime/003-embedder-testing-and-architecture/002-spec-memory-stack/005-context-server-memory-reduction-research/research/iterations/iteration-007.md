@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 — code-graph mirror representation (in-memory vs SQLite-backed, partial loading by query scope)"
+trigger_phrases: []
+---
 # Iteration 7 — code-graph mirror representation (in-memory vs SQLite-backed, partial loading by query scope)
 
 ## Summary

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Fleet template weight + Reducer Engineering prior art on templates surface"
+trigger_phrases: []
+---
 # Iteration 1: Fleet template weight + Reducer Engineering prior art on templates surface
 
 ## Focus

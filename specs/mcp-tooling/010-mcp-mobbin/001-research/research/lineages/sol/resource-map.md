@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Mobbin MCP transport research"
 description: "Evidence-derived resource map for the detached sol lineage."
+trigger_phrases: []
 ---
 
 # Resource Map

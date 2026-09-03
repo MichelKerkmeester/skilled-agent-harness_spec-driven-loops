@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Dashboard — 008 caura-memclaw teachings"
+trigger_phrases: []
+---
 # Deep-Research Dashboard — 008 caura-memclaw teachings
 
 **Lineage:** 2026-06-06-008-caura-memclaw-teachings · generation 1 · executor cli-opencode openai/gpt-5.5-fast variant=high read-only

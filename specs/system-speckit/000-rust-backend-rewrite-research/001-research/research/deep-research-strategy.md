@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Strategy — Rust Backend Rewrite (Packet 030 / Phase 001)"
+trigger_phrases: []
+---
 # Deep-Research Strategy — Rust Backend Rewrite (Packet 030 / Phase 001)
 
 > Charter the deep-research loop reads at the start of every round. Single lineage, GPT-5.5 (`xhigh`, `fast`) via `cli-codex`, up to 20 rounds. Research-only: **no Rust is written and no backend source is modified.**

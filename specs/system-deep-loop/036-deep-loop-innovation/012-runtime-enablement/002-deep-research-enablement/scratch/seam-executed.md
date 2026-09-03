@@ -1,3 +1,7 @@
+---
+title: "The declared seam, executed"
+trigger_phrases: []
+---
 # The declared seam, executed
 
 ## What was in doubt

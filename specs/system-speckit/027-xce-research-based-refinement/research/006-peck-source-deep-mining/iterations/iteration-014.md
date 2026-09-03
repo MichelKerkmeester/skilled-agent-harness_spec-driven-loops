@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — Cross-model verify (MiniMax M3): T6 completion-verdict freshness"
+trigger_phrases: []
+---
 # Iteration 014 — Cross-model verify (MiniMax M3): T6 completion-verdict freshness
 
 **Focus:** Independent MiniMax M3 verification of iter 002 (completion-verdict freshness gap).

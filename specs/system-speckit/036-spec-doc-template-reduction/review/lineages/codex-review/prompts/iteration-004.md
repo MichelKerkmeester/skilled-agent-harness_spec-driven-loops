@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 Review Prompt"
+trigger_phrases: []
+---
 # Iteration 004 Review Prompt
 
 Resolved route: mode=review target_agent=deep-review

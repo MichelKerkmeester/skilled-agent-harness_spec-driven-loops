@@ -1,3 +1,7 @@
+---
+title: "deepseek-v4-pro-max — iteration 2: Traced the full workspaceRoot → generation-counter path: the advisor resolves state relative to cwd, not the repo root, and auto-creates .opencode/skills/.advisor-state/ inside whatever directory the hook fires from."
+trigger_phrases: []
+---
 # deepseek-v4-pro-max — iteration 2: Traced the full workspaceRoot → generation-counter path: the advisor resolves state relative to cwd, not the repo root, and auto-creates .opencode/skills/.advisor-state/ inside whatever directory the hook fires from.
 
 ## Findings

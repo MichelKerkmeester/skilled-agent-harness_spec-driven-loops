@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - SQLite FTS5 capability map"
+trigger_phrases: []
+---
 # Iteration 002 - SQLite FTS5 capability map
 
 ## Summary

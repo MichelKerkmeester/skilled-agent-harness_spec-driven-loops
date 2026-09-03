@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Parent-Hub defaultMode Policy, Run 2"
+trigger_phrases: []
+---
 # Deep Research Strategy: Parent-Hub defaultMode Policy, Run 2
 
 ## Topic

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 044: hook-test-sandbox-fix — Tier B methodology + amend 043
 
 You are cli-codex (gpt-5.5 high fast) implementing **017-hook-test-sandbox-fix**.

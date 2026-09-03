@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 - Adversarial Convergence Audit (Q-TEST + Q-COV)"
+trigger_phrases: []
+---
 # Iteration 007 - Adversarial Convergence Audit (Q-TEST + Q-COV)
 
 ## Status

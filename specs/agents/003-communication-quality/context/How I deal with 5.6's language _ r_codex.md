@@ -1,3 +1,7 @@
+---
+title: "What I like:"
+trigger_phrases: []
+---
 How I deal with 5.6's language
 Instruction
 i think we've all been noticing/overwhelm with 5.6 or even fable/opus just spilling a whole lot of verbiage that is just not readable.

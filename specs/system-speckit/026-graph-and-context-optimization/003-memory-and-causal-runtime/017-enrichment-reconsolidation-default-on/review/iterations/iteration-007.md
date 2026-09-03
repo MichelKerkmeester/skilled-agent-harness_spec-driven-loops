@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 — security — async-bg-safety"
+trigger_phrases: []
+---
 # Iteration 7 — security — async-bg-safety
 
 **Verdict:** FAIL

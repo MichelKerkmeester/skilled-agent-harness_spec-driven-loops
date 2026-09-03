@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — What system lets many concurrent AI coding sessions commit and push to one shared long-lived branch continuously, with zero operator-visible divergence blockers, an always-current IDE checkout, and no loss of concurrent uncommitted work?"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

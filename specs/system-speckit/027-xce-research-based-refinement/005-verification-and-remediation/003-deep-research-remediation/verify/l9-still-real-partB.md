@@ -1,3 +1,7 @@
+---
+title: "L9 Still-Real Verification — P2/P3 Sweep, Part B (17 findings)"
+trigger_phrases: []
+---
 # L9 Still-Real Verification — P2/P3 Sweep, Part B (17 findings)
 
 Verifier: fresh Fable 5 pass, 2026-06-12. Every finding re-checked against current code/docs with fresh reads, greps, and live command runs (strict validation re-executed, ESM failure reproduced, env-var coverage re-counted). Explicit overtake check performed against today's shipped lanes (single-writer DB lock + exit-86 launcher contract, shared secret scrubber, hash-only fingerprints, --command dispatch + probe gauntlet, apply-pipeline confirm gates + retention, launcher lifecycle doc reconciliation, detect_changes review adoption, advisor doc batch).

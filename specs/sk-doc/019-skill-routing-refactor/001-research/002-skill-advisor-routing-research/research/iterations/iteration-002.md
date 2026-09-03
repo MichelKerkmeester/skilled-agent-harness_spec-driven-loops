@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: advisor vocabulary alignment with hub registries"
+trigger_phrases: []
+---
 # Iteration 2: advisor vocabulary alignment with hub registries
 
 ## Focus

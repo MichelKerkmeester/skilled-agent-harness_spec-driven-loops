@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Phase 005 delivered the external-cli provider as a tested package path, but command 2's Branch B still dispatches to a cli- skill ad-hoc",
     "created_at": "2026-08-19T07:26:19.954Z",
-    "last_save_at": "2026-08-30T15:39:11.977Z",
+    "last_save_at": "2026-09-03T22:17:19.761Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f4c67e1788f22d1f132cbc85a4b60653ad60180e48597337b0d4c90d288cd55",
+    "source_fingerprint": "sha256:adf2e39a3f1f734551a65fddc896aba9fd941f88875d912a141b5741d98d24e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d75b4b3051b7204231a11c7c6e6cfd484be0d7a97260243586641c460563b65",
-      "plan.md": "7eda16bd6586b1ce08454ae325373719e326d1bc27b9468a5844ecf195d817f7",
-      "tasks.md": "b8f997c0d4b2090431db2e5ca3a3abf8a23af3ca3b69a07bef8a0c0d69857290",
-      "implementation-summary.md": "aa024eaba96e0fdefff44649e16574c719ea847f57cf833473e7f77366c65c1d"
+      "plan.md": "382a4a51e10f9b2c85b4c7b6d8b36691991afb0fcce761aa36661149d6e7d72d",
+      "tasks.md": "b7ba653d2dc9c33d6559f66bb57318cd95db167e20ad89d60e56de44fea859bc",
+      "implementation-summary.md": "5a1e11e031973fdd2885bd7c71c6e5228f2e7a01bbb23171a86ee778adaf4c9e"
     },
     "last_active_child_id": null,
     "last_active_at": null

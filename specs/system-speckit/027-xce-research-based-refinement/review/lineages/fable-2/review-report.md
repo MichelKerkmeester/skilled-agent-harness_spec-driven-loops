@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 027-xce-research-based-refinement (fable-2 lineage)"
+trigger_phrases: []
+---
 # Deep Review Report — 027-xce-research-based-refinement (fable-2 lineage)
 
 Session: `fanout-fable-2-1781112180955-4japyt` | Generation 1 | Executor: cli-claude-code / claude-fable-5 | Completed: 2026-06-10T18:25:00Z

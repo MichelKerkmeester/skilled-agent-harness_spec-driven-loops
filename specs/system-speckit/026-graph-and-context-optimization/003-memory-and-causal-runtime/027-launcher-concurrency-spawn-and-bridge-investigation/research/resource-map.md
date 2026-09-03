@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Launcher Concurrency Spawn & Bridge Investigation"
 description: "Inventory of source, spec, and runtime resources examined during the read-only deep-research investigation of T1 (hf-local spurious spawn) and T2 (daemon bridge not serving)."
+trigger_phrases: []
 ---
 
 # Resource Map

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Deep-loop fan-out adds Qwen 3.8 Max on opencode-go
 Deep-loop dispatch through the Pi CLI can now run Qwen 3.8 Max, and both it and DeepSeek V4 Flash route through the OpenCode `opencode-go` gateway — the subsidized "2x usage" endpoint. Before, `qwen3.8-max` had no enforced roster entry and DeepSeek V4 Flash dispatched over the direct `deepseek` provider; after, qwen3.8-max was added to the source-of-truth roster and its synchronous mirror, and both models now map to `opencode-go` at the fan-out layer. The change closes a fail-closed gap where a missing provider-map entry silently dispatched the wrong model. Both skills' model/provider docs gained an `opencode-go` section, each row citing the live dispatch that confirmed it, and the guard tests pinning the roster moved with the change (they failed first, exactly on the intended pins, then passed). Dispatch was live-verified for both models, and the direct DeepSeek route remains available via `--provider deepseek`.
 

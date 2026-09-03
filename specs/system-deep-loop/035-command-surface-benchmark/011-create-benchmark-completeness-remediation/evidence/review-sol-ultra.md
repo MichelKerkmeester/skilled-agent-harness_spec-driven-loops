@@ -1,3 +1,7 @@
+---
+title: "Review report"
+trigger_phrases: []
+---
 # Review report
 
 No. The six-family ownership model is mostly sound, and the evaluator/scorer/runtime boundary is correctly drawn, but `sk-doc/create-benchmark` is not yet a complete authoring home. Four authored-input gaps are confirmed: live behavior-contract variants, Lane C’s actual corpus workflow, the command-benchmark matrix/composite route, and Lane B’s reviewer profile.

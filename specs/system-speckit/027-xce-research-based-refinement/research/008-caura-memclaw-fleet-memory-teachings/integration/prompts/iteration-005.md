@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ROLE: Senior automation/platform + integration architect. READ-ONLY analysis — do NOT write/edit/create files or run code. Spec folder: .opencode/specs/system-spec-kit/027-xce-research-based-refinement (pre-approved; skip Gate 3).
 
 WHAT WE ARE INTEGRATING (read FIRST): the proposal at .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings/sub-packet-proposals.md (new child 010 + amendments to 002-008 + the 008 feedback reframe). Also skim ../research.md section 5 (T1-T14) and section 7 (027-child mapping).

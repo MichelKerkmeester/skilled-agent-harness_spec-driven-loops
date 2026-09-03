@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Embedding Status State Machine"
+trigger_phrases: []
+---
 # Iteration 1: Embedding Status State Machine
 
 ## Focus

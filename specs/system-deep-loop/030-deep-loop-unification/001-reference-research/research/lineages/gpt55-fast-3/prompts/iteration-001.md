@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY (auto-generated):
 Segment: 1 | Iteration: 1 of 10
 Questions: 0/5 answered | Last focus: none yet

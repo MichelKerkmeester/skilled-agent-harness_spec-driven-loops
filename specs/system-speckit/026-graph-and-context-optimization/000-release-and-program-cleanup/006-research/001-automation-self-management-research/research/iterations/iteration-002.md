@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Code Graph Scan, Readiness, Verify, Watcher"
+trigger_phrases: []
+---
 # Iteration 002 - Code Graph Scan, Readiness, Verify, Watcher
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 TASK | STAGE1_MODES | STAGE2_INTENTS | RES | MISSING | SCORES
 --- | --- | --- | --- | --- | ---
 create a skill for parsing our webhook payloads | (none) | SKILL_CREATION | 4 | 0 | 

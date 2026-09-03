@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: sk-code OpenCode-surface standards + system-skill-advisor core libs and hooks audit"
+trigger_phrases: []
+---
 # Iteration 1: sk-code OpenCode-surface standards + system-skill-advisor core libs and hooks audit
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Activation-Manifest Ownership"
+trigger_phrases: []
+---
 # Iteration 1: Activation-Manifest Ownership
 
 ## Focus

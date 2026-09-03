@@ -1,3 +1,7 @@
+---
+title: "Iteration 32: Round H Rust Reference — aionforge-forget → spare-only + edge-allowlist + erasure cascade"
+trigger_phrases: []
+---
 # Iteration 32: Round H Rust Reference — aionforge-forget → spare-only + edge-allowlist + erasure cascade
 
 ## Focus

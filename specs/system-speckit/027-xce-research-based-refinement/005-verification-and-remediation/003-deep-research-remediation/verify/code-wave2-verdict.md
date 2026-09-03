@@ -1,3 +1,7 @@
+---
+title: "Code Wave 2 — Fresh Fable Verifier Verdict (tri-045, tri-013)"
+trigger_phrases: []
+---
 # Code Wave 2 — Fresh Fable Verifier Verdict (tri-045, tri-013)
 
 Verified 2026-06-12 against originals: tri-045 in `verify/fable-verify-l4-batch-report.md`; tri-013 in `verify/l2-still-real-batch.md` (Cluster E). Both fixes are uncommitted working-tree modifications (confirmed via `git status --porcelain`).

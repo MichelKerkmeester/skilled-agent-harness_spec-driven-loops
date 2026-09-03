@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — 027/006 peck-source deep mining"
+trigger_phrases: []
+---
 # Deep Research Dashboard — 027/006 peck-source deep mining
 
 | Metric | Value |

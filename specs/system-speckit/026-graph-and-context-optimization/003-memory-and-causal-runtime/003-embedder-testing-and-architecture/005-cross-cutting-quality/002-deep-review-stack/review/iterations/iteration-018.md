@@ -1,3 +1,7 @@
+---
+title: "Iteration 018 — SECURITY (supply-chain + dependency sweep)"
+trigger_phrases: []
+---
 # Iteration 018 — SECURITY (supply-chain + dependency sweep)
 
 **Scope:** Supply-chain and dependency security analysis of in-scope files.

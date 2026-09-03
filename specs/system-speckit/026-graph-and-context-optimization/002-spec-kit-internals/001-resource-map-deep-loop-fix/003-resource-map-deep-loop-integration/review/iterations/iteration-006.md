@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: correctness stabilization - emit path replay"
+trigger_phrases: []
+---
 # Iteration 006: correctness stabilization - emit path replay
 
 ## Dispatcher

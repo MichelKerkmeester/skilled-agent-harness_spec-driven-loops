@@ -1,3 +1,7 @@
+---
+title: "Iteration 46 (Round O): Q7 lease-telemetry + Q4 sliding-TTL ceiling"
+trigger_phrases: []
+---
 # Iteration 46 (Round O): Q7 lease-telemetry + Q4 sliding-TTL ceiling
 
 ## Focus

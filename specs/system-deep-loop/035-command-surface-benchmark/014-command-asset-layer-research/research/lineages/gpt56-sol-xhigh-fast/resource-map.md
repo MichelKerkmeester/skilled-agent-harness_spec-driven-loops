@@ -1,3 +1,7 @@
+---
+title: "Resource Map — Command Asset Layer"
+trigger_phrases: []
+---
 # Resource Map — Command Asset Layer
 
 ## Scope

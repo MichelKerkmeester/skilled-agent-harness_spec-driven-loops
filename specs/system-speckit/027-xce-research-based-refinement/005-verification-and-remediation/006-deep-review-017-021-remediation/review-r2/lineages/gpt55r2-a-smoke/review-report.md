@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - gpt55r2-a-smoke"
+trigger_phrases: []
+---
 # Deep Review Report - gpt55r2-a-smoke
 
 ## Executive Summary

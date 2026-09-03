@@ -1,3 +1,7 @@
+---
+title: "Iteration 024 — traceability"
+trigger_phrases: []
+---
 # Iteration 024 — traceability
 
 - Executor: cli-codex gpt-5.6-sol effort=high service_tier=fast sandbox=read-only

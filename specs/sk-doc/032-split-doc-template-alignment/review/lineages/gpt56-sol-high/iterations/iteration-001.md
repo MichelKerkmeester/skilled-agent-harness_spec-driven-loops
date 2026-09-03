@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Inventory and Correctness Baseline"
+trigger_phrases: []
+---
 # Iteration 1: Inventory and Correctness Baseline
 
 ## Dispatcher

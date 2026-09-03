@@ -1,3 +1,7 @@
+---
+title: "Shared Memory Relevance Audit"
+trigger_phrases: []
+---
 # Shared Memory Relevance Audit
 
 ## Section 1 - Verdicts

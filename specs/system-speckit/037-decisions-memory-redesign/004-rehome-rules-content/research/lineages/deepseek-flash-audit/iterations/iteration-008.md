@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Dedup + classification reconciliation — MASTER INVENTORY draft"
+trigger_phrases: []
+---
 # Iteration 8: Dedup + classification reconciliation — MASTER INVENTORY draft
 
 ## Focus

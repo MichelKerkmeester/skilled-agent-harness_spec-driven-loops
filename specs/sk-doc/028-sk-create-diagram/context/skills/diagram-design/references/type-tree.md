@@ -1,3 +1,7 @@
+---
+title: "Tree / Hierarchy"
+trigger_phrases: []
+---
 # Tree / Hierarchy
 
 **Best for:** org charts, dependency trees, taxonomy, file trees, decision breakdowns, skill trees.

@@ -1,3 +1,7 @@
+---
+title: "Stage 0 External-Findings Brief: Spec-Kit Data Quality by Default"
+trigger_phrases: []
+---
 # Stage 0 External-Findings Brief: Spec-Kit Data Quality by Default
 
 A fresh-Opus online sweep of about thirty cited sources, all read-only. The sweep answers one question: how can spec-kit raise data quality by default so every packet retrieves better, steers AI better and reads as logic better. The findings are sorted into seven angles, then distilled into ten ranked candidates. Every cited source URL is preserved.

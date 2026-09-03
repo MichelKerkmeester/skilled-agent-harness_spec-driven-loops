@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis — deepseek-risk Lineage: Risk Resolution"
+trigger_phrases: []
+---
 # Deep Research Synthesis — deepseek-risk Lineage: Risk Resolution
 
 - **Date:** 2026-06-06 · **Session:** `fanout-deepseek-risk-1780741781330-fuysmn` · **Lane:** deepseek-risk (deepseek/deepseek-v4-pro)

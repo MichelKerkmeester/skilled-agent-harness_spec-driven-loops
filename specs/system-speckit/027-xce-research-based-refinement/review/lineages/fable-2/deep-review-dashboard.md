@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — fable-2 lineage"
+trigger_phrases: []
+---
 # Deep Review Dashboard — fable-2 lineage
 
 Session: `fanout-fable-2-1781112180955-4japyt` | Target: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement` | Executor: cli-claude-code / claude-fable-5

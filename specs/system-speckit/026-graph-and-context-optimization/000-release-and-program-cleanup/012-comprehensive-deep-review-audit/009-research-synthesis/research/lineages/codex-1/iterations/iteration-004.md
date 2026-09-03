@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: Analyze deep-loop fanout blast radius and artifact suspectness."
+trigger_phrases: []
+---
 # Iteration 004: Analyze deep-loop fanout blast radius and artifact suspectness.
 
 ## Focus

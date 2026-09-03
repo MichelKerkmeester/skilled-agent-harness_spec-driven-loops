@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Skill-Advisor CLI: generated fallback, hardened, wired in
 Before this work, the skill advisor's 9 tools were reachable only through the MCP server, with a Python facade (`skill_advisor.py`) as a legacy fallback. Feasibility research returned a GO verdict with 10/10 measured scorer parity, and the CLI core shipped as a manifest-backed dispatcher (`skill-advisor-cli.ts` plus the `skill-advisor.cjs` shim) exposing the same 9 commands with byte-identical schemas, a trusted-mutation gate, a 0/1/64/69/75 exit taxonomy, and a stale-dist guard. Hardening added parity, job-semantics, orphan-reaping, and dual-client suites plus an env-gated tri-daemon spawn drill — all passing, including zero-orphan reaping under a killed parent. Runtime integration then wired warm-only CLI fallback into the Claude and Codex prompt-submit hooks and the OpenCode bridge, added read-only doctor probes, and documented facade-vs-CLI selection. Because the one-shot native bridge costs ~825ms, warm-only use keeps it off the prompt path and the prompt path fails open quickly when the socket is absent. The change is additive and non-breaking; the Python facade is reconciled as a legacy facade rather than removed.
 

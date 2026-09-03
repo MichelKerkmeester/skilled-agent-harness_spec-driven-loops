@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 026 graph-and-context-optimization program closed without a retrospective, and a deep review suggested it shipped mechanisms while deferring the measurements that prove them optimal",
     "created_at": "2026-06-06T06:03:36.642Z",
-    "last_save_at": "2026-08-30T15:39:29.093Z",
+    "last_save_at": "2026-09-03T22:22:35.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,15 +210,15 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6c3f7c0a52c7e186dcb5833c16fff7db1efc6063ec89be3afd07e9e8b3c9fde7",
+    "source_fingerprint": "sha256:12f822a4634d49f708a7cd8d60d5d0ba956cc157073c446780ea075ac810870e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a680b01592699988a3db1d22eff195b498ea0581e5773937f7a40da74853df0c",
       "plan.md": "dfa1261c7d0a836f3c7973560694b44339455d6fa3ba677f87d1d6cafa625d28",
       "tasks.md": "647da2408b36ea672d7ffba5dfd3104d6c9f167fcad6b412f9c17daddd7472b6",
       "implementation-summary.md": "653b340d4ba2419f8bbbadf09e88699669cdf76d6107a14fd595b68d0f81b9e2",
-      "research/research.md": "c7f8a2a676ef3ac7d5b646c6c14cbcefa5a1c597d4ab0fbef0943c86bed8986f",
-      "handover.md": "75a58b4aa6c80e490579927f0f95c84cb06677f93af0c3677a953a47cc67ae85"
+      "research/research.md": "e4f83b78c164aac349ee350986b720878227b4940bc6e868d0548dc615a5c6b4",
+      "handover.md": "c239d25d1681e85463bf8eeddec98e73c844689da130e64224a052e32139b84c"
     },
     "last_active_child_id": null,
     "last_active_at": null

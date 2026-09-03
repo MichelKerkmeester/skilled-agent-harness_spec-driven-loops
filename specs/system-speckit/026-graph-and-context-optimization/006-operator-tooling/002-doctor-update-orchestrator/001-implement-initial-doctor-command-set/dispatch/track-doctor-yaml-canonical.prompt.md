@@ -1,3 +1,7 @@
+---
+title: "Codex dispatch: Doctor YAML canonical-banner alignment + Markdown entrypoint cleanup"
+trigger_phrases: []
+---
 # Codex dispatch: Doctor YAML canonical-banner alignment + Markdown entrypoint cleanup
 
 ## ROLE

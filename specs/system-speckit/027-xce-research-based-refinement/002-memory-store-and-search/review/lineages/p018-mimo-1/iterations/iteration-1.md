@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now let me read the implementation files and set up the artifact directory.Now I have the full picture. Let me execute the review loop phases.
 
 **Phase Init** — Creating config, strategy, and initial JSONL state:**Phase Main Loop** — Iteration 1 (Correctness dimension):**Phase Synthesis** — Writing findings registry, dashboard, and review report:All phases complete. Artifacts written to `review/lineages/p018-mimo-1/`:

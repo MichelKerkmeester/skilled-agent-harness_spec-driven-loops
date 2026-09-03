@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 015 Storage Adapter Ports"
+trigger_phrases: []
+---
 # Deep Review Report — 015 Storage Adapter Ports
 
 Review target: `system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports` (5 behavior-preserving port-extraction slices: VectorStore, LexicalSearch [adopts 014], GraphTraversal [adopts 012], Maintenance, ContentionPolicy).

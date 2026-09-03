@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:foundations,/interface:motion,/interface:audit PROOF=target,register,designDials,preflightResult
 
 ---

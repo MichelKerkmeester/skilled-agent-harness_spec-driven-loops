@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Run 3: Risk Resolution (pre-implementation)"
+trigger_phrases: []
+---
 # Deep Research Strategy — Run 3: Risk Resolution (pre-implementation)
 
 ## Topic

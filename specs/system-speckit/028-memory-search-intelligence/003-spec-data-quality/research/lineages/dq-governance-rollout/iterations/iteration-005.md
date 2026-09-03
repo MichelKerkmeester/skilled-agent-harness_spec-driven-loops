@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — KQ5: The consolidated NO-GO list and anti-patterns"
+trigger_phrases: []
+---
 # Iteration 005 — KQ5: The consolidated NO-GO list and anti-patterns
 
 ## Focus

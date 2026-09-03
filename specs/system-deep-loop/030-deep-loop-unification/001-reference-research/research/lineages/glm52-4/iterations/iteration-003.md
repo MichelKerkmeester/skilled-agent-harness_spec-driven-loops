@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - system-spec-kit Tooling-Borrow And The artifact-root.cjs Seam"
+trigger_phrases: []
+---
 # Iteration 003 - system-spec-kit Tooling-Borrow And The artifact-root.cjs Seam
 
 ## Focus

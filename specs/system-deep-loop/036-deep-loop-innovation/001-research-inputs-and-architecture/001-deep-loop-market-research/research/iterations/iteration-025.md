@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 25 | model luna (gpt-5.6-luna) | angle: GAP-SWEEP #1: adjacent ecosystems uncovered | 2026-07-14T23:11:52.489Z -->
 
 Gap-sweep #1 found five adjacent seams absent from the registry.

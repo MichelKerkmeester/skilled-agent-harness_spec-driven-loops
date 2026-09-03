@@ -1,3 +1,7 @@
+---
+title: "Review: Is `sk-doc/create-benchmark` the complete benchmark-authoring home?"
+trigger_phrases: []
+---
 # Review: Is `sk-doc/create-benchmark` the complete benchmark-authoring home?
 
 Reviewer: independent Fable-5 leg · Date: 2026-07-15 · Scope: READ-ONLY, both trees opened.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Stolen Credential Exposure"
+trigger_phrases: []
+---
 # Iteration 002 - Stolen Credential Exposure
 
 ## Summary

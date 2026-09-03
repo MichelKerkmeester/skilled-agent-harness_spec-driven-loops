@@ -1,3 +1,7 @@
+---
+title: "AI Council Strategy: Orphan MCP Leak Prevention Review"
+trigger_phrases: []
+---
 # AI Council Strategy: Orphan MCP Leak Prevention Review
 
 ## Purpose

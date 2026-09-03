@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: mcp-obsidian Write Surface Mapping (notesmd-cli + MCP + plugin file-layer)"
+trigger_phrases: []
+---
 # Iteration 3: mcp-obsidian Write Surface Mapping (notesmd-cli + MCP + plugin file-layer)
 
 ## Focus

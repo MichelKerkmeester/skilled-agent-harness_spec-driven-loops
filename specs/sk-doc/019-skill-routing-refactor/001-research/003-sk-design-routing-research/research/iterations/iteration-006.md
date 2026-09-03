@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Canonical six-mode typed-pair reconciliation"
+trigger_phrases: []
+---
 # Iteration 6: Canonical six-mode typed-pair reconciliation
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 16: spec folder — phases 009-010 + context-index"
+trigger_phrases: []
+---
 # Iteration 16: spec folder — phases 009-010 + context-index
 
 > dimension: spec-conformance | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

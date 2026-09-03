@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### MCP Tooling
 - Design reference research gained two read-only CLI transports — **mcp-refero** (styles, screens, flows) and **mcp-mobbin** (screens, flows, sections) — both pairing with sk-design for judgment; Mobbin needs only a browser OAuth handshake, while Refero requires a paid plan.
 - A new **mcp-aside-devtools** skill drives the Aside AI browser via the aside CLI (agent tasks or deterministic REPL) or the Aside MCP through Code Mode, with a doctor, installer, and 15-scenario playbook.

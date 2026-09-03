@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Adopt vs Build — Verdict Analysis"
+trigger_phrases: []
+---
 # Iteration 5: Adopt vs Build — Verdict Analysis
 
 ## Focus

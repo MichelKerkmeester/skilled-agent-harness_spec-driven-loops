@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Refero MCP developer surface for an mcp-tooling transport mode: the Refero MCP server per https://refero.design/mcp (tool surface, auth, rate limits, transport via mcp-remote) and the official refero_skill repo https://github.com/referodesign/refero_skill — UI-design-reference search workflows (apps, screens, flows, elements), free vs paid gating, everything needed to author the mcp-refero transport packet (read-only, Code Mode only, sk-design judgment pairing) atop the EXISTING refero manual in .utcp_config.json (npx -y mcp-remote https://api.refero.design/mcp)"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

@@ -1,3 +1,7 @@
+---
+title: "Design Note — The Unified Intent→Leaf Taxonomy (Phase 1 design-lock)"
+trigger_phrases: []
+---
 # Design Note — The Unified Intent→Leaf Taxonomy (Phase 1 design-lock)
 
 Status: draft (Phase 1 deliverable #1). No runtime is frozen or changed by this note — it is the design the Phase 3–4 rewrite implements. Authority: `decision-record.md` ADR-005.

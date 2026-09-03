@@ -1,3 +1,7 @@
+---
+title: "Nested Containment"
+trigger_phrases: []
+---
 # Nested Containment
 
 **Best for:** hierarchy through containment — scope boundaries, CLAUDE.md cascade, trust zones, folder nesting, blast radius. Outer = broader, inner = more specific.

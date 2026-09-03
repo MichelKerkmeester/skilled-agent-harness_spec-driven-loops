@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Stabilization — adversarial replay of active P1s"
+trigger_phrases: []
+---
 # Iteration 10: Stabilization — adversarial replay of active P1s
 
 ## Focus

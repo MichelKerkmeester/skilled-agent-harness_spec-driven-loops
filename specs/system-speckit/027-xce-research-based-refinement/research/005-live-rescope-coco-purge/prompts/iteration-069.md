@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 069 — 004 tombstones: live delete-site inventory + lifecycle_generation collision"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 069 — 004 tombstones: live delete-site inventory + lifecycle_generation collision

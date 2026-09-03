@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - glm lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard - glm lineage
 
 **Session:** fanout-glm-1784199634206-lfqjyo · **Executor:** cli-opencode / zai-coding-plan/glm-5.2 · **Stop policy:** max-iterations (max 2) — REACHED

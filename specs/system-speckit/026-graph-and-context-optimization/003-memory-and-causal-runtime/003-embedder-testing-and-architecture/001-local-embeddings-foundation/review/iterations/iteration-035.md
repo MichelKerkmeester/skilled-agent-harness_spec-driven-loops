@@ -1,3 +1,7 @@
+---
+title: "Deep Review v3 Iteration 035 - cross-packet Qwen sweep"
+trigger_phrases: []
+---
 # Deep Review v3 Iteration 035 - cross-packet Qwen sweep
 
 **Dimension:** correctness  

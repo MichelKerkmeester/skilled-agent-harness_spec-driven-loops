@@ -1,3 +1,7 @@
+---
+title: "Triage worklist — sol (45 findings)"
+trigger_phrases: []
+---
 # Triage worklist — sol (45 findings)
 
 Re-test each claim. Record CONFIRMED, REFUTED or DEFERRED with the exact command used.

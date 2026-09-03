@@ -1,3 +1,7 @@
+---
+title: "L4 Launcher-Parity Cluster Verdict (tri-030 / tri-032 / tri-043 / tri-110)"
+trigger_phrases: []
+---
 # L4 Launcher-Parity Cluster Verdict (tri-030 / tri-032 / tri-043 / tri-110)
 
 > Fresh Fable 5 verifier, 2026-06-12. Uncommitted working-tree state verified against

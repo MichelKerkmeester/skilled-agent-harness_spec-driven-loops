@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: D4 Maintainability + Adversarial P0/P1 Replay + Breadth Sweep (final iteration)"
+trigger_phrases: []
+---
 # Iteration 3: D4 Maintainability + Adversarial P0/P1 Replay + Breadth Sweep (final iteration)
 
 ## Focus

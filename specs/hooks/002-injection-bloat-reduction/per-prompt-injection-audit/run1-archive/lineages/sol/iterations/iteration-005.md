@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Devin Hook Adapter End-to-End Audit"
+trigger_phrases: []
+---
 # Iteration 5: Devin Hook Adapter End-to-End Audit
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Dimensions Knob Removal Impact"
+trigger_phrases: []
+---
 # Dimensions Knob Removal Impact
 
 Upstream `cocoindex-code` v0.2.30 removed the dimensions knob from per-side embedder params. The current upstream validator rejects `dimensions` in `indexing_params` or `query_params`, and the README states the reason plainly: output dimension must match between indexing and query.

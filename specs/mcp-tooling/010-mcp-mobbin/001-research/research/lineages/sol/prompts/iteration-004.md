@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration Prompt Pack"
+trigger_phrases: []
+---
 Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true
 
 # Deep-Research Iteration Prompt Pack

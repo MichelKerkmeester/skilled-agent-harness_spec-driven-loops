@@ -5,6 +5,7 @@ created: 2026-04-11T19:30:00Z
 reviewers: 6 parallel Opus 4.6 @review agents (read-only, findings-first)
 scope: Verify each of the 6 child phase folders under 006-continuity-refactor-gates/ against research + resource-map + master plan
 verdict: SHIP AFTER FIXING 2 P0 BLOCKERS
+trigger_phrases: []
 ---
 
 # Phase 018 — 6-Gate Plan Verification Review

@@ -1,3 +1,7 @@
+---
+title: "Triage worklist — composer (20 findings)"
+trigger_phrases: []
+---
 # Triage worklist — composer (20 findings)
 
 Re-test each claim. Record CONFIRMED, REFUTED or DEFERRED with the exact command used.

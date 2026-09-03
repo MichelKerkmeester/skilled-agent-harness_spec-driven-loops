@@ -2,6 +2,7 @@
 title: "Tasks: Phase 8 — Split code-opencode Other-Language & Shared References"
 description: "Task checklist with evidence for the code-opencode non-Rust + shared reference split and router rewire."
 contextType: "implementation"
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 8 — Split code-opencode Other-Language & Shared References

@@ -1,3 +1,7 @@
+---
+title: "INPUTS — read all ten iteration analyses"
+trigger_phrases: []
+---
 You are a senior memory-systems research synthesist performing READ-ONLY analysis. Do NOT write, create, or edit any files — your final answer text IS the deliverable.
 
 # INPUTS — read all ten iteration analyses

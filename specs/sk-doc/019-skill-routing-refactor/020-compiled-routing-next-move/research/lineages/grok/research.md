@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — Compiled Routing Next Move (grok lineage)"
+trigger_phrases: []
+---
 # Research Synthesis — Compiled Routing Next Move (grok lineage)
 
 **Session:** `fanout-grok-1785124318112-qa7rq8`  

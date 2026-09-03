@@ -1,3 +1,7 @@
+---
+title: "Reviewing the plan"
+trigger_phrases: []
+---
 # Reviewing the plan
 
 `gr check` proves structure. It cannot judge decomposition. Review nodes close

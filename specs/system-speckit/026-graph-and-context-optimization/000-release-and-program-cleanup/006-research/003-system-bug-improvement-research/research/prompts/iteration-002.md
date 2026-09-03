@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 002 — Angle A2: Code-graph SQLite contention"
+trigger_phrases: []
+---
 # Deep-Research Iteration 002 — Angle A2: Code-graph SQLite contention
 
 You are the deep-research LEAF agent for iteration 002 of 20. The packet root is `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-bug-improvement-research/`.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Context
 You are dispatched into the root of a monorepo hosting an AI assistant framework (MCP servers, skills, operator commands). Relevant subsystem areas: `.opencode/skills/system-spec-kit/mcp_server/` (Spec Kit Memory MCP server, TypeScript — self-maintaining memory index, shared-daemon launcher, lease + IPC machinery under its `bin/` and `lib/` trees); `.opencode/skills/system-code-graph/` (structural code-graph MCP server); `.opencode/skills/system-skill-advisor/` (skill advisor MCP + skill-graph); operator command + diagnostic surfaces (the `/doctor` family) live under `.opencode/` — discover the implementation yourself; it routes per-subsystem diagnostics.
 

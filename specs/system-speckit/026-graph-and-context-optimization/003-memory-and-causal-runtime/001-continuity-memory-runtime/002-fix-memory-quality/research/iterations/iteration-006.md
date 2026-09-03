@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: D5 Root Cause - Missing Causal `supersedes` Links"
+trigger_phrases: []
+---
 # Iteration 6: D5 Root Cause - Missing Causal `supersedes` Links
 
 ## Focus

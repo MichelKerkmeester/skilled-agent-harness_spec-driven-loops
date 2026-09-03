@@ -4,6 +4,7 @@ description: "Persistent research plan for the GLM detached fan-out lineage on t
 importance_tier: normal
 contextType: planning
 version: 1.14.0.29
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — lineage:glm

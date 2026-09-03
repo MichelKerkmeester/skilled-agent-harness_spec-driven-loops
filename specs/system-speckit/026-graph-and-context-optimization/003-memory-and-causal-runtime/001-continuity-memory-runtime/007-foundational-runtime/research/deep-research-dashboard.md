@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard -- 016 Foundational Runtime Deep Review"
+trigger_phrases: []
+---
 # Deep Research Dashboard -- 016 Foundational Runtime Deep Review
 
 **Last updated:** 2026-04-16T19:17:00Z (FINAL synthesis commit) -- metadata back-fill 2026-04-16T20:00:00Z

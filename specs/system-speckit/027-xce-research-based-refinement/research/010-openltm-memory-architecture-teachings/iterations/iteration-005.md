@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Typed knowledge graph + BFS conflict detection"
+trigger_phrases: []
+---
 # Iteration 005 — Typed knowledge graph + BFS conflict detection
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.64 · **tokens:** 102963 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Spec folder: sk-doc/014-skill-readme-standardization/012-mcp-chrome-devtools-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file, and do not run or install anything. Return findings as your final assistant message only.
 
 Role: You are verifying exact facts about the `.opencode/skills/mcp-chrome-devtools/` skill so a README rewrite cites them correctly. This pass locks the precise, citable details and finds stale facts.

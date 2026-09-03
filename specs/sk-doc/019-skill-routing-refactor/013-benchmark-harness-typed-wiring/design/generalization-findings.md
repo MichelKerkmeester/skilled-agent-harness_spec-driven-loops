@@ -1,3 +1,7 @@
+---
+title: "Generalization Findings — Deterministic Replay vs. Production LLM Routing"
+trigger_phrases: []
+---
 # Generalization Findings — Deterministic Replay vs. Production LLM Routing
 
 The held-out work answered the program's central open question ("nothing

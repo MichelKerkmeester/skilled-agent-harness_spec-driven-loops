@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Final Replay - Convergence and Graphless Fallback"
+trigger_phrases: []
+---
 # Iteration 6: Final Replay - Convergence and Graphless Fallback
 
 ## Focus

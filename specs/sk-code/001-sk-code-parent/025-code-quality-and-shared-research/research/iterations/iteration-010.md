@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final Capped Synthesis"
+trigger_phrases: []
+---
 # Iteration 10: Final Capped Synthesis
 
 ## Focus

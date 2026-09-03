@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard - gpt-3"
+trigger_phrases: []
+---
 # Deep Review Dashboard - gpt-3
 
 ## Status

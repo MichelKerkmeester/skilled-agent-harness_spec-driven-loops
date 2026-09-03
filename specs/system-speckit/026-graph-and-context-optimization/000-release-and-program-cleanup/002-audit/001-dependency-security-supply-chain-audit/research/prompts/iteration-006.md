@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 6 of 25 - LaunchAgents + LaunchDaemons"
+trigger_phrases: []
+---
 # Deep Research Iteration 6 of 25 - LaunchAgents + LaunchDaemons
 
 ## SITUATION

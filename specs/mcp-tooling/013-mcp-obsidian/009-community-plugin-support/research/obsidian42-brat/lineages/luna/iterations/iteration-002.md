@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Safe Headless AI Workflows For BRAT"
+trigger_phrases: []
+---
 # Iteration 2: Safe Headless AI Workflows For BRAT
 
 ## Focus

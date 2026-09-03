@@ -1,3 +1,7 @@
+---
+title: "Deep research dashboard — Beancount Ledger"
+trigger_phrases: []
+---
 # Deep research dashboard — Beancount Ledger
 
 Status: complete  

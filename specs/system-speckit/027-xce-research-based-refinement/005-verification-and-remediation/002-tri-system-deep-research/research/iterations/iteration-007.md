@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Angle 7"
+trigger_phrases: []
+---
 # Iteration 007 — Angle 7
 
 **Angle:** Scan event-loop saturation: memory_index_scan starves the IPC bridge (observed live: health timeouts during scan) — yielding/job-queue/progress-event design.

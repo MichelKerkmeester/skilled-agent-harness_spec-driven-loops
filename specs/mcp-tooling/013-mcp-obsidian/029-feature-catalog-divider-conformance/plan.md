@@ -1,3 +1,7 @@
+---
+title: "Plan — mcp-obsidian feature-catalog divider conformance"
+trigger_phrases: []
+---
 # Plan — mcp-obsidian feature-catalog divider conformance
 
 ## Approach

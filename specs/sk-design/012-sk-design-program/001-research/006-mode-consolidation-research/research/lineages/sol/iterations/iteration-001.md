@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Physical inventory and structural utilization baseline"
+trigger_phrases: []
+---
 # Iteration 1: Physical inventory and structural utilization baseline
 
 ## Focus

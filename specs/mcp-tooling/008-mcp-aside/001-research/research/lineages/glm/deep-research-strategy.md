@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - Aside Developer Surface (Lineage: glm)"
+trigger_phrases: []
+---
 # Deep Research Strategy - Aside Developer Surface (Lineage: glm)
 
 ## 2. TOPIC

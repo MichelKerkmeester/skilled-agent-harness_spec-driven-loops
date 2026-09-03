@@ -1,3 +1,7 @@
+---
+title: "Resource Map — 002-deep-loop-alignment"
+trigger_phrases: []
+---
 # Resource Map — 002-deep-loop-alignment
 
 Files with findings:

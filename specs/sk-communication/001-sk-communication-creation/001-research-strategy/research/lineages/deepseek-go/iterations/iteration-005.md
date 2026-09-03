@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Provider model — OpenCode Go DeepSeek V4 Flash, Ollama, llama.cpp, privacy routing"
+trigger_phrases: []
+---
 # Iteration 5: Provider model — OpenCode Go DeepSeek V4 Flash, Ollama, llama.cpp, privacy routing
 
 ## Focus

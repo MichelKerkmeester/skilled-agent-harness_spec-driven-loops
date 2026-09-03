@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Eight code-webflow non-implementation docs exceed 500 lines (largest: debuggingworkflows 1940)",
     "created_at": "2026-07-11T17:01:18.234Z",
-    "last_save_at": "2026-08-30T15:39:11.092Z",
+    "last_save_at": "2026-09-03T22:16:07.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a34659008addcfeb47775c47321f09e39afb1021c26155c96069786b8478c4ea",
+    "source_fingerprint": "sha256:bd117fad5bd853c157327de5051a1263db9eb31f8613080374d604d6d088e833",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2204fd231eae81b8da9f10c6ab2b0fa4e17de087abe33ecc442159ccb2ee28fc",
-      "plan.md": "36602554e42aab0b7ceee31a4fc81fb5062100f2d34ca2fd689639da64de1f32",
-      "tasks.md": "2408e692efd79110a5fdb1d690658610722232587fba781b91914521977b80db",
-      "implementation-summary.md": "23e06f3d3e9ad84aa90ae9b4cb8e62b00191fc65c9ed9f93c7982144eaaf1ad1"
+      "plan.md": "b1f3d6daca229112914789e9c3c44661a66d8149a1ca6935b13668feff8340e5",
+      "tasks.md": "fd12701608e8ad02396f9de639778cbdf53542c73ecc9c446002c1d8c60c8e19",
+      "implementation-summary.md": "57c1f16605041b3e96d3d092d7b86ce0db3a5858a4ff51c7df7e87e8045e6879"
     },
     "last_active_child_id": null,
     "last_active_at": null

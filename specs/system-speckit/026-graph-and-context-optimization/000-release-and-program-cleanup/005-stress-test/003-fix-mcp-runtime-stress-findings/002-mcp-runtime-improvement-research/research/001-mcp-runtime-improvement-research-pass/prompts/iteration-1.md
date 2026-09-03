@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration Prompt Pack"
+trigger_phrases: []
+---
 # Deep-Research Iteration Prompt Pack
 
 ## STATE

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Backlog validation against hub, benchmark, hook, plugin, and quality-standard evidence"
+trigger_phrases: []
+---
 # Iteration 6: Backlog validation against hub, benchmark, hook, plugin, and quality-standard evidence
 
 ## Focus

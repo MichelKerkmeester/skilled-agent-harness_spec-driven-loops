@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Prefix, timing, refusal, and cross-adapter parity controls"
+trigger_phrases: []
+---
 # Iteration 005 — Prefix, timing, refusal, and cross-adapter parity controls
 
 ## Focus

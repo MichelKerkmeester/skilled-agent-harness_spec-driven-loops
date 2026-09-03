@@ -97,18 +97,18 @@
     ],
     "causal_summary": "Script-driven: add 'Related references:' prev/next links to SOURCE METADATA in all 315 snippets currently missing them. Link titles sourced from frontmatter — no AI judgment needed.",
     "created_at": "2026-07-09T10:02:46.146Z",
-    "last_save_at": "2026-08-30T15:39:14.338Z",
+    "last_save_at": "2026-09-03T22:18:56.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
-    "source_fingerprint": "sha256:15f8ae9577a86586ad9b72b3ea4fccb56e0efba7b4ba9ae0edf5176e37175763",
+    "source_fingerprint": "sha256:5ff87e3ff108b105e35ca5592657f240b526f2c0f6db98f1c14cf911b70aa649",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a3196c2a8d9eb753d829ced367c40767624894c19d4af495b5008d9afe2b2b19",
-      "plan.md": "6fd72bc8bd9547fd9b36b6abd9d3f6bc0fc777a2d48a762faeed82a6aec389de"
+      "spec.md": "1b2e7ab12ea454ee916f2224b989c0547214ecfe44e177823b9d4f0fba5aac95",
+      "plan.md": "17fb8bf2736d617ce0800c8a61eac0952b97d90c957830e5ee74fb20e6b26ba5"
     },
     "last_active_child_id": null,
     "last_active_at": null

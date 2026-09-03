@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 (MiMo lineage): Graphiti/Zep — bi-temporal invalidation / episodes / hybrid retrieval"
+trigger_phrases: []
+---
 # Iteration 3 (MiMo lineage): Graphiti/Zep — bi-temporal invalidation / episodes / hybrid retrieval
 
 > Model: **MiMo v2.5 Pro** (`xiaomi/mimo-v2.5-pro --variant high`), read-only opencode seat; orchestrator-written. newInfoRatio 0.8, 6 findings.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Correctness: Same-Day Rerun Collision Guard"
+trigger_phrases: []
+---
 # Iteration 001 — Correctness: Same-Day Rerun Collision Guard
 
 - **Dimension:** correctness

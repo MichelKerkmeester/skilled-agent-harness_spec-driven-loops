@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Traceability: bootstrap evidence"
+trigger_phrases: []
+---
 # Iteration 003 — Traceability: bootstrap evidence
 
 Phase 000 declares itself the first phase with no predecessor. Its scope also says that the rename map belongs to later phase 006. Its blocking verification protocol nevertheless requires every candidate report to pin a rename-map hash; CHK-007 requires predecessor phases to have landed and CHK-008 repeats the rename-map hash requirement.

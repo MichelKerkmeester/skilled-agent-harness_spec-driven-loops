@@ -1,3 +1,7 @@
+---
+title: "$refine TIDD-EC Prompt: 005-claudest"
+trigger_phrases: []
+---
 # $refine TIDD-EC Prompt: 005-claudest
 
 ## 1. Header

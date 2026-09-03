@@ -1,3 +1,7 @@
+---
+title: "pi-gpt-fast-mode"
+trigger_phrases: []
+---
 # pi-gpt-fast-mode
 
 A [pi](https://pi.dev) extension that controls OpenAI's **service tier** for

@@ -1,3 +1,7 @@
+---
+title: "The effect producer is not a wrapper around the append CLI"
+trigger_phrases: []
+---
 # The effect producer is not a wrapper around the append CLI
 
 ## The plan that was about to be built

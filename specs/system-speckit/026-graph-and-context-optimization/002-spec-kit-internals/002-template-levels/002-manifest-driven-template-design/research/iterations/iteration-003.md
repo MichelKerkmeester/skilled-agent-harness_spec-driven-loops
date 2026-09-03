@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Design Elimination Round"
+trigger_phrases: []
+---
 # Iteration 3: Design Elimination Round
 
 ## Focus

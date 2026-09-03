@@ -1,3 +1,7 @@
+---
+title: "Reasonix vs Pi Prompt Caching — Research Synthesis"
+trigger_phrases: []
+---
 # Reasonix vs Pi Prompt Caching — Research Synthesis
 
 ## Verdict

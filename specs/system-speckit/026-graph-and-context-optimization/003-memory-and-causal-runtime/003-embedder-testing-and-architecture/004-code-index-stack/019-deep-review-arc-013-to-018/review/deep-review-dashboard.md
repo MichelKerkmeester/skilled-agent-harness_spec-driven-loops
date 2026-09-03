@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — 016/004/013-018 CocoIndex Pipeline Arc + Nomic Promotion"
+trigger_phrases: []
+---
 # Deep Review Dashboard — 016/004/013-018 CocoIndex Pipeline Arc + Nomic Promotion
 
 ## Review Configuration

@@ -1,3 +1,7 @@
+---
+title: "Methodology gap memo — main-agent jina probe vs codex measurement"
+trigger_phrases: []
+---
 # Methodology gap memo — main-agent jina probe vs codex measurement
 
 > Closes a lingering inconsistency from the 2026-05-17 jina vs nomic comparison: main-agent probed jina at 5/10 cat-24/409, but codex's authoritative job `boa26jubw` measured 9/10. Same fixture, same embedder, same MCP — different result.

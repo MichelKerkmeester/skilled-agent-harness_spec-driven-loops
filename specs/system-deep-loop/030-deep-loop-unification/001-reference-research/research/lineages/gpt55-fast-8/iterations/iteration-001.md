@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Structural Layout And Bidirectional Path Repair"
+trigger_phrases: []
+---
 # Iteration 1: Structural Layout And Bidirectional Path Repair
 
 ## Focus

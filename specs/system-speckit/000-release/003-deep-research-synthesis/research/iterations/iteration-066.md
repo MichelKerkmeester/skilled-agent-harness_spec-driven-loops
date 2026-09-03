@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Deprecate standalone deep context; preserve replacement capabilities
 The standalone `/deep:context` command is no longer a working context loop. It now acts as a no-write redirect that emits replacement guidance and writes no context artifacts, while supported routes keep a bounded replacement context snapshot. Registry, advisor, documentation, and generated-index references were removed, and the active OpenCode and Claude agent mirrors became disabled deprecation stubs. Fixtures, benchmarks, and generated contracts no longer keep the feature alive, and the runtime rejects active context fan-out while historical context artifact parsing stays behind with its tests. Users who reach for `/deep:context` for codebase context should follow the replacement routes the redirect points to.
 

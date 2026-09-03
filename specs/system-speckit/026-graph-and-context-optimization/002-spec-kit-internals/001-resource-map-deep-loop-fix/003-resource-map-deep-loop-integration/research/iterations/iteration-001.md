@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Live Deep-Loop Data Contracts"
+trigger_phrases: []
+---
 # Iteration 1: Live Deep-Loop Data Contracts
 
 ## Focus

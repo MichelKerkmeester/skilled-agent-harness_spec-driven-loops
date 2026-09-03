@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final Synthesis Pass"
+trigger_phrases: []
+---
 # Iteration 10: Final Synthesis Pass
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source: https://x.com/hanakoxbt/status/2083540339147567268?s=12
 
 Eval Engineering: build the gate that lets your agents merge without you (full 6-step course)

@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Advisor integration — brief vs hardcoded render.ts"
+trigger_phrases: []
+---
 # Iteration 8: Advisor integration — brief vs hardcoded render.ts
 
 ## Focus

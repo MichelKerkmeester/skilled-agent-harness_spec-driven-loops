@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Concrete Literal Command Bodies and Content Ownership"
+trigger_phrases: []
+---
 # Iteration 3: Concrete Literal Command Bodies and Content Ownership
 
 ## Focus

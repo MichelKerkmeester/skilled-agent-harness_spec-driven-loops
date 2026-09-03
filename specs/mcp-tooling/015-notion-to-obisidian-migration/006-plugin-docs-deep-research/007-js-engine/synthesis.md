@@ -1,3 +1,7 @@
+---
+title: "Synthesis: JS Engine doc-improvement plan (fresh-reviewer pass)"
+trigger_phrases: []
+---
 # Synthesis: JS Engine doc-improvement plan (fresh-reviewer pass)
 
 > **Scope.** Fresh-eyes reranking of the `007-js-engine` research into an actionable, evidence-cited

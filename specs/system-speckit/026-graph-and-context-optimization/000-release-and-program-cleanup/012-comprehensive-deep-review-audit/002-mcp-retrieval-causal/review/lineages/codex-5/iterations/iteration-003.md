@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Security - Causal Graph Scope Enforcement"
+trigger_phrases: []
+---
 # Iteration 3: Security - Causal Graph Scope Enforcement
 
 ## Focus

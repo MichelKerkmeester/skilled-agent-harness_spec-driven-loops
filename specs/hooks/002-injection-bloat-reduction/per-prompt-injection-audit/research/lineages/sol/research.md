@@ -1,3 +1,7 @@
+---
+title: "Per-Prompt Injection Audit — Final Research Synthesis"
+trigger_phrases: []
+---
 # Per-Prompt Injection Audit — Final Research Synthesis
 
 ## 1. Executive Summary

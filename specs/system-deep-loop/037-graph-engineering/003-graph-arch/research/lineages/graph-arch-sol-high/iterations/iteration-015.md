@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: 036 Authority-Plane Integration and Verification Order"
+trigger_phrases: []
+---
 # Iteration 15: 036 Authority-Plane Integration and Verification Order
 
 ## Focus

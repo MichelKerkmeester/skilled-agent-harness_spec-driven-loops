@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 - Q4 weak retrieval hallucination guard"
+trigger_phrases: []
+---
 # Iteration 006 - Q4 weak retrieval hallucination guard
 
 ## Focus

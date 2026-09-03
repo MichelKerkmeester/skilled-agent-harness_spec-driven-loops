@@ -1,3 +1,7 @@
+---
+title: "Final searchable-index status"
+trigger_phrases: []
+---
 # Final searchable-index status
 
 - Canonical metadata saves for children 001-004 and the 020 parent exit 0; generated metadata, source fingerprints, and parent pointers are current.

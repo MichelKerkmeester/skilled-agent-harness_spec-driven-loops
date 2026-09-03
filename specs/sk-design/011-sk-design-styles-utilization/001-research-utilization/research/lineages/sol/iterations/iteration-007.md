@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Leverage, Cost, Provenance, License, and Fidelity Ranking"
+trigger_phrases: []
+---
 # Iteration 7: Leverage, Cost, Provenance, License, and Fidelity Ranking
 
 ## Focus

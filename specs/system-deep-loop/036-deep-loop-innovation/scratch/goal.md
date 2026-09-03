@@ -1,3 +1,7 @@
+---
+title: "Execution Goal — Complete the 036 Deep-Loop Innovation Epic"
+trigger_phrases: []
+---
 # Execution Goal — Complete the 036 Deep-Loop Innovation Epic
 
 > This is the durable, long-form execution plan. It complements the separate goal prompt that must remain at or below

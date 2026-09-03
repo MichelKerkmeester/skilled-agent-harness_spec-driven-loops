@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 014"
+trigger_phrases: []
+---
 # Deep Research Iteration 014
 
 > Audited changelog: `changelog-019-002-implement-layer-b-sidecar-self-check-and-in-flight-gate.md`

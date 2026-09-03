@@ -1,3 +1,7 @@
+---
+title: "Iteration 27: Round F Synthesis — Corrected Top Ship-First Ranking (post-broadening)"
+trigger_phrases: []
+---
 # Iteration 27: Round F Synthesis — Corrected Top Ship-First Ranking (post-broadening)
 
 ## Focus

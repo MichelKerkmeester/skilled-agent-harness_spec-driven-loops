@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Correctness — tail-loop yields, early-abort, and fast cancel check"
+trigger_phrases: []
+---
 # Iteration 001: Correctness — tail-loop yields, early-abort, and fast cancel check
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: D2 Root Cause — Generic Decision Placeholders"
+trigger_phrases: []
+---
 # Iteration 3: D2 Root Cause — Generic Decision Placeholders
 
 ## Focus

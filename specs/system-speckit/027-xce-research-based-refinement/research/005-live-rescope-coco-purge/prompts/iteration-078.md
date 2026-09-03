@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 078 — 028 status after CocoIndex deprecation; 027 soft-dep breakage"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 078 — 028 status after CocoIndex deprecation; 027 soft-dep breakage

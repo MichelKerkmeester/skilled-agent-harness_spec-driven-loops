@@ -3,6 +3,7 @@ title: "Plan: Edge Explanation + Impact Uplift (012/003)"
 description: "Implementation steps for edge reason/step + blast_radius enrichment."
 importance_tier: "important"
 contextType: "implementation"
+trigger_phrases: []
 ---
 # Plan: 012/003
 

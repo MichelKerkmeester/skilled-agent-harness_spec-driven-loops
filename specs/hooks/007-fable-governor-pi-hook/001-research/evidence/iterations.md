@@ -1,3 +1,7 @@
+---
+title: "Iteration Evidence Log"
+trigger_phrases: []
+---
 # Iteration Evidence Log
 
 Research phase: governor-hook usefulness + pi-only subagent dispatch directive.

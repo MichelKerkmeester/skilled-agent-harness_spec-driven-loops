@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Diagnose sk-prompt skill-routing and apply the sk-doc typed-pair routing optimizations. It is a parent hub (prompt-improve/prompt-models); only prompt-improve has a RESOURCE_MAP (flat root-relative paths, 6/6 resolve) and prompt-models has none; the baseline shows 100 but only d5 is scored (routing dimensions null/unmeasured); 32 scenarios, 0 typed gold. Investigate a hub-level surface router, packet-qualified typed pairs for both modes, and concrete routing optimizations. Produce findings and a resource-map."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

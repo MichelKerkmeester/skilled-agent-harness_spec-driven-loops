@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 008 — embedder agnosticism"
+trigger_phrases: []
+---
 # Codex Iteration 008 — embedder agnosticism
 
 ## Sequential-thinking preflight

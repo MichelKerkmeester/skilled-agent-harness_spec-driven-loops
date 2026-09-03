@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now let me read the actual implementation files to conduct the review.Now I have sufficient context. Let me execute the review loop.Now let me write all the review state files. Starting with config, then state JSONL, findings registry, strategy, and the iteration.Now let me conduct the actual review iteration. Let me examine the code more closely for correctness issues.Now let me write the iteration file with my findings.Now let me update the state JSONL, strategy, dashboard, and write the review report.Now let me write the synthesis — the review report.All review artifacts verified:
 
 | Artifact | Status |

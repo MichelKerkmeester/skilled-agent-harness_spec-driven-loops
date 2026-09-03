@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - sk-design Claude Parity"
+trigger_phrases: []
+---
 # Deep Review Report - sk-design Claude Parity
 
 ## 1. Executive Summary

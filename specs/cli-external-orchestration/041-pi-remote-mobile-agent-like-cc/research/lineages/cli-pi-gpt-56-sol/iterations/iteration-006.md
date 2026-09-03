@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Independent end-to-end architecture validation"
+trigger_phrases: []
+---
 # Iteration 6: Independent end-to-end architecture validation
 
 ## Focus

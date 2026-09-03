@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Git Preflight Advisory Rules"
+trigger_phrases: []
+---
 # Deep Research Strategy: Git Preflight Advisory Rules
 
 ## 2. TOPIC

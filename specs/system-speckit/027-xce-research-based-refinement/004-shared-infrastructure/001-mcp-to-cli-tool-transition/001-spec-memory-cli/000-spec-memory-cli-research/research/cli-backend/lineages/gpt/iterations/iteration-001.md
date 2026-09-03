@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: CLI Architecture"
+trigger_phrases: []
+---
 # Iteration 1: CLI Architecture
 
 ## Focus

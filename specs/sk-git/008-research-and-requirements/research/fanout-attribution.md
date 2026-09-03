@@ -1,3 +1,7 @@
+---
+title: "Fan-Out Attribution: Parallel-Git Autosync Research"
+trigger_phrases: []
+---
 # Fan-Out Attribution: Parallel-Git Autosync Research
 
 > Which lineage and model produced which load-bearing finding, and the verification chain that hardened the synthesis. Companion to `research.md`.

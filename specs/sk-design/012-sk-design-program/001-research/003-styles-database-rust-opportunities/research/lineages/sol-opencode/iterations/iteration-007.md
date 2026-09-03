@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Local Text and Image Model Runtimes"
+trigger_phrases: []
+---
 # Iteration 7: Local Text and Image Model Runtimes
 
 ## Focus

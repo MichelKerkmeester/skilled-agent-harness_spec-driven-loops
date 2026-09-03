@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Review
 
 **Completion verdict: NOT ACCEPTED.** No P0 was confirmed, but multiple P1 evidence and documentation gates remain unsatisfied.

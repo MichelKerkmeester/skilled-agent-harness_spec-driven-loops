@@ -1,3 +1,7 @@
+---
+title: "Iteration 18: Public state-machine consumer contract"
+trigger_phrases: []
+---
 # Iteration 18: Public state-machine consumer contract
 
 ## Dimension

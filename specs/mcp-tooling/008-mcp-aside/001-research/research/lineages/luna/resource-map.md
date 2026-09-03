@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Aside browser developer surface for an mcp-tooling skill mode: the Aside CLI command surface and the Aside MCP server (tools, auth, transport, install, session/daemon model) per https://docs.aside.com/help/developers#use-mcp — AI-browser-automation workflows (navigate, DOM inspection, screenshots, console/network capture), contrast with Chrome DevTools bdg patterns, everything needed to author the mcp-aside-devtools packet (CLI-primary + Code Mode MCP fallback) and register an aside UTCP manual in .utcp_config.json"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

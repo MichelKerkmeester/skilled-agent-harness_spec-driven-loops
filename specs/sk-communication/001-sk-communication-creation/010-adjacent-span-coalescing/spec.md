@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 010 Adjacent-Span Coalescing"
 description: "Reduce the model-facing marker burden by coalescing bounded adjacent protected spans or using short wire aliases, while keeping the canonical byte-map and strict restoration unchanged."
 trigger_phrases:
   - "adjacent-span-coalescing"
-  - "adjacent span coalescing"
   - "protected marker inflation"
   - "projection quality"
 importance_tier: "important"

@@ -1,3 +1,7 @@
+---
+title: "Projection-coverage guard"
+trigger_phrases: []
+---
 # Projection-coverage guard
 
 ## What this establishes

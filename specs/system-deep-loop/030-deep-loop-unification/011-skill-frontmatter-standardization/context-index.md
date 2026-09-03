@@ -1,3 +1,7 @@
+---
+title: "Context Index: Deep Loop Skill Frontmatter Standardization"
+trigger_phrases: []
+---
 # Context Index: Deep Loop Skill Frontmatter Standardization
 
 > Migration bridge for the 2026-07-08 nesting of the deep-loop skill-frontmatter-standardization campaign under a phase parent.

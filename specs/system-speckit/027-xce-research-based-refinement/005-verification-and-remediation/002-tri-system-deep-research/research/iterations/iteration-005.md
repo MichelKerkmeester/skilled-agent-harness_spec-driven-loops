@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Angle 5"
+trigger_phrases: []
+---
 # Iteration 005 — Angle 5
 
 **Angle:** consumption_log fingerprint utility: is query_hash consumed anywhere? Dead instrumentation vs planned use; retention of the table itself.

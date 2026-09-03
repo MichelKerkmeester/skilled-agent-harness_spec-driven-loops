@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy — 002-continuity-memory-runtime audit
 description: Correctness, concurrency, and doc-code drift audit over the 002-continuity-memory-runtime parent packet and its four direct children (001-cache-warning-hooks, 002-fix-memory-quality, 003-continuity-refactor-gates, 004-memory-save-rewrite).
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — 002-continuity-memory-runtime audit

@@ -1,3 +1,7 @@
+---
+title: "Iteration 010: Stabilization & Adversarial Pass (final)"
+trigger_phrases: []
+---
 # Iteration 010: Stabilization & Adversarial Pass (final)
 
 ## Focus

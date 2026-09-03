@@ -6,6 +6,7 @@ lens: critical (failure-mode)
 status: returned
 timestamp: 2026-05-23T17:14:00.000Z
 simulated: true
+trigger_phrases: []
 ---
 
 # Seat 004 — FAILURE-MODE (Critical Lens, simulated @deep-research vantage)

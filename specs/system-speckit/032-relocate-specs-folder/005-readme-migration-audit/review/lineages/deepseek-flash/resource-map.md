@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — specs/system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

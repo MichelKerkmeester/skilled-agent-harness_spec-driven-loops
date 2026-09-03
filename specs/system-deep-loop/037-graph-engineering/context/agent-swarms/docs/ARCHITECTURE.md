@@ -1,3 +1,7 @@
+---
+title: "Architecture"
+trigger_phrases: []
+---
 # Architecture
 
 > Part of the [AgentSwarms docs](../README.md#documentation).

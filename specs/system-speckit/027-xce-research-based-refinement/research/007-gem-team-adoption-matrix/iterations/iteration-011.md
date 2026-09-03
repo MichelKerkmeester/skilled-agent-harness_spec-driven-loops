@@ -1,3 +1,7 @@
+---
+title: "Iteration 011: RQ11 standard output contract"
+trigger_phrases: []
+---
 # Iteration 011: RQ11 standard output contract
 
 **Focus:** RQ11 standard output contract  

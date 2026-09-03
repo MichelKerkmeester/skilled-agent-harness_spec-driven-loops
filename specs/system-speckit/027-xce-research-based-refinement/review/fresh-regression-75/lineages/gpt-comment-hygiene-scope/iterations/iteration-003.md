@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-comment-hygiene-scope — iteration 3 (global #72)"
+trigger_phrases: []
+---
 # Seat gpt-comment-hygiene-scope — iteration 3 (global #72)
 
 - Model: `kimi-for-coding/k2p7` · Executor: opencode · Angle: gpt-comment-hygiene-scope

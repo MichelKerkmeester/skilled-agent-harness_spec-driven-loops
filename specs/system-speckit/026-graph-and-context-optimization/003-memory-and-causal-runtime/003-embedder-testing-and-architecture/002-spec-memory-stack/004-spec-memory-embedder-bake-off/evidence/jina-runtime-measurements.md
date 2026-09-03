@@ -1,3 +1,7 @@
+---
+title: "Jina-v3 + Nomic + Gemma — Live runtime measurements"
+trigger_phrases: []
+---
 # Jina-v3 + Nomic + Gemma — Live runtime measurements
 
 > Captured during 2026-05-17 session via direct `ollama` API probes + `ollama ps` + `ps -eo` + `du`.

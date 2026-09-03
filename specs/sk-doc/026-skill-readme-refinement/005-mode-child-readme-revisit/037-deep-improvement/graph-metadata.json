@@ -13,7 +13,6 @@
     "trigger_phrases": [
       "deep improvement readme revisit",
       "deep-improvement readme rewrite",
-      "deep improvement readme rewrite",
       "phase 037 plan",
       "deep improvement readme plan",
       "deep-improvement readme rewrite plan",
@@ -52,7 +51,6 @@
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
     ],
     "entities": [
@@ -96,12 +94,6 @@
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -199,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-improvement README at `.opencode/skills/system-deep-loop/deep-improvement/README.md` still carries the older tabular reference-card style, opens with an AT A GLANCE table before the OVERVIEW and predates the pilot standard proven by the mcp-obsidian README",
     "created_at": "2026-08-04T08:34:52.681Z",
-    "last_save_at": "2026-08-30T15:39:17.887Z",
+    "last_save_at": "2026-09-03T22:19:49.364Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +210,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16c0d538ee85facef55f9c957f1bee5e1a487fd07797fe1419abe8987776f068",
+    "source_fingerprint": "sha256:90556478ff3eba097a809eeda3c1139f3673115b208ccdce83f03eb034ee2fb6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "049830361bb846d4fcd502adb5119db5b6f9eaed43732688f090c4fd73041a2d",
+      "spec.md": "5e60a781e8c319ada4ffa12237c2572c0ae6e201e525b4f16eefb2580d030e9e",
       "plan.md": "ae3516b8c4e723b8668f2188af23798c425ec1b439bdbee3faca5283670df4ac",
       "tasks.md": "0e286ae927aff1b3f2d8b57475523c541d23b34ed0f1043afa9d3811ea61809c",
       "implementation-summary.md": "299bef8cd8ad4d6c5c914fddce1f784d09f4d6577437fbd4cfd343636019e4ba"

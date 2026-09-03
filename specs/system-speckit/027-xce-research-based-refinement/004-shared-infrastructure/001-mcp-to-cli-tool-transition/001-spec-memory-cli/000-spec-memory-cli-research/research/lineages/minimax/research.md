@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — `minimax` lineage (Memory MCP to CLI Feasibility)"
+trigger_phrases: []
+---
 # Research Synthesis — `minimax` lineage (Memory MCP to CLI Feasibility)
 
 > **Lane:** minimax · **Session id:** `fanout-minimax-1780735927714-4462h3` · **Parent session id:** `dr-20260606T105055-fanout028` · **Executor:** cli-opencode / `minimax-coding-plan/MiniMax-M3` (reasoning=high, 1500s ceiling)

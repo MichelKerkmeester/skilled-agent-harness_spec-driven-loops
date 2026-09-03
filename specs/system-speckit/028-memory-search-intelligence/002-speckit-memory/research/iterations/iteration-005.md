@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Fusion Conflict-Surface (Q1) + Query-Class Router Design (Q2) — the depth pass on the primary leverage area"
+trigger_phrases: []
+---
 # Iteration 5: Fusion Conflict-Surface (Q1) + Query-Class Router Design (Q2) — the depth pass on the primary leverage area
 
 ## Focus

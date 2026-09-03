@@ -1,3 +1,7 @@
+---
+title: "Iteration 25 — Domain 2: State Contract Honesty (5/10)"
+trigger_phrases: []
+---
 # Iteration 25 — Domain 2: State Contract Honesty (5/10)
 
 ## Investigation Thread

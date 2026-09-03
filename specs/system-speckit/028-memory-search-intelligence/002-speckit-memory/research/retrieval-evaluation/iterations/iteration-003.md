@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 (A6): a unified semantic-embedding substrate"
+trigger_phrases: []
+---
 # Iteration 3 (A6): a unified semantic-embedding substrate
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only). Orchestrator-written. newInfoRatio **0.7**. **Verdict: "shared rails, separate cars" — unify the bottom (math/storage) and top (promotion gate), keep the middle (retrieval/scoring) per-channel.**

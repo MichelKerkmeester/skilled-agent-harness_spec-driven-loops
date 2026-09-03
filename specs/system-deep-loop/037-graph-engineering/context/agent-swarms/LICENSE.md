@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Copyright (c) 2026 AgentSwarms. All rights reserved.
 
 Elastic License 2.0 (ELv2)

@@ -1,3 +1,7 @@
+---
+title: "Pre-run authority record capture"
+trigger_phrases: []
+---
 # Pre-run authority record capture
 captured_at: 2026-08-19T16:56:51Z
 authority_root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/022-012-runtime-enablement-build/.opencode/skills/.authority-state

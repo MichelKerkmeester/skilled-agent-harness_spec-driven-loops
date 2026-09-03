@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 (DeepSeek lineage): Mem0 ADD/UPDATE merge-logic + scoring deep-dive"
+trigger_phrases: []
+---
 # Iteration 7 (DeepSeek lineage): Mem0 ADD/UPDATE merge-logic + scoring deep-dive
 
 > Model: **DeepSeek v4 Pro** (`deepseek/deepseek-v4-pro --variant high`, read-only, via `opencode run`). Orchestrator-written. newInfoRatio **0.3** (mostly re-surface of iters 1/6 Mem0 candidates + 2 NO-TRANSFER negatives; 1 genuine NET-NEW). Mem0 scoring/merge surface is now **near-saturated**.

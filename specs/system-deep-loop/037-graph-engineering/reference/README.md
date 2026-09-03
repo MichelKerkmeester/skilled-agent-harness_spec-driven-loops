@@ -1,3 +1,7 @@
+---
+title: "Graph Engineering Reference Guides — Curated Knowledge for Governed Graph-Backed Work"
+trigger_phrases: []
+---
 # Graph Engineering Reference Guides — Curated Knowledge for Governed Graph-Backed Work
 
 Index over the five graph-engineering reference guides derived from the 20-iteration deep-research run on this packet. The depth lives in the numbered guides; this file maps each concern to its focused guide.

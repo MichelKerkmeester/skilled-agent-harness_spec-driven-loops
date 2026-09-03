@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Canonical commit-message standard defined and validated
 OpenCode Spec-Kit now has a locked, repo-wide commit-message standard, produced by the commit-standards phase of a larger retroactive-rewrite effort. Seven decision records fix the full shape: a 13-type subject taxonomy with five scope shapes, packet-ID prefix handling that strips the subject but keeps the trailer, normalized `Co-Authored-By` formatting that preserves attribution, original tense preserved in retroactive edits, a body policy that never auto-authors content, acceptance of both git-default and authored forms for special cases, and length caps (72 hard, 50 soft, wrap at 72). The standard was validated against 20 random HEAD commits and produced deterministic rewrites for 20/20 with zero cases needing human review. Only the standards-definition phase shipped this cycle — the follow-on phases that embed the standard into the sk-git skill and rewrite the 2,795 HEAD commits were still pending when this entry was written.
 

@@ -1,3 +1,7 @@
+---
+title: "Research Report: Five-Question System Audit"
+trigger_phrases: []
+---
 Let me verify several key claims across the investigations before composing the final report.
 # Research Report: Five-Question System Audit
 

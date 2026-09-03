@@ -1,3 +1,7 @@
+---
+title: "The refusal case — chosen before the accept case, deliberately borderline"
+trigger_phrases: []
+---
 # The refusal case — chosen before the accept case, deliberately borderline
 
 **Request, in a user's words:**

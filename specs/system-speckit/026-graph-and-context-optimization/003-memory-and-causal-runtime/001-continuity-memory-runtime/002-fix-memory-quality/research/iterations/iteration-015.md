@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: D3 Empirical Filter-list Build (Q12)"
+trigger_phrases: []
+---
 # Iteration 15: D3 Empirical Filter-list Build (Q12)
 
 ## Focus

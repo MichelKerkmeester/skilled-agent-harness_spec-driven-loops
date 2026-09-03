@@ -1,3 +1,7 @@
+---
+title: "Iteration 12 (MiMo lineage): Letta tiers/budgeting + Cognee summary pipeline"
+trigger_phrases: []
+---
 # Iteration 12 (MiMo lineage): Letta tiers/budgeting + Cognee summary pipeline
 
 > Model: **MiMo v2.5 Pro** (`xiaomi/mimo-v2.5-pro --variant high`, 1M ctx, read-only, via `opencode run`). Orchestrator-written. newInfoRatio **0.6**. 5 candidates — 2 NET-NEW, 2 EXTENDS, 1 dup. MiMo independently noticed our internal `tier-classifier.ts` already mirrors Letta (`summaryFallbackLength=150`) — a good "partially-borrowed-already" honesty signal.

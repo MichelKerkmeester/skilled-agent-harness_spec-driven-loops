@@ -13,6 +13,7 @@ provenance:
     - "specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md"
     - "specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/research/research.md"
   note: "The NOOA paper is external research (arXiv 2607.20709, NVIDIA) — an idea source, not a shipped dependency we control. This study covers the LOOP/HARNESS layer, distinct from the four GRAPH-layer studies."
+trigger_phrases: []
 ---
 
 # Orientation Seed — NVIDIA NOOA paper + blog theory → the loop/harness layer (Repo Study 5)

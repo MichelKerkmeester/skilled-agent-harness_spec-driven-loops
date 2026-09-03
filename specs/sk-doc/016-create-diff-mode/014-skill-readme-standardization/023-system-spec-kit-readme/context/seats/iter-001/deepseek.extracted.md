@@ -1,3 +1,7 @@
+---
+title: "Reference Inventory: `system-spec-kit` README (Depth-Preserving Restyle)"
+trigger_phrases: []
+---
 Now let me quickly verify a few details - the scripts count and a few reference files:
 # Reference Inventory: `system-spec-kit` README (Depth-Preserving Restyle)
 

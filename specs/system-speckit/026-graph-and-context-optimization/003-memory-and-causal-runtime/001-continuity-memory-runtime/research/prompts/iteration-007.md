@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 7 — Reducer / state rehydration schema agreement (Q6)"
+trigger_phrases: []
+---
 # Deep-Research Iteration 7 — Reducer / state rehydration schema agreement (Q6)
 
 ## YOUR ROLE

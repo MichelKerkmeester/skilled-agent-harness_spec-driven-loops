@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Render-block grammar, time windows, and validation"
+trigger_phrases: []
+---
 # Iteration 3: Render-block grammar, time windows, and validation
 
 ## Focus

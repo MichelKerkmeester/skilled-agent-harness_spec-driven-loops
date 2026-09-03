@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard"
+trigger_phrases: []
+---
 # Deep Research Dashboard
 
 Lineage: `fanout-deepseek-go-1786120169844-ep05xl` · Executor: `cli-opencode` model `opencode-go/deepseek-v4-flash` · Loop: research · Stop policy: max-iterations (10)

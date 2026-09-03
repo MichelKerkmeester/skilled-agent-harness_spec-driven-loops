@@ -24,6 +24,7 @@ _memory:
       - "The engine selector lives in the provider id; the endpoint is a non-resolving .invalid sentinel because validation requires an http/https URL and no HTTP egress occurs."
       - "External agents route as hosted-retained; inference-control capabilities are attested because the transport honors them via the composed prompt, not a remote wire field."
       - "The per-engine command mapping is caller-supplied; the subprocess is behind an injected boundary, so no test spawns a live CLI."
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 5: external-cli provider

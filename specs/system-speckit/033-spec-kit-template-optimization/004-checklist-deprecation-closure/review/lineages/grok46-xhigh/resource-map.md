@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

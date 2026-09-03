@@ -1,3 +1,7 @@
+---
+title: "Pre-014 Clearance Verdict v2 — Post-024/025 Re-Confirmation"
+trigger_phrases: []
+---
 # Pre-014 Clearance Verdict v2 — Post-024/025 Re-Confirmation
 
 **Supersedes `pre-014-clearance-verdict.md` for the four cutover blockers.** The prior verdict

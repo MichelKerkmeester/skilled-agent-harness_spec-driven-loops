@@ -1,3 +1,7 @@
+---
+title: "A mode the authority order blessed and the CLI could not write"
+trigger_phrases: []
+---
 # A mode the authority order blessed and the CLI could not write
 
 ## What was measured

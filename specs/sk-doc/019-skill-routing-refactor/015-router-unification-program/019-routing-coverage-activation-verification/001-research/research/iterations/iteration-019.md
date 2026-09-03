@@ -1,3 +1,7 @@
+---
+title: "Iteration 19 — gpt-5.6-sol high — focus: catalogs"
+trigger_phrases: []
+---
 # Iteration 19 — gpt-5.6-sol high — focus: catalogs
 
 Headline finding: catalog work is larger than adding eight leaves. The runtime allowlist contains seven hubs (`sk-code`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`, `sk-prompt`, `sk-design`, `sk-doc`) at `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:41-49`. A filesystem audit found that only `sk-design` currently has the canonical hub-root catalog; the other six canonical roots are absent. Because the catalog contract defines the root as a complete inventory with exactly one leaf per entry, creating router-only catalogs for those hubs would violate the workflow rather than close coverage (`.opencode/skills/sk-doc/create-feature-catalog/SKILL.md:182-191`, `.opencode/skills/sk-doc/create-feature-catalog/SKILL.md:211-224`).

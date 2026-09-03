@@ -3,6 +3,7 @@ title: "Calibration Offline/Live Gates and Privacy Governance"
 description: "Deterministic replay, live-shadow divergence, privacy, retention, and reversible promotion rules."
 importance_tier: "critical"
 contextType: "implementation"
+trigger_phrases: []
 ---
 # Calibration Offline/Live Gates and Privacy Governance
 

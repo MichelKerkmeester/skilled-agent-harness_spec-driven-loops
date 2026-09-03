@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 Prompt Pack"
+trigger_phrases: []
+---
 # Iteration 6 Prompt Pack
 
 Session: fanout-codex-4-1780596001496-dj6z7c

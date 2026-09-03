@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 — lazy-load and on-demand init opportunities (defer model load until first embed call, defer code-graph load until first query)"
+trigger_phrases: []
+---
 # Iteration 2 — lazy-load and on-demand init opportunities (defer model load until first embed call, defer code-graph load until first query)
 
 ## Summary

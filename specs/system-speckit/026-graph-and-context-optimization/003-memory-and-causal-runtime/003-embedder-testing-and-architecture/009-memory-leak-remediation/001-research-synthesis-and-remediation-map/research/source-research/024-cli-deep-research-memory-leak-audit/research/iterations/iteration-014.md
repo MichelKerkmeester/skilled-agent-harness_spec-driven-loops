@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Validate project-close, registry-embedder cache, and adapter lifecycle recommendations against the actual mcp-coco-index and installed CocoIndex/LiteLLM API surfaces.

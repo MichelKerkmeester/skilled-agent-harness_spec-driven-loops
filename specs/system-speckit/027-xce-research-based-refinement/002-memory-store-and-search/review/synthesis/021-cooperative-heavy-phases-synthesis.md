@@ -1,3 +1,7 @@
+---
+title: "021 Review Synthesis"
+trigger_phrases: []
+---
 # 021 Review Synthesis
 
 **Phase reviewed:** `027/002/021-cooperative-heavy-phases` (commit `372bb0f2cd`)

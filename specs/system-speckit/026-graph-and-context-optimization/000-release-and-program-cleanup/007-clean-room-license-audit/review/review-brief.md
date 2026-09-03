@@ -1,3 +1,7 @@
+---
+title: "Deep Review — 001-clean-room-license-audit"
+trigger_phrases: []
+---
 # Deep Review — 001-clean-room-license-audit
 
 You are an autonomous code-review agent. **No conversation context.** This brief is everything you need.

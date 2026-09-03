@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now let me read the key implementation files referenced by the spec and the review protocol references.Now I have a thorough understanding of the codebase and the review protocol. Let me execute the deep-review loop.
 
 **Phase Init** — creating state files in the artifact directory.Now creating the init state files.Now executing **Iteration 1** — Correctness dimension review.

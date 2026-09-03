@@ -1,3 +1,7 @@
+---
+title: "DeepSeek V4 Pro — Independent Verification of the GraphARC Governance Synthesis"
+trigger_phrases: []
+---
 # DeepSeek V4 Pro — Independent Verification of the GraphARC Governance Synthesis
 
 > Adversarial verification of `research.md` by DeepSeek V4 Pro (cli-pi `--provider deepseek --model deepseek-v4-pro --thinking high`), a second, different model. Verdict: **REWORK**. Its findings were substantive and were applied to research.md before closeout: (1) recast the 'decisive' finding + dropped the admission-as-authorization strawman, adding an explicit threat model and flagging the 036-capability assumption; (2) reconciled the stop-reason contradiction to the maxIterationsReached hard cap; (3) dropped the false '28 mutants' precision; (4) relabelled the stretched 'CONFIRM by absence/contrast' and behavior-targeting CONTRADICT table rows; (5) softened 'Exact insertion point' -> 'Proposed'; (6) defined 'trust-separated' and 'reference-closed'; (7) added an 'Unexamined Assumptions and Missing Coverage' section (threat model, issuer security, 036 capability, owner-disagreement, no measurements, concurrency, citation granularity); (8) fixed the novelty-trend wording. Produced 2026-08-14.

@@ -1,3 +1,7 @@
+---
+title: "Broaden Round — gpt-5.5 Deep Review (Synthesis)"
+trigger_phrases: []
+---
 # Broaden Round — gpt-5.5 Deep Review (Synthesis)
 
 Independent broaden-scope review beyond the 017-021 fixes, run as 30 gpt-5.5-fast xhigh passes across three code-area scopes (10 each), then triaged by 8 refute-first verifiers and remediated. Remediation committed at `55b977951d`.

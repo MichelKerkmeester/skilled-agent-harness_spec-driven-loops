@@ -4,6 +4,7 @@ description: "Auto-generated dashboard for the glm-oob lineage (5 iterations, st
 lineage: glm-oob
 session_id: fanout-glm-oob-1784347200936-r7aos1
 generated_at: 2026-07-18T06:50:00Z
+trigger_phrases: []
 ---
 
 # Deep Research Dashboard — GLM-OOB Lateral Lineage

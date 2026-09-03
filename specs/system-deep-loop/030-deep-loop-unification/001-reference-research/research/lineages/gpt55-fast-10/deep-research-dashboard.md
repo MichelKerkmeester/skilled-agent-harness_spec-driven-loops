@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - gpt55-fast-10"
+trigger_phrases: []
+---
 # Deep Research Dashboard - gpt55-fast-10
 
 Auto-generated lineage summary from `deep-research-state.jsonl`, registry, and strategy.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - system-spec-kit Tooling-Borrow And Reference Migration"
+trigger_phrases: []
+---
 # Iteration 003 - system-spec-kit Tooling-Borrow And Reference Migration
 
 ## Focus

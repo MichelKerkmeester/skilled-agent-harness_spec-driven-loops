@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: D1 Correctness — Template Corpus Deep Dive (level-1 examples + template sources)"
+trigger_phrases: []
+---
 # Iteration 002: D1 Correctness — Template Corpus Deep Dive (level-1 examples + template sources)
 
 ## Focus

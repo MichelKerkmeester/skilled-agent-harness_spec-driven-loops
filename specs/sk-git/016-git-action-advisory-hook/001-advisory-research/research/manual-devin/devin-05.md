@@ -1,3 +1,7 @@
+---
+title: "Devin-05: Silent-Success Git Failure Modes With No sk-git Rule"
+trigger_phrases: []
+---
 # Devin-05: Silent-Success Git Failure Modes With No sk-git Rule
 
 **Pass:** 5 of 10 — `manual-devin/devin-05`

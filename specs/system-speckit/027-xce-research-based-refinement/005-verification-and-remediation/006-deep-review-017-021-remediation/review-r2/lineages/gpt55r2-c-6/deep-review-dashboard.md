@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — gpt55r2-c-6"
+trigger_phrases: []
+---
 # Deep Review Dashboard — gpt55r2-c-6
 
 ## Status

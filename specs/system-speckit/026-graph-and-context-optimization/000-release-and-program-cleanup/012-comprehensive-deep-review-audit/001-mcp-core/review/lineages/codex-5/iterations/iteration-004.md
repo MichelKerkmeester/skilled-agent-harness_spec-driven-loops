@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - Maintainability"
+trigger_phrases: []
+---
 # Iteration 004 - Maintainability
 
 Focus: save sub-handler boundaries, response wiring, and regression coverage.

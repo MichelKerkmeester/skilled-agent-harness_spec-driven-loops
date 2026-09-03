@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Fix C: supervisor process (C1) + cold-start self-heal (C2)"
+trigger_phrases: []
+---
 # Iteration 006 — Fix C: supervisor process (C1) + cold-start self-heal (C2)
 
 - **Wave:** 3 (of 5) · **Executor:** `openai/gpt-5.5-fast --variant xhigh` (read-only, exit 0) · **Seat:** be01rrgnh · **Date:** 2026-06-14

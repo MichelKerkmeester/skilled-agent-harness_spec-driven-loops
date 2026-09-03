@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 071 — 001 peck-teachings-adoption rescope"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 071 — 001 peck-teachings-adoption rescope

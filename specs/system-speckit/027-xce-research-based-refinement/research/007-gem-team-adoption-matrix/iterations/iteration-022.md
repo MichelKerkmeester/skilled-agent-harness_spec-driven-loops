@@ -1,3 +1,7 @@
+---
+title: "Iteration 022: RQ-M3 planner intelligence (quality_score / reviewer_focus / risk / conflict)"
+trigger_phrases: []
+---
 # Iteration 022: RQ-M3 planner intelligence (quality_score / reviewer_focus / risk / conflict)
 
 **Focus:** RQ-M3 planner intelligence (quality_score / reviewer_focus / risk / conflict)  

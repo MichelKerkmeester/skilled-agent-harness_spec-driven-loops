@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: Final Workflow-Invariance Synthesis"
+trigger_phrases: []
+---
 # Iteration 14: Final Workflow-Invariance Synthesis
 
 ## Focus

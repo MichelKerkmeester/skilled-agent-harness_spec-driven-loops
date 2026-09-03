@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Finalize the deep-research synthesis and convergence statement for iteration 010. This pass uses iteration 009 as the source of truth for final severities, downgrade decisions, packet ordering, and verification gates.

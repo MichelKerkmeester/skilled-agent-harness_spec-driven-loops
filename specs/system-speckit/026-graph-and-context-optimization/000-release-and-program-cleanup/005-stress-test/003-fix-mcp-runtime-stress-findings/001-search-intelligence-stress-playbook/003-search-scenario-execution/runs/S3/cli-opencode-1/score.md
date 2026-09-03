@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Scenario S3 — cli-opencode-1
 
 | Dimension | Score | Evidence |

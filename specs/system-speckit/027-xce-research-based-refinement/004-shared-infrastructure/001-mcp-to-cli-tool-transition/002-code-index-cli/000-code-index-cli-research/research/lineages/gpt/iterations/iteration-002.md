@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Read-Path Readiness and False-Safe Behavior"
+trigger_phrases: []
+---
 # Iteration 2: Read-Path Readiness and False-Safe Behavior
 
 ## Focus

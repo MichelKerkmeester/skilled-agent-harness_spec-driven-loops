@@ -1,3 +1,7 @@
+---
+title: "Plan Review Report — 016 Deep-Dive Remediation Program"
+trigger_phrases: []
+---
 # Plan Review Report — 016 Deep-Dive Remediation Program
 
 **Date:** 2026-07-03 · **Method:** 5 independent fresh Opus reviewers, each cross-checking phase plans against the source findings (research/) AND live `mcp_server` code + the production DB. A plan passing `validate.sh --strict` proves doc structure only; these reviews judge substance. ~80 file:line claims verified across the batch.

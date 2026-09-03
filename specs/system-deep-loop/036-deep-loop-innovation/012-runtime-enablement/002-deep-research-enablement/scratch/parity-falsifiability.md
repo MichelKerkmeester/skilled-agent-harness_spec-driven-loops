@@ -1,3 +1,7 @@
+---
+title: "Can the parity gate be turned red?"
+trigger_phrases: []
+---
 # Can the parity gate be turned red?
 
 ## Why this was asked

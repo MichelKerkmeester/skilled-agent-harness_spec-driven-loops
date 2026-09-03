@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 12 | SOL xhigh | mode: deep-ai-council | angle: A2-moat deep-ai-council :: unique value / moat | 2026-07-15T09:00:17.412Z -->
 
 The moat is not consensus. Consensus is often the failure mode. The defensible moat is a governed market of genuinely independent hypotheses: seats acquire different evidence or use different reasoning methods, claims are cross-examined, adjudication is blinded, and minority arguments survive until verified or explicitly rejected.

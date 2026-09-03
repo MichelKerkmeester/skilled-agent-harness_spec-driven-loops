@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- provenance: manual cli-opencode orchestration | executor openai/gpt-5.6-sol-fast --variant high | round 4 angle A4 — FFI/interop non-negotiables (double-weight) -->
 
 I’ll inspect the repository’s deep-research contract and Rust/interop evidence, then verify external claims against canonical napi-rs, wasm-bindgen, and cxx documentation. This is a read-only research pass; no repository files will be modified.

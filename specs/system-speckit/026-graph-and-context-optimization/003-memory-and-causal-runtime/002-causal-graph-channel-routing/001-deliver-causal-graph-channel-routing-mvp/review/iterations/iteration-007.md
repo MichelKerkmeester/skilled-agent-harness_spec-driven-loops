@@ -1,3 +1,7 @@
+---
+title: "Deep Review — Iteration 7 (Security Pass)"
+trigger_phrases: []
+---
 # Deep Review — Iteration 7 (Security Pass)
 
 **Dimension**: Security (second-pass deep analysis)

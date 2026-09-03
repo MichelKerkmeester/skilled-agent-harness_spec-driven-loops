@@ -1,3 +1,7 @@
+---
+title: "Iteration 13 (Round L): Q4 flip-test — retention reducer protect-flood → STAYS NO-TRANSFER"
+trigger_phrases: []
+---
 # Iteration 13 (Round L): Q4 flip-test — retention reducer protect-flood → STAYS NO-TRANSFER
 
 ## Focus

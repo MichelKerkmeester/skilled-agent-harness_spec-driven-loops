@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 prompt: final cross-check and amendment map"
+trigger_phrases: []
+---
 # Iteration 5 prompt: final cross-check and amendment map
 
 Read the lineage state, strategy, and iterations 1-4. Re-read the parent objective/goal and all four phase specs at their cited requirement, plan, task, and acceptance sections. Produce the final research iteration, not the final synthesis yet. Cross-check every requested axis: trigger-index contract and legacy SQL parity, ripgrep replacement recipes/ranking, corpus conventions, retired MCP capability replacements, parity harness/frozen prompts, and failure/acceptance criteria.

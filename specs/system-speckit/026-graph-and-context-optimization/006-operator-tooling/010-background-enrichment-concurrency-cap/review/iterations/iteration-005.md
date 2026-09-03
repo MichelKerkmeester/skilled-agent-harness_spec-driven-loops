@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 5 (opus-4.8) — resource exhaustion / failure injection"
+trigger_phrases: []
+---
 # Deep-Review Iteration 5 (opus-4.8) — resource exhaustion / failure injection
 
 ## Verdict: 1 NEW P2; 2 lenses examined + dismissed.

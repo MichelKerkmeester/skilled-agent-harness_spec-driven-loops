@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Fork pi-openai-fast-mode into pi-fast-mode-w-subagent-support with subagent handoff — everything needed to implement properly: pi extension API surface, env-inheritance handoff mechanics, config compat, packaging, tests, indicator UX under custom footers, licensing."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

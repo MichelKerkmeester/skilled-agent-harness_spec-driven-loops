@@ -3,6 +3,7 @@ title: "Deep Research Prompts — Unknown Unknowns"
 description: "Exploratory research campaigns for ambiguous problem spaces. Use when you don't yet have a hypothesis — the goal is to find the right questions, not just answers."
 importance_tier: "normal"
 contextType: "research-prompts"
+trigger_phrases: []
 ---
 
 # Unknown-Unknowns Exploration

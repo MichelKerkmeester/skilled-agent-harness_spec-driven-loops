@@ -1,3 +1,7 @@
+---
+title: "Changelog Rollup — Track 001: Research and Doctrine"
+trigger_phrases: []
+---
 # Changelog Rollup — Track 001: Research and Doctrine
 
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine` (Phase Parent)

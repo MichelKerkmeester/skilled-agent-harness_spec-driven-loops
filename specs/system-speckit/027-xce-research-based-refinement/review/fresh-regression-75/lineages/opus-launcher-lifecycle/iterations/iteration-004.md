@@ -1,3 +1,7 @@
+---
+title: "Seat opus-launcher-lifecycle — iteration 4 (global #23)"
+trigger_phrases: []
+---
 # Seat opus-launcher-lifecycle — iteration 4 (global #23)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: opus-launcher-lifecycle

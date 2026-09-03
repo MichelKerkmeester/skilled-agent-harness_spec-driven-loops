@@ -1,3 +1,7 @@
+---
+title: "Iteration 048 — Angle 48"
+trigger_phrases: []
+---
 # Iteration 048 — Angle 48
 
 **Angle:** CLI front-door parity drift: 37/8/9 tool counts, offline smoke coverage, envelope/exit-code consistency across the three CLIs.

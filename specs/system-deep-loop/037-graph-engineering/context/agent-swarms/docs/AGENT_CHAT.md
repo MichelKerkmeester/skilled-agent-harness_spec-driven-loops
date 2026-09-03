@@ -1,3 +1,7 @@
+---
+title: "Agent Chat & document generation"
+trigger_phrases: []
+---
 # Agent Chat & document generation
 
 > Part of the [AgentSwarms docs](../README.md#documentation).

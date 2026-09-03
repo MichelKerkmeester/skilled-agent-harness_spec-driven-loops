@@ -1,3 +1,7 @@
+---
+title: "Iteration R2 - Wiring the Zod Schemas into validate.sh --strict (gpt-5.5, automation)"
+trigger_phrases: []
+---
 # Iteration R2 - Wiring the Zod Schemas into validate.sh --strict (gpt-5.5, automation)
 
 ## TITLE

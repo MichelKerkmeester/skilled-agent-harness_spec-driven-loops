@@ -1,3 +1,7 @@
+---
+title: "Iteration 12: Ground-Truth Integration Probe"
+trigger_phrases: []
+---
 # Iteration 12: Ground-Truth Integration Probe
 
 ## Focus

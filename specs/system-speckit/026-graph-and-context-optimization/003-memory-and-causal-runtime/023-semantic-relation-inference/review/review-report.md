@@ -3,6 +3,7 @@ title: "Deep Review Report: Relation-Inference Backfill Subsystem (021 + 023)"
 description: "Post-implementation deep-review across correctness, security, traceability, maintainability. Verdict PASS-with-advisories; one confirmed data-integrity defect (SEC-001) endangering the contradicts collector."
 importance_tier: "important"
 contextType: "general"
+trigger_phrases: []
 ---
 
 # Deep Review Report — Relation-Inference Backfill Subsystem

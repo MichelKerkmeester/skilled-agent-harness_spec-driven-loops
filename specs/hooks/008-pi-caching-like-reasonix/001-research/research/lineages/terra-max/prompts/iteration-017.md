@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 017"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 017
 
 Focus: Checkpoint scope and risk

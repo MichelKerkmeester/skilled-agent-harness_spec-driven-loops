@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Correctness: Parity-Baseline Discovery (CHK-037)"
+trigger_phrases: []
+---
 # Iteration 002 — Correctness: Parity-Baseline Discovery (CHK-037)
 
 - **Dimension:** correctness

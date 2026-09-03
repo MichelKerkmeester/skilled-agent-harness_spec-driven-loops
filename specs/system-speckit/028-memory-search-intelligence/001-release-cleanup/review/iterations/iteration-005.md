@@ -1,3 +1,7 @@
+---
+title: "Review Iteration 005 — Cross-Dimension Follow-Up (Correctness Re-Check + Traceability Deep Dive)"
+trigger_phrases: []
+---
 # Review Iteration 005 — Cross-Dimension Follow-Up (Correctness Re-Check + Traceability Deep Dive)
 
 ## Dispatcher

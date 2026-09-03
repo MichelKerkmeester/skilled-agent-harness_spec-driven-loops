@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: Command Presentation Workflow Separation"
+trigger_phrases: []
+---
 # Deep Review Strategy: Command Presentation Workflow Separation
 
 <!-- ANCHOR:topic -->

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW ITERATION 001
 
 Focus: correctness of manifest refresh safety and compiled-routing state preservation.

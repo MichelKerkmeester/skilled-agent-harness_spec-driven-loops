@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The five `/design:` commands are thin routers with no creation scaffolding",
     "created_at": "2026-07-19T09:44:56.632Z",
-    "last_save_at": "2026-08-30T15:39:12.806Z",
+    "last_save_at": "2026-09-03T22:17:44.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e5edddd745a871a1f9552569f3edc03a1353a6a2e5b7887d2cf6f113e194dc2",
+    "source_fingerprint": "sha256:0d7ba2823ce6155bee567897e2d5ac91625d5263998372ccea34ee8cce7d6674",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61d8400076b20f78bc6c7b6b496cc5bec6ee24185fc7a89387f6092a0a29e1eb",
-      "plan.md": "22d69d293f3492548f085680eb5d69e9d0d08a98e8d3c00eb7be6f30d3a042f0",
-      "tasks.md": "c9da581c4f489e77bcdd5640424e772dea6dc794cf56899a8bdb476115a0a338",
+      "plan.md": "fc729e16c0791ae4a899bf239632e26860c448dc3c32a80c756491983b850a57",
+      "tasks.md": "4304ac82a85aff39e86453366432d204d39c7066c91fe2724bcfaa5ea2fcd8a9",
       "implementation-summary.md": "5f63c046dced146c5b870f828332576e736bd5bb8d2ae01b0709f5e6f4c5cf74"
     },
     "last_active_child_id": null,

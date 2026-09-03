@@ -1,3 +1,7 @@
+---
+title: "Resource Map — glm52-2 (evidence-derived)"
+trigger_phrases: []
+---
 # Resource Map — glm52-2 (evidence-derived)
 
 > Generated from converged research deltas. Maps the surfaces this lineage investigated, with per-section counts. Emitted per the convergence evidence unless suppressed by `--no-resource-map`.

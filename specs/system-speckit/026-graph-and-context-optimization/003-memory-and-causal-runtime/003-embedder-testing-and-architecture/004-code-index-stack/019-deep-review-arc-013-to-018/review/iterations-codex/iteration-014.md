@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 014 — benchmark validity"
+trigger_phrases: []
+---
 # Codex Iteration 014 — benchmark validity
 
 ## Sequential-thinking preflight

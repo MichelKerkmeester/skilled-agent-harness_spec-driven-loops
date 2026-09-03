@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Live Hub and Parent-Doctrine Drift"
+trigger_phrases: []
+---
 # Iteration 1: Live Hub and Parent-Doctrine Drift
 
 ## Focus

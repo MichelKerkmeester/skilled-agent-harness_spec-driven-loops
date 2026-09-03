@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Rehome 20 rules; what steering is lost"
+trigger_phrases: []
+---
 # Iteration 6: Rehome 20 rules; what steering is lost
 
 ## Focus

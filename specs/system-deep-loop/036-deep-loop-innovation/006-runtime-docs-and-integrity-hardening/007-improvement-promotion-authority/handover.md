@@ -1,3 +1,7 @@
+---
+title: "Handover: 036/006/007 improvement-promotion-authority (95% — go-live gated behind acceptance review)"
+trigger_phrases: []
+---
 # Handover: 036/006/007 improvement-promotion-authority (95% — go-live gated behind acceptance review)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->

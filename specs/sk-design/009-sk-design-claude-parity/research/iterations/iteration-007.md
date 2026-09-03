@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Subskill / Procedure Content Strategy"
+trigger_phrases: []
+---
 # Iteration 7: Subskill / Procedure Content Strategy
 
 ## Focus

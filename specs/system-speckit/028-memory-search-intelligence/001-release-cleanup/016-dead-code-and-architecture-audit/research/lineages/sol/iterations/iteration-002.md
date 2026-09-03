@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: MCP-server shared contracts"
+trigger_phrases: []
+---
 # Iteration 002: MCP-server shared contracts
 
 ## Focus

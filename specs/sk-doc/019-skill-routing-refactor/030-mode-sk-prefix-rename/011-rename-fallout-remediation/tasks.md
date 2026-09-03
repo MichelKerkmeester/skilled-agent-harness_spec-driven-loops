@@ -3,6 +3,7 @@ title: "Task List: Post-rename fallout remediation"
 description: "Ordered tasks for the three rename-fallout follow-ups."
 contextType: "planning"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
+trigger_phrases: []
 ---
 # Task List: Post-Rename Fallout Remediation
 

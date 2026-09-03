@@ -1,3 +1,7 @@
+---
+title: "Iteration 013 — Non-conflict cross-check + new-child numbering"
+trigger_phrases: []
+---
 # Iteration 013 — Non-conflict cross-check + new-child numbering
 
 **Focus:** Verify the proposed 006 sub-packets don't collide with the live 027 phase map / 005 re-plan; determine correct new-child numbering.

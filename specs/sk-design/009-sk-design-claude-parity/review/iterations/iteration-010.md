@@ -1,6 +1,7 @@
 ---
 title: Deep Review Iteration 010 - Final Coverage Confirmation
 description: Final forced iteration confirming coverage, active finding counts, and conditional verdict before synthesis.
+trigger_phrases: []
 ---
 
 # Deep Review Iteration 010 - Final Coverage Confirmation

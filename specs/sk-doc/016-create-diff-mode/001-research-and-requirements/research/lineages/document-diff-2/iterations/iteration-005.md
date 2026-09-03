@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: HTML Report Architecture and Security Boundary"
+trigger_phrases: []
+---
 # Iteration 5: HTML Report Architecture and Security Boundary
 
 ## Focus

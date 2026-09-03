@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Scale and Risk of Repointing In-Repo Path References (Q5)"
+trigger_phrases: []
+---
 # Iteration 004 — Scale and Risk of Repointing In-Repo Path References (Q5)
 
 **Focus:** Q5 — count, distribution, and blast radius of in-repo `.opencode/specs` path references; determines whether Option A (literal rename) is viable or Option B (keep `.opencode/specs` real) is forced.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 — gpt-5.6-sol high — focus: catalogs"
+trigger_phrases: []
+---
 # Iteration 1 — gpt-5.6-sol high — focus: catalogs
 
 Headline finding: update three existing catalog packages, not all 24. Ownership belongs to the routed hub, the advisor response surface, and flag governance. The remaining catalogs describe child modes, transports, or unrelated systems and should not duplicate parent-hub routing.

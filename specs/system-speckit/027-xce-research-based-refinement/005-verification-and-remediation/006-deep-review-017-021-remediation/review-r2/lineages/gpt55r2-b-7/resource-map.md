@@ -1,3 +1,7 @@
+---
+title: "Review Evidence Resource Map - gpt55r2-b-7"
+trigger_phrases: []
+---
 # Review Evidence Resource Map - gpt55r2-b-7
 
 ## Scope Snapshot

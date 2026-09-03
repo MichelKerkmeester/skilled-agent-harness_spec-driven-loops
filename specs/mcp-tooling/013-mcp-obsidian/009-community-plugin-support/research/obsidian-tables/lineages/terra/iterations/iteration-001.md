@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Canonical TableData Schema and Persistence Paths"
+trigger_phrases: []
+---
 # Iteration 1: Canonical TableData Schema and Persistence Paths
 
 ## Focus

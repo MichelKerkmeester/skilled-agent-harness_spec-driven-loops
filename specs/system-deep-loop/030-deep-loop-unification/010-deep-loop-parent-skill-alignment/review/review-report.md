@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 002-deep-loop-alignment"
+trigger_phrases: []
+---
 # Deep Review Report — 002-deep-loop-alignment
 
 **Target:** `.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment`  

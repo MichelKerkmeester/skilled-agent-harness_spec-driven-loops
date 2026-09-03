@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 008"
+trigger_phrases: []
+---
 # Deep Research Iteration 008
 
 > Audited changelog: `changelog-016-embedding-provider-local-first.md`

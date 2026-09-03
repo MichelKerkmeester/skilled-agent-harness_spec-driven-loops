@@ -1,3 +1,7 @@
+---
+title: "Gate I Final Report"
+trigger_phrases: []
+---
 # Gate I Final Report
 
 ## Automated Suite

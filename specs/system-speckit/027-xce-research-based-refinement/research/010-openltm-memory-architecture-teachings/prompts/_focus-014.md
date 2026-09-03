@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 014 of 15: Indexing & freshness for an authored-doc corpus"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 014 of 15: Indexing & freshness for an authored-doc corpus
 Our real architecture is "an index + vector store OVER a living set of authored markdown docs that get EDITED." OpenLTM indexes ROWS that get INSERTED. Read how OpenLTM keeps its derived surfaces fresh and ask which techniques apply to indexing EDITED documents (not inserted rows):

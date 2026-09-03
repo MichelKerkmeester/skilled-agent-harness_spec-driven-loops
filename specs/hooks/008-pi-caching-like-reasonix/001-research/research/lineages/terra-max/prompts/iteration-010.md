@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 010"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 010
 
 Focus: Concurrent sharing and 70–90% savings

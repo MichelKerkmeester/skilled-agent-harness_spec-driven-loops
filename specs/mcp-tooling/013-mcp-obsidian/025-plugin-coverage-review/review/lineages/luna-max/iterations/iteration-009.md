@@ -1,3 +1,7 @@
+---
+title: "Iteration 009: Adversarial final replay"
+trigger_phrases: []
+---
 # Iteration 009: Adversarial final replay
 
 ## Focus

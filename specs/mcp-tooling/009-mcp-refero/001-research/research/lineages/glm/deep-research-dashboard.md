@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — lineage:glm"
+trigger_phrases: []
+---
 # Deep Research Dashboard — lineage:glm
 
 Auto-generated from JSONL, strategy, and registry state. Overwritten each iteration.

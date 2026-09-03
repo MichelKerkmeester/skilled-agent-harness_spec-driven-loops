@@ -14,6 +14,7 @@ _memory:
     completion_pct: 85
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Implementation Plan: Relation-Inference Backfill
 

@@ -1,3 +1,7 @@
+---
+title: "Code Wave 3 Verdict — tri-145, tri-186"
+trigger_phrases: []
+---
 # Code Wave 3 Verdict — tri-145, tri-186
 
 Fresh Fable 5 verifier, 2026-06-12. Both fixes verified UNCOMMITTED against the original proofs in `verify/l2-still-real-batch.md` (lines 33, 40, 81, 91). All shell probes used per-run `mktemp -d` sandbox socket dirs (`SPECKIT_IPC_SOCKET_DIR`) and explicit `--timeout-ms`; no live daemon was contacted.

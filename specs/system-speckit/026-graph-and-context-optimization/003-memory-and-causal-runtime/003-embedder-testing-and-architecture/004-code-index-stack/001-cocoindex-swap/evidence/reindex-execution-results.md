@@ -1,3 +1,7 @@
+---
+title: "018/001 — CocoIndex jina-code reindex execution results"
+trigger_phrases: []
+---
 # 018/001 — CocoIndex jina-code reindex execution results
 
 > Captured 2026-05-17 evening after the operator killed the gemma daemon (PID 59617, 3-day uptime) and the new daemon spawned with jina-code default + MPS auto-detect.

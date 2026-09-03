@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Strategy — 028 docs-alignment (10 iterations, stop_policy=max-iterations)"
+trigger_phrases: []
+---
 # Deep-Review Strategy — 028 docs-alignment (10 iterations, stop_policy=max-iterations)
 
 Scope authority: verify documentation completeness + alignment with sk-doc/sk-code standards for the Phase R remediation + 017-023 reconciliation merge (origin tip 8d52813080).

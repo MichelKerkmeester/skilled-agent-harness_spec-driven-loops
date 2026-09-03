@@ -6,6 +6,7 @@ hasAdvisories: false
 sessionId: "fanout-sol-b-1784385520599-ecg4bg"
 generation: 1
 stopReason: "converged"
+trigger_phrases: []
 ---
 
 # Deep Review Report: sk-design styles-library utilization

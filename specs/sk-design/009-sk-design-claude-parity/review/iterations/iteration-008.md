@@ -1,6 +1,7 @@
 ---
 title: Deep Review Iteration 008 - HTML/CSS Sink Generalization
 description: Security deep revisit for report/preview/proof HTML, CSS, href, and src sinks.
+trigger_phrases: []
 ---
 
 # Deep Review Iteration 008 - HTML/CSS Sink Generalization

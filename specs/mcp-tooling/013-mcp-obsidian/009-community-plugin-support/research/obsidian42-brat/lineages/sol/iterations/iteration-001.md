@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Source Schema and Install Mechanics"
+trigger_phrases: []
+---
 # Iteration 1: Source Schema and Install Mechanics
 
 ## Focus

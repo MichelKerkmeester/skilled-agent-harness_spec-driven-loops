@@ -1,3 +1,7 @@
+---
+title: "bench"
+trigger_phrases: []
+---
 # bench
 
 `gr bench --bmb` scores Graphene's belief layer against MnemeBrain's belief

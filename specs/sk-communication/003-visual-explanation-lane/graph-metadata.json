@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`sk-communication` adapts an explanation on exactly one axis: register",
     "created_at": "2026-08-28T04:22:57.540Z",
-    "last_save_at": "2026-08-30T15:39:12.013Z",
+    "last_save_at": "2026-09-03T22:17:29.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c65e65ec2e7959ef123c3e401dfd58451b6d4b1eed56fecc80c51791c209260",
+    "source_fingerprint": "sha256:f5140fd5b2c7d6d4b921bbff5e2da5a5f30676f8ede9f8e13ac93446993bbf58",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61a877941528a9d09bcb9440afd213e4f733571acd87e3d0c03e0a2c2e459f58",
-      "plan.md": "0bd7249966d24f032cc8f899b43bbcca383d986b237dc9d2de1b07d7e832e0ce",
-      "tasks.md": "ccc27782c7a080678bd9ad16501ed71468c5904f95ce5b6c147bd2efaf3c6de8",
+      "plan.md": "e16a7668dc14f74c7a2aac002b938c49d1ad13c42bd2f1af333a18fa4aa4e596",
+      "tasks.md": "b8a4e3e6dd9e155d50d05a819abc9cc18b92bb1bd05a4fdbedb64f800892606c",
       "implementation-summary.md": "6660ed29c51ef790545ac934ce1301f81cf5712fc099b3282deb77a533ef1093"
     },
     "last_active_child_id": null,

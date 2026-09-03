@@ -1,3 +1,7 @@
+---
+title: "Resource Map — Cross-Integration SOL XHigh Lineage"
+trigger_phrases: []
+---
 # Resource Map — Cross-Integration SOL XHigh Lineage
 
 ## Canonical synthesis

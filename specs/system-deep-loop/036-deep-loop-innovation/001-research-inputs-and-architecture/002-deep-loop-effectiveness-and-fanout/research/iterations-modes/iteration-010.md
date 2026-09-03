@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 10 | SOL xhigh | mode: deep-review | angle: A5-synth deep-review :: synthesis & highest-leverage recs | 2026-07-15T08:49:39.767Z -->
 
 Deep-review’s moat should be **stateful semantic change assurance**, not “the same diff reviewed repeatedly.” A single-shot reviewer produces plausible comments; deep-review should produce an auditable argument about what behavior changed, which risks were exercised, what evidence falsified each concern, and what remains uncertain.

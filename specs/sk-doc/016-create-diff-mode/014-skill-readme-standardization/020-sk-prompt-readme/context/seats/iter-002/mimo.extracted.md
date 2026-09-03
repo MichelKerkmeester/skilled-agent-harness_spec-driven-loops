@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now let me verify the format guide files exist:
 1. EXACT INVOCATION
 

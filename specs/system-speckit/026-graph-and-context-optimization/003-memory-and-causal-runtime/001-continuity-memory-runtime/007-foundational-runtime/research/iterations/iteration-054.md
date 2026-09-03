@@ -1,3 +1,7 @@
+---
+title: "Iteration 054 — Cross-cluster dependency mapping (KQ-51-4)"
+trigger_phrases: []
+---
 # Iteration 054 — Cross-cluster dependency mapping (KQ-51-4)
 
 **Segment**: 2 | **Dimension**: remediation-feasibility | **Dispatched**: Opus 4.7 via Task tool

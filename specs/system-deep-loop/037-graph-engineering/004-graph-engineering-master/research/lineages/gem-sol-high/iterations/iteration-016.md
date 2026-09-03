@@ -1,3 +1,7 @@
+---
+title: "Iteration 16: P6 Task-Graph Failure-Mode Audit"
+trigger_phrases: []
+---
 # Iteration 16: P6 Task-Graph Failure-Mode Audit
 
 ## Focus

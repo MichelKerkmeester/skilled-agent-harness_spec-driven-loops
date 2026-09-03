@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - Session Overview"
+trigger_phrases: []
+---
 # Deep Research Dashboard - Session Overview
 
 Auto-generated from JSONL state log, findings registry, and strategy. Regenerated after iteration 3. Never manually edited after this write except by a reducer.

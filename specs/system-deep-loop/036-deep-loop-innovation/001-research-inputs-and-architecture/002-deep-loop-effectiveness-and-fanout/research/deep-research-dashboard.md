@@ -1,3 +1,7 @@
+---
+title: "Deep-Loop Effectiveness & Fan-out — Dashboard (SOL xhigh, targeted)"
+trigger_phrases: []
+---
 # Deep-Loop Effectiveness & Fan-out — Dashboard (SOL xhigh, targeted)
 
 Updated: 2026-07-15T05:42:24.431Z

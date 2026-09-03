@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 39 | model glm (zai-coding-plan/glm-5.2) | angle: Self-healing / autonomous-ops / control-theory loops | 2026-07-15T00:27:03.836Z -->
 
 I'll research self-healing / control-theory / reconciliation loops applied to AI agents. Let me search for real, verifiable sources in parallel.

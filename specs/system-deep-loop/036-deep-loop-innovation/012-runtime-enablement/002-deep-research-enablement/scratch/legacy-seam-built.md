@@ -1,3 +1,7 @@
+---
+title: "The composition seam, wired"
+trigger_phrases: []
+---
 # The composition seam, wired
 
 ## What this closes and what it does not

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source: https://x.com/cyrilXBT/status/2077827005777588266?s=12
 
 How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them

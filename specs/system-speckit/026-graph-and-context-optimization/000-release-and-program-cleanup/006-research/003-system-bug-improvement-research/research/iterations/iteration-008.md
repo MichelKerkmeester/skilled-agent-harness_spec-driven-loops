@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — B3: Memory MCP round-trip integrity"
+trigger_phrases: []
+---
 # Iteration 008 — B3: Memory MCP round-trip integrity
 
 ## Focus

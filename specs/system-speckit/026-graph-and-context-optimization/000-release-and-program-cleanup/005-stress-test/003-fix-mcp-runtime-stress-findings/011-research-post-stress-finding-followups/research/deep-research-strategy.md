@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy — 011-research-post-stress-finding-followups
 description: Persistent strategy file for the v1.0.2 follow-up research session. Tracks 4 P0/P1/P2 follow-ups + 1 light arch touch across 10-iteration cli-codex (gpt-5.5 high fast) loop.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Session Tracking

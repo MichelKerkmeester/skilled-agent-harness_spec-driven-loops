@@ -7,6 +7,7 @@ allowed-tools:
   - Edit
   - Bash
   - Glob
+trigger_phrases: []
 ---
 
 Redraw the Mermaid source at `$1` in this skill's design system, following [`skills/diagram-design/references/import-mermaid.md`](../skills/diagram-design/references/import-mermaid.md) and [`skills/diagram-design/references/output-spec.md`](../skills/diagram-design/references/output-spec.md). Treat those references as the source of truth.

@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Study the Hallmark design skill and determine what can be copied or adapted, learned from to improve existing sk-design modes and commands, used as inspiration for new capabilities, or skipped; ground every recommendation in Hallmark and sk-design evidence and honor Hallmark's license."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

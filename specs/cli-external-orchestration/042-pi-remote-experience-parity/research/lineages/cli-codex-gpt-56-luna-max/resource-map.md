@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Design the best-in-class remote-control experience for the Pi coding agent: a private mobile client that pairs with Pi like the Claude Code + Claude mobile app but must exceed it, without abandoning loopback-relay, tailnet-only, foreground-authority, and redaction security posture. Cover live transcript richness, exact-action phone approval, content-free attention push, lease/CAS-bound accept-edits, opaque session browsing, background sessions, simpler pairing, and single-host multi-session concurrency, anchored to 041's pi --mode rpc JSONL, TypeScript relay, immutable epochs, durable persist-before-broadcast replay, and final-boundary approval extension."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

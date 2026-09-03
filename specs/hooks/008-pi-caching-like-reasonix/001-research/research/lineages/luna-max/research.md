@@ -2,6 +2,7 @@
 title: "Research — Reasonix vs Pi prompt caching"
 description: "Twenty-iteration verification of lumo.md claims and feasibility of a Reasonix-style Pi caching extension."
 contextType: research
+trigger_phrases: []
 ---
 
 # Reasonix vs Pi prompt caching

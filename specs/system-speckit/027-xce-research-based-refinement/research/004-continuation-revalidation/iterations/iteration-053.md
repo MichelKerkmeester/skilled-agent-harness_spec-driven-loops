@@ -1,3 +1,7 @@
+---
+title: "Iteration 053: Resource-Map Automation"
+trigger_phrases: []
+---
 # Iteration 053: Resource-Map Automation
 
 ## Focus

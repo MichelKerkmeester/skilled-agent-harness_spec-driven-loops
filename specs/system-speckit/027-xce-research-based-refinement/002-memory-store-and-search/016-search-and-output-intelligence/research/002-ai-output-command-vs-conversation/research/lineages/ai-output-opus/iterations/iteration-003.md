@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — KQ3: Structural arg-presence vs `$ARGUMENTS`-emptiness heuristic"
+trigger_phrases: []
+---
 # Iteration 003 — KQ3: Structural arg-presence vs `$ARGUMENTS`-emptiness heuristic
 
 **Focus:** Should commands distinguish "invoked with args" from "invoked bare"

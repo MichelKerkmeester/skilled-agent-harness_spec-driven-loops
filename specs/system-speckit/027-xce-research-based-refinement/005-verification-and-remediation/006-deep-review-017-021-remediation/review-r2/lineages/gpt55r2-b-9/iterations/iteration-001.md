@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Memory Store / Index / Lifecycle Soft-Delete Review"
+trigger_phrases: []
+---
 # Iteration 001: Memory Store / Index / Lifecycle Soft-Delete Review
 
 ## Focus

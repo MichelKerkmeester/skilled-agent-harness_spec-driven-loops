@@ -1,3 +1,7 @@
+---
+title: "Iteration 20: Terminal Completeness Verdict"
+trigger_phrases: []
+---
 # Iteration 20: Terminal Completeness Verdict
 
 ## Focus

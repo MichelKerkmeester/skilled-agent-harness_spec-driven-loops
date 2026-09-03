@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Compare the Hallmark design skill with the shipped sk-design hub and identify licensed reuse, surgical adaptations, lessons, new capabilities, and skips across every Hallmark asset."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

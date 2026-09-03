@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Multi-AI Council Report: Unified Router Refactor — fuse the eight ideas into one
 
 ### Task Classification

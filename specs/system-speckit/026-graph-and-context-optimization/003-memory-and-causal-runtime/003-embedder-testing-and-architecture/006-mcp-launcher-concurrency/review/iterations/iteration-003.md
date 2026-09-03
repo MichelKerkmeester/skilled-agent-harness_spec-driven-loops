@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I have completed iteration 3 of the deep-review focusing on the traceability dimension. 
 
 **Summary of findings:**

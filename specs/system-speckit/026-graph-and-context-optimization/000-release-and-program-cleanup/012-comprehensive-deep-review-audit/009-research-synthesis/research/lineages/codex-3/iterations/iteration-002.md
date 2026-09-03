@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: MCP Contract Drift And Memory Correctness"
+trigger_phrases: []
+---
 # Iteration 2: MCP Contract Drift And Memory Correctness
 
 ## Focus

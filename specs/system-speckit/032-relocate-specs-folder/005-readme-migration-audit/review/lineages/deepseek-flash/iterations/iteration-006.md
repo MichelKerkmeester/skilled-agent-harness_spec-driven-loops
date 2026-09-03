@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Historical specs/** classification + root README canonical-vs-legacy split"
+trigger_phrases: []
+---
 # Iteration 6: Historical specs/** classification + root README canonical-vs-legacy split
 
 ## Focus

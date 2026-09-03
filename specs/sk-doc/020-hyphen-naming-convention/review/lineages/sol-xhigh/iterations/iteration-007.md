@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Traceability - frozen-map interface completeness"
+trigger_phrases: []
+---
 # Iteration 7: Traceability - frozen-map interface completeness
 
 ## Dispatcher

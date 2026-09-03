@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Measurements and Owner-Disagreement Arbitration"
+trigger_phrases: []
+---
 # Iteration 008 — Measurements and Owner-Disagreement Arbitration
 
 ## Focus

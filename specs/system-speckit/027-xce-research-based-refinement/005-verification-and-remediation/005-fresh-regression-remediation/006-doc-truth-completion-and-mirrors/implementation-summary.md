@@ -20,6 +20,7 @@ _memory:
     completion_pct: 85
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Doc-Truth, Completion-Claim & Runtime-Mirror Reconciliation

@@ -1,3 +1,7 @@
+---
+title: "Iteration 051 — Cluster B infrastructure gap reach (KQ-51-1)"
+trigger_phrases: []
+---
 # Iteration 051 — Cluster B infrastructure gap reach (KQ-51-1)
 
 **Segment**: 2 | **Dimension**: root-cause + cross-cutting-coverage | **Dispatched**: Opus 4.7 via Task tool

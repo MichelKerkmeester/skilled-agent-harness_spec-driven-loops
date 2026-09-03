@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: Destructive-operation and credential replay"
+trigger_phrases: []
+---
 # Iteration 006: Destructive-operation and credential replay
 
 ## Focus

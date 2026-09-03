@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map"
+trigger_phrases: []
+---
 # Review Resource Map
 
 Generated from gpt-2 lineage review evidence. Target spec did not include a source `resource-map.md`; this file records the review coverage ledger.

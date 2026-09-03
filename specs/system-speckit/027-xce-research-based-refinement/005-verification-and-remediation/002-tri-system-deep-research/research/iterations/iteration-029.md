@@ -1,3 +1,7 @@
+---
+title: "Iteration 029 — Angle 29"
+trigger_phrases: []
+---
 # Iteration 029 — Angle 29
 
 **Angle:** Reconnect parity: mk-code-index bridge/proxy behavior vs mk-spec-memory front-proxy after the 026/007 lifecycle fixes — remaining flap exposure.

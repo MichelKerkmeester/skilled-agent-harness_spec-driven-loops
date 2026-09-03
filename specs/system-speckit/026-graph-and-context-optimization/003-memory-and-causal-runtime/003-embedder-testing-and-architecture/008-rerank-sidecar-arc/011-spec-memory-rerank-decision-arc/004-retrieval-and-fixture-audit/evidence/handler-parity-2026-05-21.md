@@ -1,3 +1,7 @@
+---
+title: "Handler Parity Evidence - 2026-05-21"
+trigger_phrases: []
+---
 # Handler Parity Evidence - 2026-05-21
 
 Verdict: **deferred**

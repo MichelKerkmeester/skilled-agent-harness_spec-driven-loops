@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — A5: Schema validation gaps"
+trigger_phrases: []
+---
 # Iteration 005 — A5: Schema validation gaps
 
 ## Focus

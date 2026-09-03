@@ -1,3 +1,7 @@
+---
+title: "CHK-004 / CHK-110 / T022 — whole-suite aggregate and delta"
+trigger_phrases: []
+---
 # CHK-004 / CHK-110 / T022 — whole-suite aggregate and delta
 
 **Run:** full `runtime` suite, serial (`fileParallelism:false`), single process, no competing dispatch.

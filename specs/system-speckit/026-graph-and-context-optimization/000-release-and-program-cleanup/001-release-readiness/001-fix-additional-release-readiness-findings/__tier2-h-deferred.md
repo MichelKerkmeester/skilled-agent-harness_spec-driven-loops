@@ -1,3 +1,7 @@
+---
+title: "Tier 2 H — DEFERRED (Human Action Required)"
+trigger_phrases: []
+---
 # Tier 2 H — DEFERRED (Human Action Required)
 
 > **Status: BLOCKED ON HUMAN VERIFICATION**

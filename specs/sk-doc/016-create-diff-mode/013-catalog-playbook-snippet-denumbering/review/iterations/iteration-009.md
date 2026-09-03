@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 009 — SKILL.md structured paths (scripts/assets/refs)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 009 — SKILL.md structured paths (scripts/assets/refs)
 
 **Executor:** DeepSeek-v4-pro (cli-opencode, --pure, read-only)

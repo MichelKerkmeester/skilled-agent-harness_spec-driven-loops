@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 — maintainability (cross-runtime mirror + phase-parent lean-trio policy)"
+trigger_phrases: []
+---
 # Iteration 8 — maintainability (cross-runtime mirror + phase-parent lean-trio policy)
 
 ## Files Reviewed

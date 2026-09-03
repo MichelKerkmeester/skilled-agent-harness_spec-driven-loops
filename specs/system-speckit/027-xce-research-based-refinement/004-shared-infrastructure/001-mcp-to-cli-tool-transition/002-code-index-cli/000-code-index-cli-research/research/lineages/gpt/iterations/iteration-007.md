@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Hook Latency and Warm-Only Policy"
+trigger_phrases: []
+---
 # Iteration 7: Hook Latency and Warm-Only Policy
 
 ## Focus

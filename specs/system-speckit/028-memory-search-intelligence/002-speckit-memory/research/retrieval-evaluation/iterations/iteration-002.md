@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 (A4): gate/rank divergence as a signal"
+trigger_phrases: []
+---
 # Iteration 2 (A4): gate/rank divergence as a signal
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only). Orchestrator-written. newInfoRatio **0.7**. **The system already bets on divergence's direction but discards its magnitude — that asymmetry is the lever.**

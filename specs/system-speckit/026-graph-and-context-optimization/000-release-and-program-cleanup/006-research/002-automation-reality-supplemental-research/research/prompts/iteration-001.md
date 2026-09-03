@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Deep-loop Graph Automation Reality"
+trigger_phrases: []
+---
 ## Deep Research Iteration 1 (013 — Automation Reality Supplemental, continuation of 012)
 
 You are deep-research agent dispatched for iteration 1 of 5. This packet is a CONTINUATION of 001-automation-self-management-research (sessionId 2026-04-29T13:15:00.000Z, 7 iterations, stopped on max_iterations with newInfoRatio=0.18 ABOVE the 0.10 convergence threshold).

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 You are an adversarial deep-review worker (iteration 1 of up to 10). RED-TEAM the diff at /tmp/010-fix.diff. Read it and the surrounding source as needed (read-only):
 - .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts (scheduleBackgroundEnrichment, MAX_BACKGROUND_ENRICHMENTS, activeBackgroundEnrichments, backgroundEnrichmentQueue)
 - .opencode/skills/system-spec-kit/mcp_server/context-server.ts (startupScan loop)

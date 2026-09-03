@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — ai-output-opus lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy — ai-output-opus lineage
 
 **Topic:** Improve AI output quality when prompted through slash-commands (`--command`)

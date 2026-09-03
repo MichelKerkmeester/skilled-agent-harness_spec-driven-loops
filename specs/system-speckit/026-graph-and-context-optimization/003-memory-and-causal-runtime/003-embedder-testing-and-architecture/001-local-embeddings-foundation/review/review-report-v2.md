@@ -1,3 +1,7 @@
+---
+title: "014 Deep Review v2 (post-commit)"
+trigger_phrases: []
+---
 # 014 Deep Review v2 (post-commit)
 
 **Reviewer:** cli-codex gpt-5.5 high (normal speed)

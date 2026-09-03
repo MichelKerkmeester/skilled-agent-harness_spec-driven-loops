@@ -1,3 +1,7 @@
+---
+title: "r2-02 eval-harness (code-quality)"
+trigger_phrases: []
+---
 # r2-02 eval-harness (code-quality)
 
 **Angle summary:** The exports are real and reusable and the prod-vs-eval lens divergence is genuinely sound, but the completeRecall@3 cutoff fights the gold-set target multiplicities at both ends, so the phase-015 gate is buildable only as a delta instrument and not as the fixed-floor "completeRecall@3" gate its docs imply.

@@ -1,3 +1,7 @@
+---
+title: "Graph-Based Deep-Loop: Research Synthesis"
+trigger_phrases: []
+---
 # Graph-Based Deep-Loop: Research Synthesis
 
 ## Executive Decision

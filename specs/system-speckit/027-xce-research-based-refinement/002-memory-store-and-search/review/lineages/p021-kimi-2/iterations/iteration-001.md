@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Correctness — tail-phase marker refresh and chunking behavior"
+trigger_phrases: []
+---
 # Iteration 001: Correctness — tail-phase marker refresh and chunking behavior
 
 ## Focus

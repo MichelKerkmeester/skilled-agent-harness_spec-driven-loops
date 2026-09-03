@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — INTENT_SIGNALS Co-occurrence Graph"
+trigger_phrases: []
+---
 # Iteration 001 — INTENT_SIGNALS Co-occurrence Graph
 
 **Focus:** Map which of the 17 INTENT_SIGNALS share resources (co-occur) and which never overlap, using RESOURCE_MAP as the evidence base.

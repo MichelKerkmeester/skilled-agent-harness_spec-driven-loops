@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### Deep Loop
 - All deep-loop workflows — research, review, improvement, and AI council — now live in a single unified `system-deep-loop` skill, invoked through a router agent renamed to `@deep-loop` (formerly `deep`) so it no longer collides with `/deep:*` commands or `deep-*` agents.
 - Research and review loops gained a divergent convergence mode (verified in 10/10-iteration runs), while a 20-iteration self-review of the unified skill caught and fixed 7 runtime bugs.

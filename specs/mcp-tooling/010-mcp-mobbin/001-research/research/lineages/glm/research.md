@@ -1,3 +1,7 @@
+---
+title: "Mobbin MCP Developer Surface — Research Synthesis"
+trigger_phrases: []
+---
 # Mobbin MCP Developer Surface — Research Synthesis
 
 **Lineage:** glm (executor B: cli-opencode / zai-coding-plan/glm-5.2)

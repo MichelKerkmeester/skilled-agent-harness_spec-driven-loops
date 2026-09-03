@@ -3,6 +3,7 @@ title: Hallmark to sk-design Research Strategy
 description: Detached lineage strategy for evidence-grounded Hallmark reuse and capability analysis.
 importance_tier: important
 contextType: planning
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Hallmark and sk-design

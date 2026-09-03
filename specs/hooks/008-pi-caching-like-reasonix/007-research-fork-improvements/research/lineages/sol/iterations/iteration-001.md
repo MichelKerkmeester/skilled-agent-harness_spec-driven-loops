@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Baseline Architecture and Ownership Contract"
+trigger_phrases: []
+---
 # Iteration 1: Baseline Architecture and Ownership Contract
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: Adversarial security replay"
+trigger_phrases: []
+---
 # Iteration 006: Adversarial security replay
 
 ## Focus

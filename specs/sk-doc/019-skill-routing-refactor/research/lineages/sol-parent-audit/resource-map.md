@@ -1,3 +1,7 @@
+---
+title: "Research Resource Map"
+trigger_phrases: []
+---
 # Research Resource Map
 
 ## Parent Surfaces

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Iteration 9 audited cross-arc consistency and global hygiene for the `013-embedder-testing-and-architecture` umbrella. The pass focused on root phase-parent metadata, stale cross-arc paths, production-default claims, and deferred follow-on promises outside arc 008.

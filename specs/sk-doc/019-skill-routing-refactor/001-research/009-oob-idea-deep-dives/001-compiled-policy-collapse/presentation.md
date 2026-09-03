@@ -1,3 +1,7 @@
+---
+title: "Idea 1 — Compiled Policy Collapse"
+trigger_phrases: []
+---
 # Idea 1 — Compiled Policy Collapse
 
 > **Stop hand-writing the router twice. Compile it once, from the registry, into one immutable file that both the live router and the offline test read.**

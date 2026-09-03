@@ -1,3 +1,7 @@
+---
+title: "What a real flip needs, and what can actually produce it"
+trigger_phrases: []
+---
 # What a real flip needs, and what can actually produce it
 
 The authority edge now exists, so the flip is no longer blocked by a missing state. It is

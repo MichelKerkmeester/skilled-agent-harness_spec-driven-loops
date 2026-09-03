@@ -1,3 +1,7 @@
+---
+title: "Iteration 037 — Angle 37"
+trigger_phrases: []
+---
 # Iteration 037 — Angle 37
 
 **Angle:** Native vs local scorer parity: systematic differential testing beyond the gold dataset (the local path just needed three fixes the native path did not).

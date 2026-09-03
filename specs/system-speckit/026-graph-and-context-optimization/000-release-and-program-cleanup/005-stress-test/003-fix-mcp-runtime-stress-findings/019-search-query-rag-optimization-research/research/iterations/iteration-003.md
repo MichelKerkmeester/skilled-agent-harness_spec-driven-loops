@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: Code Graph Readiness and Structural Search"
+trigger_phrases: []
+---
 # Iteration 003: Code Graph Readiness and Structural Search
 
 ## Focus

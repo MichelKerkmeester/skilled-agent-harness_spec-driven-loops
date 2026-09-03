@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: MCP identity, runtime boundary, and Code Mode configuration"
+trigger_phrases: []
+---
 # Iteration 3: MCP identity, runtime boundary, and Code Mode configuration
 
 ## Focus

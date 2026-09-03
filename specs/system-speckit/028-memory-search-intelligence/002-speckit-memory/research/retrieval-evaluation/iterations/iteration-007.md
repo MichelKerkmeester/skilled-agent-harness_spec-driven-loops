@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 (A7): reindex-as-consolidation + the 019 maintenance-grace TTL"
+trigger_phrases: []
+---
 # Iteration 7 (A7): reindex-as-consolidation + the 019 maintenance-grace TTL
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only, 1200s + read-cap). Orchestrator-written. newInfoRatio **0.7**. **Reindex IS the right host for the cosine half of reorg; the 019 TTL is a relationship, not a constant.**

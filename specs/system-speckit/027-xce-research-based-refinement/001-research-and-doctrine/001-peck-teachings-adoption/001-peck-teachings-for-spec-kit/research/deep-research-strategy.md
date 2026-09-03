@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - peck-teachings-adoption planned work
 description: Session tracking for deep research into the 028 packet's planned phases.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking

@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 064 — 026-dedup: 002 created_by-clobber P0 vs shipped causal conflict guard"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 064 — 026-dedup: 002 created_by-clobber P0 vs shipped causal conflict guard

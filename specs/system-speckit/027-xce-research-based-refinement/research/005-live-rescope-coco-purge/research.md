@@ -7,6 +7,7 @@ session: "2026-06-05-027-continuation-22-coco-026-drift"
 status: "continuation-22-canonical; supersedes prior XCE-adoption framing for 027 planning purposes"
 prior_archive: "research-pre-c22-archive.md (pt-01..04 + iterations 030-060)"
 merged_at: "2026-06-05"
+trigger_phrases: []
 ---
 
 # 027 XCE Refinement — Continuation 22 Synthesis

@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 6 — Adversarial Recheck + Convergence"
+trigger_phrases: []
+---
 DEEP-REVIEW
 
 # Deep-Review Iteration 6 — Adversarial Recheck + Convergence

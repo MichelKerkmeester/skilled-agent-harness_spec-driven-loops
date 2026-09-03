@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — How should the 1,290-style design-token library at .opencode/skills/sk-design/styles/ be utilized globally across the sk-design hub and its non-md-generator modes (design-interface, design-foundations, design-motion, design-audit) plus the design-mcp-open-design transport -- as shared reference material, retrieval-backed exemplars, foundation token sources, and audit/drift baselines? Inspect each mode's real contract and give a per-mode integration shape. Build on ../001-research-utilization/research/lineages/sol/research.md but scope away from md-generator (owned by phase 002). Emphasize smart integrations and out-of-the-box ideas beyond the 001 baseline retrieval pipeline, each with rough build cost."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

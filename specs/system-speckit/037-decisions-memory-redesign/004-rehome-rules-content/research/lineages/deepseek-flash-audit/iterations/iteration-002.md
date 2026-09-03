@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: COMMANDS sweep — /memory:learn, /memory:manage, /memory:search, /memory:save + presentation assets + workflow YAMLs"
+trigger_phrases: []
+---
 # Iteration 2: COMMANDS sweep — /memory:learn, /memory:manage, /memory:search, /memory:save + presentation assets + workflow YAMLs
 
 ## Focus

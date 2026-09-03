@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Correctness + Traceability (spec_code core)"
+trigger_phrases: []
+---
 # Iteration 001 — Correctness + Traceability (spec_code core)
 
 ## Focus

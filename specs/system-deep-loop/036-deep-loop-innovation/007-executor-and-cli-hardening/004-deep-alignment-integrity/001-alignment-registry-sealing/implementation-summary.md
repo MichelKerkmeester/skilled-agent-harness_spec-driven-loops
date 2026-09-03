@@ -22,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Is deep-alignment structurally broken for infra code? No — the reducer is correct; a stranded seed was mis-read as NOT_APPLICABLE."
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Security / A5 security & input robustness (dimension: security)"
+trigger_phrases: []
+---
 # Iteration 006 — Security / A5 security & input robustness (dimension: security)
 
 ## Dispatcher

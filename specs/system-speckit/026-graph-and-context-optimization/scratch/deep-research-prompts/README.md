@@ -3,6 +3,7 @@ title: "Deep Research Prompt Packs"
 description: "Paste-ready deep research prompt packs for /deep:start-research-loop. Mirrors the deep-review prompt structure but targets investigation workflows instead of audit workflows. Use when you need iterative convergent research on a technical question with externalized state + P0/P1/P2-analogue severity."
 importance_tier: "normal"
 contextType: "research-prompts"
+trigger_phrases: []
 ---
 
 # Deep Research Prompt Packs

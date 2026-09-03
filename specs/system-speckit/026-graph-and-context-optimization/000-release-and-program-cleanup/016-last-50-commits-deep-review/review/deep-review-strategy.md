@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — last 50 commits"
+trigger_phrases: []
+---
 # Deep Review Strategy — last 50 commits
 
 ## Review Target

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Iteration 4 for the maintainability dimension has been completed. The review found three P2 maintainability observations:
 
 1. **Code duplication** - The `isStrictModeDisabled()` helper is duplicated across all 3 launchers (an intentional architectural decision per spec to avoid coupling)

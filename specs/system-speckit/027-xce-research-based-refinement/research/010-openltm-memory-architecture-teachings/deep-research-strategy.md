@@ -1,6 +1,7 @@
 ---
 title: "Deep Research Strategy — OpenLTM Memory-Architecture Teachings for system-spec-kit Memory"
 description: "New lineage (iters 001-010) mining the vendored OpenLTM long-term-memory plugin (Bun/TS/SQLite/FTS5; MIT) for design teachings transferable to the LOCAL single-user system-spec-kit Memory system, with adopt/adapt/reject/defer verdicts + risk and first-class negative knowledge."
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Session Tracking

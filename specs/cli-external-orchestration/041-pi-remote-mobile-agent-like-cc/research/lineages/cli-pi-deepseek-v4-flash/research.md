@@ -1,3 +1,7 @@
+---
+title: "Deep Research: Claude-App-Style Mobile Client for the Pi Coding Agent"
+trigger_phrases: []
+---
 # Deep Research: Claude-App-Style Mobile Client for the Pi Coding Agent
 
 **Lineage:** `cli-pi-deepseek-v4-flash` · **Session:** fanout-cli-pi-deepseek-v4-flash-1786341668505-k2xc4h · **Iterations:** 6 · **Stop:** maxIterationsReached (telemetry only)

@@ -1,3 +1,7 @@
+---
+title: "L2 Apply-Pipeline Safety Packet — Adversarial Fix Verification"
+trigger_phrases: []
+---
 # L2 Apply-Pipeline Safety Packet — Adversarial Fix Verification
 
 **Commit under verification:** `1cd7d104e5` (fix(029/L2): apply-pipeline safety packet)

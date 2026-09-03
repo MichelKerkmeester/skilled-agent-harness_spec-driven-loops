@@ -5,7 +5,6 @@ trigger_phrases:
   - "sk design mcp open design readme"
   - "open design readme revisit"
   - "open design readme rewrite"
-  - "sk-design-mcp-open-design readme"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 — Adversarial Re-verification of P1-001"
+trigger_phrases: []
+---
 # Iteration 8 — Adversarial Re-verification of P1-001
 
 ## Dimension

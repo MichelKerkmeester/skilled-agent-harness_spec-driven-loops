@@ -1,3 +1,7 @@
+---
+title: "Pi Remote Experience Parity — Deep Research Synthesis"
+trigger_phrases: []
+---
 # Pi Remote Experience Parity — Deep Research Synthesis
 
 **Lineage**: cli-pi (deepseek-v4-flash) fan-out lineage `fanout-cli-pi-deepseek-v4-flash-1786514481346-vicu2t`

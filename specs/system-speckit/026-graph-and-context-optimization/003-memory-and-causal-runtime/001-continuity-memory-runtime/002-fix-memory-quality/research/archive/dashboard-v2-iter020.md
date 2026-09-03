@@ -10,6 +10,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/archive/dashboard-v2-iter020.md"]
 
+trigger_phrases: []
 ---
 
 # Deep Research Dashboard - Session Overview

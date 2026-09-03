@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Current system-deep-loop status and authority wiring"
+trigger_phrases: []
+---
 # Iteration 1: Current system-deep-loop status and authority wiring
 
 ## Focus

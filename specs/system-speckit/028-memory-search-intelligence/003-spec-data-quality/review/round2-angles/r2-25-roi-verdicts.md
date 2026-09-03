@@ -1,3 +1,7 @@
+---
+title: "r2-25 ROI verdicts"
+trigger_phrases: []
+---
 # r2-25 ROI verdicts
 
 Angle summary: audited the GO / GO-on-cost / CONDITIONAL / NO-GO tiering for inflated GOs, missed NO-GOs and unrealistic GO-on-cost costs. The NO-GO list checks clean but two verdict labels are inflated and the one unconditional GO understates its real cost.

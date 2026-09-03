@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Reviewing the iteration strategy and registry first, then I’ll re-verify every open finding and record the final evidence only in the permitted review artifacts.
 The registry has eight active findings and one deferred implementation-alignment gap. The final sweep will test both current documentation state and the declared code-facing evidence before assigning the required verdict.
 The documentation defects remain reproducible: the root map excludes metadata-declared children, the migration bridge conflicts with its local status index, and completed Phase R narratives coexist with unchecked definition-of-done evidence. A representative implementation check closes the deferred source-alignment gap without finding a new code defect.

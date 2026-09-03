@@ -1,3 +1,7 @@
+---
+title: "Graphene · 04 · The execution protocol"
+trigger_phrases: []
+---
 # Graphene · 04 · The execution protocol
 
 **Graphene coordinates; the agent executes.** This document defines the protocol

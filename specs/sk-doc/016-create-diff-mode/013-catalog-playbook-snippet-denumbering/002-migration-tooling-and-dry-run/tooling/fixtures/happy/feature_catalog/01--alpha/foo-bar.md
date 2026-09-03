@@ -1,3 +1,7 @@
+---
+title: "Foo Bar"
+trigger_phrases: []
+---
 # Foo Bar
 
 ## 4. SOURCE METADATA

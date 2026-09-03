@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Official Notion MCP Server — Complete Tool Inventory & Capability Map"
+trigger_phrases: []
+---
 # Iteration 1: Official Notion MCP Server — Complete Tool Inventory & Capability Map
 
 ## Focus

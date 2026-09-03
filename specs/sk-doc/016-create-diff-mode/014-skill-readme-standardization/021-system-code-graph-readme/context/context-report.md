@@ -1,3 +1,7 @@
+---
+title: "Context Report: system-code-graph README rewrite"
+trigger_phrases: []
+---
 # Context Report: system-code-graph README rewrite
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only). Both iterations converge with cited file:line evidence on the eight MCP tools, the structural model, the readiness contract and the false-safe guarantee. DeepSeek's verification found no stale facts in the current README, so this is a voice rewrite that preserves accurate facts, not a correction.

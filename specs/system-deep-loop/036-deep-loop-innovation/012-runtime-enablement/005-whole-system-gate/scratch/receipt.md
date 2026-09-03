@@ -1,3 +1,7 @@
+---
+title: "Whole-System Gate Receipt"
+trigger_phrases: []
+---
 # Whole-System Gate Receipt
 
 - Candidate SHA: `07c1bd5f22f0831de1bebdc822b7394ded7884b8`

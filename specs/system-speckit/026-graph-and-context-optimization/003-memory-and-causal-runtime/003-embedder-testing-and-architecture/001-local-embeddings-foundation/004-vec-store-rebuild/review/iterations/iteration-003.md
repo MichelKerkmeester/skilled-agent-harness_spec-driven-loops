@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 003 — 004-vec-store-rebuild"
+trigger_phrases: []
+---
 # Deep Review Iteration 003 — 004-vec-store-rebuild
 
 **Dimension:** documentation accuracy

@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 19 | SOL xhigh | mode: deep-improvement | angle: A4-fail deep-improvement :: failure modes & guardrails | 2026-07-15T09:36:06.769Z -->
 
 Deep-improvement’s next moat is not a smarter score. It is an evaluator that the optimizer cannot inspect, query exhaustively, modify, or impersonate—and whose signed decision is the only promotion credential.

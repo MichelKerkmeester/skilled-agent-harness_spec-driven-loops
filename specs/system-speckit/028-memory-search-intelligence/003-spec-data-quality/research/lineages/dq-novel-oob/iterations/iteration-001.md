@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — KQ1: Context-budget optimizer under the truncation floor"
+trigger_phrases: []
+---
 # Iteration 001 — KQ1: Context-budget optimizer under the truncation floor
 
 ## Focus

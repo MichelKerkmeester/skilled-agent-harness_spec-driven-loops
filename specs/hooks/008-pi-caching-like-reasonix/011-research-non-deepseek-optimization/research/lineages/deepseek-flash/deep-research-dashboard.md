@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — deepseek-flash lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — deepseek-flash lineage
 
 Lifecycle: `new` | Session: `fanout-deepseek-flash-1786253178211-cxy5n1` | Generation 1 | Status: complete

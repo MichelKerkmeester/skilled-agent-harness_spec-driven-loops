@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 31 | SOL xhigh | mode: model-benchmark | angle: A1-sota model-benchmark :: 2025-2026 state of the art | 2026-07-15T10:38:32.619Z -->
 
 The mode’s missing layer is not another benchmark suite; it is a calibrated experimental design. A five-dimensional score can still confidently select the wrong model when tasks are unpaired, router-A and live-B change multiple factors simultaneously, or judge error differs by candidate.

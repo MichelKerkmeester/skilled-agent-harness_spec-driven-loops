@@ -1,3 +1,7 @@
+---
+title: "Iteration 12: Mode Registry and Graph Policy Compilation"
+trigger_phrases: []
+---
 # Iteration 12: Mode Registry and Graph Policy Compilation
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Constitutional Memory Deprecation (Workstream B)"
+trigger_phrases: []
+---
 # Research Synthesis: Constitutional Memory Deprecation (Workstream B)
 
 **Lineage:** grok-46-xhigh-b (`cli-cursor` / `cursor-grok-4.6-xhigh`)

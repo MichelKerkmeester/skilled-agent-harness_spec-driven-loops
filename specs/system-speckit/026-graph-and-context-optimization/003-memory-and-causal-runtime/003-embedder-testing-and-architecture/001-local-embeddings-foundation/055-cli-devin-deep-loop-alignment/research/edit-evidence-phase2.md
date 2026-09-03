@@ -1,3 +1,7 @@
+---
+title: "Phase 2 Edit Evidence — packet 059"
+trigger_phrases: []
+---
 # Phase 2 Edit Evidence — packet 059
 
 Date: 2026-05-15

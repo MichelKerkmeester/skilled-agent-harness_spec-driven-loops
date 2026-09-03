@@ -1,6 +1,7 @@
 ---
 title: Deep Review Report - confirm-c
 description: Four-iteration detached confirmation lineage for the sk-code split-document template-alignment packet.
+trigger_phrases: []
 ---
 
 # Deep Review Report - confirm-c

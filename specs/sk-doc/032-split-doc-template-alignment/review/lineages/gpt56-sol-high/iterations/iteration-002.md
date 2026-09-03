@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Canonical Template Correctness"
+trigger_phrases: []
+---
 # Iteration 2: Canonical Template Correctness
 
 ## Dispatcher

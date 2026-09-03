@@ -1,3 +1,7 @@
+---
+title: "Reference Implementations for Graph Engineering — Runtime, Governance, and Workflow Comparisons"
+trigger_phrases: []
+---
 # Reference Implementations for Graph Engineering — Runtime, Governance, and Workflow Comparisons
 
 This document is a practical reading guide to the three graph-engineering references in this packet and to the implications for `system-deep-loop`.

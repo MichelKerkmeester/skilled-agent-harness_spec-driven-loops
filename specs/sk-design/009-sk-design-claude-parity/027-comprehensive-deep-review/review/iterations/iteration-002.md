@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Hub Tier Correctness + Traceability"
+trigger_phrases: []
+---
 # Iteration 002 — Hub Tier Correctness + Traceability
 
 ## Dimension

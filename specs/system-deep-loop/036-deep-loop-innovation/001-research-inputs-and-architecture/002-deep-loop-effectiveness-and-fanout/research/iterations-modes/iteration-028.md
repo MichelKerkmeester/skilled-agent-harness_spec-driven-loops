@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 28 | SOL xhigh | mode: agent-improvement | angle: A3-mech agent-improvement :: mechanisms & reference impls | 2026-07-15T10:21:49.046Z -->
 
 The current mode has sound promotion discipline, but its behavioral evidence is still thin: coherence relies partly on section/keyword checks, while stress testing centers on a same-task generic-versus-disciplined A/B ([score dimensions](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/references/agent-improvement/score_dimensions.md), [stress protocol](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/references/agent-improvement/stress_test_protocol.md)). The next step is not more judging—it is controlled intervention, causal attribution, and executor-transfer evidence.

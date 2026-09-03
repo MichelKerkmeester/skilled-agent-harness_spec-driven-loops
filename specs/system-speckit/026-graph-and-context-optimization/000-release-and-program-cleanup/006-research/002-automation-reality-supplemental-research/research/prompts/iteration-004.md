@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Adversarial 4-P1 Retest + NEW Gap Hunt"
+trigger_phrases: []
+---
 ## Deep Research Iteration 4 (013 — Automation Reality Supplemental, continuation of 012)
 
 You are deep-research agent dispatched for iteration 4 of 5. Iters 1-3 completed.

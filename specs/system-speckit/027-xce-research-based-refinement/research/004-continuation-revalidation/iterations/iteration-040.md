@@ -1,3 +1,7 @@
+---
+title: "Iteration 040 — State Hygiene"
+trigger_phrases: []
+---
 # Iteration 040 — State Hygiene
 
 ## Focus

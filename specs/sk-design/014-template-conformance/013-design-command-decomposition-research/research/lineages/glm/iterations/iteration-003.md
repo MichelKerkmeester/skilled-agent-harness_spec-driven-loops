@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Decomposition Cost Quantification"
+trigger_phrases: []
+---
 # Iteration 003 — Decomposition Cost Quantification
 
 **Focus:** Quantify what splitting `/interface:design` actually costs, grounded in the real artifact inventory.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 8 — MiniMax-M3 (TIDD-EC) — security"
+trigger_phrases: []
+---
 # Iteration 8 — MiniMax-M3 (TIDD-EC) — security
 
 Dispatched: 2026-06-28T08:01:50.237Z | wall: 189s | billing: paid

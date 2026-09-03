@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Regression Hunt: RRF/Hybrid Math + Embedder Defaults"
+trigger_phrases: []
+---
 # Iteration 004 — Regression Hunt: RRF/Hybrid Math + Embedder Defaults
 
 ## Files / DBs / commands read

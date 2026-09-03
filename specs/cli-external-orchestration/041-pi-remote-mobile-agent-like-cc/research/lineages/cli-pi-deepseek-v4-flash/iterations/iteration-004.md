@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Security and network exposure model"
+trigger_phrases: []
+---
 # Iteration 4: Security and network exposure model
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Auth + Runtime — Token Model, Rate Limits, Headless/Code Mode Constraints"
+trigger_phrases: []
+---
 # Iteration 8: Auth + Runtime — Token Model, Rate Limits, Headless/Code Mode Constraints
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - Traceability"
+trigger_phrases: []
+---
 # Iteration 003 - Traceability
 
 Focus: public schema, docs, feature catalog, and operator repair contract.

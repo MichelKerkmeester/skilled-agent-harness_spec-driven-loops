@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Minimum Topology and Graph Promotion Boundary"
+trigger_phrases: []
+---
 # Iteration 7: Minimum Topology and Graph Promotion Boundary
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Optimization — Redundant, Unused, Drift-Prone Fields"
+trigger_phrases: []
+---
 # Iteration 2: Optimization — Redundant, Unused, Drift-Prone Fields
 
 ## Focus

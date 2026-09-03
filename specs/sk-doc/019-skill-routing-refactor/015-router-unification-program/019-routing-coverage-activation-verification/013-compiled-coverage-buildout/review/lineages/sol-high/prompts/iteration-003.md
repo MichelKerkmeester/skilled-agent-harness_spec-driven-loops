@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW ITERATION 003
 
 Focus: security and trust-boundary review of resolver, manifest paths, environment controls, and router input handling.

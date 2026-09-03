@@ -3,6 +3,7 @@ title: "Deep Review Report: 027 Six-Track Reorg Verification"
 description: "Cross-model deep-review (5 MiMo v2.5 Pro + 4 DeepSeek v4 Pro iterations, max reasoning) verifying the six-track consolidation + reference-integrity work. Verdict CONDITIONAL: zero P0, structurally sound, metadata-freshness punch-list."
 importance_tier: "normal"
 contextType: "implementation"
+trigger_phrases: []
 ---
 
 # Deep Review Report — 027 Six-Track Reorg Verification

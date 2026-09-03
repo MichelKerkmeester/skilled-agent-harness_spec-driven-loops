@@ -185,7 +185,7 @@
     ],
     "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus 7 subdirectories — `cluster-classify/`, `extract/`, `feature-extractors/`, `interaction-capture/`, `procedure-cards/`, `report-preview/`, `validate/`, `write-design-md/` — each holding one file, 8 subdirectory files plus the root (9 total)",
     "created_at": "2026-07-27T15:10:02.584Z",
-    "last_save_at": "2026-08-30T15:39:13.174Z",
+    "last_save_at": "2026-09-03T22:18:24.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b78e7dbcfca1a861a35d931ee70b5d8ad39b8f7583f9d5de30846a948c4bbd13",
+    "source_fingerprint": "sha256:a0128e5ceed0e7f3c47963cb28c06d51e31c96ecfb7f57ff29e39a5d18580b9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9a38d26135469bbc56b27bc8cbbaa3157b0203b0af40a1006288491f0b4e25b",
-      "plan.md": "202abdf8326cd7955de7841d312ec83e37a86333b6b4c2965f76b21d8dbaa11f",
-      "tasks.md": "90e53811c7392ed6ea97f4fe861a4fcd0d75cb69ed34306cc12811cd52773af7",
-      "implementation-summary.md": "2a20a07562a4fec415b5fd7d269cc6798f561658762e5afcdbccb0217037d016"
+      "plan.md": "92c84d32a95831c6a9dc8e644e32051e210c62437929f4b0c5ee379a2013df18",
+      "tasks.md": "0d7ca5f4e20f18ddca5e674195d8d3ae0db060b1a61ef251f8af91e6381bb795",
+      "implementation-summary.md": "9945c57f7f5fe759b1298e08a43d6f2b77a2eb50c9505320702faa00a08dc642"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Conformance gate repair underway; drift sweep pending
 The code-standard enforcement gate was itself broken — a dead post-edit hook, a completion gate scoped to a single skill tree, and a header shape left permanently manual — which let roughly 1,400 authored files drift from the file-opening, comment-hygiene, portability, and containment contracts. This packet repairs the gate first, then sweeps the drift in blast-radius order, and amends the one place where the standard itself is the nonconforming artifact. The first phase (about 80% shipped) repairs the installed hook paths, the comment-hygiene matcher, the test-naming table, the Node discovery contract, and the repo-wide scan wrapper, and rules that exact header-shape checking is opt-in and the repository-wide scan ships without fail-on-warnings. A live smoke test and the sweep over the existing backlog remain outstanding. Internal tooling — this governs the framework's own skill tree, not end-user behavior.
 

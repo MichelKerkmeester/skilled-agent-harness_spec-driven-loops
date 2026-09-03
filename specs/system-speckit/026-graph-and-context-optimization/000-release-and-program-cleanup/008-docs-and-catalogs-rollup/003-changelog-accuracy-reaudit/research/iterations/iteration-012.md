@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 012"
+trigger_phrases: []
+---
 # Deep Research Iteration 012
 
 > Audited changelog: `changelog-017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode-root.md`

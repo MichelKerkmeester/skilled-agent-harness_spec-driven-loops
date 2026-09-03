@@ -1,3 +1,7 @@
+---
+title: "Iteration 24 — gpt-5.6-sol high — focus: sk-doc-templates"
+trigger_phrases: []
+---
 # Iteration 24 — gpt-5.6-sol high — focus: sk-doc-templates
 
 ## Headline finding

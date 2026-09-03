@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 Dispatch Prompt"
+trigger_phrases: []
+---
 # Iteration 1 Dispatch Prompt
 
 Focus: establish the current trigger-lane contract and a lossless generated-index design before considering ripgrep command recipes.

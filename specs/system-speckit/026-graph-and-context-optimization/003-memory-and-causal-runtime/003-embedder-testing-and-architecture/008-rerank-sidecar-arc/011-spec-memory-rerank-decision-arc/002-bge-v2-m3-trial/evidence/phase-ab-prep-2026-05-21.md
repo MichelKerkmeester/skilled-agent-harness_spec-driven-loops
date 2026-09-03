@@ -1,3 +1,7 @@
+---
+title: "Phase A/B Preparation Evidence - 2026-05-21"
+trigger_phrases: []
+---
 # Phase A/B Preparation Evidence - 2026-05-21
 
 ## Revision Pin

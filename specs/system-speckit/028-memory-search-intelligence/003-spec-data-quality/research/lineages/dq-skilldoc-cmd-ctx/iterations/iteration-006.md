@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Adversarial verification + convergence"
+trigger_phrases: []
+---
 # Iteration 006 — Adversarial verification + convergence
 
 **Focus:** Stress-test the highest-value gaps against the remaining unexamined workflows; confirm no shipped tier already closes them.

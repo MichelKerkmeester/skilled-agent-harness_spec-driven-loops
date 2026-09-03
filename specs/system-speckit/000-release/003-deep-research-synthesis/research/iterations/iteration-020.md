@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### MCP tooling docs aligned to canonical templates
 The asIDE DevTools, Refero, and Mobbin documentation now follows the repository's standard skill and README structures, and every automated compliance check passes with no blocking findings. Eleven asset and reference documents gained the overview sections that previously made them hard to navigate, and the three script guides were fully rebuilt with architecture, entry points, and validation sections; their documentation quality score rose from about 52 to 76. The Mobbin guidance was reconciled against a live-discovery fixture: the three confirmed tools for searching screens, flows, and sections are now documented as real, while authenticated sign-in behavior stays honestly labeled as unverified. Framework users get predictable navigation across all three integrations instead of inconsistent layouts. The only remaining advisories are filename style choices, intentionally accepted under an active naming pilot.
 

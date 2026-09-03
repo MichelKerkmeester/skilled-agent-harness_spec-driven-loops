@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 001"
+trigger_phrases: []
+---
 # Deep-Research Iteration 001
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — sk-prompt parent-hub merge (packet 124)"
+trigger_phrases: []
+---
 # Deep Review Report — sk-prompt parent-hub merge (packet 124)
 
 <!-- Machine-owned markers preserved for reducer re-runs -->

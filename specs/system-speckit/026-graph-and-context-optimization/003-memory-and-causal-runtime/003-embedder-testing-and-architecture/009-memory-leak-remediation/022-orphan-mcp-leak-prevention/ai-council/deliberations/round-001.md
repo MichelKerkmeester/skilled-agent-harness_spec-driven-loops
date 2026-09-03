@@ -2,6 +2,7 @@
 round: 1
 timestamp: "2026-05-24T23:00:00Z"
 convergence: true
+trigger_phrases: []
 ---
 
 # Deliberation: Round 001 — Orphan MCP Leak Prevention Review

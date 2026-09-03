@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — KQ4: Knowledge-graph enrichment auto-extracted from content + auto-summarization rollup nodes"
+trigger_phrases: []
+---
 # Iteration 004 — KQ4: Knowledge-graph enrichment auto-extracted from content + auto-summarization rollup nodes
 
 ## Focus

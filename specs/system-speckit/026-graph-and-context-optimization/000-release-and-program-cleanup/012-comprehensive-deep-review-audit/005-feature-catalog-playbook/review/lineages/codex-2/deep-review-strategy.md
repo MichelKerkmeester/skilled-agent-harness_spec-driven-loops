@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: Feature Catalog + Playbook Verification"
+trigger_phrases: []
+---
 # Deep Review Strategy: Feature Catalog + Playbook Verification
 
 ## Topic

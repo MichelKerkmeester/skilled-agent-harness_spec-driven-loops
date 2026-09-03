@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — 019 maintenance-grace daemon survives re-election"
+trigger_phrases: []
+---
 # Deep Review Strategy — 019 maintenance-grace daemon survives re-election
 
 Fan-out lineage: `p019-opus-4` (executor cli-claude-code, model claude-opus-4-8, maxIterations=1)

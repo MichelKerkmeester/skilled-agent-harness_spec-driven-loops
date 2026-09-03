@@ -1,3 +1,7 @@
+---
+title: "Deep Research: Graph-Engineering-Based Deep Loops"
+trigger_phrases: []
+---
 # Deep Research: Graph-Engineering-Based Deep Loops
 
 **Packet**: `specs/system-deep-loop/037-graph-engineering`

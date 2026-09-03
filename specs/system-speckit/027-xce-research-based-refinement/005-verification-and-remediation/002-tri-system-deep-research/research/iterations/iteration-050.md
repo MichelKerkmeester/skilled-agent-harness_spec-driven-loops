@@ -1,3 +1,7 @@
+---
+title: "Iteration 050 — Angle 50"
+trigger_phrases: []
+---
 # Iteration 050 — Angle 50
 
 **Angle:** Deep-loop integration surface: how deep loops save memory, exclusion policies (z_future), and whether loop artifacts feed retrieval well.

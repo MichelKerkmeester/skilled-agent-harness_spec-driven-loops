@@ -17,6 +17,7 @@ _memory:
     completion_pct: 90
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Decision Record: cli-pi Fan-out Execution
 

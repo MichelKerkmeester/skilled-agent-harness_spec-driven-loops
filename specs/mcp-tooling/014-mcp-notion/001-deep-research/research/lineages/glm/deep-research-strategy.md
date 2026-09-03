@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — mcp-notion adopt-vs-build"
+trigger_phrases: []
+---
 # Deep Research Strategy — mcp-notion adopt-vs-build
 
 ## 2. TOPIC

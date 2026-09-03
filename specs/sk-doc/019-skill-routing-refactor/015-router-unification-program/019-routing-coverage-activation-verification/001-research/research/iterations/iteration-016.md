@@ -1,3 +1,7 @@
+---
+title: "Iteration 16 — gpt-5.6-sol high — focus: sk-code-align"
+trigger_phrases: []
+---
 # Iteration 16 — gpt-5.6-sol high — focus: sk-code-align
 
 The headline finding: the accepted direction is sound, but the proposed implementation boundaries are not. `HUB_CHILD` is both an allowlist and a runtime dispatch table, existing manifests lack enough data to replace that dispatch role, and copying only `resolve.cjs` cannot remove spec-tree coupling because its activation state, engine, loaders, and compiled artifacts remain spec-relative.

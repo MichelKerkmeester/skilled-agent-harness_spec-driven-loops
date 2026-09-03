@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — B1: the standing scheduled DQ sweep with a guarded auto-fix tier"
+trigger_phrases: []
+---
 # Iteration 002 — B1: the standing scheduled DQ sweep with a guarded auto-fix tier
 
 Focus: the scheduler, the safe-vs-risky fix classification, the corpus-wide runner, and idempotency for the retroactive keystone. Reader class: A/L/R(metadata). Floor: BYPASS. This is the layer dq-skilldoc-cmd-ctx proved is the empty multiplier slot (8 CI workflows all `on: pull_request`, ZERO `schedule:`/`cron:`/`workflow_dispatch` — re-confirmed this iteration by grep over `.github/workflows/`).

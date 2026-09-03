@@ -1,3 +1,7 @@
+---
+title: "Deep Review Resource Map - CocoIndex Dedup From Shared Sidecar"
+trigger_phrases: []
+---
 # Deep Review Resource Map - CocoIndex Dedup From Shared Sidecar
 
 Resource map source: `applied/T-*.md` not present. No applied evidence exists for packet 006 because the implementation was already shipped before this review packet was created.

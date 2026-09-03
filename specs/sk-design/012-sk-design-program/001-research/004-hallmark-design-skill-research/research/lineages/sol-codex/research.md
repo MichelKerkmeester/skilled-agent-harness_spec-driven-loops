@@ -1,3 +1,7 @@
+---
+title: "Hallmark Design Skill → sk-design Reuse and Capability Research"
+trigger_phrases: []
+---
 # Hallmark Design Skill → sk-design Reuse and Capability Research
 
 ## 1. Executive Summary

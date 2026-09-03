@@ -5,6 +5,7 @@ session_id: "fanout-luna-1784833766851-nhdtp"
 loop_type: research
 stop_policy: max-iterations
 iterations: 10
+trigger_phrases: []
 ---
 
 # Second-pass deep audit

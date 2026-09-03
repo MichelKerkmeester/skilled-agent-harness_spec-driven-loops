@@ -14,6 +14,7 @@ _memory:
     completion_pct: 85
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Task Breakdown: Relation-Inference Backfill
 

@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Limits, plan gating, batch behavior, and current data shapes"
+trigger_phrases: []
+---
 # Iteration 2: Limits, plan gating, batch behavior, and current data shapes
 
 ## Focus

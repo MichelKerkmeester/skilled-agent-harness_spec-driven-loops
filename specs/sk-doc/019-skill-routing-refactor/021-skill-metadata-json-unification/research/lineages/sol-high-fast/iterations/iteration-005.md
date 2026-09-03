@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Canonical Contract, Automation Ownership, and Fleet Gate"
+trigger_phrases: []
+---
 # Iteration 5: Canonical Contract, Automation Ownership, and Fleet Gate
 
 ## Focus

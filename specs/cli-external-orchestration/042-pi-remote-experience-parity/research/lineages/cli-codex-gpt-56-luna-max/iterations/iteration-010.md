@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Background sessions and starting work away"
+trigger_phrases: []
+---
 # Iteration 010 — Background sessions and starting work away
 
 ## Question

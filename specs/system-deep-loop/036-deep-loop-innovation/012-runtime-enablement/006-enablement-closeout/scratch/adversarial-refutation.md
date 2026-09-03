@@ -1,3 +1,7 @@
+---
+title: "Adversarial Pass on the Closeout's Central Claim"
+trigger_phrases: []
+---
 # Adversarial Pass on the Closeout's Central Claim
 
 The claim that the forward flip is unreachable is load-bearing for this whole

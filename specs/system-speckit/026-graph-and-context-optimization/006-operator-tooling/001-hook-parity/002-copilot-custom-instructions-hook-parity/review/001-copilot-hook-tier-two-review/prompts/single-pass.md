@@ -1,3 +1,7 @@
+---
+title: "Single-Pass Deep Review — 009/002 Copilot Hook Parity Remediation"
+trigger_phrases: []
+---
 # Single-Pass Deep Review — 009/002 Copilot Hook Parity Remediation
 
 **GATE 3 PRE-ANSWERED — A**: `specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity`. Pre-approved.

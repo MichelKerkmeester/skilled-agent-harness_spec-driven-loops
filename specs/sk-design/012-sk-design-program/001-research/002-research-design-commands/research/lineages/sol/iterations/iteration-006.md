@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Namespace And Naming Decision"
+trigger_phrases: []
+---
 # Iteration 6: Namespace And Naming Decision
 
 ## Focus

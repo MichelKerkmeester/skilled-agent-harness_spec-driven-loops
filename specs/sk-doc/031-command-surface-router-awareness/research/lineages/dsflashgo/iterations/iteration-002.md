@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Doctor Command Family — ROUTER.md Audit Coverage"
+trigger_phrases: []
+---
 # Iteration 2: Doctor Command Family — ROUTER.md Audit Coverage
 
 ## Focus

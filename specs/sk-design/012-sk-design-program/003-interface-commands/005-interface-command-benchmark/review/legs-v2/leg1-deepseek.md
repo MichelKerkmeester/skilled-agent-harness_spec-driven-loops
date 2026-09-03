@@ -1,3 +1,7 @@
+---
+title: "Interface Direction Spec — Engineering Analytics Dashboard Empty State"
+trigger_phrases: []
+---
 Now I have all foundational assets. Let me proceed through the nine-stage lifecycle. I'll load the remaining required supporting references (foundations bundle for UI production — copy-and-mock-data, mechanical-defaults, preflight card) before producing the artifact.All assets are loaded. Presenting the full direction spec.
 
 ---

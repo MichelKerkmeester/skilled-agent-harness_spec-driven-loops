@@ -1,3 +1,7 @@
+---
+title: "Iteration 9 (A1-deepen): the three \"missing accuracy lanes\" are ONE harness extension"
+trigger_phrases: []
+---
 # Iteration 9 (A1-deepen): the three "missing accuracy lanes" are ONE harness extension
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only, 1200s + read-cap). Orchestrator-written. newInfoRatio **0.6** (consolidation, not new discovery). **The A1/A2/A5 lanes share one root blind-spot and one build spine — they are one extension with a forced linear build order.**

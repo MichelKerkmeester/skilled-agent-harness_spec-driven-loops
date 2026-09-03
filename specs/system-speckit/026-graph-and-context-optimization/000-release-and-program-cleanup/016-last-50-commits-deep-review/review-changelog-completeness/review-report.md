@@ -1,3 +1,7 @@
+---
+title: "Review Report: Changelog Completeness & Accuracy (v3.4.2.0 -> v3.5.0.0 + nested 026)"
+trigger_phrases: []
+---
 # Review Report: Changelog Completeness & Accuracy (v3.4.2.0 -> v3.5.0.0 + nested 026)
 
 - **Date:** 2026-06-05

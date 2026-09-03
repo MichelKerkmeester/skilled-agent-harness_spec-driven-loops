@@ -1,3 +1,7 @@
+---
+title: "`.codex/config.toml` Note Patch"
+trigger_phrases: []
+---
 # `.codex/config.toml` Note Patch
 
 Direct write to `.codex/config.toml` was blocked in this runtime. Apply this note-only patch to align the database example with the runtime-derived q8 slug:

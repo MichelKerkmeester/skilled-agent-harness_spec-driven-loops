@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — KQ4: Which output fields the contract should mandate"
+trigger_phrases: []
+---
 # Iteration 004 — KQ4: Which output fields the contract should mandate
 
 **Focus:** Which fields must the contract mandate so conversational answers are

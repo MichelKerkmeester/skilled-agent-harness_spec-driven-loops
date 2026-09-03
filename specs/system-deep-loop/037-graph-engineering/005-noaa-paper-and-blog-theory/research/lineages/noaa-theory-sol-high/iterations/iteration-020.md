@@ -1,3 +1,7 @@
+---
+title: "Iteration 20: Terminal Design Decisions and 036 Subordination"
+trigger_phrases: []
+---
 # Iteration 20: Terminal Design Decisions and 036 Subordination
 
 ## Focus

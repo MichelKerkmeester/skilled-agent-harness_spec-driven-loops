@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 — Complete per-hook and per-plugin Devin port verdict matrix"
+trigger_phrases: []
+---
 # Iteration 5 — Complete per-hook and per-plugin Devin port verdict matrix
 
 ## Focus

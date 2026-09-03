@@ -3,6 +3,7 @@ title: "Plan: Phase 008 — Master Catalog Enrichment"
 description: "Execution plan for enriching the 3 master feature_catalog.md files with trigger_phrases and last_updated."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Plan: Phase 008 — Master Catalog Enrichment
 

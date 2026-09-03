@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Study, Design DNA, Portability, And Exports"
+trigger_phrases: []
+---
 # Iteration 6: Study, Design DNA, Portability, And Exports
 
 ## Focus

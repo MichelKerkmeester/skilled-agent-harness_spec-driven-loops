@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Final polish pass for the template consolidation synthesis. The loop has converged: all Q1-Q10 questions are answered, the recommendation remains **PARTIAL**, and this pass found no new research direction that changes the plan.

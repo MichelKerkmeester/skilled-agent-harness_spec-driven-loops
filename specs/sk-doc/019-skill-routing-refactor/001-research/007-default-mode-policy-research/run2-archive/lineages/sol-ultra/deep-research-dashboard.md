@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard: sol-ultra"
+trigger_phrases: []
+---
 # Deep Research Dashboard: sol-ultra
 
 ## Lifecycle

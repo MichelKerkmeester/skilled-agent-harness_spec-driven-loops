@@ -1,3 +1,7 @@
+---
+title: "Repo #2 (graphene-main) — All Findings & Recommendations, in Plain Terms"
+trigger_phrases: []
+---
 # Repo #2 (graphene-main) — All Findings & Recommendations, in Plain Terms
 
 > Plain-language companion to `research.md` (the 20-iteration synthesis, written by GPT-5.6-SOL xhigh and independently verified by DeepSeek V4 Pro). Same conclusions, translated out of the technical vocabulary. This study **builds on repo #1 (agent-swarms)** — every point says whether graphene *confirms, sharpens, extends, or contradicts* a repo-#1 conclusion.

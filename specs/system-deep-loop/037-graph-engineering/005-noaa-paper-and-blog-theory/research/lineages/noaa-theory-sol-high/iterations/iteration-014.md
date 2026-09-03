@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: P6 Handle Failure Modes and Measurements"
+trigger_phrases: []
+---
 # Iteration 14: P6 Handle Failure Modes and Measurements
 
 ## Focus

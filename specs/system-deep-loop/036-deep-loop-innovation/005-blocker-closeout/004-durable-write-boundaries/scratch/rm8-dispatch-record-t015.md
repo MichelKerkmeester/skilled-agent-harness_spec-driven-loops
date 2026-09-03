@@ -1,3 +1,7 @@
+---
+title: "RM-8 Dispatch Record — T015 torn-tail marker-before-move ordering"
+trigger_phrases: []
+---
 # RM-8 Dispatch Record — T015 torn-tail marker-before-move ordering
 
 - **L1 (prompt rails):** brief carried literal `BANNED OPERATIONS` + `ALLOWED WRITE PATHS`

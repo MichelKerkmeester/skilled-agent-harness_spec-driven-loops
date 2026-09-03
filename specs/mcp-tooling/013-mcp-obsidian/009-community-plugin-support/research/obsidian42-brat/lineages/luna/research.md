@@ -1,6 +1,7 @@
 ---
 title: "obsidian42-BRAT: verified file-layer data model, installation mechanics, and AI workflows"
 description: "Five-iteration source-cited synthesis for TfTHacker/obsidian42-brat v2.2.0+ behavior."
+trigger_phrases: []
 ---
 
 # obsidian42-BRAT: verified file-layer knowledge base

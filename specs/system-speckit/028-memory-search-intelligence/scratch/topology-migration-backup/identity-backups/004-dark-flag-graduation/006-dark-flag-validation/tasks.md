@@ -6,6 +6,7 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/006-dark-flag-validation"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "opencode"
+trigger_phrases: []
 ---
 
 # Tasks: Dark Flag Validation

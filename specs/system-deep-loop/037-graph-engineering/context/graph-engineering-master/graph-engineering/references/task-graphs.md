@@ -1,3 +1,7 @@
+---
+title: "Task Graphs: Orchestrating Agents"
+trigger_phrases: []
+---
 # Task Graphs: Orchestrating Agents
 *(The execution half of graph engineering — how agents work, as opposed to what they remember)*
 

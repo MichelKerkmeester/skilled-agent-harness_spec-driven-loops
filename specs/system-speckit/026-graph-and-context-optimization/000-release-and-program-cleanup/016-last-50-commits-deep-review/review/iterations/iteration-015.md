@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 — Correctness / A1 verify+deepen (dimension: correctness)"
+trigger_phrases: []
+---
 # Iteration 015 — Correctness / A1 verify+deepen (dimension: correctness)
 
 ## Dispatcher

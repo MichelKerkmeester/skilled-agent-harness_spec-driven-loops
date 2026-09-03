@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 **Route Proof**
 - Command: `/interface:design`
 - `workflowMode=interface`

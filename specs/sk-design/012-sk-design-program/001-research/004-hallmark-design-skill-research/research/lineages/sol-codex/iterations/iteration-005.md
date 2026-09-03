@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Foundations, Responsive, Copy, and Authored Themes"
+trigger_phrases: []
+---
 # Iteration 5: Foundations, Responsive, Copy, and Authored Themes
 
 ## Focus

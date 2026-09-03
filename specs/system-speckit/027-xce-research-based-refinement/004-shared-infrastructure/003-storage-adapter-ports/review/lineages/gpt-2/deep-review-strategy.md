@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: Storage Adapter Ports"
+trigger_phrases: []
+---
 # Deep Review Strategy: Storage Adapter Ports
 
 BINDING: artifact_dir=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports/review/lineages/gpt-2

@@ -1,3 +1,7 @@
+---
+title: "Deep Research: Runtime Migration / Rollback / Over-Engineering Residue Audit"
+trigger_phrases: []
+---
 # Deep Research: Runtime Migration / Rollback / Over-Engineering Residue Audit
 
 **Packet:** `036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering`

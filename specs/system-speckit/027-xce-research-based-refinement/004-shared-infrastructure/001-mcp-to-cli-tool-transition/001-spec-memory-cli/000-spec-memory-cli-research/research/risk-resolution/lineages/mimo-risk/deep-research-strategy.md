@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — mimo-risk Lane"
+trigger_phrases: []
+---
 # Deep Research Strategy — mimo-risk Lane
 
 ## Topic

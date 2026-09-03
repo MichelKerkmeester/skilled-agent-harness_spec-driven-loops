@@ -10,6 +10,7 @@ _memory:
     last_updated_by: "claude"
     recent_action: "Realpath'd the comparison base; dependency-seams passes 6/6"
     next_safe_action: "Commit 001; push both 019 children"
+trigger_phrases: []
 ---
 # Tasks: dependency-seams Worktree-Symlink Fix
 

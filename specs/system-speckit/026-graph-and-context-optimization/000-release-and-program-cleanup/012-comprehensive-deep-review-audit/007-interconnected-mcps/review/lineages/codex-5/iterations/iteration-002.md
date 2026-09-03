@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Security And Executor Contracts"
+trigger_phrases: []
+---
 # Iteration 002 - Security And Executor Contracts
 
 Session: fanout-codex-5-1780596001496-uhn96t

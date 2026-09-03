@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Manifest Refresh Correctness"
+trigger_phrases: []
+---
 # Iteration 1: Manifest Refresh Correctness
 
 ## Dispatcher

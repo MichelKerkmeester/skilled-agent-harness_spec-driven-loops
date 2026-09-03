@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: hook output vs agent selection boundaries"
+trigger_phrases: []
+---
 # Iteration 10: hook output vs agent selection boundaries
 ## Focus
 This pass closed the last high-value gap around whether Copilot CLI's documented hook and custom-agent surfaces can inject dynamic startup or per-prompt payloads into the main session. I compared the official hook/output contract, custom-agent model, customization matrix, and live CLI/config surfaces.

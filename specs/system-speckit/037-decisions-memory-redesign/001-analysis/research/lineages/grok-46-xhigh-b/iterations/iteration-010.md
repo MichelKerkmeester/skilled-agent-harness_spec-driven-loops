@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Verdict and ranked recommendations (Workstream B)"
+trigger_phrases: []
+---
 # Iteration 10: Verdict and ranked recommendations (Workstream B)
 
 ## Focus

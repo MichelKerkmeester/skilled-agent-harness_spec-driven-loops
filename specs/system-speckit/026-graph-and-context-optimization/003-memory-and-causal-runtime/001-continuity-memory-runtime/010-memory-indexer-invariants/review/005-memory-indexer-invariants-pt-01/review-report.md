@@ -1,3 +1,7 @@
+---
+title: "Review Report — 005 Memory Indexer Invariants"
+trigger_phrases: []
+---
 # Review Report — 005 Memory Indexer Invariants
 
 ## 1. Executive Summary

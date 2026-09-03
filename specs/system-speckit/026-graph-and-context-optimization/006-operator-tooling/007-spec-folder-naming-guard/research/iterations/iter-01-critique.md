@@ -1,3 +1,7 @@
+---
+title: "Iteration 01 — Adversarial Critique + Quantification (gpt-5.5-fast xhigh)"
+trigger_phrases: []
+---
 # Iteration 01 — Adversarial Critique + Quantification (gpt-5.5-fast xhigh)
 
 _Read-only deep-research pass. Source: live tree scan + repo file evidence._

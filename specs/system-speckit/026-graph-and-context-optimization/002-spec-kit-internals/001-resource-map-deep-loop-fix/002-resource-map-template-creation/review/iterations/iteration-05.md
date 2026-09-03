@@ -4,6 +4,7 @@ dimension: "Skill docs + references coherence"
 executor: "direct-read"
 copilot_dispatched: false
 copilot_dispatch_reason: "Scope was 14 focus files, all small-to-medium; 10 targeted grep + Read passes established full coverage. Dispatching gpt-5.4 high would add latency without new signal."
+trigger_phrases: []
 ---
 
 # Iteration 05 — Skill docs + references coherence

@@ -18,6 +18,7 @@ _memory:
       - ".opencode/skills/sk-doc/mode-registry.json"
       - ".opencode/skills/sk-doc/hub-router.json"
       - ".opencode/commands/create/benchmark.md"
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

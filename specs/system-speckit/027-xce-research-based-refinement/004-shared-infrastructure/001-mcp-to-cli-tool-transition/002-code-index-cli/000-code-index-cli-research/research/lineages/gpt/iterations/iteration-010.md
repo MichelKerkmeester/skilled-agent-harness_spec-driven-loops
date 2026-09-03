@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Verdict, Effort, and Implementation Inheritance"
+trigger_phrases: []
+---
 # Iteration 10: Verdict, Effort, and Implementation Inheritance
 
 ## Focus

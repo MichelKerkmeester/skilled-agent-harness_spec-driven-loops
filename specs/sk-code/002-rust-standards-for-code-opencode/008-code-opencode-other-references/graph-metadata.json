@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Nine `code-opencode` docs exceed 500 lines: the typescript trio (865/714/562), the shell trio (625/538/501), javascript qualitystandards (605), and the shared tier codeorganization (722) + universalpatterns (561)",
     "created_at": "2026-07-11T16:48:24.944Z",
-    "last_save_at": "2026-08-30T15:39:11.083Z",
+    "last_save_at": "2026-09-03T22:16:01.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eeced343400f21636127e957fa1c7fceef9a3f74be4da2d74508923c7c9ebb66",
+    "source_fingerprint": "sha256:5f9097a4254238e1ea5d036f5a9c0f210d4699766ffc0eaef9c13df31883c301",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7df7fd241c52e1069abad7ad7be5267e3c21345bc474260b6f288c27d62511f3",
-      "plan.md": "7907cde541e10fff2e4b1d2afa9389c58de620ee9dfd131f395b154150246707",
-      "tasks.md": "09459143ae97ac6831fa1e5b4c04df644f7002cd3dab10e5c393fa188099cc81",
-      "implementation-summary.md": "a932e7901373fdf85c3251e9c1b1ade0e4d8232215c5decd7fbc3985915af261"
+      "plan.md": "bea2ab6e2ab46726e44275852d0baccc45a0f2e51523aec10540cdbc4ffa2afc",
+      "tasks.md": "2d153729d88a1d7caa9cb7203140d55cb6d9efa125e403fd5a0b0022b62f8103",
+      "implementation-summary.md": "6308339860685b0845c02807ce038d61a3a6f5ae76b119eeb9182fd984d126f8"
     },
     "last_active_child_id": null,
     "last_active_at": null

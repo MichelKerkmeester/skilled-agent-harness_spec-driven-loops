@@ -1,3 +1,7 @@
+---
+title: "Iteration 055 — P2 masking latent P1 (KQ-51-5 completion)"
+trigger_phrases: []
+---
 # Iteration 055 — P2 masking latent P1 (KQ-51-5 completion)
 
 **Segment**: 2 | **Dimension**: root-cause | **Dispatched**: Opus 4.7 via Task tool

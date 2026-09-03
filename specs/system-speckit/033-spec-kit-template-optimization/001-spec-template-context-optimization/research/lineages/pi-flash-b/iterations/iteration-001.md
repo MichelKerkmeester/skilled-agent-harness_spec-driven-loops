@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Templates + scaffolding pipeline under the Reducer Engineering lens"
+trigger_phrases: []
+---
 # Iteration 001 — Templates + scaffolding pipeline under the Reducer Engineering lens
 
 **Focus:** Measure token weight and duplication in `templates/manifest/*.tmpl`; verify how the doc workflow consumes them (renderer, staleness governance); map Reducer-Engineering techniques (dedupe/drop/group) to concrete template optimizations.

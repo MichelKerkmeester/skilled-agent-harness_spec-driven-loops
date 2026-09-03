@@ -1,3 +1,7 @@
+---
+title: "Structural-impact coverage"
+trigger_phrases: []
+---
 # Structural-impact coverage
 
 Captured: 2026-08-11

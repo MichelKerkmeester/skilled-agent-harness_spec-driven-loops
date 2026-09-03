@@ -1,3 +1,7 @@
+---
+title: "These artifacts are a PRE-014 validation run — NOT phase-016 execution"
+trigger_phrases: []
+---
 # These artifacts are a PRE-014 validation run — NOT phase-016 execution
 
 `review/` and `alignment/` under this folder were produced by an operator-requested

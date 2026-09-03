@@ -20,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Memory Store/Search/Save Write-Path Remediation

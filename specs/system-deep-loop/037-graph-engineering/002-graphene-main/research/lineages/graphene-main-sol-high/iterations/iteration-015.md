@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: All-12-blog triangulation against P1-P7"
+trigger_phrases: []
+---
 # Iteration 15: All-12-blog triangulation against P1-P7
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 2 | SOL xhigh | mode: deep-research | angle: A2-moat deep-research :: unique value / moat | 2026-07-15T08:12:02.282Z -->
 
 The moat is not “more searching.” It is a research dossier that compounds trust across time: resumable, inspectable, updateable, and capable of proving why every claim entered, changed, or left the report.

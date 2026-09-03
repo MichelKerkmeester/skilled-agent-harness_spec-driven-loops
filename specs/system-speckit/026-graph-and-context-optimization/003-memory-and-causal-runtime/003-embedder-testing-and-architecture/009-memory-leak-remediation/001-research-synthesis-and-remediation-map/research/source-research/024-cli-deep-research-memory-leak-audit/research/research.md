@@ -1,3 +1,7 @@
+---
+title: "CLI Deep Research Memory Leak Audit - Final Synthesis"
+trigger_phrases: []
+---
 # CLI Deep Research Memory Leak Audit - Final Synthesis
 
 <!-- ANCHOR:final-synthesis -->

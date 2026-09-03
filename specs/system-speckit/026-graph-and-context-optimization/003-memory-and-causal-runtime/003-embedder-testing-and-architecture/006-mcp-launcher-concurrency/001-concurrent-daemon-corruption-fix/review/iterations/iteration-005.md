@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Iteration 5 for the correctness dimension is complete. I reviewed the concurrent daemon corruption fix for race windows, error handling, and edge cases. All correctness issues had already been identified in prior iterations (missing integration test for REQ-001, DB-dir override false-negative, TOCTOU race in isLeaseHeld, test coverage gaps). This iteration found no new correctness defects, so the verdict is **PASS**.
 auncher exit behavior; iteration-002 found DB-dir override false-negative and TOCTOU race in isLeaseHeld(). This iteration found no new correctness defects beyond those already documented.
 

@@ -1,3 +1,7 @@
+---
+title: "Goal Prompt — paste this to start the next session"
+trigger_phrases: []
+---
 # Goal Prompt — paste this to start the next session
 
 Continue implementing cli-cursor (Cursor CLI, binary `cursor-agent`) as a new mode in the `cli-external-orchestration` hub.

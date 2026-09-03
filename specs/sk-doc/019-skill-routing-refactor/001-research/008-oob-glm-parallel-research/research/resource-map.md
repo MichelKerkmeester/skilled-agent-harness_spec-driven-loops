@@ -1,3 +1,7 @@
+---
+title: "Deep Research Resource Map"
+trigger_phrases: []
+---
 # Deep Research Resource Map
 
 ## Research Outputs

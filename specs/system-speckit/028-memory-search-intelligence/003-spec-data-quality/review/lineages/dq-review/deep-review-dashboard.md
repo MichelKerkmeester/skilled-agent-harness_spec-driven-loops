@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard: 003-spec-data-quality (lineage dq-review)"
+trigger_phrases: []
+---
 # Deep Review Dashboard: 003-spec-data-quality (lineage dq-review)
 
 _Auto-generated. Do not edit by hand._

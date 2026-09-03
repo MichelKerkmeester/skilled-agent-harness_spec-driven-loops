@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Research refinement opportunities for the sk-design skill hub as it now stands after retiring the /interface:audit and /interface:foundations commands and deleting the commandSubworkflows machinery. Current shape: four registered modes (interface, motion, md-generator, design-mcp-open-design), three commands (/interface:design, /interface:motion, /interface:design-reference), foundations capability folded flat into design-interface, anti-slop essentials reduced to seven binary checks in the interface mechanical preflight card, and a 7812-file styles package shared behind a storage-neutral facade. Identify concrete, high-value refinements: simplifications, removable ceremony, structural drift against sk-doc create-skill doctrine, and capability gaps the retirement created. HARD CONSTRAINT: the operator has explicitly rejected over-engineering. Every recommendation must be justified against a CURRENT problem with evidence, must state its cost, and must be the smallest change that solves it. Reject any proposal that adds new abstraction, new schema constructs, new ceremony, or speculative future-proofing. Prefer deleting over adding. Rank recommendations by value-to-cost and state explicitly which ones are NOT worth doing. Iterations 1-0 are already complete. Continue from iteration 1. Do not repeat an earlier iteration's focus."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

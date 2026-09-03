@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Consolidate four stores; ADR roll-up; cheap prior-decision query"
+trigger_phrases: []
+---
 # Iteration 4: Consolidate four stores; ADR roll-up; cheap prior-decision query
 
 ## Focus

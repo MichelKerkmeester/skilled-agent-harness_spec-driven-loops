@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: PDF and Edge Format Deep-Dive"
+trigger_phrases: []
+---
 # Iteration 6: PDF and Edge Format Deep-Dive
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Codex CLI Prompt — Batch deep-review of 026 phases 002-014 (5 iterations per phase + consolidated report)"
+trigger_phrases: []
+---
 # Codex CLI Prompt — Batch deep-review of 026 phases 002-014 (5 iterations per phase + consolidated report)
 
 You are running as codex CLI (`gpt-5.4`, `reasoning_effort=high`, `service_tier=fast`, `sandbox=workspace-write`). Self-contained prompt. Execute a batch deep-review across 13 phase folders under 026-graph-and-context-optimization, 5 iterations per phase, with all output organized under `026/review/<phase-slug>/`. Write a final consolidated report that aggregates findings across all 13 phases.

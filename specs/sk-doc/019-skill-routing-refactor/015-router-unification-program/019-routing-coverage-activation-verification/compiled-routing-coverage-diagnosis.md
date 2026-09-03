@@ -1,3 +1,7 @@
+---
+title: "Compiled-Routing Coverage Diagnosis & Resolution Plan"
+trigger_phrases: []
+---
 # Compiled-Routing Coverage Diagnosis & Resolution Plan
 _Worktree: `.worktrees/0089-sk-doc-default-routing-cutover` (branch `sk-doc/0089-default-routing-cutover`). Nothing flipped/committed; `DEFAULT_ON_HUBS = new Set()` both resolvers; frozen scorer INTACT._
 

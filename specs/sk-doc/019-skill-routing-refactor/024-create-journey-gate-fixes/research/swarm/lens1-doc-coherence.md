@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Act as a documentation-coherence reviewer. READ-ONLY — modify nothing. Scope: the connection between the sk-doc/create-skill packet and the system-skill-advisor skill regarding root-level metadata JSON templates and creation guidelines.
 
 Authority chain to verify against: .opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md (the canonical contract, incl. its per-class template map) and the template assets under .opencode/skills/sk-doc/create-skill/assets/ (parent-skill/*.json and skill/*.json).

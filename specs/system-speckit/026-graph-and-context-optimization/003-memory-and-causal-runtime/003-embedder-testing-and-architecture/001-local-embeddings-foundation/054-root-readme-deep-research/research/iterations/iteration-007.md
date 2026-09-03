@@ -1,3 +1,7 @@
+---
+title: "Iter 007 — Track 3: Banned HVR Words Scan"
+trigger_phrases: []
+---
 # Iter 007 — Track 3: Banned HVR Words Scan
 
 ## Method

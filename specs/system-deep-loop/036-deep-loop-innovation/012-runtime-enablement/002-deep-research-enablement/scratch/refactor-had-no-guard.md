@@ -1,3 +1,7 @@
+---
+title: "The behaviour-preserving move had nothing to preserve it against"
+trigger_phrases: []
+---
 # The behaviour-preserving move had nothing to preserve it against
 
 ## What was nearly shipped

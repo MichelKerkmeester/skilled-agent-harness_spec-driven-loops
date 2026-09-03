@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: Hybrid Evidence and Knowledge-Graph Routing"
+trigger_phrases: []
+---
 # Iteration 15: Hybrid Evidence and Knowledge-Graph Routing
 
 ## Focus

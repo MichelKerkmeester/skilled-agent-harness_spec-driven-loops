@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Q4 / T1: prior art and feasibility risks for adding a mechanical acceptance-criteria coverage gate to spec-kit's completion flow.

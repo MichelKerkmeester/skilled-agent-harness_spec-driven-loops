@@ -1,3 +1,7 @@
+---
+title: "Iteration 43 — Domain 4: Stringly Typed Governance (3/10)"
+trigger_phrases: []
+---
 # Iteration 43 — Domain 4: Stringly Typed Governance (3/10)
 
 ## Investigation Thread

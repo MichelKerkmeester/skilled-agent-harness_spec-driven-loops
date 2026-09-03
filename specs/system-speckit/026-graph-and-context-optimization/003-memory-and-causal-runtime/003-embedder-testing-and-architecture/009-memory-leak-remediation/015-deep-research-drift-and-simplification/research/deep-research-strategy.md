@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Strategy: System-Spec-Kit MCP Sidecar"
+trigger_phrases: []
+---
 # Deep-Research Strategy: System-Spec-Kit MCP Sidecar
 
 ## Charter

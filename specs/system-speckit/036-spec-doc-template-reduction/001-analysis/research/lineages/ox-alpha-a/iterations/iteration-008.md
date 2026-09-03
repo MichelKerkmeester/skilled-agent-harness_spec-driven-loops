@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Value × risk ranking + shipped-packet regression analysis"
+trigger_phrases: []
+---
 # Iteration 008 — Value × risk ranking + shipped-packet regression analysis
 
 **Focus:** Rank every recommendation from iterations 001-007 by (value × risk), flag shipped-packet regressions, define sequencing.

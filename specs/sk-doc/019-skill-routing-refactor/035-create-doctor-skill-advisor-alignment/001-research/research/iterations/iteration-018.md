@@ -1,3 +1,7 @@
+---
+title: "Iteration 18: Post-create index handoff"
+trigger_phrases: []
+---
 # Iteration 18: Post-create index handoff
 
 ## Focus

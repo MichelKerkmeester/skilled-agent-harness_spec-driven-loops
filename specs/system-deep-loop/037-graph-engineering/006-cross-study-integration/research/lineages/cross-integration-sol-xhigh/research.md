@@ -1,3 +1,7 @@
+---
+title: "Cross-Study Integration — Graph-Based Agent-Loop Engine over 036"
+trigger_phrases: []
+---
 # Cross-Study Integration — Graph-Based Agent-Loop Engine over 036
 
 ## 1. Grounding, Scope, and Source Corpus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Iteration 16 complete. **VERIFIED-CLEAN**: No suspicious commit patterns found in the last 30 days.
 
 **Key findings:**

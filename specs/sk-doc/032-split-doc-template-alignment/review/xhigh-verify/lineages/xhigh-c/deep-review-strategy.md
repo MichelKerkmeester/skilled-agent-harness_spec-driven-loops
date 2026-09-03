@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy - xhigh-c
 description: Detached lineage strategy for the sk-code split-document template-alignment verification review.
+trigger_phrases: []
 ---
 
 # Deep Review Strategy - xhigh-c

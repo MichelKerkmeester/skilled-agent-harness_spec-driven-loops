@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 027/017 BM25 Warmup Churn Reduction"
+trigger_phrases: []
+---
 # Deep Review Report — 027/017 BM25 Warmup Churn Reduction
 
 **Target:** commit `573904538b` — no-copy chunked packed postings + Uint8/16/32 typed-array width promotion + free-after-pack in `bm25-index.ts`, with the hard RSS gate re-enabled.

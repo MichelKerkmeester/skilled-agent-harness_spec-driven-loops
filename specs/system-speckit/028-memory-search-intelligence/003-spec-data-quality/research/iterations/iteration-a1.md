@@ -1,3 +1,7 @@
+---
+title: "Iteration A1 - Adherence EARS plus Constraints (mimo, template-path feasibility)"
+trigger_phrases: []
+---
 # Iteration A1 - Adherence EARS plus Constraints (mimo, template-path feasibility)
 
 ## TITLE

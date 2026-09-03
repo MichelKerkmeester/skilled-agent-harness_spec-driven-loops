@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Iteration 10
 
 ### Focus

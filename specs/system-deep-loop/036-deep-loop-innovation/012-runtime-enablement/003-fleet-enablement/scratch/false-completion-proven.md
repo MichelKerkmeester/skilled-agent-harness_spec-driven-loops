@@ -1,3 +1,7 @@
+---
+title: "A ready mode is recorded as enabled without an authority write, and the lie persists"
+trigger_phrases: []
+---
 # A ready mode is recorded as enabled without an authority write, and the lie persists
 
 ## Method

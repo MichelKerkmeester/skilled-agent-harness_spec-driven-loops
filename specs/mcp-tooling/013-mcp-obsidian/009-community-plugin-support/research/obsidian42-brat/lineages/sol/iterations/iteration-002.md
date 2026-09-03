@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Commands, File-Layer Workflows, and Failure Branches"
+trigger_phrases: []
+---
 # Iteration 2: Commands, File-Layer Workflows, and Failure Branches
 
 ## Focus

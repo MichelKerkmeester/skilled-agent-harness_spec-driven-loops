@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Parent routing before/after narrative"
+trigger_phrases: []
+---
 # Iteration 004 — Parent routing before/after narrative
 
 ## Focus

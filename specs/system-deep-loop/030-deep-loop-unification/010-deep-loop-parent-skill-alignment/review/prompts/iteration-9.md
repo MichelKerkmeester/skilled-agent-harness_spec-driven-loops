@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 You are an adversarial spec-review agent performing iteration 9/10 of a deep review of a Spec-Kit planning packet. You are MODEL DeepSeek-v4-Pro. Frame your review as RCAF: Role, Context, Action, Format. State your reviewer role, the context you loaded, the action taken, and the strict output format.
 
 REVIEW TARGET (read every file; paths are relative to repo root /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, which is your --dir):

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The review loop is complete. All artifacts are written under the lineage directory and nothing outside it was modified.
 
 ## Summary

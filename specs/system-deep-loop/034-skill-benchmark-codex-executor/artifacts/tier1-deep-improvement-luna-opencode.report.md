@@ -1,3 +1,7 @@
+---
+title: "Skill Benchmark Report — deep-improvement"
+trigger_phrases: []
+---
 # Skill Benchmark Report — deep-improvement
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-b-live` · trace mode: `live`.

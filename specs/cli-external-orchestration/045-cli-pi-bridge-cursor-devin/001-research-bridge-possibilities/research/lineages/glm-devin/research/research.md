@@ -8,6 +8,7 @@ status: complete
 verdict: not-feasible-now
 created: 2026-08-17T13:19:40Z
 completed: 2026-08-17T14:38:10Z
+trigger_phrases: []
 ---
 
 # Pi Native Bridge to Cursor & Devin CLI Models — Research Synthesis

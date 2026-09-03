@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Adversarial P0/P1 replay + final sweep"
+trigger_phrases: []
+---
 # Iteration 10: Adversarial P0/P1 replay + final sweep
 
 ## Focus

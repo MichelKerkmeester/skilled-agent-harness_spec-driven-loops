@@ -1,3 +1,7 @@
+---
+title: "R2-28 Biggest Risk (adversarial)"
+trigger_phrases: []
+---
 # R2-28 Biggest Risk (adversarial)
 
 **Angle summary:** The single biggest risk is that the program's named spine, the "truncation law", overstates the live code. Prod runs a confidence-gap truncator with a 3-result minimum, not a fixed top-3 cap, so the premise that freezes six retrieval phases rests on an unmeasured and partly self-contradicted reading.

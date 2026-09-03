@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Ranked verdict across token reuse, provider adapters, and CLI gateways"
+trigger_phrases: []
+---
 # Iteration 5: Ranked verdict across token reuse, provider adapters, and CLI gateways
 
 ## Focus

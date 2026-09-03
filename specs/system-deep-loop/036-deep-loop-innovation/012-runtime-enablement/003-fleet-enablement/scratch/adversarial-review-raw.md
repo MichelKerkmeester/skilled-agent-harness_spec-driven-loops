@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Review complete. Findings below, each with file, the offending fragment, a concrete triggering sequence, and the blast radius.
 
 ---

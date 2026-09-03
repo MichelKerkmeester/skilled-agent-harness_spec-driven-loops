@@ -3,6 +3,7 @@ title: "Unified Router Refactor — Council Synthesis of the Eight Ideas"
 description: "The single fused router architecture: one content-addressed compiled policy, one closed decision algebra, one shared recovery budget, destination-local proof/verify/commit, and an offline correction overlay — with the singular-skill (mcp-code-mode) degeneracy proof, the overlap-resolution table, a phased reversible migration, the advisor/benchmark/standalone-docs read, constraint compliance, and open questions."
 contextType: "synthesis"
 importance_tier: "critical"
+trigger_phrases: []
 ---
 
 # Unified Router Refactor — Council Synthesis

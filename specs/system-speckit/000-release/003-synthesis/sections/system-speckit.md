@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### Spec Kit & Memory
 
 - **Spec folders moved** to a top-level `specs/` directory (from `.opencode/specs/`), with the old path kept as a compatibility symlink so existing references keep working.

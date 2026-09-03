@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Corpus Inventory and Mode-Contract Mapping"
+trigger_phrases: []
+---
 # Iteration 1: Corpus Inventory and Mode-Contract Mapping
 
 ## Focus

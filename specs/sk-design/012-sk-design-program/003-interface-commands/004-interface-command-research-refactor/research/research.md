@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis — Refactoring the /interface:* Design Commands"
+trigger_phrases: []
+---
 # Research Synthesis — Refactoring the /interface:* Design Commands
 
 > Phase-1 evidence base, converged from three passes: SOL-fast dispatch 1 (design-tool command

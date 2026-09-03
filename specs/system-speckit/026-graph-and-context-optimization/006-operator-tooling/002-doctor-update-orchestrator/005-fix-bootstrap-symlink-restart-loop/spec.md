@@ -1,3 +1,7 @@
+---
+title: "Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop"
+trigger_phrases: []
+---
 # Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop
 
 > **Parent:** `026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Traceability — Spec/Code Alignment & Cross-Reference Integrity"
+trigger_phrases: []
+---
 # Iteration 3: Traceability — Spec/Code Alignment & Cross-Reference Integrity
 
 ## Focus

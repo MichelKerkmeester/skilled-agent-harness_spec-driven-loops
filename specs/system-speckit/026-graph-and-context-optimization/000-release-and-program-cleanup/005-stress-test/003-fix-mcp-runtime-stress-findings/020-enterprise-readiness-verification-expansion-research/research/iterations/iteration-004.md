@@ -3,6 +3,7 @@ iteration: 4
 focus: RQ4 - W6 CocoIndex adaptive overfetch promotion
 newInfoRatio: 0.69
 status: complete
+trigger_phrases: []
 ---
 
 # Iteration 004 - W6 CocoIndex Calibration

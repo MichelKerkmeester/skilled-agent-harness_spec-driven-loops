@@ -1,3 +1,7 @@
+---
+title: "Iter 9 — Stacking analysis — A+B+C+D combinations: complementary, redundant, sequenced?"
+trigger_phrases: []
+---
 # Iter 9 — Stacking analysis — A+B+C+D combinations: complementary, redundant, sequenced?
 
 ## TL;DR (2-3 sentences)

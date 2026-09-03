@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard: 028-governance-rollout"
+trigger_phrases: []
+---
 # Deep Review Dashboard: 028-governance-rollout
 
 _Auto-generated. Do not edit by hand._

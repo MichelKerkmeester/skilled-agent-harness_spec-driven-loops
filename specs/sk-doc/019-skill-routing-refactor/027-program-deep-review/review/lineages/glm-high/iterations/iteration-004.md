@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Maintainability — Tests, Fixture Honesty, Dead Code, Patterns"
+trigger_phrases: []
+---
 # Iteration 4: Maintainability — Tests, Fixture Honesty, Dead Code, Patterns
 
 ## Focus

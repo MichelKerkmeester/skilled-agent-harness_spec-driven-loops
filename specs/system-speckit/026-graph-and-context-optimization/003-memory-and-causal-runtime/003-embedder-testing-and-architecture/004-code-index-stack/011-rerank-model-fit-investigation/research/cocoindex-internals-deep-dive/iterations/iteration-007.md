@@ -1,3 +1,7 @@
+---
+title: "Iter 7 — Decision rubric for A/B/C/D — fix-probability, cost, regression risk, downstream unblocks"
+trigger_phrases: []
+---
 # Iter 7 — Decision rubric for A/B/C/D — fix-probability, cost, regression risk, downstream unblocks
 
 ## TL;DR (2-3 sentences)

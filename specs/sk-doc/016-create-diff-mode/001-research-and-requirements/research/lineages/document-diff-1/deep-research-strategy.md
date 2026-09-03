@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Document Diff Skill Architecture"
+trigger_phrases: []
+---
 # Deep Research Strategy — Document Diff Skill Architecture
 
 ## 2. TOPIC

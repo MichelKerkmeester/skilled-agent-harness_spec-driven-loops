@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: RQ2 — per-family conformance divergences (wholesale vs one-off)"
+trigger_phrases: []
+---
 # Iteration 2: RQ2 — per-family conformance divergences (wholesale vs one-off)
 
 ## Focus

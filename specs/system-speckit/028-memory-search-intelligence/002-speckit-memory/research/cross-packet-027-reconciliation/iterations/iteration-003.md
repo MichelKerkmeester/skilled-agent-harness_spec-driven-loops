@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 (Round K): Q3 Causal-edge Lifecycle × full bi-temporal model"
+trigger_phrases: []
+---
 # Iteration 3 (Round K): Q3 Causal-edge Lifecycle × full bi-temporal model
 
 ## Focus

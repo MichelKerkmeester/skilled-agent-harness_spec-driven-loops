@@ -1,3 +1,7 @@
+---
+title: "Resource Map — fable-2 review lineage (emitted from converged delta evidence)"
+trigger_phrases: []
+---
 # Resource Map — fable-2 review lineage (emitted from converged delta evidence)
 
 Scope: files cited as finding evidence or independently verified during the 5-iteration deep review of `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`.

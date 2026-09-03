@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: 016/011/003 Hybrid Search (BM25 + Semantic Fusion)"
+trigger_phrases: []
+---
 # Research Synthesis: 016/011/003 Hybrid Search (BM25 + Semantic Fusion)
 
 > **Status**: CONVERGED (3 of 3 iters complete) — 2026-05-18T07:52-07:54Z. iter 8-10 ran via cli-devin kimi-k2.6 (SWE-1.6 quota exhausted).

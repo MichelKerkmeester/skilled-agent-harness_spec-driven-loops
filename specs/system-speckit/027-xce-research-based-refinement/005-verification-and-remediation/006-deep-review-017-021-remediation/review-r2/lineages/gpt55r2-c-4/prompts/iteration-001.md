@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 BINDING: artifact_dir=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/lineages/gpt55r2-c-4
 BINDING: resolveArtifactRoot=skipped per fan-out lineage override
 

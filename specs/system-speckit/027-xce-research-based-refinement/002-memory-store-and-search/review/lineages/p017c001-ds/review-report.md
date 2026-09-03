@@ -1,3 +1,7 @@
+---
+title: "Review Report: Token Budget Truncation Safety"
+trigger_phrases: []
+---
 # Review Report: Token Budget Truncation Safety
 
 ## 1. Executive Summary

@@ -1,3 +1,7 @@
+---
+title: "Review Report — 019-maintenance-grace-daemon-survives-reelection (lineage p019-opus-3)"
+trigger_phrases: []
+---
 # Review Report — 019-maintenance-grace-daemon-survives-reelection (lineage p019-opus-3)
 
 Executor: cli-claude-code (claude-opus-4-8) · Mode: review · Iterations: 1 · Lineage: p019-opus-3

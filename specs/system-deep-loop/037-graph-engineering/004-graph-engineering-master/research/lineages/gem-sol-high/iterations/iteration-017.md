@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: P6 Cross-Layer and Organization Audit"
+trigger_phrases: []
+---
 # Iteration 17: P6 Cross-Layer and Organization Audit
 
 ## Focus

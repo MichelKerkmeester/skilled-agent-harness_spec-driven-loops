@@ -1,3 +1,7 @@
+---
+title: "The gate's only failing check had never run"
+trigger_phrases: []
+---
 # The gate's only failing check had never run
 
 ## Symptom

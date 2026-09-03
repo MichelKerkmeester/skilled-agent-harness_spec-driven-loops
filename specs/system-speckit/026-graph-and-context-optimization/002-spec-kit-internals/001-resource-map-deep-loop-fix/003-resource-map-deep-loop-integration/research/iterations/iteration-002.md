@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Convergence / Finalization Ownership Boundary"
+trigger_phrases: []
+---
 # Iteration 2: Convergence / Finalization Ownership Boundary
 
 ## Focus

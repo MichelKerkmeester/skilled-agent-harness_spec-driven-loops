@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 11 | SOL xhigh | mode: deep-ai-council | angle: A1-sota deep-ai-council :: 2025-2026 state of the art | 2026-07-15T08:54:58.300Z -->
 
 The SOTA signal is fairly sharp: `deep-ai-council` should stop treating model count, role labels, and transcript-wide debate as the source of value. Its moat should be engineered epistemic independence—different evidence, methods, and objectives—followed by auditable belief revision.

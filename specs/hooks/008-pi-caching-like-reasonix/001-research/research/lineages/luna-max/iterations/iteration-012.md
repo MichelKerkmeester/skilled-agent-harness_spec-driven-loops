@@ -1,3 +1,7 @@
+---
+title: "Iteration 12: Audit MCP and RPC boundaries"
+trigger_phrases: []
+---
 # Iteration 12: Audit MCP and RPC boundaries
 
 ## Focus

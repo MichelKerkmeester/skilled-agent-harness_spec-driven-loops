@@ -1,3 +1,7 @@
+---
+title: "Pre-Flight Notes"
+trigger_phrases: []
+---
 # Pre-Flight Notes
 
 ## Critical Files Read

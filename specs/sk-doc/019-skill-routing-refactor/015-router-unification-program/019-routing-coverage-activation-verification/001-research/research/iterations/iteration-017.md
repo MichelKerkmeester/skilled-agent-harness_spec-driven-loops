@@ -1,3 +1,7 @@
+---
+title: "Iteration 17 — gpt-5.6-terra xhigh — focus: sk-doc-templates"
+trigger_phrases: []
+---
 # Iteration 17 — gpt-5.6-terra xhigh — focus: sk-doc-templates
 
 New compiled-routing playbook MDs are not safely covered by the current sk-doc contract: the template teaches legacy gold, the documented gate does not validate typed topology, and a missing typed oracle can still produce a rendered benchmark report.

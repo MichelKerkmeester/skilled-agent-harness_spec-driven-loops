@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final Consolidation for Embedding Backlog Drain"
+trigger_phrases: []
+---
 # Iteration 10: Final Consolidation for Embedding Backlog Drain
 
 ## Focus

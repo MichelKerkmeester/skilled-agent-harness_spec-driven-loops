@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Exhaustive Root-Resolution Call-Site Inventory"
+trigger_phrases: []
+---
 # Iteration 1: Exhaustive Root-Resolution Call-Site Inventory
 
 ## Focus

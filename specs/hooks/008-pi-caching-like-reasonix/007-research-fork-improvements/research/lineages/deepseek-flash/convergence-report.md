@@ -1,3 +1,7 @@
+---
+title: "Convergence Report — deepseek-flash Lineage"
+trigger_phrases: []
+---
 # Convergence Report — deepseek-flash Lineage
 
 - Stop policy: `max-iterations`

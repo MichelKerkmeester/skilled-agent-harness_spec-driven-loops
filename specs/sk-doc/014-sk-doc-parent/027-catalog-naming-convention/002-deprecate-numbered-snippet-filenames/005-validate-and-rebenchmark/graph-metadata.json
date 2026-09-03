@@ -172,7 +172,7 @@
     ],
     "causal_summary": "Phase 005, the gate. After the migration executes, prove nothing regressed: recursive validate.sh --strict across every touched skill, the whole-workspace markdown-link guard, a Lane C smart-routing benchmark re-run on the affected skills proving the discovered scenario count is unchanged with no D1-D5 scoring regression against a baseline captured before Phase 004, a live proof that the no-new-numbered-snippet guard fires, and confirmation that the 2 previously-failing vitest suites now pass.",
     "created_at": "2026-07-11T14:47:54.715Z",
-    "last_save_at": "2026-08-30T15:39:13.846Z",
+    "last_save_at": "2026-09-03T22:18:46.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,13 +181,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdaeee7fa09f005af90a22eb812020e2eb9683563bf6d95848ec94168fa8faa6",
+    "source_fingerprint": "sha256:a98730d2b173317dca8622ef3ed8aea847f7d032d3ea12f7f987a1b27bdea1d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b71f50ff6630730e9743f2499e7ced14ed1e8de2bb1133579457593a28965f5",
-      "plan.md": "770686a582e7179214aa326f295614280f5a8acfdae05368a6bc8c4c74358d19",
-      "tasks.md": "8ee25682b2aa4696bd5a118442f88a1fe1a7406d355362abd1fc5e2c7bc10931",
-      "implementation-summary.md": "6d93156f90317e35cac5a0d95bf90b34c20196b726fbf28cba8475c657a503ee"
+      "plan.md": "ecfff799d5b37823486013c4ab40d9d6b1a16ad3aefff3e0a972f20f8b3a5d0b",
+      "tasks.md": "0c898e9af9d6a20d3813543890597494a4ecb0074430ac4230f8667ef1cea70a",
+      "implementation-summary.md": "49fcfe14016af1080b2fdf5871235b9fca7c33e39219af7fac61166b0b565552"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — RQ9: Dual-Client Load + RQ10: Effort Reconciliation + RQ11: Platform Constraints"
+trigger_phrases: []
+---
 # Iteration 005 — RQ9: Dual-Client Load + RQ10: Effort Reconciliation + RQ11: Platform Constraints
 
 - **Date:** 2026-06-06T12:55:00Z

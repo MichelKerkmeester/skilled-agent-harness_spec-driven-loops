@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Tri-System Investigation (50 Angles)"
+trigger_phrases: []
+---
 # Deep Research Strategy — Tri-System Investigation (50 Angles)
 
 <!-- ANCHOR: strategy-overview -->

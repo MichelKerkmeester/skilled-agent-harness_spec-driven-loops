@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — PWA information architecture and accessibility"
+trigger_phrases: []
+---
 # Iteration 014 — PWA information architecture and accessibility
 
 ## Question

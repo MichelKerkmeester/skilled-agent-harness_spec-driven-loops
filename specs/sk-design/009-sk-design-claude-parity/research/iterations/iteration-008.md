@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Verification and Benchmarks"
+trigger_phrases: []
+---
 # Iteration 8: Verification and Benchmarks
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Capability/Type-Directed Minimal Router Contract"
+trigger_phrases: []
+---
 # Iteration 6: Capability/Type-Directed Minimal Router Contract
 
 ## Focus

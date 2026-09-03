@@ -1,3 +1,7 @@
+---
+title: "Iteration 12: External Mining — aionforge forgetting.md + erasure.md → Memory"
+trigger_phrases: []
+---
 # Iteration 12: External Mining — aionforge forgetting.md + erasure.md → Memory
 
 ## Focus

@@ -14,6 +14,7 @@ _memory:
     completion_pct: 10
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Tasks: Lane C Skill-Benchmark Applicability Reporting
 

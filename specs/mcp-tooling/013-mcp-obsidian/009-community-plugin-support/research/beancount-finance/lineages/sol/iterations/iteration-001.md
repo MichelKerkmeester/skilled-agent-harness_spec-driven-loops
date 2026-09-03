@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Plugin-owned state, commands, files, and subprocesses"
+trigger_phrases: []
+---
 # Iteration 001 — Plugin-owned state, commands, files, and subprocesses
 
 ## Focus

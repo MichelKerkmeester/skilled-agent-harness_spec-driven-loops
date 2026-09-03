@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — write-safety / dedup / idempotency / provenance"
+trigger_phrases: []
+---
 # Iteration 001 — write-safety / dedup / idempotency / provenance
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.78 · **tokens:** 130300 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

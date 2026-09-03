@@ -20,6 +20,7 @@ _memory:
     completion_pct: 95
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Implementation Summary
 

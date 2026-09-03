@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: Cross-Command Composition"
+trigger_phrases: []
+---
 # Iteration 19: Cross-Command Composition
 
 ## Focus

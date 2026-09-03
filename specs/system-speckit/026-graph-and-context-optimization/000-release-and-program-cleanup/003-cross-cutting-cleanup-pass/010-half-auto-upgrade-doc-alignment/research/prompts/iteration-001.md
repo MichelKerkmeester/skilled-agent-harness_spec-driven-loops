@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 034: half-auto-upgrades — Tier C 4 sub-tasks
 
 You are cli-codex (gpt-5.5 high fast) implementing remediation packet **010-half-auto-upgrade-doc-alignment**.

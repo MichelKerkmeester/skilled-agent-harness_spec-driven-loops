@@ -1,3 +1,7 @@
+---
+title: "Rendered Iteration Prompt"
+trigger_phrases: []
+---
 # Rendered Iteration Prompt
 
 STATE SUMMARY (auto-generated, review mode):

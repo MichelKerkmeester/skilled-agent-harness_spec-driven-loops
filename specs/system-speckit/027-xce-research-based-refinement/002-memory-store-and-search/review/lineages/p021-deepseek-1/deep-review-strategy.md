@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy"
+trigger_phrases: []
+---
 # Deep Review Strategy
 
 ## topic

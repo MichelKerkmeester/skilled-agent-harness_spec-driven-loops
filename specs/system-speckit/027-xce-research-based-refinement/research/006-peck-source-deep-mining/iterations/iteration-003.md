@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Numeric weighted severity rubric (score ≥4 blocks)"
+trigger_phrases: []
+---
 # Iteration 003 — Numeric weighted severity rubric (score ≥4 blocks)
 
 **Focus:** peck code-reviewer numeric weighted rubric (4-10, ±2 context, ≥4 blocks) vs spec-kit categorical P0/P1/P2 (deep-review + sk-code-review).

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 BINDING: spec_folder=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs
 BINDING: artifact_dir=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs/review/lineages/gpt-2
 BINDING: session_id=fanout-gpt-2-1781150497099-u77yte

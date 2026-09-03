@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - Intent Rule Inventory"
+trigger_phrases: []
+---
 # Iteration 001 - Intent Rule Inventory
 
 ## Focus

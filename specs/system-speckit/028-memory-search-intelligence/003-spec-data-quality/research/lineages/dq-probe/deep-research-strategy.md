@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - dq-probe lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy - dq-probe lineage
 
 ## 1. OVERVIEW

@@ -1,3 +1,7 @@
+---
+title: "Loop & Harness Engineering for system-deep-loop: NOOA + First Principles (Repo Study 5)"
+trigger_phrases: []
+---
 # Loop & Harness Engineering for system-deep-loop: NOOA + First Principles (Repo Study 5)
 
 ## Grounding (terms and sources)

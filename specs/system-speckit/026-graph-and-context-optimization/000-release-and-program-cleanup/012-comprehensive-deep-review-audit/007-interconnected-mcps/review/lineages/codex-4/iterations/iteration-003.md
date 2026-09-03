@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 - Traceability: skill-advisor MCP descriptors versus handler schemas"
+trigger_phrases: []
+---
 # Iteration 3 - Traceability: skill-advisor MCP descriptors versus handler schemas
 
 Session: fanout-codex-4-1780596001496-dj6z7c

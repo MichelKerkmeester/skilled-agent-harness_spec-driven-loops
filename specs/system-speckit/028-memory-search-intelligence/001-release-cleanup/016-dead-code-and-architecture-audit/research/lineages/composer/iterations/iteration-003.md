@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — deep-loop runtime and fan-out infrastructure"
+trigger_phrases: []
+---
 # Iteration 003 — deep-loop runtime and fan-out infrastructure
 
 **Focus:** `.opencode/skills/system-deep-loop/runtime/scripts/`, reducer duplication, broken repo symlinks affecting search.

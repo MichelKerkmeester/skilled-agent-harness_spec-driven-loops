@@ -1,3 +1,7 @@
+---
+title: "Single-Pass Deep Review — 009/005 OpenCode Plugin Loader Remediation"
+trigger_phrases: []
+---
 # Single-Pass Deep Review — 009/005 OpenCode Plugin Loader Remediation
 
 **GATE 3 PRE-ANSWERED — A**: `specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/005-opencode-plugin-loader-bridge-fixes`. Pre-approved. Proceed directly.

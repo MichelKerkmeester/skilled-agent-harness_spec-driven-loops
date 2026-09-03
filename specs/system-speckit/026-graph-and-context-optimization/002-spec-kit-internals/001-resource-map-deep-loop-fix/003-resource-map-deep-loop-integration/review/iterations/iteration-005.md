@@ -1,3 +1,7 @@
+---
+title: "Iteration 005: traceability - command path contract follow-up"
+trigger_phrases: []
+---
 # Iteration 005: traceability - command path contract follow-up
 
 ## Dispatcher

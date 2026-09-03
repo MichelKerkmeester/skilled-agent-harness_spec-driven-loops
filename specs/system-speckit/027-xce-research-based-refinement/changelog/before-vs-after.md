@@ -1,3 +1,7 @@
+---
+title: "What Changed in Spec Kit Memory: The 027 Refinement"
+trigger_phrases: []
+---
 # What Changed in Spec Kit Memory: The 027 Refinement
 
 > Research-derived hardening for the memory system and the Spec Kit workflow. Every feature that affects results ships default-off and earns its way on through evidence. Pure protections ship always-on because they are fail-safe.

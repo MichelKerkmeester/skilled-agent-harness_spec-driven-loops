@@ -1,3 +1,7 @@
+---
+title: "Research angles opened by sk-doc/019"
+trigger_phrases: []
+---
 # Research angles opened by sk-doc/019
 
 The 019 packet established a much firmer routing substrate: canonical `(workflowMode, leafResourceId)` identity, compiled-policy serving for seven eligible hubs, typed non-route outcomes, and a reversible fleet cutover. It also showed that several apparently structural problems were actually measurement problems: advisor confidence is not probability, typed-leaf recall is not yet the same as successful leaf use, and shadow fixtures do not establish natural-traffic behavior. The largest remaining frontiers are therefore empirical calibration, causal routing observability, recovery economics, and deciding whether the optional adaptive machinery earns its cost. The current fleet reinforces that split: seven multi-mode hubs use compiled routing, while five singleton packages have structurally valid but operationally different routing questions.

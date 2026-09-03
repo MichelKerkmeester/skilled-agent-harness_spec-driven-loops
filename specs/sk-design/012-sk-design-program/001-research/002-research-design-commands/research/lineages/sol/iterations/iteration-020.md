@@ -1,3 +1,7 @@
+---
+title: "Iteration 20: Final Convergence"
+trigger_phrases: []
+---
 # Iteration 20: Final Convergence
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: P1 Fusion Pipeline"
+trigger_phrases: []
+---
 # Iteration 7: P1 Fusion Pipeline
 
 ## Focus

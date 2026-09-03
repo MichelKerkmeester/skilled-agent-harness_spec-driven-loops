@@ -1,3 +1,7 @@
+---
+title: "Resource Map — Luna Lineage"
+trigger_phrases: []
+---
 # Resource Map — Luna Lineage
 
 ## Local runtime source

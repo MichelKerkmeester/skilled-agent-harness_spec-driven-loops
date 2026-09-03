@@ -36,12 +36,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "tests/response-profile-formatters.vitest.ts",
-      "tests/memory/trust-badges.test.ts",
-      "lib/storage/causal-edges.ts",
-      "formatters/search-results.ts",
-      "lib/response/profile-formatters.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,36 +61,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "response-profile-formatters.vitest.ts",
-        "kind": "test",
-        "path": "tests/response-profile-formatters.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "trust-badges.test.ts",
-        "kind": "test",
-        "path": "tests/memory/trust-badges.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "profile-formatters.ts",
-        "kind": "code",
-        "path": "lib/response/profile-formatters.ts",
         "source": "derived"
       },
       {
@@ -187,11 +152,41 @@
         "kind": "quoted",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "important",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Memory",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Display-only trust badges (confidence, extraction_age, last_access_age, orphan, weight_history) on MemoryResultEnvelope. NO schema change. NO new relations. NO storage of code/process/tool facts.",
     "created_at": "2026-04-25T10:48:09.300Z",
-    "last_save_at": "2026-08-30T15:39:32.016Z",
+    "last_save_at": "2026-09-03T22:23:12.819Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +195,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7139bf92639ae08f6f68a7de25f49b6fee29ce791b62575298047c53b1418c5",
+    "source_fingerprint": "sha256:74b755059e72dc85aa0850c57e8a71631e0a65b678e882871eb50b732606555c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6a29933d5e02d62664017b774e02a267c6bd22cd8118d9893bd5a553564e518",
-      "plan.md": "652a9c61a1c60790aab79a4b21154128d040c055c08b61c60db684f67d405f3c",
-      "tasks.md": "4ac730be579569f2603008776dd8b1fbceb566decd3503a02f94e5d6ac11f67c",
+      "plan.md": "6379ababb322c856b52b67dd05e7f91e18723408b3072ab329c5f245fc863fe1",
+      "tasks.md": "2f3a308fbf058f5f2b3d9a08afd3bc5fa8be45d728605ee48346cd87154eb973",
       "implementation-summary.md": "f2df06037513f27e2ba63bfc0ea30b7542014fc46801d7f631aac00438cb9edf"
     },
     "last_active_child_id": null,

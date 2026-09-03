@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 14 | SOL xhigh | thread: recommendation-deep-dive | angle: Open gap: RL convergence theory to loop termination | 2026-07-15T05:20:52.249Z -->
 
 ## Verdict

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - gpt-1 Lineage"
+trigger_phrases: []
+---
 # Deep Review Strategy - gpt-1 Lineage
 
 ## 1. OVERVIEW

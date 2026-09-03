@@ -1,3 +1,7 @@
+---
+title: "Developer Workspace — Server-Side Python Runtime"
+trigger_phrases: []
+---
 # Developer Workspace — Server-Side Python Runtime
 
 > **Status: Phase 1 implemented (pending end-to-end validation on a Docker/K8s

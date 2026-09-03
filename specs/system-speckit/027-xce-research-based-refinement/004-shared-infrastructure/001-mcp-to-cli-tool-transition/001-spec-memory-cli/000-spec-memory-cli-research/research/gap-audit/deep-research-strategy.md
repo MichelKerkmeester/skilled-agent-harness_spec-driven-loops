@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — spec-memory Gap Audit"
+trigger_phrases: []
+---
 # Deep Research Strategy — spec-memory Gap Audit
 
 ## Topic

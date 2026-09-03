@@ -1,3 +1,7 @@
+---
+title: "Iteration 016 — Cross-model verify (MiniMax M3): T10 benchmark-substrate novelty"
+trigger_phrases: []
+---
 # Iteration 016 — Cross-model verify (MiniMax M3): T10 benchmark-substrate novelty
 
 **Focus:** Independent MiniMax M3 attempt to REFUTE iter 006 (reviewer-prompt regression shape missing; novelty 0.85).

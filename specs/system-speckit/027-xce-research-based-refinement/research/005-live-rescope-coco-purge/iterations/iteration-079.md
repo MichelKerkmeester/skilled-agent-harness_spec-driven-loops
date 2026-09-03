@@ -1,3 +1,7 @@
+---
+title: "Iteration 079 — re-plan sequence: Phase 0 (coco purge + drift reconcile + vocab/STATE_LIMITS) then 002||003 core, 008 after 002, 004->005->006, 007 last"
+trigger_phrases: []
+---
 # Iteration 079 — re-plan sequence: Phase 0 (coco purge + drift reconcile + vocab/STATE_LIMITS) then 002||003 core, 008 after 002, 004->005->006, 007 last
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.18. **Findings:** 5.

@@ -1,3 +1,7 @@
+---
+title: "Refero MCP transport packet research"
+trigger_phrases: []
+---
 # Refero MCP transport packet research
 
 Research topic: Refero MCP developer surface and official Refero Skill workflows needed to author a read-only, Code Mode-only `mcp-refero` transport under `mcp-tooling`, paired with `sk-design`, on top of the existing `.utcp_config.json` manual.

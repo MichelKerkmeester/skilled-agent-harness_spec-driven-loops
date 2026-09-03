@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Decision-record completeness, open questions, and stabilization pass"
+trigger_phrases: []
+---
 # Iteration 10: Decision-record completeness, open questions, and stabilization pass
 
 ## Focus

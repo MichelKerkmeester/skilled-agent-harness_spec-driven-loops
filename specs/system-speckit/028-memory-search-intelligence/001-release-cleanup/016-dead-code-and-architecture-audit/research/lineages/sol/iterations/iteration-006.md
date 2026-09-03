@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: Agent runtime mirrors"
+trigger_phrases: []
+---
 # Iteration 006: Agent runtime mirrors
 
 ## Focus

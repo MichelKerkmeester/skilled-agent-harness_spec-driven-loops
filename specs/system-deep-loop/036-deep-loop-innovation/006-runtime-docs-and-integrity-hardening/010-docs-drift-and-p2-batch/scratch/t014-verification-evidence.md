@@ -1,3 +1,7 @@
+---
+title: "T014 verification evidence (orchestrator-run, worktree 015)"
+trigger_phrases: []
+---
 # T014 verification evidence (orchestrator-run, worktree 015)
 
 ## RED-before (naive whole-predicate filter->reject adoption)

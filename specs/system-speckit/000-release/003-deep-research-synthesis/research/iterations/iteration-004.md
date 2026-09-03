@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Pi CLI becomes the sixth orchestration executor mode
 The cli-external-orchestration hub now ships a sixth executor mode, `cli-pi`, bringing the open-source pi.dev multi-provider coding agent to the same standing as the existing Claude Code, Codex, Cursor, Devin, and OpenCode modes. Everything was live-verified rather than taken from docs: headless dispatch runs via `--print` with text/json/rpc output modes, stdio MCP transport genuinely connects in offline mode, and extensions are validated against a callable-factory contract (a broken extension fails the whole session, not just itself). The most load-bearing finding is that Pi shares the cursor-agent exit-code gotcha — a failed dispatch returned exit 0 on the first run and exit 1 on later ones — so the dispatch guard must never judge success or failure by exit code alone. Dispatch scaffolding is deliberately fail-closed: absent the Pi binary, an unconfirmed invocation contract, or an off-roster model, a dispatch refuses rather than guesses. The packet also adds skill and command discovery bridges, an agent-translation plan, MCP and extension integration, a 7-model enforced roster, and a manual-testing playbook plan. This is internal orchestration tooling — it adds a new dispatchable executor to the framework's own layer, with no breaking change to existing modes.
 

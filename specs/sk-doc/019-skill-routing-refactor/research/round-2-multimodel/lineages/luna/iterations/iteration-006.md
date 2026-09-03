@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Authored path references in child packets"
+trigger_phrases: []
+---
 # Iteration 6: Authored path references in child packets
 
 ## Focus

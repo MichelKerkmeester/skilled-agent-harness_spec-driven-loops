@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Validate Structural Layout And Runtime Nesting"
+trigger_phrases: []
+---
 # Iteration 2: Validate Structural Layout And Runtime Nesting
 
 ## Focus

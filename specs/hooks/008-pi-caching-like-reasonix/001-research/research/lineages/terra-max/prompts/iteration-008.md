@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 008"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 008
 
 Focus: pi-cache-optimizer existence and status

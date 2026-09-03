@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 015"
+trigger_phrases: []
+---
 # Deep Research Iteration 015
 
 > Audited changelog: `changelog-018-001-investigate-and-design-reaper-architecture.md`

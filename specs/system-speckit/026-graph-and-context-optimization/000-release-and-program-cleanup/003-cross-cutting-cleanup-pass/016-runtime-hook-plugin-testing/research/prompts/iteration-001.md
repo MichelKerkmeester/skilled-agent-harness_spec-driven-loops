@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 043: hook-plugin-per-runtime-testing — Tier C live runtime testing
 
 You are cli-codex (gpt-5.5 high fast) implementing **016-runtime-hook-plugin-testing**.

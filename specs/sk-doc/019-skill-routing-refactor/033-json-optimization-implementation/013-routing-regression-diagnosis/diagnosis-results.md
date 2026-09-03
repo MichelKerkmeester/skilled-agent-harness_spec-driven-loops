@@ -1,3 +1,7 @@
+---
+title: "Diagnosis Results — Routing Regression (holdout top-1/top-3, delegation)"
+trigger_phrases: []
+---
 # Diagnosis Results — Routing Regression (holdout top-1/top-3, delegation)
 
 Measurement host: main-tree build for the pre-fix numbers; worktree native build

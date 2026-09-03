@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Session work: 014-docs-and-stress-test-refresh (parent + 4 children: playbook, feature-catalog, README-cluster, stress durability domain), the 013 continuity reconciliation + 3 changelogs, and the serverInfo 1.7.2->1.8.0 fix in mcp_server/context-server.ts"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

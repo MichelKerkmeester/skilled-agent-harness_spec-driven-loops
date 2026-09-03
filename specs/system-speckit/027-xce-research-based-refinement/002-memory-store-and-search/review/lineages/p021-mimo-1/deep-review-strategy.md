@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - Session Tracking Template"
+trigger_phrases: []
+---
 # Deep Review Strategy - Session Tracking Template
 
 ---

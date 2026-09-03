@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Reverse engineer the claudish-to-english communication architecture and design a substantially improved provider-neutral display-projection system that preserves its 1:1 communication feel across Claude CLI, Codex CLI, Pi CLI, OpenCode CLI, Devin CLI, and Cursor CLI, using hosted providers including OpenCode Go DeepSeek V4 Flash plus local LLMs."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

@@ -1,3 +1,7 @@
+---
+title: "Iteration 25: Round F Verify+Feasibility — Memory Consolidation/Save Remainder"
+trigger_phrases: []
+---
 # Iteration 25: Round F Verify+Feasibility — Memory Consolidation/Save Remainder
 
 ## Focus

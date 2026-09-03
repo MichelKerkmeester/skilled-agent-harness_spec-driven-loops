@@ -1,3 +1,7 @@
+---
+title: "Recursive Agent: Evaluator-First Improvement Orchestrator"
+trigger_phrases: []
+---
 <!-- iteration 20 | SOL xhigh | mode: deep-improvement | angle: A5-synth deep-improvement :: synthesis & highest-leverage recs | 2026-07-15T09:42:09.998Z -->
 
 The moat should be an auditable counterfactual claim: under evaluator epoch E, bounded candidate C outperformed baseline B without weakening hidden behavioral invariants. Other deep modes discover evidence, diagnose defects, or adjudicate opinions; deep-improvement alone should own controlled mutation, paired evaluation, and promotion.

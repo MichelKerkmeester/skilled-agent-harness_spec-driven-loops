@@ -1,3 +1,7 @@
+---
+title: "Seat opus-regression-code — iteration 3 (global #3)"
+trigger_phrases: []
+---
 # Seat opus-regression-code — iteration 3 (global #3)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: opus-regression-code

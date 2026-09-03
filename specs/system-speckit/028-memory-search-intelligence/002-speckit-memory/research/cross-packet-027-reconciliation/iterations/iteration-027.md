@@ -1,3 +1,7 @@
+---
+title: "Iteration 27 (Round M): C5-B canonicalId tiebreak plumbing"
+trigger_phrases: []
+---
 # Iteration 27 (Round M): C5-B canonicalId tiebreak plumbing
 
 ## Focus

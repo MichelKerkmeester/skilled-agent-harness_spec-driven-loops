@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Angle (b) part 1: renderer mechanics, byte-identical gate, checklist duplication quantified"
+trigger_phrases: []
+---
 # Iteration 002 — Angle (b) part 1: renderer mechanics, byte-identical gate, checklist duplication quantified
 
 **Focus:** Q-A2 groundwork — what shared-core mechanism exists, what does 033's ADR-004 gate actually assert, and how big is the checklist.md.tmpl duplication really?

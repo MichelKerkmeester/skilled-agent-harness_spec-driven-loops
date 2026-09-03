@@ -1,3 +1,7 @@
+---
+title: "05--lifecycle"
+trigger_phrases: []
+---
 # 05--lifecycle
 
 - Total: 10

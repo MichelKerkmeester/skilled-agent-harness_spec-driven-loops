@@ -1,3 +1,7 @@
+---
+title: "P6 — End-to-End Typed Gate and Evaluation Machine"
+trigger_phrases: []
+---
 # P6 — End-to-End Typed Gate and Evaluation Machine
 
 ## State path

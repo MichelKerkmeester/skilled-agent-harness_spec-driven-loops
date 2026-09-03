@@ -1,3 +1,7 @@
+---
+title: "Authority records, before and after this phase"
+trigger_phrases: []
+---
 # Authority records, before and after this phase
 
 captured_at: 2026-08-19T19:53:36Z

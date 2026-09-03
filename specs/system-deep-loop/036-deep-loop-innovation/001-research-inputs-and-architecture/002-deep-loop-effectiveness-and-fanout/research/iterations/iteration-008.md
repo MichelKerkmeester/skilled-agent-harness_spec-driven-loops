@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 8 | SOL xhigh | thread: recommendation-deep-dive | angle: R3 effective-independence + 5-role evaluator separation | 2026-07-15T04:52:42.001Z -->
 
 R3 should treat independence as an observed property of errors, not a configuration property such as “different lens,” “different prompt,” or even “different provider.” The current council contract creates useful role diversity, but seats within one CLI may still share model lineage, context, evidence, and failure modes.

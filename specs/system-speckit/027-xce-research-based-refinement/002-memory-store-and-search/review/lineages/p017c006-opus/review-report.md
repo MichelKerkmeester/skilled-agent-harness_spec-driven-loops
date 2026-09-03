@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — phase 006 command-contract-structural (lineage p017c006-opus)"
+trigger_phrases: []
+---
 # Deep Review Report — phase 006 command-contract-structural (lineage p017c006-opus)
 
 | Field | Value |

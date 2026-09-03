@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Spec folder: sk-doc/014-skill-readme-standardization/023-system-spec-kit-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file. Return findings as your final assistant message only.
 
 Role: You are verifying exact facts about the `.opencode/skills/system-spec-kit/` skill so a depth-preserving README restyle cites them correctly. This pass locks precise, citable details and finds stale facts.

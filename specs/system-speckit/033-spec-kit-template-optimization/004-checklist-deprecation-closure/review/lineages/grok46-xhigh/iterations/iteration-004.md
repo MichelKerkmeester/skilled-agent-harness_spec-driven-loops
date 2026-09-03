@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: D4 Maintainability — stale templates, fingerprints, broadening replay"
+trigger_phrases: []
+---
 # Iteration 4: D4 Maintainability — stale templates, fingerprints, broadening replay
 
 ## Focus

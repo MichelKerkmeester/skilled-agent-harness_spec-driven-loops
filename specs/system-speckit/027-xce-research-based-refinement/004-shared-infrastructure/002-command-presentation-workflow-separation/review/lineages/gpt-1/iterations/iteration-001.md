@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Correctness and Phase-Parent State Fidelity"
+trigger_phrases: []
+---
 # Iteration 001: Correctness and Phase-Parent State Fidelity
 
 ## Focus

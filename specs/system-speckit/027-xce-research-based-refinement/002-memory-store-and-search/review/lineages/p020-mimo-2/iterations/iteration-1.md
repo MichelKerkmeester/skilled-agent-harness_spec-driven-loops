@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now let me read the unit test and the scan IIFE section that uses the maintenance marker:Now I have all the code. Let me initialize the review. First, create the artifact directory and write the config and strategy files.Now let me write the iteration file, state JSONL, findings registry, and dashboard:Now write the review-report.md (synthesis):All artifacts written to the lineage directory:
 - `deep-review-config.json` — immutable config
 - `deep-review-strategy.md` — dimension tracking, next focus

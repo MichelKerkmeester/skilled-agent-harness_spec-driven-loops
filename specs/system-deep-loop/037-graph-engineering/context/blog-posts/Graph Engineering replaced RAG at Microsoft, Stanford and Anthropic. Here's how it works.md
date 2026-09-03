@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source: https://x.com/Sprytixl/status/2078778799064584535?s=12
 
 Graph Engineering replaced RAG at Microsoft, Stanford and Anthropic. Here's how it works.

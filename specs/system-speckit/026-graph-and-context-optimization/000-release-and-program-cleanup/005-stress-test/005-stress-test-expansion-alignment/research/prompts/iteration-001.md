@@ -1,3 +1,7 @@
+---
+title: "Strict validator MUST exit 0"
+trigger_phrases: []
+---
 ## Packet 052: stress-test-expansion-and-alignment — sk-code-opencode alignment + coverage gap fill
 
 You are cli-codex (gpt-5.5 high fast) implementing **005-stress-test-expansion-alignment**.

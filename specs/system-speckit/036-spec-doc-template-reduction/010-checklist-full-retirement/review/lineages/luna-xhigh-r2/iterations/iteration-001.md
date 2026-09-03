@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness — retirement contract and validation fixtures"
+trigger_phrases: []
+---
 # Iteration 1: Correctness — retirement contract and validation fixtures
 
 ## Dispatcher

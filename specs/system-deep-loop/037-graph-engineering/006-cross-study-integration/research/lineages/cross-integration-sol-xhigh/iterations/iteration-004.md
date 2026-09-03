@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — 036 Capability and Ownership Gap Audit"
+trigger_phrases: []
+---
 # Iteration 004 — 036 Capability and Ownership Gap Audit
 
 ## Focus

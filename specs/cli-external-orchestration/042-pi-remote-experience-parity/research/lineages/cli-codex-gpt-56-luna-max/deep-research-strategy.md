@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - Session Tracking"
+trigger_phrases: []
+---
 # Deep Research Strategy - Session Tracking
 
 ## 1. OVERVIEW

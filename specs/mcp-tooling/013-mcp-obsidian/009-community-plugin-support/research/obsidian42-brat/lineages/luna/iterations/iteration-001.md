@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Plugin Source Schema and Command Registration"
+trigger_phrases: []
+---
 # Iteration 1: Plugin Source Schema and Command Registration
 
 ## Focus

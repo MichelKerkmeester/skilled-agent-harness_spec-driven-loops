@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source: https://x.com/RohOnChain/status/2080296261576687751?s=46
 
 I am going to break down exactly how to build a hedge fund grade multi-factor alpha model using graph engineering.

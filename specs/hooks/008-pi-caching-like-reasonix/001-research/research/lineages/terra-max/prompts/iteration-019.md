@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 019"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 019
 
 Focus: Measurement and failure modes

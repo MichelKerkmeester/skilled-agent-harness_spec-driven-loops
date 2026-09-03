@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ROLE: ADVERSARIAL verifier + negative-knowledge consolidator. Your job is to REFUTE weak teachings AND compile the final negative-knowledge ledger. Default position: "this should NOT be adopted as-is." READ-ONLY. Do NOT write/edit/create files or run code. Spec folder: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings (pre-approved; skip Gate 3).
 
 TARGET (verify against real code): caura-memclaw at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/caura-memclaw-main . CONSUMER: Spec Kit Memory (LOCAL single-user, SQLite; 37-tool MCP surface with per-tool token budgets; FSRS decay + tiers; eval_run_ablation + dashboards + memory_health already exist).

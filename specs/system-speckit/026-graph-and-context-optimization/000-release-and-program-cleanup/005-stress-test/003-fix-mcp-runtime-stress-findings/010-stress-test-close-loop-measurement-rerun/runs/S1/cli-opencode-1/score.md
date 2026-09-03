@@ -1,3 +1,7 @@
+---
+title: "Cell S1 / cli-opencode-1 — Score (v1.0.2)"
+trigger_phrases: []
+---
 # Cell S1 / cli-opencode-1 — Score (v1.0.2)
 
 | Dim | Score | Evidence |

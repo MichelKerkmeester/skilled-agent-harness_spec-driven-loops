@@ -1,3 +1,7 @@
+---
+title: "Styles SQLite Database Fate: Final Research"
+trigger_phrases: []
+---
 # Styles SQLite Database Fate: Final Research
 
 ## 1. Executive Summary

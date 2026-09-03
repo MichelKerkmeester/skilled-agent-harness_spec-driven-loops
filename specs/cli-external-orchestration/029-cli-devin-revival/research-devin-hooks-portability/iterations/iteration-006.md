@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 — Bash-only hooks cwd/env and exit contract"
+trigger_phrases: []
+---
 # Iteration 6 — Bash-only hooks cwd/env and exit contract
 
 ## Focus

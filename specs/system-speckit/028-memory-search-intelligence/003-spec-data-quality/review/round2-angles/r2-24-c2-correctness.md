@@ -1,3 +1,7 @@
+---
+title: "R2-24 c2-correctness: is prod-mode completeRecall@3 the right unblocker metric"
+trigger_phrases: []
+---
 # R2-24 c2-correctness: is prod-mode completeRecall@3 the right unblocker metric
 
 **Angle summary:** Prod-mode completeRecall@3 is gating on the wrong band. The metric is structurally blind to ranks 4 and beyond, which is the exact band its own declared dependents (027 floor experiment, C1 prefix) exist to move, and the inadmissibility rationale that justifies the @3-only scope rests on a floor-versus-cap misread that the live code refutes.

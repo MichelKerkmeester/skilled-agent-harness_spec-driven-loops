@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 — gpt-5.6-terra xhigh — focus: sk-doc-templates"
+trigger_phrases: []
+---
 # Iteration 7 — gpt-5.6-terra xhigh — focus: sk-doc-templates
 
 Headline: use `sk-doc` templates for the human-authored catalog leaves, playbook scenarios, and hub benchmark indexes only. Lane C reports are generated; hand-authoring them would break the durable-evidence contract.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - Maintainability"
+trigger_phrases: []
+---
 # Iteration 004 - Maintainability
 
 Focus: parent control document clarity, migration history placement, and child-scaffold readability.

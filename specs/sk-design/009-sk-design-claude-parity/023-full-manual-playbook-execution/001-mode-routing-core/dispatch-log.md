@@ -1,3 +1,7 @@
+---
+title: "Dispatch Log: Wave 001 - Mode Routing Core"
+trigger_phrases: []
+---
 # Dispatch Log: Wave 001 - Mode Routing Core
 
 One row per dispatch executed by this wave. Each dispatch = advisor probe (`skill_advisor.py --threshold 0.8`) + real `opencode run --model openai/gpt-5.5-fast --variant medium --format json` dispatch, graded against the constituent scenario file's own `### Pass/Fail Criteria` section.

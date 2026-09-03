@@ -1,3 +1,7 @@
+---
+title: "Third-party licenses"
+trigger_phrases: []
+---
 # Third-party licenses
 
 The diagram-design skill itself is MIT-licensed (see [`LICENSE`](LICENSE)). It bundles content from the following third-party sources, redistributed under their respective licenses.

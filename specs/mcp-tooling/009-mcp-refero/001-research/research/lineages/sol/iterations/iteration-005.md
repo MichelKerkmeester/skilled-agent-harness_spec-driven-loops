@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: contradiction review and implementation-readiness matrix"
+trigger_phrases: []
+---
 # Iteration 5: contradiction review and implementation-readiness matrix
 
 ## Focus

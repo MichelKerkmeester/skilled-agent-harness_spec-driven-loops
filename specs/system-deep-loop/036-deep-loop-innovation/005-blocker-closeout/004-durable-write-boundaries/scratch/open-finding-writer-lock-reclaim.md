@@ -1,3 +1,7 @@
+---
+title: "Open finding — live writer lock can be reclaimed under concurrency"
+trigger_phrases: []
+---
 # Open finding — live writer lock can be reclaimed under concurrency
 
 **Status:** CONFIRMED failure, root cause is a HYPOTHESIS (not yet proven by an instrumented repro).

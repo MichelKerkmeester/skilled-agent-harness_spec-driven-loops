@@ -1,3 +1,7 @@
+---
+title: "Deep Review Resource Map - gpt55r2-c-1"
+trigger_phrases: []
+---
 # Deep Review Resource Map - gpt55r2-c-1
 
 ## Scope Snapshot

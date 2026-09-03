@@ -1,3 +1,7 @@
+---
+title: "Research: Concurrent AI session autosync to one long-lived Git branch"
+trigger_phrases: []
+---
 # Research: Concurrent AI session autosync to one long-lived Git branch
 
 <!-- ANCHOR:references -->

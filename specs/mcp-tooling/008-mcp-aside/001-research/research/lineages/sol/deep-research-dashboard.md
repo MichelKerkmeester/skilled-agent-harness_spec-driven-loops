@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — Aside Developer Surface"
+trigger_phrases: []
+---
 # Deep Research Dashboard — Aside Developer Surface
 
 ## Status

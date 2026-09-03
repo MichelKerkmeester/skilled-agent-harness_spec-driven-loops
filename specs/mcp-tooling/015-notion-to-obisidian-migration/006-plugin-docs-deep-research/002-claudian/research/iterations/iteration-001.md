@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Map real claudian-settings.json / mcp.json / commands / skills schemas from source and compiled plugin"
+trigger_phrases: []
+---
 # Iteration 1: Map real claudian-settings.json / mcp.json / commands / skills schemas from source and compiled plugin
 
 ## Focus

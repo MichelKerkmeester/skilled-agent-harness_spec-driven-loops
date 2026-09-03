@@ -1,3 +1,7 @@
+---
+title: "Agent Brief — T-A `detect_changes` MCP Wiring Decision"
+trigger_phrases: []
+---
 # Agent Brief — T-A `detect_changes` MCP Wiring Decision
 
 You are an autonomous implementation agent. **No conversation context.** This brief is everything you need.

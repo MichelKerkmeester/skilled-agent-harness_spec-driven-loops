@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: D4 Root Cause — Importance Tier Mismatch"
+trigger_phrases: []
+---
 # Iteration 5: D4 Root Cause — Importance Tier Mismatch
 
 ## Focus

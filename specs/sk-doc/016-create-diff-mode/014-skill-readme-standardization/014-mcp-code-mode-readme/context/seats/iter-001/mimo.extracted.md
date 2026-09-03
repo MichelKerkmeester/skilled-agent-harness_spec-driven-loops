@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 1. **PURPOSE** — Code Mode is the mandatory MCP orchestration layer that executes TypeScript code inside a sandboxed V8 isolate to call external MCP tools registered in `.utcp_config.json`, using progressive disclosure so the AI context only ever sees four meta-tools regardless of how many external servers are configured.
 
 2. **PROBLEM** — Every external MCP tool definition injected directly into the AI context window consumes roughly 3,000 tokens; at 47 tools that is ~141k tokens before any real work begins, which exhausts a 200k context window and limits an agent to 2–3 MCP servers. Code Mode collapses that cost to a flat ~1,600 tokens by giving the agent only `call_tool_chain`, `search_tools`, `list_tools`, and `tool_info`, then letting the agent discover and invoke the remaining tools on demand inside a single TypeScript execution. One `call_tool_chain` call replaces what would otherwise be 15+ separate AI reasoning loops and API round trips, cutting execution time by roughly 60%.

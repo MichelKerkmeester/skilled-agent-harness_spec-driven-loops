@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 (mimo-v2.5-pro)"
+trigger_phrases: []
+---
 # Iteration 005 (mimo-v2.5-pro)
 
 **Summary:** The memory family's 'Before [action], read [asset]' phrasing is the weakest startup-routing convention across all 25 commands — every other family uses either imperative 'Load the presentation contract before...' prose or explicit numbered '1. Read [exact path]' Execution Order steps. The doctor and create families' Execution Order pattern (step 1 = 'Read [presentation asset path]') is the strongest convention and should be adopted uniformly across all command families to eliminate the three-tier drift that correlates with the /memory:search free-prose rendering failure.

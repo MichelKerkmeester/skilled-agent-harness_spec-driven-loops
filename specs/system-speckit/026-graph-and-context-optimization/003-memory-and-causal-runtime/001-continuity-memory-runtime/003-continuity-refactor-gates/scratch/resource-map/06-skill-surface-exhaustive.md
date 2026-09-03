@@ -33,6 +33,7 @@ excluded:
   - .opencode/skills/system-spec-kit/SKILL.md
   - .opencode/skills/system-spec-kit/mcp_server/**
 rows: 71
+trigger_phrases: []
 ---
 
 # Phase 018 Resource Map — Exhaustive Skill Surface Scan

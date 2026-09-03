@@ -1,3 +1,7 @@
+---
+title: "Packet 028 Feature Flags: The Five Switches That Survived"
+trigger_phrases: []
+---
 # Packet 028 Feature Flags: The Five Switches That Survived
 
 > Packet 028 added a lot of new search and memory behavior behind environment-variable switches, and almost every switch was meant to ship in the OFF position until a real before-and-after benchmark earned it a flip. The flag-resolution reckoning closed that experiment. Every default-off switch was reopened, simulated under a fair real-world load and given a final keep-or-delete decision per flag. Five switches earned default-ON and stayed. Ten did not earn their keep and their code was removed from the tree. This document explains the five that survived: what each feature is, what turning it ON changes and why it earned its place. The ten that were deleted are listed at the end so a reader who remembers them knows where they went.

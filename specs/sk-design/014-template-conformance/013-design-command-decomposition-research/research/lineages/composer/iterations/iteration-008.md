@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Keyword Collisions"
+trigger_phrases: []
+---
 # Iteration 8: Keyword Collisions
 
 ## Focus

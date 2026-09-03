@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: Template Backend Greenfield Redesign — Implementation Audit"
+trigger_phrases: []
+---
 # Deep Review Report: Template Backend Greenfield Redesign — Implementation Audit
 
 ## Executive Summary

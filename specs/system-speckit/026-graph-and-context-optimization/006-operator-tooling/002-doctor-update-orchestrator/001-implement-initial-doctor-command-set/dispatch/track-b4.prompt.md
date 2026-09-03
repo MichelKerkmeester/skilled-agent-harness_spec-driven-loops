@@ -1,3 +1,7 @@
+---
+title: "Codex dispatch: Track B4 — full /doctor:cocoindex command + 4 YAMLs"
+trigger_phrases: []
+---
 # Codex dispatch: Track B4 — full /doctor:cocoindex command + 4 YAMLs
 
 ## ROLE

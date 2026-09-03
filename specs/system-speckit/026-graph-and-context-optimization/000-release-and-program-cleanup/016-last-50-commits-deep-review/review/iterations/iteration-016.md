@@ -1,3 +1,7 @@
+---
+title: "Iteration 016 — correctness / A2-deepen (settle latent findings)"
+trigger_phrases: []
+---
 # Iteration 016 — correctness / A2-deepen (settle latent findings)
 
 ## Dispatcher

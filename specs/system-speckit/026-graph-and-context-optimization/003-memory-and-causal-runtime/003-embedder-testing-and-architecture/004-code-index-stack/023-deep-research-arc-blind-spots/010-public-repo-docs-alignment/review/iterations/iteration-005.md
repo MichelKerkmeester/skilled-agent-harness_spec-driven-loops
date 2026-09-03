@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — mcp-coco-index/manual_testing_playbook/ + cocoindex_code module README"
+trigger_phrases: []
+---
 # Iteration 005 — mcp-coco-index/manual_testing_playbook/ + cocoindex_code module README
 
 **Scope:** manual_testing_playbook.md, 03--configuration/001-default-model-verification.md, mcp_server/cocoindex_code/README.md

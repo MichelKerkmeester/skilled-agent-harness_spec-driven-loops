@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Pi RPC to Claude-style mobile UI state machine"
+trigger_phrases: []
+---
 # Iteration 2: Pi RPC to Claude-style mobile UI state machine
 
 ## Focus

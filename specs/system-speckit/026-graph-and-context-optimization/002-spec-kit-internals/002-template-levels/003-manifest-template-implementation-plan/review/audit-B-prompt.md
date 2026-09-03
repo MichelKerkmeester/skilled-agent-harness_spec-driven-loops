@@ -1,3 +1,7 @@
+---
+title: "Audit B — `system-spec-kit/SKILL.md` + `system-spec-kit/README.md`"
+trigger_phrases: []
+---
 # Audit B — `system-spec-kit/SKILL.md` + `system-spec-kit/README.md`
 
 You are a fresh agent doing a focused audit. No conversation context.

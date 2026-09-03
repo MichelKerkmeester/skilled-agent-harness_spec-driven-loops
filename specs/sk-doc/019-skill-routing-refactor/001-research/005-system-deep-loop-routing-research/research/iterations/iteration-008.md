@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Minimal Authored Alignment Routing Scenario Contract"
+trigger_phrases: []
+---
 # Iteration 8: Minimal Authored Alignment Routing Scenario Contract
 
 ## Focus

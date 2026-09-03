@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Aside packet design, bdg contrast, and UTCP registration"
+trigger_phrases: []
+---
 # Iteration 3: Aside packet design, bdg contrast, and UTCP registration
 
 ## Focus

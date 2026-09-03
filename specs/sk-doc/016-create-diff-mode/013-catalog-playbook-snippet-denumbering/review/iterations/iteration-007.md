@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 007 — agents frontmatter + body path refs"
+trigger_phrases: []
+---
 # Deep-Review Iteration 007 — agents frontmatter + body path refs
 
 **Executor:** DeepSeek-v4-pro (cli-opencode, --pure, read-only)

@@ -1,3 +1,7 @@
+---
+title: "Graph Engineering"
+trigger_phrases: []
+---
 # Graph Engineering
 
 **The discipline of designing the structures AI agents work through — not the prompts.**

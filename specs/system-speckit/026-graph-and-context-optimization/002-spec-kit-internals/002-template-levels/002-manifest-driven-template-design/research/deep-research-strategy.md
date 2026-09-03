@@ -3,6 +3,7 @@ title: Deep Research Strategy — Template Backend Greenfield Redesign
 description: Runtime strategy for the 011 deep-research session. Greenfield, no backward-compat constraint.
 session_id: 2026-05-01-11-00-template-greenfield
 spec_folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/002-manifest-driven-template-design
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Template Backend Greenfield Redesign

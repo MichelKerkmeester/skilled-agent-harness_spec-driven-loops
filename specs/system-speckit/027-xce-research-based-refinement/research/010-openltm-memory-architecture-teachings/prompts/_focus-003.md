@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 003 of 10: Janitor background-maintenance pipeline"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 003 of 10: Janitor background-maintenance pipeline
 Read (stay scoped to this subsystem):

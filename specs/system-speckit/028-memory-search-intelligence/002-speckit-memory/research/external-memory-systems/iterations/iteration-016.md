@@ -1,3 +1,7 @@
+---
+title: "Iteration 16 (MiMo lineage): ranking/scoring determinism (Q6) — NEGATIVE result (internal C5 already complete)"
+trigger_phrases: []
+---
 # Iteration 16 (MiMo lineage): ranking/scoring determinism (Q6) — NEGATIVE result (internal C5 already complete)
 
 > Model: **MiMo v2.5 Pro** (read-only, via `opencode run`). Orchestrator-written. newInfoRatio **0.1** (no net-new candidate). **Honest caveat: MiMo could not read the gitignored external repos** ("not available at expected paths" — it did not fall back to explicit-path reads like iters 8/12), so this is a one-sided audit of the *internal* determinism layer, not a true external diff.

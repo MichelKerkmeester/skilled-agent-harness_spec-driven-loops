@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 002 — 007-voyage-cleanup-and-egress-monitoring"
+trigger_phrases: []
+---
 # Deep Review Iteration 002 — 007-voyage-cleanup-and-egress-monitoring
 
 **Dimension:** security

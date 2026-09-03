@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Restructure the sk-design styles tree so the 1290 downloaded style data folders are separated from the backend code (database, engine, harness, manifests), aligned to the proven system-deep-loop/runtime architecture (code in lib-style modules, real sqlite under a database directory, kebab-case throughout). Deliver a concrete target folder layout, a migration path from the current flat mixed structure, and the git-mv rename plan."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

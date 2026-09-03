@@ -1,3 +1,7 @@
+---
+title: "Idea 2 — Replayable Correction Overlay"
+trigger_phrases: []
+---
 # Idea 2 — Replayable Correction Overlay
 
 > **Let the router learn from its mistakes — but keep the learning in a separate, versioned, roll-back-able layer, so "what the router did last Tuesday" is always reproducible.**

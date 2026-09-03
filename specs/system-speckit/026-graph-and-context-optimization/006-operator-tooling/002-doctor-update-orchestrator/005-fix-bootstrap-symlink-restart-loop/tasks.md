@@ -1,3 +1,7 @@
+---
+title: "Tasks: Fix Doctor Bootstrap Symlink Restart Loop"
+trigger_phrases: []
+---
 # Tasks: Fix Doctor Bootstrap Symlink Restart Loop
 
 > **Spec:** `./spec.md` | **Plan:** `./plan.md` | **Date:** 2026-06-08

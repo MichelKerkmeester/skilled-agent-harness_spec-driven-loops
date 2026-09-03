@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Parity Verification — Acceptance Checklist Automation"
+trigger_phrases: []
+---
 # Iteration 8: Parity Verification — Acceptance Checklist Automation
 
 ## Focus

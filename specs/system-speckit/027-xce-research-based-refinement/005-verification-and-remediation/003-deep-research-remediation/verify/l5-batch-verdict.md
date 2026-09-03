@@ -1,3 +1,7 @@
+---
+title: "L5 Batch Re-Verification Verdict — doc batch + hand code fixes (uncommitted)"
+trigger_phrases: []
+---
 # L5 Batch Re-Verification Verdict — doc batch + hand code fixes (uncommitted)
 
 > Fresh adversarial Fable 5 verifier, 2026-06-12. Brief: `/tmp/fable-verify-l5batch.md`. All evidence re-derived live from the working tree (branch `028-mcp-to-cli-tool-transition`); tests and repro commands re-run by this verifier, not trusted from prior reports.

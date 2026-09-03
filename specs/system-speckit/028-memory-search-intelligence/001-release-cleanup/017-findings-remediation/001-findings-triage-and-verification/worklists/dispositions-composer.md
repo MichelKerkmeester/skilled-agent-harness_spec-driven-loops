@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 | # | finding | cat | disposition | command | note |
 |---|---|---|---|---|---|
 | 1 | `devin-01:F9` | CAT-3 | CONFIRMED | `find .opencode/skills/sk-doc/benchmark/reports/compiled-routing/ -maxdepth 1 -type d` | 5 dated subfolders exist and are committed; claim's example names (`luna-high-acceptance-1784596615522/`) are wrong — actual names are `2026-07-21--acceptance--luna-high/` etc. — but core claim (dated output folders committed) holds |

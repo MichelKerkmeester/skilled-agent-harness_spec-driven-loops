@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Executing the named deep-review workflow with the provided artifact root override and path boundary.The workflow contract is loaded. I will initialize lineage state in the override artifact directory, review one bounded dimension for `maxIterations: 1`, then synthesize the lineage report without modifying reviewed files.Artifact root exists and is currently empty except executor state. The scoped review target contains only `spec.md`, so the lineage will review the scope manifest and referenced paths from that file.Initializing the required review packet files and directories inside the lineage artifact root only.BINDING: spec_folder=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002
 BINDING: artifact_dir=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/lineages/gpt55r2-b-4
 BINDING: resolveArtifactRoot=skipped per fanout_lineage_artifact_dir override

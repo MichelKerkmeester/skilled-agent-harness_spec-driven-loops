@@ -1,3 +1,7 @@
+---
+title: "Parent-Hub `defaultMode` Policy: Run 2 Terra-Max Research"
+trigger_phrases: []
+---
 # Parent-Hub `defaultMode` Policy: Run 2 Terra-Max Research
 
 Detached fan-out lineage: `terra-max`.

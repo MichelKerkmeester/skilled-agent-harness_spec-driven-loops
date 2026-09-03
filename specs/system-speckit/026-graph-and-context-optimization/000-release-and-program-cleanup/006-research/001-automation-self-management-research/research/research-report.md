@@ -1,3 +1,7 @@
+---
+title: "Automation Self-Management Deep Research Report"
+trigger_phrases: []
+---
 # Automation Self-Management Deep Research Report
 
 ## 1. Executive Summary

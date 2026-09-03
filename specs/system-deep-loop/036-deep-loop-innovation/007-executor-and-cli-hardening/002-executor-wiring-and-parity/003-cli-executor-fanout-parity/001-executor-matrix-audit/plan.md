@@ -1,3 +1,7 @@
+---
+title: "Implementation Plan: Deep-loop Executor / Provider / Model Matrix Audit"
+trigger_phrases: []
+---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

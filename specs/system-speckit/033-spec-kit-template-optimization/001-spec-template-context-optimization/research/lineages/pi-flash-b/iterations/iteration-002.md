@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Memory/context system + Agent-Engineering harness mapping; shortlist & refutation"
+trigger_phrases: []
+---
 # Iteration 002 — Memory/context system + Agent-Engineering harness mapping; shortlist & refutation
 
 **Focus:** Verify what the context/memory system already reduces (compact-merger, envelope token budgets, resume mode); map the $1.2M Agent-Engineering harness patterns (Default-FAIL, fresh-context evaluator, progress/handoff memory, feature-at-a-time) against the doc workflow and deep-loop baselines; correct iteration-1 F2; produce ranked shortlist + refutation list.

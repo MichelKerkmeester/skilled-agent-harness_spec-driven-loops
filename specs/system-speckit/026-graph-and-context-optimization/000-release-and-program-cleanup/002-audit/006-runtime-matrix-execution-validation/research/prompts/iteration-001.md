@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 035: full-matrix-execution-validation — Tier D
 
 You are cli-codex (gpt-5.5 high fast) implementing remediation packet **006-runtime-matrix-execution-validation**.

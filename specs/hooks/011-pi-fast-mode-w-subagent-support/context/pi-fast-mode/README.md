@@ -1,3 +1,7 @@
+---
+title: "@thebinaryguy/pi-fast-mode"
+trigger_phrases: []
+---
 # @thebinaryguy/pi-fast-mode
 
 [![npm version](https://img.shields.io/npm/v/@thebinaryguy/pi-fast-mode.svg?style=flat-square)](https://www.npmjs.com/package/@thebinaryguy/pi-fast-mode)

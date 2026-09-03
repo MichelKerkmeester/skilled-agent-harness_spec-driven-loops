@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - gpt55r2-a-4"
+trigger_phrases: []
+---
 # Deep Review Strategy - gpt55r2-a-4
 
 ## 1. Topic

@@ -1,3 +1,7 @@
+---
+title: "Review Report — sk-doc/021-benchmark-naming-and-playbook-results"
+trigger_phrases: []
+---
 # Review Report — sk-doc/021-benchmark-naming-and-playbook-results
 
 - **Lineage:** glm-5-2-high

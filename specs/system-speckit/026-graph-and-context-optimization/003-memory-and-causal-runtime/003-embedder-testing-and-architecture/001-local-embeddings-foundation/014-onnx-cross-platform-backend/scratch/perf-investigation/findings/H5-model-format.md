@@ -1,3 +1,7 @@
+---
+title: "H5 - MLProgram vs NeuralNetwork Format"
+trigger_phrases: []
+---
 # H5 - MLProgram vs NeuralNetwork Format
 
 Verdict: REFUTED

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 14 of 25 - Workspace Trust Files"
+trigger_phrases: []
+---
 # Deep Research Iteration 14 of 25 - Workspace Trust Files
 
 ## SITUATION

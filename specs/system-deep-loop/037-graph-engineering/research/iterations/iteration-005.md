@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Deep-loop concepts mapped to graph primitives"
+trigger_phrases: []
+---
 # Iteration 5: Deep-loop concepts mapped to graph primitives
 
 ## Focus

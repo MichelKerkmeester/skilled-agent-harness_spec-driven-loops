@@ -1,3 +1,7 @@
+---
+title: "Iteration 28 (Round M): Build sequencing of the surviving 027-revisit candidates"
+trigger_phrases: []
+---
 # Iteration 28 (Round M): Build sequencing of the surviving 027-revisit candidates
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Styles query, hydration, and ownership boundary"
+trigger_phrases: []
+---
 # Iteration 2: Styles query, hydration, and ownership boundary
 
 ## Focus

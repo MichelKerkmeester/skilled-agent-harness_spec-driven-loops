@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Data discovery, settings, and cache behavior"
+trigger_phrases: []
+---
 # Iteration 2: Data discovery, settings, and cache behavior
 
 ## Focus

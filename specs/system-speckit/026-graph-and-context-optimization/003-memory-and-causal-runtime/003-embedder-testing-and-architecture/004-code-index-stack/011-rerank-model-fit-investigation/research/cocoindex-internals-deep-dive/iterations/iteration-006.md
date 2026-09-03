@@ -1,3 +1,7 @@
+---
+title: "Iter 6 — Adversarial synthesis — real root cause of probe 14 failure (6 hypotheses ranked)"
+trigger_phrases: []
+---
 # Iter 6 — Adversarial synthesis — real root cause of probe 14 failure (6 hypotheses ranked)
 
 ## TL;DR (2-3 sentences)

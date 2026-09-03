@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: P2 Memory Ownership and Never-Forget Rules"
+trigger_phrases: []
+---
 # Iteration 6: P2 Memory Ownership and Never-Forget Rules
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration N7 - Rollout and Migration Sequencing (opus, prove-first)"
+trigger_phrases: []
+---
 # Iteration N7 - Rollout and Migration Sequencing (opus, prove-first)
 
 ## TITLE

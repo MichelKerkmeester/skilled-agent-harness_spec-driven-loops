@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Complete `prompt-models` Resource Map"
+trigger_phrases: []
+---
 # Iteration 3: Complete `prompt-models` Resource Map
 
 ## Focus

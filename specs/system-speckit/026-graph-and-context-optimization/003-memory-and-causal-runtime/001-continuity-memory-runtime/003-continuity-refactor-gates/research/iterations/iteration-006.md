@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-006.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 006 — Feature 1: Trigger Phrase Fast Matching

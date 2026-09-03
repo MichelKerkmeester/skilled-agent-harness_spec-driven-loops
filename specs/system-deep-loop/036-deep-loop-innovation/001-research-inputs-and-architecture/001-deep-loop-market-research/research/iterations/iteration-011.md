@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 11 | model luna (gpt-5.6-luna) | angle: Durable-execution engines for loop resumability | 2026-07-14T22:07:50.328Z -->
 
 Durable engines converge on a replayable coordinator around small durable actions. Temporal replays workflow code against ordered history; Restate replays journal entries; Inngest hashes stable step IDs and reuses memoized results. That maps directly to JSONL: replay the loop body, inject committed action results, and execute only the uncommitted suffix. ([Temporal](https://docs.temporal.io/workflows), [Restate](https://docs.restate.dev/references/architecture), [Inngest](https://www.inngest.com/docs/learn/versioning))

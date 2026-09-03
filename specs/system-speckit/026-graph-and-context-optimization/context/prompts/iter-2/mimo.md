@@ -1,3 +1,7 @@
+---
+title: "CONTEXT"
+trigger_phrases: []
+---
 # CONTEXT
 READ-ONLY codebase-context analyzer, deep-context loop iteration 2. We are mapping all work done in
 the COMPLETED packet `system-spec-kit/026-graph-and-context-optimization`. Iteration 1 already

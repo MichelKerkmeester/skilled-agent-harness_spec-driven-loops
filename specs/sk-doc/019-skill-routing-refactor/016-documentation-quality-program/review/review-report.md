@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: sk-doc Documentation-Quality Program (packet 021)"
+trigger_phrases: []
+---
 # Deep Review Report: sk-doc Documentation-Quality Program (packet 021)
 
 > Read-only GPT-5.6-SOL (high effort, fast tier) deep review, 20 forced iterations, no early convergence.

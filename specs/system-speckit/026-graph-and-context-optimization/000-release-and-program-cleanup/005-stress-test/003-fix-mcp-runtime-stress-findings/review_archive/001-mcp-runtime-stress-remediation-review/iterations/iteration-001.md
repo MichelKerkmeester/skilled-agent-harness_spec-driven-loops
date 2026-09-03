@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 — Correctness + Inventory + V1.0.2 Verdict Validation"
+trigger_phrases: []
+---
 # Iteration 1 — Correctness + Inventory + V1.0.2 Verdict Validation
 
 ## Dimension

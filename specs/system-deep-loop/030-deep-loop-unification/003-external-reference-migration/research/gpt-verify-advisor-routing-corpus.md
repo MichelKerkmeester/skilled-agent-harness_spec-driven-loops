@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Read-only verification starting. The memory trigger lookup timed out, so I’m proceeding with direct repository evidence only and will not write or modify files.
 
 ---

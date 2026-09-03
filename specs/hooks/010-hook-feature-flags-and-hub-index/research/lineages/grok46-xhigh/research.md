@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Hook Feature-Flag Coverage and Hub Index"
+trigger_phrases: []
+---
 # Research Synthesis: Hook Feature-Flag Coverage and Hub Index
 
 **Lineage:** grok46-xhigh (`cli-cursor` / `cursor-grok-4.6-xhigh`)

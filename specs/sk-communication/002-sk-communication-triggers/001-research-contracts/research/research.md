@@ -1,3 +1,7 @@
+---
+title: "002 sk-communication-triggers — Phase 001 Research & Contracts"
+trigger_phrases: []
+---
 # 002 sk-communication-triggers — Phase 001 Research & Contracts
 
 Verified findings grounding the two trigger commands. Every claim below was read

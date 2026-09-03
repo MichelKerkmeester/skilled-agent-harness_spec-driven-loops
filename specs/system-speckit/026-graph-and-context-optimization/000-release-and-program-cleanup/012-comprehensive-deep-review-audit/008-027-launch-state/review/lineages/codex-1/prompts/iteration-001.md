@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 Prompt Snapshot"
+trigger_phrases: []
+---
 DEEP-REVIEW
 
 # Iteration 001 Prompt Snapshot

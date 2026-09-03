@@ -1,3 +1,7 @@
+---
+title: "Setup A: Before vs After"
+trigger_phrases: []
+---
 # Setup A: Before vs After
 
 A cross-subsystem map of what changed in the `014-local-embeddings-setup-a` packet line (packets 001 through 018). The aim is to give you a clear picture of the start state, the end state and the path between them, so you can decide what to commit, what to verify and what to keep working on.

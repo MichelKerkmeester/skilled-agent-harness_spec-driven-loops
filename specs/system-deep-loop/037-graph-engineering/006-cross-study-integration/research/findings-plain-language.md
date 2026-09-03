@@ -1,3 +1,7 @@
+---
+title: "Study #6 (Cross-Study Integration Capstone) — The Whole Design in Plain Terms"
+trigger_phrases: []
+---
 # Study #6 (Cross-Study Integration Capstone) — The Whole Design in Plain Terms
 
 > Plain-language companion to `research.md` (the 10-round SOL-xhigh integration synthesis, independently verified by DeepSeek V4 Pro). This study does **not** research a new repo. It takes the five prior studies (S1 agent-swarms, S2 graphene, S3 graph-arch, S4 graph-engineering-master, S5 NOOA + blog theory) and welds them into **one coherent design** for turning `system-deep-loop` into a graph-based agent-loop engine.

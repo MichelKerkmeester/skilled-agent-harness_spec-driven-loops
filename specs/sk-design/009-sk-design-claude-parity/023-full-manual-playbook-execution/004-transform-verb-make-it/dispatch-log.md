@@ -1,3 +1,7 @@
+---
+title: "Dispatch Log: Phase 004 - Transform Verb make it Wave"
+trigger_phrases: []
+---
 # Dispatch Log: Phase 004 - Transform Verb make it Wave
 
 One row per real `cli-opencode` dispatch run by this wave. Model: `openai/gpt-5.5-fast --variant medium --format json`. Advisor probe uses the clean scenario prompt with no addendum; the real dispatch appends the standalone-evaluation addendum (empty no-target-clause for all 5 — none of these prompts name a hypothetical local UI target).

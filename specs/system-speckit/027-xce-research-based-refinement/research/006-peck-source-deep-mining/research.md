@@ -7,6 +7,7 @@ session: "2026-06-06-027-peck-source-deep-mining"
 status: "converged + cross-model-verified (MiniMax M3); canonical synthesis for the peck-source mining pass — feeds sub-packet-proposal.md"
 merged_at: "2026-06-06"
 cross_model_verify: "iterations 014-018 (minimax-coding-plan/MiniMax-M3) — all headline findings hold; T1 design sharpened; proposal endorsed-with-one-must-fix"
+trigger_phrases: []
 ---
 
 # 027/006 — peck-source deep mining

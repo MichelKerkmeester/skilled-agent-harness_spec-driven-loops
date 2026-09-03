@@ -13,7 +13,6 @@
     "trigger_phrases": [
       "system deep loop readme",
       "deep loop readme rewrite",
-      "system-deep-loop readme",
       "deep loop hub readme",
       "phase 9 spec",
       "phase 9 plan",
@@ -22,7 +21,8 @@
       "phase 9 tasks",
       "system deep loop readme tasks",
       "deep loop readme rewrite tasks",
-      "phase 9 implementation summary"
+      "phase 9 implementation summary",
+      "system deep loop readme summary"
     ],
     "key_topics": [
       "system",
@@ -30,13 +30,13 @@
       "loop",
       "readme",
       "rewrite",
-      "system-deep-loop",
       "hub",
       "phase",
       "spec",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The system-deep-loop skill README still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:38.067Z",
-    "last_save_at": "2026-08-30T15:39:17.531Z",
+    "last_save_at": "2026-09-03T22:19:40.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abbe8fb9535bcba773937aac5a0432e4550b39dc5cdeaa7fc9d9b54ed40d3600",
+    "source_fingerprint": "sha256:4aabde5930934142d2adcdfa66dcb4d6496f3822f8d70b3c4ffbced2a984a1e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cb02455139e1e9a07be0579f2dd4c4ea4ac819d44b441131bdb0164be681f577",
+      "spec.md": "dd738955baf42f54047f428a9e4aba32d3d97ee60a3fc2a766174f5986781266",
       "plan.md": "7a2fc3bd7fbb163a00eea0ae2a750e75b49a6682332a47f4a41742f6981e8032",
       "tasks.md": "3e826d0f9df34ab543dac5a11d12f32304fc736296b970fc8d0a9a58e1833afe",
       "implementation-summary.md": "17162227bcc1a59c2e8bea2381343ee2999500b5e40083e55c5bcf0ab34e4dde"

@@ -1,3 +1,7 @@
+---
+title: "Changelog Rollup — Track 002: Memory Store and Search"
+trigger_phrases: []
+---
 # Changelog Rollup — Track 002: Memory Store and Search
 
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search` (Phase Parent)

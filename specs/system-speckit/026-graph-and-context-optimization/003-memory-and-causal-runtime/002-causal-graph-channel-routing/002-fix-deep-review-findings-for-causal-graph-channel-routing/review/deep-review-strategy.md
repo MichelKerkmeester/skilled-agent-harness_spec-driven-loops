@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — 002 Remediation Confirmation"
+trigger_phrases: []
+---
 # Deep Review Strategy — 002 Remediation Confirmation
 
 **Session:** 2026-05-11T11:40:00Z  

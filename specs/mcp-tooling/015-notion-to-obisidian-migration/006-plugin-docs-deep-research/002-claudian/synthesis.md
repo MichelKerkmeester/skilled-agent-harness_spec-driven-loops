@@ -3,6 +3,7 @@ title: "Claudian Reference Docs — Research-to-Edit Synthesis"
 description: "Fresh-eyes synthesis turning the Claudian deep-research findings into a prioritized, evidence-cited doc-improvement plan for the shipped mcp-obsidian reference set. Read-only on shipped docs; this is the only authored artifact."
 contextType: "research"
 version: "0.1.0.0"
+trigger_phrases: []
 ---
 
 # Claudian Reference Docs — Research-to-Edit Synthesis

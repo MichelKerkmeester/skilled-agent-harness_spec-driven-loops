@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: 018-reindex-scan-responsiveness-and-cancellation"
+trigger_phrases: []
+---
 # Deep Review Strategy: 018-reindex-scan-responsiveness-and-cancellation
 
 ## Topic

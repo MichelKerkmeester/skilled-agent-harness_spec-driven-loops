@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — Design Mode Consolidation"
+trigger_phrases: []
+---
 # Deep Review Strategy — Design Mode Consolidation
 
 ## 1. OVERVIEW

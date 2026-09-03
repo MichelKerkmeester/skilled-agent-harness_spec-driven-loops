@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Correctness and Program Control Reconciliation"
+trigger_phrases: []
+---
 # Iteration 001: Correctness and Program Control Reconciliation
 
 Focus dimension: correctness.

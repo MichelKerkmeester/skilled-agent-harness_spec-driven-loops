@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - sk-design styles-library utilization"
+trigger_phrases: []
+---
 # Deep Review Strategy - sk-design styles-library utilization
 
 ## 1. OVERVIEW

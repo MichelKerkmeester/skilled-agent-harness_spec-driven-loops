@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Exhaustive lifecycle-status matrix"
+trigger_phrases: []
+---
 # Iteration 7: Exhaustive lifecycle-status matrix
 
 ## Focus

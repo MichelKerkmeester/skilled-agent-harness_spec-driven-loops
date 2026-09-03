@@ -1,3 +1,7 @@
+---
+title: "Iteration 013 — Re-test row-write teachings under the doc lens"
+trigger_phrases: []
+---
 # Iteration 013 — Re-test row-write teachings under the doc lens
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.58 · **tokens:** 80881 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

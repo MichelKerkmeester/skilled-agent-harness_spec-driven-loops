@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: 8-Tool Surface and Parity Classification"
+trigger_phrases: []
+---
 # Iteration 1: 8-Tool Surface and Parity Classification
 
 ## Focus

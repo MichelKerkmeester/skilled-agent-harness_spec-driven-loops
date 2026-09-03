@@ -2,6 +2,7 @@
 _memory:
   continuity:
     next_safe_action: "Iteration 005 should drill 010/004 affordance denylist, conflicts_with rejection, and debug counters per strategy.md."
+trigger_phrases: []
 ---
 # Iteration 004 - 010/003 minConfidence + failureFallback.code drill + F12 verification
 

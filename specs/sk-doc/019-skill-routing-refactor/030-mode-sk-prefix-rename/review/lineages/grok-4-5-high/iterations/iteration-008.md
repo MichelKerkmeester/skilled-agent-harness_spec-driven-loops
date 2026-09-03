@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Runtime mirrors & hooks parity"
+trigger_phrases: []
+---
 # Iteration 8: Runtime mirrors & hooks parity
 
 ## Focus

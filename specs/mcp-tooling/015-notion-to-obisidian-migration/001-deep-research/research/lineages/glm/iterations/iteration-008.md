@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Required vs Optional Obsidian Plugins (Ranked)"
+trigger_phrases: []
+---
 # Iteration 8: Required vs Optional Obsidian Plugins (Ranked)
 
 ## Focus

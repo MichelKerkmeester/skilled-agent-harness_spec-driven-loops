@@ -1,3 +1,7 @@
+---
+title: "Rollback rehearsal — 2026-08-18"
+trigger_phrases: []
+---
 # Rollback rehearsal — 2026-08-18
 
 The documented procedure was rehearsed against real history rather than read and

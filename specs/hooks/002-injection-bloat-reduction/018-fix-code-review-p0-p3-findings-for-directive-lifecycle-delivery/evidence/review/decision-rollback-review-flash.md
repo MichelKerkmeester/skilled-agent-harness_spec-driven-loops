@@ -1,3 +1,7 @@
+---
+title: "Decision and Rollback Review (deepseek-v4-flash)"
+trigger_phrases: []
+---
 # Decision and Rollback Review (deepseek-v4-flash)
 
 Scope: `018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery`. Reviewed 2026-08-11 packet docs against the shipped code and evidence artifacts. All citations are to files read or grepped during this review; where a claim could not be verified from an artifact, it is marked UNCONFIRMED.

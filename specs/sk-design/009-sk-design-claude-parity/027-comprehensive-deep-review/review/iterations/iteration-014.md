@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 - design-mcp-open-design Combined Pass"
+trigger_phrases: []
+---
 # Iteration 014 - design-mcp-open-design Combined Pass
 
 ## Dimension

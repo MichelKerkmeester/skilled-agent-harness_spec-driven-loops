@@ -23,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Indexer surface mapping is captured in the headline table."
+trigger_phrases: []
 ---
 
 # Research: Indexer Surface Investigation

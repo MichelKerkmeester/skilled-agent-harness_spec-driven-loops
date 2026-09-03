@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Angle (e): small-model legibility — external evidence and token-budget grounding"
+trigger_phrases: []
+---
 # Iteration 005 — Angle (e): small-model legibility — external evidence and token-budget grounding
 
 **Focus:** Q-A5 — What does external evidence say about template size/structure for 7-30B models executing plan->implement->verify?

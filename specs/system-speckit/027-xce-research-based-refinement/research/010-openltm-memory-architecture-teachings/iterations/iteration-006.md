@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Secret redaction before write"
+trigger_phrases: []
+---
 # Iteration 006 — Secret redaction before write
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.68 · **tokens:** 107290 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

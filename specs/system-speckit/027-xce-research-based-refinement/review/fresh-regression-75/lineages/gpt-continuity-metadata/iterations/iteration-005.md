@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-continuity-metadata — iteration 5 (global #53)"
+trigger_phrases: []
+---
 # Seat gpt-continuity-metadata — iteration 5 (global #53)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: gpt-continuity-metadata

@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Pi’s DeepSeek-specific cache path"
+trigger_phrases: []
+---
 # Iteration 007 — Pi’s DeepSeek-specific cache path
 
 ## Focus

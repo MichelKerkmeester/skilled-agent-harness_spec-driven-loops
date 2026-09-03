@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## 1. Per-Subsystem Comparison Table
 
 | Subsystem | What OpenLTM does distinctive | system-spec-kit equivalent today | The delta / gap | Net verdict |

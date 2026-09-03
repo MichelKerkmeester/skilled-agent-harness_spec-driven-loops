@@ -1,3 +1,7 @@
+---
+title: "Iteration 14 — zai-coding-plan/glm-5.2 — focus: activation"
+trigger_phrases: []
+---
 # Iteration 14 — zai-coding-plan/glm-5.2 — focus: activation
 
 I'll investigate the reversibility and kill-switch semantics. Let me start by examining the activation/flip scripts, the runtime front door, and the env flag handling.

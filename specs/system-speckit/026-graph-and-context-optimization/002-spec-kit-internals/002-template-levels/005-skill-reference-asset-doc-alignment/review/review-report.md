@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 005 skill references assets alignment"
+trigger_phrases: []
+---
 # Deep Review Report: 005 skill references assets alignment
 
 ## Executive Summary

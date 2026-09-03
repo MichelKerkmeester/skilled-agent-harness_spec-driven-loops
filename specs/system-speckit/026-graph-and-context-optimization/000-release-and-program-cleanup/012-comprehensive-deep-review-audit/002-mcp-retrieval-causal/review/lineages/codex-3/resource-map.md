@@ -1,3 +1,7 @@
+---
+title: "Resource Map"
+trigger_phrases: []
+---
 # Resource Map
 
 This lineage had no packet `resource-map.md` at init, so this artifact records the converged review deltas gathered by graphless fallback.

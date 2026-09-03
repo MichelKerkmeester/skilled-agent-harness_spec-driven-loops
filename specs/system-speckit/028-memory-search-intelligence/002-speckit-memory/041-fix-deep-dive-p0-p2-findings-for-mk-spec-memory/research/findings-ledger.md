@@ -1,3 +1,7 @@
+---
+title: "Memory Search Intelligence Deep Dive — Verified Findings Ledger"
+trigger_phrases: []
+---
 # Memory Search Intelligence Deep Dive — Verified Findings Ledger
 (working notes; MY live verification status marked)
 

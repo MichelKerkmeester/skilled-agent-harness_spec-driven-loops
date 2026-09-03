@@ -1,3 +1,7 @@
+---
+title: "Iteration 070 — 006 NEEDS-RESCOPE: sync DiffAction for rows + async pending-marker replay for enrichment; no same-response graph writes"
+trigger_phrases: []
+---
 # Iteration 070 — 006 NEEDS-RESCOPE: sync DiffAction for rows + async pending-marker replay for enrichment; no same-response graph writes
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.72. **Findings:** 6.

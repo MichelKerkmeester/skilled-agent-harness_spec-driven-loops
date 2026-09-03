@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: IPC Configuration Contract"
+trigger_phrases: []
+---
 # Iteration 001: IPC Configuration Contract
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: D1 Correctness — Inventory & Scaffold-State Audit"
+trigger_phrases: []
+---
 # Iteration 001: D1 Correctness — Inventory & Scaffold-State Audit
 
 ## Focus

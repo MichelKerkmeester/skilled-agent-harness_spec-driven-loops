@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Dimension
 
 Correctness: TARGET 2 ONLY - edge-case audit of the shipped `deriveStatus` completion-evidence fallback.

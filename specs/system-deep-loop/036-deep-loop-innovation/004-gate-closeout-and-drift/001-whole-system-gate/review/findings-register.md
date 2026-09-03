@@ -1,3 +1,7 @@
+---
+title: "Findings Register — pre-cutover validation gate"
+trigger_phrases: []
+---
 # Findings Register — pre-cutover validation gate
 
 Every finding from the 40-iteration review, with its evidence and recommended

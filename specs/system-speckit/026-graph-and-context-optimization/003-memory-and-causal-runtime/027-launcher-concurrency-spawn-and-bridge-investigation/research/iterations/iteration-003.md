@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: T1 — Validate probe=demand spawn + nail the fix-conformance constraint"
+trigger_phrases: []
+---
 # Iteration 3: T1 — Validate probe=demand spawn + nail the fix-conformance constraint
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: Adversarial Pass — Races, Expiry, Replay, TOCTOU"
+trigger_phrases: []
+---
 # Iteration 17: Adversarial Pass — Races, Expiry, Replay, TOCTOU
 
 ## Focus

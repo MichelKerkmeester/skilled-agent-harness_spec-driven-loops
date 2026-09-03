@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 034-spec-template-context-optimizations"
+trigger_phrases: []
+---
 # Deep Review Report: 034-spec-template-context-optimizations
 
 **Lineage:** grok46-review · sessionId `fanout-grok46-review-1786566874028-sks2q2` · executor cli-cursor / cursor-grok-4.6-xhigh · generation 1

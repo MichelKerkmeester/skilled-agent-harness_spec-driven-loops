@@ -1,3 +1,7 @@
+---
+title: "Iteration 10 — adversarial self-check + finalization"
+trigger_phrases: []
+---
 # Iteration 10 — adversarial self-check + finalization
 
 ## Files Reviewed

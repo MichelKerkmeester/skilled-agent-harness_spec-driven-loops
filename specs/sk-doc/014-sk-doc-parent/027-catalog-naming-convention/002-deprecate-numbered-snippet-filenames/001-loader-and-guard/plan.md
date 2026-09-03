@@ -15,6 +15,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+trigger_phrases: []
 ---
 # Plan: Make the Lane C Playbook Loader Number-Agnostic + Add a No-New-Numbered-Snippet Guard
 

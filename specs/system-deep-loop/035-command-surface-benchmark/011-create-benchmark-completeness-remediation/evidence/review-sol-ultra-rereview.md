@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## VERDICT
 
 FAIL — surviving P1s: Sol P1-1, P1-2, P1-3, P1-4, P1-6, and Fable #1; new P1 regressions: N1 broken conformance verification, N2 incorrect live-run status, N3 behavior-schema misauthoring, and N4 out-of-scope machine-local runtime configuration.

@@ -1,3 +1,7 @@
+---
+title: "Deep Context Strategy: MCP to CLI Tool Transition"
+trigger_phrases: []
+---
 # Deep Context Strategy: MCP to CLI Tool Transition
 
 ## Scope

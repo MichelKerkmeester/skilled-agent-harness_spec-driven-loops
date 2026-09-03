@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard - 018-reindex-scan-responsiveness-and-cancellation"
+trigger_phrases: []
+---
 # Deep Review Dashboard - 018-reindex-scan-responsiveness-and-cancellation
 
 ## Status

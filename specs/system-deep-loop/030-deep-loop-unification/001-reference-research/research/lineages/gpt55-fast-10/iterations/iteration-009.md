@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Validate 003 Staging And Residual-Reference Exit Gates"
+trigger_phrases: []
+---
 # Iteration 9: Validate 003 Staging And Residual-Reference Exit Gates
 
 ## Focus

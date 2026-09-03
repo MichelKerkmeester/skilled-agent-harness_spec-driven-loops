@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - Scope C Rest Of Server"
+trigger_phrases: []
+---
 # Deep Review Strategy - Scope C Rest Of Server
 
 ## Topic

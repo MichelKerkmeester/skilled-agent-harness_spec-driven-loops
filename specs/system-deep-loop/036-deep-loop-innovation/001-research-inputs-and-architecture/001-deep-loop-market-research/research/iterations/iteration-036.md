@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 36 | model glm (zai-coding-plan/glm-5.2) | angle: Loop engineering in RL / agent research (non-framework lens) | 2026-07-15T00:16:59.600Z -->
 
 I'll research RL/agent training loops, self-play, curriculum, and absolute-zero reasoning that could inform iterative agent systems. Let me search for real, current work.

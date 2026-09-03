@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Testing & Integration — Coverage, Chain Breaks, Failure Modes"
+trigger_phrases: []
+---
 # Iteration 5: Testing & Integration — Coverage, Chain Breaks, Failure Modes
 
 ## Focus

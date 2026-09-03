@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 - Maintainability: target map and code-graph degradation review"
+trigger_phrases: []
+---
 # Iteration 5 - Maintainability: target map and code-graph degradation review
 
 Session: fanout-codex-4-1780596001496-dj6z7c

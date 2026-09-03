@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Current-Scale Economics and Evidence Quality"
+trigger_phrases: []
+---
 # Iteration 3: Current-Scale Economics and Evidence Quality
 
 ## Focus

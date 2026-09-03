@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - Structural Layout And Detached Fan-Out Write Boundary"
+trigger_phrases: []
+---
 # Iteration 001 - Structural Layout And Detached Fan-Out Write Boundary
 
 ## Focus

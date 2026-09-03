@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy Template
 description: Runtime template copied to review/ during initialization to track review progress, dimension coverage, findings, and outcomes across iterations.
+trigger_phrases: []
 ---
 
 # Deep Review Strategy - Session Tracking Template

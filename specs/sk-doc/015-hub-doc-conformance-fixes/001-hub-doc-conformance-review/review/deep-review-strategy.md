@@ -1,6 +1,7 @@
 ---
 title: "Deep Review Strategy: Doc-conformance + reality-alignment audit of cli-external + mcp-tooling hub docs (feature catalogs, testing playbooks, references, assets, READMEs, SKILLs) against sk-doc create-skill templates and creation standards"
 description: "Review strategy for the sk-prompt parent-hub merge program + post-merge benchmark work."
+trigger_phrases: []
 ---
 
 # Deep Review Strategy

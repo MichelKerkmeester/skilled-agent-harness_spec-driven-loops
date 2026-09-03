@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: Fixture and trust-boundary review"
+trigger_phrases: []
+---
 # Iteration 002: Fixture and trust-boundary review
 
 ## Focus

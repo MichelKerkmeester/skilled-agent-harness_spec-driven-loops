@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Correctness: 026 scaffolding cleanup"
+trigger_phrases: []
+---
 # Iteration 002 - Correctness: 026 scaffolding cleanup
 
 ## Focus

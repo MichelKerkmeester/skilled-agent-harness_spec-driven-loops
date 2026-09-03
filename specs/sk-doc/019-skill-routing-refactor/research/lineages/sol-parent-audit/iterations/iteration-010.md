@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Adversarial residual verification"
+trigger_phrases: []
+---
 # Iteration 010 — Adversarial residual verification
 
 ## Focus

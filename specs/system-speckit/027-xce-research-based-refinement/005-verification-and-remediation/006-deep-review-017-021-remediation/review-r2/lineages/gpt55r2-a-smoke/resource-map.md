@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map - gpt55r2-a-smoke"
+trigger_phrases: []
+---
 # Review Resource Map - gpt55r2-a-smoke
 
 ## Phase-5 Augmentation

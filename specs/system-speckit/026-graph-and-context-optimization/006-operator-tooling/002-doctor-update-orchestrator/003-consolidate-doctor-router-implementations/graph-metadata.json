@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The 10 `/doctor:` markdown commands in `.opencode/commands/doctor/` share ~50 lines of duplicated boilerplate per file",
     "created_at": "2026-05-11T16:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:32.137Z",
+    "last_save_at": "2026-09-03T22:23:14.860Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19dc041e32f31d90b9fa4e044733347b23406b2efb2b5e5b98204c2334f27e7c",
+    "source_fingerprint": "sha256:3a6a5879dbc4573e51bc5c6e7b96275f96c5c5135d9acba99ae5b1d2ec857d6d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "78e38ea638cb5fa397141bba3a43a7174ab17a934faf13cd9a66ddccc791d6b3",
       "plan.md": "64ba0b71001edece96909354e3231fb69a366f5c1b13bca23c24c5d1b436e2e6",
       "tasks.md": "a7f01c31386a0ee42cc4dfcb4e20de0bd2a46c9a01fc99b43640efe05f54538e",
-      "decision-record.md": "8214aaf1380e08c7101b4f06c48b76d1f12a97c81759b40b391ab1fdcee680d3",
+      "decision-record.md": "2a0c25ec98c748f471cf983238525766f7dfe241f3415a248a61e9c36149dc6f",
       "implementation-summary.md": "963a3837bbdaed03b6b62e104d288ce7add0a41ae937a81d1fc99dfea77c5e42"
     },
     "last_active_child_id": null,

@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: agent, skills, MCP, and ACP injection boundaries"
+trigger_phrases: []
+---
 # Iteration 9: agent, skills, MCP, and ACP injection boundaries
 ## Focus
 Resolve whether Copilot CLI's documented agent-facing extension points can inject startup or per-prompt text the way Claude hooks do, with emphasis on `--agent`, `/agent`, ACP, and the real `~/.copilot` customization surfaces.

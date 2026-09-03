@@ -1,3 +1,7 @@
+---
+title: "NOOA Loop/Harness Theory for `system-deep-loop`"
+trigger_phrases: []
+---
 # NOOA Loop/Harness Theory for `system-deep-loop`
 
 ## 1. Scope and Evidence Discipline

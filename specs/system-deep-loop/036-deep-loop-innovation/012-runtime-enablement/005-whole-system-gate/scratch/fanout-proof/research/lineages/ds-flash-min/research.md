@@ -1,3 +1,7 @@
+---
+title: "Whole-System Gate Fidelity: The Frozen-Candidate Measurement Contract and the Conditions a PASS Verdict Actually Requires"
+trigger_phrases: []
+---
 # Whole-System Gate Fidelity: The Frozen-Candidate Measurement Contract and the Conditions a PASS Verdict Actually Requires
 
 - **Lineage:** fanout-ds-flash-min-1787198541887-w6k53d (ds-flash-min)

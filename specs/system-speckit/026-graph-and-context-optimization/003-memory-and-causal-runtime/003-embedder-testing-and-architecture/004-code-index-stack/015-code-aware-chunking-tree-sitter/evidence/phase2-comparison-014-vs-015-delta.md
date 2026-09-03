@@ -1,3 +1,7 @@
+---
+title: "Phase 2 Delta: 014 vs 015"
+trigger_phrases: []
+---
 # Phase 2 Delta: 014 vs 015
 
 Status: **COMPLETE** (bench re-ran via main agent on 2026-05-19 after codex sandbox blocked `ccc index`).

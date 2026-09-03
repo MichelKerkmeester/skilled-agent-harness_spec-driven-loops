@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Pi Fork Improvements (deepseek-flash lineage)"
+trigger_phrases: []
+---
 # Deep Research Strategy: Pi Fork Improvements (deepseek-flash lineage)
 
 ## Research Topic

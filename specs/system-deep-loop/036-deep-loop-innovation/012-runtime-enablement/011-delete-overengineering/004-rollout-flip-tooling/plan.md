@@ -3,6 +3,7 @@ title: "Plan: Phase 004 Rollout & Flip Tooling"
 description: "Approach and verification gates for the F3/F4 rollout/flip-tooling removal wave."
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling"
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

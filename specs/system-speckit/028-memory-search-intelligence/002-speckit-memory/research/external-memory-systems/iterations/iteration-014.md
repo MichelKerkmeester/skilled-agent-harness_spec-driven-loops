@@ -1,3 +1,7 @@
+---
+title: "Iteration 14 (Opus lineage — NATIVE): cross-cutting transfers to Skill-Advisor + Deep-Loop (Q9)"
+trigger_phrases: []
+---
 # Iteration 14 (Opus lineage — NATIVE): cross-cutting transfers to Skill-Advisor + Deep-Loop (Q9)
 
 > Model: **Opus 4.8 NATIVE** (Agent tool `model: opus`, read-only). Orchestrator-written. newInfoRatio **0.7**. The richest cross-cutting result of the campaign: the **Cognee retrieval-loop cluster transfers to DEEP-LOOP**, because the deep-research iteration cycle *is itself* a retrieval loop. 10 candidates triaged for transfer; every seam confirmed by reading.

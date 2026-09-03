@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration Contract"
+trigger_phrases: []
+---
 # Deep Research Iteration Contract
 
 You are executing exactly one `/deep:start-research-loop` iteration for the packet below.

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: sk-prompt Routing"
+trigger_phrases: []
+---
 # Deep Research Strategy: sk-prompt Routing
 
 ## 1. Overview

@@ -1,3 +1,7 @@
+---
+title: "Iteration 11: Deep Alignment of the 036 Evidence Ledger with Graph Engineering"
+trigger_phrases: []
+---
 # Iteration 11: Deep Alignment of the 036 Evidence Ledger with Graph Engineering
 
 ## Focus

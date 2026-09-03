@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: fallback-router.ts Wiring for GLM-5.2 → MiMo-v2.5-Pro"
+trigger_phrases: []
+---
 # Iteration 5: fallback-router.ts Wiring for GLM-5.2 → MiMo-v2.5-Pro
 
 ## Focus

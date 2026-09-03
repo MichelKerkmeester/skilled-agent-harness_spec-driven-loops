@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Security Broadening"
+trigger_phrases: []
+---
 # Iteration 6: Security Broadening
 
 ## Files Reviewed

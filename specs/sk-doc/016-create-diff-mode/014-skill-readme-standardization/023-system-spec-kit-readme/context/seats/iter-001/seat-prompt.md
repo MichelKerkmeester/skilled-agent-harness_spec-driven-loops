@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Spec folder: sk-doc/014-skill-readme-standardization/023-system-spec-kit-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file, and do not run the skill or its MCP tools. Return findings as your final assistant message only.
 
 Role: You are a documentation analyst producing a faithful inventory of one large skill so its README can be restyled into a narrative voice WITHOUT losing reference depth.

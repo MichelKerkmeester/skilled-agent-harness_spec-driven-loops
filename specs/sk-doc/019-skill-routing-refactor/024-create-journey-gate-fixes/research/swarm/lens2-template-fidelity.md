@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Act as a schema-fidelity reviewer. READ-ONLY — modify nothing. Scope: would a JSON artifact authored purely from the create-skill templates actually satisfy every consumer — the fleet gate, the doctor, AND system-skill-advisor's ingestion?
 
 Templates under .opencode/skills/sk-doc/create-skill/assets/: parent-skill/parent-skill-description-template.json, parent-skill-graph-metadata-template.json, parent-skill-registry-template.json, parent-skill-hub-router-template.json, parent-skill-command-metadata-template.json, parent-skill-leaf-aliases-template.json; skill/skill-graph-metadata-template.json, skill/skill-leaf-manifest-config-template.json.

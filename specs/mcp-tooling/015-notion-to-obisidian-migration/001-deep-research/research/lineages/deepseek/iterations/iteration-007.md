@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Plugin Requirements — Required vs Optional, Install/Config Notes"
+trigger_phrases: []
+---
 # Iteration 7: Plugin Requirements — Required vs Optional, Install/Config Notes
 
 ## Focus

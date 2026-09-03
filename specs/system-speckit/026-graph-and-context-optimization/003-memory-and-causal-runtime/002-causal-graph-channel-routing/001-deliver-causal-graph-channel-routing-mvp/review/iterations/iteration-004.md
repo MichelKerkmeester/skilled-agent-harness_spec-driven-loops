@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 004 — Traceability Pass"
+trigger_phrases: []
+---
 # Deep Review Iteration 004 — Traceability Pass
 
 **Dimension:** Traceability (core: spec_code + checklist_evidence; overlay: skill_agent, feature_catalog_code, playbook_capability)

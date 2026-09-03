@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Deep-dive research on aztekgold/obsidian-tables: exact .table.md JSON schema, feature surface, file-layer AI workflows, edge cases, and usage recipes."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

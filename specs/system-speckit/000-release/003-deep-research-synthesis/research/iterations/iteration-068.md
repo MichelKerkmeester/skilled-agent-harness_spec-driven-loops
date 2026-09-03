@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Skill-advisor routing quality program and calibrations
 
 The 065 program established a routing baseline and then fixed everything the stress campaign exposed. A skill reindex advanced advisor generation and restored live freshness, then six scenario prompts were run across copilot/codex/gemini executor slots, finishing PASS=1 WARN=1 FAIL=4; the failures drove five calibration phases. Memory-save routing gained a next-session preservation boost while plain file-save prompts like "save the file I'm working on" were capped so they no longer pass as confident `memory:save` routes. Testing-playbook creation prompts now get a dedicated route instead of falling through to generic `sk-doc`, and explicit alias groups let capability matches score without depending on exact id shapes. Ambiguous "what's wrong with my code" prompts now boost `sk-code-review` with a supporting `sk-deep-review` boost while dampening broad `sk-code`, without stealing clear implementation requests. All changes landed in the native TypeScript scorer, its Python fallback, and matching regression tests. This is internal routing infrastructure, but the visible effect is that the advisor stops misfiring on memory saves, playbook creation, and debugging requests.

@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — 004-agents-md-bloat-audit"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

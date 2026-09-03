@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Baseline Stress Evidence and Residual Framing"
+trigger_phrases: []
+---
 # Iteration 001: Baseline Stress Evidence and Residual Framing
 
 ## Focus

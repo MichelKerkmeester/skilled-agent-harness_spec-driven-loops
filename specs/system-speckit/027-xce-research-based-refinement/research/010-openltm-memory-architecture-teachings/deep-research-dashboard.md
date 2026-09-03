@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Dashboard — 010 OpenLTM memory-architecture teachings"
+trigger_phrases: []
+---
 # Deep-Research Dashboard — 010 OpenLTM memory-architecture teachings
 
 **Lineage:** 2026-06-08-010-openltm-teachings · generation 1 · executor cli-opencode openai/gpt-5.5-fast variant=xhigh read-only

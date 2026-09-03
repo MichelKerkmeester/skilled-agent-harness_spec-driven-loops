@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness — Contract + Fleet Gate Logic"
+trigger_phrases: []
+---
 # Iteration 1: Correctness — Contract + Fleet Gate Logic
 
 ## Focus

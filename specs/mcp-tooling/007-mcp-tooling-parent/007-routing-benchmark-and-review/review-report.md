@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — mcp-tooling Six-Mode Routing"
+trigger_phrases: []
+---
 # Deep Review Report — mcp-tooling Six-Mode Routing
 
 ## Executive Summary

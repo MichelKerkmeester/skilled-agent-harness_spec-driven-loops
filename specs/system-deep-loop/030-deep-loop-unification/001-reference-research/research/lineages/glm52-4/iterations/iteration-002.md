@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Bidirectional Path-Coupling Repair And Inventory Gaps"
+trigger_phrases: []
+---
 # Iteration 002 - Bidirectional Path-Coupling Repair And Inventory Gaps
 
 ## Focus

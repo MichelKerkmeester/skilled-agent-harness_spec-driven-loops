@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — .opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

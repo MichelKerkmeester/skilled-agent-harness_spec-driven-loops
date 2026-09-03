@@ -4,6 +4,7 @@ description: "Delivered a pure certificate-gated selective controller, replayabl
 importance_tier: "critical"
 contextType: "implementation"
 status: "shadow-partial"
+trigger_phrases: []
 ---
 # Implementation Summary
 

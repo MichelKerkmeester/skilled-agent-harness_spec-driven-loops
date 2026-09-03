@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Contract-Generated Tables, Router Thinning, and Ownership Labels"
+trigger_phrases: []
+---
 # Iteration 5: Contract-Generated Tables, Router Thinning, and Ownership Labels
 
 ## Focus

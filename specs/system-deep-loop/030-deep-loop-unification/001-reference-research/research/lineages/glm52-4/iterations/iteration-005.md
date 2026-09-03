@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Fallback-Router Wiring Feasibility And Consolidation"
+trigger_phrases: []
+---
 # Iteration 005 - Fallback-Router Wiring Feasibility And Consolidation
 
 ## Focus

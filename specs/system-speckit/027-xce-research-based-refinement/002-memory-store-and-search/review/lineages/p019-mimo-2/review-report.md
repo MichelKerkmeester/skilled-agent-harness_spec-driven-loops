@@ -1,3 +1,7 @@
+---
+title: "Review Report: 019-maintenance-grace-daemon-survives-reelection"
+trigger_phrases: []
+---
 # Review Report: 019-maintenance-grace-daemon-survives-reelection
 
 **Deep Review — Fan-out Lineage p019-mimo-2**

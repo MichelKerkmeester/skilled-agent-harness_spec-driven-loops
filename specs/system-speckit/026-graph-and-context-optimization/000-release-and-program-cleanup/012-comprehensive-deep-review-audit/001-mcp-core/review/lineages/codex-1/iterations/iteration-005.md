@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Stabilization"
+trigger_phrases: []
+---
 # Iteration 005 - Stabilization
 
 Focus: re-read cited evidence, search for contradictory evidence, and verify no new P0/P1 finding appears after all dimensions are covered.

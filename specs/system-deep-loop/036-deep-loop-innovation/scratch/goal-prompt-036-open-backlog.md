@@ -1,3 +1,7 @@
+---
+title: "Goal Prompt — Tackle the 036 Open Backlog with DeepSeek via opencode"
+trigger_phrases: []
+---
 # Goal Prompt — Tackle the 036 Open Backlog with DeepSeek via opencode
 
 > Kickoff brief for a future session. Paste it, or point a session at this file. It is scoped so a

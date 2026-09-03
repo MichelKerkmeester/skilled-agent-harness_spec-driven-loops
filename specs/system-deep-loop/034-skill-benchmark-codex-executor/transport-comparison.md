@@ -1,3 +1,7 @@
+---
+title: "Transport comparison: GPT-5.6-luna via cli-opencode vs cli-codex"
+trigger_phrases: []
+---
 # Transport comparison: GPT-5.6-luna via cli-opencode vs cli-codex
 
 **Subject model:** `gpt-5.6-luna`, reasoning effort `xhigh`, service tier `fast` (recorded out-of-band; the report JSON does not carry the subject model).

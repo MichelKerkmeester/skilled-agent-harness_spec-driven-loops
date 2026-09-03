@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 005 — 009-cocoindex-ipc-fix"
+trigger_phrases: []
+---
 # Deep Review Iteration 005 — 009-cocoindex-ipc-fix
 
 **Dimension:** performance

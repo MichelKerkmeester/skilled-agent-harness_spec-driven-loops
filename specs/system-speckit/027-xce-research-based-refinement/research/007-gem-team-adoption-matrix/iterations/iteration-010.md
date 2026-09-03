@@ -1,3 +1,7 @@
+---
+title: "Iteration 010: RQ10 pre-mortem / risk / resilience"
+trigger_phrases: []
+---
 # Iteration 010: RQ10 pre-mortem / risk / resilience
 
 **Focus:** RQ10 pre-mortem / risk / resilience  

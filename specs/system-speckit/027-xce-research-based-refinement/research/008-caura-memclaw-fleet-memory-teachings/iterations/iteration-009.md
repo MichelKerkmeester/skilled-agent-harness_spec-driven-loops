@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — recall ranking / activation / decay"
+trigger_phrases: []
+---
 # Iteration 009 — recall ranking / activation / decay
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.78 · **tokens:** 120702 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

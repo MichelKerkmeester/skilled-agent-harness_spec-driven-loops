@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "capability-evidence-unblock",
-      "capability evidence unblock",
       "control knobs fail-closed",
       "projection quality",
       "implementation plan",
@@ -21,9 +20,6 @@
     ],
     "key_topics": [
       "capability-evidence-unblock",
-      "capability",
-      "evidence",
-      "unblock",
       "control",
       "knobs",
       "fail-closed",
@@ -31,7 +27,10 @@
       "quality",
       "implementation",
       "plan",
-      "tasks"
+      "tasks",
+      "compilepromptcontrols",
+      "fails",
+      "closed"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -158,7 +157,7 @@
     ],
     "causal_summary": "`compilePromptControls` fails closed unless capability, mapping, freshness, and control evidence are confirmed",
     "created_at": "2026-08-13T04:05:03.839Z",
-    "last_save_at": "2026-08-30T15:39:11.760Z",
+    "last_save_at": "2026-09-03T22:17:00.743Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -166,10 +165,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:aa6c286bd31b82b95eaee9d70db73da2882a1c49965e6339cfc4d1035395138d",
+    "source_fingerprint": "sha256:daaa27aa8e6808d8fe6250fb19a4062221bbb810c7c1d0756ec50af16c393255",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ecfa3dbdd4b4a8b47071e1d3af83d5223cd41673b9745c05b58fbc968d880f95",
+      "spec.md": "b1ecd2b610b8338efac45b69dc9eee053f7a9f562054ad85c3924ac43510fbd3",
       "plan.md": "1a5cf187b84648ee1eaa730fb4cb40ea4a04e2e892b0faad7a08505293ee0613",
       "tasks.md": "246939533056dc1a4727f4ad4c97d2b2073ab35e32ec6cc6d7dfd1cfd8aa8511"
     },

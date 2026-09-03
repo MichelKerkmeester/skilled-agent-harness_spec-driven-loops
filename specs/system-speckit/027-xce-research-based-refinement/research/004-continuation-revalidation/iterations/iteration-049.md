@@ -1,3 +1,7 @@
+---
+title: "Iteration 049: Semantic trigger fallback revalidation"
+trigger_phrases: []
+---
 # Iteration 049: Semantic trigger fallback revalidation
 
 ## Focus

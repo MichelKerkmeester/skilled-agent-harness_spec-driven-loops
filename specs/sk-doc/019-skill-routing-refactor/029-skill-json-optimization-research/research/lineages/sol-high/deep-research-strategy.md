@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - sol-high lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy - sol-high lineage
 
 ## 2. TOPIC

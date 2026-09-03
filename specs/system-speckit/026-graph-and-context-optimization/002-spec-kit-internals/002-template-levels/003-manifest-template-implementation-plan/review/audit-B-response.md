@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## SKILL.md — MODIFY
 
 | Lines | Finding | Exact text | Replacement guidance |

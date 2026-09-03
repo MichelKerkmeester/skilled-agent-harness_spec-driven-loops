@@ -1,3 +1,7 @@
+---
+title: "Iteration 16: AC-1..AC-8 Fixture Design (Q13)"
+trigger_phrases: []
+---
 # Iteration 16: AC-1..AC-8 Fixture Design (Q13)
 
 ## Focus

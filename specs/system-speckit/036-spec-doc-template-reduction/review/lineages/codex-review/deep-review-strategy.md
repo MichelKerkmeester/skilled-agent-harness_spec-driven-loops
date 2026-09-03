@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - Detached Codex Lineage"
+trigger_phrases: []
+---
 # Deep Review Strategy - Detached Codex Lineage
 
 ## 1. OVERVIEW

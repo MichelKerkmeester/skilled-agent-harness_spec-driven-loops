@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 019"
+trigger_phrases: []
+---
 # Deep Research Iteration 019
 
 > Audited changelog: `changelog-016-004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity.md`

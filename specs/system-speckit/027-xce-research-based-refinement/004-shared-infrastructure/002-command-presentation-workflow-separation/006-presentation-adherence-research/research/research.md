@@ -1,3 +1,7 @@
+---
+title: "Presentation-Adherence Research — Synthesis"
+trigger_phrases: []
+---
 # Presentation-Adherence Research — Synthesis
 
 > **Question:** why did `/memory:search` ignore its parseable render template under a mid-tier model while `/doctor` rendered its menu verbatim and the Gate-3 block rendered perfectly across three different commands — and how do we make adherence the default?

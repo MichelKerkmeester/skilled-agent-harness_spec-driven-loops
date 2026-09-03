@@ -1,3 +1,7 @@
+---
+title: "Review Report — 027/002/018 reindex-scan responsiveness and cancellation"
+trigger_phrases: []
+---
 # Review Report — 027/002/018 reindex-scan responsiveness and cancellation
 
 Fan-out lineage: **p018-opus-2** · Executor: cli-claude-code / claude-opus-4-8 · Iterations: 1 (maxIterations) · Mode: review

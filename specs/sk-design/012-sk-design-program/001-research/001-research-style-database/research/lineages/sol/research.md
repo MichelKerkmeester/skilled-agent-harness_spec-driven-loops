@@ -1,3 +1,7 @@
+---
+title: "Progressive Research Synthesis: Indexed Style Database"
+trigger_phrases: []
+---
 # Progressive Research Synthesis: Indexed Style Database
 
 ## Iteration 1 — Current-state baseline

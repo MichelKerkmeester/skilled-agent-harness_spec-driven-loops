@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- provenance: manual cli-opencode orchestration | executor openai/gpt-5.6-sol-fast --variant high | round 8 angle A9+A10 — Cross-language template & Rust placement -->
 
 This is a read-only, repository-evidence research pass with no file mutation. Skill routing: user explicitly directed “ONE round of a deep-research pass,” so I’m loading that workflow first, then I’ll inspect the required standards and registry with line-level citations.

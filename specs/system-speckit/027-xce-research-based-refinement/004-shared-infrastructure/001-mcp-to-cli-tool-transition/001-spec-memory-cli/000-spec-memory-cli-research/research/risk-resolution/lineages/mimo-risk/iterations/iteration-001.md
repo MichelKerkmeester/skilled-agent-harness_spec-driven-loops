@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — RQ1: Daemon-Bypass Enforcement + RQ3: Lease/Spawn Races"
+trigger_phrases: []
+---
 # Iteration 001 — RQ1: Daemon-Bypass Enforcement + RQ3: Lease/Spawn Races
 
 - **Date:** 2026-06-06T12:35:00Z

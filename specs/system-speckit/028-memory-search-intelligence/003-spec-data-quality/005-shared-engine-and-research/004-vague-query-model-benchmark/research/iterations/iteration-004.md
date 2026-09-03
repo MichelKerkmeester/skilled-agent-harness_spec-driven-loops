@@ -1,3 +1,7 @@
+---
+title: "Iteration 004, Q3: The citeCorrect metric is binary; 3-tier fix"
+trigger_phrases: []
+---
 # Iteration 004, Q3: The citeCorrect metric is binary; 3-tier fix
 
 **Focus:** The `citeCorrect` metric mislabels every `cite_with_caveat` cell (the 1.0 → 0.55 false drop).

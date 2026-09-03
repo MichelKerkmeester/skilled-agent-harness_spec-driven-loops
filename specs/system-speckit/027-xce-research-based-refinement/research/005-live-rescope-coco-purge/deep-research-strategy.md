@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy — Continuation 22 (027 vs closed-026 + CocoIndex deprecation)
 description: Resume lineage (iters 061-080) revalidating 027's 8 phases against the closed 026 program, live system-spec-kit reality, and the CocoIndex deprecation.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Session Tracking

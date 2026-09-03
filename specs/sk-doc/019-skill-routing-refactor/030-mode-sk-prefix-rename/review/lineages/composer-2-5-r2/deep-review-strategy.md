@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — sk- prefix mode rename packet (r2)"
+trigger_phrases: []
+---
 # Deep Review Strategy — sk- prefix mode rename packet (r2)
 
 ## 2. TOPIC

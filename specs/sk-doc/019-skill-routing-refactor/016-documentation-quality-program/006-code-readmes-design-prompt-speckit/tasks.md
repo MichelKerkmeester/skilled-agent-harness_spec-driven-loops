@@ -13,6 +13,7 @@ _memory:
     next_safe_action: "Proceed to phase 007."
     blockers: []
     key_files: []
+trigger_phrases: []
 ---
 
 # Tasks: Code READMEs (Design, Prompt, Spec-Kit Batch)

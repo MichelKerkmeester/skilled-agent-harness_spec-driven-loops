@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Adversarial: Qwen3 default-flip risk audit"
+trigger_phrases: []
+---
 # Iteration 008 — Adversarial: Qwen3 default-flip risk audit
 
 ## Hypotheses going in

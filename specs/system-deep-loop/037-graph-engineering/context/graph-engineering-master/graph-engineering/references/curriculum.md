@@ -1,3 +1,7 @@
+---
+title: "Source Course — Translated Curriculum"
+trigger_phrases: []
+---
 # Source Course — Translated Curriculum
 
 Southeast University graduate course《知识图谱》(Knowledge Graphs), Prof. Peng Wang.

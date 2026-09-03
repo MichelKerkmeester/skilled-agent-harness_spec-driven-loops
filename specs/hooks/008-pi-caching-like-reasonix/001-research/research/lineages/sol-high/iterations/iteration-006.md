@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Decompose Reasonix cache-first invariants"
+trigger_phrases: []
+---
 # Iteration 6: Decompose Reasonix cache-first invariants
 
 ## Focus

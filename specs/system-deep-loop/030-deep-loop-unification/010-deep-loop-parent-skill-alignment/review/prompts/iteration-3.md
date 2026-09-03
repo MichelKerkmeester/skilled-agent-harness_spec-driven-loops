@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 You are an adversarial spec-review agent performing iteration 3/10 of a deep review of a Spec-Kit planning packet. You are MODEL Kimi-K2.7. Frame your review as COSTAR: Context, Objective, Style, Tone, Audience, Response-format. Keep it lean; lead with the format the findings must take.
 
 REVIEW TARGET (read every file; paths are relative to repo root /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, which is your --dir):

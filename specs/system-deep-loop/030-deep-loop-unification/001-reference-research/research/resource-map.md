@@ -1,3 +1,7 @@
+---
+title: "Resource Map: Deep-Loop Unification Merge Design Research"
+trigger_phrases: []
+---
 # Resource Map: Deep-Loop Unification Merge Design Research
 
 Coverage map — what was actually investigated (file-verified) vs. what remains uninvestigated, per subsystem.

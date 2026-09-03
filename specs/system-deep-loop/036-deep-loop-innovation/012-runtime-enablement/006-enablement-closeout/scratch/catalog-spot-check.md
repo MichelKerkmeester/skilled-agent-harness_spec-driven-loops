@@ -1,3 +1,7 @@
+---
+title: "Feature-catalog additions and spot-check"
+trigger_phrases: []
+---
 # Feature-catalog additions and spot-check
 
 ## Why the earlier deferral was wrong

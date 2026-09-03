@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - GLM Lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy - GLM Lineage
 
 ## 2. TOPIC

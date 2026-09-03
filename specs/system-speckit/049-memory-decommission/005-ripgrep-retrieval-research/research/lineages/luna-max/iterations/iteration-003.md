@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: corpus precision and MCP capability boundary"
+trigger_phrases: []
+---
 # Iteration 3: corpus precision and MCP capability boundary
 
 ## Focus

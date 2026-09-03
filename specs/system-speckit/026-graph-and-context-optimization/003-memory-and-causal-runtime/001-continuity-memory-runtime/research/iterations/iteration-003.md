@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Audit Q2: `/memory:save` planner-first routing drift, with emphasis on the 8-category route table, planner-vs-apply gating, fallback behavior, and route/merge semantics that are documented differently from the live handler.

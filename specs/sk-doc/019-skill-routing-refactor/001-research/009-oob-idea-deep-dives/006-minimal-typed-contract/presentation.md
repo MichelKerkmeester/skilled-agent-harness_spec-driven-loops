@@ -1,3 +1,7 @@
+---
+title: "Idea 6 — Minimal Typed Router Contract"
+trigger_phrases: []
+---
 # Idea 6 — Minimal Typed Router Contract
 
 > **`defaultMode` hides three different things in one field: "no evidence," "a policy prefers this," and "go execute this." Split them into a typed decision, and the mystery field disappears.**

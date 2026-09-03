@@ -1,3 +1,7 @@
+---
+title: "Seat opus-memory-daemon — iteration 1 (global #2)"
+trigger_phrases: []
+---
 # Seat opus-memory-daemon — iteration 1 (global #2)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: memory-write-path

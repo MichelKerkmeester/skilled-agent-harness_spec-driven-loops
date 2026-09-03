@@ -1,3 +1,7 @@
+---
+title: "H1 - Neural Engine Use"
+trigger_phrases: []
+---
 # H1 - Neural Engine Use
 
 Verdict: REFUTED

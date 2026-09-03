@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Normalize archived Command Adherence docs to Level 1
 The archived Command Adherence folder was rewritten to the current Level 1 documentation template so the record passes today's validator instead of remaining in drifted historical form. Before, the folder carried stale structure, broken markdown references, and mismatched metadata that surfaced on inspection; after, `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` were re-created or modified to a consistent archive shape. Normalizing to Level 1 deliberately drops Level 2 and Level 3+ enforcement burdens from archived work, keeping a concise, reliable record; compatibility stubs were retained only where files already existed. The folder was reviewed and verified with `validate.sh` until it reported zero errors, including a clean top-level markdown integrity check. This is internal archive housekeeping with no user-facing behavior change; the trade-off is a condensed history, with the full original narrative preserved in git history.
 

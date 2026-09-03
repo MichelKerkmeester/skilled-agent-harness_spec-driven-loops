@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — lifecycle / retention / archive / purge / tombstones"
+trigger_phrases: []
+---
 # Iteration 007 — lifecycle / retention / archive / purge / tombstones
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.72 · **tokens:** 84068 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

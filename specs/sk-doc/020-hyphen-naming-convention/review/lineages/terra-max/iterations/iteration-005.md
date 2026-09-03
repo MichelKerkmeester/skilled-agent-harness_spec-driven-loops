@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Broadened lifecycle review"
+trigger_phrases: []
+---
 # Iteration 005 — Broadened lifecycle review
 
 The phase-000 specification and plan prescribe a literal `.worktrees/0037-017-hyphen-naming` directory and `wt/0037-017-hyphen-naming` branch. The current `sk-git` contract requires a clone-wide allocation and owner-first branch grammar; it explicitly classifies legacy `wt/` branches as permitted-but-nonconformant.

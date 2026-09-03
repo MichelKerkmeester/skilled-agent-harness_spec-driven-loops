@@ -1,3 +1,7 @@
+---
+title: "Iteration 040 — Angle 40"
+trigger_phrases: []
+---
 # Iteration 040 — Angle 40
 
 **Angle:** Ambiguity margin calibration: dual 0.05 score/confidence margins — empirical false-positive/negative rates on real session prompts.

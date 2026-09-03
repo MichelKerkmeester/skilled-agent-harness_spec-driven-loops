@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 2 (new adversarial angles)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 2 (new adversarial angles)
 
 - **Worker**: cli-claude-code · claude-opus-4-8 · account2 · `review` agent · high effort

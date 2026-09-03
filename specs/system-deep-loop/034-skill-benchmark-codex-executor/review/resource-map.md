@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — .opencode/specs/system-deep-loop/034-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

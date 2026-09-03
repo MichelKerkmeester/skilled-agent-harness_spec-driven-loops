@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Adversarial / red-team surface"
+trigger_phrases: []
+---
 # Iteration 005 - Adversarial / red-team surface
 
 ## Preflight reasoning

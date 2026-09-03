@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 21 | SOL xhigh | mode: deep-alignment | angle: A1-sota deep-alignment :: 2025-2026 state of the art | 2026-07-15T09:48:08.753Z -->
 
 The next moat is an authority compiler, not another checker. Deep-alignment already verifies findings well; it does not verify that the authority itself was translated completely, consistently, or reproducibly.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Nested Transport Attribution and Typed-Gold Cardinality"
+trigger_phrases: []
+---
 # Iteration 7: Nested Transport Attribution and Typed-Gold Cardinality
 
 ## Focus

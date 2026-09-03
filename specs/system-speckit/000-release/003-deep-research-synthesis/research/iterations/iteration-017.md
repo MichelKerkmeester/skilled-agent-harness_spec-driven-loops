@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Pi dispatch defaults to native subagents
 
 Pi now dispatches subagent work through its native subagent plugin by default instead of external cli-* executors. A per-turn directive injected into every Pi prompt mandates native subagents unless you explicitly request a specific cli-* skill mode. A preflight check enforces the directive: dispatch-shaped calls are denied unless they carry an explicit cli-* authorization or run inside an approved deep-loop executor, while native subagent tools are unaffected. The enforcement only allows executors it can prove from the raw command — quotes, escapes, and separators are parsed, and variables, aliases, substitutions, or malformed input can never become an allow. The skill-advisor governor capsule also renders identically across the native path and both bridge fallback branches, and AGENTS.md documents Pi's runtime directory. This is internal hook tooling, but the visible result is predictable: Pi's default is native subagents, with cli-* modes available on explicit request.

@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy - Checklist Full Retirement
 description: Lineage-local strategy for fanout-grok46-xhigh reviewing the checklist-full-retirement spec folder.
+trigger_phrases: []
 ---
 
 # Deep Review Strategy - Session Tracking

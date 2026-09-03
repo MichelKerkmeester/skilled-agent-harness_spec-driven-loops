@@ -1,3 +1,7 @@
+---
+title: "Iteration 16: Depth Pass — Session Catalog Redaction, Retention, Offline Cache"
+trigger_phrases: []
+---
 # Iteration 16: Depth Pass — Session Catalog Redaction, Retention, Offline Cache
 
 ## Focus

@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy
 description: Persistent strategy state for fan-out lineage codex-1.
+trigger_phrases: []
 ---
 
 # Deep Review Strategy - Governance + sk-doc + sk-code Drift Review Slice

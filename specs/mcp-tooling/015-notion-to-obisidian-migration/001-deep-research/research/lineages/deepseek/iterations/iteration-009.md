@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: AI Agent Programmatic Migration vs Human-in-the-Loop"
+trigger_phrases: []
+---
 # Iteration 9: AI Agent Programmatic Migration vs Human-in-the-Loop
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Q5 / cross-cutting rollout: synthesize sequencing, rollout windows, strict-mode interaction, verdict ownership, failure modes, ruled-out directions, and residual risks across T3 templates, T4 current-state discipline, T2 constitutional-rule review, and deferred T1 AC-coverage.

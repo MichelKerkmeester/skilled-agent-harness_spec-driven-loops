@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration Prompt Pack"
+trigger_phrases: []
+---
 # Deep-Research Iteration Prompt Pack
 
 cli-codex / gpt-5.5 / reasoning=high / service-tier=fast. GREENFIELD investigation, no backward-compat constraint.

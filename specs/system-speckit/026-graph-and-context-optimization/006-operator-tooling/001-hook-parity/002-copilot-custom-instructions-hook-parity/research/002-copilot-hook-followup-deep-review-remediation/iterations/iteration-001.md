@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - Copilot CLI Hook Schema Ground Truth"
+trigger_phrases: []
+---
 # Iteration 001 - Copilot CLI Hook Schema Ground Truth
 
 ## Focus

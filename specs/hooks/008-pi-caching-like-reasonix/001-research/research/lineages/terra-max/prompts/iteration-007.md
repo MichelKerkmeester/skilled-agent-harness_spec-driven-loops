@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 007"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 007
 
 Focus: Pi’s DeepSeek-specific cache path

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Feature catalog and playbook documentation contract unified
 Manual testing playbooks now ship as integrated root packages — a root policy doc plus numbered category folders with per-feature files — instead of root docs with separate sidecar guidance. Feature catalogs were aligned to the same header and frontmatter conventions, so the behavior the playbooks validate now matches what the catalogs describe. `sk-doc` gained dedicated template bundles for both families under `assets/documentation/`, plus new creation references grouped into `references/global/` and `references/specific/`. Downstream create commands and the write agent were repointed at the regrouped reference paths so runtime workflows stay intact. Link-resolution and count audits confirm both playbook packages are complete (`system-spec-kit` 195/195, `mcp-coco-index` 20/20). Internal authoring infrastructure, but it removes the two parallel contracts authors previously had to reconcile.
 

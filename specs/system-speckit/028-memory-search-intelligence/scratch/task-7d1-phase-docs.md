@@ -1,3 +1,7 @@
+---
+title: "Phase-Local Documentation Lineage Reconciliation"
+trigger_phrases: []
+---
 # Phase-Local Documentation Lineage Reconciliation
 
 ## Scope and path resolution

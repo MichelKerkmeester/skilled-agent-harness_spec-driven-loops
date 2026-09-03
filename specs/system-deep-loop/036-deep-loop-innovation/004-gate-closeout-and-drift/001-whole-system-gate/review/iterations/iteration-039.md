@@ -1,3 +1,7 @@
+---
+title: "Iteration 039 — correctness"
+trigger_phrases: []
+---
 # Iteration 039 — correctness
 
 - Executor: cli-codex gpt-5.6-sol effort=high service_tier=fast sandbox=read-only

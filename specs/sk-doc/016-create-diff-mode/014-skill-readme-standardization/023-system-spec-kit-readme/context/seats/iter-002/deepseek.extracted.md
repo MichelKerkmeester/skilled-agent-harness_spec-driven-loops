@@ -1,3 +1,7 @@
+---
+title: "System Spec Kit README Verification Report"
+trigger_phrases: []
+---
 Let me check the tool registration source and verify key paths exist.
 Now I have all the evidence. Here is my structured report:
 

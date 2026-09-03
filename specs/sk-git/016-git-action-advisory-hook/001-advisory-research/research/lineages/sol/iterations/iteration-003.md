@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Staging and Commit Semantics"
+trigger_phrases: []
+---
 # Iteration 3: Staging and Commit Semantics
 
 ## Canonical Route Proof

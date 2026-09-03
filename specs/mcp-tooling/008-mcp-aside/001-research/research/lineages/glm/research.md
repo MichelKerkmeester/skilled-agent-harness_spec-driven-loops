@@ -1,3 +1,7 @@
+---
+title: "Research: Aside Browser Developer Surface for mcp-aside-devtools"
+trigger_phrases: []
+---
 # Research: Aside Browser Developer Surface for mcp-aside-devtools
 
 > Detached fan-out deep-research lineage (`glm`). Compiled from 2 iterations against the public Aside docs (docs.aside.com) and the existing mcp-tooling skill surface in this workspace. Topic: the Aside CLI command surface and the Aside MCP server — tools, auth, transport, install, session/daemon model — plus AI-browser-automation workflows, contrast with Chrome DevTools `bdg` patterns, and everything needed to author the `mcp-aside-devtools` packet (CLI-primary + Code Mode MCP fallback) and register an `aside` UTCP manual in `.utcp_config.json`.

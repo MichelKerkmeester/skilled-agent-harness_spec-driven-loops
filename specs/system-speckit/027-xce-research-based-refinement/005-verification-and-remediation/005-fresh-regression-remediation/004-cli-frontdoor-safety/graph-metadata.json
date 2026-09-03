@@ -33,10 +33,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "dist/spec-memory-cli.js",
-      "tests/spec-memory-cli-socket-perimeter.vitest.ts",
-      "tests/spec-memory-cli.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -61,24 +58,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory-cli.js",
-        "kind": "code",
-        "path": "dist/spec-memory-cli.js",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory-cli-socket-perimeter.vitest.ts",
-        "kind": "test",
-        "path": "tests/spec-memory-cli-socket-perimeter.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory-cli.vitest.ts",
-        "kind": "test",
-        "path": "tests/spec-memory-cli.vitest.ts",
         "source": "derived"
       },
       {
@@ -182,11 +161,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Six",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings. Resolved — 5 fixed, 1 refuted-then-hardened; CLI vitest green.",
     "created_at": "2026-07-10T06:23:17.683Z",
-    "last_save_at": "2026-08-30T15:39:34.350Z",
+    "last_save_at": "2026-09-03T22:23:25.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9efeb6d26e1d7161b2ae278dcea90fa938809a9e0f07d7619b0623e7d118997",
+    "source_fingerprint": "sha256:15b012ca6b6ca4fdbee28de8054745dd50f44e0362484d16d1195bd105b17a10",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c152dee9b141b29cb414cb22ffc6e08382ed10b4b6f6b48178b89459ea7c1522",
-      "plan.md": "6c367461704d79c78766d037078d50fd61b0a615eeddbcad5989822d0aea1348",
-      "tasks.md": "837c5a319a90b07cf5edabf3c176c67cf902008d5014953b999989a1c204a27a",
-      "implementation-summary.md": "c4a45691c58d6f6308668cd837539a33679b6d530ab07e4ea9b9afc57fc6ccde"
+      "spec.md": "fdc0811aca05ad97ae7bb70a39236921b7cf91aca595923ec8fecf8a91eaaf25",
+      "plan.md": "eb87f798faa7521f8eea894f1676e0aaa0159dbb97be5183e253b47a4c3f78fc",
+      "tasks.md": "ba764a3c875a0590c11926fb5672492e673d4c8959ab24a58cce6fa58e729607",
+      "implementation-summary.md": "490f60b8b76a933a4daae00c7938f693b5059423234cc57c96913b24cac45c57"
     },
     "last_active_child_id": null,
     "last_active_at": null

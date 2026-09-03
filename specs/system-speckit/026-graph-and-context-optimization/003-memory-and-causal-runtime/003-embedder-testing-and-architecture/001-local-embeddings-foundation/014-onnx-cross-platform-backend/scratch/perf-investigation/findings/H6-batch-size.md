@@ -1,3 +1,7 @@
+---
+title: "H6 - Batch Size Sensitivity"
+trigger_phrases: []
+---
 # H6 - Batch Size Sensitivity
 
 Verdict: REFUTED

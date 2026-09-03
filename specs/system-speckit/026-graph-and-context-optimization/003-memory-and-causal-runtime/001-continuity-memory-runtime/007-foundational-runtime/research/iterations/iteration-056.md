@@ -1,3 +1,7 @@
+---
+title: "Iteration 056 — Compound-hypothesis testing (H-56-1..5)"
+trigger_phrases: []
+---
 # Iteration 056 — Compound-hypothesis testing (H-56-1..5)
 
 **Segment**: 2 | **Dimension**: blast-radius + root-cause | **Dispatched**: Opus 4.7 via Task tool

@@ -1,3 +1,7 @@
+---
+title: "Knowledge Graph Workflows — paste-ready"
+trigger_phrases: []
+---
 # Knowledge Graph Workflows — paste-ready
 
 Nine blocks, one per task. Block 1 is the anchor: it hands the whole course to a model and

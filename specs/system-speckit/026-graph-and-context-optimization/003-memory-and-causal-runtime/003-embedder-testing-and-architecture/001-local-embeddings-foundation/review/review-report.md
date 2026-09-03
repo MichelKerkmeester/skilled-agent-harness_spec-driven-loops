@@ -1,3 +1,7 @@
+---
+title: "014 Deep Review Report"
+trigger_phrases: []
+---
 # 014 Deep Review Report
 
 **Reviewer:** cli-codex gpt-5.5 high (normal speed)

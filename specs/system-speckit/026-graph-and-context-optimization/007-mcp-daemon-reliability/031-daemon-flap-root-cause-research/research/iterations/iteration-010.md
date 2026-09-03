@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — completeness critic + final convergence"
+trigger_phrases: []
+---
 # Iteration 010 — completeness critic + final convergence
 
 - **Wave:** 5 (of 5) · **Executor:** `openai/gpt-5.5-fast --variant xhigh` (read-only, exit 0) · **Seat:** b6boz9l7t · **Date:** 2026-06-14

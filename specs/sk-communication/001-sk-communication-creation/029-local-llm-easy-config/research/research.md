@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis: Local LLM Easy Config (cli-cursor-grok-46-high lineage)"
+trigger_phrases: []
+---
 > **Accepted deliverable provenance (2026-08-14):** This is the operator-accepted single-model synthesis from GROK 4.6 via cli-cursor: 5 iterations, stopped by the max-iterations policy. The GLM 5.2 MAX leg via cli-devin failed without output, and both lineages tripped a write-containment revert over `.pi/settings.json`. The operator accepted this synthesis as the phase deliverable and deliberately did not pursue another cross-check.
 
 # Deep Research Synthesis: Local LLM Easy Config (cli-cursor-grok-46-high lineage)

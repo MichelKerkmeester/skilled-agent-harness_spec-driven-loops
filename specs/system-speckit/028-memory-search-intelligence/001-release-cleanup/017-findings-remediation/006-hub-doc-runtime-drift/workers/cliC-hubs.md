@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 [0m
 > build · gpt-5.6-luna-fast
 [0m

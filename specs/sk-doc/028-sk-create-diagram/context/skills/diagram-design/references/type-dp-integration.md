@@ -1,3 +1,7 @@
+---
+title: "DP integration"
+trigger_phrases: []
+---
 # DP integration
 
 **Best for:** the integration topology of a data platform — which source systems plug in, which consumer surfaces plug out, and which protocol each one speaks. Hub-and-spoke layout wrapped in an explicit **Data platform** layer; no time/phase axis.

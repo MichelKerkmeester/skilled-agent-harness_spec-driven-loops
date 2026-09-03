@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: System-spec-kit integration for code-quality"
+trigger_phrases: []
+---
 # Iteration 2: System-spec-kit integration for code-quality
 
 ## Focus

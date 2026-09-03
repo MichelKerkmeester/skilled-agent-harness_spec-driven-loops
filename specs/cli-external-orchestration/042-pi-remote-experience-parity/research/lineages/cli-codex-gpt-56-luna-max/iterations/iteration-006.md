@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Exact-action phone approval"
+trigger_phrases: []
+---
 # Iteration 006 — Exact-action phone approval
 
 ## Question

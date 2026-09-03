@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - RQ-A1 Coco-index intent steering + query expansion"
+trigger_phrases: []
+---
 # Iteration 001 - RQ-A1 Coco-index intent steering + query expansion
 
 ## Focus

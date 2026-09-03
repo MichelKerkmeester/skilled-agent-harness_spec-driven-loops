@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — KQ5: the most-automated per-surface layer + the timing-tier topology"
+trigger_phrases: []
+---
 # Iteration 005 — KQ5: the most-automated per-surface layer + the timing-tier topology
 
 **Focus:** Ground the host substrate for every prior finding, reconcile against what already ships, and name the single most-automated out-of-the-box layer per surface.

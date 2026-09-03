@@ -1,3 +1,7 @@
+---
+title: "Deep Review Resource Map"
+trigger_phrases: []
+---
 # Deep Review Resource Map
 
 Resource-map coverage gate skipped: the target spec folder did not contain `resource-map.md` at init.

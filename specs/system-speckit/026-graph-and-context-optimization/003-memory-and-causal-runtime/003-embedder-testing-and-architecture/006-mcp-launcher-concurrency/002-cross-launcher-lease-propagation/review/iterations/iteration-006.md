@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I have completed iteration 6 of the deep review, focusing on the security dimension. The iteration file has been written to:
 
 `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/002-cross-launcher-lease-propagation/review/iterations/iteration-006.md`

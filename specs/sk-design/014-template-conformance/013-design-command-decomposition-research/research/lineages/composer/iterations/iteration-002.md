@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Non-co-occurring Intents as Seam Candidates"
+trigger_phrases: []
+---
 # Iteration 2: Non-co-occurring Intents as Seam Candidates
 
 ## Focus

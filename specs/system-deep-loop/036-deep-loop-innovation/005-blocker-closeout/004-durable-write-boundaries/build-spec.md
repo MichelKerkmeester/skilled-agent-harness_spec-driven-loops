@@ -1,3 +1,7 @@
+---
+title: "024 Durable-Write-Boundaries — Grounded Build Specification"
+trigger_phrases: []
+---
 # 024 Durable-Write-Boundaries — Grounded Build Specification
 
 > **⚠ PARTIALLY SUPERSEDED — read `t001-disposition.md` FIRST; it is authoritative.** The T001

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 — Voyage/external API caching strategies (disk vs RAM cache, size-bounded, evict on idle)"
+trigger_phrases: []
+---
 # Iteration 6 — Voyage/external API caching strategies (disk vs RAM cache, size-bounded, evict on idle)
 
 ## Summary

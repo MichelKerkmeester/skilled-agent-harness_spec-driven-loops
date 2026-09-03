@@ -1,3 +1,7 @@
+---
+title: "Dead-Code & Architecture Audit — `.opencode/commands/` + `.opencode/agents/`"
+trigger_phrases: []
+---
 # Dead-Code & Architecture Audit — `.opencode/commands/` + `.opencode/agents/`
 
 Read-only pass. Scope: command tree, agent tree, their `assets/`, `scripts/`, and compiled contracts. Every finding below was verified against disk; commands/README.txt, create/README.txt, agents/README.txt, compiled/README.md, legacy/README.md, doctor/scripts/README.md, commands/scripts/README.md, and `_routes.yaml` were used as the documented-layout authorities. `validate-command-references.cjs --self-test` passes clean (0 unresolved across 67 assets); the drift findings below are documentation-vs-artifact, not broken references.

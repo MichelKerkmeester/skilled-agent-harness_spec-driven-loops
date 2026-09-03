@@ -1,3 +1,7 @@
+---
+title: "BM25 FTS5 RAG Fusion Investigation"
+trigger_phrases: []
+---
 # BM25 FTS5 RAG Fusion Investigation
 
 <!-- SPECKIT_TEMPLATE_SOURCE: research | v1.0 -->

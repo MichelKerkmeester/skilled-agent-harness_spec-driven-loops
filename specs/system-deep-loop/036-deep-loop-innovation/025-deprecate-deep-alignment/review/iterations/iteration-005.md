@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 005 — Traceability (Mechanical Drift Confirmation)"
+trigger_phrases: []
+---
 # Deep Review Iteration 005 — Traceability (Mechanical Drift Confirmation)
 
 ## Dimension

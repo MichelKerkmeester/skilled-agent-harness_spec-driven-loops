@@ -1,3 +1,7 @@
+---
+title: "Review Delta Resource Map"
+trigger_phrases: []
+---
 # Review Delta Resource Map
 
 ## Source

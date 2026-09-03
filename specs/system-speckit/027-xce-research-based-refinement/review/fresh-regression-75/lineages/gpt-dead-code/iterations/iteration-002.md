@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-dead-code — iteration 2 (global #55)"
+trigger_phrases: []
+---
 # Seat gpt-dead-code — iteration 2 (global #55)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: gpt-dead-code

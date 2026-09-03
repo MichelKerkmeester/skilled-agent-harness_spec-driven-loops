@@ -1,3 +1,7 @@
+---
+title: "Iteration 20 (Round L): Reverse transfers (027 → 028)"
+trigger_phrases: []
+---
 # Iteration 20 (Round L): Reverse transfers (027 → 028)
 
 ## Focus

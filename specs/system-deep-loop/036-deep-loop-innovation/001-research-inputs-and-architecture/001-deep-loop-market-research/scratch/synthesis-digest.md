@@ -1,3 +1,7 @@
+---
+title: "Synthesis Digest (authoring aid)"
+trigger_phrases: []
+---
 # Synthesis Digest (authoring aid)
 
 Totals: 216 repos, 222 insights, 134 contradictions.

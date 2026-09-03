@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - 027 Launch-State"
+trigger_phrases: []
+---
 # Deep Review Report - 027 Launch-State
 
 ## Executive Summary

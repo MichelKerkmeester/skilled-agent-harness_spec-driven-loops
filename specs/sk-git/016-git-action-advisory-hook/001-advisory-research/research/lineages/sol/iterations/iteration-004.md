@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Worktree, Remote, and Account Coordination"
+trigger_phrases: []
+---
 # Iteration 4: Worktree, Remote, and Account Coordination
 
 ## Canonical Route Proof

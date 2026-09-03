@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Feature Catalog and README Coverage for Post-016 Memory-Search Repairs"
+trigger_phrases: []
+---
 # Iteration 8: Feature Catalog and README Coverage for Post-016 Memory-Search Repairs
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: Fan-out and Lineage as Graph Branches"
+trigger_phrases: []
+---
 # Iteration 14: Fan-out and Lineage as Graph Branches
 
 ## Focus

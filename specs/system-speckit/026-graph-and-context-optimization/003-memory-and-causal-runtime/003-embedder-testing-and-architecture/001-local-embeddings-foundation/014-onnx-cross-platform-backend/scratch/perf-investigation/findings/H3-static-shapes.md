@@ -1,3 +1,7 @@
+---
+title: "H3 - Static vs Dynamic Input Shapes"
+trigger_phrases: []
+---
 # H3 - Static vs Dynamic Input Shapes
 
 Verdict: CONFIRMED

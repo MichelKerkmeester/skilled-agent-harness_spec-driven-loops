@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Source-defined settings, persistence, and command surface"
+trigger_phrases: []
+---
 # Iteration 1: Source-defined settings, persistence, and command surface
 
 ## Focus

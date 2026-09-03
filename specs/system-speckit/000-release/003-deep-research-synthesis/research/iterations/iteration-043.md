@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Agent template aligned with current production patterns
 The sk-doc agent template was rebuilt to match what the fleet's production agents actually do. The stale 692-line template grew to 765 lines carrying current patterns drawn from the live context, deep-review, and multi-AI-council agents, so anything you scaffold from it now inherits today's working design instead of retired ones. The old standalone related-resources section, a retired documentation-agent reference, and a standalone intro-paragraph section were removed. The production examples table now lists the current ten-agent fleet, and the template documents a 600-line cap for production agents while staying under its own 900-line ceiling. BINDING and REFUSE remain canonical, grep-checkable contracts so newly scaffolded agents stay consistent with the fleet. Internal change; existing agents are unaffected.
 

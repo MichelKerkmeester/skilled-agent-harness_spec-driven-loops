@@ -1,3 +1,7 @@
+---
+title: "Resource map — grok46-xhigh nested-goal lineage"
+trigger_phrases: []
+---
 # Resource map — grok46-xhigh nested-goal lineage
 
 Emitted from this lineage's iteration deltas. Spec-folder `resource-map.md` was absent at init (`resource_map_present: false`). This file is lineage-local.

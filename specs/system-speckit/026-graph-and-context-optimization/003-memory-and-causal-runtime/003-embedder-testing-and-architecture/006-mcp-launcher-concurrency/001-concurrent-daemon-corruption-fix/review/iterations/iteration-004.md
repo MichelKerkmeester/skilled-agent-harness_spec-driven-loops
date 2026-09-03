@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Completed iteration 4 for the maintainability dimension. Found 1 P1 issue (hardcoded SQLite error code list in WAL fallback) and 3 P2 issues (DB-dir override logic duplication, undocumented hard-coded timeout constants, custom env var parsing). All findings include file:line citations and suggested fixes. The verdict is CONDITIONAL due to the P1 finding.
 ide logic duplication, undocumented hard-coded timeout constants, custom env var parsing instead of standard library). These are distinct from prior iteration findings which focused on correctness, security, and traceability.
 

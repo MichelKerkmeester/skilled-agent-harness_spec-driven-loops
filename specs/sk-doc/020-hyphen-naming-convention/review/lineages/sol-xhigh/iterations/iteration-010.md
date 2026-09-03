@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: All dimensions - adversarial stabilization"
+trigger_phrases: []
+---
 # Iteration 10: All dimensions - adversarial stabilization
 
 ## Dispatcher

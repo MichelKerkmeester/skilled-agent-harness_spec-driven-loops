@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Database Writer Lock and Silent Scan"
+trigger_phrases: []
+---
 # Iteration 4: Database Writer Lock and Silent Scan
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Context Report: sk-prompt README rewrite"
+trigger_phrases: []
+---
 # Context Report: sk-prompt README rewrite
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only). Both iterations converge with cited file:line evidence on the seven frameworks, the DEPTH methodology, the CLEAR rubric and the invocation modes. Both note the same drift (mode-count inconsistency, the registry holding only five of seven frameworks).

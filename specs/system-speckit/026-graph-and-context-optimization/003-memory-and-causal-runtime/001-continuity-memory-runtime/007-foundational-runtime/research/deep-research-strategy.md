@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy -- 016 Foundational Runtime Deep Review"
+trigger_phrases: []
+---
 # Deep Research Strategy -- 016 Foundational Runtime Deep Review
 
 > **Charter:** `016-foundational-runtime/001-initial-research/scratch/deep-research-batch-prompt.md` (5-domain batch-prompt, 50-iteration budget)

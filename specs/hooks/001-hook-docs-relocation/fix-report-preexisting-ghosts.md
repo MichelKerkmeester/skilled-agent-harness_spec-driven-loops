@@ -1,3 +1,7 @@
+---
+title: "Fix Report — Pre-existing Ghost Paths"
+trigger_phrases: []
+---
 # Fix Report — Pre-existing Ghost Paths
 
 ## Edits

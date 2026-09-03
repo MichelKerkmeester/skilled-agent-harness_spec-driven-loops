@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report - CocoIndex Dedup From Shared Sidecar"
+trigger_phrases: []
+---
 # Deep Review Report - CocoIndex Dedup From Shared Sidecar
 
 ## 1. Executive Summary

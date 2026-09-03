@@ -1,1 +1,4 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY: iteration 3 of 7, focus traceability. Active findings P1:2. Execute playbook/catalog link checks, root count gate replay, and scenario 136 contract comparison. Output iteration-003.md and JSONL delta.

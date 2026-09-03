@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Reproducible Baseline and Typed-Pair Scoring Boundary"
+trigger_phrases: []
+---
 # Iteration 3: Reproducible Baseline and Typed-Pair Scoring Boundary
 
 ## Route Proof

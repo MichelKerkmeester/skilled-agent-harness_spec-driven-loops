@@ -1,3 +1,7 @@
+---
+title: "Security Review — Directive-Lifecycle Delivery (deepseek-v4-flash)"
+trigger_phrases: []
+---
 # Security Review — Directive-Lifecycle Delivery (deepseek-v4-flash)
 
 ## Scope and files audited

@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — sk-doc routing foundation diagnosis and optimization"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

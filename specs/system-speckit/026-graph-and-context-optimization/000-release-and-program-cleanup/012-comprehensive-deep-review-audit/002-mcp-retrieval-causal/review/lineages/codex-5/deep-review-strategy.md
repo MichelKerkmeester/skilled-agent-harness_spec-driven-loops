@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - MCP Retrieval + Causal Review Slice"
+trigger_phrases: []
+---
 # Deep Review Strategy - MCP Retrieval + Causal Review Slice
 
 ## 1. OVERVIEW

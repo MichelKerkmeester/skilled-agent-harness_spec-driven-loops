@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The operator asked to fully deprecate the `deep-alignment` deep-loop mode — command, agent, code, and README references",
     "created_at": "2026-08-27T10:52:03.912Z",
-    "last_save_at": "2026-08-30T15:39:22.374Z",
+    "last_save_at": "2026-09-03T22:22:17.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5df5fc37be7bc67169a2c732ae02ecff86ee15203bc1bc4c7c3d15aabceb413a",
+    "source_fingerprint": "sha256:21f2db2070701351e15608463664a9be11ab8b52a1bfff08791a1ad3d0407733",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dd5b51d54f2ce3b5f5743ae42be236ea3633844739818a19520b7d3da10c01db",
-      "plan.md": "32b66a424dbd04f1577190bfe662b77cf7c63f06e60cdc5ce9e1e610682eee95",
-      "tasks.md": "f04920fb67097d9807a7feea323399c02fb40de74870962f4dae4d2920493802",
-      "implementation-summary.md": "3894d7ee8c5839478ebf3505e6fcb40e4afa03511bee12b9b54d043c11789589"
+      "plan.md": "cdfd02137ee30271bad97ec3cd34b8b284a56afc05f9e6dd869179c4746054f2",
+      "tasks.md": "a3d197e639522597187ffa404d853e55d3a15ec9ce767192c4f7929d0888a51a",
+      "implementation-summary.md": "1f866f5b601b9fd2b908f59427dc31ae1e213c31ef1fdb4a188055430e56de20"
     },
     "last_active_child_id": null,
     "last_active_at": null

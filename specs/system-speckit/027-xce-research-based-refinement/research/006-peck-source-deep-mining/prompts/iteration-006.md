@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 006 — revim-* agent/prompt benchmark harness"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 006 — revim-* agent/prompt benchmark harness

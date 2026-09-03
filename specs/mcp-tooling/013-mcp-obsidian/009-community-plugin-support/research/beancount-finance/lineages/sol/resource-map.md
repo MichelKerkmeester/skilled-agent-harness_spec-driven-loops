@@ -1,3 +1,7 @@
+---
+title: "Resource Map — Beancount Ledger 2.3.1"
+trigger_phrases: []
+---
 # Resource Map — Beancount Ledger 2.3.1
 
 ## Plugin identity and state

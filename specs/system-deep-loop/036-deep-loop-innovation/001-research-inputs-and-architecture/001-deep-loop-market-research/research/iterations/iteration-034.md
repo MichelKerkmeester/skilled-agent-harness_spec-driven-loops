@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 34 | model sol (gpt-5.6-sol) | angle: Optimal stopping theory for iterative budgets | 2026-07-15T00:00:24.582Z -->
 
 `maxIterations` should remain a safety cap, not the stopping policy. The runtime should choose among `stop-success`, `stop-futility`, and `continue(branch)` by comparing each branch’s optimistic expected quality gain against its incremental cost. A global shadow price can be adjusted to meet the total budget; BoTorch already models information-gain-per-cost, while recent constrained-allocation work derives this Lagrangian allocation structure explicitly. ([BoTorch MFKG](https://botorch.org/docs/tutorials/multi_fidelity_bo/), [adaptive compute allocation](https://arxiv.org/abs/2604.14853)) Maps to `runtime/budget-cost`, `runtime/convergence`, and `runtime/fan-out-fan-in`.

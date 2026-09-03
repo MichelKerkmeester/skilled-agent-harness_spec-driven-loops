@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Validation Corpus and Acceptance Metrics"
+trigger_phrases: []
+---
 # Iteration 8: Validation Corpus and Acceptance Metrics
 
 ## Focus

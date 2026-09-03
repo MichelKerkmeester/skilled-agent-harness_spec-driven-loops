@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: Feature Catalog + Playbook Verification"
+trigger_phrases: []
+---
 # Deep Review Report: Feature Catalog + Playbook Verification
 
 ## Executive Summary

@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 003 — other sk-* skills + deep-* skills"
+trigger_phrases: []
+---
 # Deep-Review Iteration 003 — other sk-* skills + deep-* skills
 
 **Executor:** DeepSeek-v4-pro (cli-opencode, --pure, read-only)

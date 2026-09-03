@@ -1,3 +1,7 @@
+---
+title: "Context Report: cli-claude-code README rewrite"
+trigger_phrases: []
+---
 # Context Report: cli-claude-code README rewrite
 
 Deep-context gather for the `cli-claude-code` skill README. Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only seats) plus host verification against the real `SKILL.md`. Converged: both models agree on purpose, modes and invocation. Iteration 2 caught one stale fact in the current README.

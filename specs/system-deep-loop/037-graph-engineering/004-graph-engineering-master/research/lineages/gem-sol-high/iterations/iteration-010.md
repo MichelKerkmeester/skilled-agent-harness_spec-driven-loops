@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: P2 Four-Valued Belief Boundary"
+trigger_phrases: []
+---
 # Iteration 10: P2 Four-Valued Belief Boundary
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Screenshot-Derived Style Intelligence"
+trigger_phrases: []
+---
 # Iteration 6: Screenshot-Derived Style Intelligence
 
 ## Focus

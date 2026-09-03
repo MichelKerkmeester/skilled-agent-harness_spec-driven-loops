@@ -1,3 +1,7 @@
+---
+title: "Graphene · 02 · The belief layer"
+trigger_phrases: []
+---
 # Graphene · 02 · The belief layer
 
 Belief nodes share the log, the edges, the fold, and cascade with work nodes.

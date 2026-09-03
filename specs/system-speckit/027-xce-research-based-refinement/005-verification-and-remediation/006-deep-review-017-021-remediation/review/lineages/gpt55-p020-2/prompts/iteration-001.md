@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 BINDING: target=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding
 BINDING: maxIterations=1
 BINDING: convergence=0.10

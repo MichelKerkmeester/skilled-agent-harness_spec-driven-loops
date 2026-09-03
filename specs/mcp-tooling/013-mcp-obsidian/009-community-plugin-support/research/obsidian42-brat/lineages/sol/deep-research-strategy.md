@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — obsidian42-BRAT"
+trigger_phrases: []
+---
 # Deep Research Strategy — obsidian42-BRAT
 
 ## 1. Overview

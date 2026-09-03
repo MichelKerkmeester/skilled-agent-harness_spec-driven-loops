@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Code band pt1: code-graph MCP + memory + embedders"
+trigger_phrases: []
+---
 # Iteration 003 — Code band pt1: code-graph MCP + memory + embedders
 
 - **Focus (shared):** slices 12–14 — `system-code-graph/mcp_server`, `mcp_server/lib/memory`, `mcp_server/lib/embedders` + `shared/embeddings.ts`

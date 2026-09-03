@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - Q2 CocoIndex mirror-folder duplicates"
+trigger_phrases: []
+---
 # Iteration 003 - Q2 CocoIndex mirror-folder duplicates
 
 ## Focus

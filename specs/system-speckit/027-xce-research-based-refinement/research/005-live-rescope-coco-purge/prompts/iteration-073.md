@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 073 — 026-status drift + stale cross-ref sweep in 027"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 073 — 026-status drift + stale cross-ref sweep in 027

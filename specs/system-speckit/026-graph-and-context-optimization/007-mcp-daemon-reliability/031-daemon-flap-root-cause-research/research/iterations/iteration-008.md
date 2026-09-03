@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — adversarial red-team of the layered fix"
+trigger_phrases: []
+---
 # Iteration 008 — adversarial red-team of the layered fix
 
 - **Wave:** 4 (of 5) · **Executor:** `openai/gpt-5.5-fast --variant xhigh` (read-only, exit 0) · **Seat:** bu7xfv4o2 · **Date:** 2026-06-14

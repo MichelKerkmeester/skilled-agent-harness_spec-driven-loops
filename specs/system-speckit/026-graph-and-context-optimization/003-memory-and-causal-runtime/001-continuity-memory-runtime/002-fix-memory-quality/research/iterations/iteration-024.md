@@ -1,3 +1,7 @@
+---
+title: "Iteration 24: Observability Hooks for Post-fix Pipeline (Q21)"
+trigger_phrases: []
+---
 # Iteration 24: Observability Hooks for Post-fix Pipeline (Q21)
 
 ## Focus

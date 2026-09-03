@@ -1,6 +1,7 @@
 ---
 title: Deep Review Dashboard
 description: Auto-generated reducer view over the review packet.
+trigger_phrases: []
 ---
 
 # Deep Review Dashboard - Session Overview

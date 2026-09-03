@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 — SQLite pragma tuning (mmap_size, cache_size, wal_autocheckpoint, page_size) for memory vs perf trade-off"
+trigger_phrases: []
+---
 # Iteration 4 — SQLite pragma tuning (mmap_size, cache_size, wal_autocheckpoint, page_size) for memory vs perf trade-off
 
 ## Summary

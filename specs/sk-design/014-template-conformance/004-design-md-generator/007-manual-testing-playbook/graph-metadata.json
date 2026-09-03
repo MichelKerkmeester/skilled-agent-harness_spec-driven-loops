@@ -185,7 +185,7 @@
     ],
     "causal_summary": "`manual-testing-playbook/` is the largest folder in `design-md-generator`: a root `manual-testing-playbook.md` plus 12 subdirectories (`accessibility/`, `authoring-boundary/`, `cluster/`, `dark-mode/`, `detectors/`, `escalation/`, `extract/`, `fidelity/`, `guided-run/`, `interaction/`, `procedure-card-contract/` (3 files), `report/`, `setup/`, `source-of-truth/`, `study/`, `validate/`) holding 17 further files, 18 total",
     "created_at": "2026-07-27T15:10:02.827Z",
-    "last_save_at": "2026-08-30T15:39:13.180Z",
+    "last_save_at": "2026-09-03T22:18:26.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e8cb5fbb58262663ed1bdeee6d2c65302867dd5e69225881925063d934a32b3",
+    "source_fingerprint": "sha256:5d137ee4a89870ea34b0fe94f7e6a5d430e085b8a310b8cfd685241e3567f277",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "22ed54ec9be6a2d554c2592dbcd4b9262f87902113323bc44ef52ff1efb72a3c",
-      "plan.md": "9d713ff91d32f13b489b23c842e25d73d247b269f7bf6597d3d8ed5027def106",
-      "tasks.md": "c7318c4f895b0771a4c685e5f011d807992209f0821bfd856dfaf61334b8d4a3",
-      "implementation-summary.md": "1795bcc2bce2a16ae057455a8d91d7bc3286684a04b2d699c80f4c99b1f464ee"
+      "plan.md": "9294454978fdfabb814902847c2b70ab47d83c30ea3fdd80be11ad3aa6bd0f95",
+      "tasks.md": "52c251471eb8e1fa401cbc54b55c5f9c4e7441dc965a70017ec9f43974497764",
+      "implementation-summary.md": "ea2125699171c52f96976b3f8b982a3ec9d3fe8b8375e6c28435b63c7ea73971"
     },
     "last_active_child_id": null,
     "last_active_at": null

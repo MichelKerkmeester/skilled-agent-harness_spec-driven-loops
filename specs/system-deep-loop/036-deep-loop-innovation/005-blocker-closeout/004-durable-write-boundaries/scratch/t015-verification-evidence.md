@@ -1,3 +1,7 @@
+---
+title: "T015 verification evidence (orchestrator-run, worktree 016, base `409e2346c0a`)"
+trigger_phrases: []
+---
 # T015 verification evidence (orchestrator-run, worktree 016, base `409e2346c0a`)
 
 ## tsc --noEmit

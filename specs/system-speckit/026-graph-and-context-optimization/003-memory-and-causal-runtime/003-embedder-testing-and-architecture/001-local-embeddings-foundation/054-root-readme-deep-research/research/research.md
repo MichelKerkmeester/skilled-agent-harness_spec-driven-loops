@@ -1,3 +1,7 @@
+---
+title: "Root README Deep-Research — Consolidated Findings (056)"
+trigger_phrases: []
+---
 # Root README Deep-Research — Consolidated Findings (056)
 
 ## Summary

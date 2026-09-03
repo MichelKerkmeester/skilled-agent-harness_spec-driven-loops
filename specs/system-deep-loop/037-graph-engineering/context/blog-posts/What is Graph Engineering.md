@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source: https://theaioperator.io/p/what-is-graph-engineering-a-field
 
 What Is Graph Engineering? A Field Guide for Builders

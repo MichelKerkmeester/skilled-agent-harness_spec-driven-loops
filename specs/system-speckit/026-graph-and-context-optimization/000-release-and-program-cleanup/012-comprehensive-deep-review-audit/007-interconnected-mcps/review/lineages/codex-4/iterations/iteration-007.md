@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 - Final stabilization: legal-stop audit and synthesis readiness"
+trigger_phrases: []
+---
 # Iteration 7 - Final stabilization: legal-stop audit and synthesis readiness
 
 Session: fanout-codex-4-1780596001496-dj6z7c

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — p017c002-opus (auto-generated)"
+trigger_phrases: []
+---
 # Deep Review Dashboard — p017c002-opus (auto-generated)
 
 ## Status

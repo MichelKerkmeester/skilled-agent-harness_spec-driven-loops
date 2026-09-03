@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: No-Wrong-Door / Handoff Routing + Routing as Dialogue"
+trigger_phrases: []
+---
 # Iteration 3: No-Wrong-Door / Handoff Routing + Routing as Dialogue
 
 **Lineage:** glm-oob (cli-opencode / GLM-5.2)

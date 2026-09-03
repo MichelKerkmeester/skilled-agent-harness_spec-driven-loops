@@ -1,3 +1,7 @@
+---
+title: "Iteration 02 — Concrete Implementation Design (gpt-5.5-fast xhigh)"
+trigger_phrases: []
+---
 # Iteration 02 — Concrete Implementation Design (gpt-5.5-fast xhigh)
 
 _Read-only deep-research pass. Source: create.sh / is-phase-parent / validate.sh / validator-registry evidence._

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - Session Overview (composer lineage)"
+trigger_phrases: []
+---
 # Deep Research Dashboard - Session Overview (composer lineage)
 
 ## 2. STATUS

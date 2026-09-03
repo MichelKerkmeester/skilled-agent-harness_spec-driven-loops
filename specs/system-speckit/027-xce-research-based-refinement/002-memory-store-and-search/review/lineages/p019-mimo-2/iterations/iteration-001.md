@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Correctness + Traceability"
+trigger_phrases: []
+---
 # Iteration 1: Correctness + Traceability
 
 **Focus Dimension:** D1: Correctness (with traceability cross-checks)

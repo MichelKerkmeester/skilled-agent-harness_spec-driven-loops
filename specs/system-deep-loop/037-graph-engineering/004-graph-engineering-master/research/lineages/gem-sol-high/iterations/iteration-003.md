@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: P1 Scope, Representation, and Modeling"
+trigger_phrases: []
+---
 # Iteration 3: P1 Scope, Representation, and Modeling
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 26 (Round M): Forget-allowlist feasibility + applicability"
+trigger_phrases: []
+---
 # Iteration 26 (Round M): Forget-allowlist feasibility + applicability
 
 ## Focus

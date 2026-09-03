@@ -1,3 +1,7 @@
+---
+title: "Goal: pi-fast-mode-w-subagent-support"
+trigger_phrases: []
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: pi-fast-mode-w-subagent-support
 

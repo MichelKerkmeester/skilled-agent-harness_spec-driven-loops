@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Residency and Scale Baseline"
+trigger_phrases: []
+---
 # Iteration 1: Residency and Scale Baseline
 
 ## Focus

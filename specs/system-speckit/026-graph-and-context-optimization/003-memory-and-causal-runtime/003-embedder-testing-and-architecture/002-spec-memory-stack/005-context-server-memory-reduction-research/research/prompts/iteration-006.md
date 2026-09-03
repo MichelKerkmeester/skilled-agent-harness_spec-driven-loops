@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 6 of 10"
+trigger_phrases: []
+---
 # Deep-Research Iteration 6 of 10
 
 You are cli-codex (gpt-5.5, xhigh reasoning, standard tier). Read-only research investigation. Output one iteration file at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/005-context-server-memory-reduction-research/research/iterations/iteration-006.md`.

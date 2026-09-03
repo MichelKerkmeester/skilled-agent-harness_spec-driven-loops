@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Bug-surface completeness (Q1 + Q2) and stale-daemon trigger (Q4 light)"
+trigger_phrases: []
+---
 # Iteration 1: Bug-surface completeness (Q1 + Q2) and stale-daemon trigger (Q4 light)
 
 ## Focus

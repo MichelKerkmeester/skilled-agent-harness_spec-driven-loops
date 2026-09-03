@@ -1,3 +1,7 @@
+---
+title: "sk-code Workflow Sub-skill Research"
+trigger_phrases: []
+---
 # sk-code Workflow Sub-skill Research
 
 ## Iteration 1 Synthesis

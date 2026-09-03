@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 068 — 003 incremental-index vs shipped self-maintaining memory_index_scan"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 068 — 003 incremental-index vs shipped self-maintaining memory_index_scan

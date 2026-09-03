@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Capstone Closure and Next Evidence"
+trigger_phrases: []
+---
 # Iteration 010 — Capstone Closure and Next Evidence
 
 ## Focus

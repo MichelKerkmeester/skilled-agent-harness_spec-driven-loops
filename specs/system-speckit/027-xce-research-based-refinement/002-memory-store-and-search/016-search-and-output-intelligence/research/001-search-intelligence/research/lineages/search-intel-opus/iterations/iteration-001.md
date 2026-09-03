@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Generic-Query Recall — why \"weak\" despite HyDE + multi-query ON"
+trigger_phrases: []
+---
 # Iteration 1: Generic-Query Recall — why "weak" despite HyDE + multi-query ON
 
 ## Focus

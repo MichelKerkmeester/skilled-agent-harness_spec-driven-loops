@@ -1,3 +1,7 @@
+---
+title: "Import from Mermaid"
+trigger_phrases: []
+---
 # Import from Mermaid
 
 Turn Mermaid source into an editorial-quality diagram at the format, size, and detail level the destination needs.

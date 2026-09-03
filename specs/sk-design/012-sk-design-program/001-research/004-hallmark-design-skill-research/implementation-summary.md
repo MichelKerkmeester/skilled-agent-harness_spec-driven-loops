@@ -21,6 +21,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Can we reuse Hallmark for sk-design? Clean-room ADAPT of surgical heuristics into existing modes; MIT allows copy with notice; external assets excluded; no new modes/commands."
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

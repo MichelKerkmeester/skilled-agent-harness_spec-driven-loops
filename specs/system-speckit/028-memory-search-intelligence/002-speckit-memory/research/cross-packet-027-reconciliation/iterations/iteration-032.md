@@ -1,3 +1,7 @@
+---
+title: "Iteration 32 (Round N adversarial): skip-closed promoter-fork — DOWNGRADED to theoretical"
+trigger_phrases: []
+---
 # Iteration 32 (Round N adversarial): skip-closed promoter-fork — DOWNGRADED to theoretical
 
 ## Focus

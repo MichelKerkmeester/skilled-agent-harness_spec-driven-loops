@@ -1,3 +1,7 @@
+---
+title: "mcp-code-mode Fact-Verification Report"
+trigger_phrases: []
+---
 # mcp-code-mode Fact-Verification Report
 
 ## 1. EXACT INVOCATION

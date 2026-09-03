@@ -1,3 +1,7 @@
+---
+title: "Idea 3 — Typed No-Destination Outcomes"
+trigger_phrases: []
+---
 # Idea 3 — Typed No-Destination Outcomes
 
 > **"No clear route" isn't one thing. Stop collapsing it into a silent `null` or a guessed default — return a typed reason the system can act on.**

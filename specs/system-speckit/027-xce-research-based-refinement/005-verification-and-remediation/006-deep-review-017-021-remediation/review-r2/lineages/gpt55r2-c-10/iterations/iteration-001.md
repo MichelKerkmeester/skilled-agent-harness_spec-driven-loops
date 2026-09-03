@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: MCP Server Infrastructure Correctness and Security"
+trigger_phrases: []
+---
 # Iteration 1: MCP Server Infrastructure Correctness and Security
 
 ## Focus

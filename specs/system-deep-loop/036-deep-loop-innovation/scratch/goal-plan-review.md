@@ -1,3 +1,7 @@
+---
+title: "Independent adversarial review — 036 remaining execution plan"
+trigger_phrases: []
+---
 # Independent adversarial review — 036 remaining execution plan
 
 **Verdict:** REQUEST_CHANGES. Do not execute the first authority flip, retire a legacy writer, or treat the current checkout as a merge candidate until the P0 gates below are satisfied.

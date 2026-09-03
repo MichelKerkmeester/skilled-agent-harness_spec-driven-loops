@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 002"
+trigger_phrases: []
+---
 # Deep Review Iteration 002
 
 Resolved route: mode=review target_agent=deep-review

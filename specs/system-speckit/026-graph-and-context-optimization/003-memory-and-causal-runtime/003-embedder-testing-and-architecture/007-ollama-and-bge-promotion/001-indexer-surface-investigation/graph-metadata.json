@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Map each retrieval/dispatch system (CocoIndex, mk-spec-memory, code-graph, AI council, deep-research, deep-review, sk-doc, skill-advisor) to its indexer + content type (code / text / both / none). Read-only research packet producing a single research.md table + per-system evidence.",
     "created_at": "2026-05-18T16:52:17.344Z",
-    "last_save_at": "2026-08-30T15:39:31.029Z",
+    "last_save_at": "2026-09-03T22:22:49.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:29d0ca205ad63795e32109c2e36d4ee8e0048bb83ac6edda8b7c0cfd17bf8a97",
+    "source_fingerprint": "sha256:f00efeb646b5553e12341035b94b342a10f4de03787f46ba5a9adbe17093630e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b2a8dcacef20116df1d0c1655304c88a5fa4bff5f0d37666896100412938a0e",
       "plan.md": "af00bdea19c302b26cf9ddcd82093494e93f5f54bbce58e733d7565863d65c31",
       "tasks.md": "9f67e042e4374e70c69bad0304cdcc4011d8a592a3180ac7ff7e57c1a943a592",
       "implementation-summary.md": "c2d6c67df33ff55a58127074a377fc60636028f98a26235db5bb1ef4d99ebb13",
-      "research.md": "3781e807fb30c88174a0f0997448ee2ab04f2cfa856859e2311ed76c549e98fc"
+      "research.md": "cd7b373f3d55d6ff3691ad766363b690f1c078736d3bf5da43792046af5b448e"
     },
     "last_active_child_id": null,
     "last_active_at": null

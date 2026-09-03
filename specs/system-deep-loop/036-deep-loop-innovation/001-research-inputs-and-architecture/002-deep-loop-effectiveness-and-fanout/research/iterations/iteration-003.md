@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 3 | SOL xhigh | thread: fan-out-automation | angle: Cross-iteration shared state for parallel research leaves | 2026-07-15T04:30:42.346Z -->
 
 The right design is not one globally writable novelty file. Split the problem into monotone observation and non-monotone adjudication.

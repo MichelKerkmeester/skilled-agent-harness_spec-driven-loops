@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — entity / relationship / graph modeling"
+trigger_phrases: []
+---
 # Iteration 006 — entity / relationship / graph modeling
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.78 · **tokens:** 117657 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

@@ -10,6 +10,7 @@ _memory:
     last_updated_by: "claude"
     recent_action: "Authored the rollout-mode phased plan"
     next_safe_action: "Phase 1: determine the intended default mode"
+trigger_phrases: []
 ---
 # Implementation Plan: Command Rollout-Mode Resolution
 

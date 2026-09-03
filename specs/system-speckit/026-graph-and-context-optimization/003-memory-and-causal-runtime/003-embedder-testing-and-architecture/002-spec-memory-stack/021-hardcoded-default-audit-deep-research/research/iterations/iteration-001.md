@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Broad Repo-Wide Grep Sweep"
+trigger_phrases: []
+---
 # Iteration 001: Broad Repo-Wide Grep Sweep
 
 **Date:** 2026-05-23T11:45:00Z

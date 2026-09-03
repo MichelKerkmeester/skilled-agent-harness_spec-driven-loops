@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Q2 / T4: decide severity, document scope, and false-positive controls for broadening the current-state-only content rule beyond phase parents. Opportunistically captured one Q3 signal about stale suppressions / rule-review diagnostics.

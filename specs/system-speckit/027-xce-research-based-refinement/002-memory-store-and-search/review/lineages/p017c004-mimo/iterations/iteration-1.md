@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now I have a thorough understanding of the implementation. Let me create all init artifacts and run the iteration.Now running the Correctness iteration. Let me perform the review actions.Now writing the iteration. I found a P1 (scaffold docs block traceability) and several P2 advisories.Now updating state files, strategy, dashboard, and findings registry.Now writing the synthesis — `review-report.md`.All artifacts verified. Output directory contains:
 
 ```

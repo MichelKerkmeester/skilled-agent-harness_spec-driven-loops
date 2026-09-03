@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Phase 1 implementation pre-flight and marker-count validation for backward compatibility.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Structural Layout Safety + Path-Mechanism Audit"
+trigger_phrases: []
+---
 # Iteration 001 — Structural Layout Safety + Path-Mechanism Audit
 
 **Lineage:** glm52-3 | **Iteration:** 1 of 5 | **Focus:** Q1 (structural layout) + Q2 mechanism (absolute-vs-relative path coupling)

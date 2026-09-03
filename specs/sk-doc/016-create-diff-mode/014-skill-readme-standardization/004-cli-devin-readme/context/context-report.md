@@ -1,3 +1,7 @@
+---
+title: "Context Report: cli-devin README rewrite"
+trigger_phrases: []
+---
 # Context Report: cli-devin README rewrite
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only) plus host verification against `.opencode/skills/cli-devin/SKILL.md` (v1.0.13.0). All four seats converge with the host read and flagged the same stale facts.

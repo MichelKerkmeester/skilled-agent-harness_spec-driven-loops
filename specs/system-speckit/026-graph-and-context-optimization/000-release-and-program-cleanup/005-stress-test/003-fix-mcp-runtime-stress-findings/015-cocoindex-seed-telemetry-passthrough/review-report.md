@@ -1,3 +1,7 @@
+---
+title: "Review Report: Packet 015 — CocoIndex Seed Telemetry Passthrough"
+trigger_phrases: []
+---
 # Review Report: Packet 015 — CocoIndex Seed Telemetry Passthrough
 
 **Reviewer:** GitHub Copilot CLI (model: `gpt-5.5`, effort: `high`)

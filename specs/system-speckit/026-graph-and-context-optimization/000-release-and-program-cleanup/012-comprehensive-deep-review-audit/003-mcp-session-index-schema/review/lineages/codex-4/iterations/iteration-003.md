@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - Maintainability and Cohesion"
+trigger_phrases: []
+---
 # Iteration 003 - Maintainability and Cohesion
 
 ## Focus

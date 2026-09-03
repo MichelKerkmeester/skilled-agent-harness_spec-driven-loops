@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: 001-template-level-consolidation-research"
+trigger_phrases: []
+---
 # Deep Review Strategy: 001-template-level-consolidation-research
 
 ## Review Target

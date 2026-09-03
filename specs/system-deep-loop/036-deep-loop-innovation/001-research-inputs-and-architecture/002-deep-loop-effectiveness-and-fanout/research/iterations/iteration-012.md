@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 12 | SOL xhigh | thread: recommendation-deep-dive | angle: R7 incremental stream-fold gauges + immutable observability | 2026-07-15T05:12:13.785Z -->
 
 R7 should become a projection runtime, not another dashboard pass.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Indicator UX under custom footers — setFooter replacement vs widget placement; status fallback; recommendation"
+trigger_phrases: []
+---
 # Iteration 8: Indicator UX under custom footers — setFooter replacement vs widget placement; status fallback; recommendation
 
 ## Focus

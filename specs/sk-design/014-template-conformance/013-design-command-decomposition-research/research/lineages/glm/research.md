@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Should /interface:design Be Split?"
+trigger_phrases: []
+---
 # Research Synthesis: Should /interface:design Be Split?
 
 ## Lineage

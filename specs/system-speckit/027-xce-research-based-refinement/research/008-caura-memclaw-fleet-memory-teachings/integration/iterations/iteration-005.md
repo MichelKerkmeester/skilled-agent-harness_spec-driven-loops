@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — automation-first design + integration synthesis"
+trigger_phrases: []
+---
 # Iteration 005 — automation-first design + integration synthesis
 
 **Status:** insight · **Findings:** 9 · **newInfoRatio:** 0.78 · **tokens:** 158444 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

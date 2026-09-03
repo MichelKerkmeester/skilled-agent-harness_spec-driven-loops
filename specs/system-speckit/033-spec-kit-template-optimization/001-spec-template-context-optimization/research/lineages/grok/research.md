@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Spec Templates & Context Reducer Concepts"
+trigger_phrases: []
+---
 # Research Synthesis: Spec Templates & Context Reducer Concepts
 
 **Lineage:** grok (`cli-cursor` / `cursor-grok-4.5-high`)  

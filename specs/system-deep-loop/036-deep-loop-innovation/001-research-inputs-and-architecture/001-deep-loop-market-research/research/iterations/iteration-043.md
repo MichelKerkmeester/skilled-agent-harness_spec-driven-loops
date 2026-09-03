@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 43 | model glm (zai-coding-plan/glm-5.2) | angle: Alignment / critique / safety loops | 2026-07-15T00:41:11.415Z -->
 
 I'll research alignment/critique/safety loops. Let me search for real repos in this specific niche.

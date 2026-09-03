@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 009 — Correctness Adversarial Parity/Performance"
+trigger_phrases: []
+---
 # Deep Review Iteration 009 — Correctness Adversarial Parity/Performance
 
 ## Dispatcher

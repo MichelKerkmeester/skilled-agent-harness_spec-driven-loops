@@ -1,3 +1,7 @@
+---
+title: "Fixture Audit Evidence"
+trigger_phrases: []
+---
 # Fixture Audit Evidence
 
 | Probe | Status | Vec Count | FTS Count | Expected Path | Exclusion Match |

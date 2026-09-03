@@ -1,3 +1,7 @@
+---
+title: "Phase 4 — Plan-only flow"
+trigger_phrases: []
+---
 # Phase 4 — Plan-only flow
 
 Phase 4 is delivered as one work-leaf, [`001-mode-design-plan`](001-mode-design-plan/), which plans

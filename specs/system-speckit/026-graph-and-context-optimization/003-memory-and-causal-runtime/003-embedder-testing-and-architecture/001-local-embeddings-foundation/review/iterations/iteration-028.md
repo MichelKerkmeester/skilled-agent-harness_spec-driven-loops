@@ -1,3 +1,7 @@
+---
+title: "Deep Review v2 Iteration 028 — parent traceability"
+trigger_phrases: []
+---
 # Deep Review v2 Iteration 028 — parent traceability
 
 **Dimension:** traceability

@@ -1,6 +1,7 @@
 ---
 title: "Sub-Packet Proposals — OpenLTM Teachings Adoption"
 description: "Concrete, scoped change proposals for the surviving OpenLTM teachings (research phase 010), mapped to system-spec-kit surfaces and 027 children. Proposals only — no implementation; each adopted item becomes a separate Gate-3 packet."
+trigger_phrases: []
 ---
 
 # Sub-Packet Proposals — OpenLTM Teachings Adoption

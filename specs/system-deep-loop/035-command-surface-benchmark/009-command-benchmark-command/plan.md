@@ -19,6 +19,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md"
       - ".opencode/skills/system-deep-loop/mode-registry.json"
       - ".opencode/commands/scripts/validate-command-references.cjs"
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

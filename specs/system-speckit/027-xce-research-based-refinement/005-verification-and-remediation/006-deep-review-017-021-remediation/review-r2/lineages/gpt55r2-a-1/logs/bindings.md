@@ -1,3 +1,7 @@
+---
+title: "Binding Log"
+trigger_phrases: []
+---
 # Binding Log
 
 BINDING: spec_folder=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval

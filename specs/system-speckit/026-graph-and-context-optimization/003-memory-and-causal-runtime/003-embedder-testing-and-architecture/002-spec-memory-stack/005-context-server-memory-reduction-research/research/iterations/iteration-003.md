@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — embedding cache eviction policies (LRU caps, TTL, size-bounded, per-model partition)"
+trigger_phrases: []
+---
 # Iteration 3 — embedding cache eviction policies (LRU caps, TTL, size-bounded, per-model partition)
 
 ## Summary

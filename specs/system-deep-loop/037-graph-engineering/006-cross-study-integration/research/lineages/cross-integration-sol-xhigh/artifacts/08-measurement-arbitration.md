@@ -1,3 +1,7 @@
+---
+title: "P8 — Measurement and Owner-Disagreement Arbitration"
+trigger_phrases: []
+---
 # P8 — Measurement and Owner-Disagreement Arbitration
 
 ## Measurement families

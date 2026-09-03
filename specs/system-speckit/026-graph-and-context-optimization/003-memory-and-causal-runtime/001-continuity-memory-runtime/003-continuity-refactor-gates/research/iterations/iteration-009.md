@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-009.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 009 — Features 4, 5: Quality Gates + Reconsolidation

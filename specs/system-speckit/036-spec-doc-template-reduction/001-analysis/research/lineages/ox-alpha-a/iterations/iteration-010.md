@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Final broadening: merge-vs-two-docs legibility trade, handover non-merge guard, plan.md gate line check"
+trigger_phrases: []
+---
 # Iteration 010 — Final broadening: merge-vs-two-docs legibility trade, handover non-merge guard, plan.md gate line check
 
 **Focus:** Broaden before synthesis: three angles not yet explicit.

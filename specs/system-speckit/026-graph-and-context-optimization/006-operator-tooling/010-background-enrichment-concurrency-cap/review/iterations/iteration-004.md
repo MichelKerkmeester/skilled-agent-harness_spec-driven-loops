@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 4 (opus-4.8) — slot-exhaustion + boundary"
+trigger_phrases: []
+---
 # Deep-Review Iteration 4 (opus-4.8) — slot-exhaustion + boundary
 
 ## Verdict: 1 NEW P1, 2 boundary lenses SOUND.

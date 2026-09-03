@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — fable-2 lineage"
+trigger_phrases: []
+---
 # Deep Review Strategy — fable-2 lineage
 
 Session: `fanout-fable-2-1781112180955-4japyt` | Mode: review | Generation: 1 | Lineage: new

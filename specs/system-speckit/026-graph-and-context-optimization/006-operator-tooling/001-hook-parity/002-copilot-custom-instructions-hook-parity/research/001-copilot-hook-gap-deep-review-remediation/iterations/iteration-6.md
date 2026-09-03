@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Instructions, skills, MCP, and ACP boundaries"
+trigger_phrases: []
+---
 # Iteration 6: Instructions, skills, MCP, and ACP boundaries
 ## Focus
 This iteration shifted from hook and delegated-agent surfaces to the remaining unanswered startup-context surfaces: custom instructions, skills, MCP, ACP, and config-dir behavior. The goal was to distinguish documented main-session text injection from tool-only extension points and external-client orchestration.

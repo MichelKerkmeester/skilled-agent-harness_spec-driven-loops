@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "capability-and-privacy-gating",
-      "capability and privacy gating",
       "compatibility doctor pre-projection gate",
       "privacy-fact freshness gate",
       "original-only fail-closed gate",
@@ -26,9 +25,6 @@
     ],
     "key_topics": [
       "capability-and-privacy-gating",
-      "capability",
-      "privacy",
-      "gating",
       "compatibility",
       "doctor",
       "pre-projection",
@@ -36,7 +32,10 @@
       "privacy-fact",
       "freshness",
       "original-only",
-      "fail-closed"
+      "fail-closed",
+      "implementation",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The projection seams built in Phases 019-025 gate on enablement and fail open to the byte-exact original on error, but none of them yet consult the compatibility doctor before projecting",
     "created_at": "2026-08-14T05:50:33.697Z",
-    "last_save_at": "2026-08-30T15:39:11.860Z",
+    "last_save_at": "2026-09-03T22:17:08.148Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +204,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05f39c5aa1a7069624165ab3ac4c422354757bacea74a6ae07a02cfc2cd0a954",
+    "source_fingerprint": "sha256:0e4c61f6d0675659d5e303c37b79bce0f5e8e0bb6ae303e81103d485ae48b346",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf8f9bd908750e5ed939cbda24de055e060cbadd3a31f12568ebd54d637850f5",
+      "spec.md": "bcfafccf30d99d616c8a25c719be75348b5fb10d482ce4af982ed23a38ee3dda",
       "plan.md": "c8247422337a8ff8a4030cbdfa09397027b3484b7b363d7cc59f1b055f58f2b9",
       "tasks.md": "8fe1e8f56e6625b28d0c95100765971c03ad880334aedfc5ea19abf2c373f0b7",
       "decision-record.md": "b4aff5f1458e2c310105036190c974dc49e6446ecca99eb0b13d85cde2021cc5",

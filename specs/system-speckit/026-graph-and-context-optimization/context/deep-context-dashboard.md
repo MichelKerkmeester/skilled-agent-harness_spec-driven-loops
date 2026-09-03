@@ -1,6 +1,7 @@
 ---
 title: Deep Context Dashboard
 description: Auto-generated reducer view over the deep-context packet.
+trigger_phrases: []
 ---
 
 # Deep Context Dashboard

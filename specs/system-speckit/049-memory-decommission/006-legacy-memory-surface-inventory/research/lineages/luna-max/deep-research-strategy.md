@@ -4,6 +4,7 @@ description: Lineage-local strategy for the five-iteration inventory run.
 importance_tier: normal
 contextType: planning
 version: 1.14.0.19
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Session Tracking

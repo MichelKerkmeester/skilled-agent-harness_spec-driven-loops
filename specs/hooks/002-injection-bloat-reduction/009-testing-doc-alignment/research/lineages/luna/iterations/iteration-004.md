@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 — paraphrase-oriented catalog sweep"
+trigger_phrases: []
+---
 # Iteration 4 — paraphrase-oriented catalog sweep
 
 ## Focus

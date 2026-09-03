@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Fix B: uniform launcher-hardening (no OS dependency)"
+trigger_phrases: []
+---
 # Iteration 005 — Fix B: uniform launcher-hardening (no OS dependency)
 
 - **Wave:** 3 (of 5) · **Executor:** `openai/gpt-5.5-fast --variant xhigh` (read-only, exit 0) · **Seat:** bz7ig68jx · **Date:** 2026-06-14

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — Kimi-K2.7 (COSTAR) — security"
+trigger_phrases: []
+---
 # Iteration 3 — Kimi-K2.7 (COSTAR) — security
 
 Dispatched: 2026-06-28T07:45:45.285Z | wall: 243s | billing: free

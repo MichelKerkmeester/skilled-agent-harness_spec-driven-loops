@@ -7,6 +7,7 @@ status: ok
 timestamp: 2026-05-24T11:42:38.259Z
 simulated: true
 confidence: 90
+trigger_phrases: []
 ---
 
 # Seat 001: Analytical / simulated cli-codex

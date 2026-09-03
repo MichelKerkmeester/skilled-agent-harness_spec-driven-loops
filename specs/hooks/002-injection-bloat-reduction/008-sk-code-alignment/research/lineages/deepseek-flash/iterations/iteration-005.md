@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Independent checklist verification + no-op stub + plugin TUI rule"
+trigger_phrases: []
+---
 # Iteration 5: Independent checklist verification + no-op stub + plugin TUI rule
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: RQ1 (Daemon-Bypass Enforcement) + RQ3 (Lease/Spawn Races)"
+trigger_phrases: []
+---
 # Iteration 1: RQ1 (Daemon-Bypass Enforcement) + RQ3 (Lease/Spawn Races)
 
 **Focus:** RQ1 + RQ3 — the two HIGH-severity structural risks

@@ -1,3 +1,7 @@
+---
+title: "Iteration 15 (Round L): Q9 deep — lineage as-of recall-wiring → LIB-ONLY (TemporalMode is net-new UX)"
+trigger_phrases: []
+---
 # Iteration 15 (Round L): Q9 deep — lineage as-of recall-wiring → LIB-ONLY (TemporalMode is net-new UX)
 
 ## Focus

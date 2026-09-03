@@ -1,3 +1,7 @@
+---
+title: "Iteration 021 — Automation integration: what runs auto vs semi vs manual, and how it's wired"
+trigger_phrases: []
+---
 DEEP-RESEARCH — INTEGRATION & IMPACT (gpt-5.5-fast)
 
 # Iteration 021 — Automation integration: what runs auto vs semi vs manual, and how it's wired

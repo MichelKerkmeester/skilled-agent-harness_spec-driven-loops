@@ -3,6 +3,7 @@ title: "Calibration Risk Slices and Coverage Minimums"
 description: "Destination-grounded risk taxonomy, structural branch coverage, and statistical certificate floors."
 importance_tier: "critical"
 contextType: "implementation"
+trigger_phrases: []
 ---
 # Calibration Risk Slices and Coverage Minimums
 

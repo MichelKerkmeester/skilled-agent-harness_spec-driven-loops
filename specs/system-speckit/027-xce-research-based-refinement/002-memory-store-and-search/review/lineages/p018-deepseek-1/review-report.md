@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 018-reindex-scan-responsiveness-and-cancellation"
+trigger_phrases: []
+---
 # Deep Review Report: 018-reindex-scan-responsiveness-and-cancellation
 
 ## 1. Executive Summary

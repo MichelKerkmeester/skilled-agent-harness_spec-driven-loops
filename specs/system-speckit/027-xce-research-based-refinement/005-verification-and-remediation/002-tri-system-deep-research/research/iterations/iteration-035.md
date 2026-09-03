@@ -1,3 +1,7 @@
+---
+title: "Iteration 035 — Angle 35"
+trigger_phrases: []
+---
 # Iteration 035 — Angle 35
 
 **Angle:** Cross-system linking: code-graph key_files vs spec-memory COVERED_BY edges — is the join surfaced anywhere useful?

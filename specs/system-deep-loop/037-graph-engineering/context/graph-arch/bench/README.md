@@ -1,3 +1,7 @@
+---
+title: "Bench"
+trigger_phrases: []
+---
 # Bench
 
 Same tasks, same fixture, several agents, measured. No adjectives: every row

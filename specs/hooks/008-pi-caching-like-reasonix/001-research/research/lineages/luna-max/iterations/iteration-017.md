@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: Stress invalidation and failure modes"
+trigger_phrases: []
+---
 # Iteration 17: Stress invalidation and failure modes
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 — Complete impact inventory (skills/commands/agents/hooks/configs)"
+trigger_phrases: []
+---
 # Iteration 019 — Complete impact inventory (skills/commands/agents/hooks/configs)
 
 **Focus:** full impact surface of the 009/010/011 + coordination changes, tagged UX vs AUTO.

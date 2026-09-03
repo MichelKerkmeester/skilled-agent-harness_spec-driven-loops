@@ -1,3 +1,7 @@
+---
+title: "Repo #3 (graph-arch / GraphARC) — All Findings & Recommendations, in Plain Terms"
+trigger_phrases: []
+---
 # Repo #3 (graph-arch / GraphARC) — All Findings & Recommendations, in Plain Terms
 
 > Plain-language companion to `research.md` (the 20-iteration synthesis by GPT-5.6-SOL xhigh, independently verified by DeepSeek V4 Pro). Same conclusions, jargon removed. This study **builds on repo #1 (agent-swarms)** and **repo #2 (graphene-main)** — every point says whether GraphARC *confirms, sharpens, extends, or contradicts* a prior conclusion.

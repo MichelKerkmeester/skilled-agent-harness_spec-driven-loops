@@ -1,3 +1,7 @@
+---
+title: "Amendment review — GLM-5.2 (max, via cli-opencode)"
+trigger_phrases: []
+---
 # Amendment review — GLM-5.2 (max, via cli-opencode)
 
 Independent senior-architect review of the ADR-001 selection-fix mechanism. Every load-bearing claim verified against the code.

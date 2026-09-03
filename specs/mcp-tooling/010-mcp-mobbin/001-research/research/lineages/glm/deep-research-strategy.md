@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - glm lineage"
+trigger_phrases: []
+---
 # Deep Research Strategy - glm lineage
 
 **Topic:** Mobbin MCP developer surface for an mcp-tooling transport mode

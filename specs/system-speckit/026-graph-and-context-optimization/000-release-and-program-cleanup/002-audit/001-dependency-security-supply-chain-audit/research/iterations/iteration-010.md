@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 - PATH Integrity + Shadow Binaries"
+trigger_phrases: []
+---
 # Iteration 010 - PATH Integrity + Shadow Binaries
 
 ## Summary

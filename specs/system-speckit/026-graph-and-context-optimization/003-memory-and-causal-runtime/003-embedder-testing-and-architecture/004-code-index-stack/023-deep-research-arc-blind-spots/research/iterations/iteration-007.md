@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 - Theoretical critique"
+trigger_phrases: []
+---
 # Iteration 007 - Theoretical critique
 
 ## Preflight reasoning

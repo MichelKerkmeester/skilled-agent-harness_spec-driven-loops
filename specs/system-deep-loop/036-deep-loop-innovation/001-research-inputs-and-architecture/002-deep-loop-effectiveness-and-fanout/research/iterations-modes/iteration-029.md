@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 29 | SOL xhigh | mode: agent-improvement | angle: A4-fail agent-improvement :: failure modes & guardrails | 2026-07-15T10:25:56.149Z -->
 
 The main failure is evaluation-topology overfit: the optimizer learns the benchmark’s wording, dimensions, and blind spots while appearing disciplined. Held-out fixtures reduce leakage, but they do not detect semantically brittle prompts, regressions outside the fixture taxonomy, or a candidate that satisfies structural proxies without preserving real behavior.

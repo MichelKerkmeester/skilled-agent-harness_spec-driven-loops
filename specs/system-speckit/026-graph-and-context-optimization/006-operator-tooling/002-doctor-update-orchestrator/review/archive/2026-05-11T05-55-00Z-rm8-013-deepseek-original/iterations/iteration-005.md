@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 — security (sandbox + test fixtures)"
+trigger_phrases: []
+---
 # Iteration 5 — security (sandbox + test fixtures)
 
 Deep-pass on security of 002-sandbox-testing-playbook Docker sandbox and test fixture scaffolding.

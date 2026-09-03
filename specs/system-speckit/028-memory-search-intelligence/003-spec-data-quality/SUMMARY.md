@@ -1,3 +1,7 @@
+---
+title: "Data Quality Program: Navigation Index"
+trigger_phrases: []
+---
 # Data Quality Program: Navigation Index
 
 > **Historical/superseded navigation notice (2026-07-12):** the 44/53-child numbering below is pre-migration provenance. It remains valid as dated delivery history but is not the active directory map. Current navigation comes from `graph-metadata.json`, which lists 20 canonical direct children.

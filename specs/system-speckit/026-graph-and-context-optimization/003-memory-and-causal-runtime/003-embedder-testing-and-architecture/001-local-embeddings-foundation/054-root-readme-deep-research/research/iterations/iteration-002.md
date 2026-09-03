@@ -5,6 +5,7 @@ track: 1
 focus: "agent + skill + command counts"
 status: complete
 newInfoRatio: 0.00
+trigger_phrases: []
 ---
 
 # Iter 002 — Track 1: agent + skill + command counts

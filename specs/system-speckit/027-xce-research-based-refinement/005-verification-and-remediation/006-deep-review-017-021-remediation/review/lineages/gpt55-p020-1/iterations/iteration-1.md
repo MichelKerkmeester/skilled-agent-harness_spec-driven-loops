@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Low-blast but tightly scoped: I’ll load the deep-review contract first, bind the artifact directory to the provided override, then run the one-iteration review loop while writing only under the lineage artifact directory.The memory gate rejected the supplied fan-out `session_id` because it is not a server-managed memory session; I’m proceeding under the user-provided deep-review session id for the lineage workflow itself, without using it for memory retrieval.BINDING: artifact_dir=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review/lineages/gpt55-p020-1
 BINDING: spec_folder=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding
 BINDING: resolveArtifactRoot=skipped per fanout override

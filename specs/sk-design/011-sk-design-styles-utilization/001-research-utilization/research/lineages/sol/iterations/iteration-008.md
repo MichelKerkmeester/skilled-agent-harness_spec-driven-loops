@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Human-Auditable Holdout and Substrate Decision Closure"
+trigger_phrases: []
+---
 # Iteration 8: Human-Auditable Holdout and Substrate Decision Closure
 
 ## Focus

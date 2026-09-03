@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — `minimax` lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — `minimax` lineage
 
 > Reducer-owned. Auto-generated from `deep-research-state.jsonl` and `findings-registry.json`. Do not edit by hand.

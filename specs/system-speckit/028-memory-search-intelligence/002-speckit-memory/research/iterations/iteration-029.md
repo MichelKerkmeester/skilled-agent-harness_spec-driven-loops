@@ -1,3 +1,7 @@
+---
+title: "Iteration 29: Round G Verify — C-G1 Cadence (cursor already exists) + Galadriel Prompt-Cache (does NOT apply)"
+trigger_phrases: []
+---
 # Iteration 29: Round G Verify — C-G1 Cadence (cursor already exists) + Galadriel Prompt-Cache (does NOT apply)
 
 ## Focus

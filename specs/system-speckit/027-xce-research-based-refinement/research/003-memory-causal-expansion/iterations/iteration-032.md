@@ -4,6 +4,7 @@ rq: RQ-N3
 phase_target: 004-causal-edge-tombstones
 newInfoRatio: 0.72
 verdict: ADAPT
+trigger_phrases: []
 ---
 
 # Iteration 032 — RQ-N3: Causal-Graph Lifecycle Tombstones — Post-012 State Audit

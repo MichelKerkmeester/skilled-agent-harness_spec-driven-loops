@@ -1,3 +1,7 @@
+---
+title: "GLM Pass Focus Plan"
+trigger_phrases: []
+---
 # GLM Pass Focus Plan
 
 Five `glm-5-2` dispatches, each aimed at a surface the fan-out is unlikely to reach on its own.

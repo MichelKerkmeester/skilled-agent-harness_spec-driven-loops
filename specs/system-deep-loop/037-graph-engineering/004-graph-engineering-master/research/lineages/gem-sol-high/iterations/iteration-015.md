@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: P5 Temporal Facts and Prefer-Newer Containment"
+trigger_phrases: []
+---
 # Iteration 15: P5 Temporal Facts and Prefer-Newer Containment
 
 ## Focus

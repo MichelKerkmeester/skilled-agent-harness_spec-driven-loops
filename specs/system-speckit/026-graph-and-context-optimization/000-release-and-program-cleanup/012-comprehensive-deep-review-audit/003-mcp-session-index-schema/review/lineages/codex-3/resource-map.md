@@ -1,3 +1,7 @@
+---
+title: "Resource Map"
+trigger_phrases: []
+---
 # Resource Map
 
 ## Target

@@ -1,3 +1,7 @@
+---
+title: "Grounding Evidence — AI Output: Command vs Natural Conversation"
+trigger_phrases: []
+---
 # Grounding Evidence — AI Output: Command vs Natural Conversation
 
 > Seeded from a live cross-model test this session. These are **verified**

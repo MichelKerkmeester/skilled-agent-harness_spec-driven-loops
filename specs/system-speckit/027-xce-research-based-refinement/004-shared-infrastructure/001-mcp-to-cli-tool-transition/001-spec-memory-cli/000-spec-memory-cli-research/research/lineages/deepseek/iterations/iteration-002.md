@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: KQ2 — Daemon-Dependency Audit"
+trigger_phrases: []
+---
 # Iteration 002: KQ2 — Daemon-Dependency Audit
 
 ## Focus

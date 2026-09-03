@@ -1,3 +1,7 @@
+---
+title: "r2-10 novel-fit (architecture)"
+trigger_phrases: []
+---
 # r2-10 novel-fit (architecture)
 
 **Angle summary:** The "Novel out-of-the-box GO" tier is presented as one peer family over the shared sweep plus engine, but the substrate splits four ways: only 019 and 024 touch the dq engine/registry/sweep at all, the other five ride distinct mcp_server subsystems (vector cache, hybrid-search, causal graph-lifecycle, quality lib), and even the two that mount stretch the engine past its spec'd per-target pure contract, so most of these novels need their own substrate and the program does not say so.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: YAML Key Schema Verification & Reference Doc Gap Analysis"
+trigger_phrases: []
+---
 # Iteration 001: YAML Key Schema Verification & Reference Doc Gap Analysis
 
 ## Focus

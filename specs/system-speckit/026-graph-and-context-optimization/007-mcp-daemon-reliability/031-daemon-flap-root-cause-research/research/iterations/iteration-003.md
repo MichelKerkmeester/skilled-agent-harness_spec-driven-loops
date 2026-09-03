@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — cross-runtime lifecycle + exact live-failure sequence"
+trigger_phrases: []
+---
 # Iteration 003 — cross-runtime lifecycle + exact live-failure sequence
 
 - **Wave:** 2 (of 5) · **Executor:** `openai/gpt-5.5-fast --variant xhigh` (read-only, exit 0) · **Seat:** briq320xw · **Date:** 2026-06-14

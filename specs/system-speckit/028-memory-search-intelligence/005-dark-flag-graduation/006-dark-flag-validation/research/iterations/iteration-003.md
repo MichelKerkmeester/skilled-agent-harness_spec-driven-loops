@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: Theory Triangulation — Scenario Coverage, Help/Hurt/No-Op Maps"
+trigger_phrases: []
+---
 # Iteration 003: Theory Triangulation — Scenario Coverage, Help/Hurt/No-Op Maps
 
 ## Focus

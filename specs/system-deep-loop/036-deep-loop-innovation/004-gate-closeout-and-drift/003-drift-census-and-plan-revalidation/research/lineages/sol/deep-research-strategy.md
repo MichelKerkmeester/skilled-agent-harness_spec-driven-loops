@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Packet 036 Drift Census"
+trigger_phrases: []
+---
 # Deep Research Strategy: Packet 036 Drift Census
 
 ## 1. Research Topic

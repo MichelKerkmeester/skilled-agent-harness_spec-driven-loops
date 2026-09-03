@@ -6,6 +6,7 @@ phase_id: "001-reranker-integration"
 executor: cli-devin
 model: swe-1.6
 recipe: agent-config-deep-research-iter.json
+trigger_phrases: []
 ---
 
 # RESEARCH QUESTION

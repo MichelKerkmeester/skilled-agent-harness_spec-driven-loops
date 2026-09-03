@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 24 | SOL xhigh | mode: deep-alignment | angle: A4-fail deep-alignment :: failure modes & guardrails | 2026-07-15T10:03:11.737Z -->
 
 The current contract protects against unsupported positive findings, but not unsupported clean bills of health. Three circularities remain:

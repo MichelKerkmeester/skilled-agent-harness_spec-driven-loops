@@ -1,3 +1,7 @@
+---
+title: "Iteration 17 (Round L): Q6 + Q7 kill-or-keep → BOTH KILL"
+trigger_phrases: []
+---
 # Iteration 17 (Round L): Q6 + Q7 kill-or-keep → BOTH KILL
 
 ## Focus

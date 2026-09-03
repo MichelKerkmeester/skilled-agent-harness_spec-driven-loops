@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY (auto-generated):
 Segment: 1 | Iteration: 5 of 10
 Questions: 4/5 answered | Last focus: Reference migration classification

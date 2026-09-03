@@ -4,6 +4,7 @@ description: "Decomposition of the 503 failed entries from the post-fix memory_i
 date: 2026-05-19
 investigator: cli-codex gpt-5.5 high fast (via main agent dispatch)
 sandbox: read-only
+trigger_phrases: []
 ---
 
 # 503 failed memory_index_scan rejections — diagnostic

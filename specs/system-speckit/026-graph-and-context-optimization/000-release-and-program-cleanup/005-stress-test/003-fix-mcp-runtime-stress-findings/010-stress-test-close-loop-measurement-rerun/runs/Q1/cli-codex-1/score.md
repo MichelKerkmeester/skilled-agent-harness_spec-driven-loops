@@ -1,3 +1,7 @@
+---
+title: "Cell Q1 / cli-codex-1 — Score (v1.0.2)"
+trigger_phrases: []
+---
 # Cell Q1 / cli-codex-1 — Score (v1.0.2)
 
 | Dim | Score | Evidence |

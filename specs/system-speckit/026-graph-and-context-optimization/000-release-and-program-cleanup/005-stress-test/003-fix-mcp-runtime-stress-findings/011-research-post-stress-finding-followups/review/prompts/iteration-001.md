@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 001 — Cross-Cutting Audit Across 012-015"
+trigger_phrases: []
+---
 # Deep Review Iteration 001 — Cross-Cutting Audit Across 012-015
 
 You are iteration 1/10 of a deep-review loop auditing the integrated 012-015 implementation + their 28 catalog/playbook updates. Your job is to surface findings (P0/P1/P2) on cross-cutting concerns that per-packet reviews could not catch.

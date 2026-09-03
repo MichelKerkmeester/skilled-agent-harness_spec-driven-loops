@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Concurrent Git Autosync"
+trigger_phrases: []
+---
 # Deep Research Strategy — Concurrent Git Autosync
 
 ## 2. TOPIC

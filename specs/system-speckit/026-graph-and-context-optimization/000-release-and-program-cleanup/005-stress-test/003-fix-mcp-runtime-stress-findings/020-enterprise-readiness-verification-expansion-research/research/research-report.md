@@ -1,3 +1,7 @@
+---
+title: "W3-W7 Verification and Expansion Research Report"
+trigger_phrases: []
+---
 # W3-W7 Verification and Expansion Research Report
 
 Session: `020-enterprise-readiness-verification-expansion-research`  

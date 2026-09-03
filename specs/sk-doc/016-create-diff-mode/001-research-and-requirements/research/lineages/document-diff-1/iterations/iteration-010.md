@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Architecture Consolidation and Risk Validation"
+trigger_phrases: []
+---
 # Iteration 10: Architecture Consolidation and Risk Validation
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: mcp-notion Read Surface Mapping (24 MCP tools + 5 API gaps → inventory)"
+trigger_phrases: []
+---
 # Iteration 2: mcp-notion Read Surface Mapping (24 MCP tools + 5 API gaps → inventory)
 
 ## Focus

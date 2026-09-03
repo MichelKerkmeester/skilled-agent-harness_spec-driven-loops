@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 18 | model luna (gpt-5.6-luna) | angle: CONTRADICTION: when NOT to loop | 2026-07-14T22:42:23.794Z -->
 
 The strongest contradiction is not “never loop”; it is “loop only when the next pass adds falsifiable information and remains rollback-safe.”

@@ -1,3 +1,7 @@
+---
+title: "Non-Hub Single-Skill Router — Compiled-Routing Ineligibility Policy"
+trigger_phrases: []
+---
 # Non-Hub Single-Skill Router — Compiled-Routing Ineligibility Policy
 
 > **Policy (REQ-005 / CF-ACT-9).** The seven-hub compiled-routing activation path is

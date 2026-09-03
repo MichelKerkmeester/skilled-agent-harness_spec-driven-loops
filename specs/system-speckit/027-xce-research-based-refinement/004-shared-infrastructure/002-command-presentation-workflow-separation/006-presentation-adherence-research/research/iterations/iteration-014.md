@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 (wave 2, gpt-5.5-fast xhigh) — R8 CI golden-fixture lint design"
+trigger_phrases: []
+---
 # Iteration 014 (wave 2, gpt-5.5-fast xhigh) — R8 CI golden-fixture lint design
 
 **Verdict:** A golden-fixture lint is feasible and should be implemented as deterministic CI for contract drift: template shape, router linkage, forbidden vocabulary, expected fixtures, and recorded transcript metadata. It cannot prove live dynamic model adherence without a correct `--command` transcript or a mechanical renderer; use it as PR guard plus separate live/recorded probe evidence.

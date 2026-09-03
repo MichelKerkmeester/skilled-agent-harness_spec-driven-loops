@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 15 of 25 - External MCP Transports"
+trigger_phrases: []
+---
 # Deep Research Iteration 15 of 25 - External MCP Transports
 
 ## SITUATION

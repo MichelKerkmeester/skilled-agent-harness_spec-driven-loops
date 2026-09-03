@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 001 of 10: Hybrid recall + blended scoring + explainability"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 001 of 10: Hybrid recall + blended scoring + explainability
 Read (stay scoped to this subsystem):

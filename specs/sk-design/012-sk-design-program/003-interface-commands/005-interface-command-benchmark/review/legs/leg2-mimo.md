@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now I have all required context loaded. Executing the interface direction workflow.
 
 ---

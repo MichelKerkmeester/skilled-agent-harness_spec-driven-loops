@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 001 — 002-model-installation-and-compat"
+trigger_phrases: []
+---
 # Deep Review Iteration 001 — 002-model-installation-and-compat
 
 **Dimension:** reversibility

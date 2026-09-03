@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Seven-Hub ROUTER.md Sweep, Remaining Agents, and Dangling Legacy Citations"
+trigger_phrases: []
+---
 # Iteration 5: Seven-Hub ROUTER.md Sweep, Remaining Agents, and Dangling Legacy Citations
 
 ## Focus

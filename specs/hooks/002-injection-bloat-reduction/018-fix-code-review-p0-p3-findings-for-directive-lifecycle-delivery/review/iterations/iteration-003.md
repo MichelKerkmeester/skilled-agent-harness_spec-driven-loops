@@ -1,3 +1,7 @@
+---
+title: "Review Iteration 003 — Security: File Store Topology Hardening"
+trigger_phrases: []
+---
 # Review Iteration 003 — Security: File Store Topology Hardening
 
 ## Dispatcher

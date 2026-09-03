@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis (lineage dq-novel-oob): the novel, out-of-the-box data-quality capabilities the reuse-first program missed"
+trigger_phrases: []
+---
 # Research Synthesis (lineage dq-novel-oob): the novel, out-of-the-box data-quality capabilities the reuse-first program missed
 
 <!-- ANCHOR:dq-novel-oob-index -->

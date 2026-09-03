@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — grok-4-5-high"
+trigger_phrases: []
+---
 # Deep Review Dashboard — grok-4-5-high
 
 | Field | Value |

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Literal Interface Command Prompts"
+trigger_phrases: []
+---
 # Deep Research Strategy: Literal Interface Command Prompts
 
 ## 1. Research Topic

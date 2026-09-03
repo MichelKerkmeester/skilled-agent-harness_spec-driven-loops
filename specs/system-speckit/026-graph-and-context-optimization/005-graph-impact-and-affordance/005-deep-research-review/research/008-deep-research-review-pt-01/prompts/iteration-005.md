@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 005 — 010/004 affordance denylist + conflicts_with reject + debug counters"
+trigger_phrases: []
+---
 # Deep-Research Iteration 005 — 010/004 affordance denylist + conflicts_with reject + debug counters
 
 You are a fresh-context deep-research executor (cli-codex gpt-5.5 high fast). No memory of prior iterations. Defensive code review of internal skill-advisor system. Read-only.

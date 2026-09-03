@@ -1,3 +1,7 @@
+---
+title: "RM-8 Dispatch Record — T014 shared strict-validator re-adoption"
+trigger_phrases: []
+---
 # RM-8 Dispatch Record — T014 shared strict-validator re-adoption
 
 - **L1 (prompt rails):** brief carried literal `BANNED OPERATIONS` + `ALLOWED WRITE PATHS`

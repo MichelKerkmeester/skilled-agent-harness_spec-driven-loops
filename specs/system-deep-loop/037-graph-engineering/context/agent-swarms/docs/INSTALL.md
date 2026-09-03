@@ -1,3 +1,7 @@
+---
+title: "Installation guide"
+trigger_phrases: []
+---
 # Installation guide
 
 > Part of the [AgentSwarms docs](../README.md#documentation).

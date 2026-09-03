@@ -1,3 +1,7 @@
+---
+title: "Iteration 019 — Cross-cutting systemic synthesis (dimension: correctness, angle: cross-cutting)"
+trigger_phrases: []
+---
 # Iteration 019 — Cross-cutting systemic synthesis (dimension: correctness, angle: cross-cutting)
 
 ## Dispatcher

@@ -1,3 +1,7 @@
+---
+title: "Resume Prompt — for paused session agents (post worktree/branch cleanup)"
+trigger_phrases: []
+---
 # Resume Prompt — for paused session agents (post worktree/branch cleanup)
 
 > Paste this to a paused session before you un-pause it. It explains what changed on

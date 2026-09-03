@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Deep-dive research on the Obsidian plugin obsidian-tables (GitHub aztekgold/obsidian-tables), an interactive JSON-table plugin, for an AI operating the vault at the FILE LAYER. Resolve the EXACT .table.md JSON schema: every top-level key (columns/rows/views + any id/order/version keys), per-column-type structure for ALL types (text, number, checkbox, select, multi-select, url, email, note-link, date, formula) including options/colors storage, formula persistence vs render-time compute, and how views/filters/sorts serialize — READ the plugin SOURCE in the aztekgold/obsidian-tables repo (the installed main.js is minified). Cover the full feature surface (multiple views, multi-level sort, complex filters, drag-reorder, CSV export, embeds via ![[Name.table.md|View]]); commands + settings; file-layer AI workflows (create a valid .table.md, add/patch rows, CSV to table import, query rows, safe in-place patch, schema migration); a full error/edge-case catalog (malformed JSON symptoms, .table.md-as-markdown parsing, formula errors); AI-usage recipes. Cite sources (repo source + README). Produce a verified data-model + workflows + troubleshooting knowledge base."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

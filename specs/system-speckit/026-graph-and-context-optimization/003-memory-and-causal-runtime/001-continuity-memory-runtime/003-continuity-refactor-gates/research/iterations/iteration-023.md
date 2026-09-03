@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-023.md"]
 
+trigger_phrases: []
 ---
 # Iteration 023 — Q2: Merge-Mode Pseudocode
 ## Goal

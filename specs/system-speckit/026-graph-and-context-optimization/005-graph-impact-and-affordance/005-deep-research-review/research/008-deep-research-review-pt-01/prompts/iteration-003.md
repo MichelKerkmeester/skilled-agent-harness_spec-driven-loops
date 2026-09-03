@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 003 — 010/003 reason/step round-trip + blast_radius enrichment audit"
+trigger_phrases: []
+---
 # Deep-Research Iteration 003 — 010/003 reason/step round-trip + blast_radius enrichment audit
 
 You are a fresh-context deep-research executor (cli-codex gpt-5.5 high fast). No memory of prior iterations. This is a defensive code review of an internal code-graph system. Read-only — no code changes.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Contrarian Steelman — Is Auto-Default Actually Fine? (Where Run 1's Flip-4 Is Wrong)"
+trigger_phrases: []
+---
 # Iteration 5: Contrarian Steelman — Is Auto-Default Actually Fine? (Where Run 1's Flip-4 Is Wrong)
 
 **Thread:** 12 (contrarian pass) | **Lineage:** glm-max | **Focus:** Q5

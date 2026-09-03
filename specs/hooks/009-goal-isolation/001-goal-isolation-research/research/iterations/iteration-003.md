@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Architecture Synthesis — Session-Scoped Storage, Migration, and Verification Plan"
+trigger_phrases: []
+---
 # Iteration 3: Architecture Synthesis — Session-Scoped Storage, Migration, and Verification Plan
 
 ## Focus

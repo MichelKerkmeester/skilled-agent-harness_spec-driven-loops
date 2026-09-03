@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## 1. PURPOSE
 
 Routes ClickUp work between the `cupt` command-line tool (primary, daily task operations) and the official ClickUp MCP server via Code Mode (secondary, documents/goals/bulk operations), using operation-based routing so agents never need to decide which tool to use.

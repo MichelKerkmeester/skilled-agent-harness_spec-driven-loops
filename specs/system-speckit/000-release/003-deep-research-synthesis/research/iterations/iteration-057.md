@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Evaluator-first agent improvement loop
 The full `sk-improve-agent` program landed here, replacing structural keyword-checking (~15-20% coverage) with a 5-dimension scoring framework that judges agents on structural integrity, rule coherence, integration consistency, and more across their whole system surface. It adds integration scanning and dynamic profiling so any agent can be scored from its own structure without hardcoded profiles, plus a guarded, approval-gated promotion path with tested rollback and drift handling. A benchmark runner, fixture catalogs, target profiles, and runtime wrappers for Claude, Codex, Gemini, and `.agents` ship alongside the new `/deep:start-agent-improvement-loop` command. The loop was then proven on itself: a self-test of the agent-improver mutator found all 9 integration surfaces aligned and cleanly extracted its scoring profile. **Breaking:** the skill was renamed from `sk-recursive-agent` to `sk-improve-agent` and the command from `/speckit:recursive-agent` to `/deep:start-agent-improvement-loop`; existing invocation names and paths must migrate.
 

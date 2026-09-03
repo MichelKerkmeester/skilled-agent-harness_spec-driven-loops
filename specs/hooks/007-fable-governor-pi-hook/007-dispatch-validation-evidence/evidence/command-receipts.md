@@ -1,3 +1,7 @@
+---
+title: "Phase 007 Command Receipts"
+trigger_phrases: []
+---
 # Phase 007 Command Receipts
 
 This append-only receipt records observed command output by evidence class. Each command is retained with its exact working directory, timing, environment facts, output, and exit code.

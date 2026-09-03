@@ -1,6 +1,7 @@
 ---
 title: "Deep Review Strategy: maintenance-grace daemon survives re-election"
 description: "Strategy document for the deep review loop on spec 019-maintenance-grace-daemon-survives-reelection"
+trigger_phrases: []
 ---
 
 # Deep Review Strategy

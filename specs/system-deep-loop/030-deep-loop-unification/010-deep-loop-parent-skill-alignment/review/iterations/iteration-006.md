@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 — MiMo-v2.5-Pro (COSTAR) — maintainability"
+trigger_phrases: []
+---
 # Iteration 6 — MiMo-v2.5-Pro (COSTAR) — maintainability
 
 Dispatched: 2026-06-28T07:54:33.510Z | wall: 106s | billing: paid

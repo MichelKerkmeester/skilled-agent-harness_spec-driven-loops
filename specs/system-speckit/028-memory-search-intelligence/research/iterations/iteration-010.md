@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Deep-Loop and SpecKit Workflow References for Memory Reliability Assumptions"
+trigger_phrases: []
+---
 # Iteration 10: Deep-Loop and SpecKit Workflow References for Memory Reliability Assumptions
 
 ## Focus

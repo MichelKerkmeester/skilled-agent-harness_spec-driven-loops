@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Authored/Runtime Closure Resolution Mechanism"
+trigger_phrases: []
+---
 # Iteration 2: Authored/Runtime Closure Resolution Mechanism
 
 ## Focus

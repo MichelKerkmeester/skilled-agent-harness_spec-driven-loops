@@ -1,3 +1,7 @@
+---
+title: "Iteration 014 — Integrated Runtime Control Plane Without Second Authority"
+trigger_phrases: []
+---
 # Iteration 014 — Integrated Runtime Control Plane Without Second Authority
 
 ## Focus

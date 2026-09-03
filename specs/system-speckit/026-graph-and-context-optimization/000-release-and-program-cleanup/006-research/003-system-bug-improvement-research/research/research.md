@@ -1,3 +1,7 @@
+---
+title: "Deep Research: System Bugs and Improvements (20 iterations)"
+trigger_phrases: []
+---
 # Deep Research: System Bugs and Improvements (20 iterations)
 
 <!-- ANCHOR:research-sources -->

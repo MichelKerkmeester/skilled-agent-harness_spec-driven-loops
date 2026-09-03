@@ -10,6 +10,7 @@ scan_roots:
   - .opencode/skills/system-spec-kit/scripts/spec-folder/
   - .opencode/skills/system-spec-kit/mcp_server/core/
 rows: 22
+trigger_phrases: []
 ---
 
 # Phase 018 Resource Map — Scripts, Generator, Core Indexing

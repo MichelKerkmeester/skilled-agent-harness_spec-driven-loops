@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Security, Privacy, Concurrency, and Unattended Operation"
+trigger_phrases: []
+---
 # Iteration 4: Security, Privacy, Concurrency, and Unattended Operation
 
 ## Focus

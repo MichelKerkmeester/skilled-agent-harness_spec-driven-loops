@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Cache-Hit-Rate Economics for the Real Active Surface"
+trigger_phrases: []
+---
 # Iteration 2: Cache-Hit-Rate Economics for the Real Active Surface
 
 ## Focus

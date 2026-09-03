@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Native Pi `/model` Bridge to Cursor and Devin Subscription Models"
+trigger_phrases: []
+---
 # Research Synthesis: Native Pi `/model` Bridge to Cursor and Devin Subscription Models
 
 Lineage: grok-cursor. Executor: cli-cursor / cursor-grok-4.6-xhigh. Session: `fanout-grok-cursor-1786962220632-12nmeb`.

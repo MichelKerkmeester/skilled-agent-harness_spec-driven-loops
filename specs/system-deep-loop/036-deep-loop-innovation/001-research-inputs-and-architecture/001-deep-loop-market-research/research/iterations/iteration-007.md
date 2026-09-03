@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 7 | model luna (gpt-5.6-luna) | angle: Dedup, novelty & knowledge accumulation | 2026-07-14T21:47:51.815Z -->
 
 The strongest transfer is to split deduplication from broadening. Semantic Exploration clusters equivalent actions via bidirectional entailment and scores clusters, while GraphRAG, Mnemis, and CompassMem add hierarchical/global selection to recover uncovered semantic regions rather than repeatedly sampling near-duplicates. ([Semantic Exploration](https://aclanthology.org/2025.acl-long.29.pdf), [GraphRAG](https://microsoft.github.io/graphrag/), [Mnemis](https://github.com/microsoft/Mnemis), [CompassMem](https://aclanthology.org/2026.findings-acl.1123.pdf))

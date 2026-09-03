@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Lease, Re-election, and Lock-Arbitration Synthesis"
+trigger_phrases: []
+---
 # Iteration 5: Lease, Re-election, and Lock-Arbitration Synthesis
 
 ## Focus

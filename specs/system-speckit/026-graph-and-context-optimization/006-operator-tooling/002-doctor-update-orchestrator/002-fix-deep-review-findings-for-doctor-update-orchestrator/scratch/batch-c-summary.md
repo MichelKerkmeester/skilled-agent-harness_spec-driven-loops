@@ -1,3 +1,7 @@
+---
+title: "Batch C Summary"
+trigger_phrases: []
+---
 # Batch C Summary
 
 ## Counts

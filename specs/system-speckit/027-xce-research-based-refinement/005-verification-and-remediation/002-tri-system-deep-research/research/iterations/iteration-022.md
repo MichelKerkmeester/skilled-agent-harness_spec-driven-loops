@@ -1,3 +1,7 @@
+---
+title: "Iteration 022 — Angle 22"
+trigger_phrases: []
+---
 # Iteration 022 — Angle 22
 
 **Angle:** Semantic trigger fallback in production: shadow-mode telemetry, activation criteria, and what its goldens actually prove.

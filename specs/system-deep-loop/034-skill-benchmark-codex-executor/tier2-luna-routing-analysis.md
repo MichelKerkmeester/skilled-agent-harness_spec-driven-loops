@@ -1,3 +1,7 @@
+---
+title: "Tier-2 Luna Routing — Findings & Recommendations"
+trigger_phrases: []
+---
 # Tier-2 Luna Routing — Findings & Recommendations
 
 > **Report-verifiable scope.** This analysis evaluates five benchmark reports for **gpt-5.6-luna (xhigh, fast)** under the recorded executors (Tier-2 via cli-opencode; Tier-1 via cli-opencode and cli-codex). The report JSONs in `artifacts/` establish the subject, configuration, and benchmark values; they do not establish authorship or independent verification. The findings below were authored by **GPT-5.6-SOL (xhigh, fast, read-only)** and then adjusted by a **GPT-5.6-SOL-ULTRA 5-iteration `/deep:review`** (verdict CONDITIONAL; P0=0, P1=2, P2=4). That review independently reproduced every load-bearing figure exactly and confirmed the defects were evidence-scoping and citation, not numeric; the audit trail is the non-report artifact for that verification at `review/review-report.md`. All conclusions are scoped to the **fitted suites** for this subject and configuration — no suite carries holdouts, so nothing here is a generalization claim.

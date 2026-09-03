@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Dataview Reference Docs Optimization (004-dataview)"
+trigger_phrases: []
+---
 # Research Synthesis: Dataview Reference Docs Optimization (004-dataview)
 
 Progressive synthesis - updated by @deep-research each iteration when progressiveSynthesis is enabled. Reducer owns strategy/registry/dashboard; this file accumulates findings.

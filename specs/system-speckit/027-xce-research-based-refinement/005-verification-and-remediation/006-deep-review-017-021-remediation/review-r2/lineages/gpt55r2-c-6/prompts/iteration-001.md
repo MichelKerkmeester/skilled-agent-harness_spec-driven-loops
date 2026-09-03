@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 Prompt"
+trigger_phrases: []
+---
 # Iteration 001 Prompt
 
 Review scope `C-rest-of-server` for MCP server infrastructure outside search pipeline and store/index/lifecycle surfaces. Focus on daemon lifecycle races, IPC trust boundaries, socket/path handling, reconnect/replay, provider/handler fail-closed behavior, and spec-vs-code drift.

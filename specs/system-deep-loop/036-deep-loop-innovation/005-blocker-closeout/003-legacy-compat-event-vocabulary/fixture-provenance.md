@@ -1,3 +1,7 @@
+---
+title: "Real fixture provenance"
+trigger_phrases: []
+---
 # Real fixture provenance
 
 Captured/replayed on 2026-08-07. The replay suites read the repository artifacts

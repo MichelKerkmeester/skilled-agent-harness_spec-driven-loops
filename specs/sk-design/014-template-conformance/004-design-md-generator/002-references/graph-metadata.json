@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`references/` holds 10 flat files plus an `examples/` tree with 4 vendor subdirectories (`linear/`, `stripe/`, `supabase/`, `vercel/`), each carrying `DESIGN.md`, `tokens.json`, and `writing-notes.md`",
     "created_at": "2026-07-27T15:10:01.534Z",
-    "last_save_at": "2026-08-30T15:39:13.147Z",
+    "last_save_at": "2026-09-03T22:18:16.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,14 +199,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:310757ee58ffdfa032d500cb5952e50cc2ecfc66aa70bd023569266cb5f63248",
+    "source_fingerprint": "sha256:bcdd7691326204edb3ac19c8db09bbba99df356b8b04cc10a5b380495dcd932d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c75be66ab1724bcf29747f30f450099b6dedfa76ed2c29d7007477f60451b79f",
-      "plan.md": "e50a752ead4e3f966eb0d5f1f3832d133bad03faf8a055b6d38e6fe3fd65611e",
-      "tasks.md": "2a975a93e80447d7905729d63a81012b485f199d07e8fd696378ea1c1a95e0a3",
+      "plan.md": "a8582a296e38e23c684ea8bca588ba13b277744f439f688d19fa106d4df75273",
+      "tasks.md": "72053c098a73178dc09bdb4e815bbeb7df5c318eaebedd6d041cf71e22ffe5ce",
       "decision-record.md": "70349289d54f4e5d81ebbe0c169ce101ff0c148a526a16179e0f90fa966967a3",
-      "implementation-summary.md": "2815a356d9861b163524380688570b79d9e698da768587b891fb13793c74b4eb"
+      "implementation-summary.md": "c38500f0fb58064e1a586b292818d20e44504c2d924d160695ab3251711cde06"
     },
     "last_active_child_id": null,
     "last_active_at": null

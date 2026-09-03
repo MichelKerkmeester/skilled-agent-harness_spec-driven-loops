@@ -1,3 +1,7 @@
+---
+title: "Obsidian automation surfaces — BUILD vs ADOPT"
+trigger_phrases: []
+---
 # Obsidian automation surfaces — BUILD vs ADOPT
 
 ## 1. Executive Decision

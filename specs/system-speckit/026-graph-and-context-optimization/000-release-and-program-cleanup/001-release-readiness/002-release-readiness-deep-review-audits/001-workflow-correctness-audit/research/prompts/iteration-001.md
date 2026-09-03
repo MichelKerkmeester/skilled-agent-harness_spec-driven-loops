@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 045/001: workflow-correctness — Deep-review angle 1 (release-readiness)
 
 ### CRITICAL: Spec folder path

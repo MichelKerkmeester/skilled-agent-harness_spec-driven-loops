@@ -1,3 +1,7 @@
+---
+title: "Iteration 063 — 026-dedup: 005 metadata-promoter vs shipped relation-backfill.ts"
+trigger_phrases: []
+---
 # Iteration 063 — 026-dedup: 005 metadata-promoter vs shipped relation-backfill.ts
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.35. **Findings:** 6.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Create Command Family — ROUTER.md Awareness Audit"
+trigger_phrases: []
+---
 # Iteration 1: Create Command Family — ROUTER.md Awareness Audit
 
 ## Focus

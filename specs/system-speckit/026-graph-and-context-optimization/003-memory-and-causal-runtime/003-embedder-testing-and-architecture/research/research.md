@@ -1,6 +1,7 @@
 ---
 title: "016 Deep-Research Synthesis"
 description: "Coverage + hygiene audit across all 8 arcs of the 016 umbrella, 4 categories (UNSHIPPED / DEAD / BUGGED / MISSED), iters 1-9."
+trigger_phrases: []
 ---
 
 # 016 Deep-Research Synthesis

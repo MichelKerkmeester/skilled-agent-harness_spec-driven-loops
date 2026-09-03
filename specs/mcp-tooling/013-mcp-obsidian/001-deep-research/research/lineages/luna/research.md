@@ -1,3 +1,7 @@
+---
+title: "Obsidian Automation Surfaces: BUILD-vs-ADOPT Research"
+trigger_phrases: []
+---
 # Obsidian Automation Surfaces: BUILD-vs-ADOPT Research
 
 ## 1. Executive Summary

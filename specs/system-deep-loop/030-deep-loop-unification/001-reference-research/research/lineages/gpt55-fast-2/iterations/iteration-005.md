@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Synthesis And Execution Order"
+trigger_phrases: []
+---
 # Iteration 005 - Synthesis And Execution Order
 
 ## Focus

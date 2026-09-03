@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy - Specs Folder Relocation Implications"
+trigger_phrases: []
+---
 # Deep Research Strategy - Specs Folder Relocation Implications
 
 ## 2. TOPIC

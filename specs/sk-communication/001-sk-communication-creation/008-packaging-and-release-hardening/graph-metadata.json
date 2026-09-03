@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "packaging-and-release-hardening",
-      "packaging and release hardening",
       "portable cli projection",
       "implementation phase",
       "implementation plan",
@@ -22,13 +21,11 @@
       "gate release with a dated support matrix and fail-closed compatibility doctor",
       "implementation status",
       "current state",
-      "phase 008 handover"
+      "phase 008 handover",
+      "packaging release handover"
     ],
     "key_topics": [
       "packaging-and-release-hardening",
-      "packaging",
-      "release",
-      "hardening",
       "portable",
       "cli",
       "projection",
@@ -36,7 +33,10 @@
       "phase",
       "plan",
       "tasks",
-      "architecture"
+      "architecture",
+      "decision",
+      "gate",
+      "release"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Package the system with explicit provider privacy choices, a tested compatibility matrix, diagnostics, rollback, and six-runtime release gates",
     "created_at": "2026-08-11T10:04:33Z",
-    "last_save_at": "2026-08-30T15:39:11.732Z",
+    "last_save_at": "2026-09-03T22:16:48.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:b28595a9cc8584d9e5862bd546f126276b13baeac80a61a987fded743d5e1e97",
+    "source_fingerprint": "sha256:d9605ace8394b5aa5ab4b69fdb609eab4ab6748798ee7a82f448a488119f5038",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4daab0dac36422e5b2b12d8331a1e9cf0bc8268c568d36befa8f6e0eb958d970",
+      "spec.md": "ef94277a4866bd96c2fa66bff8865ca4f0e949fa82a496933025e949c70f2163",
       "plan.md": "1183c6c542315368080a32833202314dd08ea59007e50632b0009c9415f29cfe",
       "tasks.md": "e5a60c0d5d6bc0d08158171cb63bfeda4b29e02b3b8a1f55add76de871a5bf82",
       "decision-record.md": "181f6252cb88104f0ec66b2051f2048ecd1651bab84e53a41bdcf5a7e7543f7e",

@@ -1,3 +1,7 @@
+---
+title: "Review Report: Terminal Proof Discipline Integration"
+trigger_phrases: []
+---
 # Review Report: Terminal Proof Discipline Integration
 
 ## Verdict

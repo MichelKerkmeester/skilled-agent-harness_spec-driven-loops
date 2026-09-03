@@ -1,3 +1,7 @@
+---
+title: "Iteration 28: Round G Completeness Critic — Memory (the trust/injection axis was never mined)"
+trigger_phrases: []
+---
 # Iteration 28: Round G Completeness Critic — Memory (the trust/injection axis was never mined)
 
 ## Focus

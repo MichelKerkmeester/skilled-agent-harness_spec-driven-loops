@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Pi /model picker architecture and provider-extension hooks"
+trigger_phrases: []
+---
 # Iteration 1: Pi /model picker architecture and provider-extension hooks
 
 ## Focus

@@ -2,6 +2,7 @@
 iter: 008
 dimensions: ["regression-risk", "correctness"]
 timestamp: 2026-05-15T05:35:55.218Z
+trigger_phrases: []
 ---
 # Iteration 008
 

@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration Prompt Pack — Iteration 4"
+trigger_phrases: []
+---
 # Deep-Review Iteration Prompt Pack — Iteration 4
 
 You are dispatched as a LEAF deep-review agent. Iter-1 (correctness, P1=1/P2=2), iter-2 (security, P2=3 new), iter-3 (traceability, P2=4 new) complete. This is the maintainability pass — the LAST dimension. After this iteration, dimension coverage hits 4/4 and the loop manager will evaluate STOP gates.

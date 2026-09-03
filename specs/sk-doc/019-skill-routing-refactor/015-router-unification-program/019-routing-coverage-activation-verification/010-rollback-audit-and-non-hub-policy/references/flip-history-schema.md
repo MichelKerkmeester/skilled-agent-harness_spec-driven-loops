@@ -1,3 +1,7 @@
+---
+title: "flip-history.jsonl — Shared Audit Ledger Schema"
+trigger_phrases: []
+---
 # flip-history.jsonl — Shared Audit Ledger Schema
 
 > Canonical, single-source schema for the append-only per-hub audit ledger emitted

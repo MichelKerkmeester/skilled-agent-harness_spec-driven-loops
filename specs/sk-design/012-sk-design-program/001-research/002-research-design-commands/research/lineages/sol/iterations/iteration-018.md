@@ -1,3 +1,7 @@
+---
+title: "Iteration 18: Proof and Output Contract"
+trigger_phrases: []
+---
 # Iteration 18: Proof and Output Contract
 
 ## Focus

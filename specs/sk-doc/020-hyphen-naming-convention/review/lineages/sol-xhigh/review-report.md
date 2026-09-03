@@ -1,6 +1,7 @@
 ---
 title: "Deep Review Report — 032 hyphen naming convention"
 description: "Ten-iteration detached lineage review synthesized from reducer-owned state."
+trigger_phrases: []
 ---
 
 # Deep Review Report

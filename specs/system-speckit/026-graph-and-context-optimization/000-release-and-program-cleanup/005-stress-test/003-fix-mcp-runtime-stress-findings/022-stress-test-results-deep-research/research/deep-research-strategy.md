@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: v1.0.3 Stress Test Results"
+trigger_phrases: []
+---
 # Deep Research Strategy: v1.0.3 Stress Test Results
 
 ## Topic

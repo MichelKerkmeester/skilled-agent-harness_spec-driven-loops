@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 — Final bridge contradiction check"
+trigger_phrases: []
+---
 # Iteration 009 — Final bridge contradiction check
 
 ## Status

@@ -1,3 +1,7 @@
+---
+title: "Phase 4 Agent-Config Design Review"
+trigger_phrases: []
+---
 # Phase 4 Agent-Config Design Review
 
 ## 1. JSON or YAML

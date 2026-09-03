@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Hub doc audit and remediation plan
 An internal quality program audited the hub documentation for the external-CLI and MCP tooling bridges against the authoring templates and against live CLI and MCP reality — flags, tools, auth, agent routes, links. The review failed every slice, surfacing 67 distinct P0 findings (73 after dedup from 102 raw). Rather than fix anything, the cycle produced a collision-free remediation plan: four work-streams (ClickUp 28 P0, cli-opencode/cli-claude-code 20 P0, Figma/Chrome DevTools 11 P0, cross-cutting root playbooks 8 P0) plus a mandatory verify-first re-validation protocol, so each stream can be dispatched in isolation with no cross-stream file collisions. No hub doc was edited in this cycle. Purely internal; no user-visible behavior changed yet.
 

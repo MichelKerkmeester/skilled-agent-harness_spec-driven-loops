@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: cross-cutting broken-link sweep across authored/repaired READMEs"
+trigger_phrases: []
+---
 # Iteration 17: cross-cutting broken-link sweep across authored/repaired READMEs
 
 > dimension: broken-refs | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

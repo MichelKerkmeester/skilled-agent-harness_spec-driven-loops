@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Correctness - Per-Hub Routing and Parity Invariants"
+trigger_phrases: []
+---
 # Iteration 2: Correctness - Per-Hub Routing and Parity Invariants
 
 ## Dispatcher

@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: D7 Root Cause - Empty Git Provenance"
+trigger_phrases: []
+---
 # Iteration 7: D7 Root Cause - Empty Git Provenance
 
 ## Focus

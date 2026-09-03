@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Verify pi-cache-optimizer ownership and scope"
+trigger_phrases: []
+---
 # Iteration 8: Verify pi-cache-optimizer ownership and scope
 
 ## Focus

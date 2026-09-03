@@ -1,3 +1,7 @@
+---
+title: "Aside Browser Developer Surface — Canonical Fan-Out Research Synthesis"
+trigger_phrases: []
+---
 # Aside Browser Developer Surface — Canonical Fan-Out Research Synthesis
 
 > **Fan-out synthesis of 3 detached deep-research lineages** — `sol` (gpt-5.6-sol xhigh, 5 iterations), `glm` (glm-5.2, 2 iterations), `luna` (gpt-5.6-luna max, 3 iterations) — 10 iterations total, stop-policy `max-iterations`. Cross-lineage reconciliation: agreements are stated once with merged citations; single-lineage attestations are tagged `[sol only]` / `[glm only]` / `[luna only]`; disagreements are tagged `[CONFLICT: ...]` and never averaged away. Lineage sources: `lineages/sol/research.md`, `lineages/glm/research.md`, `lineages/luna/research.md`; merged registry: `deep-research-findings-registry.json`; attribution: `fanout-attribution.md`.

@@ -1,3 +1,7 @@
+---
+title: "Agent Brief — 012/003 Code Graph Edge Explanation + Impact Uplift"
+trigger_phrases: []
+---
 # Agent Brief — 012/003 Code Graph Edge Explanation + Impact Uplift
 
 You are an autonomous implementation agent. **No conversation context.** This brief is everything you need.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 - Memory Store / Index / Lifecycle Audit"
+trigger_phrases: []
+---
 # Iteration 001 - Memory Store / Index / Lifecycle Audit
 
 ## Scope

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — skill:sk-create-diagram (fan-out)"
+trigger_phrases: []
+---
 # Deep Review Report — skill:sk-create-diagram (fan-out)
 
 **Fan-out merge:** `grok` (cli-cursor / cursor-grok-4.6-high) + `deepseek-go` (cli-opencode / opencode-go/deepseek-v4-flash)

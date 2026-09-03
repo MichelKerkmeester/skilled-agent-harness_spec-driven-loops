@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: gpt-4 Lineage"
+trigger_phrases: []
+---
 # Deep Review Report: gpt-4 Lineage
 
 ## Executive Summary

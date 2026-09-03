@@ -1,3 +1,7 @@
+---
+title: "H4 - Tokenizer Overhead at Batch 1"
+trigger_phrases: []
+---
 # H4 - Tokenizer Overhead at Batch 1
 
 Verdict: REFUTED

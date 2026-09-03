@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis (lineage dq-skilldoc-cmd-ctx): Granular Per-Surface DQ Automation for SKILL DOCS, COMMANDS, and CONTEXT-ENGINEERING"
+trigger_phrases: []
+---
 # Research Synthesis (lineage dq-skilldoc-cmd-ctx): Granular Per-Surface DQ Automation for SKILL DOCS, COMMANDS, and CONTEXT-ENGINEERING
 
 <!-- ANCHOR:dq-skilldoc-cmd-ctx-index -->

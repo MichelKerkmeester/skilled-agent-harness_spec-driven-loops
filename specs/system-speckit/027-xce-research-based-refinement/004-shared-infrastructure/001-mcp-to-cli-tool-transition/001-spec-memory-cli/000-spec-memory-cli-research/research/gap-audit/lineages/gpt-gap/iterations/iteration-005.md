@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Adversarial Residual Sweep"
+trigger_phrases: []
+---
 # Iteration 5: Adversarial Residual Sweep
 
 ## Focus

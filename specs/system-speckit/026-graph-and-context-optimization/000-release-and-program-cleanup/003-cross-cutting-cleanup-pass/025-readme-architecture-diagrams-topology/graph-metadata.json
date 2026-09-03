@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Only `shared/README.md` has both an ASCII box-art architecture diagram and a directory topology tree",
     "created_at": "2026-05-02T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:28.075Z",
+    "last_save_at": "2026-09-03T22:22:27.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8184f9b28c6bd89eb32f028482a68c2dbd288b1a354020daf2569e3fed3dbf2f",
+    "source_fingerprint": "sha256:4c0716a8f8464b899fdd03a1c9ab4bff95ff097b16c0f9c4fc3bbebce336da88",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cae05ab98fddb9d1d30b8d7a784bbb8358426b072c5a1afd1f745a306c5236e9",
-      "plan.md": "385bab91d03d818f7b5225b6a44c454c6410ca40b17ba58a5ec87258dd0dacc4",
-      "tasks.md": "33b26c64dec988bd80e440e60314e4783c0f5b52bb11b9a3d658bb99c1483503",
-      "implementation-summary.md": "a03d952eb80a74db329ce93adb329fb03fbc5d96efc55f4be6280818369f2c23"
+      "plan.md": "36004c56ef54b749aa9506228d8aaea6f8ae68c4c49796b99f21507989751014",
+      "tasks.md": "d72a8f36001615f76b4f66e0bbfa13e0e4cfd3e49af718a1ea5f6f001183056e",
+      "implementation-summary.md": "44afb4095f2ceca411aa15f81f575c5772f8c37d3381269c83a5ec08d1dc2251"
     },
     "last_active_child_id": null,
     "last_active_at": null

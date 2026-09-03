@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis: gpt55-fast-7"
+trigger_phrases: []
+---
 # Deep Research Synthesis: gpt55-fast-7
 
 ## 1. Executive Summary

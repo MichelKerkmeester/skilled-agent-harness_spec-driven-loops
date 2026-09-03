@@ -1,3 +1,7 @@
+---
+title: "Detached Lineage Iteration 5"
+trigger_phrases: []
+---
 # Detached Lineage Iteration 5
 
 Resolved route: mode=research; target_agent=deep-research; execution=current_detached_cli_executor; state_source=externalized_files; do_not_switch_mode=true

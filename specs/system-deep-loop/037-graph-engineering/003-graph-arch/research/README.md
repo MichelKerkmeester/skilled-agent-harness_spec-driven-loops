@@ -1,3 +1,7 @@
+---
+title: "Study 3 · graph-arch — research folder"
+trigger_phrases: []
+---
 # Study 3 · graph-arch — research folder
 
 > **Graph layer (governance).** Study 3 of the [037 graph-engineering program](../../context-index.md). 20-iteration deep-research run (gpt-5.6-sol high/fast, `stopReason: maxIterationsReached`).

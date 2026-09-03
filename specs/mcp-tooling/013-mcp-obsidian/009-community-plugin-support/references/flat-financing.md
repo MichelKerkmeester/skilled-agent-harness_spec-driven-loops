@@ -1,3 +1,7 @@
+---
+title: "Reference — obsidian-flat-financing (Beancount personal finance)"
+trigger_phrases: []
+---
 # Reference — obsidian-flat-financing (Beancount personal finance)
 
 > Destined for `mcp-tooling/mcp-obsidian/references/` at Phase 5. Operate this plugin at the **file layer**: edit the Beancount ledger the plugin reads; the plugin only renders it.

@@ -19,6 +19,7 @@ findingsSummary: P0=0, P1=0, P2=2
 newFindingsRatio: 0.33
 timestamp: 2026-07-21T06:01:00.000Z
 durationMs: 120000
+trigger_phrases: []
 ---
 
 # Iteration 3 — Security on 015-P0 + 012/006 + 020

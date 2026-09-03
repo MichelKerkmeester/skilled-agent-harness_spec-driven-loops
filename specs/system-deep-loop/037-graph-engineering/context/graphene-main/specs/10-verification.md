@@ -1,3 +1,7 @@
+---
+title: "Graphene · 10 · Verification"
+trigger_phrases: []
+---
 # Graphene · 10 · Verification
 
 ## 1. Posture

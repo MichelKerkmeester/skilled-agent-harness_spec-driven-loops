@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-regression-doctruth — iteration 2 (global #40)"
+trigger_phrases: []
+---
 # Seat gpt-regression-doctruth — iteration 2 (global #40)
 
 - Model: `openai/gpt-5.5-fast` · Executor: opencode · Angle: gpt-regression-doctruth

@@ -1,3 +1,7 @@
+---
+title: "Iteration 064 — 026-dedup: 002 P0s vs shipped conflict guard (all 3 STILL-REAL; P0-2 distinct path)"
+trigger_phrases: []
+---
 # Iteration 064 — 026-dedup: 002 P0s vs shipped conflict guard (all 3 STILL-REAL; P0-2 distinct path)
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.72. **Findings:** 5.

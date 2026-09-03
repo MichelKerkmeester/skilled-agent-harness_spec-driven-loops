@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Official skills workflow and search_screens contract"
+trigger_phrases: []
+---
 # Iteration 2: Official skills workflow and search_screens contract
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: D1 Correctness — Parent REQ consistency, decision-record authority, baseline pinning, final capture"
+trigger_phrases: []
+---
 # Iteration 1: D1 Correctness — Parent REQ consistency, decision-record authority, baseline pinning, final capture
 
 ## Focus

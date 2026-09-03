@@ -1,3 +1,7 @@
+---
+title: "Iteration 25: Cross-Runtime Capture-mode Parity Audit (Q22)"
+trigger_phrases: []
+---
 # Iteration 25: Cross-Runtime Capture-mode Parity Audit (Q22)
 
 ## Focus

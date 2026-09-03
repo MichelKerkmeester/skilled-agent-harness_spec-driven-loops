@@ -1,3 +1,7 @@
+---
+title: "Seat opus-advisor-daemon — iteration 4 (global #15)"
+trigger_phrases: []
+---
 # Seat opus-advisor-daemon — iteration 4 (global #15)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: opus-advisor-daemon

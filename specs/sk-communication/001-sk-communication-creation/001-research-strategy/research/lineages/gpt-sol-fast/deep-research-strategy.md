@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Provider-Neutral CLI Display Projection"
+trigger_phrases: []
+---
 # Deep Research Strategy: Provider-Neutral CLI Display Projection
 
 ## 2. TOPIC

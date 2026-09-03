@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — .opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

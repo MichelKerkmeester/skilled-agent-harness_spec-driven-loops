@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 SKILL ROUTING: User directed → `deep-review`. I’ll follow the workflow contract, bind `artifact_dir` directly to the provided lineage path, and keep writes inside that lineage directory only.The skill confirms this is command-owned, externalized-state review work. I’m loading the workflow resources and target scope before writing the lineage artifacts.The target scope is a review-only packet for search/retrieval under `.opencode/skills/system-spec-kit/mcp_server/`; max iterations is `1`, so synthesis will stop on `maxIterationsReached` after one iteration.I’ll create the lineage packet from the workflow templates rather than running the artifact-root resolver, then run one focused review pass and synthesize the report from persisted state.BINDING: target=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval  
 BINDING: maxIterations=1  
 BINDING: convergence=0.10  

@@ -1,3 +1,7 @@
+---
+title: "Independent analysis request — template system greenfield design"
+trigger_phrases: []
+---
 # Independent analysis request — template system greenfield design
 
 You are a fresh agent with no prior context. Read this carefully and respond with a **research scope proposal**, not a final answer.

@@ -1,3 +1,7 @@
+---
+title: "049 Continuation Playbook"
+trigger_phrases: []
+---
 # 049 Continuation Playbook
 
 This packet (049) closes the 78 remaining findings from packet 046's deep research across 10 sub-phase children. Sub-phase 010 (cli-orchestrator-drift) was completed end-to-end as the worked-pilot. The other 9 sub-phases (001-009) are scaffolded with template stubs and need real implementation per their spec.md.

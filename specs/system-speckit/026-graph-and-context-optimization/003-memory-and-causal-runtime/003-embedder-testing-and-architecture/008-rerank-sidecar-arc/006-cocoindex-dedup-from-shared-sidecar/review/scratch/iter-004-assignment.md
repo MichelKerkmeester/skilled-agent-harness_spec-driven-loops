@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## ASSIGNED FOCUS — TRACEABILITY PASS
 
 Run all 6 cross-reference protocols as binary gates. For each, report status (pass | partial | fail | blocked | notApplicable), evidence (file:line), and impact.

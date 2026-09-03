@@ -1,3 +1,7 @@
+---
+title: "Changelog Rollup — Track 004: Shared Infrastructure"
+trigger_phrases: []
+---
 # Changelog Rollup — Track 004: Shared Infrastructure
 
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure` (Phase Parent)

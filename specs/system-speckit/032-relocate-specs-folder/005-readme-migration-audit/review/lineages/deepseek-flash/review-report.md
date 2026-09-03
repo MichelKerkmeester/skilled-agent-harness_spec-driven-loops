@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — README Migration Audit (deepseek-flash lineage)"
+trigger_phrases: []
+---
 # Deep Review Report — README Migration Audit (deepseek-flash lineage)
 
 ## 1. Executive Summary

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Naming Authority, Rename Map, and Direct References"
+trigger_phrases: []
+---
 # Iteration 1: Naming Authority, Rename Map, and Direct References
 
 ## Focus

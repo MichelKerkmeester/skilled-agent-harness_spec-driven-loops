@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis (lineage dq-deep): Automated and Perfected Data Quality Across the Spec-Kit Surface"
+trigger_phrases: []
+---
 # Research Synthesis (lineage dq-deep): Automated and Perfected Data Quality Across the Spec-Kit Surface
 
 <!-- ANCHOR:research-index -->

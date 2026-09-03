@@ -1,3 +1,7 @@
+---
+title: "Batch P2-sa-A — Generate stress tests for 9 skill_advisor P2 features (auto-indexing + lifecycle routing)"
+trigger_phrases: []
+---
 # Batch P2-sa-A — Generate stress tests for 9 skill_advisor P2 features (auto-indexing + lifecycle routing)
 
 You are generating Vitest stress tests under spec-kit packet 044. Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.

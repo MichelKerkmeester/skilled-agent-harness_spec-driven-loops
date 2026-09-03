@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final Adversarial Stabilization"
+trigger_phrases: []
+---
 # Iteration 10: Final Adversarial Stabilization
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001, Q1: Evidence-gap detector-vs-cap desync (keystone)"
+trigger_phrases: []
+---
 # Iteration 001, Q1: Evidence-gap detector-vs-cap desync (keystone)
 
 **Focus:** Why does the `[EVIDENCE GAP DETECTED]` banner coexist with a `good` `requestQuality` verdict on 19 of 144 benchmark cells?

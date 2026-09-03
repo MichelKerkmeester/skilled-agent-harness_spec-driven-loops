@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Parent Packet Audit"
+trigger_phrases: []
+---
 # Deep Research Strategy — Parent Packet Audit
 
 ## 1. OVERVIEW

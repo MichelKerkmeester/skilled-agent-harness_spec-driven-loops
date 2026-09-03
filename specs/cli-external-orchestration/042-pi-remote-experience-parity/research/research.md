@@ -1,3 +1,7 @@
+---
+title: "Pi Remote Experience Parity — Consolidated Research (SOL-high synthesis of 2 lineages × 20 iterations)"
+trigger_phrases: []
+---
 # Pi Remote Experience Parity — Consolidated Research (SOL-high synthesis of 2 lineages × 20 iterations)
 
 ## 1. Executive summary

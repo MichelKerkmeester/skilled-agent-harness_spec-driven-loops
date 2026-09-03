@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Benchmark Index and Promotion Flow Alignment"
+trigger_phrases: []
+---
 # Iteration 6: Benchmark Index and Promotion Flow Alignment
 
 ## Focus

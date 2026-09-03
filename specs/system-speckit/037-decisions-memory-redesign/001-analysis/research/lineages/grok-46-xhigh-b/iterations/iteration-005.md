@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Deprecation sequence and blast radius (plumbing)"
+trigger_phrases: []
+---
 # Iteration 5: Deprecation sequence and blast radius (plumbing)
 
 ## Focus

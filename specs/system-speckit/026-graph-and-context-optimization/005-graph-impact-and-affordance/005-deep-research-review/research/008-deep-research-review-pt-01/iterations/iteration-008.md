@@ -2,6 +2,7 @@
 _memory:
   continuity:
     next_safe_action: "Iter 009 should drill 011 playbook scenarios plus the 17 new Vitest cases for adversarial-completeness gaps."
+trigger_phrases: []
 ---
 # Iteration 008 — 010/007 T-A..T-F closure integrity audit
 

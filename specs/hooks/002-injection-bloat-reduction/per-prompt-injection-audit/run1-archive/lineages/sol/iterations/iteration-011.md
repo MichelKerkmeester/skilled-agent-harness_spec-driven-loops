@@ -1,3 +1,7 @@
+---
+title: "Iteration 11: Spec Gate 3 per-turn behavior, suppression, and safe deduplication"
+trigger_phrases: []
+---
 # Iteration 11: Spec Gate 3 per-turn behavior, suppression, and safe deduplication
 
 ## Focus

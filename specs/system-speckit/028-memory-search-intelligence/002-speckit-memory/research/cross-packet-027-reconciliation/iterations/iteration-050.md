@@ -1,3 +1,7 @@
+---
+title: "Iteration 50 (Round O): Honest close at 150 — corrections captured, GO list final"
+trigger_phrases: []
+---
 # Iteration 50 (Round O): Honest close at 150 — corrections captured, GO list final
 
 ## Focus

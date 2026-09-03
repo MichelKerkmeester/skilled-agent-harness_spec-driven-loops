@@ -10,6 +10,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/archive/strategy-v1-iter010.md"]
 
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Memory Quality Backend Root Cause

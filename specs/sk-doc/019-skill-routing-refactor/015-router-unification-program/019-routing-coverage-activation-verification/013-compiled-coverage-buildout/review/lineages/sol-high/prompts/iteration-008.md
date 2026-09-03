@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW ITERATION 008
 
 Focus: root-cause the authored/promoted closure failure from F007.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 054: Deep-Research Reducer/State Hygiene"
+trigger_phrases: []
+---
 # Iteration 054: Deep-Research Reducer/State Hygiene
 
 ## Focus

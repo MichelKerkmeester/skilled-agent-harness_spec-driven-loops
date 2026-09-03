@@ -6,6 +6,7 @@ auditor: "claude-opus-4-7 [1m]"
 scope: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/{001..015}"
 catalog_root: ".opencode/skills/system-spec-kit/feature_catalog"
 mirror_status: "All four runtime mirrors (.opencode, .gemini, .claude, .codex) are hardlinked to the same inode (26087506) for feature_catalog.md and per-feature .md files; auditing the .opencode source-of-truth covers all four."
+trigger_phrases: []
 ---
 
 # Feature catalog impact audit — Phase 011 (packets 001–015)

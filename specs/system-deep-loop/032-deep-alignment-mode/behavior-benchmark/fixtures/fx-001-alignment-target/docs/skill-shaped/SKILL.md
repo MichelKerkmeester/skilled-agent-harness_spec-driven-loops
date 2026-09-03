@@ -2,6 +2,7 @@
 name: fixture-corpus-guide
 description: Illustrative skill doc bundled in the fx_001_alignment_target fixture; documents how the fixture's own docs corpus should be read by a sk-doc conformance audit.
 allowed-tools: Read
+trigger_phrases: []
 ---
 
 # Fixture Corpus Guide - Illustrative Skill Shape

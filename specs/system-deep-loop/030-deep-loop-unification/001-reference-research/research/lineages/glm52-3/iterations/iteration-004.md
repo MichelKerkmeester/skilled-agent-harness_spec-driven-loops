@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — fallback-router.ts Wiring Decision (Q5)"
+trigger_phrases: []
+---
 # Iteration 004 — fallback-router.ts Wiring Decision (Q5)
 
 **Lineage:** glm52-3 | **Iteration:** 4 of 5 | **Focus:** Q5 — should fallback-router.ts be wired for real GLM-5.2→MiMo-v2.5-Pro fallback?

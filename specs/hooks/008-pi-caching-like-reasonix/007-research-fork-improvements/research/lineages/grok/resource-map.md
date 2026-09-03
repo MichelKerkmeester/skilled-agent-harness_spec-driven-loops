@@ -1,3 +1,7 @@
+---
+title: "Resource Map — Grok Fan-out Lineage"
+trigger_phrases: []
+---
 # Resource Map — Grok Fan-out Lineage
 
 Generated at synthesis from iteration evidence. Lineage-local only.

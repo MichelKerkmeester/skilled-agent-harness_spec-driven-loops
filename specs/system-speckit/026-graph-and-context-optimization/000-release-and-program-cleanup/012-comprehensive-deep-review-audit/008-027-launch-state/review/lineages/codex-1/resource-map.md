@@ -1,3 +1,7 @@
+---
+title: "Resource Map - Deep Review Lineage codex-1"
+trigger_phrases: []
+---
 # Resource Map - Deep Review Lineage codex-1
 
 ## Phase-5 Augmentation

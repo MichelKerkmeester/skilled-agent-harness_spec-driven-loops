@@ -169,7 +169,7 @@
     ],
     "causal_summary": "Seven docs in the `sk-code-mobile-cli` skill lag the `sk-create-skill` v4 asset, reference, and readme",
     "created_at": "2026-08-27T10:13:06.612Z",
-    "last_save_at": "2026-08-30T15:39:11.328Z",
+    "last_save_at": "2026-09-03T22:16:34.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,12 +177,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:d8b72896002156f15267a9b72890cc31195d4ea52a0c57e11f6871a5efc849a3",
+    "source_fingerprint": "sha256:f18ec38e99acd17265084ff097f065c1ced5445ea806b72d8e5510a9c9f6ff09",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e2eb9a6cf5afd5dac7129e52aa1bd6a59cbae3853b021bdf3a71bf9eaba0092c",
-      "plan.md": "15063b83e92f16af507932cedc5d938a39f220a2a5711e372a25b73ce914ad5c",
-      "tasks.md": "61659c56d55a02a5f8fc85d456f7cb4f33feb5a44e841c37830c4e91eb101d89"
+      "spec.md": "bffdf7bac321a0237d3e1d7fff1038dd6fd6067a1f2d5644e398fd7b28f5e4df",
+      "plan.md": "009e7a9c2159707b1b6f338e192093e7994a97b9f320556d8a922c029270ceea",
+      "tasks.md": "1da1b12251d689ce0866ee2a608ce26930cb9ded3e94fb6372d0ca2a5f8c0763"
     },
     "last_active_child_id": null,
     "last_active_at": null

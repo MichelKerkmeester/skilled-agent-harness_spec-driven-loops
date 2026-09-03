@@ -1,3 +1,7 @@
+---
+title: "Codex dispatch: Polish track — sk-doc-align all 21 new doctor YAMLs"
+trigger_phrases: []
+---
 # Codex dispatch: Polish track — sk-doc-align all 21 new doctor YAMLs
 
 ## ROLE

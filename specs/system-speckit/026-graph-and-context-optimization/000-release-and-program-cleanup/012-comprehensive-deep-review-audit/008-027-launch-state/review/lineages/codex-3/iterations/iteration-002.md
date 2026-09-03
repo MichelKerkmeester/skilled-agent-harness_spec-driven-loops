@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Security"
+trigger_phrases: []
+---
 # Iteration 002 - Security
 
 Focus: trust-boundary and exposure risks in the launch-state metadata.

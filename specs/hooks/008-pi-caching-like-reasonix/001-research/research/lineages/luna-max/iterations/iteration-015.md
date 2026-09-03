@@ -1,3 +1,7 @@
+---
+title: "Iteration 15: Audit cache observability and compaction invalidation"
+trigger_phrases: []
+---
 # Iteration 15: Audit cache observability and compaction invalidation
 
 ## Focus

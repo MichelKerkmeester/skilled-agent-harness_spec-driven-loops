@@ -1,3 +1,7 @@
+---
+title: "Iteration 18: Migration Path and Sequencing"
+trigger_phrases: []
+---
 # Iteration 18: Migration Path and Sequencing
 
 ## Focus

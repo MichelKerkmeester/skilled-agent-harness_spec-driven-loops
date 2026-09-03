@@ -1,3 +1,7 @@
+---
+title: "Goal — Routing Coverage, Activation & Verification (packet 015)"
+trigger_phrases: []
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal — Routing Coverage, Activation & Verification (packet 015)
 

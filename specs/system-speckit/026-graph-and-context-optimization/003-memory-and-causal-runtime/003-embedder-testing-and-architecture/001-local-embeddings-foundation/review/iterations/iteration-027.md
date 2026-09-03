@@ -1,3 +1,7 @@
+---
+title: "Deep Review v2 Iteration 027 — 008 post-merge checks"
+trigger_phrases: []
+---
 # Deep Review v2 Iteration 027 — 008 post-merge checks
 
 **Dimension:** edge-cases

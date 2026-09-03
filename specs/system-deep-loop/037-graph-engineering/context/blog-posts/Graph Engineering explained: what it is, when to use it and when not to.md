@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source: https://x.com/AnatoliKopadze/status/2080668775796314331?s=12
 
 Graph Engineering explained: what it is, when to use it and when not to

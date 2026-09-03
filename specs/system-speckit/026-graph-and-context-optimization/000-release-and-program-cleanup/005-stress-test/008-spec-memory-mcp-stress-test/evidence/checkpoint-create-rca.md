@@ -1,3 +1,7 @@
+---
+title: "checkpoint_create RCA"
+trigger_phrases: []
+---
 # checkpoint_create RCA
 
 ## 1. Root cause hypothesis

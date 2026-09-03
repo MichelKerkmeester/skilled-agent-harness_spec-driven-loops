@@ -4,6 +4,7 @@ description: "Delivered contract, representative corpora, governance, and scorer
 importance_tier: "critical"
 contextType: "implementation"
 status: "shadow-partial"
+trigger_phrases: []
 ---
 # Implementation Summary
 

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 10 — Final Sweep + Synthesis Prep"
+trigger_phrases: []
+---
 # Deep Review Iteration 10 — Final Sweep + Synthesis Prep
 
 **Iteration:** 10 of 10

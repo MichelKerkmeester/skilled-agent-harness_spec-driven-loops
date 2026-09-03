@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Read-only verification started. I’ll search exact filenames and literals first, then read the live files around each hit for line-numbered evidence.
 
 ---

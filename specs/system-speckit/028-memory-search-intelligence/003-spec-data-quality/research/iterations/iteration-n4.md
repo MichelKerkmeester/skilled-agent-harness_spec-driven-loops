@@ -1,3 +1,7 @@
+---
+title: "Iteration N4 - Metadata Enrichment Fields (opus, schema-slot design)"
+trigger_phrases: []
+---
 # Iteration N4 - Metadata Enrichment Fields (opus, schema-slot design)
 
 ## TITLE

@@ -2,6 +2,7 @@
 _memory:
   continuity:
     next_safe_action: "Iter 007 should audit 010/006 umbrella documentation against live code and test reality, especially README/SKILL/INSTALL_GUIDE claims."
+trigger_phrases: []
 ---
 # Iteration 006 — 010/005 trust-badge + cache invalidation audit
 

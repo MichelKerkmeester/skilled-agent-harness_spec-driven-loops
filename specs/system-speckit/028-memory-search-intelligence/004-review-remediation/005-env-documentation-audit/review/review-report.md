@@ -5,6 +5,7 @@ method: "ten iterative opus audit passes, loop-until-dry, ten lenses"
 findingCounts: { "P0": 0, "P1": 13, "P2": 16 }
 scope: "ENV_REFERENCE.md, references/config/environment_variables.md, the four changelogs, the root README, the four skills' flag source"
 model: "claude-opus-4-8"
+trigger_phrases: []
 ---
 # Review Report: ENV Documentation Deep Review and Remediation
 

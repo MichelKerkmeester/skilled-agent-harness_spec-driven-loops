@@ -1,3 +1,7 @@
+---
+title: "Iteration 30 (Round M): Broaden — the two unmined 027 doctrine tracks"
+trigger_phrases: []
+---
 # Iteration 30 (Round M): Broaden — the two unmined 027 doctrine tracks
 
 ## Focus

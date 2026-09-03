@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - 033 JSON Optimization Implementation (grok-high lineage)"
+trigger_phrases: []
+---
 # Deep Review Strategy - 033 JSON Optimization Implementation (grok-high lineage)
 
 ## 2. TOPIC

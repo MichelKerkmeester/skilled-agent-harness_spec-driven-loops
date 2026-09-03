@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 (deepseek-v4-pro)"
+trigger_phrases: []
+---
 # Iteration 009 (deepseek-v4-pro)
 
 **Summary:** The worst-adherence surface is the memory family (search/manage/learn/save) whose routers gate critical parseable render templates behind external 166-243 line presentation files that mid-tier models skip or misparse — confirmed by live test where /memory:search ignored its §2 template. Inlining 5-6 line compressed templates into each router .md eliminates the external-Read failure mode, while the deep family's 328-463 line presentation files similarly need 5-line convergence dashboards inlined to prevent display-contract drift.

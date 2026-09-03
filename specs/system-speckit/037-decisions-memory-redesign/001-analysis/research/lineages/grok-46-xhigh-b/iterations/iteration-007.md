@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Freshness, decay, and supersession"
+trigger_phrases: []
+---
 # Iteration 7: Freshness, decay, and supersession
 
 ## Focus

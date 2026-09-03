@@ -1,3 +1,7 @@
+---
+title: "Phased Rebase Plan"
+trigger_phrases: []
+---
 # Phased Rebase Plan
 
 ## Phase A - Dependency Version Bump

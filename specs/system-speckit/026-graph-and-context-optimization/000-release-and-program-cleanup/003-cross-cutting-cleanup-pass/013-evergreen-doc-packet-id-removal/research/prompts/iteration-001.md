@@ -1,3 +1,7 @@
+---
+title: "Most recently touched evergreen-class docs"
+trigger_phrases: []
+---
 ## Packet 040: evergreen-doc-packet-id-removal — Tier B doc rule + audit + fix
 
 You are cli-codex (gpt-5.5 high fast) implementing **013-evergreen-doc-packet-id-removal**.

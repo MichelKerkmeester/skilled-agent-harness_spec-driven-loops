@@ -3,6 +3,7 @@ title: "029 — Manual Test Prompts for Hook + Plugin Features"
 description: "Paste-ready prompts to exercise code-graph hooks, skill-advisor hooks, and OpenCode plugin features across Claude, Codex, Copilot, Gemini, and OpenCode runtimes after the Phase 029 remediation (commits 9810ad65d + 19eb09c3c)."
 importance_tier: "high"
 contextType: "manual-testing"
+trigger_phrases: []
 ---
 
 # Manual Test Prompts — 029 Hook + Plugin Verification

@@ -1,3 +1,7 @@
+---
+title: "Fan-Out Lineage Diversity — Analysis (Angles 31, 35)"
+trigger_phrases: []
+---
 # Fan-Out Lineage Diversity — Analysis (Angles 31, 35)
 
 - **Date:** 2026-06-06 · **Design:** `design.md` (pre-registered before any dispatch) · **Raw:** `raw-events.tar.gz` · **Reports:** `runs/*.md` · **Metadata:** `run-metadata.json`

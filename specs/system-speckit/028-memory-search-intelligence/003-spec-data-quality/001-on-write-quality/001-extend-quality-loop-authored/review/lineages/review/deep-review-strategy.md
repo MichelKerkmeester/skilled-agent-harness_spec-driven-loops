@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — A1 Extend Quality Loop (Authored)"
+trigger_phrases: []
+---
 # Deep Review Strategy — A1 Extend Quality Loop (Authored)
 
 <!-- ANCHOR:topic -->

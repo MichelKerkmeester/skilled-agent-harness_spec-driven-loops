@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Visual and Multimodal Style Analysis"
+trigger_phrases: []
+---
 # Iteration 6: Visual and Multimodal Style Analysis
 
 ## Focus

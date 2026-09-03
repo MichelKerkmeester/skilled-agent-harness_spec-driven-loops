@@ -1,3 +1,7 @@
+---
+title: "Deep Research: Spec-Kit Templates & Context Reducer — Lineage pi-flash-a"
+trigger_phrases: []
+---
 # Deep Research: Spec-Kit Templates & Context Reducer — Lineage pi-flash-a
 
 **Lineage:** pi-flash-a | **Executor:** cli-pi / deepseek-v4-flash | **Session:** fanout-pi-flash-a-1786517927558-l9mbmd

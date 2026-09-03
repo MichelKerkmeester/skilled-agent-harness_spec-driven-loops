@@ -47,13 +47,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "tests/relation-backfill-conflict.vitest.ts",
-      "lib/causal/relation-backfill.ts",
-      "lib/graph/contradiction-detection.ts",
-      "lib/storage/causal-edges.ts",
-      "schemas/tool-input-schemas.ts",
-      "handlers/causal-graph.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -84,42 +78,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "relation-backfill-conflict.vitest.ts",
-        "kind": "test",
-        "path": "tests/relation-backfill-conflict.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "relation-backfill.ts",
-        "kind": "code",
-        "path": "lib/causal/relation-backfill.ts",
-        "source": "derived"
-      },
-      {
-        "name": "contradiction-detection.ts",
-        "kind": "code",
-        "path": "lib/graph/contradiction-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": "handlers/causal-graph.ts",
         "source": "derived"
       },
       {
@@ -199,11 +157,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Relation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`collectSupersessionEdges` emits `contradicts` for predecessor->successor, and `collectLineageEdges` emits `caused` for the SAME directed pair because lineage is reciprocal (`A.supersededby=B` AND `B.predecessor=A`)",
     "created_at": "2026-06-04T14:30:00Z",
-    "last_save_at": "2026-08-30T15:39:31.992Z",
+    "last_save_at": "2026-09-03T22:23:08.897Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bab861e44d4f91ba597ea36ec737df6b780be9d69933c08d0125ee1b8c5a3aad",
+    "source_fingerprint": "sha256:6dd7dbf745aa92e3a3f0936767fbd87579a0c994384256b090a953b121cc4fb9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9bdc24c6231d41b045f5dd96e92af176f02e4e7035ce3e61923a003cb7fdbd05",
       "plan.md": "6fc2b1aeaa77f73fa61134bac0fe1e9914b08b5e31a04f740bf7c534230f927c",
-      "tasks.md": "de1d7c93b72b73c0de118c31c3630700dc3769b945ba01a266c1bcbffdebed3f",
+      "tasks.md": "9817feb845c14fb86f4d63e16fd7d470b1ee508a00116949a9cbde8adf063f4c",
       "decision-record.md": "8023dc8b0a283e8e8689dc56052575decb01a8832c321689d95d8f5eeb9dc4d9",
-      "implementation-summary.md": "6c66fe7f33e012ea8d318aa351222087ea240fc11f5c62cf2f2a70d681bfbda8"
+      "implementation-summary.md": "5e53a70c9e37d94004db05ddff930c46ea6a2ff6b76dfc233094d8982d603dc7"
     },
     "last_active_child_id": null,
     "last_active_at": null

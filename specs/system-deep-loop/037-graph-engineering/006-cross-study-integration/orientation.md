@@ -14,6 +14,7 @@ provenance:
     - "specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/research/research.md"
     - "specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/research/research.md"
   note: "Capstone integration study. It connects the five prior syntheses rather than re-deriving any single one. 036 is the DESIGNATED authority but currently runs dark (target-state, not enforced)."
+trigger_phrases: []
 ---
 
 # Orientation Seed — Cross-Study Integration (Study 6, capstone)

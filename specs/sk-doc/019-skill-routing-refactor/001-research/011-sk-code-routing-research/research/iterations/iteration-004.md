@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Live Mode B leaf-load telemetry and evidence boundaries"
+trigger_phrases: []
+---
 # Iteration 4: Live Mode B leaf-load telemetry and evidence boundaries
 
 ## Focus

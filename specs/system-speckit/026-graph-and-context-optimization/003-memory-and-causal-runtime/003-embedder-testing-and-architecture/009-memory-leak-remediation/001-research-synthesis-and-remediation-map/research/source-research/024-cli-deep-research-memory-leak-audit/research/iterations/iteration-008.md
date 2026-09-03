@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Produce ticket-ready remediation packet drafts from the current evidence and ordering. This iteration is synthesis-only: no target source edits, no packet directories, no sub-agents, no AI CLI dispatch, and no new runtime measurement.

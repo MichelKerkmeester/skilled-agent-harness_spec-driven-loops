@@ -1,3 +1,7 @@
+---
+title: "Fan-Out Lineage Diversity Experiment — Pre-Registered Design"
+trigger_phrases: []
+---
 # Fan-Out Lineage Diversity Experiment — Pre-Registered Design
 
 - **Date:** 2026-06-06

@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Stabilization Replay (all dimensions)"
+trigger_phrases: []
+---
 # Iteration 005 — Stabilization Replay (all dimensions)
 
 Session: `fanout-fable-2-1781112180955-4japyt` | Dimensions: correctness, security, traceability, maintainability | Status: complete

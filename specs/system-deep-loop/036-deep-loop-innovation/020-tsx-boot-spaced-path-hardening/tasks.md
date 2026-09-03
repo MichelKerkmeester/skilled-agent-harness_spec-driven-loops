@@ -10,6 +10,7 @@ _memory:
     last_updated_by: "claude"
     recent_action: "Implemented + verified; tasks complete"
     next_safe_action: "Reconcile docs; commit"
+trigger_phrases: []
 ---
 # Tasks: tsx Boot + Containment-Root Hardening
 

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: First-mode graph adapter contract and shadow-parity gates"
+trigger_phrases: []
+---
 # Iteration 6: First-mode graph adapter contract and shadow-parity gates
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I've completed the traceability dimension review for this phase child. The iteration file has been written to:
 
 `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/003-launcher-race-and-error-surface-hardening/review/iterations/iteration-003.md`

@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 - Correctness: command bindings and agent definitions"
+trigger_phrases: []
+---
 # Iteration 6 - Correctness: command bindings and agent definitions
 
 ## Focus

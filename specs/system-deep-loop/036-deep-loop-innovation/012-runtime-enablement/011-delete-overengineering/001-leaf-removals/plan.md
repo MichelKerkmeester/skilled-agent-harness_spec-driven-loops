@@ -3,6 +3,7 @@ title: "Plan: Phase 001 Leaf Removals"
 description: "Approach and verification gates for the F5/F6/F8 leaf-removal wave."
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals"
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

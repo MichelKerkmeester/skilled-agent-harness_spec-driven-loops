@@ -1,3 +1,7 @@
+---
+title: "Findings - Stress-Test v1.0.3 with W3-W13 Wiring"
+trigger_phrases: []
+---
 # Findings - Stress-Test v1.0.3 with W3-W13 Wiring
 
 > **Status**: complete as of 2026-04-29T05:20Z.

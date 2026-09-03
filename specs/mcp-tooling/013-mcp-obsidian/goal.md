@@ -1,3 +1,7 @@
+---
+title: "Goal Prompt — mcp-obsidian (Obsidian CLI + MCP mode)"
+trigger_phrases: []
+---
 # Goal Prompt — mcp-obsidian (Obsidian CLI + MCP mode)
 
 > Paste this as the session goal. Updated 2026-08-03 (health-md extension: phases 11–12; deep research via GPT-5.6 SOL HIGH FAST).

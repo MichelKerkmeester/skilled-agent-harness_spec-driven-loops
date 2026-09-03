@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: P3 Context and Event Decomposition"
+trigger_phrases: []
+---
 # Iteration 7: P3 Context and Event Decomposition
 
 ## Focus

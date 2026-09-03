@@ -1,3 +1,7 @@
+---
+title: "Audit A — `.opencode/agents/` + `.opencode/commands/spec_kit/`"
+trigger_phrases: []
+---
 # Audit A — `.opencode/agents/` + `.opencode/commands/spec_kit/`
 
 You are a fresh agent doing a focused audit. No conversation context.

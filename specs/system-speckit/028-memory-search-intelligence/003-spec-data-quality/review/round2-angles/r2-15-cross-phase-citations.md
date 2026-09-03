@@ -1,3 +1,7 @@
+---
+title: "r2-15 cross-phase-citations"
+trigger_phrases: []
+---
 # r2-15 cross-phase-citations
 
 **Angle summary**: Audited the cross-phase dependency citations (026 before A1/B1/B2, 015 before Tier-C, the build-order in 028) for id resolution, children_ids vs phase-map consistency, and dangling or circular references. Every folder id and every cited research line resolves, but three phrasing-level wiring drifts exist between the parent build-order and the canonical child specs. All findings are SPEC-PREMISE because the packet is research-only with no live code wired.

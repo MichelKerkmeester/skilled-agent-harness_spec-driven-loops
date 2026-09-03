@@ -1,3 +1,7 @@
+---
+title: "CONFIRMATION REVIEW — Iteration 2 (Adversarial-Deep)"
+trigger_phrases: []
+---
 # CONFIRMATION REVIEW — Iteration 2 (Adversarial-Deep)
 
 You are dispatched as the @deep-review LEAF agent. Iteration 1 surfaced only one P2 (P2-CONF-001: integration test does not exercise the memory_save commit-hook wiring end-to-end). The fast pass confirmed 41/42 closures cleanly.

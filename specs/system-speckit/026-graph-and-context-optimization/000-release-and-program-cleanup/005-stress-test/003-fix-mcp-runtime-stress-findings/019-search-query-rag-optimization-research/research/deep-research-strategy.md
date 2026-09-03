@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: Search Query RAG Optimization"
+trigger_phrases: []
+---
 # Deep Research Strategy: Search Query RAG Optimization
 
 ## Topic

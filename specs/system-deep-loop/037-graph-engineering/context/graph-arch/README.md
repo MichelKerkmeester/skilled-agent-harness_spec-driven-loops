@@ -1,3 +1,7 @@
+---
+title: "GraphARC"
+trigger_phrases: []
+---
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/brand/grapharc-logo-ondark.svg">

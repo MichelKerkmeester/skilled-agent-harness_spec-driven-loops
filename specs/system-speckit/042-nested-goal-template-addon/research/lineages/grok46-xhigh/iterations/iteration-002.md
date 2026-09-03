@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Runtime goal systems and speckit goal_prompting"
+trigger_phrases: []
+---
 # Iteration 2: Runtime goal systems and speckit goal_prompting
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- provenance: manual cli-opencode orchestration | executor openai/gpt-5.6-sol-fast --variant high | round 7 angle A7 — New-language registration mechanics -->
 
 SKILL ROUTING: User specified “ONE round of a deep-research pass” → `deep-research`. I’ll inspect the workflow contract, then trace the requested routing and drift-guard files without modifying the repository.

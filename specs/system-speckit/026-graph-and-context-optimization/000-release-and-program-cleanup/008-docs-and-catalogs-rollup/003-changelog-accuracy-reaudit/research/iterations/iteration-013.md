@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 013"
+trigger_phrases: []
+---
 # Deep Research Iteration 013
 
 > Audited changelog: `changelog-017-004-fix-investigation-p1s-for-launcher-and-reindex-deadcode.md`

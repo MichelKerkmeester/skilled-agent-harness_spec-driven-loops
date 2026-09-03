@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - GPT Lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard - GPT Lineage
 
 ## Iteration Table

@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Stress-Test and Validation Surface Alignment"
+trigger_phrases: []
+---
 # Iteration 7: Stress-Test and Validation Surface Alignment
 
 ## Focus

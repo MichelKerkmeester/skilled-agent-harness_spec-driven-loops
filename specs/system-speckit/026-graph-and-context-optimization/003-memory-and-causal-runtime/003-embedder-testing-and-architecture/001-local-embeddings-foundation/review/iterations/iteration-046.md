@@ -1,3 +1,7 @@
+---
+title: "Deep Review v4 Iteration 046 - CocoIndex search-only hardening"
+trigger_phrases: []
+---
 # Deep Review v4 Iteration 046 - CocoIndex search-only hardening
 
 ## Focus

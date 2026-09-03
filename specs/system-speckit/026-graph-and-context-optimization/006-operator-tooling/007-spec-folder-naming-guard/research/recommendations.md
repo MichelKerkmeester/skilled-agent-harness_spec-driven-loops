@@ -1,3 +1,7 @@
+---
+title: "Recommendations — Spec-Folder Naming Guard (after 2 gpt-5.5-fast xhigh iterations)"
+trigger_phrases: []
+---
 # Recommendations — Spec-Folder Naming Guard (after 2 gpt-5.5-fast xhigh iterations)
 
 Synthesis of the prior PARTIAL research + 2 extra deep-research iterations (adversarial critique + implementation design) + orchestrator ground-truth scans. The two iterations **corrected the prior design**.

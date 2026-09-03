@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 012 No-Op Rejection"
 description: "Stop rewarding the unchanged echo: treat a verbatim or near-verbatim candidate as no improvement and fall back to deterministic formatting instead of accepting it as a projection."
 trigger_phrases:
   - "no-op-rejection"
-  - "no op rejection"
   - "unchanged echo acceptance"
   - "projection quality"
 importance_tier: "important"

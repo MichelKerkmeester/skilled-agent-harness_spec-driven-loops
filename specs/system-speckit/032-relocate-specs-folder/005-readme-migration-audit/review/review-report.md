@@ -4,6 +4,7 @@ description: "Packet-level synthesis of the README migration audit review and it
 date: "2026-08-08"
 verdict: "CONDITIONAL"
 hasAdvisories: false
+trigger_phrases: []
 ---
 
 # Review Report: README Migration Audit

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Dependency-Ordered Migration and Git Move Plan"
+trigger_phrases: []
+---
 # Iteration 4: Dependency-Ordered Migration and Git Move Plan
 
 ## Focus

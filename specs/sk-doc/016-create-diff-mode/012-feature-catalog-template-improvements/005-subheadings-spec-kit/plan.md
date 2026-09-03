@@ -3,6 +3,7 @@ title: "Plan: Phase 005 — Sub-headings, system-spec-kit"
 description: "Execution plan for applying H3 sub-headings to long HOW IT WORKS sections in system-spec-kit, based on audit data from phase 002."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Plan: Phase 005 — Sub-headings, system-spec-kit
 

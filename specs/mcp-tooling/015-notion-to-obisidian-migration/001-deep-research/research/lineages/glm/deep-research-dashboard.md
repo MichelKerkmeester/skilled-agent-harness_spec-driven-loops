@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — GLM Lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard — GLM Lineage
 
 > Auto-generated. Lineage `glm` (cli-devin / GLM-5.2 High). Stop policy: `max-iterations` (10); convergence off. Final state after synthesis.

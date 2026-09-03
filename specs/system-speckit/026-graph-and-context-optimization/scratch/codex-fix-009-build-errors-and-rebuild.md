@@ -1,3 +1,7 @@
+---
+title: "Codex CLI Prompt — Fix 009 build errors + rebuild dist/ + re-verify in the wild"
+trigger_phrases: []
+---
 # Codex CLI Prompt — Fix 009 build errors + rebuild dist/ + re-verify in the wild
 
 You are running as codex CLI (`gpt-5.4`, `reasoning_effort=high`, `service_tier=fast`, `sandbox=workspace-write`). Self-contained prompt. This is a FOCUSED CORRECTION follow-up to packet `026/003-memory-quality-issues/009-post-save-render-fixes/` — the code you just shipped has 4 TypeScript compile errors that were missed because the original verification used `mcp_server` typecheck (which does not include `scripts/`), and the `scripts/dist/` directory was never rebuilt so the CLI still runs 4-day-old compiled output.

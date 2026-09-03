@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Template conformance sweep across all sk-design modes
 Every folder in the sk-design skill was audited against the sk-doc template standards and every confirmed deviation fixed. In the design-interface mode, 11 of 29 reference files were repaired (missing overview sections, over-long intros, missing section separators, a broken link), all 3 asset files got real structural fixes, and a repeating typo in the feature catalog was caught in 4 newly-added files and corrected. The audit also surfaced two genuine bugs that had been silently breaking runs: both the naming and the baseline-rhythm checker computed their shared-scripts path one level too short, throwing on every invocation, now fixed along with a stale path reference. The Apache-2.0 obligation was removed the honest way — borrowed design guidance was re-authored in first-party words before the licence covering it was deleted. Two decisions remain open for the operator: whether 18 relocated manual-testing scenarios must be reformatted to the 9-column template, and whether the scripts folder needs a tests/ directory. This is internal tooling with no user-visible behavior change, but the skill's documentation is now uniform and its legal baggage gone.
 

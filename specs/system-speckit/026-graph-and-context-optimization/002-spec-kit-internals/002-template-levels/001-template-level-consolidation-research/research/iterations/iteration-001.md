@@ -1,3 +1,7 @@
+---
+title: "Focus"
+trigger_phrases: []
+---
 # Focus
 
 Inventory the current template system and map the consumer chain for the proposed consolidation of `.opencode/skills/system-spec-kit/templates/`.

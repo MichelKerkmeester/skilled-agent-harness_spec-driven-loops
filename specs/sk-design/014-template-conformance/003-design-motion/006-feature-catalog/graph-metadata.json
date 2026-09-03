@@ -185,7 +185,7 @@
     ],
     "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus three subdirectories — `build-cards/` (`motion-fill-in-cards.md`), `procedure-cards/` (`motion-procedure-card-inventory.md`), and `restraint-gate-and-choreography/` (`choreography-and-reduced-motion.md`, `motion-restraint-gate.md`) — none of which was in the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:13.941Z",
-    "last_save_at": "2026-08-30T15:39:13.104Z",
+    "last_save_at": "2026-09-03T22:18:08.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8838c911b3d589b94a441ce34efe16b36fba14838bb98d3f7f1dfa57da9d1a3b",
+    "source_fingerprint": "sha256:3db775672eea80bdddd0f0c9dde3b23b13f83ef258e2d4d5cc5af367f3c87108",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "77ea5260ed8116b3ac75c2a5fa734ab9b5ba23a898687a96fce8d58bd8acb46b",
-      "plan.md": "14e517d95c0c7b67562941bd82fc045036f2e95a2fd58f7c774251c63fd15b08",
-      "tasks.md": "7120844942df326b6045b9aa354419c3536e009f17d36fe78c91cbe44980c7c9",
-      "implementation-summary.md": "b31d900a4b8eab7c6bd2bffa3a2b225a4badda5378bc257d6496c0667b3a148a"
+      "plan.md": "6195812e2cb4f27be0d526ab5da6deb47cb3207939db0ba403a09099988cde1a",
+      "tasks.md": "2cdca7a80a48c1cdf2c57d6885bbf1be830b42e0b4205ff3d255ff0cfaec25d9",
+      "implementation-summary.md": "ccf1282a7d0ddacd2c7c80284fdfd2a0ba25d5a7c92f15dc171c9fda58b977b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

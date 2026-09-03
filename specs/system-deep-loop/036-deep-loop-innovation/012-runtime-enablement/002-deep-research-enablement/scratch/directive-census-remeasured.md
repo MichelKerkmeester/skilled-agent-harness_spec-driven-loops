@@ -1,3 +1,7 @@
+---
+title: "The directive-to-command gap, re-measured"
+trigger_phrases: []
+---
 # The directive-to-command gap, re-measured
 
 `directive-to-command-gap.md` recorded that a directive row fails with

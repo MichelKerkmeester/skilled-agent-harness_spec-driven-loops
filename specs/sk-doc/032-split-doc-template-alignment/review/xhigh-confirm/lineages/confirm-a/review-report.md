@@ -11,6 +11,7 @@ activeP2: 3
 stopReason: "maxIterationsReached"
 sessionId: "fanout-confirm-a-1783921047347-ky9ry5"
 generatedAt: "2026-07-13T06:36:45Z"
+trigger_phrases: []
 ---
 
 # Deep Review Report: sk-code Split-Doc Template Alignment

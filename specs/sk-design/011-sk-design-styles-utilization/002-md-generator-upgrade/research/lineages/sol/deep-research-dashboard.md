@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard: SOL Lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard: SOL Lineage
 
 ## Lifecycle

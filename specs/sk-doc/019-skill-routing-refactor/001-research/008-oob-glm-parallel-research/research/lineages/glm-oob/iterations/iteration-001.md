@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Abolish the Hub-Router Layer Entirely"
+trigger_phrases: []
+---
 # Iteration 1: Abolish the Hub-Router Layer Entirely
 
 **Lineage:** glm-oob (cli-opencode / GLM-5.2)

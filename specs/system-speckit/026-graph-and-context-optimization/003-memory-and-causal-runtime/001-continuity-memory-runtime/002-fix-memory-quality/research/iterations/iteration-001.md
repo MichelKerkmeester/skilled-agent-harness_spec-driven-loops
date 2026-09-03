@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: JSON-Mode Pipeline Architecture Map"
+trigger_phrases: []
+---
 # Iteration 1: JSON-Mode Pipeline Architecture Map
 
 ## Focus

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 3 | model luna (gpt-5.6-luna) | angle: Fan-out / fan-in orchestration | 2026-07-14T21:29:47.241Z -->
 
 The new evidence splits fan-in into two contracts: branch closure and semantic reduction.

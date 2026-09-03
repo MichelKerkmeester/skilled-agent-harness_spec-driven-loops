@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Official Aside CLI and MCP surface"
+trigger_phrases: []
+---
 # Iteration 1: Official Aside CLI and MCP surface
 
 ## Focus

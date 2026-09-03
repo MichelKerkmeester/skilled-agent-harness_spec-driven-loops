@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Format Adapter Chain Architecture"
+trigger_phrases: []
+---
 # Iteration 3: Format Adapter Chain Architecture
 
 ## Focus

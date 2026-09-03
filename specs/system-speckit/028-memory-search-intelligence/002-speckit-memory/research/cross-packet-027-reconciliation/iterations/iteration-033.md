@@ -1,3 +1,7 @@
+---
+title: "Iteration 33 (Round N adversarial): content-hash citation + Primitive A — CONFIRMED"
+trigger_phrases: []
+---
 # Iteration 33 (Round N adversarial): content-hash citation + Primitive A — CONFIRMED
 
 ## Focus

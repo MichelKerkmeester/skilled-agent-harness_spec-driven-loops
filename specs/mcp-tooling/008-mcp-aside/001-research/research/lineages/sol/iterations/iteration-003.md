@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Browser-Automation Workflows and Capability-Probe Contract"
+trigger_phrases: []
+---
 # Iteration 3: Browser-Automation Workflows and Capability-Probe Contract
 
 ## Focus

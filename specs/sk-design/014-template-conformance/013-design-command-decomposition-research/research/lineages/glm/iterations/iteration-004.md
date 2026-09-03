@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Machine Constraint Deep Dive: What a Split Must Satisfy"
+trigger_phrases: []
+---
 # Iteration 004 — Machine Constraint Deep Dive: What a Split Must Satisfy
 
 **Focus:** Examine the four hard-binding constraints in `design-command-surface-check.mjs` to understand exactly what wiring a new command requires, and whether the current 2-command topology is at a constraint complexity minimum.

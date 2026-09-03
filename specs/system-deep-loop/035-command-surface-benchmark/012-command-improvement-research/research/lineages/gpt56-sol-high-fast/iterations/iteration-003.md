@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Deterministic validation blind spots"
+trigger_phrases: []
+---
 # Iteration 003 — Deterministic validation blind spots
 
 ## Focus

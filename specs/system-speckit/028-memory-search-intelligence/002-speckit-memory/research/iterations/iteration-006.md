@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Q10 Cross-Cutting Synthesis + Full Ranked Candidate Table"
+trigger_phrases: []
+---
 # Iteration 6: Q10 Cross-Cutting Synthesis + Full Ranked Candidate Table
 
 ## Focus

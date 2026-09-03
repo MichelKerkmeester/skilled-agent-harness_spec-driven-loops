@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Adds a fifth authored create-benchmark family, conformance_benchmark, that templates the input scaffolding for deterministic artifact-conformance benchmarks run through a deep-alignment peer adapter, plus routing projections, a minimal authoring-command branch, and a family-parity regression test.",
     "created_at": "2026-07-15T04:42:13.321Z",
-    "last_save_at": "2026-08-30T15:39:20.231Z",
+    "last_save_at": "2026-09-03T22:20:06.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b674fc00234219fff827326ac0f0c33c5768e10a8ed544b480d04fe82877d108",
+    "source_fingerprint": "sha256:ad89a698bdcd20fd19dc6baf13e6e7b0e4f182c8c37c7919c1d6c9554e6bea94",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0f9a69802a389aff673140b2fcb564050bea9752f29805c473f0a978e26e8e10",
-      "plan.md": "888341edcd1af17623a5d7b4ff989e17a9144cb49b1c17122495dca6aad1c451",
-      "tasks.md": "7d4ce7f259a56eb18857c0e3bbd12e0f43d480dd8d9ed438072993de2a6e5499",
+      "plan.md": "b7d61b990332a27687b7003ec43ce8e60053aac1d8fb535ace44107a76cb88cf",
+      "tasks.md": "917adf304cad5837d52fb05cc093ab1519f788bd451a3e750637dbae50b36b03",
       "implementation-summary.md": "2304270f4f7eff52f446650f7eeed318b62921b22370ba04ed9a3b0ac0811c51"
     },
     "last_active_child_id": null,

@@ -1,3 +1,7 @@
+---
+title: "Lineage Resource Map — pi-flash-or (sk-vision host-adapter findings)"
+trigger_phrases: []
+---
 # Lineage Resource Map — pi-flash-or (sk-vision host-adapter findings)
 
 Generated from converged research deltas. Lists the durable evidence and source inventory this lineage produced and consumed.

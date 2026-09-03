@@ -1,3 +1,7 @@
+---
+title: "create-diff — example report gallery (scratch)"
+trigger_phrases: []
+---
 # create-diff — example report gallery (scratch)
 
 Scratch, regenerable example output from the `create-diff` engine, produced by running

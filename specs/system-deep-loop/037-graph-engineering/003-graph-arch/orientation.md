@@ -10,6 +10,7 @@ provenance:
   builds_on:
     - "specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/research.md"
     - "specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/research.md"
+trigger_phrases: []
 ---
 
 # Orientation Seed — graph-arch (GraphARC) → graph-based deep-loop (Repo Study 3)

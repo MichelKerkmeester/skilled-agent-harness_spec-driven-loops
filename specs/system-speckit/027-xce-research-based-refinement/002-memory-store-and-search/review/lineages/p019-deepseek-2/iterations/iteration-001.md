@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Correctness — maintenance-grace marker & launcher guard"
+trigger_phrases: []
+---
 # Iteration 001: Correctness — maintenance-grace marker & launcher guard
 
 ## Focus

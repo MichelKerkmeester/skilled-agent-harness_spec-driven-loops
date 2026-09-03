@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Local OpenAI gateway fronting official CLIs vs private-endpoint proxies"
+trigger_phrases: []
+---
 # Iteration 4: Local OpenAI gateway fronting official CLIs vs private-endpoint proxies
 
 ## Focus

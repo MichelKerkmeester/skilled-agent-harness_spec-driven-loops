@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 067 — 007 embedding-profile rescope (Voyage/1024d dead → Nomic/768d)"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 067 — 007 embedding-profile rescope (Voyage/1024d dead → Nomic/768d)

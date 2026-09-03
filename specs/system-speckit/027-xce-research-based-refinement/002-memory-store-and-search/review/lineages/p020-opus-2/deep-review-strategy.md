@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — p020-opus-2"
+trigger_phrases: []
+---
 # Deep Review Strategy — p020-opus-2
 
 ## Topic

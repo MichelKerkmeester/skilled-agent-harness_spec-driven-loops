@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Security"
+trigger_phrases: []
+---
 # Iteration 002 - Security
 
 Focus: input validation, path safety, SQL construction, transaction boundaries, and destructive-operation guards.

@@ -1,3 +1,7 @@
+---
+title: "Deep Research 023 - Research Report"
+trigger_phrases: []
+---
 # Deep Research 023 - Research Report
 
 ## Executive Summary

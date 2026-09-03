@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The refactor's route decisions are compiled from authored sources and are static per generation",
     "created_at": "2026-07-18T13:13:20.713Z",
-    "last_save_at": "2026-08-30T15:39:15.076Z",
+    "last_save_at": "2026-09-03T22:19:08.403Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9288726eee8bde0642231a9723bea4bf25c212bb41bd1a184191c0a1485bdfcb",
+    "source_fingerprint": "sha256:245eaa9bdb367eb89fabd6f2abd071abcb6ebf300f9674a8570b2d74f9508fa0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c19d7aaf9f3afd478b08c2b3c6666d22e826711640e3ba4df1ca7213d01ca32",
       "plan.md": "d64eaab8d0e55feb0d45b0e4de48d9afee3c8dcc33011c70f65a6a3d9158202f",
       "tasks.md": "ea19f6ac21d340f749323718f5f7ca01affe639e7f8d80ccddaa210afd10d6b6",
-      "implementation-summary.md": "43ed84cd759e35658270fc6973780928c59c1e79f3154b56a04065e50f0fa661"
+      "implementation-summary.md": "27d3e4d278962f9a44a07dd44c030b71df2ea54a699b258159f3d5c7fd9d47dd"
     },
     "last_active_child_id": null,
     "last_active_at": null

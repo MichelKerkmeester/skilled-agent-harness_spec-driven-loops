@@ -1,3 +1,7 @@
+---
+title: "Deep-Context Strategy — 026 graph-and-context-optimization"
+trigger_phrases: []
+---
 # Deep-Context Strategy — 026 graph-and-context-optimization
 
 ## Scope

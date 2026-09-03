@@ -22,6 +22,7 @@ findingsSummary: P0=0, P1=0, P2=0
 newFindingsRatio: 0.00
 timestamp: 2026-07-21T06:03:30.000Z
 durationMs: 60000
+trigger_phrases: []
 ---
 
 # Iteration 5 — Stabilization pass

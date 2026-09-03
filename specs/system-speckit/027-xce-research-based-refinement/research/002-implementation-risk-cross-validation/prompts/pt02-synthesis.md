@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 SYNTHESIS phase for 027 pt-02 cross-validation deep-research run. All 10 iterations complete + converged event emitted. Now produce 4 final deliverables.
 
 INPUT: read ALL 10 iteration files + ALL 10 delta files + state.jsonl from `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-based-refinement-pt-02/`. Also re-read the 5 phase specs in `027/{001-005}-*/spec.md` to ground amendment proposals.

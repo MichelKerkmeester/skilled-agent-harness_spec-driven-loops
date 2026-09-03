@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Official Obsidian automation contract and local dual-surface precedent"
+trigger_phrases: []
+---
 # Iteration 1: Official Obsidian automation contract and local dual-surface precedent
 
 ## Focus

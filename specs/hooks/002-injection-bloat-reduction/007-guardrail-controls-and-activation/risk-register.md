@@ -1,3 +1,7 @@
+---
+title: "Guardrail Risk Register"
+trigger_phrases: []
+---
 # Guardrail Risk Register
 
 This register carries the seven central rollout risks from the research into named controls. A cell remains `emit` when the required control result or delivery receipt is absent, stale, failed, or ambiguous.

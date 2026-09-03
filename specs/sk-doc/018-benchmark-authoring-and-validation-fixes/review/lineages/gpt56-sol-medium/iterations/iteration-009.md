@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Evidence Replay"
+trigger_phrases: []
+---
 # Iteration 9: Evidence Replay
 
 ## Focus

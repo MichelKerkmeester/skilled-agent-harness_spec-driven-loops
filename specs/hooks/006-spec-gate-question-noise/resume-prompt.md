@@ -1,3 +1,7 @@
+---
+title: "Resume prompt — paste into a fresh session (pi or opencode)"
+trigger_phrases: []
+---
 # Resume prompt — paste into a fresh session (pi or opencode)
 
 You are resuming prior work in this repository: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public

@@ -1,3 +1,7 @@
+---
+title: "Resource Map - GPT Lineage"
+trigger_phrases: []
+---
 # Resource Map - GPT Lineage
 
 ## Packet Sources

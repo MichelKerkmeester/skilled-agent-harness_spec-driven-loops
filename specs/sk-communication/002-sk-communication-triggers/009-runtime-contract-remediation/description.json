@@ -1,5 +1,5 @@
 {
-  "level": "2",
+  "level": "1",
   "specFolder": "sk-communication/002-sk-communication-triggers/009-runtime-contract-remediation",
   "description": "A review of the shipped packet found four contract defects:",
   "keywords": [

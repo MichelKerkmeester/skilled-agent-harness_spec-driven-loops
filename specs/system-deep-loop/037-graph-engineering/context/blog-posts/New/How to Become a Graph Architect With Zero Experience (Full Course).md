@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Source Link: https://x.com/cyrilXBT/status/2088088373642539490?s=12
 
 How to Become a Graph Architect With Zero Experience (Full Course)

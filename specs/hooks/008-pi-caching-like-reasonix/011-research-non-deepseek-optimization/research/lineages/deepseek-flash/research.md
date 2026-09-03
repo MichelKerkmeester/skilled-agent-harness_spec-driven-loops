@@ -1,3 +1,7 @@
+---
+title: "pi-cache-optimizer non-DeepSeek optimization — deepseek-flash lineage research"
+trigger_phrases: []
+---
 # pi-cache-optimizer non-DeepSeek optimization — deepseek-flash lineage research
 
 Detached fan-out lineage `fanout-deepseek-flash-1786253178211-cxy5n1` (executor cli-opencode / deepseek-v4-flash). 10 forced-depth iterations over the vendored `pi-cache-optimizer` fork at `.pi/extensions/pi-cache-optimizer/index.ts` (9,239 lines), `.pi/settings.json`, the fork's test suite, and `CHANGES-FROM-UPSTREAM.md`. Stop policy: `max-iterations` (convergence treated as telemetry only).

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Alias Precedence and Fail-Open Safety"
+trigger_phrases: []
+---
 # Iteration 3: Alias Precedence and Fail-Open Safety
 
 ## Focus

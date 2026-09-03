@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 6/10 for packet .opencode/specs/system-spec-kit/027-xce-research-based-refinement.
 
 READ FIRST: <packet>/spec.md (especially RQ6 + RQ8 reference for token measurement), prior iters 001-005.md.

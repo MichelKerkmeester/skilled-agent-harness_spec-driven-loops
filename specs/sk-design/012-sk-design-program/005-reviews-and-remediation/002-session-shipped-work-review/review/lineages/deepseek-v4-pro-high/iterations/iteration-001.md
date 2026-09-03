@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Correctness — 015 Phase-0 generation manifest atomicity + command-namespace dedup consistency"
+trigger_phrases: []
+---
 # Iteration 001: Correctness — 015 Phase-0 generation manifest atomicity + command-namespace dedup consistency
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 13: Exact Graph Shadow-Parity Contract"
+trigger_phrases: []
+---
 # Iteration 13: Exact Graph Shadow-Parity Contract
 
 ## Focus

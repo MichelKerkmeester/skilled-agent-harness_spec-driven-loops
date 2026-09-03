@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Lane C / route-gold & leaf-manifest regeneration"
+trigger_phrases: []
+---
 # Iteration 7: Lane C / route-gold & leaf-manifest regeneration
 
 ## Focus

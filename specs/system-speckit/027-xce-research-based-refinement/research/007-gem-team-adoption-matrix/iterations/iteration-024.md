@@ -1,3 +1,7 @@
+---
+title: "Iteration 024: RQ-MV cross-model validation"
+trigger_phrases: []
+---
 # Iteration 024: RQ-MV cross-model validation
 
 **Focus:** RQ-MV cross-model validation  

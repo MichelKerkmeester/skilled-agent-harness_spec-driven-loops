@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Spec folder: sk-doc/014-skill-readme-standardization/024-skills-index-readme (pre-approved, skip Gate 3). OUTPUT-ONLY task: do NOT write, create or edit any file. Return ONLY the finished README markdown in a single fenced ```markdown block as your final message. No preamble, no commentary.
 
 Role: You are a technical writer rewriting the skills-library index `.opencode/skills/README.md` in the repo's narrative house voice. This is the catalog and front door to all 22 skills, rewritten last so it reflects the freshly rewritten child READMEs.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Deep-agent-improvement: renamed from sk-improve-agent
 The `sk-improve-agent` skill is now `deep-agent-improvement`, aligning it with its `deep-*` siblings `deep-review` and `deep-research`. Around 116 files were moved to the new folder and every live reference was migrated, including 156 routing entries in the skill advisor, so prompts like "improve agent loop" still resolve to the right skill (verified at 0.878 confidence). The rename is purely symbolic — no behavior changed — and the `@improve-agent` agent plus `/deep:start-agent-improvement-loop` command keep their familiar names because they already followed modern conventions. The advisor's search index was rebuilt, compiled output was regenerated, and changelog entries v1.3.0.0 and v1.4.0.0 document the milestone. **Breaking:** the old `.opencode/skills/sk-improve-agent/` path is gone; anything referencing that literal path must use `deep-agent-improvement`.
 

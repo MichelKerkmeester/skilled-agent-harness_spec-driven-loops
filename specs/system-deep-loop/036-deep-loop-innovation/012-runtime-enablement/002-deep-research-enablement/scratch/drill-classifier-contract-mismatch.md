@@ -1,3 +1,7 @@
+---
+title: "The drill and the classifier do not share a contract"
+trigger_phrases: []
+---
 # The drill and the classifier do not share a contract
 
 ## Two corrections to earlier notes

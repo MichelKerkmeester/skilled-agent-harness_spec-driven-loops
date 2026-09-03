@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Test coverage and fault-injection seams"
+trigger_phrases: []
+---
 # Iteration 003 — Test coverage and fault-injection seams
 
 ## Focus

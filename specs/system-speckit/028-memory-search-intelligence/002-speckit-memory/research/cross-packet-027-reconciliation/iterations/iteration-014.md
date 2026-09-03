@@ -1,3 +1,7 @@
+---
+title: "Iteration 14 (Round L): Q5/Q8 determinism residuals — total-comparator + C5-B tiebreak"
+trigger_phrases: []
+---
 # Iteration 14 (Round L): Q5/Q8 determinism residuals — total-comparator + C5-B tiebreak
 
 ## Focus

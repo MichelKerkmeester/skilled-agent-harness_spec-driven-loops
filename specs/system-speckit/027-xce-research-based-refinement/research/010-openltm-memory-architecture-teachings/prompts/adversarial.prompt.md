@@ -1,3 +1,7 @@
+---
+title: "WHAT system-spec-kit Memory ALREADY HAS (the bar a teaching must clear)"
+trigger_phrases: []
+---
 You are a hostile, skeptical reviewer doing READ-ONLY adversarial verification. REFUTE or DOWNGRADE; do not agree by default. Output ONLY a concise markdown ledger — no preamble, no restating teachings in full. Keep total output under ~700 words. Do NOT write files.
 
 # WHAT system-spec-kit Memory ALREADY HAS (the bar a teaching must clear)

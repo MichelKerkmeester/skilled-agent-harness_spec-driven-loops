@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 44 | model glm (zai-coding-plan/glm-5.2) | angle: Cross-model re-examination of top findings | 2026-07-15T00:45:29.889Z -->
 
 This turn produces a chat-only analysis (no files mutated), so Gate 3 (spec folder) doesn't apply. One honesty note up front: my tool surface has `webfetch` for specific URLs but **no free-form web search** — so I'll verify the load-bearing new repos by fetching their GitHub pages rather than searching, and mark anything I can't confirm as low confidence.

@@ -1,3 +1,7 @@
+---
+title: "Review Iteration 002 — Epoch Circuit Deep Verification: Correctness"
+trigger_phrases: []
+---
 # Review Iteration 002 — Epoch Circuit Deep Verification: Correctness
 
 ## Dispatcher

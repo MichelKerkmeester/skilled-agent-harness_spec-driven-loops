@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Official hook lifecycle and context-injection semantics"
+trigger_phrases: []
+---
 # Iteration 9: Official hook lifecycle and context-injection semantics
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Security Policy"
+trigger_phrases: []
+---
 # Security Policy
 
 ## Supported versions

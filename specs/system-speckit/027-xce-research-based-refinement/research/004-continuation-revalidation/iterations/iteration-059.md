@@ -1,3 +1,7 @@
+---
+title: "Iteration 059: Reducer Telemetry Gates"
+trigger_phrases: []
+---
 # Iteration 059: Reducer Telemetry Gates
 
 ## Focus

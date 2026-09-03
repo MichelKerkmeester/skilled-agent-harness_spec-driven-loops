@@ -1,3 +1,7 @@
+---
+title: "Iteration 36: Round I Implementation Sketch — Recall-Trust Spine + the ingest-bypass finding (ready-to-spec)"
+trigger_phrases: []
+---
 # Iteration 36: Round I Implementation Sketch — Recall-Trust Spine + the ingest-bypass finding (ready-to-spec)
 
 ## Focus

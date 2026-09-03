@@ -1,3 +1,7 @@
+---
+title: "Public Repo Docs Alignment Review Report"
+trigger_phrases: []
+---
 # Public Repo Docs Alignment Review Report
 
 **Review Type**: Deep-Review (10 iterations)  

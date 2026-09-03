@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 - KQ3: On-write auto-enrichment of the two metadata JSONs"
+trigger_phrases: []
+---
 # Iteration 003 - KQ3: On-write auto-enrichment of the two metadata JSONs
 
 **Focus:** How the two metadata JSONs can be auto-enriched on write for retrieval/adherence/logic, respecting which fields bypass the truncation floor.

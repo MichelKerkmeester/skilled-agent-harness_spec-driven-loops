@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Deferred T1 re-evaluation (per-AC ≥90% coverage gate) [HEADLINE]"
+trigger_phrases: []
+---
 # Iteration 008 — Deferred T1 re-evaluation (per-AC ≥90% coverage gate) [HEADLINE]
 
 **Focus:** Given 026 closed + live validate.sh/checklist/deep-review, is the deferred T1 coverage gate now adoptable? Concrete design + packet-shape verdict.

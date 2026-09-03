@@ -1,3 +1,7 @@
+---
+title: "Iteration N5 - LLM-as-Judge Doc-Quality Scorer plus Score-Backfill (opus, prove-first)"
+trigger_phrases: []
+---
 # Iteration N5 - LLM-as-Judge Doc-Quality Scorer plus Score-Backfill (opus, prove-first)
 
 ## TITLE

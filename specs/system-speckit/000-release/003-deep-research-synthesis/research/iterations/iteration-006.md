@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Pi remote experience parity research complete
 This packet shipped the two-lineage deep-research synthesis that defines the Pi remote experience target: a best-in-class Pi remote is a typed, redacted, replayable event ledger plus a separate authenticated command protocol, not a terminal mirror or chat clone. Both lineages converged on this shape across 20 iterations each, claiming it can exceed the Claude Code + mobile reference on transcript richness, replay determinism, approval integrity, notification privacy, authority legibility, session isolation, and local data control. No code shipped here — the deliverable is `research/research.md` (1079 lines) carrying ranked P0/P1/P2 recommendations for the 041 packet and 20 open validation questions to freeze against the live Pi RPC surface. Note the cli-pi lineage was flagged `failed` by the runtime containment guard during a concurrent-session false positive, but its full output survived on disk and is included. This is research-phase and internal; there is no user-visible behavior change yet.
 

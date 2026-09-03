@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 — DEEP incremental indexing/enrichment -> 027/003 design"
+trigger_phrases: []
+---
 # Iteration 015 — DEEP incremental indexing/enrichment -> 027/003 design
 
 **Status:** insight · **Findings:** 8 · **newInfoRatio:** 0.74 · **tokens:** 108839 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

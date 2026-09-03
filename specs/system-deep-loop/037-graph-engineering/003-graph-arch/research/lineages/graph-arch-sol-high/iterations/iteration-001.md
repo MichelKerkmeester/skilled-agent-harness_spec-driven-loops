@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Prior-Decision Ledger and Orientation Normalization"
+trigger_phrases: []
+---
 # Iteration 1: Prior-Decision Ledger and Orientation Normalization
 
 ## Focus

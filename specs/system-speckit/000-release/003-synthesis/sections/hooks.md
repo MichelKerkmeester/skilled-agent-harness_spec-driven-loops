@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### Hooks & Runtime
 
 - **Goals now follow you across runtimes.** Set an active goal once and it reaches Cursor, Pi, and Devin sessions from a shared goal-state file, with a new `goal manage` command (set/show/history/clear/complete/pause/resume/doctor) mirroring the OpenCode `/goal` router.

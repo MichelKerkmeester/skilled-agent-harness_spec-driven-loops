@@ -1,3 +1,7 @@
+---
+title: "Parent-Skill (Parent-Hub) Pattern — Deep Review Report"
+trigger_phrases: []
+---
 # Parent-Skill (Parent-Hub) Pattern — Deep Review Report
 
 > **Scope:** the canonical parent-hub doctrine (`sk-doc/create-skill`), its four live implementations (`sk-doc`, `sk-code`, `sk-design`, `deep-loop-workflows`), the enforcement layer (`parent-skill-check.cjs`, `parent-hub-vocab-sync.cjs`, drift guards), and the skill-advisor integration (`system-skill-advisor/mcp_server`).

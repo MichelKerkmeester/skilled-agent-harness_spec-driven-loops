@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Licensing, Notices, Docs, Maintenance (Q10)"
+trigger_phrases: []
+---
 # Iteration 10: Licensing, Notices, Docs, Maintenance (Q10)
 
 ## Focus

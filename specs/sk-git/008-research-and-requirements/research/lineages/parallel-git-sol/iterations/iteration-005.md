@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Existing Art, Default Architecture, and Acceptance Contract"
+trigger_phrases: []
+---
 # Iteration 5: Existing Art, Default Architecture, and Acceptance Contract
 
 ## Focus

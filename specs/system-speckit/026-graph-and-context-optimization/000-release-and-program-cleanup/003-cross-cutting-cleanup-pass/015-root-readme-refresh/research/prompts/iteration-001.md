@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 042: root-readme-refresh — Tier B doc-only
 
 You are cli-codex (gpt-5.5 high fast) implementing **015-root-readme-refresh**.

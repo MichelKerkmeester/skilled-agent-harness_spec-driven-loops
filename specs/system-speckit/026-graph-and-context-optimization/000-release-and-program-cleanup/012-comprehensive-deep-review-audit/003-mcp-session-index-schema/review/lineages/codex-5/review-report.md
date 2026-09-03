@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: MCP Session + Index + Schema/Entrypoint Slice"
+trigger_phrases: []
+---
 # Deep Review Report: MCP Session + Index + Schema/Entrypoint Slice
 
 ## Verdict

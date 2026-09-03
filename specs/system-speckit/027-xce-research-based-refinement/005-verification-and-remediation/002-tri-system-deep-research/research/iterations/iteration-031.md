@@ -1,3 +1,7 @@
+---
+title: "Iteration 031 — Angle 31"
+trigger_phrases: []
+---
 # Iteration 031 — Angle 31
 
 **Angle:** Tool schema drift: CODE_GRAPH_TOOL_SCHEMAS vs TOOL_DEFINITIONS alias vs the CLI manifest — single-source generation.

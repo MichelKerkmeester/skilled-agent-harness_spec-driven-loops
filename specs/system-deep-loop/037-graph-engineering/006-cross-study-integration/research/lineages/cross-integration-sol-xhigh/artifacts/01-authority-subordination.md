@@ -1,3 +1,7 @@
+---
+title: "P1 — Authority-Subordination Contract"
+trigger_phrases: []
+---
 # P1 — Authority-Subordination Contract
 
 ## Decision

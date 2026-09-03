@@ -1,3 +1,7 @@
+---
+title: "Iteration 05 - SYNTHESIZE"
+trigger_phrases: []
+---
 # Iteration 05 - SYNTHESIZE
 
 ## Executive Synthesis

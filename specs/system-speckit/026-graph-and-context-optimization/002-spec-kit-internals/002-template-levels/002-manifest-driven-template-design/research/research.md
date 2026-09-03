@@ -1,3 +1,7 @@
+---
+title: "Greenfield Template-System Redesign Research"
+trigger_phrases: []
+---
 # Greenfield Template-System Redesign Research
 
 ## 1. TL;DR

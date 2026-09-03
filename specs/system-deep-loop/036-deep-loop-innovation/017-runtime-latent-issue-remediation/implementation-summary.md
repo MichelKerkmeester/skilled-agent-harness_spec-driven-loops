@@ -20,6 +20,7 @@ _memory:
       - "Remediation scope? Full verify-then-fix of P0 + all P1s (operator)."
       - "Executor? Sonnet 5 at xhigh, 8-workstream disjoint-file fan-out."
       - "Ledger-bypass handling? Option C — default-on structural ledger-backing gate with kill-switch."
+trigger_phrases: []
 ---
 # Implementation Summary: System-Deep-Loop Runtime Latent-Issue Remediation
 

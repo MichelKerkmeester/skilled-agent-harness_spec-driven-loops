@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 061 — CocoIndex purge: the 008 reducer family"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 061 — CocoIndex purge: the 008 reducer family

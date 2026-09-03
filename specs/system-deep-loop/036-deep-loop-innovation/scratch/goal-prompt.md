@@ -1,3 +1,7 @@
+---
+title: "036 Deep-Loop Innovation — Autonomous Execution Goal Prompt (v2 · 2026-08-12)"
+trigger_phrases: []
+---
 # 036 Deep-Loop Innovation — Autonomous Execution Goal Prompt (v2 · 2026-08-12)
 
 > Short operational prompt (<=4000 chars). `goal.md` is the durable plan; `goal-plan-review.md` is the

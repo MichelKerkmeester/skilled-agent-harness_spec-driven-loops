@@ -1,3 +1,7 @@
+---
+title: "System requirements & sizing guide"
+trigger_phrases: []
+---
 # System requirements & sizing guide
 
 What it takes to run AgentSwarms — from a laptop evaluation to a

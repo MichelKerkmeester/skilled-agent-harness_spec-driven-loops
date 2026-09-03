@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 017"
+trigger_phrases: []
+---
 # Deep Research Iteration 017
 
 > Audited changelog: `changelog-019-001-implement-ledger-v2-schema-and-identity-verified-pid.md`

@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 Prompt Record"
+trigger_phrases: []
+---
 # Iteration 003 Prompt Record
 
 Focus: security follow-up on session trust boundaries and traceability review of causal stats tool schemas.

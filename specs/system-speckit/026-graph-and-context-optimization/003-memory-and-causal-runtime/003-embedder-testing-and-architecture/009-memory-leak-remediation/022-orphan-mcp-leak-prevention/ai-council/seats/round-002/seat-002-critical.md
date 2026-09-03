@@ -7,6 +7,7 @@ status: ok
 timestamp: 2026-05-24T11:42:38.259Z
 simulated: true
 confidence: 94
+trigger_phrases: []
 ---
 
 # Seat 002: Critical / simulated cli-claude-code

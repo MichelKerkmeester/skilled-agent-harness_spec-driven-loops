@@ -1,3 +1,7 @@
+---
+title: "Iteration 9 (Round K): Q9 Observability / Continuity × consolidation gauges + as-of reads"
+trigger_phrases: []
+---
 # Iteration 9 (Round K): Q9 Observability / Continuity × consolidation gauges + as-of reads
 
 ## Focus

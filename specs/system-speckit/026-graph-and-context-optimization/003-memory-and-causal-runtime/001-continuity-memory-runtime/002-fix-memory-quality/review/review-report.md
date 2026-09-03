@@ -3,6 +3,7 @@ title: "Phase Review Report: 003-memory-quality-remediation"
 description: "3-iteration deep review of 003-memory-quality-remediation. Verdict CONDITIONAL with 0 P0 / 1 P1 / 0 P2 findings."
 importance_tier: "important"
 contextType: "review-report"
+trigger_phrases: []
 ---
 
 # Phase Review Report: 003-memory-quality-issues

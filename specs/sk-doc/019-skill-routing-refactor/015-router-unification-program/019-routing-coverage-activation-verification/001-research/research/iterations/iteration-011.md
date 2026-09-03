@@ -1,3 +1,7 @@
+---
+title: "Iteration 11 — gpt-5.6-terra xhigh — focus: playbooks"
+trigger_phrases: []
+---
 # Iteration 11 — gpt-5.6-terra xhigh — focus: playbooks
 
 There is no current manual-playbook path that both dispatches GPT‑5.6 LUNA High and proves the compiled decision. Lane C can run LUNA, but its live executor grades the model’s self-declared routing—not the compiled front door—and does not explicitly enable compiled routing.

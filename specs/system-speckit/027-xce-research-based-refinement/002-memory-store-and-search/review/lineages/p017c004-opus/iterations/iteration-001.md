@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Breadth-first review (all dimensions)"
+trigger_phrases: []
+---
 # Iteration 001 — Breadth-first review (all dimensions)
 
 **Target:** `004-confidence-calibration-labeled-set` (spec-folder)

@@ -1,3 +1,7 @@
+---
+title: "Iteration 10 — adversarial self-check + final verdict (re-review)"
+trigger_phrases: []
+---
 # Iteration 10 — adversarial self-check + final verdict (re-review)
 
 **Dimension**: adversarial self-check + final verdict

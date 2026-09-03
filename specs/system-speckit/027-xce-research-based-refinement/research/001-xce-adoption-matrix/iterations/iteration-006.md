@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — RQ6: Steering Pattern Transfer"
+trigger_phrases: []
+---
 # Iteration 006 — RQ6: Steering Pattern Transfer
 
 **Started**: 2026-05-08T14:00:00Z

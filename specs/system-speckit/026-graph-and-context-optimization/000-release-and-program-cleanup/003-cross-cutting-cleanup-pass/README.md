@@ -1,3 +1,7 @@
+---
+title: "000-release-cleanup / 003-cross-cutting-cleanup-pass: General cleanup + technical debt"
+trigger_phrases: []
+---
 # 000-release-cleanup / 003-cross-cutting-cleanup-pass: General cleanup + technical debt
 
 Documentation fixes, template debt, orphan management, remediation.

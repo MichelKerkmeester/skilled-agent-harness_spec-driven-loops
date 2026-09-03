@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis — mimo-risk Lane: Risk Resolution"
+trigger_phrases: []
+---
 # Deep Research Synthesis — mimo-risk Lane: Risk Resolution
 
 - **Date:** 2026-06-06

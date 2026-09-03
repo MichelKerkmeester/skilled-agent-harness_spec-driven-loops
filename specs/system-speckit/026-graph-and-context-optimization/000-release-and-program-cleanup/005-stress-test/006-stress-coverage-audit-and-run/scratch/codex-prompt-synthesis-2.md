@@ -1,3 +1,7 @@
+---
+title: "Stress-Run Report Synthesis"
+trigger_phrases: []
+---
 # Stress-Run Report Synthesis
 
 You are parsing the captured `npm run stress` log for spec-kit packet 042. Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.

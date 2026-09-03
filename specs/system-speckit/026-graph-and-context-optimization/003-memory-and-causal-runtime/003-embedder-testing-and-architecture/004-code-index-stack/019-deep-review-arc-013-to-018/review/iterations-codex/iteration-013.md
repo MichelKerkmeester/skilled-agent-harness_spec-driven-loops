@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 013 — daemon defaults and lifecycle"
+trigger_phrases: []
+---
 # Codex Iteration 013 — daemon defaults and lifecycle
 
 ## Sequential-thinking preflight

@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 006 — skill:system non-playbook refs"
+trigger_phrases: []
+---
 # Deep-Review Iteration 006 — skill:system non-playbook refs
 
 **Executor:** DeepSeek-v4-pro (cli-opencode, --pure, read-only)

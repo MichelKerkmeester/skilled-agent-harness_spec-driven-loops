@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 001 — Correctness (Inventory + Deep Pass)"
+trigger_phrases: []
+---
 # Deep Review Iteration 001 — Correctness (Inventory + Deep Pass)
 
 ## Dimension

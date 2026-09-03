@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — detection markers + command/agent hand-off (Facets 6+7)"
+trigger_phrases: []
+---
 # Iteration 007 — detection markers + command/agent hand-off (Facets 6+7)
 _Executor: GLM-5.2, read-only; orchestrated by Opus._
 

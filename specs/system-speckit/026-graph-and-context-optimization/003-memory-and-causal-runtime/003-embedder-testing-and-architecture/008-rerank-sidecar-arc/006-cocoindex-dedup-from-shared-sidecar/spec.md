@@ -5,7 +5,6 @@ trigger_phrases:
   - "cocoindex dedup sidecar"
   - "HttpSidecarRerankerAdapter"
   - "cocoindex rerank via sidecar"
-  - "COCOINDEX_RERANK_VIA_SIDECAR"
   - "shared rerank deduplication"
   - "arc 008 phase 006"
 importance_tier: "important"

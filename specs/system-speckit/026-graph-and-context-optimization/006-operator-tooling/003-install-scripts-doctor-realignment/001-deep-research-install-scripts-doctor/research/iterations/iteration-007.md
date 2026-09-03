@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Source-of-truth DB-path resolution (LOGIC-SYNC)"
+trigger_phrases: []
+---
 # Iteration 7: Source-of-truth DB-path resolution (LOGIC-SYNC)
 
 ## Focus

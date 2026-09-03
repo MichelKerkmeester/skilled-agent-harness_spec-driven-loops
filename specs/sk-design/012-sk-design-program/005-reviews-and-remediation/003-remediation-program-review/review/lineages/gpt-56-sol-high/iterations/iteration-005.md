@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 005 — Correctness Consumer Closure"
+trigger_phrases: []
+---
 # Deep Review Iteration 005 — Correctness Consumer Closure
 
 ## Dispatcher

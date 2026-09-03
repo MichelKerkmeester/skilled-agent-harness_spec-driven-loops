@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — sol-rereview"
+trigger_phrases: []
+---
 # Deep Review Strategy — sol-rereview
 
 ## 2. TOPIC

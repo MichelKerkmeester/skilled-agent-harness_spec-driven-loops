@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Memory Locates, Knowledge Asserts, Belief Settles"
+trigger_phrases: []
+---
 # Iteration 003 — Memory Locates, Knowledge Asserts, Belief Settles
 
 ## Focus

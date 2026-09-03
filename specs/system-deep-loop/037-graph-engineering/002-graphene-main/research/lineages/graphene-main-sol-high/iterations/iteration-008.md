@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: P5 Temporal Supersession and Nogood Admission Audit"
+trigger_phrases: []
+---
 # Iteration 8: P5 Temporal Supersession and Nogood Admission Audit
 
 ## Focus

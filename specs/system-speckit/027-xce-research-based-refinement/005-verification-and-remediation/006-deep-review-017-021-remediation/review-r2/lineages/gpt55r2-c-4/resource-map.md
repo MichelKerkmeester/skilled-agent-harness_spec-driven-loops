@@ -1,3 +1,7 @@
+---
+title: "Resource Map - gpt55r2-c-4"
+trigger_phrases: []
+---
 # Resource Map - gpt55r2-c-4
 
 Source scope did not contain `resource-map.md`; this lineage emitted a minimal review evidence map from iteration delta evidence.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Plan Gating, MCP/API Separation, and Rate Limits"
+trigger_phrases: []
+---
 # Iteration 3: Plan Gating, MCP/API Separation, and Rate Limits
 
 ## Focus

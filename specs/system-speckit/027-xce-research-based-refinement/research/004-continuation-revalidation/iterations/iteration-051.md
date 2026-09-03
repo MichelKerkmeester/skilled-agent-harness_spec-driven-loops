@@ -1,3 +1,7 @@
+---
+title: "Iteration 051: Local context-first decision tree"
+trigger_phrases: []
+---
 # Iteration 051: Local context-first decision tree
 
 ## Focus

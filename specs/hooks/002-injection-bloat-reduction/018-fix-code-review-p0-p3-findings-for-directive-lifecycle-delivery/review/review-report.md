@@ -7,6 +7,7 @@ stopReason: converged
 totalIterations: 6
 verdict: CONDITIONAL
 hasAdvisories: true
+trigger_phrases: []
 ---
 
 # Deep Review Report — Phase 018 Directive-Lifecycle Implementation

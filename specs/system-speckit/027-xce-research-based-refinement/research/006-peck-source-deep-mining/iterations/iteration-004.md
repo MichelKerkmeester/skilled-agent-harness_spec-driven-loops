@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Reviewer token-budget read discipline"
+trigger_phrases: []
+---
 # Iteration 004 — Reviewer token-budget read discipline
 
 **Focus:** peck code-reviewer "justify each read; never re-read a new file" vs spec-kit @review/@context/deep-review/deep-research tool-call budgets.

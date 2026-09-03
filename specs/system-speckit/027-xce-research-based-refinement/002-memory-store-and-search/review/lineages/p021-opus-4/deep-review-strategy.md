@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — 021-cooperative-heavy-phases (lineage p021-opus-4)"
+trigger_phrases: []
+---
 # Deep Review Strategy — 021-cooperative-heavy-phases (lineage p021-opus-4)
 
 <!-- ANCHOR:topic -->

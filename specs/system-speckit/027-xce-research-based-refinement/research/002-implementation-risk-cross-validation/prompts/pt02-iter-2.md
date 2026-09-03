@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 2/10 cross-validation pass for packet 027.
 
 ITER 2 FOCUS: IRQ2 — Phase 002 CONTAINS edge cross-language population.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The lineage loop is complete. All JSONL lines were authored as well-formed single-line JSON objects via Write (which validates on write), and all artifacts are confined to the `dq-novel-oob` directory.
 
 ## Summary

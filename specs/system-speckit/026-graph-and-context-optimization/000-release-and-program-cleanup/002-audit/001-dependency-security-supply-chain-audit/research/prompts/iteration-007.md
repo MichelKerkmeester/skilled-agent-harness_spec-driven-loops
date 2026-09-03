@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 7 of 25 - systemd + cron"
+trigger_phrases: []
+---
 # Deep Research Iteration 7 of 25 - systemd + cron
 
 ## SITUATION

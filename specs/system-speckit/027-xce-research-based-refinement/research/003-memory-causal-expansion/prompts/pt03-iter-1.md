@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 1/10 SCOPE-EXPANSION pass for packet .opencode/specs/system-spec-kit/027-xce-research-based-refinement.
 
 CONTEXT: Pt-01 (deepseek-v4-pro, 10 iter) and pt-02 (gpt-5.5/high/fast, 10 IRQ) converged on five code-graph + skill-advisor phases (004→001→{002,003}→005). NOTHING in those passes addresses (1) mcp-coco-index improvements (spec.md:144 explicitly SCOPE-OUT) or (2) system-spec-kit memory backend / causal graph. Pt-03 covers exactly that gap: XCE teachings BEYOND code-graph. Output → research/027-xce-research-pt-03/.

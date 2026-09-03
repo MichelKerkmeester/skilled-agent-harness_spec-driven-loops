@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Compiled Routing Next Move (grok lineage)"
+trigger_phrases: []
+---
 # Deep Research Strategy — Compiled Routing Next Move (grok lineage)
 
 ## 1. OVERVIEW

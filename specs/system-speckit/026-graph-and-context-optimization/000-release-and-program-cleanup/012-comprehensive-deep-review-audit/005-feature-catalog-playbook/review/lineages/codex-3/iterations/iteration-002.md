@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Spec Alignment / Traceability: playbook coverage"
+trigger_phrases: []
+---
 # Iteration 002 - Spec Alignment / Traceability: playbook coverage
 
 ## State Read

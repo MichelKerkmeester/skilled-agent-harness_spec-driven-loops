@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Manual testing playbook and prompt-improver agent rename
 The sk-prompt agent was renamed from `@improve-prompt` to `@prompt-improver` across all four runtime mirrors (opencode, claude, codex, gemini) plus 35 active-scope reference files, retiring the verb-object outlier and aligning the name with the noun-form agent family (`@code`, `@review`, `@debug`, `@context`). It is a pure semantic rename: no behavior, dispatcher-contract, or skill change, and the `/prompt` command name and path are untouched. In parallel, sk-prompt gained a 28-scenario manual testing playbook following the sk-doc templates, with root-index coverage and recorded validation evidence. The rename makes agent identity predictable across runtimes, and the playbook gives maintainers a repeatable acceptance surface for the skill.
 

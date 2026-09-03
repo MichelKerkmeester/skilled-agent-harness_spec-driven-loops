@@ -1,3 +1,7 @@
+---
+title: "Rendered Prompt: Iteration 002"
+trigger_phrases: []
+---
 # Rendered Prompt: Iteration 002
 
 Session: fanout-codex-1-1780597406873-0x2cpu

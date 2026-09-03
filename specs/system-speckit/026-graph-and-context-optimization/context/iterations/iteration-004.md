@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Code band pt2: deep-loop runtime, launchers/IPC, hooks, doctor, advisor"
+trigger_phrases: []
+---
 # Iteration 004 — Code band pt2: deep-loop runtime, launchers/IPC, hooks, doctor, advisor
 
 - **Focus (shared):** slices 15–19 — `deep-loop-runtime/scripts` + `lib/`, `.opencode/bin` launchers/IPC, hooks, doctor, skill-advisor

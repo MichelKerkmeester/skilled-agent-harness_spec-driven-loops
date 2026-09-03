@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Integration Boundaries and Normalized Events"
+trigger_phrases: []
+---
 # Iteration 1: Integration Boundaries and Normalized Events
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Angle (a): Unified tasks+checklist design & status/validator migration"
+trigger_phrases: []
+---
 # Iteration 001 — Angle (a): Unified tasks+checklist design & status/validator migration
 
 **Focus:** Q-A1 — Can tasks.md + checklist.md merge into ONE doc (Tasks + Verification Checklist + Testing Checklist)? What breaks in deriveStatus/detectLevel/manifest/PRIORITY_TAGS, and should the verification half start at L2?

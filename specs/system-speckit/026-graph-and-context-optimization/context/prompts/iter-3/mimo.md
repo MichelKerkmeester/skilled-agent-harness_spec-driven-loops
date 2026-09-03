@@ -1,3 +1,7 @@
+---
+title: "CONTEXT"
+trigger_phrases: []
+---
 # CONTEXT
 READ-ONLY codebase-context analyzer, deep-context loop iteration 3. Iters 1–2 mapped the 026 program
 NARRATIVE and DECISIONS from the spec docs. THIS iteration maps the **live CODE** the program

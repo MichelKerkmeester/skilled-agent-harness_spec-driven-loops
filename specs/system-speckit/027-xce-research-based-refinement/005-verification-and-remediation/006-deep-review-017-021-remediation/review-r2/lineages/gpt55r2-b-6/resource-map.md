@@ -1,3 +1,7 @@
+---
+title: "Review Evidence Resource Map - gpt55r2-b-6"
+trigger_phrases: []
+---
 # Review Evidence Resource Map - gpt55r2-b-6
 
 The target scope did not include a source `resource-map.md`, so the formal Resource Map Coverage Gate was skipped. This lineage-local map records the files actually read for synthesis replay.

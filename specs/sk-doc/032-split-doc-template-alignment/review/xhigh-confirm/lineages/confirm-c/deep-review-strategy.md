@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy - confirm-c
 description: Detached confirmation lineage for the sk-code split-document template-alignment packet.
+trigger_phrases: []
 ---
 
 # Deep Review Strategy - confirm-c

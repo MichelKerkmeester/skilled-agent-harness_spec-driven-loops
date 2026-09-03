@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: system-deep-loop Routing"
+trigger_phrases: []
+---
 # Deep Research Strategy: system-deep-loop Routing
 
 ## 1. Overview

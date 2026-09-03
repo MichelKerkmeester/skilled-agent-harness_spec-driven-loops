@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Always-loaded memory patterns vs static constitutional files"
+trigger_phrases: []
+---
 # Iteration 2: Always-loaded memory patterns vs static constitutional files
 
 ## Focus

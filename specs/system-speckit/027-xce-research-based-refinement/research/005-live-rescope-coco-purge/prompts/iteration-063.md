@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 063 — 026-dedup: 005 metadata-promoter vs shipped relation-backfill.ts"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 063 — 026-dedup: 005 metadata-promoter vs shipped relation-backfill.ts

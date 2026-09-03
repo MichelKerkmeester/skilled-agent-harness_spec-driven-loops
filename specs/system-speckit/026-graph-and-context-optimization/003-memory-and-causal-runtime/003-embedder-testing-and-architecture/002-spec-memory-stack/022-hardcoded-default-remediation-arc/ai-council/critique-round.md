@@ -1,3 +1,7 @@
+---
+title: "AI Council Critique Round — Round 001"
+trigger_phrases: []
+---
 # AI Council Critique Round — Round 001
 
 ## Methodology

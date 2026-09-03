@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Iteration 6 audited arc `005-cross-cutting-quality` under the 016 umbrella, with emphasis on parent/child status consistency, cross-cutting docs alignment, benchmark-format relocation, and CocoIndex install-hygiene follow-through.

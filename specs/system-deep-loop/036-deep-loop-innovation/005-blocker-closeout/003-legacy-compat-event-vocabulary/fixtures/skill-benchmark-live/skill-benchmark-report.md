@@ -1,3 +1,7 @@
+---
+title: "Skill Benchmark Report — system-deep-loop"
+trigger_phrases: []
+---
 # Skill Benchmark Report — system-deep-loop
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-a-router-replay` · trace mode: `router`.

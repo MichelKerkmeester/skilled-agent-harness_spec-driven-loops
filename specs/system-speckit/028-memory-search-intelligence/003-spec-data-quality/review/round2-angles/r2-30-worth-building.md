@@ -1,3 +1,7 @@
+---
+title: "R2-30 Worth-Building (adversarial, fresh-eyes verdict)"
+trigger_phrases: []
+---
 # R2-30 Worth-Building (adversarial, fresh-eyes verdict)
 
 **Angle summary:** Stepping back from the 28 phases, the buildable core is real and code-grounded, but the program's decision-facing premise overstates the K=3 cutoff and the defensible build is single-digit phases, not 28.

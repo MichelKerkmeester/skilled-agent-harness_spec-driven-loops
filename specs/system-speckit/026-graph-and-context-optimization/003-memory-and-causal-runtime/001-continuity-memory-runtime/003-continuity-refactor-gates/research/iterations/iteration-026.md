@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-026.md"]
 
+trigger_phrases: []
 ---
 
 # Iteration 026 — Q7 + Q9: Failure Mode Deep Dive

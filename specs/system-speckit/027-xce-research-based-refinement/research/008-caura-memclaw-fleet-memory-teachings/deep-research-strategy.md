@@ -1,6 +1,7 @@
 ---
 title: "Deep Research Strategy — caura-memclaw (MemClaw) Fleet-Memory Teachings for Spec Kit Memory"
 description: "New lineage (iters 001-020) mining the vendored caura-memclaw fleet-memory system for design teachings transferable to the LOCAL single-user Spec Kit Memory system, mapped to 027 children 002-008, with adopt/adapt/reject/defer verdicts + risk and first-class negative knowledge."
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Session Tracking

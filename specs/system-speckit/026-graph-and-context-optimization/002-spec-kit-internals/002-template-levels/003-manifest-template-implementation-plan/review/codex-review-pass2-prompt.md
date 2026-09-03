@@ -1,3 +1,7 @@
+---
+title: "Independent Review Pass 2 — Implementation Packet 003"
+trigger_phrases: []
+---
 # Independent Review Pass 2 — Implementation Packet 003
 
 You are a fresh agent. No conversation context. This is the SECOND review pass of an implementation planning packet that has grown substantially since pass 1.

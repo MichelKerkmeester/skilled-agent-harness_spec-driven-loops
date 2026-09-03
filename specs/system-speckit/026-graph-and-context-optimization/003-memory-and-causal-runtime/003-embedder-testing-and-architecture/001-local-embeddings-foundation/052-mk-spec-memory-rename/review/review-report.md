@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 017 mk-spec-memory Rename"
+trigger_phrases: []
+---
 # Deep Review Report: 017 mk-spec-memory Rename
 
 **Review Target:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename/`

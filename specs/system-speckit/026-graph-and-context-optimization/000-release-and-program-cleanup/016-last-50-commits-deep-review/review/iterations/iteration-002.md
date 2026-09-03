@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Correctness / A1 launcher-IPC concurrency (dimension: correctness)"
+trigger_phrases: []
+---
 # Iteration 002 — Correctness / A1 launcher-IPC concurrency (dimension: correctness)
 
 ## Dispatcher

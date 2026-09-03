@@ -1,3 +1,7 @@
+---
+title: "Iteration 004: Provisional Verdict Matrix"
+trigger_phrases: []
+---
 # Iteration 004: Provisional Verdict Matrix
 
 ## Focus

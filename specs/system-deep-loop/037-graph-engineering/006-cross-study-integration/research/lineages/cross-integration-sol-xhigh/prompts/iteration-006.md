@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 Prompt Pack"
+trigger_phrases: []
+---
 # Iteration 006 Prompt Pack
 
 - Focus: P6 — end-to-end typed gate/evaluation state machine.

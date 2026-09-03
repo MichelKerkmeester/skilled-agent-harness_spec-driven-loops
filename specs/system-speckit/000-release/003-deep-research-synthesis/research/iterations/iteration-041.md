@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Numbered-H2 divider and anchor standard enforced
 
 The doc skill now has a single navigation standard for the fleet: bare numbered H2 headings, `---` dividers between them, and no table of contents or nav-anchor comments. An investigation found the written rules had drifted from what was actually enforced — 1,015 of 3,667 numbered-H2 files were missing at least one divider (2,725 gaps total) and a handful of READMEs still carried TOCs — because nothing checked them on the general path. A census across 8,645 markdown files quantified the drift and revealed a validator-vs-authority conflict, which is now resolved. Validator enforcement was added behind a `SKDOC_ENFORCE_STRUCTURE` flag so the gate can prove each fix, while the separate continuity-anchor system used by spec documents is explicitly preserved as a distinct required contract. Fleet-wide normalization of the remaining files was specified but still awaits operator go-ahead.

@@ -1,3 +1,7 @@
+---
+title: "CLI Process Memory Leak Deep Research: Final Synthesis"
+trigger_phrases: []
+---
 # CLI Process Memory Leak Deep Research: Final Synthesis
 
 <!-- ANCHOR:research-synthesis -->

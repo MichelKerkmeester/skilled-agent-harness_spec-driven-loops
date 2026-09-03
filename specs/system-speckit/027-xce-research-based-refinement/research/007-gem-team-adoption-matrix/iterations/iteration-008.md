@@ -1,3 +1,7 @@
+---
+title: "Iteration 008: RQ8 task classification & fast-path modes"
+trigger_phrases: []
+---
 # Iteration 008: RQ8 task classification & fast-path modes
 
 **Focus:** RQ8 task classification & fast-path modes  

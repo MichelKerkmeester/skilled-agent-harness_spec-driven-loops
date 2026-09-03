@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Phase 004. Run the Phase 003 migration tooling against the live tree, fanned out by skill family: rename all 111 numbered snippet files under feature_catalog/ and manual_testing_playbook/ across 9 skill packets to their bare slug, inject stage: routing|holdout|negative frontmatter, and rewrite the 3 hub-routing root-index tables in lockstep. Folds in operator decision B: fix the 2 failing vitest suites and sweep the 7 dead allowlist entries in the same corpus. Gated on Phase 001's tolerant loader and Phase 002's generator alignment landing first.",
     "created_at": "2026-07-11T14:47:54.574Z",
-    "last_save_at": "2026-08-30T15:39:13.839Z",
+    "last_save_at": "2026-09-03T22:18:45.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8bd6bf08b423a7c405da7a68adfacb4d110579b6a02968d9ff2d3a750f0c796d",
+    "source_fingerprint": "sha256:52df34dbebd99fd96f513df997dfabf46ccf370d998d58f697e95661500adb4b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "396134797662682e499720fe9f35e759cd81f6fabe83b277e974f937a99c0b76",
-      "plan.md": "9db8c91cf3f761f8c48d0fcbe8b5003443d5dbefab32c0407226bb8c2003a261",
-      "tasks.md": "918a171d97801206f42b8f524cc849180cdfcb93b29c94091d314fc3c6d85d98",
-      "implementation-summary.md": "d8d38e159de81ee3b225e4a0c984c8925131154bcc5a9ca297933c85fefa681d"
+      "plan.md": "bd9a4bddeb879387992e4c4f2b6bfb34df57a3ccfaf630d7a0a28744440a6912",
+      "tasks.md": "67d747a19131a1924cb9974d919d283557d810633df0bfe462e9d6b9dbcd886b",
+      "implementation-summary.md": "5c2f017a4c509e66cca135fa947de0645af39975f126cc00d76171edf1e61a08"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — correctness / A2 (memory-write & async enrichment)"
+trigger_phrases: []
+---
 # Iteration 003 — correctness / A2 (memory-write & async enrichment)
 
 ## Dispatcher

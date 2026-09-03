@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Deep-research iter 2/10 SCOPE-EXPANSION pass for packet .opencode/specs/system-spec-kit/027-xce-research-based-refinement.
 
 CONTEXT: Iter 1 covered RQ-A1 (coco-index intent steering + query expansion). This iter covers RQ-A2.

@@ -1,6 +1,7 @@
 ---
 title: "Deep Review Report: sk-design Styles Utilization"
 description: "Converged detached review of packet 011 across correctness, security, traceability, and maintainability."
+trigger_phrases: []
 ---
 
 # Deep Review Report: sk-design Styles Utilization

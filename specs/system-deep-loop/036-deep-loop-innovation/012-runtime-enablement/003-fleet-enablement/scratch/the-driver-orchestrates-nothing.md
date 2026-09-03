@@ -1,3 +1,7 @@
+---
+title: "The step's gap is unwritten code, not a blocked precondition"
+trigger_phrases: []
+---
 # The step's gap is unwritten code, not a blocked precondition
 
 ## Correction to the first version of this note

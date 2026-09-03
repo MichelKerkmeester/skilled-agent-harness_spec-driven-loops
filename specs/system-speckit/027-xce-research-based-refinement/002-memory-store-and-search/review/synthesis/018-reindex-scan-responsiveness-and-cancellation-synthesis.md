@@ -1,3 +1,7 @@
+---
+title: "018 Review Synthesis"
+trigger_phrases: []
+---
 # 018 Review Synthesis
 
 Multi-model deep-review of phase **018-reindex-scan-responsiveness-and-cancellation** (cooperative + cancellable background `memory_index_scan`): synthesized, deduped, and verified against shipped code.

@@ -1,3 +1,7 @@
+---
+title: "v4.0.0.0, Fewer Skills, Safer Paths"
+trigger_phrases: []
+---
 # v4.0.0.0, Fewer Skills, Safer Paths
 
 The center of this release is the shape things took. Skill after skill stopped standing alone and folded into a parent that routes to a smaller piece — the deep loops, the CLI executors, the doc authoring, the code skill, the design surface, the MCP bridges, the prompt craft. Seven hubs now share the same two-axis form: a thin parent, a mode per job. Where a monolith once hid a 28KB command or a 3,000-line template, a router now hands you the slice that fits, and it routes correctly all thirteen times out of thirteen.

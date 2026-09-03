@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — Deep Review Packet 045"
+trigger_phrases: []
+---
 # Iteration 3 — Deep Review Packet 045
 
 Session: 2026-08-31-auto-deep-review-045 · Iteration: 3 of 4

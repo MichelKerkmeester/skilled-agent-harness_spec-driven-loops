@@ -2,6 +2,7 @@
 _memory:
   continuity:
     next_safe_action: "Iteration 006 should drill 010/005 trust-badge merge behavior, age allowlist scope, dbGetter dependency injection, and cache invalidation against strategy.md."
+trigger_phrases: []
 ---
 # Iteration 005 — 010/004 affordance denylist + conflicts_with + debug counters
 

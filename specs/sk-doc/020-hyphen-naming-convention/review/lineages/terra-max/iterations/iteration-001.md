@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Correctness: phase topology"
+trigger_phrases: []
+---
 # Iteration 001 — Correctness: phase topology
 
 The parent specification describes the packet as a 16-phase `000–015` program and maps phases 007–015 to leaf folders that are no longer the current execution topology. The authoritative `manifest/phase-tree.json` instead declares a literal-maximal re-decomposition with 175 nodes and 156 leaves; it makes former phase 003 a parent. The active terminal documents also end the current top-level sequence at `011-integrate-and-closeout`, whose adjacency says it has no successor.

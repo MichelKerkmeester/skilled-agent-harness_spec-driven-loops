@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Cross-Hub Routing Consistency"
+trigger_phrases: []
+---
 # Iteration 005 - Cross-Hub Routing Consistency
 
 ## Dimension

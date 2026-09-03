@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Env-var namespace hygiene (PI_* collision scan + naming conventions + PI_FAST_MODE_W_SUBAGENT_SUPPORT fit)"
+trigger_phrases: []
+---
 # Iteration 3: Env-var namespace hygiene (PI_* collision scan + naming conventions + PI_FAST_MODE_W_SUBAGENT_SUPPORT fit)
 
 ## Focus

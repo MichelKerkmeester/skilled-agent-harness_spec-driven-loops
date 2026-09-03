@@ -1,3 +1,7 @@
+---
+title: "Deep Research Synthesis: System Speckit Alignment Audit"
+trigger_phrases: []
+---
 # Deep Research Synthesis: System Speckit Alignment Audit
 
 ## Executive Synthesis (converged at 20 iterations — operator stop, every iteration newInfoRatio = 1.0)

@@ -1,3 +1,7 @@
+---
+title: "R2-17 — Spec Seam Accuracy"
+trigger_phrases: []
+---
 # R2-17 — Spec Seam Accuracy
 
 **Angle:** documentation / spec-seam-accuracy. Spot-check the `file:line` seam citations in 005 phase specs against the live code tree to catch drift.

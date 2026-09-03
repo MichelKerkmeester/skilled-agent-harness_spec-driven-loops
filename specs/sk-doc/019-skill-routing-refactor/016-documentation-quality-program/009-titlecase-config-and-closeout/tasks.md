@@ -13,6 +13,7 @@ _memory:
     next_safe_action: "Operator ff-merge to v4."
     blockers: []
     key_files: []
+trigger_phrases: []
 ---
 
 # Tasks: Title-Case Enforcement, Config Flip, and Closeout

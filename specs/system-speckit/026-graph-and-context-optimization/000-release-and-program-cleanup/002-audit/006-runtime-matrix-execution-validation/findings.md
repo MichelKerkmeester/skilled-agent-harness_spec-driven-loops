@@ -1,3 +1,7 @@
+---
+title: "Findings: Full-Matrix Execution Validation"
+trigger_phrases: []
+---
 # Findings: Full-Matrix Execution Validation
 
 ## Verdict

@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 - KQ7: Context-engineering-layer automation (and a correction)"
+trigger_phrases: []
+---
 # Iteration 007 - KQ7: Context-engineering-layer automation (and a correction)
 
 **Focus:** Context-engineering automation — assembly, retrieval, injection, prompt packs, memory write safety — and the missing quality levers.

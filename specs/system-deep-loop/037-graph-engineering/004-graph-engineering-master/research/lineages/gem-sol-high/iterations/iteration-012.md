@@ -1,3 +1,7 @@
+---
+title: "Iteration 12: P3 Ontology as Versioned Dependency"
+trigger_phrases: []
+---
 # Iteration 12: P3 Ontology as Versioned Dependency
 
 ## Focus

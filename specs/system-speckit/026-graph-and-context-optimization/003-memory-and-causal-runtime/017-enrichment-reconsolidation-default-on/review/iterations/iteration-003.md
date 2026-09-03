@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 — correctness — flag-flips"
+trigger_phrases: []
+---
 # Iteration 3 — correctness — flag-flips
 
 **Dispatch:** gpt-5.5-fast high via cli-opencode (real verdict returned; dispatchOk=true)

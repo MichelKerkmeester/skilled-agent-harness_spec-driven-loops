@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: SQLite Vector Extension"
+trigger_phrases: []
+---
 # Iteration 3: SQLite Vector Extension
 
 ## Focus

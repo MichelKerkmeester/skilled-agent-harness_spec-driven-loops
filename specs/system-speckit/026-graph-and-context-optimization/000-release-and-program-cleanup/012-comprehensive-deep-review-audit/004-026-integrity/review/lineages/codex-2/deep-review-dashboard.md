@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard: codex-2"
+trigger_phrases: []
+---
 # Deep Review Dashboard: codex-2
 
 ## Status

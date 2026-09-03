@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Context Package: CLI External Orchestration Persona-Injection Inventory
 
 ### Memory Context

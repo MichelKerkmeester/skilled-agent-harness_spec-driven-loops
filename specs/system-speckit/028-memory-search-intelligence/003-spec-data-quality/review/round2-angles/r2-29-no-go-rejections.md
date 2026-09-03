@@ -1,3 +1,7 @@
+---
+title: "r2-29 NO-GO rejections (adversarial)"
+trigger_phrases: []
+---
 # r2-29 NO-GO rejections (adversarial)
 
 **Angle summary:** Re-examined the 18-item NO-GO list under fresh adversarial pressure. The list mislabels 5 buildable phases as NO-GO, anchors one correct rejection on a fixable bug instead of the durable rail, and freezes scale-gated deferrals with no re-trigger.

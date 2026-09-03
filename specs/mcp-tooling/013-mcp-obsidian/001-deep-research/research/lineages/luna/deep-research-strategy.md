@@ -3,6 +3,7 @@ title: Deep Research Strategy - Obsidian Automation Surfaces
 description: Research strategy for the detached Obsidian automation-surface lineage.
 contextType: planning
 version: 1.0.0
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Obsidian Automation Surfaces

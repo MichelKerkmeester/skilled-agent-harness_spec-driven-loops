@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — system-spec-kit Tooling-Borrow"
+trigger_phrases: []
+---
 # Iteration 003 — system-spec-kit Tooling-Borrow
 
 **Focus:** Verify the system-spec-kit ⇄ runtime tooling-borrow (Q3) — load-bearing test wiring that 002 §3b explicitly scopes INTO this phase (not 003).

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - Root Phase 002"
+trigger_phrases: []
+---
 # Deep Review Strategy - Root Phase 002
 
 ## 1. OVERVIEW

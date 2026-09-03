@@ -1,3 +1,7 @@
+---
+title: "Iteration 022 - VERIFICATION of iter 006-010 Persistence"
+trigger_phrases: []
+---
 # Iteration 022 - VERIFICATION of iter 006-010 Persistence
 
 The file exists but is nearly empty (prior incomplete write). I'll overwrite it with the full verification output and append to the JSONL.

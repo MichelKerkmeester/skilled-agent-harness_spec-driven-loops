@@ -1,3 +1,7 @@
+---
+title: "Dimension"
+trigger_phrases: []
+---
 # Dimension
 
 code-correctness

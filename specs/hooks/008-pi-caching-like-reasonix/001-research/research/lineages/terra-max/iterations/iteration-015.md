@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 — MCP boundary"
+trigger_phrases: []
+---
 # Iteration 015 — MCP boundary
 
 ## Focus

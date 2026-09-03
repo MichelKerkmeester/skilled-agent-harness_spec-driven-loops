@@ -1,3 +1,7 @@
+---
+title: "036 Deep-Loop-Innovation — Phase Timeline"
+trigger_phrases: []
+---
 # 036 Deep-Loop-Innovation — Phase Timeline
 
 Append-only chronological identity ledger: which spec folder was worked on first and which came

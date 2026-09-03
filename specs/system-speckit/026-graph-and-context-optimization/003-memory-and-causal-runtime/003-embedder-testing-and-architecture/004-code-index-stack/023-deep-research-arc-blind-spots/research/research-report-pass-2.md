@@ -1,3 +1,7 @@
+---
+title: "Deep Research 023 - Research Report Pass 2"
+trigger_phrases: []
+---
 # Deep Research 023 - Research Report Pass 2
 
 ## Executive Summary

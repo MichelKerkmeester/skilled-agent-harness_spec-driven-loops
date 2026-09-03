@@ -1,3 +1,7 @@
+---
+title: "Iteration 41 (Round O): C8 threat model → REAL injection vector, must-fix"
+trigger_phrases: []
+---
 # Iteration 41 (Round O): C8 threat model → REAL injection vector, must-fix
 
 ## Focus

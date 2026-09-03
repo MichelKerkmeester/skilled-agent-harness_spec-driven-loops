@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — devin-as-mcp-host-feasibility: Investigate whether Devin CLI can genuinely host this repos MCP servers (spec-kit-memory, code-graph, skill-advisor) as referenced by Devin-as-MCP-host in project INSTALL_GUIDEs (a surface the original cli-devin deprecation explicitly left untouched, per z_archive/022-cli-devin-deprecation/context/context-report.md). Confirm Devin real devin mcp add/list/get/remove/login/logout/enable/disable surface (docs.devin.ai/cli/extensibility/mcp/overview.md and configuration.md) against what these 3 MCP servers actually require (stdio vs http transport, env vars, auth, working directory). Determine whether bringing this into scope for the cli-devin revival (029-cli-devin-revival) is worthwhile, and if so what a new phase would need to cover. This directly resolves Open Question 3 in the parent spec.md (currently scoped OUT by default)."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

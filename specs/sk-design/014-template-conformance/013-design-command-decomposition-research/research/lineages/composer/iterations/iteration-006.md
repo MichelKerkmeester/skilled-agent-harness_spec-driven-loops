@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Stale Routing Evidence"
+trigger_phrases: []
+---
 # Iteration 6: Stale Routing Evidence
 
 ## Focus

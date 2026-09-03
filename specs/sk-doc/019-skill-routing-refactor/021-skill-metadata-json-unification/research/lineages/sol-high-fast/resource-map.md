@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Root-level skill metadata JSON contract for .opencode/skills/ across all 12 skills"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

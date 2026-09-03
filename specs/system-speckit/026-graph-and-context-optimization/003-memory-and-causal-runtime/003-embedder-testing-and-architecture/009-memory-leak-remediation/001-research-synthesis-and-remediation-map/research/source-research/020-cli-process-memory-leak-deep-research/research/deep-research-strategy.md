@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: CLI Process Memory Leak Deep Research"
+trigger_phrases: []
+---
 # Deep Research Strategy: CLI Process Memory Leak Deep Research
 
 ## Research Topic

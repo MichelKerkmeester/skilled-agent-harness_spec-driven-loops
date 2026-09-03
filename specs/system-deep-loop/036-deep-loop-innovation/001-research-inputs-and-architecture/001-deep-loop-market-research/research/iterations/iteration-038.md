@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 38 | model glm (zai-coding-plan/glm-5.2) | angle: Streaming / event-driven / actor loop patterns | 2026-07-15T00:24:31.493Z -->
 
 I'll research actor model, event sourcing, and streaming pipeline patterns that map to deep-loop's checkpointing and fan-out subsystems. Let me verify current state of key candidates via web search.

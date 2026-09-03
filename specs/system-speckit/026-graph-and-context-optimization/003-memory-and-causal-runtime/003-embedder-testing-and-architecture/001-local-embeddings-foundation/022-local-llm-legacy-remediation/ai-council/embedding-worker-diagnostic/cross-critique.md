@@ -1,3 +1,7 @@
+---
+title: "Embedding Worker Diagnostic - Cross Critique"
+trigger_phrases: []
+---
 # Embedding Worker Diagnostic - Cross Critique
 
 All critiques are simulated inline by cli-codex, per the binding trace. No external CLI or subagent participated.

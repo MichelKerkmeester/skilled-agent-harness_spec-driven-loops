@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Notion Knowledge Layer — Relations, Rollups, and Formulas in Depth"
+trigger_phrases: []
+---
 # Iteration 7: Notion Knowledge Layer — Relations, Rollups, and Formulas in Depth
 
 ## Focus

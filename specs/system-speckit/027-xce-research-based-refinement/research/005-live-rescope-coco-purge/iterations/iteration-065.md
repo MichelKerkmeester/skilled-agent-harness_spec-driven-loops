@@ -1,3 +1,7 @@
+---
+title: "Iteration 065 — 026-dedup: 008.1 REUSE-EXTRACT batch-learning; STATE_LIMITS prod export needed by 004"
+trigger_phrases: []
+---
 # Iteration 065 — 026-dedup: 008.1 REUSE-EXTRACT batch-learning; STATE_LIMITS prod export needed by 004
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.72. **Findings:** 6.

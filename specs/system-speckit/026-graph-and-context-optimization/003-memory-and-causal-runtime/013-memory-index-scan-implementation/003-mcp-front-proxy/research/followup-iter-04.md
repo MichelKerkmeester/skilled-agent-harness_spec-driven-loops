@@ -1,3 +1,7 @@
+---
+title: "Follow-up Design Iteration 04: Protocol Drift And Checkpoint Sentinel"
+trigger_phrases: []
+---
 # Follow-up Design Iteration 04: Protocol Drift And Checkpoint Sentinel
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Deep-Alignment Iteration Prompt Pack"
+trigger_phrases: []
+---
 DEEP-ALIGNMENT
 Resolved route: mode=alignment; target_agent=@deep-alignment; execution=single_alignment_iteration; state_source=externalized_files; do_not_switch_mode=true
 

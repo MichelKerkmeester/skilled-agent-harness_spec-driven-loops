@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — code-index Gap Audit"
+trigger_phrases: []
+---
 # Deep Research Strategy — code-index Gap Audit
 
 ## Topic

@@ -1,3 +1,7 @@
+---
+title: "Handover: 036/005/002 shadow-parity-independent-derivation (95% — external verification gate open)"
+trigger_phrases: []
+---
 # Handover: 036/005/002 shadow-parity-independent-derivation (95% — external verification gate open)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->

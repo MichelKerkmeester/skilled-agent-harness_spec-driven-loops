@@ -1,6 +1,7 @@
 ---
 title: "Blocker: CocoIndex Rust Core Environment Initialization"
 description: "Remaining 009 blocker after the search-only path patch."
+trigger_phrases: []
 ---
 
 # Blocker

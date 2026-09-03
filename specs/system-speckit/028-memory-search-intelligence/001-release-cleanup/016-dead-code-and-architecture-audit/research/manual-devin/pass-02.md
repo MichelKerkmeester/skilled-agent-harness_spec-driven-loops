@@ -1,3 +1,7 @@
+---
+title: "Dead-Code & Architecture Audit — Pass 016"
+trigger_phrases: []
+---
 All evidence confirmed. Here is the audit report.
 
 ---

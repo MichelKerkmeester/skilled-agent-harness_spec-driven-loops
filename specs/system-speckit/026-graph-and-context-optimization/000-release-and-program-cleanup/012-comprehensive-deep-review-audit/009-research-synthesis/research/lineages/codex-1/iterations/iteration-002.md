@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: Verify memory correctness impact and calibrate P0 security labels under the local MCP threat model."
+trigger_phrases: []
+---
 # Iteration 002: Verify memory correctness impact and calibrate P0 security labels under the local MCP threat model.
 
 ## Focus

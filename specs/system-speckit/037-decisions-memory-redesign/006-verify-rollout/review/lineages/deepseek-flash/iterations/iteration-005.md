@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: D3 Traceability — spec_code core protocol (deprecation census vs executed state)"
+trigger_phrases: []
+---
 # Iteration 5: D3 Traceability — spec_code core protocol (deprecation census vs executed state)
 
 ## Focus

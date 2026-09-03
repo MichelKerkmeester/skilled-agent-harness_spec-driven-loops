@@ -1,3 +1,7 @@
+---
+title: "Iteration 16: Cross-check and independent verification"
+trigger_phrases: []
+---
 # Iteration 16: Cross-check and independent verification
 
 ## Focus

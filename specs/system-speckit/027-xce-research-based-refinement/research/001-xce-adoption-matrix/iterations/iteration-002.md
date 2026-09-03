@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — RQ2: Trace Tool Design"
+trigger_phrases: []
+---
 # Iteration 002 — RQ2: Trace Tool Design
 
 **Started**: 2026-05-08T11:20:00Z

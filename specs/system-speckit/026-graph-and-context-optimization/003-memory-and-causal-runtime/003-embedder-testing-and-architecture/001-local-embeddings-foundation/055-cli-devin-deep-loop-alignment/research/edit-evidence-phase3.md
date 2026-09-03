@@ -1,3 +1,7 @@
+---
+title: "Phase 3 Edit Evidence — SWE-1.6 Iter Contract Added to LEAF Agents"
+trigger_phrases: []
+---
 # Phase 3 Edit Evidence — SWE-1.6 Iter Contract Added to LEAF Agents
 
 Date: 2026-05-15

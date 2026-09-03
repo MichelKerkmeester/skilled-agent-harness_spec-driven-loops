@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy"
+trigger_phrases: []
+---
 # Deep Review Strategy
 
 Session: fanout-codex-4-1780596001496-dj6z7c

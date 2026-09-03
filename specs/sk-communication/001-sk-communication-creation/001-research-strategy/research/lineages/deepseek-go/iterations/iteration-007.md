@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Concurrency/failure boundaries and downstream phase decomposition"
+trigger_phrases: []
+---
 # Iteration 7: Concurrency/failure boundaries and downstream phase decomposition
 
 ## Focus

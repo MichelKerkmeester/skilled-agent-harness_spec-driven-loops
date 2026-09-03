@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 2 | model luna (gpt-5.6-luna) | angle: State externalization, checkpointing, resumability | 2026-07-14T21:24:37.412Z -->
 
 The strongest pattern is a split between snapshot-based and journal-based recovery. LangGraph checkpoints graph state and preserves successful parallel writes, but replays post-checkpoint LLM/API calls; Temporal and Restate instead rebuild from ordered history and reuse recorded results. That distinction determines whether a resumed iteration is safe or merely repeatable. ([LangGraph](https://docs.langchain.com/oss/python/langgraph/persistence), [Temporal](https://docs.temporal.io/workflow-definition), [Restate](https://docs.restate.dev/ai/patterns/durable-agents))

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 001 — 008-finalize-and-commit"
+trigger_phrases: []
+---
 # Deep Review Iteration 001 — 008-finalize-and-commit
 
 **Dimension:** correctness

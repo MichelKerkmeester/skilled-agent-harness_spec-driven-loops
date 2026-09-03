@@ -1,3 +1,7 @@
+---
+title: "Iteration 13 (Opus lineage — NATIVE): adversarial verify of the iter-8 Cognee/community candidates — MAJOR CORRECTION"
+trigger_phrases: []
+---
 # Iteration 13 (Opus lineage — NATIVE): adversarial verify of the iter-8 Cognee/community candidates — MAJOR CORRECTION
 
 > Model: **Opus 4.8 NATIVE** (Agent tool `model: opus`, read-only). Orchestrator-written. newInfoRatio **0.6** (net-deflationary — 3 REFUTES overturn iter-8 NET-NEW claims). **Host-re-verified by the orchestrator** (finding-is-a-hypothesis): the cited internal files were opened to confirm the reversals before banking.

@@ -1,3 +1,7 @@
+---
+title: "Resource Map: obsidian42-BRAT File-Layer Research"
+trigger_phrases: []
+---
 # Resource Map: obsidian42-BRAT File-Layer Research
 
 ## Evidence Sources

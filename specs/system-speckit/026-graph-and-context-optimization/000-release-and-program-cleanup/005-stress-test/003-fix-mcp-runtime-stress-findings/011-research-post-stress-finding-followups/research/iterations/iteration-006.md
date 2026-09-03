@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 - Telemetry passthrough and status-readiness closure"
+trigger_phrases: []
+---
 # Iteration 006 - Telemetry passthrough and status-readiness closure
 
 ## Status

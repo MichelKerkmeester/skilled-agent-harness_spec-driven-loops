@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 007 Evaluation and Observability"
 description: "Measure whether output feels 1:1 with the reference while proving fidelity, latency, cost, privacy, and operational behavior."
 trigger_phrases:
   - "evaluation-and-observability"
-  - "evaluation and observability"
   - "portable cli projection"
   - "implementation phase"
 importance_tier: "important"

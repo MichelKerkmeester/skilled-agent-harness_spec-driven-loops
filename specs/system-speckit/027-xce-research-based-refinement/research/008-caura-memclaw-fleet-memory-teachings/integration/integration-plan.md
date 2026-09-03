@@ -5,6 +5,7 @@ researchPhase: "research/008-caura-memclaw-fleet-memory-teachings/integration"
 priorities: ["UX", "automation"]
 status: "plan — read-only research output; nothing implemented"
 created: "2026-06-06T00:00:00Z"
+trigger_phrases: []
 ---
 
 # Integration Plan: 008 Memory Hardening → Spec Kit

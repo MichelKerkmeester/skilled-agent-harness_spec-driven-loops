@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## ASSIGNED FOCUS — SECURITY PASS
 
 Audit the security posture of the shipped changes. Open the actual files and quote file:line evidence.

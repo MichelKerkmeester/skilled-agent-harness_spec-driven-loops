@@ -1,3 +1,7 @@
+---
+title: "Delta Classification"
+trigger_phrases: []
+---
 # Delta Classification
 
 Classification compares local `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/` against upstream `/private/tmp/cocoindex-code-upstream-023F-54653/src/cocoindex_code/`.

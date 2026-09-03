@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 2 of 25 - Stolen Credential Exposure"
+trigger_phrases: []
+---
 # Deep Research Iteration 2 of 25 - Stolen Credential Exposure
 
 ## SITUATION

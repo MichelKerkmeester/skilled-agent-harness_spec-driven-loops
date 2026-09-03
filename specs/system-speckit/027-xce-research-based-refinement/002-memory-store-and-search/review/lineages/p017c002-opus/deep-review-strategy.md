@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy — 002-request-quality-aggregation (lineage p017c002-opus)"
+trigger_phrases: []
+---
 # Deep Review Strategy — 002-request-quality-aggregation (lineage p017c002-opus)
 
 ## Topic

@@ -1,6 +1,7 @@
 ---
 title: Deep Review Strategy — 005-memory-indexer-invariants
 description: Session strategy for autonomous deep review of memory-indexer-invariants packet.
+trigger_phrases: []
 ---
 
 # Deep Review Strategy — 005-memory-indexer-invariants

@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run strict validation"
     key_files: ["research/iterations/iteration-035.md"]
 
+trigger_phrases: []
 ---
 # Iteration 035 — Causal edges anchor-level schema DDL, index, migration
 ## 1. Goal

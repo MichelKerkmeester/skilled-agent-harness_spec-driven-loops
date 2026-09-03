@@ -1,3 +1,7 @@
+---
+title: "Iteration 032 — Angle 32"
+trigger_phrases: []
+---
 # Iteration 032 — Angle 32
 
 **Angle:** README/SKILL.md alignment with the shipped 8-tool surface, blocked payloads, and CLI fallback contract.

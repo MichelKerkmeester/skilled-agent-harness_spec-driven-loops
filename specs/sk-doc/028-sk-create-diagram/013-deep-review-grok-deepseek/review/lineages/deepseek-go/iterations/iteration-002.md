@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: Security (D2) + cross-reference drift"
+trigger_phrases: []
+---
 # Iteration 002: Security (D2) + cross-reference drift
 
 ## Focus

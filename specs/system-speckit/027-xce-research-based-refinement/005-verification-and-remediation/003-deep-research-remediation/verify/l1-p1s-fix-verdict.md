@@ -1,3 +1,7 @@
+---
+title: "Adversarial Fix Verification — L1 P1 pair (tri-050, tri-005)"
+trigger_phrases: []
+---
 # Adversarial Fix Verification — L1 P1 pair (tri-050, tri-005)
 
 **Verifier:** Fable 5 (fresh context) · **Date:** 2026-06-12 · **State verified:** uncommitted working tree on `028-mcp-to-cli-tool-transition`

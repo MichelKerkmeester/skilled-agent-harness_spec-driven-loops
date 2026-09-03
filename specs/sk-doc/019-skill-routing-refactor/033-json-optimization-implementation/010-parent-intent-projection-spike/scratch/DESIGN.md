@@ -1,3 +1,7 @@
+---
+title: "Parent Intent Projection Spike"
+trigger_phrases: []
+---
 # Parent Intent Projection Spike
 
 ## Mechanism

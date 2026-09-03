@@ -4,6 +4,7 @@ rq: RQ-N8
 phase_target: all-phases
 newInfoRatio: 0.0
 verdict: ADAPT
+trigger_phrases: []
 ---
 
 # Iteration 037 — RQ-N8: Cross-Cutting Dependency Analysis for Active 027 Memory Phases

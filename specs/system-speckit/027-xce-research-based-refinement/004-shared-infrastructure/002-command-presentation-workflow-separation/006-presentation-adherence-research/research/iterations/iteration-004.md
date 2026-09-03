@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 (mimo-v2.5-pro)"
+trigger_phrases: []
+---
 # Iteration 004 (mimo-v2.5-pro)
 
 **Summary:** The /memory:search render-contract failure correlates with two compounding factors: its primary render template is buried under 25 lines of preamble (vs. 8-18 in succeeding commands) and its command .md uses a weaker 'read the presentation asset' instruction instead of the doctor family's stronger 'Load the presentation contract before showing...' phrasing. Additionally, search_presentation.md has the highest template density (7 competing fenced blocks in 243 lines), and there is no explicit marker convention to signal which template block is primary — a gap that will affect the deep/* family (328-463 lines) even more severely when dispatched to mid-tier models.

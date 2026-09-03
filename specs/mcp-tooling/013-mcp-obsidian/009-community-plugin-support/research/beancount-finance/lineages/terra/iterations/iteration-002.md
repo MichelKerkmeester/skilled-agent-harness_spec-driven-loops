@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — ledger model, BQL, and dashboards"
+trigger_phrases: []
+---
 # Iteration 002 — ledger model, BQL, and dashboards
 
 ## Result

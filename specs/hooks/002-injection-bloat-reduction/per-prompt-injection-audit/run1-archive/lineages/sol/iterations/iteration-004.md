@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Cursor Adapter End-to-End Injection Audit"
+trigger_phrases: []
+---
 # Iteration 4: Cursor Adapter End-to-End Injection Audit
 
 ## Focus

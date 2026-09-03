@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Operational Migration, Rollback, Rebuild, and CI Sequence"
+trigger_phrases: []
+---
 # Iteration 9: Operational Migration, Rollback, Rebuild, and CI Sequence
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: D1 Correctness — Search plumbing & tier deprecation state"
+trigger_phrases: []
+---
 # Iteration 1: D1 Correctness — Search plumbing & tier deprecation state
 
 ## Focus

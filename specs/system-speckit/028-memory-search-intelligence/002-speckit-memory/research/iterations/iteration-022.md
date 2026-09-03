@@ -1,3 +1,7 @@
+---
+title: "Iteration 22: Round D Cross-System Synthesis Verification — The Determinism Spine (PARTIAL: 2 of 4)"
+trigger_phrases: []
+---
 # Iteration 22: Round D Cross-System Synthesis Verification — The Determinism Spine (PARTIAL: 2 of 4)
 
 ## Focus

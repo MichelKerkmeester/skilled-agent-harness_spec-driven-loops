@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — .opencode/specs/sk-doc/016-create-diff-mode/010-fluid-responsive-report"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

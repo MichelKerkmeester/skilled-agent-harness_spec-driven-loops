@@ -1,3 +1,7 @@
+---
+title: "018/001 — CocoIndex swap operator runbook"
+trigger_phrases: []
+---
 # 018/001 — CocoIndex swap operator runbook
 
 > Code is shipped (`8f909d229`). Daemon restart + reindex are operator steps below.

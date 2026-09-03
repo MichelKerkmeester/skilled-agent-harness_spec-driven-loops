@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Spec-Kit Data Quality by Default"
+trigger_phrases: []
+---
 # Research Synthesis: Spec-Kit Data Quality by Default
 
 <!-- ANCHOR:research-index -->

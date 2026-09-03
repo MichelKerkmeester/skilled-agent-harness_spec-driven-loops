@@ -1,3 +1,7 @@
+---
+title: "Resource Map — cli-cursor-grok-45-high lineage"
+trigger_phrases: []
+---
 # Resource Map — cli-cursor-grok-45-high lineage
 
 Evidence-derived resource map for the Claude-app-style pi RPC mobile client research. `resource-map.md` was absent at the parent spec folder at init (`resource_map_present: false`); this file is emitted from lineage deltas at synthesis.

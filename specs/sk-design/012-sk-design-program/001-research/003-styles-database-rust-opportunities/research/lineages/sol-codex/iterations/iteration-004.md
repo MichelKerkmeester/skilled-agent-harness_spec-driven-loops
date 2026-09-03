@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Local Embedding Inference"
+trigger_phrases: []
+---
 # Iteration 4: Local Embedding Inference
 
 ## Focus

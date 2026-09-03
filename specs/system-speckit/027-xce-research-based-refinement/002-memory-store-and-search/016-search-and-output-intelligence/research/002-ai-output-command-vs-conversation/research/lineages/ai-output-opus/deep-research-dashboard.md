@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — ai-output-opus"
+trigger_phrases: []
+---
 # Deep Research Dashboard — ai-output-opus
 
 | Field | Value |

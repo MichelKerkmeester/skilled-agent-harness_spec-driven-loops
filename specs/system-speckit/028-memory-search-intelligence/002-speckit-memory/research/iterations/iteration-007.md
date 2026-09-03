@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Galadriel Deepening (broaden) + Dependency-Ordered Adoption Sequence"
+trigger_phrases: []
+---
 # Iteration 7: Galadriel Deepening (broaden) + Dependency-Ordered Adoption Sequence
 
 ## Focus

@@ -7,6 +7,7 @@ cwd: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 created_at: 2026-04-17T20:10:00Z
 convergence_candidate: true
 note: "Empirical test run of 17 regression suites + adversarial Node reproduction of sanitizeRecoveredPayload against 19 homoglyph/zero-width/accented inputs."
+trigger_phrases: []
 ---
 
 # Iteration 007 — Regression-verification

@@ -1,3 +1,7 @@
+---
+title: "Iteration 1 — Correctness: default-output allocation"
+trigger_phrases: []
+---
 # Iteration 1 — Correctness: default-output allocation
 
 ## Dispatcher

@@ -1,3 +1,7 @@
+---
+title: "Resource map — Beancount Ledger 2.3.1 lineage `luna`"
+trigger_phrases: []
+---
 # Resource map — Beancount Ledger 2.3.1 lineage `luna`
 
 ## Canonical outputs

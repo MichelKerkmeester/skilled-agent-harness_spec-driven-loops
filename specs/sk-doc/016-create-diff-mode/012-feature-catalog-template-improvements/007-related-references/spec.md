@@ -3,6 +3,7 @@ title: "Phase 007: Related References — All Skills"
 description: "Script-driven: add 'Related references:' prev/next links to SOURCE METADATA in all 315 snippets currently missing them. Link titles sourced from frontmatter — no AI judgment needed."
 importance_tier: "normal"
 contextType: "general"
+trigger_phrases: []
 ---
 # Phase 007: Related References — All Skills
 

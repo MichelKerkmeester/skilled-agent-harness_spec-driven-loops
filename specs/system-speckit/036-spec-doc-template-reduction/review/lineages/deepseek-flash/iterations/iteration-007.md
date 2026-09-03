@@ -1,3 +1,7 @@
+---
+title: "Iteration 007: D3/D1 — 002 BLOCKER Divergence Deep-Dive (check-anchors vs compare)"
+trigger_phrases: []
+---
 # Iteration 007: D3/D1 — 002 BLOCKER Divergence Deep-Dive (check-anchors vs compare)
 
 ## Focus

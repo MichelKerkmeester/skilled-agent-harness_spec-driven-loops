@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Bidirectional Path-Coupling Inventory"
+trigger_phrases: []
+---
 # Iteration 2: Bidirectional Path-Coupling Inventory
 
 ## Focus

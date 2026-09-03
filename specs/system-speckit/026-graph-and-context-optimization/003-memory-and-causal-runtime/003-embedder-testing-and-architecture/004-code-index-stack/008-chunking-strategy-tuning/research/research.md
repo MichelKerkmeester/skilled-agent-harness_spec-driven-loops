@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: 016/011/002 Chunking Strategy Tuning"
+trigger_phrases: []
+---
 # Research Synthesis: 016/011/002 Chunking Strategy Tuning
 
 > **Status**: CONVERGED (3 of 3 iters complete) — 2026-05-18T07:48-07:51Z. Iter 5 ran via cli-devin SWE-1.6 originally; iters 5-7 re-dispatched via cli-devin kimi-k2.6 (SWE-1.6 + DeepSeek + GLM quotas exhausted; Kimi was the only available cli-devin model).

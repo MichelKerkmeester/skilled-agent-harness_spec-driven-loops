@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — One Authority-Subordination Contract"
+trigger_phrases: []
+---
 # Iteration 001 — One Authority-Subordination Contract
 
 ## Focus

@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 003 Core Normalization and Assembly"
 description: "Build the runtime-neutral core that normalizes events and assembles one deterministic message without changing canonical state."
 trigger_phrases:
   - "core-normalization-and-assembly"
-  - "core normalization and assembly"
   - "portable cli projection"
   - "implementation phase"
 importance_tier: "important"

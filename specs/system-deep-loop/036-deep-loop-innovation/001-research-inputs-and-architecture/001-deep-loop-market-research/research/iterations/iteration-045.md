@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 45 | model glm (zai-coding-plan/glm-5.2) | angle: FINAL GAP-SWEEP #3: guarantee catalogue breadth | 2026-07-15T00:48:28.229Z -->
 
 I'll verify a few candidate repos via web search before committing, since the directive forbids inventing repos/numbers. Let me batch fetches for the highest-value gaps (AI-safety-via-debate OSS, CRDT state, concurrency/locks, knowledge-editing continual, process-reward).

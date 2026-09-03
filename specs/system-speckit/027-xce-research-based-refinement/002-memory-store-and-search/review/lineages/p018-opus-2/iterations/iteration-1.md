@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Review complete. All phases executed within the lineage artifact directory only.
 
 **Summary — lineage p018-opus-2, target 027/002/018 (reindex-scan responsiveness and cancellation)**

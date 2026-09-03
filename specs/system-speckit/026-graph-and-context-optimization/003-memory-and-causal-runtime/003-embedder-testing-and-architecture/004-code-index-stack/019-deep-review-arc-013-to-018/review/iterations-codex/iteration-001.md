@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 001 — architecture"
+trigger_phrases: []
+---
 # Codex Iteration 001 — architecture
 
 ## Sequential-thinking preflight

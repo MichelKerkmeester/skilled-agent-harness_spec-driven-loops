@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Styles Corpus and Storage Facade"
+trigger_phrases: []
+---
 # Iteration 2: Styles Corpus and Storage Facade
 
 ## Focus

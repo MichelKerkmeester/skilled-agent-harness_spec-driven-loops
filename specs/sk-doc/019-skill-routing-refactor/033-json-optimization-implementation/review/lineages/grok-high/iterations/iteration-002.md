@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: D2 Security + D3 Traceability — Phase Map, continuity, checklist integrity, O-map"
+trigger_phrases: []
+---
 # Iteration 2: D2 Security + D3 Traceability — Phase Map, continuity, checklist integrity, O-map
 
 ## Focus

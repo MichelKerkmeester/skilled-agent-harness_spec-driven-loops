@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- provenance: manual cli-opencode orchestration | executor openai/gpt-5.6-sol-fast --variant high | round 1 angle A1 — Core idioms & API design -->
 
 I’ll run this as a read-only deep-research round, grounding repo claims in files actually read and external claims in canonical Rust, napi-rs, and wasm-bindgen documentation. No repository files will be modified.

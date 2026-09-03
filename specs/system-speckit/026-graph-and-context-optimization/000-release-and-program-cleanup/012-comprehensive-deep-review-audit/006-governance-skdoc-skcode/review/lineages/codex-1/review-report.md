@@ -1,6 +1,7 @@
 ---
 title: Review Report - Governance + sk-doc + sk-code Drift Review Slice
 description: Final synthesis for fan-out lineage codex-1.
+trigger_phrases: []
 ---
 
 # Review Report - Governance + sk-doc + sk-code Drift Review Slice

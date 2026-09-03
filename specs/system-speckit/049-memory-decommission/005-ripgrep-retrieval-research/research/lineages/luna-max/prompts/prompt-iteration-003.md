@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 prompt"
+trigger_phrases: []
+---
 # Iteration 3 prompt
 
 Establish the grep-precise corpus contract and the capability boundary created by MCP retirement. Inspect frontmatter parsers/editors, trigger extraction/sanitization, anchor metadata and validators, folder naming references, continuity save workflow, causal graph handlers, resource-map template/reducer, and phases 002–004. Separate confirmed current behavior from recommendations. Identify generic trigger pollution, marker/body-scope contradictions, and exact replacements or explicit deferrals for continuity writing, causal links, resource maps, session/decay/semantic features. Amend phase 001 and 004 specs/plans/tasks with cited paths and lines; do not edit the parent packet.

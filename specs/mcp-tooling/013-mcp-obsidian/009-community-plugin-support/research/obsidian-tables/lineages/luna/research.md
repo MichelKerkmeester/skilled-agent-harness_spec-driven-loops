@@ -1,6 +1,7 @@
 ---
 title: "obsidian-tables: verified file-layer data model and AI workflows"
 description: "Source-cited synthesis of aztekgold/obsidian-tables current main source, README, and changelog."
+trigger_phrases: []
 ---
 
 # obsidian-tables: verified file-layer knowledge base

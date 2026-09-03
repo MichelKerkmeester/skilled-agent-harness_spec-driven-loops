@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Final Hardening Rank and Runtime-Context Feasibility"
+trigger_phrases: []
+---
 # Iteration 7: Final Hardening Rank and Runtime-Context Feasibility
 
 ## Focus

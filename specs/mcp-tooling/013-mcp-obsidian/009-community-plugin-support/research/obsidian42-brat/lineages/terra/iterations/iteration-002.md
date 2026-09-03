@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Plugin release mechanics and file-layer installation"
+trigger_phrases: []
+---
 # Iteration 2: Plugin release mechanics and file-layer installation
 
 ## Focus

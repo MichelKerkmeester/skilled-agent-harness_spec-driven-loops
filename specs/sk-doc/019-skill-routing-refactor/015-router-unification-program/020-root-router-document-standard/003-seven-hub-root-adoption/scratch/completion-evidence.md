@@ -1,3 +1,7 @@
+---
+title: "Completion Evidence"
+trigger_phrases: []
+---
 # Completion Evidence
 
 Observed checks for seven-hub adoption:

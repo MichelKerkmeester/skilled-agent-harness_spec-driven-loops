@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### De-numbered snippet filenames in catalog and playbook standards
 The standards governing feature catalogs and manual testing playbooks no longer number the per-feature snippet files. Previously every snippet carried a global `NNN-` filename prefix that ran across every category, forcing a wholesale renumber on each insert. Now authors create `NN--category-name/feature-name.md`: a numbered category folder holding un-numbered feature files, with snippet order defined by the root catalog or playbook listing rather than the filename. The two creation references, both root and both snippet templates, the two `create:*` command docs and their four YAML assets were aligned to the new shape. The validator needed no logic change because it already keys per-feature detection off the `NN--` category-directory pattern; only a stale code comment was updated. Existing packages are untouched — the ~1,531 already-numbered snippet files keep their names, with migration deferred to a later phase gated on a new tool — so the user-visible win is that inserting a feature into a catalog or playbook is now a drop-in file with no cascading renumber.
 

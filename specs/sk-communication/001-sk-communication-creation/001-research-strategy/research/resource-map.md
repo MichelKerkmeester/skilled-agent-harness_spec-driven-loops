@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Provider-neutral CLI display projection research"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

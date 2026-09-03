@@ -1,3 +1,7 @@
+---
+title: "Focused File Review: CLI External Orchestration Persona-Injection Inventory (dispatch-point verification)"
+trigger_phrases: []
+---
 
 > build · cline-pass/deepseek-v4-flash
 

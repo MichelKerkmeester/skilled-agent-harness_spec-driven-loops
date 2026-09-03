@@ -1,3 +1,7 @@
+---
+title: "Deep Research: caura-memclaw (MemClaw) Fleet-Memory Teachings for Spec Kit Memory"
+trigger_phrases: []
+---
 # Deep Research: caura-memclaw (MemClaw) Fleet-Memory Teachings for Spec Kit Memory
 
 <!-- ANCHOR:deep-research-caura-memclaw -->

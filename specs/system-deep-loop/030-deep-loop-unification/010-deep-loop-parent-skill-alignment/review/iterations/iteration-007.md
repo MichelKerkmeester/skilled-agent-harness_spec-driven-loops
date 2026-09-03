@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 — Kimi-K2.7 (COSTAR) — correctness"
+trigger_phrases: []
+---
 # Iteration 7 — Kimi-K2.7 (COSTAR) — correctness
 
 Dispatched: 2026-06-28T07:58:41.082Z | wall: 248s | billing: free

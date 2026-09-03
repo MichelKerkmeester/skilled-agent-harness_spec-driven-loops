@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: sk-design Styles Utilization"
+trigger_phrases: []
+---
 # Deep Review Strategy: sk-design Styles Utilization
 
 ## 1. TOPIC

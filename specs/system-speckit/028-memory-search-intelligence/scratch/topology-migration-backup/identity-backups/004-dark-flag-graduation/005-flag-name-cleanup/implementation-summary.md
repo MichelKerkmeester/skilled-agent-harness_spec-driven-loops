@@ -23,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Whether the documented-dead SPECKIT_PIPELINE_V2 and the eval-harness SPECKIT_EVAL_V2 config knobs are in scope, they are not"
+trigger_phrases: []
 ---
 # Implementation Summary
 

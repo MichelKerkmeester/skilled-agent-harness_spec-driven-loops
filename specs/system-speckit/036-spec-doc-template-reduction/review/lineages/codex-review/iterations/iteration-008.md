@@ -1,3 +1,7 @@
+---
+title: "Review Iteration 008 — Candidate coverage and manifest completeness"
+trigger_phrases: []
+---
 # Review Iteration 008 — Candidate coverage and manifest completeness
 
 ## Route

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — Classify typed vs path vs prose; collision risk (Q2)"
+trigger_phrases: []
+---
 # Iteration 002 — Classify typed vs path vs prose; collision risk (Q2)
 
 **Focus (Q2):** Classify every Class A–G occurrence as typed-safe-to-sweep, path-position, or free-prose-with-English-collision. Pull field-level evidence for Class F (graph-metadata.json) and Class G (command-metadata.json).

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Sequencing, Dependencies, and Shared Infrastructure"
+trigger_phrases: []
+---
 # Iteration 4: Sequencing, Dependencies, and Shared Infrastructure
 
 ## Focus

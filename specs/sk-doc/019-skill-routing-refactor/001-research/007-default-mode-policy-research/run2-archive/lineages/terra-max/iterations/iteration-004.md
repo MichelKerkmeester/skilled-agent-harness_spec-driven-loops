@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Q4 / Thread 8 — Co-Dominant Modes and the Dominance Evidence Rule"
+trigger_phrases: []
+---
 # Iteration 4: Q4 / Thread 8 — Co-Dominant Modes and the Dominance Evidence Rule
 
 ## Focus

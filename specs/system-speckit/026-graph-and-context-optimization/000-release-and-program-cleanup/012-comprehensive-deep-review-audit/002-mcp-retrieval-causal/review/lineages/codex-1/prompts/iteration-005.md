@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 Prompt Record"
+trigger_phrases: []
+---
 # Iteration 005 Prompt Record
 
 Focus: stabilization replay across correctness, security, traceability, and maintainability findings.

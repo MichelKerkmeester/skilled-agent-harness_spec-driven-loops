@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 2 — Concurrency / race conditions audit (Q1)"
+trigger_phrases: []
+---
 # Deep-Research Iteration 2 — Concurrency / race conditions audit (Q1)
 
 ## YOUR ROLE

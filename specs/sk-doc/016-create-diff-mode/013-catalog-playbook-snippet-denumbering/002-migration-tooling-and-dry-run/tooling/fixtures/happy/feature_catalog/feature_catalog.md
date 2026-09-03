@@ -1,3 +1,7 @@
+---
+title: "Test Catalog"
+trigger_phrases: []
+---
 # Test Catalog
 
 - [foo](01--alpha/foo.md) — plain link

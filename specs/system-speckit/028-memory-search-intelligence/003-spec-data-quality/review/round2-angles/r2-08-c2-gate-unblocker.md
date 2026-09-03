@@ -1,3 +1,7 @@
+---
+title: "r2-08 c2-gate-unblocker (angle: architecture)"
+trigger_phrases: []
+---
 # r2-08 c2-gate-unblocker (angle: architecture)
 
 **Angle summary:** Treating 015-c2 as the single promotion path for C1, C3, C4, C5 and 027 is structurally reasonable as a regression tripwire, but the design concentrates four-plus phases onto one frozen hand-labeled gold set with one of its three classes measured by a metric that cannot see what that class exists to test, no held-out split, and no interaction guard, so the keystone is weaker than the verdict claims.

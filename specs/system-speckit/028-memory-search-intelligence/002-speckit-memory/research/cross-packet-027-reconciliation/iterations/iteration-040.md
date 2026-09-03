@@ -1,3 +1,7 @@
+---
+title: "Iteration 40 (Round N adversarial): Over-deflation skeptic — deflations are SOUND"
+trigger_phrases: []
+---
 # Iteration 40 (Round N adversarial): Over-deflation skeptic — deflations are SOUND
 
 ## Focus

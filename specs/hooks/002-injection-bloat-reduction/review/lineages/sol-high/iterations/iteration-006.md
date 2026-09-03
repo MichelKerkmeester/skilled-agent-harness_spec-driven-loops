@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Gate 3 relay confirmation semantics"
+trigger_phrases: []
+---
 # Iteration 6: Gate 3 relay confirmation semantics
 
 ## Dimension

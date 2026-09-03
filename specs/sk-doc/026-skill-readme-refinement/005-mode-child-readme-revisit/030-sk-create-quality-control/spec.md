@@ -5,7 +5,6 @@ trigger_phrases:
   - "sk create quality control readme"
   - "quality control readme revisit"
   - "doc quality readme"
-  - "sk-create-quality-control readme"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

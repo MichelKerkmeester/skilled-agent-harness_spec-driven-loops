@@ -1,3 +1,7 @@
+---
+title: "Iteration 003 — Stabilization + overlay-protocol determination"
+trigger_phrases: []
+---
 # Iteration 003 — Stabilization + overlay-protocol determination
 
 **Target:** `026-shared-safe-fix-engine` (spec-folder, status PLANNED)

@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final Opportunity Adjudication"
+trigger_phrases: []
+---
 # Iteration 10: Final Opportunity Adjudication
 
 ## Focus

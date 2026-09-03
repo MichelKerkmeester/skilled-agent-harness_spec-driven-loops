@@ -1,3 +1,7 @@
+---
+title: "Adversarial Fix Verification — L3 receipt trio + TTL (code) and L4 doc batch"
+trigger_phrases: []
+---
 # Adversarial Fix Verification — L3 receipt trio + TTL (code) and L4 doc batch
 
 > **Verifier:** Fable 5 (fresh context) · **Date:** 2026-06-12

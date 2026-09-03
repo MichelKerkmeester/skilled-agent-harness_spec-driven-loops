@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 — traceability overlay (skill_agent + agent_cross_runtime + playbook_capability)"
+trigger_phrases: []
+---
 # Iteration 7 — traceability overlay (skill_agent + agent_cross_runtime + playbook_capability)
 
 ## Files Reviewed

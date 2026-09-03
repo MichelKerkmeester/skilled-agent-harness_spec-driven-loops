@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 — Assistive reconsolidation contract drift (6/10)"
+trigger_phrases: []
+---
 # Iteration 6 — Assistive reconsolidation contract drift (6/10)
 
 ## Investigation Thread

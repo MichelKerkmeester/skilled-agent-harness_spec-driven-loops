@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I need to read the interface design workflow assets to understand the execution requirements.Now I have a comprehensive understanding of the interface design workflow. Let me create the execution plan for this `/interface:design` command.
 
 ---

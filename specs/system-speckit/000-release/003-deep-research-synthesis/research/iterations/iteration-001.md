@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Terminal-proof discipline distributed across framework gates
 Agents now must back every load-bearing claim with terminal evidence, not just assert it. The standalone Terminal Discipline block in AGENTS.md was removed and its mechanics distributed across the Four Laws, verification standards, blast-radius management, execution behavior, and a new Final-State Verification hard gate that blocks completion until the authoritative check passes. Each turn, the per-turn capsule now carries a one-line proof-over-appearance directive injected through the existing governor chain — defined in the renderer and mirrored for the OpenCode fallback, so every runtime reminds the model to prove claims before declaring success. The AGENTS.md diff landed as 51 insertions and 2 deletions, the compiled dist and directive-expectation tests were rebuilt, and strict validation passes clean. For framework users the effect is behavioral: "it works" must now be backed by rerunning the authoritative gate, not by phrasing.
 

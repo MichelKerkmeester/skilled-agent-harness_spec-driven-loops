@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Continuous Indexing and Watch Automation"
+trigger_phrases: []
+---
 # Iteration 5: Continuous Indexing and Watch Automation
 
 ## Focus

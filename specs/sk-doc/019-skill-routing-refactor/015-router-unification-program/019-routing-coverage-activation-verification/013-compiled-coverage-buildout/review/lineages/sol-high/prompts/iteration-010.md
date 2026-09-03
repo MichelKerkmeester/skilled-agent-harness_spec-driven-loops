@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW ITERATION 010
 
 Focus: maintainability stabilization through final adversarial replay, finding-severity challenge, and synthesis-readiness audit.

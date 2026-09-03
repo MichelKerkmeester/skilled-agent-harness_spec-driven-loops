@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 - Security"
+trigger_phrases: []
+---
 # Iteration 002 - Security
 
 Focus: unsafe playbook execution, destructive commands, path handling, and credential exposure risk in the sampled playbook surfaces.

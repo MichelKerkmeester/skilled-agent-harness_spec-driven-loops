@@ -13,7 +13,6 @@
     "trigger_phrases": [
       "deep review readme",
       "mode readme rewrite",
-      "deep-review readme",
       "readme revisit deep review",
       "hvr readme check",
       "phase 039 plan",
@@ -22,7 +21,8 @@
       "phase 039 tasks",
       "deep review readme tasks",
       "mode readme rewrite tasks",
-      "phase 39 implementation summary"
+      "phase 39 implementation summary",
+      "deep review readme closeout"
     ],
     "key_topics": [
       "deep",
@@ -30,13 +30,13 @@
       "readme",
       "mode",
       "rewrite",
-      "deep-review",
       "revisit",
       "hvr",
       "check",
       "phase",
       "plan",
-      "tasks"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The deep-review README at `.opencode/skills/system-deep-loop/deep-review/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:53.459Z",
-    "last_save_at": "2026-08-30T15:39:17.899Z",
+    "last_save_at": "2026-09-03T22:19:51.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7aaf9030904786029b5482bbd565c68bd33698d45a33e590e194d3fca6bdc73",
+    "source_fingerprint": "sha256:25291031a10e633d1a721ba764d0987e3de4f790e31d4babd6c115714083902e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46cefd10a58ece5873803c91985e3750b016f7432eac1e8303ebf511f3cac59a",
+      "spec.md": "3bd72908d6bd6ba12bd6b9b3e0dacefbb91fa4f8e912c9efbedd2a495fb7579d",
       "plan.md": "6ce2cf31a35c9f54d80ccc201c6c8a84009710ea117af297aae098c93d06d794",
       "tasks.md": "184bfd31f4724c8eb068b266ac898dd75d4e3791436a12202624cc92fccc51fe",
       "implementation-summary.md": "d8a32dfd1f8d82db94d3a4de9c9f9f63cb3c50000555493325e5f0c0e2d44a06"

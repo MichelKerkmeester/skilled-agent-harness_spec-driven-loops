@@ -9,6 +9,7 @@ scan_roots:
   - .opencode/skills/system-spec-kit/mcp_server/dist/database/
   - .opencode/skills/system-spec-kit/mcp_server/lib/storage/
 rows: 10
+trigger_phrases: []
 ---
 
 # Phase 018 Resource Map — Database & Schema

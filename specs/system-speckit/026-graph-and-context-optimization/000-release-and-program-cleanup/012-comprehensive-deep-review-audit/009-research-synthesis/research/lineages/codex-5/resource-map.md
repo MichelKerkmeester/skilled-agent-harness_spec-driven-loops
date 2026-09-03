@@ -1,3 +1,7 @@
+---
+title: "Resource Map"
+trigger_phrases: []
+---
 # Resource Map
 
 Evidence-derived map for this lineage. The source spec folder did not contain an upstream `resource-map.md` at init, so this file records resources discovered from iteration evidence.

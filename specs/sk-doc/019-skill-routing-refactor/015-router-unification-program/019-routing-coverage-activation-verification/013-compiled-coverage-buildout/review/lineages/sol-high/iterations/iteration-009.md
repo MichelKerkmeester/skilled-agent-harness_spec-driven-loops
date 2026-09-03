@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Kill-Switch And Fail-Safe Stabilization"
+trigger_phrases: []
+---
 # Iteration 9: Kill-Switch And Fail-Safe Stabilization
 
 ## Dispatcher

@@ -1,3 +1,7 @@
+---
+title: "sk-design — Styles Library & Interface Commands: Gap Analysis"
+trigger_phrases: []
+---
 # sk-design — Styles Library & Interface Commands: Gap Analysis
 
 > Captures the gaps you flagged in `.opencode/skills/sk-design/styles/**` and the

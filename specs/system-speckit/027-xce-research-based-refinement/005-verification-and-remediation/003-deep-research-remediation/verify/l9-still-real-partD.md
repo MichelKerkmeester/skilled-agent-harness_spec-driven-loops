@@ -1,3 +1,7 @@
+---
+title: "L9 Still-Real Verification — P2/P3 Sweep, Part D (14 findings)"
+trigger_phrases: []
+---
 # L9 Still-Real Verification — P2/P3 Sweep, Part D (14 findings)
 
 Fresh-verifier batch run, 2026-06-12. Each finding re-checked against current code/docs on branch `028-mcp-to-cli-tool-transition`, including overtake checks against today's shipped lanes (single-writer DB lock, secret scrubber, hash-only fingerprints, --command dispatch, apply-pipeline gates, launcher lifecycle docs, detect_changes adoption, advisor doc batch, command-dashboard adherence L8).

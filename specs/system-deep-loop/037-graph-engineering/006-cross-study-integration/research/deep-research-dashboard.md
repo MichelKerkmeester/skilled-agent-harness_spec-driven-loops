@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — Cross-Study Integration"
+trigger_phrases: []
+---
 # Deep Research Dashboard — Cross-Study Integration
 
 ## Status

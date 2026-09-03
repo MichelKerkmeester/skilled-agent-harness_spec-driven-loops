@@ -1,3 +1,7 @@
+---
+title: "Iteration 066 — path-drift: audit OVERSTATED; only 007 needs repath (002-006/008 already live)"
+trigger_phrases: []
+---
 # Iteration 066 — path-drift: audit OVERSTATED; only 007 needs repath (002-006/008 already live)
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.74. **Findings:** 5.

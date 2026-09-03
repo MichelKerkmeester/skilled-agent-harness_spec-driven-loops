@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 - Maintainability: 028 contract impact"
+trigger_phrases: []
+---
 # Iteration 008 - Maintainability: 028 contract impact
 
 ## Focus

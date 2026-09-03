@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Structural Layout"
+trigger_phrases: []
+---
 # Iteration 001 — Structural Layout
 
 **Focus:** Verify child 002 §8's target layout (`system-deep-loop/runtime/` nesting) against the live trees.

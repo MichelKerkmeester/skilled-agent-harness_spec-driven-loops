@@ -1,3 +1,7 @@
+---
+title: "Direct-mode iteration 2 prompt"
+trigger_phrases: []
+---
 # Direct-mode iteration 2 prompt
 
 DEEP-RESEARCH

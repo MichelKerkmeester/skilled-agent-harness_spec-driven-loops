@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Subagent handoff mechanics"
+trigger_phrases: []
+---
 # Iteration 2: Subagent handoff mechanics
 
 ## Focus

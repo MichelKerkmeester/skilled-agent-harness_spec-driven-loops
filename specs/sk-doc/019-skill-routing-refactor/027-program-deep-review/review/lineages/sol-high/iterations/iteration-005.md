@@ -1,3 +1,7 @@
+---
+title: "Deep Review Iteration 005 — Cross-Reference Stabilization"
+trigger_phrases: []
+---
 # Deep Review Iteration 005 — Cross-Reference Stabilization
 
 ## Dispatcher

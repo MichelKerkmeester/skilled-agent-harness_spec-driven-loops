@@ -1,3 +1,7 @@
+---
+title: "Legacy state census"
+trigger_phrases: []
+---
 # Legacy state census
 
 Date: 2026-08-07

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: security - reducer and extractor safety review"
+trigger_phrases: []
+---
 # Iteration 002: security - reducer and extractor safety review
 
 ## Dispatcher

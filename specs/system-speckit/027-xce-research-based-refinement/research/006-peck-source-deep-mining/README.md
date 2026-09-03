@@ -1,3 +1,7 @@
+---
+title: "027 Research Phase 006 — peck-source deep mining"
+trigger_phrases: []
+---
 # 027 Research Phase 006 — peck-source deep mining
 
 Sixth research pass over the 027 XCE-derived Spec Kit refinement packet. Where phase 001 (`001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/peck-teachings-analysis.md`, 2026-06-02) mined peck's **README** and produced teachings T1-T4 (T2/T3/T4 adopted as children `001/{002,003,004}`; **T1 deferred**), phase 006 mines peck-master's **actual source** — agent prompts, CLI commands, the `reflect` skill, and the `revim-*` benchmark harness — for **net-new** adoptable mechanisms, and re-evaluates the deferred T1 coverage gate.

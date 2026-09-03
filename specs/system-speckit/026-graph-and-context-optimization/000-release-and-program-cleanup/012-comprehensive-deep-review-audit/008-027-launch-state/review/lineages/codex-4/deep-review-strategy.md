@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - 027 Launch-State Review Slice"
+trigger_phrases: []
+---
 # Deep Review Strategy - 027 Launch-State Review Slice
 
 ## 1. OVERVIEW

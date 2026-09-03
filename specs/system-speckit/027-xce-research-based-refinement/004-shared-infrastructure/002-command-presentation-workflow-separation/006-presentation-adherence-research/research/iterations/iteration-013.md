@@ -1,3 +1,7 @@
+---
+title: "Iteration 013 (wave 2, gpt-5.5-fast xhigh) — Low-confidence path structured signal"
+trigger_phrases: []
+---
 # Iteration 013 (wave 2, gpt-5.5-fast xhigh) — Low-confidence path structured signal
 
 **Verdict:** Low confidence triggers prose because the runtime emits low-confidence as prompt-visible markdown and natural-language `safeResponse`, while the exact command envelope remains only a static doc. The mechanical fix is a single structured render policy and server-generated MEMORY:SEARCH envelope where confidence/action/citation limits are fields inside the envelope, not prose outside it.

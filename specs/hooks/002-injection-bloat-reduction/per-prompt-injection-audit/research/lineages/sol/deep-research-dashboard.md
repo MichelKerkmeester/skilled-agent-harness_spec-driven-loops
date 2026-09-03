@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — Per-Prompt Injection Audit"
+trigger_phrases: []
+---
 # Deep Research Dashboard — Per-Prompt Injection Audit
 
 ## Iteration Table

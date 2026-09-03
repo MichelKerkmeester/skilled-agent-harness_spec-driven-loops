@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Benchmark authoring consolidated and validation hardened
 Benchmark-document authoring is now centralized in a single skill, create-benchmark, which owns the templates, storage guides, and family-routing table across five benchmark families (skill, model, behavior, and agent-improvement), while the deep-loop lanes keep run and scoring logic. The skill's 16 templates and guides were regrouped into per-family folders and all 136 references across 31 files were repointed, so coverage is visible at a glance. Two independent audits then drove fixes: the skill-benchmark structural gate now hard-fails with exit code 3 when connectivity or registry checks block, an alignment budget cap of 1.5 million milliseconds was defined, and the registry gate was wired so blocked-by-registry verdicts are reachable through the runner. The skill-benchmark test suite was repaired back to 56 passing tests, and the design-command surface validator was rebuilt from 10 invalid findings to valid, enforcing a structural choreography contract and catching stale fixtures and self-masking tests. **Breaking:** the skill-benchmark runner now exits 3 on structural or registry blocks instead of 0; automation keyed to the old exit behavior must accommodate the new gated exit.
 

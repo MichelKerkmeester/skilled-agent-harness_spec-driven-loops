@@ -1,3 +1,7 @@
+---
+title: "Iteration 7 - Traceability: advisor and skill consumer realignment"
+trigger_phrases: []
+---
 # Iteration 7 - Traceability: advisor and skill consumer realignment
 
 ## Focus

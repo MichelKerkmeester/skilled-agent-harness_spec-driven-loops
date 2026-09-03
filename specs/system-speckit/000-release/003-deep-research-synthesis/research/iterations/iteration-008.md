@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### CLI bridge skills guard against self-delegation
 `cli-claude-code`, `cli-gemini`, `cli-codex`, and `cli-copilot` now tell each runtime not to hand work back to the bridge that targets itself, closing a circular-delegation trap. Where nesting checks already existed they were reframed; where anti-self-delegation guidance was missing it was added. The same guard wording is now shared across all four skills, so the message stays consistent instead of drifting per runtime. The documentation also points each runtime to its own native capabilities rather than only saying "don't", making the guard actionable instead of purely prohibitive. This is internal, documentation-only tooling — no runtime behavior changes and no migration.
 

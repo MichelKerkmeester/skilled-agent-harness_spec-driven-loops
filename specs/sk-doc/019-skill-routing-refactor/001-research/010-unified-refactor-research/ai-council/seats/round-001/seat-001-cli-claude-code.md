@@ -6,6 +6,7 @@ lens: "Minimalist / degenerate-case purist"
 status: ok
 timestamp: 2026-07-18T00:00:00.000Z
 simulated: true
+trigger_phrases: []
 ---
 
 # seat-001: Minimalist / degenerate-case purist / cli-claude-code (simulated)

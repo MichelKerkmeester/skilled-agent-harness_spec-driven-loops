@@ -6,6 +6,7 @@ lens: "Migration / adaptivity realist"
 status: ok
 timestamp: 2026-07-18T00:00:00.000Z
 simulated: true
+trigger_phrases: []
 ---
 
 # seat-003: Migration / adaptivity realist / cli-opencode (simulated)

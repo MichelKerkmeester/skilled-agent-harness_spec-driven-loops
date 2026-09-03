@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: A4 Embedder Resilience and Degraded-Mode Indexing"
+trigger_phrases: []
+---
 # Iteration 4: A4 Embedder Resilience and Degraded-Mode Indexing
 
 ## Focus

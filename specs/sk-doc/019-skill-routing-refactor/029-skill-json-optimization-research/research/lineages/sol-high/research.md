@@ -1,3 +1,7 @@
+---
+title: "Skill And Advisor JSON Optimization Research - sol-high"
+trigger_phrases: []
+---
 # Skill And Advisor JSON Optimization Research - sol-high
 
 ## 1. Executive Summary

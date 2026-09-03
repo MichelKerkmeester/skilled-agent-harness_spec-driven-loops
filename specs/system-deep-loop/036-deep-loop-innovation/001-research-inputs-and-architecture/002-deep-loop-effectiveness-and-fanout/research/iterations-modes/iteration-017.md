@@ -1,3 +1,7 @@
+---
+title: "Recursive Agent: Evaluator-First Improvement Orchestrator"
+trigger_phrases: []
+---
 <!-- iteration 17 | SOL xhigh | mode: deep-improvement | angle: A2-moat deep-improvement :: unique value / moat | 2026-07-15T09:23:53.088Z -->
 
 The moat is not “better self-editing.” It is an epistemic firewall around improvement: mutate one bounded surface, judge it with a precommitted ruler the mutator cannot alter, retain the baseline, and require causal evidence before exposure.

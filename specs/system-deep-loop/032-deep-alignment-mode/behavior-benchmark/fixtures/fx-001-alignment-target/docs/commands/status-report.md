@@ -2,6 +2,7 @@
 description: Status-report command fixture doc carrying a real non-sequential heading-number warning.
 argument-hint: [--format json|text]
 allowed-tools: Read
+trigger_phrases: []
 ---
 
 # Status Report

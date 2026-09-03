@@ -4,6 +4,7 @@ sessionId: fanout-codex-5-1780595350529-5jk4vx
 verdict: CONDITIONAL
 status: complete
 generatedAt: 2026-06-04T17:58:13Z
+trigger_phrases: []
 ---
 
 # Governance + sk-doc + sk-code Drift Review Report

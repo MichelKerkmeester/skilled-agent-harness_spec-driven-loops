@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-doc/014-sk-doc-parent/003-hub-scaffold"
     last_updated_at: "2026-07-06T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Additive hub shell scaffolded (registry+router+9 packet dirs+shared); monolith intact")
+    recent_action: "Additive hub shell scaffolded (registry+router+9 packet dirs+shared); monolith intact"
     next_safe_action: "Phase 004 build shared/ backbone + facades (on operator go)"
     blockers: []
     key_files: []

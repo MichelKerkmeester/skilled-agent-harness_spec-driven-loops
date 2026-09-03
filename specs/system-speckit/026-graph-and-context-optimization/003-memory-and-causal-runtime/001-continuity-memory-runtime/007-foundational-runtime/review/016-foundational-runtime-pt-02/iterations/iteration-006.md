@@ -7,6 +7,7 @@ cwd: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 created_at: 2026-04-17T20:00:00Z
 convergence_candidate: false
 note: "iter 4 and iter 5 artifacts DO NOT exist on disk (iterations/ holds only 001-003, deltas/ holds only iter-001..003). The prompt's prior-findings summary references iter 4/5 verdicts that were never written. Treating this as iter 1-3 adjudication only; iter 5 'compound-hypothesis verdicts' are unverifiable."
+trigger_phrases: []
 ---
 
 # Iteration 006 — Adversarial self-check

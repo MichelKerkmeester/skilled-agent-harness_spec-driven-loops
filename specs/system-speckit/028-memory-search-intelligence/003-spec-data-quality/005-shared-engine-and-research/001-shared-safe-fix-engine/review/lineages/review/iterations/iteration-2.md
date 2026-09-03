@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 The fan-out lineage review is complete. All artifacts are written within the bound `artifact_dir` (`.../026-shared-safe-fix-engine/review/lineages/review`), and nothing outside it was modified.
 
 **Summary**

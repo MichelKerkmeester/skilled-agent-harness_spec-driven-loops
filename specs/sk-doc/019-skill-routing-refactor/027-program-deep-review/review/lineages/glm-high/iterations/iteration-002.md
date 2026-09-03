@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Security — Trust Boundaries, Path Containment, Untrusted Ingestion"
+trigger_phrases: []
+---
 # Iteration 2: Security — Trust Boundaries, Path Containment, Untrusted Ingestion
 
 ## Focus

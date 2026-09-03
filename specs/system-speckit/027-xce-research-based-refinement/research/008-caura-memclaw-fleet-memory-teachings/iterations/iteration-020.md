@@ -1,3 +1,7 @@
+---
+title: "Iteration 020 — ADVERSARIAL refute MCP/perf/eval + final negative-knowledge ledger"
+trigger_phrases: []
+---
 # Iteration 020 — ADVERSARIAL refute MCP/perf/eval + final negative-knowledge ledger
 
 **Status:** insight · **Findings:** 12 · **newInfoRatio:** 0.72 · **tokens:** 139024 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

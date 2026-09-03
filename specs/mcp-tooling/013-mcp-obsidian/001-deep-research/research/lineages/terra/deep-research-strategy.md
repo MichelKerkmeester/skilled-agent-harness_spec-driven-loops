@@ -1,6 +1,7 @@
 ---
 title: Obsidian Automation Surface Research Strategy
 description: Detached fan-out lineage strategy for BUILD-vs-ADOPT decisions.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy

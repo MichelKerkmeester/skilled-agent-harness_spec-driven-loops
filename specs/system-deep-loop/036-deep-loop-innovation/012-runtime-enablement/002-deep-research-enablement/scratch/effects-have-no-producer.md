@@ -1,3 +1,7 @@
+---
+title: "Two of the five facts have no production producer, and their absence reads as green"
+trigger_phrases: []
+---
 # Two of the five facts have no production producer, and their absence reads as green
 
 ## What was being built

@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: Adversarial blocker replay"
+trigger_phrases: []
+---
 # Iteration 19: Adversarial blocker replay
 
 ## Dimension

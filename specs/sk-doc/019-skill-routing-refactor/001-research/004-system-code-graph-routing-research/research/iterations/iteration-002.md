@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Standalone Typed Identity and Native Resource Roots"
+trigger_phrases: []
+---
 # Iteration 2: Standalone Typed Identity and Native Resource Roots
 
 ## Focus

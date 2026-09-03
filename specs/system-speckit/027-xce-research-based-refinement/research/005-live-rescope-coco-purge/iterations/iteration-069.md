@@ -1,3 +1,7 @@
+---
+title: "Iteration 069 — 004 NEEDS-RESCOPE: 14 live delete-sites (audit had 4); edge_lifecycle_generation rename; stale handler paths"
+trigger_phrases: []
+---
 # Iteration 069 — 004 NEEDS-RESCOPE: 14 live delete-sites (audit had 4); edge_lifecycle_generation rename; stale handler paths
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.72. **Findings:** 5.

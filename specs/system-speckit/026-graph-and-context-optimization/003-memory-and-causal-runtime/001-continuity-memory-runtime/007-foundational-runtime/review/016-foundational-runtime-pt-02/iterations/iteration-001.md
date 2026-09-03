@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — correctness"
+trigger_phrases: []
+---
 # Iteration 001 — correctness
 
 Phase 017 remediation deep-review, iteration 1 of 10. Dimension: correctness. Read-only audit of the 4 new primitives (AsyncLocalStorage caller-context, readiness-contract, shared-provenance, retry-budget) and their call sites, the H-56-1 canonical-save metadata fix, and the code-graph 6-sibling readiness propagation.

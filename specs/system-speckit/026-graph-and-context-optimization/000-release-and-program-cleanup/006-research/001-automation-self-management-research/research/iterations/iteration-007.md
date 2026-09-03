@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 - Reality Map Synthesis and Planning Packet"
+trigger_phrases: []
+---
 # Iteration 007 - Reality Map Synthesis and Planning Packet
 
 ## Focus

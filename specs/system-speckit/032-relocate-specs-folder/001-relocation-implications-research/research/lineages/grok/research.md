@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Specs Folder Relocation Implications"
+trigger_phrases: []
+---
 # Research Synthesis: Specs Folder Relocation Implications
 
 **Lineage:** grok (`cli-cursor` / `cursor-grok-4.5-high`)  

@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Track 4: Native MCP Topology Diagram Accuracy"
+trigger_phrases: []
+---
 # Iteration 010 — Track 4: Native MCP Topology Diagram Accuracy
 
 ## Analysis Summary

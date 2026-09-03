@@ -1,3 +1,7 @@
+---
+title: "Iteration 42 (Round O): C9 ↔ 027 embedder-reconcile — the MISS, closed"
+trigger_phrases: []
+---
 # Iteration 42 (Round O): C9 ↔ 027 embedder-reconcile — the MISS, closed
 
 ## Focus

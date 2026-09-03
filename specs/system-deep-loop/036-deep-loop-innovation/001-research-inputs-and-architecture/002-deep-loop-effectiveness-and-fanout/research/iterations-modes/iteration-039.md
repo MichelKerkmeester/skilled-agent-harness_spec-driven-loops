@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 39 | SOL xhigh | mode: skill-benchmark | angle: A4-fail skill-benchmark :: failure modes & guardrails | 2026-07-15T11:22:41.457Z -->
 
 Skill-benchmark’s routing diagnostics are stronger than its causal validity. Two fail-open paths matter:

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: CI Scripts, Skill Advisor Metadata, and Validators — ROUTER.md Awareness"
+trigger_phrases: []
+---
 # Iteration 3: CI Scripts, Skill Advisor Metadata, and Validators — ROUTER.md Awareness
 
 ## Focus

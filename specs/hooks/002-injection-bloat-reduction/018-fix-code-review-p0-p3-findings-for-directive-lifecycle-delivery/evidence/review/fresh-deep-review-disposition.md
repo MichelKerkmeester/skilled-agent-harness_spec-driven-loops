@@ -1,3 +1,7 @@
+---
+title: "Fresh Deep-Review Finding Disposition"
+trigger_phrases: []
+---
 # Fresh Deep-Review Finding Disposition
 
 ## Review receipt

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Design motion mode gains tracked documentation
 The shipped sk-design motion mode was running without any tracked specification, so a full reconstruction spec, plan, task list, and verification checklist were created from the intact source to close that gap. Before, the mode's contract lived only inside its skill files; after, its restraint gate, choreography workflow, and reduced-motion handoff are documented and inspectable. The entry preserves the named timing bands (100-150ms feedback, 200-300ms small state changes, 300-500ms modal or layout transitions, 500-800ms for earned entrances), ease-out entrances and ease-in exits, justified springs, and named duration/easing tokens. It also records the at-most-one procedure selection rule, the Read/Glob/Grep direct fallback, and the handoff of bounded mechanisms to the implementation workflow. This is internal documentation only, so no user-visible behavior changed.
 

@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "local-provider-loader",
-      "local provider loader",
       "enablement.local.json localProvider",
       "local LLM easy config build",
       "implementation plan",
@@ -22,21 +21,22 @@
       "localProvider loader tasks",
       "architecture decision",
       "shared loader and fail-closed local provider config",
-      "local provider loader implementation"
+      "local provider loader implementation",
+      "localProvider easy config complete"
     ],
     "key_topics": [
       "local-provider-loader",
-      "local",
-      "provider",
-      "loader",
       "enablement",
+      "local",
       "json",
       "localprovider",
       "llm",
       "easy",
       "config",
       "implementation",
-      "plan"
+      "plan",
+      "loader",
+      "auto-used"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`createOllamaModelRecord`, `createLlamaCppModelRecord`, the OpenAI-compatible and Ollama-native adapters, and `createLocalHttpTransport` are all shipped and tested, but no entry point builds the `projectMessage` input from them",
     "created_at": "2026-08-14T17:53:14.584Z",
-    "last_save_at": "2026-08-30T15:39:11.896Z",
+    "last_save_at": "2026-09-03T22:17:10.112Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e35caa7fc59f132d87397471134832528a8dc0e984c01c12f014c7bb4027d789",
+    "source_fingerprint": "sha256:c5c87cc10e585bfdfe7cea66fdc6326b372ee0d336116c4db03d203b78b818f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bda3bb907db044b1364ad5346853f7f0e11c886d639dd07ad45681b5148ae025",
+      "spec.md": "0901372fd00cf64bb1813f28a96f4aae9b6a764dc21d56713a49bae32a55a8f2",
       "plan.md": "55ab4f8c0779d1d737d901257290aa37fe71ef2dd829840f933ca3616c7bcbb9",
       "tasks.md": "8df71b83d1c4ce296f4da7fa60466cc9bcd0e4ca798f718d5d7ffc3c3fcc8079",
       "decision-record.md": "75eb6d371ccd8f09e04de71069c54e480b627616d7174aa02a226dbd3cdd759e",

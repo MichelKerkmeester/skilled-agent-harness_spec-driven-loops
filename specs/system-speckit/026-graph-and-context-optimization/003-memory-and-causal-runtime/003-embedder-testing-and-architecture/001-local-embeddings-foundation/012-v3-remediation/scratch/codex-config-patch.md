@@ -1,3 +1,7 @@
+---
+title: "`.codex/config.toml` Patch Status"
+trigger_phrases: []
+---
 # `.codex/config.toml` Patch Status
 
 RESOLVED 2026-05-13 in commit 42aa114e3. Main agent applied the patch outside codex's sandbox (Apple TCC blocks codex from writing to its own .codex/config.toml). The launcher.cjs routing change is now live in main.

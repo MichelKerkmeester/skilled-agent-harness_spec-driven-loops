@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: RQ2 P2 scoped-preexec-and-handoff-gates — integration & impact"
+trigger_phrases: []
+---
 # Iteration 002: RQ2 P2 scoped-preexec-and-handoff-gates — integration & impact
 
 **Focus:** RQ2 P2 scoped-preexec-and-handoff-gates — integration & impact  

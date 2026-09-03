@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 BINDING: spec_folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook
 BINDING: artifact_dir=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/review/lineages/codex-3
 BINDING: session_id=fanout-codex-3-1780594677741-z9tid3

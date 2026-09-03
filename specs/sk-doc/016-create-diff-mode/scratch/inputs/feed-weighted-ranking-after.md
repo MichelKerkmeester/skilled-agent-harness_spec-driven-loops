@@ -1,3 +1,7 @@
+---
+title: "Fv2 - Weighted Ranking v2 & Intelligent Discovery"
+trigger_phrases: []
+---
 # Fv2 - Weighted Ranking v2 & Intelligent Discovery
 
 * * *

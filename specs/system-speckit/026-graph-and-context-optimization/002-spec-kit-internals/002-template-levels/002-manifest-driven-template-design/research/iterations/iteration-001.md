@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Parser Contract Probe And Irreducible Core Inventory"
+trigger_phrases: []
+---
 # Iteration 1: Parser Contract Probe And Irreducible Core Inventory
 
 ## Focus

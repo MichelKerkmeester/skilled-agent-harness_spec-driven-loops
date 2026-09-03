@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 All phases complete. The fan-out lineage review packet is written and validated entirely within the bound artifact directory.
 
 **Summary — lineage `p017c007-opus`, verdict: PASS (hasAdvisories: true)**

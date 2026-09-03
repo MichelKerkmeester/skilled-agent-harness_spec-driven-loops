@@ -1,3 +1,7 @@
+---
+title: "Command Asset-Layer Research"
+trigger_phrases: []
+---
 # Command Asset-Layer Research
 
 ## 1. Executive Synthesis

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Mutation-coverage dedup via sha256 signatures
 `deep-agent-improvement` is internal tooling; its mutation-coverage tracking now stamps every proposed mutation with a sha256 signature derived from dimension, mutation type, target section, and a normalized body sample. Before, records were keyed only on `dimension::mutationType`, so near-identical proposals to different target sections could be collapsed or re-proposed; the reducer now prefers the signature and falls back to the old key only for legacy records. `isSignatureSeen()` pre-checks both the tried and exhausted lists before the loop proposes anything, and the `DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1` bypass disables only the check while still recording signatures, so later runs keep full history. The skill doc and the replay-consumer playbook gained a signature smoke test with pass/fail criteria.
 

@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard - Session Overview"
+trigger_phrases: []
+---
 # Deep Review Dashboard - Session Overview
 
 Auto-generated from JSONL state log and strategy file. Regenerated after iteration evaluation.

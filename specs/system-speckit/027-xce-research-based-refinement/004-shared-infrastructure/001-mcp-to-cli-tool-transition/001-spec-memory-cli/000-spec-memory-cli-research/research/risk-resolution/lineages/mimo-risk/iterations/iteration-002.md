@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — RQ2: Schema-Drift Mechanics + RQ4: Retryable Taxonomy"
+trigger_phrases: []
+---
 # Iteration 002 — RQ2: Schema-Drift Mechanics + RQ4: Retryable Taxonomy
 
 - **Date:** 2026-06-06T12:40:00Z

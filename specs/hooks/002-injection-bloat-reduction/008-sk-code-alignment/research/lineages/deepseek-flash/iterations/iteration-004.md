@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Observer ordering verification + reverse-reference README scan"
+trigger_phrases: []
+---
 # Iteration 4: Observer ordering verification + reverse-reference README scan
 
 ## Focus

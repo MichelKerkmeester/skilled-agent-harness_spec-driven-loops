@@ -1,3 +1,7 @@
+---
+title: "Iteration 012 — benchmark / eval methodology"
+trigger_phrases: []
+---
 # Iteration 012 — benchmark / eval methodology
 
 **Status:** insight · **Findings:** 5 · **newInfoRatio:** 0.78 · **tokens:** 116031 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(high)

@@ -21,6 +21,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "All 3 flags default-on with opt-out env; enrichment async/deferred."
+trigger_phrases: []
 ---
 # Implementation Summary: Enrichment + Reconsolidation Default-On (Async)
 

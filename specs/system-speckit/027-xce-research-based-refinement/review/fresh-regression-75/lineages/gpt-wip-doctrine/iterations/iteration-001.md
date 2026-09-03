@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-wip-doctrine — iteration 1 (global #63)"
+trigger_phrases: []
+---
 # Seat gpt-wip-doctrine — iteration 1 (global #63)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: gpt-wip-doctrine

@@ -1,3 +1,7 @@
+---
+title: "Fan-Out Attribution"
+trigger_phrases: []
+---
 # Fan-Out Attribution
 
 Loop type: **research**  |  Lineage count: **3**

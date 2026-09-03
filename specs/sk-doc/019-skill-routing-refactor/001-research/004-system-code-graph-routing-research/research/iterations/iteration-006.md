@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Four-Root Manifest and Typed-Benchmark Conformance Simulation"
+trigger_phrases: []
+---
 # Iteration 6: Four-Root Manifest and Typed-Benchmark Conformance Simulation
 
 ## Route Proof

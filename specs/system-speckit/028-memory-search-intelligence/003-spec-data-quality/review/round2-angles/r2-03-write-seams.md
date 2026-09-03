@@ -1,3 +1,7 @@
+---
+title: "R2-03 Write Seams (code-quality angle)"
+trigger_phrases: []
+---
 # R2-03 Write Seams (code-quality angle)
 
 **Angle summary:** The 001 A1 spec names real seams at exact line numbers, but its byte-identity premise for the `description.json` seam is unachievable at the cited call site because the writer merges its argument against the existing file, and the two metadata seams serialize differently.

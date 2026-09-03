@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 010 — Cross-Cutting Synthesis + Adopt/Adapt/Reject/Defer Matrix"
+trigger_phrases: []
+---
 # Deep-Research Iteration 010 — Cross-Cutting Synthesis + Adopt/Adapt/Reject/Defer Matrix
 
 You are a fresh-context deep-research executor (cli-codex gpt-5.5 high fast). No memory of prior iterations. **This is the synthesis iteration** — you read all 9 prior iterations + deltas + state log, and produce the consolidated review with an Adopt/Adapt/Reject/Defer matrix.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 Prompt Pack"
+trigger_phrases: []
+---
 # Iteration 005 Prompt Pack
 
 - Focus: P5 — graph/subgraph/LEAF execution boundary.

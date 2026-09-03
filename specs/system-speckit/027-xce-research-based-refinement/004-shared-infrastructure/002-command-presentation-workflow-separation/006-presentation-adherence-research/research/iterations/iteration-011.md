@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 (wave 2, gpt-5.5-fast xhigh) — Hooks-layer enforcement seam"
+trigger_phrases: []
+---
 # Iteration 011 (wave 2, gpt-5.5-fast xhigh) — Hooks-layer enforcement seam
 
 **Verdict:** The true mechanical solution is not more prompt prose: render the `MEMORY:SEARCH` block in code from the normalized search envelope, then expose it as a last-mile tool output for the model to copy. Best path is JSON-safe renderer in memory_search plus OpenCode `tool.execute.after` pass-through/rewrite; final assistant post-processing is currently unproven and riskier.

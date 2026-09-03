@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Parallel-session autosync research frozen into a publishable architecture
 The research phase for parallel-session git autosync produced no code — its deliverable is a frozen architecture decision. Two independent research lines (five iterations each) were reconciled, then passed through a three-pass verification that surfaced blocking prerequisites and confirmation caveats. The chosen design is a four-plane, single-writer publisher that works from isolated worktrees and always pushes fast-forward-only, with a central invariant that the primary branch is never behind the projected state; when the remote tip has moved, the push is rejected and internally rebuilt rather than forced. A proposed AI conflict resolver is deliberately bounded to a proposer role — it advises but never writes, and a GitKraken integration stays a read-only auxiliary. Six decisions and a testable acceptance matrix are recorded so the implementation phase can proceed against concrete prerequisites. This is an internal research artifact for framework maintainers; no user-visible behavior shipped.
 

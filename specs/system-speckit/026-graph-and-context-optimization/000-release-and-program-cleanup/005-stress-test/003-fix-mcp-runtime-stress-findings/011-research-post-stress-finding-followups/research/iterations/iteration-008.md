@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — CocoIndex telemetry handoff and scoped architecture seams"
+trigger_phrases: []
+---
 # Iteration 008 — CocoIndex telemetry handoff and scoped architecture seams
 
 ## Status

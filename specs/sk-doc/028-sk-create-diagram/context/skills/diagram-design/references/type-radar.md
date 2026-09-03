@@ -1,3 +1,7 @@
+---
+title: "Radar / Spider"
+trigger_phrases: []
+---
 # Radar / Spider
 
 **Best for:** comparing 3–5 entities across 3–5 quantitative criteria on a single normalized 0–N scale. Capability matrices, product or backend evaluations, framework/team scorecards. Where a comparison table starts running out of horizontal room, radar makes the shape of each option legible at a glance.

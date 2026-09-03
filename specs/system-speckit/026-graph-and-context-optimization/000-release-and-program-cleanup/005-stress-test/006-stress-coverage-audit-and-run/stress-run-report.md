@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## §1 — Run Metadata
 
 - **Log file**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run/logs/stress-run-20260430-181807Z.log`

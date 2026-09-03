@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The two commands existed under `.opencode/commands/` but were undocumented in the skill and unmirrored, so operators had no in-skill pointer to the trigger surface and the commands were not invokable across runtimes",
     "created_at": "2026-08-19T04:54:46.199Z",
-    "last_save_at": "2026-08-30T15:39:11.957Z",
+    "last_save_at": "2026-09-03T22:17:15.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1252d03468e239ba75de799ec161b421112e887d8a8d7f35ec8b309fe5a3897d",
+    "source_fingerprint": "sha256:172a249e93f179ab28b7fec252720e1ae9992d67cbd8faa5c04d43c9048b372d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1f19ad2a6591e030bf8c47d80cd7707f3d7ec18bd16cefc4abdd87473f66487e",
-      "plan.md": "37321177ee5733a4daa6101e621c688e214e5991417c1a72fbed883abca12143",
-      "tasks.md": "49b6ef5470a28f633bc310a46e8d2da407b2a02c86405b6bb3b8477c01243297",
-      "implementation-summary.md": "0bc13becd3c2c747d55675d65fb1c2c37d21c03322d205d36f2a44687a26b1b0"
+      "plan.md": "7cdb9800819cebf0c4de381c553373f06ca72fc492d1705bc572a4df33551ed1",
+      "tasks.md": "eb0834c38176ab69618b60eab0370a98e651b01bd5421b4eddd2b7bef9f08be1",
+      "implementation-summary.md": "82d211a4591a30d09ce9a27e531501220ada61da18356424dc551f99b1411da5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,3 +1,7 @@
+---
+title: "INCIDENT: Mid-run destruction of the entire 008-divergent-mode-dogfood spec packet (review side)"
+trigger_phrases: []
+---
 # INCIDENT: Mid-run destruction of the entire 008-divergent-mode-dogfood spec packet (review side)
 
 **Severity: P0 — real data loss during a live dogfood run. See the sibling `research/INCIDENT.md` for the full incident writeup; this file covers what's recoverable specifically for the review loop, which lost its own artifacts in the same event but never got a chance to self-document before being cut off.**

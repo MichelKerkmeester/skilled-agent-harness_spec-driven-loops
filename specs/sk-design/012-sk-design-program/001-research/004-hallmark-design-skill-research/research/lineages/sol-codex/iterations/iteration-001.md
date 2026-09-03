@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: License, verb contract, asset inventory, and sk-design route map"
+trigger_phrases: []
+---
 # Iteration 1: License, verb contract, asset inventory, and sk-design route map
 
 ## Focus

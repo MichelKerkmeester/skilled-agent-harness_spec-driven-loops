@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Authority preamble and telemetry passthrough closure"
+trigger_phrases: []
+---
 # Iteration 005 — Authority preamble and telemetry passthrough closure
 
 ## Status

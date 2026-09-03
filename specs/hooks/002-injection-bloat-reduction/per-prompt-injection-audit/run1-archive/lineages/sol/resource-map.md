@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Reduce per-prompt injection bloat across all six runtime hook adapters (Claude Code, Codex, Cursor, Devin, OpenCode, Pi). Inventory every block injected on each user turn (skill-advisor brief, the three always-on directives comment-hygiene/governor/proof-over-appearance, the spec-gate Gate-3 question, the Pi-only subagent-dispatch directive, SessionStart context) with exact owning modules; quantify per-turn token cost and value vs redundancy/staleness; research best practices for per-turn injection (concision, conditional/threshold-gated injection, cross-turn deduplication, prompt-cache-friendly placement, one-time-vs-every-turn); propose ranked, cross-runtime-consistent reductions (trim, conditionalize, consolidate, cache, drop) that preserve guardrail effectiveness, with measured before/after token estimates."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

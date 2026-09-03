@@ -1,3 +1,7 @@
+---
+title: "Full-suite delta"
+trigger_phrases: []
+---
 # Full-suite delta
 
 Both phases deferred this on cost, not on a blocker. It was run.

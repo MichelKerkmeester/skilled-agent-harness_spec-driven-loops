@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: CODE sweep — includeConstitutional sites, tier config, surface hooks, learned-feedback, checkpoints"
+trigger_phrases: []
+---
 # Iteration 1: CODE sweep — includeConstitutional sites, tier config, surface hooks, learned-feedback, checkpoints
 
 ## Focus

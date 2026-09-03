@@ -1,3 +1,7 @@
+---
+title: "Iteration X1 - Cross-Cutting Feasibility Ranking (opus, prove-first)"
+trigger_phrases: []
+---
 # Iteration X1 - Cross-Cutting Feasibility Ranking (opus, prove-first)
 
 ## TITLE

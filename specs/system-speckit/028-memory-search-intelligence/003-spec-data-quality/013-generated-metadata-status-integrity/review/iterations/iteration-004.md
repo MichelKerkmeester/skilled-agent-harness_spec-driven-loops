@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Dimension
 
 Maintainability - minimal fix proposal for Target 1 only.

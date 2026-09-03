@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 **Symlink Confirmation**
 - `.opencode/skills/deep-loop-workflows -> system-deep-loop`
 - `.opencode/skills/deep-loop-runtime -> system-deep-loop/runtime`

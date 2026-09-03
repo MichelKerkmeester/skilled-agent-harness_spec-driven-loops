@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Synthesis Phase"
+trigger_phrases: []
+---
 DEEP-REVIEW SYNTHESIS
 
 # Deep-Review Synthesis Phase

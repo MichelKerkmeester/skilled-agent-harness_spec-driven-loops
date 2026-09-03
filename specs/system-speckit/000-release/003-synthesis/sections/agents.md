@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### Agents
 - Communication-quality rules now live in one shared home in `AGENTS.md`, so every runtime stays consistent instead of drifting.
 - New guidance covers clear plain-language writing, honest recommendations, and an Ask-then-Do framing for complex requests.

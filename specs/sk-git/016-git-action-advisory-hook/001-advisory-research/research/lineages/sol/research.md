@@ -1,3 +1,7 @@
+---
+title: "Git Preflight Advisory Rule Research"
+trigger_phrases: []
+---
 # Git Preflight Advisory Rule Research
 
 ## 1. Executive Summary

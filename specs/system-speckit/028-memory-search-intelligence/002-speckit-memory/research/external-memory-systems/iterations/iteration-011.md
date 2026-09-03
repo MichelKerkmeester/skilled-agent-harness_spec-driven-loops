@@ -1,3 +1,7 @@
+---
+title: "Iteration 11 (DeepSeek lineage): Cognee retriever internals — the un-mined retrievers"
+trigger_phrases: []
+---
 # Iteration 11 (DeepSeek lineage): Cognee retriever internals — the un-mined retrievers
 
 > Model: **DeepSeek v4 Pro** (`deepseek/deepseek-v4-pro --variant high`, read-only, via `opencode run`). Orchestrator-written. newInfoRatio **0.7**. Deep-extracted the Cognee retrievers NOT covered in iter-8 (agentic, summary, lexical/jaccard, natural-language). 5 candidates. (Path note: DeepSeek first missed `shared/algorithms/` — it lives at the **skill root**, not under `mcp_server/` — then self-corrected via Glob.)

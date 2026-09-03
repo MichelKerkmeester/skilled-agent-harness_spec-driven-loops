@@ -1,3 +1,7 @@
+---
+title: "Pre-flight Notes"
+trigger_phrases: []
+---
 # Pre-flight Notes
 
 ## T000 factory.ts

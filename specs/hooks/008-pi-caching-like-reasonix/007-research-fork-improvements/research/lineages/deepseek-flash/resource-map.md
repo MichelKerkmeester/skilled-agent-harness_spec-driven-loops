@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Packet 008 Pi Fork Improvements (deepseek-flash lineage)"
 description: "Evidence inventory for the deepseek-flash detached research lineage."
+trigger_phrases: []
 ---
 
 # Resource Map

@@ -1,3 +1,7 @@
+---
+title: "fx_001_alignment_target — Behavior Benchmark Fixture"
+trigger_phrases: []
+---
 # fx_001_alignment_target — Behavior Benchmark Fixture
 
 The single shared, frozen fixture the deep-alignment behavior benchmark (DAB-001..011) audits. Every scenario's `prompt`/`fixture` field points at this directory or a lane-config file rooted here. Nothing under this directory should be edited by a benchmark run itself — `docs/` and `docs-clean/` are read-only audit targets; only a run's own `alignment/` state directory (not present here, generated at run time) is expected to be written.

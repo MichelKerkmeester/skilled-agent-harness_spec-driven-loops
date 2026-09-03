@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 003-mcp-runtime-stress-remediation"
+trigger_phrases: []
+---
 # Deep Review Report — 003-mcp-runtime-stress-remediation
 
 ## 1. Executive Summary

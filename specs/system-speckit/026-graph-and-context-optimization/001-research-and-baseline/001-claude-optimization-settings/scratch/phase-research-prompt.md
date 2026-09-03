@@ -1,3 +1,7 @@
+---
+title: "$refine TIDD-EC Prompt: 001-claude-optimization-settings"
+trigger_phrases: []
+---
 # $refine TIDD-EC Prompt: 001-claude-optimization-settings
 
 ## 2. Role

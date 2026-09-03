@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - dq-probe lineage"
+trigger_phrases: []
+---
 # Deep Research Dashboard - dq-probe lineage
 
 Auto-generated from JSONL state log + strategy + registry. Regenerated each iteration.

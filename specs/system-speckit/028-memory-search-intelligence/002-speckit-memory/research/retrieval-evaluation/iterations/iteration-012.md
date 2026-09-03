@@ -1,3 +1,7 @@
+---
+title: "Iteration 12 (synthesis): GO/no-go doctrine-classed tiering"
+trigger_phrases: []
+---
 # Iteration 12 (synthesis): GO/no-go doctrine-classed tiering
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only). Orchestrator-written. newInfoRatio **0.4** (synthesis, no new discovery). **VERDICT: GO — the campaign converged on one buildable spine; STOP research, open the build.** (Seat flagged its own sourcing: spine tiers CONFIRMED from the deltas it read; A1/A4/A6/A2/A3/A5 framings inferred from headlines under its 6-file cap.)

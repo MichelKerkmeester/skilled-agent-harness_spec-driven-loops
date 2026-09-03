@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Token, cost, and context vocabulary"
+trigger_phrases: []
+---
 # Iteration 005 — Token, cost, and context vocabulary
 
 ## Question

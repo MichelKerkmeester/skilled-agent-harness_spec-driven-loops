@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Codex Hook Adapter End-to-End Audit"
+trigger_phrases: []
+---
 # Iteration 3: Codex Hook Adapter End-to-End Audit
 
 ## Focus

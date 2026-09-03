@@ -1,3 +1,7 @@
+---
+title: "Iter 5 — Phase 2 bench cross-reference — where did probe 14's structural-indexer.ts fall through? Trace per stage"
+trigger_phrases: []
+---
 # Iter 5 — Phase 2 bench cross-reference — where did probe 14's structural-indexer.ts fall through? Trace per stage
 
 ## TL;DR (2-3 sentences)

@@ -1,3 +1,7 @@
+---
+title: "Iteration 010 — Angle 10"
+trigger_phrases: []
+---
 # Iteration 010 — Angle 10
 
 **Angle:** Retention sweep semantics: protected tiers, dry-run vs apply parity, interaction with the retention reducer.

@@ -1,3 +1,7 @@
+---
+title: "Diagram Design"
+trigger_phrases: []
+---
 # Diagram Design
 
 **Editorial diagrams your designer won't hate.**

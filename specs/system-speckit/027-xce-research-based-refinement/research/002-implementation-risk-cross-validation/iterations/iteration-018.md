@@ -1,3 +1,7 @@
+---
+title: "Iteration 009 - IRQ9 LLM-Enrichment Dispatch Shape"
+trigger_phrases: []
+---
 # Iteration 009 - IRQ9 LLM-Enrichment Dispatch Shape
 
 ## Focus

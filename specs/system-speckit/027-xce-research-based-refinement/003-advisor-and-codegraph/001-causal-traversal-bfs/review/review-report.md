@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — 012 Causal-Traversal BFS"
+trigger_phrases: []
+---
 # Deep Review Report — 012 Causal-Traversal BFS
 
 Review target: `system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs` (shared BFS traversal replacing two recursive-CTE read paths; commit db38d4b921).

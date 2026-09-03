@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Eleven `code-webflow/references/implementation/` docs exceed 500 lines (largest 1109)",
     "created_at": "2026-07-11T16:55:26.233Z",
-    "last_save_at": "2026-08-30T15:39:11.087Z",
+    "last_save_at": "2026-09-03T22:16:04.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:300124256206297c31c80833915512db60c63975943adba65ae73451fc3d06a3",
+    "source_fingerprint": "sha256:222c6e1c2b5d868ac2ff4ad3cf269859993726973cb190592f54e38cc5607ea3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0c9248c6e8bd23e1fecab0416630f47e2ff24d6fc23caa660bad87358fd0863c",
-      "plan.md": "b1eb4d48369251ce881737f01595585f93e6b2a1d3815265138233192a764e73",
-      "tasks.md": "e74f637b7f1ca1a25dbdfff34fbe1fe64dfee72b24bbbf6e520d4f42990917b7",
-      "implementation-summary.md": "1e7582dc1057b38c4f774052608130e16d789531483fc96494d4258a30a76371"
+      "plan.md": "fbdfdcec4e8aa88635d025fda86194f78b890fb6a5f60fe382ae9844e3219c08",
+      "tasks.md": "92415eeb3b546c0a69761c74b1ccf90ed9b093ad76ce6f19ed5f357d4e006f0b",
+      "implementation-summary.md": "a5d6374e6191d4fb38a485ddc192456ea2fcc07b17a209bce3ec92fc8e5a7c7c"
     },
     "last_active_child_id": null,
     "last_active_at": null

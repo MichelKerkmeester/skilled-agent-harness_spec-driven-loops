@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Plugin and wrapper auto-pickup plus ranked recommendation"
+trigger_phrases: []
+---
 # Iteration 5: Plugin and wrapper auto-pickup plus ranked recommendation
 
 ## Focus

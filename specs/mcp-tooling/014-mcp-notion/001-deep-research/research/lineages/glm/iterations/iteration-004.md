@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Parity Mapping — mcp-obsidian → Notion MCP"
+trigger_phrases: []
+---
 # Iteration 4: Parity Mapping — mcp-obsidian → Notion MCP
 
 ## Focus

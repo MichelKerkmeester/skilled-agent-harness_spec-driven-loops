@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: Correctness - Tail-loop yields, early-abort, in-memory cancel flag"
+trigger_phrases: []
+---
 # Iteration 001: Correctness - Tail-loop yields, early-abort, in-memory cancel flag
 
 ## Focus

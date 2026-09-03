@@ -1,3 +1,7 @@
+---
+title: "Iteration 12: refreshed catalogs (runtime/lib 3->37 domains, runtime/tests)"
+trigger_phrases: []
+---
 # Iteration 12: refreshed catalogs (runtime/lib 3->37 domains, runtime/tests)
 
 > dimension: accuracy | model: gpt-5.6-sol effort=high tier=fast | sandbox: read-only

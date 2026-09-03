@@ -1,3 +1,7 @@
+---
+title: "When things go wrong"
+trigger_phrases: []
+---
 # When things go wrong
 
 Two different things happen and they are not the same. **A refusal is a result.

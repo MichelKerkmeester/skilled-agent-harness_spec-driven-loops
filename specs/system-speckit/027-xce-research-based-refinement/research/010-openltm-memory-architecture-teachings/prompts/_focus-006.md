@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 006 of 10: Secret redaction before write"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 006 of 10: Secret redaction before write
 Read (stay scoped to this subsystem):

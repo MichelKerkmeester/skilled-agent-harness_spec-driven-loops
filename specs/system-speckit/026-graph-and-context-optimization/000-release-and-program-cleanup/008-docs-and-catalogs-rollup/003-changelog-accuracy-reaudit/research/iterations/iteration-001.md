@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 001"
+trigger_phrases: []
+---
 # Deep Research Iteration 001
 
 > Audited changelog: `changelog-020-lease-socket-path.md`

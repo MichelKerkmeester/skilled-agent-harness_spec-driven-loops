@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Iteration 5 audited arc `004-code-index-stack`, the CocoIndex code-search stack under `013-embedder-testing-and-architecture`. The pass compared the arc's phase-parent and child packet claims against current `mcp-coco-index` source, docs, benchmark folders, and path history.

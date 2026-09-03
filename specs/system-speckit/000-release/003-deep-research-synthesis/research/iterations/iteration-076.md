@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Archived agent-routing docs normalized to a clean Level 1 record
 The agent-routing documentation update folder was rebuilt into a tidy Level 1 historical archive: `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` were recreated from the current templates, replacing the older Level 2 shape whose verification-only structure no longer satisfied current validation rules. Before, the folder carried obsolete validation scaffolding; after, it is a compact, readable record you can trust when inspecting the archived topic. The folder is internal housekeeping, but the repair matters because every future archive is now validator-safe and inspectable without tripping strict-mode checks. It validates with zero errors and preserves the feature summary plus the repair outcome, at the cost of the full historical verification trail.
 

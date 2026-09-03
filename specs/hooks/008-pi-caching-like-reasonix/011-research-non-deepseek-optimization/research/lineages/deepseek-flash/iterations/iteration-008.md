@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Gemini-Specific Path Correctness"
+trigger_phrases: []
+---
 # Iteration 8: Gemini-Specific Path Correctness
 
 ## Focus

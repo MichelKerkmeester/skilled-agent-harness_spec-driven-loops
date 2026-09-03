@@ -1,3 +1,7 @@
+---
+title: "The reader's five fact sources are all non-mutating"
+trigger_phrases: []
+---
 # The reader's five fact sources are all non-mutating
 
 ## Why this was checked

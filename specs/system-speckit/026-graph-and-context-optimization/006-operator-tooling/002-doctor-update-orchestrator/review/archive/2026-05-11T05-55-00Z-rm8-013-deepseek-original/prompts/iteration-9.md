@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration 9 (of 10) — maintainability (doc-code drift + resource-map accuracy)"
+trigger_phrases: []
+---
 # Deep-Review Iteration 9 (of 10) — maintainability (doc-code drift + resource-map accuracy)
 
 ## TARGET AUTHORITY (read first)

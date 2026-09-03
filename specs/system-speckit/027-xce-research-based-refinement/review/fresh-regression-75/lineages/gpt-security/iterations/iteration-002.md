@@ -1,3 +1,7 @@
+---
+title: "Seat gpt-security — iteration 2 (global #74)"
+trigger_phrases: []
+---
 # Seat gpt-security — iteration 2 (global #74)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: gpt-security

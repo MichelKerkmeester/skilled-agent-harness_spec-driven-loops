@@ -1,3 +1,7 @@
+---
+title: "Iteration 13 — gpt-5.6-sol high — focus: unnamed"
+trigger_phrases: []
+---
 # Iteration 13 — gpt-5.6-sol high — focus: unnamed
 
 Headline: the continuity stack is routing-blind. Stop/save/resume preserves task state, but neither records nor live-checks compiled-router serving authority. Persisting that authority in memory would become stale; the correct fix is a live status surface during bootstrap/resume plus decision-time operational telemetry.

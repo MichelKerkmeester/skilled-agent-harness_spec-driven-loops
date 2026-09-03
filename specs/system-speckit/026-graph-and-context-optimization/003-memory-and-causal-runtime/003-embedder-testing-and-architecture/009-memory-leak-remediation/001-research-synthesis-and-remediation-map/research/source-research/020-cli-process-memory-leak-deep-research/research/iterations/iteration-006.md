@@ -1,3 +1,7 @@
+---
+title: "Iteration 006: process owners, command patterns, cleanup gaps, and helper lifecycle responsibilities"
+trigger_phrases: []
+---
 # Iteration 006: process owners, command patterns, cleanup gaps, and helper lifecycle responsibilities
 
 ## Focus

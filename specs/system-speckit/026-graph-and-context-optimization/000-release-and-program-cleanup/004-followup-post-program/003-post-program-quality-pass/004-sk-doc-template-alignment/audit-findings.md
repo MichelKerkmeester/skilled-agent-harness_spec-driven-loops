@@ -1,3 +1,7 @@
+---
+title: "sk-doc Template Audit Findings"
+trigger_phrases: []
+---
 # sk-doc Template Audit Findings
 
 ## Summary

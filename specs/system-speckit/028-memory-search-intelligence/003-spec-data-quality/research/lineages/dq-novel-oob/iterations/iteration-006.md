@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — KQ6: Embedding-drift monitoring with alerting + automatic example/test generation from specs"
+trigger_phrases: []
+---
 # Iteration 006 — KQ6: Embedding-drift monitoring with alerting + automatic example/test generation from specs
 
 ## Focus

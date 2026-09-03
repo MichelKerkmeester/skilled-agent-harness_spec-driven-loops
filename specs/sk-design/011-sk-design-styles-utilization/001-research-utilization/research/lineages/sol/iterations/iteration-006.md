@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Minimal Repository-Native Retrieval Tooling Lifecycle"
+trigger_phrases: []
+---
 # Iteration 6: Minimal Repository-Native Retrieval Tooling Lifecycle
 
 ## Focus

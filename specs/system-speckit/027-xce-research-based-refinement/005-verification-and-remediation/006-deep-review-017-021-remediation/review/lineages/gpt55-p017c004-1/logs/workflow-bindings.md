@@ -1,3 +1,7 @@
+---
+title: "Deep Review Workflow Bindings"
+trigger_phrases: []
+---
 # Deep Review Workflow Bindings
 
 BINDING: spec_folder=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set

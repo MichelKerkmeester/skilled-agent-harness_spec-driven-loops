@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: Description projection boundary"
+trigger_phrases: []
+---
 # Iteration 17: Description projection boundary
 
 ## Focus

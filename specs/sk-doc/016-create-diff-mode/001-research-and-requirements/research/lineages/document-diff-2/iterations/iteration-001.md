@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Broad Survey of Existing Document Diff Tools, Libraries, and Products"
+trigger_phrases: []
+---
 # Iteration 1: Broad Survey of Existing Document Diff Tools, Libraries, and Products
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Reference inventory"
+trigger_phrases: []
+---
 # Reference inventory
 
 Measured before the move, with `rg -l "hvr-rules" --hidden -g '!.git'`.

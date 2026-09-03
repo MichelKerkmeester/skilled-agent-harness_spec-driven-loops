@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Completed iteration 8 for the maintainability dimension. Found 2 P2 issues:
 
 1. **skill-graph-db.ts is very large with mixed concerns** - The file is 1149 lines and mixes database lifecycle, schema management, metadata helpers, indexing logic, and other concerns, making it hard to navigate and maintain.

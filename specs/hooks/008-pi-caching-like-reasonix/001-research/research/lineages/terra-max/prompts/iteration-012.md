@@ -1,3 +1,7 @@
+---
+title: "Prompt Pack — Iteration 012"
+trigger_phrases: []
+---
 # Prompt Pack — Iteration 012
 
 Focus: Pi extension API feasibility

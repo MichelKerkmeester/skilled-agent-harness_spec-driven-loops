@@ -1,3 +1,7 @@
+---
+title: "Mode design plan — `sk-code-mobile-cli` surface packet (plan-only)"
+trigger_phrases: []
+---
 # Mode design plan — `sk-code-mobile-cli` surface packet (plan-only)
 
 > **Plan-only deliverable.** This document designs the future `sk-code-mobile-cli` SURFACE packet

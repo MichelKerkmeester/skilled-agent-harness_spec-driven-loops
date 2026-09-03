@@ -1,3 +1,7 @@
+---
+title: "032 substrate-repair-followups — Final Handover"
+trigger_phrases: []
+---
 # 032 substrate-repair-followups — Final Handover
 
 Date: 2026-05-14

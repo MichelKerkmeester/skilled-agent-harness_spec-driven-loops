@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - fanout-gpt55r2-c-10"
+trigger_phrases: []
+---
 # Deep Review Strategy - fanout-gpt55r2-c-10
 
 ## 1. Topic

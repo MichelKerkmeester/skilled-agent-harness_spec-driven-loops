@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — Run 4: Total Risk Closure"
+trigger_phrases: []
+---
 # Deep Research Strategy — Run 4: Total Risk Closure
 
 ## Topic

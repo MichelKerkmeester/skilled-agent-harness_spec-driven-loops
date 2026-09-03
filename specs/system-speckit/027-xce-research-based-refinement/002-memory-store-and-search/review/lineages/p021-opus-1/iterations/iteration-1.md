@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Review loop complete. All artifacts are written to the lineage directory and confined to it.
 
 **Summary — lineage p021-opus-1, target `021-cooperative-heavy-phases`**

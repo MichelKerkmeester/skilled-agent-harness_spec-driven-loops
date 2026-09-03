@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The deep/ commands (`review`, `research`, `ai-council`, `alignment`) open with a Phase-0 dispatch-context gate whose block reads \"⛔ DIRECT INVOCATION REQUIRED — no review iteration executed\"",
     "created_at": "2026-08-27T03:18:13.515Z",
-    "last_save_at": "2026-08-30T15:39:22.354Z",
+    "last_save_at": "2026-09-03T22:22:07.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8bcd6e1a9c3e84eccb0c2b0d5c567e6a5a236b087d27b00998f168077f9a2d5c",
+    "source_fingerprint": "sha256:ce27d51f042ea8c7fa57a44495946ce9aee74b81e3dc44d873ddb2341d30f9fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "704631de9d98ff90927f8ccca72c21609f34cac833f2c2b398a83cb524e375b1",
-      "plan.md": "404a2cc4f5aa734608620312d5b44c9b3630253b0dc2e1f7789a6d870e9e98c9",
-      "tasks.md": "1dd2e601292152927fc2162664fa01a7d75e8a575ab6404930de2d216f08fc9d",
+      "plan.md": "66ccca1c89285695c1b30fb7a0d4ded553877dc1a39f0e2a858fa2c08cf5719e",
+      "tasks.md": "db6b53949cc98685cf5b083c190ae7cd7e4d759ce6e9e5a8d7f6e95cc2d10cc1",
       "implementation-summary.md": "5bf334595c67c8bce9829fe6d3c9e0274aac43dff016ff237a902ada9f1d0a01"
     },
     "last_active_child_id": null,

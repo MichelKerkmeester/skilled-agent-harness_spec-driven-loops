@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Current style corpus and retrieval pipeline"
+trigger_phrases: []
+---
 # Iteration 1: Current style corpus and retrieval pipeline
 
 ## Focus

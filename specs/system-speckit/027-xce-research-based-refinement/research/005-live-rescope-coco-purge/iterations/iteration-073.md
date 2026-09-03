@@ -1,3 +1,7 @@
+---
+title: "Iteration 073 — drift: 026-status stale, path-root self-cites, lingering 028-coco deps, 009->008 numbering, 3-way continuity conflict, 000 child-list"
+trigger_phrases: []
+---
 # Iteration 073 — drift: 026-status stale, path-root self-cites, lingering 028-coco deps, 009->008 numbering, 3-way continuity conflict, 000 child-list
 
 **Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** phase. **newInfoRatio:** 0.72. **Findings:** 6.

@@ -1,3 +1,7 @@
+---
+title: "Claude-app-style mobile client for pi RPC — cli-cursor-grok-45-high lineage research"
+trigger_phrases: []
+---
 # Claude-app-style mobile client for pi RPC — cli-cursor-grok-45-high lineage research
 
 Detached fan-out lineage `fanout-cli-cursor-grok-45-high-1786341668505-k2xc4h` (executor `cli-cursor` / `cursor-grok-4.5-high`). Four forced-depth iterations on designing a Claude-app-parity mobile web/PWA client driven by `pi --mode rpc`, exposed through a host relay (Tailscale Serve and/or WebSocket bridge). Stop policy: `max-iterations` (convergence treated as telemetry only). Artifact root: `specs/cli-external-orchestration/041=pi-remote-mobile-agent-like-cc/research/lineages/cli-cursor-grok-45-high`.

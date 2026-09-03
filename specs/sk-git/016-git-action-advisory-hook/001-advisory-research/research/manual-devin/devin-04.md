@@ -1,3 +1,7 @@
+---
+title: "Devin-04: Prior Art for Pre-Execution Git Advisories — and Where They Are Ignored"
+trigger_phrases: []
+---
 # Devin-04: Prior Art for Pre-Execution Git Advisories — and Where They Are Ignored
 
 **Pass:** 4 of 10 — `manual-devin/devin-04`

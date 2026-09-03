@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Dashboard: System-Spec-Kit MCP Sidecar"
+trigger_phrases: []
+---
 # Deep-Research Dashboard: System-Spec-Kit MCP Sidecar
 
 | Iteration | Angle | Executor | Status | New Info Ratio | Findings | Artifact | Signal |

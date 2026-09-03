@@ -1,3 +1,7 @@
+---
+title: "sk-design Consolidation Refinement Research"
+trigger_phrases: []
+---
 # sk-design Consolidation Refinement Research
 
 ## 1. Executive Summary

@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Evidence reconciliation and priority closure"
+trigger_phrases: []
+---
 # Iteration 007 — Evidence reconciliation and priority closure
 
 ## Focus

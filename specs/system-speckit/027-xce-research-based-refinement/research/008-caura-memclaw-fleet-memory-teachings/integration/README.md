@@ -1,3 +1,7 @@
+---
+title: "Integration Research: caura-memclaw (008) → Spec Kit (UX + Automation first)"
+trigger_phrases: []
+---
 # Integration Research: caura-memclaw (008) → Spec Kit (UX + Automation first)
 
 5-iteration deep-research run on **how to integrate the 008 memory-hardening proposal** and **what existing skills / commands / agents / hooks it impacts** — with **UX and automation as the explicit top design priorities**.

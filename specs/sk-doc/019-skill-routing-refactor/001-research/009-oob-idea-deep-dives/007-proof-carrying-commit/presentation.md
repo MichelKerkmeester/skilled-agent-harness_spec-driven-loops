@@ -1,3 +1,7 @@
+---
+title: "Idea 7 — Proof-Carrying Prepare / Verify / Commit"
+trigger_phrases: []
+---
 # Idea 7 — Proof-Carrying Prepare / Verify / Commit
 
 > **Planning a route and being allowed to act on it are two different things. Let the router *prepare* a plan freely — but the plan is only evidence, and the destination re-checks it the instant before it touches anything.**

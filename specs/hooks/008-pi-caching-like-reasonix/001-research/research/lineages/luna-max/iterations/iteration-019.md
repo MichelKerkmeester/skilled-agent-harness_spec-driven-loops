@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: Build the feasibility matrix and proof plan"
+trigger_phrases: []
+---
 # Iteration 19: Build the feasibility matrix and proof plan
 
 ## Focus

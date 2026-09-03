@@ -1,3 +1,7 @@
+---
+title: "Iteration 005: Adversarial router replay"
+trigger_phrases: []
+---
 # Iteration 005: Adversarial router replay
 
 ## Focus

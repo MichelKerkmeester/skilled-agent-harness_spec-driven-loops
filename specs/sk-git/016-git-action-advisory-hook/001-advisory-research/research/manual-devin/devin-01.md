@@ -1,3 +1,7 @@
+---
+title: "Devin-01: Enumeration of Mutating Git Operations and Pre-Execution Evaluability"
+trigger_phrases: []
+---
 # Devin-01: Enumeration of Mutating Git Operations and Pre-Execution Evaluability
 
 **Pass:** 1 of 10 — `manual-devin/devin-01`

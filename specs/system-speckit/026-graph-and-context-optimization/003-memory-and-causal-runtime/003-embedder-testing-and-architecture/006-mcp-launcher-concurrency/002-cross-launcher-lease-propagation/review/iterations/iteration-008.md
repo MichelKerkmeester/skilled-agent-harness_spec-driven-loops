@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 I've completed iteration 8 of the deep review focusing on the maintainability dimension. 
 
 **Summary**: Read all anchor materials (spec.md, plan.md, implementation-summary.md, checklist.md, changelog) and both launcher source files. Found one P2 maintainability issue not covered in iteration-4: dead code in the code-graph launcher where `writeState()` function and `stateFile` variable are defined but never used, unlike the spec-memory launcher where they are actively called.

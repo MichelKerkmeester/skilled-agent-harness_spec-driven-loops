@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Rollup Consistency"
+trigger_phrases: []
+---
 # Iteration 6: Rollup Consistency
 
 ## Dispatcher

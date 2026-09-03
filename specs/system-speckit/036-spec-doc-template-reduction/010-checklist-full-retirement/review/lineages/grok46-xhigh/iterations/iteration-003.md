@@ -1,3 +1,7 @@
+---
+title: "Iteration 3 - Traceability: leftover docs pointers vs packet completion claim"
+trigger_phrases: []
+---
 # Iteration 3 - Traceability: leftover docs pointers vs packet completion claim
 
 ## Dispatcher

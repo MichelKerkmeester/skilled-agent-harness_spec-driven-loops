@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — KQ7 (adversarial): governance gaps, sequencing contradictions, convergence"
+trigger_phrases: []
+---
 # Iteration 007 — KQ7 (adversarial): governance gaps, sequencing contradictions, convergence
 
 ## Focus

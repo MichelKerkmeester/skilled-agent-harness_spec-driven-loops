@@ -1,3 +1,7 @@
+---
+title: "1. Clone & set up the Python vision runtime"
+trigger_phrases: []
+---
 <p align="center">
 <img src="media/banner.svg" alt="OpenCode Senses banner" width="100%">
 </p>

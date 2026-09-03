@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now let me check a couple more files for completeness.
 Here is the verification report.
 

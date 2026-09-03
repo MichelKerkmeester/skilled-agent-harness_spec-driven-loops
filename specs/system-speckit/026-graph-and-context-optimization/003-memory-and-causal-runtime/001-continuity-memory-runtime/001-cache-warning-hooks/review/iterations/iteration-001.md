@@ -5,6 +5,7 @@ dimension: D1 Correctness
 session_id: 2026-04-12T14:45:00Z-002-cache-warning-hooks
 timestamp: 2026-04-12T14:49:00Z
 status: thought
+trigger_phrases: []
 ---
 
 # Iteration 001 - D1 Correctness

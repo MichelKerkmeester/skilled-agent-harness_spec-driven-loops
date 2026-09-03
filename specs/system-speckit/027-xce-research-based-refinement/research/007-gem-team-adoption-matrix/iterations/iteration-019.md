@@ -1,3 +1,7 @@
+---
+title: "Iteration 019: RQ-C completeness critic"
+trigger_phrases: []
+---
 # Iteration 019: RQ-C completeness critic
 
 **Focus:** RQ-C completeness critic  

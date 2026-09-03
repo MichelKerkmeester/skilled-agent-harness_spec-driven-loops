@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Embedder Reindex Status Commit and Daemon Config Lifecycle"
+trigger_phrases: []
+---
 # Iteration 4: Embedder Reindex Status Commit and Daemon Config Lifecycle
 
 ## Focus

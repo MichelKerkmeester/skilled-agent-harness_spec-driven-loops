@@ -1,3 +1,7 @@
+---
+title: "Iteration 2 - Correctness: remaining registries and router consistency"
+trigger_phrases: []
+---
 # Iteration 2 - Correctness: remaining registries and router consistency
 
 ## Focus

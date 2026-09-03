@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 - Architectural blind spots"
+trigger_phrases: []
+---
 # Iteration 004 - Architectural blind spots
 
 ## Preflight reasoning

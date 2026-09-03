@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: dq-governance-rollout"
+trigger_phrases: []
+---
 # Deep Research Strategy: dq-governance-rollout
 
 ## Topic

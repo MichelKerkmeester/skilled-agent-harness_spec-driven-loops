@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Fallback Router Wiring Decision"
+trigger_phrases: []
+---
 # Iteration 4: Fallback Router Wiring Decision
 
 ## Focus

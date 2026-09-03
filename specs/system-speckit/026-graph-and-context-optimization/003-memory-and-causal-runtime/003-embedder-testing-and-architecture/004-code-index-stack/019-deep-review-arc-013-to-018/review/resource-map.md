@@ -1,3 +1,7 @@
+---
+title: "Resource Map — 016/004/013-018 CocoIndex Pipeline Arc + Nomic Promotion"
+trigger_phrases: []
+---
 # Resource Map — 016/004/013-018 CocoIndex Pipeline Arc + Nomic Promotion
 
 ## File × Dimension Review Matrix

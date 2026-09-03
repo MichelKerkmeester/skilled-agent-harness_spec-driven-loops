@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ### ADAPT (6 files, 90,820 bytes, 11,657 Han)
 
 | File | Bytes | Lines | Han | Reason |

@@ -1,3 +1,7 @@
+---
+title: "Resource Map — mimo lineage emission"
+trigger_phrases: []
+---
 # Resource Map — mimo lineage emission
 
 > Emitted from converged delta evidence. Covers the parent-level packet surfaces reviewed in this lineage.

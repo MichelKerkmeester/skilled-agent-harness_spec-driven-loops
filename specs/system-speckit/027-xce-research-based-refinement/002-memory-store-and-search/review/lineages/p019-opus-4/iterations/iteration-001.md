@@ -1,3 +1,7 @@
+---
+title: "Iteration 001 — Full-coverage pass (4 dimensions)"
+trigger_phrases: []
+---
 # Iteration 001 — Full-coverage pass (4 dimensions)
 
 Lineage: `p019-opus-4` | Executor: cli-claude-code / claude-opus-4-8 | maxIterations=1

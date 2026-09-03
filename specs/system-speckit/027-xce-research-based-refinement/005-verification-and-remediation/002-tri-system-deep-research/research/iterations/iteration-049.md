@@ -1,3 +1,7 @@
+---
+title: "Iteration 049 — Angle 49"
+trigger_phrases: []
+---
 # Iteration 049 — Angle 49
 
 **Angle:** Catalog/playbook governance: hand-maintained counts and tables (feature catalog, playbook index, drift-prone self-checks) — generation or CI-guarding.

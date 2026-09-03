@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Synthesis-Readiness Convergence Pass"
+trigger_phrases: []
+---
 # Iteration 4: Synthesis-Readiness Convergence Pass
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Verify DeepSeek cache semantics"
+trigger_phrases: []
+---
 # Iteration 4: Verify DeepSeek cache semantics
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — DeepSeek cache semantics"
+trigger_phrases: []
+---
 # Iteration 002 — DeepSeek cache semantics
 
 ## Focus

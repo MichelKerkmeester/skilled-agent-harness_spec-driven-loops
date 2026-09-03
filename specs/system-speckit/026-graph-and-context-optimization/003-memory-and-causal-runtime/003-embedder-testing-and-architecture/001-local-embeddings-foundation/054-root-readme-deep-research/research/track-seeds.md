@@ -1,3 +1,7 @@
+---
+title: "056 Track Seeds — 7 Thematic Tracks × 20 Iter"
+trigger_phrases: []
+---
 # 056 Track Seeds — 7 Thematic Tracks × 20 Iter
 
 Each track owns ~3 iter. Per-iter RQs below seed the dispatch; cli-devin may follow related threads within the track as findings surface.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 025 — Angle 25"
+trigger_phrases: []
+---
 # Iteration 025 — Angle 25
 
 **Angle:** CLI path-resolution robustness: code-index.cjs invoked from arbitrary cwd; absolute-path self-resolution audit across all three front doors.

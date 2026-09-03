@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Structural Merge Layout and Directional Coupling"
+trigger_phrases: []
+---
 # Iteration 1: Structural Merge Layout and Directional Coupling
 
 ## Focus

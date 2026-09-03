@@ -13,6 +13,7 @@ scan_roots:
   - tests/
   - configs/
 rows: 50
+trigger_phrases: []
 ---
 
 # Phase 018 Resource Map — Commands, Agents, Skills, Docs, Tests, Configs

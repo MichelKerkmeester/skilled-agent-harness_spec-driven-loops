@@ -1,3 +1,7 @@
+---
+title: "Iteration 002 — KQ2: `--command` vs direct-prompt vs natural conversation"
+trigger_phrases: []
+---
 # Iteration 002 — KQ2: `--command` vs direct-prompt vs natural conversation
 
 **Focus:** When should a slash command be a deterministic renderer (no model latitude)

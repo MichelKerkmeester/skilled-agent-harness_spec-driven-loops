@@ -1,3 +1,7 @@
+---
+title: "Iteration 015 — security (executor: cli-opencode-deepseek-v4-pro)"
+trigger_phrases: []
+---
 # Iteration 015 — security (executor: cli-opencode-deepseek-v4-pro)
 
 ## Metadata

@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Final Adversarial Consistency and Completeness Audit"
+trigger_phrases: []
+---
 # Iteration 10: Final Adversarial Consistency and Completeness Audit
 
 ## Focus

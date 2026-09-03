@@ -1,3 +1,7 @@
+---
+title: "Round 002 Critique"
+trigger_phrases: []
+---
 # Round 002 Critique
 
 ## Purpose

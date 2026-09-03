@@ -3,6 +3,7 @@ title: "Handover: Remaining post-rename items (compiled-routing recompile + dist
 description: "Two operator-gated items remain after the sk-prefix rename program: re-activate sk-doc compiled routing, and rebuild the mcp-server dist once the pi-hooks land."
 contextType: "handover"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
+trigger_phrases: []
 ---
 
 # Handover — Remaining Post-Rename Items

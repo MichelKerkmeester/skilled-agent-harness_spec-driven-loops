@@ -1,3 +1,7 @@
+---
+title: "Deep-Review Iteration Prompt Pack — Iteration 2"
+trigger_phrases: []
+---
 # Deep-Review Iteration Prompt Pack — Iteration 2
 
 You are dispatched as a LEAF deep-review agent (`@deep-review`). Iteration 1 closed correctness with `CONDITIONAL` verdict (P0=0, P1=1 constitutional README storage-boundary gap, P2=2 inventory items). Now perform the security pass.

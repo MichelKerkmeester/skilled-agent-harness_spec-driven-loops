@@ -7,6 +7,7 @@ activeP2: 1
 stopReason: maxIterationsReached
 releaseReadinessState: in-progress
 sessionId: fanout-xhigh-b-1783915428096-y929h9
+trigger_phrases: []
 ---
 
 # Deep Review Report: sk-code Split-Doc Template Alignment xhigh-b

@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Maintainability — Documentation Quality & Structural Clarity"
+trigger_phrases: []
+---
 # Iteration 4: Maintainability — Documentation Quality & Structural Clarity
 
 ## Focus

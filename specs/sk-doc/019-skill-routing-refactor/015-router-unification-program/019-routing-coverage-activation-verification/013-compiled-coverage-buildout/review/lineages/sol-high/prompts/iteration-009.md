@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 DEEP-REVIEW ITERATION 009
 
 Focus: security stabilization of fleet kill-switch, invalid flag handling, and manifest fail-safe behavior.

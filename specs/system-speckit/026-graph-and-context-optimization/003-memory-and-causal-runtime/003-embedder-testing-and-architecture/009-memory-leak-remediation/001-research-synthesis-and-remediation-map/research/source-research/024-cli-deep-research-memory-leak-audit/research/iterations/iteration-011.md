@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Validate the first two implementation recommendations surfaced by the completed audit: `remove-project-cancel-safety` and `daemon-protocol-cancel-index-surface`. The question is whether source evidence supports the existing split, what the smallest safe internal registry looks like, and what request identity is required before a public cancel protocol can be safe.

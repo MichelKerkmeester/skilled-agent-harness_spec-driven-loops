@@ -1,3 +1,7 @@
+---
+title: "Iteration 25 — gpt-5.6-sol high — focus: closeout"
+trigger_phrases: []
+---
 # Iteration 25 — gpt-5.6-sol high — focus: closeout
 
 The synthesis is not implementation-ready. Beyond F-14 through F-24, eight unresolved decisions remain. The largest blocker is ownership: the decision packet explicitly permits documentation only, while its task list assigns runtime, CI, environment, and hub changes to the same packet.

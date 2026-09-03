@@ -1,3 +1,7 @@
+---
+title: "Gap Audit Synthesis - GPT Gap Lineage"
+trigger_phrases: []
+---
 # Gap Audit Synthesis - GPT Gap Lineage
 
 - Date: 2026-06-06

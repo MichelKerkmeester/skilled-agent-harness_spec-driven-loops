@@ -1,6 +1,7 @@
 ---
 title: "Deep Research Strategy: global sk-design styles utilization"
 description: "Detached-lineage strategy for mode-specific utilization of the 1,290-style corpus beyond the baseline retrieval pipeline."
+trigger_phrases: []
 ---
 
 # Deep Research Strategy: Global Modes Utilization

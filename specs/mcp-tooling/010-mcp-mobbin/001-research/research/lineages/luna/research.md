@@ -1,3 +1,7 @@
+---
+title: "Mobbin MCP developer surface — detached research synthesis"
+trigger_phrases: []
+---
 # Mobbin MCP developer surface — detached research synthesis
 
 **Lineage:** `luna`  

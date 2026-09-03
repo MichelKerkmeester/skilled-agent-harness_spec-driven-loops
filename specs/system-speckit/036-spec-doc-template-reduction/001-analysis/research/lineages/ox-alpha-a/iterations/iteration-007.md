@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Versioned-change surface map: content-router, golden snapshots, continuity freshness"
+trigger_phrases: []
+---
 # Iteration 007 — Versioned-change surface map: content-router, golden snapshots, continuity freshness
 
 **Focus:** Enumerate the exact machine surfaces any template change must co-update (the shared fact's "manifest + content-router + spec-doc-structure + golden snapshot + dist"), with file:line precision.

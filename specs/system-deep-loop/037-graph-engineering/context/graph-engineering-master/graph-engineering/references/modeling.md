@@ -1,3 +1,7 @@
+---
+title: "Knowledge Representation & Ontology Modeling"
+trigger_phrases: []
+---
 # Knowledge Representation & Ontology Modeling
 *(Course lectures 2-3, translated and adapted)*
 

@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 007 — 010/006 umbrella docs vs code reality"
+trigger_phrases: []
+---
 # Deep-Research Iteration 007 — 010/006 umbrella docs vs code reality
 
 You are a fresh-context deep-research executor (cli-codex gpt-5.5 high fast). No memory of prior iterations. Defensive code/doc-review of internal documentation. Read-only.

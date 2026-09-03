@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 29 | model sol (gpt-5.6-sol) | angle: Novelty/coverage metrics that formally drive broadening | 2026-07-14T23:36:46.676Z -->
 
 The strongest transfer is a two-axis controller, not another single novelty score:

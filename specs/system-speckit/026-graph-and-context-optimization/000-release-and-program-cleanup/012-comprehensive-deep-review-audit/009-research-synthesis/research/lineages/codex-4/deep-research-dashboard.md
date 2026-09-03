@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard - codex-4"
+trigger_phrases: []
+---
 # Deep Research Dashboard - codex-4
 
 ## 1. STATUS

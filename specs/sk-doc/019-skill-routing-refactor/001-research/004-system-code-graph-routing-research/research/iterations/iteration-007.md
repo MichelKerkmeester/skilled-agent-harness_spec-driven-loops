@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Acceptance Matrix and Failure-Proof Implementation Boundary"
+trigger_phrases: []
+---
 # Iteration 7: Acceptance Matrix and Failure-Proof Implementation Boundary
 
 ## Route Proof

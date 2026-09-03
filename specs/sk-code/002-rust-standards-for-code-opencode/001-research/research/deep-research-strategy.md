@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Strategy — Rust Standards for code-opencode (Packet 018 / Phase 001)"
+trigger_phrases: []
+---
 # Deep-Research Strategy — Rust Standards for code-opencode (Packet 018 / Phase 001)
 
 > Charter the deep-research loop reads at the start of every round. Single lineage, **GPT-5.6-sol** (`high`, `fast`) via **`cli-opencode`** (`openai/gpt-5.6-sol-fast`, `--variant high`), up to **10 rounds**. Research-only: **no Rust is written and no skill source is modified.**

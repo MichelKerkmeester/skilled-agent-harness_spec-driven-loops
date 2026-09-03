@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — Anti-verdict-softening + anti-gaming discipline"
+trigger_phrases: []
+---
 # Iteration 005 — Anti-verdict-softening + anti-gaming discipline
 
 **Focus:** peck "don't relabel Fail as conditional/partial" + anti-gaming `<avoid>` + "always emit a Verdict section" vs spec-kit honesty/verify-before-completion + deep-review verdict contract.

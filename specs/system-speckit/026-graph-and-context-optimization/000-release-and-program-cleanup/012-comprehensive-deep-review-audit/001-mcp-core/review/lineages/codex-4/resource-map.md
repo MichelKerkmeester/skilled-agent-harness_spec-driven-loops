@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map - codex-4"
+trigger_phrases: []
+---
 # Review Resource Map - codex-4
 
 The target spec did not contain `resource-map.md` during init, so the formal Resource Map Coverage Gate was skipped.

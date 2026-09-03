@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy — sk-design Mode Consolidation"
+trigger_phrases: []
+---
 # Deep Research Strategy — sk-design Mode Consolidation
 
 ## 1. OVERVIEW

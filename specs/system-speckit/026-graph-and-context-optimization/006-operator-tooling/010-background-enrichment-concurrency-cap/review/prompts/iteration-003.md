@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 You are an adversarial deep-review worker (iteration 3 of up to 10), running a COMPLETENESS + CONFIRMATION pass on the diff at /tmp/010-fix.diff. Read it and the source (read-only):
 - .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts (scheduleBackgroundEnrichment + call sites)
 - .opencode/skills/system-spec-kit/mcp_server/context-server.ts (startupScan loop)

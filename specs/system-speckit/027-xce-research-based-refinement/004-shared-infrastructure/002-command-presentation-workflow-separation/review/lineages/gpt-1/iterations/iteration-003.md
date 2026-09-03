@@ -1,3 +1,7 @@
+---
+title: "Iteration 003: Maintainability and Command-Reference Integrity"
+trigger_phrases: []
+---
 # Iteration 003: Maintainability and Command-Reference Integrity
 
 ## Focus

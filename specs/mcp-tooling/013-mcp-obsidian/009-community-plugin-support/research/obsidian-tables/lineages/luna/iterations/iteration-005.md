@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Failure catalog, formula diagnostics, and AI troubleshooting"
+trigger_phrases: []
+---
 # Iteration 5: Failure catalog, formula diagnostics, and AI troubleshooting
 
 ## Focus

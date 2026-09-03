@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-code/007-sk-code-obsidian-surface/007-manual-testing-playbook",
   "description": "Before this phase, `sk-code-obsidian/` had no `manual-testing-playbook/` at all — `../goal.md` §6",
   "keywords": [

@@ -1,3 +1,7 @@
+---
+title: "Iteration 045 — Angle 45"
+trigger_phrases: []
+---
 # Iteration 045 — Angle 45
 
 **Angle:** Trusted-mutation gating: advisor_rebuild/skill_graph_scan --trusted docs vs actual enforcement.

@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 (deepseek-v4-pro, prose-extracted)"
+trigger_phrases: []
+---
 # Iteration 008 (deepseek-v4-pro, prose-extracted)
 
 > The seat answered in prose instead of the findings JSON contract; key claims distilled below, full prose preserved.

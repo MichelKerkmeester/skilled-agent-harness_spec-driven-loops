@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: Cross-Command Composition"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true
 

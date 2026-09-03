@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 — Pairing and onboarding"
+trigger_phrases: []
+---
 # Iteration 011 — Pairing and onboarding
 
 ## Question

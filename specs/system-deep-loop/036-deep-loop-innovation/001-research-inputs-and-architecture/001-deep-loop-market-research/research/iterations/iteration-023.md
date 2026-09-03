@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 23 | model luna (gpt-5.6-luna) | angle: Human-in-the-loop / steering / interrupt-resume | 2026-07-14T23:04:20.478Z -->
 
 HITL is best modeled as a control-plane state transition, not a UI affordance. The durable unit is a typed steering event applied to a checkpointed branch, carrying actor, scope, state hash, expiry, and supersession semantics.

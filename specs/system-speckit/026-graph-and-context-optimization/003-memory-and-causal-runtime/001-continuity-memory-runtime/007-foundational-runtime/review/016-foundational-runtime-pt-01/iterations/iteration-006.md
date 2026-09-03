@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 — Recovery Sweep + CP-001/CP-003 Re-Severity + Convergence Decision"
+trigger_phrases: []
+---
 # Iteration 6 — Recovery Sweep + CP-001/CP-003 Re-Severity + Convergence Decision
 
 ## Dispatcher

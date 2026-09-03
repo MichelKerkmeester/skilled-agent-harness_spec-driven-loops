@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: GraphARC Governance Architecture and Trust Boundaries"
+trigger_phrases: []
+---
 # Iteration 2: GraphARC Governance Architecture and Trust Boundaries
 
 ## Focus

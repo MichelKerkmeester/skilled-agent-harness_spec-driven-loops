@@ -1,1 +1,4 @@
+---
+trigger_phrases: []
+---
 STATE SUMMARY: iteration 4 of 7, focus maintainability. Active findings P1:5. Sample feature catalog source tables for stale implementation paths and operator-maintenance risk. Output iteration-004.md and JSONL delta.

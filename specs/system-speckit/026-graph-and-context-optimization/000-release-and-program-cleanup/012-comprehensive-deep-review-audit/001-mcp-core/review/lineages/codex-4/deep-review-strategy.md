@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - codex-4"
+trigger_phrases: []
+---
 # Deep Review Strategy - codex-4
 
 ## Topic

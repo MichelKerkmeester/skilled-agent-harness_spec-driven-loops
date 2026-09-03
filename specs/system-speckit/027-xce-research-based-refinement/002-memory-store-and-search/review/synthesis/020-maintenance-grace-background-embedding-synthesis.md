@@ -1,3 +1,7 @@
+---
+title: "020 Review Synthesis"
+trigger_phrases: []
+---
 # 020 Review Synthesis
 
 **Phase:** `020-maintenance-grace-background-embedding` (027 XCE / 002-memory-store-and-search track)

@@ -1,3 +1,7 @@
+---
+title: "AI Council Strategy: 022 Remediation Arc Remaining Execution Strategy"
+trigger_phrases: []
+---
 # AI Council Strategy: 022 Remediation Arc Remaining Execution Strategy
 
 ## Purpose

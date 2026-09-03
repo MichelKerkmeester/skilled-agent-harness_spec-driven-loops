@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Documentation Logic vs Agent Engineering Harness Patterns"
+trigger_phrases: []
+---
 # Iteration 2: Documentation Logic vs Agent Engineering Harness Patterns
 
 ## Focus

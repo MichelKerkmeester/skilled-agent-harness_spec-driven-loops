@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 5 — D1-D8 memory-quality remediation landing status (Q4)"
+trigger_phrases: []
+---
 # Deep-Research Iteration 5 — D1-D8 memory-quality remediation landing status (Q4)
 
 ## YOUR ROLE

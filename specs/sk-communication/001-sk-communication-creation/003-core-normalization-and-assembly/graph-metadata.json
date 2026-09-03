@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "core-normalization-and-assembly",
-      "core normalization and assembly",
       "portable cli projection",
       "implementation phase",
       "implementation plan",
@@ -22,13 +21,11 @@
       "use a generation-keyed state machine with explicit ordering domains",
       "implementation status",
       "current state",
-      "phase 003 handover"
+      "phase 003 handover",
+      "core normalization handover"
     ],
     "key_topics": [
       "core-normalization-and-assembly",
-      "core",
-      "normalization",
-      "assembly",
       "portable",
       "cli",
       "projection",
@@ -36,7 +33,10 @@
       "phase",
       "plan",
       "tasks",
-      "architecture"
+      "architecture",
+      "decision",
+      "generation-keyed",
+      "state"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Build the runtime-neutral core that normalizes events, assembles one deterministic message, and selects the bounded conversational context that made the reference effective without changing canonical state",
     "created_at": "2026-08-11T10:04:29Z",
-    "last_save_at": "2026-08-30T15:39:11.684Z",
+    "last_save_at": "2026-09-03T22:16:38.886Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:04bc99a4d0554ecd8a93d13a9b3342ab94aec8438a0e5ea03955c0bd7f32c789",
+    "source_fingerprint": "sha256:2f520282eee05d6cdce76a2c390e2ee6b1b67af82fe6613a86ae3c989067f070",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "78f1bbbc449acfc10034fbd7072d9f10455d40ce4e01eefa861913fe0df1e985",
+      "spec.md": "714ce0371a97603b3d5e1d8c09fb4199775e693cddb6439dbd6e16e8bf1f5841",
       "plan.md": "84fe979d44dd287d99984404d6be587c59791805c3252c9bb4f895b91bd3a11e",
       "tasks.md": "1bcde3d427e1c91755fa7d875d6150341f6b8c83bdbcecd8c573068a955dc236",
       "decision-record.md": "ca1aa964d888d5d3db995e52776e06c134bfd5c8ceb8c0879476200498e17b0e",

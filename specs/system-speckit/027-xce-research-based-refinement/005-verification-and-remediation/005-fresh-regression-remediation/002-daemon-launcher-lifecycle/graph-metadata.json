@@ -178,7 +178,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 15 findings (4 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
     "created_at": "2026-07-10T06:21:39.605Z",
-    "last_save_at": "2026-08-30T15:39:34.341Z",
+    "last_save_at": "2026-09-03T22:23:23.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,13 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:228b478ff8d1fe4a8f85dfa49bb2b905db0f5a9476852194ef7a157c389cd5ef",
+    "source_fingerprint": "sha256:ff6e28ce0aa2519b488121cb59468cba5c304e553dfd820761cdf9597ff2a377",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93e9f786dfb155d32844d4b5fcd9c700f73f790462ec3def001ead000f6ea6f5",
-      "plan.md": "c19d51833a3d77c396dd5be01b5c57577ad3d0cef3137dce4e04501fcbb4f312",
-      "tasks.md": "7ad1bdc6226b4e66ce9cdf18d3a2507d6003e0cf835d0c0bfe996b17b8dc9221",
-      "implementation-summary.md": "652cce0ab043865adf182ec81c3e9f65bf3ce1dd5b656a761c073acfc1ad06e9"
+      "spec.md": "706844a089af064fbda878adcce69c4b8dd9d09f4d4f4ecfc5b80fe0ab4698fd",
+      "plan.md": "7c5a4dadb460abc0d5474f701971dc88d9a6b9fadab1a02ff536f0be8fbb3992",
+      "tasks.md": "4be673920f2d116fc142ffbe2af8b2111b142afff486168718bdc52571b98818",
+      "implementation-summary.md": "e1d0c5015da56e117e4d9d1dbd794ad94dcf84a5ebf7975ddc543845ebe08723"
     },
     "last_active_child_id": null,
     "last_active_at": null

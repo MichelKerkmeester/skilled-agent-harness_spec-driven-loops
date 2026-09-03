@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 30 | model sol (gpt-5.6-sol) | angle: Durable-execution ↔ agent-loop mapping (deep) | 2026-07-14T23:42:04.577Z -->
 
 The transferable guarantee is narrower than “the agent resumes exactly where it stopped.” Durable execution reconstructs a deterministic coordinator from committed history. It does not make an uncommitted LLM or tool invocation deterministic or exactly-once. Azure explicitly documents activities as at-least-once, while Dapr’s agent runtime reuses the recorded assistant message during replay instead of invoking the model again. ([Azure Durable Task](https://learn.microsoft.com/en-us/azure/durable-task/common/programming-model-overview), [Dapr Agents](https://docs.dapr.io/developing-ai/dapr-agents/dapr-agents-hooks/))

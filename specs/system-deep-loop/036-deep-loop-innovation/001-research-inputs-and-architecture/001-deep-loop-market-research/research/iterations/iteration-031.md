@@ -1,3 +1,7 @@
+---
+title: "GitHub"
+trigger_phrases: []
+---
 <!-- iteration 31 | model sol (gpt-5.6-sol) | angle: Reflection loops: measured gains vs hype | 2026-07-14T23:48:28.491Z -->
 
 The evidence rejects “reflection” as a generally beneficial loop primitive. The critical survey finds reliable gains mainly when feedback is externally verifiable or correction is explicitly trained. Reflexion’s 91% HumanEval result is therefore a composite gain from tests, evaluator signals, retries, and memory—not proof that unguided introspection works. Its Rust ablation actually fell from 60% to 52% when reflection lacked tests. ([critical survey](https://aclanthology.org/2024.tacl-1.78/), [Reflexion](https://arxiv.org/abs/2303.11366))

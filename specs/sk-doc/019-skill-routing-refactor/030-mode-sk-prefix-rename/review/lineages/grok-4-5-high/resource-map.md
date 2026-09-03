@@ -1,3 +1,7 @@
+---
+title: "Resource Map Coverage (synthesized)"
+trigger_phrases: []
+---
 # Resource Map Coverage (synthesized)
 
 Parent `resource-map.md` was **absent at init** (`resource_map_present: false`). This file is the synthesis-time coverage map for the grok-4-5-high lineage (not a substitute for a packet-authored resource-map).

@@ -1,3 +1,7 @@
+---
+title: "Resource Map — sk- prefix rename surface (lineage glm-5-2)"
+trigger_phrases: []
+---
 # Resource Map — sk- prefix rename surface (lineage glm-5-2)
 
 Inventory of files discovered as consumers of mode packet dirs / workflowMode keys across the four sk- hubs. Generated from 5 research iterations.

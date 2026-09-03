@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 <!-- iteration 17 | model luna (gpt-5.6-luna) | angle: Convergence math & formal stopping rules | 2026-07-14T22:38:21.914Z -->
 
 The main finding is that “convergence” needs typed stopping contracts:

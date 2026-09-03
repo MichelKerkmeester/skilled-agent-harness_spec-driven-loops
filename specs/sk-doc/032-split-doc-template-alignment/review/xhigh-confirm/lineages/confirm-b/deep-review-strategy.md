@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: confirm-b"
+trigger_phrases: []
+---
 # Deep Review Strategy: confirm-b
 
 ## 1. OVERVIEW

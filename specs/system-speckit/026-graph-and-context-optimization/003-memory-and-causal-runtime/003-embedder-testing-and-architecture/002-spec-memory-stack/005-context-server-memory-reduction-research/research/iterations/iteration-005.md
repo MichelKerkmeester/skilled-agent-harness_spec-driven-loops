@@ -1,3 +1,7 @@
+---
+title: "Iteration 5 — node-llama-cpp memory patterns (model unload after idle, context shrinking, F16 vs Q8 quantization)"
+trigger_phrases: []
+---
 # Iteration 5 — node-llama-cpp memory patterns (model unload after idle, context shrinking, F16 vs Q8 quantization)
 
 ## Summary

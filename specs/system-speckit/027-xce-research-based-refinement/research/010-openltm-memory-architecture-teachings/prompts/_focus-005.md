@@ -1,3 +1,7 @@
+---
+title: "YOUR NARROW FOCUS — iteration 005 of 10: Typed knowledge graph + BFS conflict detection"
+trigger_phrases: []
+---
 
 # YOUR NARROW FOCUS — iteration 005 of 10: Typed knowledge graph + BFS conflict detection
 Read (stay scoped to this subsystem):

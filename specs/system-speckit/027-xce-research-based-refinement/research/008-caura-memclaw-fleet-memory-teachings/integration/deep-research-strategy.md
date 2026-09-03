@@ -1,6 +1,7 @@
 ---
 title: "Integration Research — caura-memclaw (008) Memory Hardening into Spec Kit (UX + Automation first)"
 description: "5-iteration folder-scoped run (001-005) on HOW to integrate the 008 proposal, WHAT existing skills/commands/agents/hooks it impacts, with UX and automation as the explicit top design priorities."
+trigger_phrases: []
 ---
 
 # Integration Research — Session Tracking

@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Operator policy: DeepSeek V4 Flash may be dispatched only at its max thinking tier — never at a lower effort (high/low/off) and never non-thinking",
     "created_at": "2026-08-16T16:53:59.878Z",
-    "last_save_at": "2026-08-30T15:39:08.018Z",
+    "last_save_at": "2026-09-03T22:15:30.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eeb24873c923d57aa66ee71ef85591e65fe9bf6f48e3a70638efe719683020b5",
+    "source_fingerprint": "sha256:701ae535929f4e25b62c45861be677ec9b341f717524742b615e9babdbd9bf7d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b0684a73ad1c5a567c79ca2d8f810d1a7783e714c1989ee3dc9f513056d45289",
-      "plan.md": "b33de760937388100a5e02b8a956383f04c4a3d1f220ee5edb0cfb5afe050fac",
-      "tasks.md": "461dbf74f0080a516fece84f2d32f429d9e2c7bfb393001f10b702994605fba3",
-      "decision-record.md": "896dcf638e49481cf39aff6c8660f80f368705d3cfa6ebfad86d25e0b8b295f5",
+      "plan.md": "e00dc112ac67a5cb87b6d3f8622b95cab3bf5e42f0e804bb9c9021f4c83a0099",
+      "tasks.md": "e8fe434a33d63483207b5c8a9de891a351b6a3f89241713edd506e94b90e4e27",
+      "decision-record.md": "349b911c064f90e6b25dd590ded0f628779a06634ae598e9ec7b43d3ee383eb0",
       "implementation-summary.md": "c92a3f1fef547a9612819f69d94e1e5d27ecf271d882542c7ad6cdc3d181a5a5"
     },
     "last_active_child_id": null,

@@ -1,3 +1,7 @@
+---
+title: "Decision package"
+trigger_phrases: []
+---
 # Decision package
 
 Three decisions block the remaining work. The analysis behind each is distributed across phase

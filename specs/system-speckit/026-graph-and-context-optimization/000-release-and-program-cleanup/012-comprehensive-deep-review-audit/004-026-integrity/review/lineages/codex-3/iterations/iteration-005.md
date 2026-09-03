@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 - Stabilization"
+trigger_phrases: []
+---
 # Iteration 005 - Stabilization
 
 Focus: replay active findings, traceability protocols, and legal-stop gates.

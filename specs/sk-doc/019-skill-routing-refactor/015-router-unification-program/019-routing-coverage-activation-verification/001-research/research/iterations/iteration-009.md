@@ -1,3 +1,7 @@
+---
+title: "Iteration 9 — gpt-5.6-sol high — focus: catalogs"
+trigger_phrases: []
+---
 # Iteration 9 — gpt-5.6-sol high — focus: catalogs
 
 Headline finding: each cataloged hub needs one hub-level **Compiled Hub Routing** entry describing its effective serving state—not duplicated child-mode entries or implementation history. Its wording must change during the same P4 stage as that hub’s directive because the current directives still describe opt-in, default-off behavior, while P4 changes the default and requires verified rollback after each hub (`.opencode/skills/sk-code/SKILL.md:52-56`, `.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision/plan.md:172-179`).

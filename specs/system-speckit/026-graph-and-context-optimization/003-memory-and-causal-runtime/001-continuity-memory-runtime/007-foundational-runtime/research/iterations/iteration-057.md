@@ -1,3 +1,7 @@
+---
+title: "Iteration 057 — Segment 2 synthesis (synthesis-only, no new findings)"
+trigger_phrases: []
+---
 # Iteration 057 — Segment 2 synthesis (synthesis-only, no new findings)
 
 **Segment**: 2 | **Type**: synthesis | **Dispatched**: Opus 4.7 via Task tool

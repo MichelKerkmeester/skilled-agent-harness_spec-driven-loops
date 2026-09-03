@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 006 — 010/005 trust-badge merge + age allowlist + dbGetter DI + cache invalidation"
+trigger_phrases: []
+---
 # Deep-Research Iteration 006 — 010/005 trust-badge merge + age allowlist + dbGetter DI + cache invalidation
 
 You are a fresh-context deep-research executor (cli-codex gpt-5.5 high fast). No memory of prior iterations. Defensive code review of internal memory + trust-display system. Read-only.

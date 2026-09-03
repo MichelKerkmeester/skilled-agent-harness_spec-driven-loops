@@ -1,6 +1,7 @@
 ---
 title: "Deep Research: global utilization of the sk-design styles library"
 description: "Per-mode integration architecture for using the 1,290-style corpus across the sk-design hub, interface, foundations, motion, audit, and Open Design transport."
+trigger_phrases: []
 ---
 
 # Global Utilization of the sk-design Styles Library

@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 001 — Focus: 010/001 license posture + 010/002 phase-runner + detect_changes preflight"
+trigger_phrases: []
+---
 # Deep-Research Iteration 001 — Focus: 010/001 license posture + 010/002 phase-runner + detect_changes preflight
 
 You are a fresh-context deep-research executor (cli-codex gpt-5.5 high fast). No memory of prior iterations.

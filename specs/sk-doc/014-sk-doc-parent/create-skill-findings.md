@@ -5,6 +5,7 @@ status: "current"
 created: "2026-07-13"
 importance_tier: "important"
 contextType: "research"
+trigger_phrases: []
 ---
 
 # Findings: sk-doc and create-skill logic

@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Prose-Compression Scan + Substitution-Claim Verification"
+trigger_phrases: []
+---
 # Iteration 3: Prose-Compression Scan + Substitution-Claim Verification
 
 ## Focus

@@ -1,3 +1,7 @@
+---
+title: "Knowledge Fusion & Serving the Graph to LLMs"
+trigger_phrases: []
+---
 # Knowledge Fusion & Serving the Graph to LLMs
 *(Course lectures 8-9, translated and adapted)*
 

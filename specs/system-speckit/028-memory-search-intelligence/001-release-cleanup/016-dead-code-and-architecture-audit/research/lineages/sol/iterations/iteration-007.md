@@ -1,3 +1,7 @@
+---
+title: "Iteration 007: Root config and database placement"
+trigger_phrases: []
+---
 # Iteration 007: Root config and database placement
 
 ## Focus

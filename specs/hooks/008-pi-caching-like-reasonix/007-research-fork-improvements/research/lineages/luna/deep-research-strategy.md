@@ -3,6 +3,7 @@ title: Detached Deep Research Strategy
 description: Iteration strategy for evidence-based improvement research across the two packet 008 Pi forks.
 contextType: planning
 version: 1.0
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Luna Lineage

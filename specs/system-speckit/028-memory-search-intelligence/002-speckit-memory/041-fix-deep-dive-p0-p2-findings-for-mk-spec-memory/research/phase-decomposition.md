@@ -1,3 +1,7 @@
+---
+title: "Remediation Program Decomposition — 028/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+trigger_phrases: []
+---
 # Remediation Program Decomposition — 028/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory
 
 Gate 3: answered E (phases under 028). Absorption: user chose ABSORB (Group-A + 028/006/002 + 028/006/004 fold in here; phase 013 closes out the old trackers with pointers).

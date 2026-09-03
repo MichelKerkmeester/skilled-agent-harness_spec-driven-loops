@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Runtime mirrors, agents, benchmark gold, ordering, verification (Q4/Q5)"
+trigger_phrases: []
+---
 # Iteration 004 — Runtime mirrors, agents, benchmark gold, ordering, verification (Q4/Q5)
 
 **Focus (Q4+Q5):** Ordering constraints and verification commands. Inspect runtime mirrors (`.claude/`,`.cursor/`,`.codex/`,`.devin/`), agent definitions, benchmark gold, and doctor parity scripts as verification levers.

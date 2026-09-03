@@ -17,6 +17,7 @@ _memory:
     key_files:
       - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
       - ".opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/conformance_benchmark.md"
+trigger_phrases: []
 ---
 # Implementation Summary
 

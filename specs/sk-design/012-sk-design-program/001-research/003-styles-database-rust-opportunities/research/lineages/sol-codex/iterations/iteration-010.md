@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Ranked Opportunities and Adoption Gates"
+trigger_phrases: []
+---
 # Iteration 10: Ranked Opportunities and Adoption Gates
 
 ## Focus

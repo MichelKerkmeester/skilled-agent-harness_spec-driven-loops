@@ -1,3 +1,7 @@
+---
+title: "Iteration 020 — security"
+trigger_phrases: []
+---
 # Iteration 020 — security
 
 - Executor: cli-codex gpt-5.6-sol effort=high service_tier=fast sandbox=read-only

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Completes the authored sixteen-scenario suite with DAB-016 to 027, reconciles contracts and pending baseline rows, and defers operator-gated Claude capture.",
     "created_at": "2026-07-14T20:37:00.206Z",
-    "last_save_at": "2026-08-30T15:39:20.274Z",
+    "last_save_at": "2026-09-03T22:20:21.787Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07a8a08d6aeebeea3e24826baa76ef6117f6e90bf1ac51dd749a9677aa905362",
+    "source_fingerprint": "sha256:1d170dfc06cbbee12438e5f2594f85db4fb2e93582fce7c7ce58203ddbd76f38",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1ec9d8cded66db1be875fc53a4f50008fcc849656f63852aa156bb2001e9e84f",
-      "plan.md": "416167ccfeca82c08e30aaae2daf7161faf88101ff780a36e8bacc86fae0d8e7",
-      "tasks.md": "1567671ea885b6762067964deaac29ef69eac5198613d051955aa8cece854a93",
+      "plan.md": "5c37c7c617ae8fa6c89dd8662d35ab1f8283ff0baebd43feb2b5c701e163223e",
+      "tasks.md": "34c473037a647eeee1b10eec27743a7818e86938aee226ca46a3431669fbd568",
       "implementation-summary.md": "4f03cd5ab9f171b0581b1967a27e9daa06d39d77cc6c35eb1c40a0efaf07cc0f"
     },
     "last_active_child_id": null,

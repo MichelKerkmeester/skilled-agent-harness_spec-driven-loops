@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 028-governance-rollout"
+trigger_phrases: []
+---
 # Deep Review Report: 028-governance-rollout
 
 | Field | Value |

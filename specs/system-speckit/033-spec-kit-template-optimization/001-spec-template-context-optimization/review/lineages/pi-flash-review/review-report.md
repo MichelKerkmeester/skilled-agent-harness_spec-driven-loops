@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 034-spec-template-context-optimizations"
+trigger_phrases: []
+---
 # Deep Review Report: 034-spec-template-context-optimizations
 
 **Lineage:** pi-flash-review · sessionId `fanout-pi-flash-review-1786551828250-nkwps1` · executor cli-pi/deepseek-v4-flash · generation 1

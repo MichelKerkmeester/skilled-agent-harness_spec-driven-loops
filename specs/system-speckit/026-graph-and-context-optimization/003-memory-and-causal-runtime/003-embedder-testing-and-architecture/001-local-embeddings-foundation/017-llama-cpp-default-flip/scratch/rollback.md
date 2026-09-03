@@ -1,3 +1,7 @@
+---
+title: "Rollback"
+trigger_phrases: []
+---
 # Rollback
 
 Phase 4 validation failed the contract's EQUIVALENT bar: recall@5 overlap stayed strong at 0.926 and MRR delta stayed near zero, but Spearman top-10 was 0.816125 against the 0.85 target. The rollback action has therefore already been applied: `resolveProvider()` in `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts` falls through to `hf-local` after cloud keys instead of probing `llama-cpp`.

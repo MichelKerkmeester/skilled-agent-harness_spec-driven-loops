@@ -1,3 +1,7 @@
+---
+title: "Iteration 3: Third-Archetype Migration and Schema Safety"
+trigger_phrases: []
+---
 # Iteration 3: Third-Archetype Migration and Schema Safety
 
 ## Route Proof

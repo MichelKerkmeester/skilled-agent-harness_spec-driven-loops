@@ -1,6 +1,7 @@
 ---
 title: "Resource Map: embedding-backlog drain investigation"
 description: "Coverage map of artifacts produced by the deep-research loop and the primary code surfaces investigated."
+trigger_phrases: []
 ---
 
 # Resource Map — Embedding-Backlog Drain Investigation

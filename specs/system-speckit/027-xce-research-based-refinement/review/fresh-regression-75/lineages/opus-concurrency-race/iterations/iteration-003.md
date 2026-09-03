@@ -1,3 +1,7 @@
+---
+title: "Seat opus-concurrency-race — iteration 3 (global #28)"
+trigger_phrases: []
+---
 # Seat opus-concurrency-race — iteration 3 (global #28)
 
 - Model: `claude-opus-4-8` · Executor: claude · Angle: opus-concurrency-race

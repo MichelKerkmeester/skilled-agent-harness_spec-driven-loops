@@ -1,3 +1,7 @@
+---
+title: "Iteration 02: MCP runtime code correctness"
+trigger_phrases: []
+---
 # Iteration 02: MCP runtime code correctness
 
 ## Dimension & scope

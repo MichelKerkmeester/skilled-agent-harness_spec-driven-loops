@@ -3,6 +3,7 @@ title: "Tasks: Phase 002 Legacy-Compat Converters"
 description: "Ordered removal manifest for F1's seven per-mode legacy-compat modules — sever barrels and test imports first, then delete, then verify."
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters"
+trigger_phrases: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

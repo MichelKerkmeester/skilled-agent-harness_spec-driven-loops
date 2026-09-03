@@ -1,3 +1,7 @@
+---
+title: "Domain Skill Hub Audit — sk-code / sk-doc / sk-git / sk-prompt"
+trigger_phrases: []
+---
 All four audits complete and verified. Synthesizing the consolidated report below — overlapping findings merged, global renumbering, organized by hub.
 
 ---

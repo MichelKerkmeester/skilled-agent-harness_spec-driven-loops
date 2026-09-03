@@ -1,3 +1,7 @@
+---
+title: "Deep Review Dashboard — 033 JSON Optimization Implementation (glm-high lineage) — FINAL"
+trigger_phrases: []
+---
 # Deep Review Dashboard — 033 JSON Optimization Implementation (glm-high lineage) — FINAL
 
 > Auto-generated from JSONL + strategy + findings registry. Read-only.

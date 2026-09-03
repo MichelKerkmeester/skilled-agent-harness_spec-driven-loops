@@ -1,3 +1,7 @@
+---
+title: "Codex Iteration 006 — performance"
+trigger_phrases: []
+---
 # Codex Iteration 006 — performance
 
 ## Sequential-thinking preflight

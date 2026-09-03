@@ -1,3 +1,7 @@
+---
+title: "Iteration 005 — F3b: moondream3 token-doubling artifact + correct default & OCR guidance"
+trigger_phrases: []
+---
 # Iteration 005 — F3b: moondream3 token-doubling artifact + correct default & OCR guidance
 
 ## Focus

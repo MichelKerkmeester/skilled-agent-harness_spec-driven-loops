@@ -1,3 +1,7 @@
+---
+title: "image-size"
+trigger_phrases: []
+---
 # image-size
 
 [![Build Status](https://circleci.com/gh/image-size/image-size.svg?style=shield)](https://circleci.com/gh/image-size/image-size)

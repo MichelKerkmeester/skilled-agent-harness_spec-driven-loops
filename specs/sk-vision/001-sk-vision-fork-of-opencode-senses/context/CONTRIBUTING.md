@@ -1,3 +1,7 @@
+---
+title: "Contributing to OpenCode Senses"
+trigger_phrases: []
+---
 # Contributing to OpenCode Senses
 
 First off: thank you for considering a contribution. The model may be the one with eyes, but the repo survives on yours.

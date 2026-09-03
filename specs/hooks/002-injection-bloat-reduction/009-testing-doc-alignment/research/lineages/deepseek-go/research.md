@@ -1,3 +1,7 @@
+---
+title: "Research Synthesis: Testing-Doc and Feature-Catalog Alignment Sweep"
+trigger_phrases: []
+---
 # Research Synthesis: Testing-Doc and Feature-Catalog Alignment Sweep
 
 Lineage: `fanout-deepseek-go-1786120169844-ep05xl` · Executor: `cli-opencode` model `opencode-go/deepseek-v4-flash`

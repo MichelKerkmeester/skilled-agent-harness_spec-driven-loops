@@ -1,3 +1,7 @@
+---
+title: "Frozen directory manifest"
+trigger_phrases: []
+---
 # Frozen directory manifest
 
 Status: frozen for child 001 execution; the orchestrator owns closure.

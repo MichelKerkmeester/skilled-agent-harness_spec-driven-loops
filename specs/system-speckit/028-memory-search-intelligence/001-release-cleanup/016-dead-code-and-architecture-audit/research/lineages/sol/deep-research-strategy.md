@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy - Dead Code and Architecture Audit Sol Lineage
 description: Detached ten-iteration audit strategy for framework dead code, residue, placement, architecture, and over-engineering.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy - Dead Code and Architecture Audit Sol Lineage

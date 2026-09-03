@@ -1,3 +1,7 @@
+---
+title: "Handover: 036/007/002/002 cli-devin-executor-wiring (closed)"
+trigger_phrases: []
+---
 # Handover: 036/007/002/002 cli-devin-executor-wiring (closed)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->

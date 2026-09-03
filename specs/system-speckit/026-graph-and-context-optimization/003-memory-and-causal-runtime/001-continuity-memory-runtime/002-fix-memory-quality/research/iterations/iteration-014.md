@@ -1,3 +1,7 @@
+---
+title: "Iteration 14: D5 Continuation-signal Corpus (Q11)"
+trigger_phrases: []
+---
 # Iteration 14: D5 Continuation-signal Corpus (Q11)
 
 ## Focus

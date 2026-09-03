@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: P1/P4 Knowledge-Plane Quality Gate"
+trigger_phrases: []
+---
 # Iteration 6: P1/P4 Knowledge-Plane Quality Gate
 
 ## Focus

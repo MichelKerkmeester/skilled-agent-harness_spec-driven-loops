@@ -1,3 +1,7 @@
+---
+title: "Iteration 007: RQ7 auto-skills extraction"
+trigger_phrases: []
+---
 # Iteration 007: RQ7 auto-skills extraction
 
 **Focus:** RQ7 auto-skills extraction  

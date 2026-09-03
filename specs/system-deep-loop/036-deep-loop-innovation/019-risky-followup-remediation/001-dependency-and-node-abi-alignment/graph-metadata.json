@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`dependency-seams` had two assertions failing — that `better-sqlite3`/`zod`/`tsx` resolve from the runtime's own `nodemodules`, and that the `tsx` loader bare-resolves there",
     "created_at": "2026-08-26T11:00:42.689Z",
-    "last_save_at": "2026-08-30T15:39:22.327Z",
+    "last_save_at": "2026-09-03T22:21:55.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47537e48352d63e5f10be1f6ddd32858e05fc8a2f05da21c6abb66dd4736b747",
+    "source_fingerprint": "sha256:a3252c67ea707b90d2126e75060009c06c9a190cc77b241eda2a95f8b9a5b545",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f272d08bca2d1ecfbbab418787abced0b03f6abf06d42c416fdf81b2823e97f5",
-      "plan.md": "1bec79787485c9dc9609cf4127f84464c339dba063f459a252d1ccfc37a8305d",
-      "tasks.md": "cc361db177dddc7ed9e97c850767c42c9943233bf82d3de503e35d70c3347bbb",
+      "plan.md": "7494f04b9b7afc00f7d46b7a1850a5a63559b9a4272758b8b9b3b754b64d1b48",
+      "tasks.md": "3c909fc374dc7689a5c03ab4433ee4f0c3f69b0c074c92ae2968c8477e6d3d46",
       "implementation-summary.md": "ddf127663beeafd825fcd9504fcd6df121208847b7742912bb0df89494ea18f1"
     },
     "last_active_child_id": null,

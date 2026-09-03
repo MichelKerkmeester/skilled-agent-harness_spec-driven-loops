@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Packaging & Install Mechanics"
+trigger_phrases: []
+---
 # Iteration 6: Packaging & Install Mechanics
 
 ## Focus

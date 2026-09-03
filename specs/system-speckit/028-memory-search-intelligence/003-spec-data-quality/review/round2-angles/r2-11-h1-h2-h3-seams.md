@@ -1,3 +1,7 @@
+---
+title: "r2-11 H1/H2/H3 seams (angle: wiring)"
+trigger_phrases: []
+---
 # r2-11 H1/H2/H3 seams (angle: wiring)
 
 **Angle summary:** Verified every H1/H2/H3 seam file:line in the 001 spec against the real tree. The seam map is accurate including the deliberate two-seam split for the metadata JSONs. One off-by-one cite is the only defect, the H3 absence correctly matches the research-only premise.

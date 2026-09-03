@@ -1,3 +1,7 @@
+---
+title: "Mobbin MCP Developer Surface — Canonical Fan-Out Research Synthesis"
+trigger_phrases: []
+---
 # Mobbin MCP Developer Surface — Canonical Fan-Out Research Synthesis
 
 > **Fan-out header** — Deep-research fan-out, 3 detached lineages, 10 total iterations, run `1784199634206-lfqjyo`:

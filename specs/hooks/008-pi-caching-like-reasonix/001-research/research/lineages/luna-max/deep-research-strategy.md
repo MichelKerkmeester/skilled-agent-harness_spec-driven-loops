@@ -2,6 +2,7 @@
 title: "Deep Research Strategy — Luna Max"
 description: "Reducer-owned strategy for the detached Luna research lineage."
 contextType: research
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Luna Max

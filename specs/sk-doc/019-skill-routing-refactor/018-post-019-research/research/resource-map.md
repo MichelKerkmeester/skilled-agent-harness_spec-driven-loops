@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Post-019 skill-routing research frontiers across all 12 skill hubs"
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

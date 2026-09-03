@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 — Embedding provider abstraction + graceful degradation"
+trigger_phrases: []
+---
 # Iteration 008 — Embedding provider abstraction + graceful degradation
 
 **Status:** insight · **Findings:** 6 · **newInfoRatio:** 0.58 · **tokens:** 105685 · **exit:** 0 · executor: cli-opencode openai/gpt-5.5-fast(xhigh) read-only

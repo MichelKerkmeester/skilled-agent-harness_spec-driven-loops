@@ -1,3 +1,7 @@
+---
+title: "Iteration 4 (A2): close 017/S4's flag-off isotonic calibration"
+trigger_phrases: []
+---
 # Iteration 4 (A2): close 017/S4's flag-off isotonic calibration
 
 > Model: **Opus 4.8 via claude2** (acct#2, read-only). Orchestrator-written. newInfoRatio **0.7**. **The machinery is fully built but uncalled; the "proxy seed" §13 says shipped is a phantom; and 027's promote-on-evidence doctrine is currently *unexecutable* for this flag (no calibration-error metric exists).**

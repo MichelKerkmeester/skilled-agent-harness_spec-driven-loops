@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Add Kimi K2.7 Code as a first-class small model
 Kimi K2.7 Code is now a first-class small model: registered across eight files, dispatchable via `kimi-for-coding/k2p7`, with `kimi-k2.6` retired in place. A five-framework prompt bakeoff initially returned an inconclusive tie because easy test fixtures saturated the correctness check, so it was re-run on stricter validators, which promoted COSTAR as the default (TIDD-EC as fallback) and retired RCAF, the previous convention default. Asset and documentation filenames in sk-prompt-models were renamed from dash- to underscore-style via `git mv` to match the house convention, with every live reference repaired; the four model-profile pages deliberately keep dashed names because the drift guard derives their paths from the dashed model id. The skill now documents a real failure mode: on broad, large-repo dispatches at high variant, Kimi over-explores and exceeds the 600-second timeout without emitting output, so opencode flushes zero bytes and the run looks hung. Mitigations — a hard read cap in the prompt, a 1200s+ timeout, and optionally dropping the variant flag — are recorded alongside repaired stale k2.6 references.
 

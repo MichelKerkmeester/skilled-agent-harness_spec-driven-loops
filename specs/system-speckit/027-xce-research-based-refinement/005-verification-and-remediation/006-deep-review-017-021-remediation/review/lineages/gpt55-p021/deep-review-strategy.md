@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy - gpt55-p021"
+trigger_phrases: []
+---
 # Deep Review Strategy - gpt55-p021
 
 ## 2. TOPIC

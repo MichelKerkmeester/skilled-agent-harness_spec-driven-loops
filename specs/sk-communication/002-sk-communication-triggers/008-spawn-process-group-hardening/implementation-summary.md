@@ -23,6 +23,7 @@ _memory:
     answered_questions:
       - "The teardown tests were written first and observed failing against the pre-hardening code, so they prove the fix rather than just accompany it."
       - "Detached spawn keeps stdio piped and does not unref the child, so the normal completion path is unchanged; a normal-path test guards it."
+trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 8: spawn process-group hardening

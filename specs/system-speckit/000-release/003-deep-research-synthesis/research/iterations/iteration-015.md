@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Hook reference docs relocated to their owning trees
 The four hook reference documents that previously lived in one shared references folder now sit beside the code they describe: `goal-plugin.md` moved into the goal hooks concern, `injection-contract.md` into the unified hooks tree, and both skill-advisor hook docs into the advisor's own hook folder. All 34 in-tree references were repointed and the old paths fully removed, so browsing a hook concern now surfaces its own documentation. The moves preserved git history, and strict validation passes with zero errors and warnings. **Breaking:** bookmarks or external links to the old shared-folder paths no longer resolve; repoint them at the four new owner-tree locations.
 

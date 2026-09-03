@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Scenario I2 — cli-opencode-1
 
 | Dimension | Score | Evidence |

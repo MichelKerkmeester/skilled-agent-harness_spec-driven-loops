@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: Style Database and Interface Commands"
+trigger_phrases: []
+---
 # Deep Review Strategy: Style Database and Interface Commands
 
 ## 1. Topic

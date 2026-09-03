@@ -1,3 +1,7 @@
+---
+title: "Iteration 6 (Round K): Q6 Semantic Triggers × query-class routing"
+trigger_phrases: []
+---
 # Iteration 6 (Round K): Q6 Semantic Triggers × query-class routing
 
 ## Focus

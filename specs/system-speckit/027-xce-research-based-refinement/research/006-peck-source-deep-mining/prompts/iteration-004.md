@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 004 — reviewer token-budget read discipline"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Deep-Research Iteration 004 — reviewer token-budget read discipline

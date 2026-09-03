@@ -1,3 +1,7 @@
+---
+title: "Review Report: 006-command-contract-structural"
+trigger_phrases: []
+---
 # Review Report: 006-command-contract-structural
 
 ## 1. Executive Summary

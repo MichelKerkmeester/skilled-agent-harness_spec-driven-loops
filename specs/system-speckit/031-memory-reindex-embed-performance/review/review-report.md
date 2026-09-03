@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report — Memory Reindex and Embed Performance Hardening"
+trigger_phrases: []
+---
 # Deep Review Report — Memory Reindex and Embed Performance Hardening
 
 ## 1. Executive Summary

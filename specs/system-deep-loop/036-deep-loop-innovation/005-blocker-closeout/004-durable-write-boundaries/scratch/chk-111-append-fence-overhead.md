@@ -1,3 +1,7 @@
+---
+title: "Fencing overhead on the append path — measured"
+trigger_phrases: []
+---
 # Fencing overhead on the append path — measured
 
 Measured 2026-08-18 on the operator's machine. Reproduction script:

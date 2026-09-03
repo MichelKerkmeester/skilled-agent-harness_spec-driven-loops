@@ -1,3 +1,7 @@
+---
+title: "009-cursor-hooks-lifecycle consolidation — handoff log"
+trigger_phrases: []
+---
 # 009-cursor-hooks-lifecycle consolidation — handoff log
 
 Scratch log for the LEAF dispatch that converted `030-cli-cursor-creation`'s

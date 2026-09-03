@@ -1,3 +1,7 @@
+---
+title: "Iteration 002: Security — Path traversal, SQL injection, cursor integrity, temp-file safety"
+trigger_phrases: []
+---
 # Iteration 002: Security — Path traversal, SQL injection, cursor integrity, temp-file safety
 
 ## Focus

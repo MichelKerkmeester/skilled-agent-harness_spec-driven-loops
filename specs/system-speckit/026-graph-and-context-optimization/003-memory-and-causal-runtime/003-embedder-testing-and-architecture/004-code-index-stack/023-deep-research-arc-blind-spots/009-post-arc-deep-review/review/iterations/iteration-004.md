@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — 023/001 (request-budget) + 023/002 (observability) closure verification"
+trigger_phrases: []
+---
 # Iteration 004 — 023/001 (request-budget) + 023/002 (observability) closure verification
 
 ## Hypotheses going in

@@ -1,3 +1,7 @@
+---
+title: "Iteration 011 — P6 recovery semantics by enforcing boundary"
+trigger_phrases: []
+---
 # Iteration 011 — P6 recovery semantics by enforcing boundary
 
 ## Focus

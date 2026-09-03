@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Edge Cases That Break the Archetype Rule (single-mode, empty map, drift, contextual defaults)"
+trigger_phrases: []
+---
 # Iteration 4: Edge Cases That Break the Archetype Rule (single-mode, empty map, drift, contextual defaults)
 
 **Thread:** 9 (edge cases & failure modes) | **Lineage:** glm-max | **Focus:** Q4

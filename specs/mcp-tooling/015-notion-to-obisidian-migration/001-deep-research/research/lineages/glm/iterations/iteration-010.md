@@ -1,3 +1,7 @@
+---
+title: "Iteration 10: Parity & Verification + Final Method Decision"
+trigger_phrases: []
+---
 # Iteration 10: Parity & Verification + Final Method Decision
 
 ## Focus

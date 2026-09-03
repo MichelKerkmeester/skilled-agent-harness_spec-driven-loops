@@ -1,3 +1,7 @@
+---
+title: "Semantic Layer"
+trigger_phrases: []
+---
 # Semantic Layer
 
 > Part of the [AgentSwarms docs](../README.md#documentation).

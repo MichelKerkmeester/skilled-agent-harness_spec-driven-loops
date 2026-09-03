@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 — Track 2: MCP server names, version numbers"
+trigger_phrases: []
+---
 # Iteration 004 — Track 2: MCP server names, version numbers
 
 ## Executive Summary

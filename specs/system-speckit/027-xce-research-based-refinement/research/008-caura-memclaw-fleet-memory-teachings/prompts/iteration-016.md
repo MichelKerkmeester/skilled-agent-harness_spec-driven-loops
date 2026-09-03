@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ROLE: Senior memory-systems research analyst, DEEP second pass. READ-ONLY. Do NOT write/edit/create files or run code. Spec folder: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings (pre-approved; skip Gate 3).
 
 TARGET: caura-memclaw (multi-tenant, Postgres/pgvector). CONSUMER: Spec Kit Memory (LOCAL single-user, SQLite) — 027/004 = causal-edge tombstones (all active causal-edge delete paths must tombstone before hard-delete); 027/005 = deterministic metadata-edge promoter (promote validated parent/child/parent-chain frontmatter relations into causal edges, avoid duplicating already-wired manual links). MemClaw is Apache-2.0 — design inspiration only.

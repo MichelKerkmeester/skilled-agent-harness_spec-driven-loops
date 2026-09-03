@@ -15,7 +15,7 @@ _memory:
     last_updated_by: "claude-code"
     recent_action: "Delivered and verified"
     next_safe_action: "None"
-    blockers: []
+    blockers:
       - "Execution awaits operator authorization"
       - "Mechanism choice (watcher-learns-roots vs gate-triggers-scan vs documented-manual) is the design phase's output"
     key_files:

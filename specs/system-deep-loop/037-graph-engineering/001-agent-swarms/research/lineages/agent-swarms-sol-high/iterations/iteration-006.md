@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: GateVerdict as a First-Class Control Edge"
+trigger_phrases: []
+---
 # Iteration 6: GateVerdict as a First-Class Control Edge
 
 ## Focus

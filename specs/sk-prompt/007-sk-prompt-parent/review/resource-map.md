@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — .opencode/specs/sk-prompt/007-sk-prompt-parent"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

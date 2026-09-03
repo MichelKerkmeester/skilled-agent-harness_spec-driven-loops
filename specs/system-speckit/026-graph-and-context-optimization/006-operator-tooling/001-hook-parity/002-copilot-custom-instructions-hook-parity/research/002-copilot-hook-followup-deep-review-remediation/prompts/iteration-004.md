@@ -1,3 +1,7 @@
+---
+title: "Deep-Research Iteration 4 of 10"
+trigger_phrases: []
+---
 # Deep-Research Iteration 4 of 10
 
 ## STATE

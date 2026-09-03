@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 049: runtime-command-agent-alignment-review — Tier B audit + apply
 
 You are cli-codex (gpt-5.5 high fast) implementing **007-runtime-command-agent-alignment-audit**.

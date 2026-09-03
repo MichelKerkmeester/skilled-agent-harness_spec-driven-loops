@@ -1,3 +1,7 @@
+---
+title: "Iteration 03 - ADVERSARIAL CONFIRM"
+trigger_phrases: []
+---
 # Iteration 03 - ADVERSARIAL CONFIRM
 
 ## Confirmed / Refuted Interleavings

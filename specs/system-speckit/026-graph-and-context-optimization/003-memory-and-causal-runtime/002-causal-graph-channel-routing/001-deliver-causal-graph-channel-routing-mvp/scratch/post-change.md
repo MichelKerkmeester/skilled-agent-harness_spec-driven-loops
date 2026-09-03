@@ -1,3 +1,7 @@
+---
+title: "Post-change Smoke — graph_channel_invocation_rate"
+trigger_phrases: []
+---
 # Post-change Smoke — graph_channel_invocation_rate
 
 Captured: 2026-05-08

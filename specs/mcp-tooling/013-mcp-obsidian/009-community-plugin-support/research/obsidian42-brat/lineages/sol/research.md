@@ -1,3 +1,7 @@
+---
+title: "obsidian42-BRAT: File-Layer Operations Knowledge Base"
+trigger_phrases: []
+---
 # obsidian42-BRAT: File-Layer Operations Knowledge Base
 
 ## 1. Executive Summary

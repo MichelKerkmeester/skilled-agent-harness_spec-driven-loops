@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Cross-Surface Integration"
+trigger_phrases: []
+---
 # Iteration 7: Cross-Surface Integration
 
 ## Files Reviewed

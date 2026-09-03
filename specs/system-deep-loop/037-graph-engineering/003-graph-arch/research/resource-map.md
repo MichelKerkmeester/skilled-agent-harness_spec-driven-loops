@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Extract graph-engineering governance patterns from the graph-arch (GraphARC) reference implementation, grounded in all 12 graph-engineering blog posts, to advance the graph-based system-deep-loop design from repo studies 1 and 2. Investigate admission proof, materialization sealing, organization policy, durable human gates, authority-zero refusal, ledger-first observability, budget lifecycle, and governance mutants; map every decision to the runtime and the 036 authority plane, with confirm/refine/extend/contradict framing and when-not-to-use boundaries."
 description: "Auto-generated research resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

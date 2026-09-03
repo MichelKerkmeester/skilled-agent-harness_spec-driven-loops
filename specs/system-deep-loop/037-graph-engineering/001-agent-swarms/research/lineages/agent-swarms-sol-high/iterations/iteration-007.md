@@ -1,3 +1,7 @@
+---
+title: "Iteration 7: Blinded, Certificate-Bound Gate Authority"
+trigger_phrases: []
+---
 # Iteration 7: Blinded, Certificate-Bound Gate Authority
 
 ## Focus

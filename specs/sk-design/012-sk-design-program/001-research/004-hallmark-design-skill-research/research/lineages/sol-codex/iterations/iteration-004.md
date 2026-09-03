@@ -1,3 +1,7 @@
+---
+title: "Iteration 4: Motion, Microinteraction, and State Contracts"
+trigger_phrases: []
+---
 # Iteration 4: Motion, Microinteraction, and State Contracts
 
 ## Focus

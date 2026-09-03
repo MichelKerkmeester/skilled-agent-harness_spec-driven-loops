@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Community CLI identities and headless value"
+trigger_phrases: []
+---
 # Iteration 2: Community CLI identities and headless value
 
 ## Focus

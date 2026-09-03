@@ -25,6 +25,7 @@ findingsSummary: P0=0, P1=0, P2=2
 newFindingsRatio: 0.67
 timestamp: 2026-07-21T05:58:00.000Z
 durationMs: 180000
+trigger_phrases: []
 ---
 
 # Iteration 1 — Correctness on 015-P0 styles-DB (REQ-001, REQ-002, REQ-003)

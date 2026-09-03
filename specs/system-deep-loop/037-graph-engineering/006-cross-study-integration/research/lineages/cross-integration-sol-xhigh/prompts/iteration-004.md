@@ -1,3 +1,7 @@
+---
+title: "Iteration 004 Prompt Pack"
+trigger_phrases: []
+---
 # Iteration 004 Prompt Pack
 
 - Focus: P4 — audit actual 036 capabilities.

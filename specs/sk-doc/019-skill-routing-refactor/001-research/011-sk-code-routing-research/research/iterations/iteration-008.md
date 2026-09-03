@@ -1,3 +1,7 @@
+---
+title: "Iteration 8: Ownership, Live-Read Provenance, and Synthesis Decisions"
+trigger_phrases: []
+---
 # Iteration 8: Ownership, Live-Read Provenance, and Synthesis Decisions
 
 ## Focus

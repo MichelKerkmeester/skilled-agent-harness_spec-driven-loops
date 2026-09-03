@@ -1,3 +1,7 @@
+---
+title: "Iteration 005: Devin MCP launcher working-directory feasibility"
+trigger_phrases: []
+---
 # Iteration 005: Devin MCP launcher working-directory feasibility
 
 ## Focus

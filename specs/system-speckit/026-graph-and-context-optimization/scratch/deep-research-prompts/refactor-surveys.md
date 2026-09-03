@@ -3,6 +3,7 @@ title: "Deep Research Prompts — Refactor Surveys"
 description: "Pre-refactor risk assessment campaigns. Use before committing to a non-trivial refactor to understand the blast radius, rollout risk, and rollback path."
 importance_tier: "normal"
 contextType: "research-prompts"
+trigger_phrases: []
 ---
 
 # Refactor Surveys

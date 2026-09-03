@@ -1,3 +1,7 @@
+---
+title: "Iteration 045: Incremental index foundation revalidation"
+trigger_phrases: []
+---
 # Iteration 045: Incremental index foundation revalidation
 
 ## Scope

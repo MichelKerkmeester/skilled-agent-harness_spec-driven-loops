@@ -1,3 +1,7 @@
+---
+title: "Codex dispatch: Track B1-yamls — complete /doctor:memory YAMLs (3 modes)"
+trigger_phrases: []
+---
 # Codex dispatch: Track B1-yamls — complete /doctor:memory YAMLs (3 modes)
 
 ## ROLE

@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard (auto-generated)"
+trigger_phrases: []
+---
 # Deep Research Dashboard (auto-generated)
 
 ## 2. STATUS

@@ -1,3 +1,7 @@
+---
+title: "Synthesis Snapshot v1"
+trigger_phrases: []
+---
 # Synthesis Snapshot v1
 
 Canonical synthesis lives in `research.md`.

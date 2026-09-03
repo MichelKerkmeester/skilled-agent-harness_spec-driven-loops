@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — Rust opportunities for the sk-design styles database"
 description: "Evidence inventory for the sol-codex detached 10-iteration deep-research lineage."
+trigger_phrases: []
 ---
 
 # Resource Map

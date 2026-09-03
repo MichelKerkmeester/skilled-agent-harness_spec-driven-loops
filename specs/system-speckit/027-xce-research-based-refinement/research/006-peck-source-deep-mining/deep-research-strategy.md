@@ -1,6 +1,7 @@
 ---
 title: Deep Research Strategy — 027/006 peck-source net-new mechanism mining
 description: Mine peck-master's actual source (beyond the 2026-06-02 README pass that produced T1-T4) for net-new adoptable mechanisms + re-evaluate the deferred T1; synthesize a sub-packet proposal for 027.
+trigger_phrases: []
 ---
 
 # Deep Research Strategy — Session Tracking

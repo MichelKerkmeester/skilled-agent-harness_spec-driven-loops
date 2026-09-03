@@ -1,3 +1,7 @@
+---
+title: "Deep Research 023 - Pass 2 Running Synthesis"
+trigger_phrases: []
+---
 # Deep Research 023 - Pass 2 Running Synthesis
 
 ## Executive Summary

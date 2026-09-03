@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Iteration 10 synthesized the prior 016 deep-research dispatch outputs into the consolidated `research/research.md` report.

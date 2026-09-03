@@ -1,3 +1,7 @@
+---
+title: "Obsidian42-BRAT File-Layer Research Knowledge Base"
+trigger_phrases: []
+---
 # Obsidian42-BRAT File-Layer Research Knowledge Base
 
 ## 1. Executive Summary

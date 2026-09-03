@@ -1,3 +1,7 @@
+---
+title: "Agent Brief — 012/001 Clean-Room License Audit"
+trigger_phrases: []
+---
 # Agent Brief — 012/001 Clean-Room License Audit
 
 You are an autonomous governance agent. **No conversation context** — this brief is everything you need.

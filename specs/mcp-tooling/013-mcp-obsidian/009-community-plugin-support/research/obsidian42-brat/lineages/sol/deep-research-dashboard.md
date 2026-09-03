@@ -1,3 +1,7 @@
+---
+title: "Deep Research Dashboard — obsidian42-BRAT"
+trigger_phrases: []
+---
 # Deep Research Dashboard — obsidian42-BRAT
 
 ## Iterations

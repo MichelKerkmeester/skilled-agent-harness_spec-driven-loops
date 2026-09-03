@@ -1,3 +1,7 @@
+---
+title: "Deep Research Iteration 009"
+trigger_phrases: []
+---
 # Deep Research Iteration 009
 
 > Audited changelog: `changelog-018-rerank-sidecar-accumulation-investigation-and-reaper-design-root.md`

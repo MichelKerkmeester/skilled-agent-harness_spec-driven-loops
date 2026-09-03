@@ -1,3 +1,7 @@
+---
+title: "Deep-loop to graph mapping — hybrid orchestration and authority boundaries"
+trigger_phrases: []
+---
 # Deep-loop to graph mapping — hybrid orchestration and authority boundaries
 
 This reference maps the live `system-deep-loop` workflow family to graph-engineering primitives without treating graph topology as a replacement for the evidence-ledger authority plane.

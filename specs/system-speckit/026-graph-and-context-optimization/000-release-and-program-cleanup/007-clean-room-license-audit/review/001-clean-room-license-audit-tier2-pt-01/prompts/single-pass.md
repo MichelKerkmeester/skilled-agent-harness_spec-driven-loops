@@ -1,3 +1,7 @@
+---
+title: "Single-Pass Deep Review — 006/001 Clean-Room License Audit"
+trigger_phrases: []
+---
 # Single-Pass Deep Review — 006/001 Clean-Room License Audit
 
 **GATE 3 PRE-ANSWERED — A**: `specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/001-clean-room-license-audit`. Pre-approved.

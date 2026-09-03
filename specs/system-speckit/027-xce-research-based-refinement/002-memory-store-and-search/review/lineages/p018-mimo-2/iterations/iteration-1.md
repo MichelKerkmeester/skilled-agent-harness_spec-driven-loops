@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Now I'll execute the deep review loop. Let me start by reading the implementation files and setting up the review state.Now let me read the remaining portion of memory-index.ts and the test file, then proceed to initialize the review state.Now I have full context. Let me execute the deep review loop phases. First, **phase_init**: create the artifact directory and all state files.Now executing **phase_main_loop** — iteration 1, dimension D1 (Correctness). I'll review the implementation against the spec requirements.Now executing **phase_synthesis** — compiling the final review report.All review phases complete. All outputs written to the specified artifact directory:
 
 | File | Status |

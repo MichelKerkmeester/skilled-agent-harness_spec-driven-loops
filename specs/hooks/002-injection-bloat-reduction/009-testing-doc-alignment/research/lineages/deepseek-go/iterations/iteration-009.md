@@ -1,3 +1,7 @@
+---
+title: "Iteration 9: Final breadth check — luna synthesis reconciliation and catalog confirmation"
+trigger_phrases: []
+---
 # Iteration 9: Final breadth check — luna synthesis reconciliation and catalog confirmation
 
 ## Focus

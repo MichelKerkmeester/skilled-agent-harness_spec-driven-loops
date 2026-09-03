@@ -3,6 +3,7 @@ title: "CalibrationCorpusV1 Contract"
 description: "Normative identity, immutability, evidence, and downstream binding contract for held-out routing calibration corpora."
 importance_tier: "critical"
 contextType: "implementation"
+trigger_phrases: []
 ---
 # CalibrationCorpusV1 Contract
 

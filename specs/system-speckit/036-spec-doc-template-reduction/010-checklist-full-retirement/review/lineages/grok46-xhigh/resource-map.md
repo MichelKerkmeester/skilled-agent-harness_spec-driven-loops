@@ -1,6 +1,7 @@
 ---
 title: "Resource Map — specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement"
 description: "Auto-generated review resource map from convergence evidence."
+trigger_phrases: []
 ---
 # Resource Map
 

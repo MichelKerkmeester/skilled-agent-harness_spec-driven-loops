@@ -1,3 +1,7 @@
+---
+title: "Second-Pass Skill-Routing Packet Audit"
+trigger_phrases: []
+---
 # Second-Pass Skill-Routing Packet Audit
 
 ## 1. Executive Summary

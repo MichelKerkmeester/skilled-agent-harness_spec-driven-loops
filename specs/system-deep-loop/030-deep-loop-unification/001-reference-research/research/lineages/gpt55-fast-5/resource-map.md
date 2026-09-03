@@ -1,3 +1,7 @@
+---
+title: "Resource Map: gpt55-fast-5"
+trigger_phrases: []
+---
 # Resource Map: gpt55-fast-5
 
 | Resource | Coverage | Notes |

@@ -1,3 +1,7 @@
+---
+title: "Iteration 19: Threat-model a cache companion"
+trigger_phrases: []
+---
 # Iteration 19: Threat-model a cache companion
 
 ## Focus

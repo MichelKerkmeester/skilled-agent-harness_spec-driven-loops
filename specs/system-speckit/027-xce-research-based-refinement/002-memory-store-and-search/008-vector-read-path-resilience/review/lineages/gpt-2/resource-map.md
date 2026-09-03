@@ -1,3 +1,7 @@
+---
+title: "Review Resource Map"
+trigger_phrases: []
+---
 # Review Resource Map
 
 Root spec `resource-map.md` was absent at initialization, so the formal Resource Map Coverage Gate was skipped.

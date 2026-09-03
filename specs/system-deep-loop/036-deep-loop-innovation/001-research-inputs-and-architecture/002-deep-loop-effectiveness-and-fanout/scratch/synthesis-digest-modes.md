@@ -1,3 +1,7 @@
+---
+title: "005 run-2 Per-Mode Synthesis Digest"
+trigger_phrases: []
+---
 # 005 run-2 Per-Mode Synthesis Digest
 
 iterations: 40; new repos: 163; insights: 168; recommendations: 111; contradictions: 84

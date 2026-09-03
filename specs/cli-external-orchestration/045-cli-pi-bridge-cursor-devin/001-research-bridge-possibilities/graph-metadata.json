@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`cli pi` lists models in its own `/model` picker from pi's provider roster",
     "created_at": "2026-08-17T09:56:22.263Z",
-    "last_save_at": "2026-08-30T15:39:08.031Z",
+    "last_save_at": "2026-09-03T22:15:34.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +200,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0a6b77507eda32c00f7388336d5b22aa55cba13aa5cbc21fdb24a193d025186f",
+    "source_fingerprint": "sha256:74962ef700b2d65379ec77fa4739369c243285c9bf1fd0263919857ead436e13",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "320ecd6fc287fc7c4568c9051c004f6ee425865018fdcb946023e9d012a1fbb6",
-      "plan.md": "9e335e1c9120f59f93a79ecb32288c6aecb8ea640074e5b5a09074ff72ed084b",
-      "tasks.md": "25d121376d2e66f066784d845e607f8fddd2f2a94e83dd1ac939c158e6ff032c",
-      "implementation-summary.md": "1a8f6d6f1c92351f9b110cf0dc7ae8951405697bf3cf341ea0eb222400ef2581",
-      "research/research.md": "646c747f13f511719cf6da9bf4318e8d2e846cc33d0e95cebfff072b8398462d"
+      "plan.md": "c10366bc60bb8007d00fe6bac6dcf3e2aeace5b1896748ec758a38bcd90c024d",
+      "tasks.md": "623996196ce447c0f5b227d2b6470e8a626bcd31340dc6b1a6c4ce918042cfae",
+      "implementation-summary.md": "f7747d3f902e84f0e6d5a71434ae663aad916e3a229ba39503be5fb8960abb35",
+      "research/research.md": "8cbc154a449135dc8395f55d4718408d12db487a9209f5e952c46502308d2dbb"
     },
     "last_active_child_id": null,
     "last_active_at": null

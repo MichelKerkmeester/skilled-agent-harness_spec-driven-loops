@@ -1,3 +1,7 @@
+---
+title: "Iteration 6: Implementation Sequencing and Rollout Safety"
+trigger_phrases: []
+---
 # Iteration 6: Implementation Sequencing and Rollout Safety
 
 ## Focus

@@ -4,6 +4,7 @@ rq: RQ-N7
 phase_target: 005-learning-feedback-reducers
 newInfoRatio: 0.72
 verdict: ADAPT
+trigger_phrases: []
 ---
 
 # Iteration 036 — RQ-N7: 005-learning-feedback-reducers Sub-Phase Decomposition

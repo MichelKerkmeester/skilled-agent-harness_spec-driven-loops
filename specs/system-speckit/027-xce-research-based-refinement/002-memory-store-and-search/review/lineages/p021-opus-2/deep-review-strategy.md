@@ -1,3 +1,7 @@
+---
+title: "Deep Review Strategy: 021-cooperative-heavy-phases"
+trigger_phrases: []
+---
 # Deep Review Strategy: 021-cooperative-heavy-phases
 
 ## Topic

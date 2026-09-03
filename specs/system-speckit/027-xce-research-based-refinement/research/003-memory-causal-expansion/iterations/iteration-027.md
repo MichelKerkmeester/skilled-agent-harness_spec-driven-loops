@@ -1,3 +1,7 @@
+---
+title: "Iteration 008 - RQ-B3 Session-trace bounded causal-edge inference"
+trigger_phrases: []
+---
 # Iteration 008 - RQ-B3 Session-trace bounded causal-edge inference
 
 ## Focus

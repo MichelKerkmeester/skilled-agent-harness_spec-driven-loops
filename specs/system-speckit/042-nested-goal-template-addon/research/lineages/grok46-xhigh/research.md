@@ -1,3 +1,7 @@
+---
+title: "Nested goal addon — grok46-xhigh lineage synthesis"
+trigger_phrases: []
+---
 # Nested goal addon — grok46-xhigh lineage synthesis
 
 Lineage-local synthesis for `specs/system-speckit/042-nested-goal-template-addon`. Canonical for this fan-out lineage. Parent `research/research.md` is produced by the parent merge step, not this file.

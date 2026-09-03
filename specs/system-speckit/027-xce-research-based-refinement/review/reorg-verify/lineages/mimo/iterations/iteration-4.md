@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 Let me first read key spec files to understand the review target, then initialize the review state.Now I have sufficient context. Let me initialize the review state. First, create the iterations directory and all init files.Now I have the evidence for iteration 1. Let me write the iteration file.All review phases complete. Output artifacts in `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/review/reorg-verify/lineages/mimo/`:
 
 - `deep-review-config.json` — status: complete

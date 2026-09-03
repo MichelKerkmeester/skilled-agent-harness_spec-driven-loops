@@ -1,3 +1,7 @@
+---
+title: "Phase 001 negative-control plan"
+trigger_phrases: []
+---
 # Phase 001 negative-control plan
 
 A guard never observed failing is an assumption, not a guard. Each control

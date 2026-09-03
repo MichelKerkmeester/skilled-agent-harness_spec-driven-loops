@@ -1,3 +1,7 @@
+---
+title: "Iteration 006 — Evidence of Harm: What Failure Modes Does the Current Shape Produce?"
+trigger_phrases: []
+---
 # Iteration 006 — Evidence of Harm: What Failure Modes Does the Current Shape Produce?
 
 **Focus:** Find real, demonstrated failure modes in the current single-command shape. A decomposition with no observed problem behind it is speculative.

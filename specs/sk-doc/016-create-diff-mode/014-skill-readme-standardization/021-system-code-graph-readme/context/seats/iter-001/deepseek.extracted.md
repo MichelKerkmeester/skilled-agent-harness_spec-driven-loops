@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## 1. PURPOSE
 
 System Code Graph provides a structural code index — a tree-sitter AST parser backed by a SQLite graph exposed through a standalone MCP server — so agents can answer "what depends on this" from actual call/import/symbol edges instead of guessing from text similarity.

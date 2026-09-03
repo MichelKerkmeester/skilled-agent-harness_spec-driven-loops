@@ -1,3 +1,7 @@
+---
+title: "Deep Review Report: 004-template-deferred-followup-fixes"
+trigger_phrases: []
+---
 # Deep Review Report: 004-template-deferred-followup-fixes
 
 **Generated**: 2026-05-04

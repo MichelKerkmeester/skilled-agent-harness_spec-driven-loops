@@ -1,3 +1,7 @@
+---
+title: "Iteration 007 — Motion Lanes: Separable Job or Fixed-Order Phases?"
+trigger_phrases: []
+---
 # Iteration 007 — Motion Lanes: Separable Job or Fixed-Order Phases?
 
 **Focus:** Deep-dive the six motion lanes to determine whether they constitute a separable job (candidate for a split) or a fixed-order phase chain (not a candidate).

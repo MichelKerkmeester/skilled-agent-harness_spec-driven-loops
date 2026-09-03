@@ -1,3 +1,7 @@
+---
+title: "Iteration 001: CLI Memory Leak Audit"
+trigger_phrases: []
+---
 DEEP-RESEARCH
 
 # Iteration 001: CLI Memory Leak Audit

@@ -6,6 +6,7 @@ lens: "Safety / authority hardliner"
 status: ok
 timestamp: 2026-07-18T00:00:00.000Z
 simulated: true
+trigger_phrases: []
 ---
 
 # seat-002: Safety / authority hardliner / deep-research (simulated)

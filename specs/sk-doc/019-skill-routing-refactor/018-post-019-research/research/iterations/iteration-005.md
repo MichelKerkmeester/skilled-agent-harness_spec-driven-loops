@@ -1,3 +1,7 @@
+---
+title: "Iteration 5: Authored fixtures versus unseen natural prompts"
+trigger_phrases: []
+---
 # Iteration 5: Authored fixtures versus unseen natural prompts
 
 ## Focus

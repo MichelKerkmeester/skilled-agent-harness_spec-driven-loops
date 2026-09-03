@@ -1,3 +1,7 @@
+---
+title: "Dispatch Log: Wave 006 - Excluded Aliases & Shared Reference Base"
+trigger_phrases: []
+---
 # Dispatch Log: Wave 006 - Excluded Aliases & Shared Reference Base
 
 One row per dispatch. All dispatches ran sequentially via `opencode run --model openai/gpt-5.5-fast --variant medium --format json --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public "<prompt>" </dev/null`, one at a time. Advisor probes ran via `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "<clean prompt>" --threshold 0.8`.

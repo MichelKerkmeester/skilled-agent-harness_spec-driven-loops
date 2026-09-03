@@ -1,3 +1,7 @@
+---
+title: "Iteration 2: Save/Index Path (Q4) + Causal Edge Semantics & Tombstones (Q3)"
+trigger_phrases: []
+---
 # Iteration 2: Save/Index Path (Q4) + Causal Edge Semantics & Tombstones (Q3)
 
 ## Focus

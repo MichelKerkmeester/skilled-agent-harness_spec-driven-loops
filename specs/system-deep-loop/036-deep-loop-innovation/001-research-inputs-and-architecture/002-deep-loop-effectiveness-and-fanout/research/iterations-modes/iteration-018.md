@@ -1,3 +1,7 @@
+---
+title: "System Deep Loop"
+trigger_phrases: []
+---
 <!-- iteration 18 | SOL xhigh | mode: deep-improvement | angle: A3-mech deep-improvement :: mechanisms & reference impls | 2026-07-15T09:30:24.910Z -->
 
 Iteration 18 verdict: deep-improvement already has a strong rubric and two-phase promotion contract. The remaining leverage is to turn evaluation into an evidence-preserving transaction: immutable raw trials, calibrated reductions, blind comparison, metamorphic relations, and a post-accept shadow state.

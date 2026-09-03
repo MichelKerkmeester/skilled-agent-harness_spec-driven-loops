@@ -1,3 +1,7 @@
+---
+title: "Fable-5 Independent Review + Synthesis of the 20-Iteration Alignment Audit"
+trigger_phrases: []
+---
 # Fable-5 Independent Review + Synthesis of the 20-Iteration Alignment Audit
 
 > Independent, adversarial review of `research.md` (executive synthesis + 20-iteration evidence log) and its per-iteration files. Every load-bearing claim below was re-verified against the live tree on 2026-07-05. Scope: review only — no audited file was modified.

@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 048: remaining-p1-p2-remediation — Tier C bulk remediation
 
 You are cli-codex (gpt-5.5 high fast) implementing **005-remaining-priority-findings-remediation**.

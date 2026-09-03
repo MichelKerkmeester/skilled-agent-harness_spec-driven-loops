@@ -1,3 +1,7 @@
+---
+title: "Iteration 1: Primary-Source and Inherited-Architecture Baseline"
+trigger_phrases: []
+---
 # Iteration 1: Primary-Source and Inherited-Architecture Baseline
 
 ## Focus

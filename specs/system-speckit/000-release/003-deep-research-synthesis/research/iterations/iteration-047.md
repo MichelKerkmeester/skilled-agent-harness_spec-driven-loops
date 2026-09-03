@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 #### Feature catalog and manual-playbook coverage shipped
 sk-git now ships a complete feature catalog alongside its manual-testing playbook. The catalog adds 11 per-feature files across four categories (worktree naming, session lifecycle, workflow playbooks, remote-platform integration), and the playbook grows from 22 to 41 scenarios with 19 new owner-first worktree-tooling cases (GIT-023..GIT-041) covering allocator, wrapper, reaper, and pre-push valid and invalid paths. The catalog and playbook are registered in SKILL.md and README with a v1.3.0.0 changelog, bumping SKILL.md to 1.3.0.0 and README to 1.1.0.28. A pre-existing defect where hyphenated paths in docs pointed at on-disk underscore_case names was corrected. Two workflow features honestly carry "no coverage yet" stub rows rather than fabricated test anchors. For framework users the payoff is discoverability: each capability is documented and manually verifiable end to end.
 

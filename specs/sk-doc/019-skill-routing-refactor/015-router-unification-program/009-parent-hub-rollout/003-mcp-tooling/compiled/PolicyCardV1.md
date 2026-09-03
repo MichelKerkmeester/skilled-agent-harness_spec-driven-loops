@@ -3,6 +3,7 @@ schemaVersion: V1
 effectivePolicyHash: f0c516fdf5722aa270eae56b5b36c34e459ab776b6fe63ada75e4acea55f1b37
 activationGeneration: 4
 terminal: DOCUMENT_ONLY_UNATTESTED
+trigger_phrases: []
 ---
 # MCP Tooling Policy Card
 

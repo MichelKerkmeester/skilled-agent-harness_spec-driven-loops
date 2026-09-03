@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Packet 037/002: feature-catalog-trio — Tier B doc updates
 
 You are cli-codex (gpt-5.5 high fast) implementing **037/002-feature-catalog-trio-alignment**.

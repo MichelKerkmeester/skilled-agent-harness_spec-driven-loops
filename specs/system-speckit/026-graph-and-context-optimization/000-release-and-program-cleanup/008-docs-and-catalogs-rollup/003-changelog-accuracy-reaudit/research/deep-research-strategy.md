@@ -1,3 +1,7 @@
+---
+title: "Deep Research Strategy: 026 Changelog Accuracy Audit"
+trigger_phrases: []
+---
 # Deep Research Strategy: 026 Changelog Accuracy Audit
 
 ## Charter

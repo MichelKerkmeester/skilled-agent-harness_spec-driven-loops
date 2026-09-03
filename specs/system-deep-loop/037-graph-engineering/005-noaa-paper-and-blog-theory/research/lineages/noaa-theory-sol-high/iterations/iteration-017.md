@@ -1,3 +1,7 @@
+---
+title: "Iteration 17: Twelve-Blog Loop/Harness Completeness Audit"
+trigger_phrases: []
+---
 # Iteration 17: Twelve-Blog Loop/Harness Completeness Audit
 
 ## Focus

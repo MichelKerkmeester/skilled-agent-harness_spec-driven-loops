@@ -6,6 +6,7 @@ hasAdvisories: false
 releaseReadinessState: conditional
 stopReason: maxIterationsReached
 sessionId: fanout-sol-high-1784307871185-l34e0c
+trigger_phrases: []
 ---
 # Deep Review Report: Hyphen Naming Convention
 

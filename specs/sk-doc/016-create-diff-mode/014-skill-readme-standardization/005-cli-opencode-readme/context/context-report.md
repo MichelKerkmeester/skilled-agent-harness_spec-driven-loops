@@ -1,3 +1,7 @@
+---
+title: "Context Report: cli-opencode README rewrite"
+trigger_phrases: []
+---
 # Context Report: cli-opencode README rewrite
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only) plus host verification against `.opencode/skills/cli-opencode/SKILL.md` (v1.3.13.0). All seats converge with the host read and flagged the same stale facts.

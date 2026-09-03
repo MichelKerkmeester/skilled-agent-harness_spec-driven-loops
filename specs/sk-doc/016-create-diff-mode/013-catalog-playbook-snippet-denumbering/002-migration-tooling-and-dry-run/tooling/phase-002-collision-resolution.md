@@ -1,3 +1,7 @@
+---
+title: "Phase 002 — Collision Resolution Decision (D4)"
+trigger_phrases: []
+---
 # Phase 002 — Collision Resolution Decision (D4)
 
 Two slug collisions exist in `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/`. Both are pairs of **distinct scenarios** (different Feature IDs, different content) that happen to share a slug — NOT duplicates. Per D4, resolve by assigning **distinct descriptive slugs** (no merge; merging would delete a real scenario).

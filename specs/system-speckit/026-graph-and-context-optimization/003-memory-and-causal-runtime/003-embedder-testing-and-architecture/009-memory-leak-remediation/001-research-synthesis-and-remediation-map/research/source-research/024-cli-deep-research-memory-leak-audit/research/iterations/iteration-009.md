@@ -1,3 +1,6 @@
+---
+trigger_phrases: []
+---
 ## Focus
 
 Build the final packet matrix and convergence-ready synthesis for iteration 010. This pass preserves iteration 008 ordering, resolves the F-004 packet question, maps every F-001 through F-027 finding plus M-006/M-007 measurements to exactly one final packet, and avoids new broad discovery.

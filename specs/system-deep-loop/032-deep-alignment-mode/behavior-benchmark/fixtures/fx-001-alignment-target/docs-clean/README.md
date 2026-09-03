@@ -1,3 +1,7 @@
+---
+title: "fx-001 Alignment Target — Clean Sub-Corpus"
+trigger_phrases: []
+---
 # fx-001 Alignment Target — Clean Sub-Corpus
 
 > A small, deliberately conformant documentation set used to anchor the clean-pass lane of the deep-alignment behavior benchmark.
