@@ -70,7 +70,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` |
 | **Declared loss** | semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal are retired with no successor |
 
-The retrieval contract is `references/retrieval/retrieval-conventions.md`. A lookup that matches nothing returns nothing; nothing degrades to an approximate answer.
+The retrieval contract is `references/retrieval/retrieval-conventions.md`, and the corpus convention those recipes depend on is `references/structure/grep-convention.md`. A lookup that matches nothing returns nothing; nothing degrades to an approximate answer.
 
 ---
 

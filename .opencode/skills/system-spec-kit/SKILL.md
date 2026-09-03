@@ -413,7 +413,7 @@ def route_speckit_resources(task):
 
 ### Retrieval and Continuity
 
-Retrieval is file-based and needs no running service. Gate 1 resolves a prompt against the committed trigger index with `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`, which exits `0` on candidates, `1` on a clean no-hit and `2` on a bad invocation or unreadable index. Free-text retrieval uses the literal ripgrep recipes in [`references/retrieval/retrieval-conventions.md`](references/retrieval/retrieval-conventions.md), scoped by track and packet through the trailing positional path.
+Retrieval is file-based and needs no running service. Gate 1 resolves a prompt against the committed trigger index with `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`, which exits `0` on candidates, `1` on a clean no-hit and `2` on a bad invocation or unreadable index. Free-text retrieval uses the literal ripgrep recipes in [`references/retrieval/retrieval-conventions.md`](references/retrieval/retrieval-conventions.md), scoped by track and packet through the trailing positional path. Those recipes are precise only because the corpus is regular: [`references/structure/grep-convention.md`](references/structure/grep-convention.md) holds the frontmatter, anchor, naming and body-preservation rules that `validate.sh` enforces on every spec document.
 
 Recovery walks the continuity ladder rather than inferring a session: `handover.md`, then the `_memory.continuity` frontmatter block, then packet-first spec docs, then the bounded context recipe. `/speckit:resume` owns that ladder. Saves go through `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, invoked by `/memory:save`; the writer updates the packet's continuity surfaces in place and there is no indexing hand-off afterwards.
 
@@ -532,7 +532,7 @@ Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repair
 
 ## 7. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/workflows/quick-reference.md`, `references/templates/template-guide.md`, `references/validation/validation-rules.md`, `references/retrieval/retrieval-conventions.md`, `references/memory/save-workflow.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/workflows/quick-reference.md`, `references/templates/template-guide.md`, `references/validation/validation-rules.md`, `references/retrieval/retrieval-conventions.md`, `references/structure/grep-convention.md`, `references/memory/save-workflow.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/spec/validate.sh`, `scripts/spec/create.sh`, `scripts/dist/memory/generate-context.js`, `scripts/spec/check-completion.sh`.
 
