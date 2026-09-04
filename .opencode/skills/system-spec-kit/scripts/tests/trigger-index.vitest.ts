@@ -305,6 +305,20 @@ describe('walkCorpus', () => {
     ]);
   });
 
+  it('refuses a symlinked document whose target is outside the repository', () => {
+    const root = makeTempDir('speckit-trigger-outside-');
+    const outside = makeTempDir('speckit-trigger-external-');
+    fs.mkdirSync(path.join(root, 'specs/track'), { recursive: true });
+    fs.writeFileSync(path.join(root, 'specs/track/a.md'), '---\ntitle: a\ntrigger_phrases:\n  - "inside phrase"\n---\n# a\n');
+    fs.writeFileSync(path.join(outside, 'secret.md'), '---\ntitle: s\ntrigger_phrases:\n  - "external phrase"\n---\n# s\n');
+    fs.symlinkSync(path.join(outside, 'secret.md'), path.join(root, 'specs/track/leak.md'), 'file');
+
+    const { files, skipped } = walkCorpus(root);
+
+    expect(files).toEqual(['specs/track/a.md']);
+    expect(skipped).toContainEqual({ path: 'specs/track/leak.md', reason: 'symlink target outside the repository' });
+  });
+
   it('never indexes one document twice through a symlink', () => {
     const root = makeTempDir('speckit-trigger-symlink-');
     writeDoc(root, 'specs/track/a.md', frontmatter(['a']));

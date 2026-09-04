@@ -185,7 +185,7 @@ function walkDirectory(repoRoot, directory, byRealPath, skipped) {
         continue;
       }
       if (stats.isFile() && entry.name.endsWith('.md')) {
-        recordFile(absolute, relative, true, byRealPath, skipped);
+        recordFile(repoRoot, absolute, relative, true, byRealPath, skipped);
       }
       continue;
     }
@@ -200,7 +200,7 @@ function walkDirectory(repoRoot, directory, byRealPath, skipped) {
     }
 
     if (entry.isFile() && entry.name.endsWith('.md')) {
-      recordFile(absolute, relative, false, byRealPath, skipped);
+      recordFile(repoRoot, absolute, relative, false, byRealPath, skipped);
     }
   }
 }
@@ -211,6 +211,11 @@ function walkDirectory(repoRoot, directory, byRealPath, skipped) {
  * location wins over a link to it, and two routes of the same kind are settled
  * by the lower path, so the winner never depends on walk order.
  *
+ * A link whose target resolves outside the repository is refused rather than
+ * indexed: the generator reads bytes through the link, and a committed index
+ * must never carry content that is not in the tree it describes.
+ *
+ * @param {string} repoRoot Absolute repository root.
  * @param {string} absolute Absolute file path.
  * @param {string} relative Repo-relative file path.
  * @param {boolean} isLink Whether this route is a symlink.
@@ -218,12 +223,16 @@ function walkDirectory(repoRoot, directory, byRealPath, skipped) {
  * @param {Array<{ path: string, reason: string }>} skipped Accumulator for pruned entries.
  * @returns {void}
  */
-function recordFile(absolute, relative, isLink, byRealPath, skipped) {
+function recordFile(repoRoot, absolute, relative, isLink, byRealPath, skipped) {
   let realPath;
   try {
     realPath = fs.realpathSync(absolute);
   } catch {
     skipped.push({ path: relative, reason: 'unresolvable path' });
+    return;
+  }
+  if (isLink && !isInsideRoot(repoRoot, realPath)) {
+    skipped.push({ path: relative, reason: 'symlink target outside the repository' });
     return;
   }
 
@@ -242,6 +251,21 @@ function recordFile(absolute, relative, isLink, byRealPath, skipped) {
     return;
   }
   skipped.push({ path: relative, reason: 'duplicate of an already-indexed document' });
+}
+
+/**
+ * @param {string} repoRoot Absolute repository root.
+ * @param {string} realPath Resolved absolute path.
+ * @returns {boolean} Whether the resolved path sits under the resolved root.
+ */
+function isInsideRoot(repoRoot, realPath) {
+  let rootReal;
+  try {
+    rootReal = fs.realpathSync(repoRoot);
+  } catch {
+    rootReal = repoRoot;
+  }
+  return realPath === rootReal || realPath.startsWith(rootReal + path.sep);
 }
 
 /**
