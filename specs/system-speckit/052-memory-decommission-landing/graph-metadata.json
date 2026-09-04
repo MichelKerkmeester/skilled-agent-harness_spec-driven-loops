@@ -47,6 +47,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "references/retrieval/retrieval-conventions.md",
+      ".opencode/bin/hf-model-server.cjs",
+      "shared/embeddings/providers/hf-local.ts",
+      ".opencode/skills/system-spec-kit/graph-metadata.json",
       "data/trigger-index.json",
       "specs/system-speckit/049-memory-decommission/goal.md",
       ".claude/mcp.json",
@@ -89,6 +93,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -174,35 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-04T20:07:24.443Z",
+    "last_save_at": "2026-09-04T20:32:44.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f908902595fbd897597eddb5cb5d282683428c93ec320ac1715d0205e315fe2",
+    "source_fingerprint": "sha256:219b5e51fce5a80c55afd59cbd62556d1efdca8f310a297fa408999aaaa19925",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5c8abcc1bc1fe62a13b5a481b883d3e66f8bca135998f7381a1db5a60f78480a",
       "plan.md": "ff3471f9cbd346847a94f8fa39c356df112925cf83929786c249ef3b97436992",
       "tasks.md": "48058bae5e987d3caf60ee3616fe6abf16be32400e3ecf62952236940b7f2423",
-      "implementation-summary.md": "bab2cafbd2160b008c87722787eb73c4e258b4143f79bc374f2967c89791ca76"
+      "implementation-summary.md": "97f7c9138bf97a4d8f6a2fbb6f22b9f93bce4a267397bc0799eaac033820be0f"
     },
     "last_active_child_id": null,
     "last_active_at": null

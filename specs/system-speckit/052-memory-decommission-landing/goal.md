@@ -140,9 +140,13 @@ and findings belong here.
 
 | Finding | Severity | Fix |
 |---------|----------|-----|
-| P2-F001 the public ripgrep wrapper builds its own recipes and never gained `--hidden` or the `.git` exclusion, so it diverged from the lane it fronts | P1 | this commit: the wrapper's recipes open with the same head flags and glob set as the lane; the parity assertion is green again and every recipe is asserted to carry both |
-| P2-F002 the copyable recipes in the conventions omit the `.git` exclusion the prose calls mandatory | P2 | this commit: all six recipes carry it and the glob-order note names three exclusions |
-| P2-F003 the wrapper drops a third positional silently, so an unquoted phrase searches its first word | P2 | this commit: extra positionals are refused with a message that says to quote the phrase |
+| P2-F001 the public ripgrep wrapper builds its own recipes and never gained `--hidden` or the `.git` exclusion, so it diverged from the lane it fronts | P1 | `b960584085`: the wrapper's recipes open with the same head flags and glob set as the lane; the parity assertion is green again and every recipe is asserted to carry both |
+| P2-F002 the copyable recipes in the conventions omit the `.git` exclusion the prose calls mandatory | P2 | `b960584085`: all six recipes carry it and the glob-order note names three exclusions |
+| P2-F003 the wrapper drops a third positional silently, so an unquoted phrase searches its first word | P2 | `b960584085`: extra positionals are refused with a message that says to quote the phrase |
+| P2-F004 the HF-local availability probe reports a ready server without proving it serves the requested model, so the mismatch surfaces later as a 404 | P1 | in progress under the D5 security exception: the probe resolves the requested model and refuses a ready server that serves another; readiness throws on the mismatch instead of latching; tests follow the rename lane |
+| P2-F005 the model server's socket path lacks a post-bind socket-type check before chmod and unlink | P2 | handed to the model server's owner under D5 |
+| P2-F007 the packet's implementation summary asserted completion over scaffold text | P1 | this commit: the summary describes what is true now and says it is in progress; the closure reconciles summary, continuity metadata, spec status, acceptance rows and tasks together |
+| P2-F006 the HF client truncates fractional dimensions instead of rejecting a malformed response | P2 | handed to the embedding client's owner under D5 |
 
 ### DONE WHEN
 
