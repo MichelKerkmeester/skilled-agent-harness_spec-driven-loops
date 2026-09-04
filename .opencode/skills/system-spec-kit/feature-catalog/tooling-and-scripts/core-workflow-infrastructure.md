@@ -44,7 +44,7 @@ Instead of being one runtime entry point, this group is a set of internal buildi
 
 `quality-gates.ts` is the narrow decision point for whether a rendered spec-doc record should be indexed at all. It blocks indexing when the file was deduplicated instead of written, when the template contract fails, when semantic sufficiency fails, when the quality score falls below the configured threshold, or when validation disposition requires either write-without-index or full abort. It also formats the semantic-sufficiency rejection string using the shared evidence-count payload so callers can report a consistent failure reason.
 
-Taken together, these files are the reusable infrastructure beneath the higher-level workflow and CLI commands. They do not define the whole user-facing workflow by themselves, but they hold the policy, scoring, metadata, and persistence mechanics that the rest of the indexed-continuity store depends on.
+Taken together, these files are the reusable infrastructure beneath the higher-level workflow and CLI commands. They do not define the whole user-facing workflow by themselves, but they hold the policy, scoring, metadata, and persistence mechanics that the rest of the continuity writer depends on.
 
 ---
 

@@ -139,7 +139,6 @@ Expected result: path security, symlink hardening, and database rebind paths pas
 
 ## 8. RELATED
 
-- [`../database/README.md`](../database/README.md)
 - [`../handlers/README.md`](../handlers/README.md)
 - [`../configs/README.md`](../configs/README.md)
 - [`../tests/README.md`](../tests/README.md)

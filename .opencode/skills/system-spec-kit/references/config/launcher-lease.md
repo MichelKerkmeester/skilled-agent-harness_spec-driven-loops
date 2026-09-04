@@ -77,7 +77,7 @@ Stale reclaim handles interrupted owners, especially `SIGKILL` or host crashes t
 2. `process.kill(pid, 0)` throws `ESRCH`.
 3. Launcher logs `staleReclaimed: true`.
 4. Bootstrap proceeds.
-5. Launcher writes a fresh PID file for its own process before spawning `context-server.js`.
+5. Launcher writes a fresh PID file for its own process before spawning `advisor-server.js`.
 
 If the OS has reused the recorded PID for another live process, the launcher treats the lease as held. Remove the PID file manually only after verifying no real `system-skill-advisor-launcher.cjs` owner is running.
 

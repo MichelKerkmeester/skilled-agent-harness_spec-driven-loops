@@ -202,5 +202,4 @@ For code changes in this folder, run the TypeScript or package-level checks used
 
 - [`../README.md`](../README.md)
 - [`../resume/README.md`](../resume/README.md)
-- [`../session/README.md`](../session/README.md)
-- [`../routing/README.md`](../routing/README.md)
+- [`../context/README.md`](../context/README.md)

@@ -1,27 +1,28 @@
 ---
 title: "Config: System Spec Kit Runtime Settings"
-description: "Current configuration files for memory, search and content filtering behavior."
+description: "Current configuration files for the continuity writer, spec workflow support and content filtering behavior."
 trigger_phrases:
   - "system spec kit config"
-  - "memory configuration"
+  - "continuity writer configuration"
   - "content filter settings"
 ---
 
 # Config: System Spec Kit Runtime Settings
 
-> Runtime settings for Spec Kit memory, search and content filtering.
+> Runtime settings for the continuity writer, spec workflow support and content filtering.
 
 ---
 
 ## 1. OVERVIEW
 
-`config/` owns JSONC settings read by Spec Kit memory, search and filtering code. These files are operator-editable configuration, not source modules.
+`config/` owns JSONC settings read by the spec-kit script layer. These files are operator-editable configuration, not source modules.
 
 Current state:
 
-- `config.jsonc` defines memory index, semantic search, trigger surfacing, decay, tiers, hybrid search, checkpoint and template settings.
-- `filters.jsonc` defines the content filtering pipeline used by memory ingest helpers.
+- `config.jsonc` defines the workflow and continuity-writer settings that `scripts/core/config.ts` merges into `SpecKitConfig`: preview and truncation caps, conversation windowing, timezone offset, observation and file limits, and the quality abort threshold.
+- `filters.jsonc` defines the noise, dedupe and quality pipeline that `scripts/lib/content-filter.ts` applies to captured session content.
 - Config files are loaded by runtime code on process startup or script execution.
+- Keys that no loader reads are inert. The loader takes only the fields declared in `WorkflowConfig`, so an unrecognized block changes nothing.
 
 ---
 
@@ -36,13 +37,13 @@ This directory belongs to the `system-spec-kit` skill. Changes should stay compa
 ```text
 config/
 +-- README.md       # Directory orientation
-+-- config.jsonc    # Main memory, search and template settings
++-- config.jsonc    # Workflow, continuity-writer and template settings
 `-- filters.jsonc   # Content filter pipeline settings
 ```
 
 | File | Role |
 |---|---|
-| `config.jsonc` | Shared runtime settings for memory retrieval and spec workflow support |
+| `config.jsonc` | Shared runtime settings for the continuity writer and spec workflow support |
 | `filters.jsonc` | Thresholds and scoring weights for content filtering |
 
 ---
@@ -70,4 +71,4 @@ Run the consumer script or test that reads any changed setting before claiming b
 
 - [`../scripts/core/config.ts`](../scripts/core/config.ts) - Main config loader.
 - [`../scripts/lib/content-filter.ts`](../scripts/lib/content-filter.ts) - Filter config consumer.
-- [`../references/memory/memory-system.md`](../references/memory/memory-system.md) - Memory behavior reference.
+- [`../references/memory/memory-system.md`](../references/memory/memory-system.md) - Retrieval and continuity behavior reference.

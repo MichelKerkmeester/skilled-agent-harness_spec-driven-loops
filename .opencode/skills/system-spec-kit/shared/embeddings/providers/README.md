@@ -21,9 +21,9 @@ This folder contains provider adapters for the `IEmbeddingProvider` interface fr
 
 The parent package owns provider selection in `../factory.ts`. Files in this folder should stay focused on backend behavior: request shaping, retries, task prefixes, metadata and health checks.
 
-Ollama closes the 016/002 dual-path migration: the MCP registry/re-index path writes Ollama vectors to `vec_<dim>`, while the shared factory path encodes queries. Both paths must use the same active manifest.
+Ollama is the local-first default of the cascade in `../auto-select.ts`. Document indexing and query encoding must resolve the same active manifest, or a store ends up holding vectors that its own queries cannot match.
 
-> **Auto-migration on first startup.** When the active provider resolves to `ollama` and a pre-existing `context-index__hf-local__*.sqlite` store is present, the Memory MCP server re-embeds the rows into the new ollama store and deletes the source. The logic lives in the MCP server startup path, not in this folder. See the MCP server README and packet 018 for the full lifecycle.
+> **Store migration belongs to the consumer.** These providers produce vectors and nothing else. Deciding what happens to a store when the active provider changes — re-embed, rebuild, or refuse — is the consuming service's call, and the skill advisor makes it for `skill-graph.sqlite`. No logic in this folder reads or writes a database.
 
 ---
 
@@ -100,10 +100,9 @@ For README-only edits, `validate_document.py` is the required file-level check.
 | [embeddings/README.md](../README.md) | Parent embeddings package overview |
 | [embeddings/factory.ts](../factory.ts) | Provider selection and auto-detection logic |
 | [embeddings/profile.ts](../profile.ts) | Per-profile database path generation |
-| [embedder-architecture.md](../../../references/memory/embedder-architecture.md) | Dual registry/factory architecture, active pointer, and operator runbook |
+| [embedder-pluggability.md](../../../references/memory/embedder-pluggability.md) | Canonical narrative for the shared stack: cascade, manifests, adapter contract, swap and rollback |
 | [shared/types.ts](../../types.ts) | `IEmbeddingProvider` and shared retrieval types |
 | [shared/utils/retry.ts](../../utils/retry.ts) | Retry helper used by cloud providers |
-| [mcp-server/README.md](../../../mcp-server/README.md) | Memory MCP server entry point, auto-migration lifecycle, env vars |
-| packet 018 | hf-local to ollama auto-migration spec |
+| [mcp-server/ENV-REFERENCE.md](../../../mcp-server/ENV-REFERENCE.md) | Source-anchored table for every embedding and model-server variable |
 
 ---

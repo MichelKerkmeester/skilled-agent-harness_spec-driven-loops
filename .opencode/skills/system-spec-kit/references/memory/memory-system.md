@@ -245,7 +245,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/<track>/<NN
 ### Reference Files
 - [retrieval-conventions.md](../retrieval/retrieval-conventions.md) - The recipes, exit-status mapping and ranking contract
 - [save-workflow.md](./save-workflow.md) - Continuity save workflow
-- [embedding-resilience.md](./embedding-resilience.md) - Provider fallback for the shared embedding stack
+- [embedder-pluggability.md](./embedder-pluggability.md) - Provider cascade and retry policy for the shared embedding stack
 - [troubleshooting.md](../debugging/troubleshooting.md) - Common issues and solutions
 - [environment-variables.md](../config/environment-variables.md) - Configuration options
 

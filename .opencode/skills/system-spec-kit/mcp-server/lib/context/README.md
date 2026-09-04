@@ -180,4 +180,4 @@ Expected result: the structure extractor reports README type with no critical is
 
 - [`../resume/README.md`](../resume/README.md)
 - [`../../hooks/README.md`](../../hooks/README.md)
-- [`../../tools/README.md`](../../tools/README.md)
+- [`../continuity/README.md`](../continuity/README.md)

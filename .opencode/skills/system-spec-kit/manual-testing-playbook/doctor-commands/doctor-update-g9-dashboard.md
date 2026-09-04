@@ -79,7 +79,7 @@ If row count is wrong, inspect `doctor-update.yaml` Phase 4 dashboard rows and c
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Command entrypoint: [.opencode/commands/doctor/update.md](../../../../commands/doctor/update.md)
 - Matching YAML asset: [.opencode/commands/doctor/assets/doctor-update.yaml](../../../../commands/doctor/assets/doctor-update.yaml)
-- Migration manifest: [.opencode/skills/system-spec-kit/mcp-server/database/migration-manifest.json](../../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
+- Migration manifest: [specs/system-speckit/026-graph-and-context-optimization/.../scratch/migration-manifest.json](../../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
 - Decision context: local doctor command ADRs
 
 ---

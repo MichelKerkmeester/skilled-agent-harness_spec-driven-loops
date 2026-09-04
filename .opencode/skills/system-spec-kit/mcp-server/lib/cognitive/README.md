@@ -1,20 +1,22 @@
 ---
 title: "Cognitive"
-description: "Memory lifecycle, attention decay, co-activation, and pressure-aware retrieval helpers for Spec Kit Memory."
+description: "Deterministic feature-flag rollout gating for the spec-kit engine."
 trigger_phrases:
-  - "cognitive memory"
-  - "FSRS decay"
-  - "memory classification"
-  - "working memory"
+  - "rollout policy"
+  - "feature flag rollout"
+  - "deterministic bucketing"
+  - "SPECKIT_ROLLOUT_PERCENT"
 ---
 
 # Cognitive
 
-Memory lifecycle and attention logic for Spec Kit Memory. This folder turns memory metadata, session activity, and temporal signals into bounded retrieval state.
+Feature-flag rollout gating for the spec-kit engine. One module decides whether a graduated flag is on for a given identity, so a percentage rollout lands on the same side of the line every time it is asked.
 
 ## 1. OVERVIEW
 
-Use this folder when code needs to classify memories, decay attention, spread activation, track session working memory, or monitor context pressure. It supports retrieval decisions, but canonical recovery still starts with `/speckit:resume` and the continuity chain in spec documents.
+Use this folder when code needs to gate behavior behind a `SPECKIT_*` flag, or when a change should reach a fraction of sessions before all of them. The gate reads only the environment: it opens no database, holds no state between calls, and returns the same answer for the same identity and percentage.
+
+The folder's name is historical. It once held the memory engine's lifecycle, decay and attention modules; those went out with that engine and nothing replaced them here.
 
 ---
 
@@ -22,50 +24,38 @@ Use this folder when code needs to classify memories, decay attention, spread ac
 
 | File | Role |
 | --- | --- |
-| `fsrs-scheduler.ts` | FSRS retrievability, stability updates, and classification-based decay. |
-| `tier-classifier.ts` | HOT, WARM, COLD, DORMANT, and EVIDENCE state classification. |
-| `attention-decay.ts` | Composite attention scoring and memory activation updates. |
-| `prediction-error-gate.ts` | Duplicate, linked-memory, and contradiction decisions before save. |
-| `co-activation.ts` | Related-memory activation spread with fan-effect dampening. |
-| `working-memory.ts` | Session-scoped attention state and cleanup. |
-| `temporal-contiguity.ts` | Time-window neighbors, boosted search rows, and timelines. |
-| `pressure-monitor.ts` | Token pressure checks for context-window policy. |
-| `rollout-policy.ts` | Feature-flag rollout helpers. |
-| `adaptive-ranking.ts` | Shadow-mode adaptive ranking with bounded feedback loops, signal aggregation, threshold tuning, and promotion/rollback gates. |
+| `rollout-policy.ts` | Flag resolution, `SPECKIT_ROLLOUT_PERCENT` parsing, and deterministic identity bucketing. |
 
 ---
 
 ## 3. FLOW
 
 ```text
-╭──────────────╮
-│ Memory input │
-╰──────┬───────╯
-       ▼
-┌───────────────────────┐
-│ Prediction error gate │
-└───────────┬───────────┘
-            ▼
-┌───────────────────────┐
-│ FSRS and tier state   │
-└───────────┬───────────┘
-            ▼
-┌───────────────────────┐
-│ Attention scoring     │
-└───────────┬───────────┘
-            ▼
-┌───────────────────────┐
-│ Working memory update │
-└───────────┬───────────┘
-            ▼
-┌───────────────────────┐
-│ Co-activation spread  │
-└───────────┬───────────┘
-            ▼
 ╭──────────────────────╮
-│ Ranked memory state  │
+│ flagName + identity  │
+╰──────────┬───────────╯
+           ▼
+┌──────────────────────────┐
+│ read process.env[flag]   │
+│ 'false' / '0' → disabled │
+└──────────┬───────────────┘
+           ▼
+┌──────────────────────────┐
+│ getRolloutPercent()      │
+│ clamp to 0-100           │
+└──────────┬───────────────┘
+           ▼
+┌──────────────────────────┐
+│ 100 → on · 0 → off       │
+│ else bucket the identity │
+└──────────┬───────────────┘
+           ▼
+╭──────────────────────╮
+│ enabled: true/false  │
 ╰──────────────────────╯
 ```
+
+An absent identity is treated as in-rollout, so a caller with nothing stable to hash is never silently gated off.
 
 ---
 
@@ -73,25 +63,20 @@ Use this folder when code needs to classify memories, decay attention, spread ac
 
 ```text
 ╭────────────────────╮
-│ MCP tool handlers  │
+│ validation and     │
+│ generator callers  │
 ╰─────────┬──────────╯
-          ▼
-┌────────────────────╮
-│ Search and memory  │
-│ orchestration      │
-└─────────┬──────────┘
           ▼
 ┌────────────────────╮
 │ cognitive/         │
 └─────────┬──────────┘
           ▼
 ┌────────────────────╮
-│ Storage, scoring,  │
-│ config, utilities  │
+│ process.env only   │
 └────────────────────┘
 ```
 
-Allowed imports point inward to shared storage, scoring, configuration, and utilities. This folder should not import MCP tool handlers, command dispatch, or spec-document authoring workflows.
+This module imports nothing. Keep it that way: a gate that reaches for configuration, storage or a logger becomes a gate that can fail, and a failing gate has no safe answer.
 
 ---
 
@@ -99,11 +84,10 @@ Allowed imports point inward to shared storage, scoring, configuration, and util
 
 | Contract | Rule |
 | --- | --- |
-| State classification | Use classifier thresholds rather than ad hoc state labels. |
-| Score bounds | Clamp attention and activation scores to the documented range before return. |
-| Save decisions | Run prediction-error checks before adding similar memory content. |
-| Session state | Keep working-memory updates scoped to a session identifier. |
-| Continuity | Treat cognitive scores as retrieval evidence, not the source of resume truth. |
+| Default polarity | An unset flag is ON. Only the exact strings `false` and `0` disable one. |
+| Percentage parsing | Accept full integer strings only; `50abc` and `1e2` fall back to 100 rather than to an accidental 50. |
+| Bucket stability | The same identity must land in the same bucket across processes and restarts, so never seed the hash with time or randomness. |
+| No side effects | Reading a flag must not write, log or cache anything. |
 
 ---
 
@@ -111,7 +95,6 @@ Allowed imports point inward to shared storage, scoring, configuration, and util
 
 | Path | Why it matters |
 | --- | --- |
-| `../search/` | Calls cognitive helpers during retrieval and ranking. |
-| `../scoring/` | Provides composite scoring inputs used by attention logic. |
-| `../config/memory-types.ts` | Defines memory type and half-life settings. |
-| `../storage/` | Owns persistence for memory rows and related state. |
+| `../config/capability-flags.ts` | Names the generator capability flags this gate resolves. |
+| `../validation/` | The rule set whose behavior the flags gate. |
+| `../../ENV-REFERENCE.md` | Source-anchored defaults for `SPECKIT_ROLLOUT_PERCENT` and every gated flag. |

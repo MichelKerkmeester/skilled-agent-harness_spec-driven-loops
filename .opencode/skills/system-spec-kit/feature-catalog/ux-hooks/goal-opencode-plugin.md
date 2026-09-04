@@ -20,7 +20,7 @@ This catalog entry maps the current `/goal` OpenCode plugin behavior to its impl
 
 The goal plugin gives OpenCode a session-level completion objective. Users call `/goal set <objective>` or `/goal set <objective> --budget N`, and the plugin persists the state, injects an active-goal block on each turn, and exposes tool-backed status, history, doctor/health, resume, and mutation operations.
 
-This feature is cataloged under UX hooks because it is a runtime-injection and operator-feedback surface. It is not part of the Spec Kit Memory MCP server and does not use a daemon CLI bridge.
+This feature is cataloged under UX hooks because it is a runtime-injection and operator-feedback surface. It runs entirely inside the OpenCode plugin host: no daemon, no CLI bridge, and no dependency on anything else in this package.
 
 ---
 

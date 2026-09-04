@@ -103,7 +103,6 @@ Expected result: JSON parsing succeeds, cognitive config tests pass and README v
 
 ## 9. RELATED
 
-- [Scoring modules](../lib/scoring/README.md)
-- [Cognitive modules](../lib/cognitive/README.md)
-- [Search handlers](../handlers/README.md)
-- [Memory search reference](../../references/memory/memory-system.md)
+- [Rollout gating](../lib/cognitive/README.md)
+- [Handlers](../handlers/README.md)
+- [Retrieval and continuity reference](../../references/memory/memory-system.md)

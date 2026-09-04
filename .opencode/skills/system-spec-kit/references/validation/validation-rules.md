@@ -282,6 +282,8 @@ Replace placeholder text with actual content:
 2. Replace `[YOUR_VALUE_HERE: description]` with the actual value
 3. Remove the entire `[...]` block, not just the inner text
 
+---
+
 ## 5. LEVEL_DECLARED
 
 **Severity:** INFO  
@@ -329,14 +331,14 @@ Add the Level field to your spec.md metadata table:
 ## 6. ANCHORS_VALID
 
 **Severity:** ERROR  
-**Description:** Validates that generated continuity artifacts and other indexed support docs use proper ANCHOR format with matching open/close pairs.
+**Description:** Validates that generated continuity artifacts and other support docs use proper ANCHOR format with matching open/close pairs.
 
 ### What Are Anchors?
 
-Anchors are structured markers that define semantic boundaries in indexed continuity sources. They enable:
-- Targeted memory retrieval
+Anchors are structured markers that define semantic boundaries in a packet's continuity documents. They enable:
+- Extracting one named region without parsing the whole document
 - Section-specific context loading
-- Semantic search indexing
+- Template-contract checks that assert a required region is present
 
 ### Anchor Format
 

@@ -1,27 +1,27 @@
 ---
-title: "Memory Scripts: Context Save and Index Maintenance CLIs"
-description: "TypeScript CLI entrypoints for canonical context saves, memory ranking, markdown parsing, metadata repair, quality checks, and index maintenance."
+title: "Memory Scripts: Context Save and Metadata Maintenance CLIs"
+description: "TypeScript CLI entrypoints for canonical context saves, memory ranking, markdown parsing, metadata repair, and quality checks."
 trigger_phrases:
   - "memory scripts"
   - "generate context"
   - "rank memories"
   - "memory quality"
-  - "reindex embeddings"
+  - "backfill frontmatter"
 ---
 
-# Memory Scripts: Context Save and Index Maintenance CLIs
+# Memory Scripts: Context Save and Metadata Maintenance CLIs
 
 ---
 
 ## 1. OVERVIEW
 
-`scripts/memory/` contains the source TypeScript and Node CLI entrypoints for Spec Kit memory save, ranking, metadata, quality, and index maintenance tasks. These files compile to `scripts/dist/memory/` for runtime use.
+`scripts/memory/` contains the source TypeScript and Node CLI entrypoints for Spec Kit context saves, ranking, metadata, and quality tasks. These files compile to `scripts/dist/memory/` for runtime use.
 
 Current state:
 
-- `generate-context.ts` is the canonical context-save CLI for structured JSON, stdin, or JSON file input.
+- `generate-context.ts` is the canonical context-save CLI for structured JSON, stdin, or JSON file input. It writes into the packet's own documents; there is no index or database behind it.
 - Maintenance scripts repair research metadata and frontmatter across generated documents.
-- Quality scripts parse markdown structure, rank candidate memories, and check rendered memory output before indexing.
+- Quality scripts parse markdown structure, rank candidate records, and check rendered continuity output before it is accepted.
 - One-shot migration scripts remain in this folder only when they still need a documented invocation path.
 
 ---
@@ -46,13 +46,13 @@ Current state:
         │                         │                        │
         ▼                         ▼                        ▼
 ┌──────────────────────────────────────────────────────────────────┐
-│ memory database, embeddings, generated packet metadata and docs   │
+│ generated packet metadata and the packet's own documents          │
 └──────────────────────────────────────────────────────────────────┘
 
 Dependency direction:
 scripts/memory/*.ts ───▶ scripts/core, extractors, loaders, renderers and lib helpers
 compiled CLIs ───▶ scripts/dist/memory/*.js
-MCP tools may invoke compiled CLIs or equivalent library workflows
+runtime hooks and slash commands invoke the compiled CLIs directly
 ```
 
 ---
@@ -85,7 +85,7 @@ scripts/memory/ → scripts/lib/ and shared packages
 Disallowed dependency direction:
 
 ```text
-scripts/memory/ → MCP transport request handlers as runtime dependencies
+scripts/memory/ → runtime hook adapters as runtime dependencies
 scripts/memory/ → prompt text or agent-only session state without structured JSON input
 maintenance CLIs → silent mutation without an explicit command mode or target
 ```
@@ -130,7 +130,7 @@ scripts/memory/
 |---|---|
 | Inputs | Prefer structured JSON through `--stdin` or `--json`. JSON file mode is valid when the file path is session-scoped. |
 | Outputs | Write generated context artifacts, packet metadata, reports, and cleanup results. |
-| Ownership | This folder owns CLI surfaces for memory save and maintenance. MCP tool schemas, database connection internals, templates, and spec-folder authoring rules live outside this folder. |
+| Ownership | This folder owns CLI surfaces for context save and maintenance. Validation rules, generated-metadata internals, templates, and spec-folder authoring rules live outside this folder. |
 
 Canonical save flow:
 
@@ -156,18 +156,18 @@ Canonical save flow:
                    │
                    ▼
 ┌──────────────────────────────────────────┐
-│ run core memory workflow                 │
+│ run core continuity workflow             │
 └──────────────────────────────────────────┘
                    │
                    ▼
 ┌──────────────────────────────────────────┐
-│ validate rendered memory quality         │
+│ validate rendered continuity quality     │
 └──────────────────────────────────────────┘
                    │
                    ▼
 ╭──────────────────────────────────────────╮
-│ context artifacts are updated; indexing  │
-│ may run, defer or hand off to MCP scan    │
+│ the packet's documents and generated     │
+│ metadata are updated; the save ends here │
 ╰──────────────────────────────────────────╯
 ```
 
@@ -182,7 +182,7 @@ Run compiled commands from the repository root after the TypeScript build has pr
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin` | CLI | Save structured session context from stdin. |
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{...}' <spec-folder>` | CLI | Save structured context from an inline JSON string with an explicit packet target. |
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/memories.json` | CLI | Rank candidate memory records from JSON input. |
-| `node .opencode/skills/system-spec-kit/scripts/dist/memory/validate-memory-quality.js <file>` | CLI | Check rendered memory quality before accepting or indexing output. |
+| `node .opencode/skills/system-spec-kit/scripts/dist/memory/validate-memory-quality.js <file>` | CLI | Check rendered continuity quality before accepting the output. |
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive` | CLI | Preview frontmatter normalization changes. |
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --apply --include-archive --report /tmp/frontmatter-apply.json` | CLI | Apply frontmatter normalization and write a report. |
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/migrate-trigger-phrase-residual.js` | CLI | Clean residual trigger-phrase metadata that no longer matches the current schema. |
@@ -213,5 +213,5 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.j
 
 - [`../README.md`](../README.md)
 - [`../../mcp-server/scripts/README.md`](../../mcp-server/scripts/README.md)
-- [`../../mcp-server/database/README.md`](../../mcp-server/database/README.md)
+- [`../../references/memory/save-workflow.md`](../../references/memory/save-workflow.md)
 - [`../core/README.md`](../core/README.md)

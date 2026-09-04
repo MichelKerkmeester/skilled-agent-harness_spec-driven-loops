@@ -17,9 +17,10 @@ trigger_phrases:
 
 ### What is the shared/ Directory?
 
-The `shared/` directory is the **canonical source** for shared modules used by both:
+The `shared/` directory is the **canonical source** for shared modules used by:
 - **CLI scripts** (`scripts/`) - `generate-context.ts` and other utilities
-- **MCP server** (`mcp-server/`) - `context-server.ts` and memory tools
+- **The spec-kit engine** (`mcp-server/`) - validation orchestrator, generated metadata and the runtime hook adapters
+- **The skill advisor** - the embedding stack's only consumer today, via the `@spec-kit/shared/embeddings/*` alias
 
 This consolidation eliminates code duplication and ensures consistent behavior across all entry points.
 These modules support packet-doc-first continuity: `/speckit:resume`, implemented by `.opencode/commands/speckit/resume.md`, rebuilds active context from `handover.md -> _memory.continuity -> spec docs`, while generated continuity support artifacts remain supporting search material.
@@ -77,7 +78,7 @@ These modules support packet-doc-first continuity: `/speckit:resume`, implemente
 | **Dynamic Dimension Detection** | 768 (ollama and HF Local), 1024 (Voyage), 1536/3072 (OpenAI) |
 | **Task-Specific Functions**     | Document, query and clustering embeddings                      |
 | **TF-IDF + Semantic Triggers**  | Advanced trigger phrase extraction (v11)                       |
-| **Adaptive Fusion Support**     | Intent-aware weighting used by the runtime 5-channel retrieval pipeline (Vector, FTS5, BM25, Graph, Degree) |
+| **Adaptive Fusion Support**     | Intent-aware weighting primitives a multi-channel ranker can consume; the skill advisor's 5-lane scorer is the caller today |
 | **7 Intent Profiles**           | Task-specific weight profiles: add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision |
 
 ### Requirements
@@ -189,10 +190,8 @@ shared/
 ├── ipc/
 │   └── socket-server.ts        # Shared IPC socket server helper
 ├── mcp-server/
-	│   └── database/
-	│       ├── .db-updated         # Update marker for the shared database directory
-	│       ├── README.md           # Database directory notes and handling guidance
-	│       └── context-index.sqlite    # Canonical SQLite memory database
+│   └── database/               # No source; a probe target for resolvePackageRoot() in config.ts
+│       └── README.md           # Directory contract
 ├── parsing/
 │   ├── memory-sufficiency.ts          # Memory sufficiency checks
 │   ├── memory-template-contract.ts    # Template contract validation for continuity support artifacts
@@ -339,16 +338,9 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 4. Auto-cascade: OpenAI when local providers fail and `OPENAI_API_KEY` is usable.
 5. Auto-cascade: Voyage when earlier providers fail and `VOYAGE_API_KEY` is usable.
 
-### Canonical Database
+### Where embeddings are stored
 
-The shared database directory currently contains the runtime database plus its marker/readme files:
-
-```
-database/
-├── .db-updated              # Update marker for the shared database directory
-├── README.md                # Database directory notes and handling guidance
-└── context-index.sqlite     # Canonical SQLite memory database
-```
+`shared/` owns no store. It produces vectors and hands them to the consumer, which decides where they live. The skill advisor, the one consumer today, writes them into its own package-local `mcp-server/database/skill-graph.sqlite` through `lib/skill-graph/skill-graph-db.ts`. `profile.getVectorShardPath()` remains available for a consumer that wants a profile-tagged shard beside its own database.
 
 ---
 
@@ -357,11 +349,11 @@ database/
 ### Example 1: CLI Script Usage
 
 ```typescript
-// In scripts/memory/generate-context.ts or similar
+// In an indexing script that embeds documents ahead of a query
 import { generateDocumentEmbedding, getEmbeddingDimension } from '@spec-kit/shared/embeddings'
 import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 
-// Generate embedding for memory content
+// Generate an embedding for a document
 const content: string = 'Switched to ollama embeddings for local-first retrieval'
 const embedding: Float32Array = await generateDocumentEmbedding(content)
 console.log(`Dimensions: ${embedding.length}`)
@@ -374,10 +366,10 @@ console.log(`Triggers: ${triggers.join(', ')}`)
 
 ---
 
-### Example 2: MCP Server Usage
+### Example 2: Daemon Query Path
 
 ```typescript
-// In mcp-server/context-server.ts
+// In a daemon that answers queries, such as the skill advisor's scorer lanes
 import { generateQueryEmbedding, preWarmModel } from '@spec-kit/shared/embeddings'
 import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 
@@ -403,11 +395,10 @@ const meta = getProviderMetadata()
 console.log(meta)
 // { provider: 'ollama', model: 'nomic-embed-text-v1.5', dim: 768, healthy: true }
 
-// Get canonical metadata database path
+// Derive a profile-tagged vector shard path beside the consumer's own database
 const profile = getEmbeddingProfile()
-const dbPath: string = profile.getDatabasePath('/base/path')
-// '/base/path/context-index.sqlite'
-// Use profile.getVectorShardPath('/base/path') for profile-specific vector shards.
+const shardPath: string = profile.getVectorShardPath('/base/path')
+// The filename encodes provider, model and dimension, so two profiles never share a shard.
 ```
 
 ---
@@ -469,13 +460,11 @@ await preWarmModel()
 
 **Symptom**: `Error: dimension mismatch (expected 768, got 1024)`
 
-**Cause**: Changed providers without updating database
+**Cause**: Changed providers without re-embedding the consumer's store
 
-**Solution**: The canonical database and per-profile vector shards should prevent this. If it occurs:
+**Solution**: Per-profile shard filenames encode provider, model, dim and dtype, so two profiles should never collide. If a consumer's own store still holds vectors from the previous profile, delete that store and let the consumer rebuild it. For the skill advisor:
 ```bash
-# Delete old database and let system create a new one
-# Vector shard filenames still encode provider, model, dim and dtype.
-rm .opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite*
+rm .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite*
 ```
 
 ---

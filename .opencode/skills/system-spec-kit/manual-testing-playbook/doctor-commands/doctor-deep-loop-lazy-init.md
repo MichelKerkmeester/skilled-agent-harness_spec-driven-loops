@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates `/doctor deep-loop` when `mcp-server/database/deep-loop-graph.sqlite` is empty or missing but existing spec packets already contain `research/iterations/*.md` or `review/iterations/*.md` files.
+This scenario validates `/doctor deep-loop` when `.opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` is empty or missing but existing spec packets already contain `research/iterations/*.md` or `review/iterations/*.md` files.
 
 The behavior is user-observable: an operator who has just completed a deep-research or deep-review run asks the doctor command to initialize coverage graph state, and the command rebuilds nodes and edges from the iteration markdown sources instead of reporting an unrecoverable empty graph.
 
@@ -45,7 +45,7 @@ Initialize the deep-loop graph from current iteration folders. We just finished 
 1. Create a disposable copy of the repository or worktree.
 2. Confirm at least one source iteration file exists:
    - `find .opencode/specs -path '*/research/iterations/*.md' -o -path '*/review/iterations/*.md' | head`
-3. Remove or isolate only `mcp-server/database/deep-loop-graph.sqlite` in the disposable workspace.
+3. Remove or isolate only `.opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` in the disposable workspace.
 4. Confirm the precondition with `deep_loop_graph_status({})` or an equivalent graph status call showing zero nodes.
 5. Run `/doctor deep-loop --scope=both` through the real runtime.
 6. Capture the YAML asset load for `.opencode/commands/doctor/assets/doctor-deep-loop.yaml`, the snapshot path, lazy-init block, and upsert batch summary.
@@ -96,6 +96,6 @@ If lazy-init is not offered, inspect Phase 0 discovery in `.opencode/commands/do
 - Feature name: Doctor deep-loop lazy init
 - Command mode: `/doctor deep-loop --scope=both`
 - YAML asset: `doctor-deep-loop.yaml`
-- Graph target: `mcp-server/database/deep-loop-graph.sqlite`
+- Graph target: `.opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite`
 - Mutation boundary: graph upserts only; iteration markdown files are read-only inputs.
 - Feature file path: `doctor-commands/doctor-deep-loop-lazy-init.md`

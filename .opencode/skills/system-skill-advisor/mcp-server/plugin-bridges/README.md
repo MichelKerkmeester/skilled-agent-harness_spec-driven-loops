@@ -57,4 +57,3 @@ Both must pass with the bridge at its current path.
 
 - [`../../plugins/README.md`](../../../../plugins/README.md)
 - [`../../mcp-server/README.md`](../README.md)
-- [`../../../system-spec-kit/mcp-server/plugin-bridges/README.md`](../../../system-spec-kit/mcp-server/plugin-bridges/README.md)

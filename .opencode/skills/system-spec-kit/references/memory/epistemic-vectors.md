@@ -385,29 +385,7 @@ DUAL-THRESHOLD CHECK:
 
 ---
 
-## 8. LEARNING INDEX WORKFLOW
-
-Three measurements described knowledge gains across implementation tasks. They were served by the retired memory MCP surface and have no successor, so the workflow below is a record of the model rather than a sequence you can run:
-
-1. **Preflight** — Captured the epistemic baseline before work began. Recorded uncertainty score (0-100), knowledge gaps, and context coverage.
-2. **Postflight** — Measured post-task state. Computed the Learning Index: `LI = (KnowledgeDelta × 0.4) + (ContextImprovement × 0.35) + (UncertaintyReduction × 0.25)`.
-3. **Learning history** — Returned historical learning measurements with trend analysis.
-
-**Score Interpretation (0-100):**
-
-| Range | Interpretation |
-|-------|---------------|
-| 80-100 | Significant learning — major knowledge gains |
-| 60-79 | Moderate learning — meaningful progress |
-| 40-59 | Incremental learning — steady improvement |
-| 20-39 | Execution-focused — task completed, limited new knowledge |
-| 0-19 | Knowledge regression — review needed |
-
-**Mapping to Uncertainty Factors:** The `uncertaintyScore` (0-100) returned by these tools is derived from the four-factor weighted model (§2) scaled to integer range: `uncertaintyScore = round(weightedAverage × 100)`.
-
----
-
-## 9. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### AGENTS.md Reference
 - **Section 4**: Confidence & Clarification Framework (includes uncertainty tracking)

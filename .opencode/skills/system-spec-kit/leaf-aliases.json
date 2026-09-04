@@ -61,18 +61,8 @@
   },
   {
     "workflowMode": "system-spec-kit",
-    "leafResourceId": "references/memory/embedder-architecture.md",
-    "diskPath": "references/memory/embedder-architecture.md"
-  },
-  {
-    "workflowMode": "system-spec-kit",
     "leafResourceId": "references/memory/embedder-pluggability.md",
     "diskPath": "references/memory/embedder-pluggability.md"
-  },
-  {
-    "workflowMode": "system-spec-kit",
-    "leafResourceId": "references/memory/embedding-resilience.md",
-    "diskPath": "references/memory/embedding-resilience.md"
   },
   {
     "workflowMode": "system-spec-kit",

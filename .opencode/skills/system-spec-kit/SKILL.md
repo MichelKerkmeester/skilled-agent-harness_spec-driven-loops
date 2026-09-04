@@ -92,7 +92,7 @@ This skill uses simple intent/domain routing, not keyed runtime resource routing
 - `references/config/` for runtime environment configuration and launcher/lease contracts.
 - `assets/*.md` for shared decision matrices, template mapping, and parallel dispatch support.
 
-**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .opencode/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths. The rest of the package is deliberately NOT routable: `scripts/`, `mcp-server/`, `shared/`, `templates/`, `constitutional/`, `changelog/` and other engine dirs are the spec-kit + memory-MCP runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises memory-engine behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
+**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .opencode/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths. The rest of the package is deliberately NOT routable: `scripts/`, `mcp-server/`, `shared/`, `templates/`, `changelog/` and other engine dirs are the spec-kit runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises validation and generator behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
 
 ### Template and Script Sources of Truth
 
@@ -209,8 +209,6 @@ RESOURCE_MAP = {
         "references/validation/phase-checklists.md",
     ],
     "RETRIEVAL_TUNING": [
-        "references/memory/embedder-architecture.md",
-        "references/memory/embedding-resilience.md",
         "references/memory/embedder-pluggability.md",
         "references/memory/trigger-config.md",
     ],
@@ -252,8 +250,6 @@ COMMAND_BOOSTS = {
     "/speckit:plan :with-phases": "PHASE",
     "/memory:search": "MEMORY",
     "/memory:save": "MEMORY",
-    "/memory:manage": "MEMORY",
-    "/memory:learn": "MEMORY",
     "/speckit:resume": "MEMORY",
 }
 

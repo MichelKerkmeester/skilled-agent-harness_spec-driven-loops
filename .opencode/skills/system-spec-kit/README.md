@@ -38,11 +38,11 @@ AI conversations that modify files leave no reasoning trail. The session ends an
 
 ### What It Does
 
-System Spec Kit captures every file-modifying conversation in a templated spec folder, indexed at one of four documentation levels matched to task complexity. A local SQLite store makes those decisions searchable across sessions through five fused retrieval channels. `/speckit:resume` rebuilds the active context from packet-local sources. `/memory:save` routes session updates into canonical documentation surfaces so the next session picks up where the last one stopped, on any model or tool.
+System Spec Kit captures every file-modifying conversation in a templated spec folder at one of four documentation levels matched to task complexity. Those decisions stay findable across sessions because they are committed files: a generated trigger index matches a prompt against author-declared phrases, and ripgrep finds anything else. `/speckit:resume` rebuilds the active context from packet-local sources. `/memory:save` routes session updates into canonical documentation surfaces so the next session picks up where the last one stopped, on any model or tool.
 
 ### How This Compares
 
-Manual documentation is ad hoc and inconsistent. Basic RAG offers vector similarity over a stateless index. System Spec Kit replaces both with templated folders at four levels, validated structure and a five-channel hybrid search fused by Reciprocal Rank Fusion. Context survives across sessions through a local indexed-continuity store rather than copy-pasted notes. Decay follows an FSRS power-law curve tuned by content type and importance, not a flat remember-everything policy.
+Manual documentation is ad hoc and inconsistent. Basic RAG offers vector similarity over a stateless index. System Spec Kit replaces both with templated folders at four levels, validated structure, and retrieval that reads the committed tree rather than a shadow copy of it. Context survives across sessions in the packet's own documents rather than in copy-pasted notes or a store that can drift from them. Nothing decays: a decision stays exactly as legible on its four-hundredth day as on its first, and a phrase nobody wrote is a clean no-hit rather than a confident wrong answer.
 
 ### Requirements
 
@@ -418,7 +418,7 @@ Reach for System Spec Kit whenever a conversation is about to modify files, when
 
 ### Boundaries
 
-System Spec Kit owns four surfaces: the spec folder workflow, the validation surface, the indexed-continuity store and the commands that drive them. It does not own the other disciplines a working session touches. `sk-code` owns application-code standards. `sk-git` owns git workflow orchestration. `sk-doc` owns documentation quality and DQI scoring. The memory store indexes spec docs and saved memory, not arbitrary application code.
+System Spec Kit owns four surfaces: the spec folder workflow, the validation surface, the continuity writer and the commands that drive them. It does not own the other disciplines a working session touches. `sk-code` owns application-code standards. `sk-git` owns git workflow orchestration. `sk-doc` owns documentation quality and DQI scoring. Retrieval reaches spec and skill docs, not arbitrary application code.
 
 ### Files and Folders
 

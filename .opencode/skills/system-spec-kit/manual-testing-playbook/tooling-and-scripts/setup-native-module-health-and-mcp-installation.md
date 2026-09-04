@@ -1,6 +1,6 @@
 ---
 title: "243 -- Setup, Native Module Health, and MCP Installation"
-description: "This scenario validates setup, native module health, and MCP installation for `243`. It focuses on confirming prerequisite checks, native-module diagnostics, marker recording, and installer execution."
+description: "This scenario validates setup and native module health for `243`. It focuses on confirming prerequisite checks, native-module diagnostics, and marker recording."
 version: 3.6.0.12
 id: tooling-and-scripts-setup-native-module-health-and-mcp-installation
 expected_workflow_mode: UNKNOWN
@@ -11,20 +11,20 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates setup, native module health, and MCP installation for `243`. It focuses on confirming prerequisite checks, native-module diagnostics, marker recording, and installer execution.
+This scenario validates setup and native module health for `243`. It focuses on confirming prerequisite checks, native-module diagnostics, and marker recording.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Confirm prerequisite validation, native-module diagnostics, marker recording, and installer execution.
-- Real user request: `` Please validate Setup, Native Module Health, and MCP Installation against bash .opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate and tell me whether the expected signals are present: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`; installer completes or reports existing configuration. ``
-- Prompt: `Validate Setup, Native Module Health, and MCP Installation against bash .opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.`
+- Objective: Confirm prerequisite validation, native-module diagnostics, and marker recording.
+- Real user request: `` Please validate Setup and Native Module Health against bash .opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate and tell me whether the expected signals are present: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`. ``
+- Prompt: `Validate Setup and Native Module Health against bash .opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`; installer completes or reports existing configuration
+- Expected signals: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
-- Pass/fail: PASS if readiness, native-module health, marker recording, and installer behavior match the documented setup contract
+- Pass/fail: PASS if readiness, native-module health, and marker recording match the documented setup contract
 
 ---
 
@@ -33,7 +33,7 @@ This scenario validates setup, native module health, and MCP installation for `2
 ### Prompt
 
 ```
-Validate Setup, Native Module Health, and MCP Installation against bash .opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.
+Validate Setup and Native Module Health against bash .opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -41,11 +41,10 @@ Validate Setup, Native Module Health, and MCP Installation against bash .opencod
 1. `bash .opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate`
 2. `cd .opencode/skills/system-spec-kit && bash scripts/setup/check-native-modules.sh`
 3. `cd .opencode/skills/system-spec-kit && node scripts/setup/record-node-version.js`
-4. `cd .opencode/skills/system-spec-kit && bash scripts/setup/install.sh --skip-verify`
 
 ### Expected
 
-Prerequisite JSON is emitted; native probe prints diagnostic lines and recovery hint when needed; `.node-version-marker` is written; installer either completes or reports existing MCP configuration without silent failure
+Prerequisite JSON is emitted; native probe prints diagnostic lines and a recovery hint when needed; `.node-version-marker` is written
 
 ### Evidence
 
@@ -82,16 +81,14 @@ A `[SKIP]` module row is not a failure: it means that optional native module is 
 
 Command 3 was not run because `node scripts/setup/record-node-version.js` writes `.node-version-marker`, but the execution request allowed writes only to this scenario file.
 
-Command 4 was not run because `bash scripts/setup/install.sh --skip-verify` is an installer command that may modify MCP/setup configuration outside the only allowed write path.
-
 ### Pass / Fail
 
-- **Pass**: Readiness, native-module health, marker recording, and installer behavior match the documented setup contract.
+- **Pass**: Readiness, native-module health, and marker recording match the documented setup contract.
 - **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 
-Inspect `scripts/setup/check-prerequisites.sh`, `check-native-modules.sh`, `rebuild-native-modules.sh`, `record-node-version.js`, and `install.sh` if setup state or native-module health is misreported
+Inspect `scripts/setup/check-prerequisites.sh`, `check-native-modules.sh`, `rebuild-native-modules.sh`, and `record-node-version.js` if setup state or native-module health is misreported
 
 ---
 

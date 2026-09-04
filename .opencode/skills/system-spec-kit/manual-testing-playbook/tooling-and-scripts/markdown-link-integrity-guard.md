@@ -1,6 +1,6 @@
 ---
 title: "Markdown link integrity guard"
-description: "This scenario validates the markdown link integrity guard. It runs check-markdown-links.cjs and its --self-test, confirms a clean tree exits 0, and confirms an injected broken link makes the guard exit 1 before reverting."
+description: "This scenario validates the markdown link integrity guard. It runs check-markdown-links.cjs and its --self-test, records the current baseline, and confirms an injected broken link is named and counted before reverting."
 version: 3.6.0.1
 id: tooling-and-scripts-markdown-link-integrity-guard
 expected_workflow_mode: UNKNOWN
@@ -11,19 +11,19 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates the markdown link integrity guard. It focuses on running `check-markdown-links.cjs` and its `--self-test`, confirming the guard reports a clean tree, catches a newly broken link, and is not fooled by link syntax shown inside inline code.
+This scenario validates the markdown link integrity guard. It focuses on running `check-markdown-links.cjs` and its `--self-test`, recording the current baseline, confirming the guard catches a newly broken link, and confirming it is not fooled by link syntax shown inside inline code.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Confirm the guard exits 0 on a clean tree, exits 1 when a real markdown link target is missing, and ignores link syntax inside inline code.
-- Real user request: `Please validate the markdown link integrity guard against node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs and tell me whether the expected signals are present: clean tree exits 0; --self-test passes all cases; an injected broken link makes the guard exit 1 and names the link; inline-code link syntax is not flagged.`
+- Objective: Confirm the guard names every missing markdown link target, moves its count by exactly one when a link is injected, and ignores link syntax inside inline code.
+- Real user request: `Please validate the markdown link integrity guard against node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs and tell me whether the expected signals are present: the baseline is recorded; --self-test passes all cases; an injected broken link raises the count by one and is named; inline-code link syntax is not flagged.`
 - Prompt: `Validate the markdown link integrity guard against node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: clean tree exits 0 with a "0 broken" summary; --self-test exits 0 with all cases passing; an injected broken link produces exit 1 with the offending link named; inline-code link syntax is not flagged
+- Expected signals: the baseline summary line is recorded; --self-test exits 0 with all cases passing; an injected broken link raises the broken count by exactly one and names the offending link; inline-code link syntax is not flagged
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
-- Pass/fail: PASS if the clean tree exits 0, --self-test passes, an injected broken link exits 1 and is named, and the injection is reverted leaving the tree clean
+- Pass/fail: PASS if --self-test passes, an injected broken link raises the count by one and is named, and reverting returns the count to the recorded baseline
 
 ---
 
@@ -37,71 +37,31 @@ Validate the markdown link integrity guard against node .opencode/skills/system-
 
 ### Commands
 
-1. `node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs` and confirm exit 0 with a "0 broken" summary line
+1. `node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs` and record the summary line as the baseline broken count
 2. `node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs --self-test` and confirm exit 0 with all cases passing
 3. Append one line to an active scanned doc that links to a target which does not exist on disk (describe it as a relative path with no matching file)
-4. Re-run the whole-tree scan and confirm exit 1 with the injected link named in the output
-5. Revert the injected line and confirm the scan returns to exit 0
+4. Re-run the whole-tree scan and confirm the count is baseline + 1 with the injected link named in the output
+5. Revert the injected line and confirm the scan returns to the baseline count
 
 ### Expected
 
-clean tree exits 0; --self-test passes all cases; injected broken link produces exit 1 with the link named; reverting restores exit 0
+the baseline count is recorded; --self-test passes all cases; the injected broken link raises the count by one and is named; reverting restores the baseline
 
 ### Evidence
 
-Clean-tree scan command:
+Baseline scan command. The tree is not link-clean: six pre-existing broken links survive, so the baseline is exit 1 with a known set rather than exit 0. The injection legs below are what prove the guard, by showing a seventh link appear and then disappear against that fixed baseline.
 
 ```text
 $ node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs
-check-markdown-links: 3515 files, 7862 links checked, 48 broken
+check-markdown-links: 7888 files, 13414 links checked, 6 broken
 
 Broken markdown links (target resolves under neither the file dir nor repo root):
-  .opencode/skills/cli-opencode/assets/prompt-quality-card.md  ](../../sk-prompt/sk-prompt-models/references/models/kimi-k2.6.md)
-  .opencode/skills/cli-opencode/assets/prompt-quality-card.md  ](../../sk-prompt/sk-prompt-models/references/models/qwen3.6.md)
-  .opencode/skills/cli-opencode/manual-testing-playbook/manual-testing-playbook.md  ](external-dispatch/from-opencode-handback.md)
-  .opencode/skills/cli-opencode/manual-testing-playbook/manual-testing-playbook.md  ](integration-patterns/cross-ai-handback-opencode.md)
-  .opencode/skills/cli-opencode/manual-testing-playbook/manual-testing-playbook.md  ](external-dispatch/from-opencode-handback.md)
-  .opencode/skills/cli-opencode/manual-testing-playbook/manual-testing-playbook.md  ](integration-patterns/cross-ai-handback-opencode.md)
-  .opencode/skills/system-deep-loop/removed-context/SKILL.md  ](../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md)
-  .opencode/skills/system-deep-loop/deep-research/SKILL.md  ](../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md)
-  .opencode/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md  ](cross-cli-orchestration/cli-opencode-and-cli-opencode-handback.md)
-  .opencode/skills/sk-design/design-audit/SKILL.md  ](../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md)
-  .opencode/skills/sk-design/design-foundations/SKILL.md  ](../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md)
-  .opencode/skills/sk-design/sk-design-interface/README.md  ](../sk-code/README.md)
-  .opencode/skills/sk-design/sk-design-interface/README.md  ](../mcp-figma/README.md)
-  .opencode/skills/sk-design/sk-design-md-generator/SKILL.md  ](../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md)
-  .opencode/skills/sk-design/design-motion/SKILL.md  ](../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md)
-  .opencode/skills/sk-doc/sk-create-command/assets/command-template.md  ](frontmatter-templates.md)
-  .opencode/skills/sk-doc/sk-create-command/assets/command-template.md  ](./frontmatter-templates.md)
-  .opencode/skills/sk-doc/sk-create-command/assets/command-template.md  ](./skill/skill-md-template.md)
-  .opencode/skills/sk-doc/sk-create-command/assets/command-template.md  ](../references/global/core-standards.md)
-  .opencode/skills/sk-doc/sk-create-command/assets/command-template.md  ](../references/global/validation.md)
-  .opencode/skills/system-skill-advisor/feature-catalog/feature-catalog.md  ](./hooks-and-plugin/opencode-hook.md)
-  .opencode/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md  ](cli-hooks-and-plugin/opencode-hook-and-wrapper.md)
-  .opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-matrix-adapter-runners.md  ](opencode-hook-freshness-smoke-check.md)
-  .opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md  ](opencode-hook-freshness-smoke-check.md)
-  .opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md  ](tooling-and-scripts/opencode-hook-freshness-smoke-check.md)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names/)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names/)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names/)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-g5-confirm-failure-injection.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-g6-concurrent.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-g7-sigint.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-g8-migration-gap.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-g9-dashboard.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-tier-aware-default.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/version-migration-3-3-0-0-to-3-4-1-0.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/version-migration-cleanup-legacy.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/version-migration-no-op.md  ](../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md  ](../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md  ](../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md  ](../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
-  .opencode/skills/system-spec-kit/mcp-server/README.md  ](../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
-  .opencode/skills/system-spec-kit/mcp-server/database/migrations/README.md  ](../../../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split/spec.md)
-  .opencode/skills/system-spec-kit/mcp-server/database/migrations/README.md  ](../../../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md)
-  .opencode/skills/system-spec-kit/mcp-server/database/migrations/README.md  ](../../../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md)
-  .opencode/skills/system-spec-kit/mcp-server/database/vectors/README.md  ](../../../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/)
+  .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md  ](./llmstxt-templates.md)
+  .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md  ](../references/core-standards.md)
+  .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/README.md  ](../../../system-spec-kit/mcp-server/plugin-bridges/README.md)
+  .opencode/skills/system-spec-kit/assets/template-mapping.md  ](../templates/addons/checklist.md.tmpl)
+  .opencode/skills/system-spec-kit/assets/template-mapping.md  ](../templates/addons/checklist.md.tmpl)
+  .opencode/skills/system-spec-kit/assets/template-mapping.md  ](../templates/addons/checklist.md.tmpl)
 
 Fix the link, or — if it is an intentional placeholder/example — add it to the ALLOWLIST in this script.
 Observed exit code: 1
@@ -132,11 +92,11 @@ Injected scan command:
 
 ```text
 $ node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs
-check-markdown-links: 3515 files, 7863 links checked, 49 broken
+check-markdown-links: 7888 files, 13415 links checked, 7 broken
 
 Broken markdown links (target resolves under neither the file dir nor repo root):
   .opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md  ](./definitely-missing-link-target-for-guard-verification.md)
-  [plus the same pre-existing broken links shown by the clean-tree scan]
+  [plus the same six pre-existing broken links shown by the baseline scan]
 Observed exit code: 1
 ```
 
@@ -144,16 +104,16 @@ Reverted scan command:
 
 ```text
 $ node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs
-check-markdown-links: 3515 files, 7862 links checked, 48 broken
+check-markdown-links: 7888 files, 13414 links checked, 6 broken
 
 Broken markdown links (target resolves under neither the file dir nor repo root):
-  [same 48 pre-existing broken links shown by the clean-tree scan]
+  [the same six pre-existing broken links shown by the baseline scan]
 Observed exit code: 1
 ```
 
 ### Pass / Fail
 
-- **Pass**: The clean tree exits 0, --self-test passes, an injected broken link exits 1 and is named, and the injection is reverted leaving the tree clean.
+- **Pass**: The baseline is recorded, --self-test passes, an injected broken link raises the count by one and is named, and reverting returns the count to the baseline.
 - **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage

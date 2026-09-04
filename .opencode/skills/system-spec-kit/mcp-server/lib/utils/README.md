@@ -163,7 +163,6 @@ const escaped = escapeRegex('file.name (1)');
 | Document | Purpose |
 |----------|---------|
 | [../README.md](../README.md) | Parent lib directory overview |
-| [../providers/](../providers/) | Uses path security for file loading |
 | [../parsing/](../parsing/) | Uses `escapeRegex` for trigger matching |
 
 ### Security References

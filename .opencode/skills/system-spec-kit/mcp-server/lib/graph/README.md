@@ -1,46 +1,42 @@
 ---
-title: "Graph Analysis"
-description: "Community detection, graph signal scoring, temporal edges, contradiction detection, usage tracking, and community summaries for causal memory networks."
+title: "Graph Metadata"
+description: "Parser, schema, drift gate and access-telemetry store for the graph-metadata.json a spec folder carries."
 trigger_phrases:
-  - "community detection"
-  - "graph signals"
-  - "causal depth"
-  - "momentum scoring"
-  - "louvain"
+  - "graph metadata"
+  - "graph-metadata.json"
+  - "generated metadata drift"
+  - "access telemetry"
+  - "source doc hashes"
 ---
 
-# Graph Analysis
+# Graph Metadata
 
-> Community detection and graph signal scoring for causal memory networks. Provides BFS connected-component labelling, single-level Louvain modularity and momentum/depth scoring.
+> Everything that reads, validates, or proves the freshness of a spec folder's `graph-metadata.json`.
 
 ---
 
 ## 1. OVERVIEW
 
-The graph module operates on the `causal_edges` and `memory_index` tables to detect communities, compute scoring signals, manage temporal edge validity, detect contradictions, track usage, and generate community summaries. All features are independently gated behind `SPECKIT_*` feature flags.
+`lib/graph/` owns one generated artifact: the `graph-metadata.json` a spec folder carries beside its documents. Four modules cover its full life — a schema that says what the file may contain, a parser that derives runtime fields from it, a drift gate that proves the file still matches the documents it summarizes, and a telemetry store that keeps read-time signals out of the file entirely.
 
-In Gate E, these graph signals support retrieval after `/speckit:resume` restores context from `handover.md` -> `_memory.continuity` -> spec docs. Generated memory artifacts remain supporting only.
+The separation is the point. A generated file that changes on every read cannot be checked against its sources, because its fingerprint moves for reasons that have nothing to do with content. So the parser derives, the drift gate reads and reports without ever writing, and access events land in a sidecar store.
 
 ### What It Does
 
-- **Community detection** groups memory nodes into clusters using BFS connected-component labelling as a fast first pass, then escalates to single-level Louvain modularity when the largest component holds more than 50% of all nodes.
-- **Community summaries** generate readable text summaries per community by aggregating member titles and extracting top topics. Stored in `community_summaries` table.
-- **Community storage** provides persistence and retrieval for community data.
-- **Graph signals** compute two additive score bonuses for search results: momentum (recent degree change) and causal depth (normalized longest-path depth on the SCC-condensed causal DAG).
-- **Temporal edges** add `valid_at`/`invalid_at` columns to `causal_edges` for bi-temporal validity management.
-- **Contradiction detection** auto-invalidates old edges when superseding or conflicting edges are created.
-- **Usage tracking** counts memory access and computes a log-scale ranking boost (0-0.10).
-- **Usage ranking signal** provides the boost computation formula for the ranking pipeline.
+- **Schema** declares the closed sets: valid `derived.status` values, save-lineage values, and the caps on trigger phrases, key topics, key files and entities. One declaration, so the schema, the status normalizer, the integrity rule and the parser cannot disagree about what a valid status is.
+- **Parser** reads a packet's `graph-metadata.json` and derives normalized runtime fields: lowercase checklist-aware status, sanitized key files, deduplicated entities, and capped trigger phrases.
+- **Drift gate** re-derives a folder's two synopsis fields and compares them against what is stored, so a file that fell out of sync with its documents is provable rather than silently stale. `source_doc_hashes` is the freshness key that lets a strict run skip the re-derive when no source document moved.
+- **Access telemetry** records `last_accessed_at` and the phase-parent `last_active_child_id` / `last_active_at` pointers in an index-layer store. A read or a resume updates the signal without rewriting the generated file.
 
 ### Design Decisions
 
 | Decision | Rationale |
 |----------|-----------|
-| BFS-first, Louvain-second | BFS runs in O(V+E) and handles well-partitioned graphs. Louvain is only invoked when BFS produces a single dominant component. |
-| Index-based queue traversal | Avoids O(n) cost of `Array.shift()` during BFS. |
-| Session-scoped caching | Momentum and depth caches prevent redundant DB queries within a single session. Caches clear at 10,000 entries. |
-| Debounce via edge fingerprint | Community detection skips re-computation when edge count, max ID and checksum are unchanged. |
-| Co-retrieval boost capped at 3 | Prevents community members from overwhelming primary search results. Boost factor of 0.3x was chosen empirically. |
+| Telemetry outside the generated file | A read event that rewrites `graph-metadata.json` would dirty the file it was only supposed to observe, and break every fingerprint check downstream. |
+| Drift gate never writes | A gate that repairs what it measures cannot report honestly on the next run. |
+| Severity resolved by the caller | The same check backs both the grandfather report rollout and the enforced run; only the caller knows which it is. |
+| Best-effort telemetry writes | An unwritable store leaves the generated file byte-identical rather than failing a read. |
+| Closed status set in one place | Prose statuses ("shipped — see summary") are rejected at the boundary instead of being admitted as any non-empty string. |
 
 ---
 
@@ -48,31 +44,21 @@ In Gate E, these graph signals support retrieval after `/speckit:resume` restore
 
 ```
 graph/
-  bfs-traversal.ts            # Reusable hop-capped weighted BFS walk utility (distinct from community-detection's internal BFS)
-  community-detection.ts      # BFS + Louvain community detection, persistence, co-retrieval boost
-  community-summaries.ts      # Template-based community summary generation
-  community-storage.ts        # Community persistence and retrieval
-  contradiction-detection.ts  # Superseding/conflicting edge detection + auto-invalidation
-  graph-metadata-parser.ts    # Parse packet graph-metadata.json into graph-aware runtime signals
-  graph-metadata-schema.ts    # Shared schema + validation for graph-metadata.json
-  graph-signals.ts            # Momentum and causal depth scoring, degree snapshots
-  temporal-edges.ts           # valid_at/invalid_at edge validity management
-  usage-ranking-signal.ts     # Log-scale usage boost computation
-  usage-tracking.ts           # Memory access count tracking
-  README.md                   # This file
+  access-telemetry.ts          # Index-layer store for access and freshness signals
+  generated-metadata-drift.ts  # Synopsis drift gate and source_doc_hashes freshness key
+  graph-metadata-parser.ts     # Parse graph-metadata.json into normalized runtime fields
+  graph-metadata-schema.ts     # Zod schema, status set, and field caps
+  README.md                    # This file
 ```
 
 ### Key Files
 
 | File | Purpose | Flag |
 |------|---------|------|
-| `bfs-traversal.ts` | Reusable hop-capped weighted BFS graph traversal (seeds, per-node min-hop and max walk score); an extracted utility distinct from community-detection's internal component BFS | Always on |
-| `community-detection.ts` | BFS connected-component labelling, Louvain escalation, community co-member injection | `SPECKIT_COMMUNITY_DETECTION` |
-| `community-summaries.ts` | Generates text summaries per community from member titles/topics, stores in `community_summaries` table | `SPECKIT_COMMUNITY_SUMMARIES` |
-| `community-storage.ts` | Stores and retrieves community data (assignments, membership) | `SPECKIT_COMMUNITY_SUMMARIES` |
-| `contradiction-detection.ts` | Detects superseding and conflicting edge relations, auto-invalidates old edges via `temporal-edges.ts` | `SPECKIT_TEMPORAL_EDGES` |
-| `graph-metadata-parser.ts` | Reads `graph-metadata.json` packet artifacts and derives normalized runtime fields: checklist-aware lowercase status, sanitized key files, deduplicated entities, and trigger phrases capped at 12 | Always on |
-| `graph-metadata-schema.ts` | Defines the schema and validators that keep `graph-metadata.json` contract-stable | Always on |
+| `graph-metadata-schema.ts` | Declares `GRAPH_METADATA_SCHEMA_VERSION`, the `derived.status` set, the save-lineage set, and the trigger-phrase (12), key-topic (12), key-file (20) and entity (24) caps | Always on |
+| `graph-metadata-parser.ts` | Reads `graph-metadata.json` and derives normalized runtime fields | Always on |
+| `generated-metadata-drift.ts` | Re-derives the synopsis fields, reports drift, computes `source_doc_hashes` | `SPECKIT_GENERATED_METADATA_DRIFT_GATE` |
+| `access-telemetry.ts` | Records and reads access and freshness signals outside the generated file | `SPECKIT_GENERATOR_HARDENING` |
 
 ### Graph Metadata Derivation Highlights
 
@@ -80,62 +66,36 @@ graph/
 - `key_files` are sanitized before dedupe and truncation so shell commands, version literals, title-shaped values, and other non-path noise do not occupy the 20-slot cap.
 - `entities` are deduplicated by entity name with canonical packet-doc paths preferred over basename-only candidates when both exist.
 - `trigger_phrases` are deduplicated and capped at 12 derived values.
-| `graph-signals.ts` | Degree snapshots, momentum scoring (recent degree delta), causal depth via SCC condensation | `SPECKIT_GRAPH_SIGNALS` |
-| `temporal-edges.ts` | Adds `valid_at`/`invalid_at` columns to `causal_edges`, provides `invalidateEdge()` and `getValidEdges()` | `SPECKIT_TEMPORAL_EDGES` |
-| `usage-ranking-signal.ts` | `computeUsageBoost()` - log-scale normalization producing 0.0-0.10 boost | `SPECKIT_USAGE_RANKING` |
-| `usage-tracking.ts` | Adds `access_count` column to `memory_index`, provides `incrementAccessCount()` and `getAccessCount()` | `SPECKIT_USAGE_RANKING` |
 
 ### Exported Functions
 
 | Function | File | Description |
 |----------|------|-------------|
-| `detectCommunities` | community-detection.ts | Top-level orchestrator: BFS then conditional Louvain, with debounce |
-| `detectCommunitiesBFS` | community-detection.ts | BFS connected-component labelling from database |
-| `detectCommunitiesLouvain` | community-detection.ts | Single-level Louvain modularity on a pre-built adjacency list |
-| `shouldEscalateToLouvain` | community-detection.ts | Returns true if the largest component holds >50% of nodes |
-| `storeCommunityAssignments` | community-detection.ts | Persists node-to-community mappings with INSERT OR REPLACE |
-| `getCommunityMembers` | community-detection.ts | Returns memory IDs sharing the same community as a given node |
-| `applyCommunityBoost` | community-detection.ts | Injects up to 3 community co-members into result rows |
-| `resetCommunityDetectionState` | community-detection.ts | Resets module-level debounce state (test-only) |
-| `snapshotDegrees` | graph-signals.ts | Records current degree counts into `degree_snapshots` |
-| `computeMomentum` | graph-signals.ts | Computes single-node momentum from recent degree deltas |
-| `computeMomentumScores` | graph-signals.ts | Batch momentum computation with session caching |
-| `computeDepthScores` | graph-signals.ts | Batch normalized causal depth via SCC condensation and longest-path DAG traversal |
-| `applyGraphSignals` | graph-signals.ts | Applies momentum (+0.05 max) and depth (+0.05 max) bonuses to result rows |
-| `clearGraphSignalsCache` | graph-signals.ts | Clears momentum and depth session caches |
-| `ensureSummaryTable` | community-summaries.ts | Creates `community_summaries` table if not exists |
-| `generateSummaries` | community-summaries.ts | Generates text summaries per community from member titles |
-| `getStoredSummaries` | community-summaries.ts | Returns all stored community summaries |
-| `ensureTemporalColumns` | temporal-edges.ts | Adds valid_at/invalid_at columns to causal_edges |
-| `invalidateEdge` | temporal-edges.ts | Marks an edge as invalidated with ISO timestamp |
-| `getValidEdges` | temporal-edges.ts | Returns edges where invalid_at IS NULL |
-| `detectContradictions` | contradiction-detection.ts | Checks if new edge contradicts existing edges, auto-invalidates |
-| `ensureUsageColumn` | usage-tracking.ts | Adds access_count column to memory_index |
-| `incrementAccessCount` | usage-tracking.ts | Increments access count for a spec-doc record |
-| `getAccessCount` | usage-tracking.ts | Returns access count for a spec-doc record |
-| `computeUsageBoost` | usage-ranking-signal.ts | Log-scale boost (0.0-0.10) from access count |
+| `computeSourceDocHashes` | generated-metadata-drift.ts | Hashes the packet docs a synopsis can read, producing the freshness key |
+| `checkGeneratedMetadataDrift` | generated-metadata-drift.ts | Re-derives and compares the stored synopsis fields; reads only |
+| `resolveGeneratedMetadataDrift` | generated-metadata-drift.ts | Turns a drift report into a caller-chosen severity |
+| `resolveTelemetryStorePath` | access-telemetry.ts | Resolves the store file, overridable so tests point at a temp path |
+| `recordAccessEvent` | access-telemetry.ts | Records `last_accessed_at` for a spec folder; best-effort |
+| `recordFreshnessPointer` | access-telemetry.ts | Records the phase-parent `last_active_child_id` / `last_active_at` pair |
+| `readAccessRecord` | access-telemetry.ts | Returns the stored record for one folder |
+| `resolveLastActiveChildFromStore` | access-telemetry.ts | Resolves the resume pointer a phase parent redirects through |
 
 ---
 
 ## 3. KEY CONCEPTS
 
-### Score Adjustments
+### Freshness key
 
-| Signal | Formula | Range | Purpose |
-|--------|---------|-------|---------|
-| Momentum bonus | `clamp(momentum * 0.01, 0, 0.05)` | 0 to +0.05 | Rewards nodes gaining connections |
-| Depth bonus | `normalizedDepth * 0.05` | 0 to +0.05 | Rewards structurally deep nodes |
-| Community boost | `0.3 * originalRow.score` | Varies | Surfaces community co-members in results |
+`source_doc_hashes` records a hash per readable packet document. A strict run compares the stored hashes against the current ones and re-derives only when one moved. The key is deliberately conservative: a hash change that turns out not to change the synopsis costs one re-derive, whereas a missed change would certify a stale file.
 
-### Database Tables Used
+### Where each signal lives
 
-| Table | Module | Usage |
-|-------|--------|-------|
-| `causal_edges` | Multiple | Source of graph structure; temporal-edges adds valid_at/invalid_at |
-| `community_assignments` | community-detection.ts | Persisted node-to-community mappings |
-| `community_summaries` | community-summaries.ts | Generated community text summaries with topics |
-| `degree_snapshots` | graph-signals.ts | Historical degree counts per snapshot date |
-| `memory_index` | usage-tracking.ts, community-detection.ts | access_count column, stale assignment cleanup |
+| Signal | Home | Why |
+|--------|------|-----|
+| `description`, `causal_summary` | `graph-metadata.json` | Derived from the documents; drift against them is the thing being gated |
+| `source_doc_hashes` | `graph-metadata.json` | The freshness key must travel with the file it attests |
+| `last_accessed_at` | Access telemetry store | Changes on read; would otherwise dirty the generated file |
+| `last_active_child_id`, `last_active_at` | Access telemetry store | Change on resume, for the same reason |
 
 ---
 
@@ -145,9 +105,9 @@ graph/
 
 | Document | Purpose |
 |----------|---------|
-| [../scoring/README.md](../scoring/README.md) | Composite scoring that consumes graph signal outputs |
-| [../cognitive/README.md](../cognitive/README.md) | FSRS scheduler and attention decay |
-| [../storage/README.md](../storage/README.md) | Schema definitions for causal_edges and related tables |
+| [../description/README.md](../description/README.md) | The synopsis extractor the drift gate re-derives through |
+| [../validation/README.md](../validation/README.md) | The `GENERATED_METADATA_INTEGRITY` and drift rules that consume these reports |
+| [../storage/README.md](../storage/README.md) | Atomic write helpers used when a generated file is rewritten |
 
 ### Parent Module
 

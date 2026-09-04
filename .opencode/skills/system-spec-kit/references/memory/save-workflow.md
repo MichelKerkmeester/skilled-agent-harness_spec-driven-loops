@@ -33,7 +33,7 @@ The save workflow stays compatible with private and agent-scoped operation. When
 
 ### Execution Paths
 
-The indexed-continuity store supports **2 independent execution paths**. Any method can be used standalone.
+The continuity writer supports **2 independent execution paths**. Any method can be used standalone.
 
 ### Method Comparison
 

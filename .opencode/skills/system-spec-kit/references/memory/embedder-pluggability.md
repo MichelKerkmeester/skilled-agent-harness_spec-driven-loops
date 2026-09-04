@@ -76,16 +76,14 @@ maxInputChars        -> 8000
 
 > **History.** ADR-012 originally ratified `jina-embeddings-v3` (1024d Q4_K_M); ADR-013 made `nomic-embed-text-v1.5` the within-Ollama default; ADR-014 reorders the outer cascade so Ollama beats cloud APIs by default.
 
-Rescue layer is default-on (`SPECKIT_RERANK_LAYER` unset or `true`). Kill switch: `SPECKIT_RERANK_LAYER=false`.
-
 ### MANIFESTS registry pattern
 
-Source of truth: `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts`. The `mcp-server/lib/embedders/registry.ts` path is only a re-export shim that points at `@spec-kit/shared`. The `MANIFESTS` constant is a frozen `ReadonlyArray<EmbedderManifest>`. Each manifest declares:
+Source of truth: `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts`. A consumer's local `mcp-server/lib/embedders/registry.ts` — the skill advisor keeps one — is only a re-export shim pointing at `@spec-kit/shared`. The `MANIFESTS` constant is a frozen `ReadonlyArray<EmbedderManifest>`. Each manifest declares:
 
 ```typescript
 {
-  name: string,           // canonical name; matches active_embedder_name
-  dim: number,            // vector dimension; routes to vec_<dim> table
+  name: string,           // canonical name; matches the consumer's active-embedder pointer
+  dim: number,            // vector dimension; routes to the consumer's dim-tagged table
   backend: BackendKind,   // 'ollama' | 'api' | 'sentence-transformers'
   ollamaName?: string,    // Ollama model tag (when backend === 'ollama')
   apiUrl?: string,        // endpoint URL (when backend === 'api')
@@ -98,7 +96,7 @@ Source of truth: `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts
 
 One candidate is registered today: `nomic-embed-text-v1.5` (`ollama` backend, 768d). A swap rejects any other name with `UNKNOWN_EMBEDDER`. Additional models can be added by appending manifests to `shared/embeddings/registry.ts`.
 
-Adding a new candidate is a single registry row plus, if the backend is new, a single adapter file under `.opencode/skills/system-spec-kit/mcp-server/lib/embedders/adapters/`. No call sites change. The adapter contract is small (see §2: EmbedderAdapter interface).
+Adding a new candidate is a single registry row plus, if the backend is new, a single adapter file under `.opencode/skills/system-spec-kit/shared/embeddings/adapters/`. No call sites change. The adapter contract is small (see §2: EmbedderAdapter interface).
 
 ### Administration surface
 
@@ -107,16 +105,16 @@ Three operations wrap the registry: list the registered manifests with their `re
 | Operation | Purpose |
 |---|---|
 | List | Return all registered manifests plus their `ready()` state. |
-| Set | Swap active embedder; queues a re-index job and updates `active_embedder_name` on success. |
-| Status | Return current `active_embedder_name`, `active_embedder_dim`, and the most recent swap-job status. |
+| Set | Swap active embedder; re-embeds the consumer's store and updates its active-embedder pointer on success. |
+| Status | Return the current active name, dimension, and the most recent swap-job status. |
 
-Operator flow is "list, set, watch." The set operation is asynchronous: it returns a job ID, the orchestrator re-indexes every row through the new adapter, and the active pointer flips only when the job reaches `completed`.
+Operator flow is "list, set, watch." The set operation is asynchronous: it returns a job ID, the orchestrator re-embeds every row through the new adapter, and the active pointer flips only when the job reaches `completed`.
 
-**The spec kit exposes no tool for any of this.** These three operations were served by the retired memory MCP surface. The shared embedding stack now sits under the skill advisor, which owns the registry, the adapters, the dim-tagged schema under `shared/embeddings/` and the model server. Configure it through the environment variables in `../config/environment-variables.md`, and read health from the advisor's own status surface: `node .opencode/bin/skill-advisor.cjs advisor_status --format json`.
+**The spec kit exposes no tool for any of this, and `shared/` owns no store.** The stack produces vectors; the consuming service owns the pointer, the tables, and the swap. The skill advisor is that consumer today, holding the registry shim, the dim-tagged schema and its `skill-graph.sqlite`. Configure the stack through the environment variables in `../config/environment-variables.md`, and read health from the advisor's own status surface: `node .opencode/bin/skill-advisor.cjs advisor_status --format json`.
 
 ### EmbedderAdapter interface
 
-Contract every backend honors, defined in `mcp-server/lib/embedders/adapter.ts` (commit `3d9e89d1f`):
+Contract every backend honors, defined in `shared/embeddings/adapter.ts`:
 
 ```typescript
 interface EmbedderOptions {
@@ -136,25 +134,13 @@ interface EmbedderAdapter {
 
 A vector retrieval pipeline only calls `embed()` and `ready()`. It does not know which backend is underneath. Implementations live under the shared embedding adapters.
 
-### Dim-tagged vec_<dim> schema — no migration when swapping dim
+### Dim-tagged schema — no migration when swapping dim
 
-The vector store uses sqlite-vec tables named `vec_<dim>`. Today the schema includes `vec_384`, `vec_768`, and `vec_1024`. Each table is created lazily on first reference to that dimension.
+The convention a consumer's store follows is one sqlite-vec table per dimension, named `vec_<dim>` and created lazily on first reference. `shared/embeddings/profile.ts` derives a matching shard filename that encodes provider, model and dimension, so two profiles can coexist on disk without colliding.
 
-Switching embedders does not migrate vectors. It runs a re-index that writes fresh embeddings into the table matching the new manifest's `dim`. The previous table remains in the database as evidence and can be referenced by rollback. Active reads always go through the `vec_<active_embedder_dim>` table.
+Switching embedders does not migrate vectors. It re-embeds into the table matching the new manifest's `dim`. The previous table stays as evidence and can be referenced by rollback. Active reads always go through the table for the currently active dimension.
 
-This is why a 768→1024 swap is reversible without data loss and why the swap orchestrator is crash-resumable: it tracks per-row progress and can restart from the last persisted offset.
-
-### Retrieval rescue layer (default-on per ADR-011)
-
-The rescue layer is a runtime-gated stage 2b/3 that hydrates ranked candidates with same-folder siblings, lexical backfill from `memory_index`, and trigger-lane weighting that ignores generic one-token triggers. It is additive to the dense-embedding pipeline; the embedder itself is unchanged.
-
-Path A (cross-encoder reranker) was explicitly rejected — unnecessary for the closure gate and would have added runtime/model complexity. Path B (trigger-lane weighting) and Path C (sibling/backfill rescue) shipped.
-
-Cost profile measured on a 30-scenario stratified sample (ADR-011):
-- Quality: OFF `27/30`, ON `28/30` (`+1` net, no regressions).
-- Latency: median `426.5 ms` → `922.5 ms` (`2.16x`); p95 `1411 ms` → `3045 ms` (`2.16x`).
-
-Verdict: GATE default-on. Document the latency cost; preserve `SPECKIT_RERANK_LAYER=false` as the explicit kill switch.
+This is why a 768→1024 swap is reversible without data loss, and why a swap orchestrator can be made crash-resumable: it tracks per-row progress and restarts from the last persisted offset.
 
 ### ADR trail summary (016/004)
 
@@ -179,21 +165,16 @@ Per-row empirical results live in `evidence/embedder-comparison-with-rescue.json
 
 ---
 
-## 3. CODE GRAPH (no embedder since 014)
-
-
----
-
-## 4. OPERATING MODES
+## 3. OPERATING MODES
 
 ### First-install flow
 
 | Step | Action |
 |---|---|
-| 1 | Install the consuming MCP server (per its install guide). |
+| 1 | Install the consuming service (per its install guide). |
 | 2 | Pull the default Ollama model: `ollama pull nomic-embed-text:v1.5`. |
-| 3 | Start the MCP server; the active profile reads back as `nomic-embed-text-v1.5`. |
-| 4 | Optional: confirm `SPECKIT_RERANK_LAYER` unset (default-on). |
+| 3 | Start the consumer; the active profile reads back as `nomic-embed-text-v1.5`. |
+| 4 | Confirm health: `node .opencode/bin/skill-advisor.cjs advisor_status --format json`. |
 
 No code changes. No schema migrations. A fresh clone reaches a ready state from the documented commands above.
 
@@ -202,7 +183,7 @@ No code changes. No schema migrations. A fresh clone reaches a ready state from 
 ```text
 1. list      // confirm candidate is registered + ready
 2. set       // returns job ID; runs async
-3. (poll)    // watch active_embedder_name flip
+3. (poll)    // watch the active pointer flip
 4. probe     // sanity-check a known-good vector query
 ```
 
@@ -212,11 +193,11 @@ The swap is a single call and crash-resumable.
 
 ### Rollback flow
 
-Rollback is a same-shape set call that re-points active back to the prior embedder. The previous `vec_<dim>` table is preserved, so rollback is fast when same-to-same (the re-index orchestrator can short-circuit if the destination table already has fresh vectors for the current corpus). Eight rollbacks executed cleanly across ADR-001..ADR-008.
+Rollback is a same-shape set call that re-points active back to the prior embedder. The previous dim-tagged table is preserved, so rollback is fast when same-to-same: the orchestrator can short-circuit if the destination table already holds fresh vectors for the current corpus. Eight rollbacks executed cleanly across ADR-001..ADR-008.
 
 ---
 
-## 5. OUT-OF-BOX SUPPORT MATRIX
+## 4. OUT-OF-BOX SUPPORT MATRIX
 
 The table below lists the embedder that works without code changes because the registry already includes the candidate. Only one manifest is registered today (`MANIFESTS` in `shared/embeddings/registry.ts`); a swap throws `UNKNOWN_EMBEDDER` for any name not in this list.
 
@@ -228,7 +209,7 @@ The candidates evaluated during the 016/004 bake-off (`jina-embeddings-v3`, `bge
 
 ---
 
-## 6. TRADE-OFFS
+## 5. TRADE-OFFS
 
 ### Fit guidance
 
@@ -244,22 +225,23 @@ Larger embedders trade RAM and disk for stronger recall on long-tail queries. Us
 
 ### Latency vs recall
 
-The rescue layer on the memory side is the clearest example of the trade. ADR-011 measured `+1` quality at `~2.16x` median latency. The verdict was GATE default-on with a documented kill switch. Embedder choice itself rarely produces latency that large; the dominant cost is the rescue stage when active. If you need to chase tail latency, the lever to pull first is `SPECKIT_RERANK_LAYER=false`, not the embedder.
+Embedder choice is rarely the dominant latency term. The 016/004 bake-off measured swings of a few hundred milliseconds between candidates while the retrieval stages around them moved the number by more. Measure the consumer's whole query path before blaming the model: a swap that trades 100 ms for worse recall is a bad trade, and one made without a baseline is not a trade at all.
 
 ---
 
-## 7. APPENDIX: VALIDATED AGAINST
+## 6. APPENDIX: VALIDATED AGAINST
 
-This document was authored against the following source files at the commits below. If the source files drift, this document needs updating.
+This document was authored against the following source files. If they drift, this document needs updating.
 
-| Source | Commit | Path |
-|---|---|---|
-| Memory adapter interface | `3d9e89d1f` | `.opencode/skills/system-spec-kit/mcp-server/lib/embedders/adapter.ts` |
-| Memory MANIFESTS registry | `4a4e166ab` | `.opencode/skills/system-spec-kit/mcp-server/lib/embedders/registry.ts` |
-| Memory ADR trail (001–012) | `1aa46e523` | Internal design notes |
-| Memory ADR evidence | `1aa46e523` | (sibling) `evidence/embedder-comparison-with-rescue.jsonl` |
+| Source | Path |
+|---|---|
+| Adapter interface | `.opencode/skills/system-spec-kit/shared/embeddings/adapter.ts` |
+| MANIFESTS registry | `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts` |
+| Provider cascade | `.opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts` |
+| ADR trail (001–012) | Internal design notes, commit `1aa46e523` |
 
 ### Cross-links
 
-- Memory registry source: [`registry.ts`](../../mcp-server/lib/embedders/registry.ts)
-- Memory adapter interface: [`adapter.ts`](../../mcp-server/lib/embedders/adapter.ts)
+- Registry source: [`registry.ts`](../../shared/embeddings/registry.ts)
+- Adapter interface: [`adapter.ts`](../../shared/embeddings/adapter.ts)
+- Provider cascade: [`auto-select.ts`](../../shared/embeddings/auto-select.ts)

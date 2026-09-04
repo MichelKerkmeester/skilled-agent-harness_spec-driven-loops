@@ -45,7 +45,7 @@ Check deep-loop graph status. There's no recent research iteration data.
 1. Create a disposable copy of the repository or a minimal sandbox with no deep-loop iteration folders.
 2. Confirm no source iteration files exist:
    - `test -z "$(find .opencode/specs -path '*/research/iterations/*.md' -o -path '*/review/iterations/*.md' | head -1)"`
-3. Remove or isolate only `mcp-server/database/deep-loop-graph.sqlite` in the disposable workspace.
+3. Remove or isolate only `.opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` in the disposable workspace.
 4. Confirm the graph status is empty with `deep_loop_graph_status({})` or equivalent.
 5. Run `/doctor deep-loop --scope=both` through the real runtime.
 6. Capture the full diagnostic report and state log.

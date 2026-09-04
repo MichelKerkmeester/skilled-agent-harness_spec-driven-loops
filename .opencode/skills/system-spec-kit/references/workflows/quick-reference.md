@@ -116,10 +116,8 @@ If the runtime does not surface command menus clearly, use this compact command 
 - `/deep:agent-improvement` - run bounded evaluator-first agent improvement
 
 **Memory commands**
-- `/memory:save` - preserve the current session context into spec memory and refresh packet continuity
-- `/memory:search` - retrieve prior context, decisions, and analysis
-- `/memory:manage` - run maintenance, checkpoint, cleanup, and ingest operations
-- `/memory:learn` - create or manage constitutional reference rules
+- `/memory:save` - write the current session context into the packet's continuity documents
+- `/memory:search` - retrieve prior context, decisions, and analysis by ripgrep over spec and skill docs
 
 **Nested changelog generator**
 - `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js <spec-folder> --write` - publish a packet-local changelog for a root spec or phase child
@@ -485,7 +483,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /t
 
 Use `generate-context.js` for routine metadata and index saves. Quick direct edits are allowed only for `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md`.
 
-> **Recovery Integration:** Packet recovery is canonical-first. Start from `handover.md`, then `_memory.continuity` in `implementation-summary.md`, then the rest of the packet docs before widening into supporting indexed retrieval.
+> **Recovery Integration:** Packet recovery is canonical-first. Start from `handover.md`, then `_memory.continuity` in `implementation-summary.md`, then the rest of the packet docs before widening with a ripgrep sweep over the specs tree.
 
 **Phased Resume**: When the target folder has child phases, first resolve
 whether you need the coordination root or an active child.
@@ -736,7 +734,7 @@ When in doubt:
 
 ### Related Skills
 - `sk-code` - Implementation, debugging, and verification lifecycle
-- `system-spec-kit` - Context preservation with semantic memory
+- `system-spec-kit` - Context preservation in the packet's own documents
 - `sk-git` - Git workspace setup and clean commits
 
 ---
