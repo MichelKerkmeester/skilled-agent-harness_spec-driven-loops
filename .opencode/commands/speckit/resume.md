@@ -1,6 +1,6 @@
 ---
 description: "Resume or recover work on a spec folder: canonical continuity recovery with one next step."
-argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__system_spec_memory__memory_context, mcp__system_spec_memory__memory_search, mcp__system_spec_memory__memory_match_triggers, mcp__system_spec_memory__memory_list, mcp__system_spec_memory__session_bootstrap, opencode_goal_status
 ---
 

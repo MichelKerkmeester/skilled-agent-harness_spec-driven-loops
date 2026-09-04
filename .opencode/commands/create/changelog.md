@@ -1,6 +1,6 @@
 ---
 description: Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.
-argument-hint: "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm]"
 ---
 
 # /create:changelog Router
@@ -63,4 +63,3 @@ The router must not invent visible wording for those surfaces; it only selects t
 
 The bound workflow YAML (`create-changelog-auto.yaml` for `:auto`, `create-changelog-confirm.yaml` for `:confirm` or an omitted mode) runs the changelog workflow step by step after Phase 0 verification and setup resolution, producing global or packet-local changelogs with topology-aware release options. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, release-option display, and result display come from the presentation contract, not this router.
 
-User request: $ARGUMENTS

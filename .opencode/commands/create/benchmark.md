@@ -1,6 +1,6 @@
 ---
 description: Author or update family-keyed benchmark packages. Modes :auto, :confirm.
-argument-hint: "<skill-or-mode> <spec-packet> [create|update] --family=<FAMILIES-key> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<skill-or-mode> <spec-packet> [create|update] --family=<family> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -66,4 +66,3 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 The bound workflow YAML (`create-benchmark-auto.yaml` for `:auto`, `create-benchmark-confirm.yaml` for `:confirm` or an omitted mode) routes `mcp_promotion` through the existing benchmark-folder workflow. `:auto` executes autonomously; `:confirm` runs the same branch with checkpoints. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract.
 
-User request: $ARGUMENTS

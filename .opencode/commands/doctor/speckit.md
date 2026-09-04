@@ -85,4 +85,3 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor-spe
 
 The router resolves a subsystem `target` against `_routes.yaml`, binds that target's workflow YAML plus its setup variables, allowed flags, and mutation class, then loads and executes the resolved `doctor_<target>.yaml` step by step under an always-interactive mode. `list`, `?`, or `--list` render the subsystem manifest instead of dispatching. All visible wording is owned by the presentation contract; subsystem-specific behavior lives in each target workflow.
 
-User request: $ARGUMENTS

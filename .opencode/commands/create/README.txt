@@ -1,6 +1,6 @@
 ---
 title: "Create Commands"
-description: "Slash commands for scaffolding OpenCode components, documentation packages, and changelogs."
+description: "Slash commands for scaffolding OpenCode components, docs, changelogs, charts, diagrams, diffs and repo rules."
 trigger_phrases:
   - "create command"
   - "scaffold component"
@@ -10,17 +10,24 @@ trigger_phrases:
   - "create feature catalog"
   - "create testing playbook"
   - "create changelog"
+  - "create chart"
+  - "create diagram"
+  - "create diff"
+  - "create repo rule"
+  - "apply human voice"
 ---
 
 # Create Commands
 
-> Slash commands for scaffolding OpenCode components, documentation packages, and changelog entries with proper templates and validation.
+> Slash commands for scaffolding OpenCode components, documentation packages, changelog entries, charts, diagrams, diff reports and repo rules with proper templates and validation.
 
 ---
 
 ## 1. OVERVIEW
 
-The `create` command group scaffolds OpenCode components, documentation packages, and changelog entries. All commands follow a structured YAML workflow and support `:auto` (no approval prompts) and `:confirm` (pause at each step) execution modes.
+The `create` command group scaffolds OpenCode components, documentation packages, changelog entries, and standalone visual and prose artifacts. All commands follow a structured YAML workflow and support `:auto` (no approval prompts) and `:confirm` (pause at each step) execution modes.
+
+The table in section 3 lists every command in this folder. When a command file is added here, add its row there too; a missing row is the failure mode this index has hit before.
 
 All shipped `create` commands run Phase 0 (@markdown agent self-verification).
 
@@ -37,16 +44,20 @@ This document is a routing and reference surface only. Run the command entrypoin
 ## 3. COMMANDS
 | Command | Invocation | Description |
 |---------|------------|-------------|
-| **agent** | `/create:agent <name> [description] [:auto\|:confirm]` | Create a new OpenCode agent with frontmatter, tool permissions, and behavioral rules |
-| **changelog** | `/create:changelog <spec-folder-or-component> [--bump <major\|minor\|patch\|build>] [:auto\|:confirm]` | Create a changelog entry by detecting recent work, resolving the target component folder, and generating a formatted changelog file |
-| **feature-catalog** | `/create:feature-catalog <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `feature-catalog/` package using the shipped `sk-doc` contract |
-| **readme** | `/create:readme [readme\|install] <target> [flags] [:auto\|:confirm]` | Unified README and install guide creation |
-| **skill-parent** | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>] [--path <dir>] [:auto\|:confirm]` | Scaffold a parent skill with nested mode packets (one hub `graph-metadata.json`, `mode-registry.json` source of truth, N `deep-<mode>` packets, non-discoverable `shared/`, and a root `ROUTER.md` stage-two control document that is `stage1-only` on a fresh scaffold) |
-| **skill** | `/create:skill <name> <operation> [type] [--chained] [:auto\|:confirm]` | Unified skill workflow (full-create, full-update, reference-only, asset-only) |
-| **manual-testing-playbook** | `/create:manual-testing-playbook <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `manual-testing-playbook/` package using the shipped `sk-doc` contract |
+| **agent** | `/create:agent <agent_name> [agent_description] [:auto\|:confirm]` | Create a new OpenCode agent with frontmatter, tool permissions, and behavioral rules |
+| **benchmark** | `/create:benchmark <skill-or-mode> <spec-packet> [create\|update] --family=<family> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto\|:confirm]` | Author or update family-keyed benchmark packages |
+| **changelog** | `/create:changelog <spec-folder-or-component> [--nested] [--bump <major\|minor\|patch\|build>] [--release] [:auto\|:confirm]` | Create a global or packet-local changelog entry; topology-aware, with an optional GitHub release |
+| **chart** | `/create:chart <target-chart.html> <what the reader compares> [--form <catalog-id>] [--system neutral\|ordered\|categorical] [:auto\|:confirm]` | Author a standalone HTML chart from a catalog of 21 forms, one per reader question |
 | **command** | `/create:command <command_invocation> [command_request] [:auto\|:confirm]` | Create or update an OpenCode slash command set with router and `:auto`/`:confirm` workflow assets |
-| **benchmark** | `/create:benchmark <skill-name> <spec-packet> [create\|update] [--date YYYY-MM-DD] [--path <dir>] [:auto\|:confirm]` | Promote a curated MCP benchmark folder and report into a skill |
-| **diagram** | `/create:diagram <target-diagram.html\|target-flowchart.md> [description] [--output-format html-svg\|ascii-markdown] [:auto\|:confirm]` | Create an HTML/SVG technical diagram or a validated ASCII/markdown flowchart |
+| **diagram** | `/create:diagram <target.html\|target.md> [description\|--import <src>] [--output-format html-svg\|ascii-markdown] [--type <t>] [--format <f>] [:auto\|:confirm]` | Create an HTML/SVG diagram across 27 types, an ASCII/markdown flowchart, or a redraw of a draw.io/Mermaid source |
+| **diff** | `/create:diff <target-document \| --before old --after new> [--report out.html] [--view unified\|side-by-side] [:auto\|:confirm]` | Create a self-contained before/after document diff report via the create-diff engine |
+| **feature-catalog** | `/create:feature-catalog <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `feature-catalog/` package using the shipped `sk-doc` contract |
+| **manual-testing-playbook** | `/create:manual-testing-playbook <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `manual-testing-playbook/` package using the shipped `sk-doc` contract |
+| **readme** | `/create:readme [readme\|install] <target> [--type <project\|component\|feature\|skill>] [--platforms <list>] [--output <path>] [:auto\|:confirm]` | Unified README and install guide creation with `sk-doc` quality standards |
+| **repo-rule** | `/create:repo-rule <what the rule should bind> [create\|revise\|retire] [--rule <name>] [:auto\|:confirm]` | Create, revise or retire a repo rule under `repo-rules/`, wired into `REPO RULES.md` |
+| **skill** | `/create:skill <skill-name> [operation] [type] [--path <dir>] [--chained] [:auto\|:confirm]` | Unified skill workflow (full-create, full-update, reference-only, asset-only) |
+| **skill-parent** | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto\|:confirm]` | Scaffold a parent skill with nested mode packets (one hub identity, `mode-registry.json` source of truth, and a root `ROUTER.md` stage-two control document) |
+| **with-human-voice** | `/create:with-human-voice <file or passage> [apply\|score] [--include-code] [:auto\|:confirm]` | Apply or score prose against the Human Voice Rules with a scope gate and a re-scan |
 
 ### README Types
 
@@ -65,38 +76,23 @@ The `readme` operation in `/create:readme` accepts a `--type` flag:
 
 ```
 create/
-├── agent.md              # /create:agent command
-├── changelog.md          # /create:changelog command
-├── feature-catalog.md    # /create:feature-catalog command
-├── readme.md      # /create:readme — unified README + install guide command
-├── skill-parent.md       # /create:skill-parent command
-├── skill.md           # /create:skill command
-├── manual-testing-playbook.md   # /create:manual-testing-playbook command
-├── command.md            # /create:command command
-├── benchmark.md          # /create:benchmark command
-├── diagram.md             # /create:diagram command
-└── assets/               # YAML workflow definitions
-    ├── create-agent-auto.yaml
-    ├── create-agent-confirm.yaml
-    ├── create-changelog-auto.yaml
-    ├── create-changelog-confirm.yaml
-    ├── create-feature-catalog-auto.yaml
-    ├── create-feature-catalog-confirm.yaml
-    ├── create-readme-auto.yaml
-    ├── create-readme-confirm.yaml
-    ├── create-skill-parent-auto.yaml
-    ├── create-skill-parent-confirm.yaml
-    ├── create-skill-auto.yaml
-    ├── create-skill-confirm.yaml
-    ├── create-manual-testing-playbook-auto.yaml
-    ├── create-manual-testing-playbook-confirm.yaml
-    ├── create-command-auto.yaml
-    ├── create-command-confirm.yaml
-    ├── create-benchmark-auto.yaml
-    ├── create-benchmark-confirm.yaml
-    ├── create-diagram-auto.yaml
-    ├── create-diagram-confirm.yaml
-    └── create-diagram-presentation.txt
+├── agent.md                      # /create:agent command
+├── benchmark.md                  # /create:benchmark command
+├── changelog.md                  # /create:changelog command
+├── chart.md                      # /create:chart command
+├── command.md                    # /create:command command
+├── diagram.md                    # /create:diagram command
+├── diff.md                       # /create:diff command
+├── feature-catalog.md            # /create:feature-catalog command
+├── manual-testing-playbook.md    # /create:manual-testing-playbook command
+├── readme.md                     # /create:readme — unified README + install guide command
+├── repo-rule.md                  # /create:repo-rule command
+├── skill.md                      # /create:skill command
+├── skill-parent.md               # /create:skill-parent command
+├── with-human-voice.md           # /create:with-human-voice command
+└── assets/                       # One auto YAML, one confirm YAML and one presentation
+                                  # contract per command; see the folder itself for the
+                                  # live file set rather than a count kept here
 ```
 
 ---
@@ -162,6 +158,21 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 
 # Create a changelog for a specific component
 /create:changelog sk-doc --bump minor :confirm
+
+# Author a standalone HTML chart from the form catalog
+/create:chart revenue-by-region.html "revenue compared across regions" :auto
+
+# Redraw an existing draw.io source as an HTML/SVG diagram
+/create:diagram architecture.html --import legacy-architecture.drawio :confirm
+
+# Review what changed in a locally edited document
+/create:diff proposal.md --report proposal-diff.html :auto
+
+# Add a repo rule and wire it into REPO RULES.md
+/create:repo-rule "how migrations get reviewed" create :confirm
+
+# Score a document against the Human Voice Rules without editing it
+/create:with-human-voice docs/overview.md score :auto
 ```
 
 ---

@@ -1,6 +1,6 @@
 ---
 description: Create or update manual testing playbook packages via one unified command. Modes :auto, :confirm.
-argument-hint: "<skill-name> [create|update] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<skill-name> [create|update] [--path <dir>] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -65,4 +65,3 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 The bound workflow YAML (`create-manual-testing-playbook-auto.yaml` for `:auto`, `create-manual-testing-playbook-confirm.yaml` for `:confirm` or an omitted mode) runs the testing-playbook workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch to create or update manual testing playbook packages. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
-User request: $ARGUMENTS

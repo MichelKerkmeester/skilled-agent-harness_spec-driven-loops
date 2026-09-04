@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-04T09:05:00Z"
     last_updated_by: "implementation"
     recent_action: "Shipped /create:chart and refreshed sk-doc routing"
-    next_safe_action: "Decide the two open questions in spec.md section 10, then commit"
+    next_safe_action: "Commit; the two open questions in spec.md section 10 are now answered and closed"
     blockers: []
     key_files:
       - ".opencode/commands/create/chart.md"
@@ -22,16 +22,21 @@ _memory:
       - ".opencode/skills/sk-doc/mode-registry.json"
       - ".opencode/skills/sk-doc/SKILL.md"
       - ".opencode/skills/sk-doc/command-metadata.json"
+      - ".opencode/agents/markdown.md"
+      - ".claude/agents/markdown.md"
+      - ".opencode/commands/README.txt"
+      - ".opencode/commands/create/README.txt"
+      - ".opencode/commands/create/diagram.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-055-chart-command-surface"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "Should the @markdown agent roster list every /create:* command? It names ten of fourteen."
-      - "Should the two command catalogs under .opencode/commands/ be derived from command-metadata.json?"
+    open_questions: []
     answered_questions:
       - "Does hub-router.json or ROUTER.md carry a command surface? Neither does. Only mode-registry.json and the SKILL.md mode table do."
+      - "Should the @markdown agent roster list every /create:* command? Yes. All four missing commands were added and the runtime mirrors regenerated."
+      - "Should the two command catalogs be derived from command-metadata.json? No. That file covers 20 of 39 commands and is itself a hand-kept copy of the frontmatter that had already drifted."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -115,6 +120,10 @@ One check failed and was diagnosed rather than dismissed. The chart corpus check
 | Update the two test censuses rather than relax them | Both carry a comment saying to recount rather than relax. The census is the point: it is what makes adding a command a visible event |
 | Re-pin the already-stale `sk-create-chart/SKILL.md` digest | The canary cannot report REAL-GREEN with it stale, and re-pinning is the step the pin block itself documents for a deliberate hub change |
 | Leave the `@markdown` agent roster alone | It lists ten of fourteen `/create:*` commands. Adding only chart would make the inconsistency harder to see rather than easier. Recorded as an open question instead |
+| Reversed later: add all four missing commands at once | The partial fix was refused for the right reason, and the whole fix removes the reason. Chart, diff, repo-rule and with-human-voice were added together, so the roster now matches the command directory rather than a list someone maintained |
+| Fix the catalogs by hand and reject the derived-catalog remedy | `command-metadata.json` reaches only 20 of the 39 commands, and it is a second hand-kept copy of the frontmatter that had already drifted from it. Deriving from it would relocate the staleness, not end it |
+| Bring `/create:diagram` to zero warnings by relocating detail, not dropping it | The over-budget argument hint held real flags. They moved into the router body, which is what the validator's own fix hint prescribes, so the hint summarizes and no capability left the document |
+| Fix only the mechanical warnings on commands outside this packet | The deprecated `$ARGUMENTS` echo and the repeated setup-answers boilerplate are identical everywhere they appear and carry no per-command meaning. Every remaining warning needs an authored judgment about which capability signal to shorten, so those are reported rather than guessed |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -124,7 +133,7 @@ One check failed and was diagnosed rather than dismissed. The chart corpus check
 
 | Check | Result |
 |-------|--------|
-| `validate_document.py --type command` on the router | PASS, exit 0, 0 issues. The diagram router reports 3 warnings on the same check |
+| `validate_document.py --type command` on the router | PASS, exit 0, 0 issues. The diagram router reported 3 warnings on the same check and now reports 0 |
 | `check_authored_name_kebab.py` | PASS, exit 0 |
 | `parent-skill-check.cjs .opencode/skills/sk-doc` | PASS, exit 0, 0 warnings, including `6c` which had nothing to assert for chart before |
 | `sync-runtime-mirrors.cjs --check` | PASS, 173 mirrors in sync, up from 171 |
@@ -142,6 +151,17 @@ One check failed and was diagnosed rather than dismissed. The chart corpus check
 | `pytest` over 4 sk-doc README and contract suites | 26 passed, exit 0 |
 | `npm run typecheck` over the advisor package | exit 0 |
 | `python3 -m py_compile scripts/skill_advisor.py` | exit 0 |
+| `validate_document.py --type command` across the whole command tree | 24 of 39 clean, up from 12 of 39. The 15 remaining each need an authored trim or a new section |
+| `validate_document.py` on both command catalogs | 0 issues each. The root catalog had 1 pre-existing warning |
+| `sync-agents-pi.cjs --check` and `sync-agents.cjs --check` | Both reported the markdown agent stale after the hand edit, then `PASS: 12 agents are in sync` after their own sync run |
+| `agent-roster-mirror-check.cjs` | `STATUS=OK`, exit 0, every runtime covers the canonical roster |
+| `sync-runtime-mirrors.cjs --check` and `sync-prompts.cjs --check`, re-run | `PASS` 173 mirrors and `PASS` 37 prompts, unchanged. Command mirrors are symlinks, so the router edits propagate without a regeneration |
+| `derive-command-bridges.cjs --check`, re-run | `fresh`, `changed: []`, exit 0, unchanged by the frontmatter edits |
+| `generate-command-routers.cjs --check`, re-run | exit 1 on the same pre-existing `memory/learn.md` drift only, `routers=31 clean=30`, unchanged |
+| Advisor vitest, 4 command suites, re-run | 15 passed, exit 0, unchanged from baseline |
+| `validate-command-references.cjs` | exit 1 on the same 8 pre-existing unresolved references, unchanged from baseline. None are in this packet's surface |
+| `test-flowchart-validator.sh` | PASS, exit 0 |
+| Roster count across all six runtime surfaces | 14 of 14 in `.opencode`, `.claude`, `.pi`, `.codex`, `.cursor`, `.devin` |
 | `check-corpus.cjs --render` | `RESULT: PASSED`, errors 0, exit 0, run serially |
 | Advisor probes, 6 chart prompts | 4 surface `sk-doc` with a compiled route to `sk-create-chart`. Before the change, 3 surfaced with no compiled route at all |
 <!-- /ANCHOR:verification -->
@@ -152,9 +172,11 @@ One check failed and was diagnosed rather than dismissed. The chart corpus check
 ## Known Limitations
 
 1. **Two plausible chart prompts still abstain.** "make a chart of our monthly revenue by plan" and "which chart type should I use to show the spread of delivery times" return no recommendation at the 0.8 confidence bar. Probed at a lowered threshold, both score `sk-doc` top and carry the correct compiled route to `sk-create-chart`, so this is a scorer property rather than a wiring gap. Both were equally silent before the change.
-2. **The `@markdown` agent roster does not name the command.** It names ten of the fourteen `/create:*` commands, missing chart, diff, repo-rule and with-human-voice. Its own contract returns `STATUS=FAIL ERROR=unsupported-create-template` for a template it does not list, so the agent path is closed for four commands. The command itself does not require that agent: its Phase 0 checks packet resources, exactly as the diagram command's does.
-3. **The two command catalogs under `.opencode/commands/` are stale.** `README.txt` at the root and under `create/` were each already missing two or three sibling commands. Deriving them from `command-metadata.json` would remove the failure mode entirely.
+2. **Closed: the `@markdown` agent roster now names all fourteen.** It listed ten, missing chart, diff, repo-rule and with-human-voice, and its own contract returns `STATUS=FAIL ERROR=unsupported-create-template` for a template it does not list, so the agent path was closed for four commands. All four were added to the invocation list and the command template map, the dispatch contract's count moved from ten to fourteen, and the Codex and Pi mirrors were rebuilt by their own sync scripts rather than by hand. Cursor and Devin are symlinks into the Claude tree and followed automatically.
+3. **Closed: both command catalogs match the command tree.** They were staler than first recorded. The `create/` index was missing four commands, and the root index was missing three plus the entire `rewrite` group and the root `vision` command, with its group counts and structure tree wrong as well. Both were brought up to date and now validate at 0 issues. The proposed remedy of deriving them from `command-metadata.json` was rejected: it covers 20 of 39 commands, and it is itself a hand-kept copy of the frontmatter that had already drifted. A checker over the frontmatter is the proportionate guard and is proposed below rather than built.
 4. **A code comment in the chart validator still says "twenty forms".** It sits at `check-corpus.cjs:581` inside the packet this change deliberately did not touch, and it describes a historical rationale rather than a live count.
+5. **Fifteen commands still carry document warnings.** Every mechanical warning is gone: the deprecated `User request: $ARGUMENTS` echo across 13 commands, and the repeated setup-answers boilerplate that pushed 11 argument hints over budget. What remains needs an authored decision per command rather than a rule: nine hints in `deep`, `memory` and `speckit` enumerate a genuinely long flag surface, 244 to 548 chars, that has to move into each router body, and nine descriptions run 7 to 51 chars over the soft target, and `memory/learn.md` and `vision.md` are each missing required sections. Two more, `doctor/mcp.md` and `doctor/speckit.md`, warn on angle brackets in the description, which the validator itself calls valid `<arg>` notation pending a human confirmation, so there is nothing to fix there.
+6. **No checker guards the catalogs.** Nothing in the repository asserts that a command file has a row in its index, which is why both went stale unnoticed. The neighbouring agent surface already has exactly this guard in `agent-roster-mirror-check.cjs`, and a catalog equivalent reading command frontmatter would be about the same size. It is not built here because it would add a script outside this packet's surface.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -106,6 +106,18 @@ contextType: "general"
 | REQ-007 | Every test whose census the change moves is updated to the new number rather than relaxed |
 | REQ-008 | The hub mode table and the hub README state twenty-one chart forms, matching the catalog |
 
+### P1 - Added by the follow-up pass that closed the recorded gaps
+
+These three were recorded as adjacent defects rather than fixed, because each
+predated this packet and a partial fix would have hidden the pattern. They were
+closed together once the whole fix was authorized.
+
+| ID | Requirement |
+|----|-------------|
+| REQ-009 | The `@markdown` agent roster names every `/create:*` command in the command directory, and every runtime mirror of that agent carries the same roster |
+| REQ-010 | `/create:diagram` passes `validate_document.py --type command` with no issues, without losing any flag or artifact family it accepts |
+| REQ-011 | Both command catalogs under `.opencode/commands/` list every command in the tree, with correct group counts and structure trees |
+
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->
@@ -192,8 +204,11 @@ contextType: "general"
 
 ## 10. OPEN QUESTIONS
 
-- Should the `@markdown` agent roster list every `/create:*` command? It lists ten of fourteen today, and its own contract refuses a template it does not list. Four commands are affected, three of which predate this packet.
-- Should the two command catalogs under `.opencode/commands/` be regenerated from `command-metadata.json` rather than hand-kept? Both are stale by two commands, which is the failure a derived catalog would not have.
+Both questions below were answered in a follow-up pass. They are kept, with their
+answers, because the reasoning is what makes the third answer legible.
+
+- **Should the `@markdown` agent roster list every `/create:*` command?** Yes, and it now does. The roster listed ten of fourteen while its own contract returns `STATUS=FAIL ERROR=unsupported-create-template` for a template it does not list, so four commands had no agent path. Chart, diff, repo-rule and with-human-voice were added to the invocation list and to the command template map, the count in the dispatch contract moved from ten to fourteen, and the two generated runtime mirrors were rebuilt by their own sync scripts. The roster was checked against the command directory rather than against a written list.
+- **Should the two command catalogs be regenerated from `command-metadata.json`?** No. Both were brought up to date by hand instead, and the reason the proposed remedy was rejected is the more useful finding: `command-metadata.json` covers 20 of the 39 commands in the tree, so nineteen — all of `speckit`, `memory`, `doctor`, `design`, `rewrite`, `prompt` and the root utilities — have no entry to derive from. More decisively, the file is itself a hand-kept copy of each command's frontmatter, and it was already drifting from it. Deriving the catalogs from it would move the staleness up one level rather than remove it. The non-duplicating source of truth is the command frontmatter, which every command has; the proportionate remedy against recurrence is a checker over it, not a generator. That is recorded as a proposal rather than built, because it would add tooling outside this packet's surface.
 <!-- /ANCHOR:questions -->
 
 ---

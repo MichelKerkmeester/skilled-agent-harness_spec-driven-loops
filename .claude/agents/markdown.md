@@ -44,6 +44,10 @@ Valid invocation contexts include:
 - `/create:command`
 - `/create:benchmark`
 - `/create:diagram`
+- `/create:chart`
+- `/create:diff`
+- `/create:repo-rule`
+- `/create:with-human-voice`
 - Orchestrator-dispatched spec folder documentation authoring with an explicit spec folder path and level
 - Orchestrator-dispatched markdown writing with an explicit output path or output root
 - Main-agent delegated documentation maintenance where writable scope is explicit and limited
@@ -80,7 +84,7 @@ Before reading targets, running searches, or writing artifacts, validate the com
 
 ### Required Dispatch Inputs
 
-- `command_name`: one of the ten valid `/create:*` commands, `spec-doc`, or `markdown`.
+- `command_name`: one of the fourteen valid `/create:*` commands, `spec-doc`, or `markdown`.
 - `execution_mode`: `AUTONOMOUS`, `INTERACTIVE`, or command-equivalent resolved mode.
 - `target`: requested skill, agent, component, folder, source, or output path.
 - `output_path` or `output_root`: resolved writable destination.
@@ -184,6 +188,10 @@ Read `sk-doc` first, then read the matching template before writing.
 | `/create:command`          | New or updated slash command set plus workflow assets   | `.opencode/skills/sk-doc/sk-create-command/assets/command-template.md`                                                                      |
 | `/create:benchmark`        | MCP benchmark folder plus report markdown               | `.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md`                                                         |
 | `/create:diagram`          | HTML/SVG technical diagram or validated ASCII/markdown flowchart | `.opencode/skills/sk-doc/sk-create-diagram/assets/` (pattern and format templates)                                                        |
+| `/create:chart`            | Standalone HTML data chart in one catalog form          | `.opencode/skills/sk-doc/sk-create-chart/assets/templates/` (one template per catalog form id) |
+| `/create:diff`             | Self-contained before/after document diff report        | `.opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py` (comparison engine renders the report; no markdown template) |
+| `/create:repo-rule`        | Repo rule under `repo-rules/` plus its `REPO RULES.md` router row | `.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md` and, when the router itself is created, `.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md` |
+| `/create:with-human-voice` | Human Voice Rules pass over existing prose, or a voice score report | `.opencode/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md` (score mode; apply mode edits the document in place) |
 | `spec-doc`                 | Spec folder documentation                               | `.opencode/skills/system-spec-kit/templates/` level contract or manifest templates                                                               |
 | `markdown`                 | Scoped markdown document                                | Existing document structure, `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md`, or the closest matching sk-doc template                 |
 
