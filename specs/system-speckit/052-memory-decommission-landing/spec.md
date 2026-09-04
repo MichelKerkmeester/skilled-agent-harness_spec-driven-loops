@@ -62,6 +62,23 @@ Both branches carry the decommission with no memory surface left, every changed 
 | `.opencode/skills/system-plugins/README.md`, `system-spec-kit/references/cli/daemon-cli-reference.md` | Modify | Overview sections the templates require |
 | `specs/system-speckit/049-memory-decommission/**/{description,graph-metadata}.json` | Modify | Regenerated after the merge |
 | `specs/system-speckit/052-memory-decommission-landing/review/**` | Create | Review loop lineage and report |
+
+### Review Scope
+
+The review loop reads this packet and must cover the landed tree these surfaces make up, all reachable from the repository root of the branch under review, with the diff `5220257bf7..HEAD` as the change set:
+
+| Surface | What to verify |
+|---------|----------------|
+| `.opencode/skills/system-spec-kit/scripts/retrieval/**` and `data/trigger-index.json` | The trigger index, lookup, ripgrep lane, residue sweep, retrofit pipeline and zvec lane: correctness, exit mapping, determinism, no reference to a retired tool |
+| `.opencode/skills/system-spec-kit/mcp-server/**` | The surviving engine: validation orchestrator, metadata refresh, continuity writer; nothing serves MCP, no dead import, no doc describing the retired server |
+| `.opencode/commands/**`, `.opencode/agents/**`, `.claude/**`, `.codex/**`, `.pi/**`, `.cursor/**`, `opencode.json` | No memory tool in any allow list, no memory server registration, mirrors in sync, command frontmatter matching the command contract |
+| `.opencode/hooks/**`, `.opencode/plugins/**`, `.opencode/bin/**` | No spec-memory hook, plugin or launcher; the skill advisor and model server untouched |
+| `.opencode/skills/system-plugins/**` and `.zvec-grep-lane.json` | The vendored fork, its README, the lane config, the resolution order |
+| `.opencode/commands/doctor/**` | The zvec route, the retired memory routes gone, the routes validator green |
+| `.opencode/skills/**/references/**`, `README.md`, `README.txt`, `install-guides/**` | No document that presents the memory database, daemon, server or tools as existing; template conformance for changed documents |
+| `specs/system-speckit/049-memory-decommission/**`, `050-*`, `051-*` | Packets validate strictly; claims match the tree |
+
+Out of the review's write scope: everything in decision D5's preserved set, and any branch other than the one under review.
 <!-- /ANCHOR:scope -->
 
 ---

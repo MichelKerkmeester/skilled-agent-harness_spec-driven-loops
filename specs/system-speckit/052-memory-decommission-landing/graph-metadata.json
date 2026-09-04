@@ -48,6 +48,7 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/skills/system-plugins/README.md",
+      "data/trigger-index.json",
       "specs/system-speckit/049-memory-decommission/goal.md",
       "specs/system-speckit/050-zvec-grep-fork-integration/goal.md"
     ],
@@ -92,6 +93,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "data/trigger-index.json",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-04T17:51:52.184Z",
+    "last_save_at": "2026-09-04T17:54:37.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3de2e286392055e928eadf116ad4a9d86e1a649c9a1ce23c57e481d0da470e86",
+    "source_fingerprint": "sha256:d4c1ac3021c2e320bc32d6ebe4901d2037c6a576cc1a2cafa0f4be1cc86e4978",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2feccf920db902e6e79ed9aead99243bb56813dccb190158dc0204eca916e663",
+      "spec.md": "1ce4d8a948c306bcb1d055c2540da7399186e58a8e595771af29e0267d58a3b0",
       "plan.md": "35f91b28e7ae3f388154ccaad42bf29e3a5747877ac037816c642b54dd9c96a8",
       "tasks.md": "48058bae5e987d3caf60ee3616fe6abf16be32400e3ecf62952236940b7f2423",
       "implementation-summary.md": "bab2cafbd2160b008c87722787eb73c4e258b4143f79bc374f2967c89791ca76"
