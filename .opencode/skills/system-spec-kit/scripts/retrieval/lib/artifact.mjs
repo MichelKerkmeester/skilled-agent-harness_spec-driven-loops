@@ -137,3 +137,57 @@ export function publishJson(targetPath, value, validate) {
     throw error;
   }
 }
+
+// ───────────────────────────────────────────────────────────────
+// TRIGGER INDEX SHAPE
+// ───────────────────────────────────────────────────────────────
+
+/** Schema the committed trigger index is written and read at. */
+export const TRIGGER_INDEX_SCHEMA_VERSION = 2;
+
+/**
+ * Structural invariant of a trigger index, shared by the generator's publish
+ * gate and the reader's load gate so both ends refuse the same shapes. A
+ * posting is a subscript into the path table, so a non-array posting, an empty
+ * posting, or an out-of-range id would resolve to the wrong document or drop a
+ * result silently at lookup time; a parseable artifact that violates this is a
+ * corrupt artifact, and the only safe answer is to refuse it and regenerate.
+ *
+ * @param {unknown} parsed Artifact as parsed from JSON.
+ * @param {string} [label] Name used in error messages.
+ * @returns {{ paths: string[], phrases: Record<string, number[]> }} The validated tables.
+ */
+export function assertTriggerIndexShape(parsed, label = 'index') {
+  if (!parsed || typeof parsed !== 'object') throw new Error(`${label} did not parse as an object`);
+  const candidate = /** @type {Record<string, unknown>} */ (parsed);
+
+  if (candidate.schemaVersion !== TRIGGER_INDEX_SCHEMA_VERSION) {
+    throw new Error(
+      `${label} schemaVersion is ${String(candidate.schemaVersion)}, expected ${TRIGGER_INDEX_SCHEMA_VERSION}`,
+    );
+  }
+  if (!candidate.normalization || typeof candidate.normalization !== 'object') {
+    throw new Error(`${label} is missing its normalization block`);
+  }
+  const paths = candidate.paths;
+  const phrases = candidate.phrases;
+  if (!Array.isArray(paths)) throw new Error(`${label} is missing its path table`);
+  if (!phrases || typeof phrases !== 'object' || Array.isArray(phrases)) {
+    throw new Error(`${label} is missing its phrases map`);
+  }
+  for (const [id, documentPath] of paths.entries()) {
+    if (typeof documentPath !== 'string' || documentPath.length === 0) {
+      throw new Error(`${label} path table entry ${id} is not a path`);
+    }
+  }
+  for (const [normalized, posting] of Object.entries(phrases)) {
+    if (!Array.isArray(posting)) throw new Error(`${label} phrase posting is not an array: ${normalized}`);
+    if (posting.length === 0) throw new Error(`${label} phrase entry ${normalized} has no owning path`);
+    for (const id of posting) {
+      if (!Number.isInteger(id) || id < 0 || id >= paths.length) {
+        throw new Error(`${label} phrase entry ${normalized} references path id ${String(id)} outside the table`);
+      }
+    }
+  }
+  return { paths: /** @type {string[]} */ (paths), phrases: /** @type {Record<string, number[]>} */ (phrases) };
+}

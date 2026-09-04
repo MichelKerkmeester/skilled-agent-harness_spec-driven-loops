@@ -1,5 +1,5 @@
 {
-  "corpusHash": "043295369927e11ef97fe21ae23b6d399b78b304d5ef7989b0f1434ab0a2713b",
+  "corpusHash": "7f7e33e910572a0d4336acbd1f23771cf8195da12e409863b3dbcbdc59bd7265",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -16,7 +16,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27413,
+  "includedPathCount": 27443,
   "includedPaths": [
     ".opencode/skills/.state/advisor/README.md",
     ".opencode/skills/.state/authority/README.md",
@@ -17337,6 +17337,10 @@
     "specs/system-skill-advisor/022-playbook-inventory-reconciliation/plan.md",
     "specs/system-skill-advisor/022-playbook-inventory-reconciliation/spec.md",
     "specs/system-skill-advisor/022-playbook-inventory-reconciliation/tasks.md",
+    "specs/system-skill-advisor/023-model-server-default-spawn/implementation-summary.md",
+    "specs/system-skill-advisor/023-model-server-default-spawn/plan.md",
+    "specs/system-skill-advisor/023-model-server-default-spawn/spec.md",
+    "specs/system-skill-advisor/023-model-server-default-spawn/tasks.md",
     "specs/system-speckit/000-release/001-context-pack/spec.md",
     "specs/system-speckit/000-release/002-per-packet-extraction/spec.md",
     "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/deepseek-v4-pro-max/iteration-1.md",
@@ -27428,12 +27432,38 @@
     "specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/plan.md",
     "specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/spec.md",
     "specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/tasks.md",
+    "specs/system-speckit/049-memory-decommission/007-deep-review-remediation/implementation-summary.md",
+    "specs/system-speckit/049-memory-decommission/007-deep-review-remediation/plan.md",
+    "specs/system-speckit/049-memory-decommission/007-deep-review-remediation/spec.md",
+    "specs/system-speckit/049-memory-decommission/007-deep-review-remediation/tasks.md",
     "specs/system-speckit/049-memory-decommission/goal.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/deep-review-dashboard.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/deep-review-strategy.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-001.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-002.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-003.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-004.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-005.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-006.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-007.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-008.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-009.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-010.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-001.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-002.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-003.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-004.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-005.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-006.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-007.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-008.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-009.md",
+    "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/review-report.md",
     "specs/system-speckit/049-memory-decommission/roadmap.md",
     "specs/system-speckit/049-memory-decommission/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "981dae5f17ebd20bf8c685c2582abecfb892ad73d5363872dc2aa8071c931185",
+  "manifestHash": "5ae8ed6185177a0984f1e3114570cf2230f77836e5d3298c912a61f62248f132",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29238,6 +29268,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/023-model-server-default-spawn/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/z_archive",
       "reason": "excluded directory"
     },
@@ -30619,6 +30653,10 @@
     },
     {
       "path": "specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-memory-decommission/007-deep-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {

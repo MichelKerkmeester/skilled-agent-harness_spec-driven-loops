@@ -37,7 +37,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
-import { publishJson, sha256, stableStringify } from './lib/artifact.mjs';
+import { TRIGGER_INDEX_SCHEMA_VERSION, assertTriggerIndexShape, publishJson, sha256, stableStringify } from './lib/artifact.mjs';
 import { CORPUS_ROOTS, EXCLUSIONS, IGNORED_PATHS, walkCorpus } from './lib/corpus.mjs';
 import { CATEGORY, MALFORMED_CATEGORIES, readTriggerPhrases } from './lib/frontmatter.mjs';
 import { compareCodeUnits, NORMALIZATION } from './lib/normalize.mjs';
@@ -50,7 +50,7 @@ import { compareCodeUnits, NORMALIZATION } from './lib/normalize.mjs';
 export const PARSER_VERSION = '1.0.0';
 
 /** Bumped whenever the artifact shape changes in a way a reader must notice. */
-export const INDEX_SCHEMA_VERSION = 2;
+export const INDEX_SCHEMA_VERSION = TRIGGER_INDEX_SCHEMA_VERSION;
 
 export const CORPUS_HASH_RECIPE =
   'sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a';
@@ -367,39 +367,17 @@ export function generate(options = {}) {
  * @returns {void}
  */
 function validateIndex(parsed, expected) {
-  if (!parsed || typeof parsed !== 'object') throw new Error('index did not parse as an object');
+  const { paths, phrases } = assertTriggerIndexShape(parsed);
   const candidate = /** @type {Record<string, unknown>} */ (parsed);
 
-  if (candidate.schemaVersion !== INDEX_SCHEMA_VERSION) {
-    throw new Error(`index schemaVersion is ${String(candidate.schemaVersion)}, expected ${INDEX_SCHEMA_VERSION}`);
-  }
   if (candidate.manifestHash !== expected.manifestHash) {
     throw new Error('index manifestHash does not match the corpus just walked');
   }
-  if (!candidate.normalization || typeof candidate.normalization !== 'object') {
-    throw new Error('index is missing its normalization block');
-  }
-  const paths = candidate.paths;
-  const phrases = candidate.phrases;
-  if (!Array.isArray(paths)) throw new Error('index is missing its path table');
-  if (!phrases || typeof phrases !== 'object') throw new Error('index is missing its phrases map');
   if (paths.length !== expected.pathCount) {
     throw new Error('index path count changed between build and read-back');
   }
   if (Object.keys(phrases).length !== expected.phraseCount) {
     throw new Error('index phrase count changed between build and read-back');
-  }
-
-  // A posting is a subscript into the path table, so a stale or out-of-range id
-  // would resolve to the wrong document rather than fail loudly at lookup time.
-  for (const [normalized, posting] of Object.entries(phrases)) {
-    if (!Array.isArray(posting)) throw new Error(`phrase posting is not an array: ${normalized}`);
-    if (posting.length === 0) throw new Error(`phrase entry ${normalized} has no owning path`);
-    for (const id of posting) {
-      if (!Number.isInteger(id) || id < 0 || id >= paths.length) {
-        throw new Error(`phrase entry ${normalized} references path id ${String(id)} outside the table`);
-      }
-    }
   }
 }
 

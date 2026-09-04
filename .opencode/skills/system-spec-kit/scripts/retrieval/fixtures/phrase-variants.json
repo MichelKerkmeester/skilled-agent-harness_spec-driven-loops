@@ -1,5 +1,5 @@
 {
-  "manifestHash": "981dae5f17ebd20bf8c685c2582abecfb892ad73d5363872dc2aa8071c931185",
+  "manifestHash": "5ae8ed6185177a0984f1e3114570cf2230f77836e5d3298c912a61f62248f132",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20782,6 +20782,9 @@
     "close browser pages finally": [
       "close browser pages finally"
     ],
+    "close completion rows": [
+      "close completion rows"
+    ],
     "close db checkpoint truncate": [
       "close_db checkpoint truncate"
     ],
@@ -20844,6 +20847,9 @@
     ],
     "closure gate tasks": [
       "closure gate tasks"
+    ],
+    "closure rows with evidence": [
+      "closure rows with evidence"
     ],
     "closure waiver": [
       "closure waiver"
@@ -33869,6 +33875,9 @@
     "deep review remediation status": [
       "deep review remediation status"
     ],
+    "deep review remediation summary": [
+      "deep review remediation summary"
+    ],
     "deep review remediation tasks": [
       "deep review remediation tasks"
     ],
@@ -34713,6 +34722,12 @@
     ],
     "deltabyrelation dominantrelationshare": [
       "deltaByRelation dominantRelationShare"
+    ],
+    "demand listener lazy spawn": [
+      "demand listener lazy spawn"
+    ],
+    "demand listener ready": [
+      "demand listener ready"
     ],
     "demotion threshold check": [
       "demotion threshold check"
@@ -42239,6 +42254,9 @@
     "fail closed graduation tasks": [
       "fail-closed graduation tasks"
     ],
+    "fail closed index reader": [
+      "fail closed index reader"
+    ],
     "fail closed playbook graduation": [
       "fail-closed playbook graduation"
     ],
@@ -42487,6 +42505,9 @@
     ],
     "fan out review runtime database exempt": [
       "fan-out review runtime database exempt"
+    ],
+    "fan out runner review lineage": [
+      "fan-out runner review lineage"
     ],
     "fan out stall watchdog": [
       "fan-out stall watchdog"
@@ -44405,6 +44426,9 @@
     ],
     "flip hubs to null tasks": [
       "flip hubs to null tasks"
+    ],
+    "flip the spawn default": [
+      "flip the spawn default"
     ],
     "flow detail refero": [
       "flow detail refero"
@@ -48435,6 +48459,9 @@
     ],
     "hf embed socket missing after adoption": [
       "hf-embed socket missing after adoption"
+    ],
+    "hf embed socket sun path limit": [
+      "hf-embed socket sun_path limit"
     ],
     "hf embeddings dtype env var": [
       "HF_EMBEDDINGS_DTYPE env var"
@@ -52820,6 +52847,9 @@
     "launcher supervision hf model server": [
       "launcher supervision hf model server"
     ],
+    "launcher supervision model server child": [
+      "launcher supervision model server child"
+    ],
     "launcher supervision plan": [
       "launcher supervision plan"
     ],
@@ -54013,6 +54043,9 @@
     ],
     "live db byte equality guard": [
       "live DB byte-equality guard"
+    ],
+    "live demand proof": [
+      "live demand proof"
     ],
     "live event vocabulary upcaster": [
       "live event vocabulary upcaster"
@@ -59826,6 +59859,9 @@
     "misalign high remediation 026": [
       "misalign-high remediation 026"
     ],
+    "misplaced iteration recovered": [
+      "misplaced iteration recovered"
+    ],
     "misplacement and layout": [
       "misplacement and layout"
     ],
@@ -61280,6 +61316,18 @@
     ],
     "model selection readme": [
       "model selection readme"
+    ],
+    "model server default spawn": [
+      "model server default spawn"
+    ],
+    "model server default spawn summary": [
+      "model server default spawn summary"
+    ],
+    "model server spawn plan": [
+      "model server spawn plan"
+    ],
+    "model server spawn tasks": [
+      "model server spawn tasks"
     ],
     "model server supervision fstat symlink rejection": [
       "model server supervision fstat symlink rejection"
@@ -64412,6 +64460,9 @@
     ],
     "onnxruntime cocoindex implemented": [
       "onnxruntime cocoindex implemented"
+    ],
+    "onnxruntime common missing": [
+      "onnxruntime-common missing"
     ],
     "onnxruntime provider selection": [
       "onnxruntime provider selection"
@@ -73784,6 +73835,9 @@
     "reader contract tasks": [
       "reader contract tasks"
     ],
+    "reader fail closed test": [
+      "reader fail closed test"
+    ],
     "reader normalization": [
       "reader normalization"
     ],
@@ -78186,6 +78240,9 @@
     "retired compiled routing paths catalog": [
       "retired compiled routing paths catalog"
     ],
+    "retired prefix criterion restated": [
+      "retired prefix criterion restated"
+    ],
     "retirement audit to planner first": [
       "retirement audit to planner-first"
     ],
@@ -78855,6 +78912,9 @@
     "review remediation summary": [
       "review remediation summary"
     ],
+    "review remediation tasks": [
+      "review remediation tasks"
+    ],
     "review rename plan": [
       "review rename plan"
     ],
@@ -78944,6 +79004,9 @@
     ],
     "review verdict": [
       "review verdict"
+    ],
+    "review verdict conditional six findings": [
+      "review verdict conditional six findings"
     ],
     "review verification": [
       "review verification"
@@ -83544,6 +83607,9 @@
     ],
     "shared improvement rollback contract": [
       "shared improvement rollback contract"
+    ],
+    "shared index invariant": [
+      "shared index invariant"
     ],
     "shared ipc socket server": [
       "shared ipc socket server"
@@ -88420,6 +88486,9 @@
     "skill advisor architecture": [
       "skill advisor architecture"
     ],
+    "skill advisor arms the model server": [
+      "skill advisor arms the model server"
+    ],
     "skill advisor automation": [
       "skill advisor automation"
     ],
@@ -90449,6 +90518,12 @@
     "socket dir ownership sun path guard deprecated env removal": [
       "socket-dir ownership sun_path guard deprecated env removal"
     ],
+    "socket directory resolvers agree": [
+      "socket directory resolvers agree"
+    ],
+    "socket fallback tasks": [
+      "socket fallback tasks"
+    ],
     "socket fresh bind hardening plan": [
       "socket fresh-bind hardening plan"
     ],
@@ -90648,6 +90723,9 @@
     ],
     "spawn cjs helper": [
       "spawn cjs helper"
+    ],
+    "spawn default flipped": [
+      "spawn default flipped"
     ],
     "spawn detached rerank": [
       "spawn detached rerank"
@@ -91822,6 +91900,9 @@
     ],
     "speckit skill advisor model server enabled": [
       "SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED"
+    ],
+    "speckit skill advisor model server enabled default": [
+      "SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED default"
     ],
     "speckit soft delete tombstones default off": [
       "SPECKIT_SOFT_DELETE_TOMBSTONES default off"
@@ -97316,6 +97397,9 @@
     "trigger index plan": [
       "trigger index plan"
     ],
+    "trigger index reader fails closed": [
+      "trigger index reader fails closed"
+    ],
     "trigger index replacement": [
       "trigger index replacement"
     ],
@@ -97981,6 +98065,9 @@
     ],
     "uncheck checklist entry": [
       "uncheck checklist entry"
+    ],
+    "unchecked completion criteria": [
+      "unchecked completion criteria"
     ],
     "unclean shutdown crash marker": [
       "unclean shutdown crash marker"
@@ -99314,6 +99401,9 @@
     ],
     "verify class rename behaviour preserving": [
       "verify class rename behaviour-preserving"
+    ],
+    "verify findings at source": [
+      "verify findings at source"
     ],
     "verify first alignment recovery": [
       "verify-first alignment recovery"

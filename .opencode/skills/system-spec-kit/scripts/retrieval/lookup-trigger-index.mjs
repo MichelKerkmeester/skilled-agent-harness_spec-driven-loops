@@ -23,6 +23,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
+import { assertTriggerIndexShape } from './lib/artifact.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
@@ -72,13 +73,10 @@ export function loadIndex(indexPath = DEFAULT_INDEX_PATH, options = {}) {
   const text = fs.readFileSync(indexPath, 'utf8');
   const index = JSON.parse(text);
 
-  if (!index || typeof index !== 'object') throw new Error(`index is not an object: ${indexPath}`);
-  if (!index.phrases || typeof index.phrases !== 'object') {
-    throw new Error(`index is missing its phrases map: ${indexPath}`);
-  }
-  if (!Array.isArray(index.paths)) {
-    throw new Error(`index is missing its path table: ${indexPath}`);
-  }
+  // Fail closed on a parseable but malformed artifact: the same invariant the
+  // generator enforces at publish time, so a truncated or hand-edited index is
+  // refused here instead of silently returning fewer results than it holds.
+  assertTriggerIndexShape(index, `index ${indexPath}`);
 
   return {
     index,
@@ -169,12 +167,10 @@ export function lookup(loaded, prompt, options = {}) {
   const byPath = new Map();
   for (const phrase of candidatePhrases) {
     const posting = index.phrases[phrase];
-    if (!Array.isArray(posting)) continue;
 
     const scored = scorePhrase(normalizedQuery, phrase) ?? { matchClass: PARTIAL_CLASS, score: 0 };
     for (const pathId of posting) {
       const documentPath = index.paths[pathId];
-      if (documentPath === undefined) continue;
       if (specFolder !== null && !specFolderMatches(documentPath, specFolder)) continue;
 
       let current = byPath.get(documentPath);

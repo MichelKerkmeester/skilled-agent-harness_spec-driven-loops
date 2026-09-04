@@ -634,3 +634,37 @@ describe('lookup', () => {
     expect(specFolderMatches('specs/tracking/a.md', 'specs/track')).toBe(false);
   });
 });
+
+describe('loadIndex fails closed on a malformed artifact', () => {
+  function corrupted(mutate: (index: any) => void): string {
+    const root = makeTempDir('speckit-trigger-corrupt-');
+    writeDoc(root, 'specs/track/a.md', frontmatter(['shared phrase', 'only in a']));
+    writeDoc(root, 'specs/track/b.md', frontmatter(['shared phrase']));
+    const options = generationPaths(root);
+    generate(options);
+    const index = JSON.parse(fs.readFileSync(options.indexPath, 'utf8'));
+    mutate(index);
+    fs.writeFileSync(options.indexPath, JSON.stringify(index), 'utf8');
+    return options.indexPath;
+  }
+
+  it('refuses a posting that is not an array instead of skipping the phrase', () => {
+    const indexPath = corrupted((index) => { index.phrases['shared phrase'] = 0; });
+    expect(() => loadIndex(indexPath)).toThrow(/posting is not an array/);
+  });
+
+  it('refuses a path id outside the path table instead of dropping the document', () => {
+    const indexPath = corrupted((index) => { index.phrases['only in a'] = [7]; });
+    expect(() => loadIndex(indexPath)).toThrow(/outside the table/);
+  });
+
+  it('refuses an artifact written at another schema version', () => {
+    const indexPath = corrupted((index) => { index.schemaVersion = 1; });
+    expect(() => loadIndex(indexPath)).toThrow(/schemaVersion is 1/);
+  });
+
+  it('still loads the artifact the generator published', () => {
+    const indexPath = corrupted(() => {});
+    expect(loadIndex(indexPath).schemaVersion).toBe(2);
+  });
+});
