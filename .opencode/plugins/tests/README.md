@@ -91,7 +91,7 @@ tests/
 
 ## 5. CONFIGURATION
 
-Tests manage their own env per test (save/restore). The kill-switch env each suite toggles is the same one documented in the parent `plugins/README.md` and each plugin's own README (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`, `SYSTEM_SPEC_MEMORY_DISABLED`, `SK_CODE_POST_EDIT_QUALITY_DISABLED`). No external configuration is required to run the suites.
+Tests manage their own env per test (save/restore). The kill-switch env each suite toggles is the same one documented in the parent `plugins/README.md` and each plugin's own README (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`, `SK_CODE_POST_EDIT_QUALITY_DISABLED`). No external configuration is required to run the suites.
 
 ---
 

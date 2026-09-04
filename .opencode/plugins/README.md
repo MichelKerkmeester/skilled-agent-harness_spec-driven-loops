@@ -83,7 +83,7 @@ plugins/
 | `system-skill-advisor.js` | Spawns the skill-advisor bridge subprocess per prompt, manages a TTL+LRU prompt cache with in-flight dedup, integrates transform-dedup, and exposes `spec_kit_skill_advisor_status`. |
 | `system-spec-gate.js` | Maps OpenCode's transport onto the runtime-neutral spec-gate core. Classify best-effort fetches the last user message via `ctx.client`; enforce throws `system-spec-gate:` on deny; `event` sweeps/advances/evicts state. |
 | `sk-code-post-edit-quality.js` | Correlates `tool.execute.before` file paths to `tool.execute.after` callIDs, runs the post-edit router core, and drains findings on the next transform. |
-| `lib/opencode-message-identity.js` | Shared stable transform identity and dedup state used by the advisor and memory plugins. |
+| `lib/opencode-message-identity.js` | Shared stable transform identity and dedup state used by the advisor plugin. |
 
 ---
 
@@ -97,7 +97,7 @@ Every plugin is enabled by default. Truthy disable values are `1`, `true`, `yes`
 | Per-concern `SYSTEM_<CONCERN>_DISABLED=1` | Each plugin's canonical kill-switch (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`). See each plugin's own README for its full env family. |
 | Legacy / plugin-specific aliases | Several plugins carry additional aliases (e.g. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, `OPENCODE_GOAL_PLUGIN_DISABLED`, `SK_COMMUNICATION_PROJECTION_DISABLED`, `SK_CODE_POST_EDIT_QUALITY_DISABLED`). See each plugin's own README. |
 
-Optional tuning: `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000; owned by `system-skill-advisor`), `SYSTEM_OPENCODE_TRANSFORM_DEDUP=1` (opt-in transform dedup for the advisor and memory plugins), plus per-plugin cache/budget/timeout envs documented in each plugin's README.
+Optional tuning: `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000; owned by `system-skill-advisor`), `SYSTEM_OPENCODE_TRANSFORM_DEDUP=1` (opt-in transform dedup for the advisor plugin), plus per-plugin cache/budget/timeout envs documented in each plugin's README.
 
 Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
