@@ -82,6 +82,33 @@ The scanner reports the error string `cannot delve into a
 robust tapestry` when the parse fails, which is expected.
 """
 
+EMITTED_FRONTMATTER = """# Draft
+
+Prose above the payload.
+
+````markdown
+---
+title: "A field skeleton, not prose"
+description: "The generated document carries an em dash — here, in a field."
+---
+
+The payload continues below its own frontmatter.
+````
+
+Prose below the payload.
+"""
+
+
+THEMATIC_RULE = """# Draft
+
+A rule between sections is three dashes and nothing else.
+
+---
+
+The delve below the rule stays a finding, because a rule is not frontmatter.
+"""
+
+
 NESTED_FENCE = """# Draft
 
 Prose above the payload.
@@ -134,6 +161,18 @@ def run() -> int:
         check(
             'a shorter fence nested inside a longer one does not close it',
             nested_report['hardBlockers'] == 0,
+        )
+
+        emitted_report = _scan(_template(tmp, EMITTED_FRONTMATTER))
+        check(
+            'a frontmatter block inside a payload is masked like the document\'s own',
+            emitted_report['templatePayload'] and emitted_report['hardBlockers'] == 0,
+        )
+
+        rule_report = _scan(_template(tmp, THEMATIC_RULE))
+        check(
+            'a rule between sections is not mistaken for frontmatter',
+            rule_report['templatePayload'] and rule_report['hardBlockers'] == 1,
         )
 
         wrapped_report = _scan(_prose(tmp, WRAPPED_SPAN))

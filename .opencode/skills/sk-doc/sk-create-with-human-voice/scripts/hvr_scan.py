@@ -225,6 +225,27 @@ CODE_FENCE_LANGUAGES = {
     "gitignore",
 }
 
+# A frontmatter block is a field skeleton rather than prose, wherever it sits. A
+# template emits one into the document it generates, so the same three dashes that
+# open a document's own frontmatter also open the frontmatter its payload carries.
+# A lone rule between sections looks identical on its first line, so the second
+# line decides: a field declaration opens frontmatter, anything else is a rule.
+FRONTMATTER_FIELD_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_-]*\s*:")
+
+
+def _frontmatter_block_end(lines, index):
+    """Return the closing index of a frontmatter block opening at index, or None."""
+    if lines[index].strip() != "---":
+        return None
+    following = index + 1
+    if following >= len(lines) or not FRONTMATTER_FIELD_RE.match(lines[following].strip()):
+        return None
+    for probe in range(following, len(lines)):
+        if lines[probe].strip() == "---":
+            return probe
+    return None
+
+
 # A template's filename ends in "template" (a document ABOUT templates starts
 # with the word instead, e.g. "template-guide.md"), which is how the skills tree
 # already tells the two apart.
@@ -284,11 +305,9 @@ def mask_untargeted(lines, include_code, template_payload=False):
         return masked
 
     start = 0
-    if masked and masked[0].strip() == "---":
-        for index in range(1, len(masked)):
-            if masked[index].strip() == "---":
-                start = index + 1
-                break
+    head_end = _frontmatter_block_end(masked, 0) if masked else None
+    if head_end is not None:
+        start = head_end + 1
         for index in range(0, start):
             masked[index] = " " * len(masked[index])
 
@@ -296,8 +315,19 @@ def mask_untargeted(lines, include_code, template_payload=False):
     fence_is_code = True
     fence_marker = ""
     paragraph = []
-    for index in range(start, len(masked)):
+    index = start - 1
+    while index + 1 < len(masked):
+        index += 1
         line = masked[index]
+        if not in_fence or not fence_is_code:
+            block_end = _frontmatter_block_end(masked, index)
+            if block_end is not None:
+                for blank in range(index, block_end + 1):
+                    masked[blank] = " " * len(masked[blank])
+                _mask_inline_spans(masked, paragraph)
+                paragraph = []
+                index = block_end
+                continue
         marker_match = FENCE.match(line)
         if marker_match:
             marker = marker_match.group(1)

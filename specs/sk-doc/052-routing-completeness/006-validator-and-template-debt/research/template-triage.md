@@ -333,6 +333,13 @@ scanner reads lines 204 and 207 as prose outside any fence when they are payload
 scanned those lines here, so the count is unaffected. On a payload holding a `bash` sample the same
 inversion would mask the wrong side.
 
+**Shape B ruled on 2026-09-04.** The operator decided an emitted frontmatter block is masked the
+same way a document's own is. It is a field skeleton rather than prose, and flagging it asks an
+author to change what the template produces in order to clear a finding nobody reads. The scanner
+now recognises a frontmatter block wherever it sits, using the second line to tell one from a rule
+between sections, since both open with three dashes. The fleet count moves 530 to 509 across seven
+files, and no file changes whether it carries a blocker at all.
+
 **Fixed on 2026-09-03.** A fence now closes only on a run of the same character at least as long as
 the one that opened it, which is the rule the format itself uses. The fleet count is unchanged at
 530 across 54 detected templates, which is what a latent defect should do, so a regression test is
