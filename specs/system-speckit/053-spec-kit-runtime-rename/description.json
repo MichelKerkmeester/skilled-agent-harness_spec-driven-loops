@@ -1,0 +1,16 @@
+{
+  "specFolder": "system-speckit/053-spec-kit-runtime-rename",
+  "description": "spec-kit runtime rename",
+  "keywords": [
+    "spec-kit",
+    "runtime",
+    "rename"
+  ],
+  "lastUpdated": "2026-09-04T19:16:06.266Z",
+  "specId": "001",
+  "folderSlug": "spec-kit-runtime-rename",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -111,7 +111,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Merge v4 into the branch | Done | `144897ba5d`: 34 conflicts, 12 deleted-engine files kept deleted, command frontmatter takes v4's contract hints with memory tools removed; `d56a0db7a1` merges the operator's four DevPass commits, regenerated 049 metadata |
-| Template alignment | Done | 187 changed reference and README documents validated; two fixed at `docs(skills)` (overview sections); one class defect recorded below |
+| Template alignment | Done | 187 changed reference and README documents validated; two fixed at `f651137d3c`; three class defects recorded below |
+| README reframing (D7) | Done | `d3a1e2f437`: root README plus nine skill, script and runtime READMEs describe continuity and retrieval; the store-era feature-flag, token-budget and decay-model passages and the five-target doctor list are gone; ten of ten still pass their template class; a residual grep for the memory-framing phrases returns nothing |
 | Fast-forward v4 and main | Done | `main` = `skilled/v4.0.0.0` = `2752169eb8`; no memory registration in five config roots, no hook, plugin or launcher on disk; sweep live 0 on the main checkout after one stale launcher state file was removed |
 | Deep review loop | Running | ten iterations, gpt-5.6-luna max fast, stop policy max-iterations. First launch read the repository through wildcard scope and compacted twice inside iteration one; stopped and set aside as `lineages/luna-max.attempt-1-unbounded`. Relaunched on a 438-file scope list; iteration one took three minutes over 13 files |
 
@@ -122,7 +123,10 @@ and findings belong here.
 | F001 free-text ripgrep recipes omit `--hidden`, so dotted documentation under `.opencode` is a silent miss | P1 | `ce056899ab`: `--hidden` in the lane's base flags, a `.git` exclusion glob, every recipe in the conventions, a hidden-directory test |
 | F002 lookup `--limit` accepts `2junk` and `1.9` and truncates silently | P2 | `ce056899ab`: the raw value must be a whole decimal number; six malformed cases tested |
 | F003 the HF model server's remote-bind opt-in requires a token that no request ever checks | P1 | `63d0fd99d0`: the configured token is required as a bearer credential on every request, compared in constant time, and the client sends it; live probe 401, 401, pass-through. This edits the preserved set, recorded below as a D5 deviation |
-| F004 the memory doctor route names a checklist artifact that does not exist and a gold-battery pass policy from the retired search engine | P1 | this commit: the route points at the 049 phase 001 acceptance criteria, the frozen parity baseline and the latency report, and its pass policy states the lookup exit contract, the 200 ms cold budget, byte-identical regeneration and zero unexplained parity differences |
+| F005 the cli-codex skill's default non-interactive example omits the stdin redirect its own hard rule requires | P2 | `d3a1e2f437`: the example carries `</dev/null` and names the rule that explains it |
+| F006 forced-depth completion accepts a gapped iteration file set because it checks only the count | P1 | queued: the fix (require the contiguous 1..N set and reconcile it with unique state records before accepting max-iterations completion) lives in `fanout-run.cjs`, which carries the operator's uncommitted edits; applied once that file is committed, so the operator's work is never staged with it |
+| F007 post-dispatch write containment can be bypassed through a symlink beneath the artifact directory | P1 | in progress: canonicalize every descendant path before accepting it as inside the artifact tree, with regression tests |
+| F004 the memory doctor route names a checklist artifact that does not exist and a gold-battery pass policy from the retired search engine | P1 | `a74f78875d`: the route points at the 049 phase 001 acceptance criteria, the frozen parity baseline and the latency report, and its pass policy states the lookup exit contract, the 200 ms cold budget, byte-identical regeneration and zero unexplained parity differences |
 
 ### DONE WHEN
 
