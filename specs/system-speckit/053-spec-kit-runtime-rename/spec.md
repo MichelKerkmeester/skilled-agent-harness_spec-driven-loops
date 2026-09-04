@@ -78,6 +78,36 @@ The engine lives at `system-spec-kit/runtime` with the shape of `system-deep-loo
 | `.claude/settings.json`, `.claude/hooks/*`, `.codex/**`, `.cursor/**`, `.pi/**`, `.devin/**`, `opencode.json`, `.opencode/plugins/*.js` | Modify | Hook adapter paths and discovery mirrors |
 | `.opencode/commands/doctor/**`, `.opencode/commands/speckit/**`, `.opencode/commands/create/**` | Modify | Asset paths |
 | `AGENTS.md`, `README.md`, `.opencode/install-guides/**`, `.opencode/hooks/**`, `.opencode/skills/**/README.md`, `.opencode/skills/**/references/**` | Modify | Prose and path references, about 100 files |
+
+### Review Scope
+
+The review reads a bounded list, never a tree. The change set is the rename commit's diff `0d7586d849..aef7852400` outside `specs/`, with pure renames excluded: the 453 files whose content changed, listed one per line in `scratch/review-scope.txt`, grouped as follows. The 260 files moved without a content change are verified by the commands below, not by reading anything.
+
+| Group in the list | Count | What to verify |
+|-------------------|-------|----------------|
+| `.opencode/skills/system-spec-kit/runtime/**` outside `tests/` | 36 | The engine package: manifest name and dependencies, entry points, hook adapters, README and env reference; no MCP name, SDK or transport, no import of a dropped dependency |
+| `.opencode/skills/system-spec-kit/runtime/tests/**` | 28 | Tests resolve the moved modules and fixtures; no path or package name from the old location |
+| `.opencode/skills/system-spec-kit/scripts/**` | 103 | Freshness table, retrieval lane, evals and test helpers point at `runtime/`; the vitest config is found at its new path |
+| `.opencode/skills/system-spec-kit/{shared,references,templates,*.md,*.json}` | 75 | Workspace manifests and lockfile, tsconfig, skill docs and references name the runtime package; the shared embedding seam still resolves its providers |
+| `.opencode/skills/{system-deep-loop,cli-external-orchestration,system-skill-advisor,sk-doc,sk-code,sk-git,mcp-*}/**` | 86 | Compiled routing and leaf manifests re-minted; instructions name the new path; advisor and model-server behaviour unchanged |
+| `.opencode/{hooks,bin,plugins,scripts,install-guides,commands}/**` | 82 | Hook symlinks, launchers, doctor assets and install guides resolve on the new tree; no launcher starts a server |
+| `.{claude,pi,codex,cursor,devin}/**`, `.github/**`, `AGENTS.md`, `README.md`, `opencode.json`, `.env.example`, `.gitignore`, `.opencode/logs/README.md` | 43 | Runtime mirrors and CI workflows consistent with the move; ignore rules cover the new dist and database paths |
+
+**Reading budget.** Read only files in the list and the modules they import directly. Never expand a directory with a wildcard, and never read `node_modules`, `dist`, `benchmark`, `changelog`, `z_archive`, `manual-testing-playbook`, `feature-catalog`, or `data/trigger-index.json`. Cover a different group in each iteration so ten iterations cover the list roughly once, and spend any remaining iterations on the findings already raised.
+
+**Repository-wide claims come from commands, not reading:**
+
+```bash
+rg -l 'system-spec-kit/mcp-server|@spec-kit/mcp-server' . -g '!**/node_modules/**' -g '!**/dist/**' -g '!**/z_archive/**' -g '!**/changelog/**' -g '!**/benchmark/**' -g '!specs/**'   # no output
+node .opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs check-all                                                             # every package fresh
+node .opencode/bin/compiled-route-guard.cjs                                                                                                # all hubs fresh
+node .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs --json                                                    # live must be 0
+NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-speckit/053-spec-kit-runtime-rename --strict
+bash .opencode/commands/doctor/scripts/route-validate.sh
+node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+```
+
+Out of the review's write scope: everything in packet 052's decision D5 preserved set, `node_modules`, `dist`, and any branch other than the one under review.
 <!-- /ANCHOR:scope -->
 
 ---

@@ -55,6 +55,9 @@
       ".opencode/skills/system-spec-kit/runtime/package.json",
       ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "scratch/review-scope.txt",
+      ".opencode/logs/README.md",
+      "data/trigger-index.json",
       "scratch/inventory.md"
     ],
     "entities": [
@@ -125,6 +128,24 @@
         "source": "derived"
       },
       {
+        "name": "review-scope.txt",
+        "kind": "file",
+        "path": "scratch/review-scope.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/logs/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "data/trigger-index.json",
+        "source": "derived"
+      },
+      {
         "name": "inventory.md",
         "kind": "doc",
         "path": "scratch/inventory.md",
@@ -183,29 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Engine",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Shell",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The memory decommission deleted the MCP server, its tools and its database, but kept the package that held them because the validation orchestrator, the metadata refresh, the continuity writer and the per-runtime hook adapters live inside it",
     "created_at": "2026-09-04T19:16:06Z",
-    "last_save_at": "2026-09-04T21:08:05.345Z",
+    "last_save_at": "2026-09-04T21:19:52.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +218,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2cf3eb2a51dd116865f4caedeecd1f4e660d1402f80abfad432294ffd47f2687",
+    "source_fingerprint": "sha256:31725cdb6be7dfd5007c179de94fc01aeef34f830174c761d9eec5da5c60d103",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "90e86ab44c3abe6eb2288d7e2eac923f76855f138ff3b0ee76495cc44c55f3d5",
+      "spec.md": "d72b0dceda09ac07fc19abc8fc7f2a228328be0e3b7672a02f6bcbae15167e08",
       "plan.md": "22895deca2ae469fa13740262b2d43596801462a1c0dd8581eeafeda81786bd7",
       "tasks.md": "7d8af4b2d757d6fb52e12da56138d320f68e29e48ed96703830f55945cc0082d",
       "implementation-summary.md": "023649cbe862a24561ee41b660ef596065eb225f5f153978b1f858f42211d26d"
