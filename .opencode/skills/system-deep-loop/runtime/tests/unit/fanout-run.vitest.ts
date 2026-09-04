@@ -613,7 +613,19 @@ describe('fanout-run.cjs — max-iterations stop-reason tolerance', () => {
     const violation = findMaxIterationsPolicyViolation({
       loopType: 'research', stopPolicy: 'max-iterations', lineage: { iterations: 3 }, stateRead, lineageDir: dir,
     });
-    expect(violation).toContain('expected state records for iterations 1..3, got 1,2');
+    expect(violation).toContain('duplicate state records for iterations: 1,1,2');
+  });
+
+  it('rejects a complete range whose state log repeats an iteration', () => {
+    const { dir, stateRead } = makeResearchLineageDir(3, true);
+    stateRead.records = [
+      { type: 'iteration', iteration: 1 }, { type: 'iteration', iteration: 2 }, { type: 'iteration', iteration: 3 }, { type: 'iteration', iteration: 2 },
+      { type: 'event', event: 'maxIterationsReached', stopReason: 'maxIterationsReached' },
+    ];
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'research', stopPolicy: 'max-iterations', lineage: { iterations: 3 }, stateRead, lineageDir: dir,
+    });
+    expect(violation).toContain('duplicate state records for iterations: 1,2,3,2');
   });
 
   it('accepts the exact contiguous set on disk and in the state log', () => {

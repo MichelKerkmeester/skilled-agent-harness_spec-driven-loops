@@ -713,6 +713,9 @@ function forcedDepthIterationViolation({ diskNumbers, records, cap }) {
   const recorded = (records || [])
     .filter((record) => record && record.type === 'iteration' && Number.isInteger(record.iteration))
     .map((record) => record.iteration);
+  if (recorded.length !== unique(recorded).length) {
+    return `duplicate state records for iterations: ${describe(recorded)}`;
+  }
   if (recorded.length > 0 && !sameSet(recorded)) {
     return `expected state records for iterations 1..${cap}, got ${describe(unique(recorded))}`;
   }
