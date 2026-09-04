@@ -1,0 +1,98 @@
+Headline audit: all twenty-seven headlines, checked arithmetically against their own data block.
+
+Twenty-one chart forms under assets/templates and six deliveries under assets/examples. Every
+number below was computed from the CHART_DATA block of the file it describes. Eight headlines were
+rewritten. Nineteen stand, four of them after a reading that could have gone either way.
+
+REWRITTEN (8)
+-------------
+bar-rows          "longer than the three stages after it combined"
+                  18 vs 9 + 6 + 5 = 20. FALSE by 2 days.
+                  -> "the two stages after it combined": 18 vs 9 + 6 = 15. True by 3.
+
+calendar-grid     "the whole of high summer runs at half pace"
+                  Weekday mean across the summer weeks (27-35) = 11.04. Year weekday mean = 16.91.
+                  11.04 / 16.91 = 65.3%, not 50%. Against the rest of the year (18.14) it is 60.9%.
+                  Only weeks 29-33, five of the nine, reach 53.8% of the rest of the year.
+                  -> "run at two thirds of the year's pace": 65.3%.
+                  The other clause holds: weekend mean 3.74 against weekday 16.91, 22%.
+
+candlestick       "gave back everything the autumn rally had gained"
+                  W1 open 100, W10 close 140, W14 close 102. Two of the forty points remain, so
+                  under the whole-series reading it is false; under a later rally start it is true
+                  and then some. The data carries no dates to settle which.
+                  -> "took back thirty-eight of the forty points the rally had added": 140 - 102 = 38,
+                     140 - 100 = 40. Exact under either reading.
+
+daily-range       "the ceiling kept climbing"
+                  Highs 340 366 352 401 438 402 421 507 548 611 664 702 781 910. Three of the
+                  thirteen steps are down (days 3, 6 and 7), so "kept climbing" is falsifiable
+                  beside a clause ("the floor held all fortnight") that is strictly true.
+                  -> "the ceiling nearly tripled": 910 / 340 = 2.68. Lows stay in 112-126.
+
+stacked-area      "the total stayed inside a fifteen percent band"
+                  Period totals run 92 to 106. The band is 14 points, which is 15.22% of the
+                  minimum, 14.2% of the mean and 13.2% of the maximum. The claim flips on the
+                  denominator, and the largest reading is the one that breaks it.
+                  -> "a fifteen point band": 14 points, absolute, true under every reading.
+                     The form's own desc already said "between 92 and 106".
+
+treemap           "and no team has claimed it"
+                  The data block holds label and value per leaf and no owner field anywhere, so
+                  the claim is unsupported rather than false. "Nearly half" is sound: 243 / 543 = 44.8%.
+                  -> "its archive line alone costs more than all of Network": 128 vs 63 + 22 = 85.
+
+unit-grid         "two accounts out of forty"
+                  The block holds four labelled tiers: two largest 50, next eight 27, everyone
+                  else 16, unassigned 7. Nothing in it counts forty accounts. "Half" is sound: 50 of 100.
+                  -> "on the two largest accounts", which is the label the block carries.
+
+calls-by-day-     "the quietest weekday mid-morning still carries three times the busiest weekend hour"
+and-hour          Busiest weekend slot = 66 (Saturday 14). Quietest weekday 10-slot = 159, which is
+                  2.41x. Quietest weekday 08-slot = 208, which is 3.15x. The claim is true only if
+                  "mid-morning" means the 08 slot, and 10:00-12:00 is the more natural reading.
+                  -> "runs below every weekday slot between eight and six": weekend max 66 against
+                     the weekday daytime minimum of 126 (Friday 12).
+
+STANDS AFTER A CLOSE READING (4)
+--------------------------------
+pick-times-       "spreads almost twice as wide": range 118 vs 65 = 1.82x, which is what the dot
+by-depot          cloud's width shows and what the form draws. IQR is 3.42x and sd 2.47x, so the
+                  claim understates two measures and matches the one the mark encodes. Kept, and
+                  consistent with distribution-strip, which reads spread the same way.
+                  Medians 70.5 and 70.0, so "matches on the median" holds.
+
+independent-      "almost none has recovery codes" for 11%. Loose as a quantifier and printed
+percentages       beside its own number in the chart. Kept: the argument is the gap against 94%,
+                  and 11% is on the bar.
+
+stacked-bars      "the market we entered last year". The block labels it "New market" and carries
+                  no date. Read as identifying a labelled column rather than as a second claim.
+                  The mix claim is sound: platform runs 61-66% in three markets and 26% in the fourth.
+
+scatter           "bigger squads close more per person" is a trend, not a monotone: 9 people at 24
+                  beats 10 at 22. Kept as a trend claim, which is what a scatter draws. The outlier
+                  clause is exact: squad 16 at 14 people and 9 tickets.
+
+STANDS (15)
+-----------
+bar-columns       840 + 690 = 1530 of 2900. Half is 1450. True by 80.
+bar-line-composed counts strictly rise across all 7 steps; rates strictly fall across all 7.
+box-plot          Casework, Appeals and Complex all median 30; no two share any of low, q1, q3, high.
+daily-line        pre-drop mean (days 1-10) 178.1, post-drop mean (days 12-28) 134.2, post-drop max
+                  162 against a pre-drop range of 176-203. Never recovers.
+distribution-strip Q3 median 46.5 sits between Q1's 42.0 and Q2's 56.0. Spread against Q1: IQR 3.09x,
+                  range 2.72x, sd 2.57x. "Nearly three times" holds on all three.
+grouped-bars      four channels rise, one falls, and the one that falls is Paid search.
+heat-matrix       Core kit is the column max in 7 of 8 regions (Iberia goes to Accessories, 40 vs 38).
+                  Training is the column min in all 8.
+parallel-axes     Alpha is worst on lead time (21), defect rate (18), on-time delivery (71) and
+                  support response (48), and cheapest on price (4.1).
+progress-single   6.7 / 10 = 67%; pace 0.75, so a quarter of the year remains.
+unit-ring         19 + 15 = 34 of 45 = 75.6%.
+waterfall         discounting -640 against churn -410.
+orders-after-     pre-change mean (days 1-10) 184.0, post-settle mean (days 12-28) 140.8, a fall of
+the-price-change  23.5%. Day 11 is the marked low at 94, down from 184.
+staff-hours       412 + 268 = 680 against 141 + 96 + 74 + 39 = 350.
+van-age           Van 09 at 3 years and 2140 against the oldest, Van 10 at 12 years and 1740.
+where-the-budget  54% to frontline staff, so more than half.

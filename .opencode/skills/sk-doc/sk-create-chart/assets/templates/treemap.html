@@ -87,6 +87,14 @@ body {
 .figure { margin: 0; overflow-x: auto; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
@@ -99,6 +107,11 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .series-2 { fill: var(--chart-series-2); }
 .series-3 { fill: var(--chart-series-3); }
 .series-4 { fill: var(--chart-series-4); }
+/* A family past the palette's capacity has no colour to take, so it takes the rule colour: the
+   ground held back, which reads as "outside the encoding" rather than as a colour of its own.
+   It is deliberately outside the .series-* ladder so that nothing can reach it by arithmetic,
+   and the figure prints a notice whenever a mark lands on it. */
+.over-capacity { fill: var(--chart-rule); }
 .cell { stroke: var(--chart-surface); stroke-width: 3; }
 .group { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
 .on-dark { fill: var(--chart-surface); font-size: 12px; }
@@ -139,7 +152,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 </head>
 <body>
 <div class="card">
-  <h1 class="headline" data-chart-part="headline">Storage is nearly half the cloud bill and no team has claimed it</h1>
+  <h1 class="headline" data-chart-part="headline">Storage is nearly half the cloud bill and its archive line alone costs more than all of Network</h1>
   <p class="subtitle" data-chart-part="subtitle">Last month's cloud spend, grouped by service family and broken down by line item. Area is the encoding, so a cell twice the size cost twice as much. Below about thirty leaves the tail is merged before drawing.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 336" id="chart">
@@ -151,11 +164,13 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Cloud spend by service family and line item, in thousands.</caption>
-    <thead><tr><th scope="col">Family</th><th scope="col">Line item</th><th scope="col">Spend</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Cloud spend by service family and line item, in thousands.</caption>
+      <thead><tr><th scope="col">Family</th><th scope="col">Line item</th><th scope="col">Spend</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -340,11 +355,30 @@ const WIDTH = 720;
 const sum = function (list) { return list.reduce(function (t, l) { return t + l.value; }, 0); };
 const total = DATA.reduce(function (t, g) { return t + sum(g.leaves); }, 0);
 
+// The palette block above defines 4 family colours and no more, so a fifth famil has
+// none to take. Reaching for one produced a class the stylesheet defines no fill for, and an
+// undefined fill paints black: the famil the encoding could not carry came out as the
+// strongest mark in the picture, under a key that never named it. Past the ceiling the extras
+// share one unkeyed fill and the figure says so, which is the answer `scatter` and `heat-matrix`
+// already give when their own documented shape is exceeded.
+//
+// The ceiling is written here rather than counted, because a self-contained file has no source
+// to read it from. `series-capacity` in the corpus check reads this constant against the classes
+// this file defines, so the two cannot drift apart without a run saying which side moved.
+const CAPACITY = 4;
+function seriesClass(i) {
+  return i < CAPACITY ? 'series-' + (i + 1) : 'over-capacity';
+}
+
 let x = 0;
 DATA.forEach(function (g, s) {
   const groupTotal = sum(g.leaves);
   const w = WIDTH * (groupTotal / total);
-  const text = labelClass(resolve('--chart-series-' + (s + 1)));
+  // A family past the ceiling is painted in the rule colour, which is the ground held back
+  // rather than a colour of its own, so its labels are read against the ground. Reading the rule
+  // value here instead would hand the contrast maths an alpha on the dark theme.
+  const cls = seriesClass(s);
+  const text = labelClass(cls === 'over-capacity' ? resolve('--chart-surface') : resolve('--chart-' + cls));
   // A label on the last column would run off the right edge, so it flips to end-anchored
   // rather than being silently clipped.
   const caption = g.label + ' ' + groupTotal;
@@ -355,7 +389,7 @@ DATA.forEach(function (g, s) {
   let y = TOP;
   g.leaves.forEach(function (leaf) {
     const h = HEIGHT * (leaf.value / groupTotal);
-    markable(node('rect', { x: x, y: y, width: w, height: h }, 'cell series-' + (s + 1)),
+    markable(node('rect', { x: x, y: y, width: w, height: h }, 'cell ' + cls),
       leaf.label, [[g.label, fmt(leaf.value)]]);
     if (h >= 30 && w >= 74) {
       node('text', { x: x + 10, y: y + 20 }, text).textContent = leaf.label;
@@ -365,6 +399,20 @@ DATA.forEach(function (g, s) {
   });
   x += w;
 });
+
+
+// The catalog gives this form a working shape and the palette gives it a ceiling of colours.
+// Past that ceiling the figure says so in the picture, where the person reading the chart will
+// see it, rather than in a console nobody opens. The notice grows the frame instead of sitting
+// inside the plot, so it never lands on a mark.
+if (DATA.length > CAPACITY) {
+  const box = svg.getAttribute('viewBox').split(' ');
+  const grown = Number(box[3]) + 22;
+  svg.setAttribute('viewBox', box[0] + ' ' + box[1] + ' ' + box[2] + ' ' + grown);
+  node('text', { x: 2, y: grown - 6 }, 'notice').textContent =
+    fmt(DATA.length) + ' families are drawn and this colour system carries ' + fmt(CAPACITY)
+    + '. The rest are drawn outside the encoding, so merge the tail before drawing or move to the neutral system.';
+}
 
 const rows = document.getElementById('rows');
 DATA.forEach(function (g) {

@@ -87,6 +87,14 @@ body {
 .figure { margin: 0; overflow-x: auto; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
@@ -98,6 +106,11 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .band-2 { fill: var(--chart-series-2); }
 .band-3 { fill: var(--chart-series-3); }
 .band-4 { fill: var(--chart-series-4); }
+/* A series past the palette's capacity has no colour to take, so it takes the rule colour: the
+   ground held back, which reads as "outside the encoding" rather than as a colour of its own.
+   It is deliberately outside the .band-* ladder so that nothing can reach it by arithmetic,
+   and the figure prints a notice whenever a mark lands on it. */
+.over-capacity { fill: var(--chart-rule); }
 .band { stroke: var(--chart-surface); stroke-width: 2; }
 /* The legend block carries the ladder's mark corner. The bands themselves do not: a band is
    a shape the data draws, and a corner radius on it would round a value. */
@@ -151,7 +164,7 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
 </head>
 <body>
 <div class="card">
-  <h1 class="headline" data-chart-part="headline">Subscription passed perpetual in month fourteen while the total stayed inside a fifteen percent band</h1>
+  <h1 class="headline" data-chart-part="headline">Subscription passed perpetual in month fourteen while the total stayed inside a fifteen point band</h1>
   <p class="subtitle" data-chart-part="subtitle">Revenue by licence type over twenty-four months, in millions. The height of the whole stack is the total and the width of a band is its share, so the argument is the crossing rather than either band on its own.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart" data-chart-dim="">
@@ -163,11 +176,13 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Revenue by licence type, in millions, twenty-four months.</caption>
-    <thead><tr id="head-row"><th scope="col">Month</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Revenue by licence type, in millions, twenty-four months.</caption>
+      <thead><tr id="head-row"><th scope="col">Month</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -300,6 +315,21 @@ complete.forEach(function (ok, i) {
 });
 if (run.length) runs.push(run);
 
+// The palette block above defines 4 series colours and no more, so a fifth series has
+// none to take. Reaching for one produced a class the stylesheet defines no fill for, and an
+// undefined fill paints black: the series the encoding could not carry came out as the
+// strongest band in the picture, under a key that never named it. Past the ceiling the extras
+// share one unkeyed fill and the figure says so, which is the answer `scatter` and `heat-matrix`
+// already give when their own documented shape is exceeded.
+//
+// The ceiling is written here rather than counted, because a self-contained file has no source
+// to read it from. `series-capacity` in the corpus check reads this constant against the classes
+// this file defines, so the two cannot drift apart without a run saying which side moved.
+const CAPACITY = 4;
+function bandClass(i) {
+  return i < CAPACITY ? 'band-' + (i + 1) : 'over-capacity';
+}
+
 const floors = DATA.map(function () { return 0; });
 SERIES.forEach(function (name, s) {
   runs.forEach(function (indices) {
@@ -313,7 +343,7 @@ SERIES.forEach(function (name, s) {
     node('path', {
       d: 'M' + upper.join(' L') + ' L' + lower.reverse().join(' L') + ' Z',
       'data-series': s + 1
-    }, 'band band-' + (s + 1));
+    }, 'band ' + bandClass(s));
   });
 });
 
@@ -357,7 +387,7 @@ SERIES.forEach(function (name, s) {
   swatch.setAttribute('y', 6);
   swatch.setAttribute('width', 8);
   swatch.setAttribute('height', 8);
-  swatch.setAttribute('class', 'key-swatch band-' + (s + 1));
+  swatch.setAttribute('class', 'key-swatch ' + bandClass(s));
   entry.appendChild(swatch);
   const label = document.createElementNS(SVG, 'text');
   label.setAttribute('x', cursor + 12);
@@ -372,6 +402,20 @@ SERIES.forEach(function (name, s) {
   entries.push(entry);
 });
 legend.setAttribute('transform', 'translate(' + (RIGHT - (cursor - 16)) + ',0)');
+
+
+// The catalog gives this form a working shape and the palette gives it a ceiling of colours.
+// Past that ceiling the figure says so in the picture, where the person reading the chart will
+// see it, rather than in a console nobody opens. The notice grows the frame instead of sitting
+// inside the plot, so it never lands on a mark.
+if (SERIES.length > CAPACITY) {
+  const box = svg.getAttribute('viewBox').split(' ');
+  const grown = Number(box[3]) + 22;
+  svg.setAttribute('viewBox', box[0] + ' ' + box[1] + ' ' + box[2] + ' ' + grown);
+  node('text', { x: LEFT, y: grown - 6 }, 'notice').textContent =
+    fmt(SERIES.length) + ' series are drawn and this colour system carries ' + fmt(CAPACITY)
+    + '. The rest are drawn outside the encoding, so merge the tail before drawing or move to the neutral system.';
+}
 
 const headRow = document.getElementById('head-row');
 SERIES.concat(['Total']).forEach(function (name) {

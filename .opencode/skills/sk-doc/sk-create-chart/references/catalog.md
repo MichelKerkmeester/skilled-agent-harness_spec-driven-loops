@@ -8,7 +8,7 @@ trigger_phrases:
   - "chart index"
 importance_tier: normal
 contextType: reference
-version: 1.3.0.0
+version: 1.4.0.0
 ---
 
 # Chart Catalog
@@ -55,7 +55,7 @@ Prose outside the sentinels is never asserted on. Rewrite this page freely. Only
 | waterfall | time | What was the step by step movement from gross to net | 6 or fewer signed steps with a running total | categorical | assets/templates/waterfall.html |
 | progress-single | time | How far to the target | One value against a goal | ordered | assets/templates/progress-single.html |
 | candlestick | time | Where did it open, high, low and close | Four values per period | categorical | assets/templates/candlestick.html |
-| stacked-area | time | How did the composition shift over continuous time | 2 to 5 series over a continuous axis, with the total also readable | categorical | assets/templates/stacked-area.html |
+| stacked-area | time | How did the composition shift over continuous time | 2 to 4 series over a continuous axis, with the total also readable | categorical | assets/templates/stacked-area.html |
 | distribution-strip | distribution | How are the individual values spread | Tens to a few hundred records of one variable, grouped | neutral | assets/templates/distribution-strip.html |
 | box-plot | distribution | What does the spread look like as a summary | Grouped records where a five-number summary is legitimate | neutral | assets/templates/box-plot.html |
 | scatter | relationship | Do these two variables move together | 20 or fewer points across two dimensions | neutral | assets/templates/scatter.html |
@@ -72,7 +72,7 @@ The columns mean:
 | `id` | Lower-case kebab, unique, and identical to the filename stem and to the file's own identity tag |
 | `family` | The question group the form belongs to, from section 4 |
 | `question` | The question a reader arrives with, written as they would say it |
-| `data shape` | What the form needs before it can be honest: how many categories, how many series, what must sum to what. A ceiling here is a real ceiling: two forms now print a notice in the figure when the data passes it |
+| `data shape` | What the form needs before it can be honest: how many categories, how many series, what must sum to what. A ceiling here is a real ceiling: seven forms now print a notice in the figure when the data passes it, and past a colour ceiling the extra marks are drawn outside the encoding rather than in a colour nobody chose |
 | `system` | The colour system the template declares. The cell mirrors the file rather than judging it, so a row and the colour document can disagree with nothing catching it. `color-system.md` carries the procedure for settling one row against the definitions, and every row here has been read against them |
 | `file` | Path from the packet root, which is always `assets/templates/<id>.html` for a chart form |
 
@@ -153,7 +153,7 @@ renders.
 | Form | Why it is absent |
 | --- | --- |
 | sankey | The contract excludes forms that need a layout engine, and a flow diagram is one. A hand-drawn approximation of a sankey is less honest than saying the corpus does not draw one, because the thing a reader trusts in a flow diagram is that the ribbon widths were solved rather than eyeballed. If flow is ever genuinely wanted, the exclusion in the contract is what to revisit, not this row |
-| radar | `parallel-axes` answers the same question with one scale per axis. A radar normalises every dimension onto one radial scale, which is honest when the dimensions share a unit and misleading when they do not, and the request that reaches this corpus almost always mixes units. The area a radar encloses also reads as a quantity and is not one, since it changes when the axes are reordered |
+| radar | `parallel-axes` answers the same question with one scale per axis. A radar normalises every dimension onto one radial scale, which is honest when the dimensions share a unit and misleading when they do not, and the request that reaches this corpus almost always mixes units. The area a radar encloses also reads as a quantity and is not one, since it changes when the axes are reordered. The name itself routes to `sk-create-diagram`, which does have a radar file; this row is what to reach for once the request is here and is about values rather than structure, and `SKILL.md` carries the routing half |
 
 ---
 

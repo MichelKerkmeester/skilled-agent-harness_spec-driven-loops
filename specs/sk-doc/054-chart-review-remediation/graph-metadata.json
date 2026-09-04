@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/054-chart-review-remediation",
+  "spec_folder": "sk-doc/054-chart-review-remediation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart review remediation",
+      "heat matrix band defect",
+      "chart series capacity",
+      "chart headline audit",
+      "series mapping check",
+      "chart remediation plan",
+      "chart review fixes",
+      "black cell fix plan",
+      "chart remediation tasks",
+      "chart review task list",
+      "black cell tasks",
+      "chart remediation criteria"
+    ],
+    "key_topics": [
+      "chart",
+      "review",
+      "remediation",
+      "heat",
+      "matrix",
+      "band",
+      "defect",
+      "series",
+      "capacity",
+      "headline",
+      "audit",
+      "mapping"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/heat-matrix.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/calendar-grid.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/unit-ring.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/unit-grid.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-bars.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/treemap.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/parallel-axes.html",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/README.md",
+      ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/corpus-integrity/colour-comes-from-one-source.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "heat-matrix.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/heat-matrix.html",
+        "source": "derived"
+      },
+      {
+        "name": "calendar-grid.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/calendar-grid.html",
+        "source": "derived"
+      },
+      {
+        "name": "unit-ring.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/unit-ring.html",
+        "source": "derived"
+      },
+      {
+        "name": "unit-grid.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/unit-grid.html",
+        "source": "derived"
+      },
+      {
+        "name": "stacked-bars.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-bars.html",
+        "source": "derived"
+      },
+      {
+        "name": "treemap.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/treemap.html",
+        "source": "derived"
+      },
+      {
+        "name": "stacked-area.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html",
+        "source": "derived"
+      },
+      {
+        "name": "parallel-axes.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/parallel-axes.html",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "colour-comes-from-one-source.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/corpus-integrity/colour-comes-from-one-source.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The corpus check passed on every one of these",
+    "created_at": "2026-09-04T07:19:37.295Z",
+    "last_save_at": "2026-09-04T07:20:14.991Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7b18338963fd4dcb124b9d834a0312d0e694047b53baea70b051dae5f2b83deb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4876090fd5cdbef8112e24a50d83ada7b90239a09907ef021f6c3d7c2f50e012",
+      "plan.md": "1e401ebf1098bec7c0b03e190d4217c100e50d2051a934569354c79f0b0a8fee",
+      "tasks.md": "027674db12d01e44c2818b799c8c85ae7f6ea6ce9674ba87ca73ba267745bb08",
+      "implementation-summary.md": "c9100dbb6667814f7fd2d5e7dfe4e12aea903e128fad7ebf60a5686432e77948"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

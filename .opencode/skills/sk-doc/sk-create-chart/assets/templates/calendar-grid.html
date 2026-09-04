@@ -89,6 +89,14 @@ body {
 .figure { margin: 0; overflow-x: auto; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
@@ -141,7 +149,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 </head>
 <body>
 <div class="card">
-  <h1 class="headline" data-chart-part="headline">Weekends barely register and the whole of high summer runs at half pace</h1>
+  <h1 class="headline" data-chart-part="headline">Weekends barely register and the summer weeks run at two thirds of the year's pace</h1>
   <p class="subtitle" data-chart-part="subtitle">Deployments per day across a full year, one cell per day, weeks running left to right. Darker is more. Nothing else in this corpus substitutes for this shape, because a weekly total hides the weekday pattern that is the finding.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 176" id="chart">
@@ -153,11 +161,13 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Deployments per day, one row per week, Sunday first.</caption>
-    <thead><tr><th scope="col">Week</th><th scope="col">Sun</th><th scope="col">Mon</th><th scope="col">Tue</th><th scope="col">Wed</th><th scope="col">Thu</th><th scope="col">Fri</th><th scope="col">Sat</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Deployments per day, one row per week, Sunday first.</caption>
+      <thead><tr><th scope="col">Week</th><th scope="col">Sun</th><th scope="col">Mon</th><th scope="col">Tue</th><th scope="col">Wed</th><th scope="col">Thu</th><th scope="col">Fri</th><th scope="col">Sat</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -362,9 +372,15 @@ const peak = WEEKS.reduce(function (m, week) {
 }, 0);
 
 // A high value takes the darkest step, so the ramp reads the way the legend says it does.
+//
+// The empty test is a domain test rather than an equality test. A zero was already caught, and
+// it was the only value off the ramp that was: a negative, a fraction under one, and a reading
+// nobody took all land below step one, where the arithmetic returns a step number the stylesheet
+// defines no fill for. An undefined fill paints black, which is the darkest thing on the page
+// under a legend that reserves darkest for the busiest day.
 function level(v) {
-  if (v === 0) return 'empty';
-  const band = Math.min(STEPS - 1, Math.floor((v - 1) * STEPS / peak));
+  if (!(Number.isFinite(v) && v > 0)) return 'empty';
+  const band = Math.min(STEPS - 1, Math.max(0, Math.floor((v - 1) * STEPS / peak)));
   return 'series-' + (STEPS - band);
 }
 

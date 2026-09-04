@@ -87,6 +87,14 @@ body {
 .figure { margin: 0; overflow-x: auto; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
@@ -98,6 +106,11 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .series-1 { fill: var(--chart-series-1); }
 .series-2 { fill: var(--chart-series-2); }
 .series-3 { fill: var(--chart-series-3); }
+/* A segment past the palette's capacity has no colour to take, so it takes the rule colour: the
+   ground held back, which reads as "outside the encoding" rather than as a colour of its own.
+   It is deliberately outside the .series-* ladder so that nothing can reach it by arithmetic,
+   and the figure prints a notice whenever a mark lands on it. */
+.over-capacity { fill: var(--chart-rule); }
 .seg { stroke: var(--chart-surface); stroke-width: 3; }
 /* The legend block carries the ladder's mark corner. Only the top segment of a stack carries
    it in the drawing, so no two data colours ever meet across a rounded seam. */
@@ -166,11 +179,13 @@ svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Revenue by product line within each market, in millions.</caption>
-    <thead><tr id="head-row"><th scope="col">Market</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Revenue by product line within each market, in millions.</caption>
+      <thead><tr id="head-row"><th scope="col">Market</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -284,6 +299,21 @@ const scale = (BASE - TOP) / peak;
 // property keeps the number in one place instead of typing it a second time in CSS.
 svg.style.setProperty('--chart-grow-base', BASE + 'px');
 
+// The palette block above defines 3 segment colours and no more, so a fourth segmen has
+// none to take. Reaching for one produced a class the stylesheet defines no fill for, and an
+// undefined fill paints black: the segmen the encoding could not carry came out as the
+// strongest mark in the picture, under a key that never named it. Past the ceiling the extras
+// share one unkeyed fill and the figure says so, which is the answer `scatter` and `heat-matrix`
+// already give when their own documented shape is exceeded.
+//
+// The ceiling is written here rather than counted, because a self-contained file has no source
+// to read it from. `series-capacity` in the corpus check reads this constant against the classes
+// this file defines, so the two cannot drift apart without a run saying which side moved.
+const CAPACITY = 3;
+function seriesClass(i) {
+  return i < CAPACITY ? 'series-' + (i + 1) : 'over-capacity';
+}
+
 const slot = (RIGHT - LEFT) / DATA.length;
 const barWidth = slot * 0.52;
 DATA.forEach(function (d, i) {
@@ -299,12 +329,18 @@ DATA.forEach(function (d, i) {
     node(top ? 'path' : 'rect', top
       ? { d: topRounded(cx - barWidth / 2, y, barWidth, h, MARK_R), style: '--mark-index:' + i, 'data-series': s + 1 }
       : { x: cx - barWidth / 2, y: y, width: barWidth, height: h, style: '--mark-index:' + i, 'data-series': s + 1 },
-      'seg series-' + (s + 1));
+      'seg ' + seriesClass(s));
     if (h >= 22) {
       // The printed value belongs to its segment, so it dims with it rather than staying at
       // full strength over a segment that has stepped back.
+      //
+      // A segment past the ceiling is painted in the rule colour, which is the ground held back
+      // rather than a colour of its own, so its number is read against the ground. Reading the
+      // rule value here instead would hand the contrast maths an alpha on the dark theme.
+      const cls = seriesClass(s);
+      const fill = cls === 'over-capacity' ? resolve('--chart-surface') : resolve('--chart-' + cls);
       node('text', { x: cx, y: y + h / 2 + 4, 'text-anchor': 'middle', 'data-series': s + 1 },
-        labelClass(resolve('--chart-series-' + (s + 1)))).textContent = fmt(v);
+        labelClass(fill)).textContent = fmt(v);
     }
   });
   node('text', { x: cx, y: BASE + 22, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
@@ -329,7 +365,7 @@ SEGMENTS.forEach(function (name, s) {
   swatch.setAttribute('y', 6);
   swatch.setAttribute('width', 8);
   swatch.setAttribute('height', 8);
-  swatch.setAttribute('class', 'key-swatch series-' + (s + 1));
+  swatch.setAttribute('class', 'key-swatch ' + seriesClass(s));
   entry.appendChild(swatch);
   const label = document.createElementNS(SVG, 'text');
   label.setAttribute('x', cursor + 12);
@@ -352,6 +388,20 @@ SEGMENTS.forEach(function (name) {
   th.textContent = name;
   headRow.appendChild(th);
 });
+
+
+// The catalog gives this form a working shape and the palette gives it a ceiling of colours.
+// Past that ceiling the figure says so in the picture, where the person reading the chart will
+// see it, rather than in a console nobody opens. The notice grows the frame instead of sitting
+// inside the plot, so it never lands on a mark.
+if (SEGMENTS.length > CAPACITY) {
+  const box = svg.getAttribute('viewBox').split(' ');
+  const grown = Number(box[3]) + 22;
+  svg.setAttribute('viewBox', box[0] + ' ' + box[1] + ' ' + box[2] + ' ' + grown);
+  node('text', { x: LEFT, y: grown - 6 }, 'notice').textContent =
+    fmt(SEGMENTS.length) + ' segments are drawn and this colour system carries ' + fmt(CAPACITY)
+    + '. The rest are drawn outside the encoding, so merge the tail before drawing or move to the neutral system.';
+}
 
 const rows = document.getElementById('rows');
 DATA.forEach(function (d) {

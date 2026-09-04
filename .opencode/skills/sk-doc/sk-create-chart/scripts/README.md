@@ -1,6 +1,6 @@
 ---
 title: "sk-create-chart Scripts"
-description: "How to run the corpus check, what each of its checks enforces and how to prove it can still fail before trusting a green run."
+description: "How to run the corpus check, what each of its checks enforces, what four of them still cannot see, and how to prove any of it can fail before trusting a green run."
 trigger_phrases:
   - "chart validator"
   - "chart corpus check"
@@ -8,12 +8,15 @@ trigger_phrases:
   - "check-corpus"
 importance_tier: normal
 contextType: reference
-version: 1.5.0.0
+version: 1.6.0.0
 ---
 
 # sk-create-chart Scripts
 
-One script lives here. `check-corpus.cjs` is the corpus check, and it enforces every rule the template contract states.
+One script lives here. `check-corpus.cjs` is the corpus check. It enforces every rule the template
+contract states, and three of them it enforces in part: the contract's section 7 names which three
+and section 9 says what a run does not observe. A green run means what those two sections say it
+means and no more.
 
 ---
 
@@ -55,15 +58,25 @@ Each open pins its colour scheme with a browser flag rather than inheriting the 
 
 ## 4. WHAT IT CHECKS
 
-Per template file, one check name each: `document-shape`, `identity`, `palette-block`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `narrow-viewport`, `motion`, `radius`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
+Per template file, one check name each: `document-shape`, `identity`, `palette-block`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `narrow-viewport`, `motion`, `radius`, `series-mapping`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
+
+`series-mapping` is the newest and the one worth reading the reason for. Every other colour rule
+asks where a value came from; this one asks which mark received it. A file whose indexed classes
+hand out the palette's tokens in the wrong order passes all the others, because the block still
+matches the source, no literal appears outside it and the source still gates clean. Reverse the
+five mappings in a matrix form and the encoding inverts while the legend, drawn from the same
+classes, inverts with it, so the picture agrees with itself and disagrees with the data. The rule
+also holds the two facts either side of the mapping: the indices run from one without a gap, and
+they stop at the declared system's capacity. Both are the same failure from another angle, because
+a class the stylesheet cannot paint is painted black rather than left alone.
 
 Six more run per file and enforce clauses the contract states outside its numbered table. Each of the six existed as a written rule before it existed as a check, and a rule the tooling does not check is a wish:
 
-- `empty-notice` requires every chart form to carry the `CHART_EMPTY_NOTICE` guard, to sit below the data block it reads, and to carry the labelled block and the break that let it stop the drawing. A guard that prints the notice and then draws anyway prints it over the empty frame it was warning about.
+- `empty-notice` requires every chart form and every delivery to carry the `CHART_EMPTY_NOTICE` guard, to sit below the data block it reads, and to carry the labelled block and the break that let it stop the drawing. A guard that prints the notice and then draws anyway prints it over the empty frame it was warning about. The deliveries were exempt until the stated ground for it was read: the exemption said each carried the notice of the form it came from, and none of the six did. A proof sheet is still exempt, and for a ground that holds, because its data block is the palette it draws.
 - `interaction-hygiene` requires the one hygiene line in any file whose markup declares an interaction register, and separately rejects an unconditional `outline: none` on a focus and any `user-select: none`. Those are the two ways the line could be widened into taking a focus ring or a copyable number away from a reader, and both pass every other rule here.
 - `interaction-state` requires the dim attribute to ship empty and the tooltip group to ship without content. Neither failure is visible to the render path: a file that opens already dimmed paints the same picture on both of its pointer-free opens, so `settled-render` agrees with it exactly as it agrees with a correct file.
 - `number-format` rejects any host-locale formatter anywhere in the corpus, and requires a file carrying a hover card to define a formatter of its own. A locale-dependent formatter is invisible on the machine that authored the file and changes the grouping mark, the decimal mark and the digits on the machine that opens it.
-- `type-scale` rejects a font size that is on neither the six published rungs nor the three named departures. The nine values live in the palette source beside the corner ladder, so the check reads them rather than restating them, and both routes are covered: a size declared in the stylesheet and a size set as an attribute from the drawing code.
+- `type-scale` rejects a font size that is on neither the six published rungs nor the three named departures. The nine values live in the palette source beside the corner ladder, so the check reads them rather than restating them, and all three routes are covered: a size declared in the stylesheet, a size passed to `setAttribute` directly, and a size handed to the `node(name, attrs, cls)` helper that every chart form builds its marks through. The third was the route the rule missed and the only one the corpus actually uses, so the check covered a path no file takes and skipped the path all of them take.
 - `gradient-sweep` resolves a gradient's stops through the classes that carry them and rejects a gradient naming two different series values in a file whose declared system is not `ordered`. A gradient naming one series value at two opacities is a fade and is left alone.
 
 With `--render` three more run, and all three need a browser:
@@ -76,7 +89,7 @@ Two checks are about the corpus rather than about one file:
 
 - `palette-source` computes every contrast gate from `assets/color/palettes.json` rather than from a copy. A test that restates the values goes stale the first time somebody edits a colour, and then it certifies the old palette forever.
 - `palette-source-dark` runs the same gates against the dark surface. It prints as its own line with its own assertion count, so one theme's pass cannot be read as covering both, and a run that reports nothing on this line has gated one ground rather than two.
-- `narrow-viewport` is asserted from the stylesheet rather than from a rendered page, and that limit is deliberate rather than lazy. A headless run returns the DOM, and the DOM does not say whether the page overflowed. The numbers that would answer it live in layout. So the check proves the figure region can scroll sideways and that its drawing declares a floor no wider than its own `viewBox`, which is the part an author forgets. Whether the chart is legible at that floor stays a review question, and the contract says so.
+- `narrow-viewport` is asserted from the stylesheet rather than from a rendered page, and that limit is deliberate rather than lazy. A headless run returns the DOM, and the DOM does not say whether the page overflowed. The numbers that would answer it live in layout. So the check proves both regions of the card can scroll sideways, and that the drawing declares a floor no wider than its own `viewBox`, which is the part an author forgets. The table half was added after two files were measured dragging the whole page sideways at 500 units, which is a thing this check cannot see and a script injected into a copy of the file can. Whether the chart is legible at that floor stays a review question, and the contract says so.
 - `catalog` resolves the index in both directions: every catalog row reaches a file that identifies itself with the same id, and every chart form on disk appears in the catalog. A row that exists is not a row that points anywhere, and an index checked in one direction only rots on the first rename.
 - `catalog-system` holds the index's other hand-kept cell against the file it describes. Every row's system has to name a system the palette source defines and has to match what the template declares. The cell mirrors the file rather than judging it, which is exactly why the two can drift apart with nothing noticing, and a hand reading of both documents is what found that out the first time.
 - `geometry-block` compares the shared geometry record byte for byte across every chart form and every proof sheet. The set is derived from the two directories rather than listed, so a new form joins it by existing, and a corpus where the block had been scattered over some of the files would fail rather than pass a count of them.
@@ -108,8 +121,11 @@ Any of these breaks a different check: change one hex in the palette block, dele
 # remove the pan affordance and the drawing's floor
 sed -i '' 's/ overflow-x: auto;//; s/min-width: 480px; //' assets/templates/scatter.html
 node scripts/check-corpus.cjs   # expect RESULT: FAILED, twice on narrow-viewport
-git checkout -- assets/templates/scatter.html
+cp /tmp/keep.html assets/templates/scatter.html
 ```
+
+That recipe used to end in `git checkout --`, three paragraphs after this page tells you not to
+use it. Take the copy first: `cp assets/templates/scatter.html /tmp/keep.html`.
 
 Raising the floor above the drawing's own width fails it a third way, which is the case
 that catches a min-width copied from a wider form.
@@ -261,9 +277,60 @@ into a sweep on a file that declares `neutral`, and `gradient-sweep` fires.
 **Restore from a copy every time.** Several of these mutations are one character, and
 `git checkout --` on an uncommitted tree throws the working state away rather than the mutation.
 
+`series-mapping` is the one to break before quoting a green run on the colour work, because the
+mutation it catches is invisible in the picture. Reverse a ramp inside a file and the legend
+reverses with it:
+
+```bash
+cp assets/templates/heat-matrix.html /tmp/keep.html
+# .series-1 takes token 5, .series-2 takes token 4, and so on
+sed -i '' 's/\.series-1 { fill: var(--chart-series-1)/.series-1 { fill: var(--chart-series-5)/; s/\.series-5 { fill: var(--chart-series-5)/.series-5 { fill: var(--chart-series-1)/' assets/templates/heat-matrix.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on series-mapping, twice
+cp /tmp/keep.html assets/templates/heat-matrix.html
+```
+
+Its other two halves break separately. Delete one `.series-N` rule from a form to leave a gap in
+the ladder, or raise a file's `CAPACITY` constant above the number of classes it defines: both
+report which side moved, because a constant that outruns the classes reopens the hole the constant
+was added to close.
+
+`type-scale` reads three routes and only one of them is a route the corpus takes. Break the one it
+takes:
+
+```bash
+cp assets/templates/bar-rows.html /tmp/keep.html
+# a size off the scale, handed to the node() helper rather than to setAttribute
+sed -i '' "s|const rows = document.getElementById('rows');|node('text', { x: 10, y: 10, 'font-size': 20 }, 'key');\nconst rows = document.getElementById('rows');|" assets/templates/bar-rows.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on type-scale
+cp /tmp/keep.html assets/templates/bar-rows.html
+```
+
 ---
 
-## 6. RULES FOR SCRIPTS HERE
+## 6. WHAT THESE CHECKS CANNOT SEE
+
+Every row below was proved by mutation: a file was broken in the named way, the whole check ran,
+and it stayed green. They are recorded rather than fixed, and each says what a fix would cost,
+because a rule with a known hole and no note beside it is a rule the next reader trusts further
+than it has earned.
+
+| Check | What passes it | What a fix would take |
+| --- | --- | --- |
+| `motion` | An unguarded animation in a file that mentions `prefers-reduced-motion` anywhere else in its stylesheet. The rule tests the whole sheet for the string rather than each animation for a fallback of its own, so the second animation a file gains is free | Resolve each animating selector against the reduce-motion blocks and require one that removes the motion for that selector. The blocks are already brace-walked, so the work is a small selector matcher and the inheritance cases it has to get right |
+| `no-external` | A web font declared inside an at-rule: `@font-face { src: url(https://…) }`. The rule looks for `src=` and `href=` as attributes, and an at-rule descriptor is `src:` with a colon | Add the descriptor form to the pattern list. It is one pattern. It sits here rather than in the file because it belongs with the `url()` and `@import` cases the same walk should cover, and doing one of the three is how the other two stay missed |
+| `accessibility` | A file whose only `data-chart-table` sits inside an HTML comment. The table half is a substring test over the raw source, while the `svg` half of the same check correctly reads open tags | Read the attribute off an element the way the `svg` half does, rather than testing the file for the string |
+| `radius` | A corner held in a variable: `const r = 4; el.setAttribute('rx', r)`. The rule matches a literal immediately after the attribute name | Constant-fold the drawing code, or narrow the rule to what it can honestly claim, which is a corner typed at the call site |
+
+Two more holes of the same kind were closed rather than recorded, both because the fix was one
+line. `colour-literals` now strips comments before it reads a region, so a sentence about a colour
+is no longer read as a colour, and it treats a quote as a word boundary, so `setAttribute('fill',
+'red')` is caught instead of read past: the one route that bypasses the stylesheet entirely was the
+one route nothing looked at. `type-scale` now reads the helper path.
+
+---
+
+## 7. RULES FOR SCRIPTS HERE
+
 
 - A rule the tooling does not check is a wish. Anything the contract states as binding is enforced here, and anything that cannot be enforced is named as advisory in the contract instead of written as if it bound.
 - Never assert that a document contains a particular sentence. Prose has to stay editable, and a check that pins a phrase makes rewriting the docs break the build. Facts a check needs live in structured data: the palette file, the sentinel-marked catalog table, the identity tags.

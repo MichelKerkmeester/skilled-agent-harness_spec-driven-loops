@@ -26,6 +26,7 @@ const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'palettes.json');
 const CATALOG = path.join(PACKAGE_ROOT, 'references', 'catalog.md');
 const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
+const EXAMPLE_DIR = path.join(PACKAGE_ROOT, 'assets', 'examples');
 const ASSET_ROOT = path.join(PACKAGE_ROOT, 'assets');
 
 const PALETTE_BEGIN = /\/\*\s*CHART_PALETTE:BEGIN\s+system=([a-z0-9-]+)\s*\*\//;
@@ -526,7 +527,13 @@ function checkColourLiterals(file, src, blocks) {
     .replace(/x?link:href\s*=\s*"#[^"]*"/gi, ' ')
     .replace(/href\s*=\s*"#[^"]*"/gi, ' ')
     .replace(/url\(\s*#[^)]*\)/gi, ' ');
-  const { styles, scripts, attrs } = regionsOf(cleaned);
+  // A colour rule reads values, never prose. Every other rule that walks a script or a
+  // stylesheet strips its comments first and this one did not, so a comment explaining why a
+  // mark is deliberately not painted grey read to it as a mark painted grey. The strippers run
+  // here for the same reason they run there: a sentence is not a declaration.
+  const { styles: rawStyles, scripts: rawScripts, attrs } = regionsOf(cleaned);
+  const styles = rawStyles.map(stripJsComments);
+  const scripts = rawScripts.map(stripJsComments);
   const haystacks = [...styles, ...scripts, ...attrs];
   tally('colour-literals', haystacks.length);
 
@@ -541,8 +548,12 @@ function checkColourLiterals(file, src, blocks) {
     if (/\b(rgba?|hsla?)\s*\(/i.test(text)) {
       record('colour-literals', 'error', file, 'rgb() or hsl() colour outside the palette block');
     }
+    // A quote is a boundary the way a space is. Without it the rule read a declaration and
+    // missed an assignment: `setAttribute('fill', 'red')` puts a named colour on a mark from
+    // the drawing code, and the word sat between two quotes where neither side matched, so the
+    // one route that bypasses the stylesheet entirely was the one route nothing looked at.
     for (const name of NAMED_COLOURS) {
-      const re = new RegExp(`(?:^|[:\\s,])${name}(?:$|[;\\s,)])`, 'i');
+      const re = new RegExp(`(?:^|[:\\s,'"(])${name}(?:$|[;\\s,)'"])`, 'i');
       if (!re.test(text)) continue;
       record('colour-literals', 'error', file, `named colour "${name}" outside the palette block`);
     }
@@ -1072,6 +1083,14 @@ function checkTypeScale(file, src, palette) {
   const attribute = /setAttribute\(\s*['"]font-size['"]\s*,\s*['"]?([\d.]+)/g;
   const code = scripts.map(stripJsComments).join('\n');
   while ((m = attribute.exec(code)) !== null) sizes.push(Number(m[1]));
+  // The same decision wearing a third syntax, and the one the corpus actually uses. Every
+  // template builds its marks through one node(name, attrs, cls) helper that walks the attribute
+  // object and calls setAttribute for each key, so a size handed to that helper never appears
+  // beside the word setAttribute and the rule read straight past it. Reading only the direct call
+  // meant the rule covered a route no chart form takes and missed the route all of them take.
+  // The scale is a decision about a number rather than about the call that carries it.
+  const viaHelper = /['"]font-size['"]\s*:\s*['"]?([\d.]+)/g;
+  while ((m = viaHelper.exec(code)) !== null) sizes.push(Number(m[1]));
 
   tally('type-scale', sizes.length);
   if (!allowed.size) {
@@ -1142,6 +1161,87 @@ function checkGradientSweep(file, src, declaredSystem) {
       `a gradient runs between ${[...values].join(' and ')} in a file declaring "${declaredSystem}". A sweep between two series values restates an ordering, and only a system that encodes magnitude has one to restate. A gradient naming one series value at two opacities is a fade and is left alone`);
   }
   tally('gradient-sweep', gradients + 1);
+}
+
+
+// An indexed data class carries the palette token of the same index, the set of indices runs
+// from one without a gap, and it stops at the declared system's capacity.
+//
+// This is the one mapping nothing else in this file looked at, and it is the mapping that
+// decides what the picture means. Every other colour rule asks where a value came from: the
+// palette block is matched against the source in both directions, the literals rule refuses a
+// colour typed outside it, and the source itself is gated for contrast and for the direction its
+// ramp runs. A file whose classes hand those tokens out in the wrong order satisfies all of them.
+//
+// Reverse the five mappings in a matrix form and the encoding inverts: the step the drawing code
+// picks for the highest reading now paints the palest colour. The legend inverts with it, because
+// the legend is drawn from the same classes, so the picture agrees with itself and disagrees with
+// the data, and a reviewer comparing the key against the grid sees nothing wrong. What survives
+// the permutation is arithmetic rather than appearance: the number in the class name and the
+// number in the token it resolves to are the same number, or the encoding has been renamed.
+//
+// The gap and the ceiling ride here because they are the same fact from the other side. A ladder
+// missing a rung, or reaching past the colours the system defines, is a class the stylesheet
+// cannot paint, and an unpainted fill is black rather than absent.
+const INDEXED_CLASS = /^\.([a-z]+)-(\d+)$/;
+const SERIES_TOKEN_VALUE = /var\(\s*--chart-series-(\d+)\s*\)/;
+const COLOUR_PROPS = ['fill', 'stroke', 'stop-color', 'color', 'background', 'background-color'];
+const DECLARED_CAPACITY = /\bconst\s+CAPACITY\s*=\s*(\d+)\s*;/;
+
+function checkSeriesMapping(file, src, palette, declaredSystem) {
+  const { styles, scripts } = regionsOf(stripHtmlComments(src));
+  const css = stripJsComments(styles.join('\n'));
+  const families = new Map();
+
+  for (const rule of styleRules(css)) {
+    if (rule.selector.startsWith('@')) continue;
+    let token = null;
+    for (const prop of COLOUR_PROPS) {
+      const decl = new RegExp(`(?:^|[;{\\s])${prop}\\s*:\\s*([^;}]+)`, 'i').exec(rule.body);
+      if (!decl) continue;
+      const found = SERIES_TOKEN_VALUE.exec(decl[1]);
+      if (found) { token = Number(found[1]); break; }
+    }
+    if (token === null) continue;
+    for (const selector of rule.selector.split(',')) {
+      const cls = INDEXED_CLASS.exec(selector.trim());
+      if (!cls) continue;
+      if (!families.has(cls[1])) families.set(cls[1], new Map());
+      families.get(cls[1]).set(Number(cls[2]), token);
+    }
+  }
+
+  const capacity = declaredSystem && palette.systems[declaredSystem]
+    ? palette.systems[declaredSystem].capacity : null;
+  const declared = DECLARED_CAPACITY.exec(stripJsComments(scripts.join('\n')));
+
+  tally('series-mapping', families.size || 1);
+  for (const [prefix, map] of families) {
+    const indices = [...map.keys()].sort((a, b) => a - b);
+    tally('series-mapping', indices.length + 2);
+
+    for (const i of indices) {
+      if (map.get(i) === i) continue;
+      record('series-mapping', 'error', file,
+        `".${prefix}-${i}" paints --chart-series-${map.get(i)}. An indexed class carries the token of its own index, because the drawing code chooses the index and the palette source decides what that index means. A class handing out somebody else's token reverses or shuffles the encoding while the legend, drawn from the same classes, shuffles with it, so the picture stays consistent with itself and stops being consistent with the data`);
+    }
+
+    const expected = indices.map((_, n) => n + 1);
+    if (indices.join(',') !== expected.join(',')) {
+      record('series-mapping', 'error', file,
+        `the ".${prefix}-*" ladder is [${indices.join(', ')}] and a ladder runs from 1 without a gap. The drawing code counts from zero and adds one, so a missing rung is a class the stylesheet never defines, and an undefined fill paints black rather than nothing`);
+    }
+
+    if (capacity !== null && indices.length > capacity) {
+      record('series-mapping', 'error', file,
+        `".${prefix}-*" defines ${indices.length} steps and the "${declaredSystem}" system carries ${capacity}. The ceiling lives in the palette source, so a file cannot reach past it by defining a class for a colour nobody chose`);
+    }
+
+    if (declared && Number(declared[1]) !== indices.length) {
+      record('series-mapping', 'error', file,
+        `the drawing code declares CAPACITY ${declared[1]} and the stylesheet defines ${indices.length} ".${prefix}-*" steps. The constant is what stops a mark past the ceiling reaching a class with no fill, so a constant that outruns the classes reopens exactly the hole it was added to close`);
+    }
+  }
 }
 
 /* ------------------------------------------------------------------- catalog */
@@ -1421,9 +1521,17 @@ function main() {
     checkNumberFormat(name, src);
     checkTypeScale(name, src, palette);
     checkGradientSweep(name, src, systemId);
-    // The empty-data notice is a chart form's obligation. A proof sheet draws its own palette
-    // rather than a data block, and a delivery carries the notice of the form it was built from.
-    if (file.startsWith(TEMPLATE_DIR + path.sep)) checkEmptyNotice(name, src);
+    checkSeriesMapping(name, src, palette, systemId);
+    // The empty-data notice is an obligation of every file that draws a reading, which is every
+    // chart form and every delivery. It used to be asked of the forms alone, on the stated ground
+    // that a delivery carries the notice of the form it was built from. That ground was checked
+    // and none of the six did: the exemption was a sentence describing what nobody had verified.
+    // A delivery is also the copy somebody edits, so it is the copy most likely to be handed an
+    // empty block. The one file this does not reach is a proof sheet, whose data block is the
+    // palette it draws rather than a reading it displays.
+    if (file.startsWith(TEMPLATE_DIR + path.sep) || file.startsWith(EXAMPLE_DIR + path.sep)) {
+      checkEmptyNotice(name, src);
+    }
     if (id && file.startsWith(TEMPLATE_DIR + path.sep)) templateIdentities.set(id, file);
   }
 

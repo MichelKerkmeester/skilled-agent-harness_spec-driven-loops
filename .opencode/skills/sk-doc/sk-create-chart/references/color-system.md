@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
-version: 1.5.0.0
+version: 1.6.0.0
 ---
 
 # Chart Colour Systems
@@ -30,13 +30,27 @@ Three systems exist. Pick one per delivery and apply it whole.
 
 A colour system is an answer to "what does colour mean in this chart". That is the only axis that separates the three. If two systems answered the same question, the second would be a skin rather than a system.
 
-| System | Colour encodes | Use it when | Capacity |
-| --- | --- | --- | --- |
-| `neutral` | Nothing. Lightness ranks the series, starting furthest from the ground: darkest first on paper, brightest first on ink | The default, and the fallback whenever hue would carry no stable meaning | 4 series |
-| `ordered` | Position on a scale | The data is ordered: a value, a rank, a time position, a progress figure | 5 steps |
-| `categorical` | Category membership | The categories are unordered and there are four or fewer | 4 categories |
+| System | `encodes` | Colour encodes | Use it when | Capacity |
+| --- | --- | --- | --- | --- |
+| `neutral` | `importance` | Rank, by lightness alone. The series run from the value furthest from the ground: darkest first on paper, brightest first on ink | The default, and the fallback whenever hue would carry no stable meaning | 4 series |
+| `ordered` | `magnitude` | Position on a scale | The data is ordered: a value, a rank, a time position, a progress figure | 5 steps |
+| `categorical` | `category` | Category membership | The categories are unordered and there are four or fewer | 4 categories |
 
 Start at `neutral`. Reach for another only when the data has the property that system encodes. A categorical palette on ordered data throws away the ordering, and an ordered ramp on unordered categories invents one.
+
+### Two names for one system
+
+The second column exists because two vocabularies name these three systems and both are
+load-bearing. The id is what a file declares in its meta tag and what a catalog row carries. The
+`encodes` value is a separate field in the palette source, and the contrast gates in section 5 and
+the enforced list in section 6 are written against it rather than against the id, because what a
+gate holds depends on what the colour means and not on what the system is called. They map one to
+one, in the order above. A failure message quotes whichever of the two the rule it came from reads,
+so the mapping is written here rather than inferred from a message.
+
+`neutral` used to be described in this table as encoding nothing, which contradicted both the
+palette source and the rest of its own row. Lightness is colour, and ranking by it is what
+`importance` names.
 
 ### How to settle a row against this table
 
@@ -49,9 +63,19 @@ reading rather than a preference.
 1. **Name what colour is doing in that file.** Not what the chart is about. What the colour
    varies with. If it varies with nothing, the answer is already `neutral`.
 2. **Test the data for the property, not the chart for the vibe.** `categorical` needs
-   categories that are unordered. `ordered` needs a position on a scale. A pair of periods, a
-   before and an after, a signed step: each of those has an order, and an order is what
-   `categorical` does not have.
+   categories that are unordered. `ordered` needs a position on a scale. A pair of periods and a
+   before-and-after both have an order, and an order is what `categorical` does not have.
+
+   A signed step looks like it belongs on that list and does not, and both sign-coloured forms in
+   the corpus turn on the difference. `waterfall` and `candlestick` each draw a plainly ordered
+   sequence, and in both the order is carried by position on the axis while colour varies with the
+   sign alone: up or down, two classes with no rank between them. Step 1 settles it. The question
+   is what colour varies with, not whether the data has an order somewhere in it, and on that
+   reading both forms declare `categorical` correctly. Section 8 says the same thing from the
+   other side, where it explains why the corpus has no diverging system.
+
+   This step used to list a signed step among the ordered cases, which put it in direct
+   disagreement with section 8 about the same two files.
 3. **`neutral` is the default and the fallback, so it wins a tie.** Leave it only when the data
    plainly has the property another system encodes. `neutral` carrying four series is not a
    workaround. Its capacity is four precisely so a form can draw several series and rank them by
@@ -134,7 +158,7 @@ Two things do not rotate, and both refusals are as deliberate as the rotation. T
 
 **Colour is never the only cue.** Categories keep labels, ordered data keeps position or length, emphasis keeps a headline. Remove the colour and the chart still has to be readable. That is an accessibility floor and it is also a hedge against a reader printing in greyscale.
 
-**A single mark may sweep along its own ramp, and only where the system already encodes magnitude.** A sweep restates an ordering the data already has, which is why it is honest on an `ordered` system and dishonest anywhere else. On a `neutral` or a `categorical` series the same sweep invents an ordering the data does not have, so it is refused there. That permits it on `calendar-grid`, `heat-matrix` and `progress-single`, and forbids it on the other seventeen forms.
+**A single mark may sweep along its own ramp, and only where the system already encodes magnitude.** A sweep restates an ordering the data already has, which is why it is honest on an `ordered` system and dishonest anywhere else. On a `neutral` or a `categorical` series the same sweep invents an ordering the data does not have, so it is refused there. That permits it on `calendar-grid`, `heat-matrix` and `progress-single`, and forbids it on the other eighteen forms.
 
 The rule is written to be testable rather than judged. A gradient whose stops name two different
 series values is a sweep, and it may appear only in a file whose declared system is `ordered`. A
@@ -211,6 +235,7 @@ Enforced by `scripts/check-corpus.cjs`, on every run:
 - Each of a template's palette blocks matches the palette file exactly, in both directions, and no file carries more than one block per theme.
 - No colour literal appears anywhere outside a palette block.
 - No corner value appears anywhere outside a palette block: a stylesheet corner resolves through a rung, and the drawing code computes a corner rather than typing one.
+- An indexed data class carries the palette token of its own index, the indices run from one without a gap, and they stop at the declared system's capacity. `series-mapping` is the only rule that reads the mapping itself rather than the values on either side of it, and it is the rule a reversed or shuffled encoding fails. Everything else on this list passes a file whose classes hand the tokens out in the wrong order, because every other rule asks where a value came from and none asks which mark received it.
 
 The sweep rule was the last entry on this list and it has moved up onto it. `gradient-sweep`
 resolves each gradient's stops through the classes that carry them, counts the distinct series

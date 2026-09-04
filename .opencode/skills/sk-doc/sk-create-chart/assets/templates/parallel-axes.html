@@ -87,6 +87,14 @@ body {
 .figure { margin: 0; overflow-x: auto; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
@@ -151,11 +159,13 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Four shortlisted suppliers across five measures.</caption>
-    <thead><tr id="head-row"><th scope="col">Supplier</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Four shortlisted suppliers across five measures.</caption>
+      <thead><tr id="head-row"><th scope="col">Supplier</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -235,8 +245,14 @@ function tip(el, text) {
 
 const LEFT = 74;
 const RIGHT = 646;
-const TOP = 62;
-const BOTTOM = 244;
+// The heading stack above each axis is three rows deep: the name, the unit it is measured in,
+// and the value at the top of the axis. Three rows of type need three line boxes, and at the
+// sizes this form uses that is about forty units. The plot used to start at 62, which left
+// twenty-four, so the unit caption and the maximum tick were printed eleven units apart and
+// their line boxes overlapped by two. The plot starts lower and ends lower by the same amount,
+// which buys the room out of the margin under the frame rather than out of the axis length.
+const TOP = 72;
+const BOTTOM = 254;
 const ax = function (j) { return LEFT + (RIGHT - LEFT) * (j / (AXES.length - 1)); };
 const ay = function (j, v) {
   const axis = AXES[j];
@@ -254,9 +270,17 @@ AXES.forEach(function (axis, j) {
   // on each side, so at the 12px .axis-name size the budget is about 21 characters on one
   // row. The lift buys the full gap back for alternate axes, which is why six axes still
   // fit and a seventh would not.
+  //
+  // The lift moves the name and the unit and deliberately does not move the maximum. That tick
+  // is a reading off the axis and has to stay against the end of it, so the two rows above it
+  // are what make room. Eleven units was the gap that put the unit caption's line box two units
+  // into the tick's on every axis the lift did not raise, which was three of the five. Fifteen
+  // and fourteen are the pitches that leave about one and a half units of clear space at each
+  // seam, measured rather than assumed: a 12px name sets a 13.4 unit line box and an 11px
+  // caption a 13.3 unit one, so anything under fourteen overlaps by construction.
   const lift = j % 2 === 1 ? 18 : 0;
-  node('text', { x: ax(j), y: TOP - 26 - lift, 'text-anchor': anchor }, 'axis-name').textContent = axis.name;
-  node('text', { x: ax(j), y: TOP - 13 - lift, 'text-anchor': anchor }, 'bound').textContent = axis.unit;
+  node('text', { x: ax(j), y: TOP - 31 - lift, 'text-anchor': anchor }, 'axis-name').textContent = axis.name;
+  node('text', { x: ax(j), y: TOP - 17 - lift, 'text-anchor': anchor }, 'bound').textContent = axis.unit;
   node('text', { x: ax(j), y: TOP - 2, 'text-anchor': anchor }, 'bound').textContent = fmt(axis.max);
   node('text', { x: ax(j), y: BOTTOM + 16, 'text-anchor': anchor }, 'bound').textContent = fmt(axis.min);
 });

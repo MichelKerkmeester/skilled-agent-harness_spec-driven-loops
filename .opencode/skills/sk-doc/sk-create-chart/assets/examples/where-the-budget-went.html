@@ -71,6 +71,15 @@ body {
 .figure { margin: 0; overflow-x: auto; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.notice { fill: var(--chart-muted); font-size: 12px; }
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
@@ -105,11 +114,13 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <p class="source" data-chart-part="source">Source: audited annual accounts for the year to 31 March, published 12 August.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Where the grant was spent, as a share of the total. The shares sum to one hundred.</caption>
-    <thead><tr><th scope="col">Category</th><th scope="col">Share of spend</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Where the grant was spent, as a share of the total. The shares sum to one hundred.</caption>
+      <thead><tr><th scope="col">Category</th><th scope="col">Share of spend</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -132,6 +143,26 @@ function node(name, attrs, cls) {
   svg.appendChild(el);
   return el;
 }
+
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+//
+// This is the guard of the form this file was built from. A delivery is the copy somebody edits,
+// so it is the copy most likely to be handed an empty block, and carrying the form's guard is
+// what makes that true rather than assumed.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return Number.isFinite(d.value); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
 
 const COLS = 20;
 const CELL = 30;
@@ -173,6 +204,8 @@ DATA.forEach(function (d) {
   tr.appendChild(td);
   rows.appendChild(tr);
 });
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
 </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 name: sk-create-chart
 description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.0.0
+version: 1.3.0.0
 metadata:
   packetKind: workflow
 ---
@@ -39,6 +39,16 @@ Use another `sk-doc` packet when:
 The boundary against `sk-create-diagram` is the one that actually gets tested, because that packet already names bar, line, scatter and radar in its own selection guide. The split is what the artifact carries. A diagram carries a structure a reader follows. A chart carries values a reader compares.
 
 The hub router splits the two by name. `sk-create-diagram` keeps the bare type names it documents, which are `bar chart`, `line chart`, `scatter plot`, `radar chart`, `gantt chart` and `org chart`. This packet answers the form names that packet has no file for, such as `treemap`, `waterfall chart`, `heatmap`, `box plot` and `histogram`, plus the data-qualified phrasings `bar chart of`, `line chart of` and `scatter plot of`. A request that names a bare type and asks for a diagram reaches both, and the router asks which one rather than guessing.
+
+`radar chart` is the one name where the split by name and the split by artifact disagree, and the
+two documents used to answer it differently with nothing saying so. By name it goes to
+`sk-create-diagram`, which has a radar file and a type reference for it. By artifact it is values a
+reader compares, which is this side of the line, and `catalog.md` section 6 records why this corpus
+draws no radar and what answers the same comparison instead: `parallel-axes`, one scale per axis
+rather than every dimension normalised onto one radial scale. Both hold, in that order. The name
+routes to the diagram packet; a reader who arrives here comparing entities across several measures
+is handed `parallel-axes` rather than sent away. The disagreement is recorded rather than resolved,
+because resolving it means moving a file between packets and that is a decision about the hub.
 
 ### Packet Boundary
 

@@ -73,6 +73,15 @@ body {
 .figure { margin: 0; overflow-x: auto; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.notice { fill: var(--chart-muted); font-size: 12px; }
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
@@ -85,6 +94,11 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .series-3 { fill: var(--chart-series-3); }
 .series-4 { fill: var(--chart-series-4); }
 .series-5 { fill: var(--chart-series-5); }
+/* A slot with no magnitude to place is painted in the rule colour: the ground held back, which
+   is what the reader already reads as "nothing here" everywhere else in the card. It is not a
+   sixth step, and it is deliberately outside the .series-* ladder so nothing can reach it by
+   arithmetic. */
+.empty { fill: var(--chart-rule); }
 .cell { stroke: var(--chart-surface); stroke-width: 2; }
 .lab { fill: var(--chart-ink); font-size: 12px; }
 .col-lab { fill: var(--chart-muted); font-size: 11px; }
@@ -98,7 +112,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 </head>
 <body>
 <div class="card">
-  <h1 class="headline" data-chart-part="headline">The quietest weekday mid-morning still carries three times the busiest weekend hour</h1>
+  <h1 class="headline" data-chart-part="headline">The busiest hour of the weekend runs below every weekday slot between eight and six</h1>
   <p class="subtitle" data-chart-part="subtitle">Calls answered per two-hour slot, averaged over the eight weeks to 22 August. Each column is labelled with the hour the slot opens. The numbers are printed because rota planning is done from the values rather than from the shape.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 290" id="chart">
@@ -109,11 +123,13 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="source" data-chart-part="source">Source: telephony platform, eight-week average to 22 August.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Calls answered per two-hour slot, eight-week average. Column headings give the hour each slot opens.</caption>
-    <thead><tr id="head-row"><th scope="col">Day</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Calls answered per two-hour slot, eight-week average. Column headings give the hour each slot opens.</caption>
+      <thead><tr id="head-row"><th scope="col">Day</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -144,6 +160,26 @@ function node(name, attrs, cls) {
   return el;
 }
 
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+//
+// This is the guard of the form this file was built from. A delivery is the copy somebody edits,
+// so it is the copy most likely to be handed an empty block, and carrying the form's guard is
+// what makes that true rather than assumed.
+const HAS_READABLE_DATA = (VALUES || []).some(function (row) { return (row || []).some(function (v) { return Number.isFinite(v); }); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
 function channel(c) {
   const v = c / 255;
   return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
@@ -172,9 +208,27 @@ const peak = VALUES.reduce(function (m, row) {
   return row.reduce(function (n, v) { return Math.max(n, v); }, m);
 }, 0);
 
-// A high value takes the darkest step, so the grid reads the way the legend says it does.
+// A high value takes the darkest step, so the grid reads the way the shading says it does.
+//
+// The ramp encodes a positive magnitude and nothing else. A slot holding zero, a negative, or a
+// reading nobody took is not the quietest slot on the rota; it is a slot with no magnitude to
+// place, so it takes the empty swatch instead of a step. Sending it through the arithmetic
+// produced a step number the stylesheet defines no fill for, and an undefined fill paints black:
+// an hour with no calls came out darker than the busiest hour of the week.
+//
+// The clamp is a second guard rather than a restatement of the first. Only the ceiling was ever
+// held. The floor is where the ladder actually ends, and any value below one lands under step
+// one, so an averaged 0.4 calls walked off the bottom exactly as a zero did.
+function hasMagnitude(v) {
+  return Number.isFinite(v) && v > 0;
+}
+
 function band(v) {
-  return STEPS - Math.min(STEPS - 1, Math.floor((v - 1) * STEPS / peak));
+  return STEPS - Math.min(STEPS - 1, Math.max(0, Math.floor((v - 1) * STEPS / peak)));
+}
+
+function cellClass(v) {
+  return hasMagnitude(v) ? 'series-' + band(v) : 'empty';
 }
 
 COLUMNS.forEach(function (name, c) {
@@ -186,13 +240,17 @@ VALUES.forEach(function (row, r) {
   node('text', { x: GUTTER - 10, y: TOP + r * CELL_H + CELL_H / 2 + 4, 'text-anchor': 'end' }, 'lab')
     .textContent = ROWS[r];
   row.forEach(function (v, c) {
-    const step = band(v);
+    const cls = cellClass(v);
     node('rect', {
       x: GUTTER + c * CELL_W, y: TOP + r * CELL_H, width: CELL_W, height: CELL_H
-    }, 'cell series-' + step);
+    }, 'cell ' + cls);
+    // The empty swatch is the ground held back rather than a colour of its own, so the number
+    // printed on it is chosen against the ground. Reading the rule value here instead would
+    // hand the contrast maths an alpha on the dark theme, which it cannot parse.
+    const fill = cls === 'empty' ? resolve('--chart-surface') : resolve('--chart-' + cls);
     node('text', {
       x: GUTTER + c * CELL_W + CELL_W / 2, y: TOP + r * CELL_H + CELL_H / 2 + 4, 'text-anchor': 'middle'
-    }, labelClass(resolve('--chart-series-' + step))).textContent = String(v);
+    }, labelClass(fill)).textContent = String(v);
   });
 });
 
@@ -219,6 +277,8 @@ VALUES.forEach(function (row, r) {
   });
   rows.appendChild(tr);
 });
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
 </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 ---
 title: "Chart Template Contract"
-description: "What a chart template file contains, how it receives data, what it may depend on and the fifteen rules the corpus check enforces on every one."
+description: "What a chart template file contains, how it receives data, what it may depend on and the sixteen rules the corpus check enforces on every one."
 trigger_phrases:
   - "chart template contract"
   - "how to author a chart template"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 1.7.0.0
+version: 1.8.0.0
 ---
 
 # Chart Template Contract
@@ -166,10 +166,21 @@ drawn, and they are not what this clause is about.
 
 ### When a form cannot honour the data it was given
 
-A form is honest inside a documented shape, and the catalog states that shape per row. Two
-forms now say so in the picture when the shape is exceeded: `scatter` past twenty points and
-`heat-matrix` past a hundred cells both grow the frame and print one line naming the count
-and the ceiling. A missing reading gets the same treatment: `daily-line`, `daily-range` and
+A form is honest inside a documented shape, and two different things set that shape. The catalog
+states how much data a form can carry: `scatter` past twenty points and `heat-matrix` past a
+hundred cells each grow the frame and print one line naming the count and the ceiling. The palette
+states how many colours a form has to give out, which is a harder ceiling because the file cannot
+paint past it at all: `unit-ring`, `unit-grid`, `stacked-bars`, `treemap` and `stacked-area` each
+draw the marks past that ceiling outside the encoding, in the rule colour, and print the same kind
+of line. Seven forms in total.
+
+The colour ceiling is worth stating separately, because reaching past it used to fail silently and
+loudly at the same time. A class the stylesheet defines no fill for is not an unstyled mark; it is
+a black one, because black is what an SVG paints when nothing says otherwise. So the group the
+encoding could not carry came out as the strongest mark on the page, under a key that never named
+it. Nothing in a green run said so.
+
+A missing reading gets the same treatment: `bar-line-composed`, `daily-line`, `daily-range` and
 `stacked-area` break the mark at the gap rather than drawing through it, and print how many
 readings were left out.
 
@@ -178,11 +189,17 @@ wrong conclusion from it, and it is not spread across every form for its own sak
 warning was the alternative and was rejected: the person the ceiling protects is reading a
 chart, not a developer console.
 
-### An empty data block says so, on every form
+### An empty data block says so, on every form and every delivery
 
-All twenty-one forms carry the same guard, marked `CHART_EMPTY_NOTICE`, above their drawing code.
-When the data block holds nothing readable, the form prints one line in the middle of the frame
-and draws nothing else.
+All twenty-one forms and all six deliveries carry the same guard, marked `CHART_EMPTY_NOTICE`,
+above their drawing code. When the data block holds nothing readable, the file prints one line in
+the middle of the frame and draws nothing else.
+
+The deliveries carried no guard at all until the ground for exempting them was read rather than
+repeated. The exemption said a delivery carries the notice of the form it was built from, and none
+of the six did. A delivery is also the copy somebody edits, which makes it the copy most likely to
+be handed an empty block. The only file this does not reach is a proof sheet, whose data block is
+the palette it draws rather than a reading it displays.
 
 This is the clearest case the rule above describes rather than a new rule. An empty frame and a
 chart whose values are all zero look identical, so a reader shown an empty box has no way to
@@ -259,9 +276,18 @@ than a shared value.
 
 ---
 
-## 7. THE FIFTEEN RULES
+## 7. THE SIXTEEN RULES
 
-Every rule is enforced. The check name is what appears in the corpus check output, so a failure points at the rule it broke.
+Every rule below is enforced, and three are enforced in part. The check name is what appears in the
+corpus check output, so a failure points at the rule it broke.
+
+The three partial ones are named here rather than left for a reader to discover, because "every
+rule is enforced" is the sentence that makes a green run mean something and it was doing work it
+had not earned. Rule 10's table half is a substring test that a commented-out attribute satisfies.
+Rule 13's settle time is not asserted at all: reading a duration out of a stylesheet says what the
+author wrote, not when the picture stopped moving, and only the two-render comparison observes
+that. Rule 14 asserts that the affordances are declared and never measures a rendered page.
+Section 9 carries the full account of what a run does not observe.
 
 | # | Rule | Check | The failure it prevents |
 | --- | --- | --- | --- |
@@ -278,8 +304,9 @@ Every rule is enforced. The check name is what appears in the corpus check outpu
 | 11 | The four card parts, present and in order | `card-parts` | A chart that needs a caption to be understood |
 | 12 | No randomness and no clock in rendering code, and two renders of one file settle to the same document | `determinism`, `settled-render` | Two renders of one file that disagree |
 | 13 | A file that animates carries a `prefers-reduced-motion` fallback that removes the motion, the motion never repeats, and it settles within one second of first paint | `motion` | Motion shipped to a reader who asked their system for none, and a review that screenshots a chart still moving |
-| 14 | The figure region can scroll sideways, and its drawing declares a `min-width` no wider than its own `viewBox` | `narrow-viewport` | A phone-width screen shrinking a chart until its labels sit on top of each other |
+| 14 | The figure region can scroll sideways, and its drawing declares a `min-width` no wider than its own `viewBox`. The table region can scroll sideways too | `narrow-viewport` | A phone-width screen shrinking a chart until its labels sit on top of each other, or a wide table dragging the whole page sideways with it |
 | 15 | No corner value outside the palette block: a stylesheet corner resolves through a rung, and the drawing code computes a corner rather than typing one | `radius` | Twenty files agreeing on one corner by coincidence, and the twenty-first quietly disagreeing |
+| 16 | An indexed data class carries the palette token of its own index, the indices run from one without a gap, and they stop at the declared system's capacity | `series-mapping` | An encoding quietly reversed or shuffled, agreeing with its own legend and with nothing else |
 
 Rule 4 used to say exactly one block, and it said so for a good reason: one block per file is one
 place a colour can drift, and a diff shows it. A theme is the one thing that argument does not
@@ -313,12 +340,31 @@ looks correct at every size the author tries, and squashes the chart into illegi
 width most readers will open it on. A floor plus a pannable region is the whole fix, and it is
 two declarations.
 
+The rule reached half the card for a while, and the half it missed was the half that moved the
+page. A card holds a drawing and a table, the drawing had somewhere to pan and the table did not,
+so a table wider than the screen took the headline and the source line sideways with it. Measured
+at 500 units, two files did that: the matrix form by 133 units and its delivery by 71. The table
+region now pans the way the figure does. It declares no floor of its own, because a table already
+has one: its cells cannot shrink below the text in them, which is the intrinsic minimum an SVG at
+`width: 100%` does not have, and that is the whole reason the drawing needs a number and the table
+does not.
+
 Rule 15 is the one that only pays later. The corner was already identical in every form before
 it was enforced, so the check found nothing wrong on the day it shipped. That is the point: the
 uniformity held because twenty authors happened to agree, and a convention nothing asserts breaks
 on the file nobody diffs closely.
 
 Rule 10 is the one worth doing first rather than last. A title inside the vector output, an accessible role and a hidden data table cost almost nothing while a template is being written, and are close to unaffordable to retrofit across a whole corpus.
+
+Rule 16 is the one that decides what the picture means, and it was the last one anything looked at.
+Every other colour rule asks where a value came from. The palette block is matched against the
+source in both directions, no literal may appear outside it, and the source itself is gated for
+contrast and for the direction its ramp runs. A file that hands those tokens out in the wrong order
+satisfies all of them. Reverse the five mappings in a matrix form and the darkest step now paints
+the lowest reading; the legend reverses with it, because the legend is drawn from the same classes,
+so the picture agrees with itself and disagrees with the data. What survives the permutation is
+arithmetic rather than appearance, which is why the rule is stated as one: the number in the class
+name and the number in the token it resolves to are the same number.
 
 ---
 
@@ -346,7 +392,7 @@ Stated plainly, so nobody reads a green run as more than it is.
 - **It does not judge the headline.** Whether the top line states a conclusion is a review question.
 - **Without `--render` it has not opened anything.** The summary line says so on every run. A structural pass is not a rendering pass.
 - **It does not watch the motion.** With `--render` it opens each file twice after the settle time and confirms the two documents are identical, which catches a picture that is still changing when the review screenshots it. It does not see the animation itself, so whether the wipe reads as an entrance is a review question.
-- **It does not measure a narrow screen.** Rule 14 is asserted from the stylesheet, not from a rendered page, because a headless browser hands back the DOM and the DOM does not say whether the page overflowed. The check proves the pan affordance is declared and that its floor is not above the drawing's natural width. Whether the chart is legible at that floor is a review question, and the floor itself is a judgement nobody has measured per form.
+- **It does not measure a narrow screen.** Rule 14 is asserted from the stylesheet, not from a rendered page, because a headless browser hands back the DOM and the DOM does not say whether the page overflowed. The check proves both pan affordances are declared and that the drawing's floor is not above its natural width. Whether the chart is legible at that floor is a review question, and the floor itself is a judgement nobody has measured per form. A page that overflows sideways is measurable, but only by injecting a script into a copy of the file and reading `scrollWidth` back, which is a review step rather than a corpus check.
 - **It does not judge either theme by eye.** With `--render` it opens each file with the colour scheme pinned light, twice, and again with the scheme pinned dark, and it asserts that the dark open paints a different picture from the light one. That proves the second block reaches the paint rather than merely sitting in the file, which no reading of the text can prove. It says nothing about whether the dark values are the right ones, and it forces the preference with a browser flag rather than reading an operating system, so what a particular reader's machine resolves is still a question for a real browser.
 - **It does not point at anything.** Both opens are made with no pointer input, which is exactly what makes them a fair test of the settled picture and exactly what leaves most of section 10 to be walked by hand. Whether a card opens on the right mark, whether it flips at an edge and whether a key entry latches are all read by a person. What a pointer-free run can see is the state a file ships in, and that half is now asserted: `interaction-state` fails a drawing that opens already dimmed or with a card already filled, neither of which a settled comparison would catch, because both opens agree with each other exactly as a correct file's do.
 
@@ -354,7 +400,7 @@ Stated plainly, so nobody reads a green run as more than it is.
 
 ## 10. WHAT A FILE MAY DO WITH A POINTER
 
-A chart answers a pointer. Twelve forms do, and the eight that do not are the ones whose marks already print their own value, where a card would repeat what the reader is looking at.
+A chart answers a pointer. Thirteen forms do, counting all three registers rather than the hover card alone, and the eight that do not are the ones whose marks already print their own value, where a card would repeat what the reader is looking at.
 
 Three of the rules below are now checked and the rest are still a register, which is a rule written down before anything asserts it. The split is marked here so nobody reads a green run as agreement with the whole section.
 
