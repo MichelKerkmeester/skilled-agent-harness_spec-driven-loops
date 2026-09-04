@@ -433,9 +433,19 @@ describe('ripgrep lane', () => {
     expect(broken.stderr.length).toBeGreaterThan(0);
   });
 
+  it('searches hidden directories under a root, so dotted documentation is never a silent miss', () => {
+    const { root } = makeCorpus();
+    fs.mkdirSync(path.join(root, 'specs', '.hidden-state'), { recursive: true });
+    fs.writeFileSync(path.join(root, 'specs', '.hidden-state', 'README.md'), '# hidden\n\nzzq-hidden-token lives here\n', 'utf8');
+
+    const execution = runRecipe(pathOnlyRecipe('zzq-hidden-token', ['specs']), { cwd: root });
+    expect(execution.outcome).toBe('match');
+    expect(execution.stdout).toContain('.hidden-state/README.md');
+  });
+
   it('records the documented command line whatever binary was resolved', () => {
     const execution = runRecipe(pathOnlyRecipe('alpha beta', ['specs']), { cwd: makeCorpus().root });
-    expect(execution.command.startsWith('rg --no-config --fixed-strings --ignore-case')).toBe(true);
+    expect(execution.command.startsWith('rg --no-config --hidden --fixed-strings --ignore-case')).toBe(true);
     expect(execution.command).toContain("-- 'alpha beta' specs");
     expect(resolveRipgrep({ SPECKIT_RG_BIN: '/tmp/rg' } as never)).toBe('/tmp/rg');
     const located = resolveRipgrep({} as never);

@@ -73,6 +73,7 @@ Nothing in this document may be read as a claim that the two index lanes plus gr
 Every recipe below is literal. Copy the flags rather than paraphrasing them, because `--no-config`, the two exclusion globs and the `--` separator each close a specific failure.
 
 - `--no-config` is mandatory. Without it `RIPGREP_CONFIG_PATH` can inject arguments the caller never wrote.
+- `--hidden` is mandatory. The `.opencode` root holds dotted directories with live documentation, and without the flag ripgrep skips them without a word, so a miss there reads as a clean no-match. The `.git` exclusion glob keeps the flag from reaching repository internals.
 - `--glob '!**/z_archive/**'` and `--glob '!**/node_modules/**'` keep archived packets and vendored trees out of the result set.
 - `-- 'phrase'` separates the pattern from the flags, so a phrase beginning with a hyphen is a pattern and not a parse error.
 - `--fixed-strings` treats the phrase literally. `--ignore-case` applies Unicode simple case folding.
@@ -82,7 +83,7 @@ Every recipe below is literal. Copy the flags rather than paraphrasing them, bec
 Line-addressable evidence, one JSON object per line.
 
 ```text
-rg --no-config --json --fixed-strings --ignore-case \
+rg --no-config --hidden --json --fixed-strings --ignore-case \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
   -- 'phrase' specs .opencode
 ```
@@ -92,7 +93,7 @@ rg --no-config --json --fixed-strings --ignore-case \
 One path per matching file, at most one match read per file.
 
 ```text
-rg --no-config --fixed-strings --ignore-case \
+rg --no-config --hidden --fixed-strings --ignore-case \
   --files-with-matches --max-count 1 \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
   -- 'phrase' specs .opencode
@@ -103,7 +104,7 @@ rg --no-config --fixed-strings --ignore-case \
 A separate recipe, because counting is its own output mode.
 
 ```text
-rg --no-config --fixed-strings --ignore-case --count \
+rg --no-config --hidden --fixed-strings --ignore-case --count \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
   -- 'phrase' specs .opencode
 ```
@@ -113,7 +114,7 @@ rg --no-config --fixed-strings --ignore-case --count \
 The structured recipe from Section 2.1 plus a bounded context option. Keep the bound small and explicit, because context lines multiply the JSONL the caller parses.
 
 ```text
-rg --no-config --json --fixed-strings --ignore-case -C 2 \
+rg --no-config --hidden --json --fixed-strings --ignore-case -C 2 \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
   -- 'phrase' specs .opencode
 ```
@@ -121,7 +122,7 @@ rg --no-config --json --fixed-strings --ignore-case -C 2 \
 Label every returned line as anchor evidence or body evidence. Anchor evidence is a line inside an anchor block, and the caller establishes that by searching for the marker itself.
 
 ```text
-rg --no-config --fixed-strings --ignore-case \
+rg --no-config --hidden --fixed-strings --ignore-case \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
   -- '<!-- ANCHOR:summary -->' specs
 ```
@@ -150,7 +151,7 @@ Narrow by positional path, not by pattern. The trailing positional arguments are
 Worked example, the packet scope:
 
 ```text
-rg --no-config --fixed-strings --ignore-case \
+rg --no-config --hidden --fixed-strings --ignore-case \
   --files-with-matches --max-count 1 --glob '*.md' \
   -- 'trigger index generator' specs/system-speckit/049-memory-decommission/001-trigger-index-replacement
 ```

@@ -25,9 +25,15 @@ import { compareCodeUnits, normalizeTriggerText, scorePhrase } from './normalize
 // 1. CONTRACT
 // ───────────────────────────────────────────────────────────────
 
-/** Flags shared by every recipe. */
+/**
+ * Flags shared by every recipe. `--hidden` is part of the contract because the
+ * default roots include `.opencode`, whose own subtrees hold dotted directories
+ * with live documentation; without the flag ripgrep skips them silently, so a
+ * miss reads as a clean no-match instead of an unsearched corpus.
+ */
 export const BASE_FLAGS = Object.freeze([
   '--no-config',
+  '--hidden',
   '--fixed-strings',
   '--ignore-case',
 ]);
@@ -37,6 +43,7 @@ export const GLOBS = Object.freeze([
   '--glob', '*.md',
   '--glob', '!**/z_archive/**',
   '--glob', '!**/node_modules/**',
+  '--glob', '!**/.git/**',
 ]);
 
 /** Default search roots. */

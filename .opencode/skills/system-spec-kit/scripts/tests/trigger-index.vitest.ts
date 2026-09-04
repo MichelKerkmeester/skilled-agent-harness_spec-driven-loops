@@ -14,7 +14,9 @@ import {
   scorePhrase,
 } from '../retrieval/lib/normalize.mjs';
 import { buildIndex, generate } from '../retrieval/generate-trigger-index.mjs';
-import { loadIndex, lookup, specFolderMatches } from '../retrieval/lookup-trigger-index.mjs';
+import { loadIndex, lookup, specFolderMatches,
+  parseArgs,
+} from '../retrieval/lookup-trigger-index.mjs';
 
 const tempRoots = new Set<string>();
 
@@ -666,5 +668,15 @@ describe('loadIndex fails closed on a malformed artifact', () => {
   it('still loads the artifact the generator published', () => {
     const indexPath = corrupted(() => {});
     expect(loadIndex(indexPath).schemaVersion).toBe(2);
+  });
+});
+
+describe('lookup CLI limit contract', () => {
+  it('accepts only whole non-negative decimal integers for --limit', () => {
+    expect(parseArgs(['prompt', '--limit', '5']).limit).toBe(5);
+    expect(parseArgs(['prompt', '--limit', '0']).limit).toBe(0);
+    for (const bad of ['2junk', '1.9', '-1', '1e3', '', ' 3']) {
+      expect(() => parseArgs(['prompt', '--limit', bad])).toThrow(/non-negative integer/);
+    }
   });
 });

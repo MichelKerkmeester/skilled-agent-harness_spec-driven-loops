@@ -224,7 +224,7 @@ function normalizeSpecFolder(specFolder) {
  * @param {string[]} argv Arguments after the script name.
  * @returns {{ prompt: string, indexPath: string | undefined, specFolder: string | null, limit: number, json: boolean, hashIndex: boolean }} Parsed invocation.
  */
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const prompts = [];
   let indexPath;
   let specFolder = null;
@@ -257,8 +257,10 @@ function parseArgs(argv) {
       if (arg === '--index') indexPath = value;
       if (arg === '--spec-folder') specFolder = value;
       if (arg === '--limit') {
+        // parseInt would read `2junk` as 2 and `1.9` as 1 and silently truncate
+        // the answer, so the raw text has to be a whole decimal number.
+        if (!/^\d+$/.test(value)) throw new Error('--limit requires a non-negative integer');
         limit = Number.parseInt(value, 10);
-        if (!Number.isFinite(limit) || limit < 0) throw new Error('--limit requires a non-negative integer');
       }
       i += 1;
       continue;
