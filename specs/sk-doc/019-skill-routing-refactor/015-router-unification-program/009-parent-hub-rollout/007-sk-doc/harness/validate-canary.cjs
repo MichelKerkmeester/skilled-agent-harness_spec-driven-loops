@@ -93,14 +93,14 @@ const PROTECTED_DIGESTS = Object.freeze({
 // Left stale, the canary reports the hub's own edits as corruption. The key set
 // mirrors what the loader collects, so adding a packet to the registry adds a row here.
 const AUTHORED_DIGESTS = Object.freeze({
-  'SKILL.md': 'e98e6c379287127d95b122826aca1c2e99b931ecfce34efc3f098116457ba0aa',
+  'SKILL.md': 'cd1e8f1d8e11cb1ade843407850bbaff48fc3dba680cf94fe828a5d96179ae1c',
   'hub-router.json': 'bb7a5a32156bd6ee63cc3e048533b6dc5a58e43ad89f3598863714027e659a07',
-  'mode-registry.json': 'c7cc5b09768e89c1934b56a19ae2f9825e2b1e05056bf079a94fc122ff44a914',
+  'mode-registry.json': '74a8a48055e27d0809f4b88647fc749fc05a4af36f7d59bf1e929725bfd00522',
   'packets/sk-create-agent/SKILL.md': '4d58c69c58f450e86122b8febfe11a71dc7667830707e46f6191a694bf830767',
   'packets/sk-create-benchmark/SKILL.md': 'e1ab6aca520103e1cc46fa3445b8cdbb7b78f425b786800670b47211cfc75d9a',
   'packets/sk-create-changelog/SKILL.md': '60dac718a2d81e42508c52972c8d32a15da772b9671942707bbf53c527b4923b',
-  'packets/sk-create-chart/SKILL.md': 'bd6fac4d9073af870c083bdba03534d56634defec8da97cde974f9d368a3457c',
-  'packets/sk-create-command/SKILL.md': 'd081701986d558d7771b5871f632e392c71d1874cf1a3dd80dd983a38ddaa483',
+  'packets/sk-create-chart/SKILL.md': 'b24071a3f1286445f4ea8290ff5f0a9c0a2d83f2cd9379a508f1486fd407dcc9',
+  'packets/sk-create-command/SKILL.md': '87664dfc05b2568818a07ecd769d447558eb54cca8c6574475dc4adb9b8fab5f',
   'packets/sk-create-diagram/SKILL.md': '0799f4eef8d405be3c1831dee2f14453aa3886d171b4e21c5eeb9fad8defbc40',
   'packets/sk-create-diff/SKILL.md': '91cf34e8834fb4e8841f8b9b9c56e364133add73cfdd3288a0f226c694668b36',
   'packets/sk-create-feature-catalog/SKILL.md': 'f4ab47733e43ebdbede265edbf8eb5b469a57a789b1cbc5ad0bdbee28683f43e',
