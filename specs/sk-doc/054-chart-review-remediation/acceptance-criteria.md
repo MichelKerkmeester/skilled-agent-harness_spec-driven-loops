@@ -1,6 +1,6 @@
 ---
 title: "Acceptance Criteria: Chart review remediation"
-description: "The closure gate for the review remediation, each row carrying the command that was run and what it printed."
+description: "The closure gate for the review remediation, each row carrying the command that was run and what it printed, including the pass that closed the recorded holes."
 trigger_phrases:
   - "chart remediation criteria"
   - "chart review closure gate"
@@ -12,12 +12,13 @@ _memory:
     packet_pointer: "sk-doc/054-chart-review-remediation"
     last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Re-ran every row and recorded what it printed"
+    recent_action: "Closed the recorded-hole row against its own mutations and controls"
     next_safe_action: "None open"
     blockers: []
     key_files:
       - "scratch/negative-controls.txt"
       - "scratch/headline-audit.txt"
+      - "scratch/checker-holes-closed.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-04-054-chart-review-remediation"
@@ -25,7 +26,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Four checker holes are recorded rather than closed, each with the mutation that proves it"
+      - "The recorded checker holes are closed, each watched failing on its own mutation against its own unwired control"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
 # Acceptance Criteria
@@ -62,7 +63,7 @@ _memory:
 | AC-007 | REQ-007 | Given every form sets attributes through one helper, When a size off the scale goes through it, Then the rule sees it | The type-scale rule now covers the helper path and reports 302 assertions. A size off the scale handed to the helper fails. With the new path disabled it passes | Met | - |
 | AC-008 | REQ-008 | Given a table is wider than a phone, When the page is measured at 500 units, Then the document does not scroll sideways | The two files that overflowed now report a document width equal to the viewport, with the table still wider and panning inside its own region | Met | - |
 | AC-009 | REQ-009 | Given three axis captions collided with their own ticks, When boxes are measured again, Then none collides | The collision count reads zero, against three before | Met | - |
-| AC-010 | REQ-010 | Given a hole is left open, When it is recorded, Then the mutation that proves it is kept | Seven mutations kept with their output, each with a wired and an unwired run. Four holes are recorded rather than closed, with what a fix would cost | Met | - |
+| AC-010 | REQ-010 | Given a hole is left open, When it is recorded, Then the mutation that proves it is kept | Seven mutations kept with their output, each with a wired and an unwired run. Four holes were recorded with what a fix would cost, and a later pass closed all five the packet named: eleven more mutations in `scratch/checker-holes-closed.txt`, every one red against the rule and green against a copy of the checker with that single assertion switched off. The plain corner the radius rule always caught is kept among them, red under both the new pattern and the old, so widening the rule can be shown not to have dropped it | Met | - |
 | AC-011 | REQ-011 | Given documents disagreed, When each is settled, Then it is corrected or the reason it stands is written | Handled in the document pass, with every changed document moving its version | Met | - |
 | AC-012 | REQ-012 | Given prose is authored here, When it is scanned, Then it carries no hard blocker | `hvr_scan.py` reports zero on every document in this packet | Met | - |
 <!-- /ANCHOR:criteria -->
@@ -74,11 +75,16 @@ _memory:
 
 **Closeable:** Yes. Twelve rows met, none waived, none superseded.
 
-Four checker holes are deliberately left open and recorded: the motion rule matches its guard
-string anywhere in a stylesheet rather than beside each animation, a web font declared inside an
-at-rule slips the external-resource rule, the accessibility rule's table half is satisfied by a
-commented-out attribute, and a corner held in a variable slips the radius rule. Each has a
-mutation that proves it. They are named here so a later pass does not have to rediscover them.
+The four checker holes this packet left open are closed, along with the fifth it believed it had
+closed and had only closed for the colour words somebody had thought to list. Naming them here is
+what let the later pass start from the mutation rather than from the search, which is the whole
+reason a recorded hole is worth more than a forgotten one.
+
+Each took the different parser that recording it said it would need, and the reason for recording
+rather than widening held: the corpus check reads 3,231 assertions from the final state against
+3,113 before, and none of the twenty-one shipped forms started failing. What is left is stated in
+the checker's `scripts/README.md` beside the rule it belongs to, and none of it is a file passing
+while it is wrong.
 <!-- /ANCHOR:closure -->
 
 ---

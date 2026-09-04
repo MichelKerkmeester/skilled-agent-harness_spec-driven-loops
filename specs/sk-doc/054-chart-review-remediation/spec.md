@@ -90,7 +90,7 @@ A reading that the picture supports, on every form and every delivery. A check t
 
 - Any new chart form. The corpus stays at twenty-one.
 - The palette source's values. No colour is added, removed or moved.
-- The four checker holes named in section 10, beyond recording each with the mutation that proves it and what a fix would cost.
+- The four checker holes named in section 10, beyond recording each with the mutation that proves it and what a fix would cost. This was the scope at the time and it is left standing as the record of it. A later pass closed all five holes the packet named, and the limitations section of `implementation-summary.md` carries the current state.
 - `sk-create-diagram`. The radar disagreement is recorded on this side rather than resolved by moving a file between packets.
 
 ### Files to Change
@@ -154,7 +154,7 @@ A reading that the picture supports, on every form and every delivery. A check t
 
 - **SC-001**: A rendered probe of `heat-matrix` carrying `0`, `-4` and `0.4` contains no pure-black pixel. **Met.** 5,752 black pixels before, 0 after.
 - **SC-002**: A rendered probe of each of the five capacity forms contains no pure-black pixel and carries the notice element. **Met.** 1,348 / 1,728 / 2,989 / 13,110 / 5,133 black pixels before, 0 in every case after.
-- **SC-003**: No file overflows the page at a 500-unit viewport. **Met.** Two did, by 133 and 71 units; all twenty-seven now report `overflow=0`.
+- **SC-003**: No file overflows the page at a 500-unit viewport. **Met.** Two did, by 133 and 71 units. All twenty-seven now report `overflow=0`.
 - **SC-004**: `parallel-axes` reports zero text-box collisions. **Met.** Three before, zero after.
 - **SC-005**: `check-corpus.cjs --render` prints `RESULT: PASSED`. **Met.** Twenty-nine named checks, zero errors, exit 0.
 <!-- /ANCHOR:success-criteria -->
@@ -169,7 +169,7 @@ A reading that the picture supports, on every form and every delivery. A check t
 | Risk | A new check written to pass rather than to catch | A green run that means less than the one it replaced | Each is watched failing on a mutated copy, and two are re-run with the rule unwired to prove the corpus was green on the mutation before |
 | Risk | The empty swatch conflating "no reading" with "a low reading" | The picture answers a question the data did not | The swatch is the rule colour, outside the series ladder, keyed only when a cell takes it, and the ramp's quoted low end is the lowest value the ramp covers |
 | Risk | A headline rewritten into vagueness to make it true | A conclusion replaced by a label, which the contract calls the failure the headline rule exists to prevent | Every rewrite is a checkable claim with its arithmetic recorded beside it |
-| Risk | The table pan changing twenty-five files that did not need it | Churn, and a phone reader panning a two-column table that fitted | The region declares no floor of its own, so a table that fits still fits; measured before and after on all twenty-seven |
+| Risk | The table pan changing twenty-five files that did not need it | Churn, and a phone reader panning a two-column table that fitted | The region declares no floor of its own, so a table that fits still fits, measured before and after on all twenty-seven |
 | Risk | Restoring a mutated file with `git checkout --` | The working state discarded rather than the mutation | Every mutation runs on a copy of the whole package in a scratch directory, restored from a kept copy and confirmed by `diff -r` |
 <!-- /ANCHOR:risks -->
 
@@ -208,7 +208,7 @@ The same run recommends phasing at 40 of 50. The packet is authored as a standar
 |-----------|-------|----------|
 | Scope | 20/25 | Files: 34, Systems: 1 |
 | Risk | 8/25 | Auth: N, API: rule surface only, Breaking: N |
-| Research | 6/20 | The defects arrived measured; the judgement is where each fix belongs |
+| Research | 6/20 | The defects arrived measured, and the judgement is where each fix belongs |
 | Multi-Agent | 0/15 | No dispatch |
 | Coordination | 6/15 | One package, one gate |
 | **Total** | **40/100** | **Level 3 by the scorer** |
@@ -219,11 +219,11 @@ The same run recommends phasing at 40 of 50. The packet is authored as a standar
 
 All answered. Each points at the record carrying the reasoning.
 
-- **Where a value with no magnitude belongs.** **The empty swatch, not the palest step.** A zero on a magnitude ramp is not the quietest reading; it is a cell with no magnitude to place, and `calendar-grid` had already answered it that way. ADR-001.
+- **Where a value with no magnitude belongs.** **The empty swatch, not the palest step.** A zero on a magnitude ramp is not the quietest reading. It is a cell with no magnitude to place, and `calendar-grid` had already answered it that way. ADR-001.
 - **Whether `stacked-area` gains a fifth band or the catalog stops promising one.** **The catalog stops promising.** ADR-002.
 - **Whether the delivery exemption is re-worded or closed.** **Closed.** ADR-003.
 - **Whether the table pan goes in two files or all twenty-seven.** **All twenty-seven.** ADR-004.
-- **Which of the six checker holes to fix.** **Two, both one-liners; four recorded with their mutations.** ADR-005.
+- **Which of the six checker holes to fix.** **Two, both one-liners, and four recorded with their mutations.** ADR-005.
 - **What to do about `radar`.** **Recorded on both sides rather than resolved.** ADR-006.
 
 ---

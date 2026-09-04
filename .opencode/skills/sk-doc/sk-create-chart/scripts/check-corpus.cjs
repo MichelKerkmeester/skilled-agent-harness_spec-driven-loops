@@ -522,6 +522,45 @@ function withoutBlocks(src, blocks) {
   return out;
 }
 
+// The properties that put a colour on a mark. The first list is what a stylesheet declares, the
+// second what an SVG element carries as an attribute. One list per syntax, read by every half of
+// this rule rather than re-typed inside each, because two lists that have to agree are the drift
+// the rule exists to stop.
+const COLOUR_BEARING = ['color', 'background', 'background-color', 'border', 'border-color',
+  'outline', 'outline-color', 'fill', 'stroke', 'stop-color'];
+const COLOUR_ATTRIBUTES = ['fill', 'stroke', 'stop-color', 'color', 'flood-color', 'lighting-color'];
+const COLOUR_SETTABLE = new Set([...COLOUR_BEARING, ...COLOUR_ATTRIBUTES]);
+
+// A colour handed to a mark from somewhere other than a declaration. The stylesheet half of this
+// rule reads declarations, and a value set from the drawing code is never one, so the only thing
+// watching that route was a list of colour words -- and a list of words knows the words somebody
+// thought of. "firebrick" was not one of them, and neither is the next one. This reads the
+// property instead: whatever a colour-bearing property is handed has to resolve the way a
+// declaration does, whichever word it was written with.
+//
+// Only a complete string literal is judged. A value assembled from pieces is how the proof sheets
+// already pass a palette reference around, and reading the first piece as the whole value would
+// fail three correct files.
+const COLOUR_ASSIGNMENTS = [
+  /setAttribute\(\s*['"]([a-zA-Z-]+)['"]\s*,\s*(['"])([^'"]*)\2\s*\)/g,
+  /setProperty\(\s*['"]([a-zA-Z-]+)['"]\s*,\s*(['"])([^'"]*)\2\s*[,)]/g,
+  /(?:^|[{,\s])['"]?([a-zA-Z-]+)['"]?\s*:\s*(['"])([^'"]*)\2\s*(?=[,}\n])/g,
+  /\.\s*style\s*\.\s*([a-zA-Z]+)\s*=\s*(['"])([^'"]*)\2\s*(?=[;,\n])/g,
+];
+
+const kebab = (name) => name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+
+// What a colour-bearing property may resolve to: a token from the palette block, a keyword that
+// names an absence rather than a colour, or a paint server this same file defines.
+function colourResolves(value) {
+  const v = value.trim().toLowerCase();
+  if (!v) return true;
+  if (v.includes('var(--chart-')) return true;
+  if (COLOUR_KEYWORDS.has(v)) return true;
+  if (/^url\(\s*['"]?#/.test(v)) return true;
+  return false;
+}
+
 function checkColourLiterals(file, src, blocks) {
   const cleaned = stripHtmlComments(withoutBlocks(src, blocks))
     .replace(/x?link:href\s*=\s*"#[^"]*"/gi, ' ')
@@ -531,7 +570,7 @@ function checkColourLiterals(file, src, blocks) {
   // stylesheet strips its comments first and this one did not, so a comment explaining why a
   // mark is deliberately not painted grey read to it as a mark painted grey. The strippers run
   // here for the same reason they run there: a sentence is not a declaration.
-  const { styles: rawStyles, scripts: rawScripts, attrs } = regionsOf(cleaned);
+  const { styles: rawStyles, scripts: rawScripts, attrs, markup } = regionsOf(cleaned);
   const styles = rawStyles.map(stripJsComments);
   const scripts = rawScripts.map(stripJsComments);
   const haystacks = [...styles, ...scripts, ...attrs];
@@ -559,7 +598,7 @@ function checkColourLiterals(file, src, blocks) {
     }
   }
 
-  const propRe = /(?:^|[;{\s])(color|background|background-color|border|border-color|outline|outline-color|fill|stroke|stop-color)\s*:\s*([^;}]+)/gi;
+  const propRe = new RegExp('(?:^|[;{\\s])(' + COLOUR_BEARING.join('|') + ')\\s*:\\s*([^;}]+)', 'gi');
   for (const text of styles) {
     let m;
     while ((m = propRe.exec(text)) !== null) {
@@ -573,20 +612,73 @@ function checkColourLiterals(file, src, blocks) {
         `"${m[1]}: ${m[2].trim()}" does not resolve through a var(--chart-…) reference`);
     }
   }
+
+  for (const code of scripts) {
+    tally('colour-literals', 1);
+    for (const re of COLOUR_ASSIGNMENTS) {
+      re.lastIndex = 0;
+      let a;
+      while ((a = re.exec(code)) !== null) {
+        if (!COLOUR_SETTABLE.has(kebab(a[1]))) continue;
+        if (colourResolves(a[3])) continue;
+        record('colour-literals', 'error', file,
+          `the drawing code hands ${kebab(a[1])} the literal "${a[3]}". A colour reaches a mark through a var(--chart-…) token, or through the class that carries one, so one palette edit reaches the whole file`);
+      }
+    }
+  }
+
+  // The same decision in a third syntax. No form paints from a presentation attribute today,
+  // which is exactly the condition under which a route stops being watched.
+  const attrPaint = new RegExp('\\s(' + COLOUR_ATTRIBUTES.join('|') + ')\\s*=\\s*"([^"]*)"', 'gi');
+  tally('colour-literals', 1);
+  let painted;
+  while ((painted = attrPaint.exec(markup)) !== null) {
+    if (colourResolves(painted[2])) continue;
+    record('colour-literals', 'error', file,
+      `the markup paints ${painted[1].toLowerCase()}="${painted[2]}" directly. A colour reaches a mark through a var(--chart-…) token, or through the class that carries one`);
+  }
 }
 
 // A corner comes from the ladder, never from a number typed into a file.
 //
 // This is the same idea as the palette rule one function up. A value meant to be identical
-// everywhere lives in one place and is read rather than re-typed, and twenty forms agreeing
-// on ten pixels by coincidence is not a convention: it is twenty chances to disagree, and
-// the twenty-first file is where it breaks. A corner declared in a stylesheet therefore has
+// everywhere lives in one place and is read rather than re-typed, and twenty-one forms agreeing
+// on ten pixels by coincidence is not a convention: it is twenty-one chances to disagree, and
+// the twenty-second file is where it breaks. A corner declared in a stylesheet therefore has
 // to resolve through a rung, and a corner set from the drawing code has to be computed from
 // the mark's own geometry rather than typed. A range bar rounded to half its own width is
 // geometry and passes; a 2 typed beside it is a rung in disguise and fails.
 const RADIUS_DECLARATION = /(?:^|[;{\s])(border-radius|border-[a-z-]+-radius|rx|ry)\s*:\s*([^;}]+)/gi;
-const RADIUS_IN_ATTRS = /(?:^|[{,\s])(rx|ry)\s*:\s*(-?\d+(?:\.\d+)?)\s*(?=[,}\n])/g;
-const RADIUS_IN_SETATTR = /setAttribute\(\s*['"](rx|ry)['"]\s*,\s*['"]?(-?\d+(?:\.\d+)?)/g;
+// The value is read rather than assumed to be digits, and the key is allowed the quotes the
+// corpus already writes elsewhere. Matching a bare key and a numeric literal answered "is a
+// number typed at this call", which is a narrower question than the rule asks: a 3 bound to a
+// constant one line up is the same typed corner wearing a name, and 'rx' in quotes is the same
+// corner wearing the spelling every attribute object in the corpus uses for a hyphenated key.
+const RADIUS_IN_ATTRS = /(?:^|[{,\s])(['"]?)(rx|ry)\1\s*:\s*([^,}\n]+)/g;
+const RADIUS_IN_SETATTR = /setAttribute\(\s*['"](rx|ry)['"]\s*,\s*([^)]+)\)/g;
+// A number bound to a name, so the name can be recognised as the number it holds.
+const NUMERIC_CONSTANT = /\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*(-?\d+(?:\.\d+)?)\s*[;,\n]/g;
+
+// What a corner set from the drawing code may be: a rung read from the palette, or a value
+// computed from the mark's own geometry. What it may not be is a number, whether it is typed at
+// the call or bound to a name first. Anything the file computes is left alone, because a corner
+// that is genuinely per-mark is exactly what the ladder does not cover, and failing it would
+// flag the one form that already does this correctly.
+function radiusIsTyped(value, constants) {
+  const v = value.trim().replace(/[;,]$/, '');
+  const literal = v.replace(/^['"]|['"]$/g, '').trim();
+  if (literal.includes('var(--chart-radius-')) return false;
+  if (/^-?\d+(?:\.\d+)?(?:px)?$/.test(literal)) return true;
+  return constants.has(literal);
+}
+
+function numericConstants(code) {
+  const out = new Map();
+  NUMERIC_CONSTANT.lastIndex = 0;
+  let m;
+  while ((m = NUMERIC_CONSTANT.exec(code)) !== null) out.set(m[1], m[2]);
+  return out;
+}
 
 function checkRadiusTokens(file, src, blocks) {
   const { styles, scripts } = regionsOf(stripHtmlComments(withoutBlocks(src, blocks)));
@@ -605,16 +697,36 @@ function checkRadiusTokens(file, src, blocks) {
 
   for (const code of scripts) {
     const executable = stripJsComments(code);
-    for (const re of [RADIUS_IN_ATTRS, RADIUS_IN_SETATTR]) {
-      let m;
-      re.lastIndex = 0;
-      while ((m = re.exec(executable)) !== null) {
-        record('radius', 'error', file,
-          `the drawing code sets ${m[1]} to the literal ${m[2]}. A shared corner belongs on a rung and reaches the mark through its class; a corner that is genuinely per-mark is computed from that mark's geometry`);
-      }
+    const constants = numericConstants(executable);
+    RADIUS_IN_ATTRS.lastIndex = 0;
+    let m;
+    while ((m = RADIUS_IN_ATTRS.exec(executable)) !== null) {
+      if (!radiusIsTyped(m[3], constants)) continue;
+      record('radius', 'error', file,
+        `the drawing code sets ${m[2]} to ${m[3].trim()}. A shared corner belongs on a rung and reaches the mark through its class; a corner that is genuinely per-mark is computed from that mark's geometry`);
+    }
+    RADIUS_IN_SETATTR.lastIndex = 0;
+    while ((m = RADIUS_IN_SETATTR.exec(executable)) !== null) {
+      if (!radiusIsTyped(m[2], constants)) continue;
+      record('radius', 'error', file,
+        `the drawing code sets ${m[1]} to ${m[2].trim()}. A shared corner belongs on a rung and reaches the mark through its class; a corner that is genuinely per-mark is computed from that mark's geometry`);
     }
   }
 }
+
+// A resource the file does not carry. Every target here is read rather than pattern-matched,
+// because the syntax that carries a dependency is not the thing being forbidden: the property
+// the contract states is that the file opens on a laptop with no network.
+//
+// The attribute patterns catch the two ways a script or a picture arrives. A web font arrives by
+// neither. It is declared as a property inside an at-rule, so the rule that was looking for an
+// equals sign read straight past a src: url("https://...") sitting one line below a @font-face,
+// and the contract forbids a web font in the same sentence as a CDN.
+//
+// A reference into this same document is not a resource and neither is a value the file already
+// holds, so a fragment and a data URI pass. Everything else is a second file, which is a file
+// that will not travel with this one whether the network is up or not.
+const URL_TARGET = /\burl\(\s*(['"]?)([^'")]*)\1\s*\)/gi;
 
 function checkNoExternalResources(file, src) {
   const patterns = [
@@ -630,6 +742,20 @@ function checkNoExternalResources(file, src) {
     if (!re.test(cleaned)) continue;
     record('no-external', 'error', file,
       `${what}. A delivered chart has to open on a laptop with no network, so the corpus draws its own marks and carries no remote dependency`);
+  }
+
+  // Comments come out first. A sentence naming a remote font to warn an author off one is not a
+  // remote font, and this file already carries prose about url() for exactly that reason.
+  const { styles, scripts, markup } = regionsOf(cleaned);
+  const declarations = [...styles.map(stripJsComments), ...scripts.map(stripJsComments), markup].join('\n');
+  tally('no-external', 1);
+  URL_TARGET.lastIndex = 0;
+  let m;
+  while ((m = URL_TARGET.exec(declarations)) !== null) {
+    const target = m[2].trim();
+    if (!target || target.startsWith('#') || /^data:/i.test(target)) continue;
+    record('no-external', 'error', file,
+      `url("${target}") names a resource this file does not carry. A font, an image or a sheet fetched at open time is a second file, and the delivered chart is one file that opens on a laptop with no network. What the file needs, it holds`);
   }
 }
 
@@ -699,7 +825,13 @@ function checkAccessibility(file, src, ids) {
     }
   }
   tally('accessibility', count + 1);
-  if (/\bdata-chart-table\b/.test(src)) return;
+  // Asserted as an attribute on an element rather than as a string in the file. The test used to
+  // be a substring search over the raw source, which the word satisfies from inside a comment or
+  // from inside a sentence in the drawing code: renaming the real attribute and leaving the old
+  // name in a comment beside it passed. What the reader needs is a table, and only markup can
+  // carry one, so only markup is read.
+  const { markup } = regionsOf(stripHtmlComments(src));
+  if (/<[a-zA-Z][^>]*\sdata-chart-table\b/.test(markup)) return;
   record('accessibility', 'error', file,
     'no element carries data-chart-table. The numbers behind the drawing have to be readable without seeing it');
 }
@@ -834,6 +966,71 @@ function reducedMotionBlocks(css) {
   return out;
 }
 
+// Every rule in a stylesheet, carrying the at-rules it sits inside, so a rule can be asked
+// whether a reduce-motion query reaches it. The whole-stylesheet test answers a different
+// question: does this file mention the query at all. A file that guards one animation answers
+// yes for every animation it gains afterwards, which is how a mark can move for a reader who
+// asked it not to while the check reports a pass.
+function cssRuleTree(css) {
+  const out = [];
+  const stack = [];
+  let selectorStart = 0;
+  for (let i = 0; i < css.length; i += 1) {
+    if (css[i] === '{') {
+      stack.push({ selector: css.slice(selectorStart, i).trim(), bodyStart: i + 1 });
+      selectorStart = i + 1;
+    } else if (css[i] === '}') {
+      const open = stack.pop();
+      if (open) {
+        out.push({
+          selector: open.selector,
+          ancestors: stack.map((s) => s.selector),
+          body: css.slice(open.bodyStart, i),
+        });
+      }
+      selectorStart = i + 1;
+    }
+  }
+  return out;
+}
+
+// A selector list is a list. Two rules that name the same mark in a different order, or split
+// across two guards, are the same coverage, so the comparison is per selector rather than per
+// string.
+const selectorList = (selector) => selector.split(',').map((s) => s.replace(/\s+/g, ' ').trim()).filter(Boolean);
+
+// The property that switches a family on is the property whose "none" switches it off, which is
+// why one map serves both directions. A transition guarded by "animation: none" is not guarded.
+const MOTION_FAMILY = {
+  animation: 'animation',
+  'animation-name': 'animation',
+  transition: 'transition',
+  'transition-property': 'transition',
+};
+
+function motionFamilies(body) {
+  const families = new Set();
+  MOTION_DECLARATION.lastIndex = 0;
+  let m;
+  while ((m = MOTION_DECLARATION.exec(body)) !== null) {
+    const family = MOTION_FAMILY[m[1].toLowerCase()];
+    if (!family) continue;
+    if (m[2].trim().toLowerCase() === 'none') continue;
+    families.add(family);
+  }
+  return families;
+}
+
+function removesFamily(body, family) {
+  MOTION_DECLARATION.lastIndex = 0;
+  let m;
+  while ((m = MOTION_DECLARATION.exec(body)) !== null) {
+    if (MOTION_FAMILY[m[1].toLowerCase()] !== family) continue;
+    if (m[2].trim().toLowerCase() === 'none') return true;
+  }
+  return false;
+}
+
 function checkMotion(file, src) {
   const { styles, scripts, markup } = regionsOf(stripHtmlComments(src));
   // CSS and JavaScript share block-comment syntax, so one stripper serves both. It matters
@@ -856,6 +1053,34 @@ function checkMotion(file, src) {
   if (MARKUP_MOTION.test(markup) && !REDUCED_MOTION.test(code)) {
     record('motion', 'error', file,
       'the markup carries an animation element and the drawing code never reads the reduce-motion preference. A media query cannot switch off an animation element, so the guard belongs in script');
+  }
+
+  // Per animation, rather than per file. The test above asks whether the stylesheet mentions
+  // the query anywhere, and a file passes that for ever once one rule is guarded: the second
+  // animation inherits an answer that was never about it. So each animating rule is matched
+  // against the guard rules by selector, and by family, because the guard has to remove the
+  // motion the rule actually declares. A step inside @keyframes is skipped: a keyframe may
+  // legally carry animation-timing-function, and reading that as an animation to guard would
+  // fail a file that is doing nothing wrong.
+  const tree = cssRuleTree(css);
+  const inGuard = (rule) => rule.ancestors.some((a) => REDUCED_MOTION.test(a));
+  const guards = tree.filter(inGuard);
+  for (const rule of tree) {
+    if (rule.selector.startsWith('@')) continue;
+    if (inGuard(rule)) continue;
+    if (rule.ancestors.some((a) => /^@keyframes\b/i.test(a.trim()))) continue;
+    const families = motionFamilies(rule.body);
+    if (!families.size) continue;
+    for (const family of families) {
+      for (const selector of selectorList(rule.selector)) {
+        tally('motion', 1);
+        const covered = guards.some((g) => selectorList(g.selector).includes(selector)
+          && removesFamily(g.body, family));
+        if (covered) continue;
+        record('motion', 'error', file,
+          `"${selector}" declares ${family} and no prefers-reduced-motion rule switches it off. A guard elsewhere in the stylesheet does not reach this selector, so the file answers a whole-stylesheet test and this mark still moves for a reader who asked it not to. The fallback carries the same selector and declares "${family}: none"`);
+      }
+    }
   }
 
   for (const body of reducedMotionBlocks(css)) {

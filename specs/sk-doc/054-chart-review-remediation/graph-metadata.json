@@ -46,6 +46,8 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "scratch/checker-holes-closed.txt",
+      "scripts/README.md",
       ".opencode/skills/sk-doc/sk-create-chart/assets/templates/heat-matrix.html",
       ".opencode/skills/sk-doc/sk-create-chart/assets/templates/calendar-grid.html",
       ".opencode/skills/sk-doc/sk-create-chart/assets/templates/unit-ring.html",
@@ -58,9 +60,7 @@
       ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
-      ".opencode/skills/sk-doc/sk-create-chart/scripts/README.md",
-      ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/corpus-integrity/colour-comes-from-one-source.md"
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/README.md"
     ],
     "entities": [
       {
@@ -91,6 +91,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checker-holes-closed.txt",
+        "kind": "file",
+        "path": "scratch/checker-holes-closed.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -166,24 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "colour-comes-from-one-source.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/corpus-integrity/colour-comes-from-one-source.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The corpus check passed on every one of these",
     "created_at": "2026-09-04T07:19:37.295Z",
-    "last_save_at": "2026-09-04T07:20:14.991Z",
+    "last_save_at": "2026-09-04T09:58:40.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b18338963fd4dcb124b9d834a0312d0e694047b53baea70b051dae5f2b83deb",
+    "source_fingerprint": "sha256:6069a689a881c5bec22a5c94ba25d401f9608a560dc700a91e35f7603ff80c61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4876090fd5cdbef8112e24a50d83ada7b90239a09907ef021f6c3d7c2f50e012",
+      "spec.md": "b4a63a38b9d58b45ad84b161d237fe53865998bfcea4716820ec9b9ad17a6220",
       "plan.md": "1e401ebf1098bec7c0b03e190d4217c100e50d2051a934569354c79f0b0a8fee",
-      "tasks.md": "027674db12d01e44c2818b799c8c85ae7f6ea6ce9674ba87ca73ba267745bb08",
-      "implementation-summary.md": "c9100dbb6667814f7fd2d5e7dfe4e12aea903e128fad7ebf60a5686432e77948"
+      "tasks.md": "ccd8f1156ed18af679e6bd3bc242aac284adcb14f7e9fef1656c34c4eb3bdf46",
+      "implementation-summary.md": "6c3b54fbde159c309fb3e2e468c111868032ce86db0e3f90873cfeae99b257d4"
     },
     "last_active_child_id": null,
     "last_active_at": null

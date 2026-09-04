@@ -140,8 +140,11 @@ cp /tmp/keep.html assets/templates/bar-columns.html
 ```
 
 A corner typed into the drawing code is the other: add `rx: 2` to any `node('rect', …)` call and
-run it again. A corner computed from a mark's own geometry, such as the range bar in
-`daily-range.html` rounded to half its width, is geometry rather than a shared value and passes
+run it again. Two spellings of that same corner used to pass and no longer do, so break both.
+Quote the key, `'rx': 4`, which is how every attribute object in the corpus writes a hyphenated
+one. Or hold the number in a name first, `const CORNER = 3;` then `rx: CORNER`, which is the same
+typed corner wearing a name. A corner computed from a mark's own geometry, such as the range bar
+in `daily-range.html` rounded to half its width, is geometry rather than a shared value and passes
 on purpose.
 
 ---
@@ -166,8 +169,42 @@ cp /tmp/keep.html assets/templates/bar-columns.html
 sed -i '' 's/0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards/0.5s cubic-bezier(0.33, 1, 0.68, 1) infinite backwards/' assets/templates/bar-columns.html
 node scripts/check-corpus.cjs   # expect RESULT: FAILED on motion
 
+# a second animation, in a file whose stylesheet already guards the first. This is the shape
+# that made the rule per-file rather than per-animation: the guard below covers .col, and .tick
+# inherited an answer that was never about it
+cp /tmp/keep.html assets/templates/bar-columns.html
+sed -i '' 's|</style>|.tick { animation: chart-grow 0.4s ease backwards; }\
+</style>|' assets/templates/bar-columns.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on motion
+
 cp /tmp/keep.html assets/templates/bar-columns.html
 ```
+
+A guard has to remove the motion the rule declares, not some other motion. Switch `box-plot.html`'s
+`[data-chart-tooltip] { transition: none; }` to `animation: none` and the tooltip fades again for a
+reader who asked it not to, with the guard still sitting there looking like one.
+
+`no-external`, `accessibility` and `colour-literals` each read a route that used to be invisible.
+
+```bash
+cp assets/templates/bar-rows.html /tmp/keep.html
+# a web font: a src with a colon rather than an equals sign, one line inside an at-rule
+sed -i '' 's|</style>|@font-face { font-family: "X"; src: url("https://example.com/x.woff2"); }\
+</style>|' assets/templates/bar-rows.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on no-external
+cp /tmp/keep.html assets/templates/bar-rows.html
+
+cp assets/templates/scatter.html /tmp/keep.html
+# the real attribute renamed, the word kept alive in a comment beside it
+sed -i '' 's|<table data-chart-table>|<!-- data-chart-table --><table data-chart-tabular>|' assets/templates/scatter.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on accessibility
+cp /tmp/keep.html assets/templates/scatter.html
+```
+
+A colour breaks the same way in three syntaxes, and none of them is a declaration: hand
+`setAttribute('fill', 'firebrick')` to any element, pass `'fill': 'rebeccapurple'` to a `node()`
+call, or paint `fill="papayawhip"` onto the `<svg>` in the markup. The word list that used to watch
+this route knew thirty-six colour names and none of those three.
 
 The dark half of the palette breaks in four places, and each one is a different check.
 
@@ -309,23 +346,29 @@ cp /tmp/keep.html assets/templates/bar-rows.html
 
 ## 6. WHAT THESE CHECKS CANNOT SEE
 
-Every row below was proved by mutation: a file was broken in the named way, the whole check ran,
-and it stayed green. They are recorded rather than fixed, and each says what a fix would cost,
-because a rule with a known hole and no note beside it is a rule the next reader trusts further
-than it has earned.
+Six holes used to sit here, each proved by mutation: a file was broken in the named way, the whole
+check ran, and it stayed green. All six are closed. Each was watched failing on the mutation that
+proved it, and each was run a second time against a copy of the checker with that one assertion
+switched off, because a mutation that fails proves only that something fired, and the control is
+what says which thing.
 
-| Check | What passes it | What a fix would take |
+What closed them was a parser in every case rather than a wider pattern. `motion` matches each
+animating selector against the guards instead of testing the sheet for a string. `no-external`
+reads the target of every `url()` instead of looking for an equals sign. `accessibility` reads the
+table attribute off an element the way its own `svg` half already did. `colour-literals` reads what
+a colour-bearing property is handed instead of asking whether the value is a word somebody thought
+to list. `radius` reads the value at the call instead of assuming it is spelled in digits.
+
+The table below is what is left. None of these rows is a file passing while it is wrong. Each is a
+place where a rule says something narrower than the sentence it enforces, and would rather stay
+quiet than fail a file that is doing nothing wrong.
+
+| Check | What still passes it | Why it stays that way |
 | --- | --- | --- |
-| `motion` | An unguarded animation in a file that mentions `prefers-reduced-motion` anywhere else in its stylesheet. The rule tests the whole sheet for the string rather than each animation for a fallback of its own, so the second animation a file gains is free | Resolve each animating selector against the reduce-motion blocks and require one that removes the motion for that selector. The blocks are already brace-walked, so the work is a small selector matcher and the inheritance cases it has to get right |
-| `no-external` | A web font declared inside an at-rule: `@font-face { src: url(https://…) }`. The rule looks for `src=` and `href=` as attributes, and an at-rule descriptor is `src:` with a colon | Add the descriptor form to the pattern list. It is one pattern. It sits here rather than in the file because it belongs with the `url()` and `@import` cases the same walk should cover, and doing one of the three is how the other two stay missed |
-| `accessibility` | A file whose only `data-chart-table` sits inside an HTML comment. The table half is a substring test over the raw source, while the `svg` half of the same check correctly reads open tags | Read the attribute off an element the way the `svg` half does, rather than testing the file for the string |
-| `radius` | A corner held in a variable: `const r = 4; el.setAttribute('rx', r)`. The rule matches a literal immediately after the attribute name | Constant-fold the drawing code, or narrow the rule to what it can honestly claim, which is a corner typed at the call site |
-
-Two more holes of the same kind were closed rather than recorded, both because the fix was one
-line. `colour-literals` now strips comments before it reads a region, so a sentence about a colour
-is no longer read as a colour, and it treats a quote as a word boundary, so `setAttribute('fill',
-'red')` is caught instead of read past: the one route that bypasses the stylesheet entirely was the
-one route nothing looked at. `type-scale` now reads the helper path.
+| `motion` | A guard whose selector is spelled differently from the rule it guards. The match is per selector after whitespace is collapsed, which is stricter than CSS: a rule animating `.col` and a guard written `[class~="col"]` name the same mark and read as two | This costs a false failure rather than a false pass, so it fails safe. Resolving two selectors as equivalent needs a selector engine, and every form in the corpus writes the guard with the selector it guards |
+| `radius` | A corner the file computes to a constant, such as `rx: 8 / 2` | An expression is how the one form with a genuinely per-mark corner writes it. Folding the arithmetic would close this and would also start judging arithmetic, which is a different rule wearing this one's name |
+| `colour-literals` | A colour assembled from pieces, such as `'fire' + 'brick'` | Only a complete string literal is judged, because the proof sheets build a palette reference by joining `'var('` to a property name. Reading the first piece as the whole value fails three correct files |
+| `no-external` | A resource whose address the drawing code builds at run time | Every static reference is read. A string assembled at run time is not a reference until it runs, and nothing short of running the file can say what it becomes |
 
 ---
 

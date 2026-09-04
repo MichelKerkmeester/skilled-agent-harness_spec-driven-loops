@@ -1,0 +1,83 @@
+The five checker holes the first pass recorded, closed. Every mutation is applied to a passing
+copy of the whole package in a scratch directory, the whole check is run, and the copy is thrown
+away rather than restored, so no mutation ever touched the tree. Exit status is read from $?
+after redirecting to a file, never through a pipe.
+
+Each mutation runs twice. Once against the checker as it now stands, where it has to fail. Once
+against a copy of the checker with that one new assertion switched off, where it has to pass,
+because a mutation that goes red proves only that something fired and the control is what says
+which thing. A check written in the same pass as the thing it checks inherits the problem it was
+built to fix unless each assertion is asked separately.
+
+== baseline, unmutated, checker as it now stands ==
+unmutated scratch copy                               exit=0  RESULT: PASSED
+
+== 1  motion: guarded per animation rather than per stylesheet ==
+  a second animation, first one guarded        exit=1  RESULT: FAILED
+      FAIL [motion] assets/templates/bar-columns.html: ".tick" declares animation and no prefers-reduced-motion rule switches it off. A guard elsewher
+  CONTROL, per-animation assertion unwired     exit=0  RESULT: PASSED
+  a transition guarded by animation: none      exit=1  RESULT: FAILED
+      FAIL [motion] assets/templates/box-plot.html: "[data-chart-tooltip]" declares transition and no prefers-reduced-motion rule switches it off. A g
+  CONTROL, per-animation assertion unwired     exit=0  RESULT: PASSED
+
+== 2  no-external: the target of every url() read, not just src= and href= ==
+  a web font in an at-rule                     exit=1  RESULT: FAILED
+      FAIL [no-external] assets/templates/bar-rows.html: url("https://fonts.example.com/chart-sans.woff2") names a resource this file does not carry. 
+  CONTROL, url target unread                   exit=0  RESULT: PASSED
+
+== 3  accessibility: the table read off an element, not out of the source text ==
+  attribute renamed, word left in a comment    exit=1  RESULT: FAILED
+      FAIL [accessibility] assets/templates/scatter.html: no element carries data-chart-table. The numbers behind the drawing have to be readable with
+  CONTROL, old substring test                  exit=0  RESULT: PASSED
+
+== 4  colour-literals: the property read, not the word looked up in a list ==
+  a name outside the list, via setAttribute    exit=1  RESULT: FAILED
+      FAIL [colour-literals] assets/templates/treemap.html: the drawing code hands fill the literal "firebrick". A colour reaches a mark through a var
+  CONTROL, assignment route unread             exit=0  RESULT: PASSED
+  the same, through the node() helper          exit=1  RESULT: FAILED
+      FAIL [colour-literals] assets/templates/treemap.html: the drawing code hands fill the literal "rebeccapurple". A colour reaches a mark through a
+  CONTROL, assignment route unread             exit=0  RESULT: PASSED
+  the same, painted in the markup              exit=1  RESULT: FAILED
+      FAIL [colour-literals] assets/templates/treemap.html: the markup paints fill="papayawhip" directly. A colour reaches a mark through a var(--char
+  CONTROL, markup route unread                 exit=0  RESULT: PASSED
+
+== 5  radius: the value read, in either spelling of the key ==
+  a corner held in a variable                  exit=1  RESULT: FAILED
+      FAIL [radius] assets/templates/waterfall.html: the drawing code sets rx to CORNER_PX. A shared corner belongs on a rung and reaches the mark thr
+  CONTROL, numeric-literal-only pattern        exit=0  RESULT: PASSED
+  a corner under a quoted key                  exit=1  RESULT: FAILED
+      FAIL [radius] assets/templates/waterfall.html: the drawing code sets rx to 4. A shared corner belongs on a rung and reaches the mark through its
+  CONTROL, numeric-literal-only pattern        exit=0  RESULT: PASSED
+  the plain literal the rule always caught     exit=1  RESULT: FAILED
+      FAIL [radius] assets/templates/waterfall.html: the drawing code sets rx to 4. A shared corner belongs on a rung and reaches the mark through its
+  same, old pattern: must still FAIL           exit=1  RESULT: FAILED
+      FAIL [radius] assets/templates/waterfall.html: the drawing code sets rx to 4. A shared corner belongs on a rung and reaches the mark through its
+
+== the corpus from the final state, twice, with the browser open ==
+  first run:  Summary: errors: 0
+  first run:  RESULT: PASSED
+  second run: Summary: errors: 0
+  second run: RESULT: PASSED
+
+  assertions: 3113 structural before, 3231 after, 3351 with the browser open
+  moved: colour-literals 971 to 1031, motion 120 to 148, no-external 150 to 180
+
+== the tree was never mutated ==
+  assets against the copy taken before any mutation: exit=0
+
+== the render half, five opens of the whole corpus ==
+  Four runs green. One red, and it is kept here rather than dropped, because a run that is
+  thrown away is a run nobody can check.
+
+    run 1  RESULT: PASSED
+    run 2  RESULT: PASSED
+    run 3  RESULT: FAILED   dark-render, where-the-budget-went.html:
+                            "the open under a dark colour scheme did not return a document:
+                            Command failed"
+    run 4  RESULT: PASSED
+    run 5  RESULT: PASSED
+
+  The browser process died on one open. It is not a reading about the file: nothing under
+  assets/ changed across the five runs, the checker was byte-identical, and the same file opened
+  green on the four either side of it. This is the case the packet already writes down, which is
+  why a single red render run is re-run before it is believed rather than reported.
