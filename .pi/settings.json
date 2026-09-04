@@ -36,7 +36,6 @@
     "extensions/pi-fast-mode-w-subagent-support",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-todo",
-    "npm:@luminascale/pi-zvec-grep",
     "npm:pi-blackhole",
     "npm:pi-cache-optimizer",
     "npm:pi-statusline",

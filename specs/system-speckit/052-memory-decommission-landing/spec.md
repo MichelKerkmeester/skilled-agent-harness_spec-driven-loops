@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: memory decommission landing and verification "
-description: "The memory-database decommission and the zvec retrieval lane existed only on a side branch while the release branch and main still carried the memory server, its hooks and its commands; this packet lands the branch, aligns the changed documents with their templates, and proves zero drift through a review loop."
+description: "The memory-database decommission existed only on a side branch while the release branch and main still carried the memory server, its hooks and its commands; this packet lands the branch, aligns the changed documents with their templates, and proves zero drift through a review loop."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -59,7 +59,7 @@ Both branches carry the decommission with no memory surface left, every changed 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/commands/**` frontmatter | Modify | v4's contract-shaped hints with memory tools removed from allow lists |
-| `.opencode/skills/system-plugins/README.md`, `system-spec-kit/references/cli/daemon-cli-reference.md` | Modify | Overview sections the templates require |
+| `system-spec-kit/references/cli/daemon-cli-reference.md` | Modify | Overview sections the templates require |
 | `specs/system-speckit/049-memory-decommission/**/{description,graph-metadata}.json` | Modify | Regenerated after the merge |
 | `specs/system-speckit/052-memory-decommission-landing/review/**` | Create | Review loop lineage and report |
 
@@ -72,11 +72,11 @@ The review reads a bounded list, never a tree. The change set is the diff `52202
 | `.opencode/skills/system-spec-kit/scripts/retrieval/**` and its tests | 37 | The trigger index generator and lookup, the ripgrep lane, the residue sweep, the retrofit pipeline, the zvec lane: correctness, exit mapping, determinism, no reference to a retired tool |
 | `.opencode/skills/system-spec-kit/mcp-server/**` (lib, handlers, hooks, tests, README) | 60 | The surviving engine: validation orchestrator, metadata refresh, continuity writer; nothing serves MCP, no dead import, no doc that presents the retired server as live |
 | `.opencode/skills/system-spec-kit/{shared,scripts/core,scripts/ops,templates,references}/**` | 49 | The embedding seam that the skill advisor still uses, the save workflow without a daemon, the templates' trigger phrases, the retrieval and grep conventions |
-| `.opencode/commands/{memory,doctor,speckit,deep,create}/**` | 75 | No memory tool in any allow list, the memory family reduced to save and search, the doctor zvec route, contract-shaped frontmatter |
+| `.opencode/commands/{memory,doctor,speckit,deep,create}/**` | 75 | No memory tool in any allow list, the memory family reduced to save and search, contract-shaped frontmatter |
 | `.opencode/skills/{system-deep-loop,cli-external-orchestration,system-skill-advisor,sk-doc,sk-code,sk-git,mcp-code-mode,mcp-tooling}/**` | 99 | Live instructions name the successors, never the retired tools; the advisor and model-server seam untouched in behaviour |
 | `.opencode/{hooks,bin,plugins,scripts,install-guides}/**`, `AGENTS.md`, `README.md`, `opencode.json`, `.claude/**`, `.pi/**`, `.codex/**`, `.cursor/**` | remainder | No spec-memory hook, plugin, launcher or registration; agent mirrors consistent; install guides describe what exists |
 
-**Reading budget.** Read only files in the list and the modules they import directly. Never expand a directory with a wildcard, and never read `node_modules`, `dist`, `benchmark`, `changelog`, `z_archive`, `manual-testing-playbook`, `feature-catalog`, the vendored fork under `system-plugins/zvec-grep`, or `data/trigger-index.json`. Cover a different group in each iteration so ten iterations cover the list roughly once, and spend any remaining iterations on the findings already raised.
+**Reading budget.** Read only files in the list and the modules they import directly. Never expand a directory with a wildcard, and never read `node_modules`, `dist`, `benchmark`, `changelog`, `z_archive`, `manual-testing-playbook`, `feature-catalog`, or `data/trigger-index.json`. Cover a different group in each iteration so ten iterations cover the list roughly once, and spend any remaining iterations on the findings already raised.
 
 **Repository-wide claims come from commands, not reading:**
 

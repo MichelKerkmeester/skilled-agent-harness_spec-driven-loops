@@ -1,1 +1,0 @@
-Where does the FontInfo NamedTuple propagate font metrics and glyph data through the mathematical text rendering pipeline, and what control flow determines whether the postscript_name or the FT2Font object is used at different stages of character rendering?

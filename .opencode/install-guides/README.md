@@ -897,7 +897,7 @@ After the static checks above pass, run the interactive doctor surface to verify
 - `/doctor:update` rebuilds the generated artifacts and the advisor database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
 - `/doctor:mcp debug` checks the native MCP servers (Skill Advisor, Code Mode) and offers guided repair with `--fix`.
 
-Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory (the trigger index and ripgrep recipes), zvec, embeddings, deep-loop, skill-advisor, skill-budget, skill-graph-freshness, parent-skill, runtime-mirrors, fable-mode.
+Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory (the trigger index and ripgrep recipes), embeddings, deep-loop, skill-advisor, skill-budget, skill-graph-freshness, parent-skill, runtime-mirrors, fable-mode.
 
 ---
 

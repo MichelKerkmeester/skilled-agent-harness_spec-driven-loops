@@ -1,1 +1,0 @@
-Why does the User model's unique constraint on the username field interact with Django's ORM transaction handling and what cascading effects would occur if this constraint were removed on an existing database with formset-based bulk operations?

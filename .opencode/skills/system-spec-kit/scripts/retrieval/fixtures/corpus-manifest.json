@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3557cb158e45e000c70f8e319d4c0ac7aa0cef9a870771e7afbe8ba69322bda3",
+  "corpusHash": "6c0b968aa1da42da7b7c4a93f9bbdaf39d36eeec7398b968063151a1206f1b74",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -16,7 +16,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28052,
+  "includedPathCount": 28003,
   "includedPaths": [
     ".opencode/skills/.state/advisor/README.md",
     ".opencode/skills/.state/authority/README.md",
@@ -7311,47 +7311,6 @@
     ".opencode/skills/system-deep-loop/shared/rollout/promotion-rule.md",
     ".opencode/skills/system-deep-loop/shared/rollout/tests/README.md",
     ".opencode/skills/system-deep-loop/shared/synthesis/README.md",
-    ".opencode/skills/system-plugins/README.md",
-    ".opencode/skills/system-plugins/zvec-grep/CONTRIBUTING.md",
-    ".opencode/skills/system-plugins/zvec-grep/README.md",
-    ".opencode/skills/system-plugins/zvec-grep/README_CN.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/README.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/README_CN.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/browse-comp-plus/LATEST_REPORT.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/browse-comp-plus/README.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/browse-comp-plus/README_CN.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/browse-comp-plus/prompts/task.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/README.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/README_CN.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/astropy-38/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/conan-1/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/conan-19/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/conan-27/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/conan-39/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/django-21/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/django-32/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/matplotlib-37/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/pylint-10/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/pylint-14/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/pylint-9/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/reflex-6/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/requests-16/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/sqlfluff-2/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/streamlink-14/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/streamlink-43/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/sympy-26/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/sympy-38/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/xarray-32/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/xarray-46/instruction.md",
-    ".opencode/skills/system-plugins/zvec-grep/docs/01-agents.md",
-    ".opencode/skills/system-plugins/zvec-grep/docs/02-cli.md",
-    ".opencode/skills/system-plugins/zvec-grep/docs/03-mcp.md",
-    ".opencode/skills/system-plugins/zvec-grep/docs/04-pipeline.md",
-    ".opencode/skills/system-plugins/zvec-grep/docs/05-architecture.md",
-    ".opencode/skills/system-plugins/zvec-grep/docs/06-server.md",
-    ".opencode/skills/system-plugins/zvec-grep/docs/07-embedding.md",
-    ".opencode/skills/system-plugins/zvec-grep/docs/08-roadmap.md",
-    ".opencode/skills/system-plugins/zvec-grep/docs/README.md",
     ".opencode/skills/system-skill-advisor/ARCHITECTURE.md",
     ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md",
     ".opencode/skills/system-skill-advisor/README.md",
@@ -7933,7 +7892,6 @@
     ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
     ".opencode/skills/system-spec-kit/mcp-server/README.md",
     ".opencode/skills/system-spec-kit/mcp-server/api/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/configs/README.md",
     ".opencode/skills/system-spec-kit/mcp-server/core/README.md",
     ".opencode/skills/system-spec-kit/mcp-server/data/README.md",
     ".opencode/skills/system-spec-kit/mcp-server/handlers/README.md",
@@ -8032,7 +7990,6 @@
     ".opencode/skills/system-spec-kit/scripts/core/README.md",
     ".opencode/skills/system-spec-kit/scripts/evals/README.md",
     ".opencode/skills/system-spec-kit/scripts/extractors/README.md",
-    ".opencode/skills/system-spec-kit/scripts/git-hooks/README.md",
     ".opencode/skills/system-spec-kit/scripts/graph/README.md",
     ".opencode/skills/system-spec-kit/scripts/kpi/README.md",
     ".opencode/skills/system-spec-kit/scripts/lib/README.md",
@@ -28053,26 +28010,20 @@
     "specs/system-speckit/050-single-segment-packet-pointer/plan.md",
     "specs/system-speckit/050-single-segment-packet-pointer/spec.md",
     "specs/system-speckit/050-single-segment-packet-pointer/tasks.md",
-    "specs/system-speckit/050-zvec-grep-fork-integration/acceptance-criteria.md",
-    "specs/system-speckit/050-zvec-grep-fork-integration/goal.md",
-    "specs/system-speckit/050-zvec-grep-fork-integration/implementation-summary.md",
-    "specs/system-speckit/050-zvec-grep-fork-integration/plan.md",
-    "specs/system-speckit/050-zvec-grep-fork-integration/spec.md",
-    "specs/system-speckit/050-zvec-grep-fork-integration/tasks.md",
-    "specs/system-speckit/051-zvec-grep-vendoring/acceptance-criteria.md",
-    "specs/system-speckit/051-zvec-grep-vendoring/implementation-summary.md",
-    "specs/system-speckit/051-zvec-grep-vendoring/plan.md",
-    "specs/system-speckit/051-zvec-grep-vendoring/spec.md",
-    "specs/system-speckit/051-zvec-grep-vendoring/tasks.md",
     "specs/system-speckit/052-memory-decommission-landing/acceptance-criteria.md",
     "specs/system-speckit/052-memory-decommission-landing/goal.md",
     "specs/system-speckit/052-memory-decommission-landing/implementation-summary.md",
     "specs/system-speckit/052-memory-decommission-landing/plan.md",
     "specs/system-speckit/052-memory-decommission-landing/spec.md",
-    "specs/system-speckit/052-memory-decommission-landing/tasks.md"
+    "specs/system-speckit/052-memory-decommission-landing/tasks.md",
+    "specs/system-speckit/053-spec-kit-runtime-rename/acceptance-criteria.md",
+    "specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md",
+    "specs/system-speckit/053-spec-kit-runtime-rename/plan.md",
+    "specs/system-speckit/053-spec-kit-runtime-rename/spec.md",
+    "specs/system-speckit/053-spec-kit-runtime-rename/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ec40c825262f7863d7a16baaeba27964b9529b3abc270d43f1c4ba96c6473d3d",
+  "manifestHash": "9491da916a31efe4ea92b02b98eb63ab3545cf3e31b29ff6d67f8de1f79ddd8b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28234,14 +28185,6 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-plugins/zvec-grep/node_modules",
-      "reason": "symlinked directory"
-    },
-    {
-      "path": ".opencode/skills/system-plugins/zvec-grep/test/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -31537,15 +31480,11 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/050-zvec-grep-fork-integration/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/051-zvec-grep-vendoring/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-speckit/052-memory-decommission-landing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-spec-kit-runtime-rename/scratch",
       "reason": "excluded directory"
     },
     {

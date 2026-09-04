@@ -46,26 +46,6 @@ routes:
       - "retrieval conventions doctor"
       - "ripgrep recipe check"
 
-  - target: zvec
-    yaml: doctor-zvec.yaml
-    setup_vars: [execution_mode]
-    allowed_flags: []
-    mutating: read-only
-    gate3_location: "n/a (read-only lane diagnostic; resolves the binary and reads index status plus the generated manifest, builds nothing and writes nothing)"
-    mcp_tools: []   # script-only lane read; no MCP calls and no daemon (the lane forces ZVEC_GREP_MODE=direct)
-    script_invocations:
-      # Exit 0 = index present and ready, 1 = a valid empty answer (no index, or an
-      # index that is not ready), 2+ = execution fault with stderr attached. The
-      # underlying tool exits 0 or 1 only, so the three classes are computed by the
-      # lane rather than passed through; an exit of 1 is never a diagnostic failure.
-      - 'node .opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs status --json'
-    trigger_phrases:
-      - "zvec lane status"
-      - "concept retrieval lane"
-      - "zvec index missing"
-      - "semantic search index staleness"
-      - "zvec-grep binary resolution"
-
   - target: embeddings
     yaml: doctor-embeddings.yaml
     setup_vars: [execution_mode]

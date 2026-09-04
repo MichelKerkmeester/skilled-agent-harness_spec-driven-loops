@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 63,
-    "missing-frontmatter": 6804,
+    "missing-frontmatter": 6763,
     "non-yaml-frontmatter": 1,
-    "ok": 13260,
+    "ok": 13252,
     "valid-empty-list": 7924
   },
-  "documentsScanned": 28052,
+  "documentsScanned": 28003,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "ec40c825262f7863d7a16baaeba27964b9529b3abc270d43f1c4ba96c6473d3d",
+  "manifestHash": "9491da916a31efe4ea92b02b98eb63ab3545cf3e31b29ff6d67f8de1f79ddd8b",
   "parserVersion": "1.0.0",
   "rows": [
     {
@@ -35250,246 +35250,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/CONTRIBUTING.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/README_CN.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/README_CN.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/browse-comp-plus/LATEST_REPORT.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/browse-comp-plus/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/browse-comp-plus/README_CN.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/browse-comp-plus/prompts/task.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/README_CN.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/astropy-38/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/conan-1/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/conan-19/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/conan-27/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/conan-39/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/django-21/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/django-32/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/matplotlib-37/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/pylint-10/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/pylint-14/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/pylint-9/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/reflex-6/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/requests-16/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/sqlfluff-2/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/streamlink-14/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/streamlink-43/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/sympy-26/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/sympy-38/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/xarray-32/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/benchmarks/swe-qa-bench/datasets/xarray-46/instruction.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/docs/01-agents.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/docs/02-cli.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/docs/03-mcp.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/docs/04-pipeline.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/docs/05-architecture.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/docs/06-server.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/docs/07-embedding.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/docs/08-roadmap.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-plugins/zvec-grep/docs/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -37778,12 +37538,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/system-spec-kit/scripts/codex/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/system-spec-kit/scripts/git-hooks/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -96918,14 +96672,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-plugins/zvec-grep/node_modules",
-      "reason": "symlinked directory"
-    },
-    {
-      "path": ".opencode/skills/system-plugins/zvec-grep/test/fixtures",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/embeddings",
       "reason": "symlinked directory"
     },
@@ -100218,15 +99964,11 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/050-zvec-grep-fork-integration/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/051-zvec-grep-vendoring/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-speckit/052-memory-decommission-landing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-spec-kit-runtime-rename/scratch",
       "reason": "excluded directory"
     },
     {

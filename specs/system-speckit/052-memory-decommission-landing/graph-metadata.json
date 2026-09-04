@@ -47,10 +47,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/skills/system-plugins/README.md",
       "data/trigger-index.json",
       "specs/system-speckit/049-memory-decommission/goal.md",
-      "specs/system-speckit/050-zvec-grep-fork-integration/goal.md",
       ".claude/mcp.json",
       ".codex/config.toml",
       ".pi/mcp.json",
@@ -91,12 +89,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-plugins/README.md",
         "source": "derived"
       },
       {
@@ -200,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-04T19:34:08.804Z",
+    "last_save_at": "2026-09-04T19:39:22.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,11 +213,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5ccc63514f0ee431c803ed672168a146a4342eb23952f88ca3116ec2d111045",
+    "source_fingerprint": "sha256:f73bc16e070893c057f63b35bd265f2d29e8427ea1038cb6895c6666cd0ee451",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "88f53561fb47b50f9b587271a3e3e4b046d101bda2863133c4fef49f8df8d4af",
-      "plan.md": "35f91b28e7ae3f388154ccaad42bf29e3a5747877ac037816c642b54dd9c96a8",
+      "spec.md": "5c8abcc1bc1fe62a13b5a481b883d3e66f8bca135998f7381a1db5a60f78480a",
+      "plan.md": "ff3471f9cbd346847a94f8fa39c356df112925cf83929786c249ef3b97436992",
       "tasks.md": "48058bae5e987d3caf60ee3616fe6abf16be32400e3ecf62952236940b7f2423",
       "implementation-summary.md": "bab2cafbd2160b008c87722787eb73c4e258b4143f79bc374f2967c89791ca76"
     },

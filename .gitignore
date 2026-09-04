@@ -293,18 +293,6 @@ specs/z-future
 # cloud-sync client. The artifacts worth keeping sit beside it.
 specs/**/lineages/*/.codex-home/
 
-# ───────────────────────────────────────────
-# zvec retrieval lane
-# ───────────────────────────────────────────
-# Generated workspace index state: manifest.json, files.zvec, index.zvec and a
-# machine-local embedding authorization grant. Hundreds of megabytes, rebuildable
-# from the corpus in one command, and the grant may carry a provider credential.
-# The whole directory is index data — zvec-grep keeps no project config here and
-# hard-skips this path when scanning — so nothing inside it is worth a diff. The
-# reviewable half of the lane is .zvec-grep-lane.json at the repository root,
-# which is committed and holds the scope the index is built with.
-.zvec-grep/
-
 # A packet-local save mutex, acquired by the continuity generator while it mutates
 # canonical documents. It names the process holding it, so it is machine state and
 # never belongs in history: a committed one outlives its process and describes an

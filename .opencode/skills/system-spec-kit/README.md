@@ -680,4 +680,4 @@ The manual testing playbook runs every scenario behind these checks.
 | Resource | Purpose |
 |---|---|
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | The free-text retrieval lane's search engine |
-| [Ollama](https://ollama.com/) | Local embedding server used by the shared embedding client and the zvec lane |
+| [Ollama](https://ollama.com/) | Local embedding server used by the shared embedding client |

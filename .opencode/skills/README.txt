@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Catalog and front door to 12 top-level entries across four catalog families, one of them a vendored-engine home rather than a routed skill, with routing guidance and creation workflow."
+description: "Catalog and front door to 11 top-level skill identities across four catalog families, with routing guidance and creation workflow."
 trigger_phrases:
   - "skills library"
   - "available skills"
@@ -21,7 +21,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Four prefix families: `cli-*` (1), `mcp-*` (2), `sk-*` (5), `system-*` (4) |
+| **Families** | Four prefix families: `cli-*` (1), `mcp-*` (2), `sk-*` (5), `system-*` (3) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
@@ -67,7 +67,6 @@ Each skill name links to its own README. One-line descriptions reflect current b
 |---|---|
 | [`system-deep-loop`](system-deep-loop/README.md) | Routes research, review, AI Council, improvement, and named-standard alignment modes through registry-selected packets over nested `runtime/` infrastructure |
 | [`system-skill-advisor`](system-skill-advisor/README.md) | Routes non-trivial requests to matching skills through standalone MCP metadata and stable advisor tool ids, with the daemon-backed `skill-advisor` CLI as fallback |
-| [`system-plugins`](system-plugins/README.md) | Carries vendored third-party engines as git subtrees of their forks, each with its own manifest and build; not a routed skill, the wrapping skill owns each engine's contract |
 | [`system-spec-kit`](system-spec-kit/README.md) | Unified spec-folder workflow plus context preservation: Levels 1-3+, strict validation, and packet continuity with lexical retrieval. Required for file modifications |
 
 ### Runtime Plugin Skills

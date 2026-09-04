@@ -100,7 +100,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Merged launcher bootstrap test, zvec lane tests | vitest |
+| Unit | Merged launcher bootstrap test, retrieval suites | vitest |
 | Integration | Residue sweep, trigger index, validate.sh recursive, doctor routes, skill-root audit | spec-kit scripts |
 | Manual | Deep review loop findings triage | review report |
 <!-- /ANCHOR:testing -->

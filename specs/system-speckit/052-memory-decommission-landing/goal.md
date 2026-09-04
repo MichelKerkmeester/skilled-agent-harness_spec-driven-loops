@@ -1,6 +1,6 @@
 ---
 title: "Goal: Memory DB Deprecation Landed and Verified"
-description: "Land the memory-database decommission and the zvec retrieval lane on skilled/v4.0.0.0 and main, remove every memory-database framing from the READMEs, turn the surviving spec-kit package from an MCP identity into a CLI engine, and prove zero drift, residue or debt through a bounded update, verification and review loop."
+description: "Land the memory-database decommission on skilled/v4.0.0.0 and main, remove every memory-database framing from the READMEs, turn the surviving spec-kit package from an MCP identity into a CLI engine, and prove zero drift, residue or debt through a bounded update, verification and review loop."
 trigger_phrases:
   - "packet goal"
   - "decommission landing"
@@ -19,7 +19,6 @@ _memory:
     blockers: []
     key_files:
       - "specs/system-speckit/049-memory-decommission/goal.md"
-      - "specs/system-speckit/050-zvec-grep-fork-integration/goal.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-04-052-memory-decommission-landing"
@@ -45,7 +44,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Land the memory-database decommission and the zvec retrieval lane on skilled/v4.0.0.0 and main, remove every memory-database framing from the READMEs, turn the surviving spec-kit package from an MCP identity into a CLI engine, and prove zero drift, residue or debt through a bounded update, verification and review loop.
+**Objective:** Land the memory-database decommission on skilled/v4.0.0.0 and main, remove every memory-database framing from the READMEs, turn the surviving spec-kit package from an MCP identity into a CLI engine, and prove zero drift, residue or debt through a bounded update, verification and review loop.
 
 ### Decisions
 
@@ -70,7 +69,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-**Read before working:** `specs/system-speckit/049-memory-decommission/goal.md` and its phase goals; `specs/system-speckit/050-zvec-grep-fork-integration/goal.md`; the sk-create-skill template contract under `.opencode/skills/sk-doc/sk-create-skill`; the 049 review report under `049-memory-decommission/review/lineages/luna-max`.
+**Read before working:** `specs/system-speckit/049-memory-decommission/goal.md` and its phase goals; the sk-create-skill template contract under `.opencode/skills/sk-doc/sk-create-skill`; the 049 review report under `049-memory-decommission/review/lineages/luna-max`.
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -154,6 +153,7 @@ and findings belong here.
 | Validator class defect: install-scripts folder README | `install-guides/install-scripts/README.md` is a folder index classified as an `install_guide` by its path and fails the same five sections at `5220257bf7`. Owner: sk-doc type detection |
 | `validate-command-references.cjs` depends on machine-local databases | Four doctor asset rows point at ignored sqlite files; the check passes where the daemons have run and fails in a fresh worktree. Owner: doctor commands. Not fixed here |
 | OPERATOR DECISION: the retired memory database on this machine | `system-spec-kit/mcp-server/database/context-index.sqlite` is 13.8 GB of ignored local state, with two launcher logs and drift files beside it. Nothing reads it any more. Deleting it is destructive to historical data and needs a yes; rollback is impossible after deletion, so a copy to external storage first is the safe path |
+| RETIRED 2026-09-04 at the operator's request: the zvec lane, the vendored fork and packets 050 and 051 | The semantic lane, its wrapper, tests and fixtures, the doctor route, the `system-plugins` home with the vendored fork, the lane config, the ignore rule, the pi package entry and both packets are deleted from the tree. The fork repository on GitHub and the clones beside this repository are the operator's and were not touched. `worktrees/044-zvec-grep-integration` still hosts the running review lineage and is left as is |
 | DECIDED 2026-09-04: the surviving package becomes a CLI engine (D8) | Nothing in `system-spec-kit/mcp-server/` imports the MCP SDK outside compiled output and tests; the package is the validation, metadata, continuity and hook-adapter engine behind CLI entry points. The operator chose to remove its MCP identity rather than keep the name. 149 files reference the path; the rename runs as the next phase after the first review loop |
 | OPERATOR ASK 2026-09-04: READMEs must not frame a memory database | The root README still led with a memory framework, a cognitive-memory layer and a memory section; a docs lane is reframing it and nine other READMEs around continuity and retrieval. Found alongside: the git hooks still write drift markers for the removed index on every commit, and the engine package still carries the drift-healing module and search-weight configs whose only callers are tests; a code lane is removing them |
 <!-- /ANCHOR:log -->

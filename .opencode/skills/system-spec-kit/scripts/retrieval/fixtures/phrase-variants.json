@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ec40c825262f7863d7a16baaeba27964b9529b3abc270d43f1c4ba96c6473d3d",
+  "manifestHash": "9491da916a31efe4ea92b02b98eb63ab3545cf3e31b29ff6d67f8de1f79ddd8b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13134,6 +13134,9 @@
     "atomic save recovery test": [
       "atomic save recovery test"
     ],
+    "atomic save transaction": [
+      "atomic save transaction"
+    ],
     "atomic state": [
       "atomic state"
     ],
@@ -20705,6 +20708,9 @@
     "cli roster additions phase parent 043": [
       "cli roster additions phase parent 043"
     ],
+    "cli roster truth pass": [
+      "cli roster truth pass"
+    ],
     "cli router implementation summary": [
       "cli router implementation summary"
     ],
@@ -21358,9 +21364,6 @@
     ],
     "cluster validate formatters tests": [
       "cluster validate formatters tests"
-    ],
-    "co activation pattern": [
-      "co-activation pattern"
     ],
     "co located stories ts component": [
       "co-located stories.ts component"
@@ -23765,9 +23768,6 @@
     ],
     "cognition devin": [
       "cognition devin"
-    ],
-    "cognitive config": [
-      "cognitive config"
     ],
     "cognitive laws design": [
       "cognitive laws design"
@@ -26537,6 +26537,9 @@
     ],
     "continuity single source tasks": [
       "continuity single source tasks"
+    ],
+    "continuity system": [
+      "continuity system"
     ],
     "continuity writer": [
       "continuity writer"
@@ -37879,20 +37882,11 @@
     "direct invocation required false block fixed": [
       "DIRECT INVOCATION REQUIRED false block fixed"
     ],
-    "direct mode mcp": [
-      "direct mode mcp"
-    ],
     "direct provider adapter collapse": [
       "direct provider adapter collapse"
     ],
     "direct smoke vs live cli evidence": [
       "direct smoke vs live CLI evidence"
-    ],
-    "direct stdio lane": [
-      "direct stdio lane"
-    ],
-    "direct stdio task": [
-      "direct stdio task"
     ],
     "directexecutor quoted guard removal": [
       "directExecutor quoted guard removal"
@@ -39485,9 +39479,6 @@
     ],
     "drift guards task list": [
       "drift guards task list"
-    ],
-    "drift marker": [
-      "drift marker"
     ],
     "drift marker lock staleness constant mismatch": [
       "drift marker lock staleness constant mismatch"
@@ -57510,9 +57501,6 @@
     "mcp comment creation": [
       "mcp comment creation"
     ],
-    "mcp config": [
-      "mcp config"
-    ],
     "mcp config 1 1 aligned": [
       "mcp config 1:1 aligned"
     ],
@@ -65266,12 +65254,6 @@
     "ollama and bge promotion arc changelog": [
       "ollama and bge promotion arc changelog"
     ],
-    "ollama backend lane": [
-      "ollama backend lane"
-    ],
-    "ollama backend task": [
-      "ollama backend task"
-    ],
     "ollama bge promotion follow ups": [
       "ollama bge promotion follow-ups"
     ],
@@ -65316,9 +65298,6 @@
     ],
     "ollama embedder registry summary": [
       "ollama embedder registry summary"
-    ],
-    "ollama embedding backend": [
-      "ollama embedding backend"
     ],
     "ollama embeddings": [
       "ollama embeddings"
@@ -73689,9 +73668,6 @@
     "prompt time mutation block hardening": [
       "prompt-time mutation block hardening"
     ],
-    "prompt time semantic brief": [
-      "prompt-time semantic brief"
-    ],
     "prompt token contract": [
       "prompt-token-contract"
     ],
@@ -74615,9 +74591,6 @@
     ],
     "ranked rule recommendations": [
       "ranked rule recommendations"
-    ],
-    "ranking configuration": [
-      "ranking configuration"
     ],
     "ranking filter bypass": [
       "ranking filter bypass"
@@ -83456,9 +83429,6 @@
     "search trigger lane disposition": [
       "search trigger lane disposition"
     ],
-    "search weights": [
-      "search weights"
-    ],
     "searchbudget plan": [
       "SearchBudget plan"
     ],
@@ -83842,12 +83812,6 @@
     ],
     "semantic rename engine tasks": [
       "semantic rename engine tasks"
-    ],
-    "semantic retrieval hook": [
-      "semantic retrieval hook"
-    ],
-    "semantic retrieval lane": [
-      "semantic retrieval lane"
     ],
     "semantic role layer tokens": [
       "semantic role layer tokens"
@@ -96189,9 +96153,6 @@
     "system overview diagram": [
       "system overview diagram"
     ],
-    "system plugins": [
-      "system plugins"
-    ],
     "system rerank sidecar skill": [
       "system-rerank-sidecar skill"
     ],
@@ -99588,9 +99549,6 @@
     "update task priority or assignee": [
       "update task priority or assignee"
     ],
-    "update the vendored engine": [
-      "update the vendored engine"
-    ],
     "updatephaseparentpointer bypasses zod": [
       "updatePhaseParentPointer bypasses zod"
     ],
@@ -99920,6 +99878,9 @@
     ],
     "v4 deep review cleanup": [
       "v4 deep-review cleanup"
+    ],
+    "v4 pro retirement status": [
+      "v4 pro retirement status"
     ],
     "v8 cross spec contamination overreach": [
       "V8 cross-spec contamination overreach"
@@ -100512,9 +100473,6 @@
     ],
     "vendor handoff": [
       "vendor handoff"
-    ],
-    "vendored fork": [
-      "vendored fork"
     ],
     "vendored fork drift check": [
       "vendored fork drift check"
@@ -101938,9 +101896,6 @@
     "where does this image come from": [
       "where does this image come from"
     ],
-    "where is the fork installed": [
-      "where is the fork installed"
-    ],
     "where is the search bar in this screenshot": [
       "where is the search bar in this screenshot"
     ],
@@ -102946,33 +102901,6 @@
     ],
     "zoom into this part of the image": [
       "zoom into this part of the image"
-    ],
-    "zvec concept lane": [
-      "zvec concept lane"
-    ],
-    "zvec grep fork": [
-      "zvec-grep fork"
-    ],
-    "zvec grep hook concern": [
-      "zvec-grep hook concern"
-    ],
-    "zvec grep integration plan": [
-      "zvec-grep integration plan"
-    ],
-    "zvec grep subtree": [
-      "zvec-grep subtree"
-    ],
-    "zvec grep tasks": [
-      "zvec-grep tasks"
-    ],
-    "zvec lane": [
-      "zvec lane"
-    ],
-    "zvec lane verification": [
-      "zvec lane verification"
-    ],
-    "zvec lane wrapper": [
-      "zvec lane wrapper"
     ]
   }
 }
