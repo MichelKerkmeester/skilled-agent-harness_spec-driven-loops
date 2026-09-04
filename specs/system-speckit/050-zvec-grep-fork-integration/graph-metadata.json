@@ -39,7 +39,7 @@
       "zvec"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,19 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/zvec-lane.vitest.ts",
+      ".opencode/commands/doctor/assets/doctor-zvec.yaml",
+      ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".opencode/skills/system-spec-kit/data/trigger-index.json",
+      "mcp-server/vitest.config.ts",
       "scripts/retrieval/zvec-lane.mjs",
       "references/retrieval/retrieval-conventions.md",
       "scratch/baseline-queries.md",
-      ".opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs",
-      ".opencode/skills/system-spec-kit/scripts/tests/zvec-lane.vitest.ts",
-      ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
       "specs/system-speckit/050-zvec-grep-fork-integration/scratch/baseline-queries.md",
-      "mcp-server/vitest.config.ts",
       "scripts/retrieval/lib/rg-lane.mjs",
       "scripts/tests/zvec-lane.vitest.ts",
       ".opencode/hooks/README.md",
-      ".opencode/hooks/skill-advisor/README.md",
-      ".opencode/hooks/injection-contract.md"
+      ".opencode/hooks/skill-advisor/README.md"
     ],
     "entities": [
       {
@@ -101,19 +102,7 @@
       {
         "name": "zvec-lane.mjs",
         "kind": "file",
-        "path": "scripts/retrieval/zvec-lane.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "retrieval-conventions.md",
-        "kind": "doc",
-        "path": "references/retrieval/retrieval-conventions.md",
-        "source": "derived"
-      },
-      {
-        "name": "baseline-queries.md",
-        "kind": "doc",
-        "path": "scratch/baseline-queries.md",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs",
         "source": "derived"
       },
       {
@@ -123,9 +112,33 @@
         "source": "derived"
       },
       {
+        "name": "doctor-zvec.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-zvec.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
         "name": "vitest.config.ts",
         "kind": "code",
         "path": "mcp-server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-queries.md",
+        "kind": "doc",
+        "path": "scratch/baseline-queries.md",
         "source": "derived"
       },
       {
@@ -141,19 +154,7 @@
         "source": "derived"
       },
       {
-        "name": "injection-contract.md",
-        "kind": "doc",
-        "path": ".opencode/hooks/injection-contract.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -183,6 +184,12 @@
         "source": "derived"
       },
       {
+        "name": "Data Boundaries",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Shell",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 049 retired the spec-kit memory database and left two retrieval lanes: the committed trigger index for Gate 1 and the ripgrep recipes for free text",
     "created_at": "2026-09-04T10:59:06Z",
-    "last_save_at": "2026-09-04T13:40:43.486Z",
+    "last_save_at": "2026-09-04T14:13:42.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1bea894675032dbedc032ca8a0c0aba9e8e03349f7ea7d3a80a415934c13ea82",
+    "source_fingerprint": "sha256:e7eda096c3b8ec08cf41a25bc2f1469cf781944f112b86f62ae6583337400806",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1163bb50b735a9d2703f9518a12d7ab4aaea96f882744f46654422a4eb559b54",
-      "plan.md": "973845bb09c37416314770bf03c3546dd5d6cb2a4959606851a50c10853619a6",
-      "tasks.md": "d385ef2def2bafcb61ae5b4a64e9d60f3c84ec494fab2c88d23f22624dfc03a8",
-      "implementation-summary.md": "9a8f70af469d2b5304fb72de4bde4607e6b177fae3c3de3e1c07672b41d22e45"
+      "spec.md": "4d29df179ec42cf11aa186f604f29ea67a6c6bddb32919bb8b62b391f0db055a",
+      "plan.md": "809533a59967b653b7a43036a2192bf734e1f3ce6fcf966804633029dfe039c4",
+      "tasks.md": "b6f7139edab2ab5222d54e6a7e5d699172a05f36927c13263f83961e0bfed1aa",
+      "implementation-summary.md": "c9fac8a42f883a0eb931088561902e7e2ab205e5a2dc3644e604a87ef188d482"
     },
     "last_active_child_id": null,
     "last_active_at": null

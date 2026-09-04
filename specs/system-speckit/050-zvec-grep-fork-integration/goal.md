@@ -129,6 +129,7 @@ and findings belong here.
 | Fork direct stdio MCP | Done | `8f0f023`, 111 unit and 7 e2e tests, zero daemons after the run |
 | Spec-kit lane, doctor route, conventions | Done | `1278a7cc86` on `worktrees/044-zvec-grep-integration`, 35 tests |
 | Baseline index through Ollama | Done | 24,304 files, 2.1 GB, about 83 minutes; four of five concept queries land on the right document, recorded in `scratch/baseline-queries.md` |
+| Fork perf branch | Done | `e30aac7`, query 40 s to under 1 s on the baseline index |
 | Hook concern | Not started | this directive |
 
 ### DONE WHEN
@@ -149,7 +150,7 @@ One row per completion criterion above, with the evidence that closes it.
 
 | Item | Note |
 |------|------|
-| Direct-mode query latency is 38 s on the baseline, not the 1500 ms budget | Profiled 2026-09-04: 34 of 39 s are the fork's scanner walking all 24,304 paths and recompiling every ignore glob per path, run on every query only to print a stale hint. The search itself is 72 ms and the collection opens in 124 ms. Fixed on fork branch `perf/direct-query-scan` (memoized glob compiler; no status scan unless `--refresh wait`). The hook's budget criterion is unreachable until that branch is in the vendored copy |
+| Direct-mode query latency is 38 s on the baseline, not the 1500 ms budget | Profiled 2026-09-04: 34 of 39 s are the fork's scanner walking all 24,304 paths and recompiling every ignore glob per path, run on every query only to print a stale hint. The search itself is 72 ms and the collection opens in 124 ms. Fixed on fork branch `perf/direct-query-scan` (`e30aac7`, memoized glob compiler; no status scan unless `--refresh wait`) and re-timed through the lane: 0.8 to 1.1 s warm, 2.0 s cold, same top hits. The fork's `harness` branch (`893af2f`) merges the three branches and is the build to vendor |
 | The fork's test suite leaks daemons | Upstream's `test/server-controller.test.mjs` concurrent-start case leaves `zg server run` processes reparented to launchd under load; seven were killed by hand on 2026-09-04. Not this concern's code path, but the hook smoke test must count processes after every run so a leak from any source is caught |
 | `zg` on PATH is upstream, not the fork | Homebrew's global `@zvec/zvec-grep` 0.2.1 wins the lane's PATH step today; D7 moves the vendored binary to the front of the resolution order so PATH is never consulted when the harness copy exists |
 | DECIDED 2026-09-04: vendored, not pinned | The operator chose to install the fork inside `.opencode` rather than pin a separate repository. Footprint measured from the clone: 3 MB built dist, 620 MB `node_modules` of which the vector store binding is 29 MB and the transformers plus tree-sitter grammars 97 MB, all ignored like every other engine package |

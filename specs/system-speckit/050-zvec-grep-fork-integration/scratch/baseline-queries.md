@@ -53,7 +53,17 @@ A CPU profile of the query attributes 34 of 39 seconds to the fork's scanner wal
 
 ## 4. POST-FIX LATENCY
 
-Pending the perf lane.
+Fork branch `perf/direct-query-scan` (commit `e30aac7`, based on upstream main): the glob compiler memoizes its regular expressions, and a direct query no longer computes the workspace status unless `--refresh wait` is given. Merged with the Ollama and stdio branches into the fork's `harness` branch (`893af2f`, 122 unit tests) and re-timed through the lane on the same index.
+
+| Query | Before | After | Top hit unchanged |
+|-------|--------|-------|-------------------|
+| 1 | 40.6 s | 1.97 s (first, cold) | yes |
+| 2 | 38.7 s | 1.06 s | yes |
+| 3 | 44.5 s | 0.92 s | yes |
+| 4 | 44.9 s | 0.94 s | yes |
+| 5 | 43.8 s | 0.80 s | yes |
+
+The perf lane's own A/B on the fork binary: `--refresh off` 40.0 s to 0.93 s, `zg status` 37.5 s to 20.6 s from the glob cache alone, `--refresh wait` 114.6 s to 58.6 s. Two upstream observations recorded for filing: the daemon path already skipped the status scan, so only the CLI direct path had the defect; and opening the store rewrites the vector index file in place even on a read-only query, same size, different bytes.
 
 ---
 
@@ -62,7 +72,7 @@ Pending the perf lane.
 - The concept lane reaches the right document from unknown wording on four of five queries, where ripgrep with the obvious keyword returns 24 to 290 unranked files.
 - Build cost at corpus scale under Ollama: about 83 minutes and 2.1 GB, on the GPU-backed model server rather than every CPU core.
 - The committed scope is right for prose questions and wrong for "which rule" questions; indexing the validator registry and rule references would close query 4 and is a scope decision, not a code change.
-- Until the perf branch lands, the lane is usable interactively and unusable from a prompt-time hook.
+- With the perf branch, a warm query is under 1.1 s and a cold one under 2 s, inside the hook goal's 1500 ms budget on warm runs and marginal cold. The hook design should measure cold starts explicitly.
 
 ---
 

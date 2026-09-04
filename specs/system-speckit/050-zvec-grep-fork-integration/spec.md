@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-04 |
 | **Branch** | `worktrees/044-zvec-grep-integration` |
 <!-- /ANCHOR:metadata -->
@@ -119,7 +119,7 @@ A reader in any runtime can run one semantic query over `specs/` and `.opencode/
 | Dependency | Ollama running locally with an embedding model pulled | No embeddings, so no index | The lane reports the unreachable host on `status`; the fork's model2vec backend stays as the offline fallback |
 | Dependency | The fork clone at a known path or `ZVEC_GREP_BIN` set | Lane cannot find a binary | Resolution order is documented and the doctor route names which step failed |
 | Risk | Upstream zvec-grep moves under the fork | Med | Both fork branches are small and rebase cleanly; the integration lane depends only on the CLI contract |
-| Risk | Direct mode scans the workspace on every query | High, confirmed | Measured 38 s per query on the baseline: the fork walks all 24,304 paths to compute a status the CLI only uses for a stale hint, recompiling every glob per path. Fixed in the fork on `perf/direct-query-scan`; until it lands the lane is interactive-only |
+| Risk | Direct mode scans the workspace on every query | High, confirmed | Measured 38 s per query on the baseline: the fork walks all 24,304 paths to compute a status the CLI only uses for a stale hint, recompiling every glob per path. Fixed in the fork on `perf/direct-query-scan`: 0.8 to 2.0 s per query through the lane afterwards |
 | Risk | Index contents leak into git | Low | `.zvec-grep/` ignored at the repository root before the first index run |
 <!-- /ANCHOR:risks -->
 

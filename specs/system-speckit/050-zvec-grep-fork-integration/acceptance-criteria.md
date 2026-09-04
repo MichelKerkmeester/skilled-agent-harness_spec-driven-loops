@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-speckit/050-zvec-grep-fork-integration"
     last_updated_at: "2026-09-04T10:59:05Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Closed all seven criteria"
+    next_safe_action: "Open the hook packet from goal.md"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-04-050-zvec-grep-fork-integration"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/050-zvec-grep-fork-integration
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-04
 <!-- /ANCHOR:metadata -->
 
@@ -58,7 +58,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-002 | REQ-002 | Given `feat/direct-stdio-mcp` built and nothing listening on 7999, When a JSON-RPC `tools/call` for `zvec_grep_search` is written to `zg server --stdio --mode direct`, Then hits return and no daemon process exists afterwards | fork `8f0f023`: 7 e2e tests, JSON-RPC over stdio returns hits, port asserted closed before, during and after, `pgrep` 0 daemons | Met | - |
 | AC-003 | REQ-003 | Given the baseline index, When `zvec-lane.mjs search` runs with a query that hits, a query that misses, and a missing binary, Then exit codes are 0, 1 and 2 and stdout on 0 is rank-tuple JSON with the ripgrep lane's fields | `scripts/tests/zvec-lane.vitest.ts` 35 passed; five live queries exit 0 with rank-tuple JSON | Met | - |
 | AC-004 | REQ-004 | Given `ZVEC_GREP_MODE=server` in the caller's environment, When any wrapper subcommand runs, Then the child receives `ZVEC_GREP_MODE=direct` and no port opens | `zvec-lane.vitest.ts` asserts `ZVEC_GREP_MODE=direct` in the child env under a caller `server` env; `pgrep` 0 zg processes after the five queries | Met | - |
-| AC-005 | REQ-005 | Given the doctor `zvec` route, When it runs with and without Ollama reachable, Then binary, index, embedder and Ollama lines each report independently | doctor routes validator plus a captured run | Unmet | - |
+| AC-005 | REQ-005 | Given the doctor `zvec` route, When it runs with and without Ollama reachable, Then binary, index, embedder and Ollama lines each report independently | `zvec-lane.mjs status --json` live: `ollama.reachable=true`, 7 models, index state on its own line; with `ZVEC_GREP_OLLAMA_URL=http://127.0.0.1:1`: `reachable=false` with the connection error named, index state unchanged; `route-validate.sh` 10 routes | Met | - |
 | AC-006 | REQ-006 | Given the retrieval conventions, When a reader looks for which lane to use, Then one section names all three lanes and the selection rule | `retrieval-conventions.md` §9 names the three lanes and the selection rule | Met | - |
 | AC-007 | REQ-007 | Given the corpus, When the baseline index is built and five concept queries run, Then `scratch/baseline-queries.md` records each query with its top hits and timing | `scratch/baseline-queries.md`: 24,304 files indexed, five queries with top three hits, scores and timing | Met | - |
 
@@ -85,8 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+The fork branches and the lane carried the packet: every row is met by an observed run, test or artifact. Consciously left out: vendoring the fork into `.opencode` and the prompt-time hook, which `goal.md` hands to the next packet.
 <!-- /ANCHOR:closure -->
