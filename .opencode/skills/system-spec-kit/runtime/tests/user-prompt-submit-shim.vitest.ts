@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -54,6 +54,16 @@ describe('Claude UserPromptSubmit shim', () => {
   it('ignores an override that is relative to the cwd', () => {
     const stub = writeStub();
     const result = runShim({ SPECKIT_USER_PROMPT_TARGET: 'stub.js' }, join(stub, '..'));
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toContain(STUB_MARKER);
+  });
+
+  it('ignores an override whose link target does not exist', () => {
+    const stub = writeStub();
+    const dangling = join(stub, '..', 'dangling.js');
+    symlinkSync(join(stub, '..', 'missing.js'), dangling);
+    const result = runShim({ SPECKIT_USER_PROMPT_TARGET: dangling });
 
     expect(result.status).toBe(0);
     expect(result.stdout).not.toContain(STUB_MARKER);

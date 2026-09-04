@@ -41,7 +41,6 @@
   "dependencies": {
     "@spec-kit/shared": "file:../shared",
     "better-sqlite3": "^12.6.2",
-    "chokidar": "^4.0.3",
     "zod": "^4.1.12"
   },
   "devDependencies": {

@@ -230,8 +230,18 @@ function collectSourceFiles(pkg, root, entryName) {
         // A symlinked directory points at another package's tree (for example
         // scripts/runtime -> ../runtime/dist). Its contents are that package's
         // outputs, not this package's sources, so descending would make every
-        // rebuild there flag this package stale.
-        if (fs.lstatSync(child).isSymbolicLink() && fs.statSync(child).isDirectory()) continue;
+        // rebuild there flag this package stale. A dangling link (the target
+        // not built yet on a fresh checkout) is skipped the same way rather
+        // than turning the whole freshness check into an error.
+        if (fs.lstatSync(child).isSymbolicLink()) {
+          let target = null;
+          try {
+            target = fs.statSync(child);
+          } catch (_) {
+            continue;
+          }
+          if (target.isDirectory()) continue;
+        }
         visit(child);
       }
       return;
