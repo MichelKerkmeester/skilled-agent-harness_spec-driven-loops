@@ -304,3 +304,9 @@ specs/**/lineages/*/.codex-home/
 # reviewable half of the lane is .zvec-grep-lane.json at the repository root,
 # which is committed and holds the scope the index is built with.
 .zvec-grep/
+
+# A packet-local save mutex, acquired by the continuity generator while it mutates
+# canonical documents. It names the process holding it, so it is machine state and
+# never belongs in history: a committed one outlives its process and describes an
+# owner that no longer exists.
+.canonical-save.lock/

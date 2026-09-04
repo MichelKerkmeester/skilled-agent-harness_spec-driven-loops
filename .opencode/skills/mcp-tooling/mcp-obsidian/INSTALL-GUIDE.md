@@ -1,6 +1,6 @@
 # mcp-obsidian Installation Guide
 
-Complete installation and configuration for Obsidian vault work through three routed surfaces. `notesmd-cli` is the primary headless CLI for filesystem operations. The official `obsidian` CLI is the optional app-backed profile. Cyanheads' `obsidian-mcp-server@3.2.9` is the structured live-app MCP path through Code Mode and Local REST API.
+Complete installation and configuration for Obsidian vault work through three routed surfaces. `notesmd-cli` is the primary headless CLI for filesystem operations. The official `obsidian` CLI is the optional app-backed profile. Cyanheads' `obsidian-mcp-server@3.5.0` is the structured live-app MCP path through Code Mode and Local REST API.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../../../install-guides/README.md) for complete setup.
 > **Package:** `notesmd-cli` (Yakitrak) | **Dependencies:** a vault filesystem; Homebrew or a supported manual installer for the headless profile; Obsidian desktop v1.12.4+ for the official CLI; Node.js 18+ and npx for the MCP path
@@ -61,7 +61,7 @@ The headless profile is ready when `notesmd-cli` resolves and a vault is registe
 |---|---|---|---|---|
 | **Headless CLI** | Yakitrak | `notesmd-cli` | `bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh` or the listed Homebrew/Scoop/AUR/source path | Filesystem-native vault work with no running app |
 | **App-backed CLI** | Obsidian desktop v1.12.4+ | `obsidian` | Enable Command line interface and Register CLI in the desktop app | Live UI, app context, and URI-driven operations |
-| **Cyanheads MCP** | cyanheads | `obsidian-mcp-server@3.2.9` | Later Code Mode manual: `npx -y obsidian-mcp-server@latest` over stdio | Structured live-vault note, search, and tag operations |
+| **Cyanheads MCP** | cyanheads | `obsidian-mcp-server@3.5.0` | Later Code Mode manual: `npx -y obsidian-mcp-server@latest` over stdio | Structured live-vault note, search, and tag operations |
 
 ### When to Install What
 
@@ -91,7 +91,7 @@ Agent
   │
   └── call_tool_chain("obsidian.obsidian_*")
         └── Code Mode MCP
-              └── obsidian-mcp-server@3.2.9 via stdio
+              └── obsidian-mcp-server@3.5.0 via stdio
                     └── Local REST API plugin in the running Obsidian app
 ```
 

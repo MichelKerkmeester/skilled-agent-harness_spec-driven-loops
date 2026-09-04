@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/052-routing-completeness/005-hub-surface-truth",
+  "spec_folder": "sk-doc/052-routing-completeness/005-hub-surface-truth",
+  "parent_id": "sk-doc/052-routing-completeness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub surface truth",
+      "full inventory intent",
+      "command column invariant",
+      "document versus registry drift",
+      "hub surface truth plan",
+      "invariant 6c approach",
+      "registry is source of truth",
+      "hub surface truth tasks",
+      "inventory completion checklist",
+      "command column test cases",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "hub",
+      "surface",
+      "truth",
+      "full",
+      "inventory",
+      "intent",
+      "command",
+      "column",
+      "invariant",
+      "document",
+      "versus",
+      "registry"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/ROUTER.md",
+      ".opencode/skills/sk-doc/README.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three hub surfaces state something their registries contradict, and none of them has a gate",
+    "created_at": "2026-09-02T16:34:07Z",
+    "last_save_at": "2026-09-02T22:06:43.235Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac8ee92525cdb8c78f8141539a50395c43eecb6c7553a10d2c802124d039cd93",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "16c90dea02a777d41072003c4622e4b46f6fa19938ba7275c067f7247eb1709a",
+      "plan.md": "a64f92ce1e4acb8b210547601f57634b5eff889f4f3cae9c7a9570ae2f2666b8",
+      "tasks.md": "23fe223930e6c1649e39232a266b365eb032f01a1a19acb8af58b6f51a276ad5",
+      "implementation-summary.md": "d2db6765fbe2e04c68f052f665b8c7e3d9d358511cab2d25e0d24e25b17437e3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

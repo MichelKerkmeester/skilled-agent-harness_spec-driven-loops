@@ -13,6 +13,11 @@
   --chart-ink: #1A1917;
   --chart-muted: #52504E;
   --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
   --chart-series-1: #28405C;
   --chart-series-2: #874420;
   --chart-series-3: #487B3B;
@@ -20,6 +25,38 @@
   --chart-emphasis: #1A1917;
 }
 /* CHART_PALETTE:END */
+
+/* CHART_PALETTE_DARK:BEGIN system=categorical */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --chart-surface: #161513;
+    --chart-ink: #F2F0EC;
+    --chart-muted: #A8A5A0;
+    --chart-rule: #F2F0EC17;
+    --chart-series-1: #DBBD6D;
+    --chart-series-2: #57AABF;
+    --chart-series-3: #D25F4D;
+    --chart-series-4: #7657BF;
+    --chart-emphasis: #F2F0EC;
+  }
+}
+/* CHART_PALETTE_DARK:END */
+
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
 
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
@@ -37,25 +74,39 @@ body {
   margin: 0 auto 20px;
   padding: 28px 28px 22px;
   border: 1px solid var(--chart-rule);
-  border-radius: 10px;
+  border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
 
-.line-1 { fill: none; stroke: var(--chart-series-1); stroke-width: 2.5; }
-.line-2 { fill: none; stroke: var(--chart-series-2); stroke-width: 2.5; }
-.line-3 { fill: none; stroke: var(--chart-series-3); stroke-width: 2.5; }
-.line-4 { fill: none; stroke: var(--chart-series-4); stroke-width: 2.5; }
+.line-1 { fill: none; stroke: var(--chart-series-1); stroke-width: 1; }
+.line-2 { fill: none; stroke: var(--chart-series-2); stroke-width: 1; }
+.line-3 { fill: none; stroke: var(--chart-series-3); stroke-width: 1; }
+.line-4 { fill: none; stroke: var(--chart-series-4); stroke-width: 1; }
 .dot-1 { fill: var(--chart-series-1); }
 .dot-2 { fill: var(--chart-series-2); }
 .dot-3 { fill: var(--chart-series-3); }
@@ -63,7 +114,35 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .axis { stroke: var(--chart-rule); stroke-width: 2; }
 .axis-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
 .bound { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-.key { fill: var(--chart-muted); font-size: 12px; }
+.key { fill: var(--chart-muted); font-size: 11px; }
+/* The key blocks carry the ladder's mark corner, so the swatch beside a supplier's name reads
+   as a small copy of the marks on its line. */
+.key-swatch { rx: var(--chart-radius-mark); }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The axis names and the legend keep the body face, because they are names rather than figures. */
+.bound, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* One series at a time. Pointing at a line, or at its entry in the key, drops the other lines
+   to a third of their strength, which on this form is the whole reading: four lines crossing
+   five axes are unreadable until three of them step back. Clicking an entry holds that state
+   until the same entry is clicked again. Nothing dims until a reader asks: the attribute is
+   empty until a pointer or a key press fills it, so the file paints what it always painted. */
+[data-series] { transition: opacity 0.2s ease; }
+svg[data-chart-dim="1"] [data-series]:not([data-series="1"]) { opacity: 0.3; }
+svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
+svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
+svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
+/* A reader who clicks a control inside the figure should not be left looking at a ring they
+   never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
+   the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
+   are there to be copied out of it. */
+.figure svg :focus:not(:focus-visible) { outline: none; }
+/* A reader whose system asks for less motion gets the dim with no fade. The motion is removed
+   rather than shortened, because a fast fade is still a fade to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  [data-series] { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -71,19 +150,22 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <h1 class="headline" data-chart-part="headline">The cheapest supplier is the worst on every measure that is not price</h1>
   <p class="subtitle" data-chart-part="subtitle">Four shortlisted suppliers across five measures, each on its own scale. The axes are not pointed the same way, so a high line is not a good line. Read each axis on its own and read the crossings between them. Each line is named where it ends.</p>
   <div class="figure" data-chart-part="figure">
-    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart" data-chart-dim="">
       <title id="fig-title">Four suppliers across five measures</title>
-      <desc id="fig-desc">Five vertical axes, one per measure, with a line per supplier crossing all five. Alpha is lowest on unit price at 4.10 pounds and is also the longest lead time, the highest defect rate, the lowest on-time delivery and the slowest support. The table below the chart carries every value.</desc>
+      <desc id="fig-desc">Five vertical axes, one per measure, with a line per supplier crossing all five. Each supplier takes the swatch printed beside its name where its line ends on the right. Alpha is lowest on unit price at 4.10 pounds and is also the longest lead time, the highest defect rate, the lowest on-time delivery and the slowest support. The table below the chart carries every value.</desc>
+      <g data-chart-legend id="legend-parallel-axes"></g>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Four shortlisted suppliers across five measures.</caption>
-    <thead><tr id="head-row"><th scope="col">Supplier</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Four shortlisted suppliers across five measures.</caption>
+      <thead><tr id="head-row"><th scope="col">Supplier</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -115,10 +197,62 @@ function node(name, attrs, cls) {
   return el;
 }
 
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return (d.values || []).some(function (v) { return Number.isFinite(v); }); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// A native SVG tooltip. The value a reader hovers is the value in the data block,
+// with no library, no listener and no state: the browser draws it and a screen
+// reader reads it as the mark's name.
+function tip(el, text) {
+  const t = document.createElementNS(SVG, 'title');
+  t.textContent = text;
+  el.appendChild(t);
+  return el;
+}
+
 const LEFT = 74;
 const RIGHT = 646;
-const TOP = 62;
-const BOTTOM = 244;
+// The heading stack above each axis is three rows deep: the name, the unit it is measured in,
+// and the value at the top of the axis. Three rows of type need three line boxes, and at the
+// sizes this form uses that is about forty units. The plot used to start at 62, which left
+// twenty-four, so the unit caption and the maximum tick were printed eleven units apart and
+// their line boxes overlapped by two. The plot starts lower and ends lower by the same amount,
+// which buys the room out of the margin under the frame rather than out of the axis length.
+const TOP = 72;
+const BOTTOM = 254;
 const ax = function (j) { return LEFT + (RIGHT - LEFT) * (j / (AXES.length - 1)); };
 const ay = function (j, v) {
   const axis = AXES[j];
@@ -131,21 +265,62 @@ AXES.forEach(function (axis, j) {
   const anchor = j === 0 ? 'start' : j === AXES.length - 1 ? 'end' : 'middle';
   // Neighbouring axis names collide the moment one of them is more than a word long, so
   // alternate axes sit a row higher rather than being truncated into initials.
+  // The unit width is the axis spacing: (RIGHT - LEFT) over one less than the axis count,
+  // which is 143 units at five axes and 114 at six. A centred name may take half that gap
+  // on each side, so at the 12px .axis-name size the budget is about 21 characters on one
+  // row. The lift buys the full gap back for alternate axes, which is why six axes still
+  // fit and a seventh would not.
+  //
+  // The lift moves the name and the unit and deliberately does not move the maximum. That tick
+  // is a reading off the axis and has to stay against the end of it, so the two rows above it
+  // are what make room. Eleven units was the gap that put the unit caption's line box two units
+  // into the tick's on every axis the lift did not raise, which was three of the five. Fifteen
+  // and fourteen are the pitches that leave about one and a half units of clear space at each
+  // seam, measured rather than assumed: a 12px name sets a 13.4 unit line box and an 11px
+  // caption a 13.3 unit one, so anything under fourteen overlaps by construction.
   const lift = j % 2 === 1 ? 18 : 0;
-  node('text', { x: ax(j), y: TOP - 26 - lift, 'text-anchor': anchor }, 'axis-name').textContent = axis.name;
-  node('text', { x: ax(j), y: TOP - 13 - lift, 'text-anchor': anchor }, 'bound').textContent = axis.unit;
-  node('text', { x: ax(j), y: TOP - 2, 'text-anchor': anchor }, 'bound').textContent = String(axis.max);
-  node('text', { x: ax(j), y: BOTTOM + 16, 'text-anchor': anchor }, 'bound').textContent = String(axis.min);
+  node('text', { x: ax(j), y: TOP - 31 - lift, 'text-anchor': anchor }, 'axis-name').textContent = axis.name;
+  node('text', { x: ax(j), y: TOP - 17 - lift, 'text-anchor': anchor }, 'bound').textContent = axis.unit;
+  node('text', { x: ax(j), y: TOP - 2, 'text-anchor': anchor }, 'bound').textContent = fmt(axis.max);
+  node('text', { x: ax(j), y: BOTTOM + 16, 'text-anchor': anchor }, 'bound').textContent = fmt(axis.min);
 });
 
+// The key on this form is not a detached row. A line is named where it ends, which is where
+// the reader's eye already is, so the swatch joins the name it is already reading rather than
+// sending it back to the top of the frame. Each pair is a button as well as a label, because
+// it is the control for the dim and a control a pointer can reach has to be reachable from a
+// keyboard too.
+const legend = document.getElementById('legend-parallel-axes');
+const entries = [];
 DATA.forEach(function (d, s) {
   const points = d.values.map(function (v, j) { return ax(j) + ',' + ay(j, v); });
-  node('path', { d: 'M' + points.join(' L') }, 'line-' + (s + 1));
+  node('path', { d: 'M' + points.join(' L'), 'data-series': s + 1 }, 'line-' + (s + 1));
   d.values.forEach(function (v, j) {
-    node('circle', { cx: ax(j), cy: ay(j, v), r: 4 }, 'dot-' + (s + 1));
+    tip(node('circle', { cx: ax(j), cy: ay(j, v), r: 4, 'data-series': s + 1 }, 'dot-' + (s + 1)),
+      d.label + ', ' + AXES[j].name + ': ' + fmt(v) + ' ' + AXES[j].unit);
   });
-  node('text', { x: RIGHT + 10, y: ay(AXES.length - 1, d.values[AXES.length - 1]) + 4 }, 'key')
-    .textContent = d.label;
+
+  const endY = ay(AXES.length - 1, d.values[AXES.length - 1]);
+  const entry = document.createElementNS(SVG, 'g');
+  entry.setAttribute('data-series', s + 1);
+  entry.setAttribute('tabindex', '0');
+  entry.setAttribute('role', 'button');
+  entry.setAttribute('aria-pressed', 'false');
+  const swatch = document.createElementNS(SVG, 'rect');
+  swatch.setAttribute('x', RIGHT + 8);
+  swatch.setAttribute('y', endY - 4);
+  swatch.setAttribute('width', 8);
+  swatch.setAttribute('height', 8);
+  swatch.setAttribute('class', 'key-swatch dot-' + (s + 1));
+  entry.appendChild(swatch);
+  const label = document.createElementNS(SVG, 'text');
+  label.setAttribute('x', RIGHT + 20);
+  label.setAttribute('y', endY + 4);
+  label.setAttribute('class', 'key');
+  label.textContent = d.label;
+  entry.appendChild(label);
+  legend.appendChild(entry);
+  entries.push(entry);
 });
 
 const headRow = document.getElementById('head-row');
@@ -166,11 +341,49 @@ DATA.forEach(function (d) {
   d.values.forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
-    td.textContent = String(v);
+    td.textContent = fmt(v);
     tr.appendChild(td);
   });
   rows.appendChild(tr);
 });
+
+// Pointing at a mark or at a key entry is a hover and clears itself. Clicking an entry holds
+// the same state until the same entry is clicked again. Leaving the drawing clears a hover, so
+// no chart can be left permanently dimmed by a pointer that wandered off the page.
+let latched = null;
+
+function dimTo(series) {
+  svg.setAttribute('data-chart-dim', series === null ? '' : series);
+}
+
+function latch(series) {
+  latched = latched === series ? null : series;
+  dimTo(latched);
+  entries.forEach(function (entry) {
+    entry.setAttribute('aria-pressed', entry.getAttribute('data-series') === latched ? 'true' : 'false');
+  });
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (latched !== null) return;
+  const owner = e.target.closest ? e.target.closest('[data-series]') : null;
+  dimTo(owner ? owner.getAttribute('data-series') : null);
+});
+svg.addEventListener('pointerleave', function () {
+  if (latched === null) dimTo(null);
+});
+entries.forEach(function (entry) {
+  entry.addEventListener('click', function () { latch(entry.getAttribute('data-series')); });
+  // A group in a drawing does not turn a key press into a click the way a button element does,
+  // so the two keys a button answers to are wired by hand.
+  entry.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    latch(entry.getAttribute('data-series'));
+  });
+});
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
 </script>
 </body>
 </html>

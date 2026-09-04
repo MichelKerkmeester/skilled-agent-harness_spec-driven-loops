@@ -638,7 +638,7 @@ The official `obsidian` CLI shipped GA in Obsidian desktop **v1.12.4** (Feb 2026
 
 ### Cyanheads MCP — `obsidian-mcp-server` (Structured Path)
 
-The default MCP is cyanheads' `obsidian-mcp-server` (npm **@3.2.9**), launched over **stdio** via `npx -y obsidian-mcp-server@latest` (it also supports http on `127.0.0.1:3010/mcp`). It talks to the vault through the **Local REST API plugin v4.0.0+**, so it needs a **running Obsidian + the plugin enabled + an API key**.
+The default MCP is cyanheads' `obsidian-mcp-server` (npm **@3.5.0**), launched over **stdio** via `npx -y obsidian-mcp-server@latest` (it also supports http on `127.0.0.1:3010/mcp`). It talks to the vault through the **Local REST API plugin v4.0.0+**, so it needs a **running Obsidian + the plugin enabled + an API key**.
 
 **Prerequisites:**
 - Code Mode MCP configured, with the `obsidian` manual in `.utcp_config.json` (not `opencode.json`, that file is for native/non-Code-Mode MCP tools)

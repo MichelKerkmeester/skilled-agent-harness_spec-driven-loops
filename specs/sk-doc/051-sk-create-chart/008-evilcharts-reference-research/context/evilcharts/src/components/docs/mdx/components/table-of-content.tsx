@@ -1,0 +1,129 @@
+// Component taken from @shadcn official repo and modified by evilcharts
+
+"use client";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { TocIndicator, useRowMetrics } from "./toc-indicator";
+import { Menu02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import * as React from "react";
+
+function useActiveItem(itemIds: string[]) {
+  const [activeId, setActiveId] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "0% 0% -60% 0%" },
+    );
+
+    for (const id of itemIds ?? []) {
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+      }
+    }
+
+    return () => {
+      for (const id of itemIds ?? []) {
+        const element = document.getElementById(id);
+        if (element) {
+          observer.unobserve(element);
+        }
+      }
+    };
+  }, [itemIds]);
+
+  return activeId;
+}
+
+export function DocsTableOfContents({
+  toc,
+  variant = "list",
+  className,
+}: {
+  toc: {
+    title?: React.ReactNode;
+    url: string;
+    depth: number;
+  }[];
+  variant?: "dropdown" | "list";
+  className?: string;
+}) {
+  const [open, setOpen] = React.useState(false);
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const listRef = React.useRef<HTMLDivElement>(null);
+  const rows = useRowMetrics(wrapperRef, listRef, toc.length);
+  const itemIds = React.useMemo(() => toc.map((item) => item.url.replace("#", "")), [toc]);
+  const activeHeading = useActiveItem(itemIds);
+  const activeIndex = activeHeading ? itemIds.indexOf(activeHeading) : -1;
+
+  if (!toc?.length) {
+    return null;
+  }
+
+  if (variant === "dropdown") {
+    return (
+      <DropdownMenu open={open} onOpenChange={setOpen}>
+        <DropdownMenuTrigger
+          render={<Button variant="outline" size="sm" className={cn("h-8 md:h-7", className)} />}
+        >
+          On This Page
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start" className="no-scrollbar max-h-[70svh]">
+          {toc.map((item) => (
+            <DropdownMenuItem
+              key={item.url}
+              render={<a href={item.url} />}
+              onClick={() => {
+                setOpen(false);
+              }}
+              data-depth={item.depth}
+              className="data-[depth=3]:pl-6 data-[depth=4]:pl-8"
+            >
+              {item.title}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  }
+
+  return (
+    <div className={cn("flex flex-col px-4 pt-0 text-sm select-none", className)}>
+      <div className="flex h-6 flex-row items-center gap-[5px]">
+        <HugeiconsIcon size="14" className="text-muted-foreground" icon={Menu02Icon} />
+        <p className="text-muted-foreground/75 bg-background sticky top-0 text-xs">On This Page</p>
+      </div>
+      <div ref={wrapperRef} className="relative flex flex-row">
+        <TocIndicator toc={toc} activeIndex={activeIndex} rows={rows} />
+        <div ref={listRef} className="flex h-fit flex-col gap-2 pt-2">
+          {toc.map((item) => (
+            <a
+              key={item.url}
+              href={item.url}
+              className="text-muted-foreground/75 hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors duration-200 empty:hidden data-[active=true]:font-medium data-[depth=1]:pl-5 data-[depth=2]:pl-5 data-[depth=3]:pl-8 data-[depth=4]:pl-11"
+              data-active={item.url === `#${activeHeading}`}
+              data-depth={item.depth}
+            >
+              {item.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

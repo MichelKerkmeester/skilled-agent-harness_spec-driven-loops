@@ -45,18 +45,19 @@ Operators run the exact prompt and command sequence for `HVR-002` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| HVR-002 | The re-scan after a rewrite | Verify the scanner is re-run on the rewritten text and both numbers are reported | `This draft reads like AI wrote it. Fix it.` | 1. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>` -> 2. `agent: Edit in-scope spans, hard blockers first, then soft deductions, then judgment findings` -> 3. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>` -> 4. `agent: Fill both columns of the mechanical scan table in assets/voice-report-template.md` | Step 1: a recorded before-number with its exit status. Step 2: the edit order is hard blockers first. Step 3: a second scanner block from the rewritten text. Step 4: both columns filled, and any newly introduced term named | The prompt as typed, both scanner blocks with exit statuses, the diff, the filled mechanical scan table and a list of any term the rewrite introduced | PASS when both scans are run and both numbers reported. FAIL when only the after-number appears or a newly introduced term is left unaddressed | 1. Check that step 1 ran before the edit rather than being reconstructed after it. A before-number produced from the diff is not a measurement. 2. Compare the two scanner blocks term by term. A drop in the total can hide a term that arrived, because the totals only tell you the net. 3. If the after-number is worse, report it. A rewrite that scored worse is a result, and hiding it costs the next pass its starting point |
+| HVR-002 | The re-scan after a rewrite | Verify the scanner is re-run on the rewritten text and both numbers are reported | `This draft reads like AI wrote it. Fix it.` | 1. `bash: cp .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-ai-draft.md /tmp/hvr-hvr-002.md` -> 2. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py /tmp/hvr-hvr-002.md` -> 3. `agent: Edit in-scope spans, hard blockers first, then soft deductions, then judgment findings` -> 4. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py /tmp/hvr-hvr-002.md` -> 5. `agent: Fill both columns of the mechanical scan table in assets/voice-report-template.md` | Step 1: the copy is written outside the packet. Step 2: a recorded before-number with its exit status. Step 3: the edit order is hard blockers first. Step 4: a second scanner block from the rewritten text. Step 5: both columns filled, and any newly introduced term named | The prompt as typed, both scanner blocks with exit statuses, the diff, the filled mechanical scan table and a list of any term the rewrite introduced | PASS when both scans are run and both numbers reported. FAIL when only the after-number appears or a newly introduced term is left unaddressed | 1. Check that step 2 ran before the edit rather than being reconstructed after it. A before-number produced from the diff is not a measurement. 2. Compare the two scanner blocks term by term. A drop in the total can hide a term that arrived, because the totals only tell you the net. 3. If the after-number is worse, report it. A rewrite that scored worse is a result, and hiding it costs the next pass its starting point |
 
 ### Commands
 
-1. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>`
-2. `agent: Edit in-scope spans, hard blockers first, then soft deductions, then the judgment findings`
-3. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>`
-4. `agent: Fill both columns of the mechanical scan table in assets/voice-report-template.md`
+1. `bash: cp .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-ai-draft.md /tmp/hvr-hvr-002.md`
+2. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py /tmp/hvr-hvr-002.md`
+3. `agent: Edit in-scope spans in /tmp/hvr-hvr-002.md, hard blockers first, then soft deductions, then the judgment findings`
+4. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py /tmp/hvr-hvr-002.md`
+5. `agent: Fill both columns of the mechanical scan table in assets/voice-report-template.md`
 
 ### Expected
 
-Step 1 records the before-number, its hard-blocker count and its ceiling, with the exit status. Step 2 edits in the order the workflow fixes, hard blockers first, so the expensive findings go before the cheap ones. Step 3 runs the scanner again on the rewritten text, which is the step that catches what the rewrite brought in. Step 4 fills both columns, and the pair is what makes either number mean anything.
+Step 1 copies the shipped fixture out of the packet, because this scenario rewrites its target and precondition 6 fails any run that leaves a diff under the packet. Step 2 records the before-number, its hard-blocker count and its ceiling, with the exit status: 4 hard blockers and a ceiling of 77/100 on the shipped draft. Step 3 edits in the order the workflow fixes, hard blockers first, so the expensive findings go before the cheap ones. Step 4 runs the scanner again on the rewritten text, which is the step that catches what the rewrite brought in. Step 5 fills both columns, and the pair is what makes either number mean anything.
 
 ### Evidence
 
@@ -97,6 +98,7 @@ Copy the dirty fixture to a scratch path outside the packet, run the full sequen
 | [`assets/voice-report-template.md`](../../assets/voice-report-template.md) | The mechanical scan table with its before and after columns |
 | [`scripts/hvr_scan.py`](../../scripts/hvr_scan.py) | The pass run twice |
 | [`SKILL.md`](../../SKILL.md) | Section 3 steps 7 to 9, rule ALWAYS 4 and success criterion 2 |
+| [`scripts/tests/fixtures/voice-ai-draft.md`](../../scripts/tests/fixtures/voice-ai-draft.md) | The shipped target, reporting 4 hard blockers and 77/100 before the rewrite, copied out before the edit |
 
 ---
 

@@ -1,10 +1,13 @@
 {
   "$schema": "./command-contract.schema.json",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "metadata": {
-    "purpose": "Single machine-readable source of behavioral truth for the six OpenCode command families. Templates, validators, benchmark adapters, and generated routers consume this instead of restating it as prose.",
+    "purpose": "Single machine-readable source of behavioral truth for the six router-shaped OpenCode command families. Templates, validators, benchmark adapters, and generated routers consume this instead of restating it as prose.",
     "confirm_auto_relationship": "The observed 'confirm == auto + checkpoints' relationship holds only for light single-pass mode-pair families (verified on design; inferred for create and speckit:plan). For autonomy-heavy commands (speckit:complete, all deep:*) the :auto workflow carries orchestration machinery the :confirm variant lacks, so the two are divergent siblings and must be modeled independently rather than derived. Downstream checks must not assume the invariant universally.",
-    "granularity": "One entry per family; router_path is a directory glob for families whose per-operation routers share one uniform pattern (create, design, deep) and an explicit list for families whose routers differ (speckit, memory, doctor)."
+    "granularity": "One entry per family; router_path is a directory glob for families whose per-operation routers share one uniform pattern (create, design, deep) and an explicit list for families whose routers differ (speckit, memory, doctor).",
+    "coverage": "Covers the six router-shaped families only. The prompt and rewrite groups and the three root-level utilities (/agent-router, /goal-opencode, /vision) ship no family router and carry no entry here; a consumer that walks this file is walking 31 of the 39 shipped commands, not all of them.",
+    "asset_naming": "Owned assets are hyphen-joined: <family>-<command>-<kind> for create, speckit, doctor and deep. A family whose commands already read unambiguously drops the family prefix and names assets <command>-<kind> — memory (save-presentation.txt) and design (extract-auto.yaml) both do. The kind suffixes are -presentation.txt, -auto.yaml and -confirm.yaml. Underscores are not used; the shipped prompt group is the tree's lone underscore holdout and is out of scope here.",
+    "path_templates": "A per-command asset path carries exactly one <placeholder>, which expands to the router's command name. generate-command-routers.cjs special-cases the memory family when the placeholder opens the basename; a prefix-dropping family it does not special-case must therefore spell its assets literally rather than as a template, which is why design carries concrete filenames."
   },
   "families": {
     "create": {
@@ -13,24 +16,24 @@
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm]"
+        "argument_hint": "<target> [operation] [--path <dir>] [per-command flags] [:auto|:confirm]"
       },
       "execution_targets": [
-        { "selector": ":auto", "target": ".opencode/commands/create/assets/<name>_auto.yaml" },
-        { "selector": ":confirm | omitted", "target": ".opencode/commands/create/assets/<name>_confirm.yaml" }
+        { "selector": ":auto", "target": ".opencode/commands/create/assets/create-<name>-auto.yaml" },
+        { "selector": ":confirm | omitted", "target": ".opencode/commands/create/assets/create-<name>-confirm.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "confirm",
         "supported_modes": [":auto", ":confirm"]
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/create/assets/<name>_presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".opencode/commands/create/assets/<name>_auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".opencode/commands/create/assets/<name>_confirm.yaml" }
+        { "purpose": "presentation", "path": ".opencode/commands/create/assets/create-<name>-presentation.txt" },
+        { "purpose": "auto_workflow", "path": ".opencode/commands/create/assets/create-<name>-auto.yaml" },
+        { "purpose": "confirm_workflow", "path": ".opencode/commands/create/assets/create-<name>-confirm.yaml" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
-        "$ARGUMENTS trailer consumed at the router foot",
+        "$ARGUMENTS resolved in the router's MODE ROUTING section; the foot-of-file `User request: $ARGUMENTS` raw echo is deprecated",
         ":auto honors a PRE-BOUND SETUP ANSWERS: marker block for non-interactive setup",
         "Stop and report the missing path if any referenced asset is absent"
       ],
@@ -44,41 +47,42 @@
       "invocation_aliases": ["/create:skill", "/create:agent", "/create:<operation>", ":auto suffix", ":confirm suffix"],
       "workflow_schema_ref": null
     },
-    "interface": {
+    "design": {
       "topology": "mode-pair",
-      "router_path": ".opencode/commands/interface/*.md",
+      "router_path": ".opencode/commands/design/*.md",
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "<target> [--mode] [--register brand|product] [:auto|:confirm]"
+        "argument_hint": "<live-url> --output <dir> [--register brand|product] [:auto|:confirm]"
       },
       "execution_targets": [
-        { "selector": ":auto | no-suffix with complete args", "target": ".opencode/commands/interface/assets/interface-<action>-auto.yaml" },
-        { "selector": ":confirm | no-suffix with incomplete args", "target": ".opencode/commands/interface/assets/interface-<action>-confirm.yaml" }
+        { "selector": ":auto | no-suffix with complete args", "target": ".opencode/commands/design/assets/extract-auto.yaml" },
+        { "selector": ":confirm | no-suffix with incomplete args", "target": ".opencode/commands/design/assets/extract-confirm.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "conditional-auto",
         "supported_modes": [":auto", ":confirm"]
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/interface/assets/interface-<action>-presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".opencode/commands/interface/assets/interface-<action>-auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".opencode/commands/interface/assets/interface-<action>-confirm.yaml" }
+        { "purpose": "presentation", "path": ".opencode/commands/design/assets/extract-presentation.txt" },
+        { "purpose": "auto_workflow", "path": ".opencode/commands/design/assets/extract-auto.yaml" },
+        { "purpose": "confirm_workflow", "path": ".opencode/commands/design/assets/extract-confirm.yaml" },
+        { "purpose": "other", "path": ".opencode/skills/sk-design-md-generator/references/creation-contract.md (shared lifecycle contract; consumed, owned by sk-design-md-generator)" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
-        "--mode and --register select internal task lanes, not execution modes",
-        "Defer to the sk-design hub (STATUS=DEFER ROUTE=hub) when the request spans modes",
+        "--register selects an internal task lane, not an execution mode",
+        "Defer to the sk-design hub (STATUS=DEFER ROUTE=hub) when redesign or critique dominates the request",
         "Never auto-chain to a sibling command; next steps are recommend-only"
       ],
       "presentation": { "owner": "presentation-asset", "exceptions": [] },
       "destructive_policy": {
         "has_destructive_ops": true,
         "gated": true,
-        "operations": ["md-generator writes and overwrites DESIGN.md", "other modes emit specs and handoff manifests (additive)"]
+        "operations": ["writes and overwrites DESIGN.md at the resolved --output destination"]
       },
       "timeout_bounds": null,
-      "invocation_aliases": ["/interface:design", "/interface:design-reference", ":auto suffix", ":confirm suffix"],
+      "invocation_aliases": ["/design:extract", ":auto suffix", ":confirm suffix"],
       "workflow_schema_ref": null
     },
     "speckit": {
@@ -95,9 +99,9 @@
         "argument_hint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases]"
       },
       "execution_targets": [
-        { "selector": ":auto", "target": ".opencode/commands/speckit/assets/speckit_<name>_auto.yaml" },
-        { "selector": ":autopilot | :unattended | --unattended", "target": ".opencode/commands/speckit/assets/speckit_<name>_auto.yaml (bound to autopilot execution mode; not aliased to :auto)" },
-        { "selector": ":confirm | interactive choice", "target": ".opencode/commands/speckit/assets/speckit_<name>_confirm.yaml" }
+        { "selector": ":auto", "target": ".opencode/commands/speckit/assets/speckit-<name>-auto.yaml" },
+        { "selector": ":autopilot | :unattended | --unattended", "target": ".opencode/commands/speckit/assets/speckit-<name>-auto.yaml (bound to autopilot execution mode; not aliased to :auto)" },
+        { "selector": ":confirm | interactive choice", "target": ".opencode/commands/speckit/assets/speckit-<name>-confirm.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "ask",
@@ -107,9 +111,9 @@
         ]
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/speckit/assets/speckit_<name>_presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".opencode/commands/speckit/assets/speckit_<name>_auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".opencode/commands/speckit/assets/speckit_<name>_confirm.yaml" }
+        { "purpose": "presentation", "path": ".opencode/commands/speckit/assets/speckit-<name>-presentation.txt" },
+        { "purpose": "auto_workflow", "path": ".opencode/commands/speckit/assets/speckit-<name>-auto.yaml" },
+        { "purpose": "confirm_workflow", "path": ".opencode/commands/speckit/assets/speckit-<name>-confirm.yaml" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
@@ -156,13 +160,14 @@
         "supported_modes": []
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/memory/assets/<command>_presentation.txt" },
+        { "purpose": "presentation", "path": ".opencode/commands/memory/assets/<command>-presentation.txt" },
         { "purpose": "script", "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js (consumed; owned by system-spec-kit)" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
         "memory/search runs an embedded bash pre-processing line before policy that emits ARGS_PRESENT and QUERY; the router binds control flow to that output rather than re-deriving argument presence",
-        "Never query the database with raw sqlite3 or Bash"
+        "Never query the database with raw sqlite3 or Bash",
+        "memory/learn is a deprecated tombstone: it owns a presentation asset carrying the deprecation wording but binds no execution target, so a mode or workflow check that applies to the live memory commands does not apply to it"
       ],
       "presentation": {
         "owner": "presentation-asset",
@@ -193,7 +198,7 @@
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "<target> [flags] | list | ? (speckit); <install|debug> [--server] [--runtime] [--fix] (mcp); [--force] [--no-snapshot] [--migrate] (update)"
+        "argument_hint": "per-command: <target> [flags] | list | ? (speckit); <install|debug> [--server <name>] [--runtime <name>] [--fix] (mcp); [--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap] (update)"
       },
       "execution_targets": [
         { "selector": "<target> resolved via _routes.yaml", "target": ".opencode/commands/doctor/assets/doctor-<target>.yaml" },
@@ -206,14 +211,15 @@
       },
       "owned_assets": [
         { "purpose": "route_manifest", "path": ".opencode/commands/doctor/_routes.yaml" },
-        { "purpose": "presentation", "path": ".opencode/commands/doctor/assets/doctor_<entry>_presentation.txt" },
-        { "purpose": "other", "path": ".opencode/commands/doctor/assets/doctor_<target>.yaml (per-route target workflows)" },
+        { "purpose": "presentation", "path": ".opencode/commands/doctor/assets/doctor-<entry>-presentation.txt" },
+        { "purpose": "other", "path": ".opencode/commands/doctor/assets/doctor-<target>.yaml (per-route target workflows)" },
         { "purpose": "script", "path": ".opencode/commands/doctor/scripts/route-validate.sh (validates _routes.yaml)" }
       ],
       "loader_requirements": [
         "Read the presentation asset and _routes.yaml before dispatch",
         "Parse the positional target before any flag; reject cross-target flags before loading the target YAML",
         "The manifest exposes each route's mutation class (read-only | add-only | mutates) and gate-3 location before acting",
+        "/doctor:update carries no required positional: input.required is true for the speckit and mcp routers only",
         "update acquires a flock before database-rebuild probes and may end STATUS=RESTART_REQUIRED"
       ],
       "presentation": { "owner": "presentation-asset", "exceptions": [] },
@@ -222,6 +228,7 @@
         "gated": true,
         "operations": ["skill-advisor target writes lib/scorer/lanes sources", "mcp install writes server dirs and runtime config", "update rebuilds spec-kit SQLite databases (snapshotted first unless --no-snapshot)"]
       },
+      "routing_source": "manifest",
       "timeout_bounds": { "warm_probe_timeout_ms": 500 },
       "invocation_aliases": ["/doctor <target>", "/doctor list", "/doctor ?", "/doctor:mcp <install|debug>", "/doctor:update"],
       "workflow_schema_ref": null
@@ -235,17 +242,17 @@
         "argument_hint": "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=<type>] [--concurrency=N] [--dry-run]"
       },
       "execution_targets": [
-        { "selector": ":auto", "target": ".opencode/commands/deep/assets/deep_<name>_auto.yaml (dispatches LEAF iteration agents)" },
-        { "selector": ":confirm | interactive choice", "target": ".opencode/commands/deep/assets/deep_<name>_confirm.yaml" }
+        { "selector": ":auto", "target": ".opencode/commands/deep/assets/deep-<name>-auto.yaml (dispatches LEAF iteration agents)" },
+        { "selector": ":confirm | interactive choice", "target": ".opencode/commands/deep/assets/deep-<name>-confirm.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "ask",
         "supported_modes": [":auto", ":confirm"]
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/deep/assets/deep_<name>_presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".opencode/commands/deep/assets/deep_<name>_auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".opencode/commands/deep/assets/deep_<name>_confirm.yaml" },
+        { "purpose": "presentation", "path": ".opencode/commands/deep/assets/deep-<name>-presentation.txt" },
+        { "purpose": "auto_workflow", "path": ".opencode/commands/deep/assets/deep-<name>-auto.yaml" },
+        { "purpose": "confirm_workflow", "path": ".opencode/commands/deep/assets/deep-<name>-confirm.yaml" },
         { "purpose": "other", "path": ".opencode/commands/deep/assets/compiled/ (generated *.contract.md + manifest.jsonl digest ledger)" },
         { "purpose": "other", "path": ".opencode/commands/deep/assets/legacy/ (fallback injection bodies)" }
       ],
@@ -254,7 +261,7 @@
         "One hard-block gate: the BLOCKED unified setup phase (do not load YAML until all required inputs are bound)",
         ":auto honors a PRE-BOUND SETUP ANSWERS: marker block and persists a config json before loading YAML",
         "Acquire the research/review lock before folder-state classification",
-        "--dry-run is a first-class flag on the confirm flow, not a third execution mode"
+        "--dry-run is a first-class flag on /deep:research's confirm flow, not a third execution mode and not a family-wide flag"
       ],
       "presentation": { "owner": "presentation-asset", "exceptions": [] },
       "destructive_policy": {
@@ -266,7 +273,7 @@
         "lineage_timeout_hours_default": 4,
         "executor_timeout": "bounded per-invocation by --executor-timeout=SECONDS"
       },
-      "invocation_aliases": ["/deep:research", "/deep:review", "/deep:ai-council", "/deep:agent-improvement", "/deep:model-benchmark", "/deep:skill-benchmark", "attached suffix (e.g. /deep:research:auto)", "--dry-run flag"],
+      "invocation_aliases": ["/deep:research", "/deep:review", "/deep:ai-council", "/deep:agent-improvement", "/deep:model-benchmark", "/deep:skill-benchmark", "attached suffix (e.g. /deep:research:auto)", "--dry-run flag (/deep:research only)"],
       "workflow_schema_ref": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md"
     }
   }

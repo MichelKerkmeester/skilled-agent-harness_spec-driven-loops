@@ -3,7 +3,9 @@
   "packet_id": "sk-doc/039-create-with-human-voice",
   "spec_folder": "sk-doc/039-create-with-human-voice",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "sk-doc/039-create-with-human-voice/001-utilization-review"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -45,9 +47,9 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".opencode/commands/create/with-human-voice.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
       "repo-rules/communication.md",
       ".opencode/skills/sk-doc/mode-registry.json",
       ".opencode/skills/sk-doc/hub-router.json",
@@ -57,7 +59,8 @@
       ".opencode/skills/sk-doc/description.json",
       ".opencode/skills/sk-doc/graph-metadata.json",
       ".opencode/skills/sk-doc/leaf-manifest.json",
-      ".opencode/skills/sk-doc/command-metadata.json"
+      ".opencode/skills/sk-doc/command-metadata.json",
+      "001-utilization-review/goal.md"
     ],
     "entities": [
       {
@@ -85,6 +88,12 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -94,12 +103,6 @@
         "name": "with-human-voice.md",
         "kind": "doc",
         "path": ".opencode/commands/create/with-human-voice.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -207,7 +210,7 @@
     ],
     "causal_summary": "The Human Voice Rules are a 510-line linguistic standard at",
     "created_at": "2026-08-31T19:48:50Z",
-    "last_save_at": "2026-08-31T20:11:02.498Z",
+    "last_save_at": "2026-09-02T20:14:46.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,17 +218,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae998b14e7466df5d8786d265900d47e56bb116275266e3903434f8afd4d8730",
+    "source_fingerprint": "sha256:5eb239d3da2202e86d94f99ebc347862e678d7c48405b6470e19eb7498a48e68",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7948462ca9700571b4d5c1f1b299077c5d716edd6256f36e33b65ce5a44de2e9",
-      "plan.md": "6945436c67a3d8aa1ec86535ad59b97d340d1cefed32dadb1178da7cf95a3a40",
+      "spec.md": "1d89da4ee14a853535825024cda87864147aacb5159222d43849083f6ebf3ee8",
+      "plan.md": "c5fd3d8539a879929ca2a7acfb4f1427069bcdb93b0552181f9f0220a15ddb55",
       "tasks.md": "0f29841bf85348ca8479fe1922c6d71243ca0ce75964bffaf0b4fc8628074848",
       "implementation-summary.md": "417cd53a2abbb5551ce68effc2ce92d078b1f94d0e0dd9f9c1067e294f34284b"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/039-create-with-human-voice/001-utilization-review",
     "last_active_at": null
   }
 }

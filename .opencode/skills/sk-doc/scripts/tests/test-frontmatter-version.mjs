@@ -131,6 +131,21 @@ let verifyExit2 = 0;
 try { run('verify'); } catch (e) { verifyExit2 = e.status; }
 ok(verifyExit2 === 0, 'verify exits 0 after --update resolves the conflict');
 
+// ─── 6. --help in the positional slot ──────────────────────────
+// The mode is positional, so a lone --help lands where the mode is read from.
+// It must answer as help rather than become a mode name, and it must answer
+// without walking git history first, which is why no skills-root is passed.
+let helpExit = 0;
+let helpOut = '';
+try {
+  helpOut = execFileSync('node', [ENGINE, '--help'], { encoding: 'utf8' });
+} catch (e) {
+  helpExit = e.status;
+  helpOut = String(e.stdout || '');
+}
+ok(helpExit === 0, 'lone --help exits 0');
+ok(helpOut.startsWith('frontmatter-version.mjs'), 'lone --help prints the usage text');
+
 // ─── cleanup + report ───────────────────────────────────────────
 fs.rmSync(tmp, { recursive: true, force: true });
 console.log(`\n${fail === 0 ? 'PASS' : 'FAIL'} — ${pass} passed, ${fail} failed`);

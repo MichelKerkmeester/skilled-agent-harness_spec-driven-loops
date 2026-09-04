@@ -1,5 +1,5 @@
 ---
-description: "Benchmark a skill's real-world routing, discovery, efficiency, and usefulness (Lane C). Emits a ranked, remediable Skill Benchmark Report. Modes :auto, :confirm."
+description: "Benchmark a skill's real routing, discovery, efficiency and usefulness into a ranked report. :auto/:confirm."
 argument-hint: "<skill_id_or_root> [:auto|:confirm] [--outputs-dir=PATH] [--fixtures-dir=PATH] [--trace-mode=router|live] [--advisor-mode=python]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 skill: system-deep-loop

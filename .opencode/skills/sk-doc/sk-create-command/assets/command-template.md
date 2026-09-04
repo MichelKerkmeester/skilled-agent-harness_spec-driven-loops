@@ -205,7 +205,7 @@ Start Here
 | 5     | **Examples**        | Recommended      | Usage demonstrations                |
 | 6     | **Notes**           | Optional         | Caveats, requirements               |
 
-> **Frontmatter budget:** keep `argument-hint` at or under 140 characters — it **summarizes** the invocation shape while the router's **EXECUTION TARGETS** section **enumerates** the full flag surface. Over-budget hints warn, they never block registration.
+> **Frontmatter budget:** keep `argument-hint` at or under 140 characters. It **summarizes** the invocation shape while the router's **EXECUTION TARGETS** section **enumerates** the full flag surface. Over-budget hints warn, they never block registration.
 
 ### Minimal Command Structure
 
@@ -221,14 +221,14 @@ allowed-tools: Tool1, Tool2
 [One sentence describing purpose.]
 
 <!-- REQUIRED-ARGUMENT GATE: keep this block whenever argument-hint declares a required
-<argument>; delete it only for a command that takes none. It is the reason a command stops
+<argument>. Delete it only for a command that takes none. It is the reason a command stops
 instead of inventing an input from context. -->
 
 ### MANDATORY INPUT GATE
 
 **STATUS: BLOCKED** until `<required>` is bound.
 
-1. Parse `$ARGUMENTS`; strip any mode suffix and flags before resolving the required input.
+1. Parse `$ARGUMENTS`, stripping any mode suffix and flags before resolving the required input.
 2. Treat an absent or whitespace-only value as missing. Do not infer it from conversation
    history, open files, screenshots, or repository state.
 3. When it is missing, ask for it with clear options or an expected reply format, stop, and
@@ -536,7 +536,7 @@ IF $ARGUMENTS contains required input:
 
 ## 2. CONTRACT
 
-**Inputs:** `$ARGUMENTS` — [Description of expected arguments]
+**Inputs:** `$ARGUMENTS`, [Description of expected arguments]
 **Outputs:** `STATUS=<OK|FAIL> [ADDITIONAL_DATA=<value>]`
 
 ---
@@ -833,34 +833,34 @@ When resuming work in an existing spec folder, prompt to load prior session memo
 
 The memory, speckit, create, doctor, and deep command families split each command into a **thin router** plus **owned assets**, so routing logic and presentation contracts evolve independently and long command files stay readable.
 
-**Common core — all split families:**
+**Common core across all split families:**
 
 | Asset | Owns |
 |-------|------|
 | `<command>.md` (thin router) | Mode resolution, owned-assets table, routing logic, and any Phase 0 / mandatory-input gate. Contains NO presentation content. |
-| `assets/<ns>_<command>_presentation.txt` | Startup prompts, dashboards and checkpoints, result templates, and next-step wording. The display source of truth. |
+| `assets/<ns>-<command>-presentation.txt` | Startup prompts, dashboards and checkpoints, result templates, and next-step wording. The display source of truth. |
 
-- The router contains a **Presentation Boundary** section naming what lives only in the presentation asset; it must contain no inline startup-question wording, dashboard templates, or result templates. The split is behavior-preserving — relocate display content, never change routing semantics.
+- The router contains a **Presentation Boundary** section naming what lives only in the presentation asset. It must contain no inline startup-question wording, dashboard templates, or result templates. The split is behavior-preserving, so relocate display content and never change routing semantics.
 - In `allowed-tools`, MCP tools use the fully-qualified `mcp__<server>__<tool>` form (e.g. `mcp__system_skill_advisor__advisor_recommend`), matching the `opencode.json` MCP namespace. Bare tool IDs (e.g. `advisor_recommend`) belong in instruction prose, never in `allowed-tools`.
 
 **Workflow-backed families (speckit, create, deep)** additionally own `:auto` / `:confirm` workflow YAML that the router routes modes to:
 
 | Asset | Owns |
 |-------|------|
-| `assets/<ns>_<command>_auto.yaml` | Autonomous-mode workflow: steps, agent dispatch, artifact writes. |
-| `assets/<ns>_<command>_confirm.yaml` | Interactive-mode workflow. |
+| `assets/<ns>-<command>-auto.yaml` | Autonomous-mode workflow: steps, agent dispatch, artifact writes. |
+| `assets/<ns>-<command>-confirm.yaml` | Interactive-mode workflow. |
 
-The **memory** and **doctor** families have NO workflow YAML — their routers dispatch directly to tools and scripts.
+The **memory** and **doctor** families have NO workflow YAML. Their routers dispatch directly to tools and scripts.
 
-**Canonical router shape (first-class standard).** Every router uses one canonical, numbered section vocabulary — full integers, in this order: **`## 1. ROUTER CONTRACT`**, **`## 2. OWNED ASSETS`**, **`## 3. MODE ROUTING`**, **`## 4. EXECUTION TARGETS`**, **`## 5. PRESENTATION BOUNDARY`**, **`## 6. WORKFLOW SUMMARY`**. The blocking core is only `Owned Assets` + `Presentation Boundary`; the other four are recommended and surface as non-blocking warnings when absent. Variants differ by hand-off only, not by required sections:
+**Canonical router shape (first-class standard).** Every router uses one canonical, numbered section vocabulary of full integers, in this order: **`## 1. ROUTER CONTRACT`**, **`## 2. OWNED ASSETS`**, **`## 3. MODE ROUTING`**, **`## 4. EXECUTION TARGETS`**, **`## 5. PRESENTATION BOUNDARY`**, **`## 6. WORKFLOW SUMMARY`**. The blocking core is only `Owned Assets` plus `Presentation Boundary`, and the other four are recommended and surface as non-blocking warnings when absent. Variants differ by hand-off only, not by required sections:
 
-- **Workflow-YAML-backed** routers route modes into `_auto.yaml` / `_confirm.yaml`.
+- **Workflow-YAML-backed** routers route modes into `-auto.yaml` / `-confirm.yaml`.
 - **Direct-dispatch-script** routers dispatch straight to tools and scripts and may leave the recommended sections as warnings.
-- **Compiled-stub** commands carry a `render-command-contract` marker and are exempt from section requirements (retained variant; no command currently uses it).
+- **Compiled-stub** commands carry a `render-command-contract` marker and are exempt from section requirements (retained variant, no command currently uses it).
 
-Which family uses which topology is defined by the machine-readable command contract ([`command-contract.json`](command-contract.json), validated by [`command-contract.schema.json`](command-contract.schema.json)); read it rather than hand-maintaining a family list here.
+Which family uses which topology is defined by the machine-readable command contract ([`command-contract.json`](command-contract.json), validated by [`command-contract.schema.json`](command-contract.schema.json)). Read it rather than hand-maintaining a family list here.
 
-Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Execution Order`); the validator alias-normalizes those as a safety net, but the authored end state is the canonical names above. Reference shape: `.opencode/commands/speckit/plan.md` (router) + `speckit-plan-presentation.txt` (contract). Skeletons: [`command-router-template.md`](command-router-template.md), [`command-presentation-template.md`](command-presentation-template.md).
+Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Execution Order`). The validator alias-normalizes those as a safety net, but the authored end state is the canonical names above. Reference shape: `.opencode/commands/speckit/plan.md` (router) + `speckit-plan-presentation.txt` (contract). Skeletons: [`command-router-template.md`](command-router-template.md), [`command-presentation-template.md`](command-presentation-template.md).
 
 ---
 
@@ -1005,7 +1005,7 @@ allowed-tools: Bash
 
 ## 2. CONTRACT
 
-**Inputs:** `$ARGUMENTS` — Must include `--confirm` flag to skip prompt
+**Inputs:** `$ARGUMENTS`, which must include the `--confirm` flag to skip the prompt
 **Outputs:** `STATUS=<OK|FAIL|CANCELLED> ACTION=<action|cancelled>`
 
 ---
@@ -1256,12 +1256,12 @@ OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
 
 ## 20. COMMAND CONTRACT
 
-Behavioral truth per family — topology, input and gate owner, execution targets, mode matrix,
+Behavioral truth per family, meaning topology, input and gate owner, execution targets, mode matrix,
 owned assets, presentation ownership with typed exceptions, destructive policy, timeout bounds,
-and invocation aliases — is defined once in the machine-readable contract
+and invocation aliases, is defined once in the machine-readable contract
 [`command-contract.json`](command-contract.json), validated against
 [`command-contract.schema.json`](command-contract.schema.json). This template's prose describes
-how to author a command; the contract is the source of truth for what each family does. Read the
+how to author a command. The contract is the source of truth for what each family does. Read the
 contract for a family's authoritative topology and mode default rather than re-deriving it from a
 hand-maintained list. A single family entry validates as one `familyContract`:
 
@@ -1276,7 +1276,7 @@ hand-maintained list. A single family entry validates as one `familyContract`:
   ],
   "mode_matrix": { "default_policy": "non-mutating-default", "supported_modes": [] },
   "owned_assets": [
-    { "purpose": "presentation", "path": ".opencode/commands/<ns>/assets/<action>_presentation.txt" }
+    { "purpose": "presentation", "path": ".opencode/commands/<ns>/assets/<action>-presentation.txt" }
   ],
   "presentation": { "owner": "presentation-asset", "exceptions": [] },
   "destructive_policy": { "has_destructive_ops": true, "gated": true, "operations": ["names the destructive operations and confirms they are gated"] },

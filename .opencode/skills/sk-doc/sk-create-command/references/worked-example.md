@@ -37,9 +37,9 @@ Split mode-based workflow packages commonly use this shape:
 
 ```text
 .opencode/commands/review/packet.md
-.opencode/commands/review/assets/review_packet_presentation.txt
-.opencode/commands/review/assets/review_packet_auto.yaml
-.opencode/commands/review/assets/review_packet_confirm.yaml
+.opencode/commands/review/assets/review-packet-presentation.txt
+.opencode/commands/review/assets/review-packet-auto.yaml
+.opencode/commands/review/assets/review-packet-confirm.yaml
 ```
 
 **Invariants**:
@@ -95,9 +95,9 @@ Outputs:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `assets/review_packet_presentation.txt` |
-| Auto workflow | `assets/review_packet_auto.yaml` |
-| Confirm workflow | `assets/review_packet_confirm.yaml` |
+| Presentation source of truth | `assets/review-packet-presentation.txt` |
+| Auto workflow | `assets/review-packet-auto.yaml` |
+| Confirm workflow | `assets/review-packet-confirm.yaml` |
 
 ## 3. MODE ROUTING
 
@@ -113,20 +113,20 @@ Parse the mode suffix first. After mode extraction, treat the remaining text as 
 
 | Mode | Target |
 |---|---|
-| AUTONOMOUS | `assets/review_packet_auto.yaml` |
-| INTERACTIVE | `assets/review_packet_confirm.yaml` |
-| PROMPT | Use `assets/review_packet_presentation.txt` to ask for mode, then route to the selected target |
+| AUTONOMOUS | `assets/review-packet-auto.yaml` |
+| INTERACTIVE | `assets/review-packet-confirm.yaml` |
+| PROMPT | Use `assets/review-packet-presentation.txt` to ask for mode, then route to the selected target |
 
 ## 5. PRESENTATION BOUNDARY
 
-The router must not inline startup prompt wording, dashboard layouts, success templates, failure templates, or next-step suggestions. Load those from `assets/review_packet_presentation.txt`.
+The router must not inline startup prompt wording, dashboard layouts, success templates, failure templates, or next-step suggestions. Load those from `assets/review-packet-presentation.txt`.
 
 ## 6. WORKFLOW SUMMARY
 
 Validate the spec folder, choose execution mode, run the selected review workflow, then return the structured status from the workflow result.
 ```
 
-Presentation asset: `.opencode/commands/review/assets/review_packet_presentation.txt`
+Presentation asset: `.opencode/commands/review/assets/review-packet-presentation.txt`
 
 ```markdown
 # Review Packet Presentation Contract

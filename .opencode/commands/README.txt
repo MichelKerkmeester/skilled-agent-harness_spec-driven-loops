@@ -1,6 +1,6 @@
 ---
 title: "OpenCode Commands"
-description: "Slash commands for OpenCode providing structured workflows for component creation, deep loops, prompt improvement, memory management, and spec kit operations."
+description: "OpenCode slash commands: component creation, deep loops, prompts, memory, rewrites and spec kit workflows."
 trigger_phrases:
   - "opencode commands"
   - "slash commands"
@@ -41,16 +41,19 @@ Commands are organized into six groups plus root-level utilities:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
-| **create** | `commands/create/` | 11 | Scaffold OpenCode components, documentation packages, and changelogs |
+| **create** | `commands/create/` | 14 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 6 | Deep research, review, AI council and improvement loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **design** | `commands/design/` | 1 | Measured Style Reference DESIGN.md extraction |
 | **memory** | `commands/memory/` | 2 | Continuity write and lexical retrieval over spec docs and skill docs |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
+| **rewrite** | `commands/rewrite/` | 3 | Re-express an existing reply or topic in plain English, or as a diagram |
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
-| **root** | `commands/` | 2 | Standalone `/agent-router` and `/goal-opencode` utilities |
+| **root** | `commands/` | 3 | Standalone `/agent-router`, `/goal-opencode` and `/vision` utilities |
 
-Standalone commands live at the root level: `agent-router.md` routes requests to AI systems, and `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
+Standalone commands live at the root level: `agent-router.md` routes requests to AI systems, `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin, and `vision.md` reads your most recent image on-device. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
+
+Each group's command count above is the number of command files in that folder. When a command is added, update the count and its row in section 4; a group whose file set outgrew this index is the failure mode this document has hit before.
 
 <!-- /ANCHOR:overview -->
 
@@ -74,21 +77,26 @@ This file is descriptive only. The executable contract for any workflow lives in
 command/
 ├── agent-router.md           # Route requests to AI systems
 ├── goal-opencode.md          # Session-goal router for the opencode-goal plugin (OpenCode only)
+├── vision.md                 # On-device read of your most recent image
 ├── prompt/                   # Prompt engineering command group
 │   └── improve.md            # Canonical prompt improvement command (/prompt:improve)
-├── create/                   # Component creation commands
+├── create/                   # Component creation commands — see create/README.txt for the
+│   │                         # full fourteen-command table and per-command invocations
 │   ├── agent.md              # Create new agent
-│   ├── changelog.md          # Create changelog entry
-│   ├── feature-catalog.md    # Create or update feature catalog package
-│   ├── readme.md      # Create folder README
-│   ├── skill.md           # Create or update skill package/files
-│   ├── skill-parent.md    # Scaffold a parent skill with nested mode packets
-│   ├── manual-testing-playbook.md   # Create or update manual testing playbook package
-│   ├── command.md            # Create or update OpenCode slash command set
 │   ├── benchmark.md          # Promote a curated MCP benchmark folder
-│   ├── diagram.md             # Create an HTML/SVG diagram or a validated ASCII flowchart
+│   ├── changelog.md          # Create changelog entry
+│   ├── chart.md              # Author a standalone HTML data chart
+│   ├── command.md            # Create or update OpenCode slash command set
+│   ├── diagram.md            # Create an HTML/SVG diagram or a validated ASCII flowchart
 │   ├── diff.md               # Create a before/after document diff report
-│   └── assets/               # YAML workflow definitions (20 files)
+│   ├── feature-catalog.md    # Create or update feature catalog package
+│   ├── manual-testing-playbook.md   # Create or update manual testing playbook package
+│   ├── readme.md             # Create folder README or install guide
+│   ├── repo-rule.md          # Create, revise or retire a repo rule
+│   ├── skill.md              # Create or update skill package/files
+│   ├── skill-parent.md       # Scaffold a parent skill with nested mode packets
+│   ├── with-human-voice.md   # Apply or score prose against the Human Voice Rules
+│   └── assets/               # YAML workflow and presentation contracts
 ├── deep/                     # Deep-loop commands
 │   ├── agent-improvement.md  # Evaluator-first agent improvement loop
 │   ├── ai-council.md         # Multi-seat AI council planning
@@ -96,7 +104,7 @@ command/
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
 │   ├── skill-benchmark.md    # Skill routing and usefulness benchmark loop
-│   └── assets/               # YAML workflow definitions (10 files)
+│   └── assets/               # YAML workflow definitions
 ├── doctor/                   # MCP server diagnostic and install commands
 │   ├── mcp.md                # Diagnose/install MCP infrastructure
 │   ├── speckit.md            # Spec Kit diagnostics
@@ -110,12 +118,16 @@ command/
 │   ├── search.md             # Lexical retrieval: trigger-index lookup plus ripgrep recipes
 │   ├── save.md               # Save conversation context
 │   └── README.txt            # Memory command index
+├── rewrite/                  # Plain-English and visual re-expression commands
+│   ├── explain-visually.md   # Explain the prior reply or a topic as the smallest useful diagram
+│   ├── response.md           # Rewrite the active AI's last reply in plain English
+│   └── response-by-external-agent.md   # Same, via an external CLI agent or local LLM
 └── speckit/                  # Spec folder workflow commands
     ├── complete.md           # Full end-to-end workflow
     ├── implement.md          # Execute pre-planned work
     ├── plan.md               # Spec through plan only
     ├── resume.md             # Resume existing spec work
-    └── assets/               # YAML workflow definitions (8 files)
+    └── assets/               # YAML workflow definitions
 ```
 
 <!-- /ANCHOR:structure -->
@@ -131,17 +143,20 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Agent | `/create:agent <name>` | Create agent with frontmatter, tool permissions, behavioral rules |
-| Changelog | `/create:changelog <spec-folder-or-component>` | Create a changelog entry from recent work |
+| Agent | `/create:agent <agent_name>` | Create agent with frontmatter, tool permissions, behavioral rules |
+| Benchmark | `/create:benchmark <skill-or-mode> <spec-packet> --family=<family>` | Author or update family-keyed benchmark packages |
+| Changelog | `/create:changelog <spec-folder-or-component>` | Create a global or packet-local changelog entry from recent work |
+| Chart | `/create:chart <target-chart.html> <what the reader compares>` | Author a standalone HTML chart from a catalog of 21 forms |
+| Command | `/create:command <command_invocation> [command_request]` | Create or update an OpenCode slash command set |
+| Diagram | `/create:diagram <target.html\|target.md> [description\|--import <src>]` | Create an HTML/SVG diagram, an ASCII/markdown flowchart, or a draw.io/Mermaid redraw |
 | Diff | `/create:diff <document> [:auto\|:confirm]` | Create a self-contained before/after document diff report |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature-catalog/` package |
 | Folder README | `/create:readme [readme\|install] <target>` | Unified README and install guide workflow |
 | Parent Skill | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
+| Repo Rule | `/create:repo-rule <what the rule should bind> [create\|revise\|retire]` | Create, revise or retire a repo rule under `repo-rules/`, wired into `REPO RULES.md` |
 | Skill | `/create:skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
 | Testing Playbook | `/create:manual-testing-playbook <skill> [create\|update]` | Create or update a rooted `manual-testing-playbook/` package |
-| Command | `/create:command <command_invocation> [command_request]` | Create or update an OpenCode slash command set |
-| Benchmark | `/create:benchmark <skill> <spec-packet> [create\|update]` | Promote a curated MCP benchmark folder and report into a skill |
-| Diagram | `/create:diagram <target-diagram.html\|target-flowchart.md> [description] [--output-format html-svg\|ascii-markdown]` | Create an HTML/SVG technical diagram or a validated ASCII/markdown flowchart |
+| With Human Voice | `/create:with-human-voice <file or passage> [apply\|score]` | Apply or score prose against the Human Voice Rules |
 
 ### Doctor Commands
 
@@ -184,6 +199,17 @@ Root commands have no group prefix.
 | Agent Router | `/agent-router <request>` | Route a request through intelligent AI system selection |
 | Prompt | `/prompt:improve <prompt_or_topic> [:auto\|:confirm]` | Create or improve prompts using frameworks, DEPTH thinking, and CLEAR scoring |
 | Goal (OpenCode) | `/goal-opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `opencode-goal` plugin |
+| Vision | `/vision [question about your most recent image]` | On-device scene read, caption and OCR of your most recent image; omit the question for a full read |
+
+### Rewrite Commands
+
+Re-express something that already exists — the active AI's last reply, or a named topic — without changing files.
+
+| Command | Invocation | Purpose |
+|---------|------------|---------|
+| Response | `/rewrite:response [--show-original]` | Rewrite the active AI's most recent reply into plain English in-context |
+| Response by External Agent | `/rewrite:response-by-external-agent [cli-<skill>\|native\|local] [target-text]` | Same projection, run through an external CLI agent or a local LLM |
+| Explain Visually | `/rewrite:explain-visually [--depth=expert\|plain\|novice] [--artifact] [topic]` | Explain the prior reply or a topic as the smallest diagram that answers the question |
 
 ### Memory Commands
 
@@ -212,7 +238,7 @@ Structured workflows for the spec folder development lifecycle.
 <!-- ANCHOR:instructions -->
 ## 5. INSTRUCTIONS
 
-1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `memory`, or `speckit`.
+1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `memory`, `prompt`, `rewrite`, or `speckit`.
 2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/agent-router` or `/goal-opencode`.
 3. Prefer the unified commands over historical split commands.
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.

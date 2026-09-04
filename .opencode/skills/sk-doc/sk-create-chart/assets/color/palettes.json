@@ -8,6 +8,13 @@
     "muted": "#52504E",
     "rule": "#E0DFDC"
   },
+  "chromeDark": {
+    "surface": "#161513",
+    "ink": "#F2F0EC",
+    "muted": "#A8A5A0",
+    "rule": "#F2F0EC17"
+  },
+  "chromeDarkNote": "The ground a reader gets when their operating system asks for dark. It is the light theme's near-black taken one step deeper, and ink and muted are set to hold the ratio their light counterparts hold against paper. The rule is ink at nine percent rather than a solid grey, chosen so the card edge lands on the same 1.26:1 the light edge holds: an alpha sits on the ground, where a grey would draw a second line over the data.",
   "chromeRoles": {
     "surface": "The page and card ground. Every contrast ratio in this file is measured against it.",
     "ink": "Primary text: the headline and any label a reader has to read exactly.",
@@ -15,7 +22,41 @@
     "rule": "Gridlines, axis lines and card borders. Structure, never data.",
     "separator": "Not a value. Shapes that touch are separated by a stroke in surface, so no two data colours ever share an edge."
   },
+  "radius": {
+    "mark": "2px",
+    "track": "4px",
+    "swatch": "6px",
+    "pill": "8px",
+    "card": "10px"
+  },
+  "radiusRoles": {
+    "ladder": "One 2px knob, five steps. Every step is a corner the corpus actually draws, so a rung exists for a consumer rather than for symmetry.",
+    "mark": "A data mark's corner: a bar end, a box body, a calendar cell, a legend swatch, a ring tick.",
+    "track": "A percentage bar and the track it runs inside.",
+    "swatch": "A colour block large enough to be read as a panel rather than as a mark.",
+    "pill": "A progress track and its fill, which read as one capsule.",
+    "card": "The card that holds the chart.",
+    "notALadderRung": "A corner computed from a mark's own geometry, such as a range bar rounded to half its width, is geometry rather than a shared value. It stays in the drawing code."
+  },
+  "typeScale": {
+    "note": "Six named roles and three named departures. Not colours, and like the corner ladder they sit in their own object for that reason: they are the other half of the vocabulary a template reads, and they live here so the check that rejects a size off the scale reads a value rather than restating one. In-figure text steps down a rung as a form gets denser, which is the scale working: the rung is chosen for the space the text has, out of six rungs rather than out of the air.",
+    "roles": {
+      "headline": "21px",
+      "body": "15px",
+      "subtitle": "14px",
+      "label": "13px",
+      "note": "12px",
+      "tick": "11px"
+    },
+    "departureNote": "Each departure below is a single number that is the point of its chart rather than a label on it, or a strip too narrow for the tick size to sit in. A departure is named here so it stays a decision rather than becoming a drift.",
+    "departures": {
+      "hero": "56px",
+      "ringTotal": "34px",
+      "monthStrip": "10px"
+    }
+  },
   "gates": {
+    "note": "Every gate is computed once per theme, against that theme's own surface. A value that clears on paper has proved nothing about the dark ground, and the two runs print as separate lines.",
     "textOnSurface": 4.5,
     "markOnSurface": 3.0,
     "rampDarkestOnSurface": 3.0,
@@ -29,24 +70,30 @@
   "systems": {
     "neutral": {
       "encodes": "importance",
-      "useWhen": "The default, and the fallback whenever hue would carry no stable meaning. Lightness alone ranks the series, darkest first.",
+      "useWhen": "The default, and the fallback whenever hue would carry no stable meaning. Lightness alone ranks the series, starting with the value furthest from the ground.",
       "capacity": 4,
       "series": ["#292825", "#4C4B48", "#6B6A67", "#8D8B89"],
-      "emphasis": "#B4471F"
+      "emphasis": "#B4471F",
+      "seriesDark": ["#E2E1DE", "#B0AEAA", "#8A8783", "#686561"],
+      "emphasisDark": "#DD6336"
     },
     "ordered": {
       "encodes": "magnitude",
-      "useWhen": "The data is ordered: a value, a rank, a time position, a progress figure. One hue, five steps, dark reads as more.",
+      "useWhen": "The data is ordered: a value, a rank, a time position, a progress figure. One hue, five steps, and the step furthest from the ground reads as more.",
       "capacity": 5,
       "series": ["#213B3D", "#275C63", "#2E7F89", "#69A2A9", "#A3C4C7"],
-      "emphasis": "#B4471F"
+      "emphasis": "#B4471F",
+      "seriesDark": ["#A1D4DC", "#47AFBE", "#318893", "#28646A", "#1F4649"],
+      "emphasisDark": "#DD6336"
     },
     "categorical": {
       "encodes": "category",
       "useWhen": "The categories are unordered and there are four or fewer. Five or more categories go neutral and carry labels.",
       "capacity": 4,
       "series": ["#28405C", "#874420", "#487B3B", "#A377B6"],
-      "emphasis": "#1A1917"
+      "emphasis": "#1A1917",
+      "seriesDark": ["#DBBD6D", "#57AABF", "#D25F4D", "#7657BF"],
+      "emphasisDark": "#F2F0EC"
     }
   }
 }

@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp",
+  "spec_folder": "mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp",
+  "parent_id": "mcp-tooling/019-official-obsidian-cli",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli versus mcp",
+      "obsidian surface comparison",
+      "preferred obsidian surface",
+      "obsidian mcp measurement",
+      "obsidian surface measurement plan",
+      "cli versus mcp runners",
+      "evidence runner no pipe",
+      "vault safety rules",
+      "cli versus mcp tasks",
+      "obsidian measurement tasks",
+      "surface comparison checklist",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "cli",
+      "versus",
+      "mcp",
+      "obsidian",
+      "surface",
+      "comparison",
+      "preferred",
+      "measurement",
+      "plan",
+      "runners",
+      "evidence",
+      "runner"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      "scratch/runt.sh",
+      "specs/mcp-tooling/013-mcp-obsidian/spec.md",
+      "scratch/mcpcall.cjs",
+      "scratch/mcpseq.cjs",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/evidence/bench-cli-read.txt",
+      "scripts/doctor.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-versus-mcp.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "obsidian-cli-commands.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md",
+        "source": "derived"
+      },
+      {
+        "name": "official-cli-agent-usage.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "runt.sh",
+        "kind": "script",
+        "path": "scratch/runt.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcpcall.cjs",
+        "kind": "file",
+        "path": "scratch/mcpcall.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcpseq.cjs",
+        "kind": "file",
+        "path": "scratch/mcpseq.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bench-cli-read.txt",
+        "kind": "file",
+        "path": "scratch/evidence/bench-cli-read.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill described the official CLI and the MCP server side by side and left the choice to the reader",
+    "created_at": "2026-09-02T18:51:33Z",
+    "last_save_at": "2026-09-02T20:21:51.969Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2fd00650aa75c1d84057eb8bcf0fded0711f1fb41e8d363f205abdcee0324b66",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7850076c2fd163a8a06e9fcf2cb79e591e731c248045033af3aa65d304eabe46",
+      "plan.md": "13a4e435ca8d13fb9bbdc5315637c32ff875f0424bbf27547f67c79e78d7482a",
+      "tasks.md": "76578ee9e5c14027d4f9d7178666a45ea86c84600adb9e6e00c55dbf53732aa9",
+      "implementation-summary.md": "a324c9f42ce4588ed47d8f1297b2b1382a273564da9c74fab9b1bf4563c57718"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

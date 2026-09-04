@@ -91,9 +91,9 @@ The versioning standard is nine sections covering one algorithm. A skill's ancho
 
 The build segment is the file's real edit count, and "real" is doing specific work.
 
-Count commits with `git log --follow` alone and the number is three to five times too high. Two things inflate it. A historical repository-wide move rewrote every path, so every file carries the whole pre-move history as commits that changed zero of its lines. And bulk sweeps touch a file's siblings while listing the file as part of the commit.
+Count commits with `git log --follow` alone and the number comes out too high. Two things inflate it. A historical repository-wide move rewrote every path, so a file can carry pre-move history as commits that changed zero of its lines. And bulk sweeps touch a file's siblings while listing the file as part of the commit.
 
-Gating each commit on its own per-file added-plus-deleted line count removes both. Without the gate a document that has been edited four times reads as version 1.5.0.19, which is not wrong by a little.
+Gating each commit on its own per-file added-plus-deleted line count removes both. Measured over all 1,214 in-scope docs of `sk-doc` and `system-spec-kit`, the ungated count runs 1.06-1.09x the gated one in aggregate and 2.25x at the worst file, and it differs at all on roughly a third of them. So the gate earns its place by changing the answer often, not by changing it enormously.
 
 ### Key Concept: A Silent Budget
 

@@ -1,6 +1,6 @@
 ---
-description: "Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :autopilot/:unattended/--unattended, :with-context, :with-phases."
-argument-hint: "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup; :autopilot/:unattended/--unattended prepares unattended task metadata)"
+description: "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers."
+argument-hint: "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases] [--level=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, opencode_goal, opencode_goal_status
 ---
 
@@ -34,6 +34,29 @@ Load the presentation contract before showing startup questions, checkpoints, da
 4. For `:auto`, resolve required setup inputs using the presentation contract's auto-resolution rules before loading YAML.
 5. For `:autopilot`, `:unattended`, or `--unattended`, bind execution mode to `autopilot`; do not alias it to `:auto`.
 6. Load the selected workflow asset and execute it step by step.
+
+### Workflow Flag Surface
+
+The argument hint names the invocation shape; the whole flag surface is here. Every entry below
+is a workflow input, never an execution mode.
+
+| Input | Value | Effect |
+|-------|-------|--------|
+| `:with-context` | no value | Loads a context package before planning. |
+| `:with-phases` | no value | Decomposes the packet into phase children and plans the first one. |
+| `--intake-only` | no value | Stops after the intake emit and never continues into the planning steps. |
+| `--phases` | `N` | Number of phase children to decompose into. |
+| `--phase-names` | comma-separated list | Names for those children, in order. |
+| `--phase-folder` | `PATH` | Targets one existing child instead of decomposing. |
+| `--spec-folder` | `PATH` | Binds the packet that owns this run's writes. |
+| `--level` | `1` \| `2` \| `3` \| `3+` | Overrides the recommended documentation level. |
+| `--start-state` | `empty-folder` \| `partial-folder` \| `repair-mode` \| `placeholder-upgrade` \| `populated-folder` | Declares the folder state instead of letting the workflow classify it. |
+| `--repair-mode` | `MODE` | Selects the repair path when the folder needs metadata repair or an intake resume before planning. |
+| `--record-relationships` | `yes` \| `no` | Gate on writing packet relationships. Default `no`. |
+| `--depends-on`, `--related-to`, `--supersedes` | comma-separated packet ids | Seed the `depends_on`, `related_to` and `supersedes` lists, recorded only when `--record-relationships=yes`. |
+
+Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in the prompt body binds the required setup
+values without an interactive prompt.
 
 ---
 

@@ -167,7 +167,7 @@ print_mcp_config() {
 The Obsidian MCP server provides app-backed note operations:
   reading, writing, searching and tagging notes against a running vault.
 
-SERVER:   obsidian-mcp-server (cyanheads, npm v3.2.9), launched via npx over stdio
+SERVER:   obsidian-mcp-server (cyanheads, npm v3.5.0), launched via npx over stdio
 PREREQS:  Obsidian Local REST API plugin v4.0.0+ enabled, an API key generated,
           and a running Obsidian app.
 

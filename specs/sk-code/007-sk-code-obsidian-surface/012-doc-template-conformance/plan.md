@@ -144,7 +144,7 @@ condition -> this leaf's own docs.
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase
 state. In brief: confirm no `/doc:quality` command or `sk-create-quality-control` script exists, run
 the three real validators against this packet, re-run the document validator against the three
 sibling SURFACE packets and the template's playbook index for comparison, then write this leaf's docs

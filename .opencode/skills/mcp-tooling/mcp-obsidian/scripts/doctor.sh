@@ -77,7 +77,7 @@ if [ -f "$UTCP" ]; then
 else
   info ".utcp_config.json not found at expected repo root"
 fi
-info "MCP server: obsidian-mcp-server (cyanheads v3.2.9), stdio via npx"
+info "MCP server: obsidian-mcp-server (cyanheads v3.5.0), stdio via npx"
 
 # Local REST API reachability + auth env (never print the secret)
 log "-- Obsidian Local REST API + auth --"

@@ -31,7 +31,7 @@ Usage:
      ../../../sk-create-frontmatter/references/frontmatter-versioning.md §1, not a versioned
      reference doc.
   3. Ship the file with every row "pending" / "not_captured" if no Claude leg has
-     run yet — an uncaptured cell is a legitimate ship state, but it is NEVER
+     run yet. An uncaptured cell is a legitimate ship state, but it is NEVER
      quotable as behavior. Replace pending cells with measured values only after a
      real capture.
   4. Once a real tTerminal exists per cell, recompute each scenario's budget_ms
@@ -41,7 +41,7 @@ The budget formula and the D5 latency-ratio definition are normative in:
   .opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md
 -->
 
-# {{MODE}} Behavior Benchmark — Claude Baseline
+# Claude Baseline for the {{MODE}} Behavior Benchmark
 
 ## 1. OVERVIEW
 
@@ -62,7 +62,7 @@ behavior.
 No Claude leg has been captured for the {{PREFIX}} scenarios yet, so this table
 carries no measured values. Every checkpoint is `pending` and every classification
 is `not_captured`. Do not quote a latency ratio, a budget, or a pass rate from
-this file until a real capture replaces the `pending` cells — an uncaptured cell
+this file until a real capture replaces the `pending` cells. An uncaptured cell
 is never quotable as behavior.
 
 | Scenario | tFirstOutput | tSetup | tFirstDispatch | tTerminal | Classification |
@@ -76,13 +76,13 @@ is never quotable as behavior.
 ## 3. CAPTURE PROVENANCE
 
 The framework requires the date, the host and CLI versions on the baseline leg,
-and which executor leg produced the values (framework.md PACKAGE CONVENTIONS) —
-fill all four below, not just the date.
+and which executor leg produced the values (framework.md PACKAGE CONVENTIONS).
+Fill all four below, not just the date.
 
 - **Date**: {{NOT_YET_CAPTURED_OR_CAPTURE_DATE}}.
 - **Host / environment**: {{HOST_MACHINE_OR_ENVIRONMENT_NOTE_OR_NOT_YET_CAPTURED}}.
-- **Executor model**: {{EXECUTOR_MODEL_OR_NOT_YET_CAPTURED}} — the model the `claude-cli` leg actually ran (e.g. `claude-opus-4-8`), not assumed from the CLI default.
-- **Leg**: `claude-cli` {{CLI_BINARY_VERSION_OR_TO_BE_CAPTURED}} — `claude ... -p --output-format stream-json --verbose --dangerously-skip-permissions`, matching the sibling packages' baseline leg.
+- **Executor model**: {{EXECUTOR_MODEL_OR_NOT_YET_CAPTURED}}, the model the `claude-cli` leg actually ran (e.g. `claude-opus-4-8`), not assumed from the CLI default.
+- **Leg**: `claude-cli` {{CLI_BINARY_VERSION_OR_TO_BE_CAPTURED}} running `claude ... -p --output-format stream-json --verbose --dangerously-skip-permissions`, matching the sibling packages' baseline leg.
 - **Sampling**: {{NONE_YET_OR_SAMPLES_PER_CELL_AND_RERUN_POLICY}}.
 - **Host confound (stated per the framework)**: the baseline runs a different host binary than the opencode legs, so host overhead (session bootstrap, hook wiring) folds into every latency ratio derived from these values. Restate this confound inline wherever a D5 ratio is reported.
 
@@ -95,8 +95,8 @@ fill all four below, not just the date.
   applied until a `tTerminal` exists per cell. The `budget_ms` values in the
   scenario contracts ({{THE_PROVISIONAL_FLOOR_180000_MS_UNTIL_CAPTURE}}) are the
   framework-floor provisional defaults, capped by mode at 900000 ms
-  (research/review) or 1500000 ms (ai-council/improvement/alignment) — see
-  framework.md BUDGET POLICY, never a per-scenario invented number; recompute
+  (research/review) or 1500000 ms (ai-council/improvement/alignment). See
+  framework.md BUDGET POLICY, never a per-scenario invented number, and recompute
   them from the captured `tTerminal` values when this baseline is filled in.
 - **Autonomous-cell watchdog.** {{WHICH_CELLS_SET_WATCHDOG_MS_AND_WHY_A_DELEGATING_CELL_LEGITIMATELY_GOES_QUIET}}
 - **Fixture provisioning is a prerequisite for capture.** {{WHICH_CELLS_BIND_A_FIXTURE_THE_EXECUTING_ROUND_MUST_PROVISION_FIRST_AND_WHY_CAPTURE_CANNOT_SCORE_WITHOUT_IT}}

@@ -13,6 +13,11 @@
   --chart-ink: #1A1917;
   --chart-muted: #52504E;
   --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
   --chart-series-1: #28405C;
   --chart-series-2: #874420;
   --chart-series-3: #487B3B;
@@ -20,6 +25,38 @@
   --chart-emphasis: #1A1917;
 }
 /* CHART_PALETTE:END */
+
+/* CHART_PALETTE_DARK:BEGIN system=categorical */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --chart-surface: #161513;
+    --chart-ink: #F2F0EC;
+    --chart-muted: #A8A5A0;
+    --chart-rule: #F2F0EC17;
+    --chart-series-1: #DBBD6D;
+    --chart-series-2: #57AABF;
+    --chart-series-3: #D25F4D;
+    --chart-series-4: #7657BF;
+    --chart-emphasis: #F2F0EC;
+  }
+}
+/* CHART_PALETTE_DARK:END */
+
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
 
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
@@ -37,31 +74,58 @@ body {
   margin: 0 auto 20px;
   padding: 28px 28px 22px;
   border: 1px solid var(--chart-rule);
-  border-radius: 10px;
+  border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
 
 .series-1 { fill: var(--chart-series-1); }
 .series-2 { fill: var(--chart-series-2); }
 .series-3 { fill: var(--chart-series-3); }
 .series-4 { fill: var(--chart-series-4); }
+/* A group past the palette's capacity has no colour to take, so it takes the rule colour: the
+   ground held back, which reads as "outside the encoding" rather than as a colour of its own.
+   It is deliberately outside the .series-* ladder so that nothing can reach it by arithmetic,
+   and the figure prints a notice whenever a mark lands on it. */
+.over-capacity { fill: var(--chart-rule); }
+/* A counted square and the legend block beside it are both marks, so both sit on the mark
+   rung. The cell used to carry its own three pixel corner, which nothing else in the corpus
+   drew and nothing checked. */
+.series-1, .series-2, .series-3, .series-4, .over-capacity { rx: var(--chart-radius-mark); }
 .key { fill: var(--chart-muted); font-size: 12px; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. A legend entry names a category and appends its share, so it reads as a phrase and keeps the body face. */
+td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
 <div class="card">
-  <h1 class="headline" data-chart-part="headline">Half of every support hour is spent on two accounts out of forty</h1>
+  <h1 class="headline" data-chart-part="headline">Half of every support hour is spent on the two largest accounts</h1>
   <p class="subtitle" data-chart-part="subtitle">One square is one percent of the support hours logged last month. Squares are countable, which is the point: a reader compares shares by counting rather than by estimating an angle.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 230" id="chart">
@@ -72,11 +136,13 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Share of support hours by account tier. The shares sum to one hundred.</caption>
-    <thead><tr><th scope="col">Tier</th><th scope="col">Share of hours</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Share of support hours by account tier. The shares sum to one hundred.</caption>
+      <thead><tr><th scope="col">Tier</th><th scope="col">Share of hours</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -101,11 +167,62 @@ function node(name, attrs, cls) {
   return el;
 }
 
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return Number.isFinite(d.value); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
 const COLS = 20;
 const CELL = 30;
 const GAP = 6;
 const TOP = 44;
 const LEFT = 4;
+
+// The palette block above defines 4 parts colours and no more, so a fifth part has
+// none to take. Reaching for one produced a class the stylesheet defines no fill for, and an
+// undefined fill paints black: the part the encoding could not carry came out as the
+// strongest mark in the picture, under a key that never named it. Past the ceiling the extras
+// share one unkeyed fill and the figure says so, which is the answer `scatter` and `heat-matrix`
+// already give when their own documented shape is exceeded.
+//
+// The ceiling is written here rather than counted, because a self-contained file has no source
+// to read it from. `series-capacity` in the corpus check reads this constant against the palette
+// source, so the two cannot drift apart without a run saying which side moved.
+const CAPACITY = 4;
+function seriesClass(i) {
+  return i < CAPACITY ? 'series-' + (i + 1) : 'over-capacity';
+}
 
 let filled = 0;
 DATA.forEach(function (d, s) {
@@ -115,19 +232,38 @@ DATA.forEach(function (d, s) {
       x: LEFT + (i % COLS) * (CELL + GAP),
       y: TOP + Math.floor(i / COLS) * (CELL + GAP),
       width: CELL,
-      height: CELL,
-      rx: 3
-    }, 'series-' + (s + 1));
+      height: CELL
+    }, seriesClass(s));
   }
   filled += d.value;
 });
 
 let keyX = LEFT;
 DATA.forEach(function (d, s) {
-  node('rect', { x: keyX, y: 6, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
-  node('text', { x: keyX + 19, y: 17 }, 'key').textContent = d.label + ' ' + d.value + '%';
-  keyX += 46 + d.label.length * 6.6;
+  node('rect', { x: keyX, y: 6, width: 13, height: 13 }, seriesClass(s));
+  const label = node('text', { x: keyX + 19, y: 17 }, 'key');
+  label.textContent = d.label + ' ' + fmt(d.value) + '%';
+  // The gap after a swatch is the label's real width, measured once it is in the
+  // document. A character count times a constant assumes every glyph is the same
+  // width, which this font stack does not promise, so a wide label used to run
+  // under the next swatch. The count stays as the fallback for a reader that has
+  // not laid the text out yet.
+  keyX += 27 + (label.getComputedTextLength() || (d.label.length + 4) * 6.6);
 });
+
+
+// The catalog gives this form a working shape and the palette gives it a ceiling of colours.
+// Past that ceiling the figure says so in the picture, where the person reading the chart will
+// see it, rather than in a console nobody opens. The notice grows the frame instead of sitting
+// inside the plot, so it never lands on a mark.
+if (DATA.length > CAPACITY) {
+  const box = svg.getAttribute('viewBox').split(' ');
+  const grown = Number(box[3]) + 22;
+  svg.setAttribute('viewBox', box[0] + ' ' + box[1] + ' ' + box[2] + ' ' + grown);
+  node('text', { x: LEFT, y: grown - 6 }, 'notice').textContent =
+    fmt(DATA.length) + ' parts are drawn and this colour system carries ' + fmt(CAPACITY)
+    + '. The rest are drawn outside the encoding, so merge the tail before drawing or move to the neutral system.';
+}
 
 const rows = document.getElementById('rows');
 DATA.forEach(function (d) {
@@ -137,11 +273,13 @@ DATA.forEach(function (d) {
   th.textContent = d.label;
   const td = document.createElement('td');
   td.className = 'num';
-  td.textContent = d.value + '%';
+  td.textContent = fmt(d.value) + '%';
   tr.appendChild(th);
   tr.appendChild(td);
   rows.appendChild(tr);
 });
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
 </script>
 </body>
 </html>

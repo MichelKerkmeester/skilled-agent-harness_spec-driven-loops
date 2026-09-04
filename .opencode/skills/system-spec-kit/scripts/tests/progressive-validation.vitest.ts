@@ -10,6 +10,48 @@ import { spawnSync } from 'child_process';
 
 vi.setConfig({ testTimeout: 120_000 });
 
+// TYPES
+/**
+ * The report shape `progressive-validate.sh --json` prints. Its producer is a
+ * shell script, so no module in the workspace can own this contract. It is
+ * declared beside the assertions that read it, and it must be updated whenever
+ * the script's JSON block changes.
+ */
+interface ProgressiveValidateFix {
+  id: number;
+  file: string;
+  type: string;
+  description: string;
+}
+
+interface ProgressiveValidateSuggestion {
+  id: number;
+  file: string;
+  rule: string;
+  location: string;
+  remediation: string;
+}
+
+interface ProgressiveValidateReport {
+  version: string;
+  pipelineLevel: number;
+  dryRun: boolean;
+  folder: string;
+  detectExitCode: number;
+  passed: boolean;
+  strict: boolean;
+  autoFixes: {
+    count: number;
+    applied: boolean;
+    items: ProgressiveValidateFix[];
+    diffs: string;
+  };
+  suggestions: {
+    count: number;
+    items: ProgressiveValidateSuggestion[];
+  };
+}
+
 // CONSTANTS
 const SCRIPTS_DIR = path.resolve(__dirname, '..');
 const PROGRESSIVE_SCRIPT = path.join(SCRIPTS_DIR, 'spec', 'progressive-validate.sh');
@@ -602,7 +644,7 @@ Test.
 
       const { stdout } = runProgressiveValidate(tmpDir, ['--level', '4', '--json']);
 
-      let parsed: ProgressiveValidateReport;
+      let parsed!: ProgressiveValidateReport;
       expect(() => {
         parsed = JSON.parse(stdout) as ProgressiveValidateReport;
       }).not.toThrow();
@@ -726,7 +768,7 @@ Test.
 
       const { stdout } = runProgressiveValidate(VALID_L1_FIXTURE, ['--level', '4', '--json']);
 
-      let parsed: ProgressiveValidateReport;
+      let parsed!: ProgressiveValidateReport;
       expect(() => {
         parsed = JSON.parse(stdout) as ProgressiveValidateReport;
       }).not.toThrow();
@@ -855,7 +897,7 @@ Test.
         '--level', '4', '--dry-run', '--json',
       ]);
 
-      let parsed: ProgressiveValidateReport;
+      let parsed!: ProgressiveValidateReport;
       expect(() => {
         parsed = JSON.parse(stdout) as ProgressiveValidateReport;
       }).not.toThrow();

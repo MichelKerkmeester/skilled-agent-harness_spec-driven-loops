@@ -27,6 +27,13 @@ Usage:
   python3 hvr_scan.py <file> --include-code     # do not skip code spans
   python3 hvr_scan.py <file> --rules <path>     # point at another standard
 
+A target whose name marks it as a template (ends in "template"/"templates") and
+sits in an assets/ or templates/ tree has its payload fence read as prose: that
+block is the deliverable, not a quotation, and masking it by default would let a
+banned character ride into every document authored from it. A fence tagged with
+a code language stays masked even there, because a semicolon in a TypeScript
+sample is a statement terminator rather than a punctuation defect.
+
 Exit status: 0 when no hard blocker is found, 1 when at least one is,
 2 on a usage or read error.
 """
@@ -202,41 +209,182 @@ def load_rules(rules_path):
 # 3. MASKING WHAT HVR DOES NOT GOVERN
 # ───────────────────────────────────────────────────────────────
 
-FENCE = re.compile(r"^\s*(```|~~~)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
+FENCE_INFO = re.compile(r"^\s*(?:`{3,}|~{3,})\s*([A-Za-z0-9_+.-]*)")
+
+# Fence tags that mark a sample of code rather than a payload of prose. Inside a
+# template the tag is the only thing separating the document the template emits
+# from a sample the template quotes, and the two need opposite treatment. Absent,
+# markdown, text and yaml tags stay prose on purpose: silencing a prose payload
+# trades a loud correct finding for a silent wrong one.
+CODE_FENCE_LANGUAGES = {
+    "bash", "sh", "shell", "zsh", "console",
+    "json", "jsonc",
+    "python", "py",
+    "javascript", "js", "typescript", "ts",
+    "gitignore",
+}
+
+# A frontmatter block is a field skeleton rather than prose, wherever it sits. A
+# template emits one into the document it generates, so the same three dashes that
+# open a document's own frontmatter also open the frontmatter its payload carries.
+# A lone rule between sections looks identical on its first line, so the second
+# line decides: a field declaration opens frontmatter, anything else is a rule.
+FRONTMATTER_FIELD_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_-]*\s*:")
+
+# What may sit between the two rules of a frontmatter block: a field, a nested
+# value, a comment, a list item, or nothing. Anything else means the opening rule
+# was a section break or the underline of a heading, and the block is not one.
+FRONTMATTER_BODY_RE = re.compile(r"^(?:\s+\S|[A-Za-z_][A-Za-z0-9_-]*\s*:|#|-\s|$)")
 
 
-def mask_untargeted(lines, include_code):
+def _frontmatter_block_end(lines, index, at_start=False):
+    """Return the closing index of a frontmatter block opening at index, or None.
+
+    The search is bounded on purpose. Running to the end of the document for a
+    closing rule lets an unrelated later rule close a block that never opened,
+    which masks everything between them and turns a finding into a silence. A
+    silence is the one failure a scanner must not produce, because its counts are
+    counts of what survived masking.
+    """
+    if lines[index].strip() != "---":
+        return None
+    # Three dashes under a line of text are that line's heading underline, never
+    # frontmatter. What may precede one is the top of the document, a blank line,
+    # or the fence that opens the payload carrying it.
+    if not at_start and index > 0:
+        previous = lines[index - 1]
+        if previous.strip() and not FENCE.match(previous):
+            return None
+    following = index + 1
+    if following >= len(lines) or not FRONTMATTER_FIELD_RE.match(lines[following].strip()):
+        return None
+    for probe in range(following, len(lines)):
+        text = lines[probe].strip()
+        if text == "---":
+            return probe
+        if FENCE.match(lines[probe]):
+            return None
+        if not FRONTMATTER_BODY_RE.match(lines[probe]):
+            return None
+    return None
+
+
+# A template's filename ends in "template" (a document ABOUT templates starts
+# with the word instead, e.g. "template-guide.md"), which is how the skills tree
+# already tells the two apart.
+TEMPLATE_STEM_RE = re.compile(r"(?:^|[-_.])templates?$", re.IGNORECASE)
+
+
+def is_template_path(path):
+    """Return whether a target is a template payload rather than running prose.
+
+    A template's whole output lives inside its own fenced block, so masking the
+    fence by default reads past the only part that reaches a new file. A target
+    counts as a template when its name marks it as one (see ``TEMPLATE_STEM_RE``)
+    and it sits where the skills tree keeps a payload rather than prose about
+    one: an ``assets/`` directory, or anywhere under a ``templates/`` tree.
+    """
+    normalized = str(path).replace("\\", "/")
+    parts = [part for part in normalized.split("/") if part]
+    if not parts:
+        return False
+    stem = Path(parts[-1]).stem
+    if not TEMPLATE_STEM_RE.search(stem):
+        return False
+    parents = parts[:-1]
+    return "assets" in parents or "templates" in parents
+
+
+def _mask_inline_spans(masked, indexes):
+    """Blank inline code spans over one paragraph of prose.
+
+    A span is paired across the whole paragraph rather than line by line,
+    because a backticked error string wraps like any other text. The paragraph
+    is the boundary because Markdown ends a code span at a blank line, which is
+    also what stops an unmatched backtick blanking the rest of the document.
+    """
+    if not indexes:
+        return
+    joined = "\n".join(masked[index] for index in indexes)
+    joined = re.sub(r"`[^`]*`", lambda m: re.sub(r"[^\n]", " ", m.group(0)), joined)
+    for index, line in zip(indexes, joined.split("\n")):
+        masked[index] = line
+
+
+def mask_untargeted(lines, include_code, template_payload=False):
     """Blank out frontmatter, fenced blocks and inline code spans.
 
     HVR governs prose. A banned word inside a code sample, a command, an
     identifier or a quoted error string is not a voice defect, and scoring it
     produces edits that break the sample. Masking replaces those spans with
     spaces so line and column numbers stay true.
+
+    A template payload changes which fences count as prose, never whether the
+    other masking runs. Its own output fence is read as prose, and a fence
+    tagged with a code language is masked exactly as it would be anywhere else.
     """
     masked = list(lines)
     if include_code:
         return masked
 
     start = 0
-    if masked and masked[0].strip() == "---":
-        for index in range(1, len(masked)):
-            if masked[index].strip() == "---":
-                start = index + 1
-                break
+    head_end = _frontmatter_block_end(masked, 0, at_start=True) if masked else None
+    if head_end is not None:
+        start = head_end + 1
         for index in range(0, start):
             masked[index] = " " * len(masked[index])
 
     in_fence = False
-    for index in range(start, len(masked)):
+    fence_is_code = True
+    fence_marker = ""
+    paragraph = []
+    index = start - 1
+    while index + 1 < len(masked):
+        index += 1
         line = masked[index]
-        if FENCE.match(line):
-            in_fence = not in_fence
-            masked[index] = " " * len(line)
+        if not in_fence or not fence_is_code:
+            block_end = _frontmatter_block_end(masked, index)
+            if block_end is not None:
+                for blank in range(index, block_end + 1):
+                    masked[blank] = " " * len(masked[blank])
+                _mask_inline_spans(masked, paragraph)
+                paragraph = []
+                index = block_end
+                continue
+        marker_match = FENCE.match(line)
+        if marker_match:
+            marker = marker_match.group(1)
+            # A fence closes only on a run of the same character at least as long as
+            # the one that opened it. Toggling on any marker lets a short fence nested
+            # inside a longer one close it, which inverts every line after it: payload
+            # reads as prose and prose reads as payload.
+            if in_fence and (marker[0] != fence_marker[0] or len(marker) < len(fence_marker)):
+                if fence_is_code:
+                    masked[index] = " " * len(line)
+                continue
+            _mask_inline_spans(masked, paragraph)
+            paragraph = []
+            if in_fence:
+                in_fence = False
+            else:
+                in_fence = True
+                fence_marker = marker
+                info = (FENCE_INFO.match(line).group(1) or "").lower()
+                fence_is_code = not template_payload or info in CODE_FENCE_LANGUAGES
+            if fence_is_code:
+                masked[index] = " " * len(line)
             continue
         if in_fence:
-            masked[index] = " " * len(line)
+            if fence_is_code:
+                masked[index] = " " * len(line)
             continue
-        masked[index] = re.sub(r"`[^`]*`", lambda m: " " * len(m.group(0)), line)
+        if not line.strip():
+            _mask_inline_spans(masked, paragraph)
+            paragraph = []
+            continue
+        paragraph.append(index)
+    _mask_inline_spans(masked, paragraph)
     return masked
 
 
@@ -342,9 +490,9 @@ def score_transitions(findings, transitions):
     return kept
 
 
-def scan_text(text, rules, include_code=False):
+def scan_text(text, rules, include_code=False, template_payload=False):
     raw_lines = text.splitlines()
-    lines = mask_untargeted(raw_lines, include_code)
+    lines = mask_untargeted(raw_lines, include_code, template_payload)
 
     findings = []
     scan_punctuation(lines, rules["punctuation"], findings)
@@ -381,6 +529,8 @@ UNSCORED = (
 
 def render(path, result, every_occurrence=False):
     out = [f"HVR SCAN: {path}"]
+    if result.get("templatePayload"):
+        out.append("  template payload detected: its payload fence is read as prose")
     findings = result["findings"]
     if not findings:
         out.append("  no mechanical findings")
@@ -454,8 +604,15 @@ def main(argv=None):
         except OSError as error:
             print(f"hvr_scan: cannot read {target}: {error}", file=sys.stderr)
             return 2
-        result = scan_text(text, rules, include_code=args.include_code)
+        template_payload = target != "-" and is_template_path(target)
+        result = scan_text(
+            text,
+            rules,
+            include_code=args.include_code,
+            template_payload=template_payload,
+        )
         result["path"] = target
+        result["templatePayload"] = template_payload
         reports.append(result)
         worst = max(worst, result["hardBlockers"])
 

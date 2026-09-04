@@ -1,0 +1,11 @@
+T001  Phase 002 closed before this phase started.
+
+specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout/acceptance-criteria.md
+48:**Status:** Complete
+108:**Closeable:** Yes.
+
+The corpus check was green over twenty-nine files at the moment this phase opened.
+Baseline capture: scratch/validator-before.txt
+  files scanned: 29 (chart forms under assets/templates: 20)
+Summary: errors: 0
+RESULT: PASSED

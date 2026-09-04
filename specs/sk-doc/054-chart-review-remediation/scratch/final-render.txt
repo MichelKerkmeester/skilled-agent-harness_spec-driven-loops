@@ -1,0 +1,42 @@
+Chart corpus check
+  package: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-chart
+  files scanned: 30 (chart forms under assets/templates: 21)
+  colour systems: 3
+  render checks: requested
+
+  + accessibility: 60 assertion(s), 0 failure(s)
+  + card-parts: 120 assertion(s), 0 failure(s)
+  + catalog: 43 assertion(s), 0 failure(s)
+  + catalog-system: 22 assertion(s), 0 failure(s)
+  + colour-literals: 971 assertion(s), 0 failure(s)
+  x dark-render: 30 assertion(s), 2 failure(s)
+  + data-block: 30 assertion(s), 0 failure(s)
+  + determinism: 30 assertion(s), 0 failure(s)
+  + document-shape: 150 assertion(s), 0 failure(s)
+  + empty-notice: 81 assertion(s), 0 failure(s)
+  + geometry-block: 24 assertion(s), 0 failure(s)
+  + gradient-sweep: 33 assertion(s), 0 failure(s)
+  + identity: 60 assertion(s), 0 failure(s)
+  + interaction-hygiene: 60 assertion(s), 0 failure(s)
+  + interaction-state: 60 assertion(s), 0 failure(s)
+  + motion: 120 assertion(s), 0 failure(s)
+  + narrow-viewport: 90 assertion(s), 0 failure(s)
+  + no-external: 150 assertion(s), 0 failure(s)
+  + number-format: 180 assertion(s), 0 failure(s)
+  + palette-block: 120 assertion(s), 0 failure(s)
+  + palette-source: 38 assertion(s), 0 failure(s)
+  + palette-source-dark: 34 assertion(s), 0 failure(s)
+  + radius: 60 assertion(s), 0 failure(s)
+  + render: 30 assertion(s), 0 failure(s)
+  + script-parses: 30 assertion(s), 0 failure(s)
+  + series-mapping: 99 assertion(s), 0 failure(s)
+  + settled-render: 60 assertion(s), 0 failure(s)
+  + type-scale: 302 assertion(s), 0 failure(s)
+  + unique-ids: 146 assertion(s), 0 failure(s)
+
+  FAIL [dark-render] assets/color/palette-sheet-neutral.html: the open under a dark colour scheme did not return a document: Command failed: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --blink-settings=preferredColorScheme=0 --window-size=900,6000 --virtual-time-budget=3000 --dump-dom --screenshot=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/chart-corpus-render-RkYbx6/dark.png file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-chart/assets/color/palette-sheet-neutral.html
+  FAIL [dark-render] assets/examples/staff-hours-by-service.html: the open under a dark colour scheme did not return a document: Command failed: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --blink-settings=preferredColorScheme=0 --window-size=900,6000 --virtual-time-budget=3000 --dump-dom --screenshot=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/chart-corpus-render-RkYbx6/dark.png file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-chart/assets/examples/staff-hours-by-service.html
+
+Summary: errors: 2
+
+RESULT: FAILED

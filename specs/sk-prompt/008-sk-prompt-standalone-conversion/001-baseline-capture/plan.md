@@ -71,7 +71,7 @@ Each gate reads the working tree, writes human-readable findings to stdout, and 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
 
 ---

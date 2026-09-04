@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
+  "description": "Against a corpus of 180 prompts written the way people write, 8 reach the intended mode",
+  "keywords": [
+    "against",
+    "corpus",
+    "prompts",
+    "written",
+    "way",
+    "people",
+    "write",
+    "reach",
+    "intended",
+    "mode"
+  ],
+  "lastUpdated": "2026-09-02T17:13:34.031Z",
+  "specId": "003",
+  "folderSlug": "gate-b-realistic-corpus",
+  "parentChain": [
+    "sk-doc",
+    "052-routing-completeness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

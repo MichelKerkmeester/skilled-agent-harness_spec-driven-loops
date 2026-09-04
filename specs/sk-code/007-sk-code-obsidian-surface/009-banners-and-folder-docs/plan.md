@@ -116,7 +116,7 @@ Nth with the Nth prepared banner, verify nothing else moved.
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase
 state. In brief: read templates and measure the tree and stylesheet, then write the folder docs,
 then transform the stylesheet and re-fingerprint the manifest, then run every gate.
 

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/052-routing-completeness/004-cross-hub-vocabulary",
+  "spec_folder": "sk-doc/052-routing-completeness/004-cross-hub-vocabulary",
+  "parent_id": "sk-doc/052-routing-completeness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross hub vocabulary",
+      "bare token collision",
+      "gate b vocabulary limit",
+      "executor delegation override",
+      "cross hub vocabulary plan",
+      "executor override approach",
+      "three suite regression control",
+      "cross hub vocabulary tasks",
+      "vocabulary phase checklist",
+      "routing edit verification",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "cross",
+      "hub",
+      "vocabulary",
+      "bare",
+      "token",
+      "collision",
+      "gate",
+      "limit",
+      "executor",
+      "delegation",
+      "override",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/cli-external-orchestration/mode-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
+    "created_at": "2026-09-02T16:34:06Z",
+    "last_save_at": "2026-09-02T22:06:43.054Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:43e2a8faa26b6407e4832331001a2f8285185e61ce52b69d0052e32a967b4293",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1f9b8878e1fda106bc4ec5a51f9cbcf752f667ee08bd382673fb95c116fdbd3b",
+      "plan.md": "6fd4aa7ea8f781b111073d7f6f50ad56c2f90a37621e772ec85202a22b9110da",
+      "tasks.md": "d194b3f3f815120ead9b3775d29dcb53618fe2eb26891453d38bf292c0fb12ec",
+      "implementation-summary.md": "a7b03624b77b12675cacdc8a82ee3c48fad327dfe7bd385ca81b71925dd005e4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/053-chart-visual-overhaul",
+  "spec_folder": "sk-doc/053-chart-visual-overhaul",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks",
+    "sk-doc/053-chart-visual-overhaul/002-chrome-rollout",
+    "sk-doc/053-chart-visual-overhaul/003-motion-layer",
+    "sk-doc/053-chart-visual-overhaul/004-interaction-layer",
+    "sk-doc/053-chart-visual-overhaul/005-dark-theme",
+    "sk-doc/053-chart-visual-overhaul/006-catalog-and-contract",
+    "sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart visual overhaul",
+      "chart corpus chrome",
+      "sk-create-chart appearance",
+      "evilcharts adoption build",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "chart",
+      "visual",
+      "overhaul",
+      "corpus",
+      "chrome",
+      "sk-create-chart",
+      "appearance",
+      "evilcharts",
+      "adoption",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
+      ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+      "001-visual-proof-and-forks/goal.md",
+      "002-chrome-rollout/goal.md",
+      "003-motion-layer/goal.md",
+      "004-interaction-layer/goal.md",
+      "005-dark-theme/goal.md",
+      "006-catalog-and-contract/goal.md",
+      "007-composed-form-and-closeout/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "palettes.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
+        "source": "derived"
+      },
+      {
+        "name": "catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Level Score",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chart Visual Overhaul",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator does not like how `sk-create-chart` looks",
+    "created_at": "2026-09-03T08:03:14.282Z",
+    "last_save_at": "2026-09-04T06:02:33.532Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:a77bab71c86afe3c382061f1c124fbb2ece30e690df3b53c89227386b641276e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d302c76698f1177659897390bd3970916aca815d16c3c18cecf8e1f4cea4dba5"
+    },
+    "last_active_child_id": "sk-doc/053-chart-visual-overhaul/003-motion-layer",
+    "last_active_at": null
+  }
+}

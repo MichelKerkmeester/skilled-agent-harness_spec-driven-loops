@@ -21,9 +21,8 @@ const VERIFIER_PATH = path.join(
 );
 const FIXTURE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode',
   'specs',
-  'system-spec-kit',
+  'system-speckit',
   'z_archive',
   '001-fix-command-dispatch',
   'z_archive',

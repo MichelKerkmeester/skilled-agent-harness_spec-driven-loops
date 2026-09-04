@@ -170,7 +170,7 @@ the standard and refuses to report a clean scan.
 
 3. **Read the mechanical findings as candidates.** Word sense decides, not spelling. `harness` the noun is fine, `harness` the verb is not, and the scanner reports both.
 4. **Run the judgment pass.** Structure, sentence habits, content habits and voice. The scanner prints this list on every run precisely because it cannot check any of it.
-5. **Compute the score** under the precedence rule, or report hard blockers and density on a long document. `references/scoring-and-verification.md` carries the arithmetic.
+5. **Compute the score** under the precedence rule using the point arithmetic in `references/scoring-and-verification.md`, or report hard blockers and density on a long document. The category weights in the standard's sections 1 and 9 describe where attention goes, not a second arithmetic, and no run combines the two.
 6. **Report** using `assets/voice-report-template.md`. Do not edit.
 
 ### Apply

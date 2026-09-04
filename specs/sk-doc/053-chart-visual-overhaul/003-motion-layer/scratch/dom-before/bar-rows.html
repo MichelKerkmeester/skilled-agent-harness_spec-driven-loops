@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="bar-rows">
+<meta name="chart-color-system" content="neutral">
+<title>Ranked comparison, horizontal rows</title>
+<style>
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.bar { fill: var(--chart-series-1); }
+.bar-lead { fill: var(--chart-emphasis); }
+.axis { stroke: var(--chart-rule); stroke-width: 1; }
+.cat { fill: var(--chart-ink); font-size: 13px; }
+.val { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The service names keep the body face, because they are names rather than figures. */
+.val, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Onboarding holds a request longer than the three stages after it combined</h1>
+  <p class="subtitle" data-chart-part="subtitle">Median working days per stage, every request closed last quarter. The longest stage carries the emphasis colour because it is what the headline is about.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart">
+      <title id="fig-title">Median working days by stage</title>
+      <desc id="fig-desc">Six stages drawn as horizontal bars, ordered longest first. Onboarding is the longest at eighteen days. The table below the chart carries every value as text.</desc>
+    <line x1="156" y1="8" x2="156" y2="276" class="axis"></line><text x="144" y="31" text-anchor="end" class="cat">Onboarding</text><path d="M156,12 H654 A2,2 0 0 1 656,14 V38 A2,2 0 0 1 654,40 H156 Z" class="bar-lead"></path><text x="666" y="31" class="val">18 d</text><text x="144" y="77" text-anchor="end" class="cat">Legal review</text><path d="M156,58 H404 A2,2 0 0 1 406,60 V84 A2,2 0 0 1 404,86 H156 Z" class="bar"></path><text x="416" y="77" class="val">9 d</text><text x="144" y="123" text-anchor="end" class="cat">Provisioning</text><path d="M156,104 H320.66666666666663 A2,2 0 0 1 322.66666666666663,106 V130 A2,2 0 0 1 320.66666666666663,132 H156 Z" class="bar"></path><text x="332.66666666666663" y="123" class="val">6 d</text><text x="144" y="169" text-anchor="end" class="cat">Security sign-off</text><path d="M156,150 H292.8888888888889 A2,2 0 0 1 294.8888888888889,152 V176 A2,2 0 0 1 292.8888888888889,178 H156 Z" class="bar"></path><text x="304.8888888888889" y="169" class="val">5 d</text><text x="144" y="215" text-anchor="end" class="cat">Billing setup</text><path d="M156,196 H237.33333333333331 A2,2 0 0 1 239.33333333333331,198 V222 A2,2 0 0 1 237.33333333333331,224 H156 Z" class="bar"></path><text x="249.33333333333331" y="215" class="val">3 d</text><text x="144" y="261" text-anchor="end" class="cat">Welcome call</text><path d="M156,242 H209.55555555555554 A2,2 0 0 1 211.55555555555554,244 V268 A2,2 0 0 1 209.55555555555554,270 H156 Z" class="bar"></path><text x="221.55555555555554" y="261" class="val">2 d</text></svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table="">
+    <caption>Median working days by stage, longest first.</caption>
+    <thead><tr><th scope="col">Stage</th><th scope="col">Working days</th></tr></thead>
+    <tbody id="rows"><tr><th scope="row">Onboarding</th><td class="num">18</td></tr><tr><th scope="row">Legal review</th><td class="num">9</td></tr><tr><th scope="row">Provisioning</th><td class="num">6</td></tr><tr><th scope="row">Security sign-off</th><td class="num">5</td></tr><tr><th scope="row">Billing setup</th><td class="num">3</td></tr><tr><th scope="row">Welcome call</th><td class="num">2</td></tr></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const UNIT = ' d';
+const DATA = [
+  { label: 'Onboarding', value: 18, lead: true },
+  { label: 'Legal review', value: 9 },
+  { label: 'Provisioning', value: 6 },
+  { label: 'Security sign-off', value: 5 },
+  { label: 'Billing setup', value: 3 },
+  { label: 'Welcome call', value: 2 }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. Horizontal rows are the right orientation whenever the
+// category names are words rather than codes, because a word set vertically is unreadable.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The corner comes from the ladder in the palette block rather than from a number typed
+// here, so one edit reaches every form instead of one file.
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-mark')) || 0;
+
+// A bar rounds only the end that meets nothing. The end at the axis stays square, because a
+// rounded corner there reads as a bar that starts a little after the line it is measured
+// from. A bar shorter than its own corner has the corner clamped to its length, so a small
+// value stays a bar rather than collapsing into a lozenge.
+function endRounded(x, y, w, h, r) {
+  const k = Math.max(0, Math.min(r, w, h / 2));
+  return 'M' + x + ',' + y + ' H' + (x + w - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w) + ',' + (y + k) +
+    ' V' + (y + h - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w - k) + ',' + (y + h) +
+    ' H' + x + ' Z';
+}
+
+const LEFT = 156;
+const RIGHT = 656;
+const TOP = 12;
+const ROW = 46;
+const BAR = 28;
+const max = DATA.reduce(function (m, d) { return Math.max(m, d.value); }, 0);
+const width = function (v) { return (RIGHT - LEFT) * (v / max); };
+
+node('line', { x1: LEFT, y1: TOP - 4, x2: LEFT, y2: TOP + DATA.length * ROW - 12 }, 'axis');
+
+// The label gutter is LEFT minus the 12-unit gap, so 144 units in a 720-unit frame.
+// At the 13px .cat size the font stack averages about 6.6 units a character, which is a
+// budget of roughly 21 characters. A longer name runs off the left edge rather than
+// wrapping, and the fix is to shorten the name or raise LEFT and lose plot width for it.
+DATA.forEach(function (d, i) {
+  const y = TOP + i * ROW;
+  node('text', { x: LEFT - 12, y: y + BAR / 2 + 5, 'text-anchor': 'end' }, 'cat').textContent = d.label;
+  node('path', { d: endRounded(LEFT, y, width(d.value), BAR, MARK_R) }, d.lead ? 'bar-lead' : 'bar');
+  node('text', { x: LEFT + width(d.value) + 10, y: y + BAR / 2 + 5 }, 'val').textContent = fmt(d.value) + UNIT;
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  const td = document.createElement('td');
+  td.className = 'num';
+  td.textContent = fmt(d.value);
+  tr.appendChild(th);
+  tr.appendChild(td);
+  rows.appendChild(tr);
+});
+</script>
+
+
+</body></html>

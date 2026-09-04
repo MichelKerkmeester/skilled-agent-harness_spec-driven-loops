@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-08-28",
-  "capturedAtSha": "4fb2cf2b7d",
+  "capturedAt": "2026-09-02",
+  "capturedAtSha": "8bb9011584",
   "corpusSha256": "sha256:9f30cc5e5f2d6c4d15e598fe25b922dc371297596295ab79346c881f6a4aa677",
-  "holdoutSha256": "sha256:08f18ff781b02e45e05235189b80fb6c19cfe960240cd331743ae725e5e0d83d",
+  "holdoutSha256": "sha256:b56a730b1ee3edb8216e16e0dbd6fe403a358e34296ef69730a184fc903d4944",
   "ambiguitySha256": "sha256:07cd2c76f41070ba74baaa0beb333d07cd6736a473c5ab79921d2ebfb1f8214d",
   "env": {
     "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC": "1",

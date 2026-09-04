@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="grouped-bars">
+<meta name="chart-color-system" content="neutral">
+<title>Two periods compared across categories</title>
+<style>
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* The legend block carries the ladder's mark corner. The columns themselves are drawn as
+   paths so only the end away from the baseline is rounded, which a rect cannot express. */
+.past, .current { rx: var(--chart-radius-mark); }
+.past { fill: var(--chart-series-3); }
+.current { fill: var(--chart-series-1); }
+/* Dashed and drawn below full strength, because the rule token is also the card border and
+   a grid at the same weight competes with the frame around it. The grid is the thing a
+   reader looks past, so it gives way first. */
+.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+.cat { fill: var(--chart-ink); font-size: 12px; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The category and legend names keep the body face, because they are names rather than figures. */
+.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+.key { fill: var(--chart-muted); font-size: 12px; }
+
+/* Each mark grows from the anchor it is measured against over half a second, and consecutive
+   marks start slightly apart so the eye follows the order the chart is arranged in. The delay
+   comes from a mark's place in the drawing order, which is geometry: no number in the data
+   block reaches the timing. It is capped rather than accumulated, so a file carrying thirty
+   rows still settles inside the one second the contract names.
+   backwards, not both: the collapsed state applies before the first frame and is gone once
+   the animation ends, so the settled file carries no trace of having moved. */
+@keyframes chart-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+path.past, path.current {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: chart-grow 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
+  animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
+}
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  path.past, path.current { animation: none; }
+}
+path.past, path.current { animation-delay: calc(min(var(--mark-index, 0) * 0.05s, 0.5s) - 0.35s); animation-play-state: paused; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Every channel grew this year except the one we spent the budget on</h1>
+  <p class="subtitle" data-chart-part="subtitle">Signups by acquisition channel, this year against last. The darker bar of each pair is this year, which is the series the reader is here for.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart">
+      <title id="fig-title">Signups by channel, two years compared</title>
+      <desc id="fig-desc">Five channels, each with a pair of columns for last year and this year. Each year takes the swatch printed beside its name in the key, and within every pair the left column is last year and the right column is this year. Paid search is the only channel where this year is lower. The table below the chart carries both years as text.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Signups by channel, last year against this year.</caption>
+    <thead><tr><th scope="col">Channel</th><th scope="col">Last year</th><th scope="col">This year</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const SERIES = ['Last year', 'This year'];
+const RANK = ['past', 'current'];
+const DATA = [
+  { label: 'Referral', values: [1240, 1810] },
+  { label: 'Organic', values: [2100, 2460] },
+  { label: 'Paid search', values: [1930, 1420] },
+  { label: 'Events', values: [640, 880] },
+  { label: 'Partners', values: [410, 690] }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. Two series is the ceiling for this form: a third pair per
+// category and the reader stops comparing and starts hunting.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
+// the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+// The corner comes from the ladder in the palette block rather than from a number typed
+// here, so one edit reaches every form instead of one file.
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-mark')) || 0;
+
+// A column rounds only the end that meets nothing. The end on the baseline stays square,
+// because a rounded corner there reads as a column that stops short of the axis it is
+// measured from. A column shorter than its own corner has the corner clamped to its height,
+// so a small value stays a column rather than collapsing into a lozenge.
+function topRounded(x, y, w, h, r) {
+  const k = Math.max(0, Math.min(r, w / 2, h));
+  return 'M' + x + ',' + (y + h) + ' V' + (y + k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + k) + ',' + y +
+    ' H' + (x + w - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w) + ',' + (y + k) +
+    ' V' + (y + h) + ' Z';
+}
+
+const LEFT = 60;
+const RIGHT = 706;
+const TOP = 40;
+const BASE = 268;
+const TICKS = 5;
+const peak = DATA.reduce(function (m, d) { return Math.max(m, d.values[0], d.values[1]); }, 0);
+const max = niceStep(peak / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
+const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
+
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (max / TICKS) * t;
+  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
+}
+
+SERIES.forEach(function (name, s) {
+  const x = LEFT + s * 130;
+  node('rect', { x: x, y: 8, width: 14, height: 14 }, RANK[s]);
+  node('text', { x: x + 20, y: 20 }, 'key').textContent = name;
+});
+
+const slot = (RIGHT - LEFT) / DATA.length;
+const barWidth = slot * 0.30;
+DATA.forEach(function (d, i) {
+  const cx = LEFT + slot * i + slot / 2;
+  d.values.forEach(function (v, s) {
+    const x = cx + (s === 0 ? -barWidth - 3 : 3);
+    // The stylesheet grows each column from the axis and staggers it by this index, which
+    // counts marks left to right across the whole plot rather than within a group, so the
+    // growth reads in the order a person scans. An index is where a mark sits in the
+    // drawing, so nothing in the data block reaches the timing.
+    node('path', {
+      d: topRounded(x, y(v), barWidth, BASE - y(v), MARK_R),
+      style: '--mark-index:' + (i * d.values.length + s)
+    }, RANK[s]);
+  });
+  node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  tr.appendChild(th);
+  d.values.forEach(function (v) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = fmt(v);
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>

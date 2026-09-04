@@ -1,0 +1,158 @@
+{
+  "version": "1.0",
+  "sessionId": "fanout-glm-flash-xhigh-1788426613533-2srk5d",
+  "updatedAt": "2026-09-03T09:40:00Z",
+  "iterationCount": 5,
+  "findings": [
+    {
+      "id": "F5.1",
+      "iteration": 5,
+      "topic": "registry-install",
+      "claim": "Registry measured: 279 items = 27 components (16 charts + 11 UI) + 252 blocks = 230 auto-generated ex-* variant demos (from src/registry/examples/) + 16 scenario story blocks + 6 style skins. CORRECTS F3.2 (54/22) and research.md §5 (504)",
+      "evidence": "registry.json (jq histogram); src/registry/registry-chart.ts:1-253; src/scripts/build-registry.mts:1-30; find src/registry/blocks -name 'b-*' = 22",
+      "change": "Count/citation corrections carried into research.md final synthesis; row 13 count = 16 scenario; R10 skins = 6",
+      "verdict": "ADOPT AS IDEA",
+      "level": "lineage-internal correction"
+    },
+    {
+      "id": "F5.2",
+      "iteration": 5,
+      "topic": "registry-install",
+      "claim": "One chart install = composition file + 4-6 @evilcharts/* shared-UI registry deps + recharts pinned 3.8.0 + motion; docs teach manual folder layout (components/evilcharts/{charts,ui})",
+      "evidence": "registry.json (recharts-line-chart item); package.json:31; src/content/docs/recharts/line-chart/static.mdx:18-46",
+      "change": "None — corpus has the same composition/chrome separation by construction (contract §3 + §6)",
+      "verdict": "REJECT WITH REASON",
+      "level": "contract-level"
+    },
+    {
+      "id": "F5.3",
+      "iteration": 5,
+      "topic": "registry-install",
+      "claim": "Docs are engine→form→variant with no question→form index; corpus catalog.md §3/§5 IS that index and is checker-backed",
+      "evidence": "src/content/docs/meta.json; find src/content/docs (58 files); check-corpus.cjs:571",
+      "change": "None — corpus ahead on reader-arrival indexing",
+      "verdict": "REJECT WITH REASON",
+      "level": "template-level"
+    },
+    {
+      "id": "F5.5",
+      "iteration": 5,
+      "topic": "registry-install",
+      "claim": "chart-config.mdx: per-series colors {light:[...], dark:[...]} pairs and multi-color gradient fills evenly distributed — authoring-API confirmation for row 7 (dark twin) and row 16 (gradient indicators)",
+      "evidence": "src/content/docs/chart-config.mdx:65-83,100-105",
+      "change": "Strengthen rows 7 and 16 evidence columns; targets unchanged",
+      "verdict": "ADOPT AS IDEA",
+      "level": "evidence strengthening"
+    },
+    {
+      "id": "F5.6",
+      "iteration": 5,
+      "topic": "registry-install",
+      "claim": "skills-lock.json = 25 vendored third-party AI skills with computedHash integrity hashes — the project's own dev tooling (DATA)",
+      "evidence": "skills-lock.json (25 skills listed)",
+      "change": "None — hash-manifest fights hand-editability; checker asserts rules not bytes",
+      "verdict": "REJECT WITH REASON",
+      "level": "contract-level"
+    },
+    {
+      "id": "F4-iter4",
+      "iteration": 4,
+      "topic": "beauty-physics",
+      "claim": "Physical delta table: dashed 3-3 grid, round tick dots width 3, DEFAULT_BAR_RADIUS 2, 0.5s cubic-out bar grow, hover dim 0.3, single emphasis glow adopted; hairline 0.8px stroke, numeric margins, toLocaleString, random-walk loading rejected; CORRECTION: tooltip formatter re-anchored to corpus fixed-comma",
+      "evidence": "recharts-bar-chart.tsx:45,484-489; echarts-line-chart.tsx:136-141,738,775; recharts-tooltip.tsx:152-156; daily-line.html:114-119",
+      "change": "Rows 1-6 + 9-10 of merged list; R11-R14 rejections",
+      "verdict": "ADOPT AS IDEA",
+      "level": "mixed"
+    },
+    {
+      "id": "F3-iter3",
+      "iteration": 3,
+      "topic": "catalog-forms",
+      "claim": "Form matrix 4 both / 4 only-there / 13 only-here; scenario-named demo blocks exist and docs name sections after real-world stories; corpus ahead on shape-violation notices and reader index",
+      "evidence": "src/registry/charts/ (16 compositions); registry.json:3815,3606,3720 (block path lines); catalog.md §5",
+      "change": "Rows 13-14 (scenario naming, catalog §5 name-maps); R8-R10 rejections. Counts corrected by F5.1",
+      "verdict": "ADOPT AS IDEA",
+      "level": "template-level"
+    },
+    {
+      "id": "F2.3",
+      "iteration": 2,
+      "topic": "styling-theming",
+      "claim": "Dark mode is a first-class twin: full .dark token block; background oklch(14% 0 270) blue-cast near-black; dark borders white at 7.5%/10% alpha; chart hues re-hued in dark rather than lightened. Strengthened iter-5: authoring API itself carries per-series light/dark arrays",
+      "evidence": "src/app/globals.css:102-147; src/content/docs/chart-config.mdx:65-76,100-105",
+      "change": "Dark palette twin per system (seriesDark/chromeDark) + media-scoped second palette block; contract amendment; target palettes.json + templates + checker + template-contract §3",
+      "verdict": "ADOPT AS IDEA",
+      "level": "contract-level"
+    },
+    {
+      "id": "F2.4",
+      "iteration": 2,
+      "topic": "styling-theming",
+      "claim": "Radius is one knob: --radius 0.525rem with calc ladder (-4/-2/0/+4) scaling every corner; corpus already uniform at 10px but enforced by nothing",
+      "evidence": "src/app/globals.css:47-50,55",
+      "change": "Add radius/radiusMark chrome roles to palettes.json; document 10px; advisory checker assert; target palettes.json + color-system.md §3",
+      "verdict": "ADOPT AS IDEA",
+      "level": "template-level"
+    },
+    {
+      "id": "F2.5",
+      "iteration": 2,
+      "topic": "styling-theming",
+      "claim": "SVG hygiene: svg/path/circle/rect/g focus outline+box-shadow suppressed; text,tspan user-select:none",
+      "evidence": "src/app/globals.css:318-337",
+      "change": "Two CSS rules in templates gaining interactive legend (row 5)",
+      "verdict": "ADOPT AS IDEA",
+      "level": "template-level"
+    },
+    {
+      "id": "F2.6",
+      "iteration": 2,
+      "topic": "styling-theming",
+      "claim": "Chart text baseline text-xs (12px) on container; tooltip values mono tabular-nums; corpus audit shows undocumented but consistent 11-21px scale",
+      "evidence": "src/registry/ui/recharts-chart.tsx:112; src/registry/ui/recharts-tooltip.tsx:152-156",
+      "change": "Document the existing corpus type scale in template-contract §3 skeleton comment; adopt tabular-nums for values (row 8)",
+      "verdict": "ADOPT AS IDEA",
+      "level": "template-level"
+    },
+    {
+      "id": "F2.2",
+      "iteration": 2,
+      "topic": "styling-theming",
+      "claim": "Five chart hues per theme (library-style categorical default)",
+      "evidence": "src/app/globals.css:75-79",
+      "change": "None — corpus capacity ceilings (4 categorical) and greyscale survival are deliberate",
+      "verdict": "REJECT WITH REASON",
+      "level": "contract-level"
+    },
+    {
+      "id": "F2.1",
+      "iteration": 2,
+      "topic": "styling-theming",
+      "claim": "oklch zero-chroma neutral ramp",
+      "evidence": "src/app/globals.css:54-100",
+      "change": "None — warm hex paper is corpus identity and hand-editable; contrast gates already enforce function",
+      "verdict": "REJECT WITH REASON",
+      "level": "contract-level"
+    },
+    {
+      "id": "F2.7",
+      "iteration": 2,
+      "topic": "registry-install",
+      "claim": "Registry served over localhost HTTP (components.json registries), regenerated by bun build-registry script into registry.json + public/r/",
+      "evidence": "components.json:21-23; package.json:11-13",
+      "change": "None — build-tool mechanics contradict no-build delivery contract (re-verified iteration 5)",
+      "verdict": "REJECT WITH REASON",
+      "level": "contract-level"
+    },
+    {
+      "id": "F1.x-iter1",
+      "iteration": 1,
+      "topic": "component-architecture",
+      "claim": "See iteration-001.md registry entries F1.2..F1.11 — 10 ranked changes with 7 adopt / 1 adopt-with-attribution / 3 reject",
+      "evidence": "src/registry/ui/recharts-chart.tsx:112; src/registry/charts/recharts-line-chart.tsx:59-76; src/registry/ui/recharts-legend.tsx:72-79",
+      "change": "Restyle layer, reveal wipe, tooltip kit, interactive legend, gradient indicators, dot treatment, dense-series brush",
+      "verdict": "ADOPT AS IDEA",
+      "level": "mixed"
+    }
+  ]
+}

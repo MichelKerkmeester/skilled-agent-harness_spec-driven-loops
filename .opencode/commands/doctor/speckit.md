@@ -1,5 +1,5 @@
 ---
-description: Router for /doctor <target>; dispatches subsystem diagnostics through _routes.yaml.
+description: "Router for /doctor: dispatches subsystem diagnostics to a named target through _routes.yaml."
 argument-hint: "<target> [flags] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__system_skill_advisor__advisor_recommend, mcp__system_skill_advisor__advisor_status, mcp__system_skill_advisor__advisor_validate, mcp__system_skill_advisor__advisor_rebuild, mcp__system_skill_advisor__skill_graph_scan, mcp__system_skill_advisor__skill_graph_validate, mcp__system_skill_advisor__skill_graph_query, mcp__system_skill_advisor__skill_graph_status
 ---
@@ -85,4 +85,3 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor-spe
 
 The router resolves a subsystem `target` against `_routes.yaml`, binds that target's workflow YAML plus its setup variables, allowed flags, and mutation class, then loads and executes the resolved `doctor_<target>.yaml` step by step under an always-interactive mode. `list`, `?`, or `--list` render the subsystem manifest instead of dispatching. All visible wording is owned by the presentation contract; subsystem-specific behavior lives in each target workflow.
 
-User request: $ARGUMENTS

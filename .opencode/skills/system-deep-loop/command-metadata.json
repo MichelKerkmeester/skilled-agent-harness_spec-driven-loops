@@ -3,7 +3,7 @@
     "command": "/deep:research",
     "ownerMode": "research",
     "description": "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.",
-    "argumentHint": "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--convergence=N] [--convergence-mode=default|off|sliding-window|divergent] [--lineage-timeout-hours=N] [--stop-policy=convergence|max-iterations] [--no-resource-map] [--dry-run] [--executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] [--iters=N] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run]",
     "userIntent": {
       "job": "I want to investigate a topic iteratively until the research converges.",
       "ownedSignals": [
@@ -50,7 +50,7 @@
     "command": "/deep:review",
     "ownerMode": "review",
     "description": "Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm.",
-    "argumentHint": "<target> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--convergence-mode=default|off|sliding-window|divergent] [--lineage-timeout-hours=N] [--stop-policy=convergence|max-iterations] [--spec-folder=PATH] [--no-resource-map] [--restart|--lineage-mode=restart] [--executor=<type> --model=X --config-dir=PATH --reasoning-effort=LEVEL --service-tier=TIER --executor-timeout=SECONDS --iters=N --count=N --label=X ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--restart]",
     "userIntent": {
       "job": "I want to audit a code or documentation target iteratively and reduce findings to convergence.",
       "ownedSignals": [
@@ -93,7 +93,7 @@
     "command": "/deep:ai-council",
     "ownerMode": "ai-council",
     "description": "Multi-topic deep-ai-council session loop with adjudicator-verdict stability. Modes :auto, :confirm.",
-    "argumentHint": "<deliberation-topic|topics> [:auto|:confirm] [--max-rounds-per-topic=N] [--max-topics=N] [--saturation=N] [--convergence=N] [--spec-folder=PATH] [--executor-mode=in-cli|external-cli] [--executor=<type>] [--model=X] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] (:auto supports PRE-BOUND SETUP ANSWERS)",
+    "argumentHint": "<deliberation-topic|topics> [:auto|:confirm] [--max-topics=N] [--max-rounds-per-topic=N] [--executor=TYPE]",
     "userIntent": {
       "job": "I want to convene several AI perspectives into a convergent planning decision.",
       "ownedSignals": [
@@ -140,7 +140,7 @@
     "command": "/deep:agent-improvement",
     "ownerMode": "agent-improvement",
     "description": "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. Modes :auto, :confirm.",
-    "argumentHint": "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N]",
     "userIntent": {
       "job": "I want to evaluate and improve an agent definition through guarded scoring and promotion.",
       "ownedSignals": [
@@ -186,8 +186,8 @@
   {
     "command": "/deep:model-benchmark",
     "ownerMode": "model-benchmark",
-    "description": "Benchmark a model or prompt framework: fixtures, pattern, 5dim, or reviewer scoring; deterministic or graded runs. :auto/:confirm.",
-    "argumentHint": "<profile_path> [:auto|:confirm] [--spec-folder=PATH] [--scorer=pattern|5dim|reviewer] [--grader=noop|mock|llm] [--iterations=N] [--executor=NAME --model=NAME] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "description": "Benchmark a model or prompt framework: pattern, 5dim or reviewer scoring, optional grading. :auto/:confirm.",
+    "argumentHint": "<profile_path> [:auto|:confirm] [--spec-folder=PATH] [--scorer=NAME] [--grader=NAME] [--iterations=N]",
     "userIntent": {
       "job": "I want to benchmark a model or prompt framework with deterministic or graded runs.",
       "ownedSignals": [
@@ -233,7 +233,7 @@
   {
     "command": "/deep:skill-benchmark",
     "ownerMode": "skill-benchmark",
-    "description": "Benchmark a skill's real-world routing, discovery, efficiency, and usefulness (Lane C). Emits a ranked, remediable Skill Benchmark Report. Modes :auto, :confirm.",
+    "description": "Benchmark a skill's real routing, discovery, efficiency and usefulness into a ranked report. :auto/:confirm.",
     "argumentHint": "<skill_id_or_root> [:auto|:confirm] [--outputs-dir=PATH] [--fixtures-dir=PATH] [--trace-mode=router|live] [--advisor-mode=python]",
     "userIntent": {
       "job": "I want to measure a skill's routing, discovery, efficiency, and usefulness in practice.",

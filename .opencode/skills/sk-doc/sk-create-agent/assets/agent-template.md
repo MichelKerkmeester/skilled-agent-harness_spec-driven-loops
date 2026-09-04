@@ -85,7 +85,7 @@ mcpServers:
 ---
 ```
 
-Use the `permission:` object with `allow`, `deny`, or `ask` for `.opencode/agents/`. For `.claude/agents/`, use the runtime-specific `tools:` allow-list instead — Claude Code enforces only `tools:` and silently ignores `permission:`:
+Use the `permission:` object with `allow`, `deny`, or `ask` for `.opencode/agents/`. For `.claude/agents/`, use the runtime-specific `tools:` allow-list instead, because Claude Code enforces only `tools:` and silently ignores `permission:`:
 
 ```yaml
 ---
@@ -95,16 +95,16 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 ```
 
-Decision rule: authoring for `.opencode/agents/` emits `permission:` (never bare `tools:`); authoring for `.claude/agents/` emits `tools:` (never `permission:`). Map the `permission:` allow-set to the `tools:` list by including only the tools set to `allow`/`ask` and dropping the ones set to `deny`.
+Decision rule: authoring for `.opencode/agents/` emits `permission:` (never bare `tools:`), and authoring for `.claude/agents/` emits `tools:` (never `permission:`). Map the `permission:` allow-set to the `tools:` list by including only the tools set to `allow`/`ask` and dropping the ones set to `deny`.
 
 ### Field Reference
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | string | Yes | Agent identifier; must match filename without `.md` |
+| `name` | string | Yes | Agent identifier, matching the filename without `.md` |
 | `description` | string | Yes | One-line purpose statement with boundary signal |
 | `mode` | string | Yes | `subagent`, `agent`, `primary`, or `all` as supported by runtime |
-| `temperature` | float | Yes | Usually `0.1`; use higher values only when variation is useful |
+| `temperature` | float | Yes | Usually `0.1`, with higher values only when variation is useful |
 | `permission` | object | Yes | Runtime capability boundary |
 | `mcpServers` | list | No | Explicit MCP servers available to the agent, for example `[system_skill_advisor, code_mode]` |
 
@@ -350,8 +350,8 @@ Each agent should state its operating budget so orchestrators can reason about c
 | **Time Budget** | ~[N] minutes |
 | **Output Size** | ~[N] tokens or ~[N] lines unless caller requests summary/minimal |
 | **Tool Calls** | [range] for normal mode |
-| **Dispatches** | 0 for LEAF agents; [range] for orchestrators |
-| **Mutation Calls** | 0 for read-only agents; scoped to [paths/artifacts] for write-capable agents |
+| **Dispatches** | 0 for LEAF agents, [range] for orchestrators |
+| **Mutation Calls** | 0 for read-only agents, scoped to [paths/artifacts] for write-capable agents |
 | **Use Case** | [short description] |
 ```
 
@@ -461,13 +461,13 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 
 ### Related Resources
 
-Required, and the element most often omitted — the skeleton below carried it while this
+Required, and the element most often omitted. The skeleton below carried it while this
 section did not, and ten of twelve production agents shipped without one as a result. An
 author working from this list produces what the list names, so it has to name everything.
 
 List the real supporting paths the agent actually uses: the skills it loads, the companion
 agents it works alongside, the commands that dispatch it, and its governing references.
-Verify every path exists before shipping — a resource list full of dead paths is worse than
+Verify every path exists before shipping. A resource list full of dead paths is worse than
 no list, because it invites trust it cannot repay.
 
 ```markdown
@@ -640,8 +640,8 @@ Each binding line must appear on its own line, grep-checkable verbatim.
 | **Time Budget** | ~[N] minutes |
 | **Output Size** | ~[N] tokens or ~[N] lines unless caller requests summary/minimal |
 | **Tool Calls** | [range] for normal mode |
-| **Dispatches** | 0 for LEAF agents; [range] for orchestrators |
-| **Mutation Calls** | 0 for read-only agents; scoped to [paths/artifacts] for write-capable agents |
+| **Dispatches** | 0 for LEAF agents, [range] for orchestrators |
+| **Mutation Calls** | 0 for read-only agents, scoped to [paths/artifacts] for write-capable agents |
 | **Use Case** | [short description] |
 
 ---
@@ -698,9 +698,9 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 
 ## 8. RELATED RESOURCES
 
-Required. List the real supporting paths this agent actually uses — the skills it loads, the
+Required. List the real supporting paths this agent actually uses: the skills it loads, the
 companion agents it works alongside, the commands that dispatch it, and its governing references.
-Verify every path exists before shipping; a resource list full of dead paths is worse than none.
+Verify every path exists before shipping. A resource list full of dead paths is worse than none.
 
 | Resource | Role |
 | --- | --- |
@@ -785,11 +785,11 @@ Verify every path exists before shipping; a resource list full of dead paths is 
 
 **Deep-Loop Iteration Agents (sanctioned section-vocabulary dialect)**
 
-The `@deep-review` / `@deep-research` family (both `.opencode/agents/` and `.claude/agents/` mirrors) is a blessed alternate section vocabulary for per-iteration loop workers — same responsibilities as the generic skeleton, lane-named headings.
+The `@deep-review` / `@deep-research` family (both `.opencode/agents/` and `.claude/agents/` mirrors) is a blessed alternate section vocabulary for per-iteration loop workers, carrying the same responsibilities as the generic skeleton under lane-named headings.
 
 - **Full shape** (`deep-review`): `## 0. ILLEGAL NESTING (HARD BLOCK)` → `## 0b. INPUT + SCOPE GATES (HARD BLOCK)` → `## 1. CORE WORKFLOW -- Single <lane> Iteration` → `## 2. ROUTING SCAN` → `## 3. <lane> CONTRACT` (`REVIEW CONTRACT`) → `## 4. STATE MANAGEMENT + WRITE SAFETY` → `## 5. <lane> ADVERSARIAL CHECK (Tiered)` (`ADVERSARIAL SELF-CHECK`) → `## 6. RULES` → `## 7. OUTPUT VERIFICATION` → `## 8. ANTI-PATTERNS` → `## 9. SUMMARY`.
-- **Lean variant** (`deep-research`): no `§0b`; `## 3. ITERATION PROTOCOL` replaces the CONTRACT; `## 4. STATE MANAGEMENT` drops the `+ WRITE SAFETY` suffix; `RULES` moves to `## 5`; adds `## 6. OUTPUT FORMAT`; then OUTPUT VERIFICATION / ANTI-PATTERNS / SUMMARY.
-- Only `## 1. CORE WORKFLOW` is validator-required; the dialect keeps every boundary, capability, verification, and anti-pattern responsibility of the generic skeleton. Reference files: `.opencode/agents/{deep-review,deep-research}.md` and their `.claude/agents/` mirrors.
+- **Lean variant** (`deep-research`): no `§0b`, `## 3. ITERATION PROTOCOL` replaces the CONTRACT, `## 4. STATE MANAGEMENT` drops the `+ WRITE SAFETY` suffix, `RULES` moves to `## 5`, and `## 6. OUTPUT FORMAT` is added, then OUTPUT VERIFICATION / ANTI-PATTERNS / SUMMARY.
+- Only `## 1. CORE WORKFLOW` is validator-required. The dialect keeps every boundary, capability, verification, and anti-pattern responsibility of the generic skeleton. Reference files: `.opencode/agents/{deep-review,deep-research}.md` and their `.claude/agents/` mirrors.
 
 ---
 
@@ -805,7 +805,7 @@ Before deploying an agent, verify:
 - [ ] `mode` matches runtime role.
 - [ ] `temperature` is appropriate, usually `0.1`.
 - [ ] `permission` object uses current allow/deny/ask fields.
-- [ ] `task: deny` for LEAF agents; `task: allow` only for explicit orchestrators.
+- [ ] `task: deny` for LEAF agents, and `task: allow` only for explicit orchestrators.
 - [ ] `mcpServers` lists only servers the agent actually uses.
 
 ### Structure

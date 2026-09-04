@@ -1,7 +1,7 @@
 ---
 title: "sk-create-chart: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, the review protocol, the orchestration guide and the per-feature validation files for the sk-create-chart sk-doc workflow packet."
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # sk-create-chart: Manual Testing Playbook
@@ -47,7 +47,7 @@ So the inverted rule for this package is that **a run reporting a pass from the 
 
 ### Family Coverage
 
-The corpus holds twenty chart forms across six question families. Every family is named below with the scenario that carries it and the reason, because the failure modes here cut across families rather than along them. A per-family scenario set would produce six near-identical documents that all fail for the same reason, which is the bar a scenario has to clear to earn its place.
+The corpus holds twenty-one chart forms across six question families. Every family is named below with the scenario that carries it and the reason, because the failure modes here cut across families rather than along them. A per-family scenario set would produce six near-identical documents that all fail for the same reason, which is the bar a scenario has to clear to earn its place.
 
 | Family | Carried by | Why that scenario is the one |
 |---|---|---|
@@ -98,7 +98,7 @@ The corpus holds twenty chart forms across six question families. Every family i
 - `git status --porcelain .opencode/skills/sk-doc/sk-create-chart` for the packet path
 - Scenario verdict with rationale (`PASS`, `FAIL` or `SKIP`)
 
-A transcript that quotes only the `RESULT:` line cannot be graded. Fourteen checks report an assertion count on every run, and a check reporting zero assertions ran on nothing, which is not the same as a check that passed.
+A transcript that quotes only the `RESULT:` line cannot be graded. Every check reports an assertion count on every run, and a check reporting zero assertions ran on nothing, which is not the same as a check that passed. The count of checks is not fixed either, so read the lines the run printed rather than the lines a document said to expect.
 
 ---
 
@@ -309,7 +309,7 @@ Desired user-visible outcome: a lookup a reader can trust, so a named row always
 
 ---
 
-## 9. DELIVERY AND ROUTING (`CHT-007..CHT-008`)
+## 9. DELIVERY AND ROUTING (`CHT-007..CHT-009`)
 
 ### CHT-007 | It opens with no build step
 
@@ -347,12 +347,30 @@ Desired user-visible outcome: a chart request gets a chart from a named row, and
 
 ---
 
+### CHT-009 | A delivery read on a dark system
+
+#### Description
+Verify a delivered chart answers the theme the reader's operating system has already picked, that the dark values are readable rather than merely present, and that printing still puts the light palette on paper.
+
+#### Scenario Contract
+Prompt: `I opened the chart you sent and it is a bright white rectangle in the middle of my dark screen.`
+
+Every file carries a second palette block and nothing in the file switches to it, because a delivered document has nowhere to keep a preference. The check proves the block reaches the paint by opening each file with the scheme pinned dark and requiring a different picture. Whether the dark values are readable, and whether two category colours are still separable on a near-black ground, is what a person has to answer.
+
+Desired user-visible outcome: the reader opens the file and gets a chart that belongs on their screen, and prints it to get a chart that belongs on paper.
+
+#### Test Execution
+> **Feature File:** [CHT-009](delivery-and-routing/a-delivery-on-a-dark-system.md)
+> **Catalog:** no feature-catalog entry exists for this packet.
+
+---
+
 ## 10. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `scripts/check-corpus.cjs` | The structural subset: document shape, identity, palette block, colour literals, external resources, script parsing, data block, unique ids, accessibility, card parts, determinism, motion, palette source and the two-way index | Direct. `CHT-005` and `CHT-006` execute individual checks as negative controls, and `CHT-004` executes the render mode |
-| `scripts/check-corpus.cjs --render` | Whether the figure region holds real elements after the script ran | Direct. `CHT-004` is the operator-facing form of exactly that run |
+| `scripts/check-corpus.cjs` | The structural subset: document shape, identity, both palette blocks, colour literals, external resources, script parsing, data block, unique ids, accessibility, card parts, determinism, motion, the palette source gated once per theme, and the two-way index | Direct. `CHT-005` and `CHT-006` execute individual checks as negative controls, and `CHT-004` executes the render mode |
+| `scripts/check-corpus.cjs --render` | Whether the figure region holds real elements after the script ran, whether two opens settle to the same picture, and whether a dark colour scheme paints a different one | Direct. `CHT-004` is the operator-facing form of the first, and `CHT-009` of the third |
 | `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | This playbook package's own operator-scenario contract | None directly. It validates the playbook, not the workflow the playbook tests |
 
 The packet ships no automated test for a headline, an axis ladder or a clipped label, and none is possible with the checks it has. `CHT-001`, `CHT-002` and `CHT-003` are the operator-facing equivalent for that half of the surface and do not claim to be more.

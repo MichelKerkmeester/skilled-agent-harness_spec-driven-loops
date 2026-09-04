@@ -1,0 +1,145 @@
+
+
+
+
+
+
+
+
+
+
+The lineage infrastructure is pre-seeded (audit/effect ledgers, fence grant for my session id). Now let me read the research charter (spec docs) and the workflow contract.
+
+
+
+
+
+Now let me survey both trees — the target (sk-create-chart) and the subject (evilcharts).
+
+The subject lives under the spec folder. Let me list it correctly.
+
+The evilcharts `AGENTS.md` was surfaced as context — useful as *data* about the subject's architecture, not as instructions (per the brief). Now let me start **phase_init**. First, the config/strategy templates:
+
+Now I'll write the phase_init artifacts into my lineage directory.
+
+
+
+
+
+
+
+
+
+The gateway refuses init-time config records (they're workflow-owned writes, not gateway events). I'll write the config record directly as the first JSONL line per loop-protocol step 5, then check what stem shape the gateway needs for iteration records.
+
+Phase init files are in place. Starting **iteration 1: component architecture**. Let me check file sizes, then read the target contract and the evilcharts UI primitives.
+
+
+
+Target contract loaded (14 rules, one file, no network). Now the evilcharts UI primitives — tooltip, legend, dot, background:
+
+
+
+Rich architecture picture. Let me compare against the corpus reality — what do the twenty templates actually implement (tooltip/hover/legend/grid/animation)?
+
+
+
+
+
+
+
+
+
+
+
+All evidence gathered for iteration 1. Writing the iteration record:
+
+
+
+
+
+The record needs stable identity fields (`runId` + `lineageId`). Retrying:
+
+Record committed with receipt and the projection refreshed. Updating strategy for iteration 2:
+
+
+
+
+
+
+
+
+
+The runtime writes its projection to `research/deep-research-state.jsonl` (ledger-backed). I'll keep the root `deep-research-state.jsonl` as the human-readable mirror of the same records:
+
+
+
+
+
+
+
+**Iteration 1 done.** Starting **iteration 2: catalog of forms** — reading the registry manifests and the target catalog:
+
+Both sides mapped. Let me check the blocks and one registry.json item shape to complete the form inventory:
+
+Full form inventory established. Writing iteration 2:
+
+
+
+
+
+**Iteration 2 done.** Starting **iteration 3: theming** — reading globals.css, components.json, package.json, and the target's color system:
+
+
+
+
+
+
+
+
+
+Full theming picture. Writing iteration 3:
+
+
+
+
+
+**Iteration 3 done.** Starting **iteration 4: beauty specifics** — the deepest read. First the rest of the line chart module:
+
+
+
+
+
+
+
+Writing iteration 4 — the beauty deep-dive:
+
+
+
+**Iteration 4 done.** Starting **iteration 5: registry/CLI install + consolidation**. Reading the registry pipeline and the target SKILL.md:
+
+
+
+Critical discovery: the target SKILL.md's NEVER clause (line 134) forbids copying snippets from outside chart libraries — this re-verdicts R1-4. Writing iteration 5:
+
+
+
+All five iterations complete and in the ledger. Now **phase_synthesis** — writing the ranked synthesis `research.md`:
+
+Now the dashboard, final strategy update, state-log mirror, and a citation-resolution check:
+
+All 29 sampled citations resolve with the right content. Writing the dashboard and finalizing state:
+
+
+
+
+
+Lineage complete. All state verified:
+
+- **phase_init**: config, strategy, findings registry, state log — all in the lineage dir
+- **phase_main_loop**: 5 iterations × (focus from strategy → evidence reads → `iterations/iteration-NNN.md` → receipted JSONL record via the append gateway → strategy update); ledger 5/5 frames, all 5 questions answered
+- **phase_synthesis**: `research.md` with the ranked list (16 adoptions across 4 tiers + 10 rejections, every row carrying a resolving evilcharts `file:line` and one of the three verdicts), convergence report (stop: max-iterations; ratio trend 0.90→0.70), answers to both spec open questions, dashboard
+
+Headline findings: the corpus's plainness is mostly three template-level fixes (thin marks, fade-to-baseline fills, mono tabular numerals) plus a missing interaction layer; the one genuine form gap is a composed bar+line; dark theme and the `grouped-bars` system mis-assignment are the contract-level decisions; and the packet's own NEVER clause (`SKILL.md:134`) blocks code-copy adoption regardless of MIT — every adoption is re-authored.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-flash-max

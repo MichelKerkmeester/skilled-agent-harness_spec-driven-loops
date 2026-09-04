@@ -1,0 +1,56 @@
+Negative controls for the checks written in this packet, and for the four holes left recorded.
+Every mutation is applied to a passing scratch copy, the whole check is run, and the file is
+restored from a copy taken before the mutation. Exit status is read from $? after redirecting
+to a file, never through a pipe.
+
+== baseline ==
+unmutated scratch copy                                     exit=0  RESULT: PASSED
+
+== M1  series-mapping: the five heat-matrix mappings reversed ==
+  with series-mapping wired                                exit=1  RESULT: FAILED
+          FAIL [series-mapping] assets/templates/heat-matrix.html: ".series-1" paints --chart-series-5. An indexed class carries the token of its own index, b
+          FAIL [series-mapping] assets/templates/heat-matrix.html: ".series-2" paints --chart-series-4. An indexed class carries the token of its own index, b
+          FAIL [series-mapping] assets/templates/heat-matrix.html: ".series-4" paints --chart-series-2. An indexed class carries the token of its own index, b
+          FAIL [series-mapping] assets/templates/heat-matrix.html: ".series-5" paints --chart-series-1. An indexed class carries the token of its own index, b
+  CONTROL, series-mapping unwired                          exit=0  RESULT: PASSED
+
+== M2  series-mapping: two mappings swapped, not reversed ==
+  with series-mapping wired                                exit=1  RESULT: FAILED
+          FAIL [series-mapping] assets/templates/treemap.html: ".series-2" paints --chart-series-3. An indexed class carries the token of its own index, becau
+          FAIL [series-mapping] assets/templates/treemap.html: ".series-3" paints --chart-series-2. An indexed class carries the token of its own index, becau
+  CONTROL, series-mapping unwired                          exit=0  RESULT: PASSED
+
+== M3  series-mapping: a rung removed, leaving a gap ==
+  gap in the ladder                                        exit=1  RESULT: FAILED
+          FAIL [series-mapping] assets/templates/unit-ring.html: the ".series-*" ladder is [1, 2, 4] and a ladder runs from 1 without a gap. The drawing code 
+          FAIL [series-mapping] assets/templates/unit-ring.html: the drawing code declares CAPACITY 4 and the stylesheet defines 3 ".series-*" steps. The cons
+
+== M4  series-mapping: a class defined past the system capacity ==
+  class past capacity                                      exit=1  RESULT: FAILED
+          FAIL [series-mapping] assets/templates/unit-grid.html: ".series-*" defines 5 steps and the "categorical" system carries 4. The ceiling lives in the 
+          FAIL [series-mapping] assets/templates/unit-grid.html: the drawing code declares CAPACITY 4 and the stylesheet defines 5 ".series-*" steps. The cons
+
+== M5  series-mapping: the CAPACITY constant outruns the classes ==
+  CAPACITY drift                                           exit=1  RESULT: FAILED
+          FAIL [series-mapping] assets/templates/stacked-bars.html: the drawing code declares CAPACITY 4 and the stylesheet defines 3 ".series-*" steps. The c
+
+== M6  type-scale: a size off the scale, handed to the node() helper ==
+  with the helper path read                                exit=1  RESULT: FAILED
+          FAIL [type-scale] assets/templates/bar-rows.html: sets 20px, which is not one of the published rungs (10, 11, 12, 13, 14, 15, 21, 34, 56). A size of
+  CONTROL, helper path unread                              exit=0  RESULT: PASSED
+
+== M7  colour-literals: a named colour assigned from the drawing code ==
+  with a quote as a word boundary                          exit=1  RESULT: FAILED
+          FAIL [colour-literals] assets/templates/bar-columns.html: named colour "red" outside the palette block
+  CONTROL, the old boundary class                          exit=0  RESULT: PASSED
+
+== Holes left recorded rather than fixed. Each mutation passes the whole check. ==
+  motion: a second, unguarded animation                    exit=0  RESULT: PASSED
+  no-external: a remote font in an at-rule                 exit=0  RESULT: PASSED
+  accessibility: the attribute only in a comment           exit=0  RESULT: PASSED
+  radius: a corner held in a variable                      exit=0  RESULT: PASSED
+
+== restored from the kept copy ==
+restored                                                   exit=0  RESULT: PASSED
+
+diff against the kept copy (templates and examples):

@@ -188,7 +188,7 @@ Live runtime measurements (RAM, residency, raw inference latency) for the final 
 
 <!-- The elimination narrative. What you tried, what failed, what worked. Cite ADRs in order. -->
 
-The elimination journey {{PROCESS_NARRATIVE_OPENING}}.
+The elimination narrative {{PROCESS_NARRATIVE_OPENING}}.
 
 ### What we tried, in order
 
@@ -319,7 +319,7 @@ Expected outcome: {{EXPECTED_OUTCOME_LINE}}.
 
 ## 10. RELATED RESOURCES
 
-<!-- Skill-local files, authoritative spec packet, sibling and follow-on. The relative links below resolve once this report lives in mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/; they intentionally do not resolve from the template's source location. -->
+<!-- Skill-local files, authoritative spec packet, sibling and follow-on. The relative links below resolve once this report lives in mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/, and they intentionally do not resolve from the template's source location. -->
 
 ### Skill-local files
 

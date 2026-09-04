@@ -10,7 +10,8 @@
     "sk-doc/049-sk-create-frontmatter/004-routing-integration",
     "sk-doc/049-sk-create-frontmatter/005-command-and-playbook",
     "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
-    "sk-doc/049-sk-create-frontmatter/007-human-voice-playbook"
+    "sk-doc/049-sk-create-frontmatter/007-human-voice-playbook",
+    "sk-doc/049-sk-create-frontmatter/008-utilization-review"
   ],
   "manual": {
     "depends_on": [],
@@ -22,7 +23,11 @@
       "sk-create-frontmatter mode",
       "frontmatter contract ownership",
       "frontmatter templates owning mode",
-      "frontmatter versioning mode"
+      "frontmatter versioning mode",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "sk-create-frontmatter",
@@ -33,21 +38,31 @@
       "templates",
       "owning",
       "versioning",
-      "six",
-      "modes",
-      "emit",
-      "feature"
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "goal.md",
+      "008-utilization-review/implementation-summary.md",
+      "008-utilization-review/goal.md",
+      "008-utilization-review/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -85,20 +100,57 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Sk Create Frontmatter",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six modes emit frontmatter",
     "created_at": "2026-09-01T08:42:55Z",
-    "last_save_at": "2026-09-01T11:27:40.185Z",
+    "last_save_at": "2026-09-02T20:22:52.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:740d263d6b4ce9662050293a19f2b1eab49d9395f7b505a1b411587669bd5316",
+    "source_fingerprint": "sha256:adb390a3efc6dfbb19d0fece02c5f6e8d6146e5ae4909700e241934c16deb1db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cda7c5b91e6c0f0a2a70192be0917455948d76da490ca7394c4c05008078cb67"
+      "spec.md": "b3c7767c7e2b4d4d07317e00f3a0011d789f1f4436b0b5f6159c10b6acc25849"
     },
     "last_active_child_id": "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
     "last_active_at": null

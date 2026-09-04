@@ -1,7 +1,8 @@
 // TEST: Generate Context CLI Authority
 // Ensures main() preserves explicit CLI targets into runWorkflow
+import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { buildSessionScopedSaveContextPath } from '../core/save-context-path';
@@ -25,7 +26,54 @@ vi.mock('../extractors/collect-session-data', () => ({
 }));
 
 const ORIGINAL_ARGV = [...process.argv];
-const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..', '..', '..');
+const FIXTURE_PACKET = 'specs/system-spec-kit/022-hybrid-rag-fusion';
+
+// main() acquires a lock directory and rewrites parent pointers inside the
+// packet it resolves, so the fixture packet lives in a throwaway workspace
+// instead of the real specs tree.
+let tempRoot = '';
+
+function trackGraphMetadata(track: string): Record<string, unknown> {
+  const now = new Date().toISOString();
+  return {
+    schema_version: 1,
+    packet_id: track,
+    spec_folder: track,
+    parent_id: null,
+    children_ids: [],
+    manual: { depends_on: [], supersedes: [], related_to: [] },
+    derived: {
+      trigger_phrases: [],
+      key_topics: [track],
+      importance_tier: 'normal',
+      status: 'in_progress',
+      key_files: [],
+      entities: [],
+      causal_summary: '',
+      created_at: now,
+      last_save_at: now,
+      last_accessed_at: null,
+      source_docs: [],
+    },
+  };
+}
+
+function createTempWorkspace(): string {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'generate-context-cli-authority-'));
+  const packetDir = path.join(root, FIXTURE_PACKET);
+  fs.mkdirSync(packetDir, { recursive: true });
+  fs.writeFileSync(path.join(packetDir, 'spec.md'), '# Fixture packet\n', 'utf8');
+  // The save path treats a track folder holding NNN- children as a phase parent
+  // and rewrites its pointers, so the throwaway track needs the same metadata
+  // file a real one carries.
+  const trackDir = path.dirname(packetDir);
+  fs.writeFileSync(
+    path.join(trackDir, 'graph-metadata.json'),
+    `${JSON.stringify(trackGraphMetadata(path.basename(trackDir)), null, 2)}\n`,
+    'utf8',
+  );
+  return root;
+}
 
 async function resetGenerateContextConfig(): Promise<void> {
   const { CONFIG } = await import('../core');
@@ -46,21 +94,24 @@ describe('generate-context CLI authority', () => {
     harness.loadCollectedData.mockClear();
     harness.collectSessionData.mockClear();
     process.argv = [...ORIGINAL_ARGV];
+    tempRoot = createTempWorkspace();
     await resetGenerateContextConfig();
   });
 
   afterEach(async () => {
     process.argv = [...ORIGINAL_ARGV];
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+    tempRoot = '';
     await resetGenerateContextConfig();
   });
 
   it('passes JSON-mode data and explicit CLI spec-folder override through main()', async () => {
     const dataFile = buildSessionScopedSaveContextPath('cli-authority-main');
-    const explicitSpecFolder = '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion';
+    const explicitSpecFolder = FIXTURE_PACKET;
     process.argv = ['node', path.join('scripts', 'dist', 'memory', 'generate-context.js'), dataFile, explicitSpecFolder];
 
     const { main } = await import('../memory/generate-context');
-    await main();
+    await main(undefined, undefined, tempRoot);
 
     expect(harness.runWorkflow).toHaveBeenCalledTimes(1);
     const workflowCall = harness.runWorkflow.mock.calls[0]?.[0];
@@ -78,7 +129,7 @@ describe('generate-context CLI authority', () => {
 
   it('forwards explicit --session-id to workflow', async () => {
     const dataFile = buildSessionScopedSaveContextPath('test-session-123');
-    const explicitSpecFolder = '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion';
+    const explicitSpecFolder = FIXTURE_PACKET;
     const sessionId = 'test-session-123';
     process.argv = [
       'node',
@@ -90,7 +141,7 @@ describe('generate-context CLI authority', () => {
     ];
 
     const { main } = await import('../memory/generate-context');
-    await main();
+    await main(undefined, undefined, tempRoot);
 
     expect(harness.runWorkflow).toHaveBeenCalledTimes(1);
     const workflowCall = harness.runWorkflow.mock.calls[0]?.[0];
@@ -108,15 +159,15 @@ describe('generate-context CLI authority', () => {
   });
 
   it('passes stdin JSON as preloaded collectedData and preserves an explicit CLI spec-folder override', async () => {
-    const explicitSpecFolder = '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion';
-    const resolvedSpecFolder = path.resolve(REPO_ROOT, explicitSpecFolder);
+    const explicitSpecFolder = FIXTURE_PACKET;
+    const resolvedSpecFolder = path.resolve(tempRoot, explicitSpecFolder);
     const payload = JSON.stringify({
       specFolder: '.opencode/specs/00--anobel.com/036-hero-contact-success',
       sessionSummary: 'Structured stdin payload should not override an explicit CLI target.',
     });
 
     const { main } = await import('../memory/generate-context');
-    await main(['--stdin', explicitSpecFolder], async () => payload);
+    await main(['--stdin', explicitSpecFolder], async () => payload, tempRoot);
 
     expect(harness.runWorkflow).toHaveBeenCalledTimes(1);
     expect(harness.runWorkflow).toHaveBeenCalledWith(expect.objectContaining({
@@ -135,15 +186,15 @@ describe('generate-context CLI authority', () => {
   });
 
   it('passes inline JSON as preloaded collectedData using the payload spec folder when no explicit override is present', async () => {
-    const payloadSpecFolder = '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion';
-    const resolvedSpecFolder = path.resolve(REPO_ROOT, payloadSpecFolder);
+    const payloadSpecFolder = FIXTURE_PACKET;
+    const resolvedSpecFolder = path.resolve(tempRoot, payloadSpecFolder);
     const payload = JSON.stringify({
       specFolder: payloadSpecFolder,
       sessionSummary: 'Inline JSON should resolve its own spec folder when no override exists.',
     });
 
     const { main } = await import('../memory/generate-context');
-    await main(['--json', payload]);
+    await main(['--json', payload], undefined, tempRoot);
 
     expect(harness.runWorkflow).toHaveBeenCalledTimes(1);
     expect(harness.runWorkflow).toHaveBeenCalledWith(expect.objectContaining({
@@ -162,8 +213,8 @@ describe('generate-context CLI authority', () => {
   });
 
   it('keeps target resolution and collectedData shape identical between --stdin and --json for the same payload', async () => {
-    const payloadSpecFolder = '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion';
-    const resolvedSpecFolder = path.resolve(REPO_ROOT, payloadSpecFolder);
+    const payloadSpecFolder = FIXTURE_PACKET;
+    const resolvedSpecFolder = path.resolve(tempRoot, payloadSpecFolder);
     const payload = JSON.stringify({
       specFolder: payloadSpecFolder,
       sessionSummary: 'Equivalent structured payloads should resolve identically across stdin and inline JSON modes.',
@@ -172,12 +223,12 @@ describe('generate-context CLI authority', () => {
 
     const { main } = await import('../memory/generate-context');
 
-    await main(['--stdin'], async () => payload);
+    await main(['--stdin'], async () => payload, tempRoot);
     const stdinCall = harness.runWorkflow.mock.calls.at(-1)?.[0];
 
     harness.runWorkflow.mockClear();
 
-    await main(['--json', payload]);
+    await main(['--json', payload], undefined, tempRoot);
     const jsonCall = harness.runWorkflow.mock.calls.at(-1)?.[0];
 
     expect(stdinCall).toMatchObject({
@@ -205,11 +256,11 @@ describe('generate-context CLI authority', () => {
   });
 
   it('allows an empty JSON object through to workflow when an explicit CLI target is present', async () => {
-    const explicitSpecFolder = '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion';
-    const resolvedSpecFolder = path.resolve(REPO_ROOT, explicitSpecFolder);
+    const explicitSpecFolder = FIXTURE_PACKET;
+    const resolvedSpecFolder = path.resolve(tempRoot, explicitSpecFolder);
 
     const { main } = await import('../memory/generate-context');
-    await main(['--json', '{}', explicitSpecFolder]);
+    await main(['--json', '{}', explicitSpecFolder], undefined, tempRoot);
 
     expect(harness.runWorkflow).toHaveBeenCalledTimes(1);
     expect(harness.runWorkflow).toHaveBeenCalledWith(expect.objectContaining({
@@ -224,7 +275,7 @@ describe('generate-context CLI authority', () => {
 
   it('forwards explicit --full-auto to workflow without weakening CLI target authority', async () => {
     const dataFile = buildSessionScopedSaveContextPath('cli-authority-full-auto');
-    const explicitSpecFolder = '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion';
+    const explicitSpecFolder = FIXTURE_PACKET;
     process.argv = [
       'node',
       path.join('scripts', 'dist', 'memory', 'generate-context.js'),
@@ -234,7 +285,7 @@ describe('generate-context CLI authority', () => {
     ];
 
     const { main } = await import('../memory/generate-context');
-    await main();
+    await main(undefined, undefined, tempRoot);
 
     expect(harness.runWorkflow).toHaveBeenCalledTimes(1);
     const workflowCall = harness.runWorkflow.mock.calls[0]?.[0];
@@ -253,7 +304,7 @@ describe('generate-context CLI authority', () => {
 
     const { main } = await import('../memory/generate-context');
 
-    await expect(main(['--json', '{'])).rejects.toThrow('EXIT:1');
+    await expect(main(['--json', '{'], undefined, tempRoot)).rejects.toThrow('EXIT:1');
     expect(harness.runWorkflow).not.toHaveBeenCalled();
     expect(harness.loadCollectedData).not.toHaveBeenCalled();
 
@@ -268,7 +319,7 @@ describe('generate-context CLI authority', () => {
 
     const { main } = await import('../memory/generate-context');
 
-    await expect(main(['--stdin'], async () => payload)).rejects.toThrow('EXIT:1');
+    await expect(main(['--stdin'], async () => payload, tempRoot)).rejects.toThrow('EXIT:1');
     expect(harness.runWorkflow).not.toHaveBeenCalled();
     expect(harness.loadCollectedData).not.toHaveBeenCalled();
 
@@ -283,7 +334,7 @@ describe('generate-context CLI authority', () => {
 
     const { main } = await import('../memory/generate-context');
 
-    await expect(main(['--json', payload, 'not-a-spec-folder'])).rejects.toThrow('EXIT:1');
+    await expect(main(['--json', payload, 'not-a-spec-folder'], undefined, tempRoot)).rejects.toThrow('EXIT:1');
     expect(harness.runWorkflow).not.toHaveBeenCalled();
     expect(harness.loadCollectedData).not.toHaveBeenCalled();
 

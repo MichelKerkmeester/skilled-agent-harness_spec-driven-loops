@@ -13,6 +13,11 @@
   --chart-ink: #1A1917;
   --chart-muted: #52504E;
   --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
   --chart-series-1: #28405C;
   --chart-series-2: #874420;
   --chart-series-3: #487B3B;
@@ -20,6 +25,38 @@
   --chart-emphasis: #1A1917;
 }
 /* CHART_PALETTE:END */
+
+/* CHART_PALETTE_DARK:BEGIN system=categorical */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --chart-surface: #161513;
+    --chart-ink: #F2F0EC;
+    --chart-muted: #A8A5A0;
+    --chart-rule: #F2F0EC17;
+    --chart-series-1: #DBBD6D;
+    --chart-series-2: #57AABF;
+    --chart-series-3: #D25F4D;
+    --chart-series-4: #7657BF;
+    --chart-emphasis: #F2F0EC;
+  }
+}
+/* CHART_PALETTE_DARK:END */
+
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
 
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
@@ -37,49 +74,118 @@ body {
   margin: 0 auto 20px;
   padding: 28px 28px 22px;
   border: 1px solid var(--chart-rule);
-  border-radius: 10px;
+  border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
 
 .series-1 { fill: var(--chart-series-1); }
 .series-2 { fill: var(--chart-series-2); }
 .series-3 { fill: var(--chart-series-3); }
+/* A segment past the palette's capacity has no colour to take, so it takes the rule colour: the
+   ground held back, which reads as "outside the encoding" rather than as a colour of its own.
+   It is deliberately outside the .series-* ladder so that nothing can reach it by arithmetic,
+   and the figure prints a notice whenever a mark lands on it. */
+.over-capacity { fill: var(--chart-rule); }
 .seg { stroke: var(--chart-surface); stroke-width: 3; }
+/* The legend block carries the ladder's mark corner. Only the top segment of a stack carries
+   it in the drawing, so no two data colours ever meet across a rounded seam. */
+.key-swatch { rx: var(--chart-radius-mark); }
 .cat { fill: var(--chart-ink); font-size: 12px; }
-.key { fill: var(--chart-muted); font-size: 12px; }
+.key { fill: var(--chart-muted); font-size: 11px; }
 .on-dark { fill: var(--chart-surface); font-size: 12px; font-variant-numeric: tabular-nums; }
 .on-light { fill: var(--chart-ink); font-size: 12px; font-variant-numeric: tabular-nums; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The category and legend names keep the body face, because they are names rather than figures. */
+.on-dark, .on-light, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* One series at a time. Pointing at a mark, or at its entry in the key, drops the other series
+   to a third of their strength so the one being read stands clear of them. Clicking an entry
+   holds that state until the same entry is clicked again, which is what a reader comparing
+   this chart against another one needs. Nothing dims until a reader asks: the attribute is
+   empty until a pointer or a key press fills it, so the file paints what it always painted. */
+[data-series] { transition: opacity 0.2s ease; }
+svg[data-chart-dim="1"] [data-series]:not([data-series="1"]) { opacity: 0.3; }
+svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
+svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
+/* A reader who clicks a control inside the figure should not be left looking at a ring they
+   never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
+   the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
+   are there to be copied out of it. */
+.figure svg :focus:not(:focus-visible) { outline: none; }
+
+/* A stack grows as one shape. Every segment scales about the axis rather than about its own
+   foot, because a segment that scales about itself detaches from the one below it and the
+   column arrives in pieces, which is an order the data does not have. The origin is the
+   baseline the drawing code already computed, handed to the stylesheet as a custom property
+   so the number is not typed twice.
+   The delay comes from the column's place in the drawing order, which is geometry: no number
+   in the data block reaches the timing. It is capped rather than accumulated, so a file
+   carrying thirty columns still settles inside the one second the contract names.
+   backwards, not both: the collapsed state applies before the first frame and is gone once
+   the animation ends, so the settled file carries no trace of having moved. */
+@keyframes chart-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.seg {
+  transform-box: view-box;
+  transform-origin: 0 var(--chart-grow-base, 100%);
+  animation: chart-grow 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
+  animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
+}
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  .seg { animation: none; }
+  [data-series] { transition: none; }
+}
 </style>
 </head>
 <body>
 <div class="card">
   <h1 class="headline" data-chart-part="headline">The revenue mix holds everywhere except in the market we entered last year</h1>
-  <p class="subtitle" data-chart-part="subtitle">Revenue by product line within each market, in millions, last financial year. Three segments across four markets is the ceiling for this form. Past it only the bottom segment stays comparable.</p>
+  <p class="subtitle" data-chart-part="subtitle">Revenue by product line within each market, in millions, last financial year. Only the bottom segment of a stack shares a baseline, so that is the one comparison the form makes cleanly and the rest are read as shares of their own column.</p>
   <div class="figure" data-chart-part="figure">
-    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart" data-chart-dim="">
       <title id="fig-title">Revenue by product line within each market</title>
-      <desc id="fig-desc">Four markets drawn as stacked columns of three product lines each. Every column is dominated by the platform line except the newest market, where services lead. The table below the chart carries every segment as text.</desc>
+      <desc id="fig-desc">Four markets drawn as stacked columns of three product lines each. Each product line takes the swatch printed beside its name in the key, left to right, and the segments stack in the same order from the foot of every column upward: platform, then services, then support. Every column is dominated by the platform line except the newest market, where services lead. The table below the chart carries every segment as text.</desc>
+      <g data-chart-legend id="legend-stacked-bars"></g>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Revenue by product line within each market, in millions.</caption>
-    <thead><tr id="head-row"><th scope="col">Market</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Revenue by product line within each market, in millions.</caption>
+      <thead><tr id="head-row"><th scope="col">Market</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -107,6 +213,42 @@ function node(name, attrs, cls) {
   return el;
 }
 
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return (d.values || []).some(function (v) { return Number.isFinite(v); }); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
 function channel(c) {
   const v = c / 255;
   return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
@@ -126,6 +268,23 @@ function labelClass(fill) {
   return ratio(resolve('--chart-surface'), fill) >= ratio(resolve('--chart-ink'), fill) ? 'on-dark' : 'on-light';
 }
 
+// The corner comes from the ladder in the palette block rather than from a number typed
+// here, so one edit reaches every form instead of one file.
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-mark')) || 0;
+
+// A column rounds only the end that meets nothing. The end on the baseline stays square,
+// because a rounded corner there reads as a column that stops short of the axis it is
+// measured from. A column shorter than its own corner has the corner clamped to its height,
+// so a small value stays a column rather than collapsing into a lozenge.
+function topRounded(x, y, w, h, r) {
+  const k = Math.max(0, Math.min(r, w / 2, h));
+  return 'M' + x + ',' + (y + h) + ' V' + (y + k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + k) + ',' + y +
+    ' H' + (x + w - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w) + ',' + (y + k) +
+    ' V' + (y + h) + ' Z';
+}
+
 const LEFT = 40;
 const RIGHT = 700;
 const TOP = 44;
@@ -135,6 +294,26 @@ const peak = DATA.reduce(function (m, d) {
 }, 0);
 const scale = (BASE - TOP) / peak;
 
+// The stack scales about the axis rather than about each segment's own foot, so the
+// stylesheet needs the baseline the drawing already computed. Handing it over as a custom
+// property keeps the number in one place instead of typing it a second time in CSS.
+svg.style.setProperty('--chart-grow-base', BASE + 'px');
+
+// The palette block above defines 3 segment colours and no more, so a fourth segmen has
+// none to take. Reaching for one produced a class the stylesheet defines no fill for, and an
+// undefined fill paints black: the segmen the encoding could not carry came out as the
+// strongest mark in the picture, under a key that never named it. Past the ceiling the extras
+// share one unkeyed fill and the figure says so, which is the answer `scatter` and `heat-matrix`
+// already give when their own documented shape is exceeded.
+//
+// The ceiling is written here rather than counted, because a self-contained file has no source
+// to read it from. `series-capacity` in the corpus check reads this constant against the classes
+// this file defines, so the two cannot drift apart without a run saying which side moved.
+const CAPACITY = 3;
+function seriesClass(i) {
+  return i < CAPACITY ? 'series-' + (i + 1) : 'over-capacity';
+}
+
 const slot = (RIGHT - LEFT) / DATA.length;
 const barWidth = slot * 0.52;
 DATA.forEach(function (d, i) {
@@ -143,21 +322,64 @@ DATA.forEach(function (d, i) {
   d.values.forEach(function (v, s) {
     const h = v * scale;
     y -= h;
-    node('rect', { x: cx - barWidth / 2, y: y, width: barWidth, height: h }, 'seg series-' + (s + 1));
+    const top = s === d.values.length - 1;
+    // Every segment of a column carries the column's index, so the whole stack grows on one
+    // timing and arrives as one shape. An index is where a mark sits in the drawing, so
+    // nothing in the data block reaches the timing.
+    node(top ? 'path' : 'rect', top
+      ? { d: topRounded(cx - barWidth / 2, y, barWidth, h, MARK_R), style: '--mark-index:' + i, 'data-series': s + 1 }
+      : { x: cx - barWidth / 2, y: y, width: barWidth, height: h, style: '--mark-index:' + i, 'data-series': s + 1 },
+      'seg ' + seriesClass(s));
     if (h >= 22) {
-      node('text', { x: cx, y: y + h / 2 + 4, 'text-anchor': 'middle' },
-        labelClass(resolve('--chart-series-' + (s + 1)))).textContent = String(v);
+      // The printed value belongs to its segment, so it dims with it rather than staying at
+      // full strength over a segment that has stepped back.
+      //
+      // A segment past the ceiling is painted in the rule colour, which is the ground held back
+      // rather than a colour of its own, so its number is read against the ground. Reading the
+      // rule value here instead would hand the contrast maths an alpha on the dark theme.
+      const cls = seriesClass(s);
+      const fill = cls === 'over-capacity' ? resolve('--chart-surface') : resolve('--chart-' + cls);
+      node('text', { x: cx, y: y + h / 2 + 4, 'text-anchor': 'middle', 'data-series': s + 1 },
+        labelClass(fill)).textContent = fmt(v);
     }
   });
   node('text', { x: cx, y: BASE + 22, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
 });
 
-let keyX = LEFT;
+// The key sits inside the drawing rather than in the sentence above it, so a reader maps a
+// colour to a name without leaving the picture. It is also the control for the dim, which is
+// why each entry is a button rather than a label: a control a pointer can reach has to be
+// reachable from a keyboard too. Entries are laid out left to right, measured, then pushed to
+// the right edge, which is the corner of the frame no mark reaches.
+const legend = document.getElementById('legend-stacked-bars');
+const entries = [];
+let cursor = 0;
 SEGMENTS.forEach(function (name, s) {
-  node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
-  node('text', { x: keyX + 19, y: 19 }, 'key').textContent = name;
-  keyX += 44 + name.length * 6.6;
+  const entry = document.createElementNS(SVG, 'g');
+  entry.setAttribute('data-series', s + 1);
+  entry.setAttribute('tabindex', '0');
+  entry.setAttribute('role', 'button');
+  entry.setAttribute('aria-pressed', 'false');
+  const swatch = document.createElementNS(SVG, 'rect');
+  swatch.setAttribute('x', cursor);
+  swatch.setAttribute('y', 6);
+  swatch.setAttribute('width', 8);
+  swatch.setAttribute('height', 8);
+  swatch.setAttribute('class', 'key-swatch ' + seriesClass(s));
+  entry.appendChild(swatch);
+  const label = document.createElementNS(SVG, 'text');
+  label.setAttribute('x', cursor + 12);
+  label.setAttribute('y', 14);
+  label.setAttribute('class', 'key');
+  label.textContent = name;
+  entry.appendChild(label);
+  legend.appendChild(entry);
+  // The gap after an entry is the label's real width, measured once it is in the document.
+  // A character count assumes every glyph is one width, which this font stack does not promise.
+  cursor += 12 + (label.getComputedTextLength() || name.length * 6.2) + 16;
+  entries.push(entry);
 });
+legend.setAttribute('transform', 'translate(' + (RIGHT - (cursor - 16)) + ',0)');
 
 const headRow = document.getElementById('head-row');
 SEGMENTS.forEach(function (name) {
@@ -166,6 +388,20 @@ SEGMENTS.forEach(function (name) {
   th.textContent = name;
   headRow.appendChild(th);
 });
+
+
+// The catalog gives this form a working shape and the palette gives it a ceiling of colours.
+// Past that ceiling the figure says so in the picture, where the person reading the chart will
+// see it, rather than in a console nobody opens. The notice grows the frame instead of sitting
+// inside the plot, so it never lands on a mark.
+if (SEGMENTS.length > CAPACITY) {
+  const box = svg.getAttribute('viewBox').split(' ');
+  const grown = Number(box[3]) + 22;
+  svg.setAttribute('viewBox', box[0] + ' ' + box[1] + ' ' + box[2] + ' ' + grown);
+  node('text', { x: LEFT, y: grown - 6 }, 'notice').textContent =
+    fmt(SEGMENTS.length) + ' segments are drawn and this colour system carries ' + fmt(CAPACITY)
+    + '. The rest are drawn outside the encoding, so merge the tail before drawing or move to the neutral system.';
+}
 
 const rows = document.getElementById('rows');
 DATA.forEach(function (d) {
@@ -177,11 +413,49 @@ DATA.forEach(function (d) {
   d.values.forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
-    td.textContent = String(v);
+    td.textContent = fmt(v);
     tr.appendChild(td);
   });
   rows.appendChild(tr);
 });
+
+// Pointing at a mark or at a key entry is a hover and clears itself. Clicking an entry holds
+// the same state until the same entry is clicked again. Leaving the drawing clears a hover, so
+// no chart can be left permanently dimmed by a pointer that wandered off the page.
+let latched = null;
+
+function dimTo(series) {
+  svg.setAttribute('data-chart-dim', series === null ? '' : series);
+}
+
+function latch(series) {
+  latched = latched === series ? null : series;
+  dimTo(latched);
+  entries.forEach(function (entry) {
+    entry.setAttribute('aria-pressed', entry.getAttribute('data-series') === latched ? 'true' : 'false');
+  });
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (latched !== null) return;
+  const owner = e.target.closest ? e.target.closest('[data-series]') : null;
+  dimTo(owner ? owner.getAttribute('data-series') : null);
+});
+svg.addEventListener('pointerleave', function () {
+  if (latched === null) dimTo(null);
+});
+entries.forEach(function (entry) {
+  entry.addEventListener('click', function () { latch(entry.getAttribute('data-series')); });
+  // A group in a drawing does not turn a key press into a click the way a button element does,
+  // so the two keys a button answers to are wired by hand.
+  entry.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    latch(entry.getAttribute('data-series'));
+  });
+});
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
 </script>
 </body>
 </html>

@@ -121,7 +121,7 @@ references (10 across 6 files) -> full gate run (`vitest` 386 passed) -> recaptu
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase
 state. In brief: enumerate violations and build the manifest, execute the rename and both rewrite
 passes, run the full gate suite once to discover the bare-filename gap, fix it, recapture, then
 run every gate to its final state.

@@ -13,6 +13,11 @@
   --chart-ink: #1A1917;
   --chart-muted: #52504E;
   --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
   --chart-series-1: #28405C;
   --chart-series-2: #874420;
   --chart-series-3: #487B3B;
@@ -20,6 +25,38 @@
   --chart-emphasis: #1A1917;
 }
 /* CHART_PALETTE:END */
+
+/* CHART_PALETTE_DARK:BEGIN system=categorical */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --chart-surface: #161513;
+    --chart-ink: #F2F0EC;
+    --chart-muted: #A8A5A0;
+    --chart-rule: #F2F0EC17;
+    --chart-series-1: #DBBD6D;
+    --chart-series-2: #57AABF;
+    --chart-series-3: #D25F4D;
+    --chart-series-4: #7657BF;
+    --chart-emphasis: #F2F0EC;
+  }
+}
+/* CHART_PALETTE_DARK:END */
+
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
 
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
@@ -37,49 +74,103 @@ body {
   margin: 0 auto 20px;
   padding: 28px 28px 22px;
   border: 1px solid var(--chart-rule);
-  border-radius: 10px;
+  border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
 
 .series-1 { fill: var(--chart-series-1); }
 .series-2 { fill: var(--chart-series-2); }
 .series-3 { fill: var(--chart-series-3); }
 .series-4 { fill: var(--chart-series-4); }
+/* A family past the palette's capacity has no colour to take, so it takes the rule colour: the
+   ground held back, which reads as "outside the encoding" rather than as a colour of its own.
+   It is deliberately outside the .series-* ladder so that nothing can reach it by arithmetic,
+   and the figure prints a notice whenever a mark lands on it. */
+.over-capacity { fill: var(--chart-rule); }
 .cell { stroke: var(--chart-surface); stroke-width: 3; }
 .group { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
 .on-dark { fill: var(--chart-surface); font-size: 12px; }
 .on-light { fill: var(--chart-ink); font-size: 12px; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. A cell prints its name and its value in the same ink, so only the value carries the class. */
+.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* The hover card. It is drawn inside the figure, in the same coordinates as the mark it
+   describes, so it travels with the drawing when a narrow screen pans it sideways instead of
+   drifting off its mark. Its border is half the rule's strength, because a full-weight
+   outline around a floating card reads as a second chart element rather than as a note about
+   the first one. It carries no text until a reader points at something, so a file nobody
+   touches paints exactly what it painted before the card existed. */
+[data-chart-tooltip] { opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+[data-chart-tooltip][data-open] { opacity: 1; }
+.tip-card { fill: var(--chart-surface); stroke: color-mix(in srgb, var(--chart-rule) 50%, transparent); stroke-width: 1; rx: var(--chart-radius-track); }
+.tip-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.tip-label { fill: var(--chart-muted); font-size: 12px; }
+/* The figures in the card take the same mono face as the axis and the table, so a value read
+   off a mark and the same value read out of the table sit digit under digit. */
+.tip-value { fill: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+/* The labels sit on top of their cells, so they let the pointer through to the cell
+   underneath rather than reading as a dead patch inside it. */
+.group, .on-dark, .on-light { pointer-events: none; }
+/* A reader who clicks a control inside the figure should not be left looking at a ring they
+   never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
+   the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
+   are there to be copied out of it. */
+.figure svg :focus:not(:focus-visible) { outline: none; }
+/* A reader whose system asks for less motion gets the card with no fade. The motion is
+   removed rather than shortened, because a fast fade is still a fade to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  [data-chart-tooltip] { transition: none; }
+}
 </style>
 </head>
 <body>
 <div class="card">
-  <h1 class="headline" data-chart-part="headline">Storage is nearly half the cloud bill and no team has claimed it</h1>
+  <h1 class="headline" data-chart-part="headline">Storage is nearly half the cloud bill and its archive line alone costs more than all of Network</h1>
   <p class="subtitle" data-chart-part="subtitle">Last month's cloud spend, grouped by service family and broken down by line item. Area is the encoding, so a cell twice the size cost twice as much. Below about thirty leaves the tail is merged before drawing.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 336" id="chart">
       <title id="fig-title">Cloud spend by service family and line item</title>
       <desc id="fig-desc">Four service families drawn as columns whose width is their share of the bill, each split into line items whose height is their share of the family. Storage is the widest column. The table below the chart carries every line item as text.</desc>
+      <g data-chart-tooltip id="tip-treemap"></g>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Cloud spend by service family and line item, in thousands.</caption>
-    <thead><tr><th scope="col">Family</th><th scope="col">Line item</th><th scope="col">Spend</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Cloud spend by service family and line item, in thousands.</caption>
+      <thead><tr><th scope="col">Family</th><th scope="col">Line item</th><th scope="col">Spend</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -119,6 +210,126 @@ function node(name, attrs, cls) {
   return el;
 }
 
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+const HAS_READABLE_DATA = (DATA || []).some(function (group) { return (group.leaves || []).some(function (leaf) { return Number.isFinite(leaf.value); }); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The hover card, built once and refilled on each hover so a pointer crossing the plot does
+// not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
+// and returns an em dash for a reading nobody took, so the card can never disagree with the
+// axis or with the table under the chart.
+//
+// This replaces the browser's own title tooltip on these marks. Nothing is lost to a screen
+// reader by that: the drawing declares role="img", which makes its whole subtree one image,
+// so a title on a mark inside it was never announced. The table below the chart is, and still
+// is, the complete reading.
+const TIP_PAD = 10;
+const TIP_LINE = 16;
+const TIP_FLOOR = 128;
+const TIP_ROWS = 1;
+const tipLayer = document.getElementById('tip-treemap');
+const MARKS = new Map();
+
+function tipNode(name, cls) {
+  const el = document.createElementNS(SVG, name);
+  el.setAttribute('class', cls);
+  tipLayer.appendChild(el);
+  return el;
+}
+
+const tipCard = tipNode('rect', 'tip-card');
+const tipName = tipNode('text', 'tip-name');
+const tipRows = [];
+for (let r = 0; r < TIP_ROWS; r += 1) {
+  tipRows.push({ label: tipNode('text', 'tip-label'), value: tipNode('text', 'tip-value') });
+}
+tipName.setAttribute('x', TIP_PAD);
+tipName.setAttribute('y', TIP_PAD + 12);
+tipRows.forEach(function (row, i) {
+  row.label.setAttribute('x', TIP_PAD);
+  row.label.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
+  row.value.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
+  row.value.setAttribute('text-anchor', 'end');
+});
+
+// A mark answers a pointer only once it is registered here. That is what keeps the forms
+// that earn a card apart from the ones whose marks already print their own value.
+function markable(el, name, rows) {
+  el.setAttribute('data-mark', '');
+  MARKS.set(el, { name: name, rows: rows });
+  return el;
+}
+
+// The card is sized from the text that is actually in it. A character count assumes an
+// advance this font stack does not promise, and the floor stops a short reading collapsing
+// into a chip narrow enough to break a two-word label across two lines.
+function openTip(mark) {
+  const info = MARKS.get(mark);
+  tipName.textContent = info.name;
+  tipRows.forEach(function (row, i) {
+    row.label.textContent = info.rows[i][0];
+    row.value.textContent = info.rows[i][1];
+  });
+  let width = Math.max(TIP_FLOOR, (tipName.getComputedTextLength() || 0) + TIP_PAD * 2);
+  tipRows.forEach(function (row) {
+    const used = (row.label.getComputedTextLength() || 0) + (row.value.getComputedTextLength() || 0);
+    width = Math.max(width, used + TIP_PAD * 2 + 18);
+  });
+  const height = TIP_PAD * 2 + 12 + TIP_LINE * tipRows.length;
+  tipCard.setAttribute('width', width);
+  tipCard.setAttribute('height', height);
+  tipRows.forEach(function (row) { row.value.setAttribute('x', width - TIP_PAD); });
+
+  // A card that would open past the right edge or above the top opens on the other side of
+  // its mark instead, so it is never drawn outside the frame the chart is allowed to use.
+  const view = svg.getAttribute('viewBox').split(' ');
+  const box = mark.getBBox();
+  let x = box.x + box.width + 12;
+  if (x + width > Number(view[2])) x = box.x - width - 12;
+  if (x < 0) x = 0;
+  let y = box.y + box.height / 2 - height / 2;
+  if (y < 0) y = 0;
+  if (y + height > Number(view[3])) y = Number(view[3]) - height;
+  tipLayer.setAttribute('transform', 'translate(' + x + ',' + y + ')');
+  tipLayer.setAttribute('data-open', '');
+}
+
+function closeTip() {
+  tipLayer.removeAttribute('data-open');
+}
+
 function channel(c) {
   const v = c / 255;
   return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
@@ -144,11 +355,30 @@ const WIDTH = 720;
 const sum = function (list) { return list.reduce(function (t, l) { return t + l.value; }, 0); };
 const total = DATA.reduce(function (t, g) { return t + sum(g.leaves); }, 0);
 
+// The palette block above defines 4 family colours and no more, so a fifth famil has
+// none to take. Reaching for one produced a class the stylesheet defines no fill for, and an
+// undefined fill paints black: the famil the encoding could not carry came out as the
+// strongest mark in the picture, under a key that never named it. Past the ceiling the extras
+// share one unkeyed fill and the figure says so, which is the answer `scatter` and `heat-matrix`
+// already give when their own documented shape is exceeded.
+//
+// The ceiling is written here rather than counted, because a self-contained file has no source
+// to read it from. `series-capacity` in the corpus check reads this constant against the classes
+// this file defines, so the two cannot drift apart without a run saying which side moved.
+const CAPACITY = 4;
+function seriesClass(i) {
+  return i < CAPACITY ? 'series-' + (i + 1) : 'over-capacity';
+}
+
 let x = 0;
 DATA.forEach(function (g, s) {
   const groupTotal = sum(g.leaves);
   const w = WIDTH * (groupTotal / total);
-  const text = labelClass(resolve('--chart-series-' + (s + 1)));
+  // A family past the ceiling is painted in the rule colour, which is the ground held back
+  // rather than a colour of its own, so its labels are read against the ground. Reading the rule
+  // value here instead would hand the contrast maths an alpha on the dark theme.
+  const cls = seriesClass(s);
+  const text = labelClass(cls === 'over-capacity' ? resolve('--chart-surface') : resolve('--chart-' + cls));
   // A label on the last column would run off the right edge, so it flips to end-anchored
   // rather than being silently clipped.
   const caption = g.label + ' ' + groupTotal;
@@ -159,15 +389,30 @@ DATA.forEach(function (g, s) {
   let y = TOP;
   g.leaves.forEach(function (leaf) {
     const h = HEIGHT * (leaf.value / groupTotal);
-    node('rect', { x: x, y: y, width: w, height: h }, 'cell series-' + (s + 1));
+    markable(node('rect', { x: x, y: y, width: w, height: h }, 'cell ' + cls),
+      leaf.label, [[g.label, fmt(leaf.value)]]);
     if (h >= 30 && w >= 74) {
       node('text', { x: x + 10, y: y + 20 }, text).textContent = leaf.label;
-      node('text', { x: x + 10, y: y + 36 }, text).textContent = String(leaf.value);
+      node('text', { x: x + 10, y: y + 36 }, text + ' num').textContent = fmt(leaf.value);
     }
     y += h;
   });
   x += w;
 });
+
+
+// The catalog gives this form a working shape and the palette gives it a ceiling of colours.
+// Past that ceiling the figure says so in the picture, where the person reading the chart will
+// see it, rather than in a console nobody opens. The notice grows the frame instead of sitting
+// inside the plot, so it never lands on a mark.
+if (DATA.length > CAPACITY) {
+  const box = svg.getAttribute('viewBox').split(' ');
+  const grown = Number(box[3]) + 22;
+  svg.setAttribute('viewBox', box[0] + ' ' + box[1] + ' ' + box[2] + ' ' + grown);
+  node('text', { x: 2, y: grown - 6 }, 'notice').textContent =
+    fmt(DATA.length) + ' families are drawn and this colour system carries ' + fmt(CAPACITY)
+    + '. The rest are drawn outside the encoding, so merge the tail before drawing or move to the neutral system.';
+}
 
 const rows = document.getElementById('rows');
 DATA.forEach(function (g) {
@@ -180,13 +425,54 @@ DATA.forEach(function (g) {
     name.textContent = leaf.label;
     const value = document.createElement('td');
     value.className = 'num';
-    value.textContent = String(leaf.value);
+    value.textContent = fmt(leaf.value);
     tr.appendChild(th);
     tr.appendChild(name);
     tr.appendChild(value);
     rows.appendChild(tr);
   });
 });
+
+// One delegated listener on the drawing rather than one per mark. A matrix carries a hundred
+// cells and a calendar three hundred and sixty-four, and a listener each is a cost the reader
+// pays for nothing.
+let pinned = null;
+
+function markAt(target) {
+  return target && target.closest ? target.closest('[data-mark]') : null;
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (pinned) return;
+  const mark = markAt(e.target);
+  if (mark) openTip(mark); else closeTip();
+});
+svg.addEventListener('pointerleave', function () {
+  if (!pinned) closeTip();
+});
+// A touch device never hovers. A tap opens the card, the same tap again closes it, and a tap
+// anywhere else closes it too, which is the gesture a reader already expects.
+svg.addEventListener('click', function (e) {
+  const mark = markAt(e.target);
+  if (!mark || mark === pinned) {
+    pinned = null;
+    closeTip();
+    return;
+  }
+  pinned = mark;
+  openTip(mark);
+});
+document.addEventListener('click', function (e) {
+  if (pinned && !svg.contains(e.target)) {
+    pinned = null;
+    closeTip();
+  }
+});
+// The card is raised above the marks once the drawing is finished, so it is never painted
+// underneath the mark it is describing.
+svg.appendChild(tipLayer);
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
 </script>
 </body>
 </html>

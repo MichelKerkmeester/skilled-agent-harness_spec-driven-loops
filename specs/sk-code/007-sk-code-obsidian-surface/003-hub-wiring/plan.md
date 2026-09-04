@@ -129,7 +129,7 @@ authors packet content against this now-live routing.
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase
 checkboxes and task state.
 
 <!-- /ANCHOR:phases -->

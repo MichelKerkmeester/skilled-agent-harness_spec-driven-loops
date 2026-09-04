@@ -33,18 +33,18 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
 
 > **Non-existent flags:** `--reasoning-effort` and the parameterized `model[effort=...]` bracket do NOT exist / are rejected outright by Cursor CLI. Select an effort-suffixed model id (e.g. `cursor-grok-4.6-high`) instead.
 > **Exit code caveat:** `-p` always exits `0`, even on auth failure. Every template below assumes the caller inspects output text, not the exit code.
-> **Enforced allowlist:** `--model` is scoped to 21 ids — `composer-2.5`/`composer-2.5-fast`, 6 Grok 4.5 tiers, 8 Grok 4.6 tiers, `gemini-3.7-flash-high`, `glm-5.2-{high,max}`, `gpt-5.6-luna-{max,max-fast}`. `auto` and every other Cursor id are rejected before a command is constructed (SKILL.md §3).
+> **Enforced allowlist:** `--model` is scoped to 21 ids: `composer-2.5`/`composer-2.5-fast`, 6 Grok 4.5 tiers, 8 Grok 4.6 tiers, `gemini-3.7-flash-high`, `glm-5.2-{high,max}`, `gpt-5.6-luna-{max,max-fast}`. `auto` and every other Cursor id are rejected before a command is constructed (SKILL.md §3).
 
 | Flag | Purpose |
 | ---- | ------- |
-| `--model composer-2.5` | Skill default — Cursor's own native model. Override with `cursor-grok-4.6-high` or `glm-5.2-max` for a specific allowed provider/tier — never `auto`, never an id outside the allowlist. |
-| `--output-format text` | Skill default — final answer only. Use `json` for a structured envelope with `session_id`/`usage`. |
-| `--mode plan` | Read-only planning — no writes regardless of approval flags. |
-| `--mode ask` | Read-only Q&A — no writes regardless of approval flags. |
-| `--auto-review` | "Smart Auto" — auto-runs safe actions, prompts for the rest. Skill default for write-capable dispatches. |
-| `--force` / `--yolo` | "Run Everything" — never prompts. Requires explicit user approval before use. |
-| `--sandbox enabled` | OS-level sandbox on — skill default. |
-| `--sandbox disabled` | OS-level sandbox off — pairs with `--force` for fully unattended runs. |
+| `--model composer-2.5` | Skill default, Cursor's own native model. Override with `cursor-grok-4.6-high` or `glm-5.2-max` for a specific allowed provider/tier, never `auto`, never an id outside the allowlist. |
+| `--output-format text` | Skill default, final answer only. Use `json` for a structured envelope with `session_id`/`usage`. |
+| `--mode plan` | Read-only planning. No writes regardless of approval flags. |
+| `--mode ask` | Read-only Q&A. No writes regardless of approval flags. |
+| `--auto-review` | "Smart Auto". Auto-runs safe actions, prompts for the rest. Skill default for write-capable dispatches. |
+| `--force` / `--yolo` | "Run Everything". Never prompts. Requires explicit user approval before use. |
+| `--sandbox enabled` | OS-level sandbox on, the skill default. |
+| `--sandbox disabled` | OS-level sandbox off. Pairs with `--force` for fully unattended runs. |
 | `--trust` | Trusts the workspace without a workspace-trust prompt. |
 | `--approve-mcps` | Auto-approves configured MCP servers for this dispatch. |
 
@@ -210,7 +210,7 @@ cursor-agent -p "Use the configured GitHub MCP server to list open PRs against m
 
 ## 8. MEMORY EPILOGUE (HANDBACK)
 
-Append to any dispatch prompt when the calling AI needs to preserve session context afterward — see `SKILL.md` "Memory Handback Protocol" for the full 7-step procedure this feeds into.
+Append to any dispatch prompt when the calling AI needs to preserve session context afterward. See `SKILL.md` "Memory Handback Protocol" for the full 7-step procedure this feeds into.
 
 ```
 ---

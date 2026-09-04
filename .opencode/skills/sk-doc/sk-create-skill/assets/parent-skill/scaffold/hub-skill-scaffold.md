@@ -27,7 +27,7 @@ Do not put packet-specific workflow logic in this hub.
 > ```bash
 > node .opencode/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
 > ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority. Compiled routing is now the default for the seven proven hubs (`sk-code`, `sk-design`, `sk-doc`, `sk-prompt`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`); `SPECKIT_COMPILED_ROUTING=0` is the fleet-wide kill-switch. A newly scaffolded `{{HUB_NAME}}` ships without a compiled activation manifest, so this directive stays inert (legacy sentinel) until `{{HUB_NAME}}` completes its own compiled-routing activation and is added to the default-on cohort.
+> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority. Compiled routing is now the default for the seven proven hubs (`sk-code`, `sk-design`, `sk-doc`, `sk-prompt`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`), and `SPECKIT_COMPILED_ROUTING=0` is the fleet-wide kill-switch. A newly scaffolded `{{HUB_NAME}}` ships without a compiled activation manifest, so this directive stays inert (legacy sentinel) until `{{HUB_NAME}}` completes its own compiled-routing activation and is added to the default-on cohort.
 
 ```python
 from pathlib import Path

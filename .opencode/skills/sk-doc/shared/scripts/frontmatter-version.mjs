@@ -357,7 +357,12 @@ function csvCell(v) {
 // ─── main ───────────────────────────────────────────────────────
 
 function parseArgs(argv) {
-  const args = { mode: argv[0], skill: null, paths: null, manifestOut: null, update: false, skillsRoot: null, fromManifest: null, classes: null };
+  // The mode is positional, so a lone `--help` lands in argv[0] and would be read
+  // as a mode name; the flag loop below starts at index 1 and never sees it. Scan
+  // the whole argv for the flag first, so help is answered from any position and
+  // before any mode is derived — a help request must never reach git discovery.
+  const helpRequested = argv.some((a) => a === '--help' || a === '-h');
+  const args = { mode: helpRequested ? 'help' : argv[0], skill: null, paths: null, manifestOut: null, update: false, skillsRoot: null, fromManifest: null, classes: null };
   for (let i = 1; i < argv.length; i += 1) {
     const a = argv[i];
     if (a === '--skill') args.skill = argv[++i];
@@ -367,7 +372,6 @@ function parseArgs(argv) {
     else if (a === '--from-manifest') args.fromManifest = argv[++i];
     else if (a === '--classes') args.classes = argv[++i];
     else if (a === '--update') args.update = true;
-    else if (a === '--help' || a === '-h') args.mode = 'help';
   }
   return args;
 }

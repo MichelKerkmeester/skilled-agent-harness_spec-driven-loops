@@ -1,6 +1,6 @@
 ---
 description: "Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm."
-argument-hint: "<target> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--convergence-mode=default|off|sliding-window|divergent] [--lineage-timeout-hours=N] [--stop-policy=convergence|max-iterations] [--spec-folder=PATH] [--no-resource-map] [--restart|--lineage-mode=restart] [--executor=<type> --model=X --config-dir=PATH --reasoning-effort=LEVEL --service-tier=TIER --executor-timeout=SECONDS --iters=N --count=N --label=X ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--restart]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
@@ -60,6 +60,32 @@ Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop ov
 4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the presentation contract's consolidated setup prompt before loading YAML.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the presentation contract's consolidated setup prompt to ask for execution mode.
 6. Load the selected workflow asset only after `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, and `lineage_mode` are bound.
+
+### Workflow Flag Surface
+
+The argument hint names the invocation shape; the whole flag surface is here. Every flag below
+is a workflow input, never an execution mode, and the presentation asset owns how each one binds
+into `config`.
+
+| Flag | Value | Effect |
+|------|-------|--------|
+| `--spec-folder` | `PATH` | Binds the packet that owns this run's writes. |
+| `--max-iterations` | `N` | Hard ceiling on loop iterations. |
+| `--convergence` | `N` | Threshold the loop must clear before convergence may stop it. |
+| `--convergence-mode` | `default` \| `off` \| `sliding-window` \| `divergent` | `default` keeps the anti-convergence `minIterations` floor. `off` disables convergence-driven STOP while max-iterations, pause and halt stay active. `sliding-window` scores novelty over a bounded window, five snapshots by default. `divergent` routes an eligible convergence stop into a Council pivot rather than ending the run. |
+| `--lineage-timeout-hours` | `N` | See Lineage Timeout Flag below. |
+| `--stop-policy` | `convergence` \| `max-iterations` | See Stop Policy Flag below. |
+| `--no-resource-map` | no value | Suppresses the resource-map write; the review report still emits. |
+| `--restart`, `--lineage-mode` | `auto` \| `resume` \| `restart` | Session lifecycle intent, default `auto`. `resume` keeps the same `sessionId` and archives nothing; `restart`, which bare `--restart` selects, opens a new `sessionId` at generation+1 and archives the prior `review/`. `fork` and `completed-continue` are deferred and rejected. |
+| `--executor` | `TYPE` | Selects the executor kind, and is repeatable. Each occurrence opens a group accepting `--model=X`, `--config-dir=PATH`, `--reasoning-effort=LEVEL`, `--service-tier=TIER`, `--executor-timeout=SECONDS`, `--iters=N`, `--count=N` and `--label=X`. Which of those a given kind supports is in the presentation asset. |
+| `--executors` | `JSON` | Escape hatch declaring the whole fan-out matrix in one value instead of repeated `--executor` groups. |
+| `--concurrency` | `N` | Caps concurrent lineages in the fan-out pool. Default `2`. |
+
+Fan-out policy: zero or one `--executor` and no `--executors` runs the single-executor path;
+two or more `--executor` flags, an `--executors` value, or any `--count` above 1 switches to
+fan-out, one independent lineage per label. `--fanout-lineage-artifact-dir` is internal and set
+by the runtime, not by a caller. Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in the prompt
+body binds the same values without an interactive prompt.
 
 ### Lineage Timeout Flag
 

@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research",
+  "description": "The lane weight is 0.05 because that is what the registry has always said",
+  "keywords": [
+    "lane",
+    "weight",
+    "because",
+    "registry",
+    "always",
+    "said"
+  ],
+  "lastUpdated": "2026-09-02T22:31:54.247Z",
+  "specId": "003",
+  "folderSlug": "weight-and-fusion-research",
+  "parentChain": [
+    "system-skill-advisor",
+    "023-semantic-lane-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

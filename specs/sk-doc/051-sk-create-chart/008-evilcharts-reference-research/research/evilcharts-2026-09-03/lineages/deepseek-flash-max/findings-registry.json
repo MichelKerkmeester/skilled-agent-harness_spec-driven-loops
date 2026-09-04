@@ -1,0 +1,16 @@
+{
+  "openQuestions": [
+    "Q1: How is a chart assembled from shadcn primitives over Recharts/ECharts, and which container/tooltip/legend/dot/brush/background responsibilities exist in the corpus?",
+    "Q2: Which evilcharts forms exist in both, only in evilcharts, or only in the sk-create-chart corpus of twenty templates?",
+    "Q3: What are the concrete design tokens, CSS variable layer, dark mode, radius, spacing, typography and motion values?",
+    "Q4: What physical choices make evilcharts output read as designed (grid/axis weight, tick density, labels, colour ramps, opacity, layering, radius, padding, hover/focus, empty/loading, first-paint animation)?",
+    "Q5: How do registry.json and the shadcn registry item shape work, and what does a consumer actually receive?"
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {},
+  "suppressedCandidates": [],
+  "promotedIdeas": []
+}

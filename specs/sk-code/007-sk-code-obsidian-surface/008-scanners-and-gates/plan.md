@@ -119,7 +119,7 @@ numbered sections: `1. IMPORTS`, `2. CONFIGURATION`, `3. HELPERS`, `4. SCAN`, `5
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification
 phase checkboxes and task state.
 
 <!-- /ANCHOR:phases -->

@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-doc/053-chart-visual-overhaul/003-motion-layer",
+  "description": "`grep -rn 'prefers-reduced-motion' assets/` over the corpus returns nothing, and so does a search",
+  "keywords": [
+    "grep",
+    "prefers-reduced-motion",
+    "assets",
+    "corpus",
+    "returns",
+    "nothing",
+    "search"
+  ],
+  "lastUpdated": "2026-09-03T08:00:17.901Z",
+  "specId": "003",
+  "folderSlug": "motion-layer",
+  "parentChain": [
+    "sk-doc",
+    "053-chart-visual-overhaul"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

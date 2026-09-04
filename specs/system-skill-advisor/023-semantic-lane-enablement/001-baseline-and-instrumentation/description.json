@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation",
+  "description": "Three numbers this packet is built on are either unmeasured or wrong",
+  "keywords": [
+    "three",
+    "numbers",
+    "packet",
+    "unmeasured",
+    "wrong"
+  ],
+  "lastUpdated": "2026-09-02T22:23:43.644Z",
+  "specId": "001",
+  "folderSlug": "baseline-and-instrumentation",
+  "parentChain": [
+    "system-skill-advisor",
+    "023-semantic-lane-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

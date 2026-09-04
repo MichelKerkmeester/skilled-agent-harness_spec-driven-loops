@@ -1,0 +1,13 @@
+form                  before-paint      after-paint       same  second-open       settled
+scatter               e9c9d79937934ca4  e9c9d79937934ca4  yes   e9c9d79937934ca4  yes
+heat-matrix           911b1ee95747971c  911b1ee95747971c  yes   911b1ee95747971c  yes
+calendar-grid         d0d18c3ddc4ceedc  d0d18c3ddc4ceedc  yes   d0d18c3ddc4ceedc  yes
+candlestick           9a62b9d7ede49f4a  9a62b9d7ede49f4a  yes   9a62b9d7ede49f4a  yes
+box-plot              720148bcbb1af24b  720148bcbb1af24b  yes   720148bcbb1af24b  yes
+distribution-strip    f275b953a2c86881  f275b953a2c86881  yes   f275b953a2c86881  yes
+treemap               0477566db8ec1111  0477566db8ec1111  yes   0477566db8ec1111  yes
+grouped-bars          02842789685dcab8  12ae55f087c6c703  no    12ae55f087c6c703  yes
+stacked-bars          6298ebb87d957432  18b486d33a5a49a8  no    18b486d33a5a49a8  yes
+stacked-area          97ee700d467d1e36  38bc1e685979b08a  no    38bc1e685979b08a  yes
+parallel-axes         1cfc1326f633c23d  81740552291d212c  no    81740552291d212c  yes
+daily-line            04e60653e35dfbb8  04e60653e35dfbb8  yes   04e60653e35dfbb8  yes

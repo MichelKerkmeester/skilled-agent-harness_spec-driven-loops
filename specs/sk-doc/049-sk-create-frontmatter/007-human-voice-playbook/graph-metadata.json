@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The human voice mode owns the standard the whole repository writes against, and it is one of",
     "created_at": "2026-09-01T10:24:27Z",
-    "last_save_at": "2026-09-01T11:43:19.989Z",
+    "last_save_at": "2026-09-02T20:20:18.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +205,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66f151ee7cdfcce3a6af90395dd7b19574b00fa7e1dc278e95a805134a8ede0e",
+    "source_fingerprint": "sha256:2c9e2dd8e86c84ada4dd0a74706881576afbb98ac865d5dd44f5d3a7a1e65619",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d10634d512c88180cbb6ca3a0dd27e18d14429a9091bea3a8ef6ce42f4af0cc",
-      "plan.md": "e011f830d35103e7e01277801706b8935eb9f39dba1b99438ea5c7dbdd1179e3",
+      "plan.md": "3fe3b5605e1bc143ba4af2f1c4a6c1537f3896aa889b10a3e2e6b8724aeafdef",
       "tasks.md": "4650a67fae511499fd88bd5cd8c109d6d694498cc767ab25989f21ce943c9183",
       "implementation-summary.md": "6214f81cc8a7b8e887cae8a97daed316ace6e8f7f28f9c1b3926c071c1387074"
     },

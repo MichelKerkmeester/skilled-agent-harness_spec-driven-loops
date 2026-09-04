@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/052-routing-completeness/001-transport-and-baseline",
+  "description": "Two scorers answer the same question",
+  "keywords": [
+    "two",
+    "scorers",
+    "answer",
+    "same",
+    "question"
+  ],
+  "lastUpdated": "2026-09-02T16:35:48.107Z",
+  "specId": "001",
+  "folderSlug": "transport-and-baseline",
+  "parentChain": [
+    "sk-doc",
+    "052-routing-completeness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

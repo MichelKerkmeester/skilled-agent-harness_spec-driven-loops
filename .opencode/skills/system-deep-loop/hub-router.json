@@ -1,6 +1,6 @@
 {
   "skill": "system-deep-loop",
-  "version": "2.0.1.0",
+  "version": "2.0.1.1",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -11,7 +11,9 @@
       "defer": "unclear or contradictory deep-loop intent asks for disambiguation"
     },
     "defaultResource": ["ROUTER.md", "mode-registry.json"],
-    "launcherVocabularyClasses": []
+    "launcherVocabularyClasses": [],
+    "discoveryClasses": ["hub-identity"],
+    "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: a prompt naming only the hub (including its former identity) scores zero modes and takes the defer outcome instead of guessing a loop."
   },
   "routerSignals": {
     "research": {
@@ -50,19 +52,22 @@
       "keywords": ["deep-research", "deep research", "research loop", "iterative investigation workflow", "research summary", "research convergence detection", "autoresearch", "iterative-research"]
     },
     "review-aliases": {
-      "keywords": ["deep-review", "deep review of", "before running deep review", "review request", "review loop", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave"]
+      "keywords": ["deep-review", "deep review", "before running deep review", "review request", "review loop", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave", "release readiness"]
     },
     "ai-council-aliases": {
       "keywords": ["deep-ai-council", "ai council", "ai council deliberation", "multi-seat planning council", "council convergence", "planning council"]
     },
     "agent-improvement-aliases": {
-      "keywords": ["improve agent", "evaluate agent", "agent scoring", "agent candidate", "score agent candidate", "promote or rollback agent change", "agent-improvement"]
+      "keywords": ["improve agent", "evaluate agent", "agent scoring", "agent candidate", "score agent candidate", "promote or rollback agent change", "agent-improvement", "deep-improvement", "agent improvement"]
     },
     "model-benchmark-aliases": {
-      "keywords": ["/deep:model-benchmark"]
+      "keywords": ["/deep:model-benchmark", "model benchmark", "benchmark a model"]
     },
     "skill-benchmark-aliases": {
-      "keywords": ["/deep:skill-benchmark"]
+      "keywords": ["/deep:skill-benchmark", "skill benchmark"]
+    },
+    "hub-identity": {
+      "keywords": ["system-deep-loop", "deep-loop-workflows", "deep loop workflows", "deep loop workflow"]
     }
   }
 }

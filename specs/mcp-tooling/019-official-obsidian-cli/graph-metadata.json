@@ -3,7 +3,9 @@
   "packet_id": "mcp-tooling/019-official-obsidian-cli",
   "spec_folder": "mcp-tooling/019-official-obsidian-cli",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -45,6 +47,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md",
       "scripts/doctor.sh",
@@ -59,8 +62,7 @@
       ".opencode/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-cli/README.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/INSTALL-GUIDE.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/examples/README.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/FEATURE-CATALOG.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/examples/README.md"
     ],
     "entities": [
       {
@@ -85,6 +87,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -160,12 +168,6 @@
         "source": "derived"
       },
       {
-        "name": "FEATURE-CATALOG.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/FEATURE-CATALOG.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +212,7 @@
     ],
     "causal_summary": "The official `obsidian` binary is already registered on this machine at `/usr/local/bin/obsidian`, symlinked into the desktop app bundle",
     "created_at": "2026-09-02T08:06:41Z",
-    "last_save_at": "2026-09-02T08:26:06.776Z",
+    "last_save_at": "2026-09-02T20:14:05.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,17 +220,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d72628e471d82f5a64790310ccb8a694ad61e54832d1713d7609e383a152c09",
+    "source_fingerprint": "sha256:4c380a1dc3fe6a2d59deec38a3376a81d79a800b61e23c03089132d2626be068",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6e8122c25be1e80f2a1f6d672f4007116d1463f27eeb71f428d477945601fb2a",
-      "plan.md": "2cb69b12a444d67b1190ec60a55a4b043238432ae1376904dbca464965b57b24",
+      "spec.md": "83868a101df58e28394f77a06619c6b1472e40905344b8d86298c47aaf91ec0f",
+      "plan.md": "a9bd88cd55d1a759b3e746e552b3f6777742829b4fdb6ce81d8520c491ab52fd",
       "tasks.md": "5f56b80af5bd6b1949b76620934618ca31f8fb346843c599a82f6b887826d25e",
       "implementation-summary.md": "6b877fec469846e11606bbdc3aa81263c480e22f7a61f1f62d87e44561c55e96"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp",
     "last_active_at": null
   }
 }

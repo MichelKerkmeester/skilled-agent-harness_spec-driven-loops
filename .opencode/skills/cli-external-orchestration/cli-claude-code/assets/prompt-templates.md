@@ -599,9 +599,9 @@ JSONEOF
 node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]
 ```
 
-Structured JSON is the required save path. You can pass the payload via temp file, `--stdin`, or `--json`; do not call `generate-context.js` with only a spec folder. If `[spec-folder]` is passed on the CLI, that explicit target overrides any payload `specFolder`.
+Structured JSON is the required save path. You can pass the payload via temp file, `--stdin`, or `--json`. Do not call `generate-context.js` with only a spec folder. If `[spec-folder]` is passed on the CLI, that explicit target overrides any payload `specFolder`.
 
-Accepted field names still include documented compatibility aliases such as `sessionSummary` / `session_summary`, `nextSteps` / `next_steps`, `userPrompts` / `user_prompts`, and `recentContext` / `recent_context`. Use the canonical field names shown above for new payloads. Persistence behavior for next-step fields: the first item becomes `Next: ...` and sets `NEXT_ACTION`; additional items become `Follow-up: ...`.
+Accepted field names still include documented compatibility aliases such as `sessionSummary` / `session_summary`, `nextSteps` / `next_steps`, `userPrompts` / `user_prompts`, and `recentContext` / `recent_context`. Use the canonical field names shown above for new payloads. Persistence behavior for next-step fields: the first item becomes `Next: ...` and sets `NEXT_ACTION`, and additional items become `Follow-up: ...`.
 
 If `/tmp/save-context-data-<session-id>.json` is passed explicitly and cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture for that error.
 

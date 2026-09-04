@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/052-routing-completeness/005-hub-surface-truth",
+  "description": "Three hub surfaces state something their registries contradict, and none of them has a gate",
+  "keywords": [
+    "three",
+    "hub",
+    "surfaces",
+    "state",
+    "something",
+    "registries",
+    "contradict",
+    "none",
+    "them",
+    "gate"
+  ],
+  "lastUpdated": "2026-09-02T16:46:56.848Z",
+  "specId": "005",
+  "folderSlug": "hub-surface-truth",
+  "parentChain": [
+    "sk-doc",
+    "052-routing-completeness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -45,14 +45,14 @@ Operators run the exact prompt and command sequence for `HVS-001` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| HVS-001 | Every exempt span is named | Verify the scope gate runs before the first finding and that each declined span is recorded with its class and reason | `Do a voice pass on this file. Some of it is quoted material, so be careful.` | 1. `agent: Read references/scope-and-exemptions.md` -> 2. `agent: Walk the target once and classify every span against section 3` -> 3. `agent: Read assets/voice-report-template.md and fill the Scope block` -> 4. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>` | Step 1: the gate loads before anything else. Step 2: each carried span is named with its class. Step 3: the Scope block has one row per exemption, each with a reason. Step 4: the mechanical pass runs after the classification, not before | The prompt as typed, the ordered transcript showing classification before the first finding, the filled Scope block, the scanner block and the count of exempt spans against the count of carried spans in the target | PASS when the gate runs first and every declined span carries a class and a reason. FAIL when exemption rows are absent or the first finding precedes the classification | 1. Check the transcript order. A classification written after the findings is a reconstruction, and it usually matches the findings rather than the document. 2. Compare the exemption count against the carried spans in the target. A short list means the walk stopped early. 3. Check each row has a reason rather than only a class. A class with no reason is a label, and the next pass cannot act on it |
+| HVS-001 | Every exempt span is named | Verify the scope gate runs before the first finding and that each declined span is recorded with its class and reason | `Do a voice pass on this file. Some of it is quoted material, so be careful.` | 1. `agent: Read references/scope-and-exemptions.md` -> 2. `agent: Walk the target once and classify every span against section 3` -> 3. `agent: Read assets/voice-report-template.md and fill the Scope block` -> 4. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-carried-spans.md` | Step 1: the gate loads before anything else. Step 2: each carried span is named with its class. Step 3: the Scope block has one row per exemption, each with a reason. Step 4: the mechanical pass runs after the classification, not before | The prompt as typed, the ordered transcript showing classification before the first finding, the filled Scope block, the scanner block and the count of exempt spans against the count of carried spans in the target | PASS when the gate runs first and every declined span carries a class and a reason. FAIL when exemption rows are absent or the first finding precedes the classification | 1. Check the transcript order. A classification written after the findings is a reconstruction, and it usually matches the findings rather than the document. 2. Compare the exemption count against the carried spans in the target. A short list means the walk stopped early. 3. Check each row has a reason rather than only a class. A class with no reason is a label, and the next pass cannot act on it |
 
 ### Commands
 
 1. `agent: Read references/scope-and-exemptions.md before reading the target for findings`
 2. `agent: Walk the target once and classify every span against section 3`
 3. `agent: Read assets/voice-report-template.md and fill the Scope block, one row per exemption`
-4. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>`
+4. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-carried-spans.md`
 
 ### Expected
 
@@ -96,6 +96,7 @@ Run the same prompt against a target with no carried spans at all. The report sh
 | [`references/scope-and-exemptions.md`](../../references/scope-and-exemptions.md) | Primary anchor, sections 2, 3 and 6 |
 | [`assets/voice-report-template.md`](../../assets/voice-report-template.md) | The Scope block and the row shape an exemption takes |
 | [`SKILL.md`](../../SKILL.md) | Section 3 step 1, rule ALWAYS 1 and success criterion 1 |
+| [`scripts/tests/fixtures/voice-carried-spans.md`](../../scripts/tests/fixtures/voice-carried-spans.md) | The shipped target, carrying a quoted user sentence, a quoted error string, a fenced sample and an inline span |
 
 ---
 

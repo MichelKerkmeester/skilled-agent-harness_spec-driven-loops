@@ -21,7 +21,7 @@ version: 0.1.0.0
 |---|---|
 | **Use it for** | Confirming how the Obsidian MCP server is configured. There is no local package to install. |
 | **Invoke with** | Code Mode `call_tool_chain({ code: "..." })` once the `obsidian` manual is registered. |
-| **Works on** | `npx -y obsidian-mcp-server@latest` (cyanheads, v3.2.9) over stdio, launched by Code Mode on demand. |
+| **Works on** | `npx -y obsidian-mcp-server@latest` (cyanheads, v3.5.0) over stdio, launched by Code Mode on demand. |
 | **Produces** | Note, search and tag tools under the `obsidian.obsidian_*` namespace. Already registered in `.utcp_config.json`, see Section 4. |
 
 ---
@@ -34,7 +34,7 @@ mcp-obsidian routes app-backed vault operations — reading, writing, searching 
 
 ### What It Does
 
-The default server is **`obsidian-mcp-server`** (cyanheads, npm **v3.2.9**). The `obsidian` manual registered in `.utcp_config.json` launches it over **stdio** via `npx -y obsidian-mcp-server@latest`. It talks to Obsidian through the **Local REST API** community plugin, so it needs:
+The default server is **`obsidian-mcp-server`** (cyanheads, npm **v3.5.0**). The `obsidian` manual registered in `.utcp_config.json` launches it over **stdio** via `npx -y obsidian-mcp-server@latest`. It talks to Obsidian through the **Local REST API** community plugin, so it needs:
 
 - Obsidian **Local REST API plugin v4.0.0+** enabled, with an API key generated
 - A **running Obsidian app** (the plugin serves the REST API from inside it)

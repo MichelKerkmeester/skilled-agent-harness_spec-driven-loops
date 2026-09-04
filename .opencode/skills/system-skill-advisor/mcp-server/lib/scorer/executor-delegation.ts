@@ -4,7 +4,8 @@
 
 // Resolves prompts that explicitly delegate to a CLI executor (an OpenCode /
 // Claude Code orchestrator, or one of the small-model executors that dispatch
-// through one) and forces that executor to the top of the ranking.
+// through one) and forces the executor's owning hub to the top of the ranking,
+// where the hub's compiled route names the resolved executor as its target.
 //
 // Two durable design choices:
 //   1. The override is applied POST-FUSION. A pre-clamp explicit-lane penalty
@@ -411,10 +412,10 @@ function synthesizeExecutorRecommendation(
 }
 
 /**
- * Post-fusion override. Lifts a metadata-resolved executor to the top (or
- * abstains for a retired one). Returns `ranked` unchanged on the common path
- * where no delegation is present, so it is a no-op on every non-delegation
- * prompt.
+ * Post-fusion override. Lifts the hub owning a metadata-resolved executor to
+ * the top (or abstains for a retired one). Returns `ranked` unchanged on the
+ * common path where no delegation is present, so it is a no-op on every
+ * non-delegation prompt.
  */
 export function applyExecutorDelegationOverride(
   ranked: readonly AdvisorScoredRecommendation[],
@@ -442,10 +443,18 @@ export function applyExecutorDelegationOverride(
   const executorId = decision.executorSkillId;
   if (executorId === null) return [...ranked];
 
+  // A hub executor is a nested workflow mode, not an advisor identity: the hub
+  // projects one identity and its compiled route already names this exact mode
+  // as its target. Lifting the bare mode id would put a second, route-less
+  // entry above the hub's own compiled one and tie with it on score, so the
+  // caller reads a rank-one recommendation it cannot route on. Lift the hub
+  // instead; the mode still reaches the caller, through the compiled target.
+  const liftId = table.activeExecutorIds.has(executorId) ? CLI_HUB_SKILL_ID : executorId;
+
   const rest: AdvisorScoredRecommendation[] = [];
   let executorRec: AdvisorScoredRecommendation | null = null;
   for (const rec of ranked) {
-    if (rec.skill === executorId) {
+    if (rec.skill === liftId) {
       executorRec = {
         ...rec,
         confidence: Math.max(rec.confidence, ROUTE_CONFIDENCE),
@@ -466,7 +475,7 @@ export function applyExecutorDelegationOverride(
   if (executorRec === null) {
     // Injection-if-absent: the harder orchestrator framings never surface the
     // executor as a candidate, so synthesize it to actually resolve the route.
-    executorRec = synthesizeExecutorRecommendation(executorId, ctx.projection, ranked, decision.evidence);
+    executorRec = synthesizeExecutorRecommendation(liftId, ctx.projection, ranked, decision.evidence);
     executorRec = {
       ...executorRec,
       passes_threshold: ROUTE_CONFIDENCE >= ctx.confidenceThreshold && ROUTE_UNCERTAINTY <= ctx.uncertaintyThreshold,

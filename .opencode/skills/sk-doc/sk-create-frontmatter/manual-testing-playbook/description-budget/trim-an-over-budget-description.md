@@ -25,8 +25,8 @@ The field reference does not ask authors to be brief. It gives a drop list and a
 Operators run the exact prompt and command sequence for `FMB-001` and confirm the expected signals without contradictory evidence.
 
 - Objective: trim an over-budget description to the soft target using the documented drop list, and confirm the result against the validator rather than by eye
-- Realistic user request: `Our skill description is enormous and the validator keeps warning. Cut it down.`
-- Prompt: `This skill description is way too long and the validator is warning about it. Shorten it.`
+- Realistic user request: `The skill description in that fixture file is enormous and the validator keeps warning. Cut it down.`
+- Prompt: `The description in assets/fixtures/over-budget-description.md is way too long and the validator is warning about it. Shorten it.`
 - Expected execution process: `assets/frontmatter-templates.md` loads, the budget section is read for the soft target and both lists, the trim removes stack enumerations and marketing prose first, the routing tokens are preserved deliberately rather than incidentally, and the shared-tier validator is run against the packet as shipped to confirm that the soft target the run quoted is the number the tool enforces.
 - Expected signals: the reply names the soft target as a number, names which categories it removed, states that the routing tokens were kept, gives the before and after character counts, and shows a validator run confirming the soft target it worked to.
 - Desired user-visible outcome: a description inside the soft target whose remaining words are the ones the advisor matches on.
@@ -38,22 +38,22 @@ Operators run the exact prompt and command sequence for `FMB-001` and confirm th
 
 ### Prompt
 
-- Prompt: `This skill description is way too long and the validator is warning about it. Shorten it.`
+- Prompt: `The description in assets/fixtures/over-budget-description.md is way too long and the validator is warning about it. Shorten it.`
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMB-001 | Trim an over-budget description | Trim to the soft target using the documented drop list while keeping every routing token | `This skill description is way too long and the validator is warning about it. Shorten it.` | 1. `agent: Read the description budget section of assets/frontmatter-templates.md and state the soft target` -> 2. `agent: List which drop-list categories appear in the current description` -> 3. `agent: Rewrite the description removing only those categories` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-frontmatter` | Step 1: the soft target is quoted as a number. Step 2: the categories present are named individually. Step 3: the rewrite keeps the skill-name token, the verb, the domain noun and any mode suffixes. Step 4: the validator runs clean, confirming the soft target the run quoted is the enforced one | The prompt as typed, the soft target quoted, the before and after descriptions with their character counts, the categories removed, and the validator transcript with its exit status | PASS if the drop list drives the trim, every keep-list token survives, both character counts are given, and the validator output is shown. FAIL if the trim is unexplained, a keep-list token is lost, or no validator run appears | 1. Confirm the budget section was read rather than the general advice to be concise. 2. Diff the before and after token by token and check each removal against the drop list. 3. Re-read the worked example in the same section. It is the reference shape for a correct trim |
+| FMB-001 | Trim an over-budget description | Trim to the soft target using the documented drop list while keeping every routing token | `The description in assets/fixtures/over-budget-description.md is way too long and the validator is warning about it. Shorten it.` | 1. `agent: Read the description budget section of assets/frontmatter-templates.md and state the soft target` -> 2. `agent: Read assets/fixtures/over-budget-description.md and list which drop-list categories appear in the description it carries` -> 3. `agent: Rewrite the description removing only those categories` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-frontmatter` | Step 1: the soft target is quoted as a number. Step 2: the categories present are named individually. Step 3: the rewrite keeps the skill-name token, the verb, the domain noun and any mode suffixes. Step 4: the validator runs clean, confirming the soft target the run quoted is the enforced one | The prompt as typed, the soft target quoted, the before and after descriptions with their character counts, the categories removed, and the validator transcript with its exit status | PASS if the drop list drives the trim, every keep-list token survives, both character counts are given, and the validator output is shown. FAIL if the trim is unexplained, a keep-list token is lost, or no validator run appears | 1. Confirm the budget section was read rather than the general advice to be concise. 2. Diff the before and after token by token and check each removal against the drop list. 3. Re-read the worked example in the same section. It is the reference shape for a correct trim |
 
 ### Commands
 
 1. `agent: Read the description budget section of assets/frontmatter-templates.md and state the per-skill soft target as a number`
-2. `agent: List which of the four drop-list categories appear in the current description`
+2. `agent: Read assets/fixtures/over-budget-description.md and list which of the four drop-list categories appear in the description it carries`
 3. `agent: Rewrite the description removing only those categories, and name the keep-list tokens preserved`
 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-frontmatter`
 
 ### Expected
 
-Step 1 quotes the per-skill soft target from the budget table rather than choosing a length. Step 2 names which drop-list categories are present, which is what makes the trim reviewable: a removal that matches no category is a judgment call and has to be defended separately. Step 3 produces a description inside the target whose keep-list tokens are all still there, and says which ones they are. Step 4 runs the validator against the packet as shipped. It warns above the soft target and hard-fails at the per-item cap, so a clean run confirms the number the trim was measured against is the number the tool enforces. Nothing is written in this scenario: the trim is a proposal, and it is graded on its character count and its surviving tokens rather than on a file changing.
+Step 1 quotes the per-skill soft target from the budget table rather than choosing a length. Step 2 names which drop-list categories are present, which is what makes the trim reviewable: a removal that matches no category is a judgment call and has to be defended separately. Step 3 produces a description inside the target whose keep-list tokens are all still there, and says which ones they are. Step 4 runs the validator against the packet as shipped. It warns above the soft target and hard-fails at the per-item cap, so a clean run confirms the number the trim was measured against is the number the tool enforces. Nothing is written in this scenario: the trim is a proposal, and it is graded on its character count and its surviving tokens rather than on a file changing. The input is fixed rather than supplied by the reader. The fixture carries one description of 547 characters, holding every drop-list category and every keep-list token, and it names a 110-character reference trim so two runs can be compared against the same numbers.
 
 ### Evidence
 
@@ -90,6 +90,7 @@ Re-run against a description that is already inside the target and confirm nothi
 
 | File | Role |
 |---|---|
+| [`assets/fixtures/over-budget-description.md`](../../assets/fixtures/over-budget-description.md) | The input document: the 547-character description under test |
 | [`assets/frontmatter-templates.md`](../../assets/frontmatter-templates.md) | Primary implementation anchor, section 3 description budget and trim style |
 | [`README.md`](../../README.md) | The silent-budget explanation behind the trim rules |
 | [`SKILL.md`](../../SKILL.md) | The ALWAYS rule to keep `description` inside its budget and keep the routing tokens |

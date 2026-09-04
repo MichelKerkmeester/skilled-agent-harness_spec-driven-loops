@@ -97,7 +97,7 @@ Open the same copy in a second browser. The corpus draws its own marks as inline
 
 | File | Role |
 |---|---|
-| [`references/template-contract.md`](../../references/template-contract.md) | Primary anchor, section 4 on what a template may depend on |
+| [`references/template-contract.md`](../../references/template-contract.md) | Primary anchor, section 5 on what a template may depend on |
 | [`assets/examples/where-the-budget-went.html`](../../assets/examples/where-the-budget-went.html) | The delivery this scenario sends outside the repository |
 | [`scripts/check-corpus.cjs`](../../scripts/check-corpus.cjs) | The `no-external` check |
 | [`SKILL.md`](../../SKILL.md) | Section 3 step 6 and the first success criterion |

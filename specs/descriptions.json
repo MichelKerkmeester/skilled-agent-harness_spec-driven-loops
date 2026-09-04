@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-09-02T08:55:03.054Z",
+  "generated": "2026-09-02T19:26:07.374Z",
   "folders": [
     {
       "specFolder": "agents/001-terminal-proof-discipline",
@@ -138,6 +138,23 @@
         "outright"
       ],
       "lastUpdated": "2026-08-31T11:37:28.956Z"
+    },
+    {
+      "specFolder": "agents/008-orchestrate-external-cli-delegation",
+      "description": "The `orchestrate` agent carries no documented policy for the six external CLI executor modes under",
+      "keywords": [
+        "orchestrate",
+        "agent",
+        "carries",
+        "documented",
+        "policy",
+        "six",
+        "external",
+        "cli",
+        "executor",
+        "modes"
+      ],
+      "lastUpdated": "2026-09-02T11:18:19.791Z"
     },
     {
       "specFolder": "cli-external-orchestration/026-cli-external-parent",
@@ -7578,7 +7595,24 @@
         "app",
         "bundle"
       ],
-      "lastUpdated": "2026-09-02T08:24:47.044Z"
+      "lastUpdated": "2026-09-02T18:51:33.263Z"
+    },
+    {
+      "specFolder": "mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp",
+      "description": "The skill described the official CLI and the MCP server side by side and left the choice to the reader",
+      "keywords": [
+        "skill",
+        "described",
+        "official",
+        "cli",
+        "mcp",
+        "server",
+        "side",
+        "left",
+        "choice",
+        "reader"
+      ],
+      "lastUpdated": "2026-09-02T19:20:21.938Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/001-mcp-coco-integration",
@@ -24245,7 +24279,27 @@
         "linguistic",
         "standard"
       ],
-      "lastUpdated": "2026-08-31T20:11:00.371Z"
+      "lastUpdated": "2026-09-02T18:52:03.897Z"
+    },
+    {
+      "specFolder": "sk-doc/039-create-with-human-voice/001-utilization-review",
+      "description": "The mode ships a nine-scenario manual-testing playbook that nobody had ever run, so no claim it makes about the workflow had been tested against the",
+      "keywords": [
+        "mode",
+        "ships",
+        "nine-scenario",
+        "manual-testing",
+        "playbook",
+        "nobody",
+        "ever",
+        "run",
+        "claim",
+        "about",
+        "workflow",
+        "tested",
+        "against"
+      ],
+      "lastUpdated": "2026-09-02T19:16:14.459Z"
     },
     {
       "specFolder": "sk-doc/040-create-repo-rules",
@@ -24654,7 +24708,7 @@
         "emit",
         "frontmatter"
       ],
-      "lastUpdated": "2026-09-01T11:27:39.697Z"
+      "lastUpdated": "2026-09-02T18:55:23.066Z"
     },
     {
       "specFolder": "sk-doc/049-sk-create-frontmatter/001-inventory-and-contract",
@@ -24752,6 +24806,22 @@
       "lastUpdated": "2026-09-01T11:39:46.703Z"
     },
     {
+      "specFolder": "sk-doc/049-sk-create-frontmatter/008-utilization-review",
+      "description": "The packet ships eleven manual-testing scenarios that had never been run, so no claim about the",
+      "keywords": [
+        "packet",
+        "ships",
+        "eleven",
+        "manual-testing",
+        "scenarios",
+        "never",
+        "run",
+        "claim",
+        "about"
+      ],
+      "lastUpdated": "2026-09-02T19:25:56.153Z"
+    },
+    {
       "specFolder": "sk-doc/050-sk-doc-playbook-coverage",
       "description": "Three of the fifteen sk-doc modes carry a manual testing playbook",
       "keywords": [
@@ -24805,16 +24875,20 @@
         "report",
         "templates"
       ],
-      "lastUpdated": "2026-09-02T08:53:20.110Z"
+      "lastUpdated": "2026-09-02T18:50:53.542Z"
     },
     {
       "specFolder": "sk-doc/051-sk-create-chart/001-source-inventory-and-placement",
-      "description": "Phase 1: source-inventory-and-placement",
+      "description": "The source repository is already shaped like a skill",
       "keywords": [
-        "phase",
-        "source-inventory-and-placement"
+        "source",
+        "repository",
+        "already",
+        "shaped",
+        "like",
+        "skill"
       ],
-      "lastUpdated": "2026-09-02T07:56:49.264Z"
+      "lastUpdated": "2026-09-02T14:09:35.705Z"
     },
     {
       "specFolder": "sk-doc/051-sk-create-chart/002-translation-and-voice",
@@ -24832,7 +24906,7 @@
         "source",
         "skill"
       ],
-      "lastUpdated": "2026-09-02T08:53:37.021Z"
+      "lastUpdated": "2026-09-02T14:09:35.852Z"
     },
     {
       "specFolder": "sk-doc/051-sk-create-chart/003-packet-scaffold",
@@ -24843,7 +24917,7 @@
         "document",
         "conventions"
       ],
-      "lastUpdated": "2026-09-02T08:51:29.080Z"
+      "lastUpdated": "2026-09-02T14:09:35.972Z"
     },
     {
       "specFolder": "sk-doc/051-sk-create-chart/004-native-chart-build",
@@ -24867,16 +24941,148 @@
         "entry",
         "route"
       ],
-      "lastUpdated": "2026-09-02T08:51:29.076Z"
+      "lastUpdated": "2026-09-02T13:59:53.327Z"
     },
     {
       "specFolder": "sk-doc/051-sk-create-chart/006-playbook-and-closeout",
-      "description": "Phase 6: playbook-and-closeout",
+      "description": "Nothing yet states what this skill doing its job looks like, so nothing can tell a later reader whether a change broke it",
+      "keywords": [
+        "nothing",
+        "states",
+        "skill",
+        "doing",
+        "job",
+        "looks",
+        "like",
+        "tell",
+        "later",
+        "reader",
+        "whether",
+        "change",
+        "broke"
+      ],
+      "lastUpdated": "2026-09-02T14:02:50.640Z"
+    },
+    {
+      "specFolder": "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
+      "description": "Three reference overviews start at `## 0",
+      "keywords": [
+        "three",
+        "reference",
+        "overviews",
+        "start"
+      ],
+      "lastUpdated": "2026-09-02T19:22:35.789Z"
+    },
+    {
+      "specFolder": "sk-doc/052-routing-completeness",
+      "description": "routing completeness and findings closure",
+      "keywords": [
+        "routing",
+        "completeness",
+        "findings",
+        "closure"
+      ],
+      "lastUpdated": "2026-09-02T17:17:55.225Z"
+    },
+    {
+      "specFolder": "sk-doc/052-routing-completeness/001-transport-and-baseline",
+      "description": "Two scorers answer the same question",
+      "keywords": [
+        "two",
+        "scorers",
+        "answer",
+        "same",
+        "question"
+      ],
+      "lastUpdated": "2026-09-02T16:35:48.107Z"
+    },
+    {
+      "specFolder": "sk-doc/052-routing-completeness/002-gate-a-signal-closure",
+      "description": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
+      "keywords": [
+        "across",
+        "five",
+        "hubs",
+        "declared",
+        "signals",
+        "resolve",
+        "end",
+        "exactly",
+        "one",
+        "mode"
+      ],
+      "lastUpdated": "2026-09-02T16:50:11.541Z"
+    },
+    {
+      "specFolder": "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
+      "description": "Against a corpus of 180 prompts written the way people write, 8 reach the intended mode",
+      "keywords": [
+        "against",
+        "corpus",
+        "prompts",
+        "written",
+        "way",
+        "people",
+        "write",
+        "reach",
+        "intended",
+        "mode"
+      ],
+      "lastUpdated": "2026-09-02T17:13:34.031Z"
+    },
+    {
+      "specFolder": "sk-doc/052-routing-completeness/004-cross-hub-vocabulary",
+      "description": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
       "keywords": [
         "phase",
-        "playbook-and-closeout"
+        "scoped",
+        "gate",
+        "measured",
+        "belief",
+        "cross-hub"
       ],
-      "lastUpdated": "2026-09-02T07:56:53.088Z"
+      "lastUpdated": "2026-09-02T17:13:57.301Z"
+    },
+    {
+      "specFolder": "sk-doc/052-routing-completeness/005-hub-surface-truth",
+      "description": "Three hub surfaces state something their registries contradict, and none of them has a gate",
+      "keywords": [
+        "three",
+        "hub",
+        "surfaces",
+        "state",
+        "something",
+        "registries",
+        "contradict",
+        "none",
+        "them",
+        "gate"
+      ],
+      "lastUpdated": "2026-09-02T16:46:56.848Z"
+    },
+    {
+      "specFolder": "sk-doc/052-routing-completeness/006-validator-and-template-debt",
+      "description": "A template is the one document where the fenced block is the deliverable rather than a",
+      "keywords": [
+        "template",
+        "one",
+        "document",
+        "fenced",
+        "block",
+        "deliverable",
+        "rather"
+      ],
+      "lastUpdated": "2026-09-02T16:46:56.848Z"
+    },
+    {
+      "specFolder": "sk-doc/052-routing-completeness/007-spec-kit-residue",
+      "description": "The suite does not complete",
+      "keywords": [
+        "suite",
+        "complete"
+      ],
+      "lastUpdated": "2026-09-02T16:46:56.849Z"
     },
     {
       "specFolder": "sk-doc/z_archive/001-sk-doc-rename",
@@ -62081,6 +62287,98 @@
         "unregistered"
       ],
       "lastUpdated": "2026-08-31T13:40:52.893Z"
+    },
+    {
+      "specFolder": "system-speckit/049-memory-decommission",
+      "description": "The `system-spec-memory` MCP subsystem is a derived search index over `specs//.md` that",
+      "keywords": [
+        "system-spec-memory",
+        "mcp",
+        "subsystem",
+        "derived",
+        "search",
+        "index",
+        "specs"
+      ],
+      "lastUpdated": "2026-09-02T14:45:18.838Z"
+    },
+    {
+      "specFolder": "system-speckit/049-memory-decommission/001-trigger-index-replacement",
+      "description": "`AGENTS.md` Gate 1 mandates `memorymatchtriggers(prompt)` on every user message, and that tool is",
+      "keywords": [
+        "agents",
+        "gate",
+        "mandates",
+        "memorymatchtriggers",
+        "prompt",
+        "every",
+        "user",
+        "message",
+        "tool"
+      ],
+      "lastUpdated": "2026-09-02T14:45:18.829Z"
+    },
+    {
+      "specFolder": "system-speckit/049-memory-decommission/002-memory-consumer-rewire",
+      "description": "427 files reference the memory MCP surface",
+      "keywords": [
+        "files",
+        "reference",
+        "memory",
+        "mcp",
+        "surface"
+      ],
+      "lastUpdated": "2026-09-02T14:45:18.831Z"
+    },
+    {
+      "specFolder": "system-speckit/049-memory-decommission/003-spec-memory-server-removal",
+      "description": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
+      "keywords": [
+        "subsystem",
+        "cost",
+        "structural",
+        "incidental",
+        "background",
+        "service",
+        "flaps",
+        "tools",
+        "loaded"
+      ],
+      "lastUpdated": "2026-09-02T14:45:18.833Z"
+    },
+    {
+      "specFolder": "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
+      "description": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
+      "keywords": [
+        "retrieval",
+        "ripgrep",
+        "quality",
+        "property",
+        "corpus",
+        "rather",
+        "ranking"
+      ],
+      "lastUpdated": "2026-09-02T14:45:18.836Z"
+    },
+    {
+      "specFolder": "system-speckit/050-single-segment-packet-pointer",
+      "description": "`SPECDOCFRONTMATTER004` accepts a `packetpointer` with one safe segment as well as two-or-more, so a flattened `specs/` layout can pass validation",
+      "keywords": [
+        "specdocfrontmatter004",
+        "accepts",
+        "packetpointer",
+        "one",
+        "safe",
+        "segment",
+        "well",
+        "two-or-more",
+        "flattened",
+        "specs",
+        "layout",
+        "pass",
+        "validation"
+      ],
+      "lastUpdated": "2026-09-02T17:35:06.205Z"
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch",

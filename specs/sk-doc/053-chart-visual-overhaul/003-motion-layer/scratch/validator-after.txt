@@ -1,0 +1,29 @@
+Chart corpus check
+  package: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-chart
+  files scanned: 29 (chart forms under assets/templates: 20)
+  colour systems: 3
+  render checks: requested
+
+  + accessibility: 58 assertion(s), 0 failure(s)
+  + card-parts: 116 assertion(s), 0 failure(s)
+  + catalog: 41 assertion(s), 0 failure(s)
+  + colour-literals: 890 assertion(s), 0 failure(s)
+  + data-block: 29 assertion(s), 0 failure(s)
+  + determinism: 29 assertion(s), 0 failure(s)
+  + document-shape: 145 assertion(s), 0 failure(s)
+  + identity: 58 assertion(s), 0 failure(s)
+  + motion: 116 assertion(s), 0 failure(s)
+  + narrow-viewport: 87 assertion(s), 0 failure(s)
+  + no-external: 145 assertion(s), 0 failure(s)
+  + palette-block: 29 assertion(s), 0 failure(s)
+  + palette-source: 27 assertion(s), 0 failure(s)
+  + radius: 58 assertion(s), 0 failure(s)
+  + render: 29 assertion(s), 0 failure(s)
+  + script-parses: 29 assertion(s), 0 failure(s)
+  + settled-render: 58 assertion(s), 0 failure(s)
+  + unique-ids: 129 assertion(s), 0 failure(s)
+
+Summary: errors: 0
+
+RESULT: PASSED
+exit=0

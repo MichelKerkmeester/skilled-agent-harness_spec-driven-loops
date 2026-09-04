@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stroke weight comparison, one series drawn three times</title>
+<style>
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px 48px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.sheet { max-width: 760px; margin: 0 auto; }
+.banner {
+  margin: 0 0 24px;
+  padding: 12px 16px;
+  border: 1px dashed var(--chart-emphasis);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--chart-emphasis);
+}
+.intro { margin: 0 0 24px; font-size: 14px; color: var(--chart-muted); }
+.intro strong { color: var(--chart-ink); }
+.card {
+  margin: 0 0 20px;
+  padding: 22px 28px 18px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+}
+.label { margin: 0 0 2px; font-size: 17px; font-weight: 600; }
+.label .weight { font-family: var(--mono); }
+.because { margin: 0 0 16px; font-size: 13px; color: var(--chart-muted); }
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+
+/* The one variable on this page. Everything else below is shared by all three drawings,
+   so a difference a reader sees is a difference the weight made. */
+.w-200 .line { stroke-width: 2; }
+.w-100 .line { stroke-width: 1; }
+.w-080 .line { stroke-width: 0.8; }
+
+.area { fill: var(--area-fill); }
+.fade-top { stop-color: var(--chart-series-1); stop-opacity: 0.18; }
+.fade-base { stop-color: var(--chart-series-1); stop-opacity: 0; }
+.line { fill: none; stroke: var(--chart-series-1); stroke-linejoin: round; stroke-linecap: round; }
+.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+.dot { fill: var(--chart-series-1); }
+.mark { fill: var(--chart-emphasis); stroke: var(--chart-surface); stroke-width: 2; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; font-family: var(--mono); }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <p class="banner">A workbench, not a chart. Three copies of one series belong on a comparison sheet and nowhere near a delivery, so this page stays out of the corpus and out of the catalog.</p>
+  <p class="intro">The same twenty-eight readings, drawn three times. <strong>Only the series stroke weight changes.</strong> Grid, fill, dots, marker, type and geometry are shared, so anything you see differ is the weight doing it. Print the page as well as reading it on screen: the objection to a hairline is that it thins further on paper, and a screen does not answer that.</p>
+
+  <div class="card">
+    <h2 class="label"><span class="weight">2px</span> &mdash; what the corpus draws today</h2>
+    <p class="because">The weight in the shipped template. Nothing in the packet records why it was chosen, and the corpus carries five different weights across its twenty forms.</p>
+    <div class="figure">
+      <svg role="img" aria-labelledby="t-200 d-200" viewBox="0 0 720 292" class="w-200" id="chart-200">
+        <title id="t-200">Orders per day, series drawn at two pixels</title>
+        <desc id="d-200">The daily line at a two pixel stroke, with a dashed grid, a fading area fill and a dot per reading.</desc>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="label"><span class="weight">1px</span> &mdash; the midpoint of the proposed range</h2>
+    <p class="because">Halfway between what ships and the thinnest proposal. Worth its own drawing because a fork with two ends and no middle tends to get answered at an end.</p>
+    <div class="figure">
+      <svg role="img" aria-labelledby="t-100 d-100" viewBox="0 0 720 292" class="w-100" id="chart-100">
+        <title id="t-100">Orders per day, series drawn at one pixel</title>
+        <desc id="d-100">The daily line at a one pixel stroke, with a dashed grid, a fading area fill and a dot per reading.</desc>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="label"><span class="weight">0.8px</span> &mdash; the thin end of the proposal</h2>
+    <p class="because">The weight one lineage called the single highest-payoff change in its list, and the one the other lineage would not have. It is a hairline: on a screen it reads as precision, on paper it can read as a line that failed to print.</p>
+    <div class="figure">
+      <svg role="img" aria-labelledby="t-080 d-080" viewBox="0 0 720 292" class="w-080" id="chart-080">
+        <title id="t-080">Orders per day, series drawn at zero point eight pixels</title>
+        <desc id="d-080">The daily line at a zero point eight pixel stroke, with a dashed grid, a fading area fill and a dot per reading.</desc>
+      </svg>
+    </div>
+  </div>
+</div>
+<script>
+/* The readings are the shipped template's own demo series, unchanged, so the comparison is
+   made against the chart the answer will apply to. */
+const DATA = [
+  { day: 1, value: 184 }, { day: 2, value: 191 }, { day: 3, value: 176 }, { day: 4, value: 203 },
+  { day: 5, value: 198 }, { day: 6, value: 142 }, { day: 7, value: 131 }, { day: 8, value: 188 },
+  { day: 9, value: 195 }, { day: 10, value: 173 }, { day: 11, value: 96 }, { day: 12, value: 108 },
+  { day: 13, value: 121 }, { day: 14, value: 114 }, { day: 15, value: 133 }, { day: 16, value: 145 },
+  { day: 17, value: 139 }, { day: 18, value: 151 }, { day: 19, value: 148 }, { day: 20, value: 112 },
+  { day: 21, value: 104 }, { day: 22, value: 156 }, { day: 23, value: 162 }, { day: 24, value: 149 },
+  { day: 25, value: 158 }, { day: 26, value: 154 }, { day: 27, value: 118 }, { day: 28, value: 109 }
+];
+
+const SVG = 'http://www.w3.org/2000/svg';
+const LEFT = 50;
+const RIGHT = 706;
+const TOP = 20;
+const BASE = 244;
+const TICKS = 4;
+
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '—';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+// One drawing routine for all three, called once per variant. Two routines would let the
+// variants drift apart, and a comparison whose halves drift is not a comparison.
+function draw(id) {
+  const svg = document.getElementById(id);
+  const node = function (name, attrs, cls, parent) {
+    const el = document.createElementNS(SVG, name);
+    Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+    if (cls) el.setAttribute('class', cls);
+    (parent || svg).appendChild(el);
+    return el;
+  };
+
+  const peak = DATA.reduce(function (m, d) { return Math.max(m, d.value); }, 0);
+  const max = niceStep(peak / TICKS) * TICKS;
+  const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
+  const x = function (i) { return LEFT + (RIGHT - LEFT) * (i / (DATA.length - 1)); };
+  const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
+
+  const gradientId = id + '-fade';
+  const defs = node('defs', {});
+  const gradient = node('linearGradient', {
+    id: gradientId, gradientUnits: 'userSpaceOnUse', x1: 0, x2: 0, y1: TOP, y2: BASE
+  }, null, defs);
+  node('stop', { offset: 0 }, 'fade-top', gradient);
+  node('stop', { offset: 1 }, 'fade-base', gradient);
+  svg.style.setProperty('--area-fill', 'url(#' + gradientId + ')');
+
+  for (let t = 0; t <= TICKS; t += 1) {
+    const value = (max / TICKS) * t;
+    node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+    node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
+  }
+
+  const points = DATA.map(function (d, i) { return x(i) + ',' + y(d.value); });
+  node('path', { d: 'M' + x(0) + ',' + BASE + ' L' + points.join(' L') + ' L' + x(DATA.length - 1) + ',' + BASE + ' Z' }, 'area');
+  node('path', { d: 'M' + points.join(' L') }, 'line');
+
+  DATA.forEach(function (d, i) {
+    node('circle', { cx: x(i), cy: y(d.value), r: 2.5 }, 'dot');
+  });
+
+  DATA.forEach(function (d, i) {
+    if (d.day % 7 !== 0 && d.day !== 1) return;
+    const anchor = i === 0 ? 'start' : i === DATA.length - 1 ? 'end' : 'middle';
+    node('text', { x: x(i), y: BASE + 20, 'text-anchor': anchor }, 'tick').textContent = 'day ' + d.day;
+  });
+
+  const lowest = DATA.reduce(function (a, b) { return b.value < a.value ? b : a; }, DATA[0]);
+  const lowIndex = DATA.indexOf(lowest);
+  node('circle', { cx: x(lowIndex), cy: y(lowest.value), r: 5 }, 'mark');
+  node('text', { x: x(lowIndex) + 10, y: y(lowest.value) + 4 }, 'note').textContent = fmt(lowest.value);
+}
+
+['chart-200', 'chart-100', 'chart-080'].forEach(draw);
+</script>
+</body>
+</html>

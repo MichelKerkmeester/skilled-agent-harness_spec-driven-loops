@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/052-routing-completeness/002-gate-a-signal-closure",
+  "spec_folder": "sk-doc/052-routing-completeness/002-gate-a-signal-closure",
+  "parent_id": "sk-doc/052-routing-completeness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core",
+      "implementation",
+      "plan",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "implementation",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "closure"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/unresolved-signal-decisions.md",
+      "research/gate-a-fix-before-2026-09-04.tsv",
+      "research/gate-a-fix-after-2026-09-04.tsv",
+      "research/gate-a-rerun-2026-09-03.tsv",
+      "research/gate-a-measurement.md",
+      "research/gate-a-raw.tsv",
+      "research/declared-signals-2026-09-03.tsv",
+      ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/skills/cli-external-orchestration/mode-registry.json",
+      ".opencode/skills/cli-external-orchestration/graph-metadata.json",
+      ".opencode/skills/sk-code/hub-router.json",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/mcp-tooling/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "unresolved-signal-decisions.md",
+        "kind": "doc",
+        "path": "research/unresolved-signal-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-fix-before-2026-09-04.tsv",
+        "kind": "file",
+        "path": "research/gate-a-fix-before-2026-09-04.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-fix-after-2026-09-04.tsv",
+        "kind": "file",
+        "path": "research/gate-a-fix-after-2026-09-04.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-rerun-2026-09-03.tsv",
+        "kind": "file",
+        "path": "research/gate-a-rerun-2026-09-03.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-measurement.md",
+        "kind": "doc",
+        "path": "research/gate-a-measurement.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-raw.tsv",
+        "kind": "file",
+        "path": "research/gate-a-raw.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "declared-signals-2026-09-03.tsv",
+        "kind": "file",
+        "path": "research/declared-signals-2026-09-03.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
+    "created_at": "2026-09-02T16:34:05Z",
+    "last_save_at": "2026-09-04T10:11:16.746Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d7243a4b58e399ff47f1d422c2644193245316a8501b8528372cb656754026fa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "86e31a0b39f2c63126adbc56013f39f635d98aa16078359f0f3cc7dbf592ac5a",
+      "plan.md": "8ae4a6aab4bcfb34b7dfb6aa834eae0922271f58364749b9094da2d8d72ea38d",
+      "tasks.md": "2bc5f7dfef1de181a45bd0db5ac3d9c29e161a58e999d3ed18986c8e1854af60",
+      "implementation-summary.md": "cc3a4b764df7784d727b65282bf9437d0def7885f1669a56fd6b0de615f0de0b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

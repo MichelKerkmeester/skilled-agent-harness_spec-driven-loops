@@ -1043,6 +1043,28 @@ function main() {
       } else {
         softFail(`6b: mode(s) registered but absent from the hub SKILL.md mode table: [${undocumented.join(', ')}]`);
       }
+
+      // 6c — the mode table's own command column against the registry it
+      // claims to summarize. 6b only proves a mode is MENTIONED somewhere in a
+      // row. A row that mentions its mode by name but shows a dash or a stale
+      // command while the registry declares a real one is still undetected by
+      // it. A registered command is only demanded verbatim in that mode's row
+      // when the registry actually declares one. A mode the registry routes
+      // by alias (command: null) stays free to say "routes via aliases".
+      const rowForMode = (m) => hubSkillRows.find((r) => new RegExp(`(^|[^A-Za-z0-9_-])${m.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^A-Za-z0-9_-]|$)`).test(r));
+      const commandMismatches = [];
+      for (const mode of (registry && Array.isArray(registry.modes) ? registry.modes : [])) {
+        if (!mode.workflowMode || !mode.command) continue;
+        const row = rowForMode(mode.workflowMode);
+        if (row && !row.includes(mode.command)) {
+          commandMismatches.push(`${mode.workflowMode} (registry declares "${mode.command}")`);
+        }
+      }
+      if (commandMismatches.length === 0) {
+        pass('6c: every mode-table row whose registry entry declares a command shows that exact command');
+      } else {
+        softFail(`6c: mode-table command column disagrees with the registry, hiding a working command: [${commandMismatches.join(', ')}]`);
+      }
     }
   }
 

@@ -1,6 +1,6 @@
 {
   "skill": "cli-external-orchestration",
-  "version": "1.2.1.0",
+  "version": "1.2.1.2",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -20,7 +20,11 @@
     "defaultResource": [
       "ROUTER.md",
       "mode-registry.json"
-    ]
+    ],
+    "discoveryClasses": [
+      "hub-identity"
+    ],
+    "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: this hub fails closed without a named executor, so a prompt carrying only hub-identity vocabulary scores zero modes and takes the defer outcome instead of guessing an executor."
   },
   "routerSignals": {
     "cli-opencode": {
@@ -92,7 +96,14 @@
         "opencode run",
         "delegate to opencode",
         "parallel detached session",
-        "cli-opencode"
+        "cli-opencode",
+        "parallel opencode session",
+        "detached opencode session",
+        "full plugin runtime dispatch",
+        "cross-ai handback opencode",
+        "worker farm opencode",
+        "ablation suite opencode",
+        "in-opencode parallel session"
       ]
     },
     "opencode-dispatch": {
@@ -103,7 +114,8 @@
         "full plugin and memory stack",
         "cross-ai handback opencode",
         "worker farm opencode",
-        "ablation suite opencode"
+        "ablation suite opencode",
+        "in-opencode parallel session"
       ]
     },
     "cli-claude-code-aliases": {
@@ -112,7 +124,9 @@
         "claude cli",
         "delegate to claude",
         "anthropic cli second opinion",
-        "cli-claude-code"
+        "cli-claude-code",
+        "claude-code",
+        "claude-cli"
       ]
     },
     "claude-dispatch": {
@@ -130,7 +144,9 @@
         "codex exec",
         "delegate to codex",
         "openai cli second opinion",
-        "cli-codex"
+        "cli-codex",
+        "cli codex",
+        "codex sandbox"
       ]
     },
     "codex-dispatch": {
@@ -169,7 +185,9 @@
         "cognition cli",
         "cognition cli second opinion",
         "devin handoff",
-        "cli-devin"
+        "cli-devin",
+        "cognition-cli",
+        "devin subagent"
       ]
     },
     "devin-dispatch": {
@@ -187,7 +205,12 @@
         "pi agent",
         "delegate to pi",
         "pi.dev cli",
-        "pi coding agent"
+        "pi coding agent",
+        "cli-pi",
+        "cli pi",
+        "pi json event stream",
+        "pi rpc integration",
+        "pi community package"
       ]
     },
     "pi-dispatch": {
@@ -197,6 +220,14 @@
         "pi json event stream",
         "pi rpc integration",
         "pi community package"
+      ]
+    },
+    "hub-identity": {
+      "keywords": [
+        "cli-external-orchestration",
+        "cli dispatch",
+        "cross-ai delegation",
+        "executor delegation"
       ]
     }
   }

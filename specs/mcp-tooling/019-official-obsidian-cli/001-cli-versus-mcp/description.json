@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp",
+  "description": "The skill described the official CLI and the MCP server side by side and left the choice to the reader",
+  "keywords": [
+    "skill",
+    "described",
+    "official",
+    "cli",
+    "mcp",
+    "server",
+    "side",
+    "left",
+    "choice",
+    "reader"
+  ],
+  "lastUpdated": "2026-09-02T19:20:21.938Z",
+  "specId": "001",
+  "folderSlug": "cli-versus-mcp",
+  "parentChain": [
+    "mcp-tooling",
+    "019-official-obsidian-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,6 +1,6 @@
 ---
-description: Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). Modes :auto, :confirm.
-argument-hint: "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+description: Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). :auto/:confirm.
+argument-hint: "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -111,4 +111,3 @@ The generated package is:
 - A non-discoverable `shared/` directory (with `shared/README.md`) for packet-shared workflow-layer helpers.
 - Root `ROUTER.md` validation: the parent-skill doctor's check 12 (root-router contract with stable RRC codes) and the package gate both run the shared `root-router-contract.cjs` library on the generated hub.
 
-User request: $ARGUMENTS

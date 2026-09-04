@@ -1,5 +1,5 @@
 ---
-description: Install or repair MCP servers via /doctor:mcp <install|debug> sub-action routing.
+description: "Install or repair MCP servers through the install and debug sub-action routes."
 argument-hint: "<install|debug> [--server <name>] [--runtime <name>] [--fix]"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
@@ -72,4 +72,3 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor-mcp
 
 The bound sub-action workflow (`doctor-mcp-install.yaml` for `install`, `doctor-mcp-debug.yaml` for `debug`) drives MCP-server assessment, installation or repair, and verification, rendering every user-facing string through the presentation contract. `install` covers the registered `servers:` set plus the enumerated CLI-skill self-diagnostics; `debug` repairs a named or failing server. Subsystem database diagnostics route through `/doctor <target>` and `/doctor:update`, never this command.
 
-User request: $ARGUMENTS

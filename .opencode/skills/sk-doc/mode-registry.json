@@ -470,7 +470,7 @@
       "packet": "sk-create-chart",
       "packetSkillName": "sk-create-chart",
       "grandfatheredFolderMismatch": false,
-      "command": null,
+      "command": "/create:chart",
       "aliases": [
         "create a chart",
         "make a chart",

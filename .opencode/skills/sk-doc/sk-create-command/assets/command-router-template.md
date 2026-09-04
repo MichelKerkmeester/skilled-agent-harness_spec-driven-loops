@@ -16,7 +16,7 @@ version: 1.0.0.8
 
 Canonical skeleton for a first-class **router** command: a thin dispatcher whose `.md`
 verifies the orchestrating agent, resolves mode and arguments, then hands off to owned
-assets (a presentation `.txt`, optional `_auto.yaml` / `_confirm.yaml`, or scripts). The
+assets (a presentation `.txt`, optional `-auto.yaml` / `-confirm.yaml`, or scripts). The
 router carries no inline dashboards, prompts, or result templates.
 
 ---
@@ -31,7 +31,7 @@ Step 11 classifies the command as a router.
   `EXECUTION TARGETS`, `WORKFLOW SUMMARY`.
 - **Numbering:** H2 headers use `## N.` with full integers only, in the canonical order.
 - **Vocabulary is fixed.** Do not substitute synonyms such as `Routing Assets`,
-  `Workflow Routing`, or `Execution Order`; the validator alias-normalizes those as a
+  `Workflow Routing`, or `Execution Order`. The validator alias-normalizes those as a
   safety net, but the authored end state is the canonical names below.
 
 ---
@@ -51,13 +51,13 @@ Thin router for <workflow>. This command verifies the orchestrating agent, resol
 execution mode, loads the presentation contract, then executes the owned assets.
 
 <!-- REQUIRED-ARGUMENT GATE: if argument-hint declares a required <argument>, add the mandatory
-input gate here, before ROUTER CONTRACT — name the required input, forbid inference, and stop
-until it is provided. The gate is router-owned; the workflow asset never asks for a required
+input gate here, before ROUTER CONTRACT. Name the required input, forbid inference, and stop
+until it is provided. The gate is router-owned, and the workflow asset never asks for a required
 input. Omit this block when the command takes no required argument. -->
 
 ## 1. ROUTER CONTRACT
 
-Do not dispatch agents or write artifacts from this Markdown file; that behavior is owned
+Do not dispatch agents or write artifacts from this Markdown file. That behavior is owned
 by the workflow/script assets. Load the presentation contract before showing any startup
 question, checkpoint, dashboard, success output, failure output, or next-step prompt.
 
@@ -67,9 +67,13 @@ question, checkpoint, dashboard, success output, failure output, or next-step pr
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/<ns>/assets/<ns>_<action>_presentation.txt` |
-| Auto workflow (workflow-YAML variant only) | `.opencode/commands/<ns>/assets/<ns>_<action>_auto.yaml` |
-| Confirm workflow (workflow-YAML variant only) | `.opencode/commands/<ns>/assets/<ns>_<action>_confirm.yaml` |
+| Presentation source of truth | `.opencode/commands/<ns>/assets/<ns>-<action>-presentation.txt` |
+| Auto workflow (workflow-YAML variant only) | `.opencode/commands/<ns>/assets/<ns>-<action>-auto.yaml` |
+| Confirm workflow (workflow-YAML variant only) | `.opencode/commands/<ns>/assets/<ns>-<action>-confirm.yaml` |
+
+<!-- Asset stems are hyphen-joined `<ns>-<action>-<kind>`. A family whose action names read
+unambiguously alone drops the `<ns>` prefix (memory: `save-presentation.txt`; design:
+`extract-auto.yaml`). Match the family you are extending. -->
 
 ---
 
@@ -112,29 +116,29 @@ owned assets rather than restating their content.
 
 ## 3. VARIANTS
 
-One router type; the variants differ only by hand-off, never by required sections. Which
+One router type, whose variants differ only by hand-off and never by required sections. Which
 family uses which topology is defined by the machine-readable command contract
 ([`command-contract.json`](command-contract.json), validated by
-[`command-contract.schema.json`](command-contract.schema.json)); the contract is the source of
+[`command-contract.schema.json`](command-contract.schema.json)). The contract is the source of
 truth, and this table only describes the common hand-off shapes.
 
 | Variant | Hand-off | Notes |
 |---------|----------|-------|
-| Workflow-YAML-backed | Router routes modes into `_auto.yaml` / `_confirm.yaml` | Keep `EXECUTION TARGETS` pointing at the YAML assets. |
-| Direct-dispatch-script | Router dispatches straight to tools or scripts | No workflow YAML; recommended sections may stay as warnings. |
-| Compiled-stub | Contract rendered at invocation from a compiled source | Carries a `render-command-contract` marker; exempt from authored section requirements — do not hand-write section headings. |
+| Workflow-YAML-backed | Router routes modes into `-auto.yaml` / `-confirm.yaml` | Keep `EXECUTION TARGETS` pointing at the YAML assets. |
+| Direct-dispatch-script | Router dispatches straight to tools or scripts | No workflow YAML, and recommended sections may stay as warnings. |
+| Compiled-stub | Contract rendered at invocation from a compiled source | Carries a `render-command-contract` marker and is exempt from authored section requirements, so do not hand-write section headings. |
 
 ---
 
 ## 4. COMMAND CONTRACT
 
-Every family's behavioral truth — topology, input and gate owner, execution targets, mode
+Every family's behavioral truth, meaning topology, input and gate owner, execution targets, mode
 matrix, owned assets, presentation ownership with typed exceptions, destructive policy, timeout
-bounds, and invocation aliases — lives in the machine-readable contract
+bounds, and invocation aliases, lives in the machine-readable contract
 [`command-contract.json`](command-contract.json), validated against
 [`command-contract.schema.json`](command-contract.schema.json). Read the contract for a family's
 authoritative topology and mode default rather than re-deriving it from prose. A router's own
-entry validates as one `familyContract`; the shape below is a copy-ready example:
+entry validates as one `familyContract`, and the shape below is a copy-ready example:
 
 <!-- contract-example -->
 ```json
@@ -143,14 +147,14 @@ entry validates as one `familyContract`; the shape below is a copy-ready example
   "router_path": ".opencode/commands/<ns>/*.md",
   "input": { "required": true, "gate_owner": "router", "argument_hint": "<target> [:auto|:confirm]" },
   "execution_targets": [
-    { "selector": ":auto", "target": ".opencode/commands/<ns>/assets/<ns>_<action>_auto.yaml" },
-    { "selector": ":confirm | omitted", "target": ".opencode/commands/<ns>/assets/<ns>_<action>_confirm.yaml" }
+    { "selector": ":auto", "target": ".opencode/commands/<ns>/assets/<ns>-<action>-auto.yaml" },
+    { "selector": ":confirm | omitted", "target": ".opencode/commands/<ns>/assets/<ns>-<action>-confirm.yaml" }
   ],
   "mode_matrix": { "default_policy": "confirm", "supported_modes": [":auto", ":confirm"] },
   "owned_assets": [
-    { "purpose": "presentation", "path": ".opencode/commands/<ns>/assets/<ns>_<action>_presentation.txt" },
-    { "purpose": "auto_workflow", "path": ".opencode/commands/<ns>/assets/<ns>_<action>_auto.yaml" },
-    { "purpose": "confirm_workflow", "path": ".opencode/commands/<ns>/assets/<ns>_<action>_confirm.yaml" }
+    { "purpose": "presentation", "path": ".opencode/commands/<ns>/assets/<ns>-<action>-presentation.txt" },
+    { "purpose": "auto_workflow", "path": ".opencode/commands/<ns>/assets/<ns>-<action>-auto.yaml" },
+    { "purpose": "confirm_workflow", "path": ".opencode/commands/<ns>/assets/<ns>-<action>-confirm.yaml" }
   ],
   "presentation": { "owner": "presentation-asset", "exceptions": [] },
   "destructive_policy": { "has_destructive_ops": false },
@@ -163,6 +167,6 @@ entry validates as one `familyContract`; the shape below is a copy-ready example
 ## 5. RELATED RESOURCES
 
 - `command-template.md` - exhaustive command type templates and vocabulary.
-- `command-presentation-template.md` - full `_presentation.txt` skeleton for the owned presentation asset.
+- `command-presentation-template.md` - full `-presentation.txt` skeleton for the owned presentation asset.
 - `command-contract.json` / `command-contract.schema.json` - the machine-readable behavioral contract and its schema.
 - `../SKILL.md` Step 11 - the first-class router authoring workflow.

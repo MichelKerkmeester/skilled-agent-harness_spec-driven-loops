@@ -19,17 +19,17 @@ import {
   type CoverageEdge,
   type CoverageNode,
   type Namespace,
-} from '../../mcp-server/lib/coverage-graph/coverage-graph-db.js';
+} from '../../../system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.js';
 import {
   findContradictions,
   findCoverageGaps,
   findUnverifiedClaims,
-} from '../../mcp-server/lib/coverage-graph/coverage-graph-query.js';
+} from '../../../system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.js';
 import {
   computeNodeSignals,
   computeResearchSignals,
   computeReviewSignals,
-} from '../../mcp-server/lib/coverage-graph/coverage-graph-signals.js';
+} from '../../../system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.js';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
@@ -180,7 +180,7 @@ describe('coverage-graph cross-layer integration', () => {
     )?.weight).toBe(2.0);
   });
 
-  it('handles empty graphs without errors in both layers', () => {
+  it('handles empty graphs without errors, scoring an absent claim set as vacuously verified', () => {
     const graph = coreModule.createGraph();
     const emptyResearchNs: Namespace = {
       specFolder: 'spec-empty',
@@ -204,9 +204,11 @@ describe('coverage-graph cross-layer integration', () => {
     expect(findCoverageGaps(emptyResearchNs)).toEqual([]);
     expect(findContradictions(emptyResearchNs)).toEqual([]);
     expect(computeNodeSignals(emptyResearchNs)).toEqual([]);
+    // An empty claim set is a vacuous pass, not a failure: scoring it 0 would raise a
+    // blocker no unverified claim can ever clear, looping a converged graph forever.
     expect(computeResearchSignals(emptyResearchNs)).toEqual({
       questionCoverage: 0,
-      claimVerificationRate: 0,
+      claimVerificationRate: 1,
       contradictionDensity: 0,
       sourceDiversity: 0,
       evidenceDepth: 0,
@@ -395,14 +397,9 @@ describe('coverage-graph cross-layer integration', () => {
     ]);
 
     expect(findContradictions(reviewNs)).toEqual([]);
-    expect(findCoverageGaps(reviewNs)).toEqual([
-      {
-        nodeId: 'review-file',
-        kind: 'FILE',
-        name: 'coverage-graph.ts',
-        reason: 'No outgoing COVERS or EVIDENCE_FOR edges',
-      },
-    ]);
+    // One COVERS edge satisfies both review requirements at once: the DIMENSION needs it
+    // outgoing, the FILE needs it incoming. A covered file is not a gap.
+    expect(findCoverageGaps(reviewNs)).toEqual([]);
     expect(computeReviewSignals(reviewNs)).toMatchObject({
       dimensionCoverage: 1,
       findingStability: 1,

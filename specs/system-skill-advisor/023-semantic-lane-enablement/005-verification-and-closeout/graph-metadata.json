@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout",
+  "spec_folder": "system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout",
+  "parent_id": "system-skill-advisor/023-semantic-lane-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "closeout verification",
+      "final state proof",
+      "findings reconciliation",
+      "packet closure",
+      "final state pass",
+      "recursive validation",
+      "metadata regeneration",
+      "register reconciliation",
+      "closeout tasks",
+      "final gate pass",
+      "register edit",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "closeout",
+      "verification",
+      "final",
+      "state",
+      "proof",
+      "findings",
+      "reconciliation",
+      "packet",
+      "closure",
+      "pass",
+      "recursive",
+      "validation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "specs/sk-doc/052-routing-completeness/roadmap.md",
+      "specs/sk-doc/052-routing-completeness/research/findings-register.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "roadmap.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/052-routing-completeness/roadmap.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-register.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/052-routing-completeness/research/findings-register.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A packet that measured well during its work can still leave a repository that disagrees with",
+    "created_at": "2026-09-02T22:17:29Z",
+    "last_save_at": "2026-09-02T22:38:54.307Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:5d3f493f0026c85bc123420df979110d2318eaa58876493809a43b39bac8fe81",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "21dcdb07729935582446990406f923711f5619eb54384f0350d92b1460d3a98f",
+      "plan.md": "551549ab24dab35b184a77ba84b57689c5a74b91c56f78f633d7218fe78386dc",
+      "tasks.md": "a3407f83cee43776eedde26a8a0a120e1bbb2f14c9c6f8795900e2ff31eef2cf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -8,18 +8,22 @@ trigger_phrases:
   - "chart index"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.4.0.0
 ---
 
 # Chart Catalog
 
 Read this before writing anything. It turns the comparison a reader needs into one chart form, and it names the file that draws that form.
 
+---
+
+## 1. OVERVIEW
+
 Every row below points at a template that renders. When no row answers the question in front of you, that is a gap to report rather than a chart to improvise. A freehand chart is what the template-first rule exists to prevent.
 
 ---
 
-## 1. HOW TO READ IT
+## 2. HOW TO READ IT
 
 Start from the question, never from the chart name. A request arrives as "show me the split by plan" and the useful move is to ask what the reader will do with it: compare quantities, rank them, track them over time, or find where they pile up. That question picks the row.
 
@@ -27,7 +31,7 @@ When two rows answer the same question, the one whose data shape matches what yo
 
 ---
 
-## 2. THE INDEX
+## 3. THE INDEX
 
 The table is machine-read. The corpus check parses the rows between the sentinels below, matches columns by their header name rather than by position, and then verifies two things: every `id` here resolves to a file that identifies itself with the same `id`, and every chart form on disk appears here. An index that names a chart it cannot reach is worse than no index, so both directions are checked.
 
@@ -51,10 +55,11 @@ Prose outside the sentinels is never asserted on. Rewrite this page freely. Only
 | waterfall | time | What was the step by step movement from gross to net | 6 or fewer signed steps with a running total | categorical | assets/templates/waterfall.html |
 | progress-single | time | How far to the target | One value against a goal | ordered | assets/templates/progress-single.html |
 | candlestick | time | Where did it open, high, low and close | Four values per period | categorical | assets/templates/candlestick.html |
-| stacked-area | time | How did the composition shift over continuous time | 2 to 5 series over a continuous axis, with the total also readable | categorical | assets/templates/stacked-area.html |
+| stacked-area | time | How did the composition shift over continuous time | 2 to 4 series over a continuous axis, with the total also readable | categorical | assets/templates/stacked-area.html |
 | distribution-strip | distribution | How are the individual values spread | Tens to a few hundred records of one variable, grouped | neutral | assets/templates/distribution-strip.html |
 | box-plot | distribution | What does the spread look like as a summary | Grouped records where a five-number summary is legitimate | neutral | assets/templates/box-plot.html |
 | scatter | relationship | Do these two variables move together | 20 or fewer points across two dimensions | neutral | assets/templates/scatter.html |
+| bar-line-composed | relationship | Did the rate move with the count over the same periods | One count and one rate per period, 6 to 12 periods | categorical | assets/templates/bar-line-composed.html |
 | parallel-axes | relationship | How does one entity set compare across several dimensions | The same entities across 3 to 6 continuous dimensions | categorical | assets/templates/parallel-axes.html |
 | heat-matrix | matrix | Which combinations are hot | Two discrete dimensions by value, 100 cells or fewer | ordered | assets/templates/heat-matrix.html |
 
@@ -65,15 +70,34 @@ The columns mean:
 | Column | What goes in it |
 | --- | --- |
 | `id` | Lower-case kebab, unique, and identical to the filename stem and to the file's own identity tag |
-| `family` | The question group the form belongs to, from section 3 |
+| `family` | The question group the form belongs to, from section 4 |
 | `question` | The question a reader arrives with, written as they would say it |
-| `data shape` | What the form needs before it can be honest: how many categories, how many series, what must sum to what |
-| `system` | The colour system the template declares |
+| `data shape` | What the form needs before it can be honest: how many categories, how many series, what must sum to what. A ceiling here is a real ceiling: seven forms now print a notice in the figure when the data passes it, and past a colour ceiling the extra marks are drawn outside the encoding rather than in a colour nobody chose |
+| `system` | The colour system the template declares. The cell mirrors the file rather than judging it, so a row and the colour document can disagree with nothing catching it. `color-system.md` carries the procedure for settling one row against the definitions, and every row here has been read against them |
 | `file` | Path from the packet root, which is always `assets/templates/<id>.html` for a chart form |
+
+### Time labels arrive display-ready
+
+A period label in a data block is the string the reader will see. `day 1`, `Jan 1`, `W1`,
+`Mon`. The file prints it and does nothing else to it. No form parses a date, derives a
+granularity or reformats a label, and none of them may: a template never reads the clock,
+and picking a format from the data is the analysis step that happens before the numbers
+reach the file.
+
+That puts the work where it belongs. Whoever prepares the data decides whether the axis
+says `Jan 1` or `2026-01-01`, and they decide it once, in the block they are already
+editing. The consequence is worth stating plainly, because it is easy to file as a
+limitation: a chart of half-hourly readings needs labels already thinned and already
+written the way they should appear. The form will not do it, and thinning rules in the
+drawing code decide which of those labels are drawn, never what they say.
+
+Numbers are the other way round. Every value in a data block is a raw number, and the file
+formats it. Grouping, decimal places and the dash that stands in for a reading nobody took
+are all the file's work, so that one figure never appears two ways in the same chart.
 
 ---
 
-## 3. THE FAMILIES
+## 4. THE FAMILIES
 
 A family here is a group of questions, not a rendering style. Every form in the corpus is drawn in one visual register, so the family tells a reader which shelf to look on and nothing about how the chart is built.
 
@@ -83,20 +107,63 @@ A family here is a group of questions, not a rendering style. Every form in the 
 | composition | How does a whole divide up, or how do several independent measures stand |
 | time | What happened over days, weeks or a year, how a period opened and closed, and how far along a target is |
 | distribution | How are individual values spread |
-| relationship | Do two variables move together, and how do a few entities compare across several measures |
+| relationship | Do two variables move together, including across a run of periods, and how do a few entities compare across several measures |
 | matrix | Which combinations of two discrete dimensions are hot |
 
 `assets/examples/` carries one finished delivery per family, chosen to show that family at its most characteristic. Those files are deliveries rather than forms, so they carry no row here.
 
 ---
 
-## 4. WHAT IS NOT INDEXED HERE
+## 5. THE NAME A READER ARRIVES WITH
+
+A request almost never carries an id from the index. It carries the industry name for the picture, and the names in the table below appear nowhere in the index. The row ids say what a form draws, which is what makes them precise and also what makes them unfindable by searching for the word the reader used.
+
+Every name in the left column already routes to this packet, so a request carrying one has arrived in the right place. A search that returns nothing is a naming mismatch rather than a missing capability. Read this table before reporting a gap.
+
+| The reader says | Draw | What to know first |
+| --- | --- | --- |
+| histogram | `distribution-strip` | Same question, different mark. The strip draws one dot per record rather than binning records into bars, so the spread is read from where the dots crowd. It stays honest from tens to a few hundred records. Past that ceiling, or when a five-number summary is what the reader wants, use `box-plot` |
+| heatmap, heat map | `heat-matrix` | The same chart under a different name. Two discrete dimensions, one cell per combination, shaded by value |
+| calendar heatmap | `calendar-grid` | The same chart, fixed to one year of days with weekdays down and weeks across. A shaded matrix of anything other than days belongs in `heat-matrix` |
+| donut chart | `unit-ring` | Same question, same ring, same total in the middle. The ring is built from countable ticks rather than from continuous arcs, which is the point: a reader counts marks instead of estimating angles. Parts that arrive as percentages rather than as whole-number counts belong in `unit-grid` |
+| waffle chart | `unit-grid` | The same chart under a different name. One hundred squares, one per percent, filled in reading order |
+| parallel coordinates | `parallel-axes` | The same chart under a different name. One vertical axis per dimension, one line per entity, every axis on its own scale |
+| combo chart, dual axis chart, bar and line chart | `bar-line-composed` | The same chart under three names a reader is more likely to use than the row id. Columns for a count and a line for a rate over the same periods. The second scale is not a setting: the file draws one only when the two measures are an order of magnitude apart, and one ladder otherwise |
+
+Two of those rows are substitutions rather than matches, and the difference is worth saying plainly. **This corpus draws no binned histogram and no arc-based pie or donut.** Each of the two rows names what arrives instead and why it answers the question the reader asked. The other five rows are the same chart wearing a name the index happens not to use.
+
+A name that reaches neither this table nor a row in the index is still a gap to report. Sending a reader to a chart that answers a different question costs more than telling them the corpus has no form for it.
+
+---
+
+## 6. THE FORMS THIS CORPUS DOES NOT DRAW
+
+Section 5 covers a reader who asks for a chart the corpus draws under another name. This section
+covers the other case, where the corpus has no answer at all. Two forms come up often enough
+that silence about them reads as an oversight rather than as a decision, so each is named with
+the reason it is absent.
+
+Both are refusals with a reason rather than gaps waiting to be filled. The one entry here that
+was a reported gap is gone, because the form that answers it now has a row: a count and a rate
+over the same periods is `bar-line-composed`.
+
+Nothing here is a row. These forms have no file, and the index above stays the list of what
+renders.
+
+| Form | Why it is absent |
+| --- | --- |
+| sankey | The contract excludes forms that need a layout engine, and a flow diagram is one. A hand-drawn approximation of a sankey is less honest than saying the corpus does not draw one, because the thing a reader trusts in a flow diagram is that the ribbon widths were solved rather than eyeballed. If flow is ever genuinely wanted, the exclusion in the contract is what to revisit, not this row |
+| radar | `parallel-axes` answers the same question with one scale per axis. A radar normalises every dimension onto one radial scale, which is honest when the dimensions share a unit and misleading when they do not, and the request that reaches this corpus almost always mixes units. The area a radar encloses also reads as a quantity and is not one, since it changes when the axes are reordered. The name itself routes to `sk-create-diagram`, which does have a radar file; this row is what to reach for once the request is here and is about values rather than structure, and `SKILL.md` carries the routing half |
+
+---
+
+## 7. WHAT IS NOT INDEXED HERE
 
 The catalog governs `assets/templates/` alone. The palette sheets under `assets/color/` are proof sheets for the colour systems rather than chart forms, so they carry no row and the check does not expect one. The same holds for the deliveries under `assets/examples/`.
 
 ---
 
-## 5. ADDING A ROW
+## 8. ADDING A ROW
 
 1. Author the template at `assets/templates/<id>.html` against the template contract.
 2. Add one row here with the same `id`.
@@ -104,7 +171,7 @@ The catalog governs `assets/templates/` alone. The palette sheets under `assets/
 
 ---
 
-## RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 | --- | --- |

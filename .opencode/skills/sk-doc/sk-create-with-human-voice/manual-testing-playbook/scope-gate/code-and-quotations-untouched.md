@@ -45,18 +45,19 @@ Operators run the exact prompt and command sequence for `HVS-002` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| HVS-002 | Code and quotations stay byte-identical | Verify a voice pass edits prose only and leaves every protected span untouched | `Clean up the writing in this document. It has a few code samples and an error message in it.` | 1. `agent: Read references/scope-and-exemptions.md section 3` -> 2. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>` -> 3. `agent: Edit prose findings only` -> 4. `bash: git diff --stat <target>` | Step 1: the protected classes are named. Step 2: no finding falls inside a fenced block or an inline code span. Step 3: the edits are confined to prose. Step 4: the changed lines are prose lines | The prompt as typed, the scanner block, the full diff, a per-span reading of the diff against the protected classes and the reply's statement about default masking | PASS when the diff touches prose only and every protected span is byte-identical. FAIL when any protected span changes | 1. Read the diff span by span rather than by hunk. A one-word change inside a quoted error string sits in a hunk that otherwise looks like prose. 2. If a finding was reported inside a fenced block, check whether `--include-code` was passed. It opts into code spans and its effect is easy to mistake for a masking bug. 3. Re-run any test that pins the target's bytes. A fixture edit surfaces as an unrelated test failure |
+| HVS-002 | Code and quotations stay byte-identical | Verify a voice pass edits prose only and leaves every protected span untouched | `Clean up the writing in this document. It has a few code samples and an error message in it.` | 1. `agent: Read references/scope-and-exemptions.md section 3` -> 2. `bash: cp .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-carried-spans.md /tmp/hvr-hvs-002.md` -> 3. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py /tmp/hvr-hvs-002.md` -> 4. `agent: Edit prose findings only` -> 5. `bash: diff .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-carried-spans.md /tmp/hvr-hvs-002.md` | Step 1: the protected classes are named. Step 2: the copy is written outside the packet. Step 3: no finding falls inside a fenced block or an inline code span. Step 4: the edits are confined to prose. Step 5: the changed lines are prose lines | The prompt as typed, the scanner block, the full diff, a per-span reading of the diff against the protected classes and the reply's statement about default masking | PASS when the diff touches prose only and every protected span is byte-identical. FAIL when any protected span changes | 1. Read the diff span by span rather than by hunk. A one-word change inside a quoted error string sits in a hunk that otherwise looks like prose. 2. If a finding was reported inside a fenced block, check whether `--include-code` was passed. It opts into code spans and its effect is easy to mistake for a masking bug. 3. Re-run any test that pins the target's bytes. A fixture edit surfaces as an unrelated test failure |
 
 ### Commands
 
 1. `agent: Read references/scope-and-exemptions.md section 3 and name the protected classes present in the target`
-2. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>`
-3. `agent: Edit the prose findings only, leaving every protected span untouched`
-4. `bash: git diff --stat <target>`
+2. `bash: cp .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-carried-spans.md /tmp/hvr-hvs-002.md`
+3. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py /tmp/hvr-hvs-002.md`
+4. `agent: Edit the prose findings only in /tmp/hvr-hvs-002.md, leaving every protected span untouched`
+5. `bash: diff .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-carried-spans.md /tmp/hvr-hvs-002.md`
 
 ### Expected
 
-Step 1 names the classes the target carries: fenced samples, inline code spans, the quoted error string and any command or path. Step 2 returns findings from prose only, because masking is on by default. Step 3 edits those findings. Step 4 shows a diff confined to prose lines, which is the assertion. The reply also says that fenced blocks and inline code spans were masked and that `--include-code` would have opted back in, because a run that reaches the right answer without knowing why will reach the wrong one on the next target.
+Step 1 names the classes the target carries: fenced samples, inline code spans, the quoted error string and any command or path. Step 2 copies the shipped fixture out of the packet, because this scenario edits its target and precondition 6 fails any run that leaves a diff under the packet. Step 3 returns findings from prose only, because masking is on by default. Step 4 edits those findings. Step 5 shows a diff confined to prose lines, which is the assertion. The reply also says that fenced blocks and inline code spans were masked and that `--include-code` would have opted back in, because a run that reaches the right answer without knowing why will reach the wrong one on the next target.
 
 ### Evidence
 
@@ -97,6 +98,7 @@ Run the scanner twice on an unedited copy of the target, once plain and once wit
 | [`scripts/hvr_scan.py`](../../scripts/hvr_scan.py) | Masks fenced blocks, inline code spans and frontmatter by default. `--include-code` opts back in |
 | [`scripts/tests/fixtures/voice-dirty.md`](../../scripts/tests/fixtures/voice-dirty.md) | Carries its violations twice, once maskable, as the shipped proof of the masking |
 | [`SKILL.md`](../../SKILL.md) | Rule NEVER 2, and success criterion 3 |
+| [`scripts/tests/fixtures/voice-carried-spans.md`](../../scripts/tests/fixtures/voice-carried-spans.md) | The shipped target, copied out before the edit so the fixture stays byte-pinned |
 
 ---
 

@@ -1,0 +1,87 @@
+{
+  "topic": "Reverse-engineer the vendored evilcharts source and turn it into ranked, concrete changes to the sk-create-chart mode. The deliverable is not a description of evilcharts: it is what to change, in which file under sk-create-chart, and why, with every recommendation carrying a resolving evilcharts file:line and one of three verdicts (ADOPT AS IDEA, ADOPT WITH ATTRIBUTION, REJECT WITH REASON).",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 5,
+    "convergenceMode": "disabled",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 180,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research",
+  "createdAt": "2026-09-03T05:12:29.855Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-flash-max-1788412334414-fbd7s9",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout": {
+    "lineageLabel": "deepseek-flash-max",
+    "artifactDir": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/deepseek-flash-max",
+    "loopType": "research",
+    "correlationId": "fanout-deepseek-flash-max-1788412334414-fbd7s9"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resourceMap": {
+    "present": false
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer. Tunables locked for fan-out parity.",
+    "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations"],
+    "lockedFields": ["lineage", "reducer", "fileProtection", "sessionId", "status", "antiConvergence.convergenceMode", "antiConvergence.stopPolicy"],
+    "promotionMode": "advisory-only"
+  }
+}

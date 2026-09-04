@@ -906,8 +906,15 @@ function validateArguments(): void {
 async function main(
   argv: string[] = process.argv.slice(2),
   stdinReader: (stdin?: NodeJS.ReadStream) => Promise<string> = readAllStdin,
+  projectRoot: string = CONFIG.PROJECT_ROOT,
 ): Promise<void> {
   console.error('Starting memory skill...\n');
+
+  // Every spec-folder resolution below reads CONFIG.PROJECT_ROOT, and the save
+  // path writes a lock directory plus parent pointers inside whatever it
+  // resolves. Binding the root here lets a caller aim those writes at a
+  // throwaway workspace; the default keeps the real workspace.
+  CONFIG.PROJECT_ROOT = projectRoot;
 
   try {
     const parsed = await parseArguments(argv, stdinReader);

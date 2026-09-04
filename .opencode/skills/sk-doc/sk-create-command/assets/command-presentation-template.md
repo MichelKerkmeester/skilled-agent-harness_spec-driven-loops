@@ -1,6 +1,6 @@
 ---
 title: Command Presentation Contract Template
-description: Skeleton for the _presentation.txt asset of a mode-based workflow command, the display source of truth that a thin command router loads.
+description: Skeleton for the -presentation.txt asset of a mode-based workflow command, the display source of truth that a thin command router loads.
 trigger_phrases:
   - "command presentation contract template"
   - "presentation router split asset"
@@ -19,7 +19,7 @@ This template produces a presentation contract for a mode-based workflow command
 
 ## 1. OVERVIEW
 
-Skeleton for a `assets/<ns>_<command>_presentation.txt` file. In the presentation/router split (see [`command-template.md`](command-template.md) § Mode-Based Command Template), the command `.md` is a thin router that owns mode resolution and routing, the `_auto.yaml` / `_confirm.yaml` assets own workflow execution, and this file owns everything the user sees. Copy the body below into the new asset and fill the bracketed parts. Keep all visible wording, reply formats, and templates here and nowhere else.
+Skeleton for a `assets/<ns>-<command>-presentation.txt` file. In the presentation/router split (see [`command-template.md`](command-template.md) § Mode-Based Command Template), the command `.md` is a thin router that owns mode resolution and routing, the `-auto.yaml` / `-confirm.yaml` assets own workflow execution, and this file owns everything the user sees. Copy the body below into the new asset and fill the bracketed parts. Keep all visible wording, reply formats, and templates here and nowhere else.
 
 ---
 
@@ -42,10 +42,10 @@ Presentation source of truth for `/<namespace>:<command>`. The router owns mode 
 
 For `:confirm` or no suffix, the consolidated setup prompt is the first visible response. Ask all applicable questions once, then wait.
 
-For `:auto`, do not show the consolidated prompt by default. Resolve setup through the auto-resolution rules below; ask targeted questions only for fields that cannot be defaulted.
+For `:auto`, do not show the consolidated prompt by default. Resolve setup through the auto-resolution rules below, and ask targeted questions only for fields that cannot be defaulted.
 
 ### Auto Pre-Bound Setup Answers
-[Optional marker block accepted in the prompt body, with the field schema. Unknown fields warn; malformed lines are parse errors.]
+[Optional marker block accepted in the prompt body, with the field schema. Unknown fields warn, and malformed lines are parse errors.]
 
 ### Auto Resolution Table
 | Field | Required | Default | Targeted-ask when |

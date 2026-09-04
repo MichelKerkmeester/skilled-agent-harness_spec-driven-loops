@@ -1,6 +1,6 @@
 ---
 description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. Modes :auto, :confirm."
-argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 

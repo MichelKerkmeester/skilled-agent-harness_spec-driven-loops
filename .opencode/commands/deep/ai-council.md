@@ -1,7 +1,7 @@
 ---
 title: "Deep Council"
 description: Multi-topic deep-ai-council session loop with adjudicator-verdict stability. Modes :auto, :confirm.
-argument-hint: "<deliberation-topic|topics> [:auto|:confirm] [--max-rounds-per-topic=N] [--max-topics=N] [--saturation=N] [--convergence=N] [--spec-folder=PATH] [--executor-mode=in-cli|external-cli] [--executor=<type>] [--model=X] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] (:auto supports PRE-BOUND SETUP ANSWERS)"
+argument-hint: "<deliberation-topic|topics> [:auto|:confirm] [--max-topics=N] [--max-rounds-per-topic=N] [--executor=TYPE]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
@@ -71,6 +71,25 @@ Your job is to CONVENE 3+ distinct ai-council seats in-CLI over the bound topic 
 4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the presentation contract's consolidated setup prompt before loading YAML.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the presentation contract's consolidated setup prompt to ask for execution mode.
 6. Load the selected workflow asset only after `deliberation_topic` or `topics`, `max_rounds_per_topic`, `max_topics_per_session`, `saturation_threshold`, `convergenceThreshold`, `executor.*`, `spec_folder`, and `execution_mode` are bound.
+
+### Workflow Flag Surface
+
+The argument hint names the invocation shape; the whole flag surface is here. Every flag below
+is a workflow input, never an execution mode, and the presentation asset owns how each one binds
+into `config`.
+
+| Flag | Value | Effect |
+|------|-------|--------|
+| `--spec-folder` | `PATH` | Binds the packet that owns this session's writes. |
+| `--max-topics` | `N` | Ceiling on topics deliberated in one session. |
+| `--max-rounds-per-topic` | `N` | Ceiling on deliberation rounds per topic. |
+| `--saturation` | `N` | Saturation threshold that ends a topic once new argument stops arriving. |
+| `--convergence` | `N` | Adjudicator-verdict stability threshold. |
+| `--executor-mode` | `in-cli` \| `external-cli` | Binds `executor.mode`. Default `in-cli`, which deliberates the seats inside this session; `external-cli` dispatches them to an external CLI executor. |
+| `--executor` | `TYPE` | Selects the executor kind for `external-cli`, alongside `--model=X`, `--reasoning-effort=LEVEL`, `--service-tier=TIER` and `--executor-timeout=SECONDS`. Which of those a given kind supports is in the presentation asset. |
+
+Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in the prompt body binds the same values without
+an interactive prompt.
 
 ---
 

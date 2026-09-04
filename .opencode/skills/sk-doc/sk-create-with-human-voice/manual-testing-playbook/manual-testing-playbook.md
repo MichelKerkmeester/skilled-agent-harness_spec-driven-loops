@@ -39,7 +39,7 @@ This playbook covers the operator-visible surface of the `create-with-human-voic
 
 Coverage runs in both directions on purpose. Tell detection covers text the mode must flag. The scope gate covers text the mode must leave alone, which is the half a term-list scanner will never volunteer.
 
-Every scenario is runnable today against the shipped standard, the shipped scanner and the two shipped fixtures. None of them edits the packet. The recovery path for the whole package is `git checkout` of any file a run touched by mistake.
+Every scenario names its target outright and runs against a shipped file. `HVS-003` uses the standard itself, and the other eight use a fixture under `scripts/tests/fixtures/`. Precondition 7 below maps each scenario to its fixture. The three scenarios that edit their target copy the fixture out of the packet first, so no run leaves a diff under it. The recovery path for the whole package is `git checkout` of any file a run touched by mistake.
 
 ### A Clean Mechanical Scan Is Not A Pass
 
@@ -70,10 +70,25 @@ Exit 2 is a failure and never a pass. It means the scanner could not read the st
 
 1. Working directory is the repository root, so every `.opencode/skills/sk-doc/sk-create-with-human-voice/` subpath in this package resolves.
 2. `python3` is on PATH. The scanner is one file with no third-party dependency.
-3. The two shipped fixtures are present and unmodified: `scripts/tests/fixtures/voice-dirty.md` and `scripts/tests/fixtures/voice-clean.md`. A scenario asserting a fixture number cannot be graded against an edited fixture.
+3. The seven shipped fixtures under `scripts/tests/fixtures/` are present and unmodified. A scenario asserting a fixture number cannot be graded against an edited fixture.
 4. The working tree is clean for the packet paths, so any diff is attributable to the run.
 5. The control pair in `references/scoring-and-verification.md` section 6 has been run once before the first wave starts. It proves the parser still reads the standard. A scanner exiting 2 invalidates every scenario that follows it.
 6. No scenario here is destructive. A run that produces a diff under the packet has already failed the scenario it was executing.
+7. Each scenario's target ships with the packet. The fixture carries the property that scenario measures, and a scenario that rewrites its target works on a copy so the fixture stays byte-pinned:
+
+| Scenario | Fixture | What it carries | Edited |
+|---|---|---|---|
+| `HVT-001` | `voice-dirty.md` | One finding of each mechanical class, and the same violations again inside protected spans | No |
+| `HVT-002` | `voice-two-senses.md` | Two occurrences of one blocked term, one in the literal sense the standard permits and one in the blocked sense | Copy at `/tmp/hvr-hvt-002.md` |
+| `HVT-003` | `voice-judgment-only.md` | No mechanical finding and several findings only a reader can settle | No |
+| `HVS-001` | `voice-carried-spans.md` | A quoted user sentence, a quoted error string, a fenced sample and an inline span | No |
+| `HVS-002` | `voice-carried-spans.md` | The same carried spans, with prose findings to edit around them | Copy at `/tmp/hvr-hvs-002.md` |
+| `HVS-003` | `references/hvr-rules.md` | The standard itself, which lists every blocked term | No |
+| `HVS-004` | `voice-claim-bearing-term.md` | A sentence whose claim depends on a blocked term, so every replacement changes what it says | No |
+| `HVR-001` | `voice-clean.md` | No finding at all, so the assertion is the unchanged file | No |
+| `HVR-002` | `voice-ai-draft.md` | Four hard blockers and a ceiling of 77/100, which gives the before-number something to measure | Copy at `/tmp/hvr-hvr-002.md` |
+
+8. A copy made under `/tmp` sits outside the repository, so `git status --porcelain` cannot assert it. Assert it with `diff` against the shipped fixture it came from, which names the changed lines rather than only reporting that something changed.
 
 ---
 
@@ -87,7 +102,7 @@ Exit 2 is a failure and never a pass. It means the scanner could not read the st
 - The judgment findings a reader added, or an explicit statement that a reader found none
 - Every exempt span named, with the class it falls under and the reason
 - Both scan numbers on any run that edited text
-- `git status --porcelain <target>` for the target path
+- `git status --porcelain` for a target inside the repository, or `diff` against the source fixture for a copy under `/tmp`
 - Scenario verdict with rationale (`PASS`, `FAIL` or `SKIP`)
 
 A transcript without the not-scored list cannot be graded. That list is the evidence the judgment pass was owed, so a report that drops it has removed the one line proving the run knew what it had not checked.
@@ -175,7 +190,7 @@ This section records wave planning and capacity guidance for the manual testing 
 4. Pre-assign explicit scenario IDs and matching per-feature files to each wave before execution.
 5. Run the control pair from `references/scoring-and-verification.md` section 6 before wave one. Every scenario in this package quotes a scanner number, so a parser that has stopped reading the standard invalidates the whole run rather than one scenario.
 6. Run `SCOPE GATE` as the first wave. It is entirely read-only, it is the cheapest wave and it decides whether the other two waves are measuring the right spans.
-7. Never run two scenarios against the same operator-supplied target at once. Both assert on `git status --porcelain` for that path, so neither result would be attributable.
+7. Never run two scenarios against the same working copy at once. Both assert on what changed at that path, so neither result would be attributable. `HVS-001` and `HVS-002` share a fixture and do not share a path: the first reads it where it ships and the second edits a copy.
 8. After each wave, save context and evidence, then begin the next wave.
 9. Record the utilization table, per-feature file references and evidence paths in the final report.
 
@@ -362,6 +377,7 @@ Desired user-visible outcome: the user sees the before number, the after number 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
 | `scripts/hvr_scan.py` against the two shipped fixtures | The mechanical subset: punctuation bans, blocker words, phrase blockers, soft deductions and the masking of code spans | Direct. `HVT-001` and `HVR-001` execute exactly this pair as the operator-facing control |
+| `scripts/tests/test_hvr_scan.py` | The scanner's masking contract: a code-tagged fence inside a template payload, a payload fence that stays prose, an inline span wrapping two lines and the pinned fixture numbers | Partial. It pins the numbers `HVT-001` and `HVR-001` assert, so a fixture edit fails here first |
 | `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | This playbook package's own operator-scenario contract | None directly. It validates the playbook, not the workflow the playbook tests |
 
 The packet ships no automated test for the judgment pass, and none is possible: the eleven categories the scanner prints as unchecked are unchecked because a pattern cannot settle them. This playbook is the operator-facing equivalent for that half of the standard and does not claim to be more.

@@ -34,7 +34,7 @@ This guide provides **one comprehensive SKILL template** (Section 3) that covers
 
 **The template is flexible:**
 - **Simple skills**: Use required core sections only (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES)
-- **Skills with bundled resources**: Include detection context, merged resource domains/mapping, loading levels, and one authoritative Smart Router Pseudocode block; use `references/`, `assets/`, and `scripts/`
+- **Skills with bundled resources**: Include detection context, merged resource domains/mapping, loading levels, and one authoritative Smart Router Pseudocode block. Use `references/`, `assets/`, and `scripts/`
 - **Multi-mode skills**: Expand WHEN TO USE and HOW IT WORKS sections by mode
 - **All skills**: MUST include Section 2 (SMART ROUTING) with detection guidance + domain-based routing + pseudocode
 
@@ -80,11 +80,11 @@ SKILL.md architecture follows progressive disclosure:
 | Field | Required | Format | Example |
 |-------|----------|--------|---------|
 | `name` | ✅ | hyphen-case | `my-skill-name` |
-| `description` | ✅ | Single line, **≤ 130 chars** for skills (≤ 110 for commands); 1,536-char hard cap | `"Handles X when Y occurs"` |
+| `description` | ✅ | Single line, **≤ 130 chars** for skills (≤ 110 for commands), 1,536-char hard cap | `"Handles X when Y occurs"` |
 | `allowed-tools` | ✅ | Array: `[Tool1, Tool2]` | `[Read, Write, Edit, Bash]` |
 | `version` | ✅ | 4-part X.Y.Z.W | `1.0.0.0` |
 
-> **Description budget & trim style**: see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../sk-create-frontmatter/assets/frontmatter-templates.md). Total project descriptions must stay under ~5,600 chars or Claude Code will silently drop the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose; keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
+> **Description budget & trim style**: see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../sk-create-frontmatter/assets/frontmatter-templates.md). Total project descriptions must stay under ~5,600 chars or Claude Code will silently drop the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose, and keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
 
 ### Template
 
@@ -418,7 +418,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 <!-- NOTE: RULES section is REQUIRED by package_skill.py validation.
      Subsections MUST be named ALWAYS, NEVER, and ESCALATE IF (or ESCALATE WHEN).
-     Use H3 by default; H4 is allowed when nested under phase headings.
+     Use H3 by default. H4 is allowed when nested under phase headings.
      Do NOT add horizontal dividers (---) between RULES subsections. -->
 
 \## 4. RULES
@@ -566,7 +566,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/[primary].md`, `assets/[template].md`, and any skill-specific automation under `scripts/`, then load task-specific resources according to Section 2.
 
-Scripts: `scripts/[primary-helper]` when the skill ships automation; omit this line when no scripts exist.
+Scripts: `scripts/[primary-helper]` when the skill ships automation. Omit this line when no scripts exist.
 
 Related skills: `[related-skill]` for [relationship], `[other-skill]` for [relationship], and `system-spec-kit` when packet documentation or memory continuity applies.
 

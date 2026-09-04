@@ -18,7 +18,7 @@ version: 1.3.0.30
 
 Copy-paste templates for `opencode run` dispatches. Each template names the use case it serves, the framework it applies, and the canonical invocation shape.
 
-> **⚠️ NON-INTERACTIVE DISPATCH RULE:** ANY automation that redirects stdout and/or stderr to files (e.g. `> stdout.log 2> stderr.log`) MUST also redirect stdin from `/dev/null`. opencode v1.14.39 reads stdin at startup; without explicit closed stdin, dispatches hang at 0% CPU after the `+60s snapshot prune cleanup` log line. Position: AFTER the prompt argument, BEFORE stdout/stderr redirects. The templates below show foreground patterns (terminal stdout, no redirect — works as-is). When adapting any of these for automation/background dispatch (`> file 2> file`), append `</dev/null` after the prompt. See `../references/integration-patterns.md` §6 for full failure modes + fix matrix.
+> **⚠️ NON-INTERACTIVE DISPATCH RULE:** ANY automation that redirects stdout and/or stderr to files (e.g. `> stdout.log 2> stderr.log`) MUST also redirect stdin from `/dev/null`. opencode v1.14.39 reads stdin at startup. Without explicit closed stdin, dispatches hang at 0% CPU after the `+60s snapshot prune cleanup` log line. Position: AFTER the prompt argument, BEFORE stdout/stderr redirects. The templates below show foreground patterns (terminal stdout, no redirect, which works as-is). When adapting any of these for automation/background dispatch (`> file 2> file`), append `</dev/null` after the prompt. See `../references/integration-patterns.md` §6 for full failure modes + fix matrix.
 
 ## 1. OVERVIEW
 
@@ -28,7 +28,7 @@ Templates are numbered for cross-reference from `references/integration-patterns
 
 ---
 
-## 2. TEMPLATE 1 — EXTERNAL RUNTIME TO OPENCODE (USE CASE 1)
+## 2. TEMPLATE 1: EXTERNAL RUNTIME TO OPENCODE (USE CASE 1)
 
 **Framework:** RCAF
 **Calling runtime:** Claude Code, OpenCode, Copilot, raw shell
@@ -52,7 +52,7 @@ Success criteria:
 Budget awareness:
 - Apply `../references/context-budget.md`.
 - When content is cut for context budget, keep the retained span and insert `[... truncated N tokens]`.
-- Treat truncation markers as intentional boundaries; do not infer missing evidence.
+- Treat truncation markers as intentional boundaries. Do not infer missing evidence.
 
 Memory Epilogue:
 At the end of your response, include a structured handback inside delimiters:
@@ -83,7 +83,7 @@ opencode run \
 
 ---
 
-## 3. TEMPLATE 2 — IN-OPENCODE PARALLEL DETACHED SESSION (USE CASE 2)
+## 3. TEMPLATE 2: IN-OPENCODE PARALLEL DETACHED SESSION (USE CASE 2)
 
 **Framework:** CIDI
 **Calling runtime:** OpenCode itself (TUI / web / serve / acp)
@@ -91,7 +91,7 @@ opencode run \
 ```text
 You are spawning a parallel detached OpenCode session for <purpose>.
 
-Goal: <one-sentence goal — must mention "parallel detached", "ablation suite", "worker farm", or "share URL">
+Goal: <one-sentence goal that must mention "parallel detached", "ablation suite", "worker farm", or "share URL">
 
 Context:
 - Spec folder: <path> (pre-approved, skip Gate 3)
@@ -119,11 +119,11 @@ opencode run \
   "<prompt-from-template>" 2>&1
 ```
 
-For an actual deep-research iteration, do not pass `--agent deep-research` (command-owned; rejected the same way any other subagent slug is at the top level). Dispatch the real iterative loop via `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet instead; the command owns the packet-local JSONL/strategy/dashboard state that this template's "State file" / "Strategy file" context lines describe. This template's own bash block is for a generic parallel-detached worker, not a raw deep-research iteration.
+For an actual deep-research iteration, do not pass `--agent deep-research` (command-owned, and rejected the same way any other subagent slug is at the top level). Dispatch the real iterative loop via `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet instead. The command owns the packet-local JSONL/strategy/dashboard state that this template's "State file" / "Strategy file" context lines describe. This template's own bash block is for a generic parallel-detached worker, not a raw deep-research iteration.
 
 ---
 
-## 4. TEMPLATE 3 — CROSS-AI ORCHESTRATION HANDBACK (USE CASE 3)
+## 4. TEMPLATE 3: CROSS-AI ORCHESTRATION HANDBACK (USE CASE 3)
 
 **Framework:** RCAF + TIDD-EC
 **Calling runtime:** OpenCode, Copilot
@@ -164,12 +164,12 @@ opencode run \
 
 ---
 
-## 5. TEMPLATE 4 — SPECIALIZED AGENT DISPATCH
+## 5. TEMPLATE 4: SPECIALIZED AGENT DISPATCH
 
 **Framework:** RCAF
 **Use case:** Any (1, 2, or 3)
 
-Dispatch a task to a specific agent slug. See `../references/agent-delegation.md` for the full routing matrix and the primary/subagent/command-owned dispatch classes below — `<slug>` in this template's bash block is valid ONLY for `orchestrate` (or `plan`, an OpenCode built-in); every other slug routes a different way.
+Dispatch a task to a specific agent slug. See `../references/agent-delegation.md` for the full routing matrix and the primary/subagent/command-owned dispatch classes below. `<slug>` in this template's bash block is valid ONLY for `orchestrate` (or `plan`, an OpenCode built-in), and every other slug routes a different way.
 
 ```bash
 opencode run \
@@ -181,15 +181,15 @@ opencode run \
   "Use the <slug> subagent: <prompt>" 2>&1
 ```
 
-- **Default / general** — omit `--agent` entirely; never pass `--agent general` (rejected at the top level).
-- **Primary, directly `--agent`-dispatchable** — `orchestrate` (shown above), `plan` (OpenCode built-in).
-- **Subagents, routed via `--agent orchestrate`'s Task-dispatch (never direct)** — `context`, `markdown`, `review`, `debug`.
-- **`ai-council`** — command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch; never direct `--agent ai-council` (`mode: subagent`).
-- **Command-owned loop executors (never direct `--agent`)** — `deep-research` (via `/deep:research`), `deep-review` (via `/deep:review`), `deep-improvement` (via `/deep:agent-improvement`), `prompt-improver` (via `/prompt`'s deep-path escalation).
+- **Default / general**: omit `--agent` entirely, and never pass `--agent general` (rejected at the top level).
+- **Primary, directly `--agent`-dispatchable**: `orchestrate` (shown above), `plan` (OpenCode built-in).
+- **Subagents, routed via `--agent orchestrate`'s Task-dispatch (never direct)**: `context`, `markdown`, `review`, `debug`.
+- **`ai-council`**: command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch, never direct `--agent ai-council` (`mode: subagent`).
+- **Command-owned loop executors (never direct `--agent`)**: `deep-research` (via `/deep:research`), `deep-review` (via `/deep:review`), `deep-improvement` (via `/deep:agent-improvement`), `prompt-improver` (via `/prompt`'s deep-path escalation).
 
 ---
 
-## 6. TEMPLATE 5 — CODE REVIEW
+## 6. TEMPLATE 5: CODE REVIEW
 
 **Framework:** TIDD-EC
 **Agent:** `review`
@@ -207,10 +207,10 @@ Instructions:
 
 Do's:
 - Apply the project's sk-code baseline.
-- Layer `sk-code` surface-specific evidence selected from codebase signals; add its code-review mode for findings-first review output.
+- Layer `sk-code` surface-specific evidence selected from codebase signals. Add its code-review mode for findings-first review output.
 
 Don'ts:
-- Do not propose fixes — leave that for a follow-up dispatch.
+- Do not propose fixes. Leave that for a follow-up dispatch.
 - Do not modify files (READ-ONLY).
 
 Examples: <if available>
@@ -227,14 +227,14 @@ opencode run \
   "<prompt>" 2>&1
 ```
 
-No `--agent` flag — `review` is a subagent, not directly invokable at the top level. The `As @review:` prompt prefix above carries the role instead (or route via `--agent orchestrate` and ask it to dispatch the review subagent).
+No `--agent` flag. `review` is a subagent, not directly invokable at the top level. The `As @review:` prompt prefix above carries the role instead (or route via `--agent orchestrate` and ask it to dispatch the review subagent).
 
 ---
 
-## 7. TEMPLATE 6 — ITERATIVE DEEP RESEARCH
+## 7. TEMPLATE 6: ITERATIVE DEEP RESEARCH
 
 **Framework:** CRISPE
-**Agent:** `deep-research` — command-owned by `/deep:research`; this template documents the shape of ONE iteration's context, not a copy-paste raw dispatch
+**Agent:** `deep-research`, command-owned by `/deep:research`. This template documents the shape of ONE iteration's context, not a copy-paste raw dispatch
 **Use case:** Command-owned loop, driven by `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet
 
 ```text
@@ -243,14 +243,14 @@ Run iteration N of the deep-research loop on packet <packet-id>.
 State file: <spec_folder>/research/deep-research-state.jsonl
 Strategy file: <spec_folder>/research/deep-research-strategy.md
 
-Capacity: leaf-agent execution — single iteration only, no nested dispatches.
+Capacity: leaf-agent execution. Single iteration only, no nested dispatches.
 Insight: <what the prior iteration converged on>
 Statement: <hypothesis for this iteration>
 Personality: rigorous, evidence-first, no speculation.
 Experiment: <list of files to read and queries to run>
 ```
 
-Do NOT dispatch this shape with a raw `opencode run --agent deep-research`; that flag is command-owned and rejected at the top level the same way any other subagent slug is. Trigger a real iteration by invoking the owning command instead:
+Do NOT dispatch this shape with a raw `opencode run --agent deep-research`. That flag is command-owned and rejected at the top level the same way any other subagent slug is. Trigger a real iteration by invoking the owning command instead:
 
 ```bash
 opencode run \
@@ -264,7 +264,7 @@ opencode run \
 
 ---
 
-## 8. TEMPLATE 7 — ABLATION SUITE
+## 8. TEMPLATE 7: ABLATION SUITE
 
 **Framework:** CIDI
 **Agent:** `general` or `orchestrate`
@@ -300,7 +300,7 @@ opencode run \
 
 ---
 
-## 9. TEMPLATE 8 — WORKER FARM DISPATCH
+## 9. TEMPLATE 8: WORKER FARM DISPATCH
 
 **Framework:** CIDI
 **Agent:** `general`
@@ -337,7 +337,7 @@ wait
 
 ---
 
-## 10. TEMPLATE 9 — SPEC-DOC RETRIEVAL VIA OPENCODE
+## 10. TEMPLATE 9: SPEC-DOC RETRIEVAL VIA OPENCODE
 
 **Framework:** RCAF
 **Agent:** `general`
@@ -368,17 +368,17 @@ opencode run \
 
 ---
 
-## 11. TEMPLATE 10 — MULTI-STRATEGY PLANNING VIA @MULTI-AI COUNCIL
+## 11. TEMPLATE 10: MULTI-STRATEGY PLANNING VIA @MULTI-AI COUNCIL
 
 **Framework:** CRAFT
-**Agent:** `ai-council` (`mode: subagent` — dispatched via `orchestrate` or `/deep:ai-council`, never direct top-level `--agent ai-council`)
+**Agent:** `ai-council` (`mode: subagent`, dispatched via `orchestrate` or `/deep:ai-council`, never direct top-level `--agent ai-council`)
 **Use case:** 1 or 3
 
 ```text
 Plan the <feature / refactor> using multi-strategy comparison.
 
 Context: <one-paragraph context>
-Role: planning architect — no file modifications.
+Role: planning architect. No file modifications.
 Action: generate three distinct strategies, score each across the 5-dimension rubric, synthesize the optimal plan.
 Format: structured JSON plus a summary paragraph.
 Target: an implementation-ready plan that another agent can execute.
@@ -396,7 +396,7 @@ opencode run \
 
 ---
 
-## 12. TEMPLATE 11 — DOC GENERATION VIA @WRITE
+## 12. TEMPLATE 11: DOC GENERATION VIA @WRITE
 
 **Framework:** RCAF
 **Agent:** `write`
@@ -422,7 +422,7 @@ opencode run \
 
 ---
 
-## 13. TEMPLATE 12 — SELF-INVOCATION REFUSAL SURFACE
+## 13. TEMPLATE 12: SELF-INVOCATION REFUSAL SURFACE
 
 **Use case:** Refusal path
 
@@ -441,15 +441,15 @@ Options:
 2. Open a fresh shell session (no OpenCode parent) and re-run from there.
 3. If you wanted a parallel detached session (different session id, separate
    state directory), restate the request with explicit "parallel detached" /
-   "ablation suite" / "worker farm" / "share URL" keywords — that triggers
+   "ablation suite" / "worker farm" / "share URL" keywords, which triggers
    use case 2 instead of refusal.
 ```
 
-This template is NOT an `opencode run` invocation — it is the user-facing message the calling AI prints when the router refuses dispatch.
+This template is NOT an `opencode run` invocation. It is the user-facing message the calling AI prints when the router refuses dispatch.
 
 ---
 
-## 14. TEMPLATE 13 — MEMORY EPILOGUE (REUSABLE TAIL)
+## 14. TEMPLATE 13: MEMORY EPILOGUE (REUSABLE TAIL)
 
 Append this block to any prompt that produces evidence the calling AI wants to write back through `/memory:save`.
 
@@ -497,9 +497,9 @@ Minimum viable payload: a specific `sessionSummary`, at least one meaningful `re
 
 ---
 
-## 15. TEMPLATE 14 — MINIMAX (TOKEN PLAN; EMPIRICAL DEFAULT: TIDD-EC + DENSE PRE-PLAN)
+## 15. TEMPLATE 14: MINIMAX TOKEN PLAN (EMPIRICAL DEFAULT, TIDD-EC PLUS DENSE PRE-PLAN)
 
-**When**: dispatching to the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3` (pay-per-token alternative `minimax/MiniMax-M3` via the Direct API). The 120/003 benchmark (real MiniMax M2.7 runs) found MiniMax diverges from the cross-model defaults: **TIDD-EC** framework + **dense** pre-planning wins (RCAF + medium is the fallback) — carry this contract forward to M3 until re-benchmarked. `--variant` is omitted by default (unverified). **Omit `--agent`** (rejected on opencode 1.15.13).
+**When**: dispatching to the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3` (pay-per-token alternative `minimax/MiniMax-M3` via the Direct API). The 120/003 benchmark (real MiniMax M2.7 runs) found MiniMax diverges from the cross-model defaults: **TIDD-EC** framework plus **dense** pre-planning wins (RCAF plus medium is the fallback), so carry this contract forward to M3 until re-benchmarked. `--variant` is omitted by default (unverified). **Omit `--agent`** (rejected on opencode 1.15.13).
 
 **Invocation**:
 
@@ -542,9 +542,9 @@ Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a
 
 ---
 
-## 16. TEMPLATE 15 — MiMo (XIAOMI TOKEN PLAN + DIRECT API; COSTAR + LEAN)
+## 16. TEMPLATE 15: MiMo (XIAOMI TOKEN PLAN PLUS DIRECT API, COSTAR PLUS LEAN)
 
-**When**: dispatching to MiMo-V2.5-Pro via the Xiaomi Token Plan (Europe) — primary slug `xiaomi-token-plan-ams/mimo-v2.5-pro` (provider `xiaomi-token-plan-ams`, quota pool `xiaomi-token-plan`) — or via the Xiaomi Direct API — slugs `xiaomi/mimo-v2.5-pro` and the low-latency `xiaomi/mimo-v2.5-pro-ultraspeed` (provider `xiaomi`, pay-per-token; pick UltraSpeed for latency-sensitive checks/smokes — same COSTAR contract). The 126/004 benchmark (10/10 real `mimo-v2.5-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback); use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format + brevity, **not** guardrails — TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). **Always pass `--variant high`** — opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13); high is the standing default. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). Confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
+**When**: dispatching to MiMo-V2.5-Pro via the Xiaomi Token Plan (Europe). The primary slug is `xiaomi-token-plan-ams/mimo-v2.5-pro` (provider `xiaomi-token-plan-ams`, quota pool `xiaomi-token-plan`). Via the Xiaomi Direct API the slugs are `xiaomi/mimo-v2.5-pro` and the low-latency `xiaomi/mimo-v2.5-pro-ultraspeed` (provider `xiaomi`, pay-per-token, and pick UltraSpeed for latency-sensitive checks or smokes under the same COSTAR contract). The 126/004 benchmark (10/10 real `mimo-v2.5-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback). Use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format and brevity, **not** guardrails. TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). **Always pass `--variant high`**. opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13), and high is the standing default. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). Confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
 
 **Invocation (Token Plan)**:
 
@@ -558,7 +558,7 @@ opencode run \
   </dev/null
 ```
 
-**Invocation (Direct API — pay-per-token; swap in `xiaomi/mimo-v2.5-pro-ultraspeed` for the low-latency tier)**:
+**Invocation (Direct API, pay-per-token. Swap in `xiaomi/mimo-v2.5-pro-ultraspeed` for the low-latency tier)**:
 
 ```bash
 opencode run \
@@ -570,17 +570,17 @@ opencode run \
   </dev/null
 ```
 
-**Prompt scaffold (COSTAR — empirical winner)**: Context (task + repo facts) → Objective (the single concrete deliverable) → Style (`precise, no preamble`) → Tone (neutral) → Audience (`an automated/downstream consumer that parses your output`) → Response (exact output shape, e.g. "return ONLY the function body"). Keep pre-planning lean-to-medium. **RACE** (Role/Action/Context/Expectation) is the equally-valid fallback. Do NOT use TIDD-EC or dense guardrail framing — it ranked last for MiMo (inflated output ~2.4× and leaked explanatory prose that broke the code-only contract).
+**Prompt scaffold (COSTAR, the empirical winner)**: Context (task + repo facts) → Objective (the single concrete deliverable) → Style (`precise, no preamble`) → Tone (neutral) → Audience (`an automated/downstream consumer that parses your output`) → Response (exact output shape, e.g. "return ONLY the function body"). Keep pre-planning lean-to-medium. **RACE** (Role/Action/Context/Expectation) is the equally-valid fallback. Do NOT use TIDD-EC or dense guardrail framing. It ranked last for MiMo (inflated output ~2.4× and leaked explanatory prose that broke the code-only contract).
 
 ---
 
-## 17. TEMPLATE 16 — DESIGN/UI BUILD DISPATCH (MEASURED STYLE REFERENCE)
+## 17. TEMPLATE 16: DESIGN/UI BUILD DISPATCH (MEASURED STYLE REFERENCE)
 
 **Framework:** RCAF + sk-design-md-generator Style Reference Manifest
 **Agent:** `general`, `write`, or a design-capable leaf agent
 **Use case:** 1 or 3
 
-Use this for delegated UI build or redesign that must match a live source rather than guessing colors, type, spacing, or shadows. The dispatched agent must first load `sk-design-md-generator`, extract a measured Style Reference DESIGN.md from the live source, then build against those measured tokens. `sk-design-md-generator` measures real CSS — it does not invent visual direction or critique design; new direction is out of scope.
+Use this for delegated UI build or redesign that must match a live source rather than guessing colors, type, spacing, or shadows. The dispatched agent must first load `sk-design-md-generator`, extract a measured Style Reference DESIGN.md from the live source, then build against those measured tokens. `sk-design-md-generator` measures real CSS. It does not invent visual direction or critique design, and new direction is out of scope.
 
 ```text
 You are dispatching a design/UI build task through cli-opencode.
@@ -614,12 +614,12 @@ Required fidelity proof before a ready/handoff claim:
 
 Do's:
 - Treat the measured Style Reference DESIGN.md + tokens.json as the source of truth.
-- Trace every built value to a measured token; label anything inferred as an OPEN RISK.
+- Trace every built value to a measured token. Label anything inferred as an OPEN RISK.
 - Re-extract after a source redesign rather than editing tokens from memory.
 
 Don'ts:
 - Do not summarize `sk-design-md-generator` output from memory.
-- Do not invent new palette, type scale, or visual direction — this skill measures, it does not create direction.
+- Do not invent new palette, type scale, or visual direction. This skill measures, it does not create direction.
 - Do not claim readiness, fidelity, or completion without the validate result and the sk-code handoff card.
 - Do not touch files outside the allowed write scope.
 

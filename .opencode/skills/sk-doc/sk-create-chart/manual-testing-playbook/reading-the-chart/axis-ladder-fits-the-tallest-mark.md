@@ -97,7 +97,7 @@ Copy a form to a scratch path outside the packet, raise its largest value by a f
 | [`assets/templates/bar-columns.html`](../../assets/templates/bar-columns.html) | Primary anchor, the ladder and the tick count live in its drawing code |
 | [`assets/templates/grouped-bars.html`](../../assets/templates/grouped-bars.html) | The same ladder across two series |
 | [`assets/templates/daily-line.html`](../../assets/templates/daily-line.html) | The same ladder on a time axis |
-| [`references/template-contract.md`](../../references/template-contract.md) | Section 8, which states that the check does not know whether the bars are the right height |
+| [`references/template-contract.md`](../../references/template-contract.md) | Section 9, which states that the check does not know whether the bars are the right height |
 
 ---
 

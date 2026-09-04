@@ -1,6 +1,6 @@
 ---
 description: Unified folder README and install guide creation with sk-doc quality standards. Modes :auto, :confirm.
-argument-hint: "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -65,4 +65,3 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 The bound workflow YAML (`create-readme-auto.yaml` for `:auto`, `create-readme-confirm.yaml` for `:confirm` or an omitted mode) runs the README/install workflow step by step after Phase 0 verification and setup resolution, skipping to the resolved `readme` or `install` operation section to create folder READMEs or install guides with sk-doc quality standards. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
-User request: $ARGUMENTS

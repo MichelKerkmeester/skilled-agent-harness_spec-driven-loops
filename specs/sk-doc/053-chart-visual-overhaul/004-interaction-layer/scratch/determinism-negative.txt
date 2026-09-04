@@ -1,0 +1,14 @@
+Negative control: does the determinism rule reach the tooltip code this phase wrote?
+
+--- mutation: the card is positioned from a random source ---
+applied
+  x determinism: 29 assertion(s), 1 failure(s)
+  FAIL [determinism] assets/templates/scatter.html: Math.random() in rendering code. Two renders of one file have to look the same or a screenshot review compares noise
+RESULT: FAILED
+
+--- restored from the kept copy ---
+  + determinism: 29 assertion(s), 0 failure(s)
+RESULT: PASSED
+
+--- the restore is byte-identical to the state before the mutation ---
+identical

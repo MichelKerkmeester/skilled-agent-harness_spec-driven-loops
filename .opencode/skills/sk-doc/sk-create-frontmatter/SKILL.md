@@ -33,6 +33,8 @@ This mode is where you find out what the validators are checking for and why.
 - Someone asks what `trigger_phrases`, `importance_tier` or `contextType` are for.
 - A document class is being added and needs a frontmatter rule of its own.
 
+Keyword triggers: `yaml frontmatter`, `frontmatter block`, `frontmatter template`, `frontmatter field`, `frontmatter fields`, `trigger_phrases`, `importance_tier`, `contextType`, `description budget`, `4-part version`, `X.Y.Z.W`, `frontmatter versioning`, `frontmatter version`, `version field`, `frontmatter validation`, `missing frontmatter`, `frontmatter contract`.
+
 ### When NOT to Use
 
 - **The document itself needs writing.** Frontmatter is the block at the top. The mode that owns the document class owns its body.
@@ -169,9 +171,12 @@ filename version, compared as integer tuples. Major and minor are inherited from
 patch is reserved and seeded zero, and build is the file's real edit count.
 
 Real edit count is the rule that matters. It counts commits whose own added-plus-deleted
-line count for that file is above zero. A naive commit count over-counts by three to five
-times, because a historical repository-wide move left every file carrying zero-line
-"edits" and bulk sweeps touch siblings without changing the file.
+line count for that file is above zero. A naive commit count over-counts, because a
+historical repository-wide move left files carrying zero-line "edits" and bulk sweeps
+touch siblings without changing the file. Measured across the 1,214 in-scope documents of
+`sk-doc` and `system-spec-kit` on 2026-09-02, the ungated count is 1.06 to 1.09 times the
+gated one in aggregate and 2.25 times at the worst single file, so the gate changes the
+answer often while the gap itself stays small.
 
 ---
 

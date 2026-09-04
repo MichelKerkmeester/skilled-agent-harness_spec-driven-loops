@@ -126,7 +126,7 @@ C harness or `run-manual-playbook-scenario.cjs` may execute this corpus in a fut
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase
 checkboxes and task state.
 
 <!-- /ANCHOR:phases -->

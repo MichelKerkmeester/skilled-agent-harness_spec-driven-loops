@@ -13,6 +13,11 @@
   --chart-ink: #1A1917;
   --chart-muted: #52504E;
   --chart-rule: #E0DFDC;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 6px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 10px;
   --chart-series-1: #292825;
   --chart-series-2: #4C4B48;
   --chart-series-3: #6B6A67;
@@ -20,6 +25,22 @@
   --chart-emphasis: #B4471F;
 }
 /* CHART_PALETTE:END */
+
+/* CHART_PALETTE_DARK:BEGIN system=neutral */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --chart-surface: #161513;
+    --chart-ink: #F2F0EC;
+    --chart-muted: #A8A5A0;
+    --chart-rule: #F2F0EC17;
+    --chart-series-1: #E2E1DE;
+    --chart-series-2: #B0AEAA;
+    --chart-series-3: #8A8783;
+    --chart-series-4: #686561;
+    --chart-emphasis: #DD6336;
+  }
+}
+/* CHART_PALETTE_DARK:END */
 
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
@@ -37,14 +58,28 @@ body {
   margin: 0 auto 20px;
   padding: 28px 28px 22px;
   border: 1px solid var(--chart-rule);
-  border-radius: 10px;
+  border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.notice { fill: var(--chart-muted); font-size: 12px; }
+.table-pan { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
@@ -52,12 +87,30 @@ th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
-.area { fill: var(--chart-series-1); fill-opacity: 0.10; }
-.line { fill: none; stroke: var(--chart-series-1); stroke-width: 2; stroke-linejoin: round; }
-.grid { stroke: var(--chart-rule); stroke-width: 1; }
-.mark { fill: var(--chart-emphasis); }
+/* The fill names a gradient rather than a flat value. The colour still comes from the
+   series token, which the gradient stops below carry; this property exists because a fill
+   has to resolve through a --chart- reference to satisfy the corpus colour rule, and a
+   bare url() reference reads to that rule as a fill with no colour in it at all. */
+:root { --chart-area-fill: url(#area-fade); }
+
+.area { fill: var(--chart-area-fill); }
+.fade-top { stop-color: var(--chart-series-1); stop-opacity: 0.18; }
+.fade-base { stop-color: var(--chart-series-1); stop-opacity: 0; }
+.line { fill: none; stroke: var(--chart-series-1); stroke-width: 1; stroke-linejoin: round; stroke-linecap: round; }
+.dot { fill: var(--chart-series-1); }
+/* Dashed and drawn below full strength, because the rule token is also the card border and
+   a grid at the same weight competes with the frame around it. The grid is the thing a
+   reader looks past, so it gives way first. */
+.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+/* The ring is the surface colour, so the emphasized reading separates from the line it
+   sits on instead of merging into it. */
+.mark { fill: var(--chart-emphasis); stroke: var(--chart-surface); stroke-width: 2; }
 .tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 .note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The headline and the subtitle keep the body face, because they are prose and not figures. */
+.tick, .note, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -67,17 +120,25 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart">
       <title id="fig-title">Orders per day across the price change</title>
-      <desc id="fig-desc">A daily line over twenty-eight days with a light area fill beneath it. Orders average 184 a day for the ten days before the price change, drop to 94 on the day itself, and average 141 a day for the seventeen days after. The table below the chart carries every reading as text.</desc>
+      <defs>
+        <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">
+          <stop offset="0" class="fade-top"></stop>
+          <stop offset="1" class="fade-base"></stop>
+        </linearGradient>
+      </defs>
+      <desc id="fig-desc">A daily line over twenty-eight days with an area fill beneath it that fades toward the baseline. Orders average 184 a day for the ten days before the price change, drop to 94 on the day itself, and average 141 a day for the seventeen days after. The table below the chart carries every reading as text.</desc>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: order ledger, 28 April to 25 May, pulled 27 May.</p>
 </div>
 <div class="card">
-  <table data-chart-table>
-    <caption>Orders placed per day, 28 April to 25 May.</caption>
-    <thead><tr><th scope="col">Day</th><th scope="col">Orders placed</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Orders placed per day, 28 April to 25 May.</caption>
+      <thead><tr><th scope="col">Day</th><th scope="col">Orders placed</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
@@ -103,6 +164,26 @@ function node(name, attrs, cls) {
   svg.appendChild(el);
   return el;
 }
+
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+//
+// This is the guard of the form this file was built from. A delivery is the copy somebody edits,
+// so it is the copy most likely to be handed an empty block, and carrying the form's guard is
+// what makes that true rather than assumed.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return Number.isFinite(d.value); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
 
 // The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
 // the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
@@ -132,9 +213,22 @@ for (let t = 0; t <= TICKS; t += 1) {
   node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
 }
 
+// The fade runs down the plot rather than down the path's own box, so ink density means the
+// same thing at the same height everywhere in the figure.
+const fade = document.getElementById('area-fade');
+fade.setAttribute('y1', TOP);
+fade.setAttribute('y2', BASE);
+
 const points = DATA.map(function (d, i) { return x(i) + ',' + y(d.value); });
 node('path', { d: 'M' + LEFT + ',' + BASE + ' L' + points.join(' L') + ' L' + RIGHT + ',' + BASE + ' Z' }, 'area');
 node('path', { d: 'M' + points.join(' L') }, 'line');
+
+// A dot per reading says where a value was actually recorded. A line alone leaves that to
+// be guessed from its corners, and a corner is also what a steep pair of readings makes
+// where nothing was recorded at all.
+DATA.forEach(function (d, i) {
+  node('circle', { cx: x(i), cy: y(d.value), r: 2.5 }, 'dot');
+});
 
 DATA.forEach(function (d, i) {
   if (d.day % 7 !== 0 && d.day !== 1) return;
@@ -160,6 +254,8 @@ DATA.forEach(function (d) {
   tr.appendChild(td);
   rows.appendChild(tr);
 });
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
 </script>
 </body>
 </html>

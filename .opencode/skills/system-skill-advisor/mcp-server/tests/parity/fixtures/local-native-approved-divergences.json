@@ -466,7 +466,7 @@
       "gold": "system-deep-loop",
       "localTop": "none",
       "nativeTop": "sk-code",
-      "reason": "system-deep-loop rename re-baseline 2026-07-08: native top-1 for this resume-state prompt shifted from system-deep-loop to sk-code post-rename (pre-existing miss vs gold both before and after \u2014 net accuracy unchanged); recorded as approved local-vs-native divergence",
+      "reason": "system-deep-loop rename re-baseline 2026-07-08: native top-1 for this resume-state prompt shifted from system-deep-loop to sk-code post-rename (pre-existing miss vs gold both before and after — net accuracy unchanged); recorded as approved local-vs-native divergence",
       "approvedAt": "2026-07-08"
     },
     {
@@ -610,9 +610,9 @@
       "gold": "system-deep-loop",
       "promptHash": "sha256:9c0ef30e791f6058c04f75e92dae3ff2dc4c029a5e84ee8f78873fbaf995021e",
       "localTop": "none",
-      "nativeTop": "sk-code",
-      "reason": "native regressed off the system-deep-loop gold to sk-code on an iteration-sweep prompt while local abstains; an OPEN native routing miss, recorded to keep it visible, not to bless it",
-      "approvedAt": "2026-09-01"
+      "nativeTop": "system-deep-loop",
+      "reason": "native now reaches the system-deep-loop gold on this iteration-sweep prompt: the hub's review vocabulary was widened and its former identity moved to a discovery-only class, so the prior open miss to sk-code is closed; local still abstains",
+      "approvedAt": "2026-09-02"
     },
     {
       "id": "rr-iter3-163",

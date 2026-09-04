@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout",
+  "description": "A packet that measured well during its work can still leave a repository that disagrees with",
+  "keywords": [
+    "packet",
+    "measured",
+    "well",
+    "work",
+    "still",
+    "leave",
+    "repository",
+    "disagrees"
+  ],
+  "lastUpdated": "2026-09-02T22:38:35.452Z",
+  "specId": "005",
+  "folderSlug": "verification-and-closeout",
+  "parentChain": [
+    "system-skill-advisor",
+    "023-semantic-lane-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

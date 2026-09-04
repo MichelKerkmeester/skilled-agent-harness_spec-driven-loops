@@ -33,17 +33,21 @@ Apply to all AI-generated documentation: READMEs, implementation summaries, deci
 - Run the pre-publish checklist (Section 9) before finalizing
 - **Scoring:** Hard blockers cost -5 points. Soft deductions cost -2 or -1. Clean document starts at 100.
 
-### Scoring Weights
+### Scoring
 
-| Category | Weight | Sections |
+A document starts at 100 points. Hard blockers (-5 each) and soft deductions (-2 or -1 each) reduce the score. Below 70 is a failing grade. Below 85 needs revision before publishing. That subtraction is the whole arithmetic, and `references/scoring-and-verification.md` section 3 owns it.
+
+### Where To Spend Attention
+
+The shares below allocate a reader's attention across the standard. They are a rubric for the judgment pass, not a second way to compute a score: nothing multiplies a finding by a share, and no run combines them with the point arithmetic above.
+
+| Category | Share of attention | Sections |
 |----------|--------|----------|
 | **Punctuation** | 15% | Section 3 |
 | **Structure** | 25% | Section 4 (structural patterns, copula avoidance, synonym cycling) |
 | **Content** | 25% | Section 4 (metaphors, generalisations, significance inflation, conclusions) |
 | **Words** | 20% | Sections 6, 7 |
 | **Voice** | 15% | Section 2 |
-
-A document starts at 100 points. Hard blockers (-5 each) and soft deductions (-2 or -1 each) reduce the score. Below 70 is a failing grade. Below 85 needs revision before publishing.
 
 ---
 
@@ -427,9 +431,9 @@ Never use any of these:
 
 ### Scoring
 
-A clean document starts at 100 points. Apply the category weights below when evaluating overall quality.
+A clean document starts at 100 points and every finding subtracts from it. The table below says where to look, in the order attention is worth spending, and it computes nothing.
 
-| Category | Weight | What It Covers |
+| Category | Share of attention | What It Covers |
 |----------|--------|----------------|
 | **Punctuation** | 15% | Em dashes, semicolons, Oxford commas, ellipsis |
 | **Structure** | 25% | Heading hierarchy, TOC format, section dividers, two-tier voice, subsection numbering |

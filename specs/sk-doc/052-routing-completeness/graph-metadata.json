@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/052-routing-completeness",
+  "spec_folder": "sk-doc/052-routing-completeness",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/052-routing-completeness/001-transport-and-baseline",
+    "sk-doc/052-routing-completeness/002-gate-a-signal-closure",
+    "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
+    "sk-doc/052-routing-completeness/004-cross-hub-vocabulary",
+    "sk-doc/052-routing-completeness/005-hub-surface-truth",
+    "sk-doc/052-routing-completeness/006-validator-and-template-debt",
+    "sk-doc/052-routing-completeness/007-spec-kit-residue"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing completeness",
+      "gate a signal closure",
+      "gate b realistic corpus",
+      "advisor transport disagreement",
+      "close the routing findings",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "routing",
+      "completeness",
+      "gate",
+      "signal",
+      "closure",
+      "realistic",
+      "corpus",
+      "advisor",
+      "transport",
+      "disagreement",
+      "close",
+      "findings"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-transport-and-baseline/goal.md",
+      "002-gate-a-signal-closure/goal.md",
+      "003-gate-b-realistic-corpus/goal.md",
+      "004-cross-hub-vocabulary/goal.md",
+      "005-hub-surface-truth/goal.md",
+      "006-validator-and-template-debt/goal.md",
+      "007-spec-kit-residue/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Completeness",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "numbers",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "criteria",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A hub can be complete in every registry and still not be reachable",
+    "created_at": "2026-09-02T16:33:39Z",
+    "last_save_at": "2026-09-04T06:02:33.691Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:941adb8e59ced83aada964b2e5d7ece94f54e122cf483eefb147600a6c57cea7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7a387efbb8bf0081469a0ead24250f933c6dd4840b685abe40b8793f54ee708b"
+    },
+    "last_active_child_id": "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
+    "last_active_at": "2026-09-02T21:41:53.247Z"
+  }
+}

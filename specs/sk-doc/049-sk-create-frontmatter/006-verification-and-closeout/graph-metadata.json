@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Each phase proved its own step",
     "created_at": "2026-09-01T08:43:01Z",
-    "last_save_at": "2026-09-01T11:43:19.552Z",
+    "last_save_at": "2026-09-02T20:20:18.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +210,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c47d75b4ccd5d5e89f91ab7902166cc954fb96964b967cc371088f081f425ab",
+    "source_fingerprint": "sha256:84ce32c52906467132a653bac74a798f5b5d9ebe9f50def343b5959db0963752",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9fc8b5503affe4eb74de1fe992113ed1206e61abe7adb504314052a155a0f54e",
-      "plan.md": "c7e952cdf135b29c320ccf3c936dbc83046d931b0d3f708ffe3a867fc705df91",
+      "plan.md": "05f5cd9cf33e41427f75c532d84265a10fbdb275c8a32a6ca723c301c20ddd79",
       "tasks.md": "55644dcd1ccff144b8e23b3f75ec414b23cc287f619f0228c830e961271c4253",
       "implementation-summary.md": "eff89085e84324682eaa145c563505ce90054771ebe4d13ef4f0a98c52176f27"
     },

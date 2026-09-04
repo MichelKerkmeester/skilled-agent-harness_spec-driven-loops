@@ -74,6 +74,11 @@ result for a clean document.
 A document starts at 100. Findings subtract. The standard's precedence rule (its section
 5) settles what happens when one span matches several rules.
 
+This is the only arithmetic. The standard's sections 1 and 9 also carry a table of
+category shares, and that table allocates a reader's attention across the judgment pass
+rather than computing anything. No run multiplies a finding by a share, and no run
+combines the two.
+
 **One occurrence, one penalty, first match wins.** The order is: hard phrase blocker,
 then hard word blocker, then context-dependent when metaphorical, then a soft two-point
 deduction, then a soft one-point deduction, then an advisory flag worth nothing.
@@ -87,9 +92,10 @@ A longer phrase beats a shorter term inside it. The blocked phrase
 `in today's digital landscape` costs five points once, not five for the phrase plus five
 for `landscape`. The scanner claims the span and refuses to charge it twice.
 
-Both blocked terms above sit inside code spans, on one line each, so this document does not
-score itself. A code span broken across two lines is not masked, and the scanner reports
-the word inside it. That is worth knowing before you quote a banned term in prose.
+Both blocked terms above sit inside code spans, so this document does not score itself. A
+span that wraps across two lines is masked as well: the scanner pairs backticks across a
+paragraph and stops at the blank line, which is where Markdown ends a code span too. An
+unmatched backtick therefore blanks nothing past its own paragraph.
 
 **Transitions are counted, not charged.** `however`, `furthermore`, `moreover`,
 `additionally` and `consequently` cost a point only from the third use of the same word
@@ -132,6 +138,8 @@ shipped. Scanning it finds:
 x2  hard   word-blocker           harness
 x7  soft1  soft-deduction         do
 x3  soft1  soft-deduction         take
+x1  soft1  soft-deduction         get
+x1  soft1  soft-deduction         might
 x9  review oxford-comma-candidate , and
 ```
 

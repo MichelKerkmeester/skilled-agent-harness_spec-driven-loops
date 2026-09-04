@@ -134,6 +134,14 @@ TEMPLATE_PATTERNS = [
     'system-spec-kit/templates/',  # Spec folder templates are minimal by design
 ]
 
+# Fixture trees hold the shapes they exercise, so a fixture's structure is pinned by
+# the test that reads it rather than by this validator's section conventions.
+# `package_skill.py` exempts the same trees from its naming check for the same reason;
+# this list is the section-content half of that reasoning.
+FIXTURE_TREE_PATTERNS = [
+    'sk-doc/scripts/tests/exclusions/',  # classification fixtures for the README audit
+]
+
 # Specialized leaf-doc root dir names. Both the hyphen and underscore forms are
 # accepted while the naming migration is in flight; the shared resolver is the
 # single source of truth so this validator and the guards never diverge on which
@@ -165,6 +173,16 @@ def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
     for pattern in TEMPLATE_PATTERNS:
         if pattern in path_str:
             return True, f"Template: matches pattern '{pattern}' (intentionally minimal)"
+
+    # Check fixture trees: any path segment ending in "fixtures" (mirrors
+    # package_skill.py's naming exemption), plus known fixture trees that a test
+    # suite names for a different reason than the literal segment "fixtures".
+    normalized = path_str.replace('\\', '/')
+    if any(part.endswith('fixtures') for part in normalized.split('/')):
+        return True, "Fixture tree: holds the shapes it exercises"
+    for pattern in FIXTURE_TREE_PATTERNS:
+        if pattern in normalized:
+            return True, f"Fixture tree: matches pattern '{pattern}'"
 
     return False, None
 

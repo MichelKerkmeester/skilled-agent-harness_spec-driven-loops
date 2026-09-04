@@ -1,6 +1,6 @@
 ---
-description: "End-to-end SpecKit workflow (14+ steps). Modes: :auto, :confirm, :autopilot/:unattended/--unattended, :with-research, :with-context, :with-phases."
-argument-hint: "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-research] [:with-context] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup; :autopilot/:unattended/--unattended runs branch-preserved unattended mode)"
+description: "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers."
+argument-hint: "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-research] [:with-context] [:with-phases]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, opencode_goal, opencode_goal_status
 ---
 
@@ -34,6 +34,23 @@ Load the presentation contract before showing startup questions, checkpoints, da
 4. For `:auto`, resolve required setup inputs using the presentation contract's auto-resolution rules before loading YAML.
 5. For `:autopilot`, `:unattended`, or `--unattended`, bind execution mode to `autopilot`; do not alias it to `:auto`.
 6. Load the selected workflow asset and execute it step by step.
+
+### Workflow Flag Surface
+
+The argument hint names the invocation shape; the whole flag surface is here. Every entry below
+is a workflow input, never an execution mode.
+
+| Input | Value | Effect |
+|-------|-------|--------|
+| `:with-research` | no value | Runs the research pass before planning. |
+| `:with-context` | no value | Loads a context package before planning. |
+| `:with-phases` | no value | Decomposes the packet into phase children and plans the first one. |
+| `--phases` | `N` | Number of phase children to decompose into. |
+| `--phase-names` | comma-separated list | Names for those children, in order. |
+| `--phase-folder` | `PATH` | Targets one existing child instead of decomposing. |
+
+Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in the prompt body binds the required setup
+values without an interactive prompt.
 
 ---
 

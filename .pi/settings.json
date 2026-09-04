@@ -32,6 +32,7 @@
     "npm:@juicesharp/rpiv-ask-user-question@latest",
     "npm:@juicesharp/rpiv-todo@latest",
     "npm:pi-blackhole@latest",
+    "npm:@luminascale/pi-zvec-grep@latest",
     "npm:pi-statusline",
     "npm:pi-subagents@latest",
     "npm:pi-web-access@latest",

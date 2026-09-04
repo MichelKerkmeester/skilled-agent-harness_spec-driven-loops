@@ -48,7 +48,7 @@
         "router_path": {
           "type": ["string", "array"],
           "items": { "type": "string" },
-          "description": "Repo-relative path(s) of the family's router .md file(s). Families with per-operation routers (create, design, deep) carry an array."
+          "description": "Repo-relative path(s) of the family's router .md file(s). A family whose per-operation routers share one uniform pattern (create, design, deep) carries a directory glob string; a family whose routers differ (speckit, memory, doctor) carries an explicit array."
         },
         "input": {
           "type": "object",
@@ -108,7 +108,7 @@
         },
         "owned_assets": {
           "type": "array",
-          "description": "The assets the family owns. A mode-pair family owns the presentation .txt plus the _auto.yaml / _confirm.yaml pair.",
+          "description": "The assets the family owns. A mode-pair family owns the presentation .txt plus the -auto.yaml / -confirm.yaml pair. Asset stems are hyphen-joined <family>-<command>-<kind>, or <command>-<kind> in a family that drops the prefix; see metadata.asset_naming.",
           "items": {
             "type": "object",
             "additionalProperties": false,
@@ -174,7 +174,7 @@
         },
         "workflow_schema_ref": {
           "type": ["string", "null"],
-          "description": "For a mode-pair family, the shared command-workflow schema its _auto/_confirm YAMLs conform to (confirm == auto + checkpoints). Null for non-workflow topologies."
+          "description": "For a mode-pair family, the shared command-workflow schema its -auto/-confirm YAMLs conform to. Null for non-workflow topologies. This field does not assert that confirm equals auto plus checkpoints — that relationship is family-dependent; see metadata.confirm_auto_relationship."
         },
         "routing_source": {
           "description": "Subaction-route-manifest subtype (populated by the doctor-subtype phase): where routes come from. Absent for other topologies.",

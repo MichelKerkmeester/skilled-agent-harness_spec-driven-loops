@@ -101,7 +101,7 @@ Rename one shipped form and its row together, run the check, then rename only th
 |---|---|
 | [`references/catalog.md`](../../references/catalog.md) | Primary anchor, the sentinel-marked table and its column contract |
 | [`scripts/check-corpus.cjs`](../../scripts/check-corpus.cjs) | The `catalog` and `identity` checks |
-| [`references/template-contract.md`](../../references/template-contract.md) | Section 7, the ordered steps for adding a form and its row |
+| [`references/template-contract.md`](../../references/template-contract.md) | Section 8, the ordered steps for adding a form and its row |
 
 ---
 

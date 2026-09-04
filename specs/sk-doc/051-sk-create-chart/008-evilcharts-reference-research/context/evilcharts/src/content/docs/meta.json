@@ -1,0 +1,4 @@
+{
+  "root": true,
+  "pages": ["index", "chart-config", "recharts", "echarts"]
+}

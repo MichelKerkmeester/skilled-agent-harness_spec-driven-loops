@@ -5,37 +5,37 @@
     {
       "id": "direct-alias-cli-opencode-literal",
       "prompt": "Use cli-opencode to delegate this coding task through OpenCode CLI.",
-      "expectedTop": "cli-opencode",
+      "expectedTop": "cli-external-orchestration",
       "branch": "direct-alias"
     },
     {
       "id": "direct-alias-delegate-to-opencode",
       "prompt": "delegate to opencode and run the ablation suite",
-      "expectedTop": "cli-opencode",
+      "expectedTop": "cli-external-orchestration",
       "branch": "direct-alias"
     },
     {
       "id": "direct-alias-cli-claude-code-literal",
       "prompt": "Use cli-claude-code to delegate the refactor to Claude Code CLI.",
-      "expectedTop": "cli-claude-code",
+      "expectedTop": "cli-external-orchestration",
       "branch": "direct-alias"
     },
     {
       "id": "direct-alias-anthropic-second-opinion",
       "prompt": "get an anthropic cli second opinion",
-      "expectedTop": "cli-claude-code",
+      "expectedTop": "cli-external-orchestration",
       "branch": "direct-alias"
     },
     {
       "id": "orchestrator-cue-opencode-executor",
       "prompt": "Ask OpenCode with a small-model executor to sweep the architecture and report what this repo is missing.",
-      "expectedTop": "cli-opencode",
+      "expectedTop": "cli-external-orchestration",
       "branch": "orchestrator-cue"
     },
     {
       "id": "orchestrator-cue-opencode-second-opinion",
       "prompt": "Use an OpenCode second opinion for a wide-context read before we decide on the design.",
-      "expectedTop": "cli-opencode",
+      "expectedTop": "cli-external-orchestration",
       "branch": "orchestrator-cue"
     },
     {
@@ -53,7 +53,7 @@
     {
       "id": "direct-alias-cli-codex",
       "prompt": "delegate to codex",
-      "expectedTop": "cli-codex",
+      "expectedTop": "cli-external-orchestration",
       "branch": "direct-alias"
     }
   ]

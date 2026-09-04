@@ -1,0 +1,390 @@
+hub	signal	bucket	top	score	targets	engine_bucket	engine_targets	served
+sk-doc	create skill	DEFERRED	sk-doc	0.632968		ROUTE	sk-create-skill	legacy
+sk-doc	create parent skill hub	DEFERRED	sk-doc	0.875792		ROUTE	sk-create-skill-parent	legacy
+sk-doc	create readme	DEFERRED	sk-doc	0.865946		ROUTE	sk-create-readme	legacy
+sk-doc	write install guide	DEFERRED	sk-doc	0.857744		ROUTE	sk-create-readme	legacy
+sk-doc	create agent	WRONG_HUB	create:agent	0.513333		ROUTE	sk-create-agent	legacy
+sk-doc	create command	DEFERRED	sk-doc	0.701451		ROUTE	sk-create-command	legacy
+sk-doc	create feature catalog	DEFERRED	sk-doc	0.856913		ROUTE	sk-create-feature-catalog	legacy
+sk-doc	create manual testing playbook	DEFERRED	sk-doc	0.855189		ROUTE	sk-create-manual-testing-playbook	legacy
+sk-doc	promote benchmark folder	DEFERRED	sk-doc	0.756135		ROUTE	sk-create-benchmark	legacy
+sk-doc	create ascii flowchart	DEFERRED	sk-doc	0.855847		ROUTE	sk-create-diagram	legacy
+sk-doc	create diagram	DEFERRED	sk-doc	0.612013		ROUTE	sk-create-diagram	legacy
+sk-doc	html svg diagram	DEFERRED	sk-doc	0.72578		ROUTE	sk-create-diagram	legacy
+sk-doc	create a chart	DEFERRED	sk-doc	0.761481		ROUTE	sk-create-chart	legacy
+sk-doc	plot the data	DEFERRED	sk-doc	0.666371		ROUTE	sk-create-chart	legacy
+sk-doc	data visualization	DEFERRED	sk-doc	0.691501		ROUTE	sk-create-chart	legacy
+sk-doc	standalone html chart	DEFERRED	sk-doc	0.743916		ROUTE	sk-create-chart	legacy
+sk-doc	waterfall chart	DEFERRED	sk-doc	0.688892		ROUTE	sk-create-chart	legacy
+sk-doc	treemap	DEFERRED	sk-doc	0.490499		ROUTE	sk-create-chart	legacy
+sk-doc	heatmap	DEFERRED	sk-doc	0.487378		ROUTE	sk-create-chart	legacy
+sk-doc	box plot	DEFERRED	sk-doc	0.688719		ROUTE	sk-create-chart	legacy
+sk-doc	histogram	DEFERRED	sk-doc	0.487386		ROUTE	sk-create-chart	legacy
+sk-doc	bar chart of	DEFERRED	sk-doc	0.65115		ROUTE	sk-create-chart	legacy
+sk-doc	line chart of	DEFERRED	sk-doc	0.660084		ROUTE	sk-create-chart	legacy
+sk-doc	scatter plot of	DEFERRED	sk-doc	0.64728		ROUTE	sk-create-chart	legacy
+sk-doc	data visualisation	DEFERRED	sk-doc	0.600635		ROUTE	sk-create-chart	legacy
+sk-doc	data viz	DEFERRED	sk-doc	0.596562		ROUTE	sk-create-chart	legacy
+sk-doc	heat matrix	DEFERRED	sk-doc	0.58913		ROUTE	sk-create-chart	legacy
+sk-doc	heat map	DEFERRED	sk-doc	0.58781		ROUTE	sk-create-chart	legacy
+sk-doc	candlestick chart	DEFERRED	sk-doc	0.597198		ROUTE	sk-create-chart	legacy
+sk-doc	stacked area chart	DEFERRED	sk-doc	0.743709		ROUTE	sk-create-chart	legacy
+sk-doc	donut chart	DEFERRED	sk-doc	0.597412		ROUTE	sk-create-chart	legacy
+sk-doc	waffle chart	DEFERRED	sk-doc	0.598327		ROUTE	sk-create-chart	legacy
+sk-doc	parallel coordinates	DEFERRED	sk-doc	0.579314		ROUTE	sk-create-chart	legacy
+sk-doc	chart catalog	DEFERRED	sk-doc	0.692664		ROUTE	sk-create-chart	legacy
+sk-doc	which chart type	DEFERRED	sk-doc	0.659264		ROUTE	sk-create-chart	legacy
+sk-doc	chart color system	DEFERRED	sk-doc	0.752532		ROUTE	sk-create-chart	legacy
+sk-doc	create changelog	DEFERRED	sk-doc	0.701441		ROUTE	sk-create-changelog	legacy
+sk-doc	retire a repo rule	DEFERRED	sk-doc	0.832464		ROUTE	sk-create-repo-rule	legacy
+sk-doc	add a project rule	DEFERRED	sk-doc	0.764391		ROUTE	sk-create-repo-rule	legacy
+sk-doc	create repo rule	DEFERRED	sk-doc	0.855715		ROUTE	sk-create-repo-rule	legacy
+sk-doc	write a repo rule	DEFERRED	sk-doc	0.856194		ROUTE	sk-create-repo-rule	legacy
+sk-doc	repo rule	DEFERRED	sk-doc	0.691737		ROUTE	sk-create-repo-rule	legacy
+sk-doc	add a repo rule	DEFERRED	sk-doc	0.846029		ROUTE	sk-create-repo-rule	legacy
+sk-doc	create diff report	DEFERRED	sk-doc	0.778518		ROUTE	sk-create-diff	legacy
+sk-doc	document before after review	WRONG_HUB	sk-code	0.776733		ROUTE	sk-create-diff	legacy
+sk-doc	before after document diff	DEFERRED	sk-doc	0.836603		ROUTE	sk-create-diff	legacy
+sk-doc	document change report	DEFERRED	sk-doc	0.774834		ROUTE	sk-create-diff	legacy
+sk-doc	yaml frontmatter	DEFERRED	sk-doc	0.686407		ROUTE	sk-create-frontmatter	legacy
+sk-doc	frontmatter block	DEFERRED	sk-doc	0.687539		ROUTE	sk-create-frontmatter	legacy
+sk-doc	frontmatter field	DEFERRED	sk-doc	0.602607		ROUTE	sk-create-frontmatter	legacy
+sk-doc	frontmatter fields	DEFERRED	sk-doc	0.686297		ROUTE	sk-create-frontmatter	legacy
+sk-doc	frontmatter template	DEFERRED	sk-doc	0.697881		ROUTE	sk-create-frontmatter	legacy
+sk-doc	frontmatter contract	DEFERRED	sk-doc	0.68631		ROUTE	sk-create-frontmatter	legacy
+sk-doc	missing frontmatter	DEFERRED	sk-doc	0.686141		ROUTE	sk-create-frontmatter	legacy
+sk-doc	trigger_phrases	DEFERRED	sk-doc	0.487763		ROUTE	sk-create-frontmatter	legacy
+sk-doc	importance_tier	DEFERRED	sk-doc	0.486457		ROUTE	sk-create-frontmatter	legacy
+sk-doc	contextType	DEFERRED	sk-doc	0.48702		ROUTE	sk-create-frontmatter	legacy
+sk-doc	description budget	DEFERRED	sk-doc	0.696842		ROUTE	sk-create-frontmatter	legacy
+sk-doc	4-part version	DEFERRED	sk-doc	0.753669		ROUTE	sk-create-frontmatter	legacy
+sk-doc	X.Y.Z.W	DEFERRED	sk-doc	0.525218		ROUTE	sk-create-frontmatter	legacy
+sk-doc	frontmatter versioning	DEFERRED	sk-doc	0.69058		ROUTE	sk-create-frontmatter	legacy
+sk-doc	frontmatter validation	DEFERRED	sk-doc	0.618126		ROUTE	sk-create-frontmatter	legacy
+sk-doc	validate document	DEFERRED	sk-doc	0.811148		ROUTE	sk-create-quality-control	legacy
+sk-doc	score document quality	DEFERRED	sk-doc	0.807024		ROUTE	sk-create-quality-control	legacy
+sk-doc	optimize documentation	DEFERRED	sk-doc	0.815596		ROUTE	sk-create-quality-control	legacy
+sk-doc	apply human voice	DEFERRED	sk-doc	0.844168		ROUTE	sk-create-with-human-voice	legacy
+sk-doc	rewrite in human voice	DEFERRED	sk-doc	0.761242		ROUTE	sk-create-with-human-voice	legacy
+sk-doc	make this sound human	DEFERRED	sk-doc	0.8416		ROUTE	sk-create-with-human-voice	legacy
+sk-doc	sounds ai-generated	DEFERRED	sk-doc	0.749581		ROUTE	sk-create-with-human-voice	legacy
+sk-doc	reads like ai wrote it	DEFERRED	sk-doc	0.632252		ROUTE	sk-create-with-human-voice	legacy
+sk-doc	remove ai tells	DEFERRED	sk-doc	0.746781		ROUTE	sk-create-with-human-voice	legacy
+sk-doc	human voice rules	DEFERRED	sk-doc	0.844503		ROUTE	sk-create-with-human-voice	legacy
+sk-doc	voice pass	DEFERRED	sk-doc	0.688132		ROUTE	sk-create-with-human-voice	legacy
+sk-doc	scaffold a skill	DEFERRED	sk-doc	0.605251		ROUTE	sk-create-skill	legacy
+sk-doc	new skill	DEFERRED	sk-doc	0.552865		ROUTE	sk-create-skill	legacy
+sk-doc	build a skill	DEFERRED	sk-doc	0.605579		ROUTE	sk-create-skill	legacy
+sk-doc	author a skill	DEFERRED	sk-doc	0.615089		ROUTE	sk-create-skill	legacy
+sk-doc	new agent	DEFERRED	sk-doc	0.484982		ROUTE	sk-create-agent	legacy
+sk-doc	author an agent	DEFERRED	sk-doc	0.546325		ROUTE	sk-create-agent	legacy
+sk-doc	new slash command	DEFERRED	sk-doc	0.739368		ROUTE	sk-create-command	legacy
+sk-doc	slash command	DEFERRED	sk-doc	0.596325		ROUTE	sk-create-command	legacy
+sk-doc	parent hub	DEFERRED	sk-doc	0.748361		ROUTE	sk-create-skill-parent	legacy
+sk-doc	skill hub	DEFERRED	sk-doc	0.574931		ROUTE	sk-create-skill-parent	legacy
+sk-doc	new benchmark	DEFERRED	sk-doc	0.59898		ROUTE	sk-create-benchmark	legacy
+sk-doc	benchmark package	DEFERRED	sk-doc	0.574002		ROUTE	sk-create-benchmark	legacy
+sk-doc	before and after document	DEFERRED	sk-doc	0.759233		ROUTE	sk-create-diff	legacy
+sk-doc	document diff	DEFERRED	sk-doc	0.798302		ROUTE	sk-create-diff	legacy
+sk-doc	opencode skill	WRONG_HUB	sk-code	0.837998		ROUTE	sk-create-skill	legacy
+sk-doc	opencode agent	WRONG_HUB	sk-code	0.70898		ROUTE	sk-create-agent	legacy
+sk-doc	opencode command	WRONG_HUB	sk-code	0.723824		ROUTE	sk-create-command	legacy
+sk-doc	scaffold a new skill	DEFERRED	sk-doc	0.673057		ROUTE	sk-create-skill	legacy
+sk-doc	create a new skill	DEFERRED	sk-doc	0.733506		ROUTE	sk-create-skill	legacy
+sk-doc	sk-doc	DEFERRED	sk-doc	0.631568		DEFER		legacy
+sk-doc	documentation hub	DEFERRED	sk-doc	0.860786		DEFER		legacy
+sk-doc	create parent skill	DEFERRED	sk-doc	0.330462		ROUTE	sk-create-skill-parent	legacy
+sk-doc	install guide	DEFERRED	sk-doc	0.323494		ROUTE	sk-create-readme	legacy
+sk-doc	feature catalog	DEFERRED	sk-doc	0.417366		ROUTE	sk-create-feature-catalog	legacy
+sk-doc	manual testing playbook	DEFERRED	sk-doc	0.846159		ROUTE	sk-create-manual-testing-playbook	legacy
+sk-doc	create benchmark	DEFERRED	sk-doc	0.332033		ROUTE	sk-create-benchmark	legacy
+sk-doc	ascii flowchart	DEFERRED	sk-doc	0.323239		ROUTE	sk-create-diagram	legacy
+sk-doc	repo rule router	DEFERRED	sk-doc	0.795699		ROUTE	sk-create-repo-rule	legacy
+sk-doc	repo rules	DEFERRED	sk-doc	0.32281		ROUTE	sk-create-repo-rule	legacy
+sk-doc	doc quality	WRONG_HUB	sk-code	0.419098		ROUTE	sk-create-quality-control	legacy
+sk-doc	validate markdown	DEFERRED	sk-doc	0.634098		ROUTE	sk-create-quality-control	legacy
+sk-doc	dqi score	NO_RECOMMENDATION				ROUTE	sk-create-quality-control	legacy
+sk-code	code work	DEFERRED	sk-code	0.755724		DEFER		compiled
+sk-code	code surface detection	DEFERRED	sk-code	0.854561		DEFER		compiled
+sk-code	webflow	RESOLVED	sk-code	0.587847	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	frontend	RESOLVED	sk-code	0.637197	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	cdn	RESOLVED	sk-code	0.619733	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	browser test	RESOLVED	sk-code	0.720553	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	opencode	RESOLVED	sk-code	0.70898	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	system code	RESOLVED	sk-code	0.763829	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	mcp	RESOLVED	sk-code	0.541933	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	typescript	RESOLVED	sk-code	0.637197	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	python	RESOLVED	sk-code	0.619733	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	shell	RESOLVED	sk-code	0.513333	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	jsonc	RESOLVED	sk-code	0.521192	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	alignment verifier	RESOLVED	sk-code	0.591194	sk-code-quality	ROUTE	sk-code-quality	compiled
+sk-code	motion.dev integration	RESOLVED	sk-code	0.773126	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	motion-dev integration	RESOLVED	sk-code	0.773127	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	motion_dev references	RESOLVED	sk-code	0.642697	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	cross-stack animation	RESOLVED	sk-code	0.783374	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	motion api	RESOLVED	sk-code	0.650347	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	motion snippets	RESOLVED	sk-code	0.63843	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	motion decision matrix	RESOLVED	sk-code	0.830723	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	add set -euo pipefail	RESOLVED	sk-code	0.708937	sk-code-quality	ROUTE	sk-code-quality	compiled
+sk-code	console.error fallback	RESOLVED	sk-code	0.707583	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	argparse block	RESOLVED	sk-code	0.556267	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	vitest covering	RESOLVED	sk-code	0.7	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	stable jsonl keys	MULTI	sk-code	0.73205	sk-code-quality,sk-code-opencode	MULTI	sk-code-quality,sk-code-opencode	compiled
+sk-code	lenis smooth-scroll	RESOLVED	sk-code	0.717464	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	gsap timeline	RESOLVED	sk-code	0.564125	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	hls.js video	RESOLVED	sk-code	0.606667	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	intersectionobserver gate	RESOLVED	sk-code	0.60141	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	build a tiny script	RESOLVED	sk-code	0.729666	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	tiny script that counts	RESOLVED	sk-code	0.707859	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	code review	RESOLVED	sk-code	0.846794	sk-code-review	ROUTE	sk-code-review	compiled
+sk-code	pr review	RESOLVED	sk-code	0.778564	sk-code-review	ROUTE	sk-code-review	compiled
+sk-code	security review	RESOLVED	sk-code	0.760364	sk-code-review	ROUTE	sk-code-review	compiled
+sk-code	quality gate	RESOLVED	sk-code	0.73758	sk-code-quality	ROUTE	sk-code-quality	compiled
+sk-code	findings	RESOLVED	sk-code	0.527633	sk-code-review	ROUTE	sk-code-review	compiled
+sk-code	review packet docs	RESOLVED	sk-code	0.813393	sk-code-review	ROUTE	sk-code-review	compiled
+sk-code	quality check	RESOLVED	sk-code	0.713314	sk-code-quality	ROUTE	sk-code-quality	compiled
+sk-code	check before done	RESOLVED	sk-code	0.729381	sk-code-quality	ROUTE	sk-code-quality	compiled
+sk-code	author quality gate	RESOLVED	sk-code	0.840694	sk-code-quality	ROUTE	sk-code-quality	compiled
+sk-code	pre-verification quality check	RESOLVED	sk-code	0.816427	sk-code-quality	ROUTE	sk-code-quality	compiled
+sk-code	p0 p1 p2 review	RESOLVED	sk-code	0.760364	sk-code-review	ROUTE	sk-code-review	compiled
+sk-code	pi remote mobile ui	RESOLVED	sk-code	0.818564	sk-code-mobile-cli	ROUTE	sk-code-mobile-cli	compiled
+sk-code	svelte design system	RESOLVED	sk-code	0.841081	sk-code-mobile-cli	ROUTE	sk-code-mobile-cli	compiled
+sk-code	mobile cli design tokens	RESOLVED	sk-code	0.946427	sk-code-mobile-cli	ROUTE	sk-code-mobile-cli	compiled
+sk-code	ds grammar editability	RESOLVED	sk-code	0.72309	sk-code-mobile-cli	ROUTE	sk-code-mobile-cli	compiled
+sk-code	obsidian plugin	RESOLVED	sk-code	0.71559	sk-code-obsidian	ROUTE	sk-code-obsidian	compiled
+sk-code	obsidian plugin source	RESOLVED	sk-code	0.859327	sk-code-obsidian	ROUTE	sk-code-obsidian	compiled
+sk-code	note database plugin	RESOLVED	sk-code	0.859323	sk-code-obsidian	ROUTE	sk-code-obsidian	compiled
+sk-code	obsidian plugin design system	RESOLVED	sk-code	0.928714	sk-code-obsidian	ROUTE	sk-code-obsidian	compiled
+sk-code	mobile cli source conventions	RESOLVED	sk-code	0.867034	sk-code-mobile-cli	ROUTE	sk-code-mobile-cli	compiled
+sk-code	sk-code	DEFERRED	sk-code	0.641673		DEFER		compiled
+sk-code	surface-aware code implementation	DEFERRED	sk-code	0.806527		DEFER		compiled
+sk-code	frontend implementation standards	RESOLVED	sk-code	0.77816	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	opencode typescript verification	RESOLVED	sk-code	0.83116	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	motion animation integration	RESOLVED	sk-code	0.851462	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	stack-specific code quality gate	RESOLVED	sk-code	0.7911	sk-code-quality	ROUTE	sk-code-quality	compiled
+sk-code	language-specific verification commands	DEFERRED	sk-code	0.480427		DEFER		compiled
+sk-code	surface detection routing	DEFERRED	sk-code	0.365493		DEFER		compiled
+sk-code	webflow frontend workflow	RESOLVED	sk-code	0.847681	sk-code-webflow	ROUTE	sk-code-webflow	compiled
+sk-code	opencode system code workflow	RESOLVED	sk-code	0.913455	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	alignment verifier workflow	RESOLVED	sk-code	0.785093	sk-code-quality	ROUTE	sk-code-quality	compiled
+sk-code	code quality gate	RESOLVED	sk-code	0.864819	sk-code-quality	ROUTE	sk-code-quality	compiled
+sk-code	verification commands	DEFERRED	sk-code	0.50376		DEFER		compiled
+sk-code	sk-code hub	DEFERRED	sk-code	0.665727		DEFER		compiled
+sk-code	workflow doctrine	DEFERRED	sk-code	0.69176		DEFER		compiled
+sk-code	review mode	RESOLVED	sk-code	0.871243	sk-code-review	ROUTE	sk-code-review	compiled
+sk-code	pi remote design system	WRONG_HUB	sk-design-md-generator	0.643505		ROUTE	sk-code-mobile-cli	compiled
+sk-code	ink-on-parchment retint	NO_RECOMMENDATION				ROUTE	sk-code-mobile-cli	compiled
+sk-code	mobile cli source	RESOLVED	sk-code	0.646457	sk-code-mobile-cli	ROUTE	sk-code-mobile-cli	compiled
+mcp-tooling	chrome devtools	RESOLVED	mcp-tooling	0.820991	mcp-chrome-devtools	ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	browser debug	WRONG_HUB	sk-code	0.732114		ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	dom inspect	NO_RECOMMENDATION				ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	lighthouse	NO_RECOMMENDATION				ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	clickup	RESOLVED	mcp-tooling	0.582321	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	cupt	RESOLVED	mcp-tooling	0.582321	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	task management	RESOLVED	mcp-tooling	0.705405	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	work queue	RESOLVED	mcp-tooling	0.655005	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	mark done	RESOLVED	mcp-tooling	0.588605	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	time tracking	RESOLVED	mcp-tooling	0.664063	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	log time	RESOLVED	mcp-tooling	0.655005	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	task list	NO_RECOMMENDATION				ROUTE	mcp-click-up	compiled
+mcp-tooling	clickup task	RESOLVED	mcp-tooling	0.691823	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	complete task	RESOLVED	mcp-tooling	0.572436	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	add note to task	RESOLVED	mcp-tooling	0.732339	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	tag task	RESOLVED	mcp-tooling	0.572436	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	start timer	RESOLVED	mcp-tooling	0.563543	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	stop timer	RESOLVED	mcp-tooling	0.563543	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	process queue	RESOLVED	mcp-tooling	0.655008	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	clickup documents	RESOLVED	mcp-tooling	0.714462	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	clickup goals	RESOLVED	mcp-tooling	0.714462	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	bulk tasks	RESOLVED	mcp-tooling	0.563543	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	figma cli	RESOLVED	mcp-tooling	0.714508	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	figma-ds-cli	RESOLVED	mcp-tooling	0.723562	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	figma desktop	RESOLVED	mcp-tooling	0.714508	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	render in figma	RESOLVED	mcp-tooling	0.723562	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	figma tokens	RESOLVED	mcp-tooling	0.670932	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	figma variables	RESOLVED	mcp-tooling	0.597705	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	extract DESIGN.md	RESOLVED	mcp-tooling	0.73248	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	export from figma	RESOLVED	mcp-tooling	0.631936	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	connect to figma	RESOLVED	mcp-tooling	0.723562	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	figma daemon	RESOLVED	mcp-tooling	0.597705	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	figma mcp	RESOLVED	mcp-tooling	0.689891	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	aside	RESOLVED	mcp-tooling	0.582323	mcp-aside-devtools	ROUTE	mcp-aside-devtools	compiled
+mcp-tooling	aside browser	RESOLVED	mcp-tooling	0.714462	mcp-aside-devtools	ROUTE	mcp-aside-devtools	compiled
+mcp-tooling	aside cli	RESOLVED	mcp-tooling	0.691825	mcp-aside-devtools	ROUTE	mcp-aside-devtools	compiled
+mcp-tooling	aside mcp	RESOLVED	mcp-tooling	0.721656	mcp-aside-devtools	ROUTE	mcp-aside-devtools	compiled
+mcp-tooling	aside repl	RESOLVED	mcp-tooling	0.691825	mcp-aside-devtools	ROUTE	mcp-aside-devtools	compiled
+mcp-tooling	ai browser automation	RESOLVED	mcp-tooling	0.691825	mcp-aside-devtools	ROUTE	mcp-aside-devtools	compiled
+mcp-tooling	agentic browser	RESOLVED	mcp-tooling	0.714462	mcp-aside-devtools	ROUTE	mcp-aside-devtools	compiled
+mcp-tooling	refero	RESOLVED	mcp-tooling	0.582322	mcp-refero	ROUTE	mcp-refero	compiled
+mcp-tooling	refero mcp	RESOLVED	mcp-tooling	0.721656	mcp-refero	ROUTE	mcp-refero	compiled
+mcp-tooling	design reference search	RESOLVED	mcp-tooling	0.825814	mcp-refero	ROUTE	mcp-refero	compiled
+mcp-tooling	ui reference	RESOLVED	mcp-tooling	0.485928	mcp-refero	ROUTE	mcp-refero	compiled
+mcp-tooling	real app screens	RESOLVED	mcp-tooling	0.74644	mcp-refero	ROUTE	mcp-refero	compiled
+mcp-tooling	mobbin	RESOLVED	mcp-tooling	0.582323	mcp-mobbin	ROUTE	mcp-mobbin	compiled
+mcp-tooling	mobbin mcp	RESOLVED	mcp-tooling	0.721656	mcp-mobbin	ROUTE	mcp-mobbin	compiled
+mcp-tooling	app design research	RESOLVED	mcp-tooling	0.81462	mcp-mobbin	ROUTE	mcp-mobbin	compiled
+mcp-tooling	screen examples	DEFERRED	mcp-tooling	0.572436		DEFER		compiled
+mcp-tooling	ux flow references	RESOLVED	mcp-tooling	0.613943	mcp-mobbin	ROUTE	mcp-mobbin	compiled
+mcp-tooling	obsidian	RESOLVED	mcp-tooling	0.621129	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	obsidian vault	RESOLVED	mcp-tooling	0.714462	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	notesmd-cli	RESOLVED	mcp-tooling	0.714462	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	obsidian mcp	RESOLVED	mcp-tooling	0.744293	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	note management	RESOLVED	mcp-tooling	0.714462	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	markdown notes	RESOLVED	mcp-tooling	0.712232	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	vault search	RESOLVED	mcp-tooling	0.588605	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	daily note	RESOLVED	mcp-tooling	0.572436	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	knowledge base	RESOLVED	mcp-tooling	0.570368	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	notion	RESOLVED	mcp-tooling	0.621129	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion mcp	RESOLVED	mcp-tooling	0.744292	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion api	RESOLVED	mcp-tooling	0.723562	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion database	RESOLVED	mcp-tooling	0.714462	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion data source	RESOLVED	mcp-tooling	0.815303	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion page	RESOLVED	mcp-tooling	0.714462	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	query notion	RESOLVED	mcp-tooling	0.731145	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion property	RESOLVED	mcp-tooling	0.714462	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion relation	RESOLVED	mcp-tooling	0.714462	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion rollup	RESOLVED	mcp-tooling	0.71446	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion formula	RESOLVED	mcp-tooling	0.71446	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion token	RESOLVED	mcp-tooling	0.721285	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	ntn_	RESOLVED	mcp-tooling	0.513333	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion markdown	RESOLVED	mcp-tooling	0.721285	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	iconic	RESOLVED	mcp-tooling	0.621127	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	iconic rulebook	RESOLVED	mcp-tooling	0.71446	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	icon rules	RESOLVED	mcp-tooling	0.705405	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	icon automation	RESOLVED	mcp-tooling	0.71446	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	file icons	RESOLVED	mcp-tooling	0.705405	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	folder icons	RESOLVED	mcp-tooling	0.705407	mcp-obsidian	ROUTE	mcp-obsidian	compiled
+mcp-tooling	mcp-tooling	DEFERRED	mcp-tooling	0.744292		DEFER		compiled
+mcp-tooling	mcp tool bridge	WRONG_HUB	mcp-code-mode	0.692941		DEFER		compiled
+mcp-tooling	chrome devtools orchestration	RESOLVED	mcp-tooling	0.83009	mcp-chrome-devtools	ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	browser debugger cli routing	RESOLVED	mcp-tooling	0.820614	mcp-chrome-devtools	ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	capture browser screenshots	WRONG_HUB	sk-code	0.666147		ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	inspect network requests	RESOLVED	mcp-tooling	0.259812	mcp-chrome-devtools	ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	mcp-chrome-devtools	RESOLVED	mcp-tooling	0.846773	mcp-chrome-devtools	ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	mcp chrome devtools	RESOLVED	mcp-tooling	0.846773	mcp-chrome-devtools	ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	chrome-devtools	RESOLVED	mcp-tooling	0.727657	mcp-chrome-devtools	ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	cdp	RESOLVED	mcp-tooling	0.456322	mcp-chrome-devtools	ROUTE	mcp-chrome-devtools	compiled
+mcp-tooling	mcp-click-up	RESOLVED	mcp-tooling	0.744292	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	mark task done	RESOLVED	mcp-tooling	0.387795	mcp-click-up	ROUTE	mcp-click-up	compiled
+mcp-tooling	mcp-figma	RESOLVED	mcp-tooling	0.698945	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	extract design.md	RESOLVED	mcp-tooling	0.73248	mcp-figma	ROUTE	mcp-figma	compiled
+mcp-tooling	aside browser task	RESOLVED	mcp-tooling	0.807795	mcp-aside-devtools	ROUTE	mcp-aside-devtools	compiled
+mcp-tooling	aside repl evidence	RESOLVED	mcp-tooling	0.714462	mcp-aside-devtools	ROUTE	mcp-aside-devtools	compiled
+mcp-tooling	agentic browser automation	RESOLVED	mcp-tooling	0.807795	mcp-aside-devtools	ROUTE	mcp-aside-devtools	compiled
+mcp-tooling	refero design reference	RESOLVED	mcp-tooling	0.825813	mcp-refero	ROUTE	mcp-refero	compiled
+mcp-tooling	real app screen search	RESOLVED	mcp-tooling	0.395217	mcp-refero	ROUTE	mcp-refero	compiled
+mcp-tooling	mobbin app research	RESOLVED	mcp-tooling	0.807795	mcp-mobbin	ROUTE	mcp-mobbin	compiled
+mcp-tooling	real app ux patterns	RESOLVED	mcp-tooling	0.301287	mcp-mobbin	ROUTE	mcp-mobbin	compiled
+mcp-tooling	mcp-notion	RESOLVED	mcp-tooling	0.744292	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	query notion database	RESOLVED	mcp-tooling	0.824478	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	notion markdown round-trip	RESOLVED	mcp-tooling	0.667795	mcp-notion	ROUTE	mcp-notion	compiled
+mcp-tooling	mcp-magicpath	NO_RECOMMENDATION				ROUTE	mcp-magicpath	compiled
+mcp-tooling	magicpath	NO_RECOMMENDATION				ROUTE	mcp-magicpath	compiled
+mcp-tooling	magicpath ai	NO_RECOMMENDATION				ROUTE	mcp-magicpath	compiled
+mcp-tooling	magicpath component	RESOLVED	mcp-tooling	0.294462	mcp-magicpath	ROUTE	mcp-magicpath	compiled
+mcp-tooling	magicpath canvas	NO_RECOMMENDATION				ROUTE	mcp-magicpath	compiled
+cli-external-orchestration	opencode cli	RESOLVED	cli-external-orchestration	0.780065	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	opencode run	RESOLVED	cli-external-orchestration	0.787697	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	delegate to opencode	RESOLVED	cli-external-orchestration	0.788766	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	parallel detached session	RESOLVED	cli-external-orchestration	0.85285	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	spec kit runtime	RESOLVED	cli-external-orchestration	0.888775	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	claude code	RESOLVED	cli-external-orchestration	0.752304	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	claude cli	RESOLVED	cli-external-orchestration	0.760771	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	delegate to claude	RESOLVED	cli-external-orchestration	0.759492	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	codex cli	RESOLVED	cli-external-orchestration	0.760328	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	codex exec	RESOLVED	cli-external-orchestration	0.749657	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	delegate to codex	RESOLVED	cli-external-orchestration	0.760892	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	openai cli second opinion	RESOLVED	cli-external-orchestration	0.841916	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	cli-codex	RESOLVED	cli-external-orchestration	0.761458	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	cursor cli	RESOLVED	cli-external-orchestration	0.753126	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	cursor agent	RESOLVED	cli-external-orchestration	0.65559	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	delegate to cursor	RESOLVED	cli-external-orchestration	0.761336	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	composer	RESOLVED	cli-external-orchestration	0.655937	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	cli-cursor	RESOLVED	cli-external-orchestration	0.753767	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	devin cli	RESOLVED	cli-external-orchestration	0.746731	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	delegate to devin	RESOLVED	cli-external-orchestration	0.757304	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	cognition cli second opinion	RESOLVED	cli-external-orchestration	0.844206	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	devin handoff	RESOLVED	cli-external-orchestration	0.683396	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	cli-devin	RESOLVED	cli-external-orchestration	0.750659	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	pi cli	RESOLVED	cli-external-orchestration	0.659056	cli-pi	ROUTE	cli-pi	compiled
+cli-external-orchestration	pi agent	RESOLVED	cli-external-orchestration	0.561464	cli-pi	ROUTE	cli-pi	compiled
+cli-external-orchestration	delegate to pi	RESOLVED	cli-external-orchestration	0.648581	cli-pi	ROUTE	cli-pi	compiled
+cli-external-orchestration	pi.dev cli	RESOLVED	cli-external-orchestration	0.764337	cli-pi	ROUTE	cli-pi	compiled
+cli-external-orchestration	pi coding agent	RESOLVED	cli-external-orchestration	0.637824	cli-pi	ROUTE	cli-pi	compiled
+cli-external-orchestration	cli-pi	RESOLVED	cli-external-orchestration	0.659247	cli-pi	ROUTE	cli-pi	compiled
+cli-external-orchestration	cli-external-orchestration	DEFERRED	cli-external-orchestration	0.863336		DEFER		compiled
+cli-external-orchestration	cli dispatch	DEFERRED	cli-external-orchestration	0.348005		DEFER		compiled
+cli-external-orchestration	cross-ai delegation	DEFERRED	cli-external-orchestration	0.717936		DEFER		compiled
+cli-external-orchestration	executor delegation	DEFERRED	cli-external-orchestration	0.700817		DEFER		compiled
+cli-external-orchestration	opencode cli orchestration	RESOLVED	cli-external-orchestration	0.882568	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	full plugin runtime dispatch	RESOLVED	cli-external-orchestration	0.310651	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	in-opencode parallel session	RESOLVED	cli-external-orchestration	0.460641	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	cross-ai handback opencode	RESOLVED	cli-external-orchestration	0.744295	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	ablation suite opencode	RESOLVED	cli-external-orchestration	0.261423	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	worker farm opencode	RESOLVED	cli-external-orchestration	0.263946	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	cli-opencode	RESOLVED	cli-external-orchestration	0.73042	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	cli opencode	RESOLVED	cli-external-orchestration	0.730584	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	claude code cli orchestration	RESOLVED	cli-external-orchestration	0.876434	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	delegate to claude code	RESOLVED	cli-external-orchestration	0.866599	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	anthropic cli second opinion	RESOLVED	cli-external-orchestration	0.349893	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	structured claude code output	RESOLVED	cli-external-orchestration	0.72683	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	cli-claude-code	RESOLVED	cli-external-orchestration	0.872527	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	cli claude code	RESOLVED	cli-external-orchestration	0.872228	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	claude-code	RESOLVED	cli-external-orchestration	0.702107	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	claude-cli	RESOLVED	cli-external-orchestration	0.710964	cli-claude-code	ROUTE	cli-claude-code	compiled
+cli-external-orchestration	cli codex	RESOLVED	cli-external-orchestration	0.761026	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	codex cli orchestration	RESOLVED	cli-external-orchestration	0.862492	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	openai coding agent	RESOLVED	cli-external-orchestration	0.328043	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	codex web search	RESOLVED	cli-external-orchestration	0.388291	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	codex diff review	WRONG_HUB	sk-code	0.793737		ROUTE	cli-codex	compiled
+cli-external-orchestration	codex sandbox	RESOLVED	cli-external-orchestration	0.234785	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	gpt codex dispatch	RESOLVED	cli-external-orchestration	0.331367	cli-codex	ROUTE	cli-codex	compiled
+cli-external-orchestration	cli cursor	RESOLVED	cli-external-orchestration	0.753653	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	cursor composer	RESOLVED	cli-external-orchestration	0.749357	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	cursor plan mode	RESOLVED	cli-external-orchestration	0.354527	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	cursor ask mode	RESOLVED	cli-external-orchestration	0.332673	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	cursor worktree	RESOLVED	cli-external-orchestration	0.238281	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	cursor cloud worker	RESOLVED	cli-external-orchestration	0.235807	cli-cursor	ROUTE	cli-cursor	compiled
+cli-external-orchestration	cli devin	RESOLVED	cli-external-orchestration	0.748552	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	devin-handoff	RESOLVED	cli-external-orchestration	0.315549	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	cognition-cli	RESOLVED	cli-external-orchestration	0.333706	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	delegate-to-devin	RESOLVED	cli-external-orchestration	0.337201	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	devin subagent	RESOLVED	cli-external-orchestration	0.230448	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	devin cloud handoff	RESOLVED	cli-external-orchestration	0.325925	cli-devin	ROUTE	cli-devin	compiled
+cli-external-orchestration	swe-1.7 dispatch	NO_RECOMMENDATION				ROUTE	cli-devin	compiled
+cli-external-orchestration	pi json event stream	RESOLVED	cli-external-orchestration	0.257046	cli-pi	ROUTE	cli-pi	compiled
+cli-external-orchestration	pi rpc integration	RESOLVED	cli-external-orchestration	0.141117	cli-pi	ROUTE	cli-pi	compiled
+cli-external-orchestration	pi community package	RESOLVED	cli-external-orchestration	0.14017	cli-pi	ROUTE	cli-pi	compiled
+cli-external-orchestration	cli pi	RESOLVED	cli-external-orchestration	0.658635	cli-pi	ROUTE	cli-pi	compiled
+cli-external-orchestration	parallel opencode session	RESOLVED	cli-external-orchestration	0.459803	cli-opencode	ROUTE	cli-opencode	compiled
+cli-external-orchestration	detached opencode session	RESOLVED	cli-external-orchestration	0.460853	cli-opencode	ROUTE	cli-opencode	compiled
+system-deep-loop	deep loop workflow	DEFERRED	system-deep-loop	0.7557		DEFER		compiled
+system-deep-loop	deep-research	RESOLVED	system-deep-loop	0.680353	research	ROUTE	research	compiled
+system-deep-loop	deep-review	WRONG_HUB	sk-design	0.297092		ROUTE	review	compiled
+system-deep-loop	deep-ai-council	RESOLVED	system-deep-loop	0.68711	ai-council	ROUTE	ai-council	compiled
+system-deep-loop	deep-improvement	RESOLVED	system-deep-loop	0.680353	agent-improvement	ROUTE	agent-improvement	compiled
+system-deep-loop	research loop	RESOLVED	system-deep-loop	0.773686	research	ROUTE	research	compiled
+system-deep-loop	iterative review loop	RESOLVED	system-deep-loop	0.811643	review	ROUTE	review	compiled
+system-deep-loop	deep-review wave	RESOLVED	system-deep-loop	0.811643	review	ROUTE	review	compiled
+system-deep-loop	release readiness	RESOLVED	system-deep-loop	0.784086	review	ROUTE	review	compiled
+system-deep-loop	ai council deliberation	RESOLVED	system-deep-loop	0.780443	ai-council	ROUTE	ai-council	compiled
+system-deep-loop	agent improvement benchmark	RESOLVED	system-deep-loop	0.68711	agent-improvement	ROUTE	agent-improvement	compiled
+system-deep-loop	system-deep-loop	DEFERRED	system-deep-loop	0.799943		DEFER		compiled
+system-deep-loop	deep-loop-workflows	DEFERRED	system-deep-loop	0.67871		DEFER		compiled
+system-deep-loop	deep loop workflows	DEFERRED	system-deep-loop	0.67871		DEFER		compiled
+system-deep-loop	deep research	RESOLVED	system-deep-loop	0.773686	research	ROUTE	research	compiled
+system-deep-loop	iterative investigation workflow	RESOLVED	system-deep-loop	0.28661	research	ROUTE	research	compiled
+system-deep-loop	autoresearch	RESOLVED	system-deep-loop	0.438817	research	ROUTE	research	compiled
+system-deep-loop	deep review	RESOLVED	system-deep-loop	0.804886	review	ROUTE	review	compiled
+system-deep-loop	review loop	RESOLVED	system-deep-loop	0.804886	review	ROUTE	review	compiled
+system-deep-loop	severity weighted findings	WRONG_HUB	sk-code	0.534068		ROUTE	review	compiled
+system-deep-loop	convergence review	RESOLVED	system-deep-loop	0.741886	review	ROUTE	review	compiled
+system-deep-loop	multi-seat planning council	RESOLVED	system-deep-loop	0.780444	ai-council	ROUTE	ai-council	compiled
+system-deep-loop	council convergence	RESOLVED	system-deep-loop	0.638353	ai-council	ROUTE	ai-council	compiled
+system-deep-loop	improve agent	NO_RECOMMENDATION				ROUTE	agent-improvement	compiled
+system-deep-loop	evaluate agent	NO_RECOMMENDATION				ROUTE	agent-improvement	compiled
+system-deep-loop	score agent candidate	NO_RECOMMENDATION				ROUTE	agent-improvement	compiled
+system-deep-loop	agent-improvement	RESOLVED	system-deep-loop	0.543377	agent-improvement	ROUTE	agent-improvement	compiled
+system-deep-loop	model benchmark	WRONG_HUB	deep-model-benchmark	0.606667		ROUTE	model-benchmark	compiled
+system-deep-loop	benchmark a model or prompt framework	WRONG_HUB	sk-prompt	0.873329		ROUTE	model-benchmark	compiled
+system-deep-loop	skill benchmark	RESOLVED	system-deep-loop	0.566664	skill-benchmark	ROUTE	skill-benchmark	compiled

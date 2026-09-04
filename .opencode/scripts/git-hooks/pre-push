@@ -237,6 +237,12 @@ fi
 # The test suites that used to run here moved to CI. They were report-only, so the
 # forty seconds they cost every push bought nothing that could block, and their
 # output was filtered too narrowly to say what had failed.
+#
+# The routing guard below does block, because the failure it catches is silent
+# everywhere else: a stale pin makes a hub fall back to serving legacy, every
+# recommendation loses its compiled route, and no error is raised anywhere. The
+# continuous integration job that was supposed to catch it could not see a nested
+# packet file for months, so relying on it alone is what let this stand twice.
 # Skip with SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1.
 if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
   ROUTE_GUARD="$REPO_ROOT/.opencode/bin/compiled-route-guard.cjs"
@@ -244,12 +250,17 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
     if ! node "$ROUTE_GUARD" >&2; then
       {
         echo ""
-        echo "WARNING [gate:compiled-routing]: a hub's routing manifest is stale or drifted."
-        echo "Not blocking: CI enforces this on every push to main and skilled/v*."
+        echo "BLOCKED [gate:compiled-routing]: a hub's routing manifest is stale or drifted."
+        echo "A stale pin makes the hub serve legacy, which silently drops the compiled"
+        echo "route from every recommendation. Nothing else reports it, and it has twice"
+        echo "stood for several commits here, which is why this now blocks rather than warns."
         echo "Fix: refresh the hub, then resync its authored copy in the same change —"
         echo "     refreshing alone leaves the runtime and authored manifests disagreeing."
+        echo "     Then rebuild and re-pin that hub's canary before pushing."
+        echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..."
         echo ""
       } >&2
+      exit 1
     fi
   fi
 fi

@@ -1,0 +1,94 @@
+TWO-RENDER DETERMINISM, phase 003 motion layer
+Recorded from the working tree after the nine templates gained their motion.
+
+--- 1. THE GATE'S OWN COMPARISON -------------------------------------------
+check-corpus.cjs --render now opens every asset file twice with a 3000ms virtual
+time budget and compares both halves of what came back: the document, and the
+picture. The document catches a drawing still building itself. The picture catches
+motion that has not settled, which no document dump can see, because a stylesheet
+animation never touches the DOM.
+
+  + settled-render: 58 assertion(s), 0 failure(s)
+Summary: errors: 0
+RESULT: PASSED
+
+58 assertions is two per file across 29 files. Zero failures means every file in the
+corpus, animated or not, built the same document and painted the same picture twice.
+
+--- 2. SETTLED PICTURE AGAINST THE PRE-MOTION CONTROL ----------------------
+Captured before any file animated (scratch/pixels-before) and again from the final
+state (scratch/pixels-after), same window, same budget, same binary. Byte equality
+here is the proof that every animation settles to the picture the file would have
+painted with no animation in it at all, which is what lets the reduce-motion
+fallback remove the motion rather than replace it with a second design.
+
+daily-line       settled == control
+                   before 36746fd3ce0b6000
+                   after  36746fd3ce0b6000
+                   mid-frame differs, so the file really moves (paused frame e53a68fead36e32d)
+
+daily-range      settled == control
+                   before a8f1ef4092e14e33
+                   after  a8f1ef4092e14e33
+                   mid-frame differs, so the file really moves (paused frame ec4124d432a383f6)
+
+stacked-area     settled == control
+                   before aa34a5fa765b9e4d
+                   after  aa34a5fa765b9e4d
+                   mid-frame differs, so the file really moves (paused frame 3b83eb75f68874e3)
+
+bar-columns      settled == control
+                   before f76882c7dc689ca4
+                   after  f76882c7dc689ca4
+                   mid-frame differs, so the file really moves (paused frame 867f0698870a040d)
+
+bar-rows         settled == control
+                   before bd96c2e8af7bfdb2
+                   after  bd96c2e8af7bfdb2
+                   mid-frame differs, so the file really moves (paused frame f34dfb11e71a4143)
+
+grouped-bars     settled == control
+                   before c8cd67aa1fc6c8ff
+                   after  c8cd67aa1fc6c8ff
+                   mid-frame differs, so the file really moves (paused frame c38ccb807857b0d9)
+
+stacked-bars     settled == control
+                   before 6a7304df8e63b763
+                   after  6a7304df8e63b763
+                   mid-frame differs, so the file really moves (paused frame 14796062aa4a05fc)
+
+waterfall        settled == control
+                   before 3fb2561442cfd3a2
+                   after  3fb2561442cfd3a2
+                   mid-frame differs, so the file really moves (paused frame 8f4517ea5957a322)
+
+progress-single  settled == control
+                   before 1cec99a181b31b4f
+                   after  1cec99a181b31b4f
+                   mid-frame differs, so the file really moves (paused frame 6daf6af4d9e230ed)
+
+--- 3. WHAT THE PAUSED FRAME IS FOR ----------------------------------------
+A settled render that matches the control could also mean the animation never ran.
+scratch/mid-frames holds a copy of each file with the animation paused part way
+through, so the third line of every block above is what separates a motion that
+settles correctly from a motion that is not there. All nine differ from their
+settled state, so all nine move.
+
+--- 5. THE INSTRUMENT'S OWN REPRODUCIBILITY ---------------------------------
+A pixel comparison is only evidence if the same file rendered twice gives the same
+bytes to begin with. Before the method was trusted, daily-line was rendered twice in
+a row and once more minutes later, in scratch/route-test/selfcheck-1.png,
+selfcheck-2.png and scratch/pixels-before/daily-line.png. All three hash to
+36746fd3ce0b6000..., so the difference this file reports is a difference in the
+chart rather than noise in the capture.
+
+scratch/route-test also holds the first attempt at catching a mid-animation frame,
+the t-*.png files taken with a short --virtual-time-budget. They are all settled
+pictures. The budget advances virtual time and then captures, and it does not hold a
+CSS animation part way through, which is why every mid-animation frame in this phase
+is a paused negative-delay frame instead.
+
+--- 4. WHAT THIS DOES NOT PROVE --------------------------------------------
+Both instruments compare two opens on one machine with one browser build. They say
+the file is deterministic. They do not say the picture is the same on a different
+browser, and the contract does not claim it is.

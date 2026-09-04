@@ -68,4 +68,3 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor-upd
 
 The `doctor-update.yaml` workflow rebuilds the spec-kit runtime databases in dependency-safe order under interactive confirmation, snapshotting each SQLite database before mutation unless `--no-snapshot` is passed, and writing an update state log on every terminal path. A layout- or artifact-changing bootstrap ends with `STATUS=RESTART_REQUIRED` so a fresh process reruns with `--resume-bootstrap`. All visible wording is owned by the presentation contract.
 
-User request: $ARGUMENTS

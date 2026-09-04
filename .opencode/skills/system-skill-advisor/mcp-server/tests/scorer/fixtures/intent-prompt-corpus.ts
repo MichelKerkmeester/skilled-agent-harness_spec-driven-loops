@@ -51,12 +51,12 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
   },
   {
     prompt: 'Use cli-opencode to delegate this coding task through OpenCode CLI.',
-    expectedSkill: 'cli-opencode',
+    expectedSkill: 'cli-external-orchestration',
     category: 'today-correct',
   },
   {
     prompt: 'Use cli-claude-code to delegate the refactor to Claude Code CLI.',
-    expectedSkill: 'cli-claude-code',
+    expectedSkill: 'cli-external-orchestration',
     category: 'today-correct',
   },
   {
@@ -110,12 +110,12 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
   },
   {
     prompt: 'Ask the OpenCode CLI for an independent implementation pass on this module.',
-    expectedSkill: 'cli-opencode',
+    expectedSkill: 'cli-external-orchestration',
     category: 'intent-described',
   },
   {
     prompt: 'Have Anthropic\'s coding CLI take a second look at this failing refactor.',
-    expectedSkill: 'cli-claude-code',
+    expectedSkill: 'cli-external-orchestration',
     category: 'intent-described',
   },
   {

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/053-chart-visual-overhaul/005-dark-theme",
+  "spec_folder": "sk-doc/053-chart-visual-overhaul/005-dark-theme",
+  "parent_id": "sk-doc/053-chart-visual-overhaul",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart dark theme",
+      "prefers color scheme chart",
+      "dark palette twin",
+      "chart contrast gates per theme",
+      "chart dark theme plan",
+      "dark palette derivation",
+      "palette block amendment",
+      "chart dark theme tasks",
+      "dark palette tasks",
+      "palette block amendment tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "chart",
+      "dark",
+      "theme",
+      "prefers",
+      "color",
+      "scheme",
+      "palette",
+      "twin",
+      "contrast",
+      "gates",
+      "per",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+      "scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "palettes.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twenty chart forms, six family deliveries and three palette proof sheets all paint on a warm paper surface",
+    "created_at": "2026-09-03T07:52:32.972Z",
+    "last_save_at": "2026-09-03T20:23:12.090Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6a6b1ab4df4e170e2b542b77ba27c16d5947cc505a5453087cc15a70d6e760a3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "db46d8b7e8eb3e536461a7e29421a716e814e9d01ea0d8addf985c61a906fa47",
+      "plan.md": "ae56e935c68a35f49ed1eac888452d347ba6f35f08251ba8f937dab9a85921b5",
+      "tasks.md": "d86c86da875d6c5a6776883ef2b95e22ee6e6988fe4b8070fbb0526caa50af1d",
+      "decision-record.md": "4a8c3cb08abf9a38b0f659aa03417cd87deb8b5b9a1efc18993782d1a2c7a82f",
+      "implementation-summary.md": "0086f1f99b2623aea64bdfbe980db2d7eb00f1b8c65372ec1f40d1b6ced9e560"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

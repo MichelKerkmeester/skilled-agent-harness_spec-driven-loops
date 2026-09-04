@@ -1,6 +1,6 @@
 ---
 description: Create or update OpenCode slash command sets with :auto/:confirm workflow assets.
-argument-hint: "<command_invocation> [command_request] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<command_invocation> [command_request] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -64,4 +64,3 @@ The router must not invent visible wording for those surfaces; it only selects t
 
 The bound workflow YAML (`create-command-auto.yaml` for `:auto`, `create-command-confirm.yaml` for `:confirm` or an omitted mode) runs the command-authoring workflow step by step after Phase 0 verification and setup resolution, creating or updating OpenCode slash command sets. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
-User request: $ARGUMENTS

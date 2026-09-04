@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/023-semantic-lane-enablement",
+  "description": "Eight of 172 realistic phrasings reach the mode they were written for",
+  "keywords": [
+    "eight",
+    "realistic",
+    "phrasings",
+    "reach",
+    "mode",
+    "written"
+  ],
+  "lastUpdated": "2026-09-02T22:20:19.857Z",
+  "specId": "023",
+  "folderSlug": "semantic-lane-enablement",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

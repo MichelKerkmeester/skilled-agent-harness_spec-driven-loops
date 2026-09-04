@@ -4,7 +4,7 @@
  * Cross-layer contract verification between:
  *   - CJS modules: coverage-graph-core.cjs, coverage-graph-signals.cjs,
  *     coverage-graph-convergence.cjs, coverage-graph-contradictions.cjs
- *   - TS/MCP layer: coverage-graph-db.ts (types and constants)
+ *   - TS layer: system-deep-loop runtime coverage-graph-db.ts (types and constants)
  *
  * These tests verify that relation names, weight ranges, clamping behavior,
  * self-loop prevention, namespace isolation, and convergence signals are
@@ -29,7 +29,7 @@ import {
   upsertNode,
   type CoverageEdge,
   type CoverageNode,
-} from '../../mcp-server/lib/coverage-graph/coverage-graph-db.js';
+} from '../../../system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.js';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');

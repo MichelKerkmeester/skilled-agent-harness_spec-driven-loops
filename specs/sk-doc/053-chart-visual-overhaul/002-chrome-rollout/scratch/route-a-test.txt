@@ -1,0 +1,495 @@
+Chart corpus check
+  package: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-chart
+  files scanned: 29 (chart forms under assets/templates: 20)
+  colour systems: 3
+  render checks: not run (pass --render)
+
+  + accessibility: 58 assertion(s), 0 failure(s)
+  + card-parts: 116 assertion(s), 0 failure(s)
+  + catalog: 41 assertion(s), 0 failure(s)
+  + colour-literals: 884 assertion(s), 0 failure(s)
+  + data-block: 29 assertion(s), 0 failure(s)
+  + determinism: 29 assertion(s), 0 failure(s)
+  + document-shape: 145 assertion(s), 0 failure(s)
+  + identity: 58 assertion(s), 0 failure(s)
+  + motion: 29 assertion(s), 0 failure(s)
+  + narrow-viewport: 87 assertion(s), 0 failure(s)
+  + no-external: 145 assertion(s), 0 failure(s)
+  x palette-block: 29 assertion(s), 29 failure(s)
+  + palette-source: 22 assertion(s), 0 failure(s)
+  + script-parses: 29 assertion(s), 0 failure(s)
+  + unique-ids: 128 assertion(s), 0 failure(s)
+
+  FAIL [palette-block] assets/color/palette-sheet-categorical.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/color/palette-sheet-neutral.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/color/palette-sheet-ordered.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=ordered */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #213B3D;
+  --chart-series-2: #275C63;
+  --chart-series-3: #2E7F89;
+  --chart-series-4: #69A2A9;
+  --chart-series-5: #A3C4C7;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/examples/calls-by-day-and-hour.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=ordered */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #213B3D;
+  --chart-series-2: #275C63;
+  --chart-series-3: #2E7F89;
+  --chart-series-4: #69A2A9;
+  --chart-series-5: #A3C4C7;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/examples/orders-after-the-price-change.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/examples/pick-times-by-depot.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/examples/staff-hours-by-service.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/examples/van-age-against-repair-cost.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/examples/where-the-budget-went.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/bar-columns.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/bar-rows.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/box-plot.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/calendar-grid.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=ordered */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #213B3D;
+  --chart-series-2: #275C63;
+  --chart-series-3: #2E7F89;
+  --chart-series-4: #69A2A9;
+  --chart-series-5: #A3C4C7;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/candlestick.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/daily-line.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/daily-range.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/distribution-strip.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/grouped-bars.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/heat-matrix.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=ordered */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #213B3D;
+  --chart-series-2: #275C63;
+  --chart-series-3: #2E7F89;
+  --chart-series-4: #69A2A9;
+  --chart-series-5: #A3C4C7;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/independent-percentages.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/parallel-axes.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/progress-single.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=ordered */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #213B3D;
+  --chart-series-2: #275C63;
+  --chart-series-3: #2E7F89;
+  --chart-series-4: #69A2A9;
+  --chart-series-5: #A3C4C7;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/scatter.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/stacked-area.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/stacked-bars.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/treemap.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/unit-grid.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/unit-ring.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+  FAIL [palette-block] assets/templates/waterfall.html: palette block drifted from the source: missing --chart-radius-card.
+Expected block:
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-radius-card: 10px;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+
+Summary: errors: 29
+
+RESULT: FAILED

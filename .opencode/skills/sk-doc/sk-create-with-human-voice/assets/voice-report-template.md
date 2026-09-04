@@ -40,8 +40,8 @@ after-columns on a `score` run, where nothing was edited.
 
 **Scope**
 - In scope: `<what the pass was allowed to touch>`
-- Exempt: `<span>` — `<class from scope-and-exemptions.md section 3>` — `<why>`
-- Exempt: `<span>` — `<class>` — `<why>`
+- Exempt: `<span>`, `<class from scope-and-exemptions.md section 3>`, `<why>`
+- Exempt: `<span>`, `<class>`, `<why>`
 
 **Mechanical scan**
 | | Before | After |
@@ -52,10 +52,10 @@ after-columns on a `score` run, where nothing was edited.
 - Source: `scripts/hvr_scan.py` against `references/hvr-rules.md`
 
 **Judgment findings**
-- `<structural, sentence-level, content or voice finding>` — `<fixed|left, with reason>`
+- `<structural, sentence-level, content or voice finding>`: `<fixed|left, with reason>`
 
 **Accepted exceptions**
-- `<term or construction kept>` — `<what would have changed if it were removed>`
+- `<term or construction kept>`: `<what would have changed if it were removed>`
 
 **Verdict**
 - Band: `<publish|revise|rewrite>`

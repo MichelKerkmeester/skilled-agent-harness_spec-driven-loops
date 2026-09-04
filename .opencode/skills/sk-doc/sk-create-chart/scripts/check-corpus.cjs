@@ -18,6 +18,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const vm = require('vm');
 const { execFileSync } = require('child_process');
 
@@ -25,10 +26,14 @@ const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'palettes.json');
 const CATALOG = path.join(PACKAGE_ROOT, 'references', 'catalog.md');
 const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
+const EXAMPLE_DIR = path.join(PACKAGE_ROOT, 'assets', 'examples');
 const ASSET_ROOT = path.join(PACKAGE_ROOT, 'assets');
 
 const PALETTE_BEGIN = /\/\*\s*CHART_PALETTE:BEGIN\s+system=([a-z0-9-]+)\s*\*\//;
 const PALETTE_END = '/* CHART_PALETTE:END */';
+const PALETTE_DARK_BEGIN = /\/\*\s*CHART_PALETTE_DARK:BEGIN\s+system=([a-z0-9-]+)\s*\*\//;
+const PALETTE_DARK_END = '/* CHART_PALETTE_DARK:END */';
+const DARK_QUERY = /@media[^{]*prefers-color-scheme\s*:\s*dark/i;
 const DATA_BEGIN = '/* CHART_DATA:BEGIN */';
 const DATA_END = '/* CHART_DATA:END */';
 const CATALOG_BEGIN = '<!-- CHART_CATALOG:BEGIN -->';
@@ -104,10 +109,37 @@ function customProperties(palette, systemId) {
   for (const [role, value] of Object.entries(palette.chrome)) {
     props.set(`${palette.customPropertyPrefix}${role}`, value);
   }
+  // The corner ladder rides in the same block as the colours because every file already
+  // carries that block and compares it against the source in both directions. It lives in
+  // its own object in the source rather than inside chrome, because chrome means colour:
+  // a length that cannot differ between a light and a dark theme has no business in the
+  // one structure whose whole purpose is to differ between them. That is also why the rungs
+  // are emitted into the light block alone: a corner repeated under a second ground would be
+  // a second copy of a value that cannot differ, which is a place for the two to disagree.
+  for (const [role, value] of Object.entries(palette.radius || {})) {
+    props.set(`${palette.customPropertyPrefix}radius-${role}`, value);
+  }
   system.series.forEach((value, i) => {
     props.set(`${palette.customPropertyPrefix}series-${i + 1}`, value);
   });
   props.set(`${palette.customPropertyPrefix}emphasis`, system.emphasis);
+  return props;
+}
+
+// The dark projection redeclares the colour roles and nothing else. A file paints these only
+// when the reader's operating system asks for a dark scheme, which is the one signal a
+// self-contained document can read: it has nowhere to keep a preference and no place for a
+// control, and a browser that never resolves the query is left painting the light block.
+function customPropertiesDark(palette, systemId) {
+  const system = palette.systems[systemId];
+  const props = new Map();
+  for (const [role, value] of Object.entries(palette.chromeDark || {})) {
+    props.set(`${palette.customPropertyPrefix}${role}`, value);
+  }
+  (system.seriesDark || []).forEach((value, i) => {
+    props.set(`${palette.customPropertyPrefix}series-${i + 1}`, value);
+  });
+  if (system.emphasisDark) props.set(`${palette.customPropertyPrefix}emphasis`, system.emphasisDark);
   return props;
 }
 
@@ -123,83 +155,209 @@ function canonicalBlock(palette, systemId) {
   return lines.join('\n');
 }
 
-function checkPaletteSource(palette) {
-  const surface = palette.chrome.surface;
+function canonicalDarkBlock(palette, systemId) {
+  const lines = [];
+  lines.push(`/* CHART_PALETTE_DARK:BEGIN system=${systemId} */`);
+  lines.push('@media (prefers-color-scheme: dark) {');
+  lines.push('  :root {');
+  for (const [prop, value] of customPropertiesDark(palette, systemId)) {
+    lines.push(`    ${prop}: ${value};`);
+  }
+  lines.push('  }');
+  lines.push('}');
+  lines.push(PALETTE_DARK_END);
+  return lines.join('\n');
+}
+
+// One region description per theme. Everything that differs between the light block and its
+// dark twin lives here, so the two are checked by one routine rather than by two that drift.
+const PALETTE_REGIONS = [
+  {
+    theme: 'light',
+    begin: PALETTE_BEGIN,
+    beginName: 'CHART_PALETTE:BEGIN',
+    endMarker: PALETTE_END,
+    projection: customProperties,
+    canonical: canonicalBlock,
+    required: true,
+    mediaQuery: null,
+  },
+  {
+    theme: 'dark',
+    begin: PALETTE_DARK_BEGIN,
+    beginName: 'CHART_PALETTE_DARK:BEGIN',
+    endMarker: PALETTE_DARK_END,
+    projection: customPropertiesDark,
+    canonical: canonicalDarkBlock,
+    required: true,
+    mediaQuery: DARK_QUERY,
+  },
+];
+
+// The corner ladder is gated once rather than per theme. A rung is a length, and a length
+// cannot answer a ground.
+function checkRadiusRungs(palette) {
+  let checked = 0;
+  for (const [role, value] of Object.entries(palette.radius || {})) {
+    checked += 1;
+    if (/^\d+(?:\.\d+)?px$/.test(value)) continue;
+    record('palette-source', 'error', rel(PALETTE_SOURCE),
+      `radius rung "${role}" is ${value}, and a rung has to be a pixel length the stylesheet can use directly`);
+  }
+  tally('palette-source', checked);
+}
+
+// One theme description per ground. Every gate is computed from the palette file against the
+// surface named here, so a value that clears on paper still has to clear on ink and neither
+// run can be read as covering the other.
+const THEMES = [
+  {
+    check: 'palette-source',
+    chrome: 'chrome',
+    series: 'series',
+    emphasis: 'emphasis',
+    ground: 'the light ground',
+    alphaRule: false,
+  },
+  {
+    check: 'palette-source-dark',
+    chrome: 'chromeDark',
+    series: 'seriesDark',
+    emphasis: 'emphasisDark',
+    ground: 'the dark ground',
+    alphaRule: true,
+  },
+];
+
+function checkPaletteSource(palette, theme) {
+  const chrome = palette[theme.chrome];
   const g = palette.gates;
   let checked = 0;
 
-  for (const role of ['surface', 'ink', 'muted', 'rule']) {
-    if (!palette.chrome[role]) {
-      record('palette-source', 'error', rel(PALETTE_SOURCE), `chrome role "${role}" is missing`);
-    }
+  if (!chrome) {
+    record(theme.check, 'error', rel(PALETTE_SOURCE),
+      `no "${theme.chrome}" object, so ${theme.ground} has no chrome to gate`);
+    tally(theme.check, 1);
+    return;
   }
+
+  for (const role of ['surface', 'ink', 'muted', 'rule']) {
+    checked += 1;
+    if (chrome[role]) continue;
+    record(theme.check, 'error', rel(PALETTE_SOURCE), `${theme.chrome} role "${role}" is missing`);
+  }
+  const surface = chrome.surface;
+  if (!surface) {
+    tally(theme.check, checked);
+    return;
+  }
+
   for (const role of ['ink', 'muted']) {
-    const ratio = contrast(palette.chrome[role], surface);
+    if (!chrome[role]) continue;
+    const ratio = contrast(chrome[role], surface);
     checked += 1;
     if (ratio < g.textOnSurface) {
-      record('palette-source', 'error', rel(PALETTE_SOURCE),
-        `chrome.${role} reads ${round2(ratio)}:1 on surface, below the ${g.textOnSurface}:1 text gate`);
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `${theme.chrome}.${role} reads ${round2(ratio)}:1 on ${theme.ground}, below the ${g.textOnSurface}:1 text gate`);
+    }
+  }
+
+  // A card edge on a near-black ground is ink at an alpha rather than a solid colour. A grey
+  // dark enough to sit quietly is a second line drawn over the data; an alpha lets the ground
+  // show through, which is what keeps the edge readable without competing with the marks.
+  if (theme.alphaRule && chrome.rule) {
+    checked += 1;
+    const parts = /^#([0-9A-Fa-f]{6})([0-9A-Fa-f]{2})$/.exec(chrome.rule);
+    if (!parts) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `${theme.chrome}.rule is ${chrome.rule}, and on this ground the rule is ink at an alpha rather than a solid value`);
+    } else if (chrome.ink && `#${parts[1]}`.toUpperCase() !== chrome.ink.toUpperCase()) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `${theme.chrome}.rule is ${chrome.rule}, whose colour is not ${theme.chrome}.ink (${chrome.ink}). The edge is this theme's ink held back by an alpha, not a third colour`);
+    } else if (parseInt(parts[2], 16) === 255) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `${theme.chrome}.rule carries a full alpha, which makes it a solid value wearing an alpha channel`);
     }
   }
 
   for (const [id, system] of Object.entries(palette.systems)) {
-    if (system.series.length !== system.capacity) {
-      record('palette-source', 'error', rel(PALETTE_SOURCE),
-        `system "${id}" declares capacity ${system.capacity} and defines ${system.series.length} series values`);
-    }
-    const emphasisRatio = contrast(system.emphasis, surface);
+    const series = system[theme.series];
+    const emphasis = system[theme.emphasis];
     checked += 1;
-    if (emphasisRatio < g.markOnSurface) {
-      record('palette-source', 'error', rel(PALETTE_SOURCE),
-        `system "${id}" emphasis reads ${round2(emphasisRatio)}:1 on surface, below the ${g.markOnSurface}:1 mark gate`);
+    if (!Array.isArray(series) || !series.length) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `system "${id}" defines no ${theme.series} values, so it has nothing to paint on ${theme.ground}`);
+      continue;
     }
-    const againstFirst = contrast(system.emphasis, system.series[0]);
-    checked += 1;
-    if (againstFirst < g.emphasisAgainstFirstSeries) {
-      record('palette-source', 'error', rel(PALETTE_SOURCE),
-        `system "${id}" emphasis reads ${round2(againstFirst)}:1 against series[0], below the ${g.emphasisAgainstFirstSeries}:1 separation floor. An emphasised mark that matches the base mark in lightness disappears in greyscale`);
+    if (series.length !== system.capacity) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `system "${id}" declares capacity ${system.capacity} and defines ${series.length} ${theme.series} values`);
+    }
+    if (!emphasis) {
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `system "${id}" defines no ${theme.emphasis}, and emphasis is required in every system on every ground`);
+    } else {
+      const emphasisRatio = contrast(emphasis, surface);
+      checked += 1;
+      if (emphasisRatio < g.markOnSurface) {
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" emphasis reads ${round2(emphasisRatio)}:1 on ${theme.ground}, below the ${g.markOnSurface}:1 mark gate`);
+      }
+      const againstFirst = contrast(emphasis, series[0]);
+      checked += 1;
+      if (againstFirst < g.emphasisAgainstFirstSeries) {
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" emphasis reads ${round2(againstFirst)}:1 against series[0] on ${theme.ground}, below the ${g.emphasisAgainstFirstSeries}:1 separation floor. An emphasised mark that matches the base mark in lightness disappears in greyscale`);
+      }
     }
 
     if (system.encodes === 'magnitude') {
-      // A ramp is read as a group against its legend, so only the dark end has to clear
-      // the mark gate. Requiring it of every step would delete the light end of every
-      // sequential scale, which is the half that encodes "low".
-      const darkest = contrast(system.series[0], surface);
-      checked += 1;
-      if (darkest < g.rampDarkestOnSurface) {
-        record('palette-source', 'error', rel(PALETTE_SOURCE),
-          `system "${id}" darkest ramp step reads ${round2(darkest)}:1 on surface, below ${g.rampDarkestOnSurface}:1`);
-      }
-      const lightest = contrast(system.series[system.series.length - 1], surface);
-      checked += 1;
-      if (lightest < g.rampLightestOnSurface) {
-        record('palette-source', 'error', rel(PALETTE_SOURCE),
-          `system "${id}" lightest ramp step reads ${round2(lightest)}:1 on surface, below ${g.rampLightestOnSurface}:1. A low cell has to be distinguishable from an empty one`);
-      }
-      for (let i = 0; i < system.series.length - 1; i += 1) {
-        const step = contrast(system.series[i], system.series[i + 1]);
+      // A ramp is read as a group against its legend, so only the end furthest from the ground
+      // has to clear the mark gate. Requiring it of every step would delete the end that encodes
+      // "low", which is the half nearest the ground on either theme.
+      //
+      // Which end that is depends on the theme, and the array says so rather than the arithmetic:
+      // index 0 is always the value furthest from that theme's ground. Asserting that ordering
+      // first is what stops a reversed ramp from passing. Reversal preserves every step
+      // separation, so a check that gated whichever end happened to be lighter would accept a
+      // scale that had quietly started reading backwards.
+      for (let i = 0; i < series.length - 1; i += 1) {
+        const step = contrast(series[i], series[i + 1]);
         checked += 1;
         if (step < g.rampStepSeparation) {
-          record('palette-source', 'error', rel(PALETTE_SOURCE),
-            `system "${id}" steps ${i + 1} and ${i + 2} differ by ${round2(step)}:1, below the ${g.rampStepSeparation}:1 rank-readability floor`);
+          record(theme.check, 'error', rel(PALETTE_SOURCE),
+            `system "${id}" steps ${i + 1} and ${i + 2} differ by ${round2(step)}:1 on ${theme.ground}, below the ${g.rampStepSeparation}:1 rank-readability floor`);
         }
-        if (luminance(system.series[i]) < luminance(system.series[i + 1])) continue;
-        record('palette-source', 'error', rel(PALETTE_SOURCE),
-          `system "${id}" is not monotonic in lightness at steps ${i + 1} and ${i + 2}. An ordered scale that reverses encodes nothing`);
+        checked += 1;
+        if (contrast(series[i], surface) > contrast(series[i + 1], surface)) continue;
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" does not move toward ${theme.ground} at steps ${i + 1} and ${i + 2}. The array runs from the value furthest from the surface to the value nearest it, and an ordered scale that reverses encodes nothing`);
+      }
+      const far = contrast(series[0], surface);
+      checked += 1;
+      if (far < g.rampDarkestOnSurface) {
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" step 1, the end furthest from ${theme.ground}, reads ${round2(far)}:1 on it, below ${g.rampDarkestOnSurface}:1`);
+      }
+      const near = contrast(series[series.length - 1], surface);
+      checked += 1;
+      if (near < g.rampLightestOnSurface) {
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" step ${series.length}, the end nearest ${theme.ground}, reads ${round2(near)}:1 on it, below ${g.rampLightestOnSurface}:1. A low cell has to be distinguishable from an empty one`);
       }
     } else {
       // Marks a reader identifies one at a time each have to clear the gate alone.
-      system.series.forEach((value, i) => {
+      series.forEach((value, i) => {
         const ratio = contrast(value, surface);
         checked += 1;
         if (ratio < g.markOnSurface) {
-          record('palette-source', 'error', rel(PALETTE_SOURCE),
-            `system "${id}" series[${i}] reads ${round2(ratio)}:1 on surface, below the ${g.markOnSurface}:1 mark gate`);
+          record(theme.check, 'error', rel(PALETTE_SOURCE),
+            `system "${id}" ${theme.series}[${i}] reads ${round2(ratio)}:1 on ${theme.ground}, below the ${g.markOnSurface}:1 mark gate`);
         }
       });
     }
   }
-  tally('palette-source', checked);
+  tally(theme.check, checked);
 }
 
 /* ------------------------------------------------------------- html templates */
@@ -268,60 +426,153 @@ function checkIdentity(file, src, palette) {
   return { id, systemId };
 }
 
-function paletteBlockOf(src) {
-  const begin = PALETTE_BEGIN.exec(src);
+function regionOf(src, spec) {
+  const begin = spec.begin.exec(src);
   if (!begin) return null;
   const start = begin.index;
-  const end = src.indexOf(PALETTE_END, start);
+  const end = src.indexOf(spec.endMarker, start);
   if (end === -1) return null;
-  return { systemId: begin[1], start, end: end + PALETTE_END.length, text: src.slice(start, end + PALETTE_END.length) };
+  return {
+    theme: spec.theme,
+    systemId: begin[1],
+    start,
+    end: end + spec.endMarker.length,
+    text: src.slice(start, end + spec.endMarker.length),
+  };
 }
 
+const occurrences = (src, needle) => src.split(needle).length - 1;
+
+// Rule 4: one palette block per theme, two at most, each matched against its own projection of
+// the source in both directions.
+//
+// The ceiling is the part worth stating. One block per file used to be the rule, and it was the
+// right one while there was one ground: one block is one place a colour can drift and a diff
+// shows it. A file that answers a dark system needs a second set of values and a self-contained
+// document has nowhere else to put them, so the ceiling moved to two and stayed a ceiling. The
+// region count is asserted rather than assumed, because a widened check that stopped counting is
+// how a third block, or a repeated sentinel pair, would start passing unseen.
 function checkPaletteBlock(file, src, palette, declaredSystem) {
-  tally('palette-block', 1);
-  const block = paletteBlockOf(src);
-  if (!block) {
-    record('palette-block', 'error', file,
-      `no CHART_PALETTE sentinel pair. Expected block:\n${canonicalBlock(palette, declaredSystem || 'neutral')}`);
-    return null;
-  }
-  if (declaredSystem && block.systemId !== declaredSystem) {
-    record('palette-block', 'error', file,
-      `palette block declares system "${block.systemId}" and the meta tag declares "${declaredSystem}"`);
-    return block;
-  }
-  if (!palette.systems[block.systemId]) return block;
+  const blocks = [];
+  for (const spec of PALETTE_REGIONS) {
+    tally('palette-block', 2);
+    const begins = occurrences(src, spec.beginName);
+    const ends = occurrences(src, spec.endMarker);
+    if (begins > 1 || ends > 1) {
+      record('palette-block', 'error', file,
+        `the ${spec.theme} palette sentinel appears ${begins} time(s) with ${ends} closing marker(s). A file carries one block per theme, so nothing can say which region a drifted value came from once a pair is used twice`);
+    }
 
-  const expected = customProperties(palette, block.systemId);
-  const actual = new Map();
-  const propRe = /(--[a-z0-9-]+)\s*:\s*([^;]+);/gi;
-  let m;
-  while ((m = propRe.exec(block.text)) !== null) actual.set(m[1], m[2].trim());
+    const block = regionOf(src, spec);
+    if (!block) {
+      if (!spec.required) continue;
+      record('palette-block', 'error', file,
+        `no ${spec.beginName} sentinel pair. Expected block:\n${spec.canonical(palette, declaredSystem || 'neutral')}`);
+      continue;
+    }
+    blocks.push(block);
 
-  const problems = [];
-  for (const [prop, value] of expected) {
-    if (!actual.has(prop)) problems.push(`missing ${prop}`);
-    else if (actual.get(prop).toUpperCase() !== value.toUpperCase()) {
-      problems.push(`${prop} is ${actual.get(prop)} and the palette source says ${value}`);
+    if (declaredSystem && block.systemId !== declaredSystem) {
+      record('palette-block', 'error', file,
+        `the ${spec.theme} palette block declares system "${block.systemId}" and the meta tag declares "${declaredSystem}"`);
+      continue;
+    }
+    if (!palette.systems[block.systemId]) continue;
+
+    // A dark block outside its media query paints on every reader, which is the one way a
+    // second block can be right in every value and still wrong in every file.
+    if (spec.mediaQuery && !spec.mediaQuery.test(block.text)) {
+      record('palette-block', 'error', file,
+        `the ${spec.theme} palette block carries no prefers-color-scheme query, so its values would paint on every reader rather than on the one who asked for them.\nExpected block:\n${spec.canonical(palette, block.systemId)}`);
+      continue;
+    }
+
+    const expected = spec.projection(palette, block.systemId);
+    const actual = new Map();
+    const propRe = /(--[a-z0-9-]+)\s*:\s*([^;]+);/gi;
+    let m;
+    while ((m = propRe.exec(block.text)) !== null) actual.set(m[1], m[2].trim());
+
+    const problems = [];
+    for (const [prop, value] of expected) {
+      if (!actual.has(prop)) problems.push(`missing ${prop}`);
+      else if (actual.get(prop).toUpperCase() !== value.toUpperCase()) {
+        problems.push(`${prop} is ${actual.get(prop)} and the palette source says ${value}`);
+      }
+    }
+    for (const prop of actual.keys()) {
+      if (!expected.has(prop)) problems.push(`unexpected ${prop}`);
+    }
+    if (problems.length) {
+      record('palette-block', 'error', file,
+        `the ${spec.theme} palette block drifted from the source: ${problems.join('; ')}.\nExpected block:\n${spec.canonical(palette, block.systemId)}`);
     }
   }
-  for (const prop of actual.keys()) {
-    if (!expected.has(prop)) problems.push(`unexpected ${prop}`);
-  }
-  if (problems.length) {
-    record('palette-block', 'error', file,
-      `palette block drifted from the source: ${problems.join('; ')}.\nExpected block:\n${canonicalBlock(palette, block.systemId)}`);
-  }
-  return block;
+  return blocks;
 }
 
-function checkColourLiterals(file, src, block) {
-  const withoutBlock = block ? src.slice(0, block.start) + src.slice(block.end) : src;
-  const cleaned = stripHtmlComments(withoutBlock)
+// A colour and a corner are both read from a palette region, so both strippers have to remove
+// every region before they judge what is left. Slicing runs from the last region backwards, so
+// an earlier region's offsets still describe the string when its turn comes.
+function withoutBlocks(src, blocks) {
+  let out = src;
+  for (const block of [...blocks].sort((a, b) => b.start - a.start)) {
+    out = out.slice(0, block.start) + out.slice(block.end);
+  }
+  return out;
+}
+
+// The properties that put a colour on a mark. The first list is what a stylesheet declares, the
+// second what an SVG element carries as an attribute. One list per syntax, read by every half of
+// this rule rather than re-typed inside each, because two lists that have to agree are the drift
+// the rule exists to stop.
+const COLOUR_BEARING = ['color', 'background', 'background-color', 'border', 'border-color',
+  'outline', 'outline-color', 'fill', 'stroke', 'stop-color'];
+const COLOUR_ATTRIBUTES = ['fill', 'stroke', 'stop-color', 'color', 'flood-color', 'lighting-color'];
+const COLOUR_SETTABLE = new Set([...COLOUR_BEARING, ...COLOUR_ATTRIBUTES]);
+
+// A colour handed to a mark from somewhere other than a declaration. The stylesheet half of this
+// rule reads declarations, and a value set from the drawing code is never one, so the only thing
+// watching that route was a list of colour words -- and a list of words knows the words somebody
+// thought of. "firebrick" was not one of them, and neither is the next one. This reads the
+// property instead: whatever a colour-bearing property is handed has to resolve the way a
+// declaration does, whichever word it was written with.
+//
+// Only a complete string literal is judged. A value assembled from pieces is how the proof sheets
+// already pass a palette reference around, and reading the first piece as the whole value would
+// fail three correct files.
+const COLOUR_ASSIGNMENTS = [
+  /setAttribute\(\s*['"]([a-zA-Z-]+)['"]\s*,\s*(['"])([^'"]*)\2\s*\)/g,
+  /setProperty\(\s*['"]([a-zA-Z-]+)['"]\s*,\s*(['"])([^'"]*)\2\s*[,)]/g,
+  /(?:^|[{,\s])['"]?([a-zA-Z-]+)['"]?\s*:\s*(['"])([^'"]*)\2\s*(?=[,}\n])/g,
+  /\.\s*style\s*\.\s*([a-zA-Z]+)\s*=\s*(['"])([^'"]*)\2\s*(?=[;,\n])/g,
+];
+
+const kebab = (name) => name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+
+// What a colour-bearing property may resolve to: a token from the palette block, a keyword that
+// names an absence rather than a colour, or a paint server this same file defines.
+function colourResolves(value) {
+  const v = value.trim().toLowerCase();
+  if (!v) return true;
+  if (v.includes('var(--chart-')) return true;
+  if (COLOUR_KEYWORDS.has(v)) return true;
+  if (/^url\(\s*['"]?#/.test(v)) return true;
+  return false;
+}
+
+function checkColourLiterals(file, src, blocks) {
+  const cleaned = stripHtmlComments(withoutBlocks(src, blocks))
     .replace(/x?link:href\s*=\s*"#[^"]*"/gi, ' ')
     .replace(/href\s*=\s*"#[^"]*"/gi, ' ')
     .replace(/url\(\s*#[^)]*\)/gi, ' ');
-  const { styles, scripts, attrs } = regionsOf(cleaned);
+  // A colour rule reads values, never prose. Every other rule that walks a script or a
+  // stylesheet strips its comments first and this one did not, so a comment explaining why a
+  // mark is deliberately not painted grey read to it as a mark painted grey. The strippers run
+  // here for the same reason they run there: a sentence is not a declaration.
+  const { styles: rawStyles, scripts: rawScripts, attrs, markup } = regionsOf(cleaned);
+  const styles = rawStyles.map(stripJsComments);
+  const scripts = rawScripts.map(stripJsComments);
   const haystacks = [...styles, ...scripts, ...attrs];
   tally('colour-literals', haystacks.length);
 
@@ -336,14 +587,18 @@ function checkColourLiterals(file, src, block) {
     if (/\b(rgba?|hsla?)\s*\(/i.test(text)) {
       record('colour-literals', 'error', file, 'rgb() or hsl() colour outside the palette block');
     }
+    // A quote is a boundary the way a space is. Without it the rule read a declaration and
+    // missed an assignment: `setAttribute('fill', 'red')` puts a named colour on a mark from
+    // the drawing code, and the word sat between two quotes where neither side matched, so the
+    // one route that bypasses the stylesheet entirely was the one route nothing looked at.
     for (const name of NAMED_COLOURS) {
-      const re = new RegExp(`(?:^|[:\\s,])${name}(?:$|[;\\s,)])`, 'i');
+      const re = new RegExp(`(?:^|[:\\s,'"(])${name}(?:$|[;\\s,)'"])`, 'i');
       if (!re.test(text)) continue;
       record('colour-literals', 'error', file, `named colour "${name}" outside the palette block`);
     }
   }
 
-  const propRe = /(?:^|[;{\s])(color|background|background-color|border|border-color|outline|outline-color|fill|stroke|stop-color)\s*:\s*([^;}]+)/gi;
+  const propRe = new RegExp('(?:^|[;{\\s])(' + COLOUR_BEARING.join('|') + ')\\s*:\\s*([^;}]+)', 'gi');
   for (const text of styles) {
     let m;
     while ((m = propRe.exec(text)) !== null) {
@@ -357,7 +612,121 @@ function checkColourLiterals(file, src, block) {
         `"${m[1]}: ${m[2].trim()}" does not resolve through a var(--chart-…) reference`);
     }
   }
+
+  for (const code of scripts) {
+    tally('colour-literals', 1);
+    for (const re of COLOUR_ASSIGNMENTS) {
+      re.lastIndex = 0;
+      let a;
+      while ((a = re.exec(code)) !== null) {
+        if (!COLOUR_SETTABLE.has(kebab(a[1]))) continue;
+        if (colourResolves(a[3])) continue;
+        record('colour-literals', 'error', file,
+          `the drawing code hands ${kebab(a[1])} the literal "${a[3]}". A colour reaches a mark through a var(--chart-…) token, or through the class that carries one, so one palette edit reaches the whole file`);
+      }
+    }
+  }
+
+  // The same decision in a third syntax. No form paints from a presentation attribute today,
+  // which is exactly the condition under which a route stops being watched.
+  const attrPaint = new RegExp('\\s(' + COLOUR_ATTRIBUTES.join('|') + ')\\s*=\\s*"([^"]*)"', 'gi');
+  tally('colour-literals', 1);
+  let painted;
+  while ((painted = attrPaint.exec(markup)) !== null) {
+    if (colourResolves(painted[2])) continue;
+    record('colour-literals', 'error', file,
+      `the markup paints ${painted[1].toLowerCase()}="${painted[2]}" directly. A colour reaches a mark through a var(--chart-…) token, or through the class that carries one`);
+  }
 }
+
+// A corner comes from the ladder, never from a number typed into a file.
+//
+// This is the same idea as the palette rule one function up. A value meant to be identical
+// everywhere lives in one place and is read rather than re-typed, and twenty-one forms agreeing
+// on ten pixels by coincidence is not a convention: it is twenty-one chances to disagree, and
+// the twenty-second file is where it breaks. A corner declared in a stylesheet therefore has
+// to resolve through a rung, and a corner set from the drawing code has to be computed from
+// the mark's own geometry rather than typed. A range bar rounded to half its own width is
+// geometry and passes; a 2 typed beside it is a rung in disguise and fails.
+const RADIUS_DECLARATION = /(?:^|[;{\s])(border-radius|border-[a-z-]+-radius|rx|ry)\s*:\s*([^;}]+)/gi;
+// The value is read rather than assumed to be digits, and the key is allowed the quotes the
+// corpus already writes elsewhere. Matching a bare key and a numeric literal answered "is a
+// number typed at this call", which is a narrower question than the rule asks: a 3 bound to a
+// constant one line up is the same typed corner wearing a name, and 'rx' in quotes is the same
+// corner wearing the spelling every attribute object in the corpus uses for a hyphenated key.
+const RADIUS_IN_ATTRS = /(?:^|[{,\s])(['"]?)(rx|ry)\1\s*:\s*([^,}\n]+)/g;
+const RADIUS_IN_SETATTR = /setAttribute\(\s*['"](rx|ry)['"]\s*,\s*([^)]+)\)/g;
+// A number bound to a name, so the name can be recognised as the number it holds.
+const NUMERIC_CONSTANT = /\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*(-?\d+(?:\.\d+)?)\s*[;,\n]/g;
+
+// What a corner set from the drawing code may be: a rung read from the palette, or a value
+// computed from the mark's own geometry. What it may not be is a number, whether it is typed at
+// the call or bound to a name first. Anything the file computes is left alone, because a corner
+// that is genuinely per-mark is exactly what the ladder does not cover, and failing it would
+// flag the one form that already does this correctly.
+function radiusIsTyped(value, constants) {
+  const v = value.trim().replace(/[;,]$/, '');
+  const literal = v.replace(/^['"]|['"]$/g, '').trim();
+  if (literal.includes('var(--chart-radius-')) return false;
+  if (/^-?\d+(?:\.\d+)?(?:px)?$/.test(literal)) return true;
+  return constants.has(literal);
+}
+
+function numericConstants(code) {
+  const out = new Map();
+  NUMERIC_CONSTANT.lastIndex = 0;
+  let m;
+  while ((m = NUMERIC_CONSTANT.exec(code)) !== null) out.set(m[1], m[2]);
+  return out;
+}
+
+function checkRadiusTokens(file, src, blocks) {
+  const { styles, scripts } = regionsOf(stripHtmlComments(withoutBlocks(src, blocks)));
+  tally('radius', styles.length + scripts.length);
+
+  for (const text of styles) {
+    let m;
+    RADIUS_DECLARATION.lastIndex = 0;
+    while ((m = RADIUS_DECLARATION.exec(text)) !== null) {
+      const value = m[2].trim();
+      if (value.includes('var(--chart-radius-')) continue;
+      record('radius', 'error', file,
+        `"${m[1]}: ${value}" is a corner typed into the stylesheet. Every corner resolves through a var(--chart-radius-…) rung, so one edit reaches the whole corpus instead of one file`);
+    }
+  }
+
+  for (const code of scripts) {
+    const executable = stripJsComments(code);
+    const constants = numericConstants(executable);
+    RADIUS_IN_ATTRS.lastIndex = 0;
+    let m;
+    while ((m = RADIUS_IN_ATTRS.exec(executable)) !== null) {
+      if (!radiusIsTyped(m[3], constants)) continue;
+      record('radius', 'error', file,
+        `the drawing code sets ${m[2]} to ${m[3].trim()}. A shared corner belongs on a rung and reaches the mark through its class; a corner that is genuinely per-mark is computed from that mark's geometry`);
+    }
+    RADIUS_IN_SETATTR.lastIndex = 0;
+    while ((m = RADIUS_IN_SETATTR.exec(executable)) !== null) {
+      if (!radiusIsTyped(m[2], constants)) continue;
+      record('radius', 'error', file,
+        `the drawing code sets ${m[1]} to ${m[2].trim()}. A shared corner belongs on a rung and reaches the mark through its class; a corner that is genuinely per-mark is computed from that mark's geometry`);
+    }
+  }
+}
+
+// A resource the file does not carry. Every target here is read rather than pattern-matched,
+// because the syntax that carries a dependency is not the thing being forbidden: the property
+// the contract states is that the file opens on a laptop with no network.
+//
+// The attribute patterns catch the two ways a script or a picture arrives. A web font arrives by
+// neither. It is declared as a property inside an at-rule, so the rule that was looking for an
+// equals sign read straight past a src: url("https://...") sitting one line below a @font-face,
+// and the contract forbids a web font in the same sentence as a CDN.
+//
+// A reference into this same document is not a resource and neither is a value the file already
+// holds, so a fragment and a data URI pass. Everything else is a second file, which is a file
+// that will not travel with this one whether the network is up or not.
+const URL_TARGET = /\burl\(\s*(['"]?)([^'")]*)\1\s*\)/gi;
 
 function checkNoExternalResources(file, src) {
   const patterns = [
@@ -373,6 +742,20 @@ function checkNoExternalResources(file, src) {
     if (!re.test(cleaned)) continue;
     record('no-external', 'error', file,
       `${what}. A delivered chart has to open on a laptop with no network, so the corpus draws its own marks and carries no remote dependency`);
+  }
+
+  // Comments come out first. A sentence naming a remote font to warn an author off one is not a
+  // remote font, and this file already carries prose about url() for exactly that reason.
+  const { styles, scripts, markup } = regionsOf(cleaned);
+  const declarations = [...styles.map(stripJsComments), ...scripts.map(stripJsComments), markup].join('\n');
+  tally('no-external', 1);
+  URL_TARGET.lastIndex = 0;
+  let m;
+  while ((m = URL_TARGET.exec(declarations)) !== null) {
+    const target = m[2].trim();
+    if (!target || target.startsWith('#') || /^data:/i.test(target)) continue;
+    record('no-external', 'error', file,
+      `url("${target}") names a resource this file does not carry. A font, an image or a sheet fetched at open time is a second file, and the delivered chart is one file that opens on a laptop with no network. What the file needs, it holds`);
   }
 }
 
@@ -442,7 +825,13 @@ function checkAccessibility(file, src, ids) {
     }
   }
   tally('accessibility', count + 1);
-  if (/\bdata-chart-table\b/.test(src)) return;
+  // Asserted as an attribute on an element rather than as a string in the file. The test used to
+  // be a substring search over the raw source, which the word satisfies from inside a comment or
+  // from inside a sentence in the drawing code: renaming the real attribute and leaving the old
+  // name in a comment beside it passed. What the reader needs is a table, and only markup can
+  // carry one, so only markup is read.
+  const { markup } = regionsOf(stripHtmlComments(src));
+  if (/<[a-zA-Z][^>]*\sdata-chart-table\b/.test(markup)) return;
   record('accessibility', 'error', file,
     'no element carries data-chart-table. The numbers behind the drawing have to be readable without seeing it');
 }
@@ -473,15 +862,611 @@ function checkDeterminism(file, src) {
   }
 }
 
+// Rule 14: a narrow screen pans the drawing instead of shrinking it.
+//
+// This is asserted from the stylesheet rather than from a rendered page, and the reason is
+// worth stating. A headless browser can be given a phone-sized window, but the only thing
+// it hands back is the DOM, and the DOM says nothing about whether the page overflowed:
+// the numbers that would answer the question live in layout, which no --dump-dom run
+// exposes. What can be checked is whether the file declares the affordance at all, which
+// is the part an author forgets. So the check verifies that the figure region can scroll
+// sideways and that its drawing has a floor it will not shrink below. It does not verify
+// that the result is legible at that floor, and section 9 of the contract says so.
+function figureClassOf(src) {
+  const region = /<[^>]*data-chart-part\s*=\s*"figure"[^>]*>/i.exec(src);
+  if (!region) return null;
+  const cls = /\bclass\s*=\s*"([^"]+)"/i.exec(region[0]);
+  return cls ? cls[1].trim().split(/\s+/)[0] : null;
+}
+
+function checkNarrowViewport(file, src) {
+  tally('narrow-viewport', 3);
+  const cls = figureClassOf(src);
+  if (!cls) {
+    record('narrow-viewport', 'error', file,
+      'the figure region carries no class, so no rule can give the drawing somewhere to pan');
+    return;
+  }
+  const css = regionsOf(src).styles.join('\n');
+  const region = new RegExp('\\.' + cls + '\\s*\\{([^}]*)\\}').exec(css);
+  const drawing = new RegExp('\\.' + cls + '\\s+svg\\s*\\{([^}]*)\\}').exec(css);
+
+  if (!region || !/overflow-x\s*:\s*(auto|scroll)/.test(region[1])) {
+    record('narrow-viewport', 'error', file,
+      `the figure region declares no overflow-x, so a phone-width screen shrinks the drawing rather than panning it. At 340 units the axis labels sit on top of each other, and neither a static pass nor a desktop render ever sees it. Add "overflow-x: auto" to .${cls}`);
+  }
+
+  const min = drawing && /min-width\s*:\s*(\d+(?:\.\d+)?)px/.exec(drawing[1]);
+  if (!min) {
+    record('narrow-viewport', 'error', file,
+      `the figure drawing declares no min-width, so width:100% lets it shrink to whatever the screen gives it. Add a min-width to .${cls} svg`);
+    return;
+  }
+  const viewBox = /viewBox\s*=\s*"\s*[\d.+-]+\s+[\d.+-]+\s+([\d.]+)\s+[\d.]+\s*"/i.exec(src);
+  if (!viewBox || Number(min[1]) <= Number(viewBox[1])) return;
+  record('narrow-viewport', 'error', file,
+    `min-width is ${min[1]}px and the drawing is ${viewBox[1]} units wide, so the floor is above the natural size and the chart is scaled up at every screen width`);
+}
+
+// Rule 13: a file that moves lets the reader turn the motion off, and it never repeats.
+//
+// This rule used to read the stylesheet regions and nothing else, which made it a hole rather
+// than a gate. A motion driven from the drawing code matches none of the CSS patterns, so a
+// file could animate with no fallback at all and the check would report a pass on it. Nothing
+// in the corpus moved for as long as the hole was open, so the rule had never once fired on a
+// real file, and a rule with no observed failure is a claim rather than a check.
+//
+// A file can move by three routes and each has its own way of asking the reader's system
+// whether motion is wanted. A stylesheet animation is turned off by a media query in the same
+// stylesheet. A motion driven from the drawing code has to ask through matchMedia, because no
+// media query reaches it. An animation element in the markup cannot be reached by a media
+// query either, so it needs the same guard in script.
+//
+// What this does not treat as motion: a bare setTimeout. It is a one-shot delay far more often
+// than it is an animation loop, and a rule that demands a reduce-motion guard around a deferred
+// measurement fires on correct code. The residual is covered from the other side. The render
+// path opens each file twice after the settle time and compares both documents, so a motion
+// still running when the budget expires shows up as two renders that disagree.
+//
+// The settle time rule 13 names is not asserted here either, and for the same reason. Reading a
+// duration out of a stylesheet says what the author wrote, not when the picture stopped moving.
+// Only the two-render comparison observes that.
+const SCRIPT_MOTION = [
+  [/\brequestAnimationFrame\s*\(/, 'requestAnimationFrame'],
+  [/\.\s*animate\s*\(/, 'an animate() call'],
+  [/\bsetInterval\s*\(/, 'setInterval'],
+];
+const MARKUP_MOTION = /<\s*(?:animate|animateTransform|animateMotion|set)\b/i;
+const CSS_MOTION = /@keyframes\b|\banimation(?:-name)?\s*:|\btransition\s*:/;
+const REDUCED_MOTION = /prefers-reduced-motion/;
+const REPEATS_IN_CSS = /\banimation(?:-iteration-count)?\s*:[^;}]*\binfinite\b/i;
+const REPEATS_IN_MARKUP = /\b(?:repeatCount|repeatDur)\s*=\s*"\s*indefinite/i;
+const REPEATS_IN_SCRIPT = /\biterations\s*:\s*Infinity\b/;
+// Only these three declarations belong in a reduce-motion fallback. Anything else in one is a
+// motion made shorter, and a shorter animation is still an animation to somebody it makes ill.
+const MOTION_DECLARATION = /(?:^|[;{\s])(animation|animation-[a-z-]+|transition|transition-[a-z-]+)\s*:\s*([^;}]+)/gi;
+const REMOVES_MOTION = new Set(['animation', 'animation-name', 'transition', 'transition-property']);
+
+// The body of every reduce-motion media query, brace-matched rather than pattern-matched: the
+// block holds nested rules, and a regex that stops at the first closing brace reads half of one.
+function reducedMotionBlocks(css) {
+  const out = [];
+  const opener = /@media[^{]*prefers-reduced-motion[^{]*\{/gi;
+  let m;
+  while ((m = opener.exec(css)) !== null) {
+    let depth = 1;
+    let i = opener.lastIndex;
+    while (i < css.length && depth > 0) {
+      if (css[i] === '{') depth += 1;
+      else if (css[i] === '}') depth -= 1;
+      i += 1;
+    }
+    out.push(css.slice(opener.lastIndex, i - 1));
+  }
+  return out;
+}
+
+// Every rule in a stylesheet, carrying the at-rules it sits inside, so a rule can be asked
+// whether a reduce-motion query reaches it. The whole-stylesheet test answers a different
+// question: does this file mention the query at all. A file that guards one animation answers
+// yes for every animation it gains afterwards, which is how a mark can move for a reader who
+// asked it not to while the check reports a pass.
+function cssRuleTree(css) {
+  const out = [];
+  const stack = [];
+  let selectorStart = 0;
+  for (let i = 0; i < css.length; i += 1) {
+    if (css[i] === '{') {
+      stack.push({ selector: css.slice(selectorStart, i).trim(), bodyStart: i + 1 });
+      selectorStart = i + 1;
+    } else if (css[i] === '}') {
+      const open = stack.pop();
+      if (open) {
+        out.push({
+          selector: open.selector,
+          ancestors: stack.map((s) => s.selector),
+          body: css.slice(open.bodyStart, i),
+        });
+      }
+      selectorStart = i + 1;
+    }
+  }
+  return out;
+}
+
+// A selector list is a list. Two rules that name the same mark in a different order, or split
+// across two guards, are the same coverage, so the comparison is per selector rather than per
+// string.
+const selectorList = (selector) => selector.split(',').map((s) => s.replace(/\s+/g, ' ').trim()).filter(Boolean);
+
+// The property that switches a family on is the property whose "none" switches it off, which is
+// why one map serves both directions. A transition guarded by "animation: none" is not guarded.
+const MOTION_FAMILY = {
+  animation: 'animation',
+  'animation-name': 'animation',
+  transition: 'transition',
+  'transition-property': 'transition',
+};
+
+function motionFamilies(body) {
+  const families = new Set();
+  MOTION_DECLARATION.lastIndex = 0;
+  let m;
+  while ((m = MOTION_DECLARATION.exec(body)) !== null) {
+    const family = MOTION_FAMILY[m[1].toLowerCase()];
+    if (!family) continue;
+    if (m[2].trim().toLowerCase() === 'none') continue;
+    families.add(family);
+  }
+  return families;
+}
+
+function removesFamily(body, family) {
+  MOTION_DECLARATION.lastIndex = 0;
+  let m;
+  while ((m = MOTION_DECLARATION.exec(body)) !== null) {
+    if (MOTION_FAMILY[m[1].toLowerCase()] !== family) continue;
+    if (m[2].trim().toLowerCase() === 'none') return true;
+  }
+  return false;
+}
+
 function checkMotion(file, src) {
-  const { styles } = regionsOf(src);
-  const joined = styles.join('\n');
-  tally('motion', 1);
-  const animates = /@keyframes\b/.test(joined) || /\banimation\s*:/.test(joined) || /\btransition\s*:/.test(joined);
-  if (!animates) return;
-  if (/prefers-reduced-motion/.test(joined)) return;
-  record('motion', 'error', file,
-    'the file animates and carries no prefers-reduced-motion fallback');
+  const { styles, scripts, markup } = regionsOf(stripHtmlComments(src));
+  // CSS and JavaScript share block-comment syntax, so one stripper serves both. It matters
+  // here: a comment explaining an animation must not read to this rule as an animation.
+  const css = stripJsComments(styles.join('\n'));
+  const code = scripts.map(stripJsComments).join('\n');
+  tally('motion', 4);
+
+  if (CSS_MOTION.test(css) && !REDUCED_MOTION.test(css)) {
+    record('motion', 'error', file,
+      'the stylesheet animates and carries no prefers-reduced-motion fallback');
+  }
+
+  const routes = SCRIPT_MOTION.filter(([re]) => re.test(code)).map(([, what]) => what);
+  if (routes.length && !REDUCED_MOTION.test(code)) {
+    record('motion', 'error', file,
+      `the drawing code animates through ${routes.join(', ')} and never reads the reader's reduce-motion preference. No media query reaches a motion driven from script, so this route has to ask through matchMedia('(prefers-reduced-motion: reduce)'). A stylesheet fallback does not cover it and the rule used not to look here at all`);
+  }
+
+  if (MARKUP_MOTION.test(markup) && !REDUCED_MOTION.test(code)) {
+    record('motion', 'error', file,
+      'the markup carries an animation element and the drawing code never reads the reduce-motion preference. A media query cannot switch off an animation element, so the guard belongs in script');
+  }
+
+  // Per animation, rather than per file. The test above asks whether the stylesheet mentions
+  // the query anywhere, and a file passes that for ever once one rule is guarded: the second
+  // animation inherits an answer that was never about it. So each animating rule is matched
+  // against the guard rules by selector, and by family, because the guard has to remove the
+  // motion the rule actually declares. A step inside @keyframes is skipped: a keyframe may
+  // legally carry animation-timing-function, and reading that as an animation to guard would
+  // fail a file that is doing nothing wrong.
+  const tree = cssRuleTree(css);
+  const inGuard = (rule) => rule.ancestors.some((a) => REDUCED_MOTION.test(a));
+  const guards = tree.filter(inGuard);
+  for (const rule of tree) {
+    if (rule.selector.startsWith('@')) continue;
+    if (inGuard(rule)) continue;
+    if (rule.ancestors.some((a) => /^@keyframes\b/i.test(a.trim()))) continue;
+    const families = motionFamilies(rule.body);
+    if (!families.size) continue;
+    for (const family of families) {
+      for (const selector of selectorList(rule.selector)) {
+        tally('motion', 1);
+        const covered = guards.some((g) => selectorList(g.selector).includes(selector)
+          && removesFamily(g.body, family));
+        if (covered) continue;
+        record('motion', 'error', file,
+          `"${selector}" declares ${family} and no prefers-reduced-motion rule switches it off. A guard elsewhere in the stylesheet does not reach this selector, so the file answers a whole-stylesheet test and this mark still moves for a reader who asked it not to. The fallback carries the same selector and declares "${family}: none"`);
+      }
+    }
+  }
+
+  for (const body of reducedMotionBlocks(css)) {
+    let m;
+    MOTION_DECLARATION.lastIndex = 0;
+    while ((m = MOTION_DECLARATION.exec(body)) !== null) {
+      const prop = m[1].toLowerCase();
+      const value = m[2].trim().toLowerCase();
+      if (REMOVES_MOTION.has(prop) && value === 'none') continue;
+      record('motion', 'error', file,
+        `the reduce-motion fallback declares "${prop}: ${value}". A reader who asked their system for no motion gets a shorter animation rather than no animation, which is not what they asked for. A fallback removes the motion, so the declarations it carries are "animation: none" and "transition: none"`);
+    }
+  }
+
+  if (REPEATS_IN_CSS.test(css) || REPEATS_IN_MARKUP.test(markup) || REPEATS_IN_SCRIPT.test(code)) {
+    record('motion', 'error', file,
+      'an animation repeats without end. A picture that never stops changing has no settled state, so two renders of the file disagree by construction and rule 12 cannot hold');
+  }
+}
+
+/* -------------------------------------------- interaction, format, notice */
+
+// A stylesheet walked as blocks rather than matched as a pattern. A rule nested inside an
+// at-rule is still a rule, and a regex that stops at the first closing brace reads the
+// wrapper and swallows the first rule inside it, which is exactly where a suppression would
+// sit if somebody wanted one out of sight.
+function styleRules(css) {
+  const out = [];
+  const stack = [];
+  let selectorStart = 0;
+  for (let i = 0; i < css.length; i += 1) {
+    if (css[i] === '{') {
+      stack.push({ selector: css.slice(selectorStart, i).trim(), bodyStart: i + 1 });
+      selectorStart = i + 1;
+    } else if (css[i] === '}') {
+      const open = stack.pop();
+      if (open) out.push({ selector: open.selector, body: css.slice(open.bodyStart, i) });
+      selectorStart = i + 1;
+    }
+  }
+  return out;
+}
+
+// The three attributes a form declares when it answers a pointer. They are read out of the
+// markup alone: every one of them also appears in a stylesheet selector, so a file that
+// merely styles the register would otherwise read as a file that carries it.
+const INTERACTION_REGISTERS = ['data-chart-tooltip', 'data-chart-legend', 'data-chart-dim'];
+const HYGIENE_RULE = /:focus\s*:not\(\s*:focus-visible\s*\)/;
+
+// A form that gains a pointer carries one line of interaction hygiene, and it is the narrowed
+// form: the focus ring is dropped for a reader who clicked and kept for a reader who tabbed.
+// The second half of this check is the one worth having. An unconditional `outline: none` and
+// a `user-select: none` both pass every other rule in this file, and both take something away
+// from a reader — a keyboard indicator, and the ability to copy a number out of a document.
+function checkInteractionHygiene(file, src) {
+  const { styles, markup } = regionsOf(stripHtmlComments(src));
+  const css = stripJsComments(styles.join('\n'));
+  tally('interaction-hygiene', 2);
+
+  const carried = INTERACTION_REGISTERS.filter(function (attr) {
+    return new RegExp('\\b' + attr + '\\b').test(markup);
+  });
+  if (carried.length && !HYGIENE_RULE.test(css)) {
+    record('interaction-hygiene', 'error', file,
+      `the markup declares ${carried.join(', ')} and the stylesheet carries no ":focus:not(:focus-visible)" rule. A form that answers a pointer drops the focus ring for the reader who clicked and keeps it for the reader who tabbed, and a form that skips the line leaves a ring on every click`);
+  }
+
+  for (const rule of styleRules(css)) {
+    if (rule.selector.startsWith('@')) continue;
+    if (/:focus\b/.test(rule.selector) && !/:focus-visible/.test(rule.selector) && /outline\s*:\s*none/i.test(rule.body)) {
+      record('interaction-hygiene', 'error', file,
+        `"${rule.selector}" removes the outline from every focus, including a reader who arrived by keyboard. The suppression is scoped through :focus:not(:focus-visible), which is the selector that tells a click from a tab`);
+    }
+    if (/user-select\s*:\s*none/i.test(rule.body)) {
+      record('interaction-hygiene', 'error', file,
+        `"${rule.selector}" locks text selection. A delivered chart is a document and the numbers in it are meant to be copied out, so the selection half of the borrowed hygiene pair is refused here`);
+    }
+  }
+}
+
+// What a file paints before anyone touches it has to be what it painted before it gained a
+// pointer, and the two registers that ship in the markup are where that can go wrong. Neither
+// failure is visible to the render path: a file that opens already dimmed, or with a card
+// already showing, paints the same picture on both of its pointer-free opens and passes the
+// settled comparison exactly as a correct file does.
+function checkInteractionState(file, src) {
+  const { markup } = regionsOf(stripHtmlComments(src));
+  tally('interaction-state', 2);
+
+  const dim = /data-chart-dim\s*=\s*"([^"]*)"/g;
+  let m;
+  while ((m = dim.exec(markup)) !== null) {
+    if (m[1].trim() === '') continue;
+    record('interaction-state', 'error', file,
+      `the drawing ships data-chart-dim="${m[1]}", so it opens with one series already held against the rest. The attribute is empty until a reader asks`);
+  }
+
+  const tooltip = /<g\b[^>]*\bdata-chart-tooltip\b[^>]*>([\s\S]*?)<\/g>/gi;
+  while ((m = tooltip.exec(markup)) !== null) {
+    if (!m[1].trim()) continue;
+    record('interaction-state', 'error', file,
+      'the tooltip group ships with content in it, so a card is on screen before a reader has pointed at anything. The group is declared empty and the drawing code fills it');
+  }
+}
+
+// Every number a reader sees comes from the file's own formatter. A locale-dependent one makes
+// a delivered file read differently on the machine that opens it, which is the whole failure
+// the fixed-comma formatter exists to prevent, and it is invisible on the machine that authored
+// the file.
+const LOCALE_FORMATTERS = [
+  [/\btoLocaleString\s*\(/, 'toLocaleString()'],
+  [/\btoLocaleDateString\s*\(/, 'toLocaleDateString()'],
+  [/\btoLocaleTimeString\s*\(/, 'toLocaleTimeString()'],
+  [/\bIntl\s*\.\s*NumberFormat\b/, 'Intl.NumberFormat'],
+  [/\bIntl\s*\.\s*DateTimeFormat\b/, 'Intl.DateTimeFormat'],
+];
+
+function checkNumberFormat(file, src) {
+  const { scripts, markup } = regionsOf(stripHtmlComments(src));
+  const code = scripts.map(stripJsComments).join('\n');
+  tally('number-format', LOCALE_FORMATTERS.length + 1);
+
+  for (const [re, what] of LOCALE_FORMATTERS) {
+    if (!re.test(code)) continue;
+    record('number-format', 'error', file,
+      `the drawing code calls ${what}. A delivered file has to read on the machine that opens it exactly as it read on the machine that made it, and a host locale decides the grouping mark, the decimal mark and the digits`);
+  }
+
+  // A hover card prints a figure that is nowhere else in the picture, so it is the one place a
+  // raw value would reach a reader with no formatter between them.
+  if (!/\bdata-chart-tooltip\b/.test(markup)) return;
+  if (/function\s+fmt\s*\(/.test(code)) return;
+  record('number-format', 'error', file,
+    'the file carries a hover card and defines no fmt() of its own, so the figures it prints have nothing formatting them');
+}
+
+// Rule: an empty data block says so, in the picture. An empty frame and a chart whose values
+// are all zero look identical, and a reader shown an empty box cannot tell which one they
+// hold. The guard has to sit below the data it reads and it has to be able to stop the
+// drawing, so both are asserted rather than the sentinel alone: a guard that prints a notice
+// and then draws anyway prints the notice over an empty frame.
+const EMPTY_BEGIN = '/* CHART_EMPTY_NOTICE:BEGIN */';
+const EMPTY_END = '/* CHART_EMPTY_NOTICE:END */';
+
+function checkEmptyNotice(file, src) {
+  const { scripts } = regionsOf(src);
+  const joined = scripts.join('\n');
+  tally('empty-notice', 3);
+
+  const begins = occurrences(joined, EMPTY_BEGIN);
+  const ends = occurrences(joined, EMPTY_END);
+  if (begins !== 1 || ends !== 1) {
+    record('empty-notice', 'error', file,
+      `expected exactly one CHART_EMPTY_NOTICE sentinel pair inside a script and found ${begins} begin and ${ends} end. Every form says so when the data block holds nothing readable`);
+    return;
+  }
+  const start = joined.indexOf(EMPTY_BEGIN);
+  if (start < joined.indexOf(DATA_END)) {
+    record('empty-notice', 'error', file,
+      'the empty-data guard sits above the data block it reads, so it tests a name that is not defined yet');
+  }
+  const guard = joined.slice(start);
+  if (/\bfigure\s*:\s*\{/.test(guard) && /\bbreak\s+figure\s*;/.test(guard)) return;
+  record('empty-notice', 'error', file,
+    'the empty-data guard cannot stop the drawing. It carries no labelled block and no break out of it, so a form with nothing to draw would print the notice and then draw an empty frame under it');
+}
+
+// The five measurements every form shares, written into every file rather than imported,
+// because a delivered file has no runtime to import from and neither place these numbers are
+// used can read a custom property. Copies are only worth having when something compares them,
+// so the block is asserted byte for byte across the exact set that carries it rather than
+// across at least so many files: a corpus where the block was scattered would pass a count.
+const GEOMETRY_BEGIN = '/* GEOMETRY DEFAULTS';
+
+function geometryBlockOf(src) {
+  const start = src.indexOf(GEOMETRY_BEGIN);
+  if (start === -1) return null;
+  const end = src.indexOf('*/', start);
+  if (end === -1) return null;
+  return src.slice(start, end + 2);
+}
+
+function checkGeometryBlock(files) {
+  tally('geometry-block', files.length);
+  let reference = null;
+  let referenceFile = null;
+  for (const file of files) {
+    const block = geometryBlockOf(fs.readFileSync(file, 'utf8'));
+    const name = rel(file);
+    if (!block) {
+      record('geometry-block', 'error', name,
+        'no GEOMETRY DEFAULTS block. Every chart form and every proof sheet records the measurements it shares with the rest of the corpus, so a file that departs from one says so beside the value it uses instead');
+      continue;
+    }
+    if (reference === null) {
+      reference = block;
+      referenceFile = name;
+      continue;
+    }
+    if (block === reference) continue;
+    record('geometry-block', 'error', name,
+      `the GEOMETRY DEFAULTS block differs from the one in ${referenceFile}. The block is a record of what every file shares, so two versions of it mean the corpus no longer agrees about a number it claims to hold in common`);
+  }
+}
+
+// The published type scale: six named roles and three named departures, each departure a single
+// number that is the point of its chart rather than a label on it. The scale exists so the size
+// of the next template's axis tick is a choice out of six rungs rather than a guess, which only
+// holds while something rejects a seventh rung.
+function checkTypeScale(file, src, palette) {
+  const scale = palette.typeScale || {};
+  const allowed = new Map();
+  for (const [role, value] of Object.entries(scale.roles || {})) allowed.set(parseFloat(value), role);
+  for (const [role, value] of Object.entries(scale.departures || {})) allowed.set(parseFloat(value), role);
+
+  const { styles, scripts } = regionsOf(stripHtmlComments(src));
+  const sizes = [];
+  const css = stripJsComments(styles.join('\n'));
+  let m;
+  const declared = /font-size\s*:\s*([\d.]+)px/g;
+  while ((m = declared.exec(css)) !== null) sizes.push(Number(m[1]));
+  // An SVG text element can also take its size as an attribute, where the number is unitless
+  // user units rather than pixels. It is the same scale and the same decision, so it is held
+  // to the same rungs.
+  const attribute = /setAttribute\(\s*['"]font-size['"]\s*,\s*['"]?([\d.]+)/g;
+  const code = scripts.map(stripJsComments).join('\n');
+  while ((m = attribute.exec(code)) !== null) sizes.push(Number(m[1]));
+  // The same decision wearing a third syntax, and the one the corpus actually uses. Every
+  // template builds its marks through one node(name, attrs, cls) helper that walks the attribute
+  // object and calls setAttribute for each key, so a size handed to that helper never appears
+  // beside the word setAttribute and the rule read straight past it. Reading only the direct call
+  // meant the rule covered a route no chart form takes and missed the route all of them take.
+  // The scale is a decision about a number rather than about the call that carries it.
+  const viaHelper = /['"]font-size['"]\s*:\s*['"]?([\d.]+)/g;
+  while ((m = viaHelper.exec(code)) !== null) sizes.push(Number(m[1]));
+
+  tally('type-scale', sizes.length);
+  if (!allowed.size) {
+    record('type-scale', 'error', rel(PALETTE_SOURCE),
+      'the palette source publishes no type scale, so nothing says which sizes a file may set');
+    return;
+  }
+  for (const size of sizes) {
+    if (allowed.has(size)) continue;
+    record('type-scale', 'error', file,
+      `sets ${size}px, which is not one of the published rungs (${[...allowed.keys()].sort(function (a, b) { return a - b; }).join(', ')}). A size off the scale is a size chosen out of the air, and the scale is what stops the next form guessing`);
+  }
+}
+
+// A single mark may sweep along its own ramp, and only where the system already encodes
+// magnitude. A sweep restates an ordering the data has; the same sweep on an unordered or a
+// merely ranked series invents one.
+//
+// The rule is mechanical rather than judged, which is what makes it assertable at all. A
+// gradient whose stops name two different series values is a sweep. A gradient whose stops name
+// one series value at two opacities is a fade, which is what the area under a line already is,
+// and the rule leaves it alone.
+const GRADIENT = /<(linearGradient|radialGradient)\b[^>]*>([\s\S]*?)<\/\1>/gi;
+const SERIES_TOKEN = /var\(\s*(--chart-series-\d+)\s*\)/;
+
+function checkGradientSweep(file, src, declaredSystem) {
+  const { styles, markup } = regionsOf(stripHtmlComments(src));
+  const css = stripJsComments(styles.join('\n'));
+
+  // A stop reaches its colour through a class the way every other mark does, so the class has
+  // to be resolved before the stops can be read.
+  const stopColour = new Map();
+  for (const rule of styleRules(css)) {
+    const colour = /stop-color\s*:\s*([^;]+)/i.exec(rule.body);
+    if (!colour) continue;
+    const token = SERIES_TOKEN.exec(colour[1]);
+    if (!token) continue;
+    for (const selector of rule.selector.split(',')) {
+      const cls = /^\.([A-Za-z0-9_-]+)$/.exec(selector.trim());
+      if (cls) stopColour.set(cls[1], token[1]);
+    }
+  }
+
+  let gradients = 0;
+  let m;
+  GRADIENT.lastIndex = 0;
+  while ((m = GRADIENT.exec(markup)) !== null) {
+    gradients += 1;
+    const values = new Set();
+    const stops = /<stop\b[^>]*>/gi;
+    let s;
+    while ((s = stops.exec(m[2])) !== null) {
+      const cls = /\bclass\s*=\s*"([^"]*)"/i.exec(s[0]);
+      if (cls) {
+        for (const name of cls[1].trim().split(/\s+/)) {
+          if (stopColour.has(name)) values.add(stopColour.get(name));
+        }
+      }
+      const inline = /\bstop-color\s*=\s*"([^"]*)"/i.exec(s[0]);
+      if (inline) {
+        const token = SERIES_TOKEN.exec(inline[1]);
+        if (token) values.add(token[1]);
+      }
+    }
+    if (values.size < 2) continue;
+    if (declaredSystem === 'ordered') continue;
+    record('gradient-sweep', 'error', file,
+      `a gradient runs between ${[...values].join(' and ')} in a file declaring "${declaredSystem}". A sweep between two series values restates an ordering, and only a system that encodes magnitude has one to restate. A gradient naming one series value at two opacities is a fade and is left alone`);
+  }
+  tally('gradient-sweep', gradients + 1);
+}
+
+
+// An indexed data class carries the palette token of the same index, the set of indices runs
+// from one without a gap, and it stops at the declared system's capacity.
+//
+// This is the one mapping nothing else in this file looked at, and it is the mapping that
+// decides what the picture means. Every other colour rule asks where a value came from: the
+// palette block is matched against the source in both directions, the literals rule refuses a
+// colour typed outside it, and the source itself is gated for contrast and for the direction its
+// ramp runs. A file whose classes hand those tokens out in the wrong order satisfies all of them.
+//
+// Reverse the five mappings in a matrix form and the encoding inverts: the step the drawing code
+// picks for the highest reading now paints the palest colour. The legend inverts with it, because
+// the legend is drawn from the same classes, so the picture agrees with itself and disagrees with
+// the data, and a reviewer comparing the key against the grid sees nothing wrong. What survives
+// the permutation is arithmetic rather than appearance: the number in the class name and the
+// number in the token it resolves to are the same number, or the encoding has been renamed.
+//
+// The gap and the ceiling ride here because they are the same fact from the other side. A ladder
+// missing a rung, or reaching past the colours the system defines, is a class the stylesheet
+// cannot paint, and an unpainted fill is black rather than absent.
+const INDEXED_CLASS = /^\.([a-z]+)-(\d+)$/;
+const SERIES_TOKEN_VALUE = /var\(\s*--chart-series-(\d+)\s*\)/;
+const COLOUR_PROPS = ['fill', 'stroke', 'stop-color', 'color', 'background', 'background-color'];
+const DECLARED_CAPACITY = /\bconst\s+CAPACITY\s*=\s*(\d+)\s*;/;
+
+function checkSeriesMapping(file, src, palette, declaredSystem) {
+  const { styles, scripts } = regionsOf(stripHtmlComments(src));
+  const css = stripJsComments(styles.join('\n'));
+  const families = new Map();
+
+  for (const rule of styleRules(css)) {
+    if (rule.selector.startsWith('@')) continue;
+    let token = null;
+    for (const prop of COLOUR_PROPS) {
+      const decl = new RegExp(`(?:^|[;{\\s])${prop}\\s*:\\s*([^;}]+)`, 'i').exec(rule.body);
+      if (!decl) continue;
+      const found = SERIES_TOKEN_VALUE.exec(decl[1]);
+      if (found) { token = Number(found[1]); break; }
+    }
+    if (token === null) continue;
+    for (const selector of rule.selector.split(',')) {
+      const cls = INDEXED_CLASS.exec(selector.trim());
+      if (!cls) continue;
+      if (!families.has(cls[1])) families.set(cls[1], new Map());
+      families.get(cls[1]).set(Number(cls[2]), token);
+    }
+  }
+
+  const capacity = declaredSystem && palette.systems[declaredSystem]
+    ? palette.systems[declaredSystem].capacity : null;
+  const declared = DECLARED_CAPACITY.exec(stripJsComments(scripts.join('\n')));
+
+  tally('series-mapping', families.size || 1);
+  for (const [prefix, map] of families) {
+    const indices = [...map.keys()].sort((a, b) => a - b);
+    tally('series-mapping', indices.length + 2);
+
+    for (const i of indices) {
+      if (map.get(i) === i) continue;
+      record('series-mapping', 'error', file,
+        `".${prefix}-${i}" paints --chart-series-${map.get(i)}. An indexed class carries the token of its own index, because the drawing code chooses the index and the palette source decides what that index means. A class handing out somebody else's token reverses or shuffles the encoding while the legend, drawn from the same classes, shuffles with it, so the picture stays consistent with itself and stops being consistent with the data`);
+    }
+
+    const expected = indices.map((_, n) => n + 1);
+    if (indices.join(',') !== expected.join(',')) {
+      record('series-mapping', 'error', file,
+        `the ".${prefix}-*" ladder is [${indices.join(', ')}] and a ladder runs from 1 without a gap. The drawing code counts from zero and adds one, so a missing rung is a class the stylesheet never defines, and an undefined fill paints black rather than nothing`);
+    }
+
+    if (capacity !== null && indices.length > capacity) {
+      record('series-mapping', 'error', file,
+        `".${prefix}-*" defines ${indices.length} steps and the "${declaredSystem}" system carries ${capacity}. The ceiling lives in the palette source, so a file cannot reach past it by defining a class for a colour nobody chose`);
+    }
+
+    if (declared && Number(declared[1]) !== indices.length) {
+      record('series-mapping', 'error', file,
+        `the drawing code declares CAPACITY ${declared[1]} and the stylesheet defines ${indices.length} ".${prefix}-*" steps. The constant is what stops a mark past the ceiling reaching a class with no fill, so a constant that outruns the classes reopens exactly the hole it was added to close`);
+    }
+  }
 }
 
 /* ------------------------------------------------------------------- catalog */
@@ -507,6 +1492,10 @@ function parseCatalog() {
   const headers = cells(lines[0]);
   const idCol = headers.indexOf('id');
   const fileCol = headers.indexOf('file');
+  // The system cell is read as well as the id and the file. It is a mirror of what a template
+  // declares rather than a second opinion, which is precisely why it can drift: nothing about a
+  // cell copied by hand keeps it agreeing with the file it describes.
+  const systemCol = headers.indexOf('system');
   if (idCol === -1 || fileCol === -1) {
     record('catalog', 'error', rel(CATALOG),
       `the index table needs an "id" column and a "file" column and has [${headers.join(', ')}]`);
@@ -517,9 +1506,9 @@ function parseCatalog() {
     if (/^\|[\s:|-]+\|$/.test(line)) continue;
     const c = cells(line);
     if (!c[idCol]) continue;
-    rows.push({ id: c[idCol], file: c[fileCol] });
+    rows.push({ id: c[idCol], file: c[fileCol], system: systemCol === -1 ? null : c[systemCol] });
   }
-  return { rows, headers };
+  return { rows, headers, systemCol };
 }
 
 function checkCatalogResolves(catalog, templateIdentities) {
@@ -553,6 +1542,38 @@ function checkCatalogResolves(catalog, templateIdentities) {
   }
 }
 
+// Every row's system cell has to agree with the file it points at and has to name a system the
+// palette source defines. The cell is a hand-kept copy of a template's own declaration, so the
+// two can disagree with nothing catching it, which is the state this corpus was in until both
+// documents were read against each other by hand. A check is what stops the next one.
+function checkCatalogSystem(catalog, palette) {
+  if (!catalog) return;
+  tally('catalog-system', catalog.rows.length + 1);
+  if (catalog.systemCol === -1) {
+    record('catalog-system', 'error', rel(CATALOG),
+      'the index table carries no "system" column, so no row says which colour system its form declares');
+    return;
+  }
+  for (const row of catalog.rows) {
+    if (!row.file) continue;
+    const target = path.join(PACKAGE_ROOT, row.file);
+    if (!fs.existsSync(target)) continue;
+    if (!row.system) {
+      record('catalog-system', 'error', rel(CATALOG), `row "${row.id}" names no colour system`);
+      continue;
+    }
+    if (!palette.systems[row.system]) {
+      record('catalog-system', 'error', rel(CATALOG),
+        `row "${row.id}" names colour system "${row.system}", which the palette source does not define`);
+      continue;
+    }
+    const declared = metaContent(fs.readFileSync(target, 'utf8'), 'chart-color-system');
+    if (declared === row.system) continue;
+    record('catalog-system', 'error', rel(CATALOG),
+      `row "${row.id}" says the system is "${row.system}" and ${row.file} declares "${declared}". The cell mirrors the file, so the file is the side that decides and the row is the side that drifted`);
+  }
+}
+
 /* -------------------------------------------------------------------- render */
 
 function findBrowser() {
@@ -567,6 +1588,39 @@ function findBrowser() {
   return candidates.find((p) => fs.existsSync(p)) || null;
 }
 
+// The render budget is three seconds, and the contract puts the settle time at one. Three
+// times over is deliberate: a budget that only just clears the settle time turns every slow
+// machine into a failure nobody can reproduce.
+const RENDER_BUDGET_MS = 3000;
+// Tall enough that the whole card and the table under it sit inside one frame. A short window
+// crops the page, and a comparison that only sees the top of a document is not a comparison of
+// the document.
+const RENDER_WINDOW = '900,6000';
+
+// The colour scheme a headless run inherits is the one the operator's machine happens to be
+// set to, which would make the picture two people compare depend on their system settings. Both
+// schemes are pinned instead, so a run means the same thing on any machine.
+const SCHEME_LIGHT = '--blink-settings=preferredColorScheme=1';
+const SCHEME_DARK = '--blink-settings=preferredColorScheme=0';
+
+// One open of one file: the document the browser built, and the picture it painted.
+function openOnce(browser, file, shot, scheme) {
+  // Clear the target first. A browser that dies without writing leaves the previous file's
+  // picture sitting at this path, and comparing a stale artifact is how a check reports a pass
+  // on something it never looked at.
+  fs.rmSync(shot, { force: true });
+  try {
+    const dom = execFileSync(browser, [
+      '--headless=new', '--disable-gpu', '--no-sandbox', '--hide-scrollbars', scheme,
+      `--window-size=${RENDER_WINDOW}`, `--virtual-time-budget=${RENDER_BUDGET_MS}`,
+      '--dump-dom', `--screenshot=${shot}`, `file://${file}`,
+    ], { encoding: 'utf8', timeout: 45000, stdio: ['ignore', 'pipe', 'ignore'] });
+    return { dom, pixels: fs.existsSync(shot) ? fs.readFileSync(shot) : null };
+  } catch (err) {
+    return { error: err.message };
+  }
+}
+
 function checkRenders(files) {
   const browser = findBrowser();
   if (!browser) {
@@ -576,26 +1630,75 @@ function checkRenders(files) {
     return;
   }
   tally('render', files.length);
-  for (const file of files) {
-    let dom;
-    try {
-      dom = execFileSync(browser, [
-        '--headless=new', '--disable-gpu', '--no-sandbox',
-        '--virtual-time-budget=3000', '--dump-dom', `file://${file}`,
-      ], { encoding: 'utf8', timeout: 45000, stdio: ['ignore', 'pipe', 'ignore'] });
-    } catch (err) {
-      record('render', 'error', rel(file), `the browser did not return a document: ${err.message}`);
-      continue;
+  // Rule 12's rendered half. The static determinism rule reads the drawing code for a clock or
+  // a random source, which catches the two ways a picture used to be able to change on its own.
+  // It cannot catch a third: an animation still running when the review takes its screenshot.
+  // So each file is opened twice and both halves of what came back are compared. The document
+  // catches a drawing that is still building itself, and the picture catches motion that has
+  // not settled, which no document dump can see because a CSS animation never touches the DOM.
+  tally('settled-render', files.length * 2);
+  // Rule 4's rendered half. Every file carries a second palette block that only paints when the
+  // reader's system asks for a dark scheme, and no reading of the file can prove that block
+  // reaches the paint: a block nested wrong, or pasted outside its media query, matches the
+  // source in both directions and still changes nothing on screen. Opening each file a third
+  // time with the scheme pinned dark, and requiring a different picture, is what observes it.
+  tally('dark-render', files.length);
+  const shots = fs.mkdtempSync(path.join(os.tmpdir(), 'chart-corpus-render-'));
+  try {
+    for (const file of files) {
+      const first = openOnce(browser, file, path.join(shots, 'first.png'), SCHEME_LIGHT);
+      if (first.error) {
+        record('render', 'error', rel(file), `the browser did not return a document: ${first.error}`);
+        continue;
+      }
+      const figure = /<[^>]*data-chart-part\s*=\s*"figure"[^>]*>([\s\S]*?)<\/(?:div|figure|section)>/i.exec(first.dom);
+      if (!figure) {
+        record('render', 'error', rel(file), 'the rendered document has no figure region');
+      } else {
+        const elements = (figure[1].match(/<[a-zA-Z]/g) || []).length;
+        if (elements < 4) {
+          record('render', 'error', rel(file),
+            `the figure region holds ${elements} elements after the script ran. A chart that opens as an empty box passes every static check`);
+        }
+      }
+
+      const second = openOnce(browser, file, path.join(shots, 'second.png'), SCHEME_LIGHT);
+      if (second.error) {
+        record('settled-render', 'error', rel(file),
+          `the second open did not return a document, so nothing could be compared: ${second.error}`);
+        continue;
+      }
+      if (first.dom !== second.dom) {
+        record('settled-render', 'error', rel(file),
+          `two opens of this file built different documents after ${RENDER_BUDGET_MS}ms. Something in the drawing code is still changing the page when the budget expires, so a screenshot review compares the chart against noise rather than against itself`);
+      }
+      if (!first.pixels || !second.pixels) {
+        record('settled-render', 'error', rel(file),
+          'the browser returned no picture, so the settled state could not be compared. The document alone cannot see an animation, because a stylesheet animation never touches the DOM');
+        continue;
+      }
+      if (!first.pixels.equals(second.pixels)) {
+        record('settled-render', 'error', rel(file),
+          `two opens of this file painted different pictures after ${RENDER_BUDGET_MS}ms. Either something moves without settling or the motion outruns the budget, and either way two screenshots of one chart disagree`);
+      }
+
+      const dark = openOnce(browser, file, path.join(shots, 'dark.png'), SCHEME_DARK);
+      if (dark.error) {
+        record('dark-render', 'error', rel(file),
+          `the open under a dark colour scheme did not return a document: ${dark.error}`);
+        continue;
+      }
+      if (!dark.pixels) {
+        record('dark-render', 'error', rel(file),
+          'the dark open returned no picture, so nothing could be compared against the light one');
+        continue;
+      }
+      if (!dark.pixels.equals(first.pixels)) continue;
+      record('dark-render', 'error', rel(file),
+        'this file paints the same picture under a dark colour scheme as under a light one, so its second palette block never reached the paint. Either the block sits outside its media query, or the browser did not honour the pinned scheme');
     }
-    const figure = /<[^>]*data-chart-part\s*=\s*"figure"[^>]*>([\s\S]*?)<\/(?:div|figure|section)>/i.exec(dom);
-    if (!figure) {
-      record('render', 'error', rel(file), 'the rendered document has no figure region');
-      continue;
-    }
-    const elements = (figure[1].match(/<[a-zA-Z]/g) || []).length;
-    if (elements >= 4) continue;
-    record('render', 'error', rel(file),
-      `the figure region holds ${elements} elements after the script ran. A chart that opens as an empty box passes every static check`);
+  } finally {
+    fs.rmSync(shots, { recursive: true, force: true });
   }
 }
 
@@ -615,7 +1718,8 @@ function htmlFilesUnder(dir) {
 function main() {
   const wantRender = process.argv.includes('--render');
   const palette = loadPalette();
-  checkPaletteSource(palette);
+  checkRadiusRungs(palette);
+  for (const theme of THEMES) checkPaletteSource(palette, theme);
 
   const files = htmlFilesUnder(ASSET_ROOT);
   const templateIdentities = new Map();
@@ -625,8 +1729,9 @@ function main() {
     const name = rel(file);
     checkDocumentShape(name, src);
     const { id, systemId } = checkIdentity(name, src, palette);
-    const block = checkPaletteBlock(name, src, palette, systemId);
-    checkColourLiterals(name, src, block);
+    const blocks = checkPaletteBlock(name, src, palette, systemId);
+    checkColourLiterals(name, src, blocks);
+    checkRadiusTokens(name, src, blocks);
     checkNoExternalResources(name, src);
     checkScriptParses(name, src);
     checkDataBlock(name, src);
@@ -634,11 +1739,35 @@ function main() {
     checkAccessibility(name, src, ids);
     checkCardParts(name, src);
     checkDeterminism(name, src);
+    checkNarrowViewport(name, src);
     checkMotion(name, src);
+    checkInteractionHygiene(name, src);
+    checkInteractionState(name, src);
+    checkNumberFormat(name, src);
+    checkTypeScale(name, src, palette);
+    checkGradientSweep(name, src, systemId);
+    checkSeriesMapping(name, src, palette, systemId);
+    // The empty-data notice is an obligation of every file that draws a reading, which is every
+    // chart form and every delivery. It used to be asked of the forms alone, on the stated ground
+    // that a delivery carries the notice of the form it was built from. That ground was checked
+    // and none of the six did: the exemption was a sentence describing what nobody had verified.
+    // A delivery is also the copy somebody edits, so it is the copy most likely to be handed an
+    // empty block. The one file this does not reach is a proof sheet, whose data block is the
+    // palette it draws rather than a reading it displays.
+    if (file.startsWith(TEMPLATE_DIR + path.sep) || file.startsWith(EXAMPLE_DIR + path.sep)) {
+      checkEmptyNotice(name, src);
+    }
     if (id && file.startsWith(TEMPLATE_DIR + path.sep)) templateIdentities.set(id, file);
   }
 
-  checkCatalogResolves(parseCatalog(), templateIdentities);
+  // The block belongs to the files that draw in the shared frame: every chart form and every
+  // proof sheet. The set is derived from the two directories rather than listed, so a new form
+  // joins it by existing.
+  checkGeometryBlock([...htmlFilesUnder(TEMPLATE_DIR), ...htmlFilesUnder(path.join(ASSET_ROOT, 'color'))]);
+
+  const catalog = parseCatalog();
+  checkCatalogResolves(catalog, templateIdentities);
+  checkCatalogSystem(catalog, palette);
   if (wantRender) checkRenders(files);
 
   const errors = findings.filter((f) => f.level === 'error');

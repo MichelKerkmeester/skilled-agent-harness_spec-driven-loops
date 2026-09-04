@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/056-command-contract-reconciliation",
+  "description": "`sk-create-command` teaches people how to write OpenCode commands, and its `command-contract.json` calls itself the single machine-readable source of",
+  "keywords": [
+    "sk-create-command",
+    "teaches",
+    "people",
+    "write",
+    "opencode",
+    "commands",
+    "command-contract",
+    "json",
+    "calls",
+    "itself",
+    "single",
+    "machine-readable",
+    "source"
+  ],
+  "lastUpdated": "2026-09-04T10:45:20.728Z",
+  "specId": "056",
+  "folderSlug": "command-contract-reconciliation",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

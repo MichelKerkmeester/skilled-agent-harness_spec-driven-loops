@@ -169,10 +169,10 @@ version: 1.0.0.0
 
 ```
 
-Every asset file carries this full 5-field frontmatter block: the Skill Advisor harvests it as routing signal (3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content; `importance_tier` defaults to `normal`; `contextType` one of `planning|research|implementation|general`). See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for field rules.
+Every asset file carries this full 5-field frontmatter block: the Skill Advisor harvests it as routing signal (3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content, `importance_tier` defaults to `normal`, and `contextType` is one of `planning|research|implementation|general`). See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for field rules.
 
 > **WARNING: DO NOT duplicate content between intro and OVERVIEW section.**
-> The intro is a hook; OVERVIEW provides the details.
+> The intro is a hook. OVERVIEW provides the details.
 
 #### GOOD Intro Structure
 

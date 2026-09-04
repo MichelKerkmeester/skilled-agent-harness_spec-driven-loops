@@ -72,7 +72,7 @@ pi loads `models.json` → `applyModelsJson` merges provider compat into every c
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
 ### Phase 1: Single-pass config override and sweep
 

@@ -1,0 +1,445 @@
+signal	hub	bucket	skillId	confidence	score	targets
+create skill	sk-doc	RESOLVED	sk-doc	0.8468	0.608078	sk-create-skill
+create parent skill hub	sk-doc	RESOLVED	sk-doc	0.95	0.845143	sk-create-skill-parent
+create readme	sk-doc	RESOLVED	sk-doc	0.95	0.8384	sk-create-readme
+write install guide	sk-doc	RESOLVED	sk-doc	0.95	0.828403	sk-create-readme
+create agent	sk-doc	WRONG_HUB	create:agent	0.82	0.513333	
+create command	sk-doc	RESOLVED	sk-doc	0.8829	0.675136	sk-create-command
+create feature catalog	sk-doc	RESOLVED	sk-doc	0.95	0.828896	sk-create-feature-catalog
+create manual testing playbook	sk-doc	RESOLVED	sk-doc	0.95	0.826512	sk-create-manual-testing-playbook
+promote benchmark folder	sk-doc	RESOLVED	sk-doc	0.911	0.727438	sk-create-benchmark
+create ascii flowchart	sk-doc	RESOLVED	sk-doc	0.95	0.828896	sk-create-diagram
+create diagram	sk-doc	RESOLVED	sk-doc	0.8337	0.583704	sk-create-diagram
+html svg diagram	sk-doc	RESOLVED	sk-doc	0.8962	0.7	sk-create-diagram
+create a chart	sk-doc	RESOLVED	sk-doc	0.9154	0.735563	sk-create-chart
+plot the data	sk-doc	RESOLVED	sk-doc	0.8653	0.642475	sk-create-chart
+data visualization	sk-doc	RESOLVED	sk-doc	0.8778	0.665603	sk-create-chart
+standalone html chart	sk-doc	RESOLVED	sk-doc	0.9059	0.717904	sk-create-chart
+waterfall chart	sk-doc	RESOLVED	sk-doc	0.8778	0.665603	sk-create-chart
+treemap	sk-doc	RESOLVED	sk-doc	0.82	0.463725	sk-create-chart
+heatmap	sk-doc	RESOLVED	sk-doc	0.82	0.463725	sk-create-chart
+box plot	sk-doc	RESOLVED	sk-doc	0.8778	0.665603	sk-create-chart
+histogram	sk-doc	RESOLVED	sk-doc	0.82	0.463725	sk-create-chart
+bar chart of	sk-doc	RESOLVED	sk-doc	0.8557	0.624571	sk-create-chart
+line chart of	sk-doc	RESOLVED	sk-doc	0.86	0.632628	sk-create-chart
+scatter plot of	sk-doc	RESOLVED	sk-doc	0.8557	0.624571	sk-create-chart
+data visualisation	sk-doc	RESOLVED	sk-doc	0.8286	0.574171	sk-create-chart
+data viz	sk-doc	RESOLVED	sk-doc	0.8286	0.574171	sk-create-chart
+heat matrix	sk-doc	RESOLVED	sk-doc	0.8233	0.564324	sk-create-chart
+heat map	sk-doc	RESOLVED	sk-doc	0.8233	0.564324	sk-create-chart
+candlestick chart	sk-doc	RESOLVED	sk-doc	0.8286	0.574171	sk-create-chart
+stacked area chart	sk-doc	RESOLVED	sk-doc	0.9059	0.717904	sk-create-chart
+donut chart	sk-doc	RESOLVED	sk-doc	0.8286	0.574171	sk-create-chart
+waffle chart	sk-doc	RESOLVED	sk-doc	0.8286	0.574171	sk-create-chart
+parallel coordinates	sk-doc	RESOLVED	sk-doc	0.82	0.556267	sk-create-chart
+chart catalog	sk-doc	RESOLVED	sk-doc	0.8778	0.665603	sk-create-chart
+which chart type	sk-doc	RESOLVED	sk-doc	0.8557	0.624571	sk-create-chart
+chart color system	sk-doc	RESOLVED	sk-doc	0.911	0.727438	sk-create-chart
+create changelog	sk-doc	RESOLVED	sk-doc	0.8829	0.675136	sk-create-changelog
+retire a repo rule	sk-doc	RESOLVED	sk-doc	0.95	0.809336	sk-create-repo-rule
+add a project rule	sk-doc	RESOLVED	sk-doc	0.9155	0.735809	sk-create-repo-rule
+create repo rule	sk-doc	RESOLVED	sk-doc	0.95	0.828896	sk-create-repo-rule
+write a repo rule	sk-doc	RESOLVED	sk-doc	0.95	0.828403	sk-create-repo-rule
+repo rule	sk-doc	RESOLVED	sk-doc	0.8778	0.665603	sk-create-repo-rule
+add a repo rule	sk-doc	RESOLVED	sk-doc	0.95	0.819362	sk-create-repo-rule
+create diff report	sk-doc	RESOLVED	sk-doc	0.925	0.753399	sk-create-diff
+document before after review	sk-doc	WRONG_HUB	sk-code	0.9376	0.776858	
+before after document diff	sk-doc	RESOLVED	sk-doc	0.95	0.810751	sk-create-diff
+document change report	sk-doc	RESOLVED	sk-doc	0.922	0.747842	sk-create-diff
+yaml frontmatter	sk-doc	RESOLVED	sk-doc	0.8778	0.665603	sk-create-frontmatter
+frontmatter block	sk-doc	RESOLVED	sk-doc	0.8778	0.665603	sk-create-frontmatter
+frontmatter field	sk-doc	RESOLVED	sk-doc	0.8286	0.574171	sk-create-frontmatter
+description budget	sk-doc	RESOLVED	sk-doc	0.8832	0.675629	sk-create-frontmatter
+4-part version	sk-doc	RESOLVED	sk-doc	0.9102	0.726029	sk-create-frontmatter
+frontmatter versioning	sk-doc	RESOLVED	sk-doc	0.8778	0.665602	sk-create-frontmatter
+frontmatter validation	sk-doc	RESOLVED	sk-doc	0.8394	0.594191	sk-create-frontmatter
+validate document	sk-doc	RESOLVED	sk-doc	0.9405	0.782292	sk-create-quality-control
+score document quality	sk-doc	RESOLVED	sk-doc	0.9391	0.77967	sk-create-quality-control
+optimize documentation	sk-doc	RESOLVED	sk-doc	0.9424	0.785925	sk-create-quality-control
+apply human voice	sk-doc	RESOLVED	sk-doc	0.95	0.819362	sk-create-with-human-voice
+rewrite in human voice	sk-doc	RESOLVED	sk-doc	0.9155	0.735809	sk-create-with-human-voice
+make this sound human	sk-doc	RESOLVED	sk-doc	0.95	0.819362	sk-create-with-human-voice
+sounds ai-generated	sk-doc	RESOLVED	sk-doc	0.9102	0.726029	sk-create-with-human-voice
+reads like ai wrote it	sk-doc	RESOLVED	sk-doc	0.8461	0.606667	sk-create-with-human-voice
+remove ai tells	sk-doc	RESOLVED	sk-doc	0.9102	0.726029	sk-create-with-human-voice
+human voice rules	sk-doc	RESOLVED	sk-doc	0.95	0.819362	sk-create-with-human-voice
+voice pass	sk-doc	RESOLVED	sk-doc	0.8778	0.665602	sk-create-with-human-voice
+scaffold a skill	sk-doc	RESOLVED	sk-doc	0.8319	0.580356	sk-create-skill
+new skill	sk-doc	RESOLVED	sk-doc	0.82	0.529956	sk-create-skill
+build a skill	sk-doc	RESOLVED	sk-doc	0.8319	0.580356	sk-create-skill
+author a skill	sk-doc	RESOLVED	sk-doc	0.8363	0.588413	sk-create-skill
+new agent	sk-doc	RESOLVED	sk-doc	0.82	0.462933	sk-create-agent
+author an agent	sk-doc	RESOLVED	sk-doc	0.82	0.52139	sk-create-agent
+new slash command	sk-doc	RESOLVED	sk-doc	0.9059	0.717904	sk-create-command
+slash command	sk-doc	RESOLVED	sk-doc	0.8286	0.574171	sk-create-command
+parent hub	sk-doc	RESOLVED	sk-doc	0.9049	0.716002	sk-create-skill-parent
+skill hub	sk-doc	RESOLVED	sk-doc	0.82	0.54786	sk-create-skill-parent
+new benchmark	sk-doc	RESOLVED	sk-doc	0.8286	0.574171	sk-create-benchmark
+benchmark package	sk-doc	RESOLVED	sk-doc	0.8286	0.574171	sk-create-benchmark
+before and after document	sk-doc	RESOLVED	sk-doc	0.9133	0.731728	sk-create-diff
+document diff	sk-doc	RESOLVED	sk-doc	0.9354	0.772759	sk-create-diff
+opencode skill	sk-doc	WRONG_HUB	sk-code	0.95	0.837137	
+opencode agent	sk-doc	WRONG_HUB	sk-code	0.9015	0.709691	
+opencode command	sk-doc	WRONG_HUB	sk-code	0.95	0.804943	
+scaffold a new skill	sk-doc	RESOLVED	sk-doc	0.8821	0.67369	sk-create-skill
+create a new skill	sk-doc	RESOLVED	sk-doc	0.901	0.708838	sk-create-skill
+sk-doc	sk-doc	DEFERRED	sk-doc	0.8601	0.632695	
+documentation hub	sk-doc	DEFERRED	sk-doc	0.95	0.828895	
+create parent skill	sk-doc	RESOLVED	sk-doc	0.82	0.331809	sk-create-skill-parent
+install guide	sk-doc	RESOLVED	sk-doc	0.82	0.296002	sk-create-readme
+feature catalog	sk-doc	RESOLVED	sk-doc	0.82	0.389335	sk-create-feature-catalog
+manual testing playbook	sk-doc	RESOLVED	sk-doc	0.95	0.819362	sk-create-manual-testing-playbook
+create benchmark	sk-doc	DEFERRED	sk-doc	0.82	0.305535	
+ascii flowchart	sk-doc	RESOLVED	sk-doc	0.82	0.296002	sk-create-diagram
+repo rule router	sk-doc	RESOLVED	sk-doc	0.9333	0.768962	sk-create-repo-rule
+repo rules	sk-doc	RESOLVED	sk-doc	0.82	0.296002	sk-create-repo-rule
+doc quality	sk-doc	WRONG_HUB	sk-code	0.82	0.419264	
+validate markdown	sk-doc	RESOLVED	sk-doc	0.8476	0.609562	sk-create-quality-control
+dqi score	sk-doc	NO_RECOMMENDATION				
+code work	sk-code	DEFERRED	sk-code	0.9268	0.756834	
+code surface detection	sk-code	MULTI	sk-code	0.95	0.855671	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian
+webflow	sk-code	RESOLVED	sk-code	0.8363	0.588557	sk-code-webflow
+frontend	sk-code	RESOLVED	sk-code	0.8626	0.637364	sk-code-webflow
+animation	sk-code	DEFERRED	sk-code	0.82	0.545264	
+cdn	sk-code	RESOLVED	sk-code	0.8531	0.619733	sk-code-webflow
+browser test	sk-code	RESOLVED	sk-code	0.9074	0.720749	sk-code-webflow
+opencode	sk-code	RESOLVED	sk-code	0.9015	0.709691	sk-code-opencode
+system code	sk-code	RESOLVED	sk-code	0.931	0.764705	sk-code-opencode
+mcp	sk-code	RESOLVED	sk-code	0.82	0.541933	sk-code-opencode
+skill script	sk-code	DEFERRED	sk-code	0.9088	0.723346	
+agent file	sk-code	DEFERRED	sk-code	0.82	0.482	
+command script	sk-code	DEFERRED	sk-code	0.8777	0.665467	
+typescript	sk-code	RESOLVED	sk-code	0.8626	0.637364	sk-code-opencode
+python	sk-code	RESOLVED	sk-code	0.8531	0.619733	sk-code-opencode
+shell	sk-code	RESOLVED	sk-code	0.82	0.513333	sk-code-opencode
+jsonc	sk-code	RESOLVED	sk-code	0.82	0.521267	sk-code-opencode
+alignment verifier	sk-code	RESOLVED	sk-code	0.8379	0.591528	sk-code-quality
+motion.dev integration	sk-code	DEFERRED	sk-code	0.9358	0.773627	
+motion-dev integration	sk-code	DEFERRED	sk-code	0.9358	0.773627	
+motion_dev references	sk-code	DEFERRED	sk-code	0.8658	0.643407	
+cross-stack animation	sk-code	DEFERRED	sk-code	0.9413	0.783875	
+motion api	sk-code	DEFERRED	sk-code	0.8697	0.650514	
+motion snippets	sk-code	DEFERRED	sk-code	0.8632	0.638597	
+motion decision matrix	sk-code	DEFERRED	sk-code	0.95	0.831837	
+refactor function	sk-code	DEFERRED	sk-code	0.82	0.556267	
+refactor the	sk-code	DEFERRED	sk-code	0.82	0.462933	
+throw on missing	sk-code	DEFERRED	sk-code	0.8538	0.620967	
+add a flag	sk-code	DEFERRED	sk-code	0.8525	0.618583	
+add a fallback	sk-code	DEFERRED	sk-code	0.8566	0.626167	
+add a parameter	sk-code	DEFERRED	sk-code	0.8525	0.618583	
+add a method	sk-code	DEFERRED	sk-code	0.8525	0.618583	
+implement function	sk-code	DEFERRED	sk-code	0.8503	0.6146	
+handle empty	sk-code	DEFERRED	sk-code	0.8267	0.570567	
+handle null	sk-code	DEFERRED	sk-code	0.82	0.556267	
+early return	sk-code	DEFERRED	sk-code	0.82	0.556267	
+type annotation	sk-code	DEFERRED	sk-code	0.8309	0.5785	
+function signature	sk-code	DEFERRED	sk-code	0.82	0.556267	
+add set -euo pipefail	sk-code	RESOLVED	sk-code	0.9011	0.708937	sk-code-quality
+console.error fallback	sk-code	DEFERRED	sk-code	0.9003	0.707583	
+argparse block	sk-code	DEFERRED	sk-code	0.82	0.556267	
+vitest covering	sk-code	DEFERRED	sk-code	0.8962	0.7	
+stable jsonl keys	sk-code	MULTI	sk-code	0.9135	0.732125	sk-code-quality,sk-code-opencode
+lenis smooth-scroll	sk-code	RESOLVED	sk-code	0.9057	0.717631	sk-code-webflow
+gsap timeline	sk-code	RESOLVED	sk-code	0.8233	0.5642	sk-code-webflow
+hls.js video	sk-code	RESOLVED	sk-code	0.8461	0.606667	sk-code-webflow
+intersectionobserver gate	sk-code	RESOLVED	sk-code	0.8433	0.601576	sk-code-webflow
+build a tiny script	sk-code	DEFERRED	sk-code	0.9122	0.729741	
+tiny script that counts	sk-code	DEFERRED	sk-code	0.9005	0.707934	
+counts how many	sk-code	DEFERRED	sk-code	0.8538	0.620967	
+build a script that	sk-code	DEFERRED	sk-code	0.9122	0.729741	
+code review	sk-code	RESOLVED	sk-code	0.95	0.847671	sk-code-review
+pr review	sk-code	RESOLVED	sk-code	0.9386	0.778731	sk-code-review
+security review	sk-code	RESOLVED	sk-code	0.9288	0.760531	sk-code-review
+quality gate	sk-code	RESOLVED	sk-code	0.917	0.738597	sk-code-quality
+findings	sk-code	DEFERRED	sk-code	0.82	0.527633	
+audit packet docs	sk-code	DEFERRED	sk-code	0.9324	0.767329	
+review packet docs	sk-code	RESOLVED	sk-code	0.95	0.81356	sk-code-review
+merge readiness	sk-code	WRONG_HUB	sk-git	0.8469	0.608098	
+quality check	sk-code	RESOLVED	sk-code	0.904	0.714331	sk-code-quality
+check before done	sk-code	RESOLVED	sk-code	0.9121	0.729547	sk-code-quality
+author quality gate	sk-code	RESOLVED	sk-code	0.95	0.841804	sk-code-quality
+pre-verification quality check	sk-code	RESOLVED	sk-code	0.95	0.817537	sk-code-quality
+p0 p1 p2 review	sk-code	MULTI	sk-code	0.9288	0.760531	sk-code-quality,sk-code-review
+pi remote mobile ui	sk-code	RESOLVED	sk-code	0.95	0.81958	sk-code-mobile-cli
+svelte design system	sk-code	RESOLVED	sk-code	0.95	0.841415	sk-code-mobile-cli
+mobile cli design tokens	sk-code	RESOLVED	sk-code	0.95	0.947537	sk-code-mobile-cli
+ds grammar editability	sk-code	RESOLVED	sk-code	0.9093	0.724204	sk-code-mobile-cli
+obsidian plugin	sk-code	RESOLVED	sk-code	0.9052	0.716704	sk-code-obsidian
+obsidian plugin source	sk-code	RESOLVED	sk-code	0.95	0.860437	sk-code-obsidian
+note database plugin	sk-code	RESOLVED	sk-code	0.95	0.860437	sk-code-obsidian
+obsidian plugin design system	sk-code	RESOLVED	sk-code	0.95	0.929828	sk-code-obsidian
+mobile cli source conventions	sk-code	DEFERRED	sk-code	0.95	0.865671	
+sk-code	sk-code	MULTI	sk-code	0.8655	0.642787	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian
+surface-aware code implementation	sk-code	MULTI	sk-code	0.95	0.807637	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian
+frontend implementation standards	sk-code	RESOLVED	sk-code	0.9389	0.77927	sk-code-webflow
+opencode typescript verification	sk-code	RESOLVED	sk-code	0.95	0.83227	sk-code-opencode
+motion animation integration	sk-code	DEFERRED	sk-code	0.95	0.852572	
+stack-specific code quality gate	sk-code	RESOLVED	sk-code	0.9458	0.79221	sk-code-quality
+language-specific verification commands	sk-code	DEFERRED	sk-code	0.82	0.513037	
+surface detection routing	sk-code	DEFERRED	sk-code	0.82	0.366604	
+webflow frontend workflow	sk-code	RESOLVED	sk-code	0.95	0.848791	sk-code-webflow
+opencode system code workflow	sk-code	RESOLVED	sk-code	0.95	0.914566	sk-code-opencode
+alignment verifier workflow	sk-code	RESOLVED	sk-code	0.9426	0.786203	sk-code-quality
+code quality gate	sk-code	RESOLVED	sk-code	0.95	0.865929	sk-code-quality
+verification commands	sk-code	DEFERRED	sk-code	0.82	0.54687	
+sk-code hub	sk-code	MULTI	sk-code	0.8784	0.666837	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian
+code mode router	sk-code	WRONG_HUB	mcp-code-mode	0.8948	0.697325	
+workflow doctrine	sk-code	DEFERRED	sk-code	0.8924	0.69287	
+review mode	sk-code	RESOLVED	sk-code	0.95	0.872353	sk-code-review
+pi remote design system	sk-code	WRONG_HUB	sk-design-md-generator	0.8519	0.617459	
+ink-on-parchment retint	sk-code	NO_RECOMMENDATION				
+mobile cli source	sk-code	DEFERRED	sk-code	0.8667	0.644935	
+chrome devtools	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.822019	mcp-chrome-devtools
+browser debug	mcp-tooling	WRONG_HUB	sk-code	0.9137	0.732421	
+dom inspect	mcp-tooling	NO_RECOMMENDATION				
+lighthouse	mcp-tooling	NO_RECOMMENDATION				
+clickup	mcp-tooling	RESOLVED	mcp-tooling	0.8334	0.582981	mcp-click-up
+cupt	mcp-tooling	RESOLVED	mcp-tooling	0.8334	0.582981	mcp-click-up
+task management	mcp-tooling	RESOLVED	mcp-tooling	0.8997	0.70635	mcp-click-up
+work queue	mcp-tooling	RESOLVED	mcp-tooling	0.8726	0.65595	mcp-click-up
+mark done	mcp-tooling	RESOLVED	mcp-tooling	0.8365	0.588914	mcp-click-up
+time tracking	mcp-tooling	RESOLVED	mcp-tooling	0.8775	0.665091	mcp-click-up
+log time	mcp-tooling	RESOLVED	mcp-tooling	0.8726	0.65595	mcp-click-up
+task list	mcp-tooling	NO_RECOMMENDATION				
+clickup task	mcp-tooling	RESOLVED	mcp-tooling	0.8923	0.692638	mcp-click-up
+complete task	mcp-tooling	DEFERRED	mcp-tooling	0.8278	0.57259	
+add note to task	mcp-tooling	DEFERRED	mcp-tooling	0.9138	0.732647	
+tag task	mcp-tooling	DEFERRED	mcp-tooling	0.8278	0.57259	
+start timer	mcp-tooling	DEFERRED	mcp-tooling	0.8229	0.563612	
+stop timer	mcp-tooling	DEFERRED	mcp-tooling	0.8229	0.563612	
+process queue	mcp-tooling	RESOLVED	mcp-tooling	0.8726	0.65595	mcp-click-up
+clickup documents	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.715491	mcp-click-up
+clickup goals	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.715491	mcp-click-up
+bulk tasks	mcp-tooling	RESOLVED	mcp-tooling	0.8229	0.563612	mcp-click-up
+figma cli	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.715452	mcp-figma
+figma-ds-cli	mcp-tooling	RESOLVED	mcp-tooling	0.9095	0.724591	mcp-figma
+figma desktop	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.71545	mcp-figma
+render in figma	mcp-tooling	RESOLVED	mcp-tooling	0.9095	0.724591	mcp-figma
+figma tokens	mcp-tooling	RESOLVED	mcp-tooling	0.8811	0.671875	mcp-figma
+figma variables	mcp-tooling	RESOLVED	mcp-tooling	0.8414	0.598014	mcp-figma
+extract DESIGN.md	mcp-tooling	RESOLVED	mcp-tooling	0.9143	0.733509	mcp-figma
+export from figma	mcp-tooling	RESOLVED	mcp-tooling	0.8597	0.63209	mcp-figma
+connect to figma	mcp-tooling	RESOLVED	mcp-tooling	0.9095	0.724591	mcp-figma
+figma daemon	mcp-tooling	RESOLVED	mcp-tooling	0.8414	0.598014	mcp-figma
+figma mcp	mcp-tooling	RESOLVED	mcp-tooling	0.8913	0.690833	mcp-figma
+aside	mcp-tooling	RESOLVED	mcp-tooling	0.8334	0.582981	mcp-aside-devtools
+aside browser	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.715491	mcp-aside-devtools
+aside cli	mcp-tooling	RESOLVED	mcp-tooling	0.8923	0.692638	mcp-aside-devtools
+aside mcp	mcp-tooling	RESOLVED	mcp-tooling	0.9084	0.722594	mcp-aside-devtools
+aside repl	mcp-tooling	RESOLVED	mcp-tooling	0.8923	0.692638	mcp-aside-devtools
+ai browser automation	mcp-tooling	RESOLVED	mcp-tooling	0.8923	0.692638	mcp-aside-devtools
+agentic browser	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.715491	mcp-aside-devtools
+refero	mcp-tooling	RESOLVED	mcp-tooling	0.8334	0.582981	mcp-refero
+refero mcp	mcp-tooling	RESOLVED	mcp-tooling	0.9084	0.722594	mcp-refero
+design reference search	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.826842	mcp-refero
+ui reference	mcp-tooling	RESOLVED	mcp-tooling	0.82	0.486082	mcp-refero
+real app screens	mcp-tooling	RESOLVED	mcp-tooling	0.9214	0.746818	mcp-refero
+mobbin	mcp-tooling	RESOLVED	mcp-tooling	0.8334	0.582981	mcp-mobbin
+mobbin mcp	mcp-tooling	RESOLVED	mcp-tooling	0.9084	0.722593	mcp-mobbin
+app design research	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.815649	mcp-mobbin
+screen examples	mcp-tooling	DEFERRED	mcp-tooling	0.8278	0.57259	
+ux flow references	mcp-tooling	RESOLVED	mcp-tooling	0.85	0.614012	mcp-mobbin
+obsidian	mcp-tooling	RESOLVED	mcp-tooling	0.8544	0.622157	mcp-obsidian
+obsidian vault	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.715491	mcp-obsidian
+notesmd-cli	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.715491	mcp-obsidian
+obsidian mcp	mcp-tooling	RESOLVED	mcp-tooling	0.9207	0.745447	mcp-obsidian
+note management	mcp-tooling	DEFERRED	mcp-tooling	0.9046	0.715491	
+markdown notes	mcp-tooling	RESOLVED	mcp-tooling	0.9033	0.713174	mcp-obsidian
+vault search	mcp-tooling	RESOLVED	mcp-tooling	0.8365	0.588914	mcp-obsidian
+daily note	mcp-tooling	RESOLVED	mcp-tooling	0.8278	0.57259	mcp-obsidian
+knowledge base	mcp-tooling	RESOLVED	mcp-tooling	0.8266	0.570437	mcp-obsidian
+notion	mcp-tooling	RESOLVED	mcp-tooling	0.8544	0.622157	mcp-notion
+notion mcp	mcp-tooling	RESOLVED	mcp-tooling	0.9207	0.745446	mcp-notion
+notion api	mcp-tooling	RESOLVED	mcp-tooling	0.9095	0.72459	mcp-notion
+notion database	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.71549	mcp-notion
+notion data source	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.816331	mcp-notion
+notion page	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.71549	mcp-notion
+query notion	mcp-tooling	RESOLVED	mcp-tooling	0.9135	0.732174	mcp-notion
+notion property	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.71549	mcp-notion
+notion relation	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.71549	mcp-notion
+notion rollup	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.71549	mcp-notion
+notion formula	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.71549	mcp-notion
+notion token	mcp-tooling	RESOLVED	mcp-tooling	0.9082	0.722315	mcp-notion
+ntn_	mcp-tooling	RESOLVED	mcp-tooling	0.82	0.513333	mcp-notion
+notion markdown	mcp-tooling	RESOLVED	mcp-tooling	0.9082	0.722315	mcp-notion
+iconic	mcp-tooling	RESOLVED	mcp-tooling	0.8544	0.622157	mcp-obsidian
+iconic rulebook	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.71549	mcp-obsidian
+icon rules	mcp-tooling	RESOLVED	mcp-tooling	0.8997	0.706349	mcp-obsidian
+icon automation	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.71549	mcp-obsidian
+file icons	mcp-tooling	RESOLVED	mcp-tooling	0.8997	0.706349	mcp-obsidian
+folder icons	mcp-tooling	RESOLVED	mcp-tooling	0.8997	0.706349	mcp-obsidian
+mcp-tooling	mcp-tooling	DEFERRED	mcp-tooling	0.9207	0.745446	
+mcp tool bridge	mcp-tooling	WRONG_HUB	mcp-code-mode	0.8784	0.666741	
+chrome devtools orchestration	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.831119	mcp-chrome-devtools
+browser debugger cli routing	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.821765	mcp-chrome-devtools
+capture browser screenshots	mcp-tooling	WRONG_HUB	sk-code	0.8782	0.666454	
+inspect network requests	mcp-tooling	RESOLVED	mcp-tooling	0.82	0.26084	mcp-chrome-devtools
+mcp-chrome-devtools	mcp-tooling	DEFERRED	mcp-tooling	0.95	0.847802	
+mcp chrome devtools	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.847802	mcp-chrome-devtools
+chrome-devtools	mcp-tooling	DEFERRED	mcp-tooling	0.9117	0.728685	
+cdp	mcp-tooling	RESOLVED	mcp-tooling	0.82	0.45698	mcp-chrome-devtools
+mcp-click-up	mcp-tooling	DEFERRED	mcp-tooling	0.9207	0.745446	
+mark task done	mcp-tooling	DEFERRED	mcp-tooling	0.82	0.388824	
+mcp-figma	mcp-tooling	RESOLVED	mcp-tooling	0.8962	0.699974	mcp-figma
+extract design.md	mcp-tooling	RESOLVED	mcp-tooling	0.9143	0.733508	mcp-figma
+aside browser task	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.808824	mcp-aside-devtools
+aside repl evidence	mcp-tooling	RESOLVED	mcp-tooling	0.9046	0.71549	mcp-aside-devtools
+agentic browser automation	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.808824	mcp-aside-devtools
+refero design reference	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.826842	mcp-refero
+real app screen search	mcp-tooling	DEFERRED	mcp-tooling	0.82	0.396246	
+mobbin app research	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.808824	mcp-mobbin
+real app ux patterns	mcp-tooling	DEFERRED	mcp-tooling	0.82	0.302315	
+mcp-notion	mcp-tooling	RESOLVED	mcp-tooling	0.9207	0.745446	mcp-notion
+query notion database	mcp-tooling	RESOLVED	mcp-tooling	0.95	0.825507	mcp-notion
+notion markdown round-trip	mcp-tooling	RESOLVED	mcp-tooling	0.8795	0.668824	mcp-notion
+mcp-magicpath	mcp-tooling	NO_RECOMMENDATION				
+magicpath	mcp-tooling	NO_RECOMMENDATION				
+magicpath ai	mcp-tooling	NO_RECOMMENDATION				
+magicpath component	mcp-tooling	RESOLVED	mcp-tooling	0.82	0.29549	mcp-magicpath
+magicpath canvas	mcp-tooling	NO_RECOMMENDATION				
+magicpath design system	mcp-tooling	WRONG_HUB	sk-design-md-generator	0.8556	0.624284	
+opencode cli	cli-external-orchestration	WRONG_HUB	cli-opencode	0.95	0.850652	
+opencode run	cli-external-orchestration	WRONG_HUB	cli-opencode	0.95	0.732528	
+delegate to opencode	cli-external-orchestration	WRONG_HUB	cli-opencode	0.95	0.788743	
+parallel detached session	cli-external-orchestration	WRONG_HUB	cli-opencode	0.95	0.798864	
+spec kit runtime	cli-external-orchestration	RESOLVED	cli-external-orchestration	0.95	0.837388	cli-opencode
+claude code	cli-external-orchestration	WRONG_HUB	cli-claude-code	0.95	0.701631	
+claude cli	cli-external-orchestration	WRONG_HUB	cli-claude-code	0.95	0.708749	
+delegate to claude	cli-external-orchestration	WRONG_HUB	cli-claude-code	0.95	0.703938	
+codex cli	cli-external-orchestration	WRONG_HUB	cli-codex	0.95	0.705228	
+codex exec	cli-external-orchestration	WRONG_HUB	cli-codex	0.95	0.696431	
+delegate to codex	cli-external-orchestration	WRONG_HUB	cli-codex	0.95	0.703938	
+openai cli second opinion	cli-external-orchestration	WRONG_HUB	cli-codex	0.95	0.789764	
+cli-codex	cli-external-orchestration	WRONG_HUB	cli-codex	0.95	0.705228	
+cursor cli	cli-external-orchestration	WRONG_HUB	cli-cursor	0.95	0.696431	
+cursor agent	cli-external-orchestration	WRONG_HUB	cli-cursor	0.95	0.603098	
+delegate to cursor	cli-external-orchestration	WRONG_HUB	cli-cursor	0.95	0.703938	
+composer	cli-external-orchestration	RESOLVED	cli-external-orchestration	0.8442	0.603098	cli-cursor
+cli-cursor	cli-external-orchestration	WRONG_HUB	cli-cursor	0.95	0.696431	
+devin cli	cli-external-orchestration	WRONG_HUB	cli-devin	0.95	0.696431	
+delegate to devin	cli-external-orchestration	WRONG_HUB	cli-devin	0.95	0.703938	
+cognition cli second opinion	cli-external-orchestration	WRONG_HUB	cli-devin	0.95	0.789764	
+devin handoff	cli-external-orchestration	WRONG_HUB	cli-devin	0.95	0.638491	
+cli-devin	cli-external-orchestration	WRONG_HUB	cli-devin	0.95	0.696431	
+pi cli	cli-external-orchestration	WRONG_HUB	cli-pi	0.95	0.603097	
+pi agent	cli-external-orchestration	WRONG_HUB	cli-pi	0.95	0.509764	
+delegate to pi	cli-external-orchestration	WRONG_HUB	cli-pi	0.95	0.59714	
+pi.dev cli	cli-external-orchestration	WRONG_HUB	cli-pi	0.95	0.708564	
+pi coding agent	cli-external-orchestration	WRONG_HUB	cli-pi	0.95	0.589633	
+cli-pi	cli-external-orchestration	WRONG_HUB	cli-pi	0.95	0.603097	
+cli-external-orchestration	cli-external-orchestration	DEFERRED	cli-external-orchestration	0.95	0.801897	
+cli dispatch	cli-external-orchestration	DEFERRED	cli-external-orchestration	0.82	0.285227	
+cross-ai delegation	cli-external-orchestration	DEFERRED	cli-external-orchestration	0.8762	0.662714	
+executor delegation	cli-external-orchestration	DEFERRED	cli-external-orchestration	0.8672	0.646031	
+opencode cli orchestration	cli-external-orchestration	WRONG_HUB	cli-opencode	0.95	0.850649	
+full plugin runtime dispatch	cli-external-orchestration	NO_RECOMMENDATION				
+in-opencode parallel session	cli-external-orchestration	WRONG_HUB	sk-code	0.9189	0.742091	
+cross-ai handback opencode	cli-external-orchestration	WRONG_HUB	sk-code	0.95	0.840286	
+ablation suite opencode	cli-external-orchestration	WRONG_HUB	sk-code	0.9088	0.723304	
+worker farm opencode	cli-external-orchestration	WRONG_HUB	sk-code	0.9414	0.783962	
+cli-opencode	cli-external-orchestration	WRONG_HUB	cli-opencode	0.95	0.848465	
+cli opencode	cli-external-orchestration	WRONG_HUB	cli-opencode	0.95	0.848465	
+minimax	cli-external-orchestration	NO_RECOMMENDATION				
+minimax-coding-plan	cli-external-orchestration	NO_RECOMMENDATION				
+minimax token plan	cli-external-orchestration	NO_RECOMMENDATION				
+minimax-m3	cli-external-orchestration	NO_RECOMMENDATION				
+minimax-coding-plan/MiniMax-M3	cli-external-orchestration	NO_RECOMMENDATION				
+minimax m3	cli-external-orchestration	NO_RECOMMENDATION				
+MiniMax-M3	cli-external-orchestration	NO_RECOMMENDATION				
+minimax dispatch	cli-external-orchestration	NO_RECOMMENDATION				
+tidd-ec framework	cli-external-orchestration	WRONG_HUB	sk-prompt	0.8951	0.69786	
+xiaomi	cli-external-orchestration	NO_RECOMMENDATION				
+xiaomi token plan	cli-external-orchestration	NO_RECOMMENDATION				
+xiaomi-token-plan-ams	cli-external-orchestration	NO_RECOMMENDATION				
+xiaomi-api	cli-external-orchestration	NO_RECOMMENDATION				
+xiaomi api	cli-external-orchestration	NO_RECOMMENDATION				
+xiaomi direct	cli-external-orchestration	NO_RECOMMENDATION				
+xiaomi/mimo-v2.5-pro	cli-external-orchestration	NO_RECOMMENDATION				
+mimo	cli-external-orchestration	NO_RECOMMENDATION				
+mimo-v2.5-pro	cli-external-orchestration	NO_RECOMMENDATION				
+mimo pro	cli-external-orchestration	NO_RECOMMENDATION				
+xiaomi-token-plan-ams/mimo-v2.5-pro	cli-external-orchestration	NO_RECOMMENDATION				
+deepseek-v4-pro	cli-external-orchestration	NO_RECOMMENDATION				
+deepseek-v4	cli-external-orchestration	NO_RECOMMENDATION				
+deepseek dispatch	cli-external-orchestration	NO_RECOMMENDATION				
+kimi-k2.7-code	cli-external-orchestration	WRONG_HUB	sk-code	0.82	0.488087	
+kimi-k2.7	cli-external-orchestration	NO_RECOMMENDATION				
+kimi k2.7 code	cli-external-orchestration	WRONG_HUB	sk-code	0.82	0.488087	
+kimi-for-coding	cli-external-orchestration	NO_RECOMMENDATION				
+kimi for coding	cli-external-orchestration	NO_RECOMMENDATION				
+kimi-for-coding/k2p7	cli-external-orchestration	NO_RECOMMENDATION				
+kimi-k2.6	cli-external-orchestration	NO_RECOMMENDATION				
+kimi	cli-external-orchestration	NO_RECOMMENDATION				
+kimi dispatch	cli-external-orchestration	NO_RECOMMENDATION				
+qwen3.6	cli-external-orchestration	NO_RECOMMENDATION				
+qwen	cli-external-orchestration	NO_RECOMMENDATION				
+qwen dispatch	cli-external-orchestration	NO_RECOMMENDATION				
+glm-5.2	cli-external-orchestration	NO_RECOMMENDATION				
+glm	cli-external-orchestration	NO_RECOMMENDATION				
+glm dispatch	cli-external-orchestration	NO_RECOMMENDATION				
+zai-coding-plan	cli-external-orchestration	NO_RECOMMENDATION				
+z.ai coding plan	cli-external-orchestration	NO_RECOMMENDATION				
+glm coding plan	cli-external-orchestration	NO_RECOMMENDATION				
+zai-coding-plan/glm-5.2	cli-external-orchestration	NO_RECOMMENDATION				
+claude code cli orchestration	cli-external-orchestration	WRONG_HUB	cli-claude-code	0.95	0.821633	
+delegate to claude code	cli-external-orchestration	WRONG_HUB	cli-claude-code	0.95	0.810011	
+anthropic cli second opinion	cli-external-orchestration	WRONG_HUB	cli-claude-code	0.95	0.299764	
+structured claude code output	cli-external-orchestration	WRONG_HUB	cli-claude-code	0.95	0.673229	
+cli-claude-code	cli-external-orchestration	WRONG_HUB	cli-claude-code	0.95	0.816164	
+cli claude code	cli-external-orchestration	WRONG_HUB	cli-claude-code	0.95	0.816164	
+claude-code	cli-external-orchestration	NO_RECOMMENDATION				
+claude-cli	cli-external-orchestration	DEFERRED	cli-external-orchestration	0.8739	0.658348	
+anthropic	cli-external-orchestration	NO_RECOMMENDATION				
+cli codex	cli-external-orchestration	WRONG_HUB	cli-codex	0.95	0.705227	
+codex cli orchestration	cli-external-orchestration	WRONG_HUB	cli-codex	0.95	0.808342	
+openai coding agent	cli-external-orchestration	RESOLVED	cli-external-orchestration	0.82	0.27643	cli-codex
+codex web search	cli-external-orchestration	RESOLVED	cli-external-orchestration	0.82	0.33663	cli-codex
+codex diff review	cli-external-orchestration	WRONG_HUB	sk-code	0.9444	0.789661	
+codex sandbox	cli-external-orchestration	NO_RECOMMENDATION				
+gpt codex dispatch	cli-external-orchestration	WRONG_HUB	cli-codex	0.95	0.27643	
+cli cursor	cli-external-orchestration	WRONG_HUB	cli-cursor	0.95	0.696431	
+cursor composer	cli-external-orchestration	WRONG_HUB	cli-cursor	0.95	0.69643	
+cursor plan mode	cli-external-orchestration	WRONG_HUB	cli-cursor	0.95	0.295601	
+cursor ask mode	cli-external-orchestration	WRONG_HUB	cli-cursor	0.95	0.27643	
+cursor worktree	cli-external-orchestration	WRONG_HUB	cli-cursor	0.95	0.598679	
+cursor cloud worker	cli-external-orchestration	WRONG_HUB	cli-cursor	0.95	0.183097	
+cli devin	cli-external-orchestration	WRONG_HUB	cli-devin	0.95	0.69643	
+devin-handoff	cli-external-orchestration	RESOLVED	cli-external-orchestration	0.82	0.26889	cli-devin
+cognition-cli	cli-external-orchestration	DEFERRED	cli-external-orchestration	0.82	0.27643	
+delegate-to-devin	cli-external-orchestration	RESOLVED	cli-external-orchestration	0.82	0.283938	cli-devin
+devin subagent	cli-external-orchestration	NO_RECOMMENDATION				
+devin cloud handoff	cli-external-orchestration	RESOLVED	cli-external-orchestration	0.82	0.27643	cli-devin
+swe-1.6 dispatch	cli-external-orchestration	NO_RECOMMENDATION				
+pi json event stream	cli-external-orchestration	WRONG_HUB	sk-code	0.8268	0.570794	
+pi rpc integration	cli-external-orchestration	NO_RECOMMENDATION				
+pi community package	cli-external-orchestration	NO_RECOMMENDATION				
+deep loop workflow	system-deep-loop	DEFERRED	system-deep-loop	0.9264	0.756045	
+deep-research	system-deep-loop	RESOLVED	system-deep-loop	0.8861	0.681057	research
+deep-review	system-deep-loop	WRONG_HUB	sk-design	0.82	0.297255	
+deep-ai-council	system-deep-loop	RESOLVED	system-deep-loop	0.8897	0.687878	ai-council
+deep-improvement	system-deep-loop	DEFERRED	system-deep-loop	0.8861	0.681057	
+research loop	system-deep-loop	RESOLVED	system-deep-loop	0.9362	0.77439	research
+iterative review loop	system-deep-loop	RESOLVED	system-deep-loop	0.95	0.812412	review
+deep-review wave	system-deep-loop	RESOLVED	system-deep-loop	0.95	0.812412	review
+release readiness	system-deep-loop	DEFERRED	system-deep-loop	0.9418	0.78479	
+ai council deliberation	system-deep-loop	RESOLVED	system-deep-loop	0.9399	0.781212	ai-council
+agent improvement benchmark	system-deep-loop	DEFERRED	system-deep-loop	0.8897	0.687878	
+system-deep-loop	system-deep-loop	DEFERRED	system-deep-loop	0.95	0.800712	
+deep-loop-workflows	system-deep-loop	DEFERRED	system-deep-loop	0.8852	0.679478	
+deep loop workflows	system-deep-loop	DEFERRED	system-deep-loop	0.8852	0.679478	
+deep research	system-deep-loop	RESOLVED	system-deep-loop	0.9362	0.77439	research
+iterative investigation workflow	system-deep-loop	RESOLVED	system-deep-loop	0.82	0.287378	research
+autoresearch	system-deep-loop	RESOLVED	system-deep-loop	0.82	0.439309	research
+deep review	system-deep-loop	DEFERRED	system-deep-loop	0.95	0.80559	
+review loop	system-deep-loop	RESOLVED	system-deep-loop	0.95	0.80559	review
+severity weighted findings	system-deep-loop	WRONG_HUB	sk-code	0.82	0.534068	
+convergence review	system-deep-loop	RESOLVED	system-deep-loop	0.9191	0.74259	review
+multi-seat planning council	system-deep-loop	RESOLVED	system-deep-loop	0.9399	0.781212	ai-council
+council convergence	system-deep-loop	RESOLVED	system-deep-loop	0.8635	0.639056	ai-council
+improve agent	system-deep-loop	NO_RECOMMENDATION				
+evaluate agent	system-deep-loop	NO_RECOMMENDATION				
+score agent candidate	system-deep-loop	NO_RECOMMENDATION				
+agent-improvement	system-deep-loop	RESOLVED	system-deep-loop	0.82	0.544145	agent-improvement
+model benchmark	system-deep-loop	WRONG_HUB	deep-model-benchmark	0.8461	0.606667	
+benchmark a model or prompt framework	system-deep-loop	WRONG_HUB	sk-prompt	0.95	0.845686	
+skill benchmark	system-deep-loop	DEFERRED	system-deep-loop	0.8251	0.567654	

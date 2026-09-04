@@ -233,6 +233,11 @@ npm run typecheck:tests       # tsconfig.tests.json
 npm run test:spec-validation   # the tracked validation suites in ../scripts/tests
 ```
 
+`test:sharded` covers the Vitest lane; `test:spec-validation` covers the tracked shell
+validation suites. A shard that exceeds `SPECKIT_TEST_RUN_TIMEOUT_MS` prints
+`[test-bound] invocation exceeded` and exits 124, which is not a result — read the log
+and the exit status separately rather than through a pipe.
+
 Focused documentation checks from the repository root:
 
 ```bash

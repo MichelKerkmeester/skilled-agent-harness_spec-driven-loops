@@ -1,6 +1,6 @@
 ---
 description: Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.
-argument-hint: "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -65,4 +65,3 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 The bound workflow YAML (`create-skill-auto.yaml` for `:auto`, `create-skill-confirm.yaml` for `:confirm` or an omitted mode) runs the unified skill workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `full-create`, `full-update`, `reference-only`, or `asset-only` operation branch to create or update OpenCode skills. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
-User request: $ARGUMENTS

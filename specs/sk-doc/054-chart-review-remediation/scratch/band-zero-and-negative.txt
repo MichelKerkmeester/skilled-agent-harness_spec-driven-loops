@@ -1,0 +1,14 @@
+Defect 1 -- heat-matrix band(v) for a zero and a negative
+
+Probe data: last grid row edited to [0, -4, 0.4, 13, 11, 9, 10, 6]. peak = 101.
+before = the pre-fix band(), after = the shipped fix. Rendered at 900x6000, scheme pinned light.
+
+cell classes on the probed row (last eight cells):
+  before  cell series-6  cell series-6  cell series-6  cell series-5  cell series-5  cell series-5  cell series-5  cell series-5
+  after   cell empty     cell empty     cell series-5  cell series-5  cell series-5  cell series-5  cell series-5  cell series-5
+
+The stylesheet defines .series-1 through .series-5. No rule defines .series-6, so those three
+cells took the SVG default fill, which is pure black. The palette contains no black.
+
+before  black(0,0,0)=5752   rule#E0DFDC(224,223,220)=11036  series-5#A3C4C7(163,196,199)=15573
+after   black(0,0,0)=0      rule#E0DFDC(224,223,220)=14891  series-5#A3C4C7(163,196,199)=17470

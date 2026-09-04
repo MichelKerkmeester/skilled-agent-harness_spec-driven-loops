@@ -1,0 +1,11 @@
+form           variant  black px   marks past capacity      marks on over-cap  notice element
+unit-ring      before   1348       6                        0                  absent
+unit-ring      after    0          0                        6                  present
+unit-grid      before   1728       3                        0                  absent
+unit-grid      after    0          0                        3                  present
+stacked-bars   before   2989       5                        0                  absent
+stacked-bars   after    0          0                        5                  present
+treemap        before   13110      2                        0                  absent
+treemap        after    0          0                        2                  present
+stacked-area   before   5133       2                        0                  absent
+stacked-area   after    0          0                        2                  present

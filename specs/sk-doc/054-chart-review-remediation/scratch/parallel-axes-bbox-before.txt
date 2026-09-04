@@ -1,0 +1,29 @@
+COLLISIONS=3
+"pounds"[bound] x "7"[bound] overlap 6.63x2.33
+"per thousand"[bound] x "20"[bound] overlap 13.25x2.33
+"hours"[bound] x "48"[bound] overlap 13.25x2.33
+---BOXES---
+"Alpha"[key] x=666.0 y=55.7 w=29.8 h=12.3 bottom=68.1
+"Beta"[key] x=666.0 y=146.7 w=23.8 h=12.3 bottom=159.1
+"Gamma"[key] x=666.0 y=207.4 w=39.8 h=12.3 bottom=219.7
+"Delta"[key] x=666.0 y=222.6 w=27.4 h=12.3 bottom=234.9
+"Unit price"[axis-name] x=74.0 y=24.7 w=57.5 h=13.4 bottom=38.1
+"pounds"[bound] x=74.0 y=38.7 w=39.7 h=13.3 bottom=52.1
+"7"[bound] x=74.0 y=49.7 w=6.6 h=13.3 bottom=63.1
+"4"[bound] x=74.0 y=249.7 w=6.6 h=13.3 bottom=263.1
+"Lead time"[axis-name] x=188.2 y=6.7 w=57.7 h=13.3 bottom=20.1
+"days"[bound] x=203.8 y=20.7 w=26.5 h=13.3 bottom=34.1
+"24"[bound] x=210.4 y=49.7 w=13.3 h=13.3 bottom=63.1
+"0"[bound] x=213.7 y=249.7 w=6.6 h=13.3 bottom=263.1
+"Defect rate"[axis-name] x=326.9 y=24.7 w=66.1 h=13.3 bottom=38.1
+"per thousand"[bound] x=320.3 y=38.7 w=79.4 h=13.3 bottom=52.1
+"20"[bound] x=353.4 y=49.7 w=13.3 h=13.3 bottom=63.1
+"0"[bound] x=356.7 y=249.7 w=6.6 h=13.3 bottom=263.1
+"On-time delivery"[axis-name] x=453.6 y=6.7 w=98.7 h=13.5 bottom=20.3
+"percent"[bound] x=479.8 y=20.7 w=46.3 h=13.3 bottom=34.1
+"100"[bound] x=493.1 y=49.7 w=19.9 h=13.3 bottom=63.1
+"60"[bound] x=496.4 y=249.7 w=13.3 h=13.3 bottom=263.1
+"Support response"[axis-name] x=540.5 y=24.7 w=105.5 h=13.4 bottom=38.1
+"hours"[bound] x=612.9 y=38.7 w=33.1 h=13.3 bottom=52.1
+"48"[bound] x=632.7 y=49.7 w=13.3 h=13.3 bottom=63.1
+"0"[bound] x=639.4 y=249.7 w=6.6 h=13.3 bottom=263.1

@@ -1,6 +1,6 @@
 ---
 title: sk-doc
-description: Markdown and OpenCode component specialist: structure-first document quality, DQI scoring, component scaffolding and packaging, flowcharts, install guides, feature catalogs and manual testing playbooks.
+description: Markdown and OpenCode component specialist: structure-first document quality (DQI, HVR voice), scaffolding and packaging, diagrams, charts, install guides, feature catalogs, testing playbooks, before/after diffs, repo rules and frontmatter contracts.
 trigger_phrases:
   - "documentation"
   - "readme"
@@ -15,6 +15,11 @@ trigger_phrases:
   - "peer adapter benchmark"
   - "human voice rules"
   - "make this sound human"
+  - "create a chart"
+  - "create a diagram"
+  - "repo rule"
+  - "frontmatter contract"
+  - "document diff"
 version: 2.1.0.65
 ---
 
@@ -28,10 +33,10 @@ version: 2.1.0.65
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Markdown quality enforcement, component scaffolding and packaging, benchmark authoring, flowcharts, install guides, feature catalogs, testing playbooks, changelogs and local before/after document diffs |
-| **Invoke with** | "create a skill", "validate doc", "conformance benchmark", "readme", "documentation", "flowchart", "changelog" or Gate 2 auto-routing on documentation keywords |
-| **Works on** | Markdown files, OpenCode components (skills, agents, commands) and ASCII flowcharts |
-| **Produces** | DQI scores, validated documents, packaged skill zips, templated component directories and self-contained HTML diff reports |
+| **Use it for** | Markdown quality enforcement, human-voice passes, component scaffolding and packaging, benchmark authoring, diagrams, charts, flowcharts, install guides, feature catalogs, testing playbooks, changelogs, repo rules, frontmatter contracts and local before/after document diffs |
+| **Invoke with** | "create a skill", "validate doc", "conformance benchmark", "readme", "documentation", "flowchart", "create a chart", "create a diagram", "repo rule", "frontmatter contract", "apply human voice", "changelog" or Gate 2 auto-routing on documentation keywords |
+| **Works on** | Markdown files, OpenCode components (skills, agents, commands), standalone HTML diagrams/charts and ASCII flowcharts |
+| **Produces** | DQI scores, validated documents, packaged skill zips, templated component directories, standalone HTML diagrams/charts and self-contained HTML diff reports |
 
 ---
 
@@ -172,7 +177,7 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 
 **Q: Which `/create:*` command do I use?**
 
-A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/create:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review. `/create:repo-rule` for a repo-local rule wired into `REPO RULES.md`. `/create:with-human-voice` to apply or score the Human Voice Rules over prose.
+A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/create:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/create:chart` for a standalone HTML chart drawn from the catalog of chart forms. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review. `/create:repo-rule` for a repo-local rule wired into `REPO RULES.md`. `/create:with-human-voice` to apply or score the Human Voice Rules over prose.
 
 ---
 
@@ -213,7 +218,7 @@ The skill ships the checks that prove a document is ready.
 | [`sk-create-benchmark/README.md`](sk-create-benchmark/README.md) | Benchmark family registry, including conformance authoring triggers and package boundaries |
 | [`sk-create-diff/README.md`](sk-create-diff/README.md) | Git-free before/after document diff: snapshot lifecycle, comparison engine and the self-contained HTML report |
 | [`sk-create-diff/references/workflow.md`](sk-create-diff/references/workflow.md) | The sk-create-diff capture/compare workflow and CLI reference |
-| [`sk-create-chart/README.md`](sk-create-chart/README.md) | Standalone HTML data charts: twenty forms across six families, the colour system and the corpus validator |
+| [`sk-create-chart/README.md`](sk-create-chart/README.md) | Standalone HTML data charts: twenty-one forms across six families, the colour system and the corpus validator |
 | [`sk-create-frontmatter/README.md`](sk-create-frontmatter/README.md) | Frontmatter field contracts by document class, the description budget and the 4-part version standard |
 | [`sk-create-repo-rule/README.md`](sk-create-repo-rule/README.md) | Creating, revising and retiring a repository rule, and the router that indexes them |
 | [`sk-create-changelog/README.md`](sk-create-changelog/README.md) | Changelog entries and the version story a skill tells about itself |

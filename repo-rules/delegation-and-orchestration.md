@@ -211,9 +211,12 @@ and the delegate reads the result as you having committed work it was told to le
 
 So name the paths at commit time, not only at add time: `git commit -- <paths>` or
 `git commit --only <paths>`. Check `git diff --cached --name-only` first when a delegate is
-live. One catch worth knowing before it costs you a commit: a pathspec commit only sees
+live. Two catches worth knowing before they cost you a commit. A pathspec commit only sees
 tracked changes, so a brand new file still needs its `git add` and silently contributes
-nothing without one. When a delegate's work does belong in your commit, read it first and say so in the
+nothing without one. And a pathspec built from `git diff --cached --name-only` is the whole
+index dressed up as a list: it names every file every delegate has staged, and passing it to
+`git commit` sweeps them all exactly as if you had passed nothing. Build the pathspec from the
+paths you told the delegate to own, and filter the index against those, never the reverse. When a delegate's work does belong in your commit, read it first and say so in the
 message.
 
 ---

@@ -1,17 +1,29 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/051-sk-create-chart/006-playbook-and-closeout",
-  "description": "Phase 6: playbook-and-closeout",
+  "description": "Nothing yet states what this skill doing its job looks like, so nothing can tell a later reader whether a change broke it",
   "keywords": [
-    "phase",
-    "playbook-and-closeout"
+    "nothing",
+    "states",
+    "skill",
+    "doing",
+    "job",
+    "looks",
+    "like",
+    "tell",
+    "later",
+    "reader",
+    "whether",
+    "change",
+    "broke"
   ],
-  "lastUpdated": "2026-09-02T07:56:53.088Z",
+  "lastUpdated": "2026-09-02T14:02:50.640Z",
   "specId": "006",
   "folderSlug": "playbook-and-closeout",
   "parentChain": [
-    "001-sk-create-chart"
+    "sk-doc",
+    "051-sk-create-chart"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }
