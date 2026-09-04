@@ -672,14 +672,51 @@ function hasNonEmptyFile(filePath) {
   }
 }
 
-function countIterationFiles(lineageDir) {
+function iterationNumbersOnDisk(lineageDir) {
   try {
     const iterDir = path.join(lineageDir, 'iterations');
-    if (!fs.statSync(iterDir).isDirectory()) return 0;
-    return fs.readdirSync(iterDir).filter((name) => /^iteration-\d+\.md$/.test(name)).length;
+    if (!fs.statSync(iterDir).isDirectory()) return [];
+    return fs.readdirSync(iterDir)
+      .map((name) => /^iteration-(\d+)\.md$/.exec(name))
+      .filter(Boolean)
+      .map((match) => Number.parseInt(match[1], 10))
+      .sort((left, right) => left - right);
   } catch {
-    return 0;
+    return [];
   }
+}
+
+function countIterationFiles(lineageDir) {
+  return iterationNumbersOnDisk(lineageDir).length;
+}
+
+// A count alone lets a gapped or out-of-range set pass for a full run: files 1, 2
+// and 4 count as three, and a stray iteration-099 fills in for a missing one.
+// Forced depth means every iteration from 1 to the cap ran once, so the set on
+// disk and the set the state log recorded both have to be exactly 1..cap.
+function forcedDepthIterationViolation({ diskNumbers, records, cap }) {
+  const expected = Array.from({ length: cap }, (_, index) => index + 1);
+  const describe = (numbers) => (numbers.length === 0 ? 'none' : numbers.join(','));
+  const unique = (numbers) => [...new Set(numbers)].sort((left, right) => left - right);
+  const sameSet = (numbers) => {
+    const set = unique(numbers);
+    return set.length === expected.length && set.every((value, index) => value === expected[index]);
+  };
+  if (Array.isArray(diskNumbers)) {
+    if (diskNumbers.length !== unique(diskNumbers).length) {
+      return `duplicate iteration files on disk: ${describe(diskNumbers)}`;
+    }
+    if (!sameSet(diskNumbers)) {
+      return `expected iteration files 1..${cap}, got ${describe(diskNumbers)}`;
+    }
+  }
+  const recorded = (records || [])
+    .filter((record) => record && record.type === 'iteration' && Number.isInteger(record.iteration))
+    .map((record) => record.iteration);
+  if (recorded.length > 0 && !sameSet(recorded)) {
+    return `expected state records for iterations 1..${cap}, got ${describe(unique(recorded))}`;
+  }
+  return null;
 }
 
 function findMissingLineageArtifacts(loopType, lineageDir) {
@@ -776,16 +813,18 @@ function completionFromArtifacts({ lineageDir, lineage, records, loopType }) {
   const reportPath = path.join(dir, reportName);
   if (!fs.existsSync(reportPath)) return { complete: false, reason: `no ${reportName} on disk` };
 
-  let iterationFiles = 0;
-  try {
-    iterationFiles = fs.readdirSync(path.join(dir, 'iterations'))
-      .filter((name) => /^iteration-\d+\.md$/.test(name)).length;
-  } catch { /* absent iterations dir leaves the count at zero */ }
-
-  const observed = Math.max(iterationFiles, records.filter((r) => r && r.type === 'iteration').length);
+  const diskNumbers = iterationNumbersOnDisk(dir);
+  const recordCount = records.filter((r) => r && r.type === 'iteration').length;
+  const observed = Math.max(diskNumbers.length, recordCount);
   if (observed < lineage.iterations) {
     return { complete: false, reason: `only ${observed} of ${lineage.iterations} iterations on disk` };
   }
+  const violation = forcedDepthIterationViolation({
+    diskNumbers: diskNumbers.length > 0 ? diskNumbers : null,
+    records,
+    cap: lineage.iterations,
+  });
+  if (violation) return { complete: false, reason: violation };
   return { complete: true, reason: '' };
 }
 
@@ -830,6 +869,12 @@ function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPo
   if (totalIterations !== lineage.iterations) {
     return `expected ${lineage.iterations} iterations, got ${totalIterations}`;
   }
+  const setViolation = forcedDepthIterationViolation({
+    diskNumbers: lineageDir ? iterationNumbersOnDisk(lineageDir) : null,
+    records,
+    cap: lineage.iterations,
+  });
+  if (setViolation) return setViolation;
   if (!isMaxIterationsStopReason(synthesis.stopReason)) {
     return `expected stopReason=maxIterationsReached, got ${synthesis.stopReason || 'unknown'}`;
   }
@@ -3079,6 +3124,8 @@ if (require.main === module && isTsxLoaded) {
 }
 
 module.exports = {
+  forcedDepthIterationViolation,
+  iterationNumbersOnDisk,
   DEVIN_ALLOWED_MODELS,
   DEVIN_DEFAULT_MODEL,
   CURSOR_ALLOWED_MODELS,

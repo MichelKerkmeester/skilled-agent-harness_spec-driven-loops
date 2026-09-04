@@ -1268,9 +1268,9 @@ workflow:
           command: |
             node --experimental-strip-types --input-type=module <<'EOF'
             import { execFileSync } from 'node:child_process';
-            import { appendFileSync, readFileSync, realpathSync } from 'node:fs';
+            import { appendFileSync, readFileSync, readlinkSync, realpathSync } from 'node:fs';
             import { createHash } from 'node:crypto';
-            import { isAbsolute, relative, resolve } from 'node:path';
+            import { basename, dirname, isAbsolute, relative, resolve } from 'node:path';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
 
@@ -1325,10 +1325,39 @@ workflow:
               ...git(['diff', '--name-only', '-z', 'HEAD', '--'], repoRoot, false).split('\0'),
               ...git(['ls-files', '--others', '--exclude-standard', '-z'], repoRoot, false).split('\0'),
             ].filter(Boolean);
-            const outsideArtifactDir = dirtyPaths.filter((candidate) => {
-              const candidateRelative = relative(artifactDir, resolve(repoRoot, candidate));
-              return candidateRelative.startsWith('..') || isAbsolute(candidateRelative);
-            });
+            const canonicalLocation = (absolutePath) => {
+              try {
+                return realpathSync(absolutePath);
+              } catch {
+                let parentReal;
+                try {
+                  parentReal = realpathSync(dirname(absolutePath));
+                } catch {
+                  return absolutePath;
+                }
+                const leaf = resolve(parentReal, basename(absolutePath));
+                try {
+                  // A dangling link still names the location it points at, and becomes a live
+                  // escape the moment that target is created.
+                  const target = readlinkSync(leaf);
+                  return isAbsolute(target) ? resolve(target) : resolve(parentReal, target);
+                } catch {
+                  return leaf;
+                }
+              }
+            };
+            const artifactDirReal = canonicalLocation(artifactDir);
+            // git reports the path it walked, not where the bytes land: a symlink component
+            // under the artifact dir leaves a path that looks contained while its real
+            // location is wherever the link points. Containment has to hold both by name and
+            // after every component is resolved, so resolution can only ever narrow scope.
+            const escapesArtifactDir = (absolutePath) => {
+              const lexical = relative(artifactDir, absolutePath);
+              if (lexical.startsWith('..') || isAbsolute(lexical)) return true;
+              const canonical = relative(artifactDirReal, canonicalLocation(absolutePath));
+              return canonical.startsWith('..') || isAbsolute(canonical);
+            };
+            const outsideArtifactDir = dirtyPaths.filter((candidate) => escapesArtifactDir(resolve(repoRoot, candidate)));
             if (outsideArtifactDir.length > 0) {
               throw new Error(`Unsafe cli-opencode dispatch: worktree changes outside the artifact directory: ${outsideArtifactDir.join(', ')}`);
             }
@@ -1392,7 +1421,7 @@ workflow:
           wait_for_completion: true
           notes:
             - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
-            - "Fail closed before dispatch unless the rendered containment sections exist, --dir is an isolated linked worktree, the primary worktree is clean, and current-worktree changes are confined to artifact_dir; append the recovery-baseline commit to state_log"
+            - "Fail closed before dispatch unless the rendered containment sections exist, --dir is an isolated linked worktree, the primary worktree is clean, and current-worktree changes are confined to artifact_dir both by name and after every path component is resolved through symlinks; append the recovery-baseline commit to state_log"
             - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode v1.14.39 reads stdin at startup and hangs at 0% CPU after +60s snapshot prune without it (the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule)"
             - "opencode run takes a positional message; prompt is the route-proof preamble + iteration body"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"

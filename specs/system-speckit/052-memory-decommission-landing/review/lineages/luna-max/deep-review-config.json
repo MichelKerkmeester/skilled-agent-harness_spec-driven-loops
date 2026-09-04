@@ -1,0 +1,81 @@
+{
+  "topic": "Review: .opencode/specs/system-speckit/052-memory-decommission-landing",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-speckit/052-memory-decommission-landing",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "resourceMap": {
+    "emit": true,
+    "initNote": "resource-map.md not present at initialization; coverage gate skipped"
+  },
+  "reviewScope": {
+    "source": ".opencode/specs/system-speckit/052-memory-decommission-landing/scratch/review-scope.txt",
+    "fileCount": 438,
+    "policy": "bounded list only; target files are read-only"
+  },
+  "sessionId": "fanout-luna-max-1788546796271-oyeo9p",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "lineageIntent": "auto",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 30,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-speckit/052-memory-decommission-landing",
+  "createdAt": "2026-09-04T18:39:15.300Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800,
+    "inlineExecution": true,
+    "nestedDispatch": false
+  },
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "graph": {
+    "status": "unavailable",
+    "reason": "Graph seed omitted because the requested write surface is lineage-local"
+  },
+  "continuity": {
+    "status": "skipped",
+    "reason": "generate-context.js is outside the requested write-only lineage workflow"
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once",
+    "deltas/iter-*.jsonl": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["fullJSONLHistory", "iterationFiles", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "manualInlineRefresh": true
+  }
+}

@@ -6,7 +6,7 @@
 // revert / enforce over a real temp git repo so the diff + restore logic
 // is verified against actual `git status` porcelain, not a mock.
 
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, writeFileSync, unlinkSync, existsSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync, unlinkSync, existsSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -1217,5 +1217,115 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
     expect(result.event!.revertedPatchPath).toBeUndefined();
     expect(result.event!.revertedPatchError).toMatch(/^patch write failed: /);
     expect(result.recoveryHint).toBeNull();
+  });
+});
+describe('write-containment — a symlink cannot carry a write out of the artifact tree', () => {
+  // git reports the path it walked, so a symlink under the artifact dir reads as in-scope
+  // under a name-only test while the write it carries lands wherever it points. These cases
+  // pin the canonicalized boundary: the escape is detected, and ordinary paths are untouched.
+  it('flags a symlinked directory that leaves the artifact tree, and the write made through it', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    symlinkSync('../deep', join(artifactDir, 'escape'), 'dir');
+    writeFileSync(join(artifactDir, 'escape/leaked.md'), 'leaked\n');
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    const paths = violations.map((v) => v.path);
+    expect(paths).toContain('artifact/escape');
+    expect(paths).toContain('deep/leaked.md');
+  });
+
+  it('fails the iteration on the escaping symlink instead of filing it as a packet advisory', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    symlinkSync('../deep', join(artifactDir, 'escape'), 'dir');
+    writeFileSync(join(artifactDir, 'escape/leaked.md'), 'leaked\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
+    });
+
+    expect(result.violations.map((v) => v.path)).toContain('artifact/escape');
+    expect(result.advisories.map((v) => v.path)).not.toContain('artifact/escape');
+    // Never deleted: an unattributable path stays on disk, exactly as for any other breach.
+    expect(existsSync(join(artifactDir, 'escape'))).toBe(true);
+  });
+
+  it('flags a symlinked file whose target sits outside the artifact tree', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    symlinkSync('../tracked-outside.txt', join(artifactDir, 'alias.txt'));
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    expect(violations.map((v) => v.path)).toContain('artifact/alias.txt');
+  });
+
+  it('still accepts an ordinary nested write inside the artifact dir', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    mkdirSync(join(artifactDir, 'nested/deeper'), { recursive: true });
+    writeFileSync(join(artifactDir, 'nested/deeper/notes.md'), 'notes\n');
+    writeFileSync(join(artifactDir, 'seed.md'), 'edited\n');
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    expect(violations).toEqual([]);
+  });
+
+  it('survives a dangling symlink, and still flags one aimed outside the tree', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    symlinkSync('./never-created.md', join(artifactDir, 'dangling-inside.md'));
+    symlinkSync('../never-created.md', join(artifactDir, 'dangling-outside.md'));
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    const paths = violations.map((v) => v.path);
+    expect(paths).not.toContain('artifact/dangling-inside.md');
+    // A link pointing at a file that does not exist yet still names a location outside the
+    // tree, and becomes a live escape the moment that file appears.
+    expect(paths).toContain('artifact/dangling-outside.md');
+  });
+
+  it('keeps a symlink outside the artifact dir guarded even though it resolves into it', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    symlinkSync('artifact', join(root, 'shortcut'), 'dir');
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    // Resolution may only narrow scope: an outside path cannot buy its way in by pointing in.
+    expect(violations.map((v) => v.path)).toContain('shortcut');
   });
 });

@@ -1,0 +1,229 @@
+{
+  "sessionId": "fanout-luna-max-1788546796271-oyeo9p",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "title": "Free-text ripgrep recipes omit hidden documentation beneath the advertised .opencode root",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/scripts/retrieval/lib/rg-lane.mjs:28-43",
+      "evidence": "The shared recipes omit --hidden while the contract advertises .opencode as the Everything root; wrapper no-match versus explicit-hidden match proves a reachable dotted Markdown document is silently missed.",
+      "recommendation": "Add --hidden to every free-text recipe or explicitly align the documented and indexed corpora with a tested exclusion policy.",
+      "disposition": "active",
+      "findingClass": "coverage-gap",
+      "scopeProof": "Source comparison across the free-text contract, shared recipe and zvec hidden-path precedent plus a direct negative control.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-spec-kit/scripts/retrieval/lib/rg-lane.mjs",
+        ".opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs",
+        ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+      ],
+      "content_hash": "842d74374d9cb09eda946f8523b8a1262b171040f80e91bf90b533f01c303314"
+    },
+    {
+      "id": "F002",
+      "severity": "P2",
+      "title": "lookup --limit accepts malformed values despite a non-negative integer contract",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs:254-261",
+      "evidence": "Number.parseInt accepts 2junk as 2 and 1.9 as 1; direct probes exit 0 with truncated results, while -1 exits 2.",
+      "recommendation": "Validate the raw token as a whole non-negative decimal integer and add CLI edge cases.",
+      "disposition": "active",
+      "findingClass": "input-validation-gap",
+      "scopeProof": "Parser source and direct read-only CLI probes for suffix, fraction and negative values.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs",
+        ".opencode/skills/system-spec-kit/scripts/tests/trigger-index.vitest.ts"
+      ],
+      "content_hash": "c35d8beb377ae135e30e3e3665f2aef30b5897e9fbc7d9dd001da05ca7a28e31"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "title": "Remote HF model-server auth token gates binding but is not enforced at the HTTP request boundary",
+      "dimension": "security",
+      "file": ".opencode/bin/hf-model-server.cjs:166-193,827-909,942-955",
+      "evidence": "The bind guard accepts a non-loopback target when HF_EMBED_ALLOW_REMOTE_BIND and a non-empty HF_EMBED_AUTH_TOKEN are present, but the /api/embed route and request handler never examine the token or Authorization; the client sends only content headers.",
+      "recommendation": "Enforce a documented request credential and send it from the client, or remove the remote-bind opt-in and fail closed. Add live HTTP tests for missing, wrong and valid credentials.",
+      "disposition": "active",
+      "findingClass": "security-boundary",
+      "scopeProof": "Read the scoped server, client, README, supervision and IPC perimeter sources; exact search found token use only in the bind guard and no request-side authorization branch.",
+      "affectedSurfaceHints": [
+        ".opencode/bin/hf-model-server.cjs",
+        ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        ".opencode/bin/README.md"
+      ],
+      "content_hash": "959ea02d6feb5e8a542a89e71b6309eb005652412ed683abe34249f10623dd4a"
+    },
+    {
+      "id": "F004",
+      "severity": "P1",
+      "title": "The doctor-memory evidence pointer names a checklist artifact absent from the packet",
+      "dimension": "traceability",
+      "file": ".opencode/commands/doctor/assets/doctor-memory.yaml:34-40",
+      "evidence": "The workflow declares checklist.md#doctor-memory as its gold-battery acceptance bar, but the packet has no checklist.md; its checklist-like material is embedded in tasks.md and all acceptance rows remain Unmet.",
+      "recommendation": "Point doctor-memory at the actual acceptance/checklist anchor or create the named artifact, and map checks to AC-001 through AC-004 before closure.",
+      "disposition": "active",
+      "findingClass": "evidence-link-gap",
+      "scopeProof": "Read the scoped doctor routes and packet documents, searched for checklist.md and doctor-memory anchors, and verified the packet-root file inventory.",
+      "affectedSurfaceHints": [
+        ".opencode/commands/doctor/assets/doctor-memory.yaml",
+        ".opencode/specs/system-speckit/052-memory-decommission-landing/acceptance-criteria.md",
+        ".opencode/specs/system-speckit/052-memory-decommission-landing/tasks.md"
+      ],
+      "content_hash": "8730065a21f8027531ccccf261b012529930973d92d630918e0006ce74780277"
+    },
+    {
+      "id": "F005",
+      "severity": "P2",
+      "title": "The cli-codex hard rule and its default non-interactive example disagree about stdin closure",
+      "dimension": "maintainability",
+      "file": ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md:7-10,207-218",
+      "evidence": "The hard rule requires </dev/null for every non-interactive codex exec, but the default non-interactive invocation example omits it; the shared runtime separately closes child stdin.",
+      "recommendation": "Add </dev/null to non-interactive examples or explicitly mark interactive examples and exempt them by contract.",
+      "disposition": "active",
+      "findingClass": "documentation-contract-drift",
+      "scopeProof": "Read the canonical skill, its README and executor runtime; traced actual child input handling to bound severity.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+      ],
+      "content_hash": "b3d7a1bfd0a53b7fbf180fe4e0a274ffe042939ee8ca344ab40f9542bb7ef938"
+    },
+    {
+      "id": "F006",
+      "severity": "P1",
+      "title": "Forced-depth completion accepts a gapped iteration filename set because it checks only the count",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:675-683,779-789,827-834",
+      "evidence": "countIterationFiles accepts any N regex-matching filenames and max-iterations validation compares only that count plus a max-family stop reason; it does not require the contiguous 1..N set or reconcile state-record iteration numbers.",
+      "recommendation": "Require exact contiguous iteration numbers, reject out-of-range/gapped names, and cross-check unique state records before accepting forced-depth completion.",
+      "disposition": "active",
+      "findingClass": "forced-depth-proof-gap",
+      "scopeProof": "Read both completion branches and the directory count helper; the policy gate has no sequence or state cross-check.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".opencode/commands/deep/assets/deep-review-auto.yaml"
+      ],
+      "content_hash": "fd7b6b4c1453091875d60de667cde1e198b5936be3f9973e165f24aaa48e4f24"
+    },
+    {
+      "id": "F007",
+      "severity": "P1",
+      "title": "Post-dispatch write containment can be bypassed through a symlink beneath the artifact directory",
+      "dimension": "security",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:282-287,307-323,423-450",
+      "evidence": "Artifact containment compares lexical Git-status paths and realpath-resolves only the artifact root; the review YAML repeats a resolve-only dirty-path comparison, so a descendant symlink can target outside the physical artifact tree without being detected.",
+      "recommendation": "Reject symlink components or canonicalize every descendant path/parent before allowing it; add a regression test and retain preventive sandboxing where available.",
+      "disposition": "active",
+      "findingClass": "physical-boundary-gap",
+      "scopeProof": "Source trace across root resolution, status classification and YAML preflight; live escape reproduction intentionally omitted because it would write outside the lineage.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        ".opencode/commands/deep/assets/deep-review-auto.yaml",
+        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
+      ],
+      "content_hash": "38e2d9d94fca62d6c4269c0f3c8214a6c0ccef5b29d231fa2b87eb62d49b5edf"
+    },
+    {
+      "id": "F008",
+      "severity": "P2",
+      "title": "Doc-frontmatter harvest accepts a non-fence line as the closing delimiter",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts:93-98",
+      "evidence": "parseDocFrontmatter searches for the first newline followed by --- rather than a complete closing-fence line, so a content line such as ---not-a-fence terminates the parsed block and causes subsequent frontmatter keys or trigger phrases to be ignored.",
+      "recommendation": "Require the closing marker to be an entire line (--- followed by CRLF, LF, or end-of-input), reject or report malformed fences, and add a regression case for prefix collisions while preserving valid Windows line endings.",
+      "disposition": "active",
+      "findingClass": "parser-boundary",
+      "scopeProof": "Read the scoped parser and consumer documentation; exact source inspection showed a prefix-only closing search and no malformed-delimiter guard.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts",
+        ".opencode/skills/system-skill-advisor/README.md",
+        ".opencode/skills/system-skill-advisor/mcp-server/tests/skill-doc-harvest.vitest.ts"
+      ],
+      "content_hash": "8fc962e8aea71e79763ec294683726fbde25552612283811c7d31d266c4c86a0"
+    },
+    {
+      "id": "F009",
+      "severity": "P2",
+      "title": "Advisor-local shared payload retains producer values absent from the canonical context contract",
+      "dimension": "maintainability",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/shared-payload.ts:291-299",
+      "evidence": "The preserved advisor duplicate accepts startup_brief and session_snapshot while the canonical context validator accepts only compact_merger, hook_cache and advisor. The advisor brief currently emits advisor only, so the mismatch is a latent interoperability or decommission-residue risk rather than a demonstrated live failure.",
+      "recommendation": "Remove the unused producer values or document them as explicitly local-only, and add a parity/interoperability fixture that asserts the intended producer vocabulary and rejection behavior.",
+      "disposition": "active",
+      "findingClass": "contract-drift",
+      "scopeProof": "Both duplicate modules are bounded scope entries; source diff, canonical README ownership contract and exact producer search confirm the enum mismatch and absence of current extra-value producers.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/shared-payload.ts",
+        ".opencode/skills/system-spec-kit/mcp-server/lib/context/shared-payload.ts",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-advisor-brief.ts"
+      ],
+      "content_hash": "3f425f570be34f5588651a89b8e1c1e9164a0c0c3dba7b05410c08eb7f548fd8"
+    },
+    {
+      "id": "F010",
+      "severity": "P2",
+      "title": "Current plugin documentation advertises the retired memory-plugin kill switch",
+      "dimension": "maintainability",
+      "file": ".opencode/plugins/README.md:90-100",
+      "evidence": "The authoritative plugin inventory lists no memory plugin, but the current configuration table and plugin test guidance still advertise SYSTEM_SPEC_MEMORY_DISABLED, SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED and memory plugins even though the surviving package says the memory engine and plugin bridge are gone.",
+      "recommendation": "Remove retired memory flag and memory-plugin references from current plugin configuration and test documentation, or mark them explicitly historical; keep historical names only in residue scanners and negative-control tests.",
+      "disposition": "active",
+      "findingClass": "decommission-residue",
+      "scopeProof": "Compared the bounded plugin inventory and test README with the bounded hook kill-switch index and surviving package removal statement; no live memory plugin entry was found.",
+      "affectedSurfaceHints": [
+        ".opencode/plugins/README.md",
+        ".opencode/plugins/tests/README.md",
+        ".opencode/hooks/README.md",
+        ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md"
+      ],
+      "content_hash": "0d9670132bcede1e48cc4ba061f6e81822482c96ce4f8fdd22d5123a42e422eb"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {"P0": 0, "P1": 5, "P2": 5},
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 2,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "searchCoverage": {
+    "requiredBugClasses": ["hidden-path omission", "malformed CLI input", "malformed index artifact", "execution-status conflation", "ranking determinism", "forced-depth iteration sequence", "physical artifact-path escape", "remote-bind authorization", "IPC path ownership", "workflow evidence-link integrity", "executor documentation coherence", "doc-frontmatter delimiter handling", "payload contract parity", "decommission registration residue"],
+    "covered": ["hidden-path omission", "malformed CLI input", "malformed index artifact", "execution-status conflation", "ranking determinism", "forced-depth iteration sequence", "physical artifact-path escape", "remote-bind authorization", "IPC path ownership", "workflow evidence-link integrity", "executor documentation coherence", "doc-frontmatter delimiter handling", "payload contract parity", "decommission registration residue"],
+    "ruledOut": ["malformed index artifact", "execution-status conflation", "IPC path ownership", "missing doctor route workflow assets", "runtime mirror drift", "deep-review runtime recursion guard gap", "nested dispatch or stdin liveness gap", "executor capability override gap", "advisor registry or purged-model drift", "new HF request-auth finding", "template checklist wording as an independent finding", "new trigger-index publication-order defect", "database path symlink escape", "cross-lane ranking determinism defect", "premature convergence termination"],
+    "deferred": [],
+    "blocked": ["authoritative tests and validators"],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "candidateCoverage": {"covered": ["retrieval scripts and tests", "embedding and IPC perimeters", "decommission proof and workflow links", "mirrors and executor contracts", "deep-loop runtime and containment boundary", "preserved advisor and launcher surfaces", "doc-frontmatter harvest boundary", "shared engine and template cross-reference surfaces", "command, doctor, hook and plugin registration surfaces", "cross-lane ranking determinism"], "missing": []},
+  "searchDebt": ["authoritative repository validation", "graph coverage", "packet checklist mapping", "direct CLI example audit", "live symlink escape reproduction", "doc-frontmatter malformed-input fixture", "payload duplicate parity fixture", "plugin inventory/docs residue cleanup"],
+  "ruledOutCandidates": [
+    {"candidate": "malformed trigger-index artifact", "reason": "shared shape assertion and focused tests reject malformed postings and schema drift"},
+    {"candidate": "execution-status conflation in wrapper", "reason": "exit 2+ remains error and failed stdout is not parsed"},
+    {"candidate": "stale Unix-socket unlink or chmod-through-symlink vulnerability", "reason": "shared and supervised IPC paths check ownership, symlinks and socket type before reclaim or chmod"},
+    {"candidate": "missing doctor route workflow assets", "reason": "the route manifest's referenced assets are present and the thin router requires them before loading a workflow"},
+    {"candidate": "deep-review runtime recursion guard gap", "reason": "shared executor checks fan-out lineage, dispatch stack, ancestry, runtime environment and lockfile before spawn"},
+    {"candidate": "cross-lane ranking determinism defect", "reason": "lexical and trigger-index lanes use explicit source-derived tie breakers; legacy replay candidate order includes id; zvec preserves external rank and the convention explicitly disclaims deterministic merged ordering", "evidence": [".opencode/skills/system-spec-kit/scripts/retrieval/lib/rg-lane.mjs:346-394", ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs:166-203", ".opencode/skills/system-spec-kit/scripts/retrieval/lib/legacy-lane.mjs:295-305,337-343", ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:192-202,310-319"]}
+  ],
+  "cleanSearchProof": [
+    {"candidate": "malformed trigger-index artifact", "evidence": [".opencode/skills/system-spec-kit/scripts/retrieval/lib/artifact.mjs:145-190", ".opencode/skills/system-spec-kit/scripts/tests/trigger-index.vitest.ts:638-680"]},
+    {"candidate": "execution-status conflation in wrapper", "evidence": [".opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs:187-214", ".opencode/skills/system-spec-kit/scripts/tests/rg-wrapper-recipes.vitest.ts:136-149"]},
+    {"candidate": "stale Unix-socket unlink or chmod-through-symlink vulnerability", "evidence": [".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:340-386", ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:474-486", ".opencode/bin/lib/model-server-supervision.cjs:522-552"]},
+    {"candidate": "missing doctor route workflow assets", "evidence": [".opencode/commands/doctor/_routes.yaml:16-29", ".opencode/commands/doctor/speckit.md:29-68"]},
+    {"candidate": "deep-review runtime recursion guard gap", "evidence": [".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:818-880"]}
+  ]
+}

@@ -19,7 +19,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { spawnSync } from 'node:child_process';
-import { appendFileSync, mkdirSync, realpathSync, writeFileSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readlinkSync, realpathSync, writeFileSync } from 'node:fs';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -296,6 +296,69 @@ function realpathSafe(p: string): string {
 }
 
 /**
+ * Deepest existing ancestor of `dir` resolved through symlinks, with the missing
+ * tail re-appended. git reports paths that no longer exist (a deletion) and paths
+ * that never will (a dangling link), so resolution has to survive an absent path
+ * rather than give up and hand back a name that hides a symlink.
+ */
+function realpathAncestor(dir: string): string {
+  try {
+    return realpathSync(dir);
+  } catch {
+    const parent = dirname(dir);
+    if (parent === dir) return dir;
+    return join(realpathAncestor(parent), basename(dir));
+  }
+}
+
+/**
+ * Where a path's bytes actually live: every component resolved through symlinks.
+ *
+ * A missing leaf keeps its resolved parent chain, and a DANGLING symlink is read
+ * through its recorded target -- an escape currently pointing at nothing is still
+ * an escape, and turns into a live one the moment that target is created.
+ */
+function canonicalPath(absolutePath: string): string {
+  const target = resolve(absolutePath);
+  try {
+    return realpathSync(target);
+  } catch {
+    const parentReal = realpathAncestor(dirname(target));
+    const leaf = join(parentReal, basename(target));
+    try {
+      const link = readlinkSync(leaf);
+      return isAbsolute(link) ? resolve(link) : resolve(parentReal, link);
+    } catch {
+      return leaf;
+    }
+  }
+}
+
+/**
+ * True when a git-reported path is inside the artifact tree BOTH by name and after
+ * every component is resolved through symlinks.
+ *
+ * git reports the path it walked, never the place the write landed. A symlink under
+ * the artifact dir therefore passes a name-only test while the bytes it carries go
+ * wherever it points -- one `ln -s` retiring the boundary this module exists to
+ * make structural. Canonicalizing the whole component chain closes that: a path
+ * that escapes is out of scope and gets guarded like any other outside write.
+ *
+ * The name test is kept alongside it so the rule can only ever NARROW scope -- a
+ * symlink outside the artifact dir that happens to resolve into it must not be able
+ * to buy its way in.
+ */
+function isContainedInArtifact(
+  repoRealRoot: string,
+  artifactRealRoot: string,
+  artifactRelPosix: string,
+  repoRelativePath: string,
+): boolean {
+  if (!isInsideArtifact(repoRelativePath, artifactRelPosix)) return false;
+  return isSubpath(canonicalPath(join(repoRealRoot, repoRelativePath)), artifactRealRoot);
+}
+
+/**
  * The artifact-dir subtree relative to repoRoot in POSIX form, or null when the
  * artifact dir is not inside the resolved git worktree (hermetic test artifact
  * dirs, external paths) -- the signal to skip containment entirely.
@@ -308,6 +371,8 @@ function resolveArtifactScope(
   opts: ContainmentOptions,
 ): {
   artifactRelPosix: string;
+  repoRealRoot: string;
+  artifactRealRoot: string;
   unattributableRelPosix: string[];
   unattributableFileRelPosix: string[];
 } | null {
@@ -341,7 +406,13 @@ function resolveArtifactScope(
     if (!rel || rel.startsWith('..') || isAbsolute(rel)) continue;
     unattributableFileRelPosix.push(rel);
   }
-  return { artifactRelPosix, unattributableRelPosix, unattributableFileRelPosix };
+  return {
+    artifactRelPosix,
+    repoRealRoot: repoReal,
+    artifactRealRoot: artifactReal,
+    unattributableRelPosix,
+    unattributableFileRelPosix,
+  };
 }
 
 /**
@@ -403,7 +474,7 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPat
   const out: DirtyPathEntry[] = [];
   for (const entry of entries) {
     if (isUnattributable(entry.path, scope.unattributableRelPosix, scope.unattributableFileRelPosix)) continue;
-    if (!isInsideArtifact(entry.path, scope.artifactRelPosix)) {
+    if (!isContainedInArtifact(scope.repoRealRoot, scope.artifactRealRoot, scope.artifactRelPosix, entry.path)) {
       const entryPath = toPosix(entry.path);
       // Hash every dirty path on disk, tracked or not: an untracked baseline entry left
       // unhashed always short-circuits the later comparison as "unknown, skip" regardless of
@@ -434,7 +505,7 @@ export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentV
   const violations: ContainmentViolation[] = [];
   for (const entry of entries) {
     const p = toPosix(entry.path);
-    if (isInsideArtifact(p, scope.artifactRelPosix)) continue;
+    if (isContainedInArtifact(scope.repoRealRoot, scope.artifactRealRoot, scope.artifactRelPosix, p)) continue;
     if (isUnattributable(p, scope.unattributableRelPosix, scope.unattributableFileRelPosix)) continue;
     if (preMap.has(p)) {
       const preHash = preMap.get(p) || '';
@@ -603,8 +674,18 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   // design when it cannot reason about the tree.
   const scope = resolveArtifactScope(input);
   const artifactRelPosix = scope ? scope.artifactRelPosix : '';
-  const exempted = detected.filter((violation) => isRegenerableRuntimeState(violation.path, artifactRelPosix));
-  const guarded = detected.filter((violation) => !isRegenerableRuntimeState(violation.path, artifactRelPosix));
+  // A detected path that is nonetheless INSIDE the artifact dir by name got here only
+  // because its canonical form escapes that tree -- a symlink pointing out. Both
+  // carve-outs below key off the path's name, which is exactly what such a link
+  // controls, so an escape is held out of them and stays fatal.
+  const escapesArtifactTree = (violation: ContainmentViolation): boolean =>
+    scope !== null && isInsideArtifact(violation.path, scope.artifactRelPosix);
+  const exempted = detected.filter(
+    (violation) => !escapesArtifactTree(violation) && isRegenerableRuntimeState(violation.path, artifactRelPosix),
+  );
+  const guarded = detected.filter(
+    (violation) => escapesArtifactTree(violation) || !isRegenerableRuntimeState(violation.path, artifactRelPosix),
+  );
   // Taken before the revert, because the revert is what destroys the content it copies.
   const patch = captureRevertPatch({
     repoRoot: input.repoRoot,
@@ -630,6 +711,9 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     revertResult.reverted.filter((a) => a.action === 'preserved_untracked').map((a) => a.path),
   );
   const isPacketScopedPath = (path: string): boolean => {
+    // An escaping symlink is never a packet neighbour: it was flagged precisely because
+    // its bytes leave the tree, so it must not inherit the concurrent-writer pass.
+    if (scope !== null && isInsideArtifact(path, scope.artifactRelPosix)) return false;
     const dir = dirnameRelPosix(path);
     // A bare repo-root file has no real relationship to any specific packet -- excluding it
     // keeps a genuinely unrelated stray write from qualifying merely because every path is
@@ -665,6 +749,8 @@ export const __internals = {
   resolveArtifactScope,
   parseStatusPorcelain,
   isInsideArtifact,
+  isContainedInArtifact,
+  canonicalPath,
   isRegenerableRuntimeState,
   isSubpath,
 };
