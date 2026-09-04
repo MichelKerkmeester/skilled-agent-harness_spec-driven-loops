@@ -58,6 +58,10 @@ contextType: "general"
 - [x] T008 Retrieval suites pass with the four fail-closed cases (76 tests)
 - [x] T009 Index regenerates byte-identical; parent validates recursively with 0 errors
 - [x] T010 Parent map, roadmap and this packet's docs updated
+- [x] T011 Alignment inventory: 214 hits in 115 live files still describing the memory database, daemon, server, tools or retired commands (changelogs, benchmark reports and spec packets excluded)
+- [x] T012 Runtime surfaces aligned: commands index, doctor menus and update workflow, agent routing tables and mirrors in five runtimes, hooks, install guides, root README and release notes; dangling installer symlink removed (`64de7e9389`, `00fb64241f`)
+- [x] T013 Skill docs aligned: system-spec-kit references, catalog, playbook and module READMEs; every other skill's references and playbooks; the agent template's dead memory grant; two references whose subject was the dead store deleted with the leaf manifest regenerated (`59aa0b8435`)
+- [x] T014 Code seams repaired: spawn-authority guard reads the advisor's lease, doctor:update drops the deleted server artifact and keeps state in the advisor's database directory, route guard and config blocks cleaned (`6f9a7331b2`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -50,6 +50,7 @@ Every review finding is verified against the files and either fixed at source or
 - F002, F003: the unchecked task and completion rows in phases 001, 002 and 005 closed with evidence
 - F004: the retired-prefix completion criterion restated to what was decided and proven
 - F005, F006: owner and review checkpoint on every open decision, and the release-environment caveat recorded
+- Alignment sweep: every live document, command, agent, hook and code comment that still presented the memory database, daemon, server, tools or retired commands as existing, brought to the surviving system
 
 ### Out of Scope
 - Rewriting changelogs, benchmark reports or negative-guard tests to remove the literal retired prefix - they are evidence the parent decided to keep

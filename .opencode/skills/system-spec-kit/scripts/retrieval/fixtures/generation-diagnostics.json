@@ -3,10 +3,10 @@
     "duplicate-phrase": 63,
     "missing-frontmatter": 6414,
     "non-yaml-frontmatter": 1,
-    "ok": 13041,
+    "ok": 13038,
     "valid-empty-list": 7924
   },
-  "documentsScanned": 27443,
+  "documentsScanned": 27440,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "5ae8ed6185177a0984f1e3114570cf2230f77836e5d3298c912a61f62248f132",
+  "manifestHash": "1b6d9b827773137e9828de2c5147f3d34d9f1a1e5bf9a50328f9899a92e1197e",
   "parserVersion": "1.0.0",
   "rows": [
     {

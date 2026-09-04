@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5ae8ed6185177a0984f1e3114570cf2230f77836e5d3298c912a61f62248f132",
+  "manifestHash": "1b6d9b827773137e9828de2c5147f3d34d9f1a1e5bf9a50328f9899a92e1197e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8805,6 +8805,9 @@
     "access permission matrix": [
       "access permission matrix"
     ],
+    "access telemetry": [
+      "access telemetry"
+    ],
     "access telemetry split": [
       "access telemetry split"
     ],
@@ -8870,9 +8873,6 @@
     ],
     "active embedder": [
       "active embedder"
-    ],
-    "active embedder name": [
-      "active_embedder_name"
     ],
     "active embedder pointer": [
       "active embedder pointer"
@@ -13689,6 +13689,9 @@
     "backfill dist rebuild": [
       "backfill dist rebuild"
     ],
+    "backfill frontmatter": [
+      "backfill frontmatter"
+    ],
     "backfill graph metadata": [
       "backfill graph metadata"
     ],
@@ -15093,17 +15096,11 @@
     "boot wal shm sigbus fix tasks": [
       "boot wal shm sigbus fix tasks"
     ],
-    "bootstrap auto selection": [
-      "bootstrap auto-selection"
-    ],
     "bootstrap lock pid reclaim fix": [
       "bootstrap lock pid reclaim fix"
     ],
     "bootstrap precedence chain embedder": [
       "bootstrap precedence chain embedder"
-    ],
-    "bootstrap probe sequence": [
-      "bootstrap probe sequence"
     ],
     "borderline refusal": [
       "borderline refusal"
@@ -16694,9 +16691,6 @@
     "causal cache depthtruncated variant": [
       "causal cache depthtruncated variant"
     ],
-    "causal depth": [
-      "causal depth"
-    ],
     "causal edge derived id split": [
       "causal edge derived id split"
     ],
@@ -17500,7 +17494,8 @@
       "check-placeholders mustache removed"
     ],
     "check prerequisites": [
-      "check prerequisites"
+      "check prerequisites",
+      "check-prerequisites"
     ],
     "check prerequisites nested path": [
       "check-prerequisites nested path"
@@ -23312,9 +23307,6 @@
     "cognitive laws design": [
       "cognitive laws design"
     ],
-    "cognitive memory": [
-      "cognitive memory"
-    ],
     "cold p95 advisory": [
       "cold p95 advisory"
     ],
@@ -24311,9 +24303,6 @@
     ],
     "community css themes json": [
       "community-css-themes json"
-    ],
-    "community detection": [
-      "community detection"
     ],
     "community fallback": [
       "community fallback"
@@ -25807,9 +25796,6 @@
     "context index": [
       "context index"
     ],
-    "context index database": [
-      "context index database"
-    ],
     "context index sqlite canonical db": [
       "context-index.sqlite canonical db"
     ],
@@ -26011,6 +25997,9 @@
     ],
     "continuity writer": [
       "continuity writer"
+    ],
+    "continuity writer configuration": [
+      "continuity writer configuration"
     ],
     "continuous change over time": [
       "continuous change over time"
@@ -34522,9 +34511,6 @@
     "degraded readiness envelope parity tasks": [
       "degraded readiness envelope parity tasks"
     ],
-    "degraded semantic search": [
-      "degraded semantic search"
-    ],
     "degraded vector health": [
       "degraded vector health"
     ],
@@ -36053,6 +36039,9 @@
     ],
     "deterministic arg resolution header memory search": [
       "deterministic arg resolution header memory search"
+    ],
+    "deterministic bucketing": [
+      "deterministic bucketing"
     ],
     "deterministic checks": [
       "deterministic checks"
@@ -39564,9 +39553,6 @@
     "embedder adapter shim": [
       "embedder adapter shim"
     ],
-    "embedder architecture": [
-      "embedder architecture"
-    ],
     "embedder architecture changelog": [
       "embedder architecture changelog"
     ],
@@ -39728,9 +39714,6 @@
     ],
     "embedder swap": [
       "embedder swap"
-    ],
-    "embedder swap runbook": [
-      "embedder swap runbook"
     ],
     "embedder testing architecture": [
       "embedder testing architecture"
@@ -39954,9 +39937,6 @@
     "embedding provider factory": [
       "embedding provider factory"
     ],
-    "embedding provider fallback": [
-      "embedding provider fallback"
-    ],
     "embedding provider memory leak rc 1": [
       "embedding provider memory leak RC-1"
     ],
@@ -40031,9 +40011,6 @@
     ],
     "embedding regime fingerprint tasks": [
       "embedding regime fingerprint tasks"
-    ],
-    "embedding retry policy": [
-      "embedding retry policy"
     ],
     "embedding stack concurrency fix": [
       "embedding stack concurrency fix"
@@ -43127,9 +43104,6 @@
     "feature flag all hooks": [
       "feature-flag all hooks"
     ],
-    "feature flag defaults": [
-      "feature flag defaults"
-    ],
     "feature flag governance": [
       "feature flag governance"
     ],
@@ -43139,6 +43113,9 @@
     "feature flag reference docs renumber": [
       "feature flag reference docs renumber",
       "feature-flag-reference-docs renumber"
+    ],
+    "feature flag rollout": [
+      "feature flag rollout"
     ],
     "feature flag table": [
       "feature-flag table"
@@ -45559,9 +45536,6 @@
     "frozen threshold decision": [
       "frozen threshold decision"
     ],
-    "fsrs decay": [
-      "FSRS decay"
-    ],
     "fsrs last review format": [
       "fsrs last_review format"
     ],
@@ -46156,6 +46130,9 @@
     ],
     "generated metadata build phase parent": [
       "generated-metadata build phase parent"
+    ],
+    "generated metadata drift": [
+      "generated metadata drift"
     ],
     "generated metadata drift gate": [
       "generated metadata drift gate"
@@ -47575,6 +47552,9 @@
     "graph metadata integrity rule": [
       "graph metadata integrity rule"
     ],
+    "graph metadata json": [
+      "graph-metadata.json"
+    ],
     "graph metadata json skill advisor": [
       "graph-metadata.json skill advisor"
     ],
@@ -47673,9 +47653,6 @@
     ],
     "graph ready or broken status": [
       "graph ready or broken status"
-    ],
-    "graph signals": [
-      "graph signals"
     ],
     "graph status repair": [
       "graph status repair"
@@ -50913,12 +50890,6 @@
     ],
     "install scripts doctor research": [
       "install scripts doctor research"
-    ],
-    "install sh": [
-      "install.sh"
-    ],
-    "install spec kit mcp": [
-      "install spec kit mcp"
     ],
     "install surface repair": [
       "install surface repair"
@@ -54770,9 +54741,6 @@
     "loose command naming tasks": [
       "loose command naming tasks"
     ],
-    "louvain": [
-      "louvain"
-    ],
     "louvain naming decision": [
       "louvain naming decision"
     ],
@@ -58211,9 +58179,6 @@
     "memory chain not yet shipped": [
       "memory chain not yet shipped"
     ],
-    "memory classification": [
-      "memory classification"
-    ],
     "memory cli build": [
       "memory cli build"
     ],
@@ -58288,9 +58253,6 @@
     ],
     "memory commands verify and ux tasks": [
       "memory commands verify and ux tasks"
-    ],
-    "memory configuration": [
-      "memory configuration"
     ],
     "memory consolidation cursor": [
       "memory consolidation cursor"
@@ -61425,9 +61387,6 @@
     "module ownership": [
       "module ownership"
     ],
-    "momentum scoring": [
-      "momentum scoring"
-    ],
     "monospace diagram skin": [
       "monospace diagram skin"
     ],
@@ -62480,6 +62439,9 @@
     ],
     "nocanonicalpathclaims": [
       "noCanonicalPathClaims"
+    ],
+    "node abi marker": [
+      "node abi marker"
     ],
     "node abi rebuild strategy": [
       "node abi rebuild strategy"
@@ -64226,9 +64188,6 @@
     ],
     "offline council certificate verification": [
       "offline council certificate verification"
-    ],
-    "offline embedding mode": [
-      "offline embedding mode"
     ],
     "offline flag for cupt": [
       "offline flag for cupt"
@@ -75641,9 +75600,6 @@
     "reindex dual write vec 768": [
       "reindex dual-write vec_768"
     ],
-    "reindex embeddings": [
-      "reindex embeddings"
-    ],
     "reindex embeddings blocked": [
       "reindex embeddings blocked"
     ],
@@ -79317,6 +79273,9 @@
     "rollout flip tooling delete": [
       "rollout flip tooling delete"
     ],
+    "rollout policy": [
+      "rollout policy"
+    ],
     "rollout readiness evidence": [
       "rollout readiness evidence"
     ],
@@ -81940,6 +81899,9 @@
     "script directory structure": [
       "script directory structure"
     ],
+    "script execution configuration": [
+      "script execution configuration"
+    ],
     "script filename exemption audit": [
       "script filename exemption audit"
     ],
@@ -83200,8 +83162,8 @@
     "setup cp sandbox rmrf guard": [
       "setup cp sandbox rmrf guard"
     ],
-    "setup native module health and mcp installation": [
-      "setup native module health and mcp installation"
+    "setup native module health": [
+      "setup native module health"
     ],
     "setup scripts": [
       "setup scripts"
@@ -83526,9 +83488,6 @@
     ],
     "shared daemon suite runner summary": [
       "shared daemon suite runner summary"
-    ],
-    "shared database directory": [
-      "shared database directory"
     ],
     "shared deep improvement packet no collapse": [
       "shared deep-improvement packet no-collapse"
@@ -91874,6 +91833,9 @@
     "speckit reviewer benchmarks": [
       "SPECKIT_REVIEWER_BENCHMARKS"
     ],
+    "speckit rollout percent": [
+      "SPECKIT_ROLLOUT_PERCENT"
+    ],
     "speckit router references": [
       "speckit router references"
     ],
@@ -92032,9 +91994,6 @@
     ],
     "sqlite busy timeout code graph": [
       "sqlite busy timeout code graph"
-    ],
-    "sqlite database location": [
-      "sqlite database location"
     ],
     "sqlite fts5 bm25 swap": [
       "sqlite fts5 bm25 swap"
@@ -96715,9 +96674,6 @@
     "token budget breach": [
       "token budget breach"
     ],
-    "token budget configuration": [
-      "token budget configuration"
-    ],
     "token budget constitutional count": [
       "token-budget constitutional count"
     ],
@@ -98964,6 +98920,9 @@
     "validation gate decision record": [
       "validation gate decision record"
     ],
+    "validation gate defaults": [
+      "validation gate defaults"
+    ],
     "validation gate hardening": [
       "validation gate hardening"
     ],
@@ -99152,9 +99111,6 @@
     ],
     "vec dim lazy table creation": [
       "vec_dim lazy table creation"
-    ],
-    "vec dim tables": [
-      "vec dim tables"
     ],
     "vec memories 768 dim": [
       "vec_memories 768 dim"
@@ -101060,9 +101016,6 @@
     ],
     "workflowmode runtimelooptype backendkind": [
       "workflowMode runtimeLoopType backendKind"
-    ],
-    "working memory": [
-      "working memory"
     ],
     "working memory rollback": [
       "working memory rollback"

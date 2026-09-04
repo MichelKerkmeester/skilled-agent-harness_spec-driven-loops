@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7f7e33e910572a0d4336acbd1f23771cf8195da12e409863b3dbcbdc59bd7265",
+  "corpusHash": "ea8fcfa93b453d14363b54ded83751740b92f80c2ae54595a735b82c1907bf35",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -16,7 +16,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27443,
+  "includedPathCount": 27440,
   "includedPaths": [
     ".opencode/skills/.state/advisor/README.md",
     ".opencode/skills/.state/authority/README.md",
@@ -7939,9 +7939,7 @@
     ".opencode/skills/system-spec-kit/references/config/launcher-lease.md",
     ".opencode/skills/system-spec-kit/references/debugging/troubleshooting.md",
     ".opencode/skills/system-spec-kit/references/debugging/universal-debugging-methodology.md",
-    ".opencode/skills/system-spec-kit/references/memory/embedder-architecture.md",
     ".opencode/skills/system-spec-kit/references/memory/embedder-pluggability.md",
-    ".opencode/skills/system-spec-kit/references/memory/embedding-resilience.md",
     ".opencode/skills/system-spec-kit/references/memory/epistemic-vectors.md",
     ".opencode/skills/system-spec-kit/references/memory/memory-system.md",
     ".opencode/skills/system-spec-kit/references/memory/save-workflow.md",
@@ -8026,7 +8024,6 @@
     ".opencode/skills/system-spec-kit/shared/embeddings/providers/README.md",
     ".opencode/skills/system-spec-kit/shared/ipc/README.md",
     ".opencode/skills/system-spec-kit/shared/lib/README.md",
-    ".opencode/skills/system-spec-kit/shared/mcp-server/database/README.md",
     ".opencode/skills/system-spec-kit/shared/parsing/README.md",
     ".opencode/skills/system-spec-kit/shared/predicates/README.md",
     ".opencode/skills/system-spec-kit/shared/ranking/README.md",
@@ -27463,7 +27460,7 @@
     "specs/system-speckit/049-memory-decommission/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5ae8ed6185177a0984f1e3114570cf2230f77836e5d3298c912a61f62248f132",
+  "manifestHash": "1b6d9b827773137e9828de2c5147f3d34d9f1a1e5bf9a50328f9899a92e1197e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
