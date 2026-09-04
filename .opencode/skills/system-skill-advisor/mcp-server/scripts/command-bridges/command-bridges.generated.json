@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 19,
+    "commandMetadata": 20,
     "allowList": 8,
-    "generated": 27,
+    "generated": 28,
     "typescriptActive": 6,
     "pythonActive": 16
   },
@@ -91,6 +91,21 @@
             "/create:changelog",
             "create:changelog"
           ]
+        }
+      }
+    },
+    {
+      "id": "command-create-chart",
+      "command": "/create:chart",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-chart",
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
         }
       }
     },

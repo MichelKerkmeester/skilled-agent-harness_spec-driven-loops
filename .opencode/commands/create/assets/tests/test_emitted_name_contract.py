@@ -38,7 +38,7 @@ class EmittedNameContractTest(unittest.TestCase):
     def test_root_yaml_assets_parse(self) -> None:
         """Require every root workflow asset to remain valid YAML."""
         yaml_paths = sorted(ASSET_ROOT.glob("*.yaml"))
-        self.assertEqual(len(yaml_paths), 26)
+        self.assertEqual(len(yaml_paths), 28)
         for path in yaml_paths:
             with self.subTest(path=path.name):
                 yaml.safe_load(path.read_text(encoding="utf-8"))

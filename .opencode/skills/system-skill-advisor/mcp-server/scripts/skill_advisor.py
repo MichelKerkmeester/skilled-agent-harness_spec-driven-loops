@@ -2418,6 +2418,15 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-create-benchmark",
         "routing_enabled": False,
     },
+    "command-create-chart": {
+        "description": "",
+        "slash_markers": ["/create:chart"],
+        "inventory_id": "command-create-chart",
+        "command": "/create:chart",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-chart",
+        "routing_enabled": False,
+    },
     "command-create-command": {
         "description": "",
         "slash_markers": ["/create:command"],

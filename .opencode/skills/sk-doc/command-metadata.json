@@ -393,6 +393,50 @@
     ]
   },
   {
+    "command": "/create:chart",
+    "ownerMode": "sk-create-chart",
+    "description": "Author a standalone HTML chart from a catalog of 21 forms, one per reader question. :auto/:confirm.",
+    "argumentHint": "<target-chart.html> <what the reader compares> [--form <catalog-id>] [--system neutral|ordered|categorical] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want a standalone HTML chart that plots values a reader compares.",
+      "ownedSignals": [
+        "plot this data as a chart",
+        "make a treemap, heatmap or waterfall",
+        "which chart form answers this question",
+        "chart the split, the spread or the trend"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-chart",
+        "resource": ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
+        "action": "load the chart authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-chart",
+        "resource": ".opencode/commands/create/assets/create-chart-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the artifact carries values a reader compares, which is a chart.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/create:diagram",
+          "when": "Prefer the diagram command when the artifact carries a structure a reader follows, and for the bare type names that packet documents, which are bar chart, line chart, scatter plot, radar chart, gantt chart and org chart."
+        }
+      ]
+    }
+  },
+  {
     "command": "/create:repo-rule",
     "ownerMode": "sk-create-repo-rule",
     "description": "Create, revise or retire a repo rule under repo-rules/, wired into REPO RULES.md. :auto/:confirm.",
