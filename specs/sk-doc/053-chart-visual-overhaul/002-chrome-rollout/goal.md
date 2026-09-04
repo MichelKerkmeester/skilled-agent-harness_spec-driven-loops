@@ -75,7 +75,7 @@ here are invisible to whatever judges completion.
 - [x] `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED` with `Summary: errors: 0`
 - [x] `grep -rc 'border-radius: 10px' .opencode/skills/sk-doc/sk-create-chart/assets/` returns 0 in every file, against a recorded before-count of 20
 - [x] `grep -rn 'toLocaleString' .opencode/skills/sk-doc/sk-create-chart/assets/` returns no match
-- [x] `grep -rl 'ui-monospace' .opencode/skills/sk-doc/sk-create-chart/assets/` lists all twenty-nine asset files
+- [x] `grep -rl 'ui-monospace' .opencode/skills/sk-doc/sk-create-chart/assets/` lists all twenty-nine asset files, which was the whole corpus at this phase's close. Phase 007 added `templates/bar-line-composed.html` and it carries the mono stack too, so the same command returns 30 of 30 today
 - [x] The corpus check names a radius rule with a nonzero assertion count, and that rule printed `RESULT: FAILED` on a mutated template before the template was restored
 - [x] `decision-record.md` carries ADR-001 through ADR-005, with ADR-005 resolved to Route A or Route B on tested evidence
 - [x] `validate.sh specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout --strict` prints `RESULT: PASSED`

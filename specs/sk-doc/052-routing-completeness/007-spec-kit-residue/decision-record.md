@@ -91,10 +91,10 @@ when `ENABLE_BM25` is unset. Two tests still assert it returns `true`:
 `mcp-server/tests/search-extended.vitest.ts:98-102` (BM01) and
 `mcp-server/tests/bm25-index.vitest.ts:413-416` (T037.2).
 
-Commit `9f2efd7ae8d` (2026-07-02), *"031 remediation wave 7 (final) — BM25 default
-flip, strict-schemas flag wiring"*, made the change. Its entire code delta is one
+Commit `9f2efd7ae8d` (2026-07-02), `031 remediation wave 7 (final) — BM25 default
+flip, strict-schemas flag wiring`, made the change. Its entire code delta is one
 line: `if (!value) return true; // enabled by default` became `if (!value) return
-false;`. The commit body gives the reason — the old default contradicted the
+false;`. The commit body gives the reason: the old default contradicted the
 documented opt-in behavior. The packet's own task row closes the finding with
 *"Verified via git diff (1 line)."* No suite was run, which is the whole mechanism of
 the breakage.
@@ -104,7 +104,7 @@ the breakage.
 - `ENABLE_BM25` is overloaded. It gates the in-memory JS engine **and** the
   FTS5-backed keyword lane. `mcp-server/lib/search/hybrid-search.ts:480` returns `[]`
   *before* the `shouldUseSqliteLexicalEngine(db)` branch at `:488`, so the flip also
-  removed the FTS5-fed `bm25` channel from RRF fusion — a lane commit `7659ec57789`
+  removed the FTS5-fed `bm25` channel from RRF fusion, a lane commit `7659ec57789`
   had deliberately preserved when it introduced the opt-in posture through a
   different variable, `SPECKIT_BM25_ENGINE`.
 - The bm25 lane carries base weight 0.6 against FTS5's 0.3, per
@@ -124,7 +124,7 @@ Running the four BM25 suites (`bm25-index`, `bm25-security`, `bm25-packed-inmemo
 
 The flag explains exactly five, and they are **not** the two default assertions. They
 are `bm25-security` RD03 through RD06 (`rebuildFromDatabase`) and one
-`bm25-packed-inmemory` warmup test — suites that need the engine live and silently
+`bm25-packed-inmemory` warmup test. Both suites need the engine live and silently
 index nothing when it is off.
 
 Seven survive the flag being on, and they split in two:
@@ -159,12 +159,12 @@ the flag being off.
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Keep opt-in, move the tests** | Matches the shipped v3.0.1.3 migration note and the manual-testing playbook; does not re-open a closed finding | Three feature-catalog and env-reference docs still say ON and must be corrected in the same change | 8/10 |
-| Revert to default-on | Restores the heavier lexical lane immediately; the flip shipped on a diff read alone | Re-breaks a published user-facing contract and re-opens finding 0200 | 5/10 |
+| **Keep opt-in, move the tests** | Matches the shipped v3.0.1.3 migration note and the manual-testing playbook, and does not re-open a closed finding | Three feature-catalog and env-reference docs still say ON and must be corrected in the same change | 8/10 |
+| Revert to default-on | Restores the heavier lexical lane immediately, and the flip shipped on a diff read alone | Re-breaks a published user-facing contract and re-opens finding 0200 | 5/10 |
 | Split the variable | Fixes the real defect: one flag should not gate two lanes | Larger change, new env var to document and migrate | 7/10 |
 
-**Why this one**: the opt-in posture is the newer, user-facing, published contract;
-the lane loss is a separable bug that reverting would mask rather than fix.
+**Why this one**: the opt-in posture is the newer, user-facing, published contract.
+The lane loss is a separable bug that reverting would mask rather than fix.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -201,7 +201,7 @@ the lane loss is a separable bug that reverting would mask rather than fix.
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | Two tests are red on every run and the docs contradict each other 3 against 3 |
 | 2 | **Beyond Local Maxima?** | PASS | Revert and flag-split were both weighed against keeping the flip |
-| 3 | **Sufficient?** | PASS | Two test edits plus three doc corrections; the lane fix is deliberately separate |
+| 3 | **Sufficient?** | PASS | Two test edits plus three doc corrections, and the lane fix is deliberately separate |
 | 4 | **Fits Goal?** | PASS | The suite cannot be trusted while a default is asserted two ways |
 | 5 | **Open Horizons?** | PASS | Naming the overloaded flag leaves the split available later |
 
@@ -219,7 +219,7 @@ the lane loss is a separable bug that reverting would mask rather than fix.
 - The three documents above state opt-in.
 - A separate change reorders `mcp-server/lib/search/hybrid-search.ts:480`.
 
-**How to roll back**: revert the test and doc edits; `isBm25Enabled()` is untouched by
+**How to roll back**: revert the test and doc edits. `isBm25Enabled()` is untouched by
 this decision, so no runtime rollback is needed.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
@@ -258,7 +258,7 @@ computes under-represented channels at 123-129 from what survived. A channel who
 every result is sub-floor is therefore invisible, and its doc comment at `:66` says
 so: *"Only checks channels with results at or above QUALITY_FLOOR."*
 
-Six tests assert the opposite — that a wholly sub-floor channel still promotes a
+Six tests assert the opposite, that a wholly sub-floor channel still promotes a
 representative:
 
 - `tests/channel-representation.vitest.ts:114` (T3), `:262-269` (T10), `:393` (T18)
@@ -272,13 +272,13 @@ No test anywhere asserts the current filter-first behavior.
 ### Constraints
 
 - The pair has already been reversed twice. `cbf4f4d111c` (2026-06-25) removed the
-  floor gate deliberately and updated the tests in the same commit; `01ec95899fd`
+  floor gate deliberately and updated the tests in the same commit. `01ec95899fd`
   (2026-06-26) rewrote the constant's docstring to call the floor *"a calibration
-  anchor, not an active promotion gate"*; `9958975f40c` (2026-07-02) reversed both
+  anchor, not an active promotion gate"*. `9958975f40c` (2026-07-02) reversed both
   and left the six tests untouched, verified by *"git-diff-verified against each
-  dispatch's own self-reported file scope"* — a diff read, not a run.
+  dispatch's own self-reported file scope"*, a diff read and not a run.
 - The tests contradict themselves. `tests/channel-representation.vitest.ts:248` is
-  titled *"quality floor is exact — score 0.005 qualifies, 0.004 does not"* while its
+  titled `quality floor is exact — score 0.005 qualifies, 0.004 does not` while its
   body at `:267-269` asserts 0.004 promotes. `tests/channel-enforcement.vitest.ts:18`
   still lists *"quality floor prevents low-quality promotions"* as covered.
 - Blast radius is small and known: `analyzeChannelRepresentation` has exactly one
@@ -307,10 +307,10 @@ which is what every surviving sentence in those same files already says.
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
 | **Keep the gate, move the tests** | Agrees with the constant's docstring, both module doc comments, the feature catalog, and the tests' own titles | Reverses a considered 06-25 design decision a third time | 7/10 |
-| Restore promotion below the floor | The tests were last verified by a run, not a diff; the 06-25 rationale (raw RRF scores cluster at 0.01-0.03, so weak-but-real channels sit near the floor) is real | Re-enables a 0.001 noise hit being rescored into mid-range by `normalizePromotedItems` (`channel-enforcement.ts:152-175`) and evicting a genuine result via `reservePromotionsInWindow` (`:177-235`) | 6/10 |
+| Restore promotion below the floor | The tests were last verified by a run rather than a diff, and the 06-25 rationale (raw RRF scores cluster at 0.01-0.03, so weak-but-real channels sit near the floor) is real | Re-enables a 0.001 noise hit being rescored into mid-range by `normalizePromotedItems` (`channel-enforcement.ts:152-175`) and evicting a genuine result via `reservePromotionsInWindow` (`:177-235`) | 6/10 |
 
-**Why this one**: the precision hazard is concrete and the durable prose is unanimous;
-the flipped assertion bodies are the outlier.
+**Why this one**: the precision hazard is concrete and the durable prose is unanimous.
+The flipped assertion bodies are the outlier.
 <!-- /ANCHOR:adr-002-alternatives -->
 
 ---
@@ -330,7 +330,7 @@ the flipped assertion bodies are the outlier.
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Weak-but-real channels near the floor lose representation, which is what 06-25 set out to fix | M | Re-measure with the floor active before closing; the floor value is one constant |
+| Weak-but-real channels near the floor lose representation, which is what 06-25 set out to fix | M | Re-measure with the floor active before closing. The floor value is one constant |
 | A third reversal by a future sweep citing stale prose | M | Whichever side loses, its documentation moves in the same change |
 <!-- /ANCHOR:adr-002-consequences -->
 
@@ -343,7 +343,7 @@ the flipped assertion bodies are the outlier.
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | Six tests red across four files since 2026-07-02 |
 | 2 | **Beyond Local Maxima?** | PASS | Both directions carry a dated commit and a stated rationale |
-| 3 | **Sufficient?** | PASS | Assertion bodies plus their titles and headers; no module change |
+| 3 | **Sufficient?** | PASS | Assertion bodies plus their titles and headers, with no module change |
 | 4 | **Fits Goal?** | PASS | This is the largest single mechanism inside the residue |
 | 5 | **Open Horizons?** | PASS | The floor stays one tunable constant |
 
@@ -413,13 +413,13 @@ says nothing about content removed inside the 1032 modified files, and
 
 - There is a dispatch-level cap, but it is not a replacement.
   `context-server.ts:1212` calls `enforceEnvelopeResultBudget` against a 3500-token
-  budget — and `git show c8c4e79139e~1` proves it already existed before the handler
-  enforcer was added, so nothing was moved. The two coexisted by design; that
+  budget, and `git show c8c4e79139e~1` proves it already existed before the handler
+  enforcer was added, so nothing was moved. The two coexisted by design, and that
   commit's ADR-005 says the handler enforcer was *"kept independent after verifying it
   uses a different truncation strategy."*
 - Four gaps the dispatch enforcer cannot close: it never trims below
-  `ENVELOPE_RESULT_DISPLAY_FLOOR = 10` rows (`context-server.ts:503`); it bails on a
-  single oversized result (`:551`); it drops tail-first rather than lowest-score-first;
+  `ENVELOPE_RESULT_DISPLAY_FLOOR = 10` rows (`context-server.ts:503`), it bails on a
+  single oversized result (`:551`), it drops tail-first rather than lowest-score-first,
   and it runs after `handleMemorySearch` has already logged implicit `search_shown`
   feedback, which is the exact bug the deleted call site addressed.
 <!-- /ANCHOR:adr-003-context -->
@@ -431,8 +431,8 @@ says nothing about content removed inside the 1032 modified files, and
 
 **We chose**: restore the code and keep the test unchanged.
 
-**How it works**: revert the `handlers/memory-search.ts` portion of `947f8a6b58e` —
-re-add `enforceSearchTokenBudget`, its `layer-definitions` and `estimateTokens`
+**How it works**: revert the `handlers/memory-search.ts` portion of `947f8a6b58e`.
+That re-adds `enforceSearchTokenBudget`, its `layer-definitions` and `estimateTokens`
 imports, its `__testables` entry, and the call before the
 `isImplicitFeedbackLogEnabled()` block at what is now `:2273`.
 <!-- /ANCHOR:adr-003-decision -->
@@ -444,7 +444,7 @@ imports, its `__testables` entry, and the call before the
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Restore the code** | Completes the restore `0194a385218` intended; a prior commit already called the deletion a regression on the record | Re-adds ~100 lines to a large handler | 9/10 |
+| **Restore the code** | Completes the restore `0194a385218` intended, and a prior commit already called the deletion a regression on the record | Re-adds ~100 lines to a large handler | 9/10 |
 | Delete the test | Smallest diff | Writes an accidental deletion down as the specification, and `memory_search` keeps silently exceeding its budget | 2/10 |
 
 **Why this one**: the deletion was identified as a regression by the commit that
@@ -470,7 +470,7 @@ content.
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | The restored code has drifted from the surrounding handler in three weeks | M | Restore from `git show c8c4e79139e` and run the five tests as the gate |
-| Double truncation with the dispatch enforcer | L | Different strategies by design; ADR-005 of the original commit already examined this |
+| Double truncation with the dispatch enforcer | L | Different strategies by design, and ADR-005 of the original commit already examined this |
 <!-- /ANCHOR:adr-003-consequences -->
 
 ---
@@ -483,7 +483,7 @@ content.
 | 1 | **Necessary?** | PASS | Five tests fail and the budget is unenforced in the handler |
 | 2 | **Beyond Local Maxima?** | PASS | The dispatch-level cap was examined and found not to cover four cases |
 | 3 | **Sufficient?** | PASS | A scoped revert of one commit's one file |
-| 4 | **Fits Goal?** | PASS | The test is right and the code moved; that is the definition of a code finding |
+| 4 | **Fits Goal?** | PASS | The test is right and the code moved, which is the definition of a code finding |
 | 5 | **Open Horizons?** | PASS | Restores the documented design rather than inventing one |
 
 **Checks Summary**: 5/5 PASS
@@ -498,7 +498,7 @@ content.
 - `mcp-server/handlers/memory-search.ts` regains the function, two imports, the
   `__testables` entry, and one call site.
 
-**How to roll back**: revert that single commit; the five tests return to red, which is
+**How to roll back**: revert that single commit. The five tests return to red, which is
 the state before this decision.
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
@@ -547,15 +547,15 @@ const selectSql = docTypeAvailable
 ```
 
 It probes for exactly one optional column and selects five others unconditionally. The
-real table has all six — the shipped `memory_index` carries 71 columns including
-`anchor_id`, `tenant_id`, `user_id`, `agent_id` and `session_id` — so the fixture is
-behind the schema, not ahead of it.
+real table has all six. The shipped `memory_index` carries 71 columns including
+`anchor_id`, `tenant_id`, `user_id`, `agent_id` and `session_id`, so the fixture is
+behind the schema rather than ahead of it.
 
 ### Constraints
 
 - The tolerant shape is already local. `hasDocumentTypeColumn()` at `:119` runs
   `PRAGMA table_info(memory_index)` and is the established precedent in this same
-  file; the scope columns were added to the SELECT later without extending it.
+  file. The scope columns were added to the SELECT later without extending it.
 - Git archaeology is unavailable. Both files' histories collapse to the squashed
   `cc77a1e550a` kebab-case migration, so the commit that added the scope columns
   cannot be dated on this branch.
@@ -566,8 +566,8 @@ behind the schema, not ahead of it.
 <!-- ANCHOR:adr-004-decision -->
 ### Decision
 
-**We chose**: make the fixture current — add the five scope columns to `makeTestDb()` —
-and leave the production SELECT unconditional.
+**We chose**: make the fixture current by adding the five scope columns to
+`makeTestDb()`, and leave the production SELECT unconditional.
 
 **How it works**: the fixture gains `anchor_id`, `tenant_id`, `user_id`, `agent_id` and
 `session_id`, matching the real table. The six tests then exercise the production query
@@ -581,9 +581,9 @@ as written instead of a narrower replica of it.
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Make the fixture current** | The fixture becomes a truthful replica; no runtime change and no new probe on a hot path | Every future column addition needs the fixture updated, which is how this drifted | 8/10 |
-| Extend `hasDocumentTypeColumn` into a general probe | Tolerant of any partial table; matches the local precedent | Adds a `PRAGMA` per column to a reconcile path, and tolerating a missing `anchor_id` in production would hide a real schema failure | 6/10 |
-| Both | Belt and braces | The tolerance would never fire once the fixture is right; unearned code | 4/10 |
+| **Make the fixture current** | The fixture becomes a truthful replica, with no runtime change and no new probe on a hot path | Every future column addition needs the fixture updated, which is how this drifted | 8/10 |
+| Extend `hasDocumentTypeColumn` into a general probe | Tolerant of any partial table, and matches the local precedent | Adds a `PRAGMA` per column to a reconcile path, and tolerating a missing `anchor_id` in production would hide a real schema failure | 6/10 |
+| Both | Belt and braces | The tolerance would never fire once the fixture is right, so the code is unearned | 4/10 |
 
 **Why this one**: the columns exist in every real database. A probe that can only ever
 be false in production is a branch nobody exercises, and the drift is a fixture problem.
@@ -607,7 +607,7 @@ be false in production is a branch nobody exercises, and the drift is a fixture 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | Other fixtures in the tree carry the same drift | M | Recorded as an adjacent finding, not fixed here |
-| A genuinely partial table in production would now throw rather than degrade | L | It would throw today too; nothing changes at runtime |
+| A genuinely partial table in production would now throw rather than degrade | L | It would throw today too, and nothing changes at runtime |
 <!-- /ANCHOR:adr-004-consequences -->
 
 ---
@@ -635,7 +635,7 @@ be false in production is a branch nobody exercises, and the drift is a fixture 
 - `mcp-server/tests/incremental-index-move-reconcile.vitest.ts:53-71` gains five
   column declarations.
 
-**How to roll back**: revert the fixture edit; the six tests return to red.
+**How to roll back**: revert the fixture edit. The six tests return to red.
 <!-- /ANCHOR:adr-004-impl -->
 <!-- /ANCHOR:adr-004 -->
 
@@ -667,7 +667,7 @@ which 049 spec.md §3 names as out of scope. See the Outcome section below.
 Test files under `system-spec-kit/scripts/tests/` import
 `../../mcp-server/lib/coverage-graph/*.js`, which does not exist. The import is a
 static top-level ESM import, so the module load fails and the file collects zero
-tests — it reports as an errored file, not as a skip. There is no guard and no
+tests, and it reports as an errored file rather than as a skip. There is no guard and no
 `describe.skip` anywhere in the family.
 
 The affected files, and what each imports:
@@ -676,12 +676,12 @@ The affected files, and what each imports:
 |---|---|---|
 | `coverage-graph-integration.vitest.ts:32` | `lib/coverage-graph/coverage-graph-db.js` | five live `scripts/lib/coverage-graph-*.cjs` |
 | `coverage-graph-cross-layer.vitest.ts:22,27,32` | `coverage-graph-{db,query,signals}.js` | the same live CJS layer |
-| `graph-convergence-parity.vitest.ts:11` | `coverage-graph-signals.js` | — |
-| `session-isolation.vitest.ts:18-21` | `coverage-graph-db.js` **and** `handlers/coverage-graph/{query,status,convergence}.js` | — |
+| `graph-convergence-parity.vitest.ts:11` | `coverage-graph-signals.js` | none |
+| `session-isolation.vitest.ts:18-21` | `coverage-graph-db.js` **and** `handlers/coverage-graph/{query,status,convergence}.js` | none |
 
 The decisive fact: **the subject was never deleted, it was moved.** Commit
-`107c522599d` (2026-05-22), *"deep-loop FULL_ISOLATE transition — lib mv + script
-shims + MCP removal + YAML cutover"*, shows `R098`/`R099`/`R100` renames of the three
+`107c522599d` (2026-05-22), `deep-loop FULL_ISOLATE transition — lib mv + script
+shims + MCP removal + YAML cutover`, shows `R098`/`R099`/`R100` renames of the three
 `lib/coverage-graph/*.ts` modules out of the memory server, and `D` deletions of five
 `handlers/coverage-graph/*.ts`. `6323b843425` (2026-07-08) moved them again to their
 current home, `system-deep-loop/runtime/lib/coverage-graph/`. Every symbol the three
@@ -696,7 +696,7 @@ current home, `system-deep-loop/runtime/lib/coverage-graph/`. Every symbol the t
   `scripts/lib/coverage-graph-convergence.cjs:2` still asserts in live source:
   *"sourceDiversity is an adapter replicating the MCP handler's canonical algorithm.
   Do not diverge."* That comment names the pre-move path and is itself stale.
-- No npm script and no CI workflow names any of these files; they are collected by
+- No npm script and no CI workflow names any of these files. They are collected by
   glob only.
 - The two files under `mcp-server/tests/archive/` are separately dead by config
   exclusion, import only `vitest`, and should be left alone.
@@ -714,7 +714,7 @@ current home, `system-deep-loop/runtime/lib/coverage-graph/`. Every symbol the t
 `coverage-graph-cross-layer.vitest.ts` and `graph-convergence-parity.vitest.ts` change
 their import specifier to `../../../system-deep-loop/runtime/lib/coverage-graph/*`.
 `session-isolation.vitest.ts` loses the describes that depend on the retired handler
-surface; its `coverage-graph-db` imports can be repointed like the others.
+surface. Its `coverage-graph-db` imports can be repointed like the others.
 <!-- /ANCHOR:adr-005-decision -->
 
 ---
@@ -724,12 +724,12 @@ surface; its `coverage-graph-db` imports can be repointed like the others.
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Repoint the importers** | The subject is alive and exports every symbol; one line per import; restores the only parity check on a contract live source still asserts | The files have been dark for three and a half months, so they may surface real drift | 9/10 |
-| Delete all of them | Smallest diff; nothing depends on them | Discards the only guard on a "do not diverge" contract and 46 assertions that would have to be re-derived | 3/10 |
+| **Repoint the importers** | The subject is alive and exports every symbol, the change is one line per import, and it restores the only parity check on a contract live source still asserts | The files have been dark for three and a half months, so they may surface real drift | 9/10 |
+| Delete all of them | Smallest diff, and nothing depends on them | Discards the only guard on a "do not diverge" contract and 46 assertions that would have to be re-derived | 3/10 |
 | Restore the deleted handlers | Would make `session-isolation.vitest.ts` whole | Resurrects an MCP surface retired on an explicit directive | 1/10 |
 
 **Why this one**: a move is not a decommission. The `lib` half was renamed, not
-removed; only the `handlers` half was actually decommissioned, and only one file
+removed. Only the `handlers` half was decommissioned, and only one file
 depends on it.
 <!-- /ANCHOR:adr-005-alternatives -->
 
@@ -751,7 +751,7 @@ depends on it.
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| The repointed tests fail on real drift | M | Triage as its own finding; do not weaken the assertions |
+| The repointed tests fail on real drift | M | Triage as its own finding, and do not weaken the assertions |
 | `scripts/lib/coverage-graph-convergence.cjs:2` and six docs still print the pre-move path | L | The `.cjs` comment pointer was repaired 2026-09-03 (A3). The six docs remain recorded, not fixed |
 <!-- /ANCHOR:adr-005-consequences -->
 
@@ -780,7 +780,7 @@ depends on it.
 - Three import specifiers under `system-spec-kit/scripts/tests/`.
 - `session-isolation.vitest.ts` loses its handler-dependent describes.
 
-**How to roll back**: revert the import edits; the files return to failing at load,
+**How to roll back**: revert the import edits. The files return to failing at load,
 which is the state before this decision.
 <!-- /ANCHOR:adr-005-impl -->
 
@@ -874,7 +874,7 @@ Builtins_MapPrototypeDelete
 
 Bisecting the 36 modules that never reported in the stalling shard found exactly one
 that never returns: `mcp-server/tests/retry-budget.vitest.ts` (exit 124 at a 90-second
-bound; the other 35 all finished, the slowest in 4 seconds).
+bound, and the other 35 all finished, the slowest in 4 seconds).
 
 The producer is `mcp-server/lib/enrichment/retry-budget.ts:112`:
 
@@ -910,7 +910,7 @@ recency-touching accessor.
 
 **How it works**: `clearBudget` now iterates `Array.from(retryBudget.entries())`.
 `entries()` is the base `Map` iterator, which `BoundedMap` does not override, so it
-does not reorder; `Array.from` fixes the sequence before any deletion.
+does not reorder. `Array.from` fixes the sequence before any deletion.
 <!-- /ANCHOR:adr-006-decision -->
 
 ---
@@ -920,7 +920,7 @@ does not reorder; `Array.from` fixes the sequence before any deletion.
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Snapshot the entries** | Three lines; identical semantics; removes the loop entirely | None found | 10/10 |
+| **Snapshot the entries** | Three lines with identical semantics, and it removes the loop entirely | None found | 10/10 |
 | Stop the LRU touch in `BoundedMap.get` | Would fix every caller with this shape at once | Breaks LRU recency, which is the class's whole purpose, for every other user | 2/10 |
 | Skip the file in the suite | Cheapest | Leaves a hang on the production save path | 0/10 |
 
@@ -1022,14 +1022,14 @@ whole suite.
 The five tests delete the db-dir environment variables **on purpose**, because the
 behavior they exercise is the default resolution path:
 
-- `tests/memory-roadmap-flags.vitest.ts:116` — "uses the shared database directory
+- `tests/memory-roadmap-flags.vitest.ts:116`: "uses the shared database directory
   resolver when db-dir env vars are unset"
-- `tests/memory-roadmap-flags.vitest.ts:129` — "rejects repo-local database symlinks
+- `tests/memory-roadmap-flags.vitest.ts:129`: "rejects repo-local database symlinks
   that realpath outside allowed roots", which now gets the refusal instead of the
   `outside the allowed` error it asserts
-- `tests/memory-roadmap-flags.vitest.ts:141` — "refreshes exported database path
+- `tests/memory-roadmap-flags.vitest.ts:141`: "refreshes exported database path
   bindings when env overrides arrive after import"
-- `tests/db-lifecycle-paths.vitest.ts:91` and `:95` — the same shape
+- `tests/db-lifecycle-paths.vitest.ts:91` and `:95`: the same shape
 
 These fail in isolation, so they are not collateral from another file. Confirmed by
 running `tests/memory-roadmap-flags.vitest.ts` alone: 3 failed, 7 passed.
@@ -1065,7 +1065,7 @@ untouched.
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
 | **Inject the base directory** | Keeps the guard fail-closed and restores five real assertions | A production signature changes to serve a test | 7/10 |
-| Rewrite the tests to assert the refusal | No production change | Deletes coverage of the default resolver and of the allowed-roots refusal; writes the collision down as the specification | 3/10 |
+| Rewrite the tests to assert the refusal | No production change | Deletes coverage of the default resolver and of the allowed-roots refusal, and writes the collision down as the specification | 3/10 |
 | Exempt these files from `isTestContext()` | Smallest | An exemption list is exactly how a fail-closed guard stops being fail-closed | 1/10 |
 
 **Why this one**: the tests assert real behavior and the guard is real policy. Only a
@@ -1114,7 +1114,7 @@ seam change lets both stand.
 **What changes**:
 - `shared/paths.ts` `resolveDatabaseDir` and its callers in the five tests.
 
-**How to roll back**: revert; the five tests return to red.
+**How to roll back**: revert, and the five tests return to red.
 <!-- /ANCHOR:adr-007-impl -->
 <!-- /ANCHOR:adr-007 -->
 
@@ -1153,12 +1153,12 @@ collision class is divergent-duplicate (no readable packet roots).
 
 The mechanism is `scripts/core/spec-root-collision-classifier.ts:146`. When a packet is
 present in neither root, every allow branch falls through and it returns
-`divergent-duplicate` / `reject` — deliberate, and covered by its own test at
+`divergent-duplicate` / `reject`, which is deliberate and covered by its own test at
 `scripts/tests/spec-root-write-guard.vitest.ts:84`. The classifier is behaving as
 specified.
 
 What moved is the fixture. The test names
-`.opencode/specs/system-spec-kit/022-hybrid-rag-fusion`; the packet now lives at
+`.opencode/specs/system-spec-kit/022-hybrid-rag-fusion`. The packet now lives at
 `specs/system-speckit/z_archive/022-hybrid-rag-fusion`. This is the same track rename
 that broke the Gate 3 classifier fixture and two fixture-file paths, all four repaired
 in this pass.
@@ -1169,7 +1169,7 @@ write guard. It goes on to `acquireCanonicalSaveLock`
 directory **inside the packet**, and then to `updatePhaseParentPointersAfterSave`
 (`:623`), which writes `derived.last_active_child_id` into the parent's
 `graph-metadata.json`. Only `runWorkflow`, `loadCollectedData` and
-`collectSessionData` are mocked; neither of those two is.
+`collectSessionData` are mocked. Neither of those two is.
 
 So repointing the fixture at the packet's real current location would make seven tests
 green by having them mutate the repository on every run.
@@ -1193,7 +1193,7 @@ green by having them mutate the repository on every run.
 temp workspace.
 
 **How it works**: `main()` accepts the project root the way it already accepts `argv`
-and `stdinReader` — as a defaulted parameter. The test builds a throwaway packet under
+and `stdinReader`, as a defaulted parameter. The test builds a throwaway packet under
 a temp root and passes it, so the lock and the pointer update land in the temp tree.
 <!-- /ANCHOR:adr-008-decision -->
 
@@ -1204,9 +1204,9 @@ a temp root and passes it, so the lock and the pointer update land in the temp t
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Inject the project root** | Hermetic; immune to the next rename; no repository writes | A production entry point grows a parameter | 8/10 |
+| **Inject the project root** | Hermetic, immune to the next rename, and it makes no repository writes | A production entry point grows a parameter | 8/10 |
 | Repoint at the packet's current location | One-line change, and it is what the other three fixtures needed | Restores a lock directory and a metadata write into a real archived packet on every run | 4/10 |
-| Mock the write guard and the lock in the test | No production change | Mocks away the very code path under test; the next drift would be invisible | 3/10 |
+| Mock the write guard and the lock in the test | No production change | Mocks away the very code path under test, so the next drift would be invisible | 3/10 |
 
 **Why this one**: the one-line repoint is only cheap because the side effect is
 invisible, and it was invisible last time too, which is how this stayed unnoticed.
@@ -1256,7 +1256,7 @@ invisible, and it was invisible last time too, which is how this stayed unnotice
 - `scripts/memory/generate-context.ts` `main()` signature.
 - `scripts/tests/generate-context-cli-authority.vitest.ts` fixture setup.
 
-**How to roll back**: revert; the seven tests return to red, which is today's state.
+**How to roll back**: revert, and the seven tests return to red, which is today's state.
 <!-- /ANCHOR:adr-008-impl -->
 
 ### Outcome

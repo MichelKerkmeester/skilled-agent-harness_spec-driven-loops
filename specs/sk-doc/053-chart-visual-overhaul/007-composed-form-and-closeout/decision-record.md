@@ -275,9 +275,35 @@ a document that changed says so, and a document that did not stays where it was.
 
 `SKILL.md` and `README.md` to 1.2.0.0, `references/README.md` to 1.1.0.0, `catalog.md` to 1.3.0.0,
 `color-system.md` to 1.5.0.0, `template-contract.md` to 1.7.0.0, `scripts/README.md` to 1.5.0.0,
-and `manual-testing-playbook/manual-testing-playbook.md` to 1.1.0.0. The nine scenario files under
-the playbook and the two existing changelog entries did not change and did not move. The
-convention is now written into the changelog, so the next reader does not rediscover it.
+and `manual-testing-playbook/manual-testing-playbook.md` to 1.1.0.0. The two existing changelog
+entries did not change and did not move. The convention is now written into the changelog, so the
+next reader does not rediscover it.
+
+### The scenario file this inventory got wrong
+
+The sentence above first read that the nine scenario files under the playbook did not change and
+did not move. Eight of them are covered by it. Seven were untouched by the overhaul and correctly
+hold 1.0.0.0, and `delivery-and-routing/a-delivery-on-a-dark-system.md` is a first release phase 005
+wrote, so 1.0.0.0 is its correct value rather than a version that failed to move.
+
+The ninth is `corpus-integrity/colour-comes-from-one-source.md`, and the inventory read it as
+untouched when it was not. Phase 005 rewrote three passages in it: the expected `palette-block`
+signal became four assertions per file rather than one, because a file now carries a light block and
+a dark one, and two troubleshooting steps were rewritten around one block per theme instead of one
+block per file. That is a change to what an operator is told to expect from a run, and the version
+stayed at 1.0.0.0. The inventory was taken by reading versions rather than by reading the phases
+against the files, and a document that changed without moving its version is exactly the case that
+method cannot see.
+
+Packet 054 later edited the same file again and took it to 1.1.0.0, one step for its own round, so
+the phase 005 round stayed unpaid. Under the convention this ADR states, two editing rounds since
+the first release put the file at 1.2.0.0, and it now reads that. The earlier `abf77df9d0` edit is
+not counted: it repointed one cross-reference from section 5 to section 6 across six playbook
+files, and none of the six moved for it, so a mechanical pointer repair is the class this packet
+has consistently left unversioned.
+
+Nine documents this overhaul changed therefore carry a version that moved, and ten correctly did
+not. The obligation itself is unchanged. It was the count under it that was wrong.
 <!-- /ANCHOR:adr-005 -->
 
 ---

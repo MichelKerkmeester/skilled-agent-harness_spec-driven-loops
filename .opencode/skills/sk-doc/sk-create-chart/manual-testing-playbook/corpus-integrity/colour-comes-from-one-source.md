@@ -2,7 +2,7 @@
 title: "CHT-005 -- Colour comes from one source"
 description: "This scenario validates the colour system for `CHT-005`. It confirms every palette block still matches the palette source in both directions and that no colour literal appears anywhere outside a palette block."
 stage: validation
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # CHT-005 -- Colour comes from one source
@@ -81,7 +81,7 @@ Each break is applied to a passing corpus and restored before the next, so a fai
 check rather than two.
 
 The third break is the one this scenario exists for and the one it could not make until recently.
-The first two change a value; the third changes only which mark receives it, and the file still
+The first two change a value. The third changes only which mark receives it, and the file still
 carries a block that matches the source and no literal anywhere. The picture stays consistent with
 itself, because the legend is drawn from the same classes it reverses, so an operator comparing the
 key against the grid sees nothing. Only `series-mapping` sees it.

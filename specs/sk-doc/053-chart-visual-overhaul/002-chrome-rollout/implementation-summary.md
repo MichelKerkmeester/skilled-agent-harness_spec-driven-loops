@@ -108,7 +108,7 @@ end needs a number, which it reads once from the resolved property.
 |----------|-------|-----|
 | Route B for the rungs | ADR-005 | Route A was tested and works, and was rejected anyway: phase 005 copies the palette block under a media query, and a corner is the one value that cannot differ by theme |
 | A fill that carries a value does not fade | ADR-006 | An opacity ramp over a band would change the rendered lightness while the contrast gates kept reading the palette source, so the encoding would break in a way the check certifies as green |
-| A bar rounds only the edge that meets nothing | ADR-006, AC-020 | A rounded corner on the baseline reads as a column that stops short of the axis it is measured from |
+| A bar leaves square every edge that meets something, and rounds every edge that meets nothing | AC-020 | A rounded corner on the baseline reads as a column that stops short of the axis it is measured from. Two forms meet nothing at more than one edge and take the rung there too: a waterfall step floating between two running totals takes all four corners, and a progress fill sitting in a track takes the pill rung at both ends |
 | The 56px headline figure keeps the body face | `progress-single.html` | Nothing is set under it to line up with, and at that size a mono decimal point sits in a cell as wide as a digit, so 6.7 reads as 6 . 7 |
 | A legend entry keeps the body face | Several files | It names a category and appends a figure, which reads as a phrase. An axis rung, a value label and a scale bound are figures and go mono |
 <!-- /ANCHOR:key-decisions -->
@@ -117,6 +117,10 @@ end needs a number, which it reads once from the resolved property.
 
 <!-- ANCHOR:verification -->
 ## Verification
+
+Every count here is against the corpus this phase closed on, 29 asset files. Phase 007 added a
+twenty-first form, `templates/bar-line-composed.html`, so a re-run today reads 30 wherever the
+number counts files. That form carries the same chrome, so it changes the total and nothing else.
 
 | Check | Result |
 |-------|--------|

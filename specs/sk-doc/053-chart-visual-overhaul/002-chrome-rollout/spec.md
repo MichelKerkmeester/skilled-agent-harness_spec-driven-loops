@@ -166,7 +166,7 @@ to be identical everywhere are identical because a check says so.
 
 | ID | Requirement |
 |----|-------------|
-| REQ-008 | Bar-family marks carry a two pixel radius on the outer visible edge only, and a stacked segment gets it on the top segment |
+| REQ-008 | Bar-family marks carry a two pixel radius on every edge that meets nothing and stay square on every edge that meets something, and a stacked segment gets it on the top segment. Written first as `the outer visible edge only`, which holds for a column, a row and a stack top. It does not hold for the two forms whose bars meet nothing at more than one edge, and AC-020 names both |
 | REQ-009 | The two chrome reference documents describe what shipped, with no sentence left claiming the old behaviour |
 | REQ-010 | Everything authored in this phase reports zero hard blockers under `hvr_scan.py` |
 

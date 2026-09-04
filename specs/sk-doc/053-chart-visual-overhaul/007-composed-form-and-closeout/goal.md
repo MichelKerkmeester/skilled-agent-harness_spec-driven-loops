@@ -79,7 +79,7 @@ here are invisible to whatever judges completion.
 - [x] The operator's answer on the catalog addition is recorded in the progress table below
 - [x] `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs` reports `chart forms under assets/templates: 21` with `catalog` at 0 failures
 - [x] Every invariant phases 004 through 006 introduced has a named check in that same output, and each of the eight was watched failing on a mutated fixture before it passed
-- [x] The version story is reconciled across the whole skill and `.opencode/skills/sk-doc/sk-create-chart/changelog/v1.2.0.0.md` exists. The original wording asked for one distinct version string, which the packet's per-document convention makes impossible without a changelog misnaming its own release. ADR-005 records the reading and the stricter replacement
+- [x] The version story is reconciled across the whole skill and `.opencode/skills/sk-doc/sk-create-chart/changelog/v1.2.0.0.md` exists. The original wording asked for one distinct version string, which the packet's per-document convention makes impossible without a changelog misnaming its own release. ADR-005 records the reading and the stricter replacement, and now also the one file this phase's inventory read as untouched when phase 005 had rewritten it
 - [x] A verdict on the headline-as-argument rule is recorded for each of the six family deliveries, quoting the headline it judged
 - [x] `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED`
 - [x] `NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout --strict` prints `RESULT: PASSED` with Errors 0
@@ -106,7 +106,7 @@ and findings belong here.
 | The composed form | Done | `assets/templates/bar-line-composed.html`, family `relationship`, system `categorical`, second scale at a spread of 510 on the shipped block. Four boundary fixtures rendered and read |
 | The scenario audit | Done | Six verdicts, each quoting its headline, in the implementation summary. All six pass and nothing was changed |
 | The range window disposition | Done | Refused on two grounds. No form is dense past thirty points on a continuous axis, and contract section 10 forbids a handler from moving a mark, which is what a window does. ADR-006 |
-| Version bump and changelog | Done | Packet to 1.2.0.0 in `SKILL.md` and `README.md`, seven documents bumped by one step each, `changelog/v1.2.0.0.md` written. The premise that one string should appear everywhere was wrong and ADR-005 records what replaced it |
+| Version bump and changelog | Done | Packet to 1.2.0.0 in `SKILL.md` and `README.md`, eight documents bumped by one step each with those two among them, `changelog/v1.2.0.0.md` written. The count first written here was seven, which disagreed with the eight ADR-005 lists and with AC-010. The premise that one string should appear everywhere was wrong and ADR-005 records what replaced it, along with the ninth document that should have moved in phase 005 and did not |
 | Final gate | Done | `RESULT: PASSED` with `--render` at 28 checks, 30 files, 21 forms, 0 errors, exit 0. `scratch/final-render-rerun.txt`. The run before it died on one browser open and is kept beside it |
 
 ### Deviations and findings

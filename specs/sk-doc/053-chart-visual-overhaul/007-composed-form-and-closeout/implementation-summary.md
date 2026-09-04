@@ -176,7 +176,13 @@ support either.
 The packet keeps per-document versions. The four documents the previous release edited sit above
 the packet version by however many times each has been edited since, and every document nothing has
 touched since the first release still reads 1.0.0.0. `references/README.md` was not stale, it was
-correct. And the changelog files settle it beyond argument, because a changelog entry's version
+correct.
+
+That inventory was right about the convention and wrong about one file. It was taken by reading
+versions rather than by reading each phase against the files it touched, so a document that changed
+without moving its version could not show up in it. One did.
+`manual-testing-playbook/corpus-integrity/colour-comes-from-one-source.md` was rewritten in three
+places by phase 005 and left at 1.0.0.0, and this phase counted it among the untouched. And the changelog files settle it beyond argument, because a changelog entry's version
 names the release it describes: making `changelog/v1.0.0.0.md` read 1.2.0.0 to satisfy a grep would
 put a false claim into a historical record.
 
@@ -185,6 +191,12 @@ carries the reasoning. Every document this overhaul changed carries a version th
 document it did not change carries a version that moved, and the packet version in `SKILL.md` and
 `README.md` matches the name of the newest changelog file. Uniformity would have passed a packet
 that bumped files it never opened and failed one that is telling the truth.
+
+The stricter obligation is also what caught the miss. A criterion asking for one string everywhere
+would have been satisfied by this file at any value. Asking instead that a changed document move its
+version is what makes an unmoved one a failure, and the playbook scenario is now at 1.2.0.0, two
+steps for the two rounds that edited it. ADR-005 carries the arithmetic and the reason the earlier
+cross-reference repair does not count as a third.
 <!-- /ANCHOR:how-delivered -->
 
 ---
