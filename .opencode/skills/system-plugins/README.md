@@ -27,9 +27,15 @@ version: 0.1.0.0
 
 ---
 
-## 2. WHY VENDORED
+## 2. OVERVIEW
+
+### Why This Folder Exists
 
 Every other engine in `.opencode` is a package the harness authors. These are not: they are forks of upstream projects that needed changes upstream had not shipped, and the harness depends on those changes. A registry pin would point at a package nobody publishes, and a clone outside the repository is invisible to a fresh checkout. A subtree gives the harness the exact source it was verified against, keeps upstream history reachable through the fork, and lets a maintainer pull upstream fixes with one command.
+
+### What It Holds
+
+One directory per engine, each a squashed subtree with its own manifest, dependencies and build. Nothing here is routed by the advisor; the skill that wraps an engine owns its contract, and this folder owns only where the code lives and how it is built and updated.
 
 ---
 

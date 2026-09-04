@@ -20,7 +20,13 @@ Use these CLIs when a runtime MCP transport is missing, failed, or not reconnect
 
 Run the repo-relative examples from the repository root. If the caller is in another working directory, use an absolute path to the selected `.opencode/bin/*.cjs` shim instead.
 
-## 1. CLI SURFACES
+## 1. OVERVIEW
+
+The spec-kit and skill-advisor daemons expose a CLI front door over the same tool surfaces their MCP transports serve. This reference covers those surfaces, the invocation forms, the output and exit-code contracts, the warm-only policy, and the recovery path when a stale build refuses to run. It is the operator's map; the MCP transports remain the runtimes' route.
+
+---
+
+## 2. CLI SURFACES
 
 | CLI shim | MCP daemon | Tool count | Primary use |
 | --- | --- | ---: | --- |
@@ -32,14 +38,14 @@ The skill-advisor launcher mirrors child exit or signal state and expects the ow
 
 Spec-folder retrieval has no CLI on this page and no daemon behind it. It is two committed scripts under `system-spec-kit/scripts/retrieval/` plus the ripgrep recipes in `../retrieval/retrieval-conventions.md`, and none of the exit codes, warm-only rules or recovery steps below apply to it.
 
-## CLI vs MCP — when to use which
+### CLI Versus MCP: When To Use Which
 
 
 Because the CLI already uses the same daemon IPC path and exposes a stable count-locked surface, a later evolution could make it the primary or sole transport, replacing the MCP server without breaking existing MCP workflows. Treat that as a possible direction, not a committed migration plan.
 
 ---
 
-## 2. INVOCATION FORMS
+## 3. INVOCATION FORMS
 
 Common form:
 
@@ -67,7 +73,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implem
 
 ---
 
-## 3. OUTPUT FORMATS
+## 4. OUTPUT FORMATS
 
 The CLI accepts `--format json|text|jsonl`.
 
@@ -81,7 +87,7 @@ The CLI accepts `--format json|text|jsonl`.
 
 ---
 
-## 4. EXIT-CODE TAXONOMY
+## 5. EXIT-CODE TAXONOMY
 
 | Exit | Meaning | Notes |
 | ---: | --- | --- |
@@ -95,7 +101,7 @@ Exit `75` is retryable. Treat it as daemon or IPC unavailability, not as user in
 
 ---
 
-## 5. WARM-ONLY POLICY
+## 6. WARM-ONLY POLICY
 
 Prompt-time hooks and prompt-time runtime fallbacks must use warm-only behavior. Warm-only probes the daemon socket and exits `75` when the daemon is cold instead of cold-spawning it.
 
@@ -111,7 +117,7 @@ Non-prompt contexts such as explicit operator maintenance, CI, cron, or session 
 
 ---
 
-## 6. EXIT 69 RECOVERY
+## 7. EXIT 69 RECOVERY
 
 The shim refuses a stale or missing dist entrypoint with exit `69`. Rebuild before retrying.
 
@@ -123,7 +129,7 @@ A development-only stale override exists for local loops, but should not be used
 
 ---
 
-## 7. HELP AND DISCOVERY
+## 8. HELP AND DISCOVERY
 
 Use `list-tools` for offline surface discovery:
 
@@ -151,7 +157,7 @@ The check is the executable parity check for the live manifests, not a separate 
 
 ---
 
-## 8. SAFETY RULES
+## 9. SAFETY RULES
 
 - Keep MCP as the primary in-session transport today; use the CLI as an additive fallback and operator surface.
 - We may consider making the CLI the primary or sole transport later, but do not treat that as a decided plan.
@@ -164,7 +170,7 @@ The check is the executable parity check for the live manifests, not a separate 
 
 ---
 
-## 9. SOURCE ANCHORS
+## 10. SOURCE ANCHORS
 
 - Env flags: `mcp-server/ENV-REFERENCE.md` section `CLI FRONT DOOR (DUAL-STACK)`.
 - Offline smoke: `.opencode/bin/cli-offline-smoke.cjs`.
