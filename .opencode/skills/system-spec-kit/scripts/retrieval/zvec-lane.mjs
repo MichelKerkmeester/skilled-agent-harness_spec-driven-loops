@@ -721,6 +721,7 @@ export function status(options = {}) {
   record.freshness = manifest
     ? { createdTime: manifest.createdTime ?? null, updatedTime: manifest.updatedTime ?? null }
     : null;
+  record.ollama = probeOllama(config.embedding, options.env ?? process.env);
 
   // A missing or unready index is an empty answer, never a fault. The tool
   // reports both by exiting non-zero, and collapsing that into the error class
@@ -728,6 +729,53 @@ export function status(options = {}) {
   record.exitCode = record.ready ? EXIT_MATCH : EXIT_NO_MATCH;
   record.outcome = record.ready ? 'ready' : 'not-ready';
   return record;
+}
+
+/** Default Ollama endpoint, the same one the fork's backend assumes. */
+const DEFAULT_OLLAMA_URL = 'http://127.0.0.1:11434';
+
+/** Ceiling for the reachability probe; a diagnostic must not hang on a dead host. */
+const OLLAMA_PROBE_TIMEOUT_MS = 1500;
+
+/**
+ * Reports whether the embedding server behind an `ollama/` reference answers.
+ *
+ * The probe is a separate process because this module's status path is
+ * synchronous by contract, and a status that reports the index without saying
+ * whether its embedder is alive sends the reader to the wrong place when a
+ * search fails. Any embedding that is not Ollama's yields `null`: there is
+ * nothing to probe, and a fabricated "reachable" would be a lie.
+ *
+ * @param {string} embedding Embedding reference from the lane config.
+ * @param {NodeJS.ProcessEnv} env Environment the fork would read the endpoint from.
+ * @returns {{ url: string, reachable: boolean, models: number | null, error: string | null } | null}
+ */
+export function probeOllama(embedding, env) {
+  if (typeof embedding !== 'string' || !embedding.startsWith('ollama/')) return null;
+  const url = (env.ZVEC_GREP_OLLAMA_URL || DEFAULT_OLLAMA_URL).replace(/\/+$/, '');
+  const script = [
+    `const r = await fetch(${JSON.stringify(url + '/api/tags')}, { signal: AbortSignal.timeout(${OLLAMA_PROBE_TIMEOUT_MS}) });`,
+    'const body = await r.json();',
+    'process.stdout.write(JSON.stringify({ ok: r.ok, models: Array.isArray(body.models) ? body.models.length : null }));',
+  ].join('\n');
+  const run = spawnSync(process.execPath, ['--input-type=module', '-e', script], {
+    encoding: 'utf8', timeout: OLLAMA_PROBE_TIMEOUT_MS + 500, env,
+  });
+  if (run.status === 0) {
+    try {
+      const parsed = JSON.parse(run.stdout);
+      return { url, reachable: parsed.ok === true, models: parsed.models ?? null, error: null };
+    } catch {
+      // Fall through: a probe that printed garbage is reported as unreachable.
+    }
+  }
+  // Node prints the useful part of a failed fetch as the cause, one level down
+  // from the generic "fetch failed", so prefer a line that names the cause.
+  const lines = (run.stderr || '').split('\n');
+  const reason = lines.find((line) => /ECONNREFUSED|ENOTFOUND|EHOSTUNREACH|TimeoutError|timed out/i.test(line))
+    || lines.find((line) => /error/i.test(line))
+    || 'probe failed';
+  return { url, reachable: false, models: null, error: reason.replace(/^[\s[\]{}]+|[\s[\]{}]+$/g, '').slice(0, 200) };
 }
 
 /**

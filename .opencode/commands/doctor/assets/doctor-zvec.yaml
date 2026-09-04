@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator running the zvec retrieval-lane diagnostic in interactive mode
 purpose: Read-only health check of the concept lane — which zvec-grep entry point resolved, whether the workspace index exists and is ready, what embedding schema it was built with, and how much of the corpus it covers
-action: Resolve the binary → run the lane's status subcommand → present presence, readiness, embedding schema, coverage and freshness → final status
+action: Resolve the binary → run the lane's status subcommand → present presence, readiness, embedding schema, embedder reachability, coverage and freshness → final status
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
@@ -114,6 +114,10 @@ lane_signals:
     detection: "The status text printed no file counts"
     severity: low
     note: "Presentation drift in the tool, not an index fault. Coverage is the one field this diagnostic scrapes rather than reads from the manifest."
+  ollama_unreachable:
+    detection: "The lane reports ollama.reachable=false for an ollama/ embedding reference"
+    severity: high
+    note: "Every vector search fails at the embed step until the server answers at ollama.url. The index itself is intact; the ripgrep lane is unaffected. ZVEC_GREP_OLLAMA_URL overrides the endpoint."
   fork_binary_in_use:
     detection: "binarySource=fork-clone, meaning the working checkout answered rather than an installed CLI"
     severity: low
@@ -137,6 +141,7 @@ workflow:
     purpose: "Present the lane state and the final status."
     activities:
       - "Print the resolved entry point and which rung of the resolution order answered."
+      - "Print the embedder reachability line separately from the index: for an ollama/ reference the lane probes the server and reports url, reachable and the model count; any other reference reports no probe."
       - "Print index presence, the named index state (ready, undecided, unindexed, stale, indexing, failed, cancelled or disabled), embedding provider/model/dimension/metric, coverage counts, last-updated time and index size on disk."
       - "Compare the committed scope file's glob set against the manifest rootPaths and name any drift."
       - "Note that every finding is report-only; building and rebuilding the index stay operator-owned."

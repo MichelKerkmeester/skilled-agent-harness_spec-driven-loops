@@ -17,6 +17,7 @@ import {
   parseAgentMarkdown,
   parseArgs,
   parseCoverage,
+  probeOllama,
   readLaneConfig,
   resolveZvecGrep,
   search,
@@ -47,8 +48,17 @@ function write(root: string, relativePath: string, lines: string[]): void {
   fs.writeFileSync(absolute, `${lines.join('\n')}\n`, 'utf8');
 }
 
+// A port nothing listens on, so the status probe never reaches a live
+// embedding server from a unit test and fails fast instead of hanging.
+const DEAD_OLLAMA_URL = 'http://127.0.0.1:1';
+
 function stubEnv(scenario: string): NodeJS.ProcessEnv {
-  return { ...process.env, [ZVEC_BIN_ENV]: STUB, ZVEC_STUB_SCENARIO: scenario };
+  return {
+    ...process.env,
+    [ZVEC_BIN_ENV]: STUB,
+    ZVEC_STUB_SCENARIO: scenario,
+    ZVEC_GREP_OLLAMA_URL: DEAD_OLLAMA_URL,
+  };
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -278,6 +288,26 @@ describe('exit mapping', () => {
       dimension: 768, metric: 'cosine', model: 'nomic-embed-text-v1.5', provider: 'local',
     });
     expect(record.rootPaths).toEqual([{ globs: ['specs/**/*.md'], path: cwd, recursive: true }]);
+  });
+
+  it('reports the embedder separately: unreachable Ollama is named, not folded into the index state', () => {
+    const cwd = tempDir('zvec-run-');
+    const record = status({ cwd, env: stubEnv('ready') });
+
+    expect(record.ollama).toEqual({
+      url: DEAD_OLLAMA_URL, reachable: false, models: null, error: expect.any(String),
+    });
+    expect(record.outcome).toBe('ready');
+  });
+
+  it('probes nothing for a non-Ollama embedding reference', () => {
+    const cwd = tempDir('zvec-run-');
+    write(cwd, '.zvec-grep-lane.json', [JSON.stringify({
+      schemaVersion: 1, mode: 'direct', embedding: 'local/nomic-embed-text-v1.5', globs: ['specs/**/*.md'],
+    })]);
+
+    expect(probeOllama('local/nomic-embed-text-v1.5', stubEnv('ready'))).toBeNull();
+    expect(status({ cwd, env: stubEnv('ready') }).ollama).toBeNull();
   });
 
   it('maps a missing index to exit 1, a valid empty answer rather than a fault', () => {
