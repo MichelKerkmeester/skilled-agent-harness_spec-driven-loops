@@ -4,8 +4,7 @@
 // Parses the canonical reference/asset frontmatter contract
 // (title, description, trigger_phrases, importance_tier, contextType)
 // so per-doc trigger phrases can feed advisor routing as doc-level
-// signal. The Spec Kit Memory system deliberately never indexes these
-// files; the advisor is their only runtime consumer.
+// signal. The advisor is these files' only runtime consumer.
 
 import { readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';

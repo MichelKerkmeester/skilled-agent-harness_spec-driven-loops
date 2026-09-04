@@ -260,7 +260,7 @@ GITHUB_PAT=
 CLICKUP_API_KEY=
 CLICKUP_TEAM_ID=
 
-# Voyage AI - Neural search for Spec Kit Memory (optional)
+# Voyage AI - Embedding provider for the Spec Kit shared embedding layer (optional)
 # Get your key: https://www.voyageai.com/
 VOYAGE_API_KEY=
 "

@@ -41,6 +41,13 @@ const SOCKET_FILE_NAME = 'hf-embed.sock';
 // .opencode/bin/lib/model-server-supervision.cjs, which is the process that binds it.
 const DEFAULT_MODEL_SERVER_SOCKET_DIR = '/tmp/system-hf-embed';
 
+// Owner lease written by the launcher that spawns the model server. Reading it is how
+// this client tells "a launcher is bringing the server up" apart from "nothing is
+// coming", so it must name the file the live launcher actually writes.
+// MUST stay byte-identical to OWNER_LEASE_FILE_NAME in
+// .opencode/bin/system-skill-advisor-launcher.cjs, which is the process that writes it.
+const ADVISOR_OWNER_LEASE_FILE_NAME = '.skill-advisor-owner.json';
+
 // Task prefixes required by nomic-embed-text-v1.5
 // See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
 // NOTE: legacy compatibility export, not the current default, kept for consumers
@@ -197,7 +204,7 @@ interface ErrorWithCode extends Error {
 let currentDevice: string | null = null;
 let activeTransport: HfLocalTransport = nodeHttpTransport;
 let sleep: SleepFn = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-let spawnAuthorityDbDir = defaultDbDir();
+let spawnAuthorityDbDir = defaultSpawnAuthorityDbDir();
 
 export function resolveDtype(explicit?: string): HfLocalDtype {
   const raw = explicit ?? process.env.HF_EMBEDDINGS_DTYPE ?? 'q8';
@@ -260,7 +267,7 @@ function readSpawnAuthorityPid(filePath: string): number | null {
 function hasLiveHfSpawnAuthority(socketPath: string): boolean {
   try {
     const ownerLease = JSON.parse(
-      readFileSync(path.join(spawnAuthorityDbDir, '.spec-memory-owner.json'), 'utf8'),
+      readFileSync(path.join(spawnAuthorityDbDir, ADVISOR_OWNER_LEASE_FILE_NAME), 'utf8'),
     ) as unknown;
     if (isRecord(ownerLease) && Number.isInteger(ownerLease.ownerPid) && (ownerLease.ownerPid as number) > 0) {
       const heartbeatMs = typeof ownerLease.lastHeartbeatIso === 'string'
@@ -328,7 +335,18 @@ function systemSpecKitRoot(): string {
   return path.resolve(process.cwd());
 }
 
-function defaultDbDir(): string {
+/**
+ * Directory searched for the launcher's owner lease. The launcher points
+ * MEMORY_DB_PATH at the database it owns, and writes its lease beside that database,
+ * so the configured pointer is the only thing here that leads to the live launcher's
+ * directory. The package-relative path stays as the fallback for a process started
+ * without that pointer.
+ */
+function defaultSpawnAuthorityDbDir(): string {
+  const configuredDbPath = process.env.MEMORY_DB_PATH?.trim();
+  if (configuredDbPath) {
+    return path.dirname(path.resolve(configuredDbPath));
+  }
   return path.join(systemSpecKitRoot(), 'mcp-server', 'database');
 }
 
@@ -1097,7 +1115,7 @@ export const __hfLocalProviderTestables = {
     activeTransport = nodeHttpTransport;
     sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     currentDevice = null;
-    spawnAuthorityDbDir = defaultDbDir();
+    spawnAuthorityDbDir = defaultSpawnAuthorityDbDir();
   },
   setTransport(transport: HfLocalTransport): void {
     activeTransport = transport;
@@ -1108,5 +1126,7 @@ export const __hfLocalProviderTestables = {
   setSpawnAuthorityDbDir(dbDir: string): void {
     spawnAuthorityDbDir = dbDir;
   },
+  ADVISOR_OWNER_LEASE_FILE_NAME,
+  defaultSpawnAuthorityDbDir,
   resolveHfLocalServerTarget,
 };

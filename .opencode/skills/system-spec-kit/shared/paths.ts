@@ -140,7 +140,13 @@ export function resolvePackageRoot(): string {
   return validateResolvedPath('package root', fromCwd || resolveImportMetaRelativePackageRoot());
 }
 
-/** Resolve the active memory database directory, honoring configured overrides. */
+/**
+ * Resolve the database directory the startup embedding profile derives its
+ * database path from, honoring configured overrides. The retired spec-kit
+ * memory server was this directory's original owner, which is why the override
+ * env var is still spelled MEMORY_DB_PATH; the live caller is the skill-advisor
+ * launcher, which points that var at its own database.
+ */
 export function resolveDatabaseDir(): string {
   const configuredDir = getDbDir();
   if (configuredDir) {

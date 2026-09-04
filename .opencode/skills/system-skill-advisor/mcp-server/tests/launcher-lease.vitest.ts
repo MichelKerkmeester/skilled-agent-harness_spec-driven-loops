@@ -210,8 +210,6 @@ describe('system-skill-advisor launcher lease', () => {
     const baseEnv = { ...process.env };
     delete baseEnv.SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER;
     delete baseEnv.SYSTEM_CODE_INDEX_STRICT_SINGLE_WRITER;
-    delete baseEnv.SYSTEM_SPEC_MEMORY_STRICT_SINGLE_WRITER;
-    delete baseEnv.SYSTEM_SKILL_ADVISOR_DB_DIR;
     delete baseEnv.SYSTEM_SKILL_ADVISOR_DB_DIR;
 
     const run: LauncherRun = {

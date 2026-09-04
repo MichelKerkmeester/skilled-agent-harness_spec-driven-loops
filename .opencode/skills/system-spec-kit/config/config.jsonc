@@ -16,33 +16,13 @@
   "contextPreviewTailLines": 20,
   "timezoneOffsetHours": 1, // CET (code fallback: 0/UTC if config fails to load)
   // ─────────────────────────────────────────────────────────────
-  // 2. SEMANTIC SEARCH
+  // 2. TRIGGER SURFACING
   // ─────────────────────────────────────────────────────────────
-	  "semanticSearch": {
-	    "enabled": true,
-	    "minSimilarityScore": 50,
-	    "maxResults": 10,
-	    "embeddingModel": "<resolved-provider-model>"
-	  },
-	  "memoryIndex": {
-	    "databasePath": ".opencode/skills/system-spec-kit/mcp-server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite",
-    "autoRebuildOnSave": true,
-    "verifyOnStartup": false
-  },
   "triggerSurfacing": {
     "enabled": true,
     "minSimilarity": 70,
     "maxResults": 3,
     "performanceTargetMs": 50
-  },
-  // ─────────────────────────────────────────────────────────────
-  // 3. MEMORY DECAY
-  // ─────────────────────────────────────────────────────────────
-  // Half-life ≈ 62 days with scaleDays=90
-  "memoryDecay": {
-    "enabled": true,
-    "scaleDays": 90,
-    "decayWeight": 0.3
   },
   // ─────────────────────────────────────────────────────────────
   // 4. IMPORTANCE TIERS
@@ -81,18 +61,6 @@
     }
   },
   // ─────────────────────────────────────────────────────────────
-  // 5. HYBRID SEARCH
-  // ─────────────────────────────────────────────────────────────
-  // Uses RRF (Reciprocal Rank Fusion) to combine FTS + vector results
-  // ftsWeight/vectorWeight reserved for future weighted mode
-  "hybridSearch": {
-    "enabled": true,
-    "ftsWeight": 0.4,
-    "vectorWeight": 0.6,
-    "rrfK": 60,
-    "fallbackEnabled": true
-  },
-  // ─────────────────────────────────────────────────────────────
   // 6. CONTEXT TYPE DETECTION
   // ─────────────────────────────────────────────────────────────
   "contextTypeDetection": {
@@ -122,14 +90,6 @@
     "boostPerAccess": 0.1,
     "maxBoost": 0.5,
     "threshold": 5
-  },
-  // ─────────────────────────────────────────────────────────────
-  // 8. CHECKPOINTS
-  // ─────────────────────────────────────────────────────────────
-  "checkpoints": {
-    "enabled": true,
-    "maxCheckpoints": 10,
-    "autoCleanupDays": 30
   },
   // ─────────────────────────────────────────────────────────────
   // 9. CONSTITUTIONAL TIER

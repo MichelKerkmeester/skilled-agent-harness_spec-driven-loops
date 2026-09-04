@@ -15,7 +15,11 @@ operating_mode:
   approvals: per_phase_boundary
   tracking: phase_by_phase
   validation: post_run_gold_battery
-  state_log: "mcp-server/database/.doctor-update.last-run.json"
+  # All .doctor-update.* runtime state lives in the advisor's database directory: it is
+  # tracked, gitignore-managed, and already a mutation target of this command. The
+  # spec-kit mcp-server/database directory that used to hold it left with its server.
+  state_dir: ".opencode/skills/system-skill-advisor/mcp-server/database"
+  state_log: ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.last-run.json"
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -101,11 +105,13 @@ mutation_boundaries:
     - ".opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite.pre-doctor-update.*.bak"
     - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
     - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
-    - "mcp-server/database/.doctor-update.flock"  # single-instance lock
-    - "mcp-server/database/.doctor-update.lock"
-    - "mcp-server/database/.doctor-update.last-run.json"  # orchestrator state log
-    - "mcp-server/database/.doctor-update.bootstrap.json"  # pre-MCP bootstrap state
-    - "mcp-server/database/.doctor-update.bootstrap.lockdir"  # pre-MCP bootstrap lock
+    - ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.flock"  # single-instance lock
+    - ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.lock"
+    - ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.last-run.json"  # orchestrator state log
+    - ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.bootstrap.json"  # pre-MCP bootstrap state
+    - ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.bootstrap.lockdir"  # pre-MCP bootstrap lock
+    - ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.*.log"  # per-phase orchestrator logs
+    - ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.config-instructions"  # manual remediation notes
     - ".opencode/skill"  # compatibility symlink only
     - ".opencode/skill_legacy_backup_*"  # legacy layout backup before symlink bridge
     - ".opencode/skills/system-spec-kit/mcp-server/dist/**"  # generated MCP runtime output
@@ -167,18 +173,11 @@ workflow:
     council_line: 0
     approval: "auto-acknowledge before database flock; this phase uses Bash/Node only, no MCP tools"
     purpose: "Resolve the fresh-start paradox: OpenCode can only register MCP tools at process startup, so missing dist/layout must be fixed before MCP-dependent phases run."
-    # RETIRING: the continuity-server launcher entry is being decommissioned. Phase 003 of the
-    # memory decommission removes the launcher and its MCP config entry outright. Until then the
-    # entry stays as-is so the still-running server can be repaired; do not add new callers to it.
-    launcher_contract:
-      status: retiring
-      invariant: "MCP configs that still carry the continuity-server entry MUST point at its stable launcher rather than the built server directly, for as long as the entry exists."
-      launcher_behavior: "resolve singular/plural skill layout, build the packages when dist is missing, then exec the real MCP server"
-      successor: "The retrieval lane has no launcher and no daemon: node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs reads a generated file and exits."
+    retrieval_lane: "Needs no bootstrap and no launcher entry: node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs reads a generated file and exits. Do not add a daemon or launcher contract for it."
     command_preflight:
       script: ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
       command: "bash .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root . --json"
-      state_log: ".opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.bootstrap.json"
+      state_log: ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.bootstrap.json"
       no_mcp_tools_allowed: true
     resume_rule:
       if_resume_bootstrap_true: "require bootstrap state status=complete and generated artifacts present; continue to phase_1_flock_acquire"
@@ -186,7 +185,6 @@ workflow:
       restart_message: "BOOTSTRAP_COMPLETE_RESTART_REQUIRED: restart OpenCode so MCP tools register, then rerun /doctor:update --resume-bootstrap"
       max_reentry_count: 1
     required_artifacts:
-      - ".opencode/skills/system-spec-kit/mcp-server/dist/context-server.js"
       - ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js"
       - ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js"
     failure:
@@ -197,33 +195,10 @@ workflow:
   phase_1_flock_acquire:
     council_line: 1
     approval: "prompt before acquiring lock"
-    flock: "ACQUIRE flock at mcp-server/database/.doctor-update.flock; refuse if held"
-    pid_file: "mcp-server/database/.doctor-update.lock"
+    flock: "ACQUIRE flock at .opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.flock; refuse if held"
+    pid_file: ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.lock"
     stale_lock_rule: "refuse if PID-file stale-locked >2h"
     refusal_message: "holding PID + start timestamp"
-
-  phase_1_5_mcp_server_bootability:
-    council_line: 1
-    approval: "auto-acknowledge in confirm workflow (short tier per markdown)"
-    preflight_check: |
-      stat .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js
-    rationale: "Defense-in-depth after Phase 0 and the MCP launcher. MCP tools listed in /doctor:update allowed-tools cannot be invoked unless the MCP server is built and bootable."
-    if_dist_missing:
-      action: "run the maintained non-MCP bootstrap script, then stop for fresh OpenCode startup instead of continuing into MCP phases"
-      commands: |
-        bash .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root .
-      timeout_seconds: 240
-      on_build_failure:
-        emit_error: "system-spec-kit runtime build failed; cannot proceed with database operations"
-        release_flock: "rm -f .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.flock .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.lock"
-        exit_code: 1
-      on_build_success:
-        final_status: "restart_required"
-        emit_message: "BOOTSTRAP_COMPLETE_RESTART_REQUIRED: restart OpenCode so MCP tools register, then rerun /doctor:update --resume-bootstrap"
-    if_dist_present:
-      action: "verify timestamp newer than 30 days OR mcp-server/lib/**/*.ts (catch stale builds)"
-      stale_threshold_days: 30
-      on_stale: "warn but proceed; recommend rebuild outside flock"
     flock_release_invariant: "On ANY abort path from this phase forward (failure, SIGINT, exception), release the flock file BEFORE exit. Each downstream phase inherits this invariant."
 
   phase_2_probe_mcp_activity:
@@ -240,7 +215,7 @@ workflow:
       OR (
         file_system_signals_detected >= 2 of [
           (.opencode/skill exists AND is a directory NOT a symlink),
-          (.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js does NOT exist),
+          (.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js does NOT exist),
           (find . -path './.opencode' -prune -o -name 'memory' -type d -print | grep -q .),
           (find specs -mindepth 2 -name 'spec.md' | first-match dirname has no description.json)
         ]
@@ -251,8 +226,8 @@ workflow:
         check: "[ -d .opencode/skill ] && [ ! -L .opencode/skill ]"
         meaning: "v3.3-era singular directory present as a real directory (not bridge symlink)"
       signal_b:
-        check: "[ ! -f .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js ]"
-        meaning: "MCP server dist missing — fresh tarball install or post-clone state"
+        check: "[ ! -f .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js ]"
+        meaning: "scripts dist missing — fresh tarball install or post-clone state. This is the artifact Phase 8 itself invokes, and the one the Phase 0 bootstrap builds, so its absence is the same fresh-install signal the retired MCP server dist used to give."
       signal_c:
         check: "find specs -name 'memory' -type d -print -quit 2>/dev/null | grep -q ."
         meaning: "legacy memory/ folders inside any spec packet (v3.3 continuity surface)"
@@ -284,7 +259,7 @@ workflow:
         ln -sf skills .opencode/skill
       on_symlink_failure:
         action: "write per-file remediation instructions"
-        instruction_file: ".opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.config-instructions"
+        instruction_file: ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.config-instructions"
         content_template: |
           # /doctor:update remediation: directory rename
           # Run these commands manually to update v3.3 -> v3.4 paths:
@@ -304,7 +279,7 @@ workflow:
           # indexed into the memory DB and deprioritized via ARCHIVE_MULTIPLIERS 0.1; only
           # graph-metadata backfill's path-validator skips it.
           node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js --active-only 2>&1 \
-            | tee .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.backfill-graph.log
+            | tee .opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.backfill-graph.log
         timeout_seconds: 300
         on_failure: "warn but proceed (Phase 5.2 indexing will be partial); record failure in state log"
       step_b_description_backfill:
@@ -326,7 +301,7 @@ workflow:
             fi
           done < <(find specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null)
           echo "{\"missing\":$missing_count,\"created\":$created_count,\"failed\":$failed_count}" \
-            > .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.backfill-description.log
+            > .opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.backfill-description.log
         timeout_seconds: 600
         on_failure: "warn per-folder; aggregate failed_count for state log"
       report_to_dashboard: "Phase 4 dashboard adds row 'spec-metadata-backfill: created=N, failed=M' when this sub-action runs"
@@ -336,11 +311,11 @@ workflow:
       detection: |
         find specs -mindepth 2 -maxdepth 6 -path '*/memory/*.md' \
           -not -path '*/scratch/*' -not -path '*/z_archive/*' 2>/dev/null \
-          | tee .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.legacy-memory-files.log \
+          | tee .opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.legacy-memory-files.log \
           | wc -l
       action_on_findings:
         do_not_auto_migrate: "respecting manifest M-3.3.0.0-001 'review first' policy"
-        write_summary_log: ".opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.legacy-memory-files.log"
+        write_summary_log: ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.legacy-memory-files.log"
         recommend_to_user: |
           # Emit at end of Phase 8:
           if [ "$LEGACY_MEMORY_COUNT" -gt 0 ]; then
@@ -378,7 +353,7 @@ workflow:
     cross_subsystem_dashboard:
       rows: ["context-index", "skill-graph", "advisor", "deep-loop"]
       columns: ["status", "age", "coverage", "recommended action"]
-      coverage_column_rationale: "context-index row populated by FIX-10 post_run_count_skipped output; other rows show n/a unless their tool surfaces a coverage metric"
+      coverage_column_rationale: "rows show n/a unless their tool surfaces a coverage metric; the trigger-index generator reports none, so its row is n/a"
 
   phase_5_dependency_order_execute:
     council_line: 4
@@ -393,61 +368,6 @@ workflow:
     execute:
       context-index:
         action: "node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs  # full regeneration; the generator reads frontmatter and writes the index file, with no daemon and no incremental mode"
-        post_run_count_skipped: |
-          # Coverage gap = on-disk spec folders (those containing spec.md) the index
-          # does not cover, computed as a set-difference (NOT total-minus-indexed: the
-          # index holds historical/phase folders, so a raw subtraction is meaningless).
-          # memory_index stores spec_folder relative to .opencode/specs and some legacy
-          # rows keep the prefix, so both sides are prefix-normalized before comparison;
-          # ln/ + external/ are excluded to mirror the memory index-scope policy. The
-          # canonical DB is resolved via shared/embeddings/profile.js (post vector-shard
-          # split it is the single context-index.sqlite; only vector shards are
-          # per-profile). The node read is cwd-independent and read-only so it never
-          # contends with the daemon's single-writer lock.
-          coverage=$(find specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null \
-            | sed 's#/spec.md$##' \
-            | node -e "
-                const fs = require('fs'), path = require('path');
-                const dir = '.opencode/skills/system-spec-kit/mcp-server/database';
-                const LOG = path.join(dir, '.doctor-update.context-index-coverage.log');
-                let Database; try { Database = require(path.resolve(dir, '../node_modules/better-sqlite3')); } catch (e) { Database = require('better-sqlite3'); }
-                const norm = (s) => String(s).replace(/^[.][/]/, '').replace(/^[.]opencode[/]specs[/]/, '').replace(/^specs[/]/, '').replace(/[/]+\$/, '');
-                const excluded = (p) => /(^|[/])(ln|external)([/]|\$)/.test(p);
-                const onDisk = fs.readFileSync(0, 'utf8').split('\n').map(norm).filter((s) => s && !excluded(s));
-                (async () => {
-                  let dbPath;
-                  try { const m = await import(path.resolve(dir, '../../shared/dist/embeddings/profile.js')); dbPath = m.resolveActiveProfileDbPath(undefined, dir); }
-                  catch (e) { dbPath = path.join(dir, 'context-index.sqlite'); }
-                  let indexed = new Set();
-                  if (fs.existsSync(dbPath)) {
-                    const db = new Database(dbPath, { readonly: true, fileMustExist: true });
-                    indexed = new Set(db.prepare('SELECT DISTINCT spec_folder FROM memory_index WHERE spec_folder IS NOT NULL').all().map((r) => norm(r.spec_folder)));
-                    db.close();
-                  }
-                  const missing = onDisk.filter((f) => !indexed.has(f));
-                  fs.writeFileSync(LOG, JSON.stringify({ total_specs: onDisk.length, indexed: onDisk.length - missing.length, skipped: missing.length, db: path.basename(dbPath), missing: missing.slice(0, 50) }));
-                  process.stdout.write(onDisk.length + ' ' + (onDisk.length - missing.length) + ' ' + missing.length);
-                })().catch((e) => { try { fs.writeFileSync(LOG, JSON.stringify({ error: String((e && e.message) || e) })); } catch (_) {} process.stdout.write('0 0 0'); });
-              " 2>/dev/null || echo "0 0 0")
-          total_specs=$(printf '%s' "$coverage" | cut -d' ' -f1)
-          indexed_specs=$(printf '%s' "$coverage" | cut -d' ' -f2)
-          skipped=$(printf '%s' "$coverage" | cut -d' ' -f3)
-        report_when_skipped: |
-          # Self-contained: reads the coverage log written by post_run_count_skipped,
-          # so it does not depend on shell vars surviving between steps.
-          LOG=.opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.context-index-coverage.log
-          skipped=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).skipped || 0); } catch (e) { console.log(0); }" "$LOG" 2>/dev/null || echo 0)
-          if [ "${skipped:-0}" -gt 0 ]; then
-            node -e "
-              const d = JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'));
-              console.log('WARNING: context-index coverage gap detected');
-              console.log('  total spec folders found: ' + d.total_specs);
-              console.log('  indexed:                  ' + d.indexed);
-              console.log('  skipped:                  ' + d.skipped + ' (exist on disk but absent from the index)');
-              if (Array.isArray(d.missing) && d.missing.length) console.log('  e.g.: ' + d.missing.slice(0, 5).join(', ') + (d.skipped > 5 ? ' ...' : ''));
-              console.log('  run Phase 8 backfill OR /memory:save per affected packet to fix (or add the path to the index-scope exclusions if intentional)');
-            " "$LOG"
-          fi
       skill-graph: "system_skill_advisor.skill_graph_scan({})"
       advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"
       deep-loop-graph: "deep_loop_graph_upsert(...)"

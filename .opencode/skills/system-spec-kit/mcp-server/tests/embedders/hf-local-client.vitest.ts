@@ -2,7 +2,7 @@
 // TEST: HF local HTTP client provider
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
@@ -17,6 +17,26 @@ const MODEL = 'nomic-ai/nomic-embed-text-v1.5';
 const ORIGINAL_HF_EMBED_SERVER_URL = process.env.HF_EMBED_SERVER_URL;
 const ORIGINAL_SPECKIT_IPC_SOCKET_DIR = process.env.SPECKIT_IPC_SOCKET_DIR;
 const DEAD_PID = 2_147_483_647;
+const ORIGINAL_MEMORY_DB_PATH = process.env.MEMORY_DB_PATH;
+const ADVISOR_LAUNCHER_PATH = path.resolve(
+  import.meta.dirname,
+  '..', '..', '..', '..', '..', '..',
+  '.opencode/bin/system-skill-advisor-launcher.cjs',
+);
+
+/**
+ * The lease file name straight out of the launcher source. The client mirrors this
+ * literal rather than importing it, so reading the producer here is what makes the
+ * mirror unable to drift silently.
+ */
+function launcherOwnerLeaseFileName(): string {
+  const source = readFileSync(ADVISOR_LAUNCHER_PATH, 'utf8');
+  const match = /^const OWNER_LEASE_FILE_NAME = '([^']+)';$/m.exec(source);
+  if (!match) {
+    throw new Error(`OWNER_LEASE_FILE_NAME not found in ${ADVISOR_LAUNCHER_PATH}`);
+  }
+  return match[1];
+}
 
 function restoreEnv(name: string, value: string | undefined): void {
   if (value === undefined) {
@@ -86,6 +106,7 @@ describe('HfLocalProvider HTTP client', () => {
     vi.restoreAllMocks();
     restoreEnv('HF_EMBED_SERVER_URL', ORIGINAL_HF_EMBED_SERVER_URL);
     restoreEnv('SPECKIT_IPC_SOCKET_DIR', ORIGINAL_SPECKIT_IPC_SOCKET_DIR);
+    restoreEnv('MEMORY_DB_PATH', ORIGINAL_MEMORY_DB_PATH);
   });
 
   it('applies document and query prefixes before POST /api/embed', async () => {
@@ -345,7 +366,7 @@ describe('HfLocalProvider HTTP client', () => {
   it('keeps retrying ENOENT while a fresh live owner lease can spawn the server', async () => {
     const socketDir = useSocketFixture();
     const clock = useVirtualReadinessClock();
-    writeFileSync(path.join(socketDir, '.spec-memory-owner.json'), JSON.stringify({
+    writeFileSync(path.join(socketDir, __hfLocalProviderTestables.ADVISOR_OWNER_LEASE_FILE_NAME), JSON.stringify({
       ownerPid: process.pid,
       lastHeartbeatIso: new Date(clock.now).toISOString(),
       ttlMs: 60_000,
@@ -357,6 +378,59 @@ describe('HfLocalProvider HTTP client', () => {
     });
 
     await expect(provider.embedQuery('live owner')).resolves.toHaveLength(3);
+  });
+
+  it('reads the live lease under the file name the advisor launcher actually writes', async () => {
+    const leaseFileName = launcherOwnerLeaseFileName();
+    expect(__hfLocalProviderTestables.ADVISOR_OWNER_LEASE_FILE_NAME).toBe(leaseFileName);
+
+    const socketDir = useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    writeFileSync(path.join(socketDir, leaseFileName), JSON.stringify({
+      ownerPid: process.pid,
+      lastHeartbeatIso: new Date(clock.now).toISOString(),
+      ttlMs: 60_000,
+    }));
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 20_000,
+      request: readinessTransport(clock, clock.now + 6000),
+    });
+
+    await expect(provider.embedQuery('launcher lease')).resolves.toHaveLength(3);
+  });
+
+  it('fails fast when the advisor lease is absent and only a retired lease name is present', async () => {
+    const socketDir = useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    // A fresh, live lease under the decommissioned memory server's file name must not
+    // count as spawn authority; only the name the live launcher writes does.
+    writeFileSync(path.join(socketDir, '.spec-memory-owner.json'), JSON.stringify({
+      ownerPid: process.pid,
+      lastHeartbeatIso: new Date(clock.now).toISOString(),
+      ttlMs: 60_000,
+    }));
+    const startedAt = clock.now;
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 20_000,
+      request: readinessTransport(clock, null),
+    });
+
+    await expect(provider.embedQuery('retired lease name')).rejects.toThrow(/not retrying/);
+    expect(clock.now - startedAt).toBeGreaterThanOrEqual(5000);
+  });
+
+  it('resolves the spawn-authority directory from the configured database pointer', () => {
+    const dbDir = mkdtempSync(path.join(tmpdir(), 'hf-local-advisor-db-'));
+    process.env.MEMORY_DB_PATH = path.join(dbDir, 'skill-graph.sqlite');
+
+    expect(__hfLocalProviderTestables.defaultSpawnAuthorityDbDir()).toBe(dbDir);
+
+    delete process.env.MEMORY_DB_PATH;
+    expect(__hfLocalProviderTestables.defaultSpawnAuthorityDbDir()).toMatch(
+      /mcp-server[/\\]database$/,
+    );
   });
 
   it('keeps retrying ENOENT while a live respawn lock can spawn the server', async () => {
@@ -396,7 +470,7 @@ describe('HfLocalProvider HTTP client', () => {
   it('fails fast when the owner heartbeat is expired and lock and pid owners are dead', async () => {
     const socketDir = useSocketFixture();
     const clock = useVirtualReadinessClock();
-    writeFileSync(path.join(socketDir, '.spec-memory-owner.json'), JSON.stringify({
+    writeFileSync(path.join(socketDir, __hfLocalProviderTestables.ADVISOR_OWNER_LEASE_FILE_NAME), JSON.stringify({
       ownerPid: process.pid,
       lastHeartbeatIso: new Date(clock.now - 120_000).toISOString(),
       ttlMs: 1000,
@@ -419,7 +493,7 @@ describe('HfLocalProvider HTTP client', () => {
     const socketDir = useSocketFixture();
     const clock = useVirtualReadinessClock();
     process.env.HF_EMBED_SERVER_URL = 'tcp://127.0.0.1:65535';
-    writeFileSync(path.join(socketDir, '.spec-memory-owner.json'), '{}');
+    writeFileSync(path.join(socketDir, __hfLocalProviderTestables.ADVISOR_OWNER_LEASE_FILE_NAME), '{}');
     const startedAt = clock.now;
     const provider = new HfLocalProvider({
       dim: 3,

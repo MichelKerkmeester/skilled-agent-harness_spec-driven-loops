@@ -334,7 +334,7 @@ async function probeVoyage(context: ProbeContext): Promise<ProbeOutcome> {
           authorization: `Bearer ${context.env.VOYAGE_API_KEY}`,
         },
         body: JSON.stringify({
-          input: ['spec-memory bootstrap probe'],
+          input: ['embedder bootstrap probe'],
           model: VOYAGE_MODEL,
           input_type: 'query',
         }),
@@ -374,7 +374,7 @@ async function probeOpenAi(context: ProbeContext): Promise<ProbeOutcome> {
           authorization: `Bearer ${context.env.OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          input: 'spec-memory bootstrap probe',
+          input: 'embedder bootstrap probe',
           model: OPENAI_MODEL,
           encoding_format: 'float',
         }),

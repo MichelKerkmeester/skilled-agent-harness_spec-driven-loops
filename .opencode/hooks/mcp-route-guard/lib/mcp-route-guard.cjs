@@ -44,7 +44,6 @@ const INTERNAL_EXACT_TOKENS = new Set(['code_mode', 'sequential_thinking']);
 const INTERNAL_RAW_TOKENS = [
   'code_mode',
   'sequential_thinking',
-  'system_spec_memory',
   'system_skill_advisor',
 ];
 

@@ -132,7 +132,7 @@ Cross-Subsystem Health Dashboard
 Doctor Update Result
 
 Final status: STATUS=[OK|FAIL|ROLLED_BACK|CANCELLED|RESTART_REQUIRED]
-State log: .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.last-run.json
+State log: .opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.last-run.json
 Snapshots: [kept|cleaned|skipped]
 Touched subsystems: [list]
 Validation: [gold-battery and schema summary]
@@ -152,7 +152,7 @@ Restart OpenCode so MCP tools register, then rerun:
 
 ```text
 STATUS=FAIL ERROR="[message]"
-State log: .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.last-run.json
+State log: .opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.last-run.json
 Failed phase: [phase]
 Next: inspect the state log and rerun with the safest applicable flag set.
 ```
@@ -163,7 +163,7 @@ Next: inspect the state log and rerun with the safest applicable flag set.
 STATUS=ROLLED_BACK
 Reason: [step failure|gold-battery regression|operator choice]
 Restored snapshots: [list]
-State log: .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.last-run.json
+State log: .opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.last-run.json
 ```
 
 ## 6. Related Commands Display

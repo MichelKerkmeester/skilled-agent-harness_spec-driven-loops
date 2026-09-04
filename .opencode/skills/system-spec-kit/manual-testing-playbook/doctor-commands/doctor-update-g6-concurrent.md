@@ -46,7 +46,7 @@ Launch two /doctor:update invocations concurrently. Verify the second is refused
 2. Start `/doctor:update` in terminal A and capture its PID and transcript.
 3. Within one second, start `/doctor:update` in terminal B.
 4. Capture terminal B refusal output and exit code.
-5. While terminal A is running, verify `.opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.flock` is held or represented by the command output.
+5. While terminal A is running, verify `.opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.flock` is held or represented by the command output.
 6. After terminal A exits, capture `.doctor-update.last-run.json`.
 7. Compare database mtimes or state log entries to confirm only terminal A performed mutation or validation work.
 

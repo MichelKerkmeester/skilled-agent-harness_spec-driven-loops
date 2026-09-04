@@ -88,9 +88,12 @@ Examples:
   node generate-context.js --json '{"specFolder":"specs/001-feature/"}'
 
 Output:
-  Creates the saved context artifact for the active spec folder and indexes it
-  into the Spec Kit Memory system. Canonical saves also refresh the packet's
-  root-level graph-metadata.json file as part of the same workflow.
+  Creates the saved context artifact for the active spec folder. Canonical saves
+  also refresh the packet's root-level graph-metadata.json file as part of the
+  same workflow. That is the whole write: there is no indexing handoff and no
+  daemon to wait for. Regenerate the lookup surface with
+  node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+  when the packet's trigger phrases changed.
   Planner-first canonical saves are requested by default; use --full-auto for
   the legacy mutation-first fallback.
 

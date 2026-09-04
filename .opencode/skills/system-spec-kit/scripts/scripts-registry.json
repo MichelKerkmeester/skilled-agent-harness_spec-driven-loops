@@ -8,7 +8,7 @@
       "name": "generate-context",
       "path": "scripts/dist/memory/generate-context.js",
       "type": "node",
-      "description": "Generate memory files with ANCHOR format for Spec Kit Memory indexing",
+      "description": "Generate the saved context artifact with ANCHOR format and refresh the packet's graph metadata",
       "trigger": ["save context", "save memory", "/memory:save"],
       "calledBy": ["AI Assistant", "Command YAML"],
       "essential": true,

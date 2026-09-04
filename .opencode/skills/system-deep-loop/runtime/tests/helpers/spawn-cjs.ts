@@ -140,10 +140,8 @@ export function createHermeticEnv(testId: string): HermeticEnv {
       OPENCODE_HOME: join(home, '.opencode'),
       CLAUDE_HOME: join(home, '.claude'),
       CLAUDE_CODE_HOME: join(home, '.claude-code'),
-      OPENCODE_HOME: join(home, '.opencode'),
       SPECKIT_OPENCODE_STATE_DIR: opencodeStateDir,
       SPECKIT_CLAUDE_CODE_STATE_DIR: claudeStateDir,
-      SPECKIT_OPENCODE_STATE_DIR: opencodeStateDir,
     },
     cleanup: () => {
       rmSync(tmpRoot, { recursive: true, force: true });

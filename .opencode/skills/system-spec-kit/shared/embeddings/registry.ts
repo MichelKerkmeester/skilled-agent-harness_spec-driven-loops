@@ -133,7 +133,7 @@ const CLOUD_CANONICAL: Readonly<Record<'voyage' | 'openai', string>> = Object.fr
  *   the HF Hub, not the Ollama tag namespace.
  * - For `voyage` and `openai`, a single canonical string per provider lives
  *   in `CLOUD_CANONICAL` above — cloud providers do not have a registry
- *   array because the spec-memory bake-off is local-first.
+ *   array because this layer's embedder bake-off is local-first.
  *
  * Throws `EmbedderNotConfiguredError` if MANIFESTS is empty (programmer
  * error — should never happen in production).

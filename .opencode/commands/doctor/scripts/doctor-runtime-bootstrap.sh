@@ -45,10 +45,12 @@ OPENCODE_DIR="$ROOT/.opencode"
 SKILLS_DIR="$OPENCODE_DIR/skills"
 LEGACY_SKILL_DIR="$OPENCODE_DIR/skill"
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
-DB_DIR="$KIT_DIR/mcp-server/database"
+# Runtime state for /doctor:update. It lives in the advisor's database directory
+# because that one is tracked and gitignore-managed; the spec-kit mcp-server/database
+# directory that used to hold it left with its server and is absent on a fresh clone.
+DB_DIR="$SKILLS_DIR/system-skill-advisor/mcp-server/database"
 STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
 LOCK_FILE="/tmp/doctor-runtime-bootstrap.lock"
-MCP_DIST="$KIT_DIR/mcp-server/dist/context-server.js"
 GRAPH_BACKFILL_DIST="$KIT_DIR/scripts/dist/graph/backfill-graph-metadata.js"
 DESCRIPTION_DIST="$KIT_DIR/scripts/dist/spec-folder/generate-description.js"
 
@@ -147,9 +149,8 @@ elif [[ -d "$SKILLS_DIR" && -d "$LEGACY_SKILL_DIR" && ! -L "$LEGACY_SKILL_DIR" ]
 fi
 
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
-DB_DIR="$KIT_DIR/mcp-server/database"
+DB_DIR="$SKILLS_DIR/system-skill-advisor/mcp-server/database"
 STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
-MCP_DIST="$KIT_DIR/mcp-server/dist/context-server.js"
 GRAPH_BACKFILL_DIST="$KIT_DIR/scripts/dist/graph/backfill-graph-metadata.js"
 DESCRIPTION_DIST="$KIT_DIR/scripts/dist/spec-folder/generate-description.js"
 
@@ -165,10 +166,6 @@ if ! command -v npm >/dev/null 2>&1; then
 fi
 
 need_build=false
-if [[ ! -f "$MCP_DIST" ]]; then
-  need_build=true
-  record_action "detected missing mcp-server/dist/context-server.js"
-fi
 if [[ ! -f "$GRAPH_BACKFILL_DIST" || ! -f "$DESCRIPTION_DIST" ]]; then
   need_build=true
   record_action "detected missing scripts/dist migration helpers"
@@ -208,7 +205,6 @@ if [[ "$need_build" == true ]]; then
   record_action "installed dependencies and built @spec-kit/mcp-server plus @spec-kit/scripts"
 fi
 
-[[ -f "$MCP_DIST" ]] || fail "mcp-server/dist/context-server.js is still missing after bootstrap"
 [[ -f "$GRAPH_BACKFILL_DIST" ]] || fail "scripts/dist/graph/backfill-graph-metadata.js is still missing after bootstrap"
 [[ -f "$DESCRIPTION_DIST" ]] || fail "scripts/dist/spec-folder/generate-description.js is still missing after bootstrap"
 
