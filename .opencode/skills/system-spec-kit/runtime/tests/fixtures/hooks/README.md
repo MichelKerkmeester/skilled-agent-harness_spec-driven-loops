@@ -30,7 +30,7 @@ trigger_phrases:
 
 ## 4. VALIDATION
 
-Run focused hook replay tests from `mcp_server` after changing fixtures:
+Run focused hook replay tests from `runtime/` after changing fixtures:
 
 ```bash
 npx vitest run tests/hooks-runtime-detection.vitest.ts

@@ -22,7 +22,7 @@ The current registration is live under `devin -p` when events are top-level arra
 | Spec and dispatch gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `task-dispatch-guard.cjs` |
 | Tool and quality adapters | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `mcp-route-guard.cjs` |
 
-The three `.js` links target compiled `mcp-server/dist/` output. A fresh checkout must build that package before those links resolve.
+The three `.js` links target the spec-kit runtime's compiled `runtime/dist/` output. A fresh checkout must build that package before those links resolve.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Test Fixtures"
-description: "Shared runtime JSON and TypeScript fixtures for MCP server tests."
+description: "Shared runtime JSON and TypeScript fixtures for the runtime package tests."
 trigger_phrases:
   - "test fixtures"
   - "runtime fixtures"
@@ -10,7 +10,7 @@ trigger_phrases:
 
 ## 1. PURPOSE
 
-`tests/fixtures/` holds reusable, deterministic test data for MCP server runtime and regression suites. Fixtures should describe test scenarios, not production architecture.
+`tests/fixtures/` holds reusable, deterministic test data for the runtime package and its regression suites. Fixtures should describe test scenarios, not production architecture.
 
 ---
 
@@ -35,7 +35,7 @@ fixtures/
 
 ## 4. VALIDATION
 
-Run the suite that consumes the changed fixture from `mcp_server`, or run the full test set when the fixture has broad use:
+Run the suite that consumes the changed fixture from `runtime/`, or run the full test set when the fixture has broad use:
 
 ```bash
 npx vitest run tests/<suite>.vitest.ts

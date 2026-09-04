@@ -79,17 +79,19 @@ would have got wrong in both directions. `@huggingface/transformers` looks live
 because the HF model server imports it, but that server resolves through
 `createRequire(system-spec-kit/package.json)` and lands in the skill-root
 `node_modules`, which the workspace root and `@spec-kit/shared` both populate — so
-this manifest was never what placed it, and it goes. `chokidar` looks dead because
-nothing in the package imports it, but the skill advisor probes
-`…/system-spec-kit/runtime/node_modules/chokidar/index.js` as its second resolution
-candidate, so it stays and the advisor's path was updated with the rest.
+this manifest was never what placed it, and it goes. `chokidar` looked live because
+the skill advisor probes `…/system-spec-kit/runtime/node_modules/chokidar/index.js`
+as its second resolution candidate, but the advisor's own copy is its first candidate
+and is always installed with it, so the fallback is never reached; the review pass
+read that as a dead dependency and it goes too. The advisor's candidate list is in
+the preserved set and keeps the entry, which now simply never resolves.
 
 | Dependency | Live consumer | Decision |
 |------------|---------------|----------|
 | `@spec-kit/shared` | 8 source and 19 test modules | keep |
 | `better-sqlite3` | `lib/extraction/entity-extractor.ts:10`, `lib/storage/transaction-manager.ts:6` | keep |
 | `zod` | four modules including `lib/graph/graph-metadata-schema.ts:5` | keep |
-| `chokidar` | `system-skill-advisor/mcp-server/advisor-server.ts:101` resolution candidate | keep |
+| `chokidar` | none here; the advisor's fallback candidate is shadowed by its own installed copy | remove |
 | `@huggingface/transformers` | resolves from the skill root, not from here | remove |
 | `@modelcontextprotocol/sdk` | none; `@spec-kit/shared` declares its own | remove |
 | `zod-to-json-schema` | none | remove |
@@ -146,7 +148,7 @@ Verification ran from the repository root against the new paths only.
 | Decision | Why |
 |----------|-----|
 | Regenerate the lockfile from the workspace root, not from the package | The package is a member of the `system-spec-kit` workspace and has no lockfile of its own, so `npm ci` inside it refuses with `EUSAGE`. The root is where the lockfile lives and where the prune takes effect. |
-| Keep `chokidar` although nothing here imports it | The advisor names this package's copy as a resolution candidate that exists today. The packet's own rule is that removal needs a resolution trace, and this one has a consumer. |
+| Drop `chokidar` after first keeping it | The advisor names this package's copy only as a second resolution candidate behind its own installed copy, so the trace never reaches here. The review pass raised it as an unowned dependency and the manifest, path mapping and lockfile were pruned. |
 | Drop `@huggingface/transformers` although the model server loads it | The resolution trace lands in the skill-root `node_modules`, which two other manifests populate. Verified after the prune: the server still resolves it. |
 | Drop `configs` from the dist-freshness watch list | The build could not complete without it. The directory has never existed in this repository's history, so the entry was stale before the move and sat directly on the rebuild path this packet has to prove. |
 | Leave packet 052's stale fingerprint alone | It was staled by commit `b960584085`, which edited a 052 doc without regenerating derived metadata. The fix belongs to that commit's owner, not inside a rename. |
@@ -183,16 +185,12 @@ Verification ran from the repository root against the new paths only.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Packet 052 does not validate.** Its `graph-metadata.json` attests documents
-   older than `goal.md`, because commit `b960584085` edited that document without
-   regenerating derived metadata. Nothing in this packet touches 052, and 052 is
-   byte-identical to `HEAD`. Fix with
-   `node .opencode/skills/system-spec-kit/scripts/spec/repair-derived.cjs --folder specs/system-speckit/052-memory-decommission-landing --apply`.
+1. **Packet 052's stale fingerprint was repaired afterwards** with `repair-derived.cjs`;
+   it validates again.
 
-2. **`chokidar` is declared by a package that never imports it.** It is kept only so
-   the advisor's second resolution candidate still resolves. The advisor's own copy
-   is installed, so the fallback is not exercised today; dropping it is a judgement
-   the operator can make, not one this packet's evidence licenses.
+2. **The advisor's second chokidar candidate no longer resolves.** Its own copy is
+   the first candidate and is always installed with it, so nothing changes at run
+   time; the candidate list itself sits in the preserved set and was not edited.
 
 3. **The package's own suite does not finish inside its bound on this machine.** The
    bounded runner stops itself at 600 s and the scoped fallback ran past 20 minutes,
