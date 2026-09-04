@@ -50,19 +50,18 @@ const DIST_PACKAGES = Object.freeze([
     excludedSegments: ['tests', 'test-fixtures'],
   },
   {
-    id: 'system-spec-kit/mcp-server',
-    name: '@spec-kit/mcp-server',
-    root: '.opencode/skills/system-spec-kit/mcp-server',
+    id: 'system-spec-kit/runtime',
+    name: '@spec-kit/runtime',
+    root: '.opencode/skills/system-spec-kit/runtime',
     distEntries: {
       default: 'dist/tsconfig.tsbuildinfo',
       'validation-orchestrator': 'dist/lib/validation/orchestrator.js',
     },
-    rebuildCommand: 'cd .opencode/skills/system-spec-kit/mcp-server && npm run build',
+    rebuildCommand: 'cd .opencode/skills/system-spec-kit/runtime && npm run build',
     sourceCandidates: [
       'package.json',
       'tsconfig.json',
       'api',
-      'configs',
       'core',
       'handlers',
       'hooks',

@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Wait for the 052 review loop to finish and for the operator's dirty files under system-deep-loop and cli-external-orchestration to be committed
-- [ ] T002 [P] Dependency audit by resolution: for each manifest entry, the live consumer or the removal, including how `.opencode/bin/hf-model-server.cjs` resolves `@huggingface/transformers`
-- [ ] T003 [P] Reference inventory: every live file naming `system-spec-kit/mcp-server` or `@spec-kit/mcp-server`, grouped by runtime config, script, doc
+- [x] T001 Precondition held: `git status` carried no tracked modification under system-deep-loop or cli-external-orchestration at start, so no file moved under a live edit
+- [x] T002 [P] Twelve entries traced in `scratch/inventory.md` §4. `hf-model-server.cjs:452` resolves through `createRequire(system-spec-kit/package.json)`, which lands in the skill-root `node_modules`, so the entry here is not what places it
+- [x] T003 [P] 230 tracked files by `git grep`, 147 more naming the package only relatively, 84 symlinks, and 8 references no path grep reaches. Recorded in `scratch/inventory.md` §1-2
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,9 +44,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 `git mv` the package to `runtime/`; rename the manifest to `@spec-kit/runtime`; prune dependencies; regenerate the lockfile
-- [ ] T005 Rewrite every reference from the inventory: runtime configs and discovery mirrors, dist-freshness table, validate.sh, scripts imports and tsconfig, doctor and command assets, plugins, docs
-- [ ] T006 Rebuild dist in the new root, re-stamp freshness, run each hook adapter once from its new path, boot the model server once
+- [x] T004 324 files moved under `git mv`; manifest renamed `@spec-kit/runtime` and cut from 12 dependencies to 4; `npm install` at the workspace root removed 126 packages and `npm ci --dry-run` exits 0
+- [x] T005 379 files rewritten in place plus 84 symlinks repointed; `rg` and `git grep` both return zero live hits for the old path and the old npm name
+- [x] T006 `npm run rebuild` exits 0 and records both freshness entries; shared, scripts and runtime typecheck clean; all 19 registered adapters exit 0 with no missing module; the HF model server boots from the new path, resolves `runtime/database` and closes cleanly
 - [ ] T007 Commit the move as one commit; fast-forward main; push
 <!-- /ANCHOR:phase-2 -->
 
@@ -55,9 +55,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 validate.sh --strict on 049 recursive, 050, 051, 052 and this packet; residue sweep; trigger index twice; doctor routes; skill-root audit; routing guard
+- [x] T008 053 and 049 recursive pass; residue sweep `counts.live` 0; doctor routes, command references, skill-root audit and derived freshness pass; routing guard green after the `cli-external-orchestration` re-mint. 052 fails on a fingerprint staled by commit `b960584085`, which is not this packet's change
 - [ ] T009 Ten-iteration review on the moved tree under this packet; fix every P0 and P1 at source; rerun until clean
-- [ ] T010 Implementation summary and acceptance rows closed with evidence
+- [x] T010 `implementation-summary.md` and `acceptance-criteria.md` carry the move, the audit table and the gate results
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -98,9 +98,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Dependencies identified and available
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -109,9 +109,9 @@ contextType: "general"
 ## Code Quality
 
 - [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
+- [x] CHK-011 [P0] Builds, typechecks and adapter runs produce no error output
 - [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-013 [P1] The layout now matches `system-deep-loop/runtime`
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -120,7 +120,7 @@ contextType: "general"
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
+- [x] CHK-021 [P0] Every registered adapter and the continuity writer run once from the new path
 - [ ] CHK-022 [P1] Edge cases tested
 - [ ] CHK-023 [P1] Error scenarios validated
 <!-- /ANCHOR:testing -->
@@ -164,7 +164,7 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-050 [P1] Only `scratch/inventory.md` was added under this packet
 - [ ] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 

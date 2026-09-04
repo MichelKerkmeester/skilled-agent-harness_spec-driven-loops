@@ -52,7 +52,7 @@ Validate the separation between `advisor_status` and `advisor_rebuild`. `advisor
 WORK="/tmp/skill-advisor-nc-006-$(date +%s)"
 rsync -a --exclude node_modules --exclude .git ./ "$WORK/"
 cd "$WORK"
-npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
+npm --prefix .opencode/skills/system-spec-kit/runtime run build
 touch .opencode/skills/system-spec-kit/graph-metadata.json
 ```
 

@@ -43,7 +43,7 @@ Run /doctor:update --cleanup-legacy. Per-file prompt before each deletion.
 ### Commands
 
 1. Start from the post-DOC-345 disposable workspace or create an equivalent workspace with manifest-listed legacy files.
-2. Record the pre-cleanup list of legacy files, including `memory/*.md` and `mcp-server/database/memory.db` when present.
+2. Record the pre-cleanup list of legacy files, including `memory/*.md` and `runtime/database/memory.db` when present.
 3. Run `/doctor:update --cleanup-legacy` through the real runtime.
 4. For at least one legacy file, confirm deletion.
 5. For at least one legacy file, refuse or skip deletion when more than one file is present.

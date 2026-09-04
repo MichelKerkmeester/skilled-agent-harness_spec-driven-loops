@@ -82,9 +82,9 @@ Inspect `lib/continuity/authored-continuity-snapshot.ts`, PreCompact hook wiring
 
 | File | Role |
 |---|---|
-| `mcp-server/lib/continuity/authored-continuity-snapshot.ts` | Snapshot helper |
-| `mcp-server/hooks/claude/compact-inject.ts` | PreCompact integration point |
-| `mcp-server/tests/openltm-continuity-resilience.vitest.ts` | Snapshot and disabled-mode regression coverage |
+| `runtime/lib/continuity/authored-continuity-snapshot.ts` | Snapshot helper |
+| `runtime/hooks/claude/compact-inject.ts` | PreCompact integration point |
+| `runtime/tests/openltm-continuity-resilience.vitest.ts` | Snapshot and disabled-mode regression coverage |
 
 ---
 

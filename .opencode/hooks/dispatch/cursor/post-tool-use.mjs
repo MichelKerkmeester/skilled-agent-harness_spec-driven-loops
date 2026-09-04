@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs
+../../../skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs

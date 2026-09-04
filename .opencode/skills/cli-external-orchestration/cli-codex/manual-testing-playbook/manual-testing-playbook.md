@@ -508,7 +508,7 @@ Verify `codex --enable codex_hooks` (or `[features].codex_hooks = true` in confi
 
 #### Scenario Contract
 
-Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator validating Codex hook parity, FIRST verify ~/.codex/hooks.json contains entries for SessionStart and UserPromptSubmit pointing at .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/{session-start,user-prompt-submit}.js, THEN dispatch codex --enable codex_hooks exec --full-auto "Implement a tiny TypeScript hook smoke test in /tmp/cli-codex-playbook-cx016/hook.ts" with --model gpt-5.6-luna -c service_tier="fast". Verify the hook stdout contract is satisfied (session-start emits {} or hookSpecificOutput.additionalContext; user-prompt-submit emits an Advisor: brief). Return a verdict naming the hook script paths and confirming the advisor brief surfaced.`
+Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator validating Codex hook parity, FIRST verify ~/.codex/hooks.json contains entries for SessionStart and UserPromptSubmit pointing at .opencode/skills/system-spec-kit/runtime/dist/hooks/codex/{session-start,user-prompt-submit}.js, THEN dispatch codex --enable codex_hooks exec --full-auto "Implement a tiny TypeScript hook smoke test in /tmp/cli-codex-playbook-cx016/hook.ts" with --model gpt-5.6-luna -c service_tier="fast". Verify the hook stdout contract is satisfied (session-start emits {} or hookSpecificOutput.additionalContext; user-prompt-submit emits an Advisor: brief). Return a verdict naming the hook script paths and confirming the advisor brief surfaced.`
 
 Expected signals: `~/.codex/hooks.json` lists both hooks at the documented paths. `codex --enable codex_hooks exec --full-auto` exits 0. The hook smoke checks documented in `references/hook-contract.md` §6 succeed when invoked manually (`{}` for session-start, `Advisor:` prefix for user-prompt-submit). The test file is written.
 
@@ -731,7 +731,7 @@ The `cli-codex` skill is an orchestrator wrapper around a third-party binary (`c
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
 | Upstream Codex CLI repo (`https://github.com/openai/codex`) | Codex binary correctness | Out of scope for this playbook. We validate that our skill dispatches the binary correctly, not that the binary itself is correct |
-| `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/{session-start,user-prompt-submit}.js` | Hook contract integration | `CX-016` exercises the hook scripts via the documented manual smoke checks in `hook-contract.md` §6 |
+| `.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/{session-start,user-prompt-submit}.js` | Hook contract integration | `CX-016` exercises the hook scripts via the documented manual smoke checks in `hook-contract.md` §6 |
 | `.opencode/skills/cli-external-orchestration/cli-codex/references/hook-contract.md` §6 manual smoke checks | Hook output shape | `CX-016` |
 | `.opencode/skills/sk-doc/scripts/validate_document.py` | Markdown structure validation for this playbook | This playbook itself (root MUST validate cleanly) |
 | `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Shared `PreToolUse` `exec` advisory hook | `CX-029` |

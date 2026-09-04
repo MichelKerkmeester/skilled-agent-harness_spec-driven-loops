@@ -61,7 +61,7 @@ The library owns the SQLite schema, indexing logic and relationship query helper
 
 Before the realignment, [SKILL.md](../../SKILL.md) stated that `lib/skill-graph/` database and query logic remained in `system-spec-kit` until a pending cleanup. That historical claim sat near the bottom of SKILL.md before the realignment delta corrected it.
 
-That statement is outdated. The extraction completed earlier and no `skill-graph` folder exists under `system-spec-kit/mcp-server/lib/`. File search across the spec-kit tree confirms the absence. The pending-cleanup reference is obsolete and was removed during the verified documentation delta. The current [SKILL.md §4 RULES](../../SKILL.md) plus §7 INTEGRATION POINTS reflect the post-extraction state.
+That statement is outdated. The extraction completed earlier and no `skill-graph` folder exists under `system-spec-kit/runtime/lib/`. File search across the spec-kit tree confirms the absence. The pending-cleanup reference is obsolete and was removed during the verified documentation delta. The current [SKILL.md §4 RULES](../../SKILL.md) plus §7 INTEGRATION POINTS reflect the post-extraction state.
 
 ---
 

@@ -20,10 +20,10 @@ Sub-detection rules are defined in SKILL.md lines 78-90 and `references/stack-de
 
 **Exact prompt**:
 ```
-Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.
+Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/runtime/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.
 ```
 
-Prompt: `Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.`
+Prompt: `Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/runtime/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.`
 
 **Expected detection**:
 - Surface: `OPENCODE`
@@ -46,7 +46,7 @@ Prompt: `Refactor the parseExecutorConfig function in .opencode/skills/system-sp
 
 ### Preconditions
 
-1. Target file exists: `bash: test -f .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts`
+1. Target file exists: `bash: test -f .opencode/skills/system-spec-kit/runtime/lib/deep-loop/executor-config.ts`
 2. TypeScript sub-language reference set intact: `bash: ls .opencode/skills/sk-code/sk-code-opencode/references/typescript/ | sort` returns exactly `quality-standards.md style-guide.md quick-reference.md` (in some sort order).
 
 ### Exact Command Sequence

@@ -22,10 +22,10 @@ The rule is defined in SKILL.md §4 ALWAYS. It is the behavioral guard that keep
 
 **Exact prompt**:
 ```
-Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/mcp-server/lib/config/load.ts. It only runs once at startup.
+Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/runtime/lib/config/load.ts. It only runs once at startup.
 ```
 
-Prompt: `Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/mcp-server/lib/config/load.ts. It only runs once at startup.`
+Prompt: `Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/runtime/lib/config/load.ts. It only runs once at startup.`
 
 **Expected detection**:
 - Surface: `OPENCODE` (target path contains `/.opencode/`)

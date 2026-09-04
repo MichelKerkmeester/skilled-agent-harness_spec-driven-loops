@@ -21,7 +21,7 @@ The adapter composes two existing shared cores rather than reimplementing policy
 
 The single most important property is that it **fails closed** — the opposite of the fail-open guards elsewhere in this tree. A malformed payload, an unparseable request, a missing identity field, a missing file path or command, an unknown tool class, or any internal evaluation error resolves to **deny**, because a `PermissionRequest` denial is the safe default. The only allow paths are an exempt write target, an exec command that violates no dispatch hard rule, or the kill-switch being explicitly disabled.
 
-The real code lives in `system-spec-kit/mcp-server/hooks/devin/`; this folder holds a relative symlink into it.
+The real code lives in `system-spec-kit/runtime/hooks/devin/`; this folder holds a relative symlink into it.
 
 ---
 
@@ -56,7 +56,7 @@ A missing file path (`write`) or missing command (`exec`) is a `deny`, not a ski
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Devin** | `devin/permission-request-policy.mjs` (symlink → `system-spec-kit/mcp-server/hooks/devin/`) | `PermissionRequest` in `.devin/hooks.v1.json` | Decision envelope on stdout (`approve` / `block`); fails closed to `deny` |
+| **Devin** | `devin/permission-request-policy.mjs` (symlink → `system-spec-kit/runtime/hooks/devin/`) | `PermissionRequest` in `.devin/hooks.v1.json` | Decision envelope on stdout (`approve` / `block`); fails closed to `deny` |
 | **Claude** | — | — | `by-design`: permission via `PreToolUse` decision, no dedicated permission-request adapter |
 | **Codex** | — | — | `by-design`: permission via `PreToolUse` decision, no dedicated permission-request adapter |
 | **Cursor** | — | — | `by-design`: no dedicated permission-request adapter |
@@ -72,7 +72,7 @@ Only Devin exposes a dedicated approval event, so only Devin carries an adapter.
 ```text
 permission-policy/
 +-- README.md
-`-- devin/   permission-request-policy.mjs (symlink -> ../../../skills/system-spec-kit/mcp-server/hooks/devin/permission-request-policy.mjs)
+`-- devin/   permission-request-policy.mjs (symlink -> ../../../skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs)
 ```
 
 ---
@@ -81,8 +81,8 @@ permission-policy/
 
 | File | Responsibility |
 |---|---|
-| `system-spec-kit/mcp-server/hooks/devin/permission-request-policy.mjs` | The adapter. Parses the `PermissionRequest` payload, validates identity, classifies the tool as `write` / `exec` / unknown, delegates to the shared cores, and emits the decision envelope. Fails closed on every error path. |
-| `system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` | The shared write-target policy core (`isExemptTargetPath`) that `evaluateWrite` delegates to. Not in this folder. |
+| `system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs` | The adapter. Parses the `PermissionRequest` payload, validates identity, classifies the tool as `write` / `exec` / unknown, delegates to the shared cores, and emits the decision envelope. Fails closed on every error path. |
+| `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` | The shared write-target policy core (`isExemptTargetPath`) that `evaluateWrite` delegates to. Not in this folder. |
 | `hooks/dispatch/lib/dispatch-rule-checks.mjs` | The shared dispatch hard-rule evaluator (`evaluate`, `readHardRules`) that `evaluateExec` delegates to. Hard rules are read from `cli-external-orchestration/cli-opencode/SKILL.md`. Not in this folder. |
 | `.opencode/hooks/shared/hook-flags.cjs` | The shared kill-switch resolver the adapter imports (`isHookEnabled('permission-policy')`). |
 
@@ -120,7 +120,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 
 ```bash
 printf '%s' '{"hook_event_name":"PermissionRequest","tool_name":"bash","tool_use_id":"t1","session_id":"s1","prompt_id":"p1","tool_input":{"command":"echo hi"}}' | \
-  node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/permission-request-policy.mjs
+  node .opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
 echo "exit: $?"
 ```
 
@@ -128,14 +128,14 @@ Expected result: a JSON decision envelope (`{"decision":"approve"|"block",...}`)
 
 ```bash
 printf '%s' 'not-json' | \
-  node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/permission-request-policy.mjs
+  node .opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
 ```
 
 Expected result: a `{"decision":"block",...}` envelope with reason "request payload is not valid JSON" (fail-closed on malformed input).
 
 ```bash
 printf '%s' '{"hook_event_name":"PermissionRequest","tool_name":"bash","tool_use_id":"t1","session_id":"s1","prompt_id":"p1","tool_input":{"command":"rm -rf /"}}' | \
-  SYSTEM_PERMISSION_POLICY_DISABLED=1 node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/permission-request-policy.mjs
+  SYSTEM_PERMISSION_POLICY_DISABLED=1 node .opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
 ```
 
 Expected result: a `{"decision":"approve",...}` envelope with reason "permission policy is disabled" (kill-switch escape hatch).
@@ -146,5 +146,5 @@ Expected result: a `{"decision":"approve",...}` envelope with reason "permission
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in, with the full kill-switch index and coverage matrix.
 - [`../dispatch/README.md`](../dispatch/README.md): the dispatch hard-rule core this adapter's exec-class delegates to.
-- [`../../skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/`](../../skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/): the write-target policy core this adapter's write-class delegates to.
+- [`../../skills/system-spec-kit/runtime/hooks/lib/spec-gate/`](../../skills/system-spec-kit/runtime/hooks/lib/spec-gate/): the write-target policy core this adapter's write-class delegates to.
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapter uses.

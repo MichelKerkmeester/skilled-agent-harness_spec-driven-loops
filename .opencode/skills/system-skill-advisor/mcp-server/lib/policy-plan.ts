@@ -203,7 +203,7 @@ const POLICY_OBSERVATION_SINK: PolicyObservationRecord[] = [];
 function currentGateQuestion(): string | undefined {
   try {
     const owner = requireOwnerModule(
-      '../../../system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs',
+      '../../../system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs',
     ) as { GATE_3_QUESTION?: unknown };
     return typeof owner.GATE_3_QUESTION === 'string' ? owner.GATE_3_QUESTION : undefined;
   } catch {

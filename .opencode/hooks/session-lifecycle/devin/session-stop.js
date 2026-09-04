@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/dist/hooks/devin/session-stop.js
+../../../skills/system-spec-kit/runtime/dist/hooks/devin/session-stop.js

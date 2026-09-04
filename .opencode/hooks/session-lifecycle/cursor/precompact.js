@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/dist/hooks/cursor/precompact.js
+../../../skills/system-spec-kit/runtime/dist/hooks/cursor/precompact.js

@@ -44,7 +44,7 @@ Validate the OpenCode plugin path that delegates through the stable native compa
 1. Build:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
+npm --prefix .opencode/skills/system-spec-kit/runtime run build
 ```
 
 2. Run bridge directly:
@@ -107,13 +107,13 @@ Preconditions observed:
 Build command:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
+npm --prefix .opencode/skills/system-spec-kit/runtime run build
 ```
 
 Build output:
 
 ```text
-> @spec-kit/mcp-server@1.8.0 build
+> @spec-kit/runtime@1.8.0 build
 > tsc --build && node scripts/finalize-dist.mjs
 ```
 

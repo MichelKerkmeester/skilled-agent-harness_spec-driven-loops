@@ -17,7 +17,7 @@ import {
   serializeGraphMetadata,
   slugifyFolderName,
   type PerFolderDescription,
-} from '@spec-kit/mcp-server/api';
+} from '@spec-kit/runtime/api';
 import { isMainModule } from '../lib/esm-entry.js';
 
 const ITERATION_PARENT_RE = /^\d{3}(?:[-_].+)?$/;

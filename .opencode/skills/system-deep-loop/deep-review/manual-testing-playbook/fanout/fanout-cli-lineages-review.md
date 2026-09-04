@@ -52,7 +52,7 @@ zero counts from the empty base artifact dir state log and produces an incorrect
 3. Confirm `step_fanout_spawn_cli` calls `fanout-run.cjs` with `--loop-type review`.
 4. `bash: grep -n "fanout_executors\|--executor\|strongest.restriction\|merged FAIL" .opencode/commands/deep/review.md | head -15`
 5. Confirm strongest-restriction note in review command docs.
-6. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts --reporter=verbose`
+6. `bash: cd .opencode/skills/system-spec-kit/runtime && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts --reporter=verbose`
 7. Confirm 10/10 pass (5 review tests + 3 research tests + 2 e2e tests).
 
 ### RECOMMENDED ORCHESTRATION PROCESS

@@ -80,7 +80,7 @@ directive-lifecycle/
 | File | Responsibility |
 |---|---|
 | `system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts` | Canonical boundary adapter. Reads a bounded stdin JSON (`session_id`, `boundary`), checks the kill-switch, and calls `advanceDirectiveLifecycleBoundary` against the default file-backed store. Emits no model-visible output. |
-| `system-spec-kit/mcp-server/hooks/claude/directive-lifecycle-boundary.ts` | Spec-Kit bridge shim. Resolves the compiled canonical target by walking up to the `.opencode` ancestor (install-anchored, override via `SPECKIT_DIRECTIVE_LIFECYCLE_BOUNDARY_TARGET`), spawns it with a 500 ms timeout and `SIGKILL`, and relays success. Fail-open on any error. |
+| `system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts` | Spec-Kit bridge shim. Resolves the compiled canonical target by walking up to the `.opencode` ancestor (install-anchored, override via `SPECKIT_DIRECTIVE_LIFECYCLE_BOUNDARY_TARGET`), spawns it with a 500 ms timeout and `SIGKILL`, and relays success. Fail-open on any error. |
 | `system-skill-advisor/hooks/lib/directive-lifecycle.ts` | The decision core: `decideDirectiveLifecycleDelivery` (full vs suppressed), `advanceDirectiveLifecycleBoundary`, the `InMemoryDirectiveLifecycleStore`, and the default file-backed store handle. |
 | `system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts` | Constants and types: `DIRECTIVE_SEPARATOR` (`\nDirectives:`), `MAX_DIRECTIVE_LIFECYCLE_SESSIONS` (64), `DIRECTIVE_LIFECYCLE_SCHEMA_VERSION` (2), `DIRECTIVE_LIFECYCLE_DEDUP_ENV`. |
 | `system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts` | The cross-process durable file-backed store the default handle wraps. |

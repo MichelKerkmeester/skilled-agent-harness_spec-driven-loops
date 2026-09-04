@@ -2,7 +2,7 @@
 // MODULE: Trigger Text Normalization
 // ───────────────────────────────────────────────────────────────
 // Mirrors the substring trigger lane in
-// mcp-server/lib/search/hybrid-search.ts (normalizeTriggerText,
+// runtime/lib/search/hybrid-search.ts (normalizeTriggerText,
 // triggerQueryTokens, computeTriggerMatchScore) so the generated index and
 // the SQL lane admit and rank the same candidates. Any change here changes
 // the relation the two lanes are compared on, so the two must move together.

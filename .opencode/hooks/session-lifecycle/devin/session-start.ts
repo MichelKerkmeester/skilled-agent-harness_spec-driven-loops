@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/devin/session-start.ts
+../../../skills/system-spec-kit/runtime/hooks/devin/session-start.ts

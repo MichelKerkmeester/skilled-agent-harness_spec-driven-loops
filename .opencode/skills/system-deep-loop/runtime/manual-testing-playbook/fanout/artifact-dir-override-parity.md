@@ -51,7 +51,7 @@ runs for users who never use fan-out. The `skip_when` guards are the primary pro
 3. Confirm `step_fanout_spawn:` has `skip_when: "config.fanout is absent"`.
 4. Confirm `step_fanout_merge:` has `skip_when: "config.fanout is absent"`.
 5. Repeat steps 1–4 for `deep-review-auto.yaml` (substituting `'review'`).
-6. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/`
+6. `bash: cd .opencode/skills/system-spec-kit/runtime && npx vitest run ../../runtime//tests/unit/`
 7. Confirm 197/197 pass (or 196+1 known loop-lock flake that passes in isolation).
 
 ### Expected Outcome

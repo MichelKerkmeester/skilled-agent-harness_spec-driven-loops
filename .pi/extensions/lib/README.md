@@ -13,9 +13,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.pi/extensions/lib/` holds the shared utilities the session-lifecycle extension bridges in the parent directory import. Pi only auto-discovers `*.ts` files at the top of `.pi/extensions/`, so files in this subdirectory are plain modules, never extension factories. Like the extensions themselves, `claude-hook-adapter.ts` here is a relative symlink; the real file lives at `.opencode/skills/system-spec-kit/mcp-server/hooks/pi/lib/claude-hook-adapter.ts`.
+`.pi/extensions/lib/` holds the shared utilities the session-lifecycle extension bridges in the parent directory import. Pi only auto-discovers `*.ts` files at the top of `.pi/extensions/`, so files in this subdirectory are plain modules, never extension factories. Like the extensions themselves, `claude-hook-adapter.ts` here is a relative symlink; the real file lives at `.opencode/skills/system-spec-kit/runtime/hooks/pi/lib/claude-hook-adapter.ts`.
 
-The single module here mirrors what `system-spec-kit/mcp-server/hooks/devin/shared.ts` and `hooks/cursor/shared.ts` do for their runtimes: it spawns the Claude lifecycle-hook dist files with a synthesized payload on stdin, so session-prime, session-stop, and user-prompt-submit state semantics stay owned by one lifecycle implementation across all four runtimes.
+The single module here mirrors what `system-spec-kit/runtime/hooks/devin/shared.ts` and `hooks/cursor/shared.ts` do for their runtimes: it spawns the Claude lifecycle-hook dist files with a synthesized payload on stdin, so session-prime, session-stop, and user-prompt-submit state semantics stay owned by one lifecycle implementation across all four runtimes.
 
 ---
 
@@ -43,7 +43,7 @@ lib/
 |---|---|
 | Imports | Node built-ins only (`child_process`, `path`). No Pi types, no guard-core modules. |
 | Exports | Named exports only. No default export, so Pi's extension loader never mistakes this module for a factory. |
-| Ownership | Lifecycle behavior belongs to the dist files under `system-spec-kit/mcp-server/dist/hooks/claude/`. This module owns only process spawning, payload serialization, and output parsing. |
+| Ownership | Lifecycle behavior belongs to the dist files under `system-spec-kit/runtime/dist/hooks/claude/`. This module owns only process spawning, payload serialization, and output parsing. |
 | Fail-open | Every failure path returns null. Callers treat null as "no context available" and continue. |
 
 Main flow:

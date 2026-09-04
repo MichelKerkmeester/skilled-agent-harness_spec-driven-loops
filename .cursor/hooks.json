@@ -3,7 +3,7 @@
   "hooks": {
     "sessionStart": [
       {
-        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.mjs",
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
         "type": "command",
         "timeout": 10
       },
@@ -42,7 +42,7 @@
     ],
     "preToolUse": [
       {
-        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-enforce.mjs",
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
         "type": "command",
         "timeout": 10
       },
@@ -61,19 +61,19 @@
     ],
     "postToolUse": [
       {
-        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs",
         "type": "command",
         "timeout": 10
       }
     ],
     "beforeSubmitPrompt": [
       {
-        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-classify.mjs",
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/user-prompt-submit.js",
+        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js",
         "type": "command",
         "timeout": 10
       }

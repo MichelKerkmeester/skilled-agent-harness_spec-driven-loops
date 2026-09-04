@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/claude/user-prompt-submit.ts
+../../../skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts

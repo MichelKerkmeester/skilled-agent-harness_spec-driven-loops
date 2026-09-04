@@ -66,7 +66,7 @@ Fail-open and fail-closed are opposite safety properties. A reviewer must know w
 | File | Role |
 |---|---|
 | `.pi/extensions/*.ts` | Eleven extension bridges and their catch paths |
-| `../../../../system-spec-kit/mcp-server/hooks/lib/spec-gate` | Shared guard-core behavior referenced by the bridges |
+| `../../../../system-spec-kit/runtime/hooks/lib/spec-gate` | Shared guard-core behavior referenced by the bridges |
 
 ---
 

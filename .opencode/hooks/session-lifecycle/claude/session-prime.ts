@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts
+../../../skills/system-spec-kit/runtime/hooks/claude/session-prime.ts

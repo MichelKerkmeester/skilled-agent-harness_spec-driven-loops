@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/pi/completion-evidence.ts
+../../../skills/system-spec-kit/runtime/hooks/pi/completion-evidence.ts

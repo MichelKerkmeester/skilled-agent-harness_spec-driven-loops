@@ -52,28 +52,28 @@
       "rationale": "Phase 003 explicitly edits the permissions matrix reference doc."
     },
     {
-      "target_glob": ".opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/permissions-gate.ts",
+      "target_glob": ".opencode/skills/system-spec-kit/runtime/lib/deep-loop/permissions-gate.ts",
       "operation_class": "write",
       "scope": "packet-local",
       "effect": "allow",
       "rationale": "Phase 003 explicitly creates the runtime enforcer."
     },
     {
-      "target_glob": ".opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/permissions-gate.ts",
+      "target_glob": ".opencode/skills/system-spec-kit/runtime/lib/deep-loop/permissions-gate.ts",
       "operation_class": "edit",
       "scope": "packet-local",
       "effect": "allow",
       "rationale": "Phase 003 explicitly edits the runtime enforcer."
     },
     {
-      "target_glob": ".opencode/skills/system-spec-kit/mcp-server/tests/deep-loop/permissions-gate.vitest.ts",
+      "target_glob": ".opencode/skills/system-spec-kit/runtime/tests/deep-loop/permissions-gate.vitest.ts",
       "operation_class": "write",
       "scope": "packet-local",
       "effect": "allow",
       "rationale": "Phase 003 explicitly creates unit tests for the runtime enforcer."
     },
     {
-      "target_glob": ".opencode/skills/system-spec-kit/mcp-server/tests/deep-loop/permissions-gate.vitest.ts",
+      "target_glob": ".opencode/skills/system-spec-kit/runtime/tests/deep-loop/permissions-gate.vitest.ts",
       "operation_class": "edit",
       "scope": "packet-local",
       "effect": "allow",

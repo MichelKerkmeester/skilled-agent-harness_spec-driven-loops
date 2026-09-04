@@ -20,13 +20,13 @@ trigger_phrases:
 | `dispatch-preflight-lint.ts`, `dispatch-audit.ts` | `.opencode/hooks/dispatch/pi/` |
 | `mcp-route-guard.ts` | `.opencode/hooks/mcp-route-guard/pi/` |
 | `post-edit-quality.ts` | `.opencode/hooks/post-edit-quality/pi/` |
-| `spec-gate-{classify,enforce}.ts`, `session-{start,stop,compact}-context.ts`, `session-start-advisories.ts` | `.opencode/skills/system-spec-kit/mcp-server/hooks/pi/` |
-| `lib/claude-hook-adapter.ts` | `.opencode/skills/system-spec-kit/mcp-server/hooks/pi/lib/` |
+| `spec-gate-{classify,enforce}.ts`, `session-{start,stop,compact}-context.ts`, `session-start-advisories.ts` | `.opencode/skills/system-spec-kit/runtime/hooks/pi/` |
+| `lib/claude-hook-adapter.ts` | `.opencode/skills/system-spec-kit/runtime/hooks/pi/lib/` |
 | `prompt-advisor.ts` | `.opencode/skills/system-skill-advisor/hooks/pi/` |
 | `git-preflight-advisory.ts` | `.opencode/skills/sk-git/scripts/hooks/pi/` |
 | `sk-vision.ts` | `.opencode/skills/sk-vision/pi/sk-vision.ts` |
 
-Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). The 6 tool_call/tool_result/input adapters delegate to the same shared, runtime-neutral guard-core modules `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call. Four of the five session-lifecycle adapters (`session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `session-compact-context.ts`) proxy into the Claude lifecycle-hook dist files under `system-spec-kit/mcp-server/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. `prompt-advisor.ts` is the exception: it imports the compiled advisor lifecycle module (`system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js`) directly and calls `handleClaudeUserPromptSubmit()` in-process, because Pi awaits `input` handlers before agent processing begins and the old two-process `spawnSync` bridge blocked every send. Its visible contribution is lifecycle-deduped: the advisor brief and Pi dispatch reminder render in full on the first message and after `session_start`/`session_compact`, while a proven same-content repeat returns no transform and leaves the raw turn byte-identical (`SPECKIT_PI_DIRECTIVE_DEDUP`, default ON; `0`/`false`/`off` restores always-full). The separate tool-call preflight still enforces dispatch authorization on every turn. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes.
+Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). The 6 tool_call/tool_result/input adapters delegate to the same shared, runtime-neutral guard-core modules `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call. Four of the five session-lifecycle adapters (`session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `session-compact-context.ts`) proxy into the Claude lifecycle-hook dist files under `system-spec-kit/runtime/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. `prompt-advisor.ts` is the exception: it imports the compiled advisor lifecycle module (`system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js`) directly and calls `handleClaudeUserPromptSubmit()` in-process, because Pi awaits `input` handlers before agent processing begins and the old two-process `spawnSync` bridge blocked every send. Its visible contribution is lifecycle-deduped: the advisor brief and Pi dispatch reminder render in full on the first message and after `session_start`/`session_compact`, while a proven same-content repeat returns no transform and leaves the raw turn byte-identical (`SPECKIT_PI_DIRECTIVE_DEDUP`, default ON; `0`/`false`/`off` restores always-full). The separate tool-call preflight still enforces dispatch authorization on every turn. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes.
 
 ---
 
@@ -58,15 +58,15 @@ extensions/
 
 | File | Pi event | Delegates to |
 |---|---|---|
-| `spec-gate-enforce.ts` | `tool_call` (bash/write/edit) | `system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` `evaluateMutation()` |
-| `spec-gate-classify.ts` | `input` | `system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` `classifyIntent()` |
+| `spec-gate-enforce.ts` | `tool_call` (bash/write/edit) | `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` `evaluateMutation()` |
+| `spec-gate-classify.ts` | `input` | `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` `classifyIntent()` |
 | `dispatch-preflight-lint.ts` | `tool_call` (bash) | `.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` |
 | `dispatch-audit.ts` | `tool_result` (bash) | `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` `recordDispatch()` |
 | `post-edit-quality.ts` | `tool_result` (edit/write) | `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs` `resolveDispatch()`/`runChecks()` |
 | `mcp-route-guard.ts` | `tool_call` (`mcp_*`) | `.opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs` `evaluateNativeMcpCall()` |
-| `session-start-context.ts` | `session_start` | `system-spec-kit/mcp-server/dist/hooks/claude/session-prime.js` (via `lib/claude-hook-adapter.ts`) |
+| `session-start-context.ts` | `session_start` | `system-spec-kit/runtime/dist/hooks/claude/session-prime.js` (via `lib/claude-hook-adapter.ts`) |
 | `session-start-advisories.ts` | `session_start` | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh --all`, `install-codex-hooks.mjs --check` (direct `ctx.exec()`) |
-| `session-stop-context.ts` | `session_shutdown` (reason `quit`) | `system-spec-kit/mcp-server/dist/hooks/claude/session-stop.js` (via `lib/claude-hook-adapter.ts`) |
+| `session-stop-context.ts` | `session_shutdown` (reason `quit`) | `system-spec-kit/runtime/dist/hooks/claude/session-stop.js` (via `lib/claude-hook-adapter.ts`) |
 | `prompt-advisor.ts` | `input` | `system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js` `handleClaudeUserPromptSubmit()` (in-process dynamic import); full first + boundaries, no transform on proven repeats (`SPECKIT_PI_DIRECTIVE_DEDUP`) |
 | `session-compact-context.ts` | `session_compact` | Native port of `mcp-server/hooks/devin/post-compaction.cjs`'s recovery chain (shared tmpdir state file) |
 | `sk-vision.ts` | `registerTool` (13 `sk_vision_*`); bounded `input.images` auto-inspect; `session_shutdown` | `.opencode/skills/sk-vision/pi/sk-vision.ts` — `session_shutdown` stops the Python runtime; `input.images` auto-injects `<SK-VISION>` evidence after a 2s grace window (extension-sourced traffic and mid-stream steers are passed through untouched) |
@@ -94,7 +94,7 @@ Two devin/cursor hooks have no Pi equivalent because Pi's own architecture does 
 |---|---|
 | Imports | Each file imports only `ExtensionAPI` (type-only) plus its one shared guard-core module (dynamic `import()`) or `lib/claude-hook-adapter.ts` (static import), resolved via a relative path. |
 | Exports | Exactly one default-exported `ExtensionFactory` per file. No named exports. |
-| Ownership | Guard decisions belong to the shared `.mjs`/`.cjs` core modules under `.opencode/`. Session-lifecycle decisions belong to the Claude hook dist files under `system-spec-kit/mcp-server/dist/hooks/claude/`. These files own only event registration, payload construction, and the fail-open wrapper. |
+| Ownership | Guard decisions belong to the shared `.mjs`/`.cjs` core modules under `.opencode/`. Session-lifecycle decisions belong to the Claude hook dist files under `system-spec-kit/runtime/dist/hooks/claude/`. These files own only event registration, payload construction, and the fail-open wrapper. |
 | Fail-open | Every handler body is wrapped in try/catch. A caught error returns `undefined` (`prompt-advisor.ts`, all others) or `{ action: "continue" }` (`spec-gate-classify.ts` only) for `input` handlers, never a block. |
 | Output shape | `session-prime.js` writes plain text to stdout. `session-stop.js` writes nothing (side effects only, no top-level stdout emission). `user-prompt-submit.js` writes a `{ hookSpecificOutput: { additionalContext } }` JSON envelope. `lib/claude-hook-adapter.ts`'s `extractAdditionalContext()` only applies to the last one. `session-start-context.ts` uses `session-prime.js`'s raw stdout text directly. `prompt-advisor.ts` reads the same envelope from the in-process return value instead of spawned stdout. |
 

@@ -49,7 +49,7 @@ Flags include `--level N`, `--dry-run`, `--json`, `--strict`, `--quiet` and `--v
 
 | File | Type | Role |
 |---|---|---|
-| `mcp-server/tests/progressive-validation.vitest.ts` | Automated test | Pipeline prerequisites, detect behavior, auto-fix transforms/diff logging, suggest guidance, report output modes, exit code contract, dry-run semantics, edge-case handling and level progression |
+| `runtime/tests/progressive-validation.vitest.ts` | Automated test | Pipeline prerequisites, detect behavior, auto-fix transforms/diff logging, suggest guidance, report output modes, exit code contract, dry-run semantics, edge-case handling and level progression |
 
 ### Feature Test Coverage
 

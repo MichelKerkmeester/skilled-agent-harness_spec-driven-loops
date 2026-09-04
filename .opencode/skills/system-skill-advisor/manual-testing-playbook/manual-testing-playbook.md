@@ -60,7 +60,7 @@ Coverage note (2026-05-07): the prior operator scenario corpus now lives under `
 3. The MCP server build is current:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
+npm --prefix .opencode/skills/system-spec-kit/runtime run build
 ```
 
 4. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless a scenario explicitly sets it.
@@ -295,9 +295,9 @@ The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp-s
 
 | Area | Automated test anchors |
 |---|---|
-| Native MCP tools | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-spec-kit/mcp-server/tests/advisor-rebuild.vitest.ts` |
+| Native MCP tools | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` |
 | Hooks and plugin | `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-runtime-parity.vitest.ts`; `.opencode/plugins/tests/opencode-goal-state.test.cjs`; `.opencode/plugins/tests/opencode-goal-continuation.test.cjs` |
-| Compatibility and Python entrypoints | `.opencode/skills/system-skill-advisor/mcp-server/tests/manual-testing-playbook.vitest.ts`; `.opencode/skills/system-spec-kit/mcp-server/tests/tool-input-schema.vitest.ts` |
+| Compatibility and Python entrypoints | `.opencode/skills/system-skill-advisor/mcp-server/tests/manual-testing-playbook.vitest.ts`; `.opencode/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` |
 | Scoring, lifecycle, indexing and daemon state | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-privacy.vitest.ts` |
 
 Validator limitation: `validate_document.py` validates this root document and per-feature documents individually, but it does not prove that every command can execute in the current sandbox. Operators must capture execution evidence during release review.

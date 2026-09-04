@@ -64,10 +64,10 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
     workRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'dist-alignment-test-'));
     // Synthesize the package-root marker (the checker walks parents until it
     // finds a folder containing both `mcp_server` and `scripts`).
-    fs.mkdirSync(path.join(workRoot, 'mcp-server'), { recursive: true });
+    fs.mkdirSync(path.join(workRoot, 'runtime'), { recursive: true });
     fs.mkdirSync(path.join(workRoot, 'scripts'), { recursive: true });
     fs.mkdirSync(path.join(workRoot, 'scripts', 'dist'), { recursive: true });
-    fs.mkdirSync(path.join(workRoot, 'mcp-server', 'dist'), { recursive: true });
+    fs.mkdirSync(path.join(workRoot, 'runtime', 'dist'), { recursive: true });
   });
 
   afterEach(() => {
@@ -76,8 +76,8 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
 
   // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('passes when every dist *.js has a matching source .ts', () => {
-    const distLib = path.join(workRoot, 'mcp-server', 'dist', 'lib');
-    const sourceLib = path.join(workRoot, 'mcp-server', 'lib');
+    const distLib = path.join(workRoot, 'runtime', 'dist', 'lib');
+    const sourceLib = path.join(workRoot, 'runtime', 'lib');
     makeAlignedFile(distLib, sourceLib, 'foo.js', '// aligned\n');
     makeAlignedFile(distLib, sourceLib, 'nested/bar.js', '// aligned\n');
 
@@ -95,26 +95,26 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
     // checker now includes dist/tests by reading the script source and
     // confirming the DIST_TARGETS list contains the tests subtree.
     const checkerSource = fs.readFileSync(CHECKER_PATH, 'utf8');
-    expect(checkerSource).toContain("'mcp-server', 'dist', 'tests'");
-    expect(checkerSource).toContain('mcp-server/tests');
-    expect(checkerSource).toMatch(/label:\s*'mcp-server\/tests'/);
+    expect(checkerSource).toContain("'runtime', 'dist', 'tests'");
+    expect(checkerSource).toContain('runtime/tests');
+    expect(checkerSource).toMatch(/label:\s*'runtime\/tests'/);
   });
 
   it('expands DIST_TARGETS beyond the original two roots (lib + scripts)', () => {
     const checkerSource = fs.readFileSync(CHECKER_PATH, 'utf8');
     const expectedSubtrees = [
-      'mcp-server/lib',
+      'runtime/lib',
       'system-skill-advisor/mcp-server',
-      'mcp-server/handlers',
-      'mcp-server/formatters',
-      'mcp-server/tools',
-      'mcp-server/code_graph',
-      'mcp-server/hooks',
-      'mcp-server/matrix-runners',
-      'mcp-server/schemas',
-      'mcp-server/stress-test',
-      'mcp-server/tests',
-      'mcp-server/core',
+      'runtime/handlers',
+      'runtime/formatters',
+      'runtime/tools',
+      'runtime/code_graph',
+      'runtime/hooks',
+      'runtime/matrix-runners',
+      'runtime/schemas',
+      'runtime/stress-test',
+      'runtime/tests',
+      'runtime/core',
     ];
     for (const subtree of expectedSubtrees) {
       expect(checkerSource, `DIST_TARGETS missing label: ${subtree}`).toContain(`label: '${subtree}'`);
@@ -144,7 +144,7 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
   it('confirms the orphan harness.js has been deleted from dist/tests/search-quality (F-020-D5-03)', () => {
     const harnessPath = path.resolve(
       REPO_ROOT,
-      '.opencode/skills/system-spec-kit/mcp-server/dist/tests/search-quality/harness.js',
+      '.opencode/skills/system-spec-kit/runtime/dist/tests/search-quality/harness.js',
     );
     expect(fs.existsSync(harnessPath)).toBe(false);
   });

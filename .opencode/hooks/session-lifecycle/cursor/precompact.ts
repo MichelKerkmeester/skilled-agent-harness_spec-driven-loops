@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/cursor/precompact.ts
+../../../skills/system-spec-kit/runtime/hooks/cursor/precompact.ts

@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/mcp-server/hooks/pi/session-stop-context.ts
+../../.opencode/skills/system-spec-kit/runtime/hooks/pi/session-stop-context.ts

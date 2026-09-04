@@ -1,0 +1,56 @@
+{
+  "name": "@spec-kit/runtime",
+  "version": "1.8.0",
+  "description": "Spec Kit engine - spec folder validation, generated metadata, description generation and the runtime hook adapters",
+  "type": "module",
+  "main": "dist/api/index.js",
+  "exports": {
+    ".": "./dist/api/index.js",
+    "./api": "./dist/api/index.js",
+    "./api/*": "./dist/api/*.js"
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "prepare-build": "node ../scripts/lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime --entry default && node ../scripts/lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime --entry validation-orchestrator",
+    "build": "npm run prepare-build && tsc --build && node scripts/finalize-dist.mjs",
+    "rebuild": "npm run clean && npm run build",
+    "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
+    "check": "npm run lint && npx tsc --noEmit",
+    "check:full": "npm run check && npm run test",
+    "lint": "eslint . --ext .ts",
+    "test": "node scripts/run-tests.mjs",
+    "test:spec-validation": "node ../scripts/tests/test-validation-system.cjs && bash ../scripts/tests/test-validation.sh && bash ../scripts/tests/test-validation-extended.sh",
+    "test:core": "vitest run",
+    "test:council": "vitest run tests/multi-ai-council-runtime-parity.vitest.ts tests/multi-ai-council-permission-scope.vitest.ts tests/multi-ai-council-audit-trail.vitest.ts tests/multi-ai-council-rollback.vitest.ts ../../system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts ../../system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts tests/council-playbook-anchor-integrity.vitest.ts tests/council-helpers-smoke.vitest.ts ../scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
+    "test:council:full": "bash ../scripts/test-council-matrix.sh",
+    "test:task-enrichment": "echo 'Task-enrichment tests run in @spec-kit/scripts workspace'",
+    "test:watch": "vitest",
+    "typecheck:tests": "tsc --noEmit --composite false -p tsconfig.tests.json",
+    "test:sharded": "node scripts/run-tests-sharded.mjs"
+  },
+  "keywords": [
+    "spec-kit",
+    "validation",
+    "graph-metadata"
+  ],
+  "author": "Michel Kerkmeester",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "dependencies": {
+    "@spec-kit/shared": "file:../shared",
+    "better-sqlite3": "^12.6.2",
+    "chokidar": "^4.0.3",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@vitest/coverage-v8": "^4.1.9",
+    "eslint": "^9.39.1",
+    "globals": "^16.4.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3",
+    "vitest": "^4.1.9"
+  }
+}

@@ -12,7 +12,7 @@ const path = require('node:path');
 const {
   getScenarioData,
   listScenarioIds,
-} = require('../mcp-server/tests/fixtures/council-value/data/scenarios.cjs');
+} = require('../runtime/tests/fixtures/council-value/data/scenarios.cjs');
 
 function main() {
   const args = parseArgs(process.argv.slice(2));

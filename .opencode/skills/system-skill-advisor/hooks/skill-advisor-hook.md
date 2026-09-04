@@ -20,7 +20,7 @@ version: 3.6.0.31
 
 The Skill Advisor concern surfaces prompt-safe routing context at the moment a user submits a prompt: it scores the prompt against the maintained skill graph and, when a match clears the confidence threshold, injects a brief recommending the matching skill(s). The brief is advisory — it never replaces explicit skill loading, never persists raw prompt text, and never blocks the prompt on an advisor failure.
 
-The maintained advisor implementation lives in `system-skill-advisor/mcp-server/`. The four editor runtimes (Claude, Codex, Cursor, Devin) each carry a thin `user-prompt-submit` shim in `system-spec-kit/mcp-server/hooks/<runtime>/` that resolves and spawns the compiled advisor in `system-skill-advisor`; the real brief-building, scoring, freshness, and rendering logic lives in the advisor package. Pi carries a native TypeScript extension that imports the same advisor module in-process (Pi awaits input handlers before agent processing, so the old two-process blocking-spawn bridge stalled every send). OpenCode integrates through a plugin bridge under `system-skill-advisor` that uses the maintained advisor package and a warm-only CLI fallback.
+The maintained advisor implementation lives in `system-skill-advisor/mcp-server/`. The four editor runtimes (Claude, Codex, Cursor, Devin) each carry a thin `user-prompt-submit` shim in `system-spec-kit/runtime/hooks/<runtime>/` that resolves and spawns the compiled advisor in `system-skill-advisor`; the real brief-building, scoring, freshness, and rendering logic lives in the advisor package. Pi carries a native TypeScript extension that imports the same advisor module in-process (Pi awaits input handlers before agent processing, so the old two-process blocking-spawn bridge stalled every send). OpenCode integrates through a plugin bridge under `system-skill-advisor` that uses the maintained advisor package and a warm-only CLI fallback.
 
 The single most important property is that it **fails open**. A parsing failure, a missing graph, a scoring error, a render failure, a timeout, or any internal error resolves to `{}` (native) or no context (OpenCode) — the prompt proceeds untouched. Every adapter honors the `skill-advisor` kill-switch, default-on.
 
@@ -80,7 +80,7 @@ system-skill-advisor/hooks/
     +-- directive-lifecycle-store.py, directive-lifecycle-vectors.json
     `-- skill-advisor-cli-fallback.ts
 
-system-spec-kit/mcp-server/hooks/<runtime>/user-prompt-submit.{ts,js}  # thin shims (claude/codex/cursor/devin)
+system-spec-kit/runtime/hooks/<runtime>/user-prompt-submit.{ts,js}  # thin shims (claude/codex/cursor/devin)
 system-skill-advisor/mcp-server/
 +-- dist/hooks/<runtime>/user-prompt-submit.js   # compiled advisor the shims spawn
 +-- plugin-bridges/system-skill-advisor-bridge.mjs  # OpenCode bridge subprocess
@@ -156,14 +156,14 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 Build both maintained packages:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
+npm --prefix .opencode/skills/system-spec-kit/runtime run build
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
 ```
 
 Expected result: both builds succeed and `dist/hooks/<runtime>/user-prompt-submit.js` are produced.
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp-server run typecheck
+npm --prefix .opencode/skills/system-spec-kit/runtime run typecheck
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server test -- --reporter=default
 node --test .opencode/plugins/tests/system-skill-advisor.test.cjs
 ```
@@ -174,7 +174,7 @@ Native smoke tests (each targets an existing compiled file):
 
 ```bash
 printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}' | \
-  node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/user-prompt-submit.js
+  node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js
 ```
 
 Expected: `{}` or `hookSpecificOutput.additionalContext` beginning with `Advisor:`. Repeat for the `codex`, `cursor`, and `devin` siblings.
@@ -200,6 +200,6 @@ This compares the repository's maintained Codex registration and adapter paths. 
 
 - [`skill-advisor-hook-validation.md`](skill-advisor-hook-validation.md): validation and audit detail for this concern.
 - [`claude/README.md`](claude/README.md), [`pi/README.md`](pi/README.md), [`lib/README.md`](lib/README.md): per-surface detail.
-- [`../../system-spec-kit/mcp-server/hooks/README.md`](../../system-spec-kit/mcp-server/hooks/README.md): the owning skill's hook contract (where the shims live).
+- [`../../system-spec-kit/runtime/hooks/README.md`](../../system-spec-kit/runtime/hooks/README.md): the owning skill's hook contract (where the shims live).
 - [`../../../hooks/README.md`](../../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.
 - [`../../../plugins/README.md`](../../../plugins/README.md): the OpenCode plugins folder that loads `system-skill-advisor.js`.

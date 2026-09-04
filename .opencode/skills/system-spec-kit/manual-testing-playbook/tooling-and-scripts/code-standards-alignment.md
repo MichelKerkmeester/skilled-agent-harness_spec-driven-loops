@@ -56,7 +56,7 @@ cognitive lifecycle files — and none of those paths exist now, so every line i
 resolve. It was removed rather than reinterpreted: a lint count taken over a tree that no longer
 exists proves nothing about the tree that does.
 
-Re-run the three commands over the surviving surface (`mcp-server/lib/validation`, `lib/graph`,
+Re-run the three commands over the surviving surface (`runtime/lib/validation`, `lib/graph`,
 `lib/description`, `lib/templates`, `scripts/`, `shared/`) and capture the transcript here before
 this scenario carries a verdict again.
 

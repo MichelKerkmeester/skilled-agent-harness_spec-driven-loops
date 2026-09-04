@@ -1,12 +1,11 @@
 // ---------------------------------------------------------------
 // MODULE: Normalization
 // ---------------------------------------------------------------
-// Feature catalog: Content-aware memory filename generation
 // Converts between snake_case (database) and camelCase (application).
 // This is the SINGLE SOURCE OF TRUTH for DB ↔ App type conversions.
 //
 // The raw DB schema is defined in:
-//   mcp-server/lib/search/vector-index-impl.js (CREATE TABLE memory_index)
+//   runtime/lib/search/vector-index-impl.js (CREATE TABLE memory_index)
 //
 // Consumers should use MemoryDbRow (snake_case DB rows).
 // or Memory (camelCase app layer) from this module.
@@ -23,8 +22,6 @@
  *
  * Source of truth: vector-index-impl.js CREATE TABLE memory_index
  */
-
-// Feature catalog: Entity normalization consolidation
 
 export interface MemoryDbRow {
   id: number;

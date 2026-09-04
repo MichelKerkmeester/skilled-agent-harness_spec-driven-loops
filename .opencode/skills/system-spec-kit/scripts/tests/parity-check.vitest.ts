@@ -37,7 +37,7 @@ import {
 } from '../retrieval/parity-check.mjs';
 import { loadIndex } from '../retrieval/lookup-trigger-index.mjs';
 
-const require = createRequire(path.resolve(__dirname, '..', '..', 'mcp-server') + path.sep);
+const require = createRequire(path.resolve(__dirname, '..', '..', 'runtime') + path.sep);
 const Database = require('better-sqlite3');
 
 const tempRoots = new Set<string>();

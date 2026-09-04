@@ -24,7 +24,7 @@
 
 set -uo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../.." && pwd)"
-PARSER="$REPO/.opencode/skills/system-spec-kit/mcp-server/dist/lib/graph/graph-metadata-parser.js"
+PARSER="$REPO/.opencode/skills/system-spec-kit/runtime/dist/lib/graph/graph-metadata-parser.js"
 PASS=0; FAIL=0
 
 if [[ ! -f "$PARSER" ]]; then echo "SKIP: compiled parser absent"; exit 0; fi

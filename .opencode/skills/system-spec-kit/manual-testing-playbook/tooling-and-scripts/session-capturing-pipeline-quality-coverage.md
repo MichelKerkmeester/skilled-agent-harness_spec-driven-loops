@@ -109,23 +109,23 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
 
     tests/architecture-boundary-enforcement.vitest.ts:242 → ../../shared/utils
     tests/architecture-boundary-enforcement.vitest.ts:247 → ../shared/utils
-    tests/graph-metadata-backfill.vitest.ts:7 → ../../mcp-server/lib/graph/graph-metadata-parser.js
-    tests/graph-metadata-refresh.vitest.ts:8 → ../../mcp-server/lib/graph/graph-metadata-parser.js
-    tests/level-contract-resolver.vitest.ts:6 → ../../mcp-server/lib/templates/level-contract-resolver
+    tests/graph-metadata-backfill.vitest.ts:7 → ../../runtime/lib/graph/graph-metadata-parser.js
+    tests/graph-metadata-refresh.vitest.ts:8 → ../../runtime/lib/graph/graph-metadata-parser.js
+    tests/level-contract-resolver.vitest.ts:6 → ../../runtime/lib/templates/level-contract-resolver
     tests/memory-pipeline-regressions.vitest.ts:67 → ../../shared/embeddings
     tests/memory-pipeline-regressions.vitest.ts:109 → ../../shared/embeddings
     tests/memory-template-contract.vitest.ts:5 → ../../shared/parsing/memory-template-contract
-    tests/scaffold-golden-snapshots.vitest.ts:8 → ../../mcp-server/lib/templates/level-contract-resolver
-    tests/scoped-backfill-boundary.vitest.ts:11 → ../../mcp-server/lib/utils/index-scope.js
-    tests/session-cached-consumer.vitest.ts.test.ts:341 → ../../mcp-server/handlers/session-resume.js
-    tests/session-cached-consumer.vitest.ts.test.ts:342 → ../../mcp-server/handlers/session-bootstrap.js
-    tests/session-isolation.vitest.ts:19 → ../../mcp-server/handlers/coverage-graph/query.js
-    tests/session-isolation.vitest.ts:20 → ../../mcp-server/handlers/coverage-graph/status.js
-    tests/session-isolation.vitest.ts:21 → ../../mcp-server/handlers/coverage-graph/convergence.js
-    tests/workflow-canonical-save-metadata.vitest.ts:39 → ../../mcp-server/lib/graph/graph-metadata-parser
-    validation/generated-metadata-drift.ts:15 → ../../mcp-server/lib/config/capability-flags.js
+    tests/scaffold-golden-snapshots.vitest.ts:8 → ../../runtime/lib/templates/level-contract-resolver
+    tests/scoped-backfill-boundary.vitest.ts:11 → ../../runtime/lib/utils/index-scope.js
+    tests/session-cached-consumer.vitest.ts.test.ts:341 → ../../runtime/handlers/session-resume.js
+    tests/session-cached-consumer.vitest.ts.test.ts:342 → ../../runtime/handlers/session-bootstrap.js
+    tests/session-isolation.vitest.ts:19 → ../../runtime/handlers/coverage-graph/query.js
+    tests/session-isolation.vitest.ts:20 → ../../runtime/handlers/coverage-graph/status.js
+    tests/session-isolation.vitest.ts:21 → ../../runtime/handlers/coverage-graph/convergence.js
+    tests/workflow-canonical-save-metadata.vitest.ts:39 → ../../runtime/lib/graph/graph-metadata-parser
+    validation/generated-metadata-drift.ts:15 → ../../runtime/lib/config/capability-flags.js
 
-  To fix: either use @spec-kit/mcp-server/api/* or add to import-policy-allowlist.json
+  To fix: either use @spec-kit/runtime/api/* or add to import-policy-allowlist.json
   npm error Lifecycle script `check` failed with error:
   npm error code 1
   npm error path .opencode/skills/system-spec-kit/scripts
@@ -134,16 +134,16 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
   npm error command failed
   npm error command sh -c npm run lint && npx tsx evals/check-no-mcp-lib-imports.ts && bash check-api-boundary.sh && npx tsx evals/check-architecture-boundaries.ts && npx tsx evals/check-allowlist-expiry.ts && npx tsx evals/check-source-dist-alignment.ts && npx tsx evals/check-no-mcp-lib-imports-ast.ts && npx tsx evals/check-handler-cycles-ast.ts
   ```
-- `cd .opencode/skills/system-spec-kit/mcp-server && npm run lint` failed:
+- `cd .opencode/skills/system-spec-kit/runtime && npm run lint` failed:
   ```text
   ✖ 35 problems (30 errors, 5 warnings)
     0 errors and 5 warnings potentially fixable with the `--fix` option.
 
   npm error Lifecycle script `lint` failed with error:
   npm error code 1
-  npm error path .opencode/skills/system-spec-kit/mcp-server
-  npm error workspace @spec-kit/mcp-server@1.8.0
-  npm error location .opencode/skills/system-spec-kit/mcp-server
+  npm error path .opencode/skills/system-spec-kit/runtime
+  npm error workspace @spec-kit/runtime@1.8.0
+  npm error location .opencode/skills/system-spec-kit/runtime
   npm error command failed
   npm error command sh -c eslint . --ext .ts
   ```

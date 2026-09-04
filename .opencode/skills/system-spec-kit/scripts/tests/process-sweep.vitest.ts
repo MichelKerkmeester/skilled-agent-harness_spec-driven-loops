@@ -157,7 +157,7 @@ describe('process sweep', () => {
   it('preserves external MCP stdio processes', () => {
     const processes = classifyRows([
       { pid: 6000, ppid: 1, command: 'node /tmp/mcp-example --stdio' },
-      { pid: 6001, ppid: 1, command: 'node tool.js --mcp-server stdio' },
+      { pid: 6001, ppid: 1, command: 'node tool.js --runtime stdio' },
     ]);
 
     const plan = planSweep(inventory(processes), { selfPid: 1000 });

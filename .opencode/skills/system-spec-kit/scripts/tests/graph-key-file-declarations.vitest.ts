@@ -4,7 +4,7 @@ import path from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { deriveGraphMetadata } from '../../mcp-server/lib/graph/graph-metadata-parser.js';
+import { deriveGraphMetadata } from '../../runtime/lib/graph/graph-metadata-parser.js';
 
 const createdRoots = new Set<string>();
 

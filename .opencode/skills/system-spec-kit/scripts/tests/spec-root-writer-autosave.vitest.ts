@@ -17,7 +17,7 @@ const harness = vi.hoisted(() => ({
   collectSessionData: vi.fn(async () => undefined),
 }));
 
-vi.mock('@spec-kit/mcp-server/api', () => ({
+vi.mock('@spec-kit/runtime/api', () => ({
   graphMetadataSchema: { parse: vi.fn((value: unknown) => value) },
 }));
 

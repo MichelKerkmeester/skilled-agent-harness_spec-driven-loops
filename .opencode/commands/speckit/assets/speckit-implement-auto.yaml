@@ -77,7 +77,7 @@ field_handling:
         two_level: "specs/{NNN-parent}/{NNN-phase}/" # one layer of phases
         three_level: "specs/{NNN-grandparent}/{NNN-parent}/{NNN-phase}/" # nested phases (e.g., 026/000/005)
         deep: "specs/{NNN-A}/{NNN-B}/{NNN-C}/{NNN-D}/{NNN-E}/" # deeply nested phase-child topology
-      detection_rule: "isPhaseParent(folder) — at .opencode/skills/system-spec-kit/mcp-server/lib/spec/is-phase-parent.ts and the shell mirror is_phase_parent in scripts/lib/shell-common.sh. Both must agree."
+      detection_rule: "isPhaseParent(folder) — at .opencode/skills/system-spec-kit/runtime/lib/spec/is-phase-parent.ts and the shell mirror is_phase_parent in scripts/lib/shell-common.sh. Both must agree."
       spec_id_derivation: "spec_id is the FIRST {NNN} segment under specs/. For deep nests, parent_chain accumulates from outermost to innermost, and graph-metadata.json.parent_id encodes the immediate parent."
   scope_policy: { default: "**", rule: "Implementation may edit any workspace file. Narrow to [FILES] scope when explicitly provided by the user." }
 

@@ -7,7 +7,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   loadGraphMetadata,
   refreshGraphMetadataForSpecFolder,
-} from '../../mcp-server/lib/graph/graph-metadata-parser.js';
+} from '../../runtime/lib/graph/graph-metadata-parser.js';
 import { collectSpecFolders, runBackfill } from '../graph/backfill-graph-metadata.js';
 
 const createdRoots = new Set<string>();
@@ -96,7 +96,7 @@ function writePhaseChild(
     child,
     name,
     'Exercise phase-parent graph metadata rollup.',
-    'mcp-server/lib/graph/graph-metadata-parser.ts',
+    'runtime/lib/graph/graph-metadata-parser.ts',
   );
   fs.writeFileSync(
     path.join(child, 'checklist.md'),

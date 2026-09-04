@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs
+../../../skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs

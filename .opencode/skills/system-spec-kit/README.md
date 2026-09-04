@@ -413,7 +413,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 .opencode/skills/system-spec-kit/
 ├── SKILL.md                    # AI workflow instructions (when to use, gates, rules)
 ├── README.md                   # This file (what it does, how to use it)
-├── ARCHITECTURE.md             # Boundary contract: scripts/ vs mcp-server/
+├── ARCHITECTURE.md             # Boundary contract: scripts/ vs runtime/
 ├── templates/                  # Manifest template source
 │   └── manifest/               # Rendered by Level contract resolver + inline renderer
 ├── scripts/                    # CLI tools (TypeScript source + Bash)
@@ -424,7 +424,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 │   ├── extractors/             # Session data extractors (12 extractors)
 │   ├── utils/                  # Utility modules (20 utilities)
 │   └── dist/                   # Compiled JavaScript output
-├── mcp-server/                 # Spec Kit engine (TypeScript), consumed as a library
+├── runtime/                 # Spec Kit engine (TypeScript), consumed as a library
 │   ├── api/                    # Public barrel imported by the scripts workspace
 │   ├── handlers/               # Spec-document discovery, save-path folder mutex
 │   ├── lib/                    # Validation, graph metadata, description, continuity
@@ -449,8 +449,8 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 | File | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | AI agent instructions: routing rules, gates, validation procedures, template application |
-| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `scripts/` and `mcp-server/` |
-| [`mcp-server/README.md`](./mcp-server/README.md) | engine architecture, the public API surface, build and validation commands |
+| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `scripts/` and `runtime/` |
+| [`runtime/README.md`](./runtime/README.md) | engine architecture, the public API surface, build and validation commands |
 | [`scripts/spec/create.sh`](./scripts/spec/create.sh) | create spec folders with level-appropriate template files |
 | [`scripts/spec/validate.sh`](./scripts/spec/validate.sh) | run the validation set from the 46-rule registry on any spec folder |
 | `scripts/dist/memory/generate-context.js` | update packet continuity state from structured JSON |
@@ -642,8 +642,8 @@ The manual testing playbook runs every scenario behind these checks.
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | AI agent instructions, routing, gates and validation |
-| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `scripts/` and `mcp-server/` |
-| [`mcp-server/README.md`](./mcp-server/README.md) | engine architecture, the public API surface, build and validation commands |
+| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `scripts/` and `runtime/` |
+| [`runtime/README.md`](./runtime/README.md) | engine architecture, the public API surface, build and validation commands |
 | [`references/memory/memory-system.md`](./references/memory/memory-system.md) | detailed retrieval and continuity reference |
 | [`references/workflows/intake-contract.md`](./references/workflows/intake-contract.md) | shared spec-folder intake contract for plan, complete and resume re-entry |
 | [`references/workflows/rename-pattern.md`](./references/workflows/rename-pattern.md) | mechanical rename workflow and live-vs-historical surface discipline |

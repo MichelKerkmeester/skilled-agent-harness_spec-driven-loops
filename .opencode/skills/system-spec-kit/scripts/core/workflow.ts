@@ -1237,7 +1237,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   );
   // Load description.json to include memoryNameHistory in slug candidates.
   let memoryNameHistoryForSlug: readonly string[] = [];
-  const slugApiModule = await tryImportMcpApi('@spec-kit/mcp-server/api');
+  const slugApiModule = await tryImportMcpApi('@spec-kit/runtime/api');
   if (slugApiModule) {
     const pfDesc = slugApiModule.loadPerFolderDescription(path.resolve(specFolder));
     if (pfDesc?.memoryNameHistory) {
@@ -1430,7 +1430,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   // Update per-folder description.json memory tracking (runs on every canonical save)
   if (ctxFileWritten) {
     try {
-      const descApiModule = await tryImportMcpApi('@spec-kit/mcp-server/api');
+      const descApiModule = await tryImportMcpApi('@spec-kit/runtime/api');
       if (!descApiModule) throw new Error('MCP server API unavailable for description update');
       const { loadPerFolderDescription: loadPFD, savePerFolderDescription: savePFD, generatePerFolderDescription: genPFD } = descApiModule;
       const specFolderAbsolute = path.resolve(specFolder);
@@ -1517,7 +1517,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   const shouldRunExplicitSaveFollowUps = true;
   if (shouldRunExplicitSaveFollowUps) {
     try {
-      const graphApiModule = await tryImportMcpApi('@spec-kit/mcp-server/api');
+      const graphApiModule = await tryImportMcpApi('@spec-kit/runtime/api');
       if (!graphApiModule) {
         throw new Error('MCP server API unavailable for graph-metadata refresh');
       }

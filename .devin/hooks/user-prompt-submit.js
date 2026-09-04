@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/user-prompt-submit.js
+../../.opencode/skills/system-spec-kit/runtime/dist/hooks/devin/user-prompt-submit.js

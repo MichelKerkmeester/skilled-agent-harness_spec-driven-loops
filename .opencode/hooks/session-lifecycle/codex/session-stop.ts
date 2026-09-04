@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/codex/session-stop.ts
+../../../skills/system-spec-kit/runtime/hooks/codex/session-stop.ts

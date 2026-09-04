@@ -1,6 +1,6 @@
 ---
 title: "152 -- No symlinks in lib/ tree"
-description: "This scenario validates the no-symlinks policy by confirming zero symlinks exist under mcp-server/lib/. It enforces the ARCHITECTURE.md 'No Symlinks in lib/ Tree' policy."
+description: "This scenario validates the no-symlinks policy by confirming zero symlinks exist under runtime/lib/. It enforces the ARCHITECTURE.md 'No Symlinks in lib/ Tree' policy."
 version: 3.6.0.16
 id: tooling-and-scripts-no-symlinks-in-lib-tree
 expected_workflow_mode: UNKNOWN
@@ -11,13 +11,13 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates the no-symlinks-in-lib policy for `152`. It focuses on confirming that `find mcp-server/lib -type l` returns zero results, enforcing the ARCHITECTURE.md policy.
+This scenario validates the no-symlinks-in-lib policy for `152`. It focuses on confirming that `find runtime/lib -type l` returns zero results, enforcing the ARCHITECTURE.md policy.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify zero symlinks exist under mcp-server/lib/.
+- Objective: Verify zero symlinks exist under runtime/lib/.
 - Real user request: `Please validate No symlinks in lib/ tree against cd .opencode/skills/system-spec-kit and tell me whether the expected signals are present: Zero symlinks found.`
 - Prompt: `Validate No symlinks in lib/ tree against cd .opencode/skills/system-spec-kit and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
@@ -38,7 +38,7 @@ Validate No symlinks in lib/ tree against cd .opencode/skills/system-spec-kit an
 ### Commands
 
 1. `cd .opencode/skills/system-spec-kit`
-2. `find mcp-server/lib -type l`
+2. `find runtime/lib -type l`
 3. Verify output is empty
 4. `echo $?` to confirm exit 0
 
@@ -50,7 +50,7 @@ Zero symlinks found
 
 Command context: `.opencode/skills/system-spec-kit`
 
-Command: `find mcp-server/lib -type l`
+Command: `find runtime/lib -type l`
 
 Output:
 
@@ -68,7 +68,7 @@ Output:
 
 ### Pass / Fail
 
-- **PASS**: `find mcp-server/lib -type l` returned no output and `echo $?` returned `0`.
+- **PASS**: `find runtime/lib -type l` returned no output and `echo $?` returned `0`.
 
 ### Failure Triage
 

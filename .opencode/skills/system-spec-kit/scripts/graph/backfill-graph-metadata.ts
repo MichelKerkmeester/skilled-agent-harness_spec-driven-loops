@@ -36,7 +36,7 @@ import {
   resolveSpecFolderIdentity,
   SpecFolderIdentityError,
   type GraphMetadata,
-} from '@spec-kit/mcp-server/api';
+} from '@spec-kit/runtime/api';
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);

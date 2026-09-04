@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/pi/session-stop-context.ts
+../../../skills/system-spec-kit/runtime/hooks/pi/session-stop-context.ts

@@ -391,7 +391,7 @@ function main(): void {
   const violations = dedupeViolations(allViolations);
 
   if (violations.length === 0) {
-    console.log('AST import policy check passed: no prohibited @spec-kit/mcp-server/{lib,core,handlers} internal imports found.');
+    console.log('AST import policy check passed: no prohibited @spec-kit/runtime/{lib,core,handlers} internal imports found.');
     process.exit(0);
   }
 
@@ -407,7 +407,7 @@ function main(): void {
     console.error(`  ${relPath}:${violation.line} → ${violation.importPath}`);
   }
 
-  console.error('\nTo fix: use @spec-kit/mcp-server/api/* or add a governed allowlist exception.');
+  console.error('\nTo fix: use @spec-kit/runtime/api/* or add a governed allowlist exception.');
   process.exit(1);
 }
 

@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-enforce.ts
+../../.opencode/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts

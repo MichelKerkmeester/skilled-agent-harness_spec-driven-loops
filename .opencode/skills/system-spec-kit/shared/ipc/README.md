@@ -23,9 +23,9 @@ description: "Shared bind, reclaim and multi-client serve logic for every MCP da
 
 ## 3. CONSUMERS
 
-Each daemon's `mcp-server/lib/ipc/socket-server.ts` is a thin re-export of this module via the `@spec-kit/shared/ipc/socket-server.js` package export, not a separate copy:
+Each daemon's `runtime/lib/ipc/socket-server.ts` is a thin re-export of this module via the `@spec-kit/shared/ipc/socket-server.js` package export, not a separate copy:
 
-- `.opencode/skills/system-spec-kit/mcp-server/lib/ipc/socket-server.ts` and `mcp-server/context-server.ts`
+- `.opencode/skills/system-spec-kit/runtime/lib/ipc/socket-server.ts` and `runtime/context-server.ts`
 - `.opencode/skills/system-skill-advisor/mcp-server/lib/ipc/socket-server.ts` and `mcp-server/advisor-server.ts`
 
 ---
@@ -33,13 +33,13 @@ Each daemon's `mcp-server/lib/ipc/socket-server.ts` is a thin re-export of this 
 ## 4. VALIDATION
 
 ```bash
-npx vitest run .opencode/skills/system-spec-kit/mcp-server/tests/ipc-socket-activity.vitest.ts
-npx vitest run .opencode/skills/system-spec-kit/mcp-server/tests/launcher-ipc-bridge.vitest.ts
-npx vitest run .opencode/skills/system-spec-kit/mcp-server/tests/ipc-socket-fresh-bind.vitest.ts
+npx vitest run .opencode/skills/system-spec-kit/runtime/tests/ipc-socket-activity.vitest.ts
+npx vitest run .opencode/skills/system-spec-kit/runtime/tests/launcher-ipc-bridge.vitest.ts
+npx vitest run .opencode/skills/system-spec-kit/runtime/tests/ipc-socket-fresh-bind.vitest.ts
 ```
 
 ---
 
 ## 5. RELATED
 
-- [`ENV-REFERENCE.md`](../../mcp-server/ENV-REFERENCE.md): documents the IPC bridge's environment-driven configuration.
+- [`ENV-REFERENCE.md`](../../runtime/ENV-REFERENCE.md): documents the IPC bridge's environment-driven configuration.

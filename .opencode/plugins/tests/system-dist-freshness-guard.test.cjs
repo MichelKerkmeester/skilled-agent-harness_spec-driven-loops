@@ -429,12 +429,12 @@ test('standalone wrapper still prints the stale banner for a stale package', (t)
   const tmpDir = temporaryDirectory(t, 'check-dist-staleness-stale-');
   writeFakeChecker(
     tmpDir,
-    "process.stdout.write(JSON.stringify({stale:true,packageName:'@spec-kit/mcp-server',"
+    "process.stdout.write(JSON.stringify({stale:true,packageName:'@spec-kit/runtime',"
     + "rebuildCommand:'cd pkg && npm run build'})+'\\n');",
   );
   const edited = path.join(tmpDir, 'edited.ts');
   fs.writeFileSync(edited, 'export const edited = true;\n');
   const result = spawnSync('python3', [CHECK_DIST_WRAPPER, edited], { cwd: tmpDir, encoding: 'utf8' });
   assert.equal(result.status, 0);
-  assert.match(result.stdout, /STALE DIST WARNING: @spec-kit\/mcp-server -- run: cd pkg && npm run build/);
+  assert.match(result.stdout, /STALE DIST WARNING: @spec-kit\/runtime -- run: cd pkg && npm run build/);
 });

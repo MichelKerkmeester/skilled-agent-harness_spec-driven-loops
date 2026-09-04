@@ -151,7 +151,7 @@ templates/
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Imports   | Scripts read this folder as data. Template files do not import code.                                                                                 |
 | Exports   | Rendered packet docs are written into `specs/` by `create.sh`, not by this folder directly.                                                          |
-| Ownership | Template content, Level contracts and rendered examples belong here. Runtime validation logic belongs in `scripts/` and `mcp-server/lib/templates/`. |
+| Ownership | Template content, Level contracts and rendered examples belong here. Runtime validation logic belongs in `scripts/` and `runtime/lib/templates/`. |
 
 Render flow:
 
@@ -216,6 +216,6 @@ For template changes, also run the template and resolver test suite used by the 
 - [Extension Guide](./EXTENSION-GUIDE.md)
 - [Migration Guide](./MIGRATION.md)
 - [System Spec Kit Skill](../SKILL.md)
-- [Template Resolver](../mcp-server/lib/templates/level-contract-resolver.ts)
+- [Template Resolver](../runtime/lib/templates/level-contract-resolver.ts)
 - [Spec Scaffolder](../scripts/spec/create.sh)
 - [Spec Validator](../scripts/spec/validate.sh)

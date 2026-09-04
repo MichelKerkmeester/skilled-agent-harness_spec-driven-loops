@@ -1,5 +1,5 @@
 {
-  "manifestHash": "478f30dbb90b3ce1e9b01f21309672a80f7a7e02219b2e83647a6852a2cae0f3",
+  "manifestHash": "d5fb5e1a23657ead4810c494ffcabc14d95e4bc761888febfd9af5b353e2923f",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -1712,49 +1712,6 @@
     ".opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
     ".opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
     ".opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md",
-    ".opencode/skills/system-spec-kit/mcp-server/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/api/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/core/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/data/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/handlers/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/handlers/save/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/hooks/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/MODULE-MAP.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/cognitive/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/config/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/context/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/continuity/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/description/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/discovery/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/extraction/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/graph/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/parsing/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/resume/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/search/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/spec/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/storage/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/templates/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/test-helpers/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/utils/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/lib/validation/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/scripts/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/scripts/tests/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/stress-test/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/stress-test/substrate/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/__helpers__/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/_support/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/_support/hooks/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/archive/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/deep-loop/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/description/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/embedders/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/graph/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/performance/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/security/README.md",
-    ".opencode/skills/system-spec-kit/mcp-server/tests/validation/README.md",
     ".opencode/skills/system-spec-kit/references/cli/daemon-cli-reference.md",
     ".opencode/skills/system-spec-kit/references/cli/memory-handback.md",
     ".opencode/skills/system-spec-kit/references/cli/shared-smart-router.md",
@@ -1797,6 +1754,49 @@
     ".opencode/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md",
     ".opencode/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md",
     ".opencode/skills/system-spec-kit/references/workflows/worked-examples.md",
+    ".opencode/skills/system-spec-kit/runtime/README.md",
+    ".opencode/skills/system-spec-kit/runtime/api/README.md",
+    ".opencode/skills/system-spec-kit/runtime/core/README.md",
+    ".opencode/skills/system-spec-kit/runtime/data/README.md",
+    ".opencode/skills/system-spec-kit/runtime/handlers/README.md",
+    ".opencode/skills/system-spec-kit/runtime/handlers/save/README.md",
+    ".opencode/skills/system-spec-kit/runtime/hooks/README.md",
+    ".opencode/skills/system-spec-kit/runtime/hooks/pi/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/MODULE-MAP.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/cognitive/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/config/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/context/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/continuity/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/description/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/discovery/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/extraction/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/graph/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/parsing/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/resume/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/search/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/spec/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/storage/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/templates/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/test-helpers/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/utils/README.md",
+    ".opencode/skills/system-spec-kit/runtime/lib/validation/README.md",
+    ".opencode/skills/system-spec-kit/runtime/scripts/README.md",
+    ".opencode/skills/system-spec-kit/runtime/scripts/tests/README.md",
+    ".opencode/skills/system-spec-kit/runtime/stress-test/README.md",
+    ".opencode/skills/system-spec-kit/runtime/stress-test/substrate/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/__helpers__/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/_support/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/_support/hooks/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/archive/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/deep-loop/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/description/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/embedders/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/graph/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/local-llm-features/performance/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/security/README.md",
+    ".opencode/skills/system-spec-kit/runtime/tests/validation/README.md",
     ".opencode/skills/system-spec-kit/scripts/README.md",
     ".opencode/skills/system-spec-kit/scripts/config/README.md",
     ".opencode/skills/system-spec-kit/scripts/core/README.md",
@@ -22660,7 +22660,7 @@
       11920
     ],
     "acceptance coverage rollout": [
-      1774
+      1731
     ],
     "acceptance criteria": [
       1846,
@@ -22801,7 +22801,7 @@
       974
     ],
     "access telemetry": [
-      1719
+      1761
     ],
     "access telemetry split": [
       12601,
@@ -23401,7 +23401,7 @@
       11067
     ],
     "adr decision records": [
-      1769
+      1726
     ],
     "adr disposition": [
       6509,
@@ -24426,7 +24426,7 @@
       2
     ],
     "advisory metadata fields": [
-      1775
+      1732
     ],
     "advisory noise audit": [
       6654,
@@ -24573,7 +24573,7 @@
       884
     ],
     "agent handoff group": [
-      1775
+      1732
     ],
     "agent handoff message": [
       184
@@ -24825,7 +24825,7 @@
       1262
     ],
     "agent io contract": [
-      1775,
+      1732,
       11427,
       11428,
       11429,
@@ -25606,7 +25606,7 @@
       7621
     ],
     "alignment scoring logic": [
-      1759
+      1716
     ],
     "alignment seed stranded verdict": [
       7798
@@ -25814,13 +25814,13 @@
       4489
     ],
     "anchor format": [
-      1728
+      1770
     ],
     "anchor generator": [
       1794
     ],
     "anchor marker grammar": [
-      1761
+      1718
     ],
     "anchor miss returnedtokens zero": [
       8828,
@@ -25967,7 +25967,7 @@
       1367
     ],
     "any embedder works": [
-      1753,
+      1710,
       9645
     ],
     "any embedder zero migration": [
@@ -26014,7 +26014,7 @@
       9975
     ],
     "api surface": [
-      1703
+      1745
     ],
     "api token rotation": [
       90
@@ -27328,7 +27328,7 @@
       8857
     ],
     "atomic save transaction": [
-      1724
+      1766
     ],
     "atomic state": [
       1436,
@@ -27371,7 +27371,7 @@
       5297
     ],
     "atomic write": [
-      1724
+      1766
     ],
     "attach file to task": [
       171
@@ -27732,7 +27732,7 @@
       9181
     ],
     "auto mode contract": [
-      1776
+      1733
     ],
     "auto note": [
       188
@@ -29391,7 +29391,7 @@
       11535
     ],
     "body preservation invariant": [
-      1761
+      1718
     ],
     "boilerplate": [
       1878
@@ -30406,7 +30406,7 @@
       5869
     ],
     "caller side ranking tuple": [
-      1758
+      1715
     ],
     "calls resolution": [
       11123
@@ -30601,7 +30601,7 @@
       1663
     ],
     "canonical frontmatter keys": [
-      1761
+      1718
     ],
     "canonical iconic ruleset": [
       392
@@ -30644,7 +30644,7 @@
       1826
     ],
     "canonical path": [
-      1727
+      1769
     ],
     "canonical persona injection home": [
       2386
@@ -30689,7 +30689,7 @@
       1312
     ],
     "canonical structural contract": [
-      1773
+      1730
     ],
     "canonical typed event envelope": [
       7215
@@ -31532,7 +31532,7 @@
       8805
     ],
     "changelog evidence stack": [
-      1780
+      1737
     ],
     "changelog format templates": [
       910
@@ -31541,7 +31541,7 @@
       8804
     ],
     "changelog generator modes": [
-      1780
+      1737
     ],
     "changelog guidance rename plan": [
       5403
@@ -35425,7 +35425,7 @@
       3208
     ],
     "cli vs mcp transport": [
-      1745
+      1702
     ],
     "click up": [
       166,
@@ -37713,15 +37713,15 @@
       1603,
       1612,
       1613,
-      1730,
-      1734,
-      1737,
-      1738,
-      1739,
-      1741,
-      1742,
-      1743,
-      1744
+      1772,
+      1776,
+      1779,
+      1780,
+      1781,
+      1783,
+      1784,
+      1785,
+      1786
     ],
     "code readme and json cleanup program": [
       5021
@@ -39710,7 +39710,7 @@
       9017
     ],
     "compact decision format": [
-      1769
+      1726
     ],
     "compact pi arbitration": [
       2478
@@ -40314,7 +40314,7 @@
       12736
     ],
     "completion checking script": [
-      1777
+      1734
     ],
     "completion claim contradicts evidence": [
       5188
@@ -40413,7 +40413,7 @@
       1666
     ],
     "completion freshness rule": [
-      1774
+      1731
     ],
     "completion sentinel plugin": [
       1697
@@ -40452,7 +40452,7 @@
       9081
     ],
     "complexity scoring algorithm": [
-      1765
+      1722
     ],
     "compliance jsonl": [
       5
@@ -40626,7 +40626,7 @@
       7323
     ],
     "concept versus exact retrieval": [
-      1758
+      1715
     ],
     "conceptual novelty plateau": [
       1366
@@ -40814,7 +40814,7 @@
       13005
     ],
     "confirm invariance": [
-      1776
+      1733
     ],
     "confirm no do not edit fence changed": [
       547
@@ -40899,7 +40899,7 @@
       9727
     ],
     "consolidated interview": [
-      1779
+      1736
     ],
     "consolidation clock driver": [
       12244
@@ -41245,7 +41245,7 @@
       12383
     ],
     "content normalizer": [
-      1720
+      1762
     ],
     "content parity check": [
       6259
@@ -41334,7 +41334,7 @@
       12534
     ],
     "context contracts": [
-      1714
+      1756
     ],
     "context deadline contract": [
       11127
@@ -41373,7 +41373,7 @@
       12977
     ],
     "context injection": [
-      1708
+      1750
     ],
     "context loading": [
       1795
@@ -41401,10 +41401,10 @@
       4575
     ],
     "context save methods": [
-      1756
+      1713
     ],
     "context saving commands": [
-      1777
+      1734
     ],
     "context server audit": [
       8841
@@ -41504,14 +41504,14 @@
       1811
     ],
     "continuity freshness fix": [
-      1774
+      1731
     ],
     "continuity freshness validator": [
       1666,
       11919
     ],
     "continuity frontmatter checklist": [
-      1784
+      1741
     ],
     "continuity identities": [
       7265
@@ -41538,7 +41538,7 @@
       10789
     ],
     "continuity record": [
-      1715
+      1757
     ],
     "continuity refactor gate packet": [
       10795
@@ -41563,7 +41563,7 @@
       12045
     ],
     "continuity save failures": [
-      1751
+      1708
     ],
     "continuity single source": [
       13050,
@@ -41709,7 +41709,7 @@
       3518
     ],
     "controlled re enable sequence": [
-      1783
+      1740
     ],
     "convention": [
       4315,
@@ -41875,7 +41875,7 @@
       10099
     ],
     "copied completion criteria": [
-      1778
+      1735
     ],
     "copilot advisor brief": [
       10225
@@ -42034,7 +42034,7 @@
       12302
     ],
     "core modules": [
-      1704
+      1746
     ],
     "core normalization and assembly": [
       3467,
@@ -45225,7 +45225,7 @@
       11135
     ],
     "daemon backed cli shims": [
-      1745
+      1702
     ],
     "daemon backed skill advisor cli surface": [
       1684
@@ -45263,7 +45263,7 @@
       11316
     ],
     "daemon cli reference": [
-      1745
+      1702
     ],
     "daemon cli shell completion": [
       12031
@@ -45932,7 +45932,7 @@
       10869
     ],
     "db state": [
-      1704
+      1746
     ],
     "db state circular import crash fix": [
       12826
@@ -46156,7 +46156,7 @@
       8670
     ],
     "decision auditability": [
-      1769
+      1726
     ],
     "decision breakdown": [
       995
@@ -46165,7 +46165,7 @@
       976
     ],
     "decision evaluation framework": [
-      1770
+      1727
     ],
     "decision evaluator build plan": [
       4790
@@ -46269,7 +46269,7 @@
       10771
     ],
     "declared capability loss": [
-      1755
+      1712
     ],
     "declared signal closure": [
       6476
@@ -46315,7 +46315,7 @@
       7699
     ],
     "dedicated stress folder": [
-      1731,
+      1773,
       8559,
       8560,
       8561,
@@ -50836,7 +50836,7 @@
       5272
     ],
     "dependency directions": [
-      1710
+      1752
     ],
     "dependency graph cycle": [
       8773
@@ -51196,7 +51196,7 @@
       12055
     ],
     "description json repair": [
-      1716
+      1758
     ],
     "description json scoping fix": [
       12573,
@@ -51213,7 +51213,7 @@
       12463
     ],
     "description metadata": [
-      1716
+      1758
     ],
     "description parity strictness": [
       5804
@@ -52213,7 +52213,7 @@
       11963
     ],
     "deterministic bucketing": [
-      1712
+      1754
     ],
     "deterministic checks": [
       1290
@@ -53588,7 +53588,7 @@
       1118
     ],
     "disable feature flags": [
-      1783
+      1740
     ],
     "disable github ruleset admin push": [
       6706
@@ -53619,7 +53619,7 @@
       245
     ],
     "discovery seam": [
-      1717
+      1759
     ],
     "disjoint agent lanes": [
       6174
@@ -53716,7 +53716,7 @@
       1313
     ],
     "dispatch result envelopes": [
-      1775
+      1732
     ],
     "dispatch review iteration": [
       1355
@@ -56001,7 +56001,7 @@
       12432
     ],
     "embedder device selection": [
-      1753
+      1710
     ],
     "embedder hard refusal": [
       11077
@@ -56031,7 +56031,7 @@
       9367
     ],
     "embedder pluggability": [
-      1753
+      1710
     ],
     "embedder pluggability historical annotation": [
       9433,
@@ -56083,7 +56083,7 @@
       11069
     ],
     "embedder rollback": [
-      1753
+      1710
     ],
     "embedder seam stage4 detector": [
       12630,
@@ -56118,14 +56118,14 @@
       9482
     ],
     "embedder swap": [
-      1753
+      1710
     ],
     "embedder testing architecture": [
       10902
     ],
     "embedder tests": [
       1618,
-      1740
+      1782
     ],
     "embedder tool registration": [
       10861
@@ -56355,7 +56355,7 @@
       10817
     ],
     "embedding provider env vars": [
-      1748
+      1705
     ],
     "embedding provider factory": [
       1818
@@ -57103,7 +57103,7 @@
       12726
     ],
     "env snapshot": [
-      1726
+      1768
     ],
     "env snapshot restore": [
       8785
@@ -57237,7 +57237,7 @@
       11829
     ],
     "epistemic uncertainty tracking": [
-      1754
+      1711
     ],
     "erasure cascade namespace authorize writer signing": [
       12252
@@ -57671,7 +57671,7 @@
       800
     ],
     "execution methods reference": [
-      1777
+      1734
     ],
     "execution path yaml": [
       610
@@ -57719,7 +57719,7 @@
       9984
     ],
     "execution router tests": [
-      1740
+      1782
     ],
     "execution scaffold summary": [
       8597
@@ -57930,7 +57930,7 @@
       5007
     ],
     "exit code taxonomy": [
-      1745,
+      1702,
       10718
     ],
     "exit code taxonomy adr": [
@@ -58249,13 +58249,13 @@
       8248
     ],
     "extraction adapter": [
-      1718
+      1760
     ],
     "extraction parent phase inventory": [
       10768
     ],
     "extraction pipeline": [
-      1718
+      1760
     ],
     "extraction workflow importance tier enum": [
       4062
@@ -58897,7 +58897,7 @@
       1372
     ],
     "fail fast error template": [
-      1776
+      1733
     ],
     "fail fast model routing": [
       1410
@@ -59396,7 +59396,7 @@
       1126
     ],
     "fast trigger matching": [
-      1757
+      1714
     ],
     "fastapi rerank http service": [
       10957
@@ -59877,7 +59877,7 @@
       10478
     ],
     "feature flag rollout": [
-      1712
+      1754
     ],
     "feature flag table": [
       8414
@@ -59886,7 +59886,7 @@
       10538
     ],
     "feature implementation example": [
-      1786
+      1743
     ],
     "feature inventory": [
       1014
@@ -60520,7 +60520,7 @@
       10743
     ],
     "finalize dist": [
-      1729
+      1771
     ],
     "finalize dist hash cache": [
       12418
@@ -60669,7 +60669,7 @@
       12157
     ],
     "findspecdocuments": [
-      1706
+      1748
     ],
     "fingerprint docset criteria": [
       13093
@@ -60747,7 +60747,7 @@
       7842
     ],
     "five checks framework": [
-      1770
+      1727
     ],
     "five dimension council scoring": [
       1217
@@ -60784,7 +60784,7 @@
       9022
     ],
     "five phase debugging": [
-      1752
+      1709
     ],
     "five phase remediation": [
       10880
@@ -61432,7 +61432,7 @@
       1686
     ],
     "folder discovery": [
-      1722
+      1764
     ],
     "folder discovery misfire": [
       9044
@@ -61489,17 +61489,17 @@
       4433
     ],
     "folder routing alignment": [
-      1759
+      1716
     ],
     "folder scoring": [
       1823,
       1832
     ],
     "folder state classification": [
-      1779
+      1736
     ],
     "folder structure reference": [
-      1760
+      1717
     ],
     "folder utilities": [
       1804
@@ -61673,7 +61673,7 @@
       11381
     ],
     "format helpers": [
-      1727
+      1769
     ],
     "format inconsistency": [
       821
@@ -61890,7 +61890,7 @@
       12226
     ],
     "four uncertainty factors": [
-      1754
+      1711
     ],
     "fourteen fix map": [
       4716
@@ -62384,7 +62384,7 @@
       6366
     ],
     "frontmatter variant taxonomy": [
-      1761
+      1718
     ],
     "frontmatter version gaps": [
       6072
@@ -62840,7 +62840,7 @@
       10598
     ],
     "gate decision fields": [
-      1769
+      1726
     ],
     "gate function completion claims": [
       782
@@ -63131,7 +63131,7 @@
       12633
     ],
     "generated metadata drift": [
-      1719
+      1761
     ],
     "generated metadata drift gate": [
       12597,
@@ -64105,7 +64105,7 @@
       2726
     ],
     "goal pointer": [
-      1778,
+      1735,
       13200,
       13203,
       13204,
@@ -64308,7 +64308,7 @@
       10501
     ],
     "governed save boundaries": [
-      1756
+      1713
     ],
     "governor behavioral scenarios": [
       2482
@@ -64686,8 +64686,8 @@
       11207
     ],
     "graph metadata": [
-      1702,
-      1719
+      1744,
+      1761
     ],
     "graph metadata adr": [
       12682
@@ -64740,7 +64740,7 @@
       12596
     ],
     "graph metadata json": [
-      1719
+      1761
     ],
     "graph metadata json skill advisor": [
       10657
@@ -64752,7 +64752,7 @@
       10373
     ],
     "graph metadata library": [
-      1711
+      1753
     ],
     "graph metadata manual field migration": [
       5158
@@ -64962,7 +64962,7 @@
       13282
     ],
     "grep convention for spec docs": [
-      1761
+      1718
     ],
     "grep convention research": [
       13286
@@ -65142,7 +65142,7 @@
       8413
     ],
     "half life configuration": [
-      1713
+      1755
     ],
     "half precision qwen": [
       9792
@@ -65215,7 +65215,7 @@
       12770
     ],
     "handback save gates": [
-      1746
+      1703
     ],
     "handle identity check": [
       13246
@@ -65443,7 +65443,7 @@
       3386
     ],
     "heading anchor requirements": [
-      1773
+      1730
     ],
     "headless brat workflow": [
       429
@@ -66051,7 +66051,7 @@
       2630
     ],
     "hook lifecycle behavior": [
-      1749
+      1706
     ],
     "hook live testing": [
       8439,
@@ -66111,7 +66111,7 @@
       5843
     ],
     "hook registration matrix": [
-      1749
+      1706
     ],
     "hook registration path plan": [
       5594
@@ -66150,7 +66150,7 @@
       2631
     ],
     "hook replay harness": [
-      1736
+      1778
     ],
     "hook routing smoke test": [
       10723
@@ -66168,7 +66168,7 @@
       10779
     ],
     "hook system reference": [
-      1749
+      1706
     ],
     "hook test methodology": [
       8446,
@@ -66196,7 +66196,7 @@
       11201
     ],
     "hooks": [
-      1708
+      1750
     ],
     "hooks before after injection bloat": [
       2534
@@ -67087,7 +67087,7 @@
       5253
     ],
     "hypothesis challenge re rank": [
-      1752
+      1709
     ],
     "hypothesis testing debugging": [
       535
@@ -68143,7 +68143,7 @@
       10508
     ],
     "importance tier behavior": [
-      1755
+      1712
     ],
     "importance tier high migration": [
       9419
@@ -68459,7 +68459,7 @@
       1522
     ],
     "indexable content sources": [
-      1755
+      1712
     ],
     "indexed but not routed": [
       1511
@@ -68903,10 +68903,10 @@
       1209
     ],
     "intake contract": [
-      1779
+      1736
     ],
     "intake lock": [
-      1779
+      1736
     ],
     "integrate and close out implementation plan": [
       5764
@@ -69039,7 +69039,7 @@
       5163
     ],
     "intent signals dictionary": [
-      1747
+      1704
     ],
     "intent signals populate": [
       10663
@@ -69257,7 +69257,7 @@
       3148
     ],
     "interprocess lock": [
-      1707
+      1749
     ],
     "interrupted migration fixture tasks": [
       7377
@@ -69494,7 +69494,7 @@
       148
     ],
     "isolated continuity artifacts": [
-      1764
+      1721
     ],
     "isolated true": [
       148
@@ -69627,7 +69627,7 @@
       1299
     ],
     "iterative work organization": [
-      1764
+      1721
     ],
     "jaccard delta axis flip rate": [
       1396
@@ -70205,7 +70205,7 @@
       11531
     ],
     "knowledge gap measurement": [
-      1754
+      1711
     ],
     "knowledge graph navigation": [
       12535,
@@ -70477,7 +70477,7 @@
       1296
     ],
     "lane merge rule": [
-      1758
+      1715
     ],
     "lane migration legacy retirement": [
       7657
@@ -71149,7 +71149,7 @@
       10620
     ],
     "lean trio policy": [
-      1762
+      1719
     ],
     "lean trio policy shipped": [
       10618
@@ -71235,7 +71235,7 @@
       9691
     ],
     "lease env var override": [
-      1750
+      1707
     ],
     "lease eperm accept no action": [
       8892
@@ -71615,7 +71615,7 @@
       10681
     ],
     "level contract headings": [
-      1773
+      1730
     ],
     "level contract manifest": [
       1834
@@ -71625,7 +71625,7 @@
     ],
     "level contract resolver": [
       1693,
-      1725,
+      1767,
       8968,
       10691,
       10704
@@ -71634,34 +71634,34 @@
       1645
     ],
     "level decision shortcuts": [
-      1781
+      1738
     ],
     "level examples": [
       1841
     ],
     "level folder requirements": [
-      1760
+      1717
     ],
     "level gated templates": [
       1807
     ],
     "level mapping thresholds": [
-      1765
+      1722
     ],
     "level one docs authoring": [
-      1785
+      1742
     ],
     "level scoring factors": [
-      1765
+      1722
     ],
     "level selection by score": [
       1644
     ],
     "level selection guide": [
-      1765
+      1722
     ],
     "level specifications": [
-      1766
+      1723
     ],
     "level templates": [
       8957
@@ -71721,10 +71721,10 @@
       11085
     ],
     "lib dependency map": [
-      1710
+      1752
     ],
     "lib modules": [
-      1711
+      1753
     ],
     "lib persist artifacts cjs": [
       1204
@@ -72498,7 +72498,7 @@
       596
     ],
     "loading level semantics": [
-      1747
+      1704
     ],
     "loading strategy webflow": [
       772
@@ -72744,7 +72744,7 @@
       1148
     ],
     "location based validation": [
-      1771
+      1728
     ],
     "lock guarded jsonl append": [
       1399
@@ -72792,7 +72792,7 @@
       212
     ],
     "logger": [
-      1727
+      1769
     ],
     "logic errors dimension": [
       1360
@@ -73628,7 +73628,7 @@
       5613
     ],
     "manifest backed level contracts": [
-      1766
+      1723
     ],
     "manifest backed template documentation": [
       10696
@@ -73860,7 +73860,7 @@
       3201
     ],
     "manual save triggers": [
-      1757
+      1714
     ],
     "manual scenario path closure": [
       5666
@@ -75049,7 +75049,7 @@
       10005
     ],
     "mcp library": [
-      1711
+      1753
     ],
     "mcp magicpath": [
       3198
@@ -75794,7 +75794,7 @@
       90
     ],
     "mcp server data": [
-      1705
+      1747
     ],
     "mcp server deletion": [
       13273,
@@ -75888,7 +75888,6 @@
       8502
     ],
     "mcp server stress test": [
-      1731,
       8559,
       8560,
       8561,
@@ -76424,7 +76423,7 @@
       7837
     ],
     "mechanical rename refactor": [
-      1782
+      1739
     ],
     "mechanical sweep": [
       4503
@@ -76672,7 +76671,7 @@
       10514
     ],
     "memory continuity": [
-      1715
+      1757
     ],
     "memory continuity batch backfill": [
       10534
@@ -76788,10 +76787,10 @@
       10150
     ],
     "memory handback extraction": [
-      1746
+      1703
     ],
     "memory handback protocol": [
-      1746
+      1703
     ],
     "memory health autorepair cleanfiles": [
       8512,
@@ -77274,7 +77273,7 @@
       5694
     ],
     "memory parser": [
-      1720
+      1762
     ],
     "memory parser allow list": [
       12506,
@@ -77535,7 +77534,7 @@
       9292
     ],
     "memory save workflow": [
-      1756
+      1713
     ],
     "memory scan dedup gap": [
       13006
@@ -77783,7 +77782,7 @@
       10203
     ],
     "memory types": [
-      1713
+      1755
     ],
     "memory workflow": [
       1789
@@ -77962,7 +77961,7 @@
       10662
     ],
     "metadata format conventions": [
-      1768
+      1725
     ],
     "metadata fusion": [
       12705
@@ -79946,13 +79945,13 @@
       572
     ],
     "module map": [
-      1710
+      1752
     ],
     "module organization standards": [
       655
     ],
     "module ownership": [
-      1710
+      1752
     ],
     "monospace diagram skin": [
       968
@@ -80959,7 +80958,7 @@
       3711
     ],
     "necessary beyond local maxima": [
-      1770
+      1727
     ],
     "needs clarification space variant": [
       9013,
@@ -81470,7 +81469,7 @@
       1838
     ],
     "nested changelog workflow": [
-      1780
+      1737
     ],
     "nested codex exec": [
       8180
@@ -83929,7 +83928,7 @@
       3873
     ],
     "open horizons check": [
-      1770
+      1727
     ],
     "open the changed png": [
       587
@@ -84477,7 +84476,7 @@
       12368
     ],
     "opencode timeout fallback": [
-      1749
+      1706
     ],
     "opencode transform dedup": [
       2466
@@ -84486,7 +84485,7 @@
       2464
     ],
     "opencode transport": [
-      1714
+      1756
     ],
     "opencode transport diagnostic": [
       11214
@@ -85047,7 +85046,7 @@
       9645
     ],
     "out of box embedder support": [
-      1753
+      1710
     ],
     "out of box embedder support matrix": [
       10886
@@ -85384,7 +85383,7 @@
       10491
     ],
     "p0 hard blockers": [
-      1772
+      1729
     ],
     "p0 p1 evidence markers": [
       1667
@@ -85902,7 +85901,7 @@
       1261
     ],
     "packet local changelog": [
-      1780
+      1737
     ],
     "packet local changelog example": [
       915
@@ -86627,10 +86626,10 @@
       580
     ],
     "path scoped validation rules": [
-      1771
+      1728
     ],
     "path security": [
-      1727
+      1769
     ],
     "path security helper": [
       1824
@@ -86789,7 +86788,7 @@
       7136
     ],
     "pending file recovery": [
-      1724
+      1766
     ],
     "pending temporal candidates status": [
       12232
@@ -86896,7 +86895,7 @@
       5002
     ],
     "per folder description": [
-      1722
+      1764
     ],
     "per folder identity card": [
       1660
@@ -89191,7 +89190,7 @@
       11094
     ],
     "phase checklists": [
-      1772
+      1729
     ],
     "phase chevron banner": [
       978
@@ -89596,16 +89595,16 @@
     ],
     "phase complexity scoring": [
       1677,
-      1763
+      1720
     ],
     "phase count mapping": [
-      1763
+      1720
     ],
     "phase dag runner code graph": [
       11202
     ],
     "phase decomposition system": [
-      1762
+      1719
     ],
     "phase decomposition workflow": [
       1677
@@ -89620,7 +89619,7 @@
       533
     ],
     "phase detection thresholds": [
-      1762
+      1719
     ],
     "phase documentation map": [
       9029
@@ -89632,7 +89631,7 @@
       7823
     ],
     "phase folder naming": [
-      1762
+      1719
     ],
     "phase g planning packet": [
       10560
@@ -89662,7 +89661,7 @@
       8710
     ],
     "phase lifecycle status": [
-      1763
+      1720
     ],
     "phase main loop branch buildlineagecommand": [
       7937
@@ -89806,7 +89805,7 @@
       12055
     ],
     "phase parent structure": [
-      1763
+      1720
     ],
     "phase parent task list": [
       8396
@@ -90869,7 +90868,7 @@
       2740
     ],
     "pi session lifecycle": [
-      1709
+      1751
     ],
     "pi session lifecycle hooks": [
       2217
@@ -90915,7 +90914,7 @@
       2576
     ],
     "pi spec gate": [
-      1709
+      1751
     ],
     "pi stdio": [
       74
@@ -91019,7 +91018,7 @@
       3564
     ],
     "pid file single writer lease": [
-      1750
+      1707
     ],
     "pid guard bootstrap lock": [
       10941
@@ -91107,13 +91106,13 @@
       9014
     ],
     "placeholder pattern detection": [
-      1771
+      1728
     ],
     "placeholder rate": [
       1793
     ],
     "placeholder syntax types": [
-      1768
+      1725
     ],
     "plain cross digest closure boundary": [
       7612
@@ -92642,7 +92641,7 @@
       754
     ],
     "pre bound setup answers": [
-      1776
+      1733
     ],
     "pre claim gate": [
       536
@@ -92863,7 +92862,7 @@
       90
     ],
     "preflight": [
-      1728
+      1770
     ],
     "preflight extract write prompt validate": [
       844
@@ -93029,7 +93028,7 @@
       1194
     ],
     "priority based checklist items": [
-      1772
+      1729
     ],
     "priority timing decision": [
       737
@@ -93426,10 +93425,10 @@
       1075
     ],
     "progressive enhancement levels": [
-      1766
+      1723
     ],
     "progressive enhancement model": [
-      1767
+      1724
     ],
     "progressive remainder token budget": [
       11958
@@ -94188,7 +94187,7 @@
       9053
     ],
     "public api": [
-      1703
+      1745
     ],
     "public api reuse over daemon harness": [
       10152
@@ -94227,7 +94226,7 @@
       3669
     ],
     "publication gate": [
-      1714
+      1756
     ],
     "publication quality gate": [
       845
@@ -94752,7 +94751,7 @@
       818
     ],
     "quick troubleshooting lookup": [
-      1781
+      1738
     ],
     "quick validate batch": [
       1037
@@ -96204,7 +96203,7 @@
       790
     ],
     "redaction gate": [
-      1718
+      1760
     ],
     "reddit audit plan": [
       8906
@@ -97100,7 +97099,7 @@
       1573
     ],
     "regression tests": [
-      1733
+      1775
     ],
     "rehome constitutional rules": [
       13120
@@ -97982,7 +97981,7 @@
       4330
     ],
     "rename pattern checklist": [
-      1782
+      1739
     ],
     "rename set changelog entry": [
       5539
@@ -97994,7 +97993,7 @@
       1114
     ],
     "rename surface taxonomy": [
-      1782
+      1739
     ],
     "rename tooling dry run results": [
       5278
@@ -98111,7 +98110,7 @@
       10833
     ],
     "repair graph metadata": [
-      1729,
+      1771,
       9419
     ],
     "repair graph metadata mjs": [
@@ -98124,7 +98123,7 @@
       11543
     ],
     "repair mode routing": [
-      1779
+      1736
     ],
     "repair on replay scan backfill": [
       11012
@@ -98530,7 +98529,7 @@
       1180
     ],
     "required files by level": [
-      1766
+      1723
     ],
     "required section validation": [
       1173
@@ -99411,7 +99410,7 @@
       581
     ],
     "resolve database paths": [
-      1704
+      1746
     ],
     "resolve tiebreak duplicate authority": [
       5154
@@ -99604,7 +99603,7 @@
       1357
     ],
     "resource map scoring": [
-      1747
+      1704
     ],
     "resource map tasks": [
       8946
@@ -99821,7 +99820,7 @@
     ],
     "resume ladder": [
       1642,
-      1721,
+      1763,
       13062
     ],
     "resume ladder continuity": [
@@ -100034,7 +100033,7 @@
       12705
     ],
     "retrieval and continuity reference": [
-      1755
+      1712
     ],
     "retrieval calibration output parity rollup": [
       11966
@@ -100102,7 +100101,7 @@
       12439
     ],
     "retrieval exit status mapping": [
-      1758
+      1715
     ],
     "retrieval feedback edge": [
       12495
@@ -100292,7 +100291,7 @@
       212
     ],
     "retrofit diagnostics schema": [
-      1761
+      1718
     ],
     "retry helper": [
       1824
@@ -100975,17 +100974,17 @@
       13290
     ],
     "ripgrep recipe contract": [
-      1758
+      1715
     ],
     "ripgrep retrieval conventions": [
-      1758,
+      1715,
       13261
     ],
     "ripgrep retrieval research": [
       13286
     ],
     "ripgrep retrieval returns nothing": [
-      1751
+      1708
     ],
     "ripgrep retrieval synthesis": [
       13284
@@ -101136,10 +101135,10 @@
     ],
     "rollback runbook": [
       1277,
-      1783
+      1740
     ],
     "rollback smoke tests": [
-      1783
+      1740
     ],
     "rollback state event": [
       1178
@@ -101169,7 +101168,7 @@
       7903
     ],
     "rollout policy": [
-      1712
+      1754
     ],
     "rollout readiness evidence": [
       3581
@@ -102193,7 +102192,7 @@
       6246
     ],
     "rule severity levels": [
-      1774
+      1731
     ],
     "rule shape conformance": [
       6238
@@ -102589,7 +102588,7 @@
       1419
     ],
     "runtime flags": [
-      1722
+      1764
     ],
     "runtime fork drift guard gap": [
       8890
@@ -102598,7 +102597,7 @@
       2720
     ],
     "runtime hook adapter": [
-      1708
+      1750
     ],
     "runtime hook authoring": [
       656
@@ -102626,7 +102625,7 @@
       8445
     ],
     "runtime hook vocabulary": [
-      1749
+      1706
     ],
     "runtime initialized health field": [
       10868
@@ -102814,6 +102813,9 @@
     ],
     "runtime status sk vision status": [
       1154
+    ],
+    "runtime stress test": [
+      1773
     ],
     "runtime surface coverage": [
       1868,
@@ -103248,7 +103250,7 @@
       9039
     ],
     "save handler": [
-      1707
+      1749
     ],
     "save handler readme doc sync": [
       11073
@@ -103263,13 +103265,13 @@
       10178
     ],
     "save method selection": [
-      1756
+      1713
     ],
     "save mutex liveness causal generation bump": [
       12051
     ],
     "save quality gate": [
-      1728
+      1770
     ],
     "save reconsolidation merge precision": [
       12750
@@ -103356,7 +103358,7 @@
       6361
     ],
     "scaffold spec folder steps": [
-      1785
+      1742
     ],
     "scaffold spec packet": [
       1693
@@ -103974,7 +103976,7 @@
       8834
     ],
     "scratch folder usage": [
-      1760
+      1717
     ],
     "screen detail refero": [
       511
@@ -104033,7 +104035,7 @@
       653
     ],
     "script execution configuration": [
-      1748
+      1705
     ],
     "script filename exemption audit": [
       5641
@@ -104057,7 +104059,7 @@
       1810
     ],
     "scripts": [
-      1729
+      1771
     ],
     "scripts command audit tasks": [
       5697
@@ -104275,7 +104277,7 @@
       8680
     ],
     "search decisions data": [
-      1705
+      1747
     ],
     "search determinism wall clock": [
       12563
@@ -104284,7 +104286,7 @@
       12429
     ],
     "search flags": [
-      1722
+      1764
     ],
     "search flows refero": [
       509
@@ -105107,7 +105109,7 @@
       1681
     ],
     "session goal objective": [
-      1778
+      1735
     ],
     "session goal state architecture": [
       2736
@@ -105200,7 +105202,7 @@
       157
     ],
     "session resume": [
-      1721
+      1763
     ],
     "session resume asynclocalstorage auth binding": [
       10803
@@ -105325,7 +105327,7 @@
       996
     ],
     "set string playbook": [
-      1778,
+      1735,
       13200,
       13203,
       13204,
@@ -105600,7 +105602,7 @@
       11953
     ],
     "sharded test runner": [
-      1729
+      1771
     ],
     "share link magicpath": [
       303
@@ -105855,7 +105857,7 @@
     ],
     "shared payload": [
       1605,
-      1714
+      1756
     ],
     "shared placement decision": [
       6321
@@ -105918,7 +105920,7 @@
       5306
     ],
     "shared smart router helpers": [
-      1747
+      1704
     ],
     "shared spec folder identity resolver": [
       12581,
@@ -106443,7 +106445,7 @@
       11084
     ],
     "simple bug fix example": [
-      1786
+      1743
     ],
     "simple workflow flowchart": [
       936
@@ -111279,7 +111281,7 @@
       10746
     ],
     "skill advisor launcher lease": [
-      1750
+      1707
     ],
     "skill advisor launcher p2 closeout": [
       10941
@@ -112306,7 +112308,7 @@
       10753
     ],
     "skill identity rename": [
-      1782
+      1739
     ],
     "skill induction from repetition": [
       12261
@@ -113277,7 +113279,7 @@
       1307
     ],
     "source doc hashes": [
-      1719,
+      1761,
       12597,
       12598,
       12599,
@@ -113583,7 +113585,7 @@
       13282
     ],
     "spec doc structure": [
-      1728
+      1770
     ],
     "spec doc structure ts": [
       1659
@@ -113596,10 +113598,10 @@
       11055
     ],
     "spec document discovery": [
-      1706
+      1748
     ],
     "spec document finder": [
-      1717
+      1759
     ],
     "spec document health parsing": [
       1820
@@ -113633,7 +113635,7 @@
       1689
     ],
     "spec folder authoring checklist": [
-      1784
+      1741
     ],
     "spec folder authoring docs relocation": [
       3259,
@@ -113654,14 +113656,14 @@
       1660
     ],
     "spec folder detection": [
-      1759,
+      1716,
       1804
     ],
     "spec folder detection and description metadata": [
       1686
     ],
     "spec folder diagnosis": [
-      1751
+      1708
     ],
     "spec folder identity canonicalizer": [
       12573,
@@ -113672,7 +113674,7 @@
       12584
     ],
     "spec folder level contract": [
-      1784
+      1741
     ],
     "spec folder literal naming ai derived slugs": [
       1687
@@ -113684,8 +113686,8 @@
       10296
     ],
     "spec folder mutex": [
-      1706,
-      1707
+      1748,
+      1749
     ],
     "spec folder names": [
       9005
@@ -113700,7 +113702,7 @@
       10302
     ],
     "spec folder naming conventions": [
-      1760
+      1717
     ],
     "spec folder naming guard": [
       10297
@@ -113735,13 +113737,13 @@
       4605
     ],
     "spec folder write recipe": [
-      1785
+      1742
     ],
     "spec folder write recipe system spec kit": [
       3261
     ],
     "spec gate": [
-      1708
+      1750
     ],
     "spec gate archive": [
       6
@@ -113774,7 +113776,7 @@
       1792
     ],
     "spec helpers": [
-      1723
+      1765
     ],
     "spec id in code comment": [
       582
@@ -113849,10 +113851,10 @@
       13075
     ],
     "spec kit engine": [
-      1702
+      1744
     ],
     "spec kit environment variables": [
-      1748
+      1705
     ],
     "spec kit feature catalog": [
       1652
@@ -113867,7 +113869,7 @@
       8962
     ],
     "spec kit hook adapters": [
-      1702
+      1744
     ],
     "spec kit internals": [
       10674
@@ -114003,7 +114005,7 @@
       10688
     ],
     "spec kit template manifest": [
-      1725,
+      1767,
       13082
     ],
     "spec kit template optimization": [
@@ -114038,7 +114040,7 @@
       1808
     ],
     "spec kit troubleshooting guide": [
-      1751
+      1708
     ],
     "spec kit utilities": [
       1810
@@ -114048,7 +114050,7 @@
       10264
     ],
     "spec level": [
-      1723
+      1765
     ],
     "spec lifecycle automation": [
       1689
@@ -114321,7 +114323,7 @@
       11299
     ],
     "spec validation commands": [
-      1777
+      1734
     ],
     "spec validation rule engine": [
       1690
@@ -114657,7 +114659,7 @@
       5700
     ],
     "speckit phase system": [
-      1763
+      1720
     ],
     "speckit pi directive dedup": [
       1695,
@@ -114680,7 +114682,7 @@
       11696
     ],
     "speckit quick reference": [
-      1781
+      1738
     ],
     "speckit reconsolidation enabled benchmark": [
       12747,
@@ -114736,7 +114738,7 @@
       11918
     ],
     "speckit rollout percent": [
-      1712
+      1754
     ],
     "speckit router references": [
       12016
@@ -114805,7 +114807,7 @@
       1656
     ],
     "speckit workflow scenarios": [
-      1786
+      1743
     ],
     "speckit worktreebase config": [
       6710
@@ -114972,7 +114974,7 @@
       11962
     ],
     "stable imports": [
-      1703
+      1745
     ],
     "stable message identity opencode": [
       2466
@@ -114988,7 +114990,7 @@
     ],
     "stack agnostic debugging": [
       535,
-      1752
+      1709
     ],
     "stack agnostic quality contract": [
       537
@@ -115138,7 +115140,7 @@
       7636
     ],
     "staged trio publication": [
-      1779
+      1736
     ],
     "stagger and overshoot": [
       862
@@ -115344,7 +115346,7 @@
       10306
     ],
     "stale reclaim path": [
-      1750
+      1707
     ],
     "stale reclaim reap respawn": [
       10305
@@ -115611,7 +115613,7 @@
       1699
     ],
     "startup hook": [
-      1708
+      1750
     ],
     "startup payload dropped": [
       11127
@@ -115927,7 +115929,7 @@
       1676
     ],
     "stop hook sandbox": [
-      1736
+      1778
     ],
     "stop main protection violation logging": [
       6706
@@ -115984,7 +115986,7 @@
       12479
     ],
     "storage layer": [
-      1724
+      1766
     ],
     "storage tier layout": [
       983
@@ -116156,7 +116158,7 @@
       10493
     ],
     "stress test": [
-      1731,
+      1773,
       8748
     ],
     "stress test alignment": [
@@ -116347,7 +116349,7 @@
       9292
     ],
     "strict validate first try": [
-      1785
+      1742
     ],
     "strict validate memory save divergence": [
       10842
@@ -116356,7 +116358,7 @@
       1691
     ],
     "strict validation checklist": [
-      1784
+      1741
     ],
     "strict validation failure rate": [
       13147
@@ -116455,16 +116457,16 @@
       2677
     ],
     "structured first routing": [
-      1759
+      1716
     ],
     "structured gate decision format": [
-      1769
+      1726
     ],
     "structured input routing": [
       1673
     ],
     "structured json handback": [
-      1746
+      1703
     ],
     "structured json save contract": [
       1672
@@ -116825,7 +116827,7 @@
       722
     ],
     "sub folder versioning": [
-      1764
+      1721
     ],
     "subagent": [
       2786
@@ -116953,7 +116955,7 @@
       9244
     ],
     "substrate stress": [
-      1732,
+      1774,
       9310
     ],
     "substrate stress checklist": [
@@ -117036,10 +117038,10 @@
       1680
     ],
     "sufficient fits goal": [
-      1770
+      1727
     ],
     "suggested phase counts": [
-      1762
+      1719
     ],
     "suggested queries recovery": [
       11570
@@ -118455,33 +118457,6 @@
       5547,
       5548
     ],
-    "system spec kit mcp server scripts tests": [
-      1730
-    ],
-    "system spec kit mcp server tests archive": [
-      1737
-    ],
-    "system spec kit mcp server tests deep loop": [
-      1738
-    ],
-    "system spec kit mcp server tests description": [
-      1739
-    ],
-    "system spec kit mcp server tests graph": [
-      1741
-    ],
-    "system spec kit mcp server tests helpers": [
-      1734
-    ],
-    "system spec kit mcp server tests local llm features performance": [
-      1742
-    ],
-    "system spec kit mcp server tests security": [
-      1743
-    ],
-    "system spec kit mcp server tests validation": [
-      1744
-    ],
     "system spec kit mcp sidecar audit": [
       9881
     ],
@@ -118579,6 +118554,33 @@
     ],
     "system spec kit router rollout": [
       4853
+    ],
+    "system spec kit runtime scripts tests": [
+      1772
+    ],
+    "system spec kit runtime tests archive": [
+      1779
+    ],
+    "system spec kit runtime tests deep loop": [
+      1780
+    ],
+    "system spec kit runtime tests description": [
+      1781
+    ],
+    "system spec kit runtime tests graph": [
+      1783
+    ],
+    "system spec kit runtime tests helpers": [
+      1776
+    ],
+    "system spec kit runtime tests local llm features performance": [
+      1784
+    ],
+    "system spec kit runtime tests security": [
+      1785
+    ],
+    "system spec kit runtime tests validation": [
+      1786
     ],
     "system spec kit scripts tree": [
       5556,
@@ -119748,7 +119750,7 @@
       13300
     ],
     "template adaptation standards": [
-      1767
+      1724
     ],
     "template addendum derivation": [
       13029,
@@ -119797,7 +119799,7 @@
       1836
     ],
     "template compliance contract": [
-      1773
+      1730
     ],
     "template compliance contract enforcement": [
       1692
@@ -119806,7 +119808,7 @@
       1692
     ],
     "template composition reference": [
-      1767
+      1724
     ],
     "template composition system": [
       1693
@@ -119913,7 +119915,7 @@
       1680
     ],
     "template copy commands": [
-      1781
+      1738
     ],
     "template dark full terminal": [
       940
@@ -119945,7 +119947,7 @@
       13083
     ],
     "template formatting standards": [
-      1768
+      1725
     ],
     "template generator": [
       8957
@@ -120099,7 +120101,7 @@
       1647
     ],
     "template selection guide": [
-      1767
+      1724
     ],
     "template snapshot review": [
       13059
@@ -120114,7 +120116,7 @@
       4623
     ],
     "template style guide": [
-      1768
+      1725
     ],
     "template system": [
       1837,
@@ -120299,7 +120301,7 @@
       13234
     ],
     "test helpers": [
-      1726
+      1768
     ],
     "test only barrel export cleanup": [
       9959,
@@ -120328,10 +120330,10 @@
       684
     ],
     "test suite": [
-      1733
+      1775
     ],
     "test support": [
-      1735
+      1777
     ],
     "test the app in the emulator": [
       569
@@ -120452,7 +120454,7 @@
       11751
     ],
     "thin continuity": [
-      1715
+      1757
     ],
     "thin router command": [
       924,
@@ -120574,7 +120576,7 @@
       6490
     ],
     "three tier setup resolution": [
-      1776
+      1733
     ],
     "three way isolation finalize": [
       11142
@@ -121434,7 +121436,7 @@
       3626
     ],
     "trigger detection logic": [
-      1757
+      1714
     ],
     "trigger drift tasks": [
       4733
@@ -121464,17 +121466,17 @@
       13263
     ],
     "trigger index behavior": [
-      1755
+      1712
     ],
     "trigger index generator": [
       13261,
       13263
     ],
     "trigger index lookup fails": [
-      1751
+      1708
     ],
     "trigger index lookup path": [
-      1758
+      1715
     ],
     "trigger index plan": [
       13262
@@ -121492,7 +121494,7 @@
       13264
     ],
     "trigger matcher": [
-      1720
+      1762
     ],
     "trigger matcher guard decision": [
       12389
@@ -121501,10 +121503,10 @@
       12391
     ],
     "trigger phrase configuration": [
-      1757
+      1714
     ],
     "trigger phrase generic negatives": [
-      1761
+      1718
     ],
     "trigger phrase quality": [
       12390,
@@ -121553,7 +121555,7 @@
       1054
     ],
     "trigger sanitization rules": [
-      1757
+      1714
     ],
     "trigger scoping plan": [
       4726
@@ -121886,7 +121888,7 @@
       1809
     ],
     "type inference": [
-      1713
+      1755
     ],
     "type ramp per size": [
       958
@@ -122177,7 +122179,7 @@
       11021
     ],
     "uncertainty weighted average": [
-      1754
+      1711
     ],
     "unchanged echo acceptance": [
       3514,
@@ -122342,7 +122344,7 @@
       535
     ],
     "universal debugging methodology": [
-      1752
+      1709
     ],
     "universal error recovery": [
       539
@@ -122363,7 +122365,7 @@
       7490
     ],
     "unknown fallback checklist": [
-      1747
+      1704
     ],
     "unknown legacy record migration": [
       7679,
@@ -122695,7 +122697,7 @@
       383
     ],
     "utility functions": [
-      1727
+      1769
     ],
     "utils sh rename": [
       5556,
@@ -122999,7 +123001,7 @@
       6160
     ],
     "validate folder": [
-      1728
+      1770
     ],
     "validate memory quality dominance threshold": [
       10845
@@ -123089,7 +123091,7 @@
       795
     ],
     "validation": [
-      1728
+      1770
     ],
     "validation and closeout": [
       6303
@@ -123152,7 +123154,7 @@
       13144
     ],
     "validation gate defaults": [
-      1748
+      1705
     ],
     "validation gate hardening": [
       12638,
@@ -123185,10 +123187,10 @@
       12884
     ],
     "validation items by phase": [
-      1772
+      1729
     ],
     "validation library": [
-      1711
+      1753
     ],
     "validation llm judge hardening": [
       1448
@@ -123200,7 +123202,7 @@
       12970
     ],
     "validation orchestrator": [
-      1702,
+      1744,
       10718
     ],
     "validation orchestrator adr": [
@@ -123219,10 +123221,10 @@
       13171
     ],
     "validation rule hierarchy": [
-      1771
+      1728
     ],
     "validation rule registry": [
-      1774
+      1731
     ],
     "validation rules": [
       1801
@@ -123846,7 +123848,7 @@
       7225
     ],
     "versioned sub folders": [
-      1764
+      1721
     ],
     "versions json minappversion mapping": [
       598
@@ -123915,7 +123917,7 @@
       3634
     ],
     "vitest": [
-      1733
+      1775
     ],
     "vitest afterall sandbox reap": [
       12361,
@@ -123993,7 +123995,7 @@
       13232
     ],
     "vitest setup": [
-      1735
+      1777
     ],
     "vitest setupfiles bypass": [
       13222
@@ -124002,7 +124004,7 @@
       10604
     ],
     "vitest substrate gate": [
-      1732,
+      1774,
       9308,
       9310
     ],
@@ -124337,7 +124339,7 @@
       1664
     ],
     "warm only policy": [
-      1745
+      1702
     ],
     "warm p95 50ms": [
       10727
@@ -125093,7 +125095,7 @@
       6277
     ],
     "which embedder do we use": [
-      1753
+      1710
     ],
     "which file does this css rule go in": [
       557
@@ -125357,7 +125359,7 @@
       5068
     ],
     "withspecfolderlock": [
-      1707
+      1749
     ],
     "wobble strokes": [
       967
@@ -125375,7 +125377,7 @@
       915
     ],
     "worked examples reference": [
-      1786
+      1743
     ],
     "worked feature catalog": [
       1019
@@ -125484,7 +125486,7 @@
       1393
     ],
     "working memory rollback": [
-      1783
+      1740
     ],
     "workspace audit trail": [
       227

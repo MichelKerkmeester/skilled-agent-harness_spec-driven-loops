@@ -2,8 +2,8 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: API Boundary Checker
 # ───────────────────────────────────────────────────────────────
-# Enforce one-way API boundary: mcp-server/lib/ must NEVER import
-# From mcp-server/api/. The api/ directory is a stable public
+# Enforce one-way API boundary: runtime/lib/ must NEVER import
+# From runtime/api/. The api/ directory is a stable public
 # Surface that depends on lib/, not the reverse.
 #
 # Exit Codes:
@@ -13,7 +13,7 @@
 
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-MCP_DIR="$(dirname "$SCRIPT_DIR")/mcp-server"
+MCP_DIR="$(dirname "$SCRIPT_DIR")/runtime"
 
 if [ ! -d "$MCP_DIR/lib" ]; then
   echo "ERROR: $MCP_DIR/lib/ not found" >&2

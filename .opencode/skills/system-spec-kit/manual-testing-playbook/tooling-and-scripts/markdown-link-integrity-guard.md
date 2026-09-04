@@ -58,7 +58,7 @@ check-markdown-links: 7888 files, 13414 links checked, 6 broken
 Broken markdown links (target resolves under neither the file dir nor repo root):
   .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md  ](./llmstxt-templates.md)
   .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md  ](../references/core-standards.md)
-  .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/README.md  ](../../../system-spec-kit/mcp-server/plugin-bridges/README.md)
+  .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/README.md  ](../../../system-spec-kit/runtime/plugin-bridges/README.md)
   .opencode/skills/system-spec-kit/assets/template-mapping.md  ](../templates/addons/checklist.md.tmpl)
   .opencode/skills/system-spec-kit/assets/template-mapping.md  ](../templates/addons/checklist.md.tmpl)
   .opencode/skills/system-spec-kit/assets/template-mapping.md  ](../templates/addons/checklist.md.tmpl)

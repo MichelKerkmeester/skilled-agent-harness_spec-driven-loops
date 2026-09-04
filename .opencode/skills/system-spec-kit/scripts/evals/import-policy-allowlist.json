@@ -1,9 +1,9 @@
 {
-  "description": "Allowlist for scripts importing from @spec-kit/mcp-server/{lib,core,handlers} internals or equivalent relative runtime paths. Each exception requires: owner, reason, removeWhen, createdAt, lastReviewedAt. Wildcard internal-runtime entries MUST include expiresAt; specific-path entries SHOULD include expiresAt.",
+  "description": "Allowlist for scripts importing from @spec-kit/runtime/{lib,core,handlers} internals or equivalent relative runtime paths. Each exception requires: owner, reason, removeWhen, createdAt, lastReviewedAt. Wildcard internal-runtime entries MUST include expiresAt; specific-path entries SHOULD include expiresAt.",
   "exceptions": [
     {
       "file": "scripts/spec-folder/generate-description.ts",
-      "import": "@spec-kit/mcp-server/lib/search/folder-discovery",
+      "import": "@spec-kit/runtime/lib/search/folder-discovery",
       "owner": "spec-kit-maintainers",
       "reason": "CLI tool needs folder-discovery internals for description generation",
       "removeWhen": "folder-discovery exports exposed via api/",
@@ -13,7 +13,7 @@
     },
     {
       "file": "scripts/core/workflow.ts",
-      "import": "@spec-kit/mcp-server/lib/search/folder-discovery",
+      "import": "@spec-kit/runtime/lib/search/folder-discovery",
       "owner": "spec-kit-maintainers",
       "reason": "Workflow memory-save updates per-folder description.json via dynamic import",
       "removeWhen": "folder-discovery exports exposed via api/",

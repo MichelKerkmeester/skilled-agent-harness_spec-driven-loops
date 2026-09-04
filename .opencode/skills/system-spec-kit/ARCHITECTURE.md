@@ -12,7 +12,7 @@ importance_tier: "important"
 
 # Architecture: system-spec-kit
 
-> Current-reality architecture for the `system-spec-kit` package. Authored code lives in `scripts/`, `mcp-server/`, and `shared/`. Continuity is rebuilt through `/speckit:resume` and canonical spec documents.
+> Current-reality architecture for the `system-spec-kit` package. Authored code lives in `scripts/`, `runtime/`, and `shared/`. Continuity is rebuilt through `/speckit:resume` and canonical spec documents.
 
 ---
 
@@ -21,7 +21,7 @@ importance_tier: "important"
 `system-spec-kit` is split into three authored zones plus generated build output:
 
 - `scripts/` owns CLI generation, validation, indexing, evals, and packet tooling. TypeScript and shell.
-- `mcp-server/` owns the spec-kit engine: spec folder validation, generated packet metadata, description generation, and the per-runtime hook adapters. It is consumed as a library, not run as a service. TypeScript.
+- `runtime/` owns the spec-kit engine: spec folder validation, generated packet metadata, description generation, and the per-runtime hook adapters. It is consumed as a library, not run as a service. TypeScript.
 - `shared/` owns neutral modules imported by both scripts and the engine. TypeScript.
 - Each zone carries its own generated `dist/`, gitignored and rebuilt from source. Not authored.
 
@@ -41,7 +41,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  └────────┬─────────┘     └──────────────────────┘              │
 │           │                                                     │
 │  ┌────────▼──────────────────────────────────────────────────┐  │
-│  │                       mcp-server/                         │  │
+│  │                       runtime/                         │  │
 │  │  ┌──────────┐ ┌──────────┐ ┌──────────────────────────┐   │  │
 │  │  │ hooks/   │ │handlers/ │ │           lib/           │   │  │
 │  │  │ claude/  │ │discovery │ │ validation / graph       │   │  │
@@ -61,8 +61,8 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  │ evals/         │     │ scoring/        │                     │
 │  └────────────────┘     └─────────────────┘                     │
 │                                                                 │
-│  Dependency direction: scripts/ ──▶ mcp-server/api/             │
-│                        mcp-server/ ──▶ shared/                  │
+│  Dependency direction: scripts/ ──▶ runtime/api/             │
+│                        runtime/ ──▶ shared/                  │
 │                        scripts/ ──▶ shared/                     │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
@@ -75,7 +75,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 ```text
 system-spec-kit/
 ├── scripts/                # CLI generation, validation, indexing, evals
-├── mcp-server/             # Spec-kit engine, consumed as a library
+├── runtime/             # Spec-kit engine, consumed as a library
 │   ├── api/                # Public barrel for the scripts workspace
 │   ├── handlers/           # Spec-document discovery and the save-path folder mutex
 │   ├── lib/                # Validation, graph metadata, description, continuity, resume
@@ -94,11 +94,11 @@ system-spec-kit/
 
 Allowed dependency direction:
 
-- `scripts/ ──▶ mcp-server/api/`
-- `mcp-server/ ──▶ shared/`
+- `scripts/ ──▶ runtime/api/`
+- `runtime/ ──▶ shared/`
 - `scripts/ ──▶ shared/`
 
-Reverse imports are blocked by lint and CI. Imports that reach past `mcp-server/api/` into `lib/`, `core/` or `handlers/` are rejected by the import-policy checks in `scripts/evals/` unless they carry a governed allowlist entry.
+Reverse imports are blocked by lint and CI. Imports that reach past `runtime/api/` into `lib/`, `core/` or `handlers/` are rejected by the import-policy checks in `scripts/evals/` unless they carry a governed allowlist entry.
 
 ---
 
@@ -152,7 +152,7 @@ Spec-kit ships a runtime hook surface that wires into each AI client's session l
 
 **Hook matrix.** Claude Code injects prompt-time briefs directly. OpenCode supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].opencode_hooks = true` in `~/opencode.json` and `~/.opencode/hooks.json` is wired. OpenCode delivers context through local plugins under `.opencode/plugins/`.
 
-**Plugin bridges and local plugins.** Bridge-backed OpenCode plugin entrypoints live under `.opencode/plugins/` and import thin helpers that call into `mcp-server/lib/hooks/` or sibling daemon surfaces. Standalone local plugins such as `.opencode/plugins/opencode-goal.js` stay in the same plugin directory but own their state and hooks directly instead of using a daemon bridge.
+**Plugin bridges and local plugins.** Bridge-backed OpenCode plugin entrypoints live under `.opencode/plugins/` and import thin helpers that call into `runtime/lib/hooks/` or sibling daemon surfaces. Standalone local plugins such as `.opencode/plugins/opencode-goal.js` stay in the same plugin directory but own their state and hooks directly instead of using a daemon bridge.
 
 **Payload shape.** Hooks share the same compact JSON payload (`bootstrap.json` style) across runtimes so callers can rely on consistent fields regardless of transport.
 
@@ -166,7 +166,7 @@ Spec-kit's quality gates run at three layers.
 
 **Save gate.** Every `/memory:save` runs through 3 layers: intake validation (input schema + duplicate detection), content router (places content in the right canonical doc), and post-save quality review (DQI scoring + structural lint).
 
-**Test surfaces.** Default `npm test` runs the engine suites through the bounded runner in `mcp-server/scripts/run-tests.mjs` and, through `mcp-server/package.json` `test:spec-validation`, the tracked spec-validation shell suites. Stress suites are opt-in via `vitest run --config vitest.stress.config.ts`.
+**Test surfaces.** Default `npm test` runs the engine suites through the bounded runner in `runtime/scripts/run-tests.mjs` and, through `runtime/package.json` `test:spec-validation`, the tracked spec-validation shell suites. Stress suites are opt-in via `vitest run --config vitest.stress.config.ts`.
 
 ---
 
@@ -188,5 +188,5 @@ Spec-kit's quality gates run at three layers.
 - [SKILL.md](./SKILL.md): Runtime routing and invariants
 - [feature-catalog/feature-catalog.md](./feature-catalog/feature-catalog.md): Current feature inventory
 - [manual-testing-playbook/manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md): Operator validation scenarios
-- [mcp-server/README.md](./mcp-server/README.md): MCP server package details
+- [runtime/README.md](./runtime/README.md): MCP server package details
 - [references/](./references/): Workflow contracts, hook references, validation playbooks

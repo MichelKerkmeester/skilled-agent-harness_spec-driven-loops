@@ -30,12 +30,12 @@ The adapters under test:
 
 | Adapter | Event | Core · entry | Class |
 |---|---|---|---|
-| `system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs` | PreToolUse | `spec-gate-core.mjs` · `evaluateMutation` | deny-capable |
-| `system-spec-kit/mcp-server/hooks/codex/spec-gate-classify.mjs` | UserPromptSubmit | `spec-gate-core.mjs` · `classifyIntent` | advisory |
+| `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | PreToolUse | `spec-gate-core.mjs` · `evaluateMutation` | deny-capable |
+| `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | UserPromptSubmit | `spec-gate-core.mjs` · `classifyIntent` | advisory |
 | `hooks/post-edit-quality/codex/post-edit-quality.cjs` | PostToolUse | `post-edit-router.cjs` · `resolveDispatch`/`runChecks` | advisory |
 | `.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
 | `.opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
-| `system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs` | Stop | `completion-evidence-sentinel.cjs` · `evaluateCompletionEvidence` | advisory |
+| `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` | Stop | `completion-evidence-sentinel.cjs` · `evaluateCompletionEvidence` | advisory |
 | `hooks/mcp-route-guard/codex/mcp-route-guard.cjs` | PreToolUse(`mcp__.*`) | `mcp-route-guard.cjs` · `evaluateNativeMcpCall` | advisory (dormant) |
 
 This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (allow / advise / deny / fail-open); a live `codex exec` run confirming the SessionStart, UserPromptSubmit, and Stop chains fire and that the injected Gate-3 advisory is honored by the model; and the idempotent installer merging the repo hook set into `~/.codex/hooks.json` while preserving pre-existing (Superset `notify.sh`) entries.
@@ -64,18 +64,18 @@ PROJ="$HOME/.codex-hook-fixtures/proj"; mkdir -p "$PROJ/.opencode/skills/.state/
 HEX=$(python3 -c "print('fix-sess'.encode().hex())")
 printf '{"status":"open","askedAtMs":1}\n' > "$PROJ/.opencode/skills/.state/spec-gate/$HEX.json"
 printf '%s' "{\"tool_name\":\"apply_patch\",\"tool_input\":{\"command\":\"*** Begin Patch\n*** Add File: src/app.ts\n+export const x=1;\n*** End Patch\"},\"cwd\":\"$PROJ\",\"session_id\":\"fix-sess\"}" \
-  | SYSTEM_SPEC_GATE_ENFORCE=1 node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs; echo "  exit=$?"
+  | SYSTEM_SPEC_GATE_ENFORCE=1 node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "  exit=$?"
 
 # fail-open — empty + malformed stdin exit 0 with no emit (every adapter)
-printf '' | node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs; echo "empty exit=$?"
-printf '{' | node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs; echo "malformed exit=$?"
+printf '' | node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "empty exit=$?"
+printf '{' | node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "malformed exit=$?"
 ```
 
 2. `spec-gate-classify` advisory on a mutation-intent prompt (fresh session dir → opens the gate, emits the Gate-3 menu):
 
 ```bash
 printf '%s' '{"prompt":"implement a new parser function and fix the failing test","cwd":"'"$HOME"'/.codex-hook-fixtures/fresh","session_id":"cls-1"}' \
-  | node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-classify.mjs; echo "  exit=$?"
+  | node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs; echo "  exit=$?"
 ```
 
 3. `dispatch-audit` records a `codex exec -p` dispatch shape (observe-only JSONL, no envelope):
@@ -220,12 +220,12 @@ Stop chain (resolved): an earlier run showed one `Stop Failed` while the other t
 ## 5. SOURCE FILES
 
 - Guard adapters (this parity set):
-  - `.opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs`
-  - `.opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-classify.mjs`
+  - `.opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs`
+  - `.opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs`
   - `.opencode/hooks/post-edit-quality/codex/post-edit-quality.cjs`
   - `.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs`
   - `.opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs`
-  - `.opencode/skills/system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs`
+  - `.opencode/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs`
   - `.opencode/hooks/mcp-route-guard/codex/mcp-route-guard.cjs`
 - Repo hook registration (versioned source of truth): `.codex/hooks.json`
 - Installer (merge into user-global `~/.codex/hooks.json`): `.opencode/bin/install-codex-hooks.mjs`

@@ -956,7 +956,7 @@
         ],
         "topScoringPaths": [
           ".opencode/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md",
-          ".opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--run--unspecified/benchmark-report.md"
+          ".opencode/skills/system-spec-kit/runtime/benchmarks/2026-05-20--run--unspecified/benchmark-report.md"
         ],
         "triggerPhrase": "threshold tuning",
         "variant": "exact"
@@ -2137,7 +2137,7 @@
         "variant": "distractor"
       }
     ],
-    "source": ".opencode/skills/system-spec-kit/mcp-server/tests/fixtures/trigger-goldens.json"
+    "source": ".opencode/skills/system-spec-kit/runtime/tests/fixtures/trigger-goldens.json"
   },
   "promptSetHash": "ae629454847b0ad1cb8183de37528af766b21c31d3be1e253921ad4a27daae42",
   "stemming": {
@@ -2230,7 +2230,7 @@
       }
     ],
     "scoringHits": 4,
-    "source": ".opencode/skills/system-spec-kit/mcp-server/tests/fixtures/golden-queries.json",
+    "source": ".opencode/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json",
     "total": 5
   }
 }

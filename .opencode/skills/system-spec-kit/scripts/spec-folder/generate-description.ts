@@ -23,8 +23,8 @@ import {
   slugifyFolderName,
   resolveSpecFolderIdentity,
   SpecFolderIdentityError,
-} from '@spec-kit/mcp-server/api';
-import type { LoadResult, PerFolderDescription } from '@spec-kit/mcp-server/api';
+} from '@spec-kit/runtime/api';
+import type { LoadResult, PerFolderDescription } from '@spec-kit/runtime/api';
 
 export { getRepairMergeSafe, loadExistingDescription };
 export type { LoadResult };

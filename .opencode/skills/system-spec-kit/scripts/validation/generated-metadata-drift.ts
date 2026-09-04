@@ -11,8 +11,8 @@
 import {
   checkGeneratedMetadataDrift,
   resolveGeneratedMetadataDrift,
-} from '../../mcp-server/lib/graph/generated-metadata-drift.js';
-import { isGeneratedMetadataDriftGateEnabled } from '../../mcp-server/lib/config/capability-flags.js';
+} from '../../runtime/lib/graph/generated-metadata-drift.js';
+import { isGeneratedMetadataDriftGateEnabled } from '../../runtime/lib/config/capability-flags.js';
 import { isMainModule } from '../lib/esm-entry.js';
 
 interface CliOptions {

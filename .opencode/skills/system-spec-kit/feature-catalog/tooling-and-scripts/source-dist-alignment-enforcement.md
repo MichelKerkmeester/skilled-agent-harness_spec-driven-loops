@@ -1,6 +1,6 @@
 ---
 title: "Source-dist alignment enforcement"
-description: "Source-dist alignment enforcement validates that every .js file in mcp-server/dist/lib/ has a corresponding .ts source file, detecting orphaned build artifacts."
+description: "Source-dist alignment enforcement validates that every .js file in runtime/dist/lib/ has a corresponding .ts source file, detecting orphaned build artifacts."
 trigger_phrases:
   - source-dist alignment enforcement
   - check-source-dist-alignment
@@ -16,7 +16,7 @@ version: 3.6.0.6
 
 ## 1. OVERVIEW
 
-Source-dist alignment enforcement validates that every `.js` file in `mcp-server/dist/lib/` has a corresponding `.ts` source file in `mcp-server/lib/`, detecting orphaned build artifacts that persist after source files are deleted or refactored.
+Source-dist alignment enforcement validates that every `.js` file in `runtime/dist/lib/` has a corresponding `.ts` source file in `runtime/lib/`, detecting orphaned build artifacts that persist after source files are deleted or refactored.
 
 Source files can be silently lost (deleted, renamed, or merged into other modules) while their compiled `dist/` output persists indefinitely. This creates phantom modules that appear functional at runtime but have no maintainable source. The alignment script catches this drift automatically.
 

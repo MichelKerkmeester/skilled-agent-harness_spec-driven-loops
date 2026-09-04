@@ -8,14 +8,14 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "@spec-kit/mcp-server/api": ["../mcp-server/api/index.ts"],
+      "@spec-kit/runtime/api": ["../runtime/api/index.ts"],
       "@spec-kit/shared/*": ["../shared/*"],
-      "@spec-kit/mcp-server/*": ["../mcp-server/*"]
+      "@spec-kit/runtime/*": ["../runtime/*"]
     }
   },
   "references": [
     { "path": "../shared" },
-    { "path": "../mcp-server" }
+    { "path": "../runtime" }
   ],
   "include": [
     "*.ts",

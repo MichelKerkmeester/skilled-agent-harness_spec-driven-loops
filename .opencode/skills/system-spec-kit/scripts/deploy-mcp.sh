@@ -39,7 +39,7 @@ build_pkg() {
 
 echo "== Building MCP server dists =="
 # spec-kit: builds @spec-kit/shared too via TS project references.
-build_pkg "spec-kit" ".opencode/skills/system-spec-kit/mcp-server"
+build_pkg "spec-kit" ".opencode/skills/system-spec-kit/runtime"
 # system-skill-advisor: build if it ships a build script.
 build_pkg "advisor" ".opencode/skills/system-skill-advisor/mcp-server"
 

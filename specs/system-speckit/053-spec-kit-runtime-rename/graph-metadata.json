@@ -46,11 +46,16 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "runtime/package.json",
+      "scripts/package.json",
+      "scripts/tsconfig.json",
+      "scripts/lib/dist-freshness.cjs",
+      ".opencode/bin/hf-model-server.cjs",
       ".claude/settings.json",
+      ".opencode/skills/system-spec-kit/runtime/package.json",
       ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      "scripts/tsconfig.json",
-      ".opencode/bin/hf-model-server.cjs"
+      "scratch/inventory.md"
     ],
     "entities": [
       {
@@ -84,21 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
+        "name": "package.json",
         "kind": "config",
-        "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "dist-freshness.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "path": "runtime/package.json",
         "source": "derived"
       },
       {
@@ -108,9 +101,33 @@
         "source": "derived"
       },
       {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": "scripts/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
         "name": "hf-model-server.cjs",
         "kind": "file",
         "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "scratch/inventory.md",
         "source": "derived"
       },
       {
@@ -184,23 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The memory decommission deleted the MCP server, its tools and its database, but kept the package that held them because the validation orchestrator, the metadata refresh, the continuity writer and the per-runtime hook adapters live inside it",
     "created_at": "2026-09-04T19:16:06Z",
-    "last_save_at": "2026-09-04T19:18:27.696Z",
+    "last_save_at": "2026-09-04T21:08:05.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85f153c8bf7b1c89dfa8e8249dd1f77b970def00771be9f05a5b09cfc74511ff",
+    "source_fingerprint": "sha256:2cf3eb2a51dd116865f4caedeecd1f4e660d1402f80abfad432294ffd47f2687",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "90e86ab44c3abe6eb2288d7e2eac923f76855f138ff3b0ee76495cc44c55f3d5",
       "plan.md": "22895deca2ae469fa13740262b2d43596801462a1c0dd8581eeafeda81786bd7",
-      "tasks.md": "52d3c8bfbd4a7867293c3b774ed5d410d2e48d8ec8da86840398208b61ed1c35",
-      "implementation-summary.md": "d826fddba85fa2b5098469910ae51cf64c1a286ed982b6cfc4e7e3ce5ac82f7f"
+      "tasks.md": "7d8af4b2d757d6fb52e12da56138d320f68e29e48ed96703830f55945cc0082d",
+      "implementation-summary.md": "023649cbe862a24561ee41b660ef596065eb225f5f153978b1f858f42211d26d"
     },
     "last_active_child_id": null,
     "last_active_at": null

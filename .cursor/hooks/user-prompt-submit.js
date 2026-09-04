@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/user-prompt-submit.js
+../../.opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js

@@ -55,7 +55,7 @@ The branch delegates to `orphan-mcp-sweeper.sh`, which reaps only ownerless MCP 
 
 | File | Type | Role |
 |---|---|---|
-| `mcp-server/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Automated test | Unit-tests the default-off no-op, dry-run and live mode gating, delegation to the orphan-only sweeper and the test-override sweeper path |
+| `runtime/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Automated test | Unit-tests the default-off no-op, dry-run and live mode gating, delegation to the orphan-only sweeper and the test-override sweeper path |
 
 ---
 

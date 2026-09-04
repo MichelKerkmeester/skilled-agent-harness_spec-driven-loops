@@ -61,7 +61,7 @@ Errors: 0
 Warnings: 1
 
 Actionable findings:
-- mcp-server/scripts/evals/generate-known-item-ground-truth.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- runtime/scripts/evals/generate-known-item-ground-truth.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
 
 Note: warnings are non-blocking by default. Use --fail-on-warn to make warnings fail.
 ```

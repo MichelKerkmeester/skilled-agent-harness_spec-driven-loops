@@ -90,7 +90,7 @@ Privilege the YAML synthesis step and reducer behavior over secondary docs if th
 | `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Confirm-mode synthesis emission step |
 | `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Reducer flag handling and write path |
 | `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Shared template renderer and review-shape adapter |
-| `.opencode/skills/system-spec-kit/mcp-server/scripts/tests/resource-map-extractor.vitest.ts` | Focused regression coverage for the emitted output shape |
+| `.opencode/skills/system-spec-kit/runtime/scripts/tests/resource-map-extractor.vitest.ts` | Focused regression coverage for the emitted output shape |
 
 ---
 

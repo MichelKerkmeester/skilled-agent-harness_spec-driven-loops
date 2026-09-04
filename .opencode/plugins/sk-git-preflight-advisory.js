@@ -19,7 +19,7 @@ import {
 } from '../hooks/dispatch/lib/dispatch-rule-checks.mjs';
 import { createGitContext } from '../skills/sk-git/scripts/lib/git-context.mjs';
 import { GIT_CHECKS, GIT_SHAPE } from '../skills/sk-git/scripts/lib/git-rule-checks.mjs';
-import { findRepoRoot } from '../skills/system-spec-kit/mcp-server/hooks/lib/workspace/repo-root.mjs';
+import { findRepoRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');

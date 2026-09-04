@@ -43,7 +43,7 @@ Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session 
 
 #### Description
 
-Automates two import rules: `shared/` must not import from `mcp-server/` or `scripts/`, and `mcp-server/scripts/` must contain only thin wrappers.
+Automates two import rules: `shared/` must not import from `runtime/` or `scripts/`, and `runtime/scripts/` must contain only thin wrappers.
 
 #### Current Reality
 

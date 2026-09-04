@@ -72,10 +72,10 @@ dist/
 # ───────────────────────────────────────────
 # TypeScript compiler output: system-spec-kit
 # ───────────────────────────────────────────
-.opencode/skills/system-spec-kit/mcp-server/lib/**/*.js
-.opencode/skills/system-spec-kit/mcp-server/lib/**/*.js.map
-.opencode/skills/system-spec-kit/mcp-server/lib/**/*.d.ts
-.opencode/skills/system-spec-kit/mcp-server/lib/**/*.d.ts.map
+.opencode/skills/system-spec-kit/runtime/lib/**/*.js
+.opencode/skills/system-spec-kit/runtime/lib/**/*.js.map
+.opencode/skills/system-spec-kit/runtime/lib/**/*.d.ts
+.opencode/skills/system-spec-kit/runtime/lib/**/*.d.ts.map
 .opencode/skills/system-spec-kit/shared/**/*.js
 .opencode/skills/system-spec-kit/shared/**/*.js.map
 .opencode/skills/system-spec-kit/shared/**/*.d.ts
@@ -162,8 +162,8 @@ sweep-reports/
 # ───────────────────────────────────────────
 # Runtime: system-spec-kit
 # ───────────────────────────────────────────
-.opencode/skills/system-spec-kit/mcp-server/.opencode/
-.opencode/skills/system-spec-kit/mcp-server/skill_advisor/scripts/out/*.json
+.opencode/skills/system-spec-kit/runtime/.opencode/
+.opencode/skills/system-spec-kit/runtime/skill_advisor/scripts/out/*.json
 
 # ───────────────────────────────────────────
 # Runtime state leaked into nested trees
@@ -303,5 +303,5 @@ specs/**/lineages/*/.codex-home/
 # tree on demand and reach tens of gigabytes, so they are machine state rather
 # than history: committing one would bloat every clone forever to describe an
 # index that is stale the moment a spec doc changes.
-.opencode/skills/system-spec-kit/mcp-server/database/
-.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl
+.opencode/skills/system-spec-kit/runtime/database/
+.opencode/skills/system-spec-kit/runtime/data/search-decisions.jsonl

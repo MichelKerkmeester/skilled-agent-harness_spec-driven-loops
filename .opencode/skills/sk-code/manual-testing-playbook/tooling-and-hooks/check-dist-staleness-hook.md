@@ -20,16 +20,16 @@ This scenario verifies the dist-staleness half of `.opencode/skills/sk-code/sk-c
 
 **Exact prompt**:
 ```
-Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.
+Edit .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.
 ```
 
-Prompt: `Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.`
+Prompt: `Edit .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.`
 
 **Expected detection**: not applicable — this is a deterministic hook-wiring check, not a routing decision (no advisor probe, no surface/reference loading).
 
 **Expected behavior (intended contract)**:
 - The hook receives the standard Claude Code PostToolUse stdin JSON (`tool_name`, `tool_input.file_path`, `cwd`) for the edited file.
-- `check-dist-staleness.sh` resolves the file against `dist-freshness.cjs`'s `DIST_PACKAGES` registry, finds the `system-spec-kit/mcp-server` package stale, and prints `STALE DIST WARNING: @spec-kit/mcp-server -- run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build` to stdout.
+- `check-dist-staleness.sh` resolves the file against `dist-freshness.cjs`'s `DIST_PACKAGES` registry, finds the `system-spec-kit/runtime` package stale, and prints `STALE DIST WARNING: @spec-kit/runtime -- run: cd .opencode/skills/system-spec-kit/runtime && npm run build` to stdout.
 - The hook's own stdout wraps that line in blank lines and the process exits 0.
 
 **Desired user-visible outcome**: A stale build a session is about to keep editing on top of gets flagged in-session, without ever blocking the edit itself.
@@ -48,12 +48,12 @@ Prompt: `Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchest
 
 1. **Make the target package's dist stale** (reversible — see `manual-testing-playbook/tooling-and-scripts/cli-dist-freshness-guard.md` in the system-spec-kit skill for the same recipe used against the identical package):
    ```bash
-   SOURCE=.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts
-   DIST=.opencode/skills/system-spec-kit/mcp-server/dist/lib/validation/orchestrator.js
+   SOURCE=.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+   DIST=.opencode/skills/system-spec-kit/runtime/dist/lib/validation/orchestrator.js
    BAK=$(mktemp); cp "$SOURCE" "$BAK"
    printf '\n' >> "$SOURCE"
    touch -t 202001010000 "$DIST"
-   rm -f .opencode/skills/system-spec-kit/mcp-server/dist/lib/validation/.dist-freshness-system-spec-kit-mcp_server-*.json
+   rm -f .opencode/skills/system-spec-kit/runtime/dist/lib/validation/.dist-freshness-system-spec-kit-mcp_server-*.json
    ```
 2. **Invoke the checker directly** to confirm the underlying banner logic independent of the hook's subprocess call:
    ```bash
@@ -68,7 +68,7 @@ Prompt: `Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchest
    ```bash
    cp "$BAK" "$SOURCE"; rm -f "$BAK"
    touch "$DIST"
-   rm -f .opencode/skills/system-spec-kit/mcp-server/dist/lib/validation/.dist-freshness-system-spec-kit-mcp_server-*.json
+   rm -f .opencode/skills/system-spec-kit/runtime/dist/lib/validation/.dist-freshness-system-spec-kit-mcp_server-*.json
    ```
    Confirm `git diff --stat -- "$SOURCE"` is empty of unexpected drift (it may show the repo's own pre-existing uncommitted lines on this branch if any were present before the test — do not `git checkout` the file to "clean" it, since that discards real uncommitted work; only restore via the backup copy).
 
@@ -76,7 +76,7 @@ Prompt: `Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchest
 
 | Step | Signal (intended contract, checker executable) | Signal (current shipped state, checker not executable) |
 |---|---|---|
-| 2 | stdout: `STALE DIST WARNING: @spec-kit/mcp-server -- run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build`; `direct_exit=0` | Same — direct `python3` invocation bypasses the file's own execute bit, so step 2 always shows the intended banner regardless of the gap |
+| 2 | stdout: `STALE DIST WARNING: @spec-kit/runtime -- run: cd .opencode/skills/system-spec-kit/runtime && npm run build`; `direct_exit=0` | Same — direct `python3` invocation bypasses the file's own execute bit, so step 2 always shows the intended banner regardless of the gap |
 | 3 | hook stdout contains the STALE DIST WARNING banner (blank-line wrapped); `hook_exit=0` | hook stdout is empty; stderr contains `WARNING: dist staleness checker failed: [Errno 13] Permission denied: '<abs path to check-dist-staleness.sh>'`; `hook_exit=0` (still) |
 
 ### Pass/Fail Criteria
@@ -87,7 +87,7 @@ Prompt: `Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchest
 ### Failure Triage
 
 1. **Banner missing, stderr shows `Permission denied` on `check-dist-staleness.sh`**: this is the known current gap (§1). Fix: `chmod +x .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` (mirrors `check-comment-hygiene.sh`'s existing `-rwxr-xr-x`), then re-run step 3.
-2. **Banner missing with no stderr warning**: confirm the edited file's absolute path actually falls under `dist-freshness.cjs`'s `DIST_PACKAGES` source candidates for `system-spec-kit/mcp-server` (`lib/validation` is a watched `entrySourceCandidates` path for the `validation-orchestrator` entry, but the default entry's candidates differ — verify with `node .opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs check-file --file "$SOURCE" --json`).
+2. **Banner missing with no stderr warning**: confirm the edited file's absolute path actually falls under `dist-freshness.cjs`'s `DIST_PACKAGES` source candidates for `system-spec-kit/runtime` (`lib/validation` is a watched `entrySourceCandidates` path for the `validation-orchestrator` entry, but the default entry's candidates differ — verify with `node .opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs check-file --file "$SOURCE" --json`).
 3. **Hook exits non-zero**: this breaks the warn-only contract and is a regression — inspect `claude-posttooluse.sh`'s outer `try`/`except` around the dist-checker `subprocess.run` call; it must never propagate a checker failure as a hook failure.
 4. **Restore leaves a diff on `orchestrator.ts`**: the restore did not land — re-run `cp "$BAK" "$SOURCE"` from the still-open backup path before doing anything else; never use `git checkout` to "clean" this file, since it may carry unrelated real uncommitted work on the active branch.
 

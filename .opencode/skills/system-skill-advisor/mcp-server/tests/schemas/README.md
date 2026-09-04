@@ -47,7 +47,7 @@ schemas/
 Run from the repository root.
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run skill_advisor/tests/schemas
+cd .opencode/skills/system-spec-kit/runtime && npx vitest run skill_advisor/tests/schemas
 ```
 
 Expected result: schema parsing and workspace root bounds checks pass.

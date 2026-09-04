@@ -54,7 +54,7 @@ function makeFixtureTree(): { allowlistPath: string; root: string } {
   writeFile(root, '.opencode/commands/demo/run.md', 'Call memory_search before answering.\n');
   writeFile(root, 'specs/demo/research/notes.md', 'The old loop called memory_context here.\n');
   writeFile(root, 'docs/exempt-note.md', 'Historic note about memory_save.\n');
-  writeFile(root, '.opencode/skills/system-spec-kit/mcp-server/handler.ts', 'export const tool = "memory_stats";\n');
+  writeFile(root, '.opencode/skills/system-spec-kit/runtime/handler.ts', 'export const tool = "memory_stats";\n');
   const allowlistPath = writeAllowlist(root, [
     { pathPrefixOrGlob: 'docs/exempt-note.md', reason: 'deliberate survivor for this fixture' },
   ]);
@@ -188,14 +188,14 @@ describe('sweep', () => {
       allowlistReason: 'deliberate survivor for this fixture',
       class: 'allowlisted',
     });
-    expect(byPath.get('.opencode/skills/system-spec-kit/mcp-server/handler.ts')).toMatchObject({ class: 'live', term: 'memory_stats' });
+    expect(byPath.get('.opencode/skills/system-spec-kit/runtime/handler.ts')).toMatchObject({ class: 'live', term: 'memory_stats' });
 
     expect(report.counts).toMatchObject({ allowlisted: 1, historical: 1, live: 2 });
     expect(report.liveBySurface.commands).toBe(1);
     expect(report.unparsedLines).toBe(0);
     expect(report.topLivePaths).toEqual([
       { path: '.opencode/commands/demo/run.md', records: 1 },
-      { path: '.opencode/skills/system-spec-kit/mcp-server/handler.ts', records: 1 },
+      { path: '.opencode/skills/system-spec-kit/runtime/handler.ts', records: 1 },
     ]);
   });
 

@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/mcp-server/hooks/claude/completion-evidence-stop.cjs
+../../.opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs

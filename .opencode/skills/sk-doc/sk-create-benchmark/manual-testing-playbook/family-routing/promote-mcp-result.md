@@ -40,13 +40,13 @@ Operators run the exact prompt and command sequence for `BMR-001` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| BMR-001 | Promote a completed MCP result | Route a completed MCP bake-off to the promotion family | `Promote this completed MCP bake-off into the consuming skill. Check that the decision is accepted, the fixture is stable and the replay commands are recorded.` | 1. `agent: Read SKILL.md section 2 and identify the MCP promotion family` -> 2. `agent: Read SKILL.md section 3 and list the adoption gate` -> 3. `bash: test -d .opencode/skills/system-spec-kit/mcp-server` -> 4. `agent: State the report, source and copied-evidence artifacts` | Steps 1 and 2 select the `shared` family and name the accepted decision, stable fixture and replay commands. Step 3 exits 0. Step 4 names the ten-section report, source pointer and evidence files | Exact prompt, quoted adoption gate, command output and exit status, target check, artifact list and family decision | PASS if all gate inputs and artifacts are evidenced. FAIL if the run invents a winner, skips the target check or crosses into scoring | 1. Confirm the family table was read. 2. Recheck the adoption gate. 3. Confirm the run describes authoring only and does not claim execution |
+| BMR-001 | Promote a completed MCP result | Route a completed MCP bake-off to the promotion family | `Promote this completed MCP bake-off into the consuming skill. Check that the decision is accepted, the fixture is stable and the replay commands are recorded.` | 1. `agent: Read SKILL.md section 2 and identify the MCP promotion family` -> 2. `agent: Read SKILL.md section 3 and list the adoption gate` -> 3. `bash: test -d .opencode/skills/system-spec-kit/runtime` -> 4. `agent: State the report, source and copied-evidence artifacts` | Steps 1 and 2 select the `shared` family and name the accepted decision, stable fixture and replay commands. Step 3 exits 0. Step 4 names the ten-section report, source pointer and evidence files | Exact prompt, quoted adoption gate, command output and exit status, target check, artifact list and family decision | PASS if all gate inputs and artifacts are evidenced. FAIL if the run invents a winner, skips the target check or crosses into scoring | 1. Confirm the family table was read. 2. Recheck the adoption gate. 3. Confirm the run describes authoring only and does not claim execution |
 
 ### Commands
 
 1. `agent: Read SKILL.md section 2 and identify the MCP promotion family`
 2. `agent: Read SKILL.md section 3 and list the adoption gate`
-3. `bash: test -d .opencode/skills/system-spec-kit/mcp-server`
+3. `bash: test -d .opencode/skills/system-spec-kit/runtime`
 4. `agent: State the report, source and copied-evidence artifacts`
 
 ### Expected

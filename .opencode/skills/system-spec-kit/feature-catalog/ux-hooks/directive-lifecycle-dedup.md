@@ -61,7 +61,7 @@ Kill switches:
 | `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts` | Hardened cross-process durable store. |
 | `.opencode/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts` | Canonical trusted-boundary target. |
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Prompt adapter applying the canonical decision. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/claude/directive-lifecycle-boundary.ts` | Registered runtime-to-advisor boundary bridge. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts` | Registered runtime-to-advisor boundary bridge. |
 | `.opencode/plugins/system-skill-advisor.js` | OpenCode identity, generation, epoch, and directive-delivery mirror. |
 | `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | Pi lifecycle delivery. |
 
@@ -73,8 +73,8 @@ Kill switches:
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle-boundary.vitest.ts` | Identified and global boundary invalidation tests. |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Claude handler cadence, fallback, flag, and transcript integration. |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/system-skill-advisor-plugin.vitest.ts` | OpenCode cadence, identity rejection, global invalidation, and status tests. |
-| `.opencode/skills/system-spec-kit/mcp-server/tests/directive-lifecycle-adapter-parity.vitest.ts` | Registered Claude/Codex/Cursor/Devin payload and envelope parity. |
-| `.opencode/skills/system-spec-kit/mcp-server/tests/directive-lifecycle-boundary-bridge.vitest.ts` | Registered host-boundary coupling. |
+| `.opencode/skills/system-spec-kit/runtime/tests/directive-lifecycle-adapter-parity.vitest.ts` | Registered Claude/Codex/Cursor/Devin payload and envelope parity. |
+| `.opencode/skills/system-spec-kit/runtime/tests/directive-lifecycle-boundary-bridge.vitest.ts` | Registered host-boundary coupling. |
 | `.opencode/hooks/dispatch/pi` | Pi dispatch and lifecycle suite. |
 | `.opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md` | Evidence-class-aware operator scenario. |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs` | Append-only reports with durable hashes and observed provenance. |

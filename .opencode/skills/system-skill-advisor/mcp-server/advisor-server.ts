@@ -98,7 +98,7 @@ async function loadSkillGraphWatchFactory(): Promise<(paths: string[], options: 
   const workspaceRoot = resolveWorkspaceRoot();
   const candidates = [
     path.join(workspaceRoot, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'node_modules', 'chokidar', 'index.js'),
-    path.join(workspaceRoot, '.opencode', 'skills', 'system-spec-kit', 'mcp-server', 'node_modules', 'chokidar', 'index.js'),
+    path.join(workspaceRoot, '.opencode', 'skills', 'system-spec-kit', 'runtime', 'node_modules', 'chokidar', 'index.js'),
   ];
   const chokidarPath = candidates.find((candidate) => fs.existsSync(candidate));
   if (!chokidarPath) {

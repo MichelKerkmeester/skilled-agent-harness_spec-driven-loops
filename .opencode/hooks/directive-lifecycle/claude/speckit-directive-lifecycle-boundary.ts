@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/claude/directive-lifecycle-boundary.ts
+../../../skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts

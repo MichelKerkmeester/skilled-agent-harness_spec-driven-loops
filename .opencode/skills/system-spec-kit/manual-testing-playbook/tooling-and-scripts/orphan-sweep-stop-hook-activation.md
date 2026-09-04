@@ -40,7 +40,7 @@ Validate the Stop-hook orphan-sweep fallback and confirm it is default-off and o
 ### Commands
 
 1. `bash -n .opencode/scripts/session-cleanup.sh`
-2. `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-stop-hook-orphan-sweep.vitest.ts`
+2. `cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/launcher-stop-hook-orphan-sweep.vitest.ts`
 3. `rg -n "run_orphan_sweep_fallback|SPECKIT_STOP_HOOK_ORPHAN_SWEEP" .opencode/scripts/session-cleanup.sh`
 
 ### Expected
@@ -62,7 +62,7 @@ Exit status: 0
 Command 2:
 
 ```text
-$ cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-stop-hook-orphan-sweep.vitest.ts
+$ cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/launcher-stop-hook-orphan-sweep.vitest.ts
 
  RUN  v4.1.9 .opencode/skills/system-spec-kit
 
@@ -107,7 +107,7 @@ If the syntax check fails, inspect the function placement and the shell quoting 
 |---|---|
 | `.opencode/scripts/session-cleanup.sh` | Primary implementation anchor |
 | `.opencode/scripts/orphan-mcp-sweeper.sh` | Orphan-only sweeper anchor |
-| `mcp-server/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Regression or validation anchor |
+| `runtime/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Regression or validation anchor |
 
 ---
 

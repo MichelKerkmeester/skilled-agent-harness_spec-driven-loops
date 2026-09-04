@@ -80,7 +80,7 @@ B) Create a new spec folder
 ```
 
 - **Trigger:** a user prompt the classifier scores as a probable file mutation, once per session until answered.
-- **Owning module:** `system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent`).
+- **Owning module:** `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent`).
 - **Channel per runtime:** Claude/Cursor/Devin/Codex `[SYS]` (`spec-gate-classify.mjs` -> `additionalContext`). OpenCode `[SYS]` (`system-spec-gate.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`spec-gate-classify.ts` appends the question onto the visible prompt via the same `input`-transform mechanism as the advisor brief, and the two chain additively, so both appear in the same visibly-modified prompt).
 
 ### Goal / Dist-Freshness Context (OpenCode only)
@@ -194,7 +194,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 **Injects:** a startup or resume brief: a session-context surface on cold start, or a cached compaction/resume payload.
 
 - **Trigger:** `session_start` (Pi) / `SessionStart` (Claude/Cursor/Devin/Codex).
-- **Owning module:** `system-spec-kit/mcp-server/hooks/claude/session-prime.ts`. Emits **plain text**, not a JSON envelope. Every proxy that wraps it (`emitDevinContext`, Pi's `session-start-context.ts`) constructs the envelope on the way out. `session-prime.js` itself does not.
+- **Owning module:** `system-spec-kit/runtime/hooks/claude/session-prime.ts`. Emits **plain text**, not a JSON envelope. Every proxy that wraps it (`emitDevinContext`, Pi's `session-start-context.ts`) constructs the envelope on the way out. `session-prime.js` itself does not.
 - **Channel:** `[SYS]` on Claude/Cursor/Devin/Codex (SessionStart context is not rendered as a chat bubble by default). Pi's bridge delivers it via `pi.sendMessage()`, which is confirmed live-visible to the model (a live session's reply referenced content only present in this injected text), but rendered with `display: false`, so it is **not** visible to the human by default either. Pi's `[MSG]` behavior is specific to the `input`-event transform, not every injection path.
 
 ### Session Stop / Cleanup
@@ -214,7 +214,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 **Injects:** a composed recovery block: retained summary and active spec-folder pointer.
 
 - **Trigger:** `PostCompaction` (Devin) / `session_compact` (Pi). Devin's `PostCompaction` fires *after* compaction with only `session_id` and a possibly-null summary, a materially different contract from Claude's `PreCompact`-then-cached-`SessionStart` chain, per `post-compaction.cjs`'s own header comment.
-- **Owning module:** `system-spec-kit/mcp-server/hooks/devin/post-compaction.cjs`. Pi's `session-compact-context.ts` is a native port of the same recovery chain, not a proxy.
+- **Owning module:** `system-spec-kit/runtime/hooks/devin/post-compaction.cjs`. Pi's `session-compact-context.ts` is a native port of the same recovery chain, not a proxy.
 - **Channel:** `[SYS]` (Devin's `hookSpecificOutput.additionalContext`). Pi via `pi.sendMessage({display: false})`, same invisible-to-human caveat as Session Start Context.
 
 ### Completion Evidence Sentinel

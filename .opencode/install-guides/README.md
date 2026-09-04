@@ -924,7 +924,7 @@ Emergency procedures for backup, recovery and clean uninstallation of OpenCode c
 
 ```bash
 # Backup
-BACKUP="$HOME/.opencode-backup-$(date +%Y%m%d-%H%M%S)" && mkdir -p "$BACKUP" && cp opencode.json .utcp_config.json "$BACKUP/" 2>/dev/null && cp -r .opencode/skills/system-spec-kit/mcp-server/database "$BACKUP/" 2>/dev/null && echo "✅ Backed up to $BACKUP"
+BACKUP="$HOME/.opencode-backup-$(date +%Y%m%d-%H%M%S)" && mkdir -p "$BACKUP" && cp opencode.json .utcp_config.json "$BACKUP/" 2>/dev/null && cp -r .opencode/skills/system-spec-kit/runtime/database "$BACKUP/" 2>/dev/null && echo "✅ Backed up to $BACKUP"
 
 # List backups
 ls -lhd ~/.opencode-backup-* 2>/dev/null || echo "No backups found"

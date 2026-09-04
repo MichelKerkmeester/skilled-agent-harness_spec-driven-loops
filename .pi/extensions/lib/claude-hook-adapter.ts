@@ -1,1 +1,1 @@
-../../../.opencode/skills/system-spec-kit/mcp-server/hooks/pi/lib/claude-hook-adapter.ts
+../../../.opencode/skills/system-spec-kit/runtime/hooks/pi/lib/claude-hook-adapter.ts

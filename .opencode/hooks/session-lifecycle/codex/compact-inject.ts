@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/codex/compact-inject.ts
+../../../skills/system-spec-kit/runtime/hooks/codex/compact-inject.ts

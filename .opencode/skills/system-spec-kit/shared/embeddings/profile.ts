@@ -277,21 +277,21 @@ function resolveDefaultActiveProfileDbDir(): string {
   }
 
   const workspaceRoot = findUp(process.cwd(), (dir) => (
-    fs.existsSync(path.join(dir, 'mcp-server', 'database'))
+    fs.existsSync(path.join(dir, 'runtime', 'database'))
     && fs.existsSync(path.join(dir, 'shared'))
   ));
   if (workspaceRoot) {
-    return path.join(workspaceRoot, 'mcp-server', 'database');
+    return path.join(workspaceRoot, 'runtime', 'database');
   }
 
   const repoRoot = findUp(process.cwd(), (dir) => (
-    fs.existsSync(path.join(dir, '.opencode', 'skills', 'system-spec-kit', 'mcp-server', 'database'))
+    fs.existsSync(path.join(dir, '.opencode', 'skills', 'system-spec-kit', 'runtime', 'database'))
   ));
   if (repoRoot) {
-    return path.join(repoRoot, '.opencode', 'skills', 'system-spec-kit', 'mcp-server', 'database');
+    return path.join(repoRoot, '.opencode', 'skills', 'system-spec-kit', 'runtime', 'database');
   }
 
-  return path.resolve(process.cwd(), 'mcp-server', 'database');
+  return path.resolve(process.cwd(), 'runtime', 'database');
 }
 
 export function resolveActiveProfileDbPath(profile?: EmbeddingProfile, dbDir?: string): string {

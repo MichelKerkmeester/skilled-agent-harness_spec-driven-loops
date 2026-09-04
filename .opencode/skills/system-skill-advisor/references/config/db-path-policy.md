@@ -50,7 +50,7 @@ The advisor database lives inside the standalone advisor skill package:
 It must not live under:
 
 ```text
-.opencode/skills/system-spec-kit/mcp-server/database/
+.opencode/skills/system-spec-kit/runtime/database/
 ```
 
 SQLite sidecars stay beside the database file:
@@ -79,7 +79,7 @@ This separation gives cleaner mutation scope:
 
 `SYSTEM_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only. `SYSTEM_SKILL_ADVISOR_DB_DIR` remains a legacy fallback for existing scripts.
 
-Production and operator docs should treat the package-local path as the default. A runtime override must not be used to silently re-collocate the advisor DB with `system-spec-kit/mcp-server/database/`.
+Production and operator docs should treat the package-local path as the default. A runtime override must not be used to silently re-collocate the advisor DB with `system-spec-kit/runtime/database/`.
 
 ### Child-process `MEMORY_DB_PATH` pointer
 

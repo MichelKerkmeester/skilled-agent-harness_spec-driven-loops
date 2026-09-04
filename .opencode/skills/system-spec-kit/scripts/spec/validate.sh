@@ -23,8 +23,8 @@ fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly VALIDATOR_REGISTRY_JSON="$SCRIPT_DIR/../lib/validator-registry.json"
-readonly ORCHESTRATOR_JS="$SCRIPT_DIR/../../mcp-server/dist/lib/validation/orchestrator.js"
-readonly ORCHESTRATOR_TS="$SCRIPT_DIR/../../mcp-server/lib/validation/orchestrator.ts"
+readonly ORCHESTRATOR_JS="$SCRIPT_DIR/../../runtime/dist/lib/validation/orchestrator.js"
+readonly ORCHESTRATOR_TS="$SCRIPT_DIR/../../runtime/lib/validation/orchestrator.ts"
 readonly TSX_LOADER="$SCRIPT_DIR/../node_modules/tsx/dist/loader.mjs"
 readonly DIST_FRESHNESS_CJS="$SCRIPT_DIR/../lib/dist-freshness.cjs"
 readonly VERSION="3.0.0"
@@ -277,11 +277,11 @@ resolve_orchestrator() {
         if [[ -f "$DIST_FRESHNESS_CJS" ]]; then
             local freshness_output=""
             local freshness_rc=0
-            freshness_output=$(node "$DIST_FRESHNESS_CJS" check --package system-spec-kit/mcp-server --entry validation-orchestrator 2>&1) || freshness_rc=$?
+            freshness_output=$(node "$DIST_FRESHNESS_CJS" check --package system-spec-kit/runtime --entry validation-orchestrator 2>&1) || freshness_rc=$?
             if [[ "$freshness_rc" -eq 69 ]]; then
                 echo "ERROR: validate.sh compiled validation orchestrator is stale." >&2
                 [[ -n "$freshness_output" ]] && echo "$freshness_output" >&2
-                echo "Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build" >&2
+                echo "Run: cd .opencode/skills/system-spec-kit/runtime && npm run build" >&2
                 exit 3
             elif [[ "$freshness_rc" -ne 0 ]]; then
                 echo "WARNING: dist freshness check could not run (exit $freshness_rc): $freshness_output" >&2
@@ -298,7 +298,7 @@ resolve_orchestrator() {
 
     echo "ERROR: no validation orchestrator is available." >&2
     echo "Expected a build at $ORCHESTRATOR_JS" >&2
-    echo "Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build" >&2
+    echo "Run: cd .opencode/skills/system-spec-kit/runtime && npm run build" >&2
     exit 3
 }
 

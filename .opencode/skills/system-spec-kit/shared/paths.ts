@@ -25,7 +25,7 @@ function hasPackageJson(dir: string): boolean {
 
 function hasWorkspaceDirectories(dir: string): boolean {
   return (
-    fs.existsSync(path.join(dir, 'mcp-server')) &&
+    fs.existsSync(path.join(dir, 'runtime')) &&
     fs.existsSync(path.join(dir, 'shared'))
   );
 }
@@ -61,7 +61,7 @@ function resolveComparablePath(targetPath: string): string {
 function fallbackResolvedPath(label: 'package root' | 'database dir'): string {
   return label === 'package root'
     ? resolveImportMetaRelativePackageRoot()
-    : path.join(resolveImportMetaRelativePackageRoot(), 'mcp-server', 'database');
+    : path.join(resolveImportMetaRelativePackageRoot(), 'runtime', 'database');
 }
 
 function isTestContext(): boolean {
@@ -77,7 +77,7 @@ function isTestContext(): boolean {
 }
 
 function isProductionDatabaseDir(resolvedPath: string): boolean {
-  const productionDatabaseDir = path.join(resolveImportMetaRelativePackageRoot(), 'mcp-server', 'database');
+  const productionDatabaseDir = path.join(resolveImportMetaRelativePackageRoot(), 'runtime', 'database');
   return resolveComparablePath(resolvedPath) === resolveComparablePath(productionDatabaseDir);
 }
 
@@ -152,7 +152,7 @@ export function resolveDatabaseDir(): string {
   if (configuredDir) {
     return validateResolvedPath('database dir', path.resolve(process.cwd(), configuredDir));
   }
-  return validateResolvedPath('database dir', path.join(resolvePackageRoot(), 'mcp-server', 'database'));
+  return validateResolvedPath('database dir', path.join(resolvePackageRoot(), 'runtime', 'database'));
 }
 
 function resolveDerivedDbPath(databaseDir = resolveDatabaseDir()): string {

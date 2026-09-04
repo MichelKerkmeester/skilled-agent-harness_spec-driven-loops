@@ -10,9 +10,9 @@
 import * as path from 'path';
 
 const PROHIBITED_PACKAGE_IMPORTS = [
-  '@spec-kit/mcp-server/lib',
-  '@spec-kit/mcp-server/core',
-  '@spec-kit/mcp-server/handlers',
+  '@spec-kit/runtime/lib',
+  '@spec-kit/runtime/core',
+  '@spec-kit/runtime/handlers',
 ];
 
 const RELATIVE_INTERNAL_RUNTIME_IMPORT_RE =
@@ -39,7 +39,7 @@ function normalizeRelativeImportPath(importPath: string): string {
 
 /**
  * Normalize package-scoped import paths that contain `..` traversal segments.
- * E.g., `@spec-kit/mcp-server/api/../lib/foo` → `@spec-kit/mcp-server/lib/foo`
+ * E.g., `@spec-kit/runtime/api/../lib/foo` → `@spec-kit/runtime/lib/foo`
  */
 function normalizePackageImportPath(importPath: string): string {
   if (importPath.startsWith('.') || !importPath.includes('..')) {

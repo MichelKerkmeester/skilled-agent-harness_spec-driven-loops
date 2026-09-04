@@ -24,7 +24,7 @@ Prompt: this scenario runs the full P1-P15 / N1-N5 probe battery listed below th
 
 | ID | Surface | Sub-language | Prompt |
 |---|---|---|---|
-| P1 | OPENCODE | TypeScript | `Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.` |
+| P1 | OPENCODE | TypeScript | `Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/runtime/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.` |
 | P2 | OPENCODE | TypeScript | `Implement a negative-trigger whitelist in gate-3-classifier.ts and run the targeted tests.` (golden set rr-iter2-001) |
 | P3 | OPENCODE | Python | `Refactor skill_advisor.py to surface raw ambiguity counts in debug output.` (golden set rr-iter2-004) |
 | P4 | OPENCODE | TypeScript | `Write a Vitest covering classifyPrompt() for the resume deep review phrase.` (golden set rr-iter2-006) |

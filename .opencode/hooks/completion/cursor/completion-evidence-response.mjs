@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/cursor/completion-evidence-response.mjs
+../../../skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs

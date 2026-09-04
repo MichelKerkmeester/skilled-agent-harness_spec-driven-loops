@@ -46,7 +46,7 @@ SKILLS_DIR="$OPENCODE_DIR/skills"
 LEGACY_SKILL_DIR="$OPENCODE_DIR/skill"
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
 # Runtime state for /doctor:update. It lives in the advisor's database directory
-# because that one is tracked and gitignore-managed; the spec-kit mcp-server/database
+# because that one is tracked and gitignore-managed; the spec-kit runtime/database
 # directory that used to hold it left with its server and is absent on a fresh clone.
 DB_DIR="$SKILLS_DIR/system-skill-advisor/mcp-server/database"
 STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
@@ -183,7 +183,7 @@ if [[ "$need_build" == true ]]; then
       npm audit --audit-level=high || {
         printf '[doctor-bootstrap] WARNING: npm audit found high-severity issues. Continuing bootstrap; investigate at next opportunity.\n' >&2
       }
-      npm run build --workspace=@spec-kit/mcp-server
+      npm run build --workspace=@spec-kit/runtime
       npm run build --workspace=@spec-kit/scripts
     ) >&2
   else
@@ -197,12 +197,12 @@ if [[ "$need_build" == true ]]; then
       npm audit --audit-level=high || {
         printf '[doctor-bootstrap] WARNING: npm audit found high-severity issues. Continuing bootstrap; investigate at next opportunity.\n' >&2
       }
-      npm run build --workspace=@spec-kit/mcp-server
+      npm run build --workspace=@spec-kit/runtime
       npm run build --workspace=@spec-kit/scripts
     )
   fi
   restart_required=true
-  record_action "installed dependencies and built @spec-kit/mcp-server plus @spec-kit/scripts"
+  record_action "installed dependencies and built @spec-kit/runtime plus @spec-kit/scripts"
 fi
 
 [[ -f "$GRAPH_BACKFILL_DIST" ]] || fail "scripts/dist/graph/backfill-graph-metadata.js is still missing after bootstrap"

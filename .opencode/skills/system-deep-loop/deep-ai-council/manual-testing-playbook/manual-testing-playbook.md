@@ -400,11 +400,11 @@ Feature file: [DAC-032](../manual-testing-playbook/council-graph-value-compariso
 
 | Test File | Scenario IDs |
 | --- | --- |
-| `.opencode/skills/system-spec-kit/mcp-server/tests/ai-council-runtime-parity.vitest.ts` | DAC-001 |
+| `.opencode/skills/system-spec-kit/runtime/tests/ai-council-runtime-parity.vitest.ts` | DAC-001 |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | DAC-002 |
-| `.opencode/skills/system-spec-kit/mcp-server/tests/ai-council-permission-scope.vitest.ts` | DAC-003, DAC-004, DAC-011, DAC-012, DAC-017 |
-| `.opencode/skills/system-spec-kit/mcp-server/tests/ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
-| `.opencode/skills/system-spec-kit/mcp-server/tests/ai-council-rollback.vitest.ts` | DAC-010 |
+| `.opencode/skills/system-spec-kit/runtime/tests/ai-council-permission-scope.vitest.ts` | DAC-003, DAC-004, DAC-011, DAC-012, DAC-017 |
+| `.opencode/skills/system-spec-kit/runtime/tests/ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
+| `.opencode/skills/system-spec-kit/runtime/tests/ai-council-rollback.vitest.ts` | DAC-010 |
 | `.opencode/skills/system-spec-kit/scripts/tests/ai-council-persist-artifacts.vitest.ts` | DAC-005, DAC-007 |
 | `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | DAC-019, DAC-020, DAC-021, DAC-022, DAC-023, DAC-024 |
 | `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | DAC-027, DAC-028, DAC-029, DAC-030, DAC-031, DAC-032 |

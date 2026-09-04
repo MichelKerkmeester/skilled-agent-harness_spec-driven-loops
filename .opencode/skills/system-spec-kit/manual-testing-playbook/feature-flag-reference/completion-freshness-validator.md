@@ -87,7 +87,7 @@ Inspect `scripts/validation/continuity-freshness.ts`, `scripts/spec/validate.sh`
 |---|---|
 | `scripts/validation/continuity-freshness.ts` | Freshness rule implementation |
 | `scripts/spec/validate.sh` | Strict validation flag wiring |
-| `mcp-server/tests/continuity-freshness.vitest.ts` | MCP-side freshness coverage |
+| `runtime/tests/continuity-freshness.vitest.ts` | MCP-side freshness coverage |
 | `scripts/tests/continuity-freshness.vitest.ts` | Script-side freshness coverage |
 
 ---

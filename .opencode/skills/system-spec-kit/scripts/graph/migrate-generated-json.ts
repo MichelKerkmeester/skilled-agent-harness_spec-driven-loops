@@ -42,7 +42,7 @@ import {
   savePerFolderDescription,
   wouldWritePerFolderDescription,
   type GeneratedMetadataViolation,
-} from '@spec-kit/mcp-server/api';
+} from '@spec-kit/runtime/api';
 import {
   createPruneReportArtifact,
   pruneReportPath,

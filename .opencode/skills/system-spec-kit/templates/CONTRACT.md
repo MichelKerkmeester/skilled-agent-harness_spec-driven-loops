@@ -89,7 +89,7 @@ Render flow:
 Run template and spec validation from the repository root after contract edits:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp-server run typecheck
+npm --prefix .opencode/skills/system-spec-kit/runtime run typecheck
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
 ```
 

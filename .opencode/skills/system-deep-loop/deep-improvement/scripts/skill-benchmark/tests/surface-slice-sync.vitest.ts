@@ -41,7 +41,7 @@ describe('sk-code surface-slice sync — router-replay slices to sk-code-<surfac
   });
 
   it('slices an OPENCODE task to sk-code-opencode and never leaks sk-code-webflow', () => {
-    const r = routed('refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/mod.ts');
+    const r = routed('refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/runtime/mod.ts');
     expect(startsWithAny(r, 'sk-code-opencode/')).toBe(true);
     expect(startsWithAny(r, 'sk-code-webflow/')).toBe(false);
   });

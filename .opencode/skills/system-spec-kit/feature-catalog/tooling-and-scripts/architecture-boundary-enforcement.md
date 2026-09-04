@@ -1,6 +1,6 @@
 ---
 title: "Architecture boundary enforcement"
-description: "Architecture boundary enforcement automates two rules: `shared/` must not import from `mcp-server/` or `scripts/`, and `mcp-server/scripts/` must contain only thin wrappers."
+description: "Architecture boundary enforcement automates two rules: `shared/` must not import from `runtime/` or `scripts/`, and `runtime/scripts/` must contain only thin wrappers."
 trigger_phrases:
   - architecture boundary enforcement
   - check-architecture-boundaries
@@ -16,7 +16,7 @@ version: 3.6.0.16
 
 ## 1. OVERVIEW
 
-Architecture boundary enforcement automates two rules: `shared/` must not import from `mcp-server/` or `scripts/`, and `mcp-server/scripts/` must contain only thin wrappers.
+Architecture boundary enforcement automates two rules: `shared/` must not import from `runtime/` or `scripts/`, and `runtime/scripts/` must contain only thin wrappers.
 
 The codebase has clear boundaries between its major sections, and this tool automatically checks that nobody accidentally crosses them. It is like having walls between departments in an office building: you can communicate through proper channels, but you cannot just reach through the wall and grab something from another department's desk.
 
@@ -24,11 +24,11 @@ The codebase has clear boundaries between its major sections, and this tool auto
 
 ## 2. HOW IT WORKS
 
-Two architecture rules in `ARCHITECTURE.md` were previously documentation-only with no automated enforcement: (1) `shared/` must not import from `mcp-server/` or `scripts/`, and (2) `mcp-server/scripts/` must contain only thin compatibility wrappers delegating to canonical `scripts/dist/` implementations.
+Two architecture rules in `ARCHITECTURE.md` were previously documentation-only with no automated enforcement: (1) `shared/` must not import from `runtime/` or `scripts/`, and (2) `runtime/scripts/` must contain only thin compatibility wrappers delegating to canonical `scripts/dist/` implementations.
 
-`check-architecture-boundaries.ts` enforces both rules as part of `npm run check`. GAP A walks all `.ts` files in `shared/`, extracts module specifiers (skipping block and line comments), and flags any import matching relative paths to `mcp-server/` or `scripts/` at any depth, or package-form `@spec-kit/mcp-server/` or `@spec-kit/scripts/`. This is an absolute prohibition with no allowlist.
+`check-architecture-boundaries.ts` enforces both rules as part of `npm run check`. GAP A walks all `.ts` files in `shared/`, extracts module specifiers (skipping block and line comments), and flags any import matching relative paths to `runtime/` or `scripts/` at any depth, or package-form `@spec-kit/runtime/` or `@spec-kit/scripts/`. This is an absolute prohibition with no allowlist.
 
-GAP B scans top-level `.ts` files in `mcp-server/scripts/` (non-recursive) and verifies each passes three conditions: at most 50 substantive lines (non-blank, non-comment), contains a `child_process` import and references `scripts/dist/` somewhere in its content. Failure on any condition flags the file as not a valid wrapper.
+GAP B scans top-level `.ts` files in `runtime/scripts/` (non-recursive) and verifies each passes three conditions: at most 50 substantive lines (non-blank, non-comment), contains a `child_process` import and references `scripts/dist/` somewhere in its content. Failure on any condition flags the file as not a valid wrapper.
 
 ---
 

@@ -19,7 +19,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 const require = createRequire(import.meta.url);
 const SKILL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SCRIPTS_DIR = path.join(SKILL_ROOT, 'scripts');
-const MCP_SERVER_DIR = path.join(SKILL_ROOT, 'mcp-server');
+const MCP_SERVER_DIR = path.join(SKILL_ROOT, 'runtime');
 const TEMPLATES_DIR = path.join(SKILL_ROOT, 'templates');
 const createdTempRoots = new Set<string>();
 

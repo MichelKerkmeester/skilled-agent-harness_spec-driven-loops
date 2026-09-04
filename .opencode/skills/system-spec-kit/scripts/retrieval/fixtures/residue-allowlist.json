@@ -86,7 +86,7 @@
       "reason": "Fixture text; historical narrative inside a test fixture."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
       "reason": "Lives in the engine tree; excluded with it."
     },
     {

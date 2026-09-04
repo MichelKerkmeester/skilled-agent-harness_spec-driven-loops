@@ -34,9 +34,9 @@ import {
   loadPerFolderDescription,
   savePerFolderDescription,
   type PerFolderDescription,
-} from '../../mcp-server/lib/search/folder-discovery';
-import { refreshGraphMetadata } from '../../mcp-server/api/graph-refresh';
-import { loadGraphMetadata } from '../../mcp-server/lib/graph/graph-metadata-parser';
+} from '../../runtime/lib/search/folder-discovery';
+import { refreshGraphMetadata } from '../../runtime/api/graph-refresh';
+import { loadGraphMetadata } from '../../runtime/lib/graph/graph-metadata-parser';
 
 function buildBaseDescription(specFolderBasename: string): PerFolderDescription {
   return {

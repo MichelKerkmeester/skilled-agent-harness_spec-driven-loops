@@ -80,8 +80,8 @@ _abs_common() {
 default_shared_paths() {
   cat <<'PATHS'
 .opencode/skills/system-spec-kit/node_modules
-.opencode/skills/system-spec-kit/mcp-server/node_modules
-.opencode/skills/system-spec-kit/mcp-server/dist
+.opencode/skills/system-spec-kit/runtime/node_modules
+.opencode/skills/system-spec-kit/runtime/dist
 .opencode/skills/system-spec-kit/scripts/dist
 .opencode/skills/system-spec-kit/scripts/node_modules
 PATHS
@@ -221,7 +221,7 @@ else
   SHARED_RAW="$(default_shared_paths)"
 fi
 
-WT_DB_DIR="$WT_ABS/.opencode/skills/system-spec-kit/mcp-server/database"
+WT_DB_DIR="$WT_ABS/.opencode/skills/system-spec-kit/runtime/database"
 # Short per-session socket dir under $HOME (NOT inside the deep worktree) to stay under the
 # platform sun_path limit. The reaper cleans these alongside merged worktrees.
 SOCK_DIR="$HOME/.spk-wt-sock/${RUNTIME_ID}-${SLUG}"

@@ -22,10 +22,10 @@ Detection markers are defined verbatim in `references/stack-detection.md:39-40` 
 
 **Exact prompt**:
 ```
-Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.
+Handle empty prompts in .opencode/skills/system-spec-kit/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.
 ```
 
-Prompt: `Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.`
+Prompt: `Handle empty prompts in .opencode/skills/system-spec-kit/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.`
 
 **Expected detection**:
 - Surface: `OPENCODE` (target path contains `/.opencode/`)
@@ -48,7 +48,7 @@ Prompt: `Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib
 
 **Expected agent dispatch**: `@code` (LEAF) for the edit, via `@orchestrate` (Depth: 1 marker), per the orchestrator-only convention in §0 of `.opencode/agents/code.md`.
 
-**Desired user-visible outcome**: The AI applies the edit to `.opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts`, runs `verify_alignment_drift.py` for OPENCODE alignment evidence, and confirms the modification with a TypeScript-aware fix (early-return + console.error).
+**Desired user-visible outcome**: The AI applies the edit to `.opencode/skills/system-spec-kit/runtime/lib/scorer/lanes/explicit.ts`, runs `verify_alignment_drift.py` for OPENCODE alignment evidence, and confirms the modification with a TypeScript-aware fix (early-return + console.error).
 
 ---
 
@@ -57,7 +57,7 @@ Prompt: `Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib
 ### Preconditions
 
 1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main.
-2. The target file exists: `bash: test -f .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts`.
+2. The target file exists: `bash: test -f .opencode/skills/system-spec-kit/runtime/lib/scorer/lanes/explicit.ts`.
 3. The sub-language reference set exists: `bash: ls .opencode/skills/sk-code/sk-code-opencode/references/typescript/` returns `style-guide.md quality-standards.md quick-reference.md`.
 4. Skill advisor callable.
 
@@ -65,7 +65,7 @@ Prompt: `Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback." --threshold 0.8 > /tmp/skc-SD002-advisor.txt
+   bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Handle empty prompts in .opencode/skills/system-spec-kit/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback." --threshold 0.8 > /tmp/skc-SD002-advisor.txt
    ```
 2. **Verify**: top-1 == `sk-code`, score ≥ 0.80.
 3. **Invoke sk-code** with the same prompt.
@@ -117,6 +117,6 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 - **Created**: 2026-05-04
 - **Critical path**: Yes
 - **Destructive**: No (read-only routing test; the target file edit is described but not actually applied in routing tests)
-- **Sandbox**: production read-only; do not actually edit `.opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts` during the routing test.
+- **Sandbox**: production read-only; do not actually edit `.opencode/skills/system-spec-kit/runtime/lib/scorer/lanes/explicit.ts` during the routing test.
 - **Concurrent-safe**: Yes
 - **Last validated**: pending first manual run

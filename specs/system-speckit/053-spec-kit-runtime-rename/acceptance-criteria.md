@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/053-spec-kit-runtime-rename"
+    packet_pointer: "system-speckit/053-spec-kit-runtime-rename"
     last_updated_at: "2026-09-04T19:16:06Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_by: "code-agent"
+    recent_action: "Recorded the move, the dependency audit and the gate evidence against each criterion"
+    next_safe_action: "Run the ten-iteration review on the moved tree for AC-005"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** 053-spec-kit-runtime-rename
+**Level:** 3
+**Status:** In Progress
 **Date:** 2026-09-04
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,16 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the engine package, When the tree is inspected, Then it exists only at `.opencode/skills/system-spec-kit/runtime/`, is named `@spec-kit/runtime`, and carries `lib/`, `scripts/`, `hooks/` and `tests/` at its root | `runtime/package.json:2`; `ls .opencode/skills/system-spec-kit/runtime`; `grep -n mcp runtime/package.json` returns nothing | Met | - |
+| AC-002 | REQ-002 | Given the new path, When `validate.sh --strict` runs on this packet, Then it prints `RESULT: PASSED` | `validate.sh specs/system-speckit/053-spec-kit-runtime-rename --strict` -> exit 0, Errors 0, `RESULT: PASSED` | Met | - |
+| AC-003 | REQ-002 | Given the new path, When the continuity writer is invoked, Then it runs from `scripts/dist/` without a resolution error | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --help` -> exit 0 | Met | - |
+| AC-004 | REQ-002 | Given the moved adapters, When each registered hook is executed once with an empty payload, Then none reports a missing module | 19 adapters across `.claude`, `.codex`, `.cursor`, `.devin` -> every exit 0, zero `MODULE_NOT_FOUND` | Met | - |
+| AC-005 | REQ-002 | Given the moved root, When the dist-freshness guard runs, Then it records a build for both watched entries | `cd runtime && npm run rebuild` -> exit 0, `dist build preparation recorded` twice | Met | - |
+| AC-006 | REQ-003 | Given the manifest, When each dependency is traced, Then every remaining entry names a live consumer and every removed one has none | `scratch/inventory.md` §4; manifest drops 8 of 12 entries | Met | - |
+| AC-007 | REQ-003 | Given the pruned manifest, When the lockfile is regenerated, Then a fresh install resolves without drift | `npm install` at the workspace root -> removed 126 packages; `npm ci --dry-run` -> exit 0 | Met | - |
+| AC-008 | REQ-004 | Given the whole repository, When the old path and npm name are searched over live surfaces, Then nothing outside historical evidence names them | `rg` -> 0 hits; `git grep` -> 0 hits; no symlink targets the old path | Met | - |
+| AC-009 | REQ-004 | Given the moved tree, When the repository gates run, Then the residue sweep, doctor routes, command references, skill-root audit, derived freshness and routing guard all pass | six gates, each exit 0; `counts.live` 0; guard green after the `cli-external-orchestration` re-mint | Met | - |
+| AC-010 | REQ-005 | Given the moved tree, When a ten-iteration review runs, Then it reports no P0 and no P1 | not yet run; this packet's implementation is the review's input | Unmet | - |
 
 ### Status values
 
@@ -79,8 +88,10 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** No
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+Nine of ten criteria are met: the package moved, the manifest now names only
+dependencies a resolution trace reaches, and every gate that ran on the old path
+runs on the new one. AC-010 stays open because the ten-iteration review takes this
+implementation as its input and has not run yet.
 <!-- /ANCHOR:closure -->

@@ -175,7 +175,7 @@ describe('validation engine coherence', () => {
   // of the process, or the first call would pin every later one.
   it('re-reads the rule subset on every in-process validation', async () => {
     const { validateFolder } = await import(
-      '../../mcp-server/dist/lib/validation/orchestrator.js'
+      '../../runtime/dist/lib/validation/orchestrator.js'
     ) as { validateFolder: (f: string, o?: Record<string, unknown>) => { entries: Array<{ rule: string }> } };
     const folder = copyFixture();
     const previous = process.env.SPECKIT_RULES;

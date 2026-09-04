@@ -126,7 +126,7 @@ function runAcquireProcess(
 ): Promise<ChildProcessResult> {
   const testPath = fileURLToPath(import.meta.url);
   const testDirectory = dirname(testPath);
-  const mcpServerDirectory = resolve(testDirectory, '../../../../system-spec-kit/mcp-server');
+  const mcpServerDirectory = resolve(testDirectory, '../../../../system-spec-kit/runtime');
   const vitestCli = join(mcpServerDirectory, 'node_modules/vitest/vitest.mjs');
   return new Promise((resolveProcess, rejectProcess) => {
     const child = spawn(process.execPath, [

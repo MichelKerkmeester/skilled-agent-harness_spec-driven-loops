@@ -21,11 +21,11 @@ import {
   deriveGraphMetadata,
   resolveGeneratedMetadataDrift,
   serializeGraphMetadata,
-} from '../../mcp-server/api';
+} from '../../runtime/api';
 import {
   derivePacketSynopsis,
   SYNOPSIS_FIELD_LIMITS,
-} from '../../mcp-server/lib/description/packet-synopsis.js';
+} from '../../runtime/lib/description/packet-synopsis.js';
 
 const DRIFT_GATE_FLAG = 'SPECKIT_GENERATED_METADATA_DRIFT_GATE';
 

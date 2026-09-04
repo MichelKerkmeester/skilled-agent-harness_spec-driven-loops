@@ -55,7 +55,7 @@ legacy/
 Run from the repository root.
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run skill_advisor/tests/legacy
+cd .opencode/skills/system-spec-kit/runtime && npx vitest run skill_advisor/tests/legacy
 ```
 
 Expected result: all legacy advisor regression tests pass.

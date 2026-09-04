@@ -94,9 +94,9 @@ continues to derive a folder-name fallback label from the path when needed.
 
 | File | Layer | Role |
 |------|-------|------|
-| `mcp-server/lib/search/folder-discovery.ts` | Lib/Parsing | Spec folder auto-discovery, description extraction, stale/fallback preference, auto-repair, per-folder CRUD, and `stripYamlFrontmatter()` reuse from the parsing layer |
+| `runtime/lib/search/folder-discovery.ts` | Lib/Parsing | Spec folder auto-discovery, description extraction, stale/fallback preference, auto-repair, per-folder CRUD, and `stripYamlFrontmatter()` reuse from the parsing layer |
 | `scripts/spec-folder/generate-description.ts` | CLI | Per-folder description.json generator |
-| `mcp-server/lib/parsing/content-normalizer.ts` | Lib/Parsing | Provides `stripYamlFrontmatter()` used by `folder-discovery.ts` for description extraction |
+| `runtime/lib/parsing/content-normalizer.ts` | Lib/Parsing | Provides `stripYamlFrontmatter()` used by `folder-discovery.ts` for description extraction |
 | `scripts/utils/slug-utils.ts` | Utils | ensureUniqueMemoryFilename collision prevention |
 | `scripts/core/workflow.ts` | Core | Memory tracking integration (`memorySequence` increment, `memoryNameHistory` ring buffer, and invalid-value hardening via `Number()` coercion) |
 | `scripts/spec/create.sh` | Shell | Auto-generation on folder creation |
@@ -105,11 +105,11 @@ continues to derive a folder-name fallback label from the path when needed.
 
 | File | Type | Role |
 |---|---|---|
-| `mcp-server/tests/folder-discovery.vitest.ts` | Automated test | PerFolderDescription schema, generation, required-field/array validation, path-containment hardening, `slugifyFolderName`, CRUD/staleness, and CRLF frontmatter stripping |
-| `mcp-server/tests/folder-discovery-integration.vitest.ts` | Automated test | Mixed-mode aggregation, fresh-vs-stale preference, corrupt/missing fallback, cache staleness, regeneration behavior, and performance checks |
+| `runtime/tests/folder-discovery.vitest.ts` | Automated test | PerFolderDescription schema, generation, required-field/array validation, path-containment hardening, `slugifyFolderName`, CRUD/staleness, and CRLF frontmatter stripping |
+| `runtime/tests/folder-discovery-integration.vitest.ts` | Automated test | Mixed-mode aggregation, fresh-vs-stale preference, corrupt/missing fallback, cache staleness, regeneration behavior, and performance checks |
 | `scripts/tests/slug-uniqueness.vitest.ts` | Automated test | Filename collision resolution |
-| `mcp-server/tests/workflow-memory-tracking.vitest.ts` | Automated test | Load-mutate-save cycle for `memorySequence` increment and `memoryNameHistory` ring buffer |
-| `mcp-server/tests/slug-utils-boundary.vitest.ts` | Numeric coercion and boundary cases for `Number(existing.memorySequence) \|\| 0` |
+| `runtime/tests/workflow-memory-tracking.vitest.ts` | Automated test | Load-mutate-save cycle for `memorySequence` increment and `memoryNameHistory` ring buffer |
+| `runtime/tests/slug-utils-boundary.vitest.ts` | Numeric coercion and boundary cases for `Number(existing.memorySequence) \|\| 0` |
 
 ---
 

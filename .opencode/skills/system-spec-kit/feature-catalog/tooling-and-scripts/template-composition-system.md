@@ -42,7 +42,7 @@ The shipped behavior currently works as follows:
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/mcp-server/lib/templates/level-contract-resolver.ts` | Resolver | Returns the document contract for each public Level |
+| `.opencode/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts` | Resolver | Returns the document contract for each public Level |
 | `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts` | Renderer | Applies inline Level gates before a document is written |
 | `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh` | Shell wrapper | Lets shell scripts call the renderer without duplicating logic |
 | `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` | Shell helper | Exposes `resolve_level_contract` and shared template helpers |

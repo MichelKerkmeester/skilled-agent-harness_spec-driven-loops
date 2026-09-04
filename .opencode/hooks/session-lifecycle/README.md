@@ -16,7 +16,7 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`session-lifecycle/` is the index for the Spec-Kit session-lifecycle concern. Its adapters fire on a runtime's session boundaries — start, stop/end, and the compaction boundary — to prime continuity context into a fresh session, checkpoint state on stop, and re-inject the recovered brief after a compaction so long sessions do not lose their spec-folder anchor. The real code lives in `system-spec-kit/mcp-server/hooks/<runtime>/` and is symlinked here per runtime for browsability.
+`session-lifecycle/` is the index for the Spec-Kit session-lifecycle concern. Its adapters fire on a runtime's session boundaries — start, stop/end, and the compaction boundary — to prime continuity context into a fresh session, checkpoint state on stop, and re-inject the recovered brief after a compaction so long sessions do not lose their spec-folder anchor. The real code lives in `system-spec-kit/runtime/hooks/<runtime>/` and is symlinked here per runtime for browsability.
 
 The concern is **advisory and model-context-only**: every adapter adds recovery or priming text, never blocks or denies a session. The single most important property is that it **fails open** — a missing payload, an unreadable transcript, a parse error, or any internal error resolves to a no-op, so a hook bug can never break session startup, stop, or compaction.
 
@@ -77,7 +77,7 @@ session-lifecycle/
               session-start-context.ts, session-stop-context.ts                    # real files; .pi/extensions/ symlinks here
 ```
 
-The real code lives in `.opencode/skills/system-spec-kit/mcp-server/hooks/<runtime>/`. The `.js` siblings are relative symlinks into `system-spec-kit`'s built `dist/hooks/`, so they resolve after a build. There is no `opencode/` subfolder (by-design — OpenCode session events run inside the owning plugins).
+The real code lives in `.opencode/skills/system-spec-kit/runtime/hooks/<runtime>/`. The `.js` siblings are relative symlinks into `system-spec-kit`'s built `dist/hooks/`, so they resolve after a build. There is no `opencode/` subfolder (by-design — OpenCode session events run inside the owning plugins).
 
 ---
 
@@ -132,19 +132,19 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 ## 8. VALIDATION
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp-server && npm run build
+cd .opencode/skills/system-spec-kit/runtime && npm run build
 ```
 
 Expected result: `tsc --build` succeeds and `dist/hooks/<runtime>/*.js` are produced (the deployed entrypoints the runtime configs point at).
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp-server && npm run typecheck
+cd .opencode/skills/system-spec-kit/runtime && npm run typecheck
 ```
 
 Expected result: no type errors (confirms the `.ts` sources here still compile against the skill's shared modules).
 
 ```bash
-node -e "import('./.opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/session-prime.js').then(()=>console.log('ok'))"
+node -e "import('./.opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, with no module-resolution error (repeat for `session-stop.js`, `compact-inject.js`, and the `codex/`/`cursor/`/`devin/` siblings — confirms the deployed entrypoints resolve).
@@ -163,4 +163,4 @@ Expected result: exit 0, no extension-load error (confirms `.pi/extensions/sessi
 - [`../injection-contract.md`](../injection-contract.md): what these hooks inject and their visibility to the operator.
 - [`../session-cleanup/README.md`](../session-cleanup/README.md): the teardown concern that reaps MCP helpers using the `CLAUDE_SESSION_PID` these hooks persist.
 - [`../completion/README.md`](../completion/README.md): the completion sentinel that reads the per-session `lastSpecFolder` state these hooks write.
-- [`../../skills/system-spec-kit/mcp-server/hooks/README.md`](../../skills/system-spec-kit/mcp-server/hooks/README.md): the owning skill's hook contract.
+- [`../../skills/system-spec-kit/runtime/hooks/README.md`](../../skills/system-spec-kit/runtime/hooks/README.md): the owning skill's hook contract.

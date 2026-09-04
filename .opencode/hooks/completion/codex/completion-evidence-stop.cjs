@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs
+../../../skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs

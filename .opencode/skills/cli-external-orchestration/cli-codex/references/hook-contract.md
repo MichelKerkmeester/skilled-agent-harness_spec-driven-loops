@@ -87,12 +87,12 @@ emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
 
 | Event · matcher | Guard | Adapter |
 |---|---|---|
-| PreToolUse · `exec\|apply_patch\|edit` | spec-gate enforce (deny-capable) | `system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs` |
-| UserPromptSubmit | spec-gate classify (advisory) | `system-spec-kit/mcp-server/hooks/codex/spec-gate-classify.mjs` |
+| PreToolUse · `exec\|apply_patch\|edit` | spec-gate enforce (deny-capable) | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` |
+| UserPromptSubmit | spec-gate classify (advisory) | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` |
 | PreToolUse · `exec` | dispatch preflight lint (deny-capable) | `.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs` |
 | PostToolUse · `apply_patch\|edit` | post-edit quality | `.opencode/hooks/post-edit-quality/codex/post-edit-quality.cjs` |
 | PostToolUse · `exec` | dispatch audit (observe) | `.opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` |
-| Stop | completion-evidence sentinel (advisory) | `system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs` |
+| Stop | completion-evidence sentinel (advisory) | `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` |
 | PreToolUse · `mcp__.*` | mcp route guard (dormant until an external MCP family registers) | `.opencode/hooks/mcp-route-guard/codex/mcp-route-guard.cjs` |
 
 > Codex delivers an `apply_patch` target path inside `tool_input.command` (the
@@ -187,19 +187,19 @@ timeout so the user can see the advisor surface is installed.
 
 Installed paths:
 
-- `SessionStart`: `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/session-start.js`
-- `UserPromptSubmit`: `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/user-prompt-submit.js`
+- `SessionStart`: `.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js`
+- `UserPromptSubmit`: `.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js`
 
 Manual smoke checks:
 
 ```bash
 printf '%s\n' '{"session_id":"s1","hook_event_name":"SessionStart","source":"startup","cwd":"'"$PWD"'","model":"gpt-5.5","permission_mode":"default"}' \
-  | node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/session-start.js
+  | node .opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js
 ```
 
 ```bash
 printf '%s\n' '{"prompt":"implement TypeScript hook","cwd":"'"$PWD"'"}' \
-  | node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/user-prompt-submit.js
+  | node .opencode/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js
 ```
 
 Expected stdout is `{}` or a JSON object with

@@ -46,7 +46,7 @@ blocking issue in any lineage disappears from the final verdict.
 ### Commands
 
 1. Inspect `scripts/fanout-merge.cjs` `mergeReviewRegistries` — confirm `SEVERITY_RANK` constant, `finding.status !== 'active'` filter, `mergedVerdict` derivation.
-2. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts --reporter=verbose`
+2. `bash: cd .opencode/skills/system-spec-kit/runtime && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts --reporter=verbose`
 3. Identify the 5 review tests: `merges FAIL when lineage A is clean but lineage B has active P0`, `merges PASS when all clean`, `merges CONDITIONAL when P1 exists but no P0`, `escalates to highest severity for duplicate findingId`, `skips non-active findings`.
 4. Confirm all 5 pass.
 

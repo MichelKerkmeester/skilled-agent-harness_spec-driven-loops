@@ -48,15 +48,15 @@ Cursor CLI and the Cursor desktop editor consume the same `.cursor/hooks.json`. 
 | File | Layer | Role |
 |---|---|---|
 | `.cursor/hooks.json` | Configuration | Current event-to-adapter registration authority, including `beforeMCPExecution`. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/session-start.ts` | Handler | Delegates confirmed `sessionStart` delivery to session priming. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/session-end.ts` | Handler | Delegates confirmed `sessionEnd` delivery to session stop. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.mjs` | Script | Initializes validated or explicitly enforced state on confirmed `sessionStart` delivery. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-enforce.mjs` | Script | Enforces Gate-3 policy on confirmed `preToolUse` delivery. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-classify.mjs` | Script | Registered advisory classifier whose `beforeSubmitPrompt` delivery remains unconfirmed; on emission it records post-emission Gate-3 question delivery (observed receipt, `lifecycleEpoch >= 1`) feeding the default-off `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION` shadow. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs` | Script | Runs post-edit, code-graph freshness, and dispatch-audit checks on confirmed `postToolUse` delivery. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/session-start.ts` | Handler | Delegates confirmed `sessionStart` delivery to session priming. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/session-end.ts` | Handler | Delegates confirmed `sessionEnd` delivery to session stop. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs` | Script | Initializes validated or explicitly enforced state on confirmed `sessionStart` delivery. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | Script | Enforces Gate-3 policy on confirmed `preToolUse` delivery. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` | Script | Registered advisory classifier whose `beforeSubmitPrompt` delivery remains unconfirmed; on emission it records post-emission Gate-3 question delivery (observed receipt, `lifecycleEpoch >= 1`) feeding the default-off `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION` shadow. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs` | Script | Runs post-edit, code-graph freshness, and dispatch-audit checks on confirmed `postToolUse` delivery. |
 | `.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` | Script | Applies the task-dispatch guard on a matched `preToolUse` entry. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts` | Handler | Registered `beforeSubmitPrompt` proxy with unconfirmed delivery. Directive delivery is lifecycle-deduped via the shared compiled shim (full on first message + lifecycle boundaries, route-only on repeats; `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full). |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/precompact.ts` | Handler | Registered `preCompact` proxy with unconfirmed delivery. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts` | Handler | Registered `beforeSubmitPrompt` proxy with unconfirmed delivery. Directive delivery is lifecycle-deduped via the shared compiled shim (full on first message + lifecycle boundaries, route-only on repeats; `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full). |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/precompact.ts` | Handler | Registered `preCompact` proxy with unconfirmed delivery. |
 | `.opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs` | Script | Wired `beforeMCPExecution` advisory proxy that normalizes Cursor's split MCP payload. |
 
 ### Validation And Tests
@@ -67,7 +67,7 @@ Cursor CLI and the Cursor desktop editor consume the same `.cursor/hooks.json`. 
 | `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md` | Manual playbook | Records the prompt-classification delivery limitation. |
 | `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md` | Manual playbook | Reproduces the confirmed task-dispatch guard. |
 | `.opencode/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs` | Automated test | Exercises the shared allow/warn guard policy consumed by the Cursor adapter. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.test.mjs` | Automated test | Exercises startup identity, environment, binding, terminal-state, and enforce-consumer behavior. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs` | Automated test | Exercises startup identity, environment, binding, terminal-state, and enforce-consumer behavior. |
 
 ---
 

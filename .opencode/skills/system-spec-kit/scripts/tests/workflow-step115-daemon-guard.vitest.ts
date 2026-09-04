@@ -33,7 +33,7 @@ const workflowSource = fs.readFileSync(WORKFLOW_SOURCE_PATH, 'utf8');
 // which is also what lets a save succeed with no background service running.
 describe('canonical save follow-ups', () => {
   it('imports no indexing runtime', () => {
-    expect(workflowSource).not.toContain('@spec-kit/mcp-server/api/indexing');
+    expect(workflowSource).not.toContain('@spec-kit/runtime/api/indexing');
     expect(workflowSource).not.toContain('initializeIndexingRuntime');
     expect(workflowSource).not.toContain('reindexSpecDocs');
   });
@@ -49,7 +49,7 @@ describe('canonical save follow-ups', () => {
   });
 
   it('still refreshes graph metadata through the top-level API', () => {
-    expect(workflowSource).toContain("tryImportMcpApi('@spec-kit/mcp-server/api')");
+    expect(workflowSource).toContain("tryImportMcpApi('@spec-kit/runtime/api')");
     expect(workflowSource).toContain('refreshGraphMetadata(validatedSpecFolderPath, graphRefreshOptions)');
   });
 

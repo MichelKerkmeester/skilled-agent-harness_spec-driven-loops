@@ -79,7 +79,7 @@ Captured output files from every command in §3, the table's Expected Signal cel
 | File | Role |
 |---|---|
 | `../../../../specs/cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/implementation-summary.md` | Explicit statement that PreToolUse remains active under bypass |
-| `../../../../skills/system-spec-kit/mcp-server/hooks/devin/spec-gate-enforce.mjs` | Guard adapter under test |
+| `../../../../skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs` | Guard adapter under test |
 | `../../../../../hooks/task-dispatch/claude/task-dispatch-guard.cjs` | Shared dispatch-guard core |
 
 ---

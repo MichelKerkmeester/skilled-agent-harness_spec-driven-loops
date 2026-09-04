@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/dist/hooks/claude/compact-inject.js
+../../../skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js

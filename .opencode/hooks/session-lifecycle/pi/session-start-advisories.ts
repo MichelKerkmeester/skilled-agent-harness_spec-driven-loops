@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/pi/session-start-advisories.ts
+../../../skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts

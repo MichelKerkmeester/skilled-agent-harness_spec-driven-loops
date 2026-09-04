@@ -34,7 +34,7 @@ Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `
 ## 2. SCENARIO CONTRACT
 
 - Repo root is the working directory.
-- MCP server has been built with `npm --prefix .opencode/skills/system-spec-kit/mcp-server run build`.
+- MCP server has been built with `npm --prefix .opencode/skills/system-spec-kit/runtime run build`.
 - The advisor daemon is running (either via MCP server startup or on-demand through `advisor_status`).
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset.
 - Terminal capture is enabled so daemon stderr or structured logs are recorded.

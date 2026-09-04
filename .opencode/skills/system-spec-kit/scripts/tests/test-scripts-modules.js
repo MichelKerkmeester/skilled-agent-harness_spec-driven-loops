@@ -2018,7 +2018,7 @@ async function testLibRetryManagerReexport() {
     const scriptsRetryManagerPath = path.join(SCRIPTS_DIR, 'lib', 'retry-manager.js');
     const mcpRetryManagerPath = path.join(
       ROOT,
-      'mcp-server',
+      'runtime',
       'dist',
       'lib',
       'providers',

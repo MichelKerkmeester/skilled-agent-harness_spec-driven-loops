@@ -20,7 +20,7 @@ Current hook registration, runtime vocabulary, lifecycle behavior, and fallback 
 
 ## 1. OVERVIEW
 
-The maintained native hook source set is `system-spec-kit/mcp-server/hooks/{claude,codex,cursor,devin}/`, with compiled twins under `system-spec-kit/mcp-server/dist/hooks/{claude,codex,cursor,devin}/`. OpenCode prompt-time advisor delivery is the plugin bridge, not a source-hook tree.
+The maintained native hook source set is `system-spec-kit/runtime/hooks/{claude,codex,cursor,devin}/`, with compiled twins under `system-spec-kit/runtime/dist/hooks/{claude,codex,cursor,devin}/`. OpenCode prompt-time advisor delivery is the plugin bridge, not a source-hook tree.
 
 Prompt delivery, startup wiring, compaction, and shutdown handling differ by runtime, but all adapters use the same retrieval primitives and fail-open recovery path.
 
@@ -33,15 +33,15 @@ Claude Code registers the maintained compiled adapter in `.claude/settings.json`
 ```json
 {
   "hooks": {
-    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/user-prompt-submit.js", "timeout": 3 }] }],
-    "PreCompact": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/compact-inject.js", "timeout": 3 }] }],
-    "SessionStart": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/session-prime.js", "timeout": 3 }] }],
-    "Stop": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/session-stop.js", "async": true, "timeout": 10 }] }]
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js", "timeout": 3 }] }],
+    "PreCompact": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js", "timeout": 3 }] }],
+    "SessionStart": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js", "timeout": 3 }] }],
+    "Stop": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js", "async": true, "timeout": 10 }] }]
   }
 }
 ```
 
-The other native registrations are `.codex/hooks.json`, `.cursor/hooks.json`, and `.devin/hooks.v1.json`. Each points at the maintained runtime directory under `system-spec-kit/mcp-server/`; the Codex prompt adapter is registered and present at `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/user-prompt-submit.js`.
+The other native registrations are `.codex/hooks.json`, `.cursor/hooks.json`, and `.devin/hooks.v1.json`. Each points at the maintained runtime directory under `system-spec-kit/runtime/`; the Codex prompt adapter is registered and present at `.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js`.
 
 OpenCode prompt-time advisor delivery is registered through `.opencode/plugins/system-skill-advisor.js`, which calls `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`. There is no checked-in `.opencode/settings.json` hook template and no native OpenCode source-hook adapter in this tree.
 
@@ -74,10 +74,10 @@ When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, 
 
 | Runtime | Source | Compiled |
 | --- | --- | --- |
-| Claude | `mcp-server/hooks/claude/*.ts` | `mcp-server/dist/hooks/claude/*.js` |
-| Codex | `mcp-server/hooks/codex/*.ts` | `mcp-server/dist/hooks/codex/*.js` |
-| Cursor | `mcp-server/hooks/cursor/*.ts` | `mcp-server/dist/hooks/cursor/*.js` |
-| Devin | `mcp-server/hooks/devin/*.ts` | `mcp-server/dist/hooks/devin/*.js` |
+| Claude | `runtime/hooks/claude/*.ts` | `runtime/dist/hooks/claude/*.js` |
+| Codex | `runtime/hooks/codex/*.ts` | `runtime/dist/hooks/codex/*.js` |
+| Cursor | `runtime/hooks/cursor/*.ts` | `runtime/dist/hooks/cursor/*.js` |
+| Devin | `runtime/hooks/devin/*.ts` | `runtime/dist/hooks/devin/*.js` |
 | OpenCode | `.opencode/plugins/system-skill-advisor.js` and `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Plugin bridge entrypoint |
 
 ---
@@ -115,7 +115,7 @@ The timeout flag's ownership is the `system-skill-advisor` hub because its live 
 ## 9. VALIDATION
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
+npm --prefix .opencode/skills/system-spec-kit/runtime run build
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
 ```
 

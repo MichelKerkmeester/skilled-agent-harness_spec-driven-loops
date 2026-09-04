@@ -110,7 +110,7 @@ function isAllowlisted(filePath: string, importPath: string, allowlist: Allowlis
       continue;
     }
 
-    // Wildcard match for internal runtime prefixes such as @spec-kit/mcp-server/lib/*
+    // Wildcard match for internal runtime prefixes such as @spec-kit/runtime/lib/*
     if (exception.import.endsWith('/*')) {
       const prefix = exception.import.slice(0, -2);
       if (importPath.startsWith(prefix)) return true;
@@ -348,7 +348,7 @@ function main(): void {
   }
 
   if (allViolations.length === 0) {
-    console.log('Import policy check passed: no prohibited @spec-kit/mcp-server/{lib,core,handlers} internal imports found.');
+    console.log('Import policy check passed: no prohibited @spec-kit/runtime/{lib,core,handlers} internal imports found.');
     process.exit(0);
   }
 
@@ -363,7 +363,7 @@ function main(): void {
     }
     console.error(`  ${relPath}:${v.line} → ${v.importPath}`);
   }
-  console.error('\nTo fix: either use @spec-kit/mcp-server/api/* or add to import-policy-allowlist.json');
+  console.error('\nTo fix: either use @spec-kit/runtime/api/* or add to import-policy-allowlist.json');
   process.exit(1);
 }
 

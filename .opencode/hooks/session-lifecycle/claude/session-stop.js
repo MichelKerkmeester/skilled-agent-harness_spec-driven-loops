@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/dist/hooks/claude/session-stop.js
+../../../skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js

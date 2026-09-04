@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------
 // MODULE: Shared Payload Contract (local duplicate)
 // ---------------------------------------------------------------
-// Duplicated from system-spec-kit/mcp-server/lib/context/shared-payload.ts
+// Duplicated from system-spec-kit/runtime/lib/context/shared-payload.ts
 // for full skill isolation.
 // Drift is watched by .github/workflows/isolation-check.yml's
 // reverse-direction audit (any new cross-skill import fails CI).

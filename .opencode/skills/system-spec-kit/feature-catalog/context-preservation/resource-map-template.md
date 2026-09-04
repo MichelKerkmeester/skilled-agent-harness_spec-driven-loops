@@ -24,7 +24,7 @@ This rollout ties the document into the Level template contract, the skill and r
 
 ## 2. HOW IT WORKS
 
-Generated packet `resource-map.md` output plus the discovery and classification surfaces that expose it: Level template contract docs, SKILL.md, README.md, references/templates/level-specifications.md, and mcp-server/lib/config/spec-doc-paths.ts.
+Generated packet `resource-map.md` output plus the discovery and classification surfaces that expose it: Level template contract docs, SKILL.md, README.md, references/templates/level-specifications.md, and runtime/lib/config/spec-doc-paths.ts.
 
 ---
 
@@ -39,7 +39,7 @@ Generated packet `resource-map.md` output plus the discovery and classification 
 | `SKILL.md` | Skill | Canonical skill guidance listing the template as optional cross-cutting documentation |
 | `README.md` | Guide | Main system-spec-kit README surface describing the template architecture |
 | `references/templates/level-specifications.md` | Reference | Level-by-level and cross-cutting template reference for operators |
-| `mcp-server/lib/config/spec-doc-paths.ts` | Config | Spec-doc classification set that recognizes `resource-map.md` |
+| `runtime/lib/config/spec-doc-paths.ts` | Config | Spec-doc classification set that recognizes `resource-map.md` |
 | `feature-catalog/context-preservation/resource-map-template.md` | Feature catalog | This feature entry for ongoing discovery |
 | `manual-testing-playbook/context-preservation/resource-map-template.md` | Playbook | Manual verification scenario for the rollout |
 

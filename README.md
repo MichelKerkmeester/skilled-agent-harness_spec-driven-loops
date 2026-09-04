@@ -380,7 +380,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 &nbsp;
 #### How Runtimes Talk To It
 
-- **Claude Code**: calls prompt-time hook adapters under `.opencode/skills/system-spec-kit/mcp-server/hooks/`.
+- **Claude Code**: calls prompt-time hook adapters under `.opencode/skills/system-spec-kit/runtime/hooks/`.
 - **OpenCode**: uses `.opencode/plugins/system-skill-advisor.js` with `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`, which imports the stable compat entry under `.opencode/skills/system-skill-advisor/mcp-server/compat/index.ts`.
 - **Disable everywhere**: set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
@@ -768,7 +768,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - Generates scenario files with test steps, expected results and verification evidence fields
 - Validates against established playbook format
 
-The package also ships a dedicated [stress-test/](.opencode/skills/system-spec-kit/mcp-server/stress-test/) suite for load, contention and capacity checks. It sits outside the default test run and uses its own `vitest.stress.config.ts` at the [mcp-server/](.opencode/skills/system-spec-kit/mcp-server/) package root, so an operator runs it on purpose rather than on every commit.
+The package also ships a dedicated [stress-test/](.opencode/skills/system-spec-kit/runtime/stress-test/) suite for load, contention and capacity checks. It sits outside the default test run and uses its own `vitest.stress.config.ts` at the [mcp-server/](.opencode/skills/system-spec-kit/runtime/) package root, so an operator runs it on purpose rather than on every commit.
 
 &nbsp;
 #### DEEP
@@ -1023,7 +1023,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 
 - **[→ AGENTS.md](AGENTS.md)** - Agent routing, gate definitions, behavior rules
 - **[→ Spec Kit README](.opencode/skills/system-spec-kit/README.md)** - Spec folder workflow, Level contract template set, validation rules
-- **[→ Spec-Kit Engine README](.opencode/skills/system-spec-kit/mcp-server/README.md)** - Validation, generated metadata and runtime hook adapters
+- **[→ Spec-Kit Engine README](.opencode/skills/system-spec-kit/runtime/README.md)** - Validation, generated metadata and runtime hook adapters
 - **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
 - **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `system_skill_advisor` server, nine advisor/skill-graph tools and routing docs
 - **[→ Architecture](.opencode/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract

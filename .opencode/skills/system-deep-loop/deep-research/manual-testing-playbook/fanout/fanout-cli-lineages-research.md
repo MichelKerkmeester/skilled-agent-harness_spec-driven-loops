@@ -51,7 +51,7 @@ two executors are specified, no fan-out dispatch happens silently.
 3. Confirm `step_fanout_merge` calls `fanout-merge.cjs --loop-type research` and has `skip_when: "config.fanout is absent"`.
 4. `bash: grep -n "fanout_executors\|--executor\|--executors\|--concurrency\|config.fanout\|config.executor" .opencode/commands/deep/research.md | head -20`
 5. Confirm default policy: 2+ `--executor` → `config.fanout`.
-6. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/fanout-run.vitest.ts`
+6. `bash: cd .opencode/skills/system-spec-kit/runtime && npx vitest run ../../runtime//tests/unit/fanout-run.vitest.ts`
 7. Confirm 5/5 pass (pool dispatch + lineage isolation confirmed by unit tests).
 
 ### RECOMMENDED ORCHESTRATION PROCESS

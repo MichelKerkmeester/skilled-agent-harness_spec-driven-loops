@@ -39,7 +39,7 @@ Run from the repository root:
 
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
+npm --prefix .opencode/skills/system-spec-kit/runtime run build
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
 ```
 
@@ -143,7 +143,7 @@ Copilot deterministic smoke:
 ```bash
 export SPECKIT_COPILOT_INSTRUCTIONS_PATH="$(mktemp -d)/copilot-instructions.md"
 printf '%s' '{"prompt":"implement a TypeScript hook","cwd":"'"$PWD"'"}' | \
-  node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/copilot/user-prompt-submit.js
+  node .opencode/skills/system-spec-kit/runtime/dist/hooks/copilot/user-prompt-submit.js
 rg -n "SPEC-KIT-COPILOT-CONTEXT|Active Advisor Brief|Advisor:" "$SPECKIT_COPILOT_INSTRUCTIONS_PATH"
 ```
 
@@ -183,10 +183,10 @@ rg -n "renderAdvisorBrief|effectiveThresholds|thresholdSemantics|workspaceRoot" 
   .opencode/skills/system-skill-advisor/mcp-server \
   .opencode/plugins/system-skill-advisor.js \
   .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs \
-  .opencode/skills/system-spec-kit/mcp-server/hooks
+  .opencode/skills/system-spec-kit/runtime/hooks
 
 rg -n "formatAdvisorBrief|legacyAdvisorRender|custom formatter" \
-  .opencode/skills/system-spec-kit/mcp-server \
+  .opencode/skills/system-spec-kit/runtime \
   .opencode/plugins \
   .opencode/plugins
 ```

@@ -89,7 +89,7 @@ Relevant references:
 The runtime tests are discovered from the system-spec-kit MCP server Vitest config:
 
 ```text
-.opencode/skills/system-spec-kit/mcp-server/vitest.config.ts
+.opencode/skills/system-spec-kit/runtime/vitest.config.ts
   '../runtime//tests/**/*.{vitest,test}.ts'
 ```
 
@@ -158,12 +158,12 @@ The following consumers were surfaced by a deep-research audit and were absent f
 | 2 | `deep-ai-council` orchestration | `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
 | 3 | `/doctor` route manifest | `.opencode/commands/doctor/_routes.yaml:88-104` | gate3_location + 4 script_invocations + 4 trigger_phrases routing operator commands to runtime/ scripts |
 | 4 | `/doctor` update command | `.opencode/commands/doctor/update.md:28, :220, :272` | References deep-loop scripts plus the `.pre-doctor-update.*.bak` backup-pattern reads |
-| 6 | Legacy MCP server READMEs | `.opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
+| 6 | Legacy MCP server READMEs | `.opencode/skills/system-spec-kit/runtime/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
 | 7 | Doctor + deep-improvement | `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` + `doctor-update.yaml` + `.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
 
 ### Note: cross-package test discovery
 
-`.opencode/skills/system-spec-kit/mcp-server/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `'../../../../system-deep-loop/runtime/scripts/reduce-state.cjs'` - the test file lives in `mcp_server` but exercises the (now runtime-hosted) `deep-review` reducer, and is discovered via runtime/'s vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any runtime/ change is therefore tighter than the literal directory listing: changes to `runtime/scripts/reduce-state.cjs` ALSO re-validate through runtime/'s test surface.
+`.opencode/skills/system-spec-kit/runtime/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `'../../../../system-deep-loop/runtime/scripts/reduce-state.cjs'` - the test file lives in `mcp_server` but exercises the (now runtime-hosted) `deep-review` reducer, and is discovered via runtime/'s vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any runtime/ change is therefore tighter than the literal directory listing: changes to `runtime/scripts/reduce-state.cjs` ALSO re-validate through runtime/'s test surface.
 
 ---
 
@@ -191,5 +191,5 @@ The following consumers were surfaced by a deep-research audit and were absent f
 | `.opencode/commands/deep/assets/deep-review-auto.yaml` | Review auto consumer. |
 | `.opencode/commands/deep/assets/deep-research-auto.yaml` | Research auto consumer. |
 | `.opencode/commands/doctor/speckit.md` | Doctor route boundary. |
-| `.opencode/skills/system-spec-kit/mcp-server/vitest.config.ts` | Runtime test discovery. |
+| `.opencode/skills/system-spec-kit/runtime/vitest.config.ts` | Runtime test discovery. |
 

@@ -49,7 +49,7 @@ shared SQLite DB without any schema change.
 
 1. Inspect `scripts/fanout-salvage.cjs` — confirm `extractTextFromOpencodeJson` JSON parse loop, 50-char minimum for raw fallback, `STATE_LOG_BY_LOOP_TYPE` mapping.
 2. Verify `runSalvageSweep` reads state log, iterates `type == 'iteration'` records, checks file existence via `statSync`.
-3. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/fanout-salvage.vitest.ts`
+3. `bash: cd .opencode/skills/system-spec-kit/runtime && npx vitest run ../../runtime//tests/unit/fanout-salvage.vitest.ts`
 4. Confirm 11 tests pass across the three groups: `extractTextFromOpencodeJson` (5), `runSalvageSweep` unit (5), coverage-graph isolation (1).
 
 ### Expected Outcome

@@ -2,7 +2,7 @@
 // MODULE: Legacy Trigger Lane Replay
 // ───────────────────────────────────────────────────────────────
 // Replays the substring trigger lane from
-// mcp-server/lib/search/hybrid-search.ts against the sqlite index directly,
+// runtime/lib/search/hybrid-search.ts against the sqlite index directly,
 // with no daemon and no MCP transport in the path. The lane is the comparison
 // target for the generated index, so every clause below mirrors the shipped
 // query rather than an improved version of it: the candidate gate, the
@@ -51,7 +51,7 @@ const RECENCY_SCALE_DAYS = 30;
 const MS_PER_DAY = 86_400_000;
 
 /** Where better-sqlite3 is installed for this subsystem. */
-const SQLITE_HOST_DIR = path.resolve(LIB_DIR, '..', '..', '..', 'mcp-server') + path.sep;
+const SQLITE_HOST_DIR = path.resolve(LIB_DIR, '..', '..', '..', 'runtime') + path.sep;
 
 // ───────────────────────────────────────────────────────────────
 // 2. SQL PREDICATE REPLICAS

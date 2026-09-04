@@ -47,16 +47,16 @@ scripts/evals/
 
 Allowed import surfaces:
 
-- `../../mcp-server/api`
-- `../../mcp-server/api/*`
+- `../../runtime/api`
+- `../../runtime/api/*`
 - `../../shared/`
 
 Restricted import surfaces:
 
-- `@spec-kit/mcp-server/lib*`
-- `@spec-kit/mcp-server/core*`
-- `@spec-kit/mcp-server/handlers*`
-- Relative imports into `../../mcp-server/{lib,core,handlers}`
+- `@spec-kit/runtime/lib*`
+- `@spec-kit/runtime/core*`
+- `@spec-kit/runtime/handlers*`
+- Relative imports into `../../runtime/{lib,core,handlers}`
 
 ---
 

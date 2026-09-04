@@ -143,7 +143,7 @@ Validate canonical-first spec-root resolution in an operating-system temporary w
 
    ```bash
    cd .opencode/skills/system-spec-kit
-   npx vitest run scripts/tests/spec-root-canonical-resolver.vitest.ts scripts/tests/spec-root-collision-classifier.vitest.ts scripts/tests/spec-root-write-guard.vitest.ts scripts/tests/spec-root-validation-matrix.vitest.ts --config mcp-server/vitest.config.ts --root .
+   npx vitest run scripts/tests/spec-root-canonical-resolver.vitest.ts scripts/tests/spec-root-collision-classifier.vitest.ts scripts/tests/spec-root-write-guard.vitest.ts scripts/tests/spec-root-validation-matrix.vitest.ts --config runtime/vitest.config.ts --root .
    ```
 
 ### Expected

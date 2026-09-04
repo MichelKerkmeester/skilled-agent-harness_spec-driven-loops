@@ -19,7 +19,7 @@ When the assistant claims a task is "done"/"complete"/"shipped"/"implemented", t
 
 Advisory only: every adapter adds a warning to a bounded log (and, where the runtime allows, to model-visible context), never blocks or fails a turn. The core never executes a test, build, or `validate.sh` — it only does a bounded read of `check-completion.sh --json` output or a `stat` of `implementation-summary.md`.
 
-Every file in this folder is a symlink. The real per-runtime adapters live in `system-spec-kit/mcp-server/hooks/{runtime}/`; the OpenCode plugins live in `.opencode/plugins/`. Edit the source there, not here.
+Every file in this folder is a symlink. The real per-runtime adapters live in `system-spec-kit/runtime/hooks/{runtime}/`; the OpenCode plugins live in `.opencode/plugins/`. Edit the source there, not here.
 
 ---
 
@@ -71,7 +71,7 @@ Every adapter evaluates the **same** core. What differs is the event, how the cl
 
 The three Stop-event adapters (Claude, Codex, Devin) share the same structure: read stdin, check kill switch, skip re-entrant stops, extract claim text, resolve spec folder from the shared lifecycle state file, run the core, log to stderr + advisory log. Cursor and Pi resolve the spec folder from the claim text first (regex), falling back to the lifecycle state file. OpenCode resolves from text only — `session.idle` hands over neither the message nor the active packet, so the adapter must recover both itself (the message via `ctx.client`, the folder via regex).
 
-OpenCode's real plugins cannot live in this tree because the loader globs `.opencode/plugins/` by a flat pattern, so `opencode/system-completion-sentinel.js` and `opencode/system-speckit-completion.js` are browsability-only symlinks back into that folder. The per-runtime adapters under `claude/`, `codex/`, `devin/`, `cursor/`, and `pi/` are symlinks back into `system-spec-kit/mcp-server/hooks/`.
+OpenCode's real plugins cannot live in this tree because the loader globs `.opencode/plugins/` by a flat pattern, so `opencode/system-completion-sentinel.js` and `opencode/system-speckit-completion.js` are browsability-only symlinks back into that folder. The per-runtime adapters under `claude/`, `codex/`, `devin/`, `cursor/`, and `pi/` are symlinks back into `system-spec-kit/runtime/hooks/`.
 
 ---
 
@@ -79,11 +79,11 @@ OpenCode's real plugins cannot live in this tree because the loader globs `.open
 
 ```text
 completion/
-+-- claude/   completion-evidence-stop.cjs   (symlink -> ../../../skills/system-spec-kit/mcp-server/hooks/claude/)
-+-- codex/    completion-evidence-stop.cjs   (symlink -> ../../../skills/system-spec-kit/mcp-server/hooks/codex/)
-+-- devin/    completion-evidence-stop.cjs   (symlink -> ../../../skills/system-spec-kit/mcp-server/hooks/devin/)
-+-- cursor/   completion-evidence-response.mjs (symlink -> ../../../skills/system-spec-kit/mcp-server/hooks/cursor/)
-+-- pi/       completion-evidence.ts        (symlink -> ../../../skills/system-spec-kit/mcp-server/hooks/pi/)
++-- claude/   completion-evidence-stop.cjs   (symlink -> ../../../skills/system-spec-kit/runtime/hooks/claude/)
++-- codex/    completion-evidence-stop.cjs   (symlink -> ../../../skills/system-spec-kit/runtime/hooks/codex/)
++-- devin/    completion-evidence-stop.cjs   (symlink -> ../../../skills/system-spec-kit/runtime/hooks/devin/)
++-- cursor/   completion-evidence-response.mjs (symlink -> ../../../skills/system-spec-kit/runtime/hooks/cursor/)
++-- pi/       completion-evidence.ts        (symlink -> ../../../skills/system-spec-kit/runtime/hooks/pi/)
 `-- opencode/
     +-- system-completion-sentinel.js       (symlink -> ../../../plugins/system-completion-sentinel.js)
     `-- system-speckit-completion.js        (symlink -> ../../../plugins/system-speckit-completion.js)
@@ -95,12 +95,12 @@ completion/
 
 | File | Responsibility |
 |---|---|
-| `system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs` | The runtime-neutral core. `detectCompletionClaim` (tail-anchored regex), `resolveSpecFolderFromText` (regex extraction), `evaluateCompletionEvidence` (checklist or implementation-summary check + dedup), `appendAdvisoryLog` (bounded log), `sweepStaleSentinelState` (throttled sweep). Never writes stdout/stderr. |
-| `system-spec-kit/mcp-server/hooks/claude/completion-evidence-stop.cjs` | Claude `Stop` adapter. Reads `last_assistant_message`, resolves spec folder from the shared lifecycle state file, runs the core, logs to stderr + advisory log. Skips re-entrant `stop_hook_active`. |
-| `system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs` | Codex `Stop` adapter. Same structure as Claude. Dormant-safe if Codex doesn't surface the message field. |
-| `system-spec-kit/mcp-server/hooks/devin/completion-evidence-stop.cjs` | Devin `Stop` adapter. Same structure as Claude. |
-| `system-spec-kit/mcp-server/hooks/cursor/completion-evidence-response.mjs` | Cursor `afterAgentResponse` adapter. Reads `payload.text`, resolves spec folder from text then lifecycle state, runs the core, logs to advisory log. |
-| `system-spec-kit/mcp-server/hooks/pi/completion-evidence.ts` | Pi `turn_end` extension. Flattens assistant message content, resolves spec folder from text then lifecycle state, runs the core, logs + sends `pi.sendMessage` (model-visible). |
+| `system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs` | The runtime-neutral core. `detectCompletionClaim` (tail-anchored regex), `resolveSpecFolderFromText` (regex extraction), `evaluateCompletionEvidence` (checklist or implementation-summary check + dedup), `appendAdvisoryLog` (bounded log), `sweepStaleSentinelState` (throttled sweep). Never writes stdout/stderr. |
+| `system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs` | Claude `Stop` adapter. Reads `last_assistant_message`, resolves spec folder from the shared lifecycle state file, runs the core, logs to stderr + advisory log. Skips re-entrant `stop_hook_active`. |
+| `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` | Codex `Stop` adapter. Same structure as Claude. Dormant-safe if Codex doesn't surface the message field. |
+| `system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs` | Devin `Stop` adapter. Same structure as Claude. |
+| `system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs` | Cursor `afterAgentResponse` adapter. Reads `payload.text`, resolves spec folder from text then lifecycle state, runs the core, logs to advisory log. |
+| `system-spec-kit/runtime/hooks/pi/completion-evidence.ts` | Pi `turn_end` extension. Flattens assistant message content, resolves spec folder from text then lifecycle state, runs the core, logs + sends `pi.sendMessage` (model-visible). |
 | `.opencode/plugins/system-completion-sentinel.js` | OpenCode `session.idle` plugin. Resolves last assistant text via `ctx.client.session.messages()`, resolves spec folder from text, runs the core, logs to advisory log. `session.created` triggers sweep. Never stdout/stderr. |
 | `.opencode/plugins/system-speckit-completion.js` | OpenCode read-only tool `system_speckit_completion`. Returns a spec folder's completion state (level, checklist P0/P1/P2, placeholder completeness). Not a sentinel — no event hooks. |
 
@@ -164,6 +164,6 @@ Expected result: `ok function` (confirms the tool plugin loads).
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in, with the full kill-switch index and coverage matrix.
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapters use.
-- [`../../skills/system-spec-kit/mcp-server/hooks/README.md`](../../skills/system-spec-kit/mcp-server/hooks/README.md): the owning skill's hook contract.
-- [`../../skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs`](../../skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs): the runtime-neutral core.
+- [`../../skills/system-spec-kit/runtime/hooks/README.md`](../../skills/system-spec-kit/runtime/hooks/README.md): the owning skill's hook contract.
+- [`../../skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`](../../skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs): the runtime-neutral core.
 - [`../../plugins/README.md`](../../plugins/README.md): the OpenCode plugins index.

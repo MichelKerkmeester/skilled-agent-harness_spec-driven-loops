@@ -616,8 +616,8 @@ The `cli-cursor` skill is an orchestrator wrapper around a third-party binary (`
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
 | Upstream Cursor CLI product (`https://cursor.com/docs/cli/overview`) | `cursor-agent` binary correctness | Out of scope for this playbook. We validate that our skill dispatches the binary correctly, not that the binary itself is correct |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/{session-start,session-end,shared}.ts` (compiled to `dist/hooks/cursor/*.js`) | Hook adapter contract integration | `CU-013` exercises the confirmed-fires adapters |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/{spec-gate-enforce,spec-gate-classify}.mjs` | Runtime hook enforcement/advisory | `CU-013` (enforce, wired to `preToolUse`); `CU-014` (classify, dormant - documented, never wired) |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/{session-start,session-end,shared}.ts` (compiled to `dist/hooks/cursor/*.js`) | Hook adapter contract integration | `CU-013` exercises the confirmed-fires adapters |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/{spec-gate-enforce,spec-gate-classify}.mjs` | Runtime hook enforcement/advisory | `CU-013` (enforce, wired to `preToolUse`); `CU-014` (classify, dormant - documented, never wired) |
 | `.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` | `Task`-matcher `preToolUse` dispatch guard (phase 011) | `CU-021` exercises the confirmed live-fire `matcher: "Task"` entry |
 | `.opencode/skills/sk-doc/scripts/validate_document.py` | Markdown structure validation for this playbook | This playbook itself (root and every scenario file MUST validate cleanly) |
 | `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-cursor` adapter | `cli-cursor-EC-001` .. `cli-cursor-EC-014` |

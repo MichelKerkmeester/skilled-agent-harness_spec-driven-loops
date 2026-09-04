@@ -103,6 +103,6 @@ For README-only edits, `validate_document.py` is the required file-level check.
 | [embedder-pluggability.md](../../../references/memory/embedder-pluggability.md) | Canonical narrative for the shared stack: cascade, manifests, adapter contract, swap and rollback |
 | [shared/types.ts](../../types.ts) | `IEmbeddingProvider` and shared retrieval types |
 | [shared/utils/retry.ts](../../utils/retry.ts) | Retry helper used by cloud providers |
-| [mcp-server/ENV-REFERENCE.md](../../../mcp-server/ENV-REFERENCE.md) | Source-anchored table for every embedding and model-server variable |
+| [runtime/ENV-REFERENCE.md](../../../runtime/ENV-REFERENCE.md) | Source-anchored table for every embedding and model-server variable |
 
 ---

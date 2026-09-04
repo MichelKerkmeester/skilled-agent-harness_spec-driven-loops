@@ -16,7 +16,7 @@ vi.mock('../spec-folder', () => ({
   detectSpecFolder: vi.fn(async () => workflowHarness.specFolderPath),
 }));
 
-vi.mock('@spec-kit/mcp-server/api/providers', () => ({
+vi.mock('@spec-kit/runtime/api/providers', () => ({
   retryManager: {
     getRetryStats: () => ({ queue_size: 0 }),
     processRetryQueue: vi.fn(async () => ({ processed: 0, succeeded: 0, failed: 0 })),

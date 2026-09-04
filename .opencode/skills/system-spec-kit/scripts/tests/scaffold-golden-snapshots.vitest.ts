@@ -7,7 +7,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { describe, expect, it } from 'vitest';
-import { resolveLevelContract } from '../../mcp-server/lib/templates/level-contract-resolver';
+import { resolveLevelContract } from '../../runtime/lib/templates/level-contract-resolver';
 import { renderInlineGates, type RenderLevel } from '../templates/inline-gate-renderer';
 
 const SKILL_ROOT = path.resolve(__dirname, '../..');

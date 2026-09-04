@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/codex/user-prompt-submit.ts
+../../../skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts

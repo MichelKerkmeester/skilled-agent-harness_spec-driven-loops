@@ -354,7 +354,7 @@ npx ajv validate -s .opencode/skills/cli-external-orchestration/cli-opencode/ass
 Runtime tests:
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp-server
+cd .opencode/skills/system-spec-kit/runtime
 npx vitest run tests/deep-loop/permissions-gate.vitest.ts
 ```
 

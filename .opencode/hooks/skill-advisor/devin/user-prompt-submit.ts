@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/devin/user-prompt-submit.ts
+../../../skills/system-spec-kit/runtime/hooks/devin/user-prompt-submit.ts

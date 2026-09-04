@@ -51,8 +51,8 @@ Deferred decisions stay visible until they are explicitly resolved, superseded o
 
 `.devin/hooks.v1.json` registers two hooks:
 
-1. `UserPromptSubmit` pointing to `.opencode/skills/system-spec-kit/mcp-server/dist/system-spec-kit/mcp-server/hooks/devin/user-prompt-submit.js`
-2. `SessionStart` pointing to `.opencode/skills/system-spec-kit/mcp-server/dist/system-spec-kit/mcp-server/hooks/devin/session-start.js`
+1. `UserPromptSubmit` pointing to `.opencode/skills/system-spec-kit/runtime/dist/system-spec-kit/runtime/hooks/devin/user-prompt-submit.js`
+2. `SessionStart` pointing to `.opencode/skills/system-spec-kit/runtime/dist/system-spec-kit/runtime/hooks/devin/session-start.js`
 
 Both paths point to the OLD `system-spec-kit` location. The NEW location at `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/devin/` exists plus contains a compiled `user-prompt-submit.js` but lacks `session-start.js`.
 
@@ -88,7 +88,7 @@ A complete migration of both hooks requires building `session-start.js` at the N
 
 > **Update (2026-06-08).** The Devin runtime was subsequently removed from the framework entirely (see the F4 supersession note above): the `hooks/devin/` sources + dist and `.devin/hooks.v1.json` no longer exist. All Devin rows and steps below are retained as historical record only; the remaining F6 removal scope concerns the claude/opencode entries.
 
-All 4 OLD hook READMEs (`system-spec-kit/mcp-server/hooks/{claude,opencode,devin}/README.md`) now carry the 2026-05-16 deprecation banner with a 2026-08-16 removal target (90-day window). `devin/README.md` was created (it was missing). Operators have a clear migration deadline. Actual OLD-location removal stays out of scope: it requires the 90-day window to elapse plus a verification pass that no remaining runtime consumers point at OLD paths.
+All 4 OLD hook READMEs (`system-spec-kit/runtime/hooks/{claude,opencode,devin}/README.md`) now carry the 2026-05-16 deprecation banner with a 2026-08-16 removal target (90-day window). `devin/README.md` was created (it was missing). Operators have a clear migration deadline. Actual OLD-location removal stays out of scope: it requires the 90-day window to elapse plus a verification pass that no remaining runtime consumers point at OLD paths.
 
 ### F6 audit progress (2026-05-18)
 
@@ -98,27 +98,27 @@ Mid-window audit while preparing for the 2026-08-16 removal:
 - `.claude/settings.local.json` — no hook entries (Claude consumes MCP only).
 - `opencode.json` — no hook entries.
 - OpenCode plugin (`.opencode/plugins/spec-kit-skill-advisor.js`) — owns its own loading, not affected.
-- Cross-runtime grep for `system-spec-kit/mcp-server/hooks/`: zero hits in active runtime config files. Two hits in documentation (`README.md` lines 767, 769 and `DEPLOYMENT.md` line 7). Remaining hits are historical research/impl logs.
+- Cross-runtime grep for `system-spec-kit/runtime/hooks/`: zero hits in active runtime config files. Two hits in documentation (`README.md` lines 767, 769 and `DEPLOYMENT.md` line 7). Remaining hits are historical research/impl logs.
 
 **Compiled NEW dist is self-contained:**
-- Imports in `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js` only resolve to `../../mcp-server/lib/*.js` (skill-internal). No imports from OLD `system-spec-kit/mcp-server/hooks/` in the compiled output.
-- `grep -rE "system-spec-kit/mcp-server/hooks" .opencode/skills/system-skill-advisor/mcp-server/dist` returns zero hits.
+- Imports in `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js` only resolve to `../../mcp-server/lib/*.js` (skill-internal). No imports from OLD `system-spec-kit/runtime/hooks/` in the compiled output.
+- `grep -rE "system-spec-kit/runtime/hooks" .opencode/skills/system-skill-advisor/mcp-server/dist` returns zero hits.
 
 **OLD location contents that DO have non-hook consumers — must not be removed naively:**
 
 | OLD path | Still in use by | Disposition for 2026-08-16 |
 |---|---|---|
-| `system-spec-kit/mcp-server/hooks/{claude,opencode,devin}/user-prompt-submit.ts` | Nothing at runtime (NEW dist is self-contained) | Safe to delete after 2026-08-16 |
-| `system-spec-kit/mcp-server/hooks/{claude,opencode,devin}/README.md` | Operators migrating away | Safe to delete after 2026-08-16 |
-| `system-spec-kit/mcp-server/hooks/claude/hook-state.ts` | Documented in `DEPLOYMENT.md` L7 as the project-hash source. | Keep until separate migration packet. |
-| `system-spec-kit/mcp-server/hooks/opencode/lib/freshness-smoke-check.ts` | Documented in `README.md` L769 as the canonical helper. | Keep until separate migration packet. |
-| `system-spec-kit/mcp-server/hooks/devin/session-prime.ts` + `session-start.ts` | Code-graph SKILL.md §8.2 explicitly documents these as still-in-use under spec-kit (ADR-001 hook ownership asymmetry). | Keep — not in scope for the F6 90-day removal. |
-| `system-spec-kit/mcp-server/hooks/{shared,session-stop,claude-transcript,compact-inject}.ts` | Unverified consumers. | Audit case-by-case in the removal packet. |
+| `system-spec-kit/runtime/hooks/{claude,opencode,devin}/user-prompt-submit.ts` | Nothing at runtime (NEW dist is self-contained) | Safe to delete after 2026-08-16 |
+| `system-spec-kit/runtime/hooks/{claude,opencode,devin}/README.md` | Operators migrating away | Safe to delete after 2026-08-16 |
+| `system-spec-kit/runtime/hooks/claude/hook-state.ts` | Documented in `DEPLOYMENT.md` L7 as the project-hash source. | Keep until separate migration packet. |
+| `system-spec-kit/runtime/hooks/opencode/lib/freshness-smoke-check.ts` | Documented in `README.md` L769 as the canonical helper. | Keep until separate migration packet. |
+| `system-spec-kit/runtime/hooks/devin/session-prime.ts` + `session-start.ts` | Code-graph SKILL.md §8.2 explicitly documents these as still-in-use under spec-kit (ADR-001 hook ownership asymmetry). | Keep — not in scope for the F6 90-day removal. |
+| `system-spec-kit/runtime/hooks/{shared,session-stop,claude-transcript,compact-inject}.ts` | Unverified consumers. | Audit case-by-case in the removal packet. |
 
 **Revised F6 removal scope (after 2026-08-16):**
 
 The removal at 2026-08-16 should be limited to:
-- The 4 per-runtime entry-point files `system-spec-kit/mcp-server/hooks/{claude,opencode,devin}/user-prompt-submit.ts` + each runtime's `README.md`.
+- The 4 per-runtime entry-point files `system-spec-kit/runtime/hooks/{claude,opencode,devin}/user-prompt-submit.ts` + each runtime's `README.md`.
 
 NOT included in the F6 removal:
 - `hook-state.ts` (per DEPLOYMENT.md consumer)
@@ -132,7 +132,7 @@ A future packet (`006-skill-advisor/010-old-hooks-helper-migration` or similar) 
 
 Hooks exist at TWO locations:
 
-- OLD: `.opencode/skills/system-spec-kit/mcp-server/hooks/{claude,opencode,devin}/` with source TS plus compiled JS
+- OLD: `.opencode/skills/system-spec-kit/runtime/hooks/{claude,opencode,devin}/` with source TS plus compiled JS
 - NEW: `.opencode/skills/system-skill-advisor/hooks/{claude,opencode,devin}/` with source TS, plus `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/{claude,opencode}/` with compiled JS (devin missing session-start.js per F4)
 
 No README or doc explains which location is canonical or when OLD will deprecate.
@@ -141,7 +141,7 @@ No README or doc explains which location is canonical or when OLD will deprecate
 
 Mark OLD as deprecated with a 90-day migration window. Concrete steps:
 
-1. Add a top-banner deprecation note to every README under `.opencode/skills/system-spec-kit/mcp-server/hooks/*/README.md`:
+1. Add a top-banner deprecation note to every README under `.opencode/skills/system-spec-kit/runtime/hooks/*/README.md`:
 
    ```markdown
    > **DEPRECATED 2026-05-16.** This hook location is being migrated to `.opencode/skills/system-skill-advisor/hooks/`. Update any runtime config (e.g. `.devin/hooks.v1.json`) before 2026-08-16. After that date this location may be removed without further notice.
@@ -162,7 +162,7 @@ Mark OLD as deprecated with a 90-day migration window. Concrete steps:
 
 - Premature deletion of OLD breaks Devin hook (until F4 resolves).
 - Forgetting to update one runtime's config leaves it silently using the OLD location.
-- The OLD `system-spec-kit/mcp-server/hooks/` directory may have other consumers (test harnesses, internal scripts) beyond the visible runtime configs. Verify before delete.
+- The OLD `system-spec-kit/runtime/hooks/` directory may have other consumers (test harnesses, internal scripts) beyond the visible runtime configs. Verify before delete.
 
 ---
 

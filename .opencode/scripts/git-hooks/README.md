@@ -173,6 +173,6 @@ Expected result: syntax checks pass, and the smoke commit runs silently unless a
 ## 8. RELATED
 
 - [`../README.md`](../README.md)
-- [`../../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md`](../../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md)
+- [`../../skills/system-spec-kit/runtime/ENV-REFERENCE.md`](../../skills/system-spec-kit/runtime/ENV-REFERENCE.md)
 - [`lib/README.md`](lib/README.md)
 - [`../../skills/sk-git/scripts/worktree-naming.sh`](../../skills/sk-git/scripts/worktree-naming.sh)

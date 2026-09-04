@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/codex/session-start.ts
+../../../skills/system-spec-kit/runtime/hooks/codex/session-start.ts

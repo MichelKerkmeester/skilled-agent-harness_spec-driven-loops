@@ -20,7 +20,7 @@ export default defineConfig({
       'bench/**',
     ],
     setupFiles: [
-      '../../system-spec-kit/mcp-server/tests/_support/vitest-setup.ts',
+      '../../system-spec-kit/runtime/tests/_support/vitest-setup.ts',
     ],
     fileParallelism: false,
     globals: true,

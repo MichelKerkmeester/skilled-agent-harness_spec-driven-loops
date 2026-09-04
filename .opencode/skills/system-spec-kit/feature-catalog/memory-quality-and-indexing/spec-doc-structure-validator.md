@@ -24,7 +24,7 @@ The validator is the last structural checkpoint before a routed save becomes par
 
 ## 2. HOW IT WORKS
 
-`mcp-server/lib/validation/spec-doc-structure.ts` exposes five canonical continuity rules through `validate.sh --strict`.
+`runtime/lib/validation/spec-doc-structure.ts` exposes five canonical continuity rules through `validate.sh --strict`.
 
 - `FRONTMATTER_MEMORY_BLOCK` verifies that the `_memory.continuity` block exists, is well-formed, and stays within the compact size budget.
 - `MERGE_LEGALITY` checks that the requested edit is legal for the current anchor and section shape.
@@ -42,16 +42,16 @@ The validator is wired into the save pipeline and the dedicated regression suite
 
 | File | Layer | Role |
 |------|-------|------|
-| `mcp-server/lib/validation/spec-doc-structure.ts` | Lib | Five-rule validator bridge for phase 018 spec-doc writes |
-| `mcp-server/handlers/memory-save.ts` | Handler | Save-path integration that invokes the validator before storage |
+| `runtime/lib/validation/spec-doc-structure.ts` | Lib | Five-rule validator bridge for phase 018 spec-doc writes |
+| `runtime/handlers/memory-save.ts` | Handler | Save-path integration that invokes the validator before storage |
 | `scripts/spec/validate.sh` | Shell | Rule exposure and `--strict` orchestration surface |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp-server/tests/spec-doc-structure.vitest.ts` | Automated test | Rule-level validator coverage |
-| `mcp-server/tests/gate-d-regression-quality-gates.vitest.ts` | Automated test | Gate D regression coverage for the validator bridge |
+| `runtime/tests/spec-doc-structure.vitest.ts` | Automated test | Rule-level validator coverage |
+| `runtime/tests/gate-d-regression-quality-gates.vitest.ts` | Automated test | Gate D regression coverage for the validator bridge |
 
 ---
 

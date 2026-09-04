@@ -43,4 +43,4 @@ npx vitest run .opencode/skills/system-spec-kit/scripts/tests/validation-gate-ha
 ## 5. RELATED
 
 - [`../spec/validate.sh`](../spec/validate.sh): the per-folder validator this sweep drives.
-- [`ENV-REFERENCE.md`](../../mcp-server/ENV-REFERENCE.md): documents the sweep's environment-driven configuration.
+- [`ENV-REFERENCE.md`](../../runtime/ENV-REFERENCE.md): documents the sweep's environment-driven configuration.

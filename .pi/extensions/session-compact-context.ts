@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/mcp-server/hooks/pi/session-compact-context.ts
+../../.opencode/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts

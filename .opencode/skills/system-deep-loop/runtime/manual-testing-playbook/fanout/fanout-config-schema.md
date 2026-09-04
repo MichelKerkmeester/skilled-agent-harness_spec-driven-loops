@@ -37,7 +37,7 @@ salvage, and merge primitives receive malformed lineage descriptors.
 
 - Working directory is repository root.
 - `runtime/` source tree present.
-- vitest resolves from `.opencode/skills/system-spec-kit/mcp-server/`.
+- vitest resolves from `.opencode/skills/system-spec-kit/runtime/`.
 
 ### Prompt
 
@@ -46,7 +46,7 @@ salvage, and merge primitives receive malformed lineage descriptors.
 ### Commands
 
 1. Inspect `lib/deep-loop/executor-config.ts` — confirm `lineageExecutorSchema` at ~L294, `fanoutConfigSchema` at ~L304, `parseFanoutConfig` at ~L323, `expandLineages` at ~L381.
-2. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/executor-config.vitest.ts`
+2. `bash: cd .opencode/skills/system-spec-kit/runtime && npx vitest run ../../runtime//tests/unit/executor-config.vitest.ts`
 3. Confirm 36 tests pass (27 original + 9 fan-out). Note the 9 fan-out test names.
 4. Inspect `lib/deep-loop/executor-audit.ts` ~L491 — verify `lineageId` is spread conditionally (`...(lineageId !== undefined ? { lineageId } : {})`).
 

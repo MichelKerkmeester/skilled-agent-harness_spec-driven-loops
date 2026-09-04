@@ -60,7 +60,7 @@ Validate directive-lifecycle delivery across the canonical core, every registere
 
 ```bash
 cd .opencode/skills/system-skill-advisor/mcp-server && npm run build
-cd ../../system-spec-kit/mcp-server && npm run build
+cd ../../system-spec-kit/runtime && npm run build
 ```
 
 2. Run the canonical decision, store, boundary, Claude handler, and OpenCode plugin tests:
@@ -78,7 +78,7 @@ npx vitest run \
 3. Run registered Claude/Codex/Cursor/Devin native-payload and lifecycle-bridge tests:
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp-server
+cd .opencode/skills/system-spec-kit/runtime
 npx vitest run \
   tests/directive-lifecycle-boundary-bridge.vitest.ts \
   tests/directive-lifecycle-adapter-parity.vitest.ts \
@@ -152,7 +152,7 @@ A complete run stores:
 - Canonical core: `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`
 - Durable store: `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts`
 - Host boundary: `.opencode/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`
-- Registered bridge: `.opencode/skills/system-spec-kit/mcp-server/hooks/claude/directive-lifecycle-boundary.ts`
+- Registered bridge: `.opencode/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts`
 - OpenCode adapter: `.opencode/plugins/system-skill-advisor.js`
 - Persistence wrapper: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs`
 

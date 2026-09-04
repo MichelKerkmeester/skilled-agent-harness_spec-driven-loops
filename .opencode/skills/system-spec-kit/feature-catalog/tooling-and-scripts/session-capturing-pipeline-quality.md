@@ -235,17 +235,17 @@ The closure feature consists of these distinct shipped behaviors:
 - `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/scripts/tests && node test-memory-quality-lane.js`
 - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
-- `cd .opencode/skills/system-spec-kit/mcp-server && npm run lint`
-- `cd .opencode/skills/system-spec-kit/mcp-server && npm run build`
-- `cd .opencode/skills/system-spec-kit/mcp-server && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
-- `cd .opencode/skills/system-spec-kit/mcp-server && npm run test`
+- `cd .opencode/skills/system-spec-kit/runtime && npm run lint`
+- `cd .opencode/skills/system-spec-kit/runtime && npm run build`
+- `cd .opencode/skills/system-spec-kit/runtime && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/runtime && npm run test`
 - `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts`
 
 ### Latest verification snapshot
 
 - Treat the commands in this section as the canonical reproducible baseline and capture fresh output each time; do not reuse historical test counts as evidence.
 - The current supported scripts baseline for this feature is: `npm run check`, `npm run build`, the targeted Vitest lanes above, and `npm run test:legacy` after build.
-- Source/dist alignment should report zero violations for both `mcp-server/dist/lib` and `scripts/dist`.
+- Source/dist alignment should report zero violations for both `runtime/dist/lib` and `scripts/dist`.
 - Live-proof claims require fresh per-save-mode artifacts generated during the same verification run. No retained `research/` artifact is currently treated as canonical by this catalog.
 
 

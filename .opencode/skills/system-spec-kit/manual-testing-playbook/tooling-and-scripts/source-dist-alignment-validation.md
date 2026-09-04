@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates the check-source-dist-alignment.ts script for `150`. It focuses on verifying every `.js` file in `mcp-server/dist/lib/` has a corresponding `.ts` source file.
+This scenario validates the check-source-dist-alignment.ts script for `150`. It focuses on verifying every `.js` file in `runtime/dist/lib/` has a corresponding `.ts` source file.
 
 ---
 

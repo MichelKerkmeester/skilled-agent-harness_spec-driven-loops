@@ -46,7 +46,7 @@ attribution array is the only mechanism for cross-model provenance.
 ### Commands
 
 1. Inspect `scripts/fanout-merge.cjs` `mergeResearchRegistries` — confirm `findingById` Map keyed by `finding.id || finding.title`, `_lineages` push on duplicate, metrics aggregation formula.
-2. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts`
+2. `bash: cd .opencode/skills/system-spec-kit/runtime && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts`
 3. Run with `--reporter=verbose` to see individual test names. Verify the 3 research tests: dedup-by-id, iteration-count-sum, null-registry-handled.
 
 ### Expected Outcome

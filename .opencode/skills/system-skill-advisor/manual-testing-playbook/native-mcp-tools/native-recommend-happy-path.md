@@ -36,7 +36,7 @@ Validate the native MCP `advisor_recommend` tool with a prompt that should map t
 ## 2. SCENARIO CONTRACT
 
 - Repo root is the working directory.
-- MCP server has been built with `npm --prefix .opencode/skills/system-spec-kit/mcp-server run build`.
+- MCP server has been built with `npm --prefix .opencode/skills/system-spec-kit/runtime run build`.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset.
 
 ---

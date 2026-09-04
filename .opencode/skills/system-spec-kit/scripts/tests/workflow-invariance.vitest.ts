@@ -92,7 +92,7 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   if (rel.endsWith('.opencode/skills/system-spec-kit/templates/MIGRATION.md')) return true;
   if (rel.endsWith('.opencode/skills/system-spec-kit/templates/spec-kit-docs.json')) return true;
   if (rel.endsWith('.opencode/skills/system-spec-kit/templates/README.md')) return true;
-  if (/mcp-server\/lib\/config\/capability-flags\.ts|lib\/config\/capability-flags\.ts|\bcapability-flags\.ts\b|from ['"][^'"]*capability-flags['"]|require\(['"][^'"]*capability-flags(?:\.js)?['"]\)/iu.test(hit.text)) return true;
+  if (/runtime\/lib\/config\/capability-flags\.ts|lib\/config\/capability-flags\.ts|\bcapability-flags\.ts\b|from ['"][^'"]*capability-flags['"]|require\(['"][^'"]*capability-flags(?:\.js)?['"]\)/iu.test(hit.text)) return true;
   if (!isExtra && isLegacyPhaseCleanupDebt(filePath)) return true;
   // --- Concrete technical identifiers that are never private taxonomy (schema fields, real
   // filenames/modules, MCP protocol) — allowed by the specific token they match, not by whole

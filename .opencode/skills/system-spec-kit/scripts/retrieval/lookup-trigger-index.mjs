@@ -4,7 +4,7 @@
 // ───────────────────────────────────────────────────────────────
 // Resolves a prompt against the committed trigger index using the same
 // candidate gate, score classes and scope filter as the substring trigger lane
-// in mcp-server/lib/search/hybrid-search.ts, so results from the two can be
+// in runtime/lib/search/hybrid-search.ts, so results from the two can be
 // diffed directly.
 //
 // Everything here is synchronous and the import list is deliberately short:

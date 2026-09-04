@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/cursor/session-end.ts
+../../../skills/system-spec-kit/runtime/hooks/cursor/session-end.ts

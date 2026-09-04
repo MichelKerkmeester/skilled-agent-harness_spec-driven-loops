@@ -18,7 +18,7 @@ version: 3.6.0.8
 
 Spec Validation Rule Engine is the executable validation surface behind Spec Kit's documentation quality gates.
 
-The engine has two parts with a firm division. `validate.sh` is a front-end: it resolves arguments and the set of folders to validate, then hands every rule decision to the compiled orchestrator at `mcp-server/lib/validation/orchestrator.ts`. The orchestrator detects the target spec level, runs the rules, and aggregates the result into terminal-friendly output or JSON.
+The engine has two parts with a firm division. `validate.sh` is a front-end: it resolves arguments and the set of folders to validate, then hands every rule decision to the compiled orchestrator at `runtime/lib/validation/orchestrator.ts`. The orchestrator detects the target spec level, runs the rules, and aggregates the result into terminal-friendly output or JSON.
 
 The front-end deliberately implements no rules of its own. It used to carry a second, independent implementation of the same rule set, chosen between by environment; the two disagreed, so a packet's verdict depended on how the caller's shell was configured. One engine is the point.
 

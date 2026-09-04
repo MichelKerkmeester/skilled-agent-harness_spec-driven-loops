@@ -19,7 +19,7 @@ trigger_phrases:
 
 The `shared/` directory is the **canonical source** for shared modules used by:
 - **CLI scripts** (`scripts/`) - `generate-context.ts` and other utilities
-- **The spec-kit engine** (`mcp-server/`) - validation orchestrator, generated metadata and the runtime hook adapters
+- **The spec-kit engine** (`runtime/`) - validation orchestrator, generated metadata and the runtime hook adapters
 - **The skill advisor** - the embedding stack's only consumer today, via the `@spec-kit/shared/embeddings/*` alias
 
 This consolidation eliminates code duplication and ensures consistent behavior across all entry points.
@@ -44,7 +44,7 @@ These modules support packet-doc-first continuity: `/speckit:resume`, implemente
 │           ┌───────────┴───────────────────┐                      │
 │           │                               │                      │
 │    ┌──────┴──────┐                 ┌──────┴──────┐               │
-│    │scripts/lib  │                 │mcp-server/  │               │
+│    │scripts/lib  │                 │runtime/  │               │
 │    │(RE-EXPORTS) │                 │lib/         │               │
 │    ├─────────────┤                 │(RE-EXPORTS) │               │
 │    │embeddings.ts│                 ├─────────────┤               │
@@ -92,7 +92,7 @@ These modules support packet-doc-first continuity: `/speckit:resume`, implemente
 
 ## 1B. BOUNDARY AND IMPORT POLICY
 
-`shared/` is the canonical source for modules consumed by **both** `scripts/` and `mcp-server/`.
+`shared/` is the canonical source for modules consumed by **both** `scripts/` and `runtime/`.
 
 - **Import convention**: Consumers should import via `@spec-kit/shared/*` path alias
 - **Stability**: Shared modules must be stable because breaking changes require coordination with both consumers
@@ -110,7 +110,7 @@ These modules support packet-doc-first continuity: `/speckit:resume`, implemente
 import { generateEmbedding } from '@spec-kit/shared/embeddings'
 import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 
-// From MCP server (mcp-server/*.ts)
+// From MCP server (runtime/*.ts)
 import { generateEmbedding } from '@spec-kit/shared/embeddings'
 import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 ```
@@ -189,7 +189,7 @@ shared/
 │   └── structure-aware-chunker.ts # Markdown-aware chunking helpers
 ├── ipc/
 │   └── socket-server.ts        # Shared IPC socket server helper
-├── mcp-server/
+├── runtime/
 │   └── database/               # No source; a probe target for resolvePackageRoot() in config.ts
 │       └── README.md           # Directory contract
 ├── parsing/
@@ -267,7 +267,7 @@ shared/
 
 Two re-export shims exist for path convenience:
 - `scripts/lib/embeddings.ts` → `export * from '@spec-kit/shared/embeddings'`
-- `mcp-server/lib/providers/embeddings.ts` → explicit named re-exports from `@spec-kit/shared/embeddings`
+- `runtime/lib/providers/embeddings.ts` → explicit named re-exports from `@spec-kit/shared/embeddings`
 
 The canonical source is the `shared/` package. `shared/embeddings.ts` is the public shared entry point for embeddings, while `shared/embeddings/` contains provider-specific implementation details. These shims stay implementation-free: the scripts shim uses a barrel re-export, while the MCP server shim uses explicit named re-exports for auditability.
 
@@ -524,7 +524,7 @@ console.log(extractTriggerPhrases('memory search trigger extraction'))"
 | Document                                                | Purpose                                    |
 | ------------------------------------------------------- | ------------------------------------------ |
 | [scripts/lib/README.md](../scripts/lib/README.md)       | CLI scripts library (re-exports from here) |
-| [mcp-server/lib/README.md](../mcp-server/lib/README.md) | MCP server library (re-exports from here)  |
+| [runtime/lib/README.md](../runtime/lib/README.md) | MCP server library (re-exports from here)  |
 | [embeddings/README.md](./embeddings/README.md)          | Embeddings factory detailed docs           |
 | [SKILL.md](../SKILL.md)                                 | Parent skill documentation                 |
 

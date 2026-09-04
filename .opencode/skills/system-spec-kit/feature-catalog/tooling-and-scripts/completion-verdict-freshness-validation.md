@@ -36,17 +36,17 @@ The validation helper recomputes a normalized continuity fingerprint from packet
 | File | Layer | Role |
 |---|---|---|
 | `scripts/validation/continuity-freshness.ts` | Script | Fingerprint recompute, packet-scoped dirty paths, warn/enforce behavior |
-| `mcp-server/lib/validation/spec-doc-structure.ts` | Shared | Normalized continuity fingerprint helper |
+| `runtime/lib/validation/spec-doc-structure.ts` | Shared | Normalized continuity fingerprint helper |
 | `scripts/spec/validate.sh` | Script | Strict validation rule wiring and flag gate |
 | `references/validation/validation-rules.md` | Reference | Operator documentation for the rule and flags |
-| `mcp-server/ENV-REFERENCE.md` | Reference | Documents completion freshness flags |
+| `runtime/ENV-REFERENCE.md` | Reference | Documents completion freshness flags |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp-server/tests/continuity-freshness.vitest.ts` | Automated test | Flag-off, stale warn, enforce error, clean recompute, and dirty-path coverage |
-| `mcp-server/tests/spec-doc-structure.vitest.ts` | Automated test | Spec-doc fingerprint helper coverage |
+| `runtime/tests/continuity-freshness.vitest.ts` | Automated test | Flag-off, stale warn, enforce error, clean recompute, and dirty-path coverage |
+| `runtime/tests/spec-doc-structure.vitest.ts` | Automated test | Spec-doc fingerprint helper coverage |
 
 ---
 

@@ -24,10 +24,10 @@ expected_leaf_resources: []
 
 `system-completion-sentinel` is an OpenCode plugin (`.opencode/plugins/system-completion-sentinel.js`) that
 adapts the runtime-neutral core `completion-evidence-sentinel.cjs`
-(`.opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs`) onto
+(`.opencode/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`) onto
 OpenCode's `session.idle` and `session.created` events. The identical core is also consumed by a
 standalone Claude Code Stop hook,
-`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/completion-evidence-stop.cjs`, wired in
+`.opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`, wired in
 `.claude/settings.json` under the `Stop` matcher alongside the existing `session-stop.js` owner.
 
 When a turn ends with a completion claim (a word from `COMPLETION_CLAIM_PATTERN` -- `completed`,
@@ -60,7 +60,7 @@ This scenario validates:
 
 - Preconditions: repository checked out at project root; Node.js available on `PATH` (verified
   live on v22.23.1); `mcp_server` dependencies installed so `npx vitest` resolves under
-  `.opencode/skills/system-spec-kit/mcp-server`. No live OpenCode or Claude Code session is
+  `.opencode/skills/system-spec-kit/runtime`. No live OpenCode or Claude Code session is
   required for the automatable evidence below -- the core and both runtime adapters are
   hermetically testable via direct `node` invocation.
 - Real user-facing trigger: an agent in a live Claude Code or OpenCode session ends a turn with a
@@ -111,7 +111,7 @@ Expected: `# tests 4`, `# pass 4`, `# fail 0`.
 ### 2. mcp_server vitest suites for the core and the Claude Stop hook transport
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp-server && \
+cd .opencode/skills/system-spec-kit/runtime && \
   npx vitest run tests/completion-evidence-sentinel.vitest.ts tests/hook-completion-evidence-stop.vitest.ts
 ```
 
@@ -130,7 +130,7 @@ const path = require('node:path');
 const fs = require('node:fs');
 const os = require('node:os');
 
-const core = require(path.resolve(process.cwd(), '.opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs'));
+const core = require(path.resolve(process.cwd(), '.opencode/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs'));
 const projectDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentinel-core-live-'));
 
 function section(title) { console.log(`\n--- ${title} ---`); }
@@ -288,7 +288,7 @@ fs.mkdirSync(stateDir, { recursive: true });
 fs.writeFileSync(path.join(stateDir, sessionHash + '.json'), JSON.stringify({ lastSpecFolder: '$SPEC_DIR' }), 'utf8');
 "
 printf '%s' '{"stop_hook_active":false,"session_id":"'"$SESSION_ID"'","last_assistant_message":"The core is now complete and shipped."}' \
-  | (cd "$PROJECT_DIR" && node "$REPO_ROOT/.opencode/skills/system-spec-kit/mcp-server/hooks/claude/completion-evidence-stop.cjs")
+  | (cd "$PROJECT_DIR" && node "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs")
 echo "exit code: $?"
 cat "$PROJECT_DIR/.opencode/logs/completion-sentinel-advisories.log"
 rm -rf "$PROJECT_DIR" "$SPEC_DIR"
@@ -347,10 +347,10 @@ Capture, for every step in the Commands sequence above:
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - OpenCode plugin (adapter): `.opencode/plugins/system-completion-sentinel.js`
 - OpenCode plugin unit test: `.opencode/plugins/tests/system-completion-sentinel.test.cjs`
-- Runtime-neutral core: `.opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs`
-- Core vitest suite: `.opencode/skills/system-spec-kit/mcp-server/tests/completion-evidence-sentinel.vitest.ts`
-- Claude Stop hook (adapter): `.opencode/skills/system-spec-kit/mcp-server/hooks/claude/completion-evidence-stop.cjs`
-- Claude Stop hook vitest suite: `.opencode/skills/system-spec-kit/mcp-server/tests/hook-completion-evidence-stop.vitest.ts`
+- Runtime-neutral core: `.opencode/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`
+- Core vitest suite: `.opencode/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts`
+- Claude Stop hook (adapter): `.opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`
+- Claude Stop hook vitest suite: `.opencode/skills/system-spec-kit/runtime/tests/hook-completion-evidence-stop.vitest.ts`
 - Shared completion-state helper: `.opencode/skills/system-spec-kit/scripts/lib/completion-state.cjs`
 - Checklist evaluator script: `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh`
 - Claude hook wiring: `.claude/settings.json` (`hooks.Stop`)

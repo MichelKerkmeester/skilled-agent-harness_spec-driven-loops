@@ -65,14 +65,14 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Inspect `mcp-server/lib/validation/spec-doc-structure.ts` rule dispatch, validate.sh aliases, and the continuity block renderer
+Inspect `runtime/lib/validation/spec-doc-structure.ts` rule dispatch, validate.sh aliases, and the continuity block renderer
 
 ---
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/spec-doc-structure-validator.md](../../feature-catalog/memory-quality-and-indexing/spec-doc-structure-validator.md)
-- Source files: `mcp-server/lib/validation/spec-doc-structure.ts`, `scripts/spec/validate.sh`
+- Source files: `runtime/lib/validation/spec-doc-structure.ts`, `scripts/spec/validate.sh`
 
 ---
 

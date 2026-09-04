@@ -41,7 +41,7 @@ jobs:
           set -euo pipefail
           npm --prefix .opencode/skills/system-spec-kit ci
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
-          npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
           ( cd .opencode/skills/system-spec-kit/scripts && npm ci )
 
       - name: Sweep the corpus

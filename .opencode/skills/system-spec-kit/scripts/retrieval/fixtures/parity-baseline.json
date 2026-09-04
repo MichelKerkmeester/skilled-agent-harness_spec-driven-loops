@@ -175,7 +175,7 @@
                 "evidenceField": "trigger_phrases",
                 "line": 6,
                 "matchClass": "phrase-containment",
-                "path": ".opencode/skills/system-spec-kit/mcp-server/data/README.md"
+                "path": ".opencode/skills/system-spec-kit/runtime/data/README.md"
               },
               {
                 "evidenceField": "trigger_phrases",
@@ -386,7 +386,7 @@
                 "evidenceField": "trigger_phrases",
                 "line": 6,
                 "matchClass": "phrase-containment",
-                "path": ".opencode/skills/system-spec-kit/mcp-server/data/README.md"
+                "path": ".opencode/skills/system-spec-kit/runtime/data/README.md"
               },
               {
                 "evidenceField": "trigger_phrases",
@@ -597,7 +597,7 @@
                 "evidenceField": "trigger_phrases",
                 "line": 6,
                 "matchClass": "phrase-containment",
-                "path": ".opencode/skills/system-spec-kit/mcp-server/data/README.md"
+                "path": ".opencode/skills/system-spec-kit/runtime/data/README.md"
               },
               {
                 "evidenceField": "trigger_phrases",
@@ -946,7 +946,7 @@
                 "evidenceField": "trigger_phrases",
                 "line": 6,
                 "matchClass": "phrase-containment",
-                "path": ".opencode/skills/system-spec-kit/mcp-server/data/README.md"
+                "path": ".opencode/skills/system-spec-kit/runtime/data/README.md"
               },
               {
                 "evidenceField": "trigger_phrases",
@@ -3173,7 +3173,7 @@
                 "evidenceField": "trigger_phrases",
                 "line": 7,
                 "matchClass": "phrase-containment",
-                "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/README.md"
+                "path": ".opencode/skills/system-spec-kit/runtime/lib/validation/README.md"
               }
             ],
             "recipe": "structured-jsonl-max-count-1",
@@ -3915,7 +3915,7 @@
     "each arm is restricted to the database and manifest intersection, then cut at the result limit",
     "the index arm is compared on its scoring candidates only, because the replayed lane drops a zero-score row while the lookup library labels it partial and returns it"
   ],
-  "databasePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite",
+  "databasePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/runtime/database/context-index.sqlite",
   "durationMs": 387719,
   "indexHash": "7b72e91fe8f2a68b5868ef530cd57662d7d25312ded34c980b805226be61de37",
   "intersection": {

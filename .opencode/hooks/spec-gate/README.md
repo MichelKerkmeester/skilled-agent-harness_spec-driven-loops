@@ -1,1 +1,1 @@
-../../skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/README.md
+../../skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md

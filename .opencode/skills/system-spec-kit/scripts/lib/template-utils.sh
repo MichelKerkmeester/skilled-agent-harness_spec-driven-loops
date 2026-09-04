@@ -248,7 +248,7 @@ resolve_level_contract() {
     local skill_root
     skill_root="$(cd "$script_dir/../.." && pwd)"
     local loader="$skill_root/scripts/node_modules/tsx/dist/loader.mjs"
-    local resolver="$skill_root/mcp-server/lib/templates/level-contract-resolver.ts"
+    local resolver="$skill_root/runtime/lib/templates/level-contract-resolver.ts"
 
     if [[ ! -f "$loader" || ! -f "$resolver" ]]; then
         local manifest="$skill_root/templates/spec-kit-docs.json"

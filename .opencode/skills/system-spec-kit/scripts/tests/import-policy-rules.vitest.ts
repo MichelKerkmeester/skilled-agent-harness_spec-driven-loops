@@ -5,33 +5,33 @@ import { isProhibitedImportPath } from '../evals/import-policy-rules';
 
 describe('isProhibitedImportPath', () => {
   it('blocks package imports for internal runtime roots and descendants', () => {
-    expect(isProhibitedImportPath('@spec-kit/mcp-server/lib/search/vector-index')).toBe(true);
-    expect(isProhibitedImportPath('@spec-kit/mcp-server/core')).toBe(true);
-    expect(isProhibitedImportPath('@spec-kit/mcp-server/core/db-state')).toBe(true);
-    expect(isProhibitedImportPath('@spec-kit/mcp-server/handlers')).toBe(true);
-    expect(isProhibitedImportPath('@spec-kit/mcp-server/handlers/memory-index')).toBe(true);
+    expect(isProhibitedImportPath('@spec-kit/runtime/lib/search/vector-index')).toBe(true);
+    expect(isProhibitedImportPath('@spec-kit/runtime/core')).toBe(true);
+    expect(isProhibitedImportPath('@spec-kit/runtime/core/db-state')).toBe(true);
+    expect(isProhibitedImportPath('@spec-kit/runtime/handlers')).toBe(true);
+    expect(isProhibitedImportPath('@spec-kit/runtime/handlers/memory-index')).toBe(true);
   });
 
   it('blocks relative imports for internal runtime roots and descendants', () => {
-    expect(isProhibitedImportPath('../../mcp-server/lib/search/vector-index')).toBe(true);
-    expect(isProhibitedImportPath('../../mcp-server/core')).toBe(true);
-    expect(isProhibitedImportPath('../../../mcp-server/core/db-state')).toBe(true);
-    expect(isProhibitedImportPath('../../mcp-server/handlers')).toBe(true);
-    expect(isProhibitedImportPath('../../../mcp-server/handlers/memory-index')).toBe(true);
+    expect(isProhibitedImportPath('../../runtime/lib/search/vector-index')).toBe(true);
+    expect(isProhibitedImportPath('../../runtime/core')).toBe(true);
+    expect(isProhibitedImportPath('../../../runtime/core/db-state')).toBe(true);
+    expect(isProhibitedImportPath('../../runtime/handlers')).toBe(true);
+    expect(isProhibitedImportPath('../../../runtime/handlers/memory-index')).toBe(true);
   });
 
   it('blocks normalized relative bypass attempts into internal runtime roots', () => {
-    expect(isProhibitedImportPath('../../mcp-server/api/../core/config')).toBe(true);
-    expect(isProhibitedImportPath('./../mcp-server/core/config')).toBe(true);
+    expect(isProhibitedImportPath('../../runtime/api/../core/config')).toBe(true);
+    expect(isProhibitedImportPath('./../runtime/core/config')).toBe(true);
     expect(isProhibitedImportPath('../../shared/lib/../utils')).toBe(true);
   });
 
   it('blocks sibling shared traversals and still allows public package imports', () => {
     expect(isProhibitedImportPath('../shared/utils')).toBe(true);
     expect(isProhibitedImportPath('../../shared/utils/path-security')).toBe(true);
-    expect(isProhibitedImportPath('@spec-kit/mcp-server/api')).toBe(false);
-    expect(isProhibitedImportPath('@spec-kit/mcp-server/api/indexing')).toBe(false);
-    expect(isProhibitedImportPath('../../mcp-server/api/indexing')).toBe(false);
-    expect(isProhibitedImportPath('../../mcp-server/core/../api/indexing')).toBe(false);
+    expect(isProhibitedImportPath('@spec-kit/runtime/api')).toBe(false);
+    expect(isProhibitedImportPath('@spec-kit/runtime/api/indexing')).toBe(false);
+    expect(isProhibitedImportPath('../../runtime/api/indexing')).toBe(false);
+    expect(isProhibitedImportPath('../../runtime/core/../api/indexing')).toBe(false);
   });
 });

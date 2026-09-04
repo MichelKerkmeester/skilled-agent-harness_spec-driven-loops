@@ -22,14 +22,14 @@ function findUp(filename: string, startDir: string): string | undefined {
 
 function resolvePackageRoot(): string {
   const fromPackageJson = findUp('package.json', import.meta.dirname);
-  if (fromPackageJson && fs.existsSync(path.join(fromPackageJson, 'mcp-server', 'database'))) {
+  if (fromPackageJson && fs.existsSync(path.join(fromPackageJson, 'runtime', 'database'))) {
     return fromPackageJson;
   }
   return fromPackageJson || path.resolve(import.meta.dirname, '..');
 }
 
 const PACKAGE_ROOT = resolvePackageRoot();
-const DEFAULT_DB_DIR = path.join(PACKAGE_ROOT, 'mcp-server', 'database');
+const DEFAULT_DB_DIR = path.join(PACKAGE_ROOT, 'runtime', 'database');
 
 /** Defines database updated file. */
 export const DB_UPDATED_FILE: string = (() => {

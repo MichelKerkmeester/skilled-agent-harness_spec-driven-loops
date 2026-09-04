@@ -288,7 +288,7 @@ broken packet as green.
 1. **Require an explicit `RESULT: PASSED`.** A stale compiled orchestrator makes `validate.sh` refuse
    to run: it prints `compiled validation orchestrator is stale`, exits 3, and emits **no rule output
    at all**. A sweep that only looks for `RESULT: FAILED` reads that silence as a clean pass. Rebuild
-   with `cd "$(realpath .opencode)/skills/system-spec-kit/mcp-server" && npm run build`.
+   with `cd "$(realpath .opencode)/skills/system-spec-kit/runtime" && npm run build`.
 2. **Invoke through `realpath`, and verify by content.** Where `.opencode` is a symlink, the spec
    scripts and generators can silently no-op — exit 0, zero output. Use
    `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/scripts/spec/validate.sh" <folder> --strict`

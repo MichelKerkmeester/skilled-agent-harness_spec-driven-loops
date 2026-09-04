@@ -75,8 +75,8 @@ const DEFAULT_MANIFEST = path.join(FIXTURE_DIR, 'corpus-manifest.json');
 const DEFAULT_INDEX = path.join(SKILL_DIR, 'data', 'trigger-index.json');
 const LOOKUP_CLI = path.join(SCRIPT_DIR, 'lookup-trigger-index.mjs');
 
-const TRIGGER_GOLDENS = path.join(SKILL_DIR, 'mcp-server', 'tests', 'fixtures', 'trigger-goldens.json');
-const GOLDEN_QUERIES = path.join(SKILL_DIR, 'mcp-server', 'tests', 'fixtures', 'golden-queries.json');
+const TRIGGER_GOLDENS = path.join(SKILL_DIR, 'runtime', 'tests', 'fixtures', 'trigger-goldens.json');
+const GOLDEN_QUERIES = path.join(SKILL_DIR, 'runtime', 'tests', 'fixtures', 'golden-queries.json');
 
 /** Result cap both lexical arms are compared at. */
 const DEFAULT_LIMIT = 20;

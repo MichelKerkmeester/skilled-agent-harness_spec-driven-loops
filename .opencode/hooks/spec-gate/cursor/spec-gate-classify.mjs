@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-classify.mjs
+../../../skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs

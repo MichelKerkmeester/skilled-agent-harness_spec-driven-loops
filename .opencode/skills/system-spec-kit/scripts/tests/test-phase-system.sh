@@ -166,7 +166,7 @@ fi
 # ───────────────────────────────────────────────────────────────
 # Test 3: Append mode never regenerates the existing parent's description.json
 # ───────────────────────────────────────────────────────────────
-# The real description generator is workspace-linked (@spec-kit/mcp-server/api)
+# The real description generator is workspace-linked (@spec-kit/runtime/api)
 # and cannot be copied into this throwaway sandbox, so a recording stub stands
 # in for it; the assertion is on WHICH paths create.sh attempted to write to.
 echo ""

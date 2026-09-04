@@ -154,8 +154,8 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 | `scripts/tests/trigger-phrase-filter.vitest.ts` | Automated test | Trigger-phrase filter coverage for path fragments, short tokens, and shingle subsets |
 | `scripts/tests/validation-v13-v14-v12.vitest.ts` | Automated test | V12/V13/V14 validation behavior |
 | `scripts/tests/workflow-e2e.vitest.ts` | Automated test | End-to-end save pipeline with structured JSON inputs |
-| `mcp-server/tests/embedding-retry-stats.vitest.ts` | Automated test | `embeddingRetry` type and zero-state contract |
-| `mcp-server/tests/retry-manager-health.vitest.ts` | Automated test | Zero-DB `embeddingRetry` snapshot accessor coverage |
+| `runtime/tests/embedding-retry-stats.vitest.ts` | Automated test | `embeddingRetry` type and zero-state contract |
+| `runtime/tests/retry-manager-health.vitest.ts` | Automated test | Zero-DB `embeddingRetry` snapshot accessor coverage |
 
 ---
 
@@ -167,8 +167,8 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 ### VERIFICATION SOURCES
 
 - `cd .opencode/skills/system-spec-kit/scripts && npm run lint`
-- `cd .opencode/skills/system-spec-kit/scripts && npx vitest run --config ../mcp-server/vitest.config.ts --root . tests/generate-context-cli-authority.vitest.ts tests/input-normalizer-unit.vitest.ts tests/post-save-review.vitest.ts tests/project-phase-e2e.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/template-mustache-sections.vitest.ts tests/trigger-phrase-filter.vitest.ts tests/validation-v13-v14-v12.vitest.ts tests/workflow-e2e.vitest.ts`
-- `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/embedding-retry-stats.vitest.ts tests/retry-manager-health.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/scripts && npx vitest run --config ../runtime/vitest.config.ts --root . tests/generate-context-cli-authority.vitest.ts tests/input-normalizer-unit.vitest.ts tests/post-save-review.vitest.ts tests/project-phase-e2e.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/template-mustache-sections.vitest.ts tests/trigger-phrase-filter.vitest.ts tests/validation-v13-v14-v12.vitest.ts tests/workflow-e2e.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/embedding-retry-stats.vitest.ts tests/retry-manager-health.vitest.ts`
 
 Related references:
 - [json-primary-deprecation-posture.md](../../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md) — JSON-primary deprecation posture

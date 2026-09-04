@@ -46,7 +46,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp-server/scripts/tests/resource-map-extractor.vitest.ts` | Vitest | Covers research-shape normalization, category classification, and deterministic output. |
+| `.opencode/skills/system-spec-kit/runtime/scripts/tests/resource-map-extractor.vitest.ts` | Vitest | Covers research-shape normalization, category classification, and deterministic output. |
 | `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/027_resource_map_emission.md` | Manual playbook | Verifies synthesis emits the research resource map and that opt-out skips cleanly. |
 
 ---

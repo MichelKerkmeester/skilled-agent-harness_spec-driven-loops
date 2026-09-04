@@ -66,7 +66,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
   - Re-run the commands in this scenario during the current verification window and capture fresh output; do not rely on historical totals or dated rerun counts.
   - Treat the scripts-side baseline as `npm run check`, `npm run build`, the focused Vitest lanes in this scenario, and `npm run test:legacy` after build.
   - There is no MCP-side baseline: the save path is the `generate-context` script, and its lanes are the scripts-side baseline above.
-  - Require the source/dist alignment lane to report zero violations for both `mcp-server/dist/lib` and `scripts/dist`.
+  - Require the source/dist alignment lane to report zero violations for both `runtime/dist/lib` and `scripts/dist`.
   - Automated parity is not, by itself, proof that every supported CLI has been exercised live. Universal live-proof claims require fresh per-CLI and per-save-mode artifacts generated during this run.
 ### Commands
 - Part I hardening spot checks:
@@ -86,10 +86,10 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
     - `cd .opencode/skills/system-spec-kit/scripts/tests && node test-memory-quality-lane.js`
     - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
   - Standards checks:
-    - `cd .opencode/skills/system-spec-kit/mcp-server && npm run lint`
-    - `cd .opencode/skills/system-spec-kit/mcp-server && npm run build`
-    - `cd .opencode/skills/system-spec-kit/mcp-server && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
-    - `cd .opencode/skills/system-spec-kit/mcp-server && npm run test`
+    - `cd .opencode/skills/system-spec-kit/runtime && npm run lint`
+    - `cd .opencode/skills/system-spec-kit/runtime && npm run build`
+    - `cd .opencode/skills/system-spec-kit/runtime && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
+    - `cd .opencode/skills/system-spec-kit/runtime && npm run test`
     - `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts`
     - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder>`
   - Manual/e2e scenarios:

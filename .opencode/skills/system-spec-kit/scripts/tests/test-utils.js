@@ -14,7 +14,7 @@
 
   const FIXTURES_DIR = path.join(__dirname, '..', 'test-fixtures');
   const MEMORY_DIR = path.join(__dirname, '..', 'memory');
-  const DATABASE_DIR = path.join(__dirname, '..', '..', 'mcp-server', 'database');
+  const DATABASE_DIR = path.join(__dirname, '..', '..', 'runtime', 'database');
 
   /* ─────────────────────────────────────────────────────────────
      2. TEST DATA CREATION

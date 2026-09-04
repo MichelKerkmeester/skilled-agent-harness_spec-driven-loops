@@ -89,7 +89,7 @@ A timeout means the hook attempted a non-warm-only call or the probe timeout reg
 | File | Role |
 |---|---|
 | `.opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Shared warm-only skill-advisor CLI fallback helper |
-| `mcp-server/hooks/claude/session-prime.ts` | Claude session adapter using the warm paths |
+| `runtime/hooks/claude/session-prime.ts` | Claude session adapter using the warm paths |
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Claude advisor hook using the fallback |
 | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | OpenCode advisor bridge using the fallback |
 

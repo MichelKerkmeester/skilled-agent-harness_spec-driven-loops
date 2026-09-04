@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/mcp-server/hooks/pi/session-start-context.ts
+../../.opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts

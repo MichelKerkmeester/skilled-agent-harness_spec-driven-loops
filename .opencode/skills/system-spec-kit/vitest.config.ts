@@ -9,10 +9,10 @@ export default {
     include: [
       'tests/**/*.vitest.ts',
       'scripts/tests/**/*.vitest.ts',
-      'mcp-server/tests/**/*.vitest.ts',
+      'runtime/tests/**/*.vitest.ts',
     ],
     setupFiles: [
-      path.resolve(__dirname, 'mcp-server', 'tests', '_support', 'vitest-setup.ts'),
+      path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-setup.ts'),
     ],
     globals: true,
   },

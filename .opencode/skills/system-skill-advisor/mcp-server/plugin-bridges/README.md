@@ -17,7 +17,7 @@ trigger_phrases:
 
 The bridge reads stdin JSON (prompt, workspaceRoot, thresholdConfidence), probes the advisor daemon, calls `advisor_recommend`, renders a brief and emits a single stdout JSON envelope (`{ status, brief, metadata }`). It fails open on all errors so the OpenCode plugin never blocks on advisor unavailability.
 
-This bridge was moved from `.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/` (pre-extraction legacy) to proper advisor ownership per ADR-003.
+This bridge was moved from `.opencode/skills/system-spec-kit/runtime/plugin-bridges/` (pre-extraction legacy) to proper advisor ownership per ADR-003.
 
 ---
 

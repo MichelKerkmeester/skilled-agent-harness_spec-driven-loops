@@ -20,10 +20,10 @@ This scenario validates the resource-map template rollout.
 
 
 - Objective: Verify that a Level packet can include `resource-map.md`, that every intended discovery surface references it, and that the spec-document classifier recognizes `resource-map.md` as a canonical packet document.
-- Real user request: `` Please validate Resource map template against Manual: confirm a generated packet can include resource-map.md, that the discovery surfaces and CLAUDE.md reference resource-map.md, and that the spec-doc classifier includes resource-map.md. Tell me whether the expected signals are present: a temporary generated packet contains resource-map.md when the optional document is requested; `rg -n "resource-map\\.md"` returns matches in targeted guide, reference, config, and runtime instruction surfaces; `mcp-server/lib/config/spec-doc-paths.ts` contains `resource-map.md` in `SPEC_DOCUMENT_FILENAMES`. ``
+- Real user request: `` Please validate Resource map template against Manual: confirm a generated packet can include resource-map.md, that the discovery surfaces and CLAUDE.md reference resource-map.md, and that the spec-doc classifier includes resource-map.md. Tell me whether the expected signals are present: a temporary generated packet contains resource-map.md when the optional document is requested; `rg -n "resource-map\\.md"` returns matches in targeted guide, reference, config, and runtime instruction surfaces; `runtime/lib/config/spec-doc-paths.ts` contains `resource-map.md` in `SPEC_DOCUMENT_FILENAMES`. ``
 - Prompt: `Validate Resource map template rollout across generated packets, discovery surfaces, and spec-doc classification.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: a generated packet can include `resource-map.md`; `rg -n "resource-map\\.md"` returns matches in the targeted guide, reference, config, and runtime instruction surfaces; `mcp-server/lib/config/spec-doc-paths.ts` contains `resource-map.md` in `SPEC_DOCUMENT_FILENAMES`
+- Expected signals: a generated packet can include `resource-map.md`; `rg -n "resource-map\\.md"` returns matches in the targeted guide, reference, config, and runtime instruction surfaces; `runtime/lib/config/spec-doc-paths.ts` contains `resource-map.md` in `SPEC_DOCUMENT_FILENAMES`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS: the template exists, every target discovery surface references it, and the spec-doc classifier includes it; FAIL: the template is missing, any required surface has no match, or the classifier omits it
 
@@ -73,11 +73,11 @@ Validate 270b every discovery surface references resource-map.md
 
 ### Commands
 
-1. `rg -n "resource-map\\.md" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/system-spec-kit/README.md .opencode/skills/system-spec-kit/references/templates/level-specifications.md .opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts CLAUDE.md`
+1. `rg -n "resource-map\\.md" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/system-spec-kit/README.md .opencode/skills/system-spec-kit/references/templates/level-specifications.md .opencode/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts CLAUDE.md`
 
 ### Expected
 
-Matches in every target, including `SKILL.md`, `README.md`, `references/templates/level-specifications.md`, `mcp-server/lib/config/spec-doc-paths.ts`, and `CLAUDE.md`
+Matches in every target, including `SKILL.md`, `README.md`, `references/templates/level-specifications.md`, `runtime/lib/config/spec-doc-paths.ts`, and `CLAUDE.md`
 
 ### Evidence
 

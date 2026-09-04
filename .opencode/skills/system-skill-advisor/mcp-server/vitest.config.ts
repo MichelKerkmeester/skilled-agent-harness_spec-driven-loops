@@ -27,7 +27,7 @@ export default ({
       ...(INCLUDE_BENCHES ? [] : ['bench/**/*.bench.ts']),
     ],
     setupFiles: [
-      path.resolve(import.meta.dirname, '../../system-spec-kit/mcp-server/tests/_support/vitest-setup.ts'),
+      path.resolve(import.meta.dirname, '../../system-spec-kit/runtime/tests/_support/vitest-setup.ts'),
     ],
     fileParallelism: false,
     globals: true,

@@ -1,1 +1,1 @@
-../../../skills/system-spec-kit/mcp-server/hooks/devin/post-compaction.cjs
+../../../skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs

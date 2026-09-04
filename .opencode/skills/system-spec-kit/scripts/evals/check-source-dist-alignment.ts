@@ -6,14 +6,14 @@
 // 1. INVESTIGATION NOTE
 // ───────────────────────────────────────────────────────────────
 // Investigated on 2026-03-19:
-// - mcp-server/dist/lib/utils/retry.js traced to deleted source
-//   mcp-server/lib/utils/retry.ts, removed in commit 5e49e272 on
+// - runtime/dist/lib/utils/retry.js traced to deleted source
+//   runtime/lib/utils/retry.ts, removed in commit 5e49e272 on
 //   2026-03-07. No matching source remains, so the stale dist
 //   artifact set was removed.
-// - mcp-server/dist/lib/eval/hydra-baseline.js traced to deleted
-//   source mcp-server/lib/eval/hydra-baseline.ts, removed in commit
+// - runtime/dist/lib/eval/hydra-baseline.js traced to deleted
+//   source runtime/lib/eval/hydra-baseline.ts, removed in commit
 //   8bb6eb62 on 2026-03-13. Its logic was renamed/refactored into
-//   mcp-server/lib/eval/memory-state-baseline.ts, so the stale
+//   runtime/lib/eval/memory-state-baseline.ts, so the stale
 //   pre-rename dist artifact set was removed.
 //
 // Broadened dist alignment scan (2026-04-30):
@@ -53,7 +53,7 @@ interface DistTarget {
   sourceRoot: string;
 }
 
-const REQUIRED_ROOT_DIRS = ['mcp-server', 'scripts'] as const;
+const REQUIRED_ROOT_DIRS = ['runtime', 'scripts'] as const;
 // Time-bounded allowlist for known stragglers surfaced by the
 // broadened scan. Each entry MUST include a follow-on owner and remediation
 // date. The harness orphan is being deleted in this packet;
@@ -130,14 +130,14 @@ function findJsFiles(dir: string): string[] {
 }
 
 // Cover runtime-critical dist subtrees beyond `dist/lib`. Each
-// entry maps `mcp-server/dist/<sub>/*.js` back to `mcp-server/<sub>/*.ts`.
+// entry maps `runtime/dist/<sub>/*.js` back to `runtime/<sub>/*.ts`.
 // New entries should be added when a new runtime subtree appears under
-// `mcp-server/dist/`. Empty/optional dist roots are skipped at scan time.
+// `runtime/dist/`. Empty/optional dist roots are skipped at scan time.
 const DIST_TARGETS: DistTarget[] = [
   {
-    label: 'mcp-server/lib',
-    distRoot: path.join('mcp-server', 'dist', 'lib'),
-    sourceRoot: path.join('mcp-server', 'lib'),
+    label: 'runtime/lib',
+    distRoot: path.join('runtime', 'dist', 'lib'),
+    sourceRoot: path.join('runtime', 'lib'),
   },
   {
     label: 'system-skill-advisor/mcp-server',
@@ -145,74 +145,74 @@ const DIST_TARGETS: DistTarget[] = [
     sourceRoot: path.join('mcp-server', 'skill_advisor'),
   },
   {
-    label: 'mcp-server/handlers',
-    distRoot: path.join('mcp-server', 'dist', 'handlers'),
-    sourceRoot: path.join('mcp-server', 'handlers'),
+    label: 'runtime/handlers',
+    distRoot: path.join('runtime', 'dist', 'handlers'),
+    sourceRoot: path.join('runtime', 'handlers'),
   },
   {
-    label: 'mcp-server/formatters',
-    distRoot: path.join('mcp-server', 'dist', 'formatters'),
-    sourceRoot: path.join('mcp-server', 'formatters'),
+    label: 'runtime/formatters',
+    distRoot: path.join('runtime', 'dist', 'formatters'),
+    sourceRoot: path.join('runtime', 'formatters'),
   },
   {
-    label: 'mcp-server/tools',
-    distRoot: path.join('mcp-server', 'dist', 'tools'),
-    sourceRoot: path.join('mcp-server', 'tools'),
+    label: 'runtime/tools',
+    distRoot: path.join('runtime', 'dist', 'tools'),
+    sourceRoot: path.join('runtime', 'tools'),
   },
   {
-    label: 'mcp-server/code_graph',
-    distRoot: path.join('mcp-server', 'dist', 'code_graph'),
-    sourceRoot: path.join('mcp-server', 'code_graph'),
+    label: 'runtime/code_graph',
+    distRoot: path.join('runtime', 'dist', 'code_graph'),
+    sourceRoot: path.join('runtime', 'code_graph'),
   },
   {
-    label: 'mcp-server/hooks',
-    distRoot: path.join('mcp-server', 'dist', 'hooks'),
-    sourceRoot: path.join('mcp-server', 'hooks'),
+    label: 'runtime/hooks',
+    distRoot: path.join('runtime', 'dist', 'hooks'),
+    sourceRoot: path.join('runtime', 'hooks'),
   },
   {
-    label: 'mcp-server/matrix-runners',
-    distRoot: path.join('mcp-server', 'dist', 'matrix-runners'),
-    sourceRoot: path.join('mcp-server', 'matrix-runners'),
+    label: 'runtime/matrix-runners',
+    distRoot: path.join('runtime', 'dist', 'matrix-runners'),
+    sourceRoot: path.join('runtime', 'matrix-runners'),
   },
   {
-    label: 'mcp-server/schemas',
-    distRoot: path.join('mcp-server', 'dist', 'schemas'),
-    sourceRoot: path.join('mcp-server', 'schemas'),
+    label: 'runtime/schemas',
+    distRoot: path.join('runtime', 'dist', 'schemas'),
+    sourceRoot: path.join('runtime', 'schemas'),
   },
   {
-    label: 'mcp-server/stress-test',
-    distRoot: path.join('mcp-server', 'dist', 'stress-test'),
-    sourceRoot: path.join('mcp-server', 'stress-test'),
+    label: 'runtime/stress-test',
+    distRoot: path.join('runtime', 'dist', 'stress-test'),
+    sourceRoot: path.join('runtime', 'stress-test'),
   },
   {
-    label: 'mcp-server/tests',
-    distRoot: path.join('mcp-server', 'dist', 'tests'),
-    sourceRoot: path.join('mcp-server', 'tests'),
+    label: 'runtime/tests',
+    distRoot: path.join('runtime', 'dist', 'tests'),
+    sourceRoot: path.join('runtime', 'tests'),
   },
   {
-    label: 'mcp-server/core',
-    distRoot: path.join('mcp-server', 'dist', 'core'),
-    sourceRoot: path.join('mcp-server', 'core'),
+    label: 'runtime/core',
+    distRoot: path.join('runtime', 'dist', 'core'),
+    sourceRoot: path.join('runtime', 'core'),
   },
   {
-    label: 'mcp-server/api',
-    distRoot: path.join('mcp-server', 'dist', 'api'),
-    sourceRoot: path.join('mcp-server', 'api'),
+    label: 'runtime/api',
+    distRoot: path.join('runtime', 'dist', 'api'),
+    sourceRoot: path.join('runtime', 'api'),
   },
   {
-    label: 'mcp-server/utils',
-    distRoot: path.join('mcp-server', 'dist', 'utils'),
-    sourceRoot: path.join('mcp-server', 'utils'),
+    label: 'runtime/utils',
+    distRoot: path.join('runtime', 'dist', 'utils'),
+    sourceRoot: path.join('runtime', 'utils'),
   },
   {
-    label: 'mcp-server/configs',
-    distRoot: path.join('mcp-server', 'dist', 'configs'),
-    sourceRoot: path.join('mcp-server', 'configs'),
+    label: 'runtime/configs',
+    distRoot: path.join('runtime', 'dist', 'configs'),
+    sourceRoot: path.join('runtime', 'configs'),
   },
   {
-    label: 'mcp-server/scripts',
-    distRoot: path.join('mcp-server', 'dist', 'scripts'),
-    sourceRoot: path.join('mcp-server', 'scripts'),
+    label: 'runtime/scripts',
+    distRoot: path.join('runtime', 'dist', 'scripts'),
+    sourceRoot: path.join('runtime', 'scripts'),
   },
   {
     label: 'scripts',
@@ -222,8 +222,8 @@ const DIST_TARGETS: DistTarget[] = [
 ];
 
 // Derive the package-relative path so the report shows the
-// `mcp-server/dist/...` or `scripts/dist/...` prefix that authors recognize.
-// Previously this used a hardcoded `target.label === 'mcp-server'` check
+// `runtime/dist/...` or `scripts/dist/...` prefix that authors recognize.
+// Previously this used a hardcoded `target.label === 'runtime'` check
 // which only worked for the single combined `dist/lib` target. With the
 // broader DIST_TARGETS set, derive the package segment from the dist root.
 function mapDistFileToSource(packageRoot: string, target: DistTarget, distFile: string): OrphanedDistFile {
@@ -252,7 +252,7 @@ function main(): void {
   for (const target of DIST_TARGETS) {
     const absoluteDistRoot = path.join(packageRoot, target.distRoot);
     // skip optional/empty dist roots silently rather than failing
-    // the build. Some targets (e.g. mcp-server/dist/api) may not exist in all
+    // the build. Some targets (e.g. runtime/dist/api) may not exist in all
     // build configurations. Required-target enforcement was load-bearing only
     // when DIST_TARGETS contained the two combined roots; the broadened set
     // includes optional subtrees.

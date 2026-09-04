@@ -96,7 +96,7 @@ This subsection applies only to the OpenCode surface.
 - MCP servers, daemon-backed CLIs, and runtime hooks execute built `dist/` output. Editing a `.ts` source file has no runtime effect until the owning package rebuilds its `dist/` artifacts.
 - Rebuild before verifying behavior that depends on generated output. For `system-skill-advisor`, the server package names `dist/mcp-server/advisor-server.js` as the compiled backend artifact and `npm run build` as the command that builds TypeScript into `dist/`.
 - Keep env-sensitive tests deterministic: set feature flags, provider choices, database paths, and timeout knobs explicitly in the command or test fixture; record those values with the result; do not rely on inherited shell state when the claim depends on a flag.
-- After a Node version change, run the native rebuild helper from the spec-kit root: `bash scripts/setup/rebuild-native-modules.sh`. It rebuilds native modules including `better-sqlite3` in `mcp-server/` and shared workspace modules, then records the new Node version marker.
+- After a Node version change, run the native rebuild helper from the spec-kit root: `bash scripts/setup/rebuild-native-modules.sh`. It rebuilds native modules including `better-sqlite3` in `runtime/` and shared workspace modules, then records the new Node version marker.
 
 ### Baseline And Delta
 

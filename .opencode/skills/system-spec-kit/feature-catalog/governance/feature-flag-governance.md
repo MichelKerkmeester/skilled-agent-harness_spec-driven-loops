@@ -69,7 +69,7 @@ A governance target is not a runtime guardrail. Nothing in the runtime enforces 
 
 ## 3. SOURCE FILES
 
-- `.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md` - Canonical env-var reference; documents `SPECKIT_COMPILED_ROUTING` and `SPECKIT_COMPILED_ROUTING_DEBUG` alongside every other governed flag.
+- `.opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md` - Canonical env-var reference; documents `SPECKIT_COMPILED_ROUTING` and `SPECKIT_COMPILED_ROUTING_DEBUG` alongside every other governed flag.
 - `.env.example` - The operator-facing copy of the same surface; a flag documented in one and missing from the other is drift.
 - `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` - Runtime tri-state flag parser and the manifest serving-authority gate.
 - `.opencode/skills/system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts` - Advisor-side single-sourced tri-state parser, `COMPILED_ROUTING_HUBS` eligibility set, and `DEFAULT_ON_HUBS` cohort.

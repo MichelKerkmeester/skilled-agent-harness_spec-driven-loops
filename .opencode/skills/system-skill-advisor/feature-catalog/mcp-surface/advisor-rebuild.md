@@ -39,15 +39,15 @@ The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor
 | `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts:103-115` | MCP handler | Serializes the rebuild output and exports the snake_case compatibility alias |
 | `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-status.ts:89-94` | Handler contract | Documents that status is diagnostic-only and points repair callers to `advisor_rebuild` |
 | `.opencode/skills/system-skill-advisor/mcp-server/tools/advisor-rebuild.ts:8-17` | Tool descriptor | Declares the MCP tool and `force` option |
-| `.opencode/skills/system-spec-kit/mcp-server/tools/index.ts:56-72` | Dispatcher | Registers `advisor_rebuild` in the advisor MCP tool set |
-| `.opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts:954-962` | Server registry | Includes `advisor_rebuild` in `TOOL_DEFINITIONS` |
+| `.opencode/skills/system-spec-kit/runtime/tools/index.ts:56-72` | Dispatcher | Registers `advisor_rebuild` in the advisor MCP tool set |
+| `.opencode/skills/system-spec-kit/runtime/tool-schemas.ts:954-962` | Server registry | Includes `advisor_rebuild` in `TOOL_DEFINITIONS` |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp-server/tests/advisor-rebuild.vitest.ts` | Vitest | Covers skip, forced rebuild, stale rebuild and output schema behavior |
-| `.opencode/skills/system-spec-kit/mcp-server/tests/tool-input-schema.vitest.ts` | Vitest | Validates strict tool input schemas for registered MCP tools |
+| `.opencode/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` | Vitest | Covers skip, forced rebuild, stale rebuild and output schema behavior |
+| `.opencode/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` | Vitest | Validates strict tool input schemas for registered MCP tools |
 
 ---
 
@@ -55,8 +55,8 @@ The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp-server/tests/advisor-rebuild.vitest.ts` | Automated test | Validation reference |
-| `.opencode/skills/system-spec-kit/mcp-server/tests/tool-input-schema.vitest.ts` | Automated test | Validation reference |
+| `.opencode/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` | Automated test | Validation reference |
+| `.opencode/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` | Automated test | Validation reference |
 
 ---
 

@@ -17,7 +17,7 @@ operating_mode:
   validation: post_run_gold_battery
   # All .doctor-update.* runtime state lives in the advisor's database directory: it is
   # tracked, gitignore-managed, and already a mutation target of this command. The
-  # spec-kit mcp-server/database directory that used to hold it left with its server.
+  # spec-kit runtime/database directory that used to hold it left with its server.
   state_dir: ".opencode/skills/system-skill-advisor/mcp-server/database"
   state_log: ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.last-run.json"
 
@@ -114,7 +114,7 @@ mutation_boundaries:
     - ".opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.config-instructions"  # manual remediation notes
     - ".opencode/skill"  # compatibility symlink only
     - ".opencode/skill_legacy_backup_*"  # legacy layout backup before symlink bridge
-    - ".opencode/skills/system-spec-kit/mcp-server/dist/**"  # generated MCP runtime output
+    - ".opencode/skills/system-spec-kit/runtime/dist/**"  # generated MCP runtime output
     - ".opencode/skills/system-spec-kit/scripts/dist/**"  # generated migration helper output
   forbidden_targets:
     - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:update
@@ -122,7 +122,7 @@ mutation_boundaries:
     - "<active-spec-folder>/graph-metadata.json"  # graph metadata not an orchestrator DB target
     - ".opencode/skills/**/SKILL.md"  # never edit skill bodies
     - ".opencode/skills/**/graph-metadata.json"
-    - ".opencode/skills/system-spec-kit/mcp-server/**/*.ts"
+    - ".opencode/skills/system-spec-kit/runtime/**/*.ts"
     - ".opencode/agents/**/*.md"
     - ".opencode/commands/doctor/*.md"
     - ".opencode/commands/doctor/assets/doctor_*.yaml"

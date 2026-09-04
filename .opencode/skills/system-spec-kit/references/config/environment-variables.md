@@ -21,13 +21,13 @@ Configuration options via environment variables for the Spec Kit system.
 
 These variables control path resolution, script execution, spec validation and generated metadata, and the shared embedding stack the package's operators configure alongside it.
 
-This document is the orientation view. [`mcp-server/ENV-REFERENCE.md`](../../mcp-server/ENV-REFERENCE.md) is the source of truth: every row there names the file that actually reads the variable. When the two disagree, ENV-REFERENCE wins.
+This document is the orientation view. [`runtime/ENV-REFERENCE.md`](../../runtime/ENV-REFERENCE.md) is the source of truth: every row there names the file that actually reads the variable. When the two disagree, ENV-REFERENCE wins.
 
 ---
 
 ## 2. PATH RESOLUTION
 
-`mcp-server/core/config.ts` resolves the package's working directories. `resolveDatabasePaths()` is still imported by `lib/storage/transaction-manager.ts` and re-exported from `api/index.ts`, so the directory-override family below stays live.
+`runtime/core/config.ts` resolves the package's working directories. `resolveDatabasePaths()` is still imported by `lib/storage/transaction-manager.ts` and re-exported from `api/index.ts`, so the directory-override family below stays live.
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -42,7 +42,7 @@ Point a directory override at a writable location outside read-only repo paths (
 
 Spec-folder retrieval is lexical and process-local: the generated trigger index under `data/`, read by `scripts/retrieval/lookup-trigger-index.mjs`, plus the ripgrep recipes in [`../retrieval/retrieval-conventions.md`](../retrieval/retrieval-conventions.md). No variable in this document reaches it, and there is no socket, warm-start or dist-freshness contract to tune.
 
-The one daemon an operator still meets is the skill advisor. Its CLI family (`SYSTEM_SKILL_ADVISOR_CLI_*`, `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`) and its scorer overrides are documented in `mcp-server/ENV-REFERENCE.md`.
+The one daemon an operator still meets is the skill advisor. Its CLI family (`SYSTEM_SKILL_ADVISOR_CLI_*`, `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`) and its scorer overrides are documented in `runtime/ENV-REFERENCE.md`.
 
 ---
 
@@ -179,7 +179,7 @@ The live half of the package. `lib/validation/orchestrator.ts` runs the rule set
 
 ### Gate-3 policy
 
-The runtime-neutral spec-gate envs (`SYSTEM_SPEC_GATE_ENFORCE`, `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION`, `AI_SESSION_CHILD`) are read by `mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs`. Defaults, retention and sweep tuning: [`../../mcp-server/hooks/lib/spec-gate/README.md`](../../mcp-server/hooks/lib/spec-gate/README.md).
+The runtime-neutral spec-gate envs (`SYSTEM_SPEC_GATE_ENFORCE`, `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION`, `AI_SESSION_CHILD`) are read by `runtime/hooks/lib/spec-gate/spec-gate-core.mjs`. Defaults, retention and sweep tuning: [`../../runtime/hooks/lib/spec-gate/README.md`](../../runtime/hooks/lib/spec-gate/README.md).
 
 ### Production recommendations
 
@@ -194,12 +194,12 @@ The runtime-neutral spec-gate envs (`SYSTEM_SPEC_GATE_ENFORCE`, `SYSTEM_SPEC_GAT
 - [Troubleshooting](../debugging/troubleshooting.md)
 - [Quick Reference](../workflows/quick-reference.md)
 - [Retrieval and Continuity Reference](../memory/memory-system.md)
-- [SPECKIT Environment Variable Reference](../../mcp-server/ENV-REFERENCE.md)
+- [SPECKIT Environment Variable Reference](../../runtime/ENV-REFERENCE.md)
 
 ---
 
 ## 8. CLEAN TRANSPORT (HOOK STDOUT)
 
-The runtime hook adapters under `mcp-server/hooks/` write to a host that parses their stdout. Keep stdout reserved for the hook's declared output contract and send diagnostics, warnings and startup logs to stderr, so a host such as OpenCode or Claude does not read extra stdout as a malformed payload.
+The runtime hook adapters under `runtime/hooks/` write to a host that parses their stdout. Keep stdout reserved for the hook's declared output contract and send diagnostics, warnings and startup logs to stderr, so a host such as OpenCode or Claude does not read extra stdout as a malformed payload.
 
 ---

@@ -7,8 +7,8 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   generateFolderDescriptions,
   isGeneratedMetadataZExclusionEnabled,
-} from '../../mcp-server/lib/search/folder-discovery.js';
-import { isExcludedFromGeneratedMetadata, shouldIndexForMemory } from '../../mcp-server/lib/utils/index-scope.js';
+} from '../../runtime/lib/search/folder-discovery.js';
+import { isExcludedFromGeneratedMetadata, shouldIndexForMemory } from '../../runtime/lib/utils/index-scope.js';
 import { planBackfill, runBackfill } from '../graph/backfill-graph-metadata.js';
 
 const createdRoots = new Set<string>();

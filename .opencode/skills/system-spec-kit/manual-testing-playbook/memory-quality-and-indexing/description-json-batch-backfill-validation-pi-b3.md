@@ -222,7 +222,7 @@ node:internal/modules/esm/resolve:275
     throw new ERR_MODULE_NOT_FOUND(
           ^
 
-Error [ERR_MODULE_NOT_FOUND]: Cannot find module '.opencode/skills/system-spec-kit/mcp-server/lib/description/description-merge.js' imported from .opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '.opencode/skills/system-spec-kit/runtime/lib/description/description-merge.js' imported from .opencode/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts
     at finalizeResolution (node:internal/modules/esm/resolve:275:11)
     at moduleResolve (node:internal/modules/esm/resolve:861:10)
     at defaultResolve (node:internal/modules/esm/resolve:985:11)
@@ -232,7 +232,7 @@ Error [ERR_MODULE_NOT_FOUND]: Cannot find module '.opencode/skills/system-spec-k
     at ModuleJob._link (node:internal/modules/esm/module_job:182:49)
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
   code: 'ERR_MODULE_NOT_FOUND',
-  url: 'file://.opencode/skills/system-spec-kit/mcp-server/lib/description/description-merge.js'
+  url: 'file://.opencode/skills/system-spec-kit/runtime/lib/description/description-merge.js'
 }
 
 Node.js v22.23.1
