@@ -39,7 +39,7 @@
   },
   "domains": [
     "spec",
-    "memory",
+    "retrieval",
     "context",
     "continuity",
     "validation",
@@ -48,11 +48,11 @@
   "intent_signals": [
     "spec folder",
     "save context",
-    "save memory",
+    "continuity save",
     "spec kit",
-    "memory search",
+    "spec doc retrieval",
     "create a spec folder",
-    "save context to memory",
+    "save context to the packet",
     "resume previous session",
     "validate the spec packet"
   ],
@@ -60,12 +60,12 @@
     "trigger_phrases": [
       "spec folder",
       "save context",
-      "save memory",
+      "continuity save",
       "spec kit",
-      "memory search",
+      "spec doc retrieval",
       "spec folder workflow",
       "resume prior session context",
-      "save memory with spec kit",
+      "save context with spec kit",
       "validate spec packet",
       "system-spec-kit",
       "system spec kit",
@@ -73,14 +73,14 @@
     ],
     "key_topics": [
       "spec",
-      "memory",
+      "retrieval",
       "context",
       "continuity",
       "validation",
       "session",
       "spec folders",
       "context preservation",
-      "hybrid memory search",
+      "trigger index",
       "validation gates"
     ],
     "intent_signals": [
@@ -127,7 +127,7 @@
         "source": "derived"
       },
       {
-        "name": "memory_system",
+        "name": "retrieval_and_continuity",
         "kind": "reference",
         "path": ".opencode/skills/system-spec-kit/references/memory/memory-system.md",
         "source": "derived"
@@ -157,7 +157,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications. It matters because it is the backbone for spec-folder governance, validation, memory retrieval, and continuity across AI-assisted development sessions.",
+    "causal_summary": "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and packet-local continuity with lexical retrieval. Mandatory for all file modifications. It matters because it is the backbone for spec-folder governance, validation, retrieval, and continuity across AI-assisted development sessions.",
     "source_docs": [
       "SKILL.md",
       "README.md",

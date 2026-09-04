@@ -93,9 +93,6 @@ mcp-server/
 ├── api/                        # Public entry surface
 │   ├── index.ts                # Barrel exports
 │   └── graph-refresh.ts        # Graph refresh entry point
-├── configs/                    # Runtime configuration
-│   ├── cognitive.ts
-│   └── search-weights.json
 ├── core/                       # Core state and config
 │   └── config.ts               # Server configuration
 ├── handlers/                   # Request handlers
