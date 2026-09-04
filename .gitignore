@@ -321,3 +321,9 @@ specs/z-future
 # credential. Regenerable, large, and a credential must never reach history or a
 # cloud-sync client. The artifacts worth keeping sit beside it.
 specs/**/lineages/*/.codex-home/
+
+# A packet-local save mutex, acquired by the continuity generator while it mutates
+# canonical documents. It names the process holding it, so it is machine state and
+# never belongs in history: a committed one outlives its process and describes an
+# owner that no longer exists.
+.canonical-save.lock/
