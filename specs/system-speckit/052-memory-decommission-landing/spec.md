@@ -65,18 +65,29 @@ Both branches carry the decommission with no memory surface left, every changed 
 
 ### Review Scope
 
-The review loop reads this packet and must cover the landed tree these surfaces make up, all reachable from the repository root of the branch under review, with the diff `5220257bf7..HEAD` as the change set:
+The review reads a bounded list, never a tree. The change set is the diff `5220257bf7..HEAD` outside `specs/`, and its reviewable part is the 438 added or modified files listed one per line in `scratch/review-scope.txt`, grouped as follows. The 1,836 deleted files are verified by absence checks and the commands below, not by reading anything.
 
-| Surface | What to verify |
-|---------|----------------|
-| `.opencode/skills/system-spec-kit/scripts/retrieval/**` and `data/trigger-index.json` | The trigger index, lookup, ripgrep lane, residue sweep, retrofit pipeline and zvec lane: correctness, exit mapping, determinism, no reference to a retired tool |
-| `.opencode/skills/system-spec-kit/mcp-server/**` | The surviving engine: validation orchestrator, metadata refresh, continuity writer; nothing serves MCP, no dead import, no doc describing the retired server |
-| `.opencode/commands/**`, `.opencode/agents/**`, `.claude/**`, `.codex/**`, `.pi/**`, `.cursor/**`, `opencode.json` | No memory tool in any allow list, no memory server registration, mirrors in sync, command frontmatter matching the command contract |
-| `.opencode/hooks/**`, `.opencode/plugins/**`, `.opencode/bin/**` | No spec-memory hook, plugin or launcher; the skill advisor and model server untouched |
-| `.opencode/skills/system-plugins/**` and `.zvec-grep-lane.json` | The vendored fork, its README, the lane config, the resolution order |
-| `.opencode/commands/doctor/**` | The zvec route, the retired memory routes gone, the routes validator green |
-| `.opencode/skills/**/references/**`, `README.md`, `README.txt`, `install-guides/**` | No document that presents the memory database, daemon, server or tools as existing; template conformance for changed documents |
-| `specs/system-speckit/049-memory-decommission/**`, `050-*`, `051-*` | Packets validate strictly; claims match the tree |
+| Group in the list | Count | What to verify |
+|-------------------|-------|----------------|
+| `.opencode/skills/system-spec-kit/scripts/retrieval/**` and its tests | 37 | The trigger index generator and lookup, the ripgrep lane, the residue sweep, the retrofit pipeline, the zvec lane: correctness, exit mapping, determinism, no reference to a retired tool |
+| `.opencode/skills/system-spec-kit/mcp-server/**` (lib, handlers, hooks, tests, README) | 60 | The surviving engine: validation orchestrator, metadata refresh, continuity writer; nothing serves MCP, no dead import, no doc that presents the retired server as live |
+| `.opencode/skills/system-spec-kit/{shared,scripts/core,scripts/ops,templates,references}/**` | 49 | The embedding seam that the skill advisor still uses, the save workflow without a daemon, the templates' trigger phrases, the retrieval and grep conventions |
+| `.opencode/commands/{memory,doctor,speckit,deep,create}/**` | 75 | No memory tool in any allow list, the memory family reduced to save and search, the doctor zvec route, contract-shaped frontmatter |
+| `.opencode/skills/{system-deep-loop,cli-external-orchestration,system-skill-advisor,sk-doc,sk-code,sk-git,mcp-code-mode,mcp-tooling}/**` | 99 | Live instructions name the successors, never the retired tools; the advisor and model-server seam untouched in behaviour |
+| `.opencode/{hooks,bin,plugins,scripts,install-guides}/**`, `AGENTS.md`, `README.md`, `opencode.json`, `.claude/**`, `.pi/**`, `.codex/**`, `.cursor/**` | remainder | No spec-memory hook, plugin, launcher or registration; agent mirrors consistent; install guides describe what exists |
+
+**Reading budget.** Read only files in the list and the modules they import directly. Never expand a directory with a wildcard, and never read `node_modules`, `dist`, `benchmark`, `changelog`, `z_archive`, `manual-testing-playbook`, `feature-catalog`, the vendored fork under `system-plugins/zvec-grep`, or `data/trigger-index.json`. Cover a different group in each iteration so ten iterations cover the list roughly once, and spend any remaining iterations on the findings already raised.
+
+**Repository-wide claims come from commands, not reading:**
+
+```bash
+node .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs --json          # live must be 0
+node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs                 # run twice; hashes must match
+NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-speckit/049-memory-decommission --strict --recursive
+bash .opencode/commands/doctor/scripts/route-validate.sh
+node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+grep -c "system_spec_memory\|spec-memory" .claude/mcp.json opencode.json .codex/config.toml .pi/mcp.json .cursor/mcp.json   # all 0
+```
 
 Out of the review's write scope: everything in decision D5's preserved set, and any branch other than the one under review.
 <!-- /ANCHOR:scope -->
