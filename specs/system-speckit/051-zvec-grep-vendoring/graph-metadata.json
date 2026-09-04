@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/050-zvec-grep-fork-integration",
-  "spec_folder": "system-speckit/050-zvec-grep-fork-integration",
+  "packet_id": "system-speckit/051-zvec-grep-vendoring",
+  "spec_folder": "system-speckit/051-zvec-grep-vendoring",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "zvec-grep fork",
-      "semantic retrieval lane",
-      "ollama embedding backend",
-      "direct mode mcp",
-      "zvec lane",
-      "zvec-grep integration plan",
-      "ollama backend lane",
-      "direct stdio lane",
-      "zvec lane wrapper",
-      "zvec-grep tasks",
-      "ollama backend task",
-      "direct stdio task"
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
-      "zvec-grep",
-      "fork",
-      "semantic",
-      "retrieval",
-      "lane",
-      "ollama",
-      "embedding",
-      "backend",
-      "direct",
-      "mode",
-      "mcp",
-      "zvec"
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -45,22 +45,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md",
       "implementation-summary.md",
+      ".opencode/skills/system-plugins/README.md",
+      ".opencode/skills/README.txt",
       ".opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs",
       ".opencode/skills/system-spec-kit/scripts/tests/zvec-lane.vitest.ts",
       ".opencode/commands/doctor/assets/doctor-zvec.yaml",
       ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
-      ".opencode/skills/system-spec-kit/data/trigger-index.json",
+      ".opencode/skills/system-spec-kit/leaf-aliases.json",
       "mcp-server/vitest.config.ts",
       "scripts/retrieval/zvec-lane.mjs",
-      "references/retrieval/retrieval-conventions.md",
-      "scratch/baseline-queries.md",
-      "specs/system-speckit/050-zvec-grep-fork-integration/scratch/baseline-queries.md",
-      "scripts/retrieval/lib/rg-lane.mjs",
-      "scripts/tests/zvec-lane.vitest.ts",
-      ".opencode/hooks/README.md",
-      ".opencode/hooks/skill-advisor/README.md"
+      "scripts/tests/zvec-lane.vitest.ts"
     ],
     "entities": [
       {
@@ -88,15 +83,21 @@
         "source": "derived"
       },
       {
-        "name": "goal.md",
-        "kind": "doc",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/skills/README.txt",
         "source": "derived"
       },
       {
@@ -124,9 +125,9 @@
         "source": "derived"
       },
       {
-        "name": "trigger-index.json",
+        "name": "leaf-aliases.json",
         "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/data/trigger-index.json",
+        "path": ".opencode/skills/system-spec-kit/leaf-aliases.json",
         "source": "derived"
       },
       {
@@ -136,31 +137,13 @@
         "source": "derived"
       },
       {
-        "name": "baseline-queries.md",
-        "kind": "doc",
-        "path": "scratch/baseline-queries.md",
-        "source": "derived"
-      },
-      {
-        "name": "rg-lane.mjs",
-        "kind": "file",
-        "path": "scripts/retrieval/lib/rg-lane.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/hooks/README.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Packet",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -206,11 +189,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Vendored",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Packet 049 retired the spec-kit memory database and left two retrieval lanes: the committed trigger index for Gate 1 and the ripgrep recipes for free text",
-    "created_at": "2026-09-04T10:59:06Z",
-    "last_save_at": "2026-09-04T16:39:07.453Z",
+    "causal_summary": "The retrieval lane built in packet 050 depends on fork behaviour: the Ollama embedder, the daemon-free MCP server and the direct query that no longer scans the workspace",
+    "created_at": "2026-09-04T16:33:32Z",
+    "last_save_at": "2026-09-04T16:39:10.340Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,16 +213,15 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61e0f8687d030246b569a10bd44df6ae0241595477311dd22e35d1f2da9ddcb8",
+    "source_fingerprint": "sha256:c13aa738fe88d64a3c631fd9d80c586b4699e989f0b4a2d47afa858f46b4a0e5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d29df179ec42cf11aa186f604f29ea67a6c6bddb32919bb8b62b391f0db055a",
-      "plan.md": "809533a59967b653b7a43036a2192bf734e1f3ce6fcf966804633029dfe039c4",
-      "tasks.md": "b6f7139edab2ab5222d54e6a7e5d699172a05f36927c13263f83961e0bfed1aa",
-      "implementation-summary.md": "1e099254a22929e24c16a4da6fa10a728ef9346fb7ab893a85b652e29b3c40d5"
+      "spec.md": "4446a40c5c20e0dd2bd71264c6a78ab6033a8d56858a45e8c2f9d2ba5377918d",
+      "plan.md": "80df6f9f1c9f4e1e2ee176758af28834e5300f74cf33bbff67801d13ff00150f",
+      "tasks.md": "89c1a39cc943ecd9a5016fad77968129d8200e7e0a9e92c448db1a3bd7fec476",
+      "implementation-summary.md": "6341081d0b16c6461786d1be9ccc6f6c49053086889be24d1f82bed581ff8d71"
     },
     "last_active_child_id": null,
     "last_active_at": null

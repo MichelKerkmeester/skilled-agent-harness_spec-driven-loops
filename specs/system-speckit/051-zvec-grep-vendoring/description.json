@@ -1,0 +1,16 @@
+{
+  "specFolder": "system-speckit/051-zvec-grep-vendoring",
+  "description": "zvec-grep vendoring into system-plugins",
+  "keywords": [
+    "zvec-grep",
+    "vendoring",
+    "system-plugins"
+  ],
+  "lastUpdated": "2026-09-04T16:33:32.789Z",
+  "specId": "001",
+  "folderSlug": "zvec-grep-vendoring",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

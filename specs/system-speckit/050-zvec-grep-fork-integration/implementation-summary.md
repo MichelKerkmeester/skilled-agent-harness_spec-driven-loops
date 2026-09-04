@@ -127,7 +127,7 @@ Three agent lanes ran in parallel, one per fork branch and one for the spec-kit 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The fork is not yet inside the harness.** The lane reaches it through `SPECKIT_ZVEC_GREP_BIN`; on PATH the upstream Homebrew `zg` wins. Vendoring is the hook packet's first phase per `goal.md` D7.
+1. **The fork was vendored after this packet closed.** Packet 051 brought it in at `.opencode/skills/system-plugins/zvec-grep/` and put that copy ahead of PATH in the lane's resolution order.
 2. **Cold queries sit at the hook budget.** Warm queries run 0.8 to 1.1 s; the first after a pause measured 1.97 s. The hook design must measure cold starts, not assume the warm figure.
 3. **"Which rule" questions miss.** The scope indexes code only under `.opencode`, so the validator registry and rule references are absent and query 4 resolves to packets that mention the rule. A scope decision, recorded as an open question.
 4. **Two upstream defects are filed, not fixed.** The fork's test suite leaks `zg server run` daemons under load from one concurrent-start test, and opening the store rewrites the vector index file in place even on a read-only query.

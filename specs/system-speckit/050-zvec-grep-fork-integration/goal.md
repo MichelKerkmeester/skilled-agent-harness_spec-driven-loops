@@ -29,7 +29,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The engine stays in the fork and the spec-kit lane; the hook is a consumer, not a second engine"
-      - "The fork is vendored into .opencode as a git subtree under the concern, the operator's call on 2026-09-04"
+      - "The fork is vendored at .opencode/skills/system-plugins/zvec-grep as a git subtree, the operator's call on 2026-09-04"
 ---
 # Goal: Semantic Retrieval Hook
 
@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 | D4 | The budget is hard: the adapter returns within 1500 ms wall clock or emits nothing. The query path must not refresh the index, re-embed changed files or download a model; indexing is an explicit operator or doctor action |
 | D5 | Embeddings come from Ollama through the fork's `ollama/` backend. The in-process transformers backend is never selected by the hook, because it runs the model on every core and pins the machine |
 | D6 | The concern honors the master `SYSTEM_HOOKS_DISABLED` switch and its own `SYSTEM_SEMANTIC_RETRIEVAL_DISABLED`, default enabled, registered in the hooks README kill-switch index. It replaces the retired `spec-memory` row there |
-| D7 | The fork is installed inside the harness at `.opencode/hooks/semantic-retrieval/zvec-grep/` as a git subtree of `MichelKerkmeester/zvec-grep` with the two branches merged: its own `package.json`, its own `node_modules` ignored like every other engine package, and a built `dist/` produced by the install guide's build step. No clone outside `.opencode` and no global `zg` is ever consulted; the lane resolves the vendored binary first and `SPECKIT_ZVEC_GREP_BIN` becomes an override, not the default |
+| D7 | The fork is installed inside the harness at `.opencode/skills/system-plugins/zvec-grep/` as a squashed git subtree of the fork's `harness` branch (the Ollama, stdio and perf branches merged): its own `package.json`, its own `node_modules` ignored like every other engine package, and a built `dist/` produced by the install guide's build step. No clone outside `.opencode` and no global `zg` is ever consulted; the lane resolves the vendored binary first and `SPECKIT_ZVEC_GREP_BIN` becomes an override, not the default |
 | D8 | Raw prompt text is never persisted: not in caches, diagnostics, status output or logs. The brief names paths, headings and scores only, and repeats the skill-advisor's directive-lifecycle dedup so the same prompt does not re-inject the same brief |
 | D9 | The trigger index and the ripgrep lane are untouched. Gate 1 stays lexical and deterministic; this concern adds a lane and removes nothing |
 <!-- /ANCHOR:directive -->

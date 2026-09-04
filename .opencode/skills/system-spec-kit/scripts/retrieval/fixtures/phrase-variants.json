@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7f01b46d4fdb8b9cdd6ea0c1151858cbbc340f93362181eab97140d3f6c04a18",
+  "manifestHash": "948a256397fd0a7a25813140f3a67708a4bfd1f7f851ff64cfc8ba46182dae4a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12302,6 +12302,9 @@
     ],
     "architecture decision gate": [
       "architecture decision gate"
+    ],
+    "architecture decisions": [
+      "architecture decisions"
     ],
     "architecture diagram": [
       "architecture diagram"
@@ -93977,6 +93980,9 @@
     "subtree root scan deletion": [
       "subtree root scan deletion"
     ],
+    "success criteria": [
+      "success criteria"
+    ],
     "success rows missing active vector": [
       "success rows missing active vector"
     ],
@@ -94988,6 +94994,9 @@
     ],
     "system overview diagram": [
       "system overview diagram"
+    ],
+    "system plugins": [
+      "system plugins"
     ],
     "system rerank sidecar skill": [
       "system-rerank-sidecar skill"
@@ -98355,6 +98364,9 @@
     "update task priority or assignee": [
       "update task priority or assignee"
     ],
+    "update the vendored engine": [
+      "update the vendored engine"
+    ],
     "updatephaseparentpointer bypasses zod": [
       "updatePhaseParentPointer bypasses zod"
     ],
@@ -99255,6 +99267,9 @@
     ],
     "vendor handoff": [
       "vendor handoff"
+    ],
+    "vendored fork": [
+      "vendored fork"
     ],
     "vendored fork drift check": [
       "vendored fork drift check"
@@ -100657,6 +100672,9 @@
     "where does this image come from": [
       "where does this image come from"
     ],
+    "where is the fork installed": [
+      "where is the fork installed"
+    ],
     "where is the search bar in this screenshot": [
       "where is the search bar in this screenshot"
     ],
@@ -101659,6 +101677,9 @@
     ],
     "zvec grep integration plan": [
       "zvec-grep integration plan"
+    ],
+    "zvec grep subtree": [
+      "zvec-grep subtree"
     ],
     "zvec grep tasks": [
       "zvec-grep tasks"
