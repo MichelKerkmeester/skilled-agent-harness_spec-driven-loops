@@ -12,6 +12,7 @@ What do you want to do?
    1) Update everything to match latest spec-kit release   (e.g. 3.3.0.0 -> 3.4.x)
    2) Debug retrieval index              (trigger index, ripgrep conventions)
    3) Debug Embeddings                   (provider choice, hf-local health)
+   4) Debug Concept retrieval lane       (zvec index presence, coverage, binary)
    6) Debug Deep-Loop history            (research/review iteration graphs)
    7) Re-tune Skill Advisor              (which skill gets recommended)
    8) Audit Skill Description budget     (char counts, CI-friendly)
@@ -30,6 +31,7 @@ Accepted answers:
 | `1` | Abort `/doctor`; display `Switch to /doctor:update --migrate for upgrade migration. Exiting /doctor.` |
 | `2` | target = `memory` |
 | `3` | target = `embeddings` |
+| `4` | target = `zvec` |
 | `6` | target = `deep-loop` |
 | `7` | target = `skill-advisor` |
 | `8` | target = `skill-budget` |
@@ -51,6 +53,8 @@ Pick by symptom:
    Trigger-index lookup returns stale or empty results -> 2  Retrieval index
    "trigger-index.json missing" warning                -> 2  Retrieval index
    Model mismatch or hf-local loading state unclear    -> 3  Embeddings
+   Concept search returns nothing, or "no index yet"   -> 4  Concept lane
+   zvec-grep binary not found, or the wrong one ran    -> 4  Concept lane
    deep-research/deep-review iteration graph empty     -> 6  Deep-Loop
    Convergence not detected between iterations         -> 6  Deep-Loop
    Skill Advisor recommends the wrong skill            -> 7  Skill Advisor
@@ -63,6 +67,9 @@ Pick by symptom:
 Quick reference for confusable pairs:
    Skill Advisor (7) tunes ROUTING quality (which skill gets picked)
    Skill Budget (8) audits CHAR COUNTS (frontmatter description size)
+   Retrieval index (2) is the LEXICAL lane (trigger phrases, ripgrep)
+   Concept lane (4) is the SEMANTIC lane (zvec index, hybrid search)
+   Embeddings (3) is the advisor's embedder, not the zvec lane's
 
 Press 1-11, 0, or X.
 ```
@@ -71,7 +78,7 @@ Press 1-11, 0, or X.
 
 ```text
 Unknown target: [target]
-Valid targets: memory, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors
+Valid targets: memory, zvec, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors
 Try: /doctor list
 STATUS=FAIL ERROR="unknown_target"
 ```
@@ -90,6 +97,7 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 | Target | Workflow | Mutation Class | One-Line Purpose |
 |--------|----------|----------------|------------------|
 | `memory` | `doctor-memory.yaml` | add-only | Diagnose the generated trigger index and the ripgrep retrieval conventions; report staleness and recommend action |
+| `zvec` | `doctor-zvec.yaml` | read-only | Report the concept lane: which zvec-grep entry point resolved, index presence, readiness, embedding schema, coverage and scope drift |
 | `embeddings` | `doctor-embeddings.yaml` | read-only | Inspect provider selection and hf-local model-server status |
 | `deep-loop` | `doctor-deep-loop.yaml` | add-only | Diagnose deep-loop coverage graphs for research and review |
 | `skill-advisor` | `doctor-skill-advisor.yaml` | mutates | Audit and re-tune skill advisor scoring lanes |

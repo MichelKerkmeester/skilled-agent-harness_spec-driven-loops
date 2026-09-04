@@ -46,6 +46,7 @@ These existing YAML assets are referenced only. The router must not modify them.
 | Target | Workflow |
 |--------|----------|
 | `memory` | `.opencode/commands/doctor/assets/doctor-memory.yaml` |
+| `zvec` | `.opencode/commands/doctor/assets/doctor-zvec.yaml` |
 | `embeddings` | `.opencode/commands/doctor/assets/doctor-embeddings.yaml` |
 | `deep-loop` | `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` |
 | `skill-advisor` | `.opencode/commands/doctor/assets/doctor-skill-advisor.yaml` |

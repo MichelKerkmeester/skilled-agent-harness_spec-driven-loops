@@ -1,12 +1,15 @@
 ---
 title: Ripgrep Retrieval Conventions
-description: The ripgrep invocation contract, scoping rules, exit-status mapping and caller-side ranking tuple that replace the three memory retrieval tools.
+description: The ripgrep invocation contract, scoping rules, exit-status mapping and caller-side ranking tuple that replace the three memory retrieval tools, plus the zvec concept lane that sits beside them.
 trigger_phrases:
   - "ripgrep retrieval conventions"
   - "ripgrep recipe contract"
   - "caller-side ranking tuple"
   - "retrieval exit status mapping"
   - "trigger index lookup path"
+  - "zvec concept lane"
+  - "concept versus exact retrieval"
+  - "lane merge rule"
 importance_tier: important
 contextType: implementation
 version: 1.0.0.0
@@ -24,16 +27,19 @@ The invocation contract for free-text retrieval over spec docs and skill docs, r
 
 Ripgrep is an evidence producer, never the relevance ranker. It returns matches, paths and lines. The caller decides what any of it is worth.
 
-### The Two Lanes
+### The Three Lanes
 
-Retrieval splits into a keyed lane and a free-text lane, and they do not share a mechanism.
+Retrieval splits into a keyed lane, a free-text lane and a concept lane, and no two of them share a mechanism.
 
 | Lane | Mechanism | Used for |
 |------|-----------|----------|
 | **Gate 1 trigger lookup** | The generated index at `.opencode/skills/system-spec-kit/data/trigger-index.json`, read by `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs "<prompt>"` | Matching a prompt against author-declared `trigger_phrases` |
 | **Free-text evidence** | The ripgrep recipes in Section 2 | Finding a phrase anywhere in the corpus, with no index at all |
+| **Concept evidence** | The zvec lane in Section 9, `node .opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs search "<query>"` | Finding a passage when the wording is unknown: concept, paraphrase, fuzzy recall and relationship questions |
 
-The two answer different questions. Prompt-to-declared-phrase matching is a keyed lookup over an author-controlled field. Grepping prose is a scan. Using the scan for Gate 1 loses precision, and using the index for free text loses everything the author never declared.
+The three answer different questions. Prompt-to-declared-phrase matching is a keyed lookup over an author-controlled field. Grepping prose is a scan. Concept search is a ranked retrieval over an embedded index, and it returns a passage that no literal query would have reached.
+
+**An exact identifier always goes to ripgrep first.** A symbol, a path, a flag, an error code, a config key or any string the caller can already spell is a literal-match problem, and the scan answers it exhaustively while the concept lane answers it with a ranked sample. Reaching for the concept lane on a known string trades completeness for nothing. The concept lane earns its place only where the caller cannot spell the target.
 
 > **Availability note.** Both index artifacts are produced by phase `001-trigger-index-replacement`. In a checkout that predates the generator, the ripgrep lane in Section 2 works immediately and the Gate 1 lane does not.
 
@@ -55,9 +61,10 @@ The retired memory surface carried stateful capabilities that a read-only scan c
 | Continuity frontmatter writing | A named packet-local writer keeping atomic same-directory update and lock semantics. Ripgrep cannot write. Owned by phase 002 |
 | Causal graph and drift analysis | Explicit Markdown links, typed evidence or a named unsupported capability. Grep cannot traverse or statefully update graph edges |
 | Resource maps | A static generated path catalog. It is not a dynamic graph |
-| Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup | Deliberate lexical-only loss. Callers must behave explicitly on a no-hit rather than degrading to a guess |
+| Semantic paraphrase, vector and BM25 fusion | Recovered by the zvec lane in Section 9, on different terms: an on-disk index that must be built and rebuilt, a ranked sample rather than an exhaustive answer, and an external tool as the ranker |
+| Decay, access tracking and session dedup | Deliberate loss with no owner. All three were properties of a stateful store that observed its own reads. Every lane here is stateless, so a caller must behave explicitly on a no-hit rather than degrading to a guess |
 
-Nothing in this document may be read as a claim that the index plus grep pair covers the rows above.
+Nothing in this document may be read as a claim that the two index lanes plus grep cover the rows above.
 
 ---
 
@@ -250,7 +257,72 @@ Use one canonical spelling in emitted frontmatter. A reader may recognize the `t
 
 ---
 
-## 9. RELATED RESOURCES
+## 9. THE ZVEC CONCEPT LANE
+
+Hybrid BM25 and local vector retrieval over an on-disk index, behind the wrapper at `.opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs`. It answers the query the other two lanes cannot: one where the caller knows the idea and not the wording.
+
+### When It Is The Right Lane
+
+| Query shape | Lane |
+|-------------|------|
+| A symbol, path, flag, error code, config key, or any string the caller can spell | Ripgrep, Section 2. Exhaustive, and the concept lane only samples |
+| A prompt matched against author-declared `trigger_phrases` | The Gate 1 index |
+| "Why does X refuse Y", "where is Z handled", "what stops A from doing B" | This lane |
+| A paraphrase of wording the corpus may never use | This lane |
+
+The rule that keeps the boundary honest is one-directional: an exact identifier goes to ripgrep first, always. Going the other way is fine — a concept query that surfaces a filename is a good reason to run a literal scan next.
+
+### The Recipe
+
+```text
+node .opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs \
+  search 'why does the retrofit refuse partial frontmatter blocks' --limit 7 --json
+```
+
+Two companion subcommands share the wrapper. `index` builds or updates the workspace index from the committed scope at `.zvec-grep-lane.json`; `status` reports presence, readiness, coverage, freshness and the embedding schema read from the generated manifest.
+
+Four flags are load-bearing and the wrapper never drops them.
+
+- `--mode direct` is forced on every spawn. The lane runs no daemon, and an ambient `ZVEC_GREP_MODE` of `server` or `auto` would otherwise reroute the call and change both the refresh policy and the failure surface.
+- `--trace` is what makes scores appear. Without it every hit prints the same nothing, and a hit with no score cannot be weighed against a ripgrep hit.
+- `--hidden` is required at index time. Without it the scanner skips every dotted directory, so the whole `.opencode` tree is dropped while its globs are still accepted, the build still reports success, and status still reports full coverage of what it did scan.
+- `--preview none` keeps source excerpts out of the parsed output, which the caller does not read and which cost context.
+
+### Exit Mapping
+
+The same three classes as the ripgrep lane, so a caller branches once across both.
+
+| Exit | Meaning | Caller behavior |
+|------|---------|-----------------|
+| `0` | At least one hit, or a ready index | Parse the results |
+| `1` | No hits, or no index yet | A valid empty result, never an error |
+| `2` or higher | Execution or configuration error | Fail loudly with stderr attached |
+
+**These three classes are computed by the wrapper, not reported by the tool.** zvec-grep exits `0` or `1` and nothing else. A query that finds nothing still exits `0`, so the no-hit class comes from the parsed hit count; `status --check-ready` exits `1` both for an index that is not ready and for a genuine engine fault, separated only by the `Error:` line one of them prints to stderr. A caller that reads the tool's own status instead of the wrapper's gets a miss reported as a match.
+
+### The Merge Rule
+
+Results arrive in the Section 5 rank tuple, so hits from both lanes sit in one list without a per-lane branch.
+
+| Field | Zvec value |
+|-------|-----------|
+| Evidence field | `frontmatter`, `body`, or `unlocated` for a hit with no line |
+| Match class | `lexical-and-semantic`, `lexical`, `semantic`, or `unclassified` |
+| Relative path, one-based line | As parsed; `line` is null for a byte, page or whole-file locator |
+| `score` | The semantic score, which ripgrep has no analogue for |
+| `lane` | `zvec`, so a merged list stays attributable |
+
+The match classes are lane labels, not the lexical scorer's. Nothing here was matched by literal containment, so reusing `exact` or `phrase-containment` would claim a precision the vector lane never establishes.
+
+Merging is by rank within lane, and the lane order is the boundary rule above: for a query carrying an exact identifier, ripgrep's hits lead; for a concept query, zvec's do. **Within the zvec lane the wrapper preserves the tool's own order rather than re-deriving it**, which is the one place this document defers to an external ranker. It has to: the fusion score behind that rank is not reconstructible from the printed output, and re-sorting on a tuple that cannot see it would discard the only relevance signal the lane has. Section 5's guarantee — that ordering is the caller's, derived from the parsed match — holds for ripgrep and does not extend here. A merged list must not be described as deterministically ranked end to end.
+
+### What This Lane Costs
+
+The index is generated state under `.zvec-grep/`, git-ignored and rebuildable, and it is stale the moment the corpus moves. zvec-grep reuses its stored file selection until an explicit `--rebuild` or `--reset-paths`, so editing the committed scope changes nothing until someone rebuilds. Building embeds the whole corpus with a local model, which is expensive enough to be an operator action rather than a background one; `/doctor zvec` reports on the lane and never builds it.
+
+---
+
+## 10. RELATED RESOURCES
 
 ### Research
 
@@ -264,5 +336,7 @@ Use one canonical spelling in emitted frontmatter. A reader may recognize the `t
 ### Scripts
 
 - `.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs` - Gate 1 trigger lookup over the generated index
+- `.opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs` - The Section 2 recipes behind one front door, with the Section 5 rank applied
+- `.opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs` - The Section 9 concept lane: `index`, `status` and `search`
 
 ---

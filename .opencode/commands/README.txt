@@ -149,7 +149,7 @@ Three command files cover the diagnostic surface. Backed by `_routes.yaml`, `mcp
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Doctor Router | `/doctor <target> [flags]` (backed by `doctor/speckit.md`) | Single entry point for 9 subsystems (`memory`, `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `fable-mode`, `runtime-mirrors`); argv-positional dispatch via `_routes.yaml` |
+| Doctor Router | `/doctor <target> [flags]` (backed by `doctor/speckit.md`) | Single entry point for 10 subsystems (`memory`, `zvec`, `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `fable-mode`, `runtime-mirrors`); argv-positional dispatch via `_routes.yaml` |
 | MCP Debug | `/doctor:mcp debug [--fix] [--server <name>]` | Diagnose and fix MCP connection issues across all runtimes |
 | MCP Install | `/doctor:mcp install [--server <name>] [--runtime <name>]` | Fresh install or reinstall all supported MCP servers from install guides |
 | Update | `/doctor:update [--migrate] [--force]` | Dependency-safe multi-subsystem rebuild orchestrator (trigger index, skill-graph, advisor, deep-loop) |
