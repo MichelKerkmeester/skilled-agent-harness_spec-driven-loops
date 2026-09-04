@@ -194,7 +194,7 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/sy
 
 Expected result: the extracted structure reports README sections and no critical documentation issues.
 
-For code changes in this folder, run the TypeScript or package-level checks used by the MCP server before claiming runtime behavior changed.
+For code changes in this folder, run the TypeScript or package-level checks used by the runtime package before claiming runtime behavior changed.
 
 ---
 

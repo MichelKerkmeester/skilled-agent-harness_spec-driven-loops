@@ -1,10 +1,10 @@
 ---
 title: "Context Lib: Shared Runtime Context Contracts"
-description: "Shared payload, transport, caller context, and publication-gate helpers for startup, resume, bootstrap, health, and compaction surfaces."
+description: "The typed shared-payload contract for startup, resume, bootstrap, health, and compaction surfaces, with its trust, provenance, and publication helpers."
 trigger_phrases:
   - "context contracts"
   - "shared payload"
-  - "opencode transport"
+  - "structural trust"
   - "publication gate"
 ---
 
@@ -14,14 +14,13 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`runtime/lib/context/` owns the typed context contracts shared by MCP startup, resume, health, bootstrap, compaction, and OpenCode hook delivery paths. It keeps payload shape, trust metadata, transport rendering, caller identity, and publishability checks in one small package.
+`runtime/lib/context/` owns the typed context payload contract shared by the runtime hook adapters and the resume, health, bootstrap, and compaction paths. It keeps payload shape, provenance, trust metadata, and publishability rules in one small module so producers do not each redefine them.
 
 Current state:
 
-- `shared-payload.ts` defines the canonical envelope, section, provenance, source, trust, advisor, and metric types used by context producers.
-- `opencode-transport.ts` maps shared payload envelopes into OpenCode hook blocks without owning retrieval policy.
-- `caller-context.ts` carries MCP caller metadata through async handler execution.
-- `publication-gate.ts` rejects metric rows that do not have enough certainty, methodology, schema, and provenance data for publication.
+- `shared-payload.ts` is the only module here. It defines the canonical envelope plus the section, provenance, source, trust, advisor, and metric types used by context producers.
+- Trust and provenance vocabularies (`SharedPayloadTrustState`, `DetectorProvenance`, `ParserProvenance`, `EvidenceStatus`, `FreshnessAuthority`, `MeasurementAuthority`) live beside the envelope so every producer narrows the same values.
+- Publication rules for metric-bearing fields are part of the same contract: `createPublishableMetricField` and `createPublicationMethodologyMetadata` require certainty, methodology status, schema version, and authority before a number is publishable.
 
 ---
 
@@ -33,19 +32,19 @@ Current state:
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌────────────────┐     ┌────────────────────┐     ┌──────────────────┐
-│ MCP producers  │ ──▶ │ shared-payload.ts  │ ──▶ │ OpenCode hooks   │
-│ resume/health  │     │ envelope contract  │     │ transport blocks │
-└───────┬────────┘     └──────────┬─────────┘     └──────────────────┘
-        │                         │
-        ▼                         ▼
-┌────────────────┐     ┌────────────────────┐
-│ caller-context │     │ publication-gate.ts │
-│ async metadata │     │ metric publish rule │
-└────────────────┘     └────────────────────┘
+│ hook adapters  │ ──▶ │ shared-payload.ts  │ ──▶ │ consumer surface │
+│ resume/health  │     │ envelope contract  │     │ typed context    │
+└────────────────┘     └──────────┬─────────┘     └──────────────────┘
+                                  │
+                                  ▼
+                       ┌────────────────────┐
+                       │ trust, provenance  │
+                       │ publication fields │
+                       └────────────────────┘
 
 Dependency direction:
 context callers ───▶ context contracts ───▶ utility seams and type-only graph contracts
-transport rendering ───▶ shared payload validation
+envelope construction ───▶ shared payload validation
 publication checks ───▶ shared payload metric helpers
 ```
 
@@ -55,29 +54,23 @@ publication checks ───▶ shared payload metric helpers
 
 ```text
 context/
-+-- caller-context.ts       # AsyncLocalStorage wrapper for MCP caller metadata
-+-- opencode-transport.ts   # Shared payload to OpenCode hook transport plan mapping
-+-- publication-gate.ts     # Publishability checks for metric-bearing rows
-+-- shared-payload.ts       # Canonical shared payload and trust contracts
++-- shared-payload.ts       # Canonical shared payload, trust and publication contracts
 `-- README.md
 ```
 
 Allowed dependency direction:
 
 ```text
-MCP tools, hooks, resume, health and bootstrap producers → lib/context/
-opencode-transport.ts → shared-payload.ts
-publication-gate.ts → shared-payload.ts
+hook adapters, resume, health and bootstrap producers → lib/context/
 shared-payload.ts → neutral lib/utils seams and shared type packages
 ```
 
 Disallowed dependency direction:
 
 ```text
-lib/context/ → MCP tool handlers
 lib/context/ → hook runtimes as side-effect owners
 lib/context/ → database or filesystem mutation paths
-transport adapters → retrieval policy ownership
+lib/context/ → retrieval policy ownership
 ```
 
 ---
@@ -86,9 +79,6 @@ transport adapters → retrieval policy ownership
 
 ```text
 runtime/lib/context/
-+-- caller-context.ts
-+-- opencode-transport.ts
-+-- publication-gate.ts
 +-- shared-payload.ts
 `-- README.md
 ```
@@ -100,9 +90,6 @@ runtime/lib/context/
 | File | Responsibility |
 |---|---|
 | `shared-payload.ts` | Defines shared payload kinds, trust states, certainty labels, structural trust axes, source refs, advisor metadata, metric publication metadata, envelope factories, and validation helpers. |
-| `opencode-transport.ts` | Coerces unknown payloads into `SharedPayloadEnvelope`, selects sections, renders structural trust details, and builds an `OpenCodeTransportPlan` for runtime hook surfaces. |
-| `caller-context.ts` | Exposes `runWithCallerContext`, `getCallerContext`, and `requireCallerContext` for MCP transport metadata propagation. |
-| `publication-gate.ts` | Evaluates whether a row can be published by checking certainty, methodology status, schema version, provenance, and multiplier authority fields. |
 
 ---
 
@@ -112,7 +99,7 @@ runtime/lib/context/
 |---|---|
 | Imports | Context files may depend on neutral utility seams, shared type packages, and type-only graph contracts. |
 | Exports | Export contracts and pure helpers only. Runtime producers import this folder instead of redefining payload shapes. |
-| Ownership | This folder owns context contract vocabulary and transport formatting. Retrieval, indexing, graph scans, and hook installation live outside this folder. |
+| Ownership | This folder owns context contract vocabulary. Retrieval, indexing, graph scans, and hook installation live outside this folder. |
 
 Main flow:
 
@@ -133,12 +120,7 @@ Main flow:
                    │
                    ▼
 ┌──────────────────────────────────────────┐
-│ render selected sections for transport   │
-└──────────────────────────────────────────┘
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│ attach caller or publication metadata    │
+│ attach provenance and metric metadata    │
 └──────────────────────────────────────────┘
                    │
                    ▼
@@ -154,12 +136,12 @@ Main flow:
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `SharedPayloadEnvelope` | Type | Canonical payload envelope consumed by startup, resume, health, bootstrap, and compaction paths. |
+| `createSharedPayloadEnvelope` | Function | Builds a validated envelope from a kind, producer, sections, and provenance. |
 | `coerceSharedPayloadEnvelope` | Function | Narrows unknown runtime payload data to the shared envelope contract and rejects invalid enum values. |
-| `buildOpenCodeTransportPlan` | Function | Builds transport-only blocks for OpenCode event, system transform, message transform, and compaction hooks. |
-| `runWithCallerContext` | Function | Binds MCP caller metadata to downstream async execution. |
-| `getCallerContext` | Function | Reads the current caller context when it exists. |
-| `requireCallerContext` | Function | Throws when a handler expects caller context but none is bound. |
-| `evaluatePublicationGate` | Function | Returns whether a metric row is publishable or gives the exclusion reason. |
+| `buildStructuralContextTrust` | Function | Derives the structural trust axes a producer attaches to an envelope. |
+| `validateStructuralTrustPayload` | Function | Rejects a payload whose structural trust block is missing or malformed. |
+| `createPublishableMetricField` | Function | Wraps a metric value with the certainty and authority a publication decision needs. |
+| `createPublicationMethodologyMetadata` | Function | Records methodology status, schema version, and provenance for a metric-bearing row. |
 
 ---
 

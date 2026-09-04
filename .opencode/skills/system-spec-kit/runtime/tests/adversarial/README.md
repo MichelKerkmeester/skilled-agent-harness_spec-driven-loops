@@ -1,6 +1,6 @@
-# Adversarial MCP Server Tests
+# Adversarial Runtime Tests
 
-> Focused MCP server regressions for hostile inputs and race-sensitive behavior.
+> Focused runtime regressions for hostile inputs and race-sensitive behavior.
 
 ---
 
@@ -11,14 +11,14 @@
 Current state:
 
 - The folder contains one compact-prime identity race regression.
-- Tests run under the MCP server Vitest setup.
+- Tests run under the runtime package Vitest setup.
 - Coverage here complements nearby regression suites instead of duplicating them.
 
 ---
 
 ## 2. OWNERSHIP
 
-This directory belongs to the MCP server test suite. Add tests here when the scenario is security-sensitive, race-sensitive or intentionally adversarial.
+This directory belongs to the runtime test suite. Add tests here when the scenario is security-sensitive, race-sensitive or intentionally adversarial.
 
 ---
 
@@ -38,9 +38,9 @@ runtime/tests/adversarial/
 
 ## 4. BOUNDARIES
 
-- Keep adversarial tests deterministic and local to MCP server behavior.
+- Keep adversarial tests deterministic and local to runtime behavior.
 - Do not store phase history or audit notes here.
-- Put broad integration coverage in the nearest existing MCP server regression suite.
+- Put broad integration coverage in the nearest existing runtime regression suite.
 - Name new files with a short scenario slug and `.vitest.ts` suffix.
 
 ---
@@ -55,5 +55,5 @@ npx vitest run .opencode/skills/system-spec-kit/runtime/tests/adversarial/compac
 
 ## 6. RELATED
 
-- [`../`](../) - MCP server tests.
-- [`../../`](../../) - MCP server package root.
+- [`../`](../) - Runtime tests.
+- [`../../`](../../) - Runtime package root.

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d5fb5e1a23657ead4810c494ffcabc14d95e4bc761888febfd9af5b353e2923f",
+  "manifestHash": "4d78455c1b800989cf968ca9fd5d403c83deffc593e96bd22a03f8e8339aff61",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -75048,9 +75048,6 @@
     "mcp leak prevention summary": [
       10005
     ],
-    "mcp library": [
-      1753
-    ],
     "mcp magicpath": [
       3198
     ],
@@ -75792,9 +75789,6 @@
     ],
     "mcp server credentials": [
       90
-    ],
-    "mcp server data": [
-      1747
     ],
     "mcp server deletion": [
       13273,
@@ -84483,9 +84477,6 @@
     ],
     "opencode transform dedup implementation": [
       2464
-    ],
-    "opencode transport": [
-      1756
     ],
     "opencode transport diagnostic": [
       11214
@@ -102536,6 +102527,9 @@
     "runtime council tests": [
       1481
     ],
+    "runtime data": [
+      1747
+    ],
     "runtime defect fixes": [
       10475
     ],
@@ -102668,6 +102662,9 @@
     ],
     "runtime lib domain readmes": [
       5006
+    ],
+    "runtime library": [
+      1753
     ],
     "runtime lifecycle decision record": [
       9976
@@ -116439,6 +116436,9 @@
     "structural semantic retrieval fusion": [
       8700,
       10573
+    ],
+    "structural trust": [
+      1756
     ],
     "structural validation on first write": [
       1692

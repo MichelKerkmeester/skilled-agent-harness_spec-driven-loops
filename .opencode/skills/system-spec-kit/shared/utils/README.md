@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`utils/` owns small shared helpers used by scripts, MCP server code and shared package modules. Keep this folder focused on dependency-light functions that can run without database, network or MCP request context.
+`utils/` owns small shared helpers used by scripts, runtime code and shared package modules. Keep this folder focused on dependency-light functions that can run without database, network or request context.
 
 Current state:
 

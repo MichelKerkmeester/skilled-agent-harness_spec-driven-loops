@@ -86,11 +86,11 @@ When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, 
 
 | Runtime | Prompt hook | Lifecycle | Registration source | Manual fallback |
 | --- | --- | --- | --- | --- |
-| Claude | yes (`UserPromptSubmit`) | yes (`SessionStart`, `PreCompact`, `Stop`) | `.claude/settings.json` | `/speckit:resume`, `/memory:save`, direct MCP tools |
-| Codex | yes (`UserPromptSubmit`) | yes (`SessionStart`, `PreCompact`, `Stop`) | `.codex/hooks.json` | `/speckit:resume`, direct MCP tools |
-| Cursor | yes (`beforeSubmitPrompt`) | yes (`sessionStart`, `preCompact`, `sessionEnd`) | `.cursor/hooks.json` | `/speckit:resume`, direct MCP tools |
-| Devin | yes (`UserPromptSubmit`) | yes (`SessionStart`, `Stop`) | `.devin/hooks.v1.json` | `/speckit:resume`, direct MCP tools |
-| OpenCode | yes (`experimental.chat.system.transform`) | plugin events | `.opencode/plugins/system-skill-advisor.js` | `/speckit:resume`, trigger-index lookup, direct MCP tools |
+| Claude | yes (`UserPromptSubmit`) | yes (`SessionStart`, `PreCompact`, `Stop`) | `.claude/settings.json` | `/speckit:resume`, `/memory:save`, `lookup-trigger-index.mjs` |
+| Codex | yes (`UserPromptSubmit`) | yes (`SessionStart`, `PreCompact`, `Stop`) | `.codex/hooks.json` | `/speckit:resume`, `lookup-trigger-index.mjs` |
+| Cursor | yes (`beforeSubmitPrompt`) | yes (`sessionStart`, `preCompact`, `sessionEnd`) | `.cursor/hooks.json` | `/speckit:resume`, `lookup-trigger-index.mjs` |
+| Devin | yes (`UserPromptSubmit`) | yes (`SessionStart`, `Stop`) | `.devin/hooks.v1.json` | `/speckit:resume`, `lookup-trigger-index.mjs` |
+| OpenCode | yes (`experimental.chat.system.transform`) | plugin events | `.opencode/plugins/system-skill-advisor.js` | `/speckit:resume`, `lookup-trigger-index.mjs` |
 
 ---
 

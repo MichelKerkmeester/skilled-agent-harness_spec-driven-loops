@@ -1,12 +1,12 @@
 ---
-title: "system spec kit mcp server tests local llm features performance: Code README"
+title: "system spec kit runtime tests local llm features performance: Code README"
 description: "Code-facing README for .opencode/skills/system-spec-kit/runtime/tests/local-llm-features/performance."
 trigger_phrases:
   - "system-spec-kit runtime/tests/local-llm-features/performance"
   - "code README"
 ---
 
-# system spec kit mcp server tests local llm features performance
+# system spec kit runtime tests local llm features performance
 
 Test code and validation helpers for this skill area.
 

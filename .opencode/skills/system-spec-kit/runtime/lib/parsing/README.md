@@ -81,7 +81,7 @@ Parsing and script IO:
 
 ## 6. VALIDATION
 
-Run parser and MCP validation from the repository root:
+Run parser and runtime validation from the repository root:
 
 ```bash
 npm --prefix .opencode/skills/system-spec-kit/runtime run typecheck

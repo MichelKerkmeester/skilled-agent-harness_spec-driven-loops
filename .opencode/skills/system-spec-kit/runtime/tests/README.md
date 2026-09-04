@@ -1,5 +1,5 @@
 ---
-title: "MCP Server Tests: Vitest Coverage"
+title: "Runtime Tests: Vitest Coverage"
 description: "Vitest unit, integration, validation, hook, and regression coverage for the spec-kit engine."
 trigger_phrases:
   - "test suite"
@@ -7,7 +7,7 @@ trigger_phrases:
   - "regression tests"
 ---
 
-# MCP Server Tests: Vitest Coverage
+# Runtime Tests: Vitest Coverage
 
 ---
 

@@ -58,7 +58,7 @@ folder path and options
 
 ## 4. BOUNDARIES
 
-This module reports whether content is safe to continue and whether a spec folder meets its structure rules. It does not write memory records, create embeddings, rewrite markdown, or format MCP responses.
+This module reports whether content is safe to continue and whether a spec folder meets its structure rules. It does not write memory records, create embeddings, rewrite markdown, or render transport responses.
 
 ---
 
@@ -92,7 +92,7 @@ This module reports whether content is safe to continue and whether a spec folde
 - Save quality checks return layer-specific reasons and a final `pass` value.
 - Spec-doc structure failures use `SPECDOC_*` codes grouped by rule in `RULE_FAILURE_CODES`: `FRONTMATTER_MEMORY_BLOCK` (`SPECDOC_FRONTMATTER_001` through `SPECDOC_FRONTMATTER_007`, plus `MEMORY_BLOCK_INVALID` and `SESSION_LINEAGE_BROKEN`), `MERGE_LEGALITY` (`SPECDOC_MERGE_001` through `SPECDOC_MERGE_005`), `SPEC_DOC_SUFFICIENCY` (`SPECDOC_SUFFICIENCY_001` through `SPECDOC_SUFFICIENCY_004`), `CROSS_ANCHOR_CONTAMINATION` (`SPECDOC_CONTAM_001` through `SPECDOC_CONTAM_003`), `POST_SAVE_FINGERPRINT` (`SPECDOC_FINGERPRINT_001` through `SPECDOC_FINGERPRINT_004`).
 - `validateFolder()` returns a `ValidationReport` with per-rule `pass`, `warn`, `error`, and `info` entries plus a summary count.
-- Thresholds are environment-configurable through the `MCP_*` and `SPECKIT_SAVE_QUALITY_GATE` settings.
+- Thresholds are environment-configurable through the `SPECKIT_*` settings.
 
 ---
 

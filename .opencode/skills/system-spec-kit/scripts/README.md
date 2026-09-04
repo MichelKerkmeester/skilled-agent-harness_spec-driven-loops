@@ -79,7 +79,7 @@ scripts/
 +-- types/                 # Shared TypeScript type definitions
 +-- check-links.sh           # Wikilink ([[...]]) validator (compat entrypoint -> rules/check-links.sh)
 +-- check-markdown-links.cjs # Markdown-link (](path)) integrity guard over skills/commands/agents
-+-- deploy-mcp.sh          # Rebuild all MCP server dists (+ optional recycle)
++-- deploy-mcp.sh          # Rebuild every daemon-backed package dist
 +-- validate-command-tree-parity.sh # Policy-aware runtime mirror gate; explicit arbitrary trees use byte parity
 +-- package.json           # ESM package manifest
 +-- scripts-registry.json  # Script inventory
@@ -115,7 +115,7 @@ Disallowed direction:
 | `check-markdown-links.cjs` | Repo-wide markdown-link integrity guard over skills/commands/agents; CI-wired via `.github/workflows/markdown-link-integrity.yml`. Strips fenced + inline code before extraction. Complements the wikilink checker. `--self-test` asserts the inline-code handling. |
 | `check-links.sh` | Wikilink (`[[...]]`) validator; delegates to `rules/check-links.sh` (opt-in via `SPECKIT_VALIDATE_LINKS`). |
 | `spec/repair-derived.cjs` | Repairs the packet facts that are recomputable from disk — recorded location, declared level, generated-metadata fingerprint — and refuses everything else, reporting it by rule. Reporting is the default; `--apply` writes. Skips archived, scratch and pre-rename snapshot trees. See `spec/README-repair-derived.md` for the derived-versus-authored boundary. |
-| `deploy-mcp.sh` | Rebuilds every MCP server `dist/` (spec-kit + `@spec-kit/shared` via TS project references, and the skill advisor) after a source change, then warns about launcher `.cjs` changes that only a fresh session can load. `dist/` is gitignored, so this is the canonical rebuild step after pulling source changes. |
+| `deploy-mcp.sh` | Rebuilds every daemon-backed package `dist/` (the spec-kit runtime engine plus `@spec-kit/shared` via TS project references, and the skill advisor daemon) after a source change, then warns about launcher `.cjs` changes that only a fresh session can load. `dist/` is gitignored, so this is the canonical rebuild step after pulling source changes. |
 | `validate-command-tree-parity.sh` | Policy-aware runtime mirror gate wired into `spec/validate.sh` as the `COMMAND_TREE_PARITY` rule. Its default mode delegates to the generated mirror checker so runtime-exclusive commands stay excluded; explicit `--left`/`--right` trees retain byte-parity comparison and `--self-test` coverage. |
 | `scripts-registry.json` | Lists package scripts and known entrypoints. |
 | `package.json` | Defines ESM runtime settings and build scripts. |
@@ -166,7 +166,7 @@ Validation flow:
 └──────────────────────────────┘
 ```
 
-This package owns local automation. Long-lived product behavior belongs in the skill docs, MCP server code or shared package code.
+This package owns local automation. Long-lived product behavior belongs in the skill docs, runtime package code or shared package code.
 
 ---
 

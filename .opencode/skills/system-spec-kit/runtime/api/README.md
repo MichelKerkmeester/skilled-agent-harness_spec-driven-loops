@@ -1,5 +1,5 @@
 ---
-title: "MCP Server Public API"
+title: "Runtime Public API"
 description: "Stable import surface for spec folder identity, validation, folder discovery and graph metadata."
 trigger_phrases:
   - "public api"
@@ -7,7 +7,7 @@ trigger_phrases:
   - "stable imports"
 ---
 
-# MCP Server Public API
+# Runtime Public API
 
 ## 1. OVERVIEW
 
@@ -75,6 +75,6 @@ Expected result: import policy tests pass and README validation exits `0` with n
 
 ## 7. RELATED
 
-- [MCP server](../README.md)
-- [MCP server tests](../tests/README.md)
+- [Runtime engine](../README.md)
+- [Runtime tests](../tests/README.md)
 - [Import policy allowlist](../../scripts/evals/import-policy-allowlist.json)

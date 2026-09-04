@@ -56,7 +56,7 @@ Use this folder when a script needs template expansion that is shared across spe
 | `../core/index.js` | Allowed for `CONFIG.TEMPLATE_DIR`. |
 | `../utils/logger.js` | Allowed for missing placeholder warnings. |
 | `scripts/dist/` | Do not import compiled output from source files. |
-| MCP server modules | Do not import MCP server runtime modules from this folder. |
+| Runtime modules | Do not import runtime package modules from this folder. |
 
 ---
 
@@ -77,7 +77,7 @@ Use this folder when a script needs template expansion that is shared across spe
 | Rendering | Expand variables, sections, inverted sections and arrays. |
 | Template lookup | Load templates from the configured template directory only. |
 | Caller control | Keep destination paths, overwrite rules and workflow decisions outside this folder. |
-| Runtime separation | Do not import MCP server runtime modules or compiled output into source renderer files. |
+| Runtime separation | Do not import runtime package modules or compiled output into source renderer files. |
 
 ---
 

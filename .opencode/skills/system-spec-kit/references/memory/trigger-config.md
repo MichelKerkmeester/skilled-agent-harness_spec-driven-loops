@@ -28,7 +28,7 @@ The spec-doc record workflow supports manual activation mechanisms:
 
 > **OpenCode Note:** Automatic interval-based saves (e.g., "every 20 messages") are NOT supported in OpenCode because OpenCode lacks the hooks system required to count messages and trigger saves automatically. All context preservation must be manually triggered.
 
-This reference covers trigger phrase configuration, the MCP-based matching system, and best practices for custom trigger design.
+This reference covers trigger phrase configuration, the committed trigger index that matches those phrases, and best practices for custom trigger design.
 
 ### Key Components
 
@@ -36,7 +36,7 @@ This reference covers trigger phrase configuration, the MCP-based matching syste
 |-----------|---------|-------------------|
 | `/memory:save` Command | Primary save trigger | Immediate |
 | Trigger Phrases | Explicit memory activation | <50ms detection |
-| MCP Tool | Fast phrase matching | <50ms response |
+| `lookup-trigger-index.mjs` | Fast phrase matching over the committed index | <50ms response |
 | Custom Config | Project-specific triggers | Configurable |
 
 ---
@@ -293,7 +293,7 @@ _memory:
 | Operation | Target | Acceptable | Degraded |
 |-----------|--------|------------|----------|
 | Phrase detection | <10ms | <50ms | >100ms |
-| MCP tool call | <50ms | <100ms | >200ms |
+| Trigger-index lookup | <50ms | <100ms | >200ms |
 | Custom trigger check | <20ms | <50ms | >100ms |
 
 ### Optimization Strategies
@@ -367,7 +367,7 @@ function optimizedDetection(userMessage: string): CompiledTrigger | undefined {
 Before deploying custom triggers:
 
 - [ ] Test trigger phrases don't conflict with common conversation
-- [ ] Verify MCP tool response times meet <50ms target
+- [ ] Verify `lookup-trigger-index.mjs` response times meet <50ms target
 - [ ] Document custom triggers in project README
 - [ ] Establish team convention for save frequency
 

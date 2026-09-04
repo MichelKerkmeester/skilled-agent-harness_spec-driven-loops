@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d5fb5e1a23657ead4810c494ffcabc14d95e4bc761888febfd9af5b353e2923f",
+  "manifestHash": "4d78455c1b800989cf968ca9fd5d403c83deffc593e96bd22a03f8e8339aff61",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -57728,9 +57728,6 @@
     "mcp leak prevention summary": [
       "mcp leak prevention summary"
     ],
-    "mcp library": [
-      "mcp library"
-    ],
     "mcp magicpath": [
       "mcp-magicpath"
     ],
@@ -58440,9 +58437,6 @@
     ],
     "mcp server credentials": [
       "mcp server credentials"
-    ],
-    "mcp server data": [
-      "mcp server data"
     ],
     "mcp server deletion": [
       "mcp server deletion"
@@ -66021,9 +66015,6 @@
     ],
     "opencode transform dedup implementation": [
       "OpenCode transform dedup implementation"
-    ],
-    "opencode transport": [
-      "opencode transport"
     ],
     "opencode transport diagnostic": [
       "opencode transport diagnostic"
@@ -81630,6 +81621,9 @@
     "runtime council tests": [
       "runtime council tests"
     ],
+    "runtime data": [
+      "runtime data"
+    ],
     "runtime defect fixes": [
       "runtime defect fixes"
     ],
@@ -81755,6 +81749,9 @@
     ],
     "runtime lib domain readmes": [
       "runtime lib domain readmes"
+    ],
+    "runtime library": [
+      "runtime library"
     ],
     "runtime lifecycle decision record": [
       "runtime lifecycle decision record"
@@ -94583,6 +94580,9 @@
     "structural semantic retrieval fusion": [
       "structural semantic retrieval fusion",
       "structural-semantic retrieval fusion"
+    ],
+    "structural trust": [
+      "structural trust"
     ],
     "structural validation on first write": [
       "structural validation on first write"

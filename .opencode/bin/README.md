@@ -229,5 +229,5 @@ Expected result: each `.cjs` module loads without throwing. each CLI shim lists 
 ## 8. RELATED
 
 - [`lib/`](lib/README.md)
-- [`system-spec-kit MCP server`](../skills/system-spec-kit/runtime/)
+- [`system-spec-kit runtime engine`](../skills/system-spec-kit/runtime/)
 - [`system-skill-advisor MCP server`](../skills/system-skill-advisor/mcp-server/)

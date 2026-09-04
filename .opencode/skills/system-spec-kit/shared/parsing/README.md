@@ -64,9 +64,9 @@ These functions return typed result objects instead of throwing for normal valid
 
 Import direction should flow from consumers into `shared/parsing`:
 
-- MCP server workflows, memory save code and indexers may import parsing utilities.
+- Runtime workflows, memory save code and indexers may import parsing utilities.
 - Parsing utilities may import Node standard modules when direct file inspection is required.
-- Parsing utilities should avoid importing MCP endpoint code, database adapters or CLI command handlers.
+- Parsing utilities should avoid importing runtime endpoint code, database adapters or CLI command handlers.
 - Cross-package shared types should come from `../types.ts` when needed.
 - Tests should stay beside parser modules when they validate parser-only behavior.
 

@@ -1,16 +1,16 @@
 ---
-title: "MCP Server Data: Runtime Fixtures"
-description: "Small data files consumed by MCP server tooling and tests."
+title: "Runtime Data: Fixtures"
+description: "Small data files consumed by runtime tooling and tests."
 trigger_phrases:
-  - "mcp server data"
+  - "runtime data"
   - "search decisions data"
 ---
 
-# MCP Server Data: Runtime Fixtures
+# Runtime Data: Fixtures
 
 ## 1. OVERVIEW
 
-`data/` stores small repository-local data files used by MCP server workflows. The folder is not a code module and should stay limited to data that needs to live beside the server package.
+`data/` stores small repository-local data files used by runtime workflows. The folder is not a code module and should stay limited to data that needs to live beside the runtime package.
 
 Current state:
 

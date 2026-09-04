@@ -369,7 +369,7 @@ The full environment variable reference, including evaluation and telemetry over
 
 Note: in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a writable directory such as one under your home folder or `/tmp`. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file for the advisor.
 
-### MCP Server Configuration
+### No MCP Server
 
 This skill registers no MCP server of its own. Retrieval runs from two committed scripts under `scripts/retrieval/`, and continuity is written by `scripts/dist/memory/generate-context.js`. There is nothing to add to `mcpServers` for a generic MCP client, and nothing to keep warm.
 
@@ -564,9 +564,9 @@ A: Spec folders capture what happened in structured documentation. `generate-con
 
 A: Yes. The index and the ripgrep recipes read any Markdown under `specs` and `.opencode`, not only packet docs. For implementation work the canonical continuity path is still the spec folder itself, and Gate 3 asks about one before any file modification regardless.
 
-**Q: What is the difference between this README and the MCP server README?**
+**Q: What is the difference between this README and the runtime README?**
 
-A: This README covers the whole skill: spec folders, documentation levels, commands, templates and scripts. The MCP server README documents the retired store, and packet 049 removes it; read it as a record of what the engine did, not as an interface you can call.
+A: This README covers the whole skill: spec folders, documentation levels, commands, templates and scripts. The runtime README documents `@spec-kit/runtime`, the compiled engine behind spec-folder validation, generated packet metadata and the per-runtime hook adapters. It is a library the scripts workspace and the hook configs consume, not a service you call.
 
 **Q: What is the difference between SKILL.md and this README?**
 

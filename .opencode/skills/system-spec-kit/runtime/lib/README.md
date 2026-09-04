@@ -1,14 +1,14 @@
 ---
-title: "MCP Server Library"
+title: "Runtime Library"
 description: "TypeScript library modules for spec folder validation, generated metadata, description generation, continuity and shared support helpers."
 trigger_phrases:
-  - "mcp library"
+  - "runtime library"
   - "lib modules"
   - "validation library"
   - "graph metadata library"
 ---
 
-# MCP Server Library
+# Runtime Library
 
 ---
 
@@ -29,7 +29,7 @@ Current state:
 
 ```text
 ╭────────────────────────────────────────────────────────────────╮
-│ MCP Server Library                                             │
+│ Runtime Library                                                │
 ╰────────────────────────────────────────────────────────────────╯
 
 ┌──────────────┐      ┌────────────────┐      ┌────────────────┐
@@ -191,7 +191,7 @@ Use targeted Vitest paths when changing one subsystem under `lib/`.
 
 | Document | Role |
 |---|---|
-| [MCP Server README](../README.md) | Parent package overview. |
+| [Runtime README](../README.md) | Parent package overview. |
 | [Module Map](./MODULE-MAP.md) | Per-module ownership and dependency directions. |
 | [Validation README](./validation/README.md) | Validation subsystem details. |
 | [Graph README](./graph/README.md) | Generated graph metadata details. |

@@ -32,7 +32,7 @@ The `@spec-kit/shared` package owns these adapters. Server packages may re-expor
 ## 4. BOUNDARIES
 
 - Keep package-specific runtime wiring out of this folder.
-- Do not read MCP server environment defaults directly here.
+- Do not read consumer environment defaults directly here.
 - Keep adapter contracts aligned with `shared/embeddings/adapter.ts`.
 
 ---

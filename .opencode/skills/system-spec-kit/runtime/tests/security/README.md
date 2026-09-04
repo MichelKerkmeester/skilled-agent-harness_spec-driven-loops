@@ -1,12 +1,12 @@
 ---
-title: "system spec kit mcp server tests security: Code README"
+title: "system spec kit runtime tests security: Code README"
 description: "Code-facing README for .opencode/skills/system-spec-kit/runtime/tests/security."
 trigger_phrases:
   - "system-spec-kit runtime/tests/security"
   - "code README"
 ---
 
-# system spec kit mcp server tests security
+# system spec kit runtime tests security
 
 Test code and validation helpers for this skill area.
 

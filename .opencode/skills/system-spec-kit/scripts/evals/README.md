@@ -21,7 +21,7 @@ trigger_phrases:
 Current state:
 
 - TypeScript scripts run with `npx tsx` from the scripts workspace; `run-phase2-closure-metrics.mjs` runs with `node`.
-- Import policy checks prefer public MCP server API modules over internal runtime paths.
+- Import policy checks prefer the runtime package's public API (`@spec-kit/runtime/api`) over internal runtime paths.
 - Allowlisted exceptions are tracked in `import-policy-allowlist.json`.
 - The retrieval-quality runners that used to live here — `run-ablation.ts`, `run-bm25-baseline.ts` and `run-performance-benchmarks.ts` — were removed with the memory engine, along with `map-ground-truth-ids.ts`. Nothing replaced them, because the search pipeline they measured no longer exists.
 
@@ -112,7 +112,7 @@ Expected result: writes closure metrics into that spec folder's `scratch/` direc
 
 | Boundary | Rule |
 |---|---|
-| Public API | Eval scripts should use MCP server API exports rather than internal runtime modules. |
+| Public API | Eval scripts should use the runtime package's public API (`@spec-kit/runtime/api`) rather than internal runtime modules. |
 | Exceptions | Internal runtime access requires an allowlist entry with owner, reason and expiry. |
 | Data | Calibration and metrics scripts may read fixtures and write into a named spec folder's `scratch/`, but should not rewrite tracked artifacts unless a command documents that behavior. |
 | Reporting | Output should state when prerequisites are missing or results are investigation-only. |

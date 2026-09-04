@@ -1,6 +1,6 @@
 ---
 title: "Test Helpers: Shared Test Utilities"
-description: "Small utilities shared by MCP server tests."
+description: "Small utilities shared by runtime tests."
 trigger_phrases:
   - "test helpers"
   - "env snapshot"
@@ -10,7 +10,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/test-helpers/` contains small helpers used by MCP server tests. These modules are test support only and should not become product runtime dependencies.
+`lib/test-helpers/` contains small helpers used by runtime tests. These modules are test support only and should not become product runtime dependencies.
 
 Current state:
 

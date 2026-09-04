@@ -5,7 +5,7 @@
 
 ## 1. OVERVIEW
 
-Hook scripts for Claude Code lifecycle events. These run as external Node.js processes triggered by Claude Code, not as MCP server modules.
+Hook scripts for Claude Code lifecycle events. These run as external Node.js processes triggered by Claude Code, not as runtime library modules.
 
 ---
 

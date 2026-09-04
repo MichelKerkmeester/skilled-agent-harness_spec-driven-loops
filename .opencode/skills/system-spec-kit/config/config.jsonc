@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // IMPORTANT: Only Section 1 (legacy settings) is ACTIVE.
 // All other sections are DOCUMENTATION ONLY.
-// Runtime values for those sections are hardcoded in MCP modules.
+// Runtime values for those sections are hardcoded in runtime modules.
 {
   // ─────────────────────────────────────────────────────────────
   // 1. LEGACY SETTINGS

@@ -73,7 +73,7 @@ Import direction is inward from provider implementations to shared contracts and
 - Providers may import retry and chunking helpers from shared packages.
 - Parent embeddings files may import providers to construct the selected backend.
 - Code outside `shared/embeddings` should not import `providers/*` directly.
-- Provider files should not depend on MCP server endpoints, spec-folder workflows or database code.
+- Provider files should not depend on consumer endpoints, spec-folder workflows or database code.
 
 Keep backend-specific behavior in the provider file that owns it. Put provider-neutral selection logic in `../factory.ts` and profile path logic in `../profile.ts`.
 

@@ -10,7 +10,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/_support/` contains shared Vitest setup and focused helpers used by MCP server tests. Keep this directory limited to reusable test infrastructure, not assertions or production behavior.
+`tests/_support/` contains shared Vitest setup and focused helpers used by runtime tests. Keep this directory limited to reusable test infrastructure, not assertions or production behavior.
 
 ---
 
@@ -38,7 +38,7 @@ _support/
 
 ## 4. VALIDATION
 
-Run affected Vitest suites from `mcp_server`; use the full suite for shared setup changes:
+Run affected Vitest suites from `runtime/`; use the full suite for shared setup changes:
 
 ```bash
 npx vitest run tests/<suite>.vitest.ts

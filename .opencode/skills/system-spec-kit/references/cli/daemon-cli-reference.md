@@ -22,7 +22,7 @@ Run the repo-relative examples from the repository root. If the caller is in ano
 
 ## 1. OVERVIEW
 
-The spec-kit and skill-advisor daemons expose a CLI front door over the same tool surfaces their MCP transports serve. This reference covers those surfaces, the invocation forms, the output and exit-code contracts, the warm-only policy, and the recovery path when a stale build refuses to run. It is the operator's map; the MCP transports remain the runtimes' route.
+The skill-advisor daemon exposes a CLI front door over the same tool surface its MCP transport serves. This reference covers that surface, the invocation forms, the output and exit-code contracts, the warm-only policy, and the recovery path when a stale build refuses to run. It is the operator's map; the MCP transport remains the runtimes' route.
 
 ---
 

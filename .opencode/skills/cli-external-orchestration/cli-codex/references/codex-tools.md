@@ -321,7 +321,7 @@ These capabilities provide functionality comparable to Claude Code's built-in to
 | **Web fetch** | `WebFetch` | Automatic URL fetching | Similar capabilities |
 | **Web search** | `WebSearch` | `--search` flag | Codex integrates browsing into reasoning loop |
 | **Architecture analysis** | Manual (Grep+Read+Glob) | Agent-assisted analysis | Codex uses `@context` agent |
-| **Memory/persistence** | External (Spec Kit MCP) | Session resume/fork | Different approaches; Spec Kit is more structured |
+| **Memory/persistence** | External (Spec Kit spec folders) | Session resume/fork | Different approaches; Spec Kit is more structured |
 | **Task tracking** | External (TodoWrite) | Internal session context | Codex tracks within session |
 | **Browser automation** | External MCP | Not built-in | Both need external tools |
 | **MCP integration** | Native + Code Mode | `.codex/settings.json` | Both support MCP protocol |

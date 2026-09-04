@@ -42,7 +42,7 @@ contracts/retrieval-trace.ts -> local helpers only
 Disallowed dependency direction:
 
 ```text
-contracts/* -> MCP handlers
+contracts/* -> consumer request handlers
 contracts/* -> response adapters
 contracts/* -> algorithm modules
 contracts/* -> storage modules

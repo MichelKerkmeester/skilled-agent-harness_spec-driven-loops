@@ -1,5 +1,5 @@
 ---
-title: "MCP Server Stress Tests"
+title: "Runtime Stress Tests"
 description: "Vitest suites held outside the default test run, for load, contention, and capacity checks operators run by choice."
 trigger_phrases:
   - "stress test"
@@ -7,7 +7,7 @@ trigger_phrases:
   - "dedicated stress folder"
 ---
 
-# MCP Server Stress Tests
+# Runtime Stress Tests
 
 ---
 
@@ -28,7 +28,7 @@ Current state:
 
 ```text
 ╭──────────────────────────────────────────────────────────────────╮
-│                    MCP SERVER STRESS TESTS                       │
+│                       RUNTIME STRESS TESTS                       │
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌────────────────┐      ┌────────────────────┐      ┌──────────────────┐

@@ -83,7 +83,7 @@ Disallowed dependency direction:
 
 ```text
 templates/ → generated spec packets
-templates/ → MCP runtime modules
+templates/ → runtime engine modules
 examples/ → scaffolder input
 ```
 

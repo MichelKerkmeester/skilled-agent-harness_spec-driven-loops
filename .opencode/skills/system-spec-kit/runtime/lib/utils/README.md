@@ -17,7 +17,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-The utils module provides foundational utilities used throughout the MCP server. These include date formatting and path traversal security (re-exported from `@spec-kit/shared`).
+The utils module provides foundational utilities used throughout the runtime package. These include date formatting and path traversal security (re-exported from `@spec-kit/shared`).
 
 Those utilities support the Gate E continuity model where `/speckit:resume` restores packet context from `handover.md` -> `_memory.continuity` -> spec docs. Generated memory artifacts remain supporting only.
 
@@ -54,7 +54,7 @@ utils/
 |------|---------|
 | `canonical-path.ts` | Canonical path identity for symlink-aware deduplication (`getCanonicalPathKey`) |
 | `format-helpers.ts` | Human-readable date formatting (`formatAgeString`) |
-| `logger.ts` | Structured logging utilities for MCP server operations |
+| `logger.ts` | Structured logging utilities for runtime operations |
 | `path-security.ts` | Re-exports path validation and regex escaping from `@spec-kit/shared/utils/path-security` |
 | `index-scope.ts` | Shared path-policy module. Exports `shouldIndexForMemory`, `shouldIndexForCodeGraph`, `resolveCanonicalPath`, `GOVERNANCE_AUDIT_ACTIONS`, `recordTierDowngradeAudit`, `buildGovernanceLogicalKey`. Single source of truth for `z-future/` + `/external/` exclusions |
 
@@ -124,7 +124,7 @@ Re-exports from `@spec-kit/shared/utils/path-security`:
 
 | Function | Purpose |
 |----------|---------|
-| Structured logging | Consistent log output for MCP server operations |
+| Structured logging | Consistent log output for runtime operations |
 
 ---
 

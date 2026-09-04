@@ -617,7 +617,7 @@ mkdir -p specs/###-name/scratch
 ### Canonical Continuity Saves (Script-Managed)
 
 Continuity is no longer a standalone `memory/*.md` template surface. `generate-context.js` updates the target packet's canonical continuity surfaces, centered on `_memory.continuity` in `implementation-summary.md`, and then reindexes the packet docs for recovery.
-When that save updates indexed state, the runtime also touches `DB_UPDATED_FILE` so long-lived MCP servers can hot-rebind instead of serving stale packet data.
+When that save updates indexed state, the runtime also touches `DB_UPDATED_FILE` so long-lived readers can rebind instead of serving stale packet data.
 
 **Creation (JSON mode — preferred):** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/`
 

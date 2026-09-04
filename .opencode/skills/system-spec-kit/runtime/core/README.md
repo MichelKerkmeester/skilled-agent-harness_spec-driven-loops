@@ -1,6 +1,6 @@
 ---
 title: "Core Modules: Runtime Config and Database State"
-description: "Runtime configuration, path guards, database-state coordination, and shared rebind hooks for the MCP server."
+description: "Runtime configuration, path guards, database-state coordination, and shared rebind hooks for the runtime package."
 trigger_phrases:
   - "core modules"
   - "db state"
@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`core/` is the shared runtime foundation for MCP server modules. It exposes configuration constants, database path resolution, input limits, scan cooldown settings, and database dependency rebinding.
+`core/` is the shared runtime foundation for the runtime package modules. It exposes configuration constants, database path resolution, input limits, scan cooldown settings, and database dependency rebinding.
 
 Current responsibilities:
 
@@ -85,7 +85,7 @@ Main flow:
 
 ```text
 ╭──────────────────────────────────────────╮
-│ MCP server startup or DB reconnect       │
+│ Runtime startup or DB reconnect          │
 ╰──────────────────────────────────────────╯
                   │
                   ▼

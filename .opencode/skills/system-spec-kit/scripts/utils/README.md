@@ -49,7 +49,7 @@ scripts/utils/
 +-- spec-affinity.ts           # Spec-folder affinity scoring
 +-- task-enrichment.ts         # Task title enrichment helpers
 +-- template-structure.js      # Source-only template structure helper
-+-- tool-detection.ts          # MCP tool capability detection
++-- tool-detection.ts          # Tool-call detection and phase signals
 +-- tool-sanitizer.ts          # Tool payload sanitization
 +-- validation-utils.ts        # Path-scoped validation helpers
 +-- workspace-identity.ts      # Workspace identity detection

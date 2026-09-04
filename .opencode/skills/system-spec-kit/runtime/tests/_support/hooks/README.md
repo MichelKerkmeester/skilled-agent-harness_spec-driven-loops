@@ -30,7 +30,7 @@ trigger_phrases:
 
 ## 4. VALIDATION
 
-Run focused hook tests from `mcp_server` after changing support helpers:
+Run focused hook tests from `runtime/` after changing support helpers:
 
 ```bash
 npx vitest run tests/hook-session-stop-replay.vitest.ts

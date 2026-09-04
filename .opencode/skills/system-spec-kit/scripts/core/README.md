@@ -158,7 +158,7 @@ scripts/core/
 |---|---|
 | Imports | Source modules import local TypeScript helpers and script libraries, not compiled `dist/` output. `daemon-detect.ts` is stdlib-only. |
 | Exports | `index.ts` is the public barrel for this folder. Keep one-off helpers private unless another script imports them. |
-| Ownership | This folder owns context-save orchestration helpers. MCP server tools, database code and spec templates belong outside `scripts/core/`. |
+| Ownership | This folder owns context-save orchestration helpers. Runtime engine modules, database code and spec templates belong outside `scripts/core/`. |
 
 Save-lock ownership check:
 

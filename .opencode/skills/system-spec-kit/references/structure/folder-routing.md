@@ -547,7 +547,7 @@ test -d specs/###-name/memory/ && echo "OK" || echo "MISSING"
 
 ### Reference Files
 - [execution-methods.md](../workflows/execution-methods.md) - Save context workflows
-- [memory-system.md](../memory/memory-system.md) - MCP tool reference
+- [memory-system.md](../memory/memory-system.md) - Retrieval and continuity reference
 
 ### Related Skills
 - `system-spec-kit` - Spec folder creation and template management

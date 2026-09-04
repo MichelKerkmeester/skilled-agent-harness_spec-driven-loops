@@ -181,8 +181,8 @@ The `hooks/` tree ships thin per-runtime adapters for Claude, Codex, Cursor, Dev
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_USER_PROMPT_TARGET` | (unset) | string (path) | Explicit target for the Claude user-prompt-submit shim, overriding the install-anchored ancestor walk. Honored **only when the path exists**; otherwise the hook walks up from its own module location looking for `.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js`. The walk exists because Claude may invoke the hook from any working directory. | `hooks/claude/user-prompt-submit.ts` |
-| `SPECKIT_DIRECTIVE_LIFECYCLE_BOUNDARY_TARGET` | (unset) | string (path) | Same override for the Claude directive-lifecycle-boundary shim, again honored only when the path exists, else the ancestor walk resolves `.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/directive-lifecycle-boundary.js`. | `hooks/claude/directive-lifecycle-boundary.ts` |
+| `SPECKIT_USER_PROMPT_TARGET` | (unset) | string (path) | Explicit target for the Claude user-prompt-submit shim, overriding the install-anchored ancestor walk. Honored **only when the path is absolute and names a regular file**; otherwise the hook walks up from its own module location looking for `.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js`. The walk exists because Claude may invoke the hook from any working directory. | `hooks/claude/user-prompt-submit.ts` |
+| `SPECKIT_DIRECTIVE_LIFECYCLE_BOUNDARY_TARGET` | (unset) | string (path) | Same override for the Claude directive-lifecycle-boundary shim, again honored only when the path is absolute and names a regular file, else the ancestor walk resolves `.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/directive-lifecycle-boundary.js`. | `hooks/claude/directive-lifecycle-boundary.ts` |
 | `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` | (unset) | flag (`"1"`) | Exactly `1` enables the authored continuity snapshot path in the compact hook. The hook also accepts the same intent per-invocation through its input payload (`authored_continuity_snapshot: true` or `continuity_snapshot: "authored"`), so the env var is the process-wide form of a per-call option. Unset leaves the transcript-derived fallback in place. | `hooks/claude/compact-inject.ts` |
 
 ### Spec Gate (Gate-3)
@@ -335,7 +335,7 @@ Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer a
 
 ## OPENCODE GOAL PLUGIN
 
-Environment variables consumed by the local `.opencode/plugins/opencode-goal.js` plugin. These are plugin-level controls, not MCP daemon flags. The same plugin owns `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume`; status output includes `remaining_auto_turns`, `remaining_wall_ms`, `provider_retry_after_ms`, and verifier provenance via `verifier_source` alongside the existing budget fields.
+Environment variables consumed by the local `.opencode/plugins/opencode-goal.js` plugin. These are plugin-level controls, not runtime flags. The same plugin owns `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume`; status output includes `remaining_auto_turns`, `remaining_wall_ms`, `provider_retry_after_ms`, and verifier provenance via `verifier_source` alongside the existing budget fields.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|

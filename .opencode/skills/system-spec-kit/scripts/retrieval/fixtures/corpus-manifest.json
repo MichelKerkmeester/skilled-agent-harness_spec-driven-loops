@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fe2ac71b3c4ef4ed3afa83bdc4d14c208bbf0d04c1a3ce2855f11fab86e48aa9",
+  "corpusHash": "225b5e7723deb4e7606ce390a92b6fbeca37d17882b83f08f329daf079d71e21",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28070,7 +28070,7 @@
     "specs/system-speckit/053-spec-kit-runtime-rename/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d5fb5e1a23657ead4810c494ffcabc14d95e4bc761888febfd9af5b353e2923f",
+  "manifestHash": "4d78455c1b800989cf968ca9fd5d403c83deffc593e96bd22a03f8e8339aff61",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

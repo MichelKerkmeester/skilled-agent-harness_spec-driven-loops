@@ -1,6 +1,6 @@
 ---
 title: "Architecture: system-spec-kit"
-description: "Current package architecture for system-spec-kit: scripts, MCP runtime, shared modules, canonical continuity flows, hook matrix, validators."
+description: "Current package architecture for system-spec-kit: scripts, runtime engine, shared modules, canonical continuity flows, hook matrix, validators."
 trigger_phrases:
   - "system spec kit architecture"
   - "spec kit architecture"
@@ -188,5 +188,5 @@ Spec-kit's quality gates run at three layers.
 - [SKILL.md](./SKILL.md): Runtime routing and invariants
 - [feature-catalog/feature-catalog.md](./feature-catalog/feature-catalog.md): Current feature inventory
 - [manual-testing-playbook/manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md): Operator validation scenarios
-- [runtime/README.md](./runtime/README.md): MCP server package details
+- [runtime/README.md](./runtime/README.md): Runtime package details
 - [references/](./references/): Workflow contracts, hook references, validation playbooks

@@ -55,7 +55,7 @@ lib/
 Import direction should stay simple:
 
 - Retrieval, indexing and embedding code may import `chunkMarkdown` from this package.
-- This package should not import MCP endpoints, database adapters or spec workflow code.
+- This package should not import runtime endpoints, database adapters or spec workflow code.
 - Add new helpers here only when they are shared library code, not package-specific behavior.
 - Prefer a narrower package when a helper clearly belongs to `algorithms`, `embeddings`, `parsing`, `scoring` or `utils`.
 

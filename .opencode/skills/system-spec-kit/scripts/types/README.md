@@ -21,7 +21,7 @@ Current state:
 
 - Source of truth is `session-types.ts`.
 - Runtime declarations are generated into `scripts/dist/types/` by the TypeScript build.
-- These definitions model script data only. They are not MCP server API contracts.
+- These definitions model script data only. They are not runtime package API contracts.
 
 ---
 
@@ -52,7 +52,7 @@ Disallowed direction:
 
 - Source modules should not import from `scripts/dist/types/`.
 - Type files should not contain runtime behavior.
-- MCP server public API types should not be defined here.
+- Runtime package public API types should not be defined here.
 
 ---
 
@@ -100,7 +100,7 @@ test -f .opencode/skills/system-spec-kit/scripts/dist/types/session-types.d.ts
 | Ownership | This folder owns script payload interfaces only. |
 | Runtime | Keep runtime logic in extractors, renderers, core modules or libraries. |
 | Imports | Prefer type-only imports when consumers only need compile-time shapes. |
-| Public APIs | MCP server request and response contracts belong under `runtime/`. |
+| Public APIs | Runtime package request and response contracts belong under `runtime/`. |
 
 ---
 

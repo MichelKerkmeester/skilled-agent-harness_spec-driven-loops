@@ -1,5 +1,5 @@
 ---
-title: "MCP Server: Spec Kit Engine"
+title: "Spec Kit Runtime Engine"
 description: "Spec folder validation, generated metadata, description generation, and the runtime hook adapters, consumed as a library by the scripts workspace and the runtime hook configs."
 trigger_phrases:
   - "spec kit engine"
@@ -9,7 +9,7 @@ trigger_phrases:
 importance_tier: "important"
 ---
 
-# MCP Server: Spec Kit Engine
+# Spec Kit Runtime Engine
 
 > `@spec-kit/runtime` is the compiled TypeScript engine behind spec folder validation, generated packet metadata, and the per-runtime hook adapters. It is consumed as a library, not run as a service.
 
@@ -42,7 +42,7 @@ Two consumers, and no third.
 
 ```text
 ╭──────────────────────────────────────────────────────────────────╮
-│                    MCP SERVER PACKAGE                            │
+│                     SPEC KIT RUNTIME PACKAGE                     │
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌──────────────┐      ┌──────────────────┐      ┌─────────────────┐

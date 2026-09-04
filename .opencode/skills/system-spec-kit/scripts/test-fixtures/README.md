@@ -36,7 +36,7 @@ Allowed fixture content:
 
 Not owned here:
 
-- MCP server JSON fixtures live under `runtime/tests/fixtures/`.
+- Runtime JSON fixtures live under `runtime/tests/fixtures/`.
 - Runtime test orchestration lives under `../tests/`.
 - Production templates live under `../../templates/`.
 

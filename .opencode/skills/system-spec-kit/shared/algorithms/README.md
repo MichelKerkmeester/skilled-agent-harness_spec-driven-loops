@@ -47,7 +47,7 @@ algorithm modules -> shared types or local constants
 Disallowed dependency direction:
 
 ```text
-algorithm modules -> MCP tool handlers
+algorithm modules -> consumer request handlers
 algorithm modules -> database adapters
 algorithm modules -> embedding providers
 rrf-fusion.ts -> adaptive-fusion.ts

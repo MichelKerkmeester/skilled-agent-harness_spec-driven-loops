@@ -62,7 +62,7 @@ Disallowed dependency direction:
 
 ```text
 providers/* -> factory.ts
-providers/* -> MCP handlers
+providers/* -> consumer request handlers
 providers/* -> database adapters
 profile.ts -> providers/*
 registry.ts -> factory.ts

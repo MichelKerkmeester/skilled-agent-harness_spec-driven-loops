@@ -1,6 +1,6 @@
 ---
 title: "Shared Library Modules"
-description: "Consolidated TypeScript modules shared between CLI scripts and MCP server for embeddings, retrieval algorithms, contracts, config, and utility logic."
+description: "Consolidated TypeScript modules shared between the CLI scripts workspace and the runtime package for embeddings, retrieval algorithms, contracts, config, and utility logic."
 trigger_phrases:
   - "shared library modules"
   - "embeddings trigger extractor shared"
@@ -9,7 +9,7 @@ trigger_phrases:
 
 # Shared Library Modules
 
-> Consolidated TypeScript modules shared between CLI scripts and MCP server for embeddings, scoring, normalization, and utility logic. Source files are `.ts`. `shared/` builds as ESM (`package.json` sets `"type": "module"` and `tsconfig.json` uses NodeNext), with generated output in `shared/dist/`.
+> Consolidated TypeScript modules shared between the CLI scripts workspace and the runtime package for embeddings, scoring, normalization, and utility logic. Source files are `.ts`. `shared/` builds as ESM (`package.json` sets `"type": "module"` and `tsconfig.json` uses NodeNext), with generated output in `shared/dist/`.
 
 ---
 
@@ -66,7 +66,7 @@ These modules support packet-doc-first continuity: `/speckit:resume`, implemente
 | Category                 | Count         | Details                                          |
 | ------------------------ | ------------- | ------------------------------------------------ |
 | Top-Level TS Modules     | 14            | index, embeddings, chunking, trigger extractor, types, normalization, config, paths, budget allocator, compact merger, context types, code graph contracts, gate 3 classifier, unicode normalization |
-| Top-Level Subdirectories | 12            | algorithms, contracts, dist, embeddings, ipc, lib, mcp_server, parsing, predicates, ranking, scoring, utils |
+| Top-Level Subdirectories | 11            | algorithms, contracts, dist, embeddings, ipc, lib, parsing, predicates, ranking, scoring, utils |
 | Provider Implementations | 5             | Voyage, OpenAI, ollama, HF Local, auto |
 | Embedding Dimensions     | 768/1024/1536 | 768 default (ollama and HF Local); 1024 (Voyage); 1536 (OpenAI) |
 
@@ -110,7 +110,7 @@ These modules support packet-doc-first continuity: `/speckit:resume`, implemente
 import { generateEmbedding } from '@spec-kit/shared/embeddings'
 import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 
-// From MCP server (runtime/*.ts)
+// From the runtime package (runtime/*.ts)
 import { generateEmbedding } from '@spec-kit/shared/embeddings'
 import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 ```
@@ -269,7 +269,7 @@ Two re-export shims exist for path convenience:
 - `scripts/lib/embeddings.ts` → `export * from '@spec-kit/shared/embeddings'`
 - `runtime/lib/providers/embeddings.ts` → explicit named re-exports from `@spec-kit/shared/embeddings`
 
-The canonical source is the `shared/` package. `shared/embeddings.ts` is the public shared entry point for embeddings, while `shared/embeddings/` contains provider-specific implementation details. These shims stay implementation-free: the scripts shim uses a barrel re-export, while the MCP server shim uses explicit named re-exports for auditability.
+The canonical source is the `shared/` package. `shared/embeddings.ts` is the public shared entry point for embeddings, while `shared/embeddings/` contains provider-specific implementation details. These shims stay implementation-free: the scripts shim uses a barrel re-export, while the runtime shim uses explicit named re-exports for auditability.
 
 ---
 
@@ -524,7 +524,7 @@ console.log(extractTriggerPhrases('memory search trigger extraction'))"
 | Document                                                | Purpose                                    |
 | ------------------------------------------------------- | ------------------------------------------ |
 | [scripts/lib/README.md](../scripts/lib/README.md)       | CLI scripts library (re-exports from here) |
-| [runtime/lib/README.md](../runtime/lib/README.md) | MCP server library (re-exports from here)  |
+| [runtime/lib/README.md](../runtime/lib/README.md) | Runtime library (re-exports from here)     |
 | [embeddings/README.md](./embeddings/README.md)          | Embeddings factory detailed docs           |
 | [SKILL.md](../SKILL.md)                                 | Parent skill documentation                 |
 

@@ -65,7 +65,7 @@ Import direction should flow from ranking consumers into `shared/scoring`:
 
 - Memory stats, resume ranking and search support code may import scoring helpers.
 - Scoring imports shared types from `../types.ts` only.
-- Scoring should not import database adapters, MCP endpoints, memory search implementations or spec workflow code.
+- Scoring should not import database adapters, runtime endpoints, memory search implementations or spec workflow code.
 - Keep new ranking math in `folder-scoring.ts` unless a second independent scoring domain appears.
 
 This package returns scores and metadata. Callers decide how to display, filter or combine those results with retrieval evidence.

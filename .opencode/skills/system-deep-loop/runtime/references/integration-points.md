@@ -86,7 +86,7 @@ Relevant references:
 
 ## 6. SYSTEM-SPEC-KIT TEST DISCOVERY
 
-The runtime tests are discovered from the system-spec-kit MCP server Vitest config:
+The runtime tests are discovered from the system-spec-kit runtime Vitest config:
 
 ```text
 .opencode/skills/system-spec-kit/runtime/vitest.config.ts

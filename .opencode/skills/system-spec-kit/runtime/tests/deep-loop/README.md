@@ -1,12 +1,12 @@
 ---
-title: "system spec kit mcp server tests deep loop: Code README"
+title: "system spec kit runtime tests deep loop: Code README"
 description: "Code-facing README for .opencode/skills/system-spec-kit/runtime/tests/deep-loop."
 trigger_phrases:
   - "system-spec-kit runtime/tests/deep-loop"
   - "code README"
 ---
 
-# system spec kit mcp server tests deep loop
+# system spec kit runtime tests deep loop
 
 Test code and validation helpers for this skill area.
 

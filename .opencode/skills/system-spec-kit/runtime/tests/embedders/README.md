@@ -16,7 +16,7 @@ trigger_phrases:
 
 ## 2. OWNERSHIP
 
-These tests belong to `runtime/lib/embedders/`. Shared provider contract tests belong in `shared/` when they do not need MCP runtime wiring.
+These tests belong to `runtime/lib/embedders/`. Shared provider contract tests belong in `shared/` when they do not need runtime-package wiring.
 
 ---
 
