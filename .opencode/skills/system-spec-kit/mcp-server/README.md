@@ -31,7 +31,7 @@ The package has no server process and no transport of its own. Its build artifac
 
 Two consumers, and no third.
 
-- **The scripts workspace** (`@spec-kit/scripts`) declares `"@spec-kit/mcp-server": "file:../mcp-server"` and imports the barrel as `@spec-kit/mcp-server/api`. Live callers include `../scripts/spec-folder/generate-description.ts`, `../scripts/core/workflow.ts`, `../scripts/memory/generate-context.ts`, `../scripts/memory/backfill-research-metadata.ts`, and `../scripts/git-hooks/drift-marker-write.ts`. Imports that reach past the barrel into `lib/`, `core/`, or `handlers/` are rejected by the import-policy checks in `../scripts/evals/` unless they carry a governed allowlist entry.
+- **The scripts workspace** (`@spec-kit/scripts`) declares `"@spec-kit/mcp-server": "file:../mcp-server"` and imports the barrel as `@spec-kit/mcp-server/api`. Live callers include `../scripts/spec-folder/generate-description.ts`, `../scripts/core/workflow.ts`, `../scripts/memory/generate-context.ts`, and `../scripts/memory/backfill-research-metadata.ts`. Imports that reach past the barrel into `lib/`, `core/`, or `handlers/` are rejected by the import-policy checks in `../scripts/evals/` unless they carry a governed allowlist entry.
 - **The runtime hook configs** name files under `hooks/` directly. `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json`, and `.devin/hooks.v1.json` register a mix of compiled `dist/hooks/<runtime>/*.js` outputs and directly-runnable `.mjs`/`.cjs` adapters. Pi discovers `hooks/pi/*` through relative symlinks in `.pi/extensions/`.
 
 `../scripts/spec/validate.sh` is a third consumer in practice but not an import one: it resolves `dist/lib/validation/orchestrator.js`, guards it with the `validation-orchestrator` freshness entry in `../scripts/lib/dist-freshness.cjs`, and refuses to run against a stale build.
@@ -111,7 +111,6 @@ dist/ → source imports
 ```text
 mcp-server/
 +-- api/                     # index.ts barrel and graph-refresh.ts
-+-- configs/                 # cognitive.ts and search-weights.json
 +-- core/                    # config.ts path and limit resolution
 +-- data/                    # Repository-local data files
 +-- handlers/                # Spec-document discovery, save/ folder mutex

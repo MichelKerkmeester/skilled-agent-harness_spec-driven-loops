@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-04T19:05:06.590Z",
+    "last_save_at": "2026-09-04T19:34:08.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:823175763a81b1fc8ca633c9851b685899959b9b31793034c667d30e5bb28456",
+    "source_fingerprint": "sha256:e5ccc63514f0ee431c803ed672168a146a4342eb23952f88ca3116ec2d111045",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "88f53561fb47b50f9b587271a3e3e4b046d101bda2863133c4fef49f8df8d4af",

@@ -9,25 +9,6 @@
 
 export { refreshGraphMetadata } from './graph-refresh.js';
 
-// --- Git-hook drift marker writer (used by scripts/git-hooks) ---
-export { resolveDatabasePaths } from '../core/config.js';
-export {
-  resolveMemoryDriftMarkerPath,
-  memoryDriftMarkerEntryKey,
-} from '../lib/storage/memory-drift-healing.js';
-export type {
-  MemoryDriftMarkerEntry,
-  MemoryDriftMarkerPayload,
-} from '../lib/storage/memory-drift-healing.js';
-export { atomicWriteFile } from '../lib/storage/transaction-manager.js';
-export {
-  isReclaimableLock,
-  reclaimInterprocessLock,
-  createInterprocessLock,
-  releaseInterprocessLock,
-} from '../handlers/save/spec-folder-mutex.js';
-export type { InterprocessLockHandle } from '../handlers/save/spec-folder-mutex.js';
-
 // --- Spec folder identity and validation (used by scripts/spec-folder, scripts/graph) ---
 export {
   canClassifyAsGraphMetadataPath,

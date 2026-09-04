@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Post-rewrite hook — advisory memory-index drift marking.
+# Post-rewrite hook — autostash orphan guard.
 #
-# Marks memory-index drift for spec-folder renames/deletes across every
-# rewritten commit pair git passes on stdin (amend or rebase). Never
-# blocks the rewrite: the marker write is best-effort.
-# Bypass: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1 git rebase / commit --amend ...
+# Anchors and surfaces any --autostash entry so a conflicted (un-applied)
+# autostash can never be silently lost after an amend or rebase. Never blocks
+# the rewrite: the guard is best-effort. The rewritten commit pairs git sends on
+# stdin are unused; git ignores SIGPIPE around that write.
 #
 # Install: bash .opencode/scripts/install-git-hooks.sh
 # Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
@@ -16,25 +16,10 @@ if [ -z "$REPO_ROOT" ]; then
   exit 0
 fi
 
-# Anchor + surface any --autostash entry so a conflicted (un-applied) autostash
-# can never be silently lost. Runs before the drift gate so it fires regardless.
 if [ -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh" ]; then
   # shellcheck source=/dev/null
   source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh"
   autostash_orphan_guard || true
 fi
-
-if [ ! -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" ]; then
-  exit 0
-fi
-
-# shellcheck source=/dev/null
-source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
-
-while read -r old_commit new_commit _rest; do
-  if [ -n "${old_commit:-}" ] && [ -n "${new_commit:-}" ]; then
-    mark_memory_drift_from_diff "$old_commit" "$new_commit" || true
-  fi
-done
 
 exit 0

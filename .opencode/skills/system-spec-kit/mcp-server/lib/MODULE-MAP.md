@@ -164,12 +164,11 @@ The inventory is derived from the files in each folder and from the import edges
 
 ### `storage/`
 
-- Purpose: Owns the two persistence helpers the package still needs: atomic file writes and the drift-marker contract the git hooks write against.
+- Purpose: Owns the persistence helper the package still needs: atomic file writes with pending-file recovery.
 - Key files:
   - `transaction-manager.ts` — atomic write and pending-file helpers.
-  - `memory-drift-healing.ts` — the `.memory-drift-dirty-paths.json` marker path, entry keys and payload shape.
 - Primary consumers:
-  - `api/index.ts` (both are re-exported for the git-hook drift-marker writer)
+  - `handlers/` and `lib/` modules that must not leave a half-written file behind
 
 ### `templates/`
 

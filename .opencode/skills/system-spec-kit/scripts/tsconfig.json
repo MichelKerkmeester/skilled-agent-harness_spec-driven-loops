@@ -23,7 +23,6 @@
     "core/**/*.ts",
     "evals/**/*.ts",
     "extractors/**/*.ts",
-    "git-hooks/**/*.ts",
     "graph/**/*.ts",
     "lib/**/*.ts",
     "loaders/**/*.ts",

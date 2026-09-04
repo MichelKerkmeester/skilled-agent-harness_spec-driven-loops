@@ -35,7 +35,6 @@ Internal package code should import from its owning `lib/`, `handlers/`, or `cor
 `index.ts` re-exports from `graph-refresh.ts` plus a fixed set of internal modules, grouped by the caller that needs them:
 
 - `graph-refresh.ts`: `refreshGraphMetadata`, which resolves a spec folder reference before re-deriving its graph metadata.
-- Git-hook drift-marker writing: `resolveDatabasePaths`, `resolveMemoryDriftMarkerPath`, `memoryDriftMarkerEntryKey`, `atomicWriteFile`, the interprocess lock helpers (`createInterprocessLock`, `releaseInterprocessLock`, `reclaimInterprocessLock`, `isReclaimableLock`) and their types.
 - Spec folder identity and validation: `resolveSpecFolderIdentity`, `SpecFolderIdentityError`, `canClassifyAsGraphMetadataPath`, `validateFolder`, `buildContinuityFingerprint`, `ZERO_CONTINUITY_FINGERPRINT` and the `ValidateOpts` / `ValidationEntry` / `ValidationReport` types.
 - Folder discovery: `generatePerFolderDescription`, `savePerFolderDescription`, `loadPerFolderDescription`, `loadExistingDescription`, `wouldWritePerFolderDescription`, `getRepairMergeSafe`, `extractKeywords`, `slugifyFolderName` and their result types.
 - Graph metadata: the `graph-metadata.json` schema constants and Zod schemas, the parser's load/derive/merge/serialize/write functions, `checkGeneratedMetadataIntegrity`, `checkGeneratedMetadataDrift`, `computeSourceDocHashes` and the matching report types.

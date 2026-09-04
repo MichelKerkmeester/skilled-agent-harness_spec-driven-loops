@@ -6,8 +6,6 @@ import path from 'path';
 import fs from 'fs';
 import os from 'os';
 import { DB_PATH } from '@spec-kit/shared/paths';
-import { loadCognitiveConfigFromEnv } from '../configs/cognitive.js';
-import type { CognitiveConfig } from '../configs/cognitive.js';
 
 // ────────────────────────────────────────────────────────────────
 // 1. TYPES 
@@ -167,42 +165,7 @@ export const ALLOWED_BASE_PATHS: string[] = [
 // 7. CACHE CONFIGURATION 
 
 // ────────────────────────────────────────────────────────────────
-// 8. COGNITIVE CONFIGURATION 
-
-// ────────────────────────────────────────────────────────────────
-
-function parseCognitiveConfig(): CognitiveConfig {
-  return loadCognitiveConfigFromEnv(process.env);
-}
-
-let _cognitiveConfig: CognitiveConfig | null = null;
-
-export function getCognitiveConfig(): CognitiveConfig {
-  if (!_cognitiveConfig) {
-    _cognitiveConfig = parseCognitiveConfig();
-  }
-  return _cognitiveConfig;
-}
-
-const COGNITIVE_CONFIG_LAZY: CognitiveConfig = {} as CognitiveConfig;
-Object.defineProperties(COGNITIVE_CONFIG_LAZY, {
-  coActivationPattern: {
-    enumerable: true,
-    get: () => getCognitiveConfig().coActivationPattern,
-  },
-  coActivationPatternSource: {
-    enumerable: true,
-    get: () => getCognitiveConfig().coActivationPatternSource,
-  },
-  coActivationPatternFlags: {
-    enumerable: true,
-    get: () => getCognitiveConfig().coActivationPatternFlags,
-  },
-});
-
-/** Loaded cognitive configuration values (lazily parsed on first access). */
-export const COGNITIVE_CONFIG: CognitiveConfig = COGNITIVE_CONFIG_LAZY;
 
 /* ───────────────────────────────────────────────────────────────
-   9. (ESM exports above — no CommonJS module.exports needed)
+   8. (ESM exports above — no CommonJS module.exports needed)
    ──────────────────────────────────────────────────────────────── */

@@ -204,7 +204,6 @@ Retention, sweep, and warning-log tuning (`SYSTEM_SPEC_GATE_ACTIVE_RETENTION_DAY
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK` | `0` (bypass off) | boolean (`"1"`) | Bypass for the shared git-hook drift marker sourced by `post-commit`, `post-merge` and `post-rewrite`. Exactly `1` skips the marker write for that git operation. The marker file it wrote was consumed by the MCP boot path, which the memory decommission removed, so the write is now recorded and unread. | `.opencode/scripts/git-hooks/lib/memory-drift-marker.sh` |
 
 ---
 

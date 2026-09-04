@@ -194,4 +194,3 @@ Use package TypeScript checks when changing any `.ts` module in this folder.
 | `../README.md` | Parent library map |
 | `../cognitive/README.md` | Rollout policy and decay consumers |
 | `../scoring/README.md` | Scoring consumers for type and tier data |
-| `../../configs/search-weights.json` | Runtime search weight configuration |

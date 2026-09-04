@@ -1,10 +1,10 @@
 ---
 title: "lib: Shared git-hook guards"
-description: "Shared shell helpers that protect autostashes and mark memory-index drift for repository Git hooks."
+description: "Shared shell helpers that protect autostashes and detect mass deletions for repository Git hooks."
 trigger_phrases:
   - "git hook helper libraries"
   - "autostash orphan guard"
-  - "memory drift marker"
+  - "mass deletion guard"
 version: 1.0.0.0
 ---
 
@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `lib/` holds shared shell libraries sourced by the repository Git hooks. These files are helpers, not installed hooks.
 
-The helpers protect recoverable autostashes and report spec-document path drift without blocking Git operations.
+The helpers protect recoverable autostashes and report mass deletions without silently blocking Git operations.
 
 ---
 
@@ -25,7 +25,7 @@ The helpers protect recoverable autostashes and report spec-document path drift 
 | File | Purpose |
 |---|---|
 | [`autostash-orphan-guard.sh`](autostash-orphan-guard.sh) | Finds autostash entries, anchors each stash commit under `refs/autostash-rescue/`, prints recovery instructions and records an alert in `.opencode/logs/autostash-orphan-alerts.log`. |
-| [`memory-drift-marker.sh`](memory-drift-marker.sh) | Diffs commit ranges for changes under `specs` and passes matching rename or deletion data to the built drift-marker writer. |
+| [`mass-deletion-guard.sh`](mass-deletion-guard.sh) | Counts tracked-file deletions in a diff and returns a verdict when the count passes the configured ceiling. |
 
 ---
 
@@ -34,11 +34,11 @@ The helpers protect recoverable autostashes and report spec-document path drift 
 | File | Function | Consumers |
 |---|---|---|
 | `autostash-orphan-guard.sh` | `autostash_orphan_guard()` protects matching stash commits from garbage collection and makes unapplied work visible. It always returns successfully. | [`post-merge`](../post-merge) and [`post-rewrite`](../post-rewrite) |
-| `memory-drift-marker.sh` | `mark_memory_drift_from_diff()` collects `specs` changes with `git diff-tree` and invokes `drift-marker-write.js`. It skips work when no relevant diff, Node.js or built writer exists. | [`post-commit`](../post-commit), [`post-merge`](../post-merge) and [`post-rewrite`](../post-rewrite) |
+| `mass-deletion-guard.sh` | Returns a verdict when a diff deletes more tracked files than `SPECKIT_MASS_DELETION_THRESHOLD` (default 100). It never exits or blocks on its own, fails open on any substitution error, and `SPECKIT_ALLOW_MASS_DELETION=1` authorizes one operation. | [`pre-push`](../pre-push) |
 
-`post-merge` calls both guards after a merge. `post-rewrite` calls both guards for amend and rebase rewrites. `post-commit` uses only the memory-drift marker after a commit.
+`post-merge` calls the autostash guard after a merge, and `post-rewrite` calls it for amend and rebase rewrites. `pre-push` sources the mass-deletion guard.
 
-Set `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1` to bypass memory-drift marking. The autostash guard has no bypass and remains best-effort.
+The autostash guard has no bypass and remains best-effort.
 
 ---
 
@@ -48,16 +48,16 @@ Run shell syntax checks from the repository root:
 
 ```bash
 bash -n .opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh
-bash -n .opencode/scripts/git-hooks/lib/memory-drift-marker.sh
+bash -n .opencode/scripts/git-hooks/lib/mass-deletion-guard.sh
 ```
 
-Run the memory-drift concurrency harness from the repository root:
+Run the mass-deletion harness from the repository root:
 
 ```bash
-bash .opencode/scripts/git-hooks/tests/memory-drift-marker-lock-harness.sh
+bash .opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh
 ```
 
-Expected result: both syntax checks exit successfully and the harness reports that all seven producer scenarios passed.
+Expected result: both syntax checks exit successfully and the harness reports that every mass-deletion scenario passed.
 
 ---
 

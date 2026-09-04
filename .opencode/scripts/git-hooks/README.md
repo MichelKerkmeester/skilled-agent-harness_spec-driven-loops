@@ -1,17 +1,17 @@
 ---
 title: "Git Hooks"
-description: "Advisory-first git lifecycle hooks and their shared memory-drift marker helper, installed via install-git-hooks.sh."
+description: "Advisory-first git lifecycle hooks and their shared autostash and mass-deletion guards, installed via install-git-hooks.sh."
 trigger_phrases:
   - "git hooks"
   - "pre-commit hook"
-  - "memory drift marker"
+  - "autostash orphan guard"
   - "post-commit hook"
   - "pre-push hook"
 ---
 
 # Git Hooks
 
-> Source-of-truth git lifecycle hooks symlinked into `.git/hooks/` by `install-git-hooks.sh`, plus the shared drift-marker helper three of them source.
+> Source-of-truth git lifecycle hooks symlinked into `.git/hooks/` by `install-git-hooks.sh`, plus the shared guard helpers they source.
 
 ---
 
@@ -22,9 +22,9 @@ trigger_phrases:
 Current state:
 
 - `pre-commit` runs an advisory doc-model-reference drift check, then three independently-bypassable blocking sub-gates (comment hygiene, prompt-card sync, MCP mutation-class).
-- `post-commit` invalidates the code-graph SQLite after a large commit and marks memory-index drift for any spec-doc rename/delete in the commit.
-- `post-merge` and `post-rewrite` mark memory-index drift after a merge or an amend/rebase, diffing the appropriate commit range (`ORIG_HEAD`→`HEAD`, or each rewritten commit pair).
-- `lib/memory-drift-marker.sh` is the one shared helper `post-commit`, `post-merge`, and `post-rewrite` all source. Its `mark_memory_drift_from_diff()` function writes rename/delete entries for `specs` paths to `.memory-drift-dirty-paths.json`, which `mcp-server/startup-checks.ts` consumes on the next MCP server boot to seed drift-suspect confirmation.
+- `post-commit` publishes the just-completed commit to the shared live branch, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`.
+- `post-merge` and `post-rewrite` anchor and surface any `--autostash` entry after a merge or an amend/rebase, so a conflicted (un-applied) autostash cannot be lost silently.
+- `lib/autostash-orphan-guard.sh` is the one shared helper `post-merge` and `post-rewrite` both source; `lib/mass-deletion-guard.sh` backs the `pre-push` mass-deletion gate.
 - `pre-push` blocks creation of a *new* remote branch (remote sha all-zero) whose name breaks the owner-first naming grammar (`<owner>/NNNN-slug`, `skilled/vA.B.C.D` release, or `main`); wrapper refs (`work/<runtime>/<slug>`) are always rejected as new branches. Updates to a branch that already exists on the remote are always allowed — migration tolerance, with only an advisory notice for a non-conformant name. The naming check is **tri-state**: a genuine invalid name blocks, but an internal validator error (for example a failed owner-discovery scan) fails **open** so a tooling fault never blocks a legal push, and the authorized-owner set is read only from version-controlled `SKILL.md` files (an untracked skill cannot authorize a remote owner).
 
 ---
@@ -42,26 +42,21 @@ Current state:
 └──────────────┘      └──────────────────┘      └──────────────────┘
 
 ┌──────────────┐      ┌──────────────────┐      ┌──────────────────┐
-│ git commit   │ ───▶ │ post-commit      │ ───▶ │ code-graph        │
-│ (completed)  │      │                  │      │ invalidation      │
-└──────┬───────┘      └────────┬─────────┘      └──────────────────┘
-       │                       │
-┌──────▼───────┐      ┌────────▼─────────┐      ┌──────────────────┐
-│ git merge /  │ ───▶ │ post-merge /     │ ───▶ │ lib/memory-drift- │
-│ rebase       │      │ post-rewrite     │      │ marker.sh         │
+│ git commit   │ ───▶ │ post-commit      │ ───▶ │ live-branch       │
+│ (completed)  │      │                  │      │ autosync publish  │
+└──────────────┘      └──────────────────┘      └──────────────────┘
+
+┌──────────────┐      ┌──────────────────┐      ┌──────────────────┐
+│ git merge /  │ ───▶ │ post-merge /     │ ───▶ │ lib/autostash-    │
+│ rebase       │      │ post-rewrite     │      │ orphan-guard.sh   │
 └──────────────┘      └──────────────────┘      └────────┬─────────┘
                                                            ▼
                                                   ┌──────────────────┐
-                                                  │ .memory-drift-    │
-                                                  │ dirty-paths.json  │
-                                                  └────────┬─────────┘
-                                                           ▼
-                                                  ┌──────────────────┐
-                                                  │ startup-checks.ts │
-                                                  │ (next MCP boot)   │
+                                                  │ refs/autostash-   │
+                                                  │ rescue/<sha>      │
                                                   └──────────────────┘
 
-Dependency direction: git lifecycle event ───▶ hook script ───▶ lib/memory-drift-marker.sh ───▶ marker file
+Dependency direction: git lifecycle event ───▶ hook script ───▶ lib/ guard helper
 ```
 
 ---
@@ -71,27 +66,29 @@ Dependency direction: git lifecycle event ───▶ hook script ───▶ 
 ```text
 git-hooks/
 +-- pre-commit                   # Doc-model-ref drift (advisory) + 4 blocking sub-gates
-+-- post-commit                  # Code-graph invalidation + memory-drift marker
-+-- post-merge                   # Memory-drift marker after merge
-+-- post-rewrite                 # Memory-drift marker after amend/rebase
-+-- pre-push                     # Owner-first branch-naming gate (new branches only)
++-- post-commit                     # Live-branch autosync publish
++-- post-merge                      # Autostash orphan guard after merge
++-- post-rewrite                    # Autostash orphan guard after amend/rebase
++-- pre-push                        # Owner-first branch-naming gate (new branches only)
 +-- lib/
-|   `-- memory-drift-marker.sh   # Shared mark_memory_drift_from_diff() writer
+|   +-- autostash-orphan-guard.sh   # Shared autostash_orphan_guard() anchor and alert
+|   `-- mass-deletion-guard.sh      # Mass-deletion detection sourced by pre-push
 `-- README.md
 ```
 
 Allowed dependency direction:
 
 ```text
-post-commit / post-merge / post-rewrite → lib/memory-drift-marker.sh
+post-merge / post-rewrite → lib/autostash-orphan-guard.sh
+post-commit → .opencode/hooks/shared/hook-flags.sh, .opencode/bin/git-sync.sh
 pre-commit → .opencode/hooks/git/pre-commit, sk-doc validator, skill-advisor card-sync guard, doctor mutation-class guard
-pre-push → .opencode/skills/sk-git/scripts/worktree-naming.sh (sourced; validators only)
+pre-push → .opencode/skills/sk-git/scripts/worktree-naming.sh (sourced; validators only), lib/mass-deletion-guard.sh
 ```
 
 Disallowed dependency direction:
 
 ```text
-lib/memory-drift-marker.sh → hook-specific logic (stays a generic diff-to-marker writer)
+lib/autostash-orphan-guard.sh → hook-specific logic (stays a generic stash-anchoring guard)
 hooks here → hard-fail without a bypass env var on their primary check
 ```
 
@@ -102,10 +99,10 @@ hooks here → hard-fail without a bypass env var on their primary check
 | File | Responsibility | Bypass |
 |---|---|---|
 | `pre-commit` | Runs `validate-doc-model-refs.js` and warns (does not block) on drift. Then runs three blocking sub-gates when their staged-path trigger matches: comment hygiene, prompt-quality-card sync, and the MCP mutation-class contract. | `SPECKIT_SKIP_DOC_MODEL_VALIDATE=1` (advisory check); `SPECKIT_SKIP_COMMENT_HYGIENE=1`, `SPECKIT_SKIP_CARD_SYNC=1`, `SPECKIT_SKIP_MCP_MUTATION_CLASS=1` (the three blocking sub-gates) |
-| `post-commit` | Sources `lib/memory-drift-marker.sh` to mark spec-doc renames/deletes in the just-completed commit. | `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1` (skip the drift marker) |
-| `post-merge` | Marks memory-index drift for spec-doc renames/deletes brought in by the merge, diffing `ORIG_HEAD`→`HEAD` when `ORIG_HEAD` resolves, else `HEAD` alone. | `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1` |
-| `post-rewrite` | Marks memory-index drift after an amend or rebase, reading each rewritten `old_commit new_commit` pair from stdin and diffing every pair. | `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1` |
-| `lib/memory-drift-marker.sh` | Defines `mark_memory_drift_from_diff()`, the one function `post-commit`, `post-merge`, and `post-rewrite` source. Diffs the given commit range for renames/deletes under `specs`, then appends deduped entries to `.memory-drift-dirty-paths.json` under a short-lived lock directory so concurrent hook invocations cannot corrupt the marker. | `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1` (checked once, at the top of the function) |
+| `post-commit` | Publishes the just-completed commit to the shared live branch through `.opencode/bin/git-sync.sh --auto --quiet`, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`. | `SPECKIT_AUTOSYNC=0` (this launch); `SYSTEM_LIVE_SYNC_DISABLED` or `SYSTEM_HOOKS_DISABLED` (whole live-sync loop) |
+| `post-merge` | Sources `lib/autostash-orphan-guard.sh` and anchors any `--autostash` entry the merge left un-applied. | None; the guard is best-effort and never blocks |
+| `post-rewrite` | Sources `lib/autostash-orphan-guard.sh` after an amend or rebase. The rewritten `old_commit new_commit` pairs git sends on stdin are unused. | None; the guard is best-effort and never blocks |
+| `lib/autostash-orphan-guard.sh` | Defines `autostash_orphan_guard()`, the one function `post-merge` and `post-rewrite` source. Anchors every autostash entry under `refs/autostash-rescue/<sha>` so it survives garbage collection, prints recovery instructions and records an alert in `.opencode/logs/autostash-orphan-alerts.log`. | None; it always returns success |
 | `pre-push` | Reads `<local ref> <local sha> <remote ref> <remote sha>` lines from stdin. Blocks only a *new* remote branch (remote sha all-zero) whose name fails `is_valid_branch`/`is_wrapper_branch` from `worktree-naming.sh` — `<owner>/NNNN-slug`, `skilled/vA.B.C.D`, `main`, and `backup/*` are accepted, `work/<runtime>/<slug>` wrapper refs are always rejected as new branches. Updates to a branch that already exists on the remote are always allowed (migration tolerance); a non-conformant name there only gets an advisory notice. Fails safe (exits 0) if `worktree-naming.sh` is missing or fails to source. | `SPECKIT_SKIP_PREPUSH_NAMING=1` |
 
 ---
@@ -114,33 +111,33 @@ hooks here → hard-fail without a bypass env var on their primary check
 
 | Boundary | Rule |
 |---|---|
-| Blocking vs advisory | `pre-commit`'s four named sub-gates and `pre-push`'s new-branch naming gate may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the marker call). |
-| Marker ownership | Only `lib/memory-drift-marker.sh` writes `.memory-drift-dirty-paths.json`. Hooks source it rather than duplicating the diff-and-append logic. |
-| Marker consumption | The marker is read once, on the next MCP server boot, by `mcp-server/startup-checks.ts`. Hooks never read it back. |
+| Blocking vs advisory | `pre-commit`'s four named sub-gates and `pre-push`'s new-branch naming gate may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the guard call). |
+| Autostash ownership | Only `lib/autostash-orphan-guard.sh` writes `refs/autostash-rescue/*` and the alert log. Hooks source it rather than duplicating the anchor-and-alert logic. |
+| Autosync scope | `post-commit` publishes only from a linked worktree in a launch-wrapper session. The primary checkout never auto-publishes, and a blocked publish stays local. |
 | Installation | Hooks are plain files here; `install-git-hooks.sh` is what makes them live, by symlinking each into `.git/hooks/`. Editing a hook here takes effect immediately for anyone whose `.git/hooks/<name>` is still the symlink. |
 
-Drift-marker flow:
+Autostash-guard flow:
 
 ```text
 ╭──────────────────────────────────────────╮
-│ commit / merge / rebase completes         │
+│ merge / rebase --autostash completes      │
 ╰──────────────────────────────────────────╯
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ hook diffs the relevant commit range      │
+│ hook sources the autostash orphan guard   │
 └──────────────────────────────────────────┘
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ rename/delete entries under .opencode/    │
-│ specs appended to the marker JSON         │
+│ every stash entry anchored under          │
+│ refs/autostash-rescue/<sha>               │
 └──────────────────────────────────────────┘
                   │
                   ▼
 ╭──────────────────────────────────────────╮
-│ next MCP boot: startup-checks.ts consumes │
-│ the marker, seeds drift-suspect queue     │
+│ recovery instructions printed and logged  │
+│ to .opencode/logs/autostash-orphan-alerts │
 ╰──────────────────────────────────────────╯
 ```
 
@@ -165,7 +162,7 @@ bash -n .opencode/scripts/git-hooks/post-commit
 bash -n .opencode/scripts/git-hooks/post-merge
 bash -n .opencode/scripts/git-hooks/post-rewrite
 bash -n .opencode/scripts/git-hooks/pre-push
-bash -n .opencode/scripts/git-hooks/lib/memory-drift-marker.sh
+bash -n .opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh
 git commit --allow-empty -m "hook smoke"
 ```
 
@@ -177,5 +174,5 @@ Expected result: syntax checks pass, and the smoke commit runs silently unless a
 
 - [`../README.md`](../README.md)
 - [`../../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md`](../../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md)
-- [`../../skills/system-spec-kit/mcp-server/lib/storage/README.md`](../../skills/system-spec-kit/mcp-server/lib/storage/README.md)
+- [`lib/README.md`](lib/README.md)
 - [`../../skills/sk-git/scripts/worktree-naming.sh`](../../skills/sk-git/scripts/worktree-naming.sh)

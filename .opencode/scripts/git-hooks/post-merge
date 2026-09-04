@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-# Post-merge hook — advisory memory-index drift marking.
+# Post-merge hook — autostash orphan guard.
 #
-# Marks memory-index drift for spec-folder renames/deletes brought in by
-# the merge, diffing ORIG_HEAD -> HEAD (or HEAD alone when ORIG_HEAD is
-# unavailable). Never blocks the merge: the marker write is best-effort.
-# Bypass: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1 git merge ...
+# Anchors and surfaces any --autostash entry so a conflicted (un-applied)
+# autostash can never be silently lost. Never blocks the merge: the guard is
+# best-effort.
 #
 # Install: bash .opencode/scripts/install-git-hooks.sh
 # Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
@@ -16,25 +15,10 @@ if [ -z "$REPO_ROOT" ]; then
   exit 0
 fi
 
-# Anchor + surface any --autostash entry so a conflicted (un-applied) autostash
-# can never be silently lost. Runs before the drift gate so it fires regardless.
 if [ -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh" ]; then
   # shellcheck source=/dev/null
   source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh"
   autostash_orphan_guard || true
-fi
-
-if [ ! -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" ]; then
-  exit 0
-fi
-
-# shellcheck source=/dev/null
-source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
-
-if git rev-parse --verify ORIG_HEAD >/dev/null 2>&1; then
-  mark_memory_drift_from_diff ORIG_HEAD HEAD || true
-else
-  mark_memory_drift_from_diff HEAD || true
 fi
 
 exit 0

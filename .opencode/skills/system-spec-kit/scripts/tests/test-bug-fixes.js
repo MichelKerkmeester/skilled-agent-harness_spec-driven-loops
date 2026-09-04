@@ -17,7 +17,6 @@ const SEARCH_PATH = path.join(LIB_PATH, 'search');
 const PARSING_PATH = path.join(LIB_PATH, 'parsing');
 const SHARED_PATH = path.join(ROOT, 'shared');
 const DB_PATH = path.join(ROOT, 'mcp-server', 'database');
-const CONFIG_PATH = path.join(ROOT, 'mcp-server', 'configs');
 const VECTOR_INDEX_PATH = path.join(SEARCH_PATH, 'vector-index.js');
 const VECTOR_INDEX_MUTATIONS_PATH = path.join(SEARCH_PATH, 'vector-index-mutations.js');
 const VECTOR_INDEX_STORE_PATH = path.join(SEARCH_PATH, 'vector-index-store.js');
@@ -485,39 +484,6 @@ async function testBug013() {
   }
 }
 
-// Config Verification
-async function testConfig() {
-  log('\n🔬 Configuration Verification');
-  
-  try {
-    const config = require(path.join(CONFIG_PATH, 'search-weights.json'));
-    
-    // Test 1: maxTriggersPerMemory
-    if (config.maxTriggersPerMemory === 10) {
-      pass('Config: maxTriggersPerMemory', 
-           `Value: ${config.maxTriggersPerMemory}`);
-    } else {
-      fail('Config: maxTriggersPerMemory', 
-           `Expected 10, got ${config.maxTriggersPerMemory}`);
-    }
-    
-    // Test 2: smartRanking weights
-    if (config.smartRanking && 
-        config.smartRanking.recencyWeight === 0.3 &&
-        config.smartRanking.accessWeight === 0.2 &&
-        config.smartRanking.relevanceWeight === 0.5) {
-      pass('Config: smartRanking weights', 
-           JSON.stringify(config.smartRanking));
-    } else {
-      fail('Config: smartRanking weights', 
-           `Got: ${JSON.stringify(config.smartRanking)}`);
-    }
-    
-  } catch (error) {
-    fail('Config verification', error.message);
-  }
-}
-
 /* ─────────────────────────────────────────────────────────────
    4. MAIN
 ────────────────────────────────────────────────────────────────
@@ -540,7 +506,6 @@ async function main() {
   await testBug008();
   await testBug009();
   await testBug013();
-  await testConfig();
   
   // Summary
   log('\n================================');

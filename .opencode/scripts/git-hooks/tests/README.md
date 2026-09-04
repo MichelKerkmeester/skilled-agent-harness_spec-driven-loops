@@ -1,9 +1,9 @@
 ---
 title: "Git-hook regression harnesses"
-description: "Executable shell harnesses for Git-hook installation, memory-drift locking and pre-push branch policy."
+description: "Executable shell harnesses for Git-hook installation, mass-deletion detection and pre-push branch policy."
 trigger_phrases:
   - "git hook test harnesses"
-  - "memory drift lock tests"
+  - "mass deletion guard tests"
   - "pre-push hook tests"
 ---
 
@@ -24,7 +24,7 @@ These files are test harnesses, not installed Git hooks. The current source inve
 | File | Responsibility |
 |---|---|
 | `install-git-hooks-worktree-harness.sh` | Verifies hook placement for a linked worktree and a custom `core.hooksPath`. |
-| `memory-drift-marker-lock-harness.sh` | Exercises marker locking, stale-lock handling, concurrent writers, failed writes and token-checked release. |
+| `mass-deletion-guard.test.sh` | Exercises the guard's threshold, override, add-versus-delete and fail-open verdict logic against a throwaway repository. |
 | `pre-push.test.sh` | Exercises the owner-first branch naming gate, migration tolerance, release branches and the explicit bypass. |
 
 ---
@@ -35,11 +35,11 @@ Run the harnesses from the repository root:
 
 ```bash
 bash .opencode/scripts/git-hooks/tests/install-git-hooks-worktree-harness.sh
-bash .opencode/scripts/git-hooks/tests/memory-drift-marker-lock-harness.sh
+bash .opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh
 bash .opencode/scripts/git-hooks/tests/pre-push.test.sh
 ```
 
-Expected result: each command exits with status `0` and prints its pass summary. The recorded source run passed the linked-worktree installer checks, all memory-drift producer scenarios and all pre-push cases.
+Expected result: each command exits with status `0` and prints its pass summary.
 
 ---
 

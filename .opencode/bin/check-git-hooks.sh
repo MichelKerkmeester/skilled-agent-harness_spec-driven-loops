@@ -8,7 +8,7 @@
 # git hooks into an already-running session, but it CAN warn the operator when a
 # versioned hook under .opencode/scripts/git-hooks/ has no matching effective
 # hook symlink — the state a fresh clone or a forgotten install step leaves behind,
-# and the same silent gap that can drop post-merge/post-rewrite drift-marker
+# and the same silent gap that can drop post-merge/post-rewrite autostash-guard
 # coverage.
 #
 # Live-sync self-heal: with the live-sync loop enabled (SYSTEM_LIVE_SYNC_DISABLED
