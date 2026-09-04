@@ -97,7 +97,6 @@
       ".opencode/skills/system-spec-kit/references/workflows/quick-reference.md",
       ".opencode/skills/system-spec-kit/references/memory/memory-system.md",
       ".opencode/skills/system-spec-kit/config/config.jsonc",
-      ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
       ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
@@ -140,12 +139,6 @@
         "source": "derived"
       },
       {
-        "name": "context-server",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
-        "source": "derived"
-      },
-      {
         "name": "create",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
@@ -173,6 +166,6 @@
       "references/memory/memory-system.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
-    "last_updated_at": "2026-04-13T23:00:00Z"
+    "last_updated_at": "2026-09-04T00:00:00Z"
   }
 }
