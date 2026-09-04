@@ -2,10 +2,10 @@
 title: "Implementation Summary: the CLI roster truth pass — DevPass, vision, Gemini 3.8, V4 Pro retirement, pi repair"
 description: "Placeholder summary for a packet that is planned but not yet implemented; it records the research already banked and states plainly that no in-scope file has been changed."
 trigger_phrases:
-  - "implementation"
-  - "summary"
   - "devpass roster status"
   - "gemini 3.8 swap status"
+  - "cli roster truth pass"
+  - "v4 pro retirement status"
 importance_tier: "normal"
 contextType: "general"
 _memory:
