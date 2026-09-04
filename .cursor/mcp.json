@@ -18,7 +18,7 @@
         "_NOTE_THRESHOLDS": "Advisor confidence/uncertainty thresholds are tunable: SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD (default 0.8), SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD (default 0.35). Lane weights tunable via SPECKIT_ADVISOR_LANE_WEIGHTS_JSON + SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON (partial-merge JSON, post-022/011/4b).",
         "_NOTE_DOC_TRIGGERS": "Opt-in doc-frontmatter harvest: skill_graph_scan ingests references/assets trigger_phrases into skill_docs and advisor_recommend returns matchedDocs pointers (dampened derived-lane signal). Default-off in code; enabled for this repo. Unset/false to roll back.",
         "_NOTE_TRUST_DEFAULT": "Daemon-owner trust grant for mutation tools (advisor_rebuild, skill_graph_scan, skill_graph_propagate_enhances). Callers whose _meta omits transport/trust markers default to UNTRUSTED unless this is 'trusted'. Native MCP clients (e.g. /doctor repair flows) send no _meta, so this grant keeps them working; remove it to fail-closed on every transport-absent caller. Explicit _meta trusted:false / callerAuthority:'untrusted' is always rejected.",
-        "_NOTE_HF_EMBED_SOCKET": "hf-local model-server socket. The advisor is the sole owner: it spawns the resident nomic server only when SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1, and otherwise attaches to whatever already listens here. Short /tmp path stays under the macOS sun_path 104-char limit."
+        "_NOTE_HF_EMBED_SOCKET": "hf-local model-server socket. The advisor is the sole owner: it arms the resident nomic server spawn by default (SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=0 turns that off) and attaches to whatever already listens here. Short /tmp path stays under the macOS sun_path 104-char limit."
       }
     },
     "code_mode": {

@@ -554,7 +554,7 @@ function assertSocketDirOwnership(socketPath, options = {}) {
 function modelServerRespawnLockPath(socketPath = resolveModelServerSocketPath(), options = {}) {
   const rawDbDir = typeof options.dbDir === 'function' ? options.dbDir() : options.dbDir;
   const lockDirPath = socketPath.startsWith('tcp://')
-    ? path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp-server', 'database'))
+    ? path.resolve(rawDbDir || DEFAULT_MODEL_SERVER_SOCKET_DIR)
     : path.dirname(socketPath);
   return path.join(lockDirPath, HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME);
 }
@@ -562,7 +562,7 @@ function modelServerRespawnLockPath(socketPath = resolveModelServerSocketPath(),
 function modelServerGiveUpPath(socketPath = resolveModelServerSocketPath(), options = {}) {
   const rawDbDir = typeof options.dbDir === 'function' ? options.dbDir() : options.dbDir;
   const giveUpDirPath = socketPath.startsWith('tcp://')
-    ? path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp-server', 'database'))
+    ? path.resolve(rawDbDir || DEFAULT_MODEL_SERVER_SOCKET_DIR)
     : path.dirname(socketPath);
   return path.join(giveUpDirPath, HF_MODEL_SERVER_GIVEUP_FILE_NAME);
 }

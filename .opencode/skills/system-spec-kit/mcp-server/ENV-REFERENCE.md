@@ -242,13 +242,13 @@ test switch — went out with the memory engine that read them.
 | `HF_EMBEDDINGS_PREFIX_QUERY` | _(registry)_ | string | Overrides the query prefix for the local HF embedder, for any model. Default derives from the model prefix registry (e.g. nomic uses `search_query:`). | `shared/embeddings/providers/hf-local.ts` |
 | `HF_EMBEDDINGS_PREFIX_DOC` | _(registry)_ | string | Overrides the document prefix for the local HF embedder, for any model. Default derives from the model prefix registry (e.g. nomic uses `search_document:`). | `shared/embeddings/providers/hf-local.ts` |
 | `SPECKIT_HF_READY_LATCH_TTL_MS` | `30000` (max `120000`) | number | How long a successful `waitForReady()` is trusted before the next embed re-probes `/api/health`. Within the TTL the client skips the readiness GET and POSTs directly. The latch is invalidated immediately on a mid-request reap (`ECONNRESET`/`EPIPE`). A stale latch costs at most one failed POST recovered by the bounded embed retry. | `shared/embeddings/providers/hf-local.ts` |
-| `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` | (unset → off) | string (`"1"`) | Lets the **skill-advisor** launcher spawn and supervise the shared model server. `isModelServerEnabled()` compares the value to exactly `1`, so anything else, including unset, is off. **Read this together with the decommission:** the spec-memory daemon that used to own this spawn is gone, and the advisor launcher is now the only surface that can start the model server. With this unset, nothing spawns it, so `hf-local` embeds will find no server. Set it to `1` on any host that needs local HF embeddings. | `.opencode/bin/system-skill-advisor-launcher.cjs` |
+| `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` | (unset → on) | string (`"1"` or `"0"`) | Whether the **skill-advisor** launcher arms the shared model-server spawn. Unset arms it, because since the memory decommission this launcher is the only surface that can start the model server. The spawn is lazy: the launcher binds a demand listener and the model process starts on the first embed request, or attaches to a resident that already listens. `0` (or any value other than `1`) turns the spawner off and embeddings stay in-process. An explicit `1` also makes a missing supervision library fatal; the default logs and degrades instead. | `.opencode/bin/system-skill-advisor-launcher.cjs` |
 
 ### Local HF model server (single resident model)
 
 When the cascade selects `hf-local`, embeddings are served by a **launcher-supervised local HTTP model server** (`.opencode/bin/hf-model-server.cjs`) over a Unix socket at `<SPECKIT_IPC_SOCKET_DIR>/hf-embed.sock`, falling back to the model server's own short default `/tmp/system-hf-embed/hf-embed.sock` rather than to a database directory, with no in-process model load and no sidecar. The server itself, its socket and its supervision library survived the memory decommission untouched.
 
-**What changed is who starts it.** The spec-memory launcher used to spawn it lazily on first embed demand, with skill-advisor as the fallback winner of the socket-keyed lock. That launcher is gone, so the skill-advisor launcher is the only remaining spawner and it is gated behind `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1`. On a host where that is unset there is no spawner at all.
+**What changed is who starts it.** The spec-memory launcher used to spawn it lazily on first embed demand, with skill-advisor as the fallback winner of the socket-keyed lock. That launcher is gone, so the skill-advisor launcher is the only remaining spawner and it arms the spawn by default. `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=0` is the kill switch; with it set there is no spawner at all.
 
 **Single-resident-model contract.** The server loads exactly **one** model (`HF_EMBEDDINGS_MODEL`, default `nomic-ai/nomic-embed-text-v1.5`). A request for any other model returns **HTTP 404** (`{error, model, loadedModel}`). The `hf-local` provider treats that as "model not loaded" and reports the requested model beside the server's loaded model. To run a different local HF model, change `HF_EMBEDDINGS_MODEL` for **all** consumers, and do not expect per-request model switching.
 
@@ -258,7 +258,7 @@ When the cascade selects `hf-local`, embeddings are served by a **launcher-super
 
 | State | Symptom | Operator action |
 |-------|---------|-----------------|
-| Not started | `hf-local` health probe connect-refused, no `hf-embed.sock` | Normal before first demand. If it persists, confirm `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1` — since the memory decommission that is the only thing that arms a spawner — then check the advisor launcher's stderr for `demand listener` errors. |
+| Not started | `hf-local` health probe connect-refused, no `hf-embed.sock` | Normal before first demand. If it persists, confirm `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` is not set to `0` (the advisor launcher arms the spawn by default and is the only spawner since the memory decommission), then check the advisor launcher's stderr for `demand listener` errors or a `spawn skipped` line. |
 | Loading | Health returns `503 loading`, first embed slow | Expected cold model load or first-embed download. Cache path: `~/.cache/huggingface/hub`. Size: roughly hundreds of MB. Expected wait: 15-120 s. The client retries past `HF_EMBED_SERVER_READY_TIMEOUT_MS` while this state is progressing and fails only at `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` (default 150 s). |
 | Crash-looped | Repeated `hf-model-server child exited … relaunching`, eventually `crash loop detected … daemon remains running` | Inspect the model-server stderr (bad `HF_EMBEDDINGS_DTYPE`/`HF_EMBEDDINGS_MODEL`, OOM). After give-up, the launcher re-arms a demand listener, then fix the cause and trigger a new embed. |
 | RSS recycle | `process tree RSS … exceeds …` then graceful self-exit | Only with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` + `_RSS_SELF_EXIT=1`. Raise the ceiling or disable if the model legitimately needs more RAM. |
@@ -457,8 +457,8 @@ export SPECKIT_DB_DIR=/path/to/db
 ### Bring up local HF embeddings
 
 ```bash
-# Since the decommission this is the only thing that arms a model-server spawner
-export SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1
+# The skill-advisor launcher arms the model-server spawn by default; only set this to opt out
+# export SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=0
 
 # Short socket directory; required on macOS to stay under the 104-char sun_path limit
 export SPECKIT_IPC_SOCKET_DIR=/tmp/system-hf-embed

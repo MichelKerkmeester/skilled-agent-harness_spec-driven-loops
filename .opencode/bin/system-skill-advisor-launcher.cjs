@@ -87,7 +87,11 @@ let lockDir = path.join(dbDir, '.system-skill-advisor-launcher.lockdir');
 const PID_FILE_NAME = '.system-skill-advisor-launcher.json';
 const OWNER_LEASE_FILE_NAME = '.skill-advisor-owner.json';
 let stateFile = path.join(dbDir, PID_FILE_NAME);
-let systemSpecKitDbDir = path.join(skillsDir, 'system-spec-kit', 'mcp-server', 'database');
+// Files the model server shares with its clients (pid, respawn lock, give-up marker)
+// live beside its socket in the short default directory the embedding client also
+// uses. They used to sit in the memory server's database directory, which no
+// longer exists and, inside a worktree, exceeds the Unix socket path limit.
+let modelServerFilesDir = mss ? mss.DEFAULT_MODEL_SERVER_SOCKET_DIR : '/tmp/system-hf-embed';
 
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -309,7 +313,7 @@ function refreshPaths() {
   dbDir = path.join(mcpDir, 'database');
   lockDir = path.join(dbDir, '.system-skill-advisor-launcher.lockdir');
   stateFile = path.join(dbDir, PID_FILE_NAME);
-  systemSpecKitDbDir = path.join(skillsDir, 'system-spec-kit', 'mcp-server', 'database');
+  modelServerFilesDir = mss ? mss.DEFAULT_MODEL_SERVER_SOCKET_DIR : '/tmp/system-hf-embed';
 }
 
 function exists(p) {
@@ -942,8 +946,29 @@ function clearAllLeaseFiles() {
 // 11. MODEL SERVER CONTROL
 // ─────────────────────────────────────────────────────────────────────────────
 
+// The spawn defaults to on: since the memory launcher went away this launcher is
+// the only process that can arm the shared model server, so an unset flag arms
+// it. An explicit 0 (or any value other than 1) turns the spawner off. An
+// explicit 1 also makes a missing supervision library fatal, where the default
+// degrades to in-process embeddings and says so in the log.
+function modelServerSetting() {
+  const raw = (process.env.SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED ?? '').trim();
+  if (raw === '') return 'default-on';
+  if (raw === '1') return 'explicit-on';
+  return 'off';
+}
+
 function isModelServerEnabled() {
-  return process.env.SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED === '1';
+  return modelServerSetting() !== 'off';
+}
+
+function modelServerSupervisionAvailable(context) {
+  if (hfControl) return true;
+  if (modelServerSetting() === 'explicit-on') {
+    throw new Error('SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1 but model-server supervision lib is unavailable');
+  }
+  log(`model server spawn skipped (${context}): supervision lib unavailable, embeddings stay in-process`);
+  return false;
 }
 
 function requireModelServerSupervision() {
@@ -964,7 +989,7 @@ function resolveModelServerSocketPath(env = process.env, options = {}) {
 }
 
 function sharedModelServerPidPath(socketPath = resolveModelServerSocketPath()) {
-  const pidDir = socketPath.startsWith('tcp://') ? systemSpecKitDbDir : path.dirname(socketPath);
+  const pidDir = socketPath.startsWith('tcp://') ? modelServerFilesDir : path.dirname(socketPath);
   return path.join(pidDir, requireModelServerSupervision().HF_MODEL_SERVER_PID_FILE_NAME);
 }
 
@@ -1006,7 +1031,7 @@ const hfControl = mss ? mss.createModelServerControl({
   env: process.env,
   rootDir: root,
   opencodeDir,
-  dbDir: () => systemSpecKitDbDir,
+  dbDir: () => modelServerFilesDir,
   getLauncherShutdownInProgress: () => launcherShutdownInProgress,
   onRssBreach: (cfg = {}) => {
     void (async () => {
@@ -1088,7 +1113,7 @@ async function shutdownModelServerRoot(reason, graceMs = RESPAWN_REAP_GRACE_MS) 
 
 async function shutdownModelServerForLauncherExit() {
   if (!isModelServerEnabled()) return;
-  if (!hfControl) throw new Error('SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1 but model-server supervision lib is unavailable');
+  if (!modelServerSupervisionAvailable('launcher exit')) return;
   launcherShutdownInProgress = true;
   hfControl.clearTimers();
   await hfControl.stopDemandListener();
@@ -1434,8 +1459,7 @@ async function main() {
 
     const launched = launchServer();
     if (!launched) return;
-    if (isModelServerEnabled()) {
-      if (!hfControl) throw new Error('SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1 but model-server supervision lib is unavailable');
+    if (isModelServerEnabled() && modelServerSupervisionAvailable('launcher start')) {
       void hfControl.startDemandListener().catch((error) => {
         log(error.stack || error.message);
       });
@@ -1474,7 +1498,8 @@ function configureLauncherPathsForTesting(nextPaths) {
   if (nextPaths.dbDir) dbDir = nextPaths.dbDir;
   if (nextPaths.lockDir) lockDir = nextPaths.lockDir;
   if (nextPaths.stateFile) stateFile = nextPaths.stateFile;
-  systemSpecKitDbDir = nextPaths.systemSpecKitDbDir || path.join(skillsDir, 'system-spec-kit', 'mcp-server', 'database');
+  modelServerFilesDir = nextPaths.modelServerFilesDir || nextPaths.systemSpecKitDbDir
+    || (mss ? mss.DEFAULT_MODEL_SERVER_SOCKET_DIR : '/tmp/system-hf-embed');
 }
 
 if (require.main === module) {
@@ -1492,7 +1517,9 @@ module.exports = {
   clearOwnerLeaseFile,
   configureLauncherPathsForTesting,
   createChildEnv,
+  isModelServerEnabled,
   latestSourceMtimeMs,
+  modelServerSetting,
   ownerLeasePath,
   readOwnerLeaseFile,
   readProcessExecutableBasename,

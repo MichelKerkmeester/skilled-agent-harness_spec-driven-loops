@@ -22,6 +22,17 @@ const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as
   createChildEnv: (sourceEnv?: NodeJS.ProcessEnv) => Record<string, string>;
 };
 
+const ipcBridge = require('../../../../bin/lib/launcher-ipc-bridge.cjs') as {
+  resolveIpcSocketDir: (serviceName: string, options: { dbDir: string; env: NodeJS.ProcessEnv }) => string;
+};
+
+// The child's socket directory is resolved by the shared IPC bridge, which since the
+// memory decommission no longer derives it from the database directory. The test
+// asks the bridge the same question the launcher does instead of assuming the answer.
+function expectedChildSocketDir(memoryDbPath: string): string {
+  return ipcBridge.resolveIpcSocketDir('system-skill-advisor', { dbDir: dirname(memoryDbPath), env: {} });
+}
+
 describe('system-skill-advisor launcher bootstrap', () => {
   const tempDirs: string[] = [];
 
@@ -74,7 +85,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
   it('filters parent environment before spawning npm or the advisor server', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
-    const socketDir = dirname(memoryDbPath);
+    const socketDir = expectedChildSocketDir(memoryDbPath);
     expect(launcher.createChildEnv({
       PATH: '/bin',
       HOME: '/tmp/home',
@@ -93,7 +104,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
   it('passes the committed daemon trust default through to the advisor child env', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
-    const socketDir = dirname(memoryDbPath);
+    const socketDir = expectedChildSocketDir(memoryDbPath);
     const opencodeConfig = JSON.parse(sourceText('../../../../../opencode.json')) as {
       mcp?: { system_skill_advisor?: { environment?: Record<string, string> } };
     };
@@ -114,7 +125,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
   it('passes advisor shadow feature flags through to the child env', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
-    const socketDir = dirname(memoryDbPath);
+    const socketDir = expectedChildSocketDir(memoryDbPath);
     expect(launcher.createChildEnv({
       SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
       SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',

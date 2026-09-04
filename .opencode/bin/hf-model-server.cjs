@@ -23,6 +23,9 @@ const { pathToFileURL } = require('url');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SOCKET_FILE_NAME = 'hf-embed.sock';
+// Byte-identical to the client's and the supervision library's default; a mismatch
+// leaves the client probing a socket nothing serves.
+const DEFAULT_SOCKET_DIR = '/tmp/system-hf-embed';
 const DEFAULT_MODEL = 'nomic-ai/nomic-embed-text-v1.5';
 const DEFAULT_DTYPE = 'q8';
 const DEFAULT_INFERENCE_TIMEOUT_MS = 30000;
@@ -123,9 +126,13 @@ function resolveListenTarget(options = {}) {
     return env.SPECKIT_IPC_SOCKET_DIR;
   }
 
+  // With nothing configured, listen where the embedding client and the launcher's
+  // supervision look by default. The old fallback was the memory server's database
+  // directory, which no longer exists and inside a worktree is longer than a Unix
+  // socket path may be, so the child died in listen() on every spawn.
   const socketDir = env.SPECKIT_IPC_SOCKET_DIR
     ? path.resolve(env.SPECKIT_IPC_SOCKET_DIR)
-    : path.resolve(options.dbDir ?? defaultDbDir());
+    : path.resolve(options.dbDir ?? DEFAULT_SOCKET_DIR);
   return path.join(socketDir, SOCKET_FILE_NAME);
 }
 
