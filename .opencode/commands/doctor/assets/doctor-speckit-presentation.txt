@@ -10,7 +10,7 @@ When `$ARGUMENTS` lacks a recognized positional target, ask this prompt first af
 What do you want to do?
 
    1) Update everything to match latest spec-kit release   (e.g. 3.3.0.0 -> 3.4.x)
-   2) Debug Memory database              (search index, spec-doc indexing)
+   2) Debug retrieval index              (trigger index, ripgrep conventions)
    3) Debug Embeddings                   (provider choice, hf-local health)
    6) Debug Deep-Loop history            (research/review iteration graphs)
    7) Re-tune Skill Advisor              (which skill gets recommended)
@@ -48,8 +48,8 @@ On any other response, re-emit the menu once. On a second invalid response, retu
 ```text
 Pick by symptom:
 
-   Search returns stale or empty results               -> 2  Memory
-   "context-index.sqlite missing" warning              -> 2  Memory
+   Trigger-index lookup returns stale or empty results -> 2  Retrieval index
+   "trigger-index.json missing" warning                -> 2  Retrieval index
    Model mismatch or hf-local loading state unclear    -> 3  Embeddings
    deep-research/deep-review iteration graph empty     -> 6  Deep-Loop
    Convergence not detected between iterations         -> 6  Deep-Loop
@@ -89,7 +89,7 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 
 | Target | Workflow | Mutation Class | One-Line Purpose |
 |--------|----------|----------------|------------------|
-| `memory` | `doctor-memory.yaml` | add-only | Diagnose the memory continuity index; report drift and recommend action |
+| `memory` | `doctor-memory.yaml` | add-only | Diagnose the generated trigger index and the ripgrep retrieval conventions; report staleness and recommend action |
 | `embeddings` | `doctor-embeddings.yaml` | read-only | Inspect provider selection and hf-local model-server status |
 | `deep-loop` | `doctor-deep-loop.yaml` | add-only | Diagnose deep-loop coverage graphs for research and review |
 | `skill-advisor` | `doctor-skill-advisor.yaml` | mutates | Audit and re-tune skill advisor scoring lanes |
@@ -103,12 +103,14 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 
 Ask only prompts needed for unresolved setup variables. Do not split a required setup question into multiple visible turns.
 
-### Memory Rebuild Mode
+### Trigger-Index Regeneration Preference
+
+The `memory` target never regenerates the index itself; this answer only shapes the regeneration it recommends to `/doctor:update`.
 
 ```text
-Rebuild mode?
-   1) Incremental - only changed files (fast, ~30s, default)
-   2) Full        - every file (5-15 min; needed after upgrade)
+If a regeneration is recommended, which mode?
+   1) Incremental - only changed files (default)
+   2) Full        - every file (needed after a schema change or upgrade)
 ```
 
 Accept `1`, `I`, or Enter as `incremental=true`. Accept `2`, `F`, or `full` as `incremental=false`.

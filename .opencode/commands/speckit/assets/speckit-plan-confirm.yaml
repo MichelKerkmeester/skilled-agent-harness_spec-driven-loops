@@ -787,7 +787,7 @@ workflow:
     activities: [Confirm the planning pass is ready to end, Offer one last /memory:save refresh before pausing]
     mandatory_check: true
     display_prompt: |
-      Planning complete. End the workflow now, or run /memory:save first if you want another indexed continuity refresh before pausing.
+      Planning complete. End the workflow now, or run /memory:save first if you want another continuity refresh before pausing.
     user_response_handling: { accept: "Run /memory:save", decline: "Proceed to termination", default: "Wait for user response" }
     outputs: ["workflow closeout confirmed"]
     validation: workflow_finish_confirmed

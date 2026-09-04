@@ -1673,7 +1673,7 @@ workflow:
   # PHASE 4: SAVE
   # ═══════════════════════════════════════════════════════════════
   phase_save:
-    purpose: Preserve review context to memory system
+    purpose: Preserve review context in packet continuity
     steps:
 
       step_generate_context:

@@ -1177,7 +1177,7 @@ workflow:
       options:
       - { label: "Run /memory:save", description: "Refresh canonical continuity before ending" }
       - { label: "Skip", description: "Complete without another continuity refresh" }
-    note: "Use /memory:save when you want one more indexed continuity refresh before ending the workflow."
+    note: "Use /memory:save when you want one more continuity refresh before ending the workflow."
     validation: workflow_finish_confirmed
 
 # ─────────────────────────────────────────────────────────────────

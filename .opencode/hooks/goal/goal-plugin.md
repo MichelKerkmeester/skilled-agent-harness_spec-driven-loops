@@ -20,7 +20,7 @@ Use this reference when changing, validating, or operating the local `/goal` Ope
 
 `/goal` gives an OpenCode session a durable completion objective. The command is a thin router; the plugin owns state, injection, lifecycle tracking, status output, completion supervision, and guarded continuation.
 
-This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not a daemon-backed CLI bridge. The plugin is documented here because it participates in the same OpenCode runtime-injection layer as the Spec Kit memory, code graph, and skill-advisor plugin surfaces.
+This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backed CLI bridge. The plugin is documented here because it participates in the same OpenCode runtime-injection layer as the skill-advisor and spec-gate plugin surfaces.
 
 ---
 
@@ -101,8 +101,8 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 ## 6. BOUNDARIES
 
 - Keep `.opencode/commands/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
-- Do not route `opencode-goal` through Spec Kit Memory or the code-index/skill-advisor daemon CLIs. Goal state is session-local plugin state.
-- Do not store objective-derived runtime state in spec docs or memory rows unless the user explicitly asks to save continuity.
+- Do not route `opencode-goal` through the skill-advisor daemon CLI or any other daemon-backed bridge. Goal state is session-local plugin state.
+- Do not store objective-derived runtime state in spec docs or packet continuity surfaces unless the user explicitly asks to save continuity.
 - Do not auto-run shell commands inferred from the goal objective. Verification evidence must come from explicit tests, command output, or supervisor-safe state.
 - Restart OpenCode after changing `.opencode/plugins/opencode-goal.js`, `.opencode/commands/goal-opencode.md`, or this plugin's load-time configuration.
 

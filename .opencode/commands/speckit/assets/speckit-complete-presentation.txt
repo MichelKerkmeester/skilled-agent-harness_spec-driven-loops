@@ -168,9 +168,8 @@ STATUS=FAIL ERROR="[message]"
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
 | Need runtime verification | Use the project-specific verification command | Confirm behavior |
-| Need continuity refresh | `/memory:save [spec-folder-path]` | Refresh indexed canonical continuity |
+| Need continuity refresh | `/memory:save [spec-folder-path]` | Refresh canonical continuity |
 | Found bugs | User-dispatched debug pass | Fresh root-cause analysis |
 | Need crash recovery | `/speckit:resume` | Recover session state |
-| Record durable rule | `/memory:learn [rule]` | Save repo-wide rule |
 
 End interactive presentations with: `What would you like to do next?`

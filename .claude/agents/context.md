@@ -368,7 +368,7 @@ When the orchestrator requests `summary-only` or `minimal`, keep all 6 section h
 
 ### ESCALATE IF
 
-- Memory system is unavailable; report the issue and continue with codebase-only retrieval.
+- The trigger index or a retrieval recipe fails to run; report the issue and continue with codebase-only retrieval.
 - A structural question cannot be settled by Grep alone; state the limitation rather than inferring the missing edges.
 - Requested topic spans 5+ unrelated domains; suggest splitting while returning any immediately relevant evidence.
 - Findings contradict each other; report the contradiction and cite both sides.

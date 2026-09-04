@@ -154,6 +154,6 @@ STATUS=FAIL ERROR="[message]"
 | Ready to implement | `/speckit:implement [spec-folder-path]` | Continue to implementation |
 | Need stakeholder review | Share `plan.md` | Get approval before coding |
 | Technical uncertainty | `/deep:research [topic]` | Investigate first |
-| Need continuity refresh | `/memory:save [spec-folder-path]` | Refresh indexed canonical continuity |
+| Need continuity refresh | `/memory:save [spec-folder-path]` | Refresh canonical continuity |
 
 End interactive presentations with: `What would you like to do next?`

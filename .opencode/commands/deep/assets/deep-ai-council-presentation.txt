@@ -274,7 +274,7 @@ Use this when a planning problem needs more than one council topic, more than on
 
 - Route the completed session through `/memory:save` or the YAML-owned `generate-context.js` call for the resolved spec folder.
 - Refresh `description.json`, `graph-metadata.json`, and canonical `_memory.continuity` in the packet docs.
-- Do not treat memory rows as source-of-truth for council state. Packet-local `ai-council/**` artifacts remain canonical.
+- Do not treat generated continuity metadata as source-of-truth for council state. Packet-local `ai-council/**` artifacts remain canonical.
 
 ## 3. Results Display
 

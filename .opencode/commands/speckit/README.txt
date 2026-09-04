@@ -255,7 +255,7 @@ The `:with-phases` flag on `/speckit:plan` or `/speckit:complete` creates a pare
 | Document | Purpose |
 |----------|---------|
 | [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
-| [system-spec-kit SKILL.md](../../skills/system-spec-kit/SKILL.md) | Spec folder workflow, documentation levels, memory system |
+| [system-spec-kit SKILL.md](../../skills/system-spec-kit/SKILL.md) | Spec folder workflow, documentation levels, packet continuity |
 | [AGENTS.md](../../../AGENTS.md) | Gate system, agent routing, spec folder requirements |
 | [Memory Commands](../memory/README.txt) | Memory operations used by spec kit workflows |
 

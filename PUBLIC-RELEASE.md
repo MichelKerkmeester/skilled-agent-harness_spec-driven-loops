@@ -21,8 +21,7 @@ Public Repo (source of truth)
 your-project.com (consumer project)
   .opencode -> Public/.opencode  ← SYMLINK (framework; specs reachable through the compat symlink)
 	  .opencode-local/               ← Project-specific runtime data
-	    database/
-	      context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite
+	    database/                   ← Per-project database dir (SPEC_KIT_DB_DIR)
 	    specs/                      ← Optional: only if this project opted out via SPEC_KIT_SPECS_DIR
   opencode.json                  ← MCP config (sets SPEC_KIT_DB_DIR, optionally SPEC_KIT_SPECS_DIR)
   AGENTS.md                      ← Project-specific AI instructions

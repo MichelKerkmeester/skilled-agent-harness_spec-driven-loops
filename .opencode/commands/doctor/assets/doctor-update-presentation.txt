@@ -44,7 +44,7 @@ Accept `1`, `A`, `Y`, or `Proceed` as proceed. Accept `2` or `Skip` as skipped a
 
 ### Q-PROBE - Active-MCP-Client Prompt
 
-When: Phase 2 detects one or more other MCP clients connected to the spec-kit memory server. Always fires; `--force` reduces it to a single confirmation rather than per-client prompts.
+When: Phase 2 detects one or more other MCP clients holding open a database this run rebuilds. Always fires; `--force` reduces it to a single confirmation rather than per-client prompts.
 
 ```text
 Active MCP client(s) detected:
@@ -170,7 +170,7 @@ State log: .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.l
 
 | Command | When To Use |
 |---------|-------------|
-| `/doctor memory` | Isolated context-index and vector-index health diagnosis |
+| `/doctor memory` | Isolated trigger-index and retrieval-conventions health diagnosis |
 | `/doctor deep-loop` | Isolated research/review coverage graph diagnosis |
 | `/doctor skill-advisor` | Advisor and skill-graph optimization pass |
 | `/doctor skill-budget` | Advisor budget/status helper |

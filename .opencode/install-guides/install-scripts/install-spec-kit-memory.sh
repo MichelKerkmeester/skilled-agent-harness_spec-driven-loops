@@ -1,1 +1,0 @@
-../../skills/system-spec-kit/scripts/setup/install.sh

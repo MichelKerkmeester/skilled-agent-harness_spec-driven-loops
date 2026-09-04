@@ -30,7 +30,7 @@ Proposed edits
 - <edit summary>
 
 Follow-up
-- <apply|refresh-graph|reindex|none>
+- <apply|refresh-graph|regenerate-trigger-index|none>
 
 STATUS=OK ACTION=plan TARGET=<spec_folder>
 ```
@@ -42,7 +42,6 @@ MEMORY:SAVE
 --------------------------------------------------
 Folder      <spec_folder>
 Targets     <target_1>, <target_2>, <target_3>
-Indexing    <indexed|deferred|failed>
 
 Anchors
 - <anchor_1>
@@ -85,5 +84,5 @@ STATUS=FAIL ERROR="<message>"
 
 - Keep output parseable: stable labels, one status line, no decorative menu dumps.
 - Report save quality review issues only when returned by the save script or tool.
-- Label deferred indexing honestly; saved documents remain durable even if retrieval is stale.
+- Say plainly when the trigger index was not regenerated; saved documents remain durable even if retrieval is stale.
 - End with one concise next action, not an open-ended option list.

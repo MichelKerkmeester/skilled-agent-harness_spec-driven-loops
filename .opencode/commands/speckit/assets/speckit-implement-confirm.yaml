@@ -660,7 +660,7 @@ workflow:
     enforcement: MANDATORY_CHECK
     activities: [Display closeout prompt, Wait for response, "If accepted: run /memory:save", "If declined: proceed to termination"]
     handover_prompt:
-      display: "Implementation complete. Run /memory:save first if you want another indexed continuity refresh before ending the workflow."
+      display: "Implementation complete. Run /memory:save first if you want another continuity refresh before ending the workflow."
       options:
         - { label: "Refresh Context", action: "Run /memory:save" }
         - { label: "Skip", action: "Proceed to termination" }

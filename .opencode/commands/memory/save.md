@@ -1,5 +1,5 @@
 ---
-description: Save current conversation context into canonical spec-doc continuity surfaces with semantic indexing
+description: Save current conversation context into canonical spec-doc continuity surfaces
 argument-hint: "<spec-folder>"
 allowed-tools: Read, Edit, Bash, Grep, Glob, Task
 ---
@@ -89,4 +89,4 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 The router resolves and validates the target spec folder, extracts the session context, chooses a route category, and either returns a non-mutating save plan (default) or runs the metadata/description/graph-metadata refresh via `generate-context.js` (explicit apply/full-auto). That writer is the whole write: it needs no daemon, and there is no indexing handoff after it. Canonical spec-doc content is authored in the packet documents themselves. Every user-facing string renders through the presentation asset. It is a direct-dispatch command with no workflow YAML by design.
 
-Related commands: `/memory:search` (lexical retrieval over spec docs and skill docs); `/speckit:resume` (session recovery and continuation). (`/memory:manage` and `/memory:learn` are retiring — the indexed-continuity database they administered is being removed.)
+Related commands: `/memory:search` (lexical retrieval over spec docs and skill docs); `/speckit:resume` (session recovery and continuation).

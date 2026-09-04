@@ -1213,7 +1213,7 @@ workflow:
     options:
     - { label: "Refresh Context", action: "Run /memory:save" }
     - { label: "Skip", action: "Proceed to termination" }
-    note: "Use /memory:save when you want one more indexed continuity refresh before ending the workflow."
+    note: "Use /memory:save when you want one more continuity refresh before ending the workflow."
     validation: workflow_finish_confirmed
 
 # ─────────────────────────────────────────────────────────────────

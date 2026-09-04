@@ -47,7 +47,7 @@ goal_prompting:
 # SESSION DETECTION
 # ─────────────────────────────────────────────────────────────────
 session_detection:
-  priority_order: ["CLI argument", "Deterministic candidate ranking", "Semantic memory search", "Trigger phrase matching", "Most recent indexed canonical spec document by mtime"]
+  priority_order: ["CLI argument", "Deterministic candidate ranking", "Trigger phrase matching", "Most recent canonical spec document by mtime"]
   note: "Stateless architecture - no .spec-active marker file used. Deterministic ranking is preferred before memory-only fallback."
   deterministic_ranking:
     roots: ["specs/", ".opencode/specs/"]

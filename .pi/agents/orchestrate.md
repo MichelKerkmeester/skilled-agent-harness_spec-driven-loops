@@ -684,9 +684,7 @@ When ANY context pressure signal fires:
 | Need to save important context         | `/memory:save`       | Preserve decisions and findings        |
 | Resuming prior work (known spec)       | `/speckit:resume`   | Recover via `handover.md` -> `_memory.continuity` -> spec docs |
 | Resuming interrupted work (unknown)    | `/speckit:resume`   | Auto-detect the packet, then follow the same canonical recovery order |
-| Need retrieval, analysis, or eval      | `/memory:search`    | Unified knowledge retrieval            |
-| Memory maintenance or ingest           | `/memory:manage`     | Stats, health, cleanup, ingest ops     |
-| Constitutional memory rules            | `/memory:learn`      | Create/list/edit/remove always-surface rules |
+| Need retrieval over spec or skill docs | `/memory:search`    | Lexical retrieval: trigger index plus ripgrep |
 
 ---
 

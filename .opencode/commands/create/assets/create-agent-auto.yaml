@@ -413,7 +413,6 @@ workflow:
         glob: { purpose: "Find files", default: "allow" }
       extended_tools:
         webfetch: { purpose: "Fetch URLs", default: "deny" }
-        memory: { purpose: "Spec Kit Memory", default: "allow" }
         chrome_devtools: { purpose: "Browser debugging", default: "deny" }
         external_directory: { purpose: "Access files outside project", default: "allow" }
       permission_values:
@@ -463,7 +462,6 @@ workflow:
         grep: [allow/deny]
         glob: [allow/deny]
         webfetch: [allow/deny/ask]
-        memory: [allow/deny]
         chrome_devtools: [allow/deny]
         external_directory: [allow/deny]
       ---
@@ -562,11 +560,10 @@ workflow:
     - Document agent creation decisions
     - Record configuration rationale
     - Save validation results
-    - Create memory file with timestamp
-    - Index memory file for immediate search availability
+    - Write the packet's implementation-summary.md
     tool_invocation:
       command: 'Read(".opencode/skills/system-spec-kit/SKILL.md")'
-      note: "Activate context saving via memory skill"
+      note: "Activate context saving via the system-spec-kit skill"
     memory_content:
       include:
       - Agent name and purpose
@@ -713,7 +710,6 @@ completion_report:
     - Behavioral Rules: [ALWAYS/NEVER count]
 
     Spec Folder: specs/[NNN]-[agent-name]/
-    Memory: [timestamp]_agent_creation.md
 
     Validation:
     - YAML frontmatter: PASSED ✅

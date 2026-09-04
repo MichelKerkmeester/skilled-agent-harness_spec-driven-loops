@@ -157,7 +157,6 @@ Leaf-manifest freshness: [fresh|stale|missing] (narrow signal only - references/
 Context:
 - Spec path: [spec_path or none]
 - Memory saved: [yes/no]
-- Memory indexed: [yes/no]
 
 STATUS=[OK|CANCELLED|FAIL] PATH=[skill_root_or_target_file]
 ```

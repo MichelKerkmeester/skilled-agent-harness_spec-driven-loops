@@ -5,7 +5,7 @@
 | --------------------------------| -------------------------------------------------------------------------|
 | 📋 **Spec Kit Framework**　　　| Structured plans, task tracking, validation gates, and handover docs    |
 | 🧠 **Cognitive Memory**　　　　| Local-first project memory for decisions, context, and continuity       |
-| ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context  |
+| ⚛️ **Lexical Retrieval + Skill Graph** | Trigger-index and ripgrep retrieval over spec docs, plus graph-aware skill routing |
 | 🤖 **12 Specialized Agents**　 | Focused roles for implementation, review, research, docs, git, and more |
 | 🎯 **20 On-Demand Skills**　　 | Skill Advisor routing for the right workflow at the right time          |
 
@@ -236,10 +236,8 @@ Run with `--verbose` to see details behind each rule or `--recursive` to validat
 
 - **`generate-context.ts`** - Primary workflow for updating packet continuity and supporting generated context artifacts
 - **`backfill-frontmatter.ts`** - Add missing frontmatter to existing generated context artifacts and indexed spec docs
-- **`reindex-embeddings.ts`** - Rebuild embedding vectors for stored memories
-- **`cleanup-orphaned-vectors.ts`** - Remove vector entries with no matching memory
-- **`rebuild-auto-entities.ts`** - Regenerate auto-extracted entity catalog
-- **`validate-memory-quality.ts`** - Run quality checks on stored memory content
+- **`rank-memories.ts`** - Rank continuity records for retrieval ordering
+- **`validate-memory-quality.ts`** - Run quality checks on continuity content before it is written
 
 TypeScript sources compile to `.opencode/skills/system-spec-kit/scripts/dist/`. The runtime entry point for memory saves is `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`.
 
@@ -770,7 +768,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - Generates scenario files with test steps, expected results and verification evidence fields
 - Validates against established playbook format
 
-The MCP server also ships explicit stress and matrix execution surfaces. Run `npm run stress` from [mcp-server/](.opencode/skills/system-spec-kit/mcp-server/) for the dedicated [stress-test/](.opencode/skills/system-spec-kit/mcp-server/stress-test/) suite, which covers search-quality, memory, skill-advisor, session and matrix subsystems. [matrix-runners/](.opencode/skills/system-spec-kit/mcp-server/matrix-runners/) provides per-CLI adapters plus a manifest and meta-runner for the F1-F14 feature matrix across the remaining active CLI skill surfaces.
+The package also ships a dedicated [stress-test/](.opencode/skills/system-spec-kit/mcp-server/stress-test/) suite for load, contention and capacity checks. It sits outside the default test run and uses its own `vitest.stress.config.ts` at the [mcp-server/](.opencode/skills/system-spec-kit/mcp-server/) package root, so an operator runs it on purpose rather than on every commit.
 
 &nbsp;
 #### DEEP
@@ -814,9 +812,9 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 - `debug`. Diagnoses the native MCP servers (System Skill Advisor, Code Mode) with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
 
 **`/doctor:update`**
-- Multi-subsystem orchestrator: dependency-safe rebuild across context-index → skill-graph → advisor → deep-loop
+- Multi-subsystem orchestrator: dependency-safe rebuild across trigger index → skill-graph → advisor → deep-loop
 - One lock (`mcp-server/database/.doctor-update.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-update.last-run.json`)
-- Tier-aware mid-run prompts: SHORT steps auto-acknowledge. The LONG-POLE index rebuild gets an explicit ETA prompt (Q-LONG, 5-15 min)
+- Tier-aware mid-run prompts: SHORT steps auto-acknowledge. The LONG-POLE trigger-index regeneration gets an explicit ETA prompt (Q-LONG, 1-5 min)
 - Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle schema migration (e.g. v3.3.0.0 → v3.4.1.0). Wall-clock 8-25 min
 
@@ -991,7 +989,7 @@ A: It works with OpenCode and Claude Code. OpenCode uses plugin surfaces; Claude
 
 A: Gate 3 blocks file modifications until a spec folder answer is provided. You can skip it with option D, but skipped sessions are undocumented and will not be recoverable through `/speckit:resume` or `/memory:search`. For trivial changes under 5 characters in a single file, Gate 3 does not trigger.
 &nbsp;
-**Q: How does the memory system know what is relevant to my current task?**
+**Q: How does retrieval know what is relevant to my current task?**
 
 A: Packet continuity and any supporting generated context artifacts use structured frontmatter and anchored markdown so the trigger index generator can classify and index them reliably. For recovery, start with `/speckit:resume` and the packet-local continuity ladder `handover.md` -> `_memory.continuity` -> canonical spec docs. After that, the trigger index lookup matches your prompt against author-declared trigger phrases and the ripgrep recipes in `retrieval-conventions.md` cover free text. Both lanes are lexical, so a phrase no author declared and no document contains is a clean no-hit.
 &nbsp;
@@ -1029,7 +1027,6 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 - **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
 - **[→ Orphan MCP Leak Prevention Packet](specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)** - Canonical implementation summary and rollout state
 - **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `system_skill_advisor` server, nine advisor/skill-graph tools and routing docs
-- **[→ Deployment Notes](DEPLOYMENT.md)** - Docker anti-patterns, Copilot notes and session-resume auth flag
 - **[→ Architecture](.opencode/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
 - **[→ sk-doc Skill](.opencode/skills/sk-doc/SKILL.md)** - Documentation standards, DQI scoring
 - **[→ Skills Index](.opencode/skills/README.txt)** - Skills library and invocation patterns

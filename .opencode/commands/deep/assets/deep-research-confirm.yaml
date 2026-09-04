@@ -1686,7 +1686,7 @@ workflow:
   # PHASE 4: SAVE
   # ═══════════════════════════════════════════════════════════════
   phase_save:
-    purpose: Preserve research context to memory system
+    purpose: Preserve research context in packet continuity
     steps:
 
       step_generate_context:

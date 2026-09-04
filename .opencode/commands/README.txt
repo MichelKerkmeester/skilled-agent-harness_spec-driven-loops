@@ -45,7 +45,7 @@ Commands are organized into six groups plus root-level utilities:
 | **deep** | `commands/deep/` | 6 | Deep research, review, AI council and improvement loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **design** | `commands/design/` | 1 | Measured Style Reference DESIGN.md extraction |
-| **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
+| **memory** | `commands/memory/` | 2 | Continuity write and lexical retrieval over spec docs and skill docs |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
 | **root** | `commands/` | 2 | Standalone `/agent-router` and `/goal-opencode` utilities |
@@ -106,10 +106,8 @@ command/
 ├── design/                    # Design extraction commands
 │   ├── extract.md             # Extract a measured Style Reference DESIGN.md
 │   └── assets/                # Auto/confirm/presentation workflow assets
-├── memory/                   # Memory system commands
-│   ├── search.md             # Unified retrieval + analysis (intent-aware search, epistemic, causal, eval)
-│   ├── learn.md              # DEPRECATED (constitutional-memory layer retired)
-│   ├── manage.md             # Database management, ingest, and shared lifecycle
+├── memory/                   # Continuity write and retrieval commands
+│   ├── search.md             # Lexical retrieval: trigger-index lookup plus ripgrep recipes
 │   ├── save.md               # Save conversation context
 │   └── README.txt            # Memory command index
 └── speckit/                  # Spec folder workflow commands
@@ -151,10 +149,10 @@ Three command files cover the diagnostic surface. Backed by `_routes.yaml`, `mcp
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Doctor Router | `/doctor <target> [flags]` (backed by `doctor/speckit.md`) | Single entry point for 9 subsystems (`memory`, `embeddings`, `causal-graph`, `code-graph`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `fable-mode`); argv-positional dispatch via `_routes.yaml` |
+| Doctor Router | `/doctor <target> [flags]` (backed by `doctor/speckit.md`) | Single entry point for 9 subsystems (`memory`, `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `fable-mode`, `runtime-mirrors`); argv-positional dispatch via `_routes.yaml` |
 | MCP Debug | `/doctor:mcp debug [--fix] [--server <name>]` | Diagnose and fix MCP connection issues across all runtimes |
 | MCP Install | `/doctor:mcp install [--server <name>] [--runtime <name>]` | Fresh install or reinstall all supported MCP servers from install guides |
-| Update | `/doctor:update [--migrate] [--force]` | Dependency-safe multi-subsystem rebuild orchestrator (code-graph, context/vector index, causal-edges, skill-graph, advisor, deep-loop, eval) |
+| Update | `/doctor:update [--migrate] [--force]` | Dependency-safe multi-subsystem rebuild orchestrator (trigger index, skill-graph, advisor, deep-loop) |
 
 ### Deep Commands
 
@@ -189,14 +187,12 @@ Root commands have no group prefix.
 
 ### Memory Commands
 
-Manage the Spec Kit Memory system for context preservation across sessions.
+Write packet continuity across sessions and read it back with lexical retrieval over spec docs and skill docs.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Search | `/memory:search <query>` or `/memory:search <subcommand>` | Unified retrieval + analysis (intent-aware search, epistemic, causal, eval) |
-| Learn | `/memory:learn` | DEPRECATED — the constitutional-memory layer was retired; no active routes |
-| Manage | `/memory:manage <subcommand>` | Database operations (`scan`, `cleanup`, `tier`, `health`, `checkpoint`, `ingest`) |
-| Save | `/memory:save <spec-folder>` | Update packet continuity with semantic indexing |
+| Search | `/memory:search <query> [--packet <spec-folder>] [--triggers\|--paths\|--count]` | Lexical retrieval: trigger-index lookup plus ripgrep recipes over spec docs and skill docs |
+| Save | `/memory:save <spec-folder>` | Write conversation context into canonical spec-doc continuity surfaces |
 
 ### Spec Kit Commands
 
@@ -306,7 +302,7 @@ A: Use `/speckit:plan` when you want to produce a spec and plan document for rev
 
 **Q: How do I recover a session that was interrupted?**
 
-A: Run `/speckit:resume`. This is the canonical recovery surface for packet work. It rebuilds context from `handover.md`, then `_memory.continuity`, then the packet's canonical spec docs before deeper MCP retrieval surfaces kick in.
+A: Run `/speckit:resume`. This is the canonical recovery surface for packet work. It rebuilds context from `handover.md`, then `_memory.continuity`, then the packet's canonical spec docs. When you still need to find something afterwards, `/memory:search` runs the lexical lanes over spec docs and skill docs.
 
 <!-- /ANCHOR:faq -->
 
@@ -339,8 +335,8 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 | [Deep Agent Improvement Command](deep/agent-improvement.md) | Agent improvement loop command |
 | [Prompt Command](prompt/improve.md) | Canonical prompt improvement command |
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Documentation standards and component creation |
-| [system-spec-kit SKILL.md](../skills/system-spec-kit/SKILL.md) | Spec folder workflow and memory system |
-| [Memory Commands](memory/README.txt) | Memory save, analyze, learn, manage, and shared commands |
+| [system-spec-kit SKILL.md](../skills/system-spec-kit/SKILL.md) | Spec folder workflow and packet continuity |
+| [Memory Commands](memory/README.txt) | Continuity save and lexical retrieval commands |
 | [Spec Kit Commands](speckit/README.txt) | SpecKit plan, implement, complete, and workflow commands |
 
 <!-- /ANCHOR:related-documents -->

@@ -725,7 +725,7 @@ workflow:
     activities: [Emit planning closeout status, Remind the operator to run /memory:save later if another continuity refresh is needed]
     mandatory_check: true
     display_status: |
-      Planning complete. Auto mode terminates without waiting; run /memory:save separately if you want another indexed continuity refresh before pausing.
+      Planning complete. Auto mode terminates without waiting; run /memory:save separately if you want another continuity refresh before pausing.
     user_response_handling: { default: "Proceed to termination" }
     outputs: ["workflow closeout emitted"]
     validation: workflow_finish_confirmed

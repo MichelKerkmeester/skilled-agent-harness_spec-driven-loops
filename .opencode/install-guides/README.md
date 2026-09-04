@@ -186,7 +186,6 @@ Some MCP servers use native Node.js modules that require compilation:
 
 This is needed for:
 - `better-sqlite3` (Skill Advisor MCP server)
-- `sqlite-vec` (Vector search extension)
 
 </details>
 
@@ -964,7 +963,6 @@ BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] 
 | Symptom                      | Recovery Command                                           |
 | ---------------------------- | ---------------------------------------------------------- |
 | MCP server hangs             | `pkill -f "server-name" && opencode`                       |
-| Database corruption (Memory) | `rm -rf .opencode/skills/system-spec-kit/mcp-server/database/` |
 | Config invalid JSON          | Restore from backup or regenerate from Section 12 templates |
 | npm packages broken          | `npm cache clean --force && npm install -g <package>`      |
 | Python/uv issues             | `uv cache clean && uv tool install <tool> --force`         |
@@ -1349,7 +1347,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 | Skills             | 14    | cli-claude-code, cli-opencode, mcp-chrome-devtools, mcp-code-mode, sk-code, deep-research, deep-review, sk-doc, sk-git, deep-improvement, sk-prompt, system-spec-kit |
-| Commands           | 22    | /create:* (7), /memory:* (6), /speckit:* (8), agent_router (1)                                                         |
+| Commands           | 32    | /create:* (13), /deep:* (6), /design:* (1), /doctor:* (3), /memory:* (2), /speckit:* (4), root commands (3)             |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |
 
@@ -1362,7 +1360,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | Document | Purpose |
 |----------|---------|
 | [AGENTS.md](../../AGENTS.md) | AI agent behavior configuration and mandatory gates |
-| [Spec Kit Framework](../skills/system-spec-kit/README.md) | Spec folder and memory system documentation |
+| [Spec Kit Framework](../skills/system-spec-kit/README.md) | Spec folder and packet continuity documentation |
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Document creation standards and templates |
 | [system-skill-advisor INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Standalone `system_skill_advisor` MCP server bootstrap |
 
