@@ -53,10 +53,14 @@
       ".opencode/skills/system-spec-kit/graph-metadata.json",
       "data/trigger-index.json",
       "specs/system-speckit/049-memory-decommission/goal.md",
+      "scripts/doctor.sh",
       ".claude/mcp.json",
       ".codex/config.toml",
       ".pi/mcp.json",
-      ".cursor/mcp.json"
+      ".cursor/mcp.json",
+      "references/workflows/rollback-runbook.md",
+      "scripts/tests/coverage-graph-integration.vitest.ts",
+      "shared/types.ts"
     ],
     "entities": [
       {
@@ -126,6 +130,12 @@
         "source": "derived"
       },
       {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
@@ -135,6 +145,24 @@
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "rollback-runbook.md",
+        "kind": "doc",
+        "path": "references/workflows/rollback-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-integration.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/coverage-graph-integration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
         "source": "derived"
       },
       {
@@ -178,35 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Branch",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-04T21:21:31.951Z",
+    "last_save_at": "2026-09-04T22:25:00.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d78128fbbf548cc9d347e93747d4af1f82e5f0ea9292a002ce006025449a8d07",
+    "source_fingerprint": "sha256:3c7c3a3669634d2c2065d1c6d4fa0f0afbcf69d4491bf45a6d8ede1f60fb35e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5c8abcc1bc1fe62a13b5a481b883d3e66f8bca135998f7381a1db5a60f78480a",
