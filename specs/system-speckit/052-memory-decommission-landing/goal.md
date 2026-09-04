@@ -146,6 +146,8 @@ and findings belong here.
 | P2-F004 the HF-local availability probe reports a ready server without proving it serves the requested model, so the mismatch surfaces later as a 404 | P1 | in progress under the D5 security exception: the probe resolves the requested model and refuses a ready server that serves another; readiness throws on the mismatch instead of latching; tests follow the rename lane |
 | P2-F005 the model server's socket path lacks a post-bind socket-type check before chmod and unlink | P2 | handed to the model server's owner under D5 |
 | P2-F007 the packet's implementation summary asserted completion over scaffold text | P1 | this commit: the summary describes what is true now and says it is in progress; the closure reconciles summary, continuity metadata, spec status, acceptance rows and tasks together |
+| P2-F010 the forced-depth check de-duplicated state records before comparing, so a full range plus a duplicate passed | P2 | `f766fce3c2`: duplicates are a violation in their own right, with a test |
+| P2-F011 custom HF model dimension semantics diverge between auto-selection and startup profile resolution | P2 | handed to the embedding client's owner under D5 |
 | P2-F006 the HF client truncates fractional dimensions instead of rejecting a malformed response | P2 | handed to the embedding client's owner under D5 |
 
 ### DONE WHEN
