@@ -342,7 +342,9 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  *
  * Three max-tier additions joined this allowlist (2026-08-14): the DeepSeek
  * max tiers deepseek-v4-flash-max and deepseek-v4-pro-max, and the first
- * GPT-5.6 persona uids gpt-5-6-luna-max and gpt-5-6-luna-max-priority (Devin
+ * GPT-5.6 persona uids gpt-5-6-luna-max and gpt-5-6-luna-max-priority. Of those,
+ * deepseek-v4-pro-max has since been retired along with the rest of the V4 Pro
+ * family, so only the flash max tier survives here. (Devin
  * labels the -priority suffix "…Max Thinking Fast", so it is the Fast variant
  * of Luna Max). All four were confirmed present verbatim in the live `devin
  * models list` output on 2026-08-14. Unlike the Grok entries above, these
