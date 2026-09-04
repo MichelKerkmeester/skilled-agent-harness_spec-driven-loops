@@ -33,7 +33,7 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The memory server's launcher used to start the shared HF model server on first embed demand. Phase 003 of the memory decommission deleted that launcher, and the skill-advisor launcher only armed the spawn when `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` was set to exactly `1`. On a default host nothing spawns the model server, so the shared `hf-embed` socket the preserve set kept has no server behind it and the advisor embeds in-process.
+The memory server's launcher used to start the shared HF model server on first embed demand. Phase 003 of the memory decommission deleted that launcher, and the skill-advisor launcher only armed the spawn when `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` was set to exactly `1`. On a default host nothing spawns the model server, so the shared `hf-embed` socket the preserve set kept has no server behind it. On this host the advisor embeds through Ollama, which auto mode prefers, so the gap only bites where Ollama is absent and hf-local is the fallback.
 
 ### Purpose
 The skill-advisor launcher arms the shared model-server spawn by default, with the flag kept as the kill switch, and a demand on the shared socket starts the model server from a worktree as well as from the main checkout.
@@ -51,7 +51,7 @@ The skill-advisor launcher arms the shared model-server spawn by default, with t
 
 ### Out of Scope
 - Installing `onnxruntime-common` into the main checkout's node_modules - it is missing from the installed tree there although the lockfile lists it, and that install belongs to the operator, not to a change on this branch
-- The advisor's own embedding path - it keeps working in-process whether or not the model server is up
+- The advisor's own embedding path - auto mode prefers Ollama, and hf-local is the fallback behind it, so the advisor keeps working whether or not the model server is up
 
 ### Files to Change
 
@@ -99,7 +99,7 @@ The skill-advisor launcher arms the shared model-server spawn by default, with t
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Installed `onnxruntime-common` in the host's shared node_modules | Model load fails after a successful spawn and the child sits in crash-loop cooldown | Operator runs the package install in the main checkout; the advisor keeps embedding in-process meanwhile |
+| Dependency | Installed `onnxruntime-common` in the host's shared node_modules | Model load fails after a successful spawn and the child sits in crash-loop cooldown | Operator runs the package install in the main checkout; the advisor keeps embedding through Ollama meanwhile |
 | Risk | Every advisor start now binds one more Unix socket | Low | The listener is lazy and skips when a resident already owns the socket; `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=0` turns it off |
 <!-- /ANCHOR:risks -->
 

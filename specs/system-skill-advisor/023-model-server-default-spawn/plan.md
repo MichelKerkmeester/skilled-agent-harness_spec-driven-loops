@@ -29,7 +29,7 @@ contextType: "general"
 | **Testing** | vitest in the advisor and spec-kit trees, plus a live foreground launcher run |
 
 ### Overview
-The launcher reads the flag into three states: default-on, explicit-on and off. Default-on arms the lazy demand listener and degrades with a log line when the supervision library is absent; explicit-on keeps that case fatal. The launcher stops handing the deleted memory database directory to the supervision control, and the supervision library and the model-server child drop the same stale fallback, so all three resolve the socket to the embedding client's short default.
+The launcher reads the flag into three states: default-on, explicit-on and off. Default-on arms the lazy demand listener and, when the supervision library is absent, logs and leaves embedding to the other providers (Ollama first in auto mode); explicit-on keeps that case fatal. The launcher stops handing the deleted memory database directory to the supervision control, and the supervision library and the model-server child drop the same stale fallback, so all three resolve the socket to the embedding client's short default.
 <!-- /ANCHOR:summary -->
 
 ---

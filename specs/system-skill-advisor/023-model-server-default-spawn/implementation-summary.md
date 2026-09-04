@@ -56,7 +56,7 @@ The shared HF model server has a spawner again. Since phase 003 of the memory de
 
 ### Default-on with a kill switch
 
-The launcher reads the flag into three states. Unset or blank arms the lazy demand listener. `0`, or any value other than `1`, turns the spawner off. An explicit `1` keeps a missing supervision library fatal, where the default logs a line and lets the advisor embed in-process. The listener is lazy: it binds the shared socket, answers the first embed request with 503 loading, releases the socket and spawns the model server, and it skips entirely when a resident already listens.
+The launcher reads the flag into three states. Unset or blank arms the lazy demand listener. `0`, or any value other than `1`, turns the spawner off. An explicit `1` keeps a missing supervision library fatal, where the default logs a line and leaves embedding to the other providers; in auto mode that is Ollama first, with hf-local as the fallback behind it. The listener is lazy: it binds the shared socket, answers the first embed request with 503 loading, releases the socket and spawns the model server, and it skips entirely when a resident already listens.
 
 ### One socket directory
 
@@ -90,7 +90,7 @@ Built and verified by the orchestrator directly. The launcher ran in the foregro
 | Decision | Why |
 |----------|-----|
 | Default on, flag kept as kill switch | The preserve set kept the model server for one consumer, the advisor; a spawner nobody arms leaves that code dead in practice |
-| Explicit `1` stays fatal on a missing library, the default degrades | An operator who asked for the server should hear when it cannot exist; a default should never break the advisor |
+| Explicit `1` stays fatal on a missing library, the default degrades | An operator who asked for the server should hear when it cannot exist; a default should never break the advisor, which on an Ollama host never needs the model server |
 | Fix the three fallbacks rather than set the environment variable | The variable is an override, and three resolvers with different defaults is the defect the worktree run exposed |
 | Leave the host install alone | The missing `onnxruntime-common` lives in the main checkout's node_modules, shared with another live session |
 <!-- /ANCHOR:decisions -->
@@ -115,7 +115,7 @@ Built and verified by the orchestrator directly. The launcher ran in the foregro
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The model does not load on this host.** The spawn chain works, but the shared transformers install lacks `onnxruntime-common`, so the child enters crash-loop cooldown and the client falls back in-process. Fix: run the package install in the main checkout so node_modules matches the lockfile, then send one demand request to the shared socket and expect `state: ready`.
+1. **The model does not load on this host.** The spawn chain works, but the shared transformers install lacks `onnxruntime-common`, so the child enters crash-loop cooldown; on this host it does not matter day to day because auto mode embeds through Ollama and hf-local is only the fallback. Fix: run the package install in the main checkout so node_modules matches the lockfile, then send one demand request to the shared socket and expect `state: ready`.
 2. **Every advisor start binds one more Unix socket.** The listener is lazy and skips when a resident owns the socket; set the flag to `0` on hosts that must not run a model server.
 3. **The launcher's test hook still accepts the old field name** for the files directory so existing callers keep working; the new name is `modelServerFilesDir`.
 <!-- /ANCHOR:limitations -->

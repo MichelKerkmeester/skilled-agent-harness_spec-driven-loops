@@ -950,7 +950,7 @@ function clearAllLeaseFiles() {
 // the only process that can arm the shared model server, so an unset flag arms
 // it. An explicit 0 (or any value other than 1) turns the spawner off. An
 // explicit 1 also makes a missing supervision library fatal, where the default
-// degrades to in-process embeddings and says so in the log.
+// leaves embedding to the other providers (Ollama first) and says so in the log.
 function modelServerSetting() {
   const raw = (process.env.SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED ?? '').trim();
   if (raw === '') return 'default-on';
@@ -967,7 +967,7 @@ function modelServerSupervisionAvailable(context) {
   if (modelServerSetting() === 'explicit-on') {
     throw new Error('SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1 but model-server supervision lib is unavailable');
   }
-  log(`model server spawn skipped (${context}): supervision lib unavailable, embeddings stay in-process`);
+  log(`model server spawn skipped (${context}): supervision lib unavailable, embeddings use the other providers`);
   return false;
 }
 
