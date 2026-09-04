@@ -48,7 +48,6 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/skills/system-plugins/README.md",
-      "scratch/review-scope.txt",
       "data/trigger-index.json",
       "specs/system-speckit/049-memory-decommission/goal.md",
       "specs/system-speckit/050-zvec-grep-fork-integration/goal.md",
@@ -98,12 +97,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-plugins/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-scope.txt",
-        "kind": "file",
-        "path": "scratch/review-scope.txt",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-04T18:33:12.870Z",
+    "last_save_at": "2026-09-04T18:54:25.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e61c674d3e592a1dcf11525830a6bb6d63e626ae098dac01036f1aab2dca6356",
+    "source_fingerprint": "sha256:ce4bcaaa0625bf760d47e9c4f992ae70df3252a8accd5d6d6f68c1e0491b5fe0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "88f53561fb47b50f9b587271a3e3e4b046d101bda2863133c4fef49f8df8d4af",

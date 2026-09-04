@@ -108,7 +108,14 @@ and findings belong here.
 | Merge v4 into the branch | Done | `144897ba5d`: 34 conflicts, 12 deleted-engine files kept deleted, command frontmatter takes v4's contract hints with memory tools removed; `d56a0db7a1` merges the operator's four DevPass commits, regenerated 049 metadata |
 | Template alignment | Done | 187 changed reference and README documents validated; two fixed at `docs(skills)` (overview sections); one class defect recorded below |
 | Fast-forward v4 and main | Done | `main` = `skilled/v4.0.0.0` = `2752169eb8`; no memory registration in five config roots, no hook, plugin or launcher on disk; sweep live 0 on the main checkout after one stale launcher state file was removed |
-| Deep review loop | Running | ten iterations, gpt-5.6-luna max fast, stop policy max-iterations, launched 2026-09-04 under `052/review/lineages/luna-max` |
+| Deep review loop | Running | ten iterations, gpt-5.6-luna max fast, stop policy max-iterations. First launch read the repository through wildcard scope and compacted twice inside iteration one; stopped and set aside as `lineages/luna-max.attempt-1-unbounded`. Relaunched on a 438-file scope list; iteration one took three minutes over 13 files |
+
+### Review findings and fixes
+
+| Finding | Severity | Fix |
+|---------|----------|-----|
+| F001 free-text ripgrep recipes omit `--hidden`, so dotted documentation under `.opencode` is a silent miss | P1 | `ce056899ab`: `--hidden` in the lane's base flags, a `.git` exclusion glob, every recipe in the conventions, a hidden-directory test |
+| F002 lookup `--limit` accepts `2junk` and `1.9` and truncates silently | P2 | `ce056899ab`: the raw value must be a whole decimal number; six malformed cases tested |
 
 ### DONE WHEN
 
