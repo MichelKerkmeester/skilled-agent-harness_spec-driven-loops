@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/ai-council.md",
-      "sha256": "87feedaff90266c39dc9daf33225555b548561da3e0c372030b6d7f851af7c2e",
+      "sha256": "1b079fa5fb74d8f9f715cccc980c7db76d4adb7a2960b4f4e6fcbb4d7d223609",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
-      "sha256": "b18d96afc7a902722bf6b5b1f9be04b968d32b8f8d676532f6eccb002c1b8d61",
+      "sha256": "3d2b44f9720ca94bd73ff7a59fe8a8bd7f6ff99f2a7fc57f34dd6384a2fbb453",
       "section": "full"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "path": ".opencode/agents/ai-council.md",
-      "sha256": "d98702b746b5734b47b752c4c3a6ae7345ca20a93807e2f4107263f6b54960a4",
+      "sha256": "6e1a0e9a7d5a4b425c853586b90f486c8cee9f77c9478685920a32cc9c3b6df7",
       "section": "full"
     },
     {

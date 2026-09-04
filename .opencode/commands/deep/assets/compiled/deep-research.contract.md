@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/research.md",
-      "sha256": "6aeacec9faaad8ab8dbbf6229c5c95502c6720983f073dfa6ccd22c26c8368a0",
+      "sha256": "00b1f16a23835d37e884efc476557bdfd8d23bf10990f6adf9d064e6b3b3099d",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "69f729ff993aeef85b51bb8efc0ec833b5393dd6f6380e7a6218e6f99a5873e6",
+      "sha256": "bd549eb4257c8e7b50297746784669dc9ce1cc3df648a55e2d04996b0129da57",
       "section": "full"
     },
     {
@@ -27,7 +27,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "a2f099cd433b59cb4fb2322d3d1ceff423ebd5c1b7cd136228543d29219a8c86",
+      "sha256": "5a1813ad041c1555a67f3556df02c7b6f5d898154c87a395ff9ba14d435e9b3b",
       "section": "full"
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "path": ".opencode/agents/deep-research.md",
-      "sha256": "7b0817c3f214e0d4471a99565413e304900436f41f43dd56975da53d363ef4d1",
+      "sha256": "cf1d76fc324e5872af951f3789ee8f4f531fade952d31b5adc5b12b2960112bf",
       "section": "full"
     },
     {
