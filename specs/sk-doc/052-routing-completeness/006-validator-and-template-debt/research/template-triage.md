@@ -335,6 +335,18 @@ scanner reads lines 204 and 207 as prose outside any fence when they are payload
 scanned those lines here, so the count is unaffected. On a payload holding a `bash` sample the same
 inversion would mask the wrong side.
 
+**The masking rule was bounded on 2026-09-04, after review.** The first version searched to the
+end of the document for a closing rule, so an unrelated later rule could close a block that never
+opened and mask everything between them. Two shapes reached that path: a heading underline
+followed by a paragraph beginning with a word and a colon, and a payload whose closing rule sits
+outside its fence. Both were reproduced losing real findings before the fix. The scan now stops at
+a fence, at a line that is not a field, or at the closing rule, and a block may open only after a
+blank line or the fence that carries it.
+
+The bound recovers nothing on the corpus as it stands. Across 9,222 documents under the skills
+tree the count is 111,019 either way, because no shipped document has the losing shape. Its value
+is preventive, which is why the two tests that cover it were each watched failing first.
+
 **Shape B ruled on 2026-09-04.** The operator decided an emitted frontmatter block is masked the
 same way a document's own is. It is a field skeleton rather than prose, and flagging it asks an
 author to change what the template produces in order to clear a finding nobody reads. The scanner
