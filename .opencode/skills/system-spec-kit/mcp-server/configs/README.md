@@ -1,6 +1,6 @@
 ---
 title: "MCP Server Configuration"
-description: "Configuration files for memory ranking weights and cognitive co-activation regex settings."
+description: "Configuration files read by the engine config loader and the config tests: co-activation regex settings and a retained ranking weights file."
 trigger_phrases:
   - "search weights"
   - "mcp config"
@@ -11,15 +11,15 @@ trigger_phrases:
 
 # MCP Server Configuration
 
-> Configuration inputs for memory search ranking and cognitive co-activation parsing.
+> Configuration inputs for the engine config loader and its tests.
 
 ## 1. OVERVIEW
 
-`mcp-server/configs/` stores configuration used by memory search and cognitive matching. JSON files hold data-only settings. TypeScript files validate environment-backed runtime settings before handlers and search modules consume them.
+`mcp-server/configs/` holds one data-only JSON settings file and one TypeScript module that validates environment-backed regex settings. `core/config.ts` imports the regex config. `tests/config-cognitive.vitest.ts` and the skill's `scripts/tests/test-bug-fixes.js` exercise the two files.
 
-Runtime scoring rules still live in the modules that execute scoring. This folder documents config inputs and export contracts only.
+The search pipeline that once consumed `search-weights.json` was retired with the MCP server that held it, so nothing ranks searches with these files any more. They are kept for the config loader and its tests, and this folder documents their shape and export contracts only.
 
-Use this folder when changing static ranking defaults, trigger weight inputs, or cognitive regex environment parsing. Do not add runtime branching here unless the config file is the stable boundary and the caller owns behavior.
+Use this folder when changing the co-activation regex defaults or the retained weight inputs. Do not add runtime branching here unless the config file is the stable boundary and the caller owns behavior.
 
 ---
 
@@ -27,8 +27,8 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 
 | Surface | Purpose |
 |---|---|
-| `search-weights.json` | Ranking weights, document-type multipliers and trigger caps used by memory search paths. |
-| `cognitive.ts` | Environment-backed regex config for cognitive co-activation matching. |
+| `search-weights.json` | Ranking weights, document-type multipliers and trigger caps. No runtime path reads them; the skill's `scripts/tests/test-bug-fixes.js` parses the file. |
+| `cognitive.ts` | Environment-backed regex config, loaded by `core/config.ts` and covered by `tests/config-cognitive.vitest.ts`. |
 | Environment variables | `SPECKIT_COGNITIVE_COACTIVATION_PATTERN` and `SPECKIT_COGNITIVE_COACTIVATION_FLAGS`. |
 
 ---
@@ -51,7 +51,7 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 | Import | Rule |
 |---|---|
 | Zod | Allowed in `cognitive.ts` for environment validation. |
-| Config consumers | Search and cognitive modules may import `cognitive.ts` or read `search-weights.json`. |
+| Config consumers | `core/config.ts` imports `cognitive.ts`. The config tests read both files. |
 | Runtime constants | Keep runtime scoring constants in their owning search or scoring modules. |
 | Side effects | Do not add DB, file write, network, or handler execution side effects to this folder. |
 
@@ -61,7 +61,7 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 
 | File | Responsibility |
 |---|---|
-| `search-weights.json` | Data-only ranking and trigger configuration for memory search paths. |
+| `search-weights.json` | Data-only ranking and trigger configuration, retained and exercised by tests. |
 | `cognitive.ts` | Regex config parsing, default values, validation errors and safety checks. |
 | `README.md` | Folder contract for config shape and import rules. |
 
@@ -72,7 +72,7 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 | Boundary | Rule |
 |---|---|
 | Data ownership | Store portable search and cognitive config inputs here. |
-| Behavior ownership | Keep ranking, search execution and memory mutations in their owning modules. |
+| Behavior ownership | Keep ranking and execution behavior in its owning modules. |
 | Runtime safety | Validate environment regex values before exposing them to callers. |
 | Side effects | Keep config loading free of writes, network calls and handler dispatch. |
 
@@ -83,7 +83,7 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 - Import `COGNITIVE_CONFIG` when a caller needs validated default cognitive matching settings.
 - Call `loadCognitiveConfigFromEnv()` when tests or startup code need explicit environment parsing.
 - Use `safeParseCognitiveConfigFromEnv()` when invalid regex input should return an error object instead of throwing.
-- Read `search-weights.json` from search-ranking code that needs stable scoring inputs.
+- Read `search-weights.json` for the retained scoring inputs. No runtime path reads it today.
 
 ---
 

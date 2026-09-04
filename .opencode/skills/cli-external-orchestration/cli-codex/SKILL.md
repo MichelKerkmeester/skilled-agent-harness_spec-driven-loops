@@ -215,8 +215,10 @@ codex exec \
   -c service_tier="fast" \
   -c approval_policy=never \
   --sandbox workspace-write \
-  "<prompt>"
+  "<prompt>" </dev/null
 ```
+
+The trailing `</dev/null` is not optional in a non-interactive dispatch; Rule 6 below explains what a backgrounded codex does to an inherited stdin.
 
 **User override** (honor explicit user phrasing verbatim):
 

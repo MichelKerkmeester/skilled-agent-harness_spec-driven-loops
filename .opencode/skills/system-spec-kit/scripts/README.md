@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.opencode/skills/system-spec-kit/scripts/` contains the shell and TypeScript tooling for spec lifecycle work, memory saves, metadata refresh, evaluations, setup checks and script regression coverage.
+`.opencode/skills/system-spec-kit/scripts/` contains the shell and TypeScript tooling for spec lifecycle work, continuity saves, metadata refresh, evaluations, setup checks and script regression coverage.
 
 Current state:
 
@@ -59,7 +59,7 @@ Dependency direction: entrypoints ───▶ source modules ───▶ lib a
 scripts/
 +-- spec/                  # Spec lifecycle shell entrypoints
 +-- rules/                 # Validation rule scripts
-+-- memory/                # Memory save, ranking and indexing CLIs
++-- memory/                # Continuity save and ranking CLIs
 +-- graph/                 # Graph metadata backfill CLI
 +-- config/                # Config barrel boundary for script modules
 +-- validation/            # Validation, evidence and comment-hygiene checks
@@ -106,7 +106,7 @@ Disallowed direction:
 |---|---|
 | `spec/` | Creates, upgrades, validates, completes and archives spec folders. |
 | `rules/` | Holds validation checks used by `spec/validate.sh`. |
-| `memory/generate-context.ts` | Builds structured memory save output and metadata updates. |
+| `memory/generate-context.ts` | Builds structured continuity save output and metadata updates. |
 | `graph/backfill-graph-metadata.ts` | Refreshes graph metadata across spec folders. |
 | `config/` | Exposes the script-side config barrel boundary for non-core modules. |
 | `runtime-mirrors/` | Keeps runtime mirror exclusions and native command exceptions aligned with generated mirror trees. |

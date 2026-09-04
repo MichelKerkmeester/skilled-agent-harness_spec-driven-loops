@@ -1,10 +1,10 @@
 ---
 title: "System Spec Kit"
-description: "Makes AI development memory persistent: every file change gets a templated spec folder that records the reasoning. Every new session resumes that reasoning from a local indexed store."
+description: "Makes AI development continuity durable: every file change gets a templated spec folder that records the reasoning. Every new session resumes that reasoning from the packet's own committed documents."
 trigger_phrases:
   - "spec kit"
   - "spec folder"
-  - "memory system"
+  - "continuity system"
   - "hybrid search"
   - "context preservation"
   - "documentation levels"
@@ -25,8 +25,8 @@ version: 3.8.0.0
 |---|---|
 | **Use it for** | Capturing why code changed and resuming that reasoning across sessions |
 | **Invoke with** | "spec kit", "spec folder", "memory save", "/speckit:resume" or automatic Gate 3 routing |
-| **Works on** | File-modifying AI conversations that need a documentation trail and cross-session memory |
-| **Produces** | Templated spec folders at four levels, a validated file structure and a searchable local index |
+| **Works on** | File-modifying AI conversations that need a documentation trail and cross-session continuity |
+| **Produces** | Templated spec folders at four levels, a validated file structure and entries in the committed trigger index |
 
 ---
 
@@ -34,7 +34,7 @@ version: 3.8.0.0
 
 ### Why This Skill Exists
 
-AI conversations that modify files leave no reasoning trail. The session ends and the why behind every decision vanishes. A new session starts from a blank slate, so the architecture you explained on Monday is gone by Wednesday. Without enforced documentation and a persistent memory, one session cannot build on another.
+AI conversations that modify files leave no reasoning trail. The session ends and the why behind every decision vanishes. A new session starts from a blank slate, so the architecture you explained on Monday is gone by Wednesday. Without enforced documentation and durable continuity, one session cannot build on another.
 
 ### What It Does
 
@@ -61,7 +61,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Packet-local changelogs** | `changelog/` history written beside packet roots and direct child phases at closeout |
 | **Validation** | the 46-rule registry with four strict-only rules gated behind `--strict` |
 
-### The Memory System
+### Continuity and Retrieval
 
 | Capability | What the skill knows how to operate |
 |---|---|
@@ -195,7 +195,7 @@ Session starts
 
 ```text
 specs/<###-feature-name>/
-├── description.json             # Spec identity and memory tracking metadata
+├── description.json             # Spec identity and continuity metadata
 ├── spec.md                      # What the feature is and why it exists
 ├── plan.md                      # How to implement it
 ├── tasks.md                     # Step-by-step task breakdown
@@ -342,7 +342,7 @@ Command source files: `.opencode/commands/memory/`.
 
 ### Embedding Providers
 
-The store converts text to numerical embeddings for vector search. Four providers are supported. The default cascade when `EMBEDDINGS_PROVIDER=auto` or unset is local-first: Ollama, then hf-local, then OpenAI, then Voyage.
+The shared embedding client, whose only live consumer is the skill advisor, converts text to numerical embeddings. Four providers are supported. The default cascade when `EMBEDDINGS_PROVIDER=auto` or unset is local-first: Ollama, then hf-local, then OpenAI, then Voyage.
 
 | Tier | Provider | Dimensions | Notes |
 |---|---|---|---|
@@ -360,14 +360,14 @@ The store converts text to numerical embeddings for vector search. Four provider
 | `OPENAI_API_KEY` | no | OpenAI cloud embeddings, opt-in |
 | `OLLAMA_EMBEDDINGS_MODEL` | no | override the Ollama model, listed defaults derive dimensions at runtime |
 | `HF_EMBEDDINGS_MODEL` | no | override the hf-local model, listed defaults derive dimensions at runtime |
-| `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | no | preferred database-directory override, filename derives from the active embedding profile |
-| `MEMORY_DB_PATH` | no | explicit file override for the active SQLite database path |
+| `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | no | directory override for the skill advisor's database, the one SQLite store the shared client still serves |
+| `MEMORY_DB_PATH` | no | explicit file override for that same database; the name predates the advisor being its only owner |
 | `LOG_LEVEL` | no | log verbosity: `debug`, `info`, `warn` or `error` |
 | `SPECKIT_LAUNCHER_RSS_SELF_EXIT` | no | set `1` to enable the RSS-ceiling watchdog in the shared model-server supervisor, default off |
 
 The full environment variable reference, including evaluation and telemetry overrides plus the feature flag table, lives in `references/config/environment-variables.md`.
 
-Note: in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a writable directory such as one under your home folder or `/tmp`. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
+Note: in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a writable directory such as one under your home folder or `/tmp`. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file for the advisor.
 
 ### MCP Server Configuration
 
@@ -380,27 +380,14 @@ node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.m
 
 ### Feature Flags
 
-The store uses runtime-resolved feature flags rather than import-time snapshots. Long-lived MCP processes re-read the relevant environment values during search, scoring, rollout and telemetry checks, so operator flips take effect without a module reload.
+The engine resolves feature flags at call time rather than at import, so a long-lived process picks up an environment change without a restart. The flags that survive the retirement of the search store govern the shared embedding client and the runtime hook adapters:
 
 | Group | Controls |
 |---|---|
-| Search Pipeline | 5-channel retrieval, fallback routing, reranking, graph-walk rollout, confidence and token-budget policies |
-| Session and Cache | embedding cache, session deduplication, crash recovery, database rebind invalidation |
-| Memory and Storage | save quality gate, reconsolidation, governed save and retrieval scopes, causal graph maintenance |
 | Embedding and API | startup provider resolution, fail-fast dimension checks, structured fallback metadata |
-| Evaluation and Telemetry | ablation guardrails, reporting dashboard output, optional trace and eval logging |
+| Hooks and Completion | completion-evidence stop hook, directive-lifecycle cadence, spec-gate enforcement |
 
 For the full flag reference and rollback procedures, see `references/workflows/rollback-runbook.md`.
-
-### Dynamic Token Budget
-
-The store adjusts token budgets per tier to control how much context is injected:
-
-| Tier | Budget |
-|---|---|
-| Working | 3,500 tokens |
-| Core | 3,500 tokens |
-| Constitutional | 4,000 tokens |
 
 ---
 
@@ -431,7 +418,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 │   └── manifest/               # Rendered by Level contract resolver + inline renderer
 ├── scripts/                    # CLI tools (TypeScript source + Bash)
 │   ├── spec/                   # Spec folder management scripts
-│   ├── memory/                 # Memory system scripts
+│   ├── memory/                 # Continuity scripts
 │   ├── templates/              # Template composition (manifest renderer)
 │   ├── core/                   # Core library (17 modules)
 │   ├── extractors/             # Session data extractors (12 extractors)
@@ -495,7 +482,7 @@ ls -l .opencode/skills/system-spec-kit/data/trigger-index.json
 
 Exit `0` means candidates were found and `1` means none were. If the index file is missing or truncated, regenerate it with `scripts/retrieval/generate-trigger-index.mjs`.
 
-### Memory Save Fails or Creates an Empty File
+### Continuity Save Fails or Creates an Empty File
 
 `generate-context.js` runs but the output file is empty or the script exits with an error. Invalid structured JSON input, a missing explicit spec-folder target or TypeScript sources not compiled to `dist/` cause this.
 
@@ -569,7 +556,7 @@ A: Level 2 adds a `checklist.md` for QA verification. Use it when the change tou
 
 A: Level 3 adds a `decision-record.md` for architecture decisions. Use it for changes that affect system architecture, involve trade-offs between alternatives or touch 500+ lines across multiple systems. If future developers will ask why, Level 3 captures the answer.
 
-**Q: How do spec folders and memory work together?**
+**Q: How do spec folders and continuity work together?**
 
 A: Spec folders capture what happened in structured documentation. `generate-context.js` updates the packet's canonical continuity surfaces. `/speckit:resume` rebuilds the next session from those sources, comparing folder-local `handover.md` and `_memory.continuity` freshness before falling back to packet docs. Deeper retrieval reads the same files directly: the trigger index for a declared phrase, the ripgrep recipes for anything else. One side captures, the recovery surfaces retrieve, and both work with nothing running.
 
@@ -622,15 +609,15 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[proje
 | `archive.sh` | archive completed spec folders |
 | `test-validation.sh` | test the validation rules themselves |
 
-### Scripts That Maintain the Memory Store
+### Scripts That Maintain Continuity
 
 | Script | Purpose |
 |---|---|
 | `generate-context.ts` | source for the runtime entry point `scripts/dist/memory/generate-context.js` |
 | `backfill-frontmatter.ts` | add missing frontmatter to generated context artifacts |
 | `backfill-research-metadata.ts` | backfill missing metadata files under `research/*/iterations/` |
-| `rank-memories.ts` | rank memories by relevance for a query |
-| `validate-memory-quality.ts` | run quality checks on stored record content |
+| `rank-memories.ts` | rank continuity records by relevance for a query |
+| `validate-memory-quality.ts` | run quality checks on continuity content |
 | `ast-parser.ts` | parse markdown AST for section extraction |
 | `fix-memory-h1.mjs` | fix heading levels in older generated artifacts |
 
@@ -657,7 +644,7 @@ The manual testing playbook runs every scenario behind these checks.
 | [`SKILL.md`](./SKILL.md) | AI agent instructions, routing, gates and validation |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `scripts/` and `mcp-server/` |
 | [`mcp-server/README.md`](./mcp-server/README.md) | engine architecture, the public API surface, build and validation commands |
-| [`references/memory/memory-system.md`](./references/memory/memory-system.md) | detailed memory system reference |
+| [`references/memory/memory-system.md`](./references/memory/memory-system.md) | detailed retrieval and continuity reference |
 | [`references/workflows/intake-contract.md`](./references/workflows/intake-contract.md) | shared spec-folder intake contract for plan, complete and resume re-entry |
 | [`references/workflows/rename-pattern.md`](./references/workflows/rename-pattern.md) | mechanical rename workflow and live-vs-historical surface discipline |
 | [`references/workflows/spec-folder-write-recipe.md`](./references/workflows/spec-folder-write-recipe.md) | step-by-step recipe for a spec folder that passes strict validation on the first try |
@@ -686,12 +673,11 @@ The manual testing playbook runs every scenario behind these checks.
 | `AGENTS.md` (project root) | gate definitions, AI behavior framework and mandatory workflow rules |
 | `specs/` | all spec folders created by Spec Kit (`.opencode/specs` is a compat symlink to this same tree) |
 | `.opencode/commands/speckit/` | speckit command definitions |
-| `.opencode/commands/memory/` | memory command definitions |
+| `.opencode/commands/memory/` | continuity save and search command definitions |
 
 ### External Resources
 
 | Resource | Purpose |
 |---|---|
-| [Model Context Protocol](https://modelcontextprotocol.io/) | MCP specification |
-| [FSRS algorithm](https://github.com/open-spaced-repetition/fsrs4anki) | Free Spaced Repetition Scheduler, the memory decay model |
-| [sqlite-vec](https://github.com/asg017/sqlite-vec) | SQLite vector search extension |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | The free-text retrieval lane's search engine |
+| [Ollama](https://ollama.com/) | Local embedding server used by the shared embedding client and the zvec lane |

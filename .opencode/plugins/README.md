@@ -94,8 +94,8 @@ Every plugin is enabled by default. Truthy disable values are `1`, `true`, `yes`
 | Variable | Effect |
 |---|---|
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables every plugin in this folder along with every other repo hook. |
-| Per-concern `SYSTEM_<CONCERN>_DISABLED=1` | Each plugin's canonical kill-switch (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`, `SYSTEM_SPEC_MEMORY_DISABLED`). See each plugin's own README for its full env family. |
-| Legacy / plugin-specific aliases | Several plugins carry additional aliases (e.g. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, `SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED`, `OPENCODE_GOAL_PLUGIN_DISABLED`, `SK_COMMUNICATION_PROJECTION_DISABLED`, `SK_CODE_POST_EDIT_QUALITY_DISABLED`). See each plugin's own README. |
+| Per-concern `SYSTEM_<CONCERN>_DISABLED=1` | Each plugin's canonical kill-switch (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`). See each plugin's own README for its full env family. |
+| Legacy / plugin-specific aliases | Several plugins carry additional aliases (e.g. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, `OPENCODE_GOAL_PLUGIN_DISABLED`, `SK_COMMUNICATION_PROJECTION_DISABLED`, `SK_CODE_POST_EDIT_QUALITY_DISABLED`). See each plugin's own README. |
 
 Optional tuning: `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000; owned by `system-skill-advisor`), `SYSTEM_OPENCODE_TRANSFORM_DEDUP=1` (opt-in transform dedup for the advisor and memory plugins), plus per-plugin cache/budget/timeout envs documented in each plugin's README.
 

@@ -1,6 +1,6 @@
 ---
 title: "Embeddings"
-description: "Provider selection, profile resolution, the shared embedder registry and embedding provider construction for shared memory search code."
+description: "Provider selection, profile resolution, the shared embedder registry and embedding provider construction for the skill advisor's embedding client, the only live consumer."
 trigger_phrases:
   - "embeddings factory"
   - "embedding provider selection"

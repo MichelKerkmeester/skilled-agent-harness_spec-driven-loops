@@ -894,10 +894,10 @@ After the static checks above pass, run the interactive doctor surface to verify
 ```
 
 - `/doctor` opens an 11-option menu. **Option 1** is "Update everything to match latest spec-kit release" — the right pick after a fresh install (runs `/doctor:update --migrate`).
-- `/doctor:update` rebuilds every database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
+- `/doctor:update` rebuilds the generated artifacts and the advisor database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
 - `/doctor:mcp debug` checks the native MCP servers (Skill Advisor, Code Mode) and offers guided repair with `--fix`.
 
-Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory, embeddings, deep-loop, skill-advisor, skill-budget.
+Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory (the trigger index and ripgrep recipes), zvec, embeddings, deep-loop, skill-advisor, skill-budget, skill-graph-freshness, parent-skill, runtime-mirrors, fable-mode.
 
 ---
 
@@ -1062,7 +1062,7 @@ The Agent System provides specialized AI personas with defined authorities, tool
 **Available Agents (10 total):**
 | Agent           | Purpose                         | Key Capability                        |
 | --------------- | ------------------------------- | ------------------------------------- |
-| **context**     | Context retrieval & analysis    | Exploration dispatch, memory loading  |
+| **context**     | Context retrieval & analysis    | Exploration dispatch, continuity load |
 | **debug**       | Fresh-perspective debugging     | Systematic 4-phase root cause analysis|
 | **deep-research** | Iterative research loops      | Multi-round investigation and convergence |
 | **deep-review** | Iterative review loops          | Findings-first release and quality audits |
@@ -1139,7 +1139,7 @@ You have completed the installation. Here is your roadmap for getting started.
 | Category | Commands                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | Create   | `/create:agent`, `/create:changelog`, `/create:feature-catalog`, `/create:readme`, `/create:prompt`, `/create:skill`, `/create:manual-testing-playbook` |
-| Memory   | `/memory:search`, `/memory:save` |
+| Continuity | `/memory:search`, `/memory:save` |
 | SpecKit  | `/speckit:complete`, `/deep:research`, `/deep:review`, `/speckit:implement`, `/speckit:plan`, `/speckit:plan --intake-only`, `/speckit:resume` |
 | Utility  | `/agent_router` |
 
@@ -1150,7 +1150,7 @@ For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake en
 | Resource      | Location                                   | Description                   |
 | ------------- | ------------------------------------------ | ----------------------------- |
 | OpenCode Docs | https://opencode.ai/docs                   | Official documentation        |
-| Memory Skill  | `.opencode/skills/system-spec-kit/SKILL.md` | Context preservation          |
+| Continuity Skill | `.opencode/skills/system-spec-kit/SKILL.md` | Context preservation       |
 | Code Skill    | `.opencode/skills/sk-code/SKILL.md` | Frontend implementation patterns |
 | Code Skill    | `.opencode/skills/sk-code/SKILL.md` | Multi-stack implementation patterns |
 | Git Skill     | `.opencode/skills/sk-git/SKILL.md`   | Git workflows                 |

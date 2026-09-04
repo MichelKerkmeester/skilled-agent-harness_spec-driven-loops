@@ -1,10 +1,10 @@
 # Skilled - Spec-Driven Agent Loops
-# w/ Custom Skill & Memory Framework
+# w/ Custom Skill & Continuity Framework
 
 | Core layer　　　　　　　　　　 | What it adds                                                            |
 | --------------------------------| -------------------------------------------------------------------------|
 | 📋 **Spec Kit Framework**　　　| Structured plans, task tracking, validation gates, and handover docs    |
-| 🧠 **Cognitive Memory**　　　　| Local-first project memory for decisions, context, and continuity       |
+| 🧠 **Packet Continuity**　　　| Continuity that survives sessions, written into the spec packet and recovered through the continuity ladder |
 | ⚛️ **Lexical Retrieval + Skill Graph** | Trigger-index and ripgrep retrieval over spec docs, plus graph-aware skill routing |
 | 🤖 **12 Specialized Agents**　 | Focused roles for implementation, review, research, docs, git, and more |
 | 🎯 **20 On-Demand Skills**　　 | Skill Advisor routing for the right workflow at the right time          |
@@ -15,7 +15,7 @@
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
 
-- **Memory that survives context resets:** decisions, architecture and history persist across sessions, crashes and compactions
+- **Continuity that survives context resets:** decisions, architecture and history persist across sessions, crashes and compactions
 - **Verification, not vibes:** nothing counts as "done" without fresh evidence, and code-review findings get re-challenged before they stick
 - **Works the same in OpenCode and Claude Code**, with cross-CLI dispatch to five more model providers on top
 
@@ -46,7 +46,7 @@ The framework adds three layers on top of the base platform:
          │                                          │
          │  Gate 1: Context     Gate 2: Skills      │
          │  Surface relevant    Auto-load the right │
-         │  prior memory        domain expertise    │
+         │  prior context       domain expertise    │
          │                                          │
          │  Gate 3: Spec Folder (HARD BLOCK)        │
          │  Every file change needs documentation    │
@@ -162,7 +162,7 @@ The LOC ranges are guidance, not hard rules. Risk, complexity and the number of 
 
 ```text
 specs/<###-feature-name>/
-├── description.json             # Spec identity and memory tracking metadata
+├── description.json             # Spec identity and continuity metadata
 ├── spec.md                      # What the feature is and why it exists
 ├── plan.md                      # How to implement it
 ├── tasks.md                     # Step-by-step task breakdown
@@ -232,14 +232,14 @@ Run with `--verbose` to see details behind each rule or `--recursive` to validat
 - **`check-completion.sh`** - Verify all completion criteria are met
 - **`check-placeholders.sh`** - Find remaining `[PLACEHOLDER]` values after level upgrade
 
-**Memory Scripts** (in `.opencode/skills/system-spec-kit/scripts/memory/`):
+**Continuity Scripts** (in `.opencode/skills/system-spec-kit/scripts/memory/`):
 
 - **`generate-context.ts`** - Primary workflow for updating packet continuity and supporting generated context artifacts
 - **`backfill-frontmatter.ts`** - Add missing frontmatter to existing generated context artifacts and indexed spec docs
 - **`rank-memories.ts`** - Rank continuity records for retrieval ordering
 - **`validate-memory-quality.ts`** - Run quality checks on continuity content before it is written
 
-TypeScript sources compile to `.opencode/skills/system-spec-kit/scripts/dist/`. The runtime entry point for memory saves is `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`.
+TypeScript sources compile to `.opencode/skills/system-spec-kit/scripts/dist/`. The runtime entry point for continuity saves is `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`.
 
 &nbsp;
 #### Gate System
@@ -278,7 +278,7 @@ TypeScript sources compile to `.opencode/skills/system-spec-kit/scripts/dist/`. 
                      ▼
   ┌─────────────────────────────────────────────┐
   │  Post-Rules                                 │
-  │  Memory Save ─ must use generate-context.js │
+  │  Continuity Save ─ generate-context.js only │
   │  Completion ─ verify checklist.md items     │
   └─────────────────────────────────────────────┘
 ```
@@ -684,7 +684,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - Modes: `:auto`, `:confirm`
 
 **Complete**
-- End-to-end workflow: intake/delegate → research → plan → implement → verify → save memory
+- End-to-end workflow: intake/delegate → research → plan → implement → verify → save continuity
 - Smart-detects missing or unhealthy packet state and reuses the shared intake contract from `/speckit:plan --intake-only`. Healthy folders continue without extra setup prompts
 - Modes: `:auto` (fully autonomous), `:confirm` (pause at each step), `:with-research` (adds deep research)
 - After 3 failed implementation attempts, surface diagnostics and let the user dispatch `@debug` via the Task tool
@@ -701,7 +701,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - Modes: `:auto`, `:confirm`
 
 **Resume**
-- Continues a previous session by auto-loading memory from the spec folder
+- Continues a previous session by auto-loading continuity from the spec folder
 - Presents session summary, shows progress against tasks.md
 - Works after crashes, compactions or new sessions
 
@@ -718,7 +718,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 `/deep:research` only enters that chain after a real `spec.md` exists. It follows `spec-check-protocol.md` for advisory-lock handling, `folder_state` classification and bounded generated-fence sync.
 
 &nbsp;
-#### MEMORY
+#### CONTINUITY
 
 **Save**
 - Updates packet continuity and supporting generated context artifacts via `generate-context.js`
@@ -799,7 +799,7 @@ The active autonomous loop families (the improvement family carries three lanes)
 Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no target to see the interactive menu. Upgrade users see "Update everything to match latest release" as option 1.
 
 **`/doctor <target>` (router)**
-- Single entry point for 7 subsystems: `memory`, `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `fable-mode`
+- Single entry point for 10 subsystems: `memory` (checks the trigger index, its lookup and the ripgrep recipes), `zvec`, `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `skill-graph-freshness`, `parent-skill`, `runtime-mirrors`, `fable-mode`
 - Argv-positional dispatch via `.opencode/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
 - Each target loads its own self-contained YAML workflow under `assets/doctor_<target>.yaml`
 - Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
@@ -921,7 +921,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
 | `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
 | `sk-design-md-generator`                  | ✅ Codebase-agnostic                        | Standalone design-reference extraction: crawls a live URL and emits a v3 Style Reference `DESIGN.md` (named tokens, type scale, components, Quick Start CSS/Tailwind), every value measured and validated against `tokens.json`. Pairs with `sk-code` for the build. Works for any project. |
-| `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
+| `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + continuity. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
 | `system-deep-loop` | ✅ Codebase-agnostic                        | Parent hub for the unified deep-loop skill (research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking) over nested `runtime/` infrastructure. Work for any topic / target.     |
 | `sk-prompt`                                         | ✅ Codebase-agnostic                        | Prompt-engineering framework. Works for any project.                                                                                                                                                     |
@@ -1025,7 +1025,6 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 - **[→ Spec Kit README](.opencode/skills/system-spec-kit/README.md)** - Spec folder workflow, Level contract template set, validation rules
 - **[→ Spec-Kit Engine README](.opencode/skills/system-spec-kit/mcp-server/README.md)** - Validation, generated metadata and runtime hook adapters
 - **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
-- **[→ Orphan MCP Leak Prevention Packet](specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)** - Canonical implementation summary and rollout state
 - **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `system_skill_advisor` server, nine advisor/skill-graph tools and routing docs
 - **[→ Architecture](.opencode/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
 - **[→ sk-doc Skill](.opencode/skills/sk-doc/SKILL.md)** - Documentation standards, DQI scoring
@@ -1033,7 +1032,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 - **[→ Feature Catalog](.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - Current technical reference
 - **[→ Manual Testing Playbook](.opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md)** - Operator validation scenarios, including runtime lifecycle checks
 - **[→ Latest System Spec-Kit Release Notes](.opencode/skills/system-spec-kit/changelog/v3.6.0.0.md)** - Most recent shipped release notes
-- **[→ Daemon CLI Reference](.opencode/skills/system-spec-kit/references/cli/daemon-cli-reference.md)** - Full-parity CLI front doors over the three warm daemons
+- **[→ Daemon CLI Reference](.opencode/skills/system-spec-kit/references/cli/daemon-cli-reference.md)** - Full-parity CLI front doors over the warm daemons
 
 **External Resources:**
 

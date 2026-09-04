@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/spec-folder/` contains source modules used by memory save and spec-maintenance workflows. The utilities detect active spec folders, validate content-to-folder alignment, create required packet directories, generate `description.json`, and build nested changelog data for root specs or phase children.
+`scripts/spec-folder/` contains source modules used by continuity save and spec-maintenance workflows. The utilities detect active spec folders, validate content-to-folder alignment, create required packet directories, generate `description.json`, and build nested changelog data for root specs or phase children.
 
 Current state:
 
@@ -52,7 +52,7 @@ scripts/dist/spec-folder/
 
 Allowed direction:
 
-- Memory save workflows may import through `scripts/spec-folder/index.ts`.
+- Continuity save workflows may import through `scripts/spec-folder/index.ts`.
 - CLI wrappers may run compiled output from `scripts/dist/spec-folder/` after build.
 - Metadata generation may write `description.json` for a selected packet.
 
@@ -60,7 +60,7 @@ Disallowed direction:
 
 - Source modules should not import generated `dist/` files.
 - Detection logic should not override an explicit CLI target.
-- Spec-folder utilities should not own memory indexing or MCP server persistence.
+- Spec-folder utilities should not own continuity writing or packet persistence.
 
 ---
 
@@ -97,7 +97,7 @@ Expected result: prints nested changelog data for the supplied packet path when 
 node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/<###-feature-name>/
 ```
 
-Expected result: memory save workflow uses the explicit spec-folder target and supporting utilities from this folder.
+Expected result: continuity save workflow uses the explicit spec-folder target and supporting utilities from this folder.
 
 ---
 
@@ -108,7 +108,7 @@ Expected result: memory save workflow uses the explicit spec-folder target and s
 | CLI authority | Explicit folder arguments remain the selected target even if alignment scoring finds alternatives. |
 | Archive filtering | Detection filters archived folders before ranking candidates. |
 | Metadata | `generate-description.ts` owns `description.json`. Graph metadata belongs to graph-specific tooling. |
-| Persistence | These utilities prepare paths and metadata. Memory indexing stays in memory and MCP modules. |
+| Persistence | These utilities prepare paths and metadata. Writing continuity stays with `scripts/memory/generate-context.ts`. |
 
 ---
 

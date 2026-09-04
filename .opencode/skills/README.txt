@@ -68,7 +68,7 @@ Each skill name links to its own README. One-line descriptions reflect current b
 | [`system-deep-loop`](system-deep-loop/README.md) | Routes research, review, AI Council, improvement, and named-standard alignment modes through registry-selected packets over nested `runtime/` infrastructure |
 | [`system-skill-advisor`](system-skill-advisor/README.md) | Routes non-trivial requests to matching skills through standalone MCP metadata and stable advisor tool ids, with the daemon-backed `skill-advisor` CLI as fallback |
 | [`system-plugins`](system-plugins/README.md) | Carries vendored third-party engines as git subtrees of their forks, each with its own manifest and build; not a routed skill, the wrapping skill owns each engine's contract |
-| [`system-spec-kit`](system-spec-kit/README.md) | Unified spec-folder workflow plus context preservation: Levels 1-3+, strict validation, and Spec Kit Memory — required for file modifications |
+| [`system-spec-kit`](system-spec-kit/README.md) | Unified spec-folder workflow plus context preservation: Levels 1-3+, strict validation, and packet continuity with lexical retrieval. Required for file modifications |
 
 ### Runtime Plugin Skills
 
@@ -186,7 +186,7 @@ The family is the prefix before the first hyphen: `cli-*`, `mcp-*`, `sk-*` or `s
 |---|---|
 | [Main Framework README](../../README.md) | Root project overview and framework entry point |
 | [`system-skill-advisor/README.md`](system-skill-advisor/README.md) | Native advisor, MCP quick start, compatibility shim and runtime hooks |
-| [`system-spec-kit/README.md`](system-spec-kit/README.md) | Spec folder workflow, memory foundation and context preservation |
+| [`system-spec-kit/README.md`](system-spec-kit/README.md) | Spec folder workflow, continuity foundation and context preservation |
 | [`sk-code/README.md`](sk-code/README.md) | Multi-stack coding standards with surface detection and verification |
 | [`sk-git/README.md`](sk-git/README.md) | Git workflow: worktrees, Conventional Commits and PR integration |
 | [`sk-doc/README.md`](sk-doc/README.md) | Documentation quality, validation scripts and the DQI score |
