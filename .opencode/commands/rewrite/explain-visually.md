@@ -1,5 +1,5 @@
 ---
-description: Explain the prior reply or a named topic visually, at a chosen depth, using the smallest diagram that answers the question.
+description: "Explain the prior reply or a named topic as the smallest diagram that answers it, at a chosen depth."
 argument-hint: "[--depth=expert|plain|novice] [--artifact] [topic]"
 allowed-tools: Read, Write, Bash, Grep, Glob
 ---

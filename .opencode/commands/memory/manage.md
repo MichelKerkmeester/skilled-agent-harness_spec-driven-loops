@@ -1,6 +1,6 @@
 ---
-description: "Manage indexed-continuity DB: stats, scan, cleanup, retention, learned triggers, ledger sweeps, validate, checkpoint, ingest."
-argument-hint: "[scan [--force]] | [cleanup] | [retention-sweep [--dry-run]] | [learned-expire [--dry-run]] | [learned-clear] | [ledger-sweep [--dry-run] [--apply]] | [bulk-delete <tier> [--older-than <days>] [--folder <spec>]] | [tier <id> <tier>] | [triggers <id>] | [validate <id> <true|false>] | [delete <id>] | [health] | [checkpoint <subcommand>] | [ingest <subcommand>]"
+description: "Manage the indexed-continuity DB: stats, scan, cleanup, retention, learned triggers, checkpoints, ingest."
+argument-hint: "[mode] [args] [--dry-run] [--force] - omit for stats; MODE ROUTING lists every mode"
 allowed-tools: Read, mcp__system_spec_memory__memory_stats, mcp__system_spec_memory__memory_list, mcp__system_spec_memory__memory_search, mcp__system_spec_memory__memory_index_scan, mcp__system_spec_memory__memory_validate, mcp__system_spec_memory__memory_update, mcp__system_spec_memory__memory_delete, mcp__system_spec_memory__memory_bulk_delete, mcp__system_spec_memory__memory_retention_sweep, mcp__system_spec_memory__memory_learned_expire, mcp__system_spec_memory__memory_learned_clear, mcp__system_spec_memory__memory_health, mcp__system_spec_memory__checkpoint_create, mcp__system_spec_memory__checkpoint_restore, mcp__system_spec_memory__checkpoint_list, mcp__system_spec_memory__checkpoint_delete, mcp__system_spec_memory__memory_ingest_start, mcp__system_spec_memory__memory_ingest_status, mcp__system_spec_memory__memory_ingest_cancel
 ---
 
@@ -98,6 +98,6 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 The router resolves one recognized mode (defaulting to `stats`), applies the mode's confirmation gate, and dispatches to the allowed memory MCP tools for the continuity-DB lifecycle — stats, indexing, cleanup, retention, learned-trigger maintenance, ledger sweeps, tier/trigger/validation edits, deletes, health, checkpoints, and ingest — rendering every user-facing string through the presentation asset. It is a direct-dispatch command with no workflow YAML by design.
 
-Embedding-status repair is intentionally NOT a `/memory:manage` mode: it is the direct `memory_ln` MCP maintenance tool (`memory_ln({ mode: "apply" })`), which reconciles stored embeddings against the active embedder shard inside one guarded transaction and runs dry-run by default. Run it directly when `memory_health` reports `degraded_needs_repair` — this command manages the continuity-DB lifecycle, not embedding reconciliation.
+Embedding-status repair is intentionally NOT a `/memory:manage` mode: it is the direct `memory_embedding_reconcile` MCP maintenance tool (`memory_embedding_reconcile({ mode: "apply" })`), which reconciles stored embeddings against the active embedder shard inside one guarded transaction and runs dry-run by default. Run it directly when `memory_health` reports `degraded_needs_repair` — this command manages the continuity-DB lifecycle, not embedding reconciliation.
 
 Related commands: `/memory:search` (intent-aware context retrieval and analysis tools); `/memory:save` (save conversation context); `/speckit:resume` (session recovery and continuation). (`/memory:learn` is deprecated — the constitutional-memory layer was retired.)

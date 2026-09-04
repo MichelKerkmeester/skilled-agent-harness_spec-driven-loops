@@ -1,5 +1,5 @@
 ---
-description: Install or repair MCP servers via /doctor:mcp <install|debug> sub-action routing.
+description: "Install or repair MCP servers through the install and debug sub-action routes."
 argument-hint: "<install|debug> [--server <name>] [--runtime <name>] [--fix]"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---

@@ -3,7 +3,7 @@
     "command": "/create:skill",
     "ownerMode": "sk-create-skill",
     "description": "Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.",
-    "argumentHint": "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm]",
     "userIntent": {
       "job": "I want to create or update a standalone OpenCode skill package.",
       "ownedSignals": [
@@ -45,8 +45,8 @@
   {
     "command": "/create:skill-parent",
     "ownerMode": "sk-create-skill-parent",
-    "description": "Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). Modes :auto, :confirm.",
-    "argumentHint": "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "description": "Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). :auto/:confirm.",
+    "argumentHint": "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto|:confirm]",
     "userIntent": {
       "job": "I want to scaffold or update a parent skill hub with nested mode packets.",
       "ownedSignals": [
@@ -89,7 +89,7 @@
     "command": "/create:readme",
     "ownerMode": "sk-create-readme",
     "description": "Unified folder README and install guide creation with sk-doc quality standards. Modes :auto, :confirm.",
-    "argumentHint": "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm]",
     "userIntent": {
       "job": "I want to write a current-state README or install guide for a folder.",
       "ownedSignals": [
@@ -157,7 +157,7 @@
     "command": "/create:command",
     "ownerMode": "sk-create-command",
     "description": "Create or update OpenCode slash command sets with :auto/:confirm workflow assets.",
-    "argumentHint": "<command_invocation> [command_request] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<command_invocation> [command_request] [:auto|:confirm]",
     "userIntent": {
       "job": "I want to create or update an OpenCode slash command with routed workflow assets.",
       "ownedSignals": [
@@ -191,7 +191,7 @@
     "command": "/create:feature-catalog",
     "ownerMode": "sk-create-feature-catalog",
     "description": "Create or update feature catalog packages via one unified command. Modes :auto, :confirm.",
-    "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm]",
     "userIntent": {
       "job": "I want to build a feature catalog with auditable per-feature documentation.",
       "ownedSignals": [
@@ -225,7 +225,7 @@
     "command": "/create:manual-testing-playbook",
     "ownerMode": "sk-create-manual-testing-playbook",
     "description": "Create or update manual testing playbook packages via one unified command. Modes :auto, :confirm.",
-    "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm]",
     "userIntent": {
       "job": "I want to author a deterministic manual testing playbook with evidence capture.",
       "ownedSignals": [
@@ -259,7 +259,7 @@
     "command": "/create:benchmark",
     "ownerMode": "sk-create-benchmark",
     "description": "Author or update family-keyed benchmark packages. Modes :auto, :confirm.",
-    "argumentHint": "<skill-or-mode> <spec-packet> [create|update] --family=<FAMILIES-key> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<skill-or-mode> <spec-packet> [create|update] --family=<family> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto|:confirm]",
     "userIntent": {
       "job": "I want to author benchmark artifacts, fixtures, or conformance packages for a skill or mode.",
       "ownedSignals": [
@@ -293,7 +293,7 @@
     "command": "/create:changelog",
     "ownerMode": "sk-create-changelog",
     "description": "Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.",
-    "argumentHint": "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm]",
     "userIntent": {
       "job": "I want to create a global or packet-local changelog with release notes.",
       "ownedSignals": [
@@ -327,7 +327,7 @@
     "command": "/create:diff",
     "ownerMode": "sk-create-diff",
     "description": "Create a self-contained before/after document diff report via the create-diff engine. Modes :auto, :confirm.",
-    "argumentHint": "<target-document | --before old --after new> [--report out.html] [--view unified|side-by-side] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<target-document | --before old --after new> [--report out.html] [--view unified|side-by-side] [:auto|:confirm]",
     "userIntent": {
       "job": "I want to compare document versions and produce a self-contained HTML diff report.",
       "ownedSignals": [
@@ -360,8 +360,8 @@
   {
     "command": "/create:diagram",
     "ownerMode": "sk-create-diagram",
-    "description": "Create an HTML/SVG technical diagram across 27 types, create an ASCII/markdown flowchart, or redraw an existing draw.io/Mermaid source. Modes :auto, :confirm.",
-    "argumentHint": "<target-diagram.html|target-flowchart.md> [description | --import source-file] [--output-format html-svg|ascii-markdown] [--type <diagram-type>] [--format png|svg|html+png for export] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "description": "Create an HTML/SVG diagram (27 types), ASCII/markdown flowchart, or draw.io/Mermaid redraw. :auto/:confirm.",
+    "argumentHint": "<target.html|target.md> [description|--import <src>] [--output-format html-svg|ascii-markdown] [--type <t>] [--format <f>] [:auto|:confirm]",
     "userIntent": {
       "job": "I want a self-contained HTML/SVG diagram of a system, process, or data model, or a redraw of an existing draw.io/Mermaid source.",
       "ownedSignals": [
@@ -396,7 +396,7 @@
     "command": "/create:chart",
     "ownerMode": "sk-create-chart",
     "description": "Author a standalone HTML chart from a catalog of 21 forms, one per reader question. :auto/:confirm.",
-    "argumentHint": "<target-chart.html> <what the reader compares> [--form <catalog-id>] [--system neutral|ordered|categorical] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<target-chart.html> <what the reader compares> [--form <catalog-id>] [--system neutral|ordered|categorical] [:auto|:confirm]",
     "userIntent": {
       "job": "I want a standalone HTML chart that plots values a reader compares.",
       "ownedSignals": [
@@ -440,7 +440,7 @@
     "command": "/create:repo-rule",
     "ownerMode": "sk-create-repo-rule",
     "description": "Create, revise or retire a repo rule under repo-rules/, wired into REPO RULES.md. :auto/:confirm.",
-    "argumentHint": "<what the rule should bind> [create|revise|retire] [--rule <name>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<what the rule should bind> [create|revise|retire] [--rule <name>] [:auto|:confirm]",
     "userIntent": {
       "job": "I want a repo-local rule that binds before an action, or I want to change or remove one.",
       "ownedSignals": [
@@ -471,7 +471,7 @@
       }
     ],
     "discriminator": {
-      "whenToUse": "Use this command when the deliverable constrains what may be done before an action \u2014 a rule loaded by a trigger table.",
+      "whenToUse": "Use this command when the deliverable constrains what may be done before an action — a rule loaded by a trigger table.",
       "preferSiblingWhen": [
         {
           "sibling": "/create:skill",
@@ -488,7 +488,7 @@
     "command": "/create:with-human-voice",
     "ownerMode": "sk-create-with-human-voice",
     "description": "Apply or score prose against the Human Voice Rules with a scope gate and a re-scan. :auto/:confirm.",
-    "argumentHint": "<file or passage> [apply|score] [--include-code] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "argumentHint": "<file or passage> [apply|score] [--include-code] [:auto|:confirm]",
     "userIntent": {
       "job": "I want prose brought up to the Human Voice Rules, or told how far off it is.",
       "ownedSignals": [

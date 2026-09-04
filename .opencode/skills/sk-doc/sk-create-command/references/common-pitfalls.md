@@ -54,12 +54,12 @@ Choose the component type before drafting.
 | Omitting `argument-hint` for required input | Users cannot see what the invocation expects | Add a precise hint with `<required>` and `[optional]` parts |
 | Using a required hint without a gate | The command may infer missing input from context | Put the blocking gate immediately after frontmatter |
 | Treating `:auto` as permission to guess | Autonomous runs can fabricate missing decisions | Fail fast or ask targeted questions when required data is missing |
-| Putting dashboards in the router | Routing logic becomes hard to audit and presentation cannot evolve independently | Move visible wording to `_presentation.txt` |
+| Putting dashboards in the router | Routing logic becomes hard to audit and presentation cannot evolve independently | Move visible wording to `-presentation.txt` |
 | Changing behavior while splitting presentation | A refactor becomes a hidden semantic change | Move wording without changing routing, modes, gates, or permissions |
 | Over-broad `allowed-tools` | The command can use tools outside its contract | Reduce the list to the tools actually required |
 | Using bare MCP names in `allowed-tools` | Runtime tool resolution can drift from the configured namespace | Use fully qualified `mcp__<server>__<tool>` IDs |
 | Writing a multi-line description | Help output and metadata consumers expect a single-line summary | Keep `description` one line and move detail into the body |
-| Adding workflow YAML to every split command | Direct-router command families may not need YAML execution assets | Add `_auto.yaml` and `_confirm.yaml` only when the family routes to workflow assets |
+| Adding workflow YAML to every split command | Direct-router command families may not need YAML execution assets | Add `-auto.yaml` and `-confirm.yaml` only when the family routes to workflow assets |
 | Embedding rationale or meta-commentary in the router body | Design notes, prose-register/framework labels (e.g. "(COSTAR)"), benchmark timings, maintainer sync chores, or "no gap exists" self-attestations are noise a user sees rendered and drift from the truth | Keep the body behavioral; move rationale to the decision-record/changelog and any render-style rule to the presentation asset |
 
 ---

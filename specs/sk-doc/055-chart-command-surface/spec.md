@@ -118,6 +118,18 @@ closed together once the whole fix was authorized.
 | REQ-010 | `/create:diagram` passes `validate_document.py --type command` with no issues, without losing any flag or artifact family it accepts |
 | REQ-011 | Both command catalogs under `.opencode/commands/` list every command in the tree, with correct group counts and structure trees |
 
+### P1 - Added by the pass that closed the fifteen remaining commands
+
+The pass above fixed only what a rule could fix, and recorded fifteen commands
+as needing an authored judgment. That judgment was then asked for, so the
+remainder is a requirement rather than a limitation.
+
+| ID | Requirement |
+|----|-------------|
+| REQ-012 | Every command document in the tree passes `validate_document.py --type command` with no issues, and no shortened hint or description drops a flag, mode or sub-action the command accepts |
+| REQ-013 | Every router matches its family's contract entry: the canonical sections in order, the three frontmatter keys, and an owned-assets and execution-targets table whose every named file exists on disk |
+| REQ-014 | Every tool and file named inside the command tree resolves on disk, and any reference that still does not names an artifact owned by another tree, recorded with its owner |
+
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->

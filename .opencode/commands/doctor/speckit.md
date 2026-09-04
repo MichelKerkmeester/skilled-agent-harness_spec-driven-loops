@@ -1,5 +1,5 @@
 ---
-description: Router for /doctor <target>; dispatches subsystem diagnostics through _routes.yaml.
+description: "Router for /doctor: dispatches subsystem diagnostics to a named target through _routes.yaml."
 argument-hint: "<target> [flags] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__system_spec_memory__memory_context, mcp__system_spec_memory__memory_search, mcp__system_spec_memory__memory_health, mcp__system_spec_memory__memory_drift_why, mcp__system_spec_memory__memory_stats, mcp__system_spec_memory__embedder_status, mcp__system_spec_memory__memory_causal_stats, mcp__system_spec_memory__memory_causal_link, mcp__system_skill_advisor__advisor_recommend, mcp__system_skill_advisor__advisor_status, mcp__system_skill_advisor__advisor_validate, mcp__system_skill_advisor__advisor_rebuild, mcp__system_skill_advisor__skill_graph_scan, mcp__system_skill_advisor__skill_graph_validate, mcp__system_skill_advisor__skill_graph_query, mcp__system_skill_advisor__skill_graph_status
 ---

@@ -171,18 +171,20 @@ For a split mode-based workflow command, create or update:
 
 ```text
 .opencode/commands/<namespace>/<action>.md
-.opencode/commands/<namespace>/assets/<namespace>_<action>_presentation.txt
-.opencode/commands/<namespace>/assets/<namespace>_<action>_auto.yaml
-.opencode/commands/<namespace>/assets/<namespace>_<action>_confirm.yaml
+.opencode/commands/<namespace>/assets/<namespace>-<action>-presentation.txt
+.opencode/commands/<namespace>/assets/<namespace>-<action>-auto.yaml
+.opencode/commands/<namespace>/assets/<namespace>-<action>-confirm.yaml
 ```
 
-Use `_auto.yaml` and `_confirm.yaml` only for workflow-backed families that route execution into workflow assets. Direct-router families dispatch directly to tools/scripts and do not need workflow YAML.
+Use `-auto.yaml` and `-confirm.yaml` only for workflow-backed families that route execution into workflow assets. Direct-router families dispatch directly to tools/scripts and do not need workflow YAML.
+
+**Asset stems are hyphen-joined, never underscore-joined.** The stem carries the namespace, the action and the kind: `create-readme-auto.yaml`, `speckit-plan-presentation.txt`, `deep-research-confirm.yaml`. A family whose action names already read unambiguously on their own drops the namespace and names assets `<action>-<kind>` — `memory` ships `save-presentation.txt`, `design` ships `extract-auto.yaml`. Follow the family you are extending; a new family takes the namespace prefix. The contract's `metadata.asset_naming` carries the same rule in machine-readable form, and `generate-command-routers.cjs --check` compares each router's tables against it.
 
 For a compiled-stub router, the `.md` is a generated thin stub carrying the `render-command-contract` marker; its section shape is rendered from a compiled source at invocation, not authored in the file. Do not hand-write section headings into a compiled stub, and keep its owned presentation/workflow assets alongside it:
 
 ```text
 .opencode/commands/<namespace>/<action>.md            # compiled stub (render-command-contract marker)
-.opencode/commands/<namespace>/assets/<namespace>_<action>_presentation.txt
+.opencode/commands/<namespace>/assets/<namespace>-<action>-presentation.txt
 ```
 
 ### Step 6: Author Frontmatter First
@@ -322,11 +324,11 @@ Interactive mode pauses after each step for approval, presents options such as a
 
 If the mode-based command is large or has visible dashboards/prompts/results, use the router/presentation split.
 
-**Mode completeness.** Every mode a command advertises must be fully realized, not merely reachable. For each mode in the argument hint (`:auto`, `:confirm`), the command must have both its workflow asset (the `_auto.yaml` / `_confirm.yaml`) and an EXECUTION TARGETS row that resolves the mode to that asset. A hint that lists `:auto` with no `_auto.yaml` or no `:auto` execution row is incomplete — a reader cannot route the advertised mode — so declare only the modes you have wired end to end.
+**Mode completeness.** Every mode a command advertises must be fully realized, not merely reachable. For each mode in the argument hint (`:auto`, `:confirm`), the command must have both its workflow asset (the `-auto.yaml` / `-confirm.yaml`) and an EXECUTION TARGETS row that resolves the mode to that asset. A hint that lists `:auto` with no `-auto.yaml` or no `:auto` execution row is incomplete — a reader cannot route the advertised mode — so declare only the modes you have wired end to end.
 
 ### Step 11: Author The Router As A First-Class Command Type
 
-A router is a first-class command type, not a loose refactor. Its `.md` is a thin dispatcher: verify the orchestrating agent, resolve mode and arguments, then hand off to owned assets (a presentation `.txt`, optional `_auto.yaml` / `_confirm.yaml`, or scripts). It carries no inline dashboards, prompts, or result templates.
+A router is a first-class command type, not a loose refactor. Its `.md` is a thin dispatcher: verify the orchestrating agent, resolve mode and arguments, then hand off to owned assets (a presentation `.txt`, optional `-auto.yaml` / `-confirm.yaml`, or scripts). It carries no inline dashboards, prompts, or result templates.
 
 **Detection signature.** The validator treats a command as a router when any of:
 
@@ -353,7 +355,7 @@ Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Executi
 
 **Variants (one type, differing only by hand-off — not by required sections). Each maps to the contract's `topology` field:**
 
-- Workflow-YAML-backed (`topology: mode-pair`) — routes execution into `_auto.yaml` / `_confirm.yaml` workflow assets; EXECUTION TARGETS is the `| Mode | Target |` table.
+- Workflow-YAML-backed (`topology: mode-pair`) — routes execution into `-auto.yaml` / `-confirm.yaml` workflow assets; EXECUTION TARGETS is the `| Mode | Target |` table.
 - Direct-dispatch-script (`topology: direct-dispatch`) — dispatches directly to tools or scripts, no workflow YAML; the mode table is not required.
 - Subaction route-manifest (`topology: subaction-route-manifest`) — a direct-dispatch router that resolves sub-actions through an owned `_routes.yaml` manifest.
 - Compiled-stub — a generated stub carrying the `render-command-contract` marker whose contract is rendered at invocation; exempt from authored section requirements (retained variant; no command currently uses it).
@@ -470,7 +472,7 @@ Use these only for overflow detail, long examples, and exact skeletons:
 - `references/common-pitfalls.md` - command-vs-skill-vs-agent selection and the common command-authoring mistakes table.
 - `assets/command-template.md` - exhaustive command type templates, examples, vocabulary, and validation checklist.
 - `assets/command-router-template.md` - canonical numbered router skeleton with variant call-outs.
-- `assets/command-presentation-template.md` - full `_presentation.txt` skeleton for split command families.
+- `assets/command-presentation-template.md` - full `-presentation.txt` skeleton for split command families.
 - `assets/command-contract.json` / `assets/command-contract.schema.json` - machine-readable behavioral contract for the command families and its schema.
 - `../shared/references/core-standards.md` - shared document quality standards.
 - `../shared/references/validation.md` - shared validation expectations.

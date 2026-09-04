@@ -1,6 +1,7 @@
 ---
 description: "Unified continuity retrieval: spec-doc search, baselines, memory causal graph, ablations, dashboards."
-argument-hint: "<query> [--intent <type>|--intent=<type>] | preflight <specFolder> <taskId> | postflight <specFolder> <taskId> | history <specFolder> | causal <memoryId> | link <sourceId> <targetId> <relation> | unlink <edgeId> | causal-stats | ablation | dashboard"
+argument-hint: "<query> [--intent=TYPE] | <analysis-subcommand> [args] - EXECUTION TARGETS lists every subcommand"
+allowed-tools: Read, Bash, mcp__system_spec_memory__memory_context, mcp__system_spec_memory__memory_quick_search, mcp__system_spec_memory__memory_search, mcp__system_spec_memory__memory_match_triggers, mcp__system_spec_memory__memory_get_learning_history, mcp__system_spec_memory__memory_drift_why, mcp__system_spec_memory__memory_causal_link, mcp__system_spec_memory__memory_causal_unlink, mcp__system_spec_memory__memory_causal_stats, mcp__system_spec_memory__task_preflight, mcp__system_spec_memory__task_postflight, mcp__system_spec_memory__eval_run_ablation, mcp__system_spec_memory__eval_reporting_dashboard
 ---
 
 # /memory:search

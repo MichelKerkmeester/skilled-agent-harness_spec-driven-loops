@@ -1,6 +1,6 @@
 ---
 description: "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm."
-argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--convergence=N] [--convergence-mode=default|off|sliding-window|divergent] [--lineage-timeout-hours=N] [--stop-policy=convergence|max-iterations] [--no-resource-map] [--dry-run] [--executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] [--iters=N] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, mcp__system_spec_memory__memory_context, mcp__system_spec_memory__memory_search
 ---
 
@@ -89,6 +89,31 @@ Your job is to DISPATCH `deep-research` to run ONE iteration of the research loo
 6. For no suffix, use the presentation contract's consolidated setup prompt to choose execution mode and bind missing setup values, then route the resolved interactive choice to the matching YAML.
 7. Lightweight read-only discovery for related spec folders or prior memory may support setup, but it must feed the single consolidated prompt and never split setup questions.
 8. After the selected workflow asset is loaded, execute it step by step using the resolved setup values.
+
+### Workflow Flag Surface
+
+The argument hint names the invocation shape; the whole flag surface is here. Every flag below
+is a workflow input, never an execution mode, and the presentation asset owns how each one binds
+into `config`.
+
+| Flag | Value | Effect |
+|------|-------|--------|
+| `--spec-folder` | `PATH` | Binds the packet that owns this run's writes. |
+| `--max-iterations` | `N` | Hard ceiling on loop iterations. |
+| `--convergence` | `N` | Threshold the loop must clear before convergence may stop it. |
+| `--convergence-mode` | `default` \| `off` \| `sliding-window` \| `divergent` | `default` keeps the anti-convergence `minIterations` floor. `off` disables convergence-driven STOP while max-iterations, pause and halt stay active. `sliding-window` scores novelty over a bounded window, five snapshots by default, on the ordinary legal-stop path. `divergent` sends a `composite_converged` or `all_questions_answered` stop into a one-round three-seat Council pivot instead of ending the run, at proportionally higher cost. |
+| `--lineage-timeout-hours` | `N` | See Lineage Timeout Flag below. |
+| `--stop-policy` | `convergence` \| `max-iterations` | See Stop Policy Flag below. |
+| `--no-resource-map` | no value | Suppresses the `research/resource-map.md` write; `research.md` still emits. |
+| `--dry-run` | no value | See Dry-Run Flag below. |
+| `--executor` | `TYPE` | Selects the executor kind, and is repeatable. Each occurrence opens a group accepting `--model=X`, `--config-dir=PATH`, `--reasoning-effort=LEVEL`, `--service-tier=TIER`, `--executor-timeout=SECONDS`, `--iters=N`, `--count=N` and `--label=X`. Which of those a given kind supports, and the fail-fast on an unsupported pairing, are in the presentation asset. |
+| `--executors` | `JSON` | Escape hatch declaring the whole fan-out matrix in one value instead of repeated `--executor` groups. |
+| `--concurrency` | `N` | Caps concurrent lineages in the fan-out pool. Default `2`. |
+
+Fan-out policy: zero or one `--executor` and no `--executors` runs the single-executor path;
+two or more `--executor` flags, an `--executors` value, or any `--count` above 1 switches to
+fan-out, one independent lineage per label. Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in
+the prompt body binds the same values without an interactive prompt.
 
 ### Lineage Timeout Flag
 

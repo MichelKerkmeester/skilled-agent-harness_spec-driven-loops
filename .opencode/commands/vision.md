@@ -1,5 +1,5 @@
 ---
-description: "On-device vision for your most recent image: scene read, caption, and exact OCR — or a direct answer to your question. Local, private, no model switch."
+description: "On-device read of your latest image: scene, caption and exact OCR, or a direct answer. No model switch."
 argument-hint: "[question about your most recent image] — omit for a full read"
 allowed-tools: Read
 ---
@@ -27,7 +27,7 @@ Give the user a fast, private read of an image they attached — a screenshot, e
 
 ---
 
-## 3. HOW TO RESPOND
+## 3. INSTRUCTIONS
 
 1. **Question given** (`$ARGUMENTS` non-empty) → answer it directly and concisely, grounded in the evidence. Lead with the answer, then the supporting detail.
 2. **No question** (bare `/vision`) → give a short structured read: what the image is, its key elements or layout, and any text it contains.

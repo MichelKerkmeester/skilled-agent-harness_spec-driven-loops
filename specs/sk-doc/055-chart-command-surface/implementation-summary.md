@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "specs/sk-doc/055-chart-command-surface"
-    last_updated_at: "2026-09-04T09:05:00Z"
+    last_updated_at: "2026-09-04T12:55:00Z"
     last_updated_by: "implementation"
-    recent_action: "Shipped /create:chart and refreshed sk-doc routing"
-    next_safe_action: "Commit; the two open questions in spec.md section 10 are now answered and closed"
+    recent_action: "All 39 command documents validate clean; every router conforms to its contract"
+    next_safe_action: "Commit, then hand over the three items in Known Limitations"
     blockers: []
     key_files:
       - ".opencode/commands/create/chart.md"
@@ -27,6 +27,10 @@ _memory:
       - ".opencode/commands/README.txt"
       - ".opencode/commands/create/README.txt"
       - ".opencode/commands/create/diagram.md"
+      - ".opencode/commands/deep/research.md"
+      - ".opencode/commands/memory/learn.md"
+      - ".opencode/commands/speckit/plan.md"
+      - ".opencode/commands/scripts/validate-command-references.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-055-chart-command-surface"
@@ -94,6 +98,23 @@ Editing the hub `SKILL.md` and `mode-registry.json` invalidates the activation m
 | `emitted-name-contract.json`, `test_emitted_name_contract.py` | Modified | Asset roster plus three names, YAML count 26 to 28 |
 | `.opencode/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json` | Modified | Refreshed activation manifest |
 | `019-skill-routing-refactor/015-router-unification-program/**` | Modified | Authored manifest copy, rebuilt canary artifacts, three re-pinned digests |
+
+Added by the pass that closed the remaining fifteen commands:
+
+| File | Change | Note |
+|------|--------|------|
+| `deep/research.md`, `deep/review.md`, `deep/ai-council.md`, `deep/model-benchmark.md` | Modified | Hint cut to the family-contract shape; the full flag surface moved into MODE ROUTING |
+| `deep/skill-benchmark.md` | Modified | Description trimmed under the soft target |
+| `speckit/plan.md`, `speckit/complete.md`, `speckit/implement.md` | Modified | Hint and description trimmed; flag surface moved into MODE ROUTING |
+| `memory/manage.md` | Modified | Hint and description trimmed, and `memory_ln` corrected to `memory_embedding_reconcile` |
+| `memory/search.md` | Modified | Hint trimmed, and the missing `allowed-tools` key added from the tools its body binds |
+| `memory/learn.md` | Modified | Rebuilt as the six-section router its family contract already claimed, owning `learn-presentation.txt` |
+| `vision.md` | Modified | Description trimmed; `HOW TO RESPOND` renamed to the canonical `INSTRUCTIONS` |
+| `create/changelog.md` | Modified | Missing `allowed-tools` key added from what its workflow YAMLs actually use |
+| `doctor/mcp.md`, `doctor/speckit.md` | Modified | Descriptions rephrased without angle brackets |
+| `rewrite/explain-visually.md` | Modified | Description trimmed under the soft target |
+| `doctor/assets/doctor-mcp-install.yaml` | Modified | `install_guide` repointed to where the file actually sits |
+| `scripts/validate-command-references.cjs` | Modified | Runtime allowlist widened to the six runtimes that ship an agents tree |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -124,6 +145,10 @@ One check failed and was diagnosed rather than dismissed. The chart corpus check
 | Fix the catalogs by hand and reject the derived-catalog remedy | `command-metadata.json` reaches only 20 of the 39 commands, and it is a second hand-kept copy of the frontmatter that had already drifted from it. Deriving from it would relocate the staleness, not end it |
 | Bring `/create:diagram` to zero warnings by relocating detail, not dropping it | The over-budget argument hint held real flags. They moved into the router body, which is what the validator's own fix hint prescribes, so the hint summarizes and no capability left the document |
 | Fix only the mechanical warnings on commands outside this packet | The deprecated `$ARGUMENTS` echo and the repeated setup-answers boilerplate are identical everywhere they appear and carry no per-command meaning. Every remaining warning needs an authored judgment about which capability signal to shorten, so those are reported rather than guessed |
+| Reversed later: author the judgment for all fifteen | The judgment was asked for, so the reason to defer was gone. Each was decided on its own evidence rather than by a rule, which is why the fixes differ: three routers needed a flag table, two needed a section, two needed a frontmatter key, and two needed nothing but different words |
+| Ground every flag description in a source rather than inferring an effect | Writing a plausible effect for a flag is the failure mode a flag table invites. Each cell came from the feature catalog, the convergence reference, the presentation asset or the workflow YAML; where a flag's effect was not documented anywhere, the table carries its value grammar and points at the presentation asset that owns the binding |
+| Correct `memory_ln` rather than leave a documented recovery path broken | It appears once in the whole repository and matches no registered tool, so the recovery for `degraded_needs_repair` could not be followed. `memory_embedding_reconcile` matches the sentence's description verbatim, so this was a naming error with one right answer, not a design choice |
+| Widen the reference checker's runtime allowlist rather than delete the reference it rejected | The checker named three runtimes; six ship a populated `agents/` tree, and the reference it rejected pointed at a real one. The comment says the rule exists to catch a phantom directory, so a runtime the repository grew later is the false positive, not the target |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -164,6 +189,24 @@ One check failed and was diagnosed rather than dismissed. The chart corpus check
 | Roster count across all six runtime surfaces | 14 of 14 in `.opencode`, `.claude`, `.pi`, `.codex`, `.cursor`, `.devin` |
 | `check-corpus.cjs --render` | `RESULT: PASSED`, errors 0, exit 0, run serially |
 | Advisor probes, 6 chart prompts | 4 surface `sk-doc` with a compiled route to `sk-create-chart`. Before the change, 3 surfaced with no compiled route at all |
+
+Added by the pass that closed the remaining fifteen commands. Every command was run from the repository root against the final state, with output written to a file and the exit status read directly rather than through a pipe.
+
+| Check | Before | After |
+|-------|--------|-------|
+| `validate_document.py --type command`, all 39 commands | 24 clean, 15 carrying 23 issues | 39 clean, `Total issues: 0` on every one |
+| `generate-command-routers.cjs --check` | exit 1, `routers=31 clean=30 path-drift=1 shape-drift=1` | exit 0, `routers=32 clean=32 path-drift=0 shape-drift=0` |
+| Contract conformance audit over every router | not previously run | `routers=32 asset_refs=153 missing=0`; sections, order, numbering and frontmatter keys all conform |
+| `validate-command-references.cjs` | exit 1, 8 unresolved | exit 1, 6 unresolved, all one missing skills-side template |
+| `command-catalog-mirror-check.cjs` | exit 0, 4 prose divergences | exit 0, 10 prose divergences; the 6 new ones are the deep metadata handover in Known Limitations |
+| `route-validate.sh` | not re-run before | exit 0, 10 routes, 13 PASS rows, 2 warnings |
+| `sync-prompts.cjs`, then `--check` | 37 in sync | wrote 0 of 37, `--check` PASS. Prompts are generated stubs and needed no rewrite |
+| `sync-runtime-mirrors.cjs`, then `--check` | 173 in sync | linked 0, removed 0, `--check` PASS across 8 trees |
+| `node` over the 4 doctor script test suites | not re-run before | 4 of 4 exit 0 |
+| Advisor vitest, 3 command suites | 9 passed | 9 passed, exit 0 |
+| `agent-roster-mirror-check.cjs`, `parent-skill-check.cjs`, `skill-graph-freshness.cjs` | not re-run before | exit 0 each |
+| `audit_descriptions.py` | not re-run before | exit 0; no command is over the soft target, and the 5 that are are skills and one agent |
+| Command description budget | 4,045 chars | 3,748 chars, 297 returned to the project total |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -175,8 +218,15 @@ One check failed and was diagnosed rather than dismissed. The chart corpus check
 2. **Closed: the `@markdown` agent roster now names all fourteen.** It listed ten, missing chart, diff, repo-rule and with-human-voice, and its own contract returns `STATUS=FAIL ERROR=unsupported-create-template` for a template it does not list, so the agent path was closed for four commands. All four were added to the invocation list and the command template map, the dispatch contract's count moved from ten to fourteen, and the Codex and Pi mirrors were rebuilt by their own sync scripts rather than by hand. Cursor and Devin are symlinks into the Claude tree and followed automatically.
 3. **Closed: both command catalogs match the command tree.** They were staler than first recorded. The `create/` index was missing four commands, and the root index was missing three plus the entire `rewrite` group and the root `vision` command, with its group counts and structure tree wrong as well. Both were brought up to date and now validate at 0 issues. The proposed remedy of deriving them from `command-metadata.json` was rejected: it covers 20 of 39 commands, and it is itself a hand-kept copy of the frontmatter that had already drifted. A checker over the frontmatter is the proportionate guard and is proposed below rather than built.
 4. **A code comment in the chart validator still says "twenty forms".** It sits at `check-corpus.cjs:581` inside the packet this change deliberately did not touch, and it describes a historical rationale rather than a live count.
-5. **Fifteen commands still carry document warnings.** Every mechanical warning is gone: the deprecated `User request: $ARGUMENTS` echo across 13 commands, and the repeated setup-answers boilerplate that pushed 11 argument hints over budget. What remains needs an authored decision per command rather than a rule: nine hints in `deep`, `memory` and `speckit` enumerate a genuinely long flag surface, 244 to 548 chars, that has to move into each router body, and nine descriptions run 7 to 51 chars over the soft target, and `memory/learn.md` and `vision.md` are each missing required sections. Two more, `doctor/mcp.md` and `doctor/speckit.md`, warn on angle brackets in the description, which the validator itself calls valid `<arg>` notation pending a human confirmation, so there is nothing to fix there.
-6. **No checker guards the catalogs.** Nothing in the repository asserts that a command file has a row in its index, which is why both went stale unnoticed. The neighbouring agent surface already has exactly this guard in `agent-roster-mirror-check.cjs`, and a catalog equivalent reading command frontmatter would be about the same size. It is not built here because it would add a script outside this packet's surface.
+5. **Closed: every command document now validates at zero issues.** The fifteen were fixed one at a time, since each needed the judgment a rule could not supply. Nine over-long hints were cut to the shape their family contract prescribes, and the flag surface each one stopped naming moved into a `Workflow Flag Surface` table in that router's MODE ROUTING, with the value grammar intact. Nine descriptions were trimmed under the soft target, which returned 297 chars to the project budget. `memory/learn.md` was rebuilt as the six-section router its family contract already claimed it was, and `vision.md`'s response section took the canonical `INSTRUCTIONS` name its non-router siblings use. The two angle-bracket warnings were real after all: both descriptions were rephrased without brackets, losing no meaning, because the validator emits that warning on any bracket and zero was the bar.
+6. **A checker for the catalogs now exists but is uncommitted.** `command-catalog-mirror-check.cjs` covers what this row asked for, reporting `STATUS=OK` with all four catalogs and both hub metadata files at full coverage. It is untracked in the working tree and was not written by this pass, so it is recorded here rather than claimed.
+
+7. **Six deep-command entries in `system-deep-loop/command-metadata.json` now disagree with their frontmatter.** Trimming the `deep` hints and descriptions moved them away from the hand-kept copies in that file. `command-catalog-mirror-check.cjs` reports the divergence and names the repair direction itself: the command frontmatter is the source, and the hub metadata entry is what must follow. The file sits under `.opencode/skills/`, which this pass was scoped out of, so the six values are handed over rather than applied. Default run stays exit 0; `--strict` fails on 10, the other 4 being pre-existing `sk-doc` create entries.
+
+8. **Six workflow assets reference a spec template that has never existed.** `create-feature-catalog`, `create-manual-testing-playbook` and `create-skill-parent`, in both their auto and confirm YAMLs, list `system-spec-kit/templates/examples/level-2/checklist.md` among the templates they load. No level ships a `checklist.md` — not level-1, level-2, level-3 or level-3+ — and the path was already absent at the previous commit. This is the one reference-gate failure the pass could not close: creating the template means writing under `.opencode/skills/`, and repointing the six references means choosing a substitute that does not exist. The instruction to create `checklist.md` is itself correct, so deleting the lines would lose real behaviour.
+
+9. **`/speckit:resume` does not support three modes its family contract declares.** The speckit entry lists `:autopilot`, `:unattended` and `--unattended` in `mode_matrix.supported_modes`, and `resume` implements none of them — its hint offers `:auto` and `:confirm` only, and neither of its workflow YAMLs mentions autopilot. The contract's `overrides` array can vary `default_policy` per command but not `supported_modes`, so either the schema needs a per-command mode override or `resume` is under-implemented. The contract is read-only to this pass, so the mismatch is reported rather than resolved.
+
 <!-- /ANCHOR:limitations -->
 
 ---

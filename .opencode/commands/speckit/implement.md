@@ -1,6 +1,6 @@
 ---
-description: "Implementation workflow (9 steps): execute pre-planned work. Requires plan.md. Modes :auto, :confirm, :autopilot/:unattended/--unattended."
-argument-hint: "<spec-folder> [:auto|:confirm|:autopilot|:unattended|--unattended] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup; :autopilot/:unattended/--unattended preserves the branch on hard failure)"
+description: "Implementation workflow, 9 steps: execute pre-planned work from plan.md. Modes :auto, :confirm, :autopilot."
+argument-hint: "<spec-folder> [:auto|:confirm|:autopilot|:unattended|--unattended] [--phase-folder=PATH]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__system_spec_memory__memory_search, mcp__system_spec_memory__memory_save, opencode_goal, opencode_goal_status
 ---
 
@@ -35,6 +35,19 @@ Load the presentation contract before showing startup questions, checkpoints, da
 5. For `:autopilot`, `:unattended`, or `--unattended`, bind execution mode to `autopilot`; do not alias it to `:auto`.
 6. Validate that the target has the required planning artifacts before executing the workflow asset.
 7. Load the selected workflow asset and execute it step by step.
+
+### Workflow Flag Surface
+
+The argument hint names the invocation shape; the whole flag surface is here. Every entry below
+is a workflow input, never an execution mode.
+
+| Input | Value | Effect |
+|-------|-------|--------|
+| `<spec-folder>` | `PATH` | The packet to implement. It must already carry `plan.md`. |
+| `--phase-folder` | `PATH` | Targets one phase child of that packet instead of the parent. |
+
+Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in the prompt body binds the required setup
+values without an interactive prompt.
 
 ---
 

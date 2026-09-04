@@ -838,7 +838,7 @@ The memory, speckit, create, doctor, and deep command families split each comman
 | Asset | Owns |
 |-------|------|
 | `<command>.md` (thin router) | Mode resolution, owned-assets table, routing logic, and any Phase 0 / mandatory-input gate. Contains NO presentation content. |
-| `assets/<ns>_<command>_presentation.txt` | Startup prompts, dashboards and checkpoints, result templates, and next-step wording. The display source of truth. |
+| `assets/<ns>-<command>-presentation.txt` | Startup prompts, dashboards and checkpoints, result templates, and next-step wording. The display source of truth. |
 
 - The router contains a **Presentation Boundary** section naming what lives only in the presentation asset. It must contain no inline startup-question wording, dashboard templates, or result templates. The split is behavior-preserving, so relocate display content and never change routing semantics.
 - In `allowed-tools`, MCP tools use the fully-qualified `mcp__<server>__<tool>` form (e.g. `mcp__system_spec_memory__memory_context`), matching the `opencode.json` MCP namespace. Bare tool IDs (e.g. `memory_context`) belong in instruction prose, never in `allowed-tools`.
@@ -847,14 +847,14 @@ The memory, speckit, create, doctor, and deep command families split each comman
 
 | Asset | Owns |
 |-------|------|
-| `assets/<ns>_<command>_auto.yaml` | Autonomous-mode workflow: steps, agent dispatch, artifact writes. |
-| `assets/<ns>_<command>_confirm.yaml` | Interactive-mode workflow. |
+| `assets/<ns>-<command>-auto.yaml` | Autonomous-mode workflow: steps, agent dispatch, artifact writes. |
+| `assets/<ns>-<command>-confirm.yaml` | Interactive-mode workflow. |
 
 The **memory** and **doctor** families have NO workflow YAML. Their routers dispatch directly to tools and scripts.
 
 **Canonical router shape (first-class standard).** Every router uses one canonical, numbered section vocabulary of full integers, in this order: **`## 1. ROUTER CONTRACT`**, **`## 2. OWNED ASSETS`**, **`## 3. MODE ROUTING`**, **`## 4. EXECUTION TARGETS`**, **`## 5. PRESENTATION BOUNDARY`**, **`## 6. WORKFLOW SUMMARY`**. The blocking core is only `Owned Assets` plus `Presentation Boundary`, and the other four are recommended and surface as non-blocking warnings when absent. Variants differ by hand-off only, not by required sections:
 
-- **Workflow-YAML-backed** routers route modes into `_auto.yaml` / `_confirm.yaml`.
+- **Workflow-YAML-backed** routers route modes into `-auto.yaml` / `-confirm.yaml`.
 - **Direct-dispatch-script** routers dispatch straight to tools and scripts and may leave the recommended sections as warnings.
 - **Compiled-stub** commands carry a `render-command-contract` marker and are exempt from section requirements (retained variant, no command currently uses it).
 
@@ -1276,7 +1276,7 @@ hand-maintained list. A single family entry validates as one `familyContract`:
   ],
   "mode_matrix": { "default_policy": "non-mutating-default", "supported_modes": [] },
   "owned_assets": [
-    { "purpose": "presentation", "path": ".opencode/commands/<ns>/assets/<action>_presentation.txt" }
+    { "purpose": "presentation", "path": ".opencode/commands/<ns>/assets/<action>-presentation.txt" }
   ],
   "presentation": { "owner": "presentation-asset", "exceptions": [] },
   "destructive_policy": { "has_destructive_ops": true, "gated": true, "operations": ["names the destructive operations and confirms they are gated"] },

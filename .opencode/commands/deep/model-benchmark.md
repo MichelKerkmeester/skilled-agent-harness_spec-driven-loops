@@ -1,6 +1,6 @@
 ---
-description: "Benchmark a model or prompt framework: fixtures, pattern, 5dim, or reviewer scoring; deterministic or graded runs. :auto/:confirm."
-argument-hint: "<profile_path> [:auto|:confirm] [--spec-folder=PATH] [--scorer=pattern|5dim|reviewer] [--grader=noop|mock|llm] [--iterations=N] [--executor=NAME --model=NAME] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+description: "Benchmark a model or prompt framework: pattern, 5dim or reviewer scoring, optional grading. :auto/:confirm."
+argument-hint: "<profile_path> [:auto|:confirm] [--spec-folder=PATH] [--scorer=NAME] [--grader=NAME] [--iterations=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__system_spec_memory__memory_search
 ---
 
@@ -97,6 +97,23 @@ VERIFICATION CHECK:
 7. For no suffix, use the presentation contract's consolidated setup prompt to choose execution mode and bind missing setup values, then route the resolved interactive choice to the matching YAML.
 8. Lightweight read-only discovery for available benchmark profiles or recent spec folders may support setup, but it must feed the single consolidated prompt and never split setup questions.
 9. After the selected workflow asset is loaded, execute it step by step using the resolved setup values.
+
+### Workflow Flag Surface
+
+The argument hint names the invocation shape; the whole flag surface is here. Every flag below is
+a workflow input, never an execution mode.
+
+| Flag | Value | Effect |
+|------|-------|--------|
+| `--spec-folder` | `PATH` | Binds the packet that owns this run's writes. |
+| `--run-label` | `NAME` | Names the run inside the packet's `improvement/` tree. |
+| `--scorer` | `pattern` \| `5dim` \| `reviewer` | Selects the scoring method, binding `scoring_method`. |
+| `--grader` | `noop` \| `mock` \| `llm` | Selects the grader. `noop` keeps the run deterministic; `llm` grades it and makes `--executor` and `--model` required. |
+| `--iterations` | `N` | Iteration count, binding `max_iterations`. Default `5`. |
+| `--executor`, `--model` | `NAME` | Executor kind and model for the grader, required only when `--grader=llm`. |
+
+Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in the prompt body binds the same values without
+an interactive prompt.
 
 ---
 

@@ -28,6 +28,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 .opencode/commands/doctor/scripts/
 +-- agent-roster-mirror-check.cjs
 +-- audit_descriptions.py
++-- command-catalog-mirror-check.cjs
 +-- check-mcp-mutation-class.sh
 +-- doctor-runtime-bootstrap.sh
 +-- fable-mode-check.cjs
@@ -57,6 +58,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `fable-mode-check.cjs` | Reports deep-loop behavioral metrics against an optional baseline. |
 | `audit_descriptions.py` | Audits description lengths across skills, commands and agents. |
 | `agent-roster-mirror-check.cjs` | Verifies every canonical agent reaches all five runtime surfaces, and that mirror surfaces stay symlinked rather than forked. |
+| `command-catalog-mirror-check.cjs` | Compares every command catalog and hub metadata entry back to the command's own frontmatter, which is the one copy nothing else derives from. Structural drift fails; prose divergence reports and fails only under `--strict`. |
 
 ---
 

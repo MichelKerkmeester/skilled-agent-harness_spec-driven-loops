@@ -37,9 +37,13 @@ const path = require('path');
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..');
 
 // Real runtime-agent directories. An agent reference resolves if the file exists
-// in ANY of these; a runtime-directory reference is valid only if it names one.
+// in ANY of these. AGENT_DIRS stays narrow because the wider runtimes mirror the
+// same roster, so widening it would resolve nothing new.
 const AGENT_DIRS = ['.opencode/agents', '.claude/agents', '.codex/agents'];
-const RUNTIME_DIR_ALLOWLIST = new Set(['.opencode', '.claude', '.codex']);
+// A runtime-directory reference is valid only if it names a runtime that actually
+// ships an agents tree. The point is to catch a phantom dir, not a runtime the repo
+// grew later, so this lists every runtime with agents/ on disk.
+const RUNTIME_DIR_ALLOWLIST = new Set(['.opencode', '.claude', '.codex', '.cursor', '.devin', '.pi']);
 const COMMAND_INVENTORY_EXCLUDES = new Set(['assets', 'scripts', 'fixtures']);
 
 // Command families are derived from the real command tree so a new family directory

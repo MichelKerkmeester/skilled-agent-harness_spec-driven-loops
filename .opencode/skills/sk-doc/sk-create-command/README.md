@@ -80,7 +80,7 @@ The full command-type table in `SKILL.md` lists seven shapes, summarized above. 
 
 ### Key Concept: A Router Owns Routing, Not Display
 
-A mode-based command that supports `:auto` and `:confirm` can outgrow a single file fast. The moment it needs dashboards, startup prompt sequences, result templates or next-step wording, that display content moves into an owned presentation asset (`_presentation.txt`). The command `.md` shrinks back to a thin router: verify the agent, resolve the mode and arguments, pick the execution target, hand off. A router that still inlines its dashboard alongside its routing logic is the sign a split is overdue. The split preserves behavior. It moves where text lives, not what the command does.
+A mode-based command that supports `:auto` and `:confirm` can outgrow a single file fast. The moment it needs dashboards, startup prompt sequences, result templates or next-step wording, that display content moves into an owned presentation asset (`-presentation.txt`). The command `.md` shrinks back to a thin router: verify the agent, resolve the mode and arguments, pick the execution target, hand off. A router that still inlines its dashboard alongside its routing logic is the sign a split is overdue. The split preserves behavior. It moves where text lives, not what the command does.
 
 ---
 

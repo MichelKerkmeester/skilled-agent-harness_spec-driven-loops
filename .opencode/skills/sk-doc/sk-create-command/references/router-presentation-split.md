@@ -64,11 +64,11 @@ After:
 ```markdown
 ## 3. MODE ROUTING
 
-If no mode suffix is present, load `assets/review_packet_presentation.txt` and show the mode-selection prompt from `Startup Presentation`.
+If no mode suffix is present, load `assets/review-packet-presentation.txt` and show the mode-selection prompt from `Startup Presentation`.
 
 ## 5. PRESENTATION BOUNDARY
 
-Result templates and next-step wording live only in `assets/review_packet_presentation.txt`.
+Result templates and next-step wording live only in `assets/review-packet-presentation.txt`.
 ```
 
 ---

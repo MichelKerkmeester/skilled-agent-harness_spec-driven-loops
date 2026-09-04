@@ -373,7 +373,6 @@ workflow:
     - .opencode/skills/system-spec-kit/templates/examples/level-2/spec.md
     - .opencode/skills/system-spec-kit/templates/examples/level-2/plan.md
     - .opencode/skills/system-spec-kit/templates/examples/level-2/tasks.md
-    - .opencode/skills/system-spec-kit/templates/examples/level-2/checklist.md
     outputs:
     - spec_path_resolved
     - spec.md: created_or_updated
