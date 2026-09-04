@@ -1,0 +1,357 @@
+{
+  "sessionId": "fanout-luna-max-pass2-1788552418848-3us41r",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "title": "Public ripgrep wrapper is out of parity with the hidden-document retrieval lane",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs:68-154",
+      "evidence": "Read-only import of the wrapper builders and assertRecipeParity returned three divergences: every shared-lane recipe contains --hidden and !**/.git/** while the wrapper recipes contain neither.",
+      "recommendation": "Align wrapper recipes with shared-lane flags and add dotted-path plus .git parity fixtures.",
+      "disposition": "active",
+      "findingClass": "corpus-parity-gap",
+      "scopeProof": "Current source comparison and direct module import; no target writes.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs",
+        ".opencode/skills/system-spec-kit/scripts/retrieval/lib/rg-lane.mjs",
+        ".opencode/skills/system-spec-kit/scripts/tests/rg-wrapper-recipes.vitest.ts"
+      ],
+      "content_hash": "f001-wrapper-parity-20260904"
+    },
+    {
+      "id": "F002",
+      "severity": "P2",
+      "title": "Copyable retrieval recipes omit the mandatory .git exclusion",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:71-125",
+      "evidence": "The prose calls --hidden and !**/.git/** mandatory, but all copyable structured, path, count, context and anchor commands omit the .git glob.",
+      "recommendation": "Add the .git exclusion to every prose recipe and assert documentation parity.",
+      "disposition": "active",
+      "findingClass": "documentation-contract-drift",
+      "scopeProof": "Compared mandatory flag paragraph with every copyable recipe block.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+      ],
+      "content_hash": "f002-doc-git-exclusion-20260904"
+    },
+    {
+      "id": "F003",
+      "severity": "P2",
+      "title": "Wrapper silently discards positional arguments after the phrase",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs:236-263",
+      "evidence": "parseArgs destructures only the first two positional values; direct import with path, foo, bar returned phrase foo and dropped bar without an error.",
+      "recommendation": "Reject extra positionals or explicitly join them and test the chosen contract.",
+      "disposition": "active",
+      "findingClass": "cli-input-boundary",
+      "scopeProof": "Current parser source and read-only parseArgs probe.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs",
+        ".opencode/skills/system-spec-kit/scripts/tests/rg-wrapper-recipes.vitest.ts"
+      ],
+      "content_hash": "f003-extra-positional-20260904"
+    },
+    {
+      "id": "F004",
+      "severity": "P1",
+      "title": "HF-local availability accepts a ready server without proving it serves the requested model",
+      "dimension": "security",
+      "file": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts:679-705",
+      "evidence": "canLoad ignores its model option and returns available for ready/loading; auto-select calls it without a model, while readiness returns after setting isHealthy false on a health-model mismatch and the next embed receives the server's 404.",
+      "recommendation": "Pass the resolved model to the probe, require matching health identity, and throw before latching readiness; test that a mismatched resident is unavailable.",
+      "disposition": "active",
+      "findingClass": "model-identity-boundary",
+      "scopeProof": "Current call-graph read through availability, auto-select, readiness, embed and server mismatch response.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+        ".opencode/bin/hf-model-server.cjs"
+      ],
+      "content_hash": "f004-model-identity-20260904"
+    },
+    {
+      "id": "F005",
+      "severity": "P2",
+      "title": "Direct HF Unix-socket path lacks a post-bind socket type check before chmod and close-time unlink",
+      "dimension": "security",
+      "file": ".opencode/bin/hf-model-server.cjs:338-383,1022-1051",
+      "evidence": "listenHttpServer calls chmodSync after listen without lstat/isSocket, and close unlinks the recorded path directly; the shared IPC server performs lstat, symlink and socket checks before chmod.",
+      "recommendation": "lstat after bind and before chmod, require a real socket, and verify the node again before close-time unlink; add injected-fs symlink/non-socket cases.",
+      "disposition": "active",
+      "findingClass": "path-hardening-gap",
+      "scopeProof": "Compared direct HF server path handling with shared IPC hardening; no unsafe live reproduction was run.",
+      "affectedSurfaceHints": [
+        ".opencode/bin/hf-model-server.cjs",
+        ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+        ".opencode/skills/system-spec-kit/mcp-server/tests/embedders/hf-model-server-perimeter.vitest.ts"
+      ],
+      "content_hash": "f005-hf-socket-type-20260904"
+    },
+    {
+      "id": "F006",
+      "severity": "P2",
+      "title": "HF client truncates fractional positive dimensions instead of rejecting malformed responses",
+      "dimension": "security",
+      "file": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts:438-443",
+      "evidence": "parseResponseDim accepts any finite positive number and returns Math.trunc; health and embed paths adopt the result as provider metadata.",
+      "recommendation": "Require a positive safe integer and add malformed-dimension response cases.",
+      "disposition": "active",
+      "findingClass": "response-shape-integrity",
+      "scopeProof": "Current client parser and adoption paths compared with the server integer-dimension invariant.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        ".opencode/bin/hf-model-server.cjs",
+        ".opencode/skills/system-spec-kit/mcp-server/tests/embedders/hf-local-client.vitest.ts"
+      ],
+      "content_hash": "f006-dimension-integrity-20260904"
+    },
+    {
+      "id": "F007",
+      "severity": "P1",
+      "title": "Implementation summary asserts completion while its body and packet closure state are still scaffolding",
+      "dimension": "traceability",
+      "file": ".opencode/specs/system-speckit/052-memory-decommission-landing/implementation-summary.md:11-99",
+      "evidence": "Summary metadata says Completed while the body is literal placeholders, continuity completion_pct is 0, the normative spec is In Progress, all acceptance rows are Unmet and T006-T010 remain unchecked.",
+      "recommendation": "Keep completion explicitly in progress until evidence is written, then reconcile summary, continuity metadata, spec status, acceptance rows, tasks and report in one closure update.",
+      "disposition": "active",
+      "findingClass": "completion-metadata-contradiction",
+      "scopeProof": "Cross-read of packet docs and current doctor evidence pointers; no target writes.",
+      "affectedSurfaceHints": [
+        ".opencode/specs/system-speckit/052-memory-decommission-landing/implementation-summary.md",
+        ".opencode/specs/system-speckit/052-memory-decommission-landing/spec.md",
+        ".opencode/specs/system-speckit/052-memory-decommission-landing/acceptance-criteria.md",
+        ".opencode/specs/system-speckit/052-memory-decommission-landing/tasks.md"
+      ],
+      "content_hash": "f007-completion-metadata-20260904"
+    },
+    {
+      "id": "F008",
+      "severity": "P2",
+      "title": "The advisor document-frontmatter parser treats a prefix as a closing fence",
+      "dimension": "maintainability",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts:86-103",
+      "evidence": "parseDocFrontmatter finds the first newline followed by three dashes, so a content line such as ---not-a-fence can terminate the block and omit later keys or trigger phrases.",
+      "recommendation": "Require the delimiter to occupy the complete line with LF, CRLF or end-of-input, and add prefix-collision and Windows-line-ending fixtures.",
+      "disposition": "active",
+      "findingClass": "parser-boundary-contract",
+      "scopeProof": "Compared current advisor parser with its focused tests and the strict whole-line delimiter in the spec-kit parser; no target writes.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts",
+        ".opencode/skills/system-skill-advisor/mcp-server/tests/skill-doc-harvest.vitest.ts",
+        ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts"
+      ],
+      "content_hash": "f008-frontmatter-prefix-20260904"
+    },
+    {
+      "id": "F009",
+      "severity": "P2",
+      "title": "Advisor-local shared-payload producer vocabulary has drifted from the canonical contract",
+      "dimension": "maintainability",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/shared-payload.ts:291-304",
+      "evidence": "The advisor copy accepts startup_brief and session_snapshot in addition to compact_merger, hook_cache and advisor, while the canonical spec-kit contract accepts only the latter three; the current advisor producer emits advisor only.",
+      "recommendation": "Remove unused literals or explicitly mark them local-only, then add a cross-package parity test for the intended vocabulary and rejection behavior.",
+      "disposition": "active",
+      "findingClass": "duplicate-contract-drift",
+      "scopeProof": "Compared both accepted unions and traced current advisor brief emission; no current extra-value producer was found and no target writes occurred.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/shared-payload.ts",
+        ".opencode/skills/system-spec-kit/mcp-server/lib/context/shared-payload.ts",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-advisor-brief.ts"
+      ],
+      "content_hash": "f009-payload-vocabulary-20260904"
+    },
+    {
+      "id": "F010",
+      "severity": "P2",
+      "title": "Forced-depth validation can accept duplicate state records when the full range is present",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:693-719",
+      "evidence": "forcedDepthIterationViolation applies unique() before comparing state iteration numbers with 1..cap, so a complete range plus a duplicate record is accepted when on-disk file count is complete.",
+      "recommendation": "Reject duplicate state iteration numbers before set comparison and add complete-range-plus-duplicate fixtures for synthesis and artifact fallback paths.",
+      "disposition": "active",
+      "findingClass": "exact-once-state-validation-gap",
+      "scopeProof": "Compared validator comments, state-record branch, on-disk count branch and focused duplicate/gap tests; no target writes.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
+      ],
+      "content_hash": "f010-duplicate-state-record-20260904"
+    },
+    {
+      "id": "F011",
+      "severity": "P2",
+      "title": "Custom HF model dimension semantics diverge between auto-selection and startup profile resolution",
+      "dimension": "security",
+      "file": ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts:195-215",
+      "evidence": "Auto-selection persists dim 0 for a non-canonical HF model and the provider resolves its true dimension on first embed, while resolveActiveProfileDim returns 768 for every hf-local model unless an explicit dimension is set.",
+      "recommendation": "Use one explicit unknown/provisional contract or require EMBEDDING_DIM for custom startup profiles, defer materialization, and add a cross-path custom-model test.",
+      "disposition": "active",
+      "findingClass": "custom-model-dimension-contract",
+      "scopeProof": "Compared auto-select, provider first-embed, startup profile and factory call sites; no target writes.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts",
+        ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+        ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        ".opencode/skills/system-spec-kit/mcp-server/tests/embedders/hf-local-client.vitest.ts"
+      ],
+      "content_hash": "f011-custom-dimension-20260904"
+    },
+    {
+      "id": "F012",
+      "severity": "P1",
+      "title": "Corpus indexing accepts Markdown symlinks whose real target is outside the repository",
+      "dimension": "security",
+      "file": ".opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:174-245",
+      "evidence": "The corpus walker records symlinked Markdown files by repo-relative link path without checking the resolved target is inside repoRoot, and generation reads through that link, allowing external file bytes to enter the committed index.",
+      "recommendation": "Reject or explicitly report symlinked Markdown targets outside repoRoot, preferably fail-closed for generation, and add an out-of-tree symlink fixture.",
+      "disposition": "active",
+      "findingClass": "corpus-filesystem-boundary",
+      "scopeProof": "Traced symlink walk, realpath deduplication, generator read path and existing in-tree symlink fixture; no target writes.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs",
+        ".opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs",
+        ".opencode/skills/system-spec-kit/scripts/tests/trigger-index.vitest.ts"
+      ],
+      "content_hash": "f012-corpus-symlink-20260904"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 8
+  },
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "wrapper/lane corpus parity",
+      "prose/executable recipe drift",
+      "silent positional truncation",
+      "malformed artifact rejection",
+      "execution-status conflation",
+      "malformed frontmatter delimiter",
+      "duplicate contract vocabulary",
+      "executor documentation drift",
+      "decommission residue",
+      "duplicate state records",
+      "gapped iteration files",
+      "nested CLI dispatch",
+      "symlink containment escape",
+      "provider-name bypass",
+      "stale canonical fallback",
+      "custom-model dimension drift",
+      "profile/auto-select disagreement",
+      "credential egress",
+      "ranking nondeterminism",
+      "normalization mismatch",
+      "index publication drift",
+      "scope/candidate mismatch",
+      "out-of-tree symlink indexing"
+    ],
+    "covered": [
+      "wrapper/lane corpus parity",
+      "prose/executable recipe drift",
+      "silent positional truncation",
+      "malformed artifact rejection",
+      "execution-status conflation",
+      "malformed frontmatter delimiter",
+      "duplicate contract vocabulary",
+      "executor documentation drift",
+      "decommission residue",
+      "duplicate state records",
+      "gapped iteration files",
+      "nested CLI dispatch",
+      "symlink containment escape",
+      "provider-name bypass",
+      "stale canonical fallback",
+      "custom-model dimension drift",
+      "profile/auto-select disagreement",
+      "credential egress",
+      "ranking nondeterminism",
+      "normalization mismatch",
+      "index publication drift",
+      "scope/candidate mismatch",
+      "out-of-tree symlink indexing"
+    ],
+    "ruledOut": [
+      "malformed artifact rejection",
+      "execution-status conflation",
+      "executor documentation drift",
+      "decommission residue",
+      "gapped iteration files",
+      "nested CLI dispatch",
+      "symlink containment escape",
+      "provider-name bypass",
+      "stale canonical fallback",
+      "credential egress",
+      "ranking nondeterminism",
+      "normalization mismatch",
+      "index publication drift",
+      "scope/candidate mismatch"
+    ],
+    "deferred": [
+      "cross-package test execution",
+      "live containment race reproduction",
+      "custom-model startup integration execution",
+      "live external symlink reproduction",
+      "full three-arm parity execution"
+    ],
+    "blocked": [
+      "authoritative test execution"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "candidateCoverage": {
+    "covered": [
+      "public retrieval wrapper",
+      "shared retrieval lane",
+      "copyable retrieval recipes",
+      "wrapper parser and focused tests",
+      "embedding HTTP perimeter",
+      "model identity and auto-select",
+      "Unix-socket hardening",
+      "IPC ownership and process liveness",
+      "packet requirements and acceptance evidence",
+      "doctor workflow asset linkage",
+      "advisor parser and payload contracts",
+      "executor and decommission documentation",
+      "deep-loop containment and state sequencing",
+      "embedding factory and registry",
+      "retrieval ranking and trigger-index publication"
+    ],
+    "missing": []
+  },
+  "searchDebt": [
+    "authoritative repository validation",
+    "graph coverage",
+    "live path-race reproduction",
+    "cross-package parity execution",
+    "custom-model startup integration execution",
+    "live external symlink reproduction",
+    "full three-arm parity execution"
+  ],
+  "totalIterations": 10,
+  "finalVerdict": "CONDITIONAL",
+  "stopReason": "maxIterationsReached",
+  "releaseReadiness": "release-blocking",
+  "synthesisComplete": true
+}
