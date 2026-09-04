@@ -52,12 +52,56 @@ The model `id` MUST be the exact `modelType/model` Cline expects — never bare.
 
 ---
 
-## 3. SUPPLYING THE API KEY
+## 3. LLMGATEWAY (DEVPASS)
 
-No secret is stored in this repo. The provider's `apiKey` is `"${CLINE_API_KEY}"`, so the key comes from the environment at runtime. Two ways to provide it:
+Routes five models through the operator's **DevPass** subscription at LLM Gateway (`https://api.llmgateway.io/v1`, OpenAI-compatible), the same account and key opencode already uses. LLM Gateway is not a pi builtin, so without this block pi's picker and `--list-models` never show it. DevPass is a flat-price plan, so these four cost the subscription rather than per-token metering.
 
-1. **Environment variable**: export `CLINE_API_KEY=<your Cline key>` in `~/.zshenv`, so non-interactive and dispatched shells inherit it too, not only interactive logins.
-2. **pi login**: run `pi /login cline-pass` and paste the key into the api-key dialog. pi stores it in its own auth store (`~/.pi/agent/auth.json`), separate from opencode's.
+### Where It Lives
+
+- Provider block: `.pi/models.json` under `providers["llmgateway"]`, with five models
+- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4-flash"`, `"llmgateway/deepseek-v4-flash-vision-exp"`, `"llmgateway/glm-5.3-flash"`, `"llmgateway/gpt-5.6-luna"`, `"llmgateway/gemini-3.8-flash"`
+- Not a default: `defaultProvider` stays `cline-pass`
+
+**Model ids are BARE, and the pi reference is two-segment** — `llmgateway/<id>`, e.g. `llmgateway/deepseek-v4-flash`. This is the opposite of cline-pass above, and copying that block's slashed form is the easy mistake: see the gotcha below.
+
+### Dispatch
+
+```bash
+pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4-flash --thinking max
+```
+
+Swap the id for `deepseek-v4-flash-vision-exp`, `glm-5.3-flash`, `gpt-5.6-luna` or `gemini-3.8-flash`.
+
+### Thinking And Effort
+
+All five are reasoning models, and their ladders differ, so each carries its own `thinkingLevelMap`:
+
+| Model | Ceiling | Notes |
+|-------|---------|-------|
+| `deepseek-v4-flash` | `max` | Full ladder `minimal`→`max` |
+| `deepseek-v4-flash-vision-exp` | `max` | Sparse ladder — only `low`, `high`, `max`; accepts image input |
+| `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh`, and unlike Cline, which tops out at `xhigh` with no `max` |
+| `gpt-5.6-luna` | `max` | Full ladder minus `minimal`. Also **rejects `temperature`** — the entry declares no temperature support |
+| `gemini-3.8-flash` | `high` | No `xhigh`, no `max` — requesting either sends a tier the model does not have |
+
+The global `defaultThinkingLevel` is `xhigh`, which only three of these five accept. Pass `--thinking` explicitly rather than relying on the default.
+
+No provider-level `compat.thinkingFormat` is set. The block spans four model families whose thinking formats differ, and a provider-wide hint would apply the wrong one to two of them; pi's default OpenAI-compatible parsing handles all four, confirmed by real dispatches.
+
+### The Gotcha: Bare Ids, Not Slashed
+
+The LLM Gateway API takes the **bare** model id and rejects a provider-prefixed one. Confirmed against the live API: `"model": "deepseek-v4-flash"` returns `200`, while `"model": "llmgateway/deepseek-v4-flash"` returns `400 "Provider llmgateway does not support model deepseek-v4-flash"`. That is the exact inverse of the cline-pass rule directly above, so the two blocks must not be copied into each other. As with Cline, the failure hides from `--list-models` and `pi auth check` and appears only on a real dispatch.
+
+The gateway rewrites the id upstream — a `deepseek-v4-flash` request comes back reporting `gonka24/deepseek-v4-flash`, GLM as `zai/glm-5.3-flash`, Gemini as `google-vertex/gemini-3.8-flash`. That upstream name is informational; never send it.
+
+---
+
+## 4. SUPPLYING THE API KEY
+
+No secret is stored in this repo. Each provider's `apiKey` is an environment reference — `"${CLINE_API_KEY}"` for cline-pass, `"${LLMGATEWAY_API_KEY}"` for llmgateway — so the key comes from the environment at runtime. Two ways to provide it:
+
+1. **Environment variable**: export the key in `~/.zshenv`, so non-interactive and dispatched shells inherit it too, not only interactive logins. Both providers use this route.
+2. **pi login**: run `pi /login <provider>` and paste the key into the api-key dialog. pi stores it in its own auth store (`~/.pi/agent/auth.json`), separate from opencode's. Note pi does **not** import opencode's key, even where both tools hold a credential for the same account.
 
 The stored credential wins over the config value, and it is the more fragile of the two: it lives under the resolved pi agent directory, so any session running with a different `PI_CODING_AGENT_DIR` or `HOME` cannot see it. The environment route is the portable one; prefer it and treat `/login` as the interactive convenience.
 
@@ -73,7 +117,7 @@ pi keeps its own auth store. Opencode's existing `cline-pass` credential (`~/.lo
 
 ---
 
-## 4. VERIFY
+## 5. VERIFY
 
 ```bash
 pi --list-models | grep cline
@@ -83,12 +127,23 @@ pi -p "reply OK" --provider cline-pass --model cline-pass/cline-pass/deepseek-v4
 pi -p "reply OK" --provider cline-pass --model cline-pass/x-ai/ox-alpha --thinking xhigh --mode text
 ```
 
-Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash`, `…/deepseek-v4-pro`, and `…/ox-alpha` rows, and each dispatch returns a model reply rather than a `400 invalid model format` or a `401 Unauthorized`.
+For llmgateway:
+
+```bash
+pi --list-models | grep llmgateway
+# real round-trip (needs a key) — proves each bare id is accepted:
+pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4-flash --thinking max --mode text
+pi -p "reply OK" --provider llmgateway --model llmgateway/gemini-3.8-flash --thinking high --mode text
+```
+
+Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash`, `…/deepseek-v4-pro`, and `…/ox-alpha` rows plus the five `llmgateway` rows, and each dispatch returns a model reply rather than a `400 invalid model format`, a `400 Provider llmgateway does not support model …`, or a `401 Unauthorized`.
 
 `pi auth check` is **not** a credential test here. It never sends a completion, so it reports `{"status":"ready"}` whenever the provider block carries any non-empty `apiKey` value — including an unresolved placeholder that Cline will reject. Only the round-trip lines prove the credential. Its one honest signal is the opposite direction: `{"status":"invalid","reason":"invalid_state"}` means the provider block itself did not load.
 
 ---
 
-## 5. REMOVE
+## 6. REMOVE
+
+To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its five `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. Nothing else references it — it is not a default and not in the deep-loop fan-out roster.
 
 Delete the `providers["cline-pass"]` block from `.pi/models.json` and the `"cline-pass/cline-pass/deepseek-v4-flash"`, `"cline-pass/cline-pass/deepseek-v4-pro"`, and `"cline-pass/x-ai/ox-alpha"` lines from `.pi/settings.json` `enabledModels`. To drop only Ox Alpha, remove its model object from the provider block and its one `enabledModels` line. If `defaultProvider` still points at `cline-pass`, reset it to another authenticated provider so an unqualified dispatch still resolves. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.

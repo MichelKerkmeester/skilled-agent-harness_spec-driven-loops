@@ -1,0 +1,277 @@
+# T001b — the four target models, verbose capture (2026-09-04)
+
+### llmgateway/deepseek-v4-flash
+{
+  "id": "deepseek-v4-flash",
+  "providerID": "llmgateway",
+  "name": "DeepSeek V4 Flash",
+  "family": "deepseek-flash",
+  "api": {
+    "id": "deepseek-v4-flash",
+    "url": "https://api.llmgateway.io/v1",
+    "npm": "@ai-sdk/openai-compatible"
+  },
+  "status": "active",
+  "headers": {},
+  "options": {},
+  "cost": {
+    "input": 0.051,
+    "output": 0.104,
+    "cache": {
+      "read": 0.0097,
+      "write": 0
+    }
+  },
+  "limit": {
+    "context": 1050000,
+    "output": 384000
+  },
+  "capabilities": {
+    "temperature": true,
+    "reasoning": true,
+    "attachment": false,
+    "toolcall": true,
+    "input": {
+      "text": true,
+      "audio": false,
+      "image": false,
+      "video": false,
+      "pdf": false
+    },
+    "output": {
+      "text": true,
+      "audio": false,
+      "image": false,
+      "video": false,
+      "pdf": false
+    },
+    "interleaved": {
+      "field": "reasoning_content"
+    }
+  },
+  "release_date": "2026-04-24",
+  "variants": {
+    "none": {
+      "reasoningEffort": "none"
+    },
+    "minimal": {
+      "reasoningEffort": "minimal"
+    },
+    "low": {
+      "reasoningEffort": "low"
+    },
+    "medium": {
+      "reasoningEffort": "medium"
+    },
+    "high": {
+      "reasoningEffort": "high"
+    },
+    "xhigh": {
+      "reasoningEffort": "xhigh"
+    },
+    "max": {
+      "reasoningEffort": "max"
+    }
+  }
+}
+
+### llmgateway/deepseek-v4-flash-vision-exp
+{
+  "id": "deepseek-v4-flash-vision-exp",
+  "providerID": "llmgateway",
+  "name": "DeepSeek V4 Flash Vision Exp",
+  "family": "deepseek-flash",
+  "api": {
+    "id": "deepseek-v4-flash-vision-exp",
+    "url": "https://api.llmgateway.io/v1",
+    "npm": "@ai-sdk/openai-compatible"
+  },
+  "status": "active",
+  "headers": {},
+  "options": {},
+  "cost": {
+    "input": 0.14,
+    "output": 0.28,
+    "cache": {
+      "read": 0.0028,
+      "write": 0
+    }
+  },
+  "limit": {
+    "context": 1050000,
+    "output": 384000
+  },
+  "capabilities": {
+    "temperature": true,
+    "reasoning": true,
+    "attachment": true,
+    "toolcall": true,
+    "input": {
+      "text": true,
+      "audio": false,
+      "image": true,
+      "video": false,
+      "pdf": false
+    },
+    "output": {
+      "text": true,
+      "audio": false,
+      "image": false,
+      "video": false,
+      "pdf": false
+    },
+    "interleaved": false
+  },
+  "release_date": "2026-08-21",
+  "variants": {
+    "none": {
+      "reasoningEffort": "none"
+    },
+    "low": {
+      "reasoningEffort": "low"
+    },
+    "high": {
+      "reasoningEffort": "high"
+    },
+    "max": {
+      "reasoningEffort": "max"
+    }
+  }
+}
+
+### llmgateway/glm-5.3-flash
+{
+  "id": "glm-5.3-flash",
+  "providerID": "llmgateway",
+  "name": "GLM-5.3-Flash",
+  "family": "glm",
+  "api": {
+    "id": "glm-5.3-flash",
+    "url": "https://api.llmgateway.io/v1",
+    "npm": "@ai-sdk/openai-compatible"
+  },
+  "status": "active",
+  "headers": {},
+  "options": {},
+  "cost": {
+    "input": 0.13,
+    "output": 0.4,
+    "cache": {
+      "read": 0.024,
+      "write": 0
+    }
+  },
+  "limit": {
+    "context": 1048576,
+    "output": 131072
+  },
+  "capabilities": {
+    "temperature": true,
+    "reasoning": true,
+    "attachment": true,
+    "toolcall": true,
+    "input": {
+      "text": true,
+      "audio": false,
+      "image": true,
+      "video": true,
+      "pdf": true
+    },
+    "output": {
+      "text": true,
+      "audio": false,
+      "image": false,
+      "video": false,
+      "pdf": false
+    },
+    "interleaved": false
+  },
+  "release_date": "2026-08-26",
+  "variants": {
+    "none": {
+      "reasoningEffort": "none"
+    },
+    "minimal": {
+      "reasoningEffort": "minimal"
+    },
+    "low": {
+      "reasoningEffort": "low"
+    },
+    "medium": {
+      "reasoningEffort": "medium"
+    },
+    "high": {
+      "reasoningEffort": "high"
+    },
+    "xhigh": {
+      "reasoningEffort": "xhigh"
+    },
+    "max": {
+      "reasoningEffort": "max"
+    }
+  }
+}
+
+### llmgateway/gemini-3.8-flash
+{
+  "id": "gemini-3.8-flash",
+  "providerID": "llmgateway",
+  "name": "Gemini 3.8 Flash",
+  "family": "gemini",
+  "api": {
+    "id": "gemini-3.8-flash",
+    "url": "https://api.llmgateway.io/v1",
+    "npm": "@ai-sdk/openai-compatible"
+  },
+  "status": "active",
+  "headers": {},
+  "options": {},
+  "cost": {
+    "input": 0.75,
+    "output": 3.75,
+    "cache": {
+      "read": 0.075,
+      "write": 0.08333
+    }
+  },
+  "limit": {
+    "context": 1048576,
+    "output": 1048576
+  },
+  "capabilities": {
+    "temperature": true,
+    "reasoning": true,
+    "attachment": true,
+    "toolcall": true,
+    "input": {
+      "text": true,
+      "audio": true,
+      "image": true,
+      "video": false,
+      "pdf": false
+    },
+    "output": {
+      "text": true,
+      "audio": false,
+      "image": false,
+      "video": false,
+      "pdf": false
+    },
+    "interleaved": false
+  },
+  "release_date": "2026-09-02",
+  "variants": {
+    "minimal": {
+      "reasoningEffort": "minimal"
+    },
+    "low": {
+      "reasoningEffort": "low"
+    },
+    "medium": {
+      "reasoningEffort": "medium"
+    },
+    "high": {
+      "reasoningEffort": "high"
+    }
+  }
+}

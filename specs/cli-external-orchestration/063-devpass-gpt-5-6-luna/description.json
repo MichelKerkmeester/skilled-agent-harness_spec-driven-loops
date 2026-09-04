@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-external-orchestration/063-devpass-gpt-5-6-luna",
+  "description": "The operator asked for GPT-5.6 Luna on the DevPass route, then for both CLI rosters to carry it",
+  "keywords": [
+    "operator",
+    "asked",
+    "gpt-5",
+    "luna",
+    "devpass",
+    "route",
+    "cli",
+    "rosters",
+    "carry"
+  ],
+  "lastUpdated": "2026-09-04T17:36:51.004Z",
+  "specId": "063",
+  "folderSlug": "devpass-gpt-5-6-luna",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

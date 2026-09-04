@@ -15,7 +15,14 @@
           "reasoning": true,
           "contextWindow": 1000000,
           "maxTokens": 393216,
-          "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "max": null, "xhigh": "xhigh" }
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": "high",
+            "max": null,
+            "xhigh": "xhigh"
+          }
         },
         {
           "id": "cline-pass/deepseek-v4-pro",
@@ -23,7 +30,14 @@
           "reasoning": true,
           "contextWindow": 1000000,
           "maxTokens": 384000,
-          "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "max": null, "xhigh": "xhigh" }
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": "high",
+            "max": null,
+            "xhigh": "xhigh"
+          }
         },
         {
           "id": "z-ai/glm-5.3-flash",
@@ -31,7 +45,97 @@
           "reasoning": true,
           "contextWindow": 1310720,
           "maxTokens": 131072,
-          "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "max": null, "xhigh": "xhigh" }
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": "high",
+            "max": null,
+            "xhigh": "xhigh"
+          }
+        }
+      ]
+    },
+    "llmgateway": {
+      "name": "DevPass (LLM Gateway)",
+      "api": "openai-completions",
+      "baseUrl": "https://api.llmgateway.io/v1",
+      "apiKey": "${LLMGATEWAY_API_KEY}",
+      "models": [
+        {
+          "id": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "reasoning": true,
+          "contextWindow": 1050000,
+          "maxTokens": 384000,
+          "thinkingLevelMap": {
+            "minimal": "minimal",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "max": "max",
+            "xhigh": "xhigh"
+          }
+        },
+        {
+          "id": "deepseek-v4-flash-vision-exp",
+          "name": "DeepSeek V4 Flash Vision Exp",
+          "reasoning": true,
+          "contextWindow": 1050000,
+          "maxTokens": 384000,
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": "low",
+            "medium": null,
+            "high": "high",
+            "max": "max",
+            "xhigh": null
+          }
+        },
+        {
+          "id": "glm-5.3-flash",
+          "name": "GLM-5.3-Flash",
+          "reasoning": true,
+          "contextWindow": 1048576,
+          "maxTokens": 131072,
+          "thinkingLevelMap": {
+            "minimal": "minimal",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "max": "max",
+            "xhigh": "xhigh"
+          }
+        },
+        {
+          "id": "gpt-5.6-luna",
+          "name": "GPT-5.6 Luna",
+          "reasoning": true,
+          "contextWindow": 1050000,
+          "maxTokens": 128000,
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "max": "max",
+            "xhigh": "xhigh"
+          }
+        },
+        {
+          "id": "gemini-3.8-flash",
+          "name": "Gemini 3.8 Flash",
+          "reasoning": true,
+          "contextWindow": 1048576,
+          "maxTokens": 1048576,
+          "thinkingLevelMap": {
+            "minimal": "minimal",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "max": null,
+            "xhigh": null
+          }
         }
       ]
     },

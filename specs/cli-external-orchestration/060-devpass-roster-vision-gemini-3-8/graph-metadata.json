@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/060-devpass-roster-vision-gemini-3-8",
+  "spec_folder": "cli-external-orchestration/060-devpass-roster-vision-gemini-3-8",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devpass llmgateway roster",
+      "deepseek v4 flash vision cli",
+      "gemini 3.8 flash roster swap",
+      "llmgateway provider cli-opencode",
+      "retire deepseek v4 pro roster",
+      "pi config repair enabled models",
+      "devpass roster plan",
+      "gemini 3.8 swap plan",
+      "deepseek flash vision plan",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "key_topics": [
+      "devpass",
+      "llmgateway",
+      "roster",
+      "deepseek",
+      "flash",
+      "vision",
+      "cli",
+      "gemini",
+      "swap",
+      "provider",
+      "cli-opencode",
+      "retire"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".pi/models.json",
+      ".pi/settings.json",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "supported-model-allowlist-smoke.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flash Vision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three distinct truth gaps sit in the CLI hub at once, and each one makes a document lie about what a dispatch will do",
+    "created_at": "2026-09-04T11:49:59.788Z",
+    "last_save_at": "2026-09-04T17:36:51.682Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3bf5e1d71c22a2c56db66fe5248d4c905bc269dc73e0ac0451412ef216813561",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b5bdd51fc9a905768b737932b6f33dd9a4877c031523c8a82f7c9cbfc4b248f3",
+      "plan.md": "5c3cd5198f8b0bcec8d8147e0cd09efc45ec082e0f6dd5299f46d6057508ec79",
+      "tasks.md": "d801a0b15a93c04c57e8752eb693dc985a8fc385fab6852931db67761c831674",
+      "implementation-summary.md": "d50e3fd412f02bbeca3cd705e13aa1d2f5c48cfc03ca9da49c0dccb60275a6a5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

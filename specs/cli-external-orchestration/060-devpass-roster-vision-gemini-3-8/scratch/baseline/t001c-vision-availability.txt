@@ -1,0 +1,49 @@
+# T001c — vision variant availability per provider (2026-09-04)
+
+### llmgateway
+llmgateway/deepseek-v3.2
+llmgateway/deepseek-v4-flash
+llmgateway/deepseek-v4-flash-vision-exp
+llmgateway/deepseek-v4-pro
+llmgateway/gemini-3.7-flash
+llmgateway/gemini-3.8-flash
+llmgateway/glm-5.3
+llmgateway/glm-5.3-flash
+
+### openrouter
+openrouter/~deepseek/deepseek-v4-flash-latest
+openrouter/deepseek/deepseek-chat
+openrouter/deepseek/deepseek-chat-v3-0324
+openrouter/deepseek/deepseek-chat-v3.1
+openrouter/deepseek/deepseek-r1
+openrouter/deepseek/deepseek-r1-0528
+openrouter/deepseek/deepseek-r1-distill-llama-70b
+openrouter/deepseek/deepseek-v3.1-terminus
+openrouter/deepseek/deepseek-v3.2
+openrouter/deepseek/deepseek-v3.2-exp
+openrouter/deepseek/deepseek-v4-flash
+openrouter/deepseek/deepseek-v4-flash-0731
+openrouter/deepseek/deepseek-v4-flash-vision-exp
+openrouter/deepseek/deepseek-v4-pro
+openrouter/deepseek/deepseek-v4-pro-0813
+openrouter/google/gemini-3.7-flash
+openrouter/google/gemini-3.8-flash
+openrouter/z-ai/glm-5.3
+openrouter/z-ai/glm-5.3-flash
+
+### opencode-go
+opencode-go/deepseek-v4-flash
+opencode-go/deepseek-v4-flash-vision-exp
+opencode-go/deepseek-v4-pro
+opencode-go/glm-5.3
+opencode-go/glm-5.3-flash
+
+### cline-pass
+cline-pass/cline-pass/deepseek-v4-flash
+cline-pass/cline-pass/deepseek-v4-pro
+cline-pass/cline-pass/glm-5.3
+
+### deepseek
+deepseek/deepseek-v4-flash
+deepseek/deepseek-v4-flash-vision-exp
+deepseek/deepseek-v4-pro

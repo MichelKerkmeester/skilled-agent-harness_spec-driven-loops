@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/062-devpass-pi-custom-provider",
+  "description": "pi builds its runtime provider set from a compiled-in catalog plus every `providers.` block in `.pi/models.json`",
+  "keywords": [
+    "runtime",
+    "provider",
+    "set",
+    "compiled-in",
+    "catalog",
+    "plus",
+    "every",
+    "providers",
+    "block",
+    "models",
+    "json"
+  ],
+  "lastUpdated": "2026-09-04T17:26:22.006Z",
+  "specId": "062",
+  "folderSlug": "devpass-pi-custom-provider",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
