@@ -51,7 +51,7 @@ contextType: "implementation"
 - [x] T009 A9: replace the flat area opacity with a vertical gradient painted from the series token and dissolving at the baseline (assets/templates/daily-line.html:64-68, :97-100, :184-189). Stops resolve through `var(--chart-series-1)` at 0.18 and 0. The gradient is bound to the plot rather than to each path's box, so a series broken by a gap fades on one ramp
 - [x] T010 [P] D1: build the stroke weight comparison sheet at 2px, 1px and 0.8px over the same readings (scratch/forks/stroke-weight.html). The rendered DOM shows all three variants holding identical element counts, differing only by the `w-200`, `w-100` and `w-080` class
 - [~] T011 [P] D2: ~~build the glow comparison sheet~~. SUPERSEDED by ADR-002. The operator cut the glow on 2026-09-03 before the sheet was built, so no sheet exists and no filter was authored
-- [x] T012 Write both forks into `decision-record.md` with the losing argument intact and a disposition field left open (decision-record.md). ADR-001 Proposed with `Disposition: UNANSWERED`, ADR-002 Rejected with `Disposition: ANSWERED, 2026-09-03`
+- [x] T012 Write both forks into `decision-record.md` with the losing argument intact and a disposition field left open (decision-record.md). ADR-001 was written Proposed with its disposition open, and the operator answered it 1px the same day. ADR-002 Rejected with `Disposition: ANSWERED, 2026-09-03`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -64,7 +64,7 @@ contextType: "implementation"
 - [x] T015 Open the comparison sheet in a browser and confirm each variant draws real marks rather than an empty frame. `scratch/shots/stroke-weight-sheet.png` shows three drawn charts, and the dumped DOM counts 5 grid lines, 2 paths, 29 circles and 11 texts in each
 - [x] T016 Run `hvr_scan.py` over every document authored in this phase and require zero hard blockers. 0 hard blockers on every document in this folder
 - [x] T017 Reconcile spec, plan, tasks and acceptance criteria against what shipped. The glow rows in `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` now point at ADR-002 instead of describing a file that will never exist
-- [ ] T018 [B] Record the operator's answer to the weight fork in `decision-record.md` and hand off to phase 002 (decision-record.md). Blocked on the operator reading `scratch/forks/stroke-weight.html`. The glow half is already answered by ADR-002
+- [x] T018 Record the operator's answer to the weight fork in `decision-record.md` and hand off to phase 002 (decision-record.md). The operator chose 1px on 2026-09-03 after reading the rendered comparison, the disposition records it, and phase 002 rolled it across the corpus
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -73,7 +73,7 @@ contextType: "implementation"
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`, except T011 superseded by ADR-002 and T018 blocked until the operator answers
-- [ ] No `[B]` blocked tasks remaining. T018 stays blocked by design, because the phase exists to stop at the fork
+- [x] No `[B]` blocked tasks remaining. T018 was blocked by design while the phase stopped at the fork, and the operator's answer released it
 - [x] Manual verification passed. Both templates and the comparison sheet were rendered and read as images
 <!-- /ANCHOR:completion -->
 
@@ -126,7 +126,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. 12 of 14 met, AC-008 superseded by ADR-002, AC-014 open until the operator answers
+- [x] CHK-020 [P0] All acceptance criteria met. Thirteen met and one superseded by the glow decision, after the operator answered the weight fork
 - [x] CHK-021 [P0] `check-corpus.cjs --render` prints `RESULT: PASSED`. Scratch/validator-after.txt
 - [x] CHK-022 [P1] The comparison sheet opens with no install step and no network. One file, inline style and script, no remote reference
 - [x] CHK-023 [P1] The eighteen untouched templates still pass in the same run. The check scans all 29 asset files every run and reported 0 failures across every rule

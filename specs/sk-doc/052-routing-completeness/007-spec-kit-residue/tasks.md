@@ -194,7 +194,7 @@ either measured or recorded. ADR-009 holds the ruling.
 - [x] CHK-FIX-004 [P0] Not applicable: no security, path-parsing or redaction surface changed. The write guard itself is untouched
 - [x] CHK-FIX-005 [P1] Not a matrix fix. The two axes are the two ADRs and their named files
 - [x] CHK-FIX-006 [P1] The ADR-008 tests read and mutate `process.argv` and `CONFIG`. Each test builds and removes its own temp root
-- [ ] CHK-FIX-007 [P1] Deferred: this packet is uncommitted, so the evidence is the working-tree diff rather than a SHA
+- [x] CHK-FIX-007 [P1] The packet is committed at `0467949fc8`, so the evidence is that commit rather than a working-tree diff
 - [x] CHK-FIX-008 [P0] The two reference fixes are type-only. Interfaces, a type-only import and a definite-assignment marker all erase before runtime, so no behavior changes
 - [x] CHK-FIX-009 [P0] Both edited files were re-run inside the sharded run after the edits landed, `tree-thinning` 28 tests in shard 10 and `progressive-validation` 52 tests in shard 11
 <!-- /ANCHOR:fix-completeness -->
@@ -261,8 +261,8 @@ either measured or recorded. ADR-009 holds the ruling.
 
 - [x] CHK-110 [P1] Not applicable: no runtime performance surface changed
 - [x] CHK-111 [P1] Not applicable
-- [ ] CHK-112 [P2] Not applicable
-- [ ] CHK-113 [P2] Not applicable
+- [x] CHK-112 [P2] Not applicable
+- [x] CHK-113 [P2] Not applicable
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -274,7 +274,7 @@ either measured or recorded. ADR-009 holds the ruling.
 - [x] CHK-121 [P0] Not applicable: no flag
 - [x] CHK-122 [P1] Not applicable: no deployed service
 - [x] CHK-123 [P1] Not applicable
-- [ ] CHK-124 [P2] Not applicable
+- [x] CHK-124 [P2] Not applicable
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -284,8 +284,8 @@ either measured or recorded. ADR-009 holds the ruling.
 
 - [x] CHK-130 [P1] No security surface changed. The write guard and path containment are untouched
 - [x] CHK-131 [P1] No dependency added
-- [ ] CHK-132 [P2] Not applicable
-- [ ] CHK-133 [P2] Not applicable
+- [x] CHK-132 [P2] Not applicable
+- [x] CHK-133 [P2] Not applicable
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -295,7 +295,7 @@ either measured or recorded. ADR-009 holds the ruling.
 
 - [x] CHK-140 [P1] Every packet document updated in this pass
 - [x] CHK-141 [P1] The `main()` signature change is recorded in ADR-008's Outcome
-- [ ] CHK-142 [P2] Not applicable: no user-facing surface
+- [x] CHK-142 [P2] Not applicable: no user-facing surface
 - [x] CHK-143 [P2] The two open contract questions are written up as adjacent findings A1 and A2, and the grouping added A5 to A7
 <!-- /ANCHOR:docs-verify -->
 

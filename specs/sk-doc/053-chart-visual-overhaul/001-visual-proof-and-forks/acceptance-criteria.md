@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-03-053-001-visual-proof-and-forks"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions:
       - "Which stroke weight the operator picks"
       - "Whether AC-004 is meant to cover ordinal labels or only measured values"
@@ -78,7 +78,7 @@ Every command below runs from the repository root. `CHART` stands for
 | AC-011 | REQ-005 | Given the packet bans copying from an outside chart library, When the chrome lands, Then every value is re-typed against corpus custom properties | The check reported `colour-literals: 884 assertion(s), 0 failure(s)`, up from 878 at baseline as the new declarations came under scan. Deleting the palette block and scanning for a hex or a named colour returns nothing in either file | Met | - |
 | AC-012 | REQ-006 | Given both forks were argued and neither was settled by reading source, When the decision record is written, Then each fork carries both arguments and a disposition field | `decision-record.md` holds ADR-001 and ADR-002. Each names the adopting lineage, the rejecting lineage, the reason each gave and an explicit disposition line. ADR-001 also records that the rejecting argument was disproved against the file | Met | - |
 | AC-013 | REQ-007 | Given this phase authored prose, When it is scanned, Then it reports zero hard blockers | `hvr_scan.py` reports 0 hard blockers on goal.md, spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md and implementation-summary.md | Met | - |
-| AC-014 | REQ-002 | Given the operator has to choose by looking, When both sheets are handed over, Then the phase stopped rather than picking a default, and the operator answered on 2026-09-03 | Half observed, half open. No fork chrome shipped: the series still sets `stroke-width: 2` and no filter exists anywhere in the corpus. The ADR-001 disposition still reads `UNANSWERED`, which only the operator can change | Met | - |
+| AC-014 | REQ-002 | Given the operator has to choose by looking, When both sheets are handed over, Then the phase stopped rather than picking a default, and the operator answered on 2026-09-03 | Observed. The phase stopped at the fork rather than picking a default, the comparison was rendered at three weights, and the operator answered 1px on 2026-09-03. The disposition records that answer and the template carries it. No filter exists anywhere in the corpus, because the glow was cut. Evidence updated on 2026-09-04 after review found this cell still described the pre-answer state, which only the operator can change | Met | - |
 
 ### Status values
 
@@ -103,7 +103,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No. Twelve rows met, one superseded, two open.
+**Closeable:** Yes. Thirteen rows met and one superseded, after the operator answered the weight fork on 2026-09-03 and the criterion governing printed measurements was narrowed the same day. Corrected on 2026-09-04: this statement had been left at its pre-answer reading.
 
 Everything the phase could finish on its own is finished. Both templates carry the settled chrome,
 the corpus check passes with rendering from the final state, and the weight comparison is rendered

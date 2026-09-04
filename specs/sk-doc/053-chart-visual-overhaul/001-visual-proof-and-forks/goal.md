@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-03-053-001-visual-proof-and-forks"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions:
       - "Which stroke weight the operator picks"
       - "Whether AC-004 covers ordinal labels or only measured values"
@@ -79,7 +79,7 @@ here are invisible to whatever judges completion.
 - [x] `grep -c 'stroke-dasharray' .opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html` returns at least 1, and the same holds for `bar-columns.html`
 - [x] `grep -c 'ui-monospace' .opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html` returns at least 1, and `grep -c 'toLocaleString'` over both templates returns 0
 - [x] `scratch/forks/stroke-weight.html` holds three drawings of the same readings at 2px, 1px and 0.8px. The glow sheet is not built: the operator cut the glow on 2026-09-03 and D3 below records it, so there is nothing to compare
-- [x] `decision-record.md` carries one ADR per fork, each naming both lineage arguments and an operator disposition. ADR-001 reads `UNANSWERED` by design, because the phase stops at the fork
+- [x] `decision-record.md` carries one ADR per fork, each naming both lineage arguments and an operator disposition. ADR-001 was left unanswered by design while the phase stopped at the fork, and the operator answered it 1px on 2026-09-03
 - [x] `validate.sh specs/sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
@@ -106,7 +106,7 @@ and findings belong here.
 | D1 stroke weight comparison | Done | `scratch/forks/stroke-weight.html`, rendered at `scratch/shots/stroke-weight-sheet.png` |
 | D2 glow comparison | Cut | ADR-002 in `decision-record.md`. Not built, by operator decision |
 | Corpus check from the final state | Done | `scratch/validator-after.txt`, `RESULT: PASSED`, `Summary: errors: 0` |
-| Operator disposition on the weight fork | Pending | ADR-001 disposition reads `UNANSWERED` |
+| Operator disposition on the weight fork | Done | The operator chose 1px on 2026-09-03 and the disposition records it |
 
 ### Deviations and findings
 

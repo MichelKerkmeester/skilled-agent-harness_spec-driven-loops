@@ -44,7 +44,7 @@
       "findings"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -144,17 +144,17 @@
     ],
     "causal_summary": "A hub can be complete in every registry and still not be reachable",
     "created_at": "2026-09-02T16:33:39Z",
-    "last_save_at": "2026-09-03T23:34:56.930Z",
+    "last_save_at": "2026-09-04T06:02:33.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6374297717f65534e498b97ba822e67ca3d04698d556b28474e50595f693e9cd",
+    "source_fingerprint": "sha256:941adb8e59ced83aada964b2e5d7ece94f54e122cf483eefb147600a6c57cea7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd5ff93f66ac4621f01e9bc55769176c7e5a361a8f613522cce24e97ef3a7a26"
+      "spec.md": "7a387efbb8bf0081469a0ead24250f933c6dd4840b685abe40b8793f54ee708b"
     },
     "last_active_child_id": "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
     "last_active_at": "2026-09-02T21:41:53.247Z"

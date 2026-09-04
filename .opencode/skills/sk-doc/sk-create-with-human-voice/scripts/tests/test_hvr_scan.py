@@ -99,6 +99,34 @@ Prose below the payload.
 """
 
 
+UNCLOSED_FRONTMATTER = """# Doc
+
+````markdown
+
+---
+Note: a line that looks like a field
+
+Payload prose; the semicolon must survive.
+````
+
+---
+
+Tail prose.
+"""
+
+
+SETEXT_UNDERLINE = """Some Heading
+---
+Note: a semicolon lives here; it must be found.
+
+An em dash — here.
+
+---
+
+Tail prose.
+"""
+
+
 THEMATIC_RULE = """# Draft
 
 A rule between sections is three dashes and nothing else.
@@ -173,6 +201,18 @@ def run() -> int:
         check(
             'a rule between sections is not mistaken for frontmatter',
             rule_report['templatePayload'] and rule_report['hardBlockers'] == 1,
+        )
+
+        unclosed_report = _scan(_template(tmp, UNCLOSED_FRONTMATTER))
+        check(
+            'a rule after the fence does not close a block that never opened',
+            unclosed_report['templatePayload'] and unclosed_report['hardBlockers'] == 1,
+        )
+
+        setext_report = _scan(_template(tmp, SETEXT_UNDERLINE))
+        check(
+            'three dashes under a heading are an underline, not frontmatter',
+            setext_report['templatePayload'] and setext_report['hardBlockers'] == 2,
         )
 
         wrapped_report = _scan(_prose(tmp, WRAPPED_SPAN))

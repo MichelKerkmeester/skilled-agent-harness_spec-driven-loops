@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-03-053-001-visual-proof-and-forks"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions:
       - "Which of the three rendered stroke weights the operator picks"
     answered_questions:
@@ -94,14 +94,15 @@ opposite directions, which is the signal that more argument buys nothing.
 
 **How it works**: `scratch/forks/stroke-weight.html` holds the three drawings. Grid, fill, dots,
 marker, type and geometry are shared, and one CSS rule per variant sets the weight, so a
-difference the reader sees is a difference the weight made. The template keeps its current stroke
-of two until an answer arrives, which means the shipped file is unchanged on the one axis this
-record is about.
+difference the reader sees is a difference the weight made. The sheet was built while the template still carried its
+stroke of two, so the comparison shows the shipped weight beside the two alternatives rather
+than beside itself.
 
 **Disposition**: ANSWERED, 2026-09-03, by the operator after reading the rendered comparison.
 Chosen: 1px. It is visibly lighter than the 2px the corpus ships and still holds on paper, which
-is the objection the thinnest option could not answer from a screen. Phase 002
-may roll it. Until then the series stroke is frozen at what ships today.
+is the objection the thinnest option could not answer from a screen. The template was
+changed to 1px in the same commit that recorded this answer, and phase 002 rolled it across the
+corpus.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -175,7 +176,7 @@ the case where more argument is the most expensive way to be wrong again.
 **What changes**:
 - `scratch/forks/stroke-weight.html` is added: three drawings of the shipped demo series, one
   variable between them.
-- Nothing in the templates changes on this axis. `assets/templates/daily-line.html` still sets
+- The templates changed on this axis once the answer arrived. `assets/templates/daily-line.html`
   `stroke-width: 2` on the series.
 - The contradicting drawing comment stays exactly as written. It is the evidence the fork rests
   on, so rewriting it before the answer arrives would either pre-empt the choice or destroy the

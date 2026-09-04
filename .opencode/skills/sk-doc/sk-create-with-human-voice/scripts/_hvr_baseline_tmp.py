@@ -232,41 +232,17 @@ CODE_FENCE_LANGUAGES = {
 # line decides: a field declaration opens frontmatter, anything else is a rule.
 FRONTMATTER_FIELD_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_-]*\s*:")
 
-# What may sit between the two rules of a frontmatter block: a field, a nested
-# value, a comment, a list item, or nothing. Anything else means the opening rule
-# was a section break or the underline of a heading, and the block is not one.
-FRONTMATTER_BODY_RE = re.compile(r"^(?:\s+\S|[A-Za-z_][A-Za-z0-9_-]*\s*:|#|-\s|$)")
 
-
-def _frontmatter_block_end(lines, index, at_start=False):
-    """Return the closing index of a frontmatter block opening at index, or None.
-
-    The search is bounded on purpose. Running to the end of the document for a
-    closing rule lets an unrelated later rule close a block that never opened,
-    which masks everything between them and turns a finding into a silence. A
-    silence is the one failure a scanner must not produce, because its counts are
-    counts of what survived masking.
-    """
+def _frontmatter_block_end(lines, index):
+    """Return the closing index of a frontmatter block opening at index, or None."""
     if lines[index].strip() != "---":
         return None
-    # Three dashes under a line of text are that line's heading underline, never
-    # frontmatter. What may precede one is the top of the document, a blank line,
-    # or the fence that opens the payload carrying it.
-    if not at_start and index > 0:
-        previous = lines[index - 1]
-        if previous.strip() and not FENCE.match(previous):
-            return None
     following = index + 1
     if following >= len(lines) or not FRONTMATTER_FIELD_RE.match(lines[following].strip()):
         return None
     for probe in range(following, len(lines)):
-        text = lines[probe].strip()
-        if text == "---":
+        if lines[probe].strip() == "---":
             return probe
-        if FENCE.match(lines[probe]):
-            return None
-        if not FRONTMATTER_BODY_RE.match(lines[probe]):
-            return None
     return None
 
 
@@ -329,7 +305,7 @@ def mask_untargeted(lines, include_code, template_payload=False):
         return masked
 
     start = 0
-    head_end = _frontmatter_block_end(masked, 0, at_start=True) if masked else None
+    head_end = _frontmatter_block_end(masked, 0) if masked else None
     if head_end is not None:
         start = head_end + 1
         for index in range(0, start):

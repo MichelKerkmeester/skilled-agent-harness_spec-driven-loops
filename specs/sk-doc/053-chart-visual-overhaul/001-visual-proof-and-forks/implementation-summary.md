@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-03-053-001-visual-proof-and-forks"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions:
       - "Which stroke weight the operator picks"
       - "Whether AC-004 covers ordinal labels or only measured values"
