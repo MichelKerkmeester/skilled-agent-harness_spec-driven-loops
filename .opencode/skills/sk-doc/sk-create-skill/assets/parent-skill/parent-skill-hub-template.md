@@ -17,12 +17,12 @@ Template for a **parent skill hub**: one advisor-routable identity with a thin `
 
 The core is always the same **2-tier shape**:
 
-1. Hub tier: `SKILL.md`, `mode-registry.json`, `hub-router.json`, root `ROUTER.md`, `description.json`, `graph-metadata.json`, and generated `leaf-manifest.json`; add `command-metadata.json` only when the hub owns slash commands.
+1. Hub tier: `SKILL.md`, `mode-registry.json`, `hub-router.json`, root `ROUTER.md`, `description.json`, `graph-metadata.json`, and generated `leaf-manifest.json`. Add `command-metadata.json` only when the hub owns slash commands.
 2. Packet tier: workflow packets and optional surface packets listed in one `modes[]` array.
 
-`hub-router.json` selects a workflow mode; the root `ROUTER.md` is the hub's stage-two control document. A fresh hub ships `router_state: stage1-only` with empty stage-two maps, so stage one is the whole routing story until an author promotes it to `active` with a concrete leaf map.
+`hub-router.json` selects a workflow mode, and the root `ROUTER.md` is the hub's stage-two control document. A fresh hub ships `router_state: stage1-only` with empty stage-two maps, so stage one is the whole routing story until an author promotes it to `active` with a concrete leaf map.
 
-Deep-loop-style runtime machinery is not the core shape. If a hub needs it, declare it under top-level `extensions` in `mode-registry.json`; do not create a third physical tier.
+Deep-loop-style runtime machinery is not the core shape. If a hub needs it, declare it under top-level `extensions` in `mode-registry.json`, and do not create a third physical tier.
 
 ---
 
@@ -39,7 +39,7 @@ For two or three near-identical procedures with no independent packet contracts,
 
 ### The Hard Invariant
 
-Exactly **one** `graph-metadata.json` per parent hub. Packet folders and shared resources carry none. The advisor sees the hub identity; the hub router selects packets.
+Exactly **one** `graph-metadata.json` per parent hub. Packet folders and shared resources carry none. The advisor sees the hub identity, and the hub router selects packets.
 
 ### Canonical Example
 
@@ -55,13 +55,13 @@ Model the hub on `sk-code`:
 
 ## 2. TWO-AXIS MODEL
 
-Every packet is one entry in `mode-registry.json > modes[]`. Use `packetKind` to choose the axis; do not create a separate surface array.
+Every packet is one entry in `mode-registry.json > modes[]`. Use `packetKind` to choose the axis, and do not create a separate surface array.
 
 | Axis | `packetKind` | Purpose | Naming | Tool posture | Advisor routing |
 |------|--------------|---------|--------|--------------|-----------------|
 | Workflow | `workflow` | A process or lifecycle mode | `[hub-prefix]-[mode]` or existing packet name | Mutating or read-only per role | `lexical`, `alias-fold`, `metadata`, or `command-bridge` |
 | Surface | `surface` | A domain evidence base | Hub-prefixed `[hub-prefix]-[surface]` | Read-only only | `metadata` |
-| Transport | `transport` | Bridges to an external tool's CLI/MCP surface (declared via `transport-axis`) | `[hub-prefix]-[mode]` | Read/Bash only; `mutatesWorkspace:false` (writes land externally); forbids Write/Edit/Task | `metadata` |
+| Transport | `transport` | Bridges to an external tool's CLI/MCP surface (declared via `transport-axis`) | `[hub-prefix]-[mode]` | Read/Bash only, `mutatesWorkspace:false` (writes land externally), and no Write/Edit/Task | `metadata` |
 
 Surface packets have these required properties:
 
@@ -77,13 +77,13 @@ Surface packets have these required properties:
 
 | Scope | File or directory | Required | Purpose |
 |-------|-------------------|----------|---------|
-| Hub | `SKILL.md` | Yes | Thin routing entry point; no packet-local logic |
+| Hub | `SKILL.md` | Yes | Thin routing entry point with no packet-local logic |
 | Hub | `mode-registry.json` | Yes | Single packet array with `packetKind`, `toolSurface`, and `advisorRouting` |
 | Hub | `hub-router.json` | Yes | Router policy, tie-breaks, outcomes, signals, vocabulary classes |
-| Hub | `ROUTER.md` | Yes | Stage-two control document; `router_state: stage1-only` on a fresh hub, `active` only with an authored leaf map |
+| Hub | `ROUTER.md` | Yes | Stage-two control document. `router_state: stage1-only` on a fresh hub, `active` only with an authored leaf map |
 | Hub | `description.json` | Yes | Hub-doctor metadata and triggers |
 | Hub | `graph-metadata.json` | Yes | One skill-graph identity node for the whole hub |
-| Hub | `command-metadata.json` | Conditional | Add only when the hub owns slash commands; one entry per owned command |
+| Hub | `command-metadata.json` | Conditional | Add only when the hub owns slash commands, one entry per owned command |
 | Hub | `leaf-manifest.json` | Yes (generated) | Generated inventory of the hub's routed leaves |
 | Hub | `leaf-aliases.json` | No (optional) | Authored compatibility aliases for genuine cross-packet resource relocation |
 | Hub | `changelog/` | Yes | Real changelog files for the hub |
@@ -113,7 +113,7 @@ version: 1.0.0.0
 
 - `name` must match the hub folder name.
 - `description` names routing, the registry, and the no-packet-logic invariant.
-- `allowed-tools` is the union required by workflow modes; read-only surfaces do not justify mutating tools.
+- `allowed-tools` is the union required by workflow modes. Read-only surfaces do not justify mutating tools.
 - `version` is four-part `X.Y.Z.W`.
 
 ---
@@ -152,7 +152,7 @@ Use this skill when the request belongs to the [family/domain] family and should
 
 - Requests outside [family/domain].
 - Direct runtime/backend maintenance unless that is an explicit workflow packet.
-- Mutating work inside a surface packet; surfaces are read-only evidence bases.
+- Mutating work inside a surface packet, because surfaces are read-only evidence bases.
 
 ---
 
@@ -164,14 +164,14 @@ Routing is registry-driven. `mode-registry.json` lists every workflow and surfac
 > ```bash
 > node .opencode/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
 > ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority. Compiled routing is now the default for the seven proven hubs (`sk-code`, `sk-design`, `sk-doc`, `sk-prompt`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`); `SPECKIT_COMPILED_ROUTING=0` is the fleet-wide kill-switch. A newly scaffolded `{{HUB_NAME}}` ships without a compiled activation manifest, so this directive stays inert (legacy sentinel) until `{{HUB_NAME}}` completes its own compiled-routing activation and is added to the default-on cohort.
+> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority. Compiled routing is now the default for the seven proven hubs (`sk-code`, `sk-design`, `sk-doc`, `sk-prompt`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`), and `SPECKIT_COMPILED_ROUTING=0` is the fleet-wide kill-switch. A newly scaffolded `{{HUB_NAME}}` ships without a compiled activation manifest, so this directive stays inert (legacy sentinel) until `{{HUB_NAME}}` completes its own compiled-routing activation and is added to the default-on cohort.
 
 ### Two-Axis Model
 
 - `packetKind: "workflow"` means a process/lifecycle packet.
 - `packetKind: "surface"` means a read-only evidence-base packet.
 - Surface packets use `backendKind: "evidence-base"`, `routingClass: "metadata"`, and `mutatesWorkspace: false`.
-- There is no separate surface array; consumers derive packet roots and vocabulary ownership from `modes[]`.
+- There is no separate surface array. Consumers derive packet roots and vocabulary ownership from `modes[]`.
 
 ### Routing Rule
 
@@ -201,10 +201,10 @@ read hub-router.json
   SKILL.md
   mode-registry.json
   hub-router.json
-  ROUTER.md                     # stage-two control; stage1-only on a fresh scaffold
+  ROUTER.md                     # stage-two control, stage1-only on a fresh scaffold
   description.json
   graph-metadata.json
-  command-metadata.json          # optional; only when the hub owns slash commands
+  command-metadata.json          # optional, only when the hub owns slash commands
   leaf-manifest.json
   changelog/
   manual-testing-playbook/
@@ -225,7 +225,7 @@ read hub-router.json
 
 - `mode-registry.json` owns `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, packet folder identity, alias phrases, and `advisorRouting`.
 - `hub-router.json` owns `routerPolicy`, `routerSignals`, `vocabularyClasses`, and bundle rules.
-- `ROUTER.md` is the stage-two control document: `router_state: active` declares non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP`; `router_state: stage1-only` keeps all stage-two collections empty and delegates to stage one. Promote to `active` only after authoring concrete, resolvable leaf paths — never placeholder intents.
+- `ROUTER.md` is the stage-two control document: `router_state: active` declares non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP`, while `router_state: stage1-only` keeps all stage-two collections empty and delegates to stage one. Promote to `active` only after authoring concrete, resolvable leaf paths, never placeholder intents.
 - `description.json` owns hub-doctor metadata fields and optional hub-specific arrays.
 - `graph-metadata.json` owns the one skill-graph identity node.
 
@@ -247,7 +247,7 @@ These extensions activate in-place fields. They do not move `advisorRouting` dat
 
 ### ALWAYS
 
-- Resolve packets through `mode-registry.json`; never hardcode packet roots in prose-only logic.
+- Resolve packets through `mode-registry.json`. Never hardcode packet roots in prose-only logic.
 - Keep `SKILL.md` thin: routing, invariants, and navigation only.
 - Keep every packet in `modes[]` and give every packet a `packetKind`.
 - Keep surfaces read-only with `backendKind: "evidence-base"` and `routingClass: "metadata"`.
@@ -259,13 +259,13 @@ These extensions activate in-place fields. They do not move `advisorRouting` dat
 - Never add `surfacePackets[]` or any second packet array.
 - Never put mutating tools on a surface packet.
 - Never add packet-local `graph-metadata.json` files.
-- Never infer extension-only fields from `workflowMode`; declare the extension and field explicitly.
+- Never infer extension-only fields from `workflowMode`. Declare the extension and field explicitly.
 - Never move `advisorRouting` fields away from mode entries.
 
 ### ESCALATE IF
 
 - A packet cannot be classified as `workflow` or `surface`.
-- A surface needs mutation; it is no longer a surface evidence base.
+- A surface needs mutation, so it is no longer a surface evidence base.
 - A lexical or alias-fold route lacks a drift guard.
 - Router signals, vocabulary classes, and registry modes cannot be made bidirectionally consistent.
 
@@ -291,8 +291,8 @@ Before claiming the hub complete:
 - [ ] `mode-registry.json` has one `modes[]` array with `packetKind` on every entry.
 - [ ] Every mode has `toolSurface` and `grandfatheredFolderMismatch`.
 - [ ] Every surface is read-only, `backendKind: "evidence-base"`, and `routingClass: "metadata"`.
-- [ ] `hub-router.json` has base outcomes (`single`, `orderedBundle`, `defer`) — plus `surfaceBundle` iff surface packets exist — workflow-first `tieBreak`, bidirectional mode keys, and defined vocabulary classes.
-- [ ] Root `ROUTER.md` exists with `router_state: stage1-only` or `active`, a root `SKILL.md` pointer, and a four-part `version`; `active` maps are non-empty and equal-keyed, `stage1-only` maps are empty.
+- [ ] `hub-router.json` has base outcomes (`single`, `orderedBundle`, `defer`), plus `surfaceBundle` iff surface packets exist, workflow-first `tieBreak`, bidirectional mode keys, and defined vocabulary classes.
+- [ ] Root `ROUTER.md` exists with `router_state: stage1-only` or `active`, a root `SKILL.md` pointer, and a four-part `version`. `active` maps are non-empty and equal-keyed, `stage1-only` maps are empty.
 - [ ] `description.json` has the required hub-doctor fields and a four-part version.
 - [ ] `graph-metadata.json` is the only advisor identity node for the hub.
 - [ ] Changelog directories use real files, not symlinks.

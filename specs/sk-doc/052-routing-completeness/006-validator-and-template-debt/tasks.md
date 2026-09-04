@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/006-validator-and-template-debt"
-    last_updated_at: "2026-09-02T18:47:58Z"
+    last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Marked the phase tasks done with evidence"
-    next_safe_action: "None; the phase is closed"
+    recent_action: "Swept the template backlog and recorded what stays"
+    next_safe_action: "Build the exemption mechanism the scanner still lacks"
     blockers: []
     key_files: []
     session_dedup:
@@ -82,6 +82,11 @@ _memory:
 - [x] T017 Re-score every template in the fleet with payload scanning on - evidence: 45 of 53 carry a real blocker, recorded rather than swept
 - [x] T018 Confirm the packaging gate still exempts fixture trees after the validator change - evidence: `d229b0a24d`
 - [x] T019 Triage every detected template blocker into prose, emitted payload, exemption or scanner gap - evidence: `research/template-triage.md`, 2026-09-03. 38 of 50 detected templates, 520 occurrences, classified 347 prose, 134 emitted, 29 gap, 10 exempt, with a ranked fix order and the consumer named for every emitted file
+- [x] T020 Re-measure the fleet before sweeping, since the triage counts predate both scanner rulings - evidence: 2026-09-04, `is_template_path` over `git ls-files` gives 54 detected and 509 blockers across 41 files, against the triage's 530 across 41 of 53
+- [x] T021 Sweep the guidance-only blockers across every detected template - evidence: 354 occurrences cleared under `.opencode/`, with a fence-position check confirming no payload line moved
+- [x] T022 Sweep the emitted blockers, one improvement judgment per template - evidence: 147 occurrences cleared across 23 templates, each with its rewrite justified in `research/template-triage.md` section 12
+- [x] T023 Run every template's consumer check before and after the rewrite - evidence: nine suites plus a per-file `validate_document.py` count, all identical to baseline. `test_create_skill_contract.py` forced the paired edit in `scaffold/hub-skill-scaffold.md`, and `templates-inventory.md` needed its `TEMPLATE 12 —` grep repinned
+- [x] T024 Record every blocker left standing with the reason it cannot be removed - evidence: 14 occurrences under `.opencode/` across five files, plus eight in three out-of-scope spec-folder templates, in `research/template-triage.md` section 12
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -262,6 +267,7 @@ _memory:
 - [x] CHK-142 [P2] The corrected templates are what future authors read
 - [x] CHK-143 [P2] The 45 of 53 backlog is written down for whoever picks it up
 - [x] CHK-144 [P2] The backlog is triaged rather than only counted, and the recorded denominator is reconciled
+- [x] CHK-145 [P1] The triage carries the sweep's per-file result, the new totals, and every remaining blocker with its reason
 <!-- /ANCHOR:docs-verify -->
 
 ---

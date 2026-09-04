@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/006-validator-and-template-debt"
-    last_updated_at: "2026-09-03T00:00:00Z"
+    last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "phase-6-validator-and-template-debt"
-    recent_action: "Recorded the template backlog triage in Known Limitations"
-    next_safe_action: "Rule on the four tiers in research/template-triage.md"
+    recent_action: "Swept the template backlog and recorded the exemptions that stay"
+    next_safe_action: "Build the exemption mechanism the scanner still lacks"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl"
@@ -25,8 +25,9 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "The template backlog is triaged into four tiers and awaits an operator ruling on each"
+      - "The scanner cannot express an exemption, so the fourteen recorded ones are re-reported by every scan"
     answered_questions:
+      - "The template backlog is swept: 509 blockers across 41 detected templates fall to 22 across 8"
       - "The document validator now carries the fixture exemption the packaging gate already had"
       - "The boilerplate count was 56 planning documents, not 48"
 ---
@@ -119,6 +120,9 @@ grep for the phrase still returns one file today.
 | Thirteen reference and readme files under `sk-create-chart`, `sk-create-repo-rule` and `sk-create-with-human-voice` | Modified (`d87e8dd162`) | Overview sections added, ten promoted from existing prose and five authored |
 | Fifty-six `plan.md` files across `specs/` | Modified (`d229b0a24d`) | The superseded scaffold line replaced, each dropping exactly one blocker |
 | The document validator and the voice scanner | Modified (`d229b0a24d`) | Fixture-tree exemption added, and template payload scanning enabled by name and location |
+| Thirty-seven templates across `sk-doc`, `cli-external-orchestration`, `sk-design-md-generator` and `sk-git` | Modified (2026-09-04) | The authorized sweep. 501 blockers under `.opencode/` fall to 14 exemptions, 354 of them guidance and 147 emitted |
+| `.../sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md` | Modified (2026-09-04) | The compiled-routing directive is asserted byte-identical against the hub template, so it took the same edit |
+| `.../cli-opencode/manual-testing-playbook/prompt-templates/templates-inventory.md` | Modified (2026-09-04) | Its scenario greps for the template heading separator, which the sweep changed |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -170,6 +174,10 @@ Every command below was run and its output read.
 | Rule anatomy contract re-derivation | Five of nine rows had drifted, and the conclusion survived re-derivation |
 | `scaffold-golden-snapshots.vitest.ts` after the plan template change | Snapshots re-captured and passing |
 | `validate.sh specs/sk-doc/052-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
+| Full fleet re-scan before and after the sweep | 509 blockers across 41 of 54 detected templates fall to 22 across 8. Under `.opencode/`, 501 to 14 |
+| Fence-position comparison against a pre-sweep copy of all 37 swept templates | Every changed line sits in the same position class before and after. No fence boundary moved and no `json` payload changed |
+| `validate_document.py` issue count, file by file across all 37 | Identical before and after |
+| Nine consumer suites, each run before and after | All identical to baseline, including the pre-existing exit 1 from `validate_catalog_package.py` on the same 1162 lines |
 | `hvr_scan.py` on this document | 0 hard blockers |
 <!-- /ANCHOR:verification -->
 
@@ -178,20 +186,33 @@ Every command below was run and its output read.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-**The template backlog is still untouched, and it now has a triage.** `research/template-triage.md`
-re-measured it on 2026-09-03 and sorted every occurrence: 38 of the 50 templates detected under
-`.opencode/` carry 520 hard blockers, of which 347 are author-facing guidance, 134 reach a generated
-document, 29 are scanner defects and 10 are exemptions. Two thirds of the backlog therefore needs no
-per-template review. The rewrite itself remains unstarted and unauthorized.
+**The template backlog is swept, and fourteen occurrences stay on purpose.** The operator
+authorized the rewrite on 2026-09-04 with one condition: each emitted change has to be an
+improvement, not a quieter scan. 509 blockers across 41 of 54 detected templates fell to 22
+across 8. `research/template-triage.md` section 12 carries the result per file, a one-line
+improvement judgment for every template whose payload changed, and the class and reason for
+each of the fourteen that remain under `.opencode/`. Those fourteen are a component name the
+standard bans, a line that quotes the ban list to teach it, a verbatim historical description,
+two heading identifiers hardcoded in a builder, and an HTML entity.
 
-**The recorded count moved twice, and one leg of it does not reproduce.** The 45 of 53 was
+**The recorded count moved four times, and one leg of it does not reproduce.** The 45 of 53 was
 repo-wide. Re-running the pre-fix scanner over the same file set returns 44 of 53, one file lower,
-with the rule set held fixed as a control. The masking fix in `82938b3e1c` then took the fleet to 41
-of 53 repo-wide and 38 of 50 under `.opencode/`.
+with the rule set held fixed as a control. The masking fix in `82938b3e1c` took the fleet to 41
+of 53 repo-wide and 38 of 50 under `.opencode/`, the emitted-frontmatter ruling in `cac56b9082`
+took the occurrence count from 530 to 509 without moving the file count, and the sweep then took
+it to 22 across 8.
 
-**The three acceptance criteria rows still read Unmet.** All three conditions now hold, and
-the grep for AC-003 was re-run while writing this summary. The rows were written before the
-fixes landed and are left as written here.
+**Three detected templates under `specs/` were left alone.** Two sit in a `z_archive` tree and
+the third is a shipped research asset. `scope-and-exemptions.md` section 3 puts a shipped spec
+document out of scope because its bytes are the record of what was decided, and they are outside
+this packet's write scope besides. They hold eight occurrences between them.
+
+**The scanner still cannot express an exemption.** Every one of the fourteen will be re-reported
+by the next scan, because the record lives in a research document the tooling never reads. The
+triage names the two candidate mechanisms and argues for the allowlist.
+
+**The acceptance criteria rows read Met.** All four conditions hold, and each row's Verification
+cell names the run that observed it.
 
 **Findings 26, 27 and 28 remain Planned in the register.** Finding 27, the fixture exemption,
 is closed by `d229b0a24d`. Finding 28's count was corrected from forty-eight to fifty-six and
@@ -201,7 +222,12 @@ the rewrite shipped. Finding 26 is the live backlog. The register was not revise
 by tests that assert findings on specific line numbers, and the exemption is the fix rather
 than the workaround.
 
-**The fleet figure and the tree figure are different numbers.** Twenty-four of forty describes
-this tree. Forty-five of fifty-three describes the fleet once the payload is scanned. Quoting
-one for the other overstates or understates the debt.
+**The fleet figure and the tree figure are different numbers.** Twenty-four of forty described
+this tree before the sweep. The fleet figure is now 8 of 54, and 5 of those 8 are exemption files
+under `.opencode/`. Quoting one for the other overstates or understates the debt.
+
+**The documents these templates already seeded are still uncorrected.** Fixing a generator does
+not fix its copies, and phase 6 fixed the generator first on purpose. No count of affected
+documents was taken, and the shipped behavior-benchmark scenarios are the visible case: their H1
+separator now differs from what the template emits.
 <!-- /ANCHOR:limitations -->

@@ -15,10 +15,10 @@ version: 1.0.0.22
 
 Per-feature scenario files for split manual testing playbooks. Use this template for the one-file-per-feature contract described in the main playbook template.
 
-> **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked or stubbed. AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP with a specific sandbox or runtime blocker documented.
+> **EXECUTION POLICY**: Every scenario MUST be executed for real, never mocked or stubbed. AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP with a specific sandbox or runtime blocker documented.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-> **COMPLETION**: This feature run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned.
+> **COMPLETION**: This feature run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`. Generated report Markdown is renderer-owned.
 
 ---
 
@@ -94,11 +94,11 @@ Operators run the exact prompt and command sequence for `{FEATURE_ID}` and confi
 
 - Objective: {OBJECTIVE}
 - Real user request: `{REAL_USER_REQUEST}`
-- Prompt: `{PROMPT — natural-human voice by default (e.g., "Review this auth diff for security issues"); use RCAF "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}." only when actor is an AI orchestrator. See references/prompt-voice.md.}`
+- Prompt: `{PROMPT, natural-human voice by default (e.g., "Review this auth diff for security issues"). Use RCAF "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}." only when the actor is an AI orchestrator. See references/prompt-voice.md.}`
 - Expected execution process: {EXPECTED_PROCESS}
 - Expected signals: {EXPECTED_SIGNALS}
 - Desired user-visible outcome: {DESIRED_USER_OUTCOME}
-- Pass/fail: PASS if {PASS_CONDITION}; FAIL if {FAIL_CONDITION}
+- Pass/fail: PASS if {PASS_CONDITION}, FAIL if {FAIL_CONDITION}
 
 ---
 
@@ -106,7 +106,7 @@ Operators run the exact prompt and command sequence for `{FEATURE_ID}` and confi
 
 ### Prompt
 
-- Prompt: `{PROMPT — natural-human voice by default (e.g., "Review this auth diff for security issues"); use RCAF "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}." only when actor is an AI orchestrator. See references/prompt-voice.md.}`
+- Prompt: `{PROMPT, natural-human voice by default (e.g., "Review this auth diff for security issues"). Use RCAF "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}." only when the actor is an AI orchestrator. See references/prompt-voice.md.}`
 
 ### Commands
 
@@ -166,8 +166,8 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 
 - Keep the feature file aligned with the matching root summary block and feature-catalog entry.
 - Preserve stable feature IDs and file paths once published.
-- The per-feature filename is a descriptive kebab-case slug with no numeric prefix (e.g. `full-runtime-dispatch.md`, not `001-full-runtime-dispatch.md`). Ordering and benchmark tier are owned by the root index and the `stage:` frontmatter field, not the filename — the scenario loader discovers files by their frontmatter, so a numbered filename buys nothing and forces a renumber-on-insert cascade.
-- Set `stage:` to mark the scenario's benchmark tier: `routing` (default — a positive in-domain recall scenario), `holdout` (a generalization scenario held out of the primary set), or `negative` (an out-of-domain scenario the skill must NOT route to). This is what a numbered/holdout/negative filename token used to signal implicitly. The skill-benchmark loader treats `stage: negative` as a suppression test (negative activation), not a positive routing hit.
-- For a scenario that also feeds the Lane C skill-benchmark, fill `id`, `expected_intent`, and `expected_resources` in the frontmatter, and keep the exact executor prompt in the `### Prompt` block — the loader parses the prompt from that block and records a `missing-exact-prompt` warning when it is absent. `expected_resources` is the list of resource paths the correct route should load; the D1 score is measured against it.
+- The per-feature filename is a descriptive kebab-case slug with no numeric prefix (e.g. `full-runtime-dispatch.md`, not `001-full-runtime-dispatch.md`). Ordering and benchmark tier are owned by the root index and the `stage:` frontmatter field, not the filename. The scenario loader discovers files by their frontmatter, so a numbered filename buys nothing and forces a renumber-on-insert cascade.
+- Set `stage:` to mark the scenario's benchmark tier: `routing` (the default, a positive in-domain recall scenario), `holdout` (a generalization scenario held out of the primary set), or `negative` (an out-of-domain scenario the skill must NOT route to). This is what a numbered/holdout/negative filename token used to signal implicitly. The skill-benchmark loader treats `stage: negative` as a suppression test (negative activation), not a positive routing hit.
+- For a scenario that also feeds the Lane C skill-benchmark, fill `id`, `expected_intent`, and `expected_resources` in the frontmatter, and keep the exact executor prompt in the `### Prompt` block, because the loader parses the prompt from that block and records a `missing-exact-prompt` warning when it is absent. `expected_resources` is the list of resource paths the correct route should load, and the D1 score is measured against it.
 - When a feature needs extra checks, add them beneath the main row instead of creating a second primary scenario row by default.
 - Put feature-specific review caveats, routing notes, and isolation constraints here instead of inventing separate sidecar docs.

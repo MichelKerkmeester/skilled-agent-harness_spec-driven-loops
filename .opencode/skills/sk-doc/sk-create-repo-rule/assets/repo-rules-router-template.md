@@ -14,7 +14,7 @@ version: 1.1.0.4
 
 # Repo Rules Router Template
 
-Emitted only when `REPO RULES.md` does not exist. **Nobody asks for this** — it is
+Emitted only when `REPO RULES.md` does not exist. **Nobody asks for this.** It is
 created because the destination is missing, the way a build makes a directory before
 writing into it.
 
@@ -25,7 +25,7 @@ writing into it.
 The router is **not a rule**, and the difference is measured, not stylistic: no
 frontmatter, no `Fires when`, no `The rule`, no self-check, and four numbered sections
 against a rule's six to twelve. It holds no doctrine of its own. Every rule it lists is
-a file; the router is the index.
+a file, and the router is the index.
 
 ---
 
@@ -36,7 +36,7 @@ a file; the router is the index.
 # REPO RULES
 
 Repo-local operating rules. `AGENTS.md` **Gate 5 (§2)** makes reading this mandatory
-before your first write of the session; this document then routes you to the one rule
+before your first write of the session. This document then routes you to the one rule
 file that governs what you are about to do. **It is a router, not a rulebook:** it
 holds no rules of its own.
 
@@ -47,7 +47,7 @@ holds no rules of its own.
 1. **Match on the action you are about to take**, not the topic of the request.
 2. **Load before the action.** A rule read afterwards is a post-mortem.
 3. **A file already in context is not re-read.**
-4. **Every trigger that fires is loaded, not just the first.** They compose; the more
+4. **Every trigger that fires is loaded, not just the first.** They compose, and the more
    specific wins on conflict. Three and four firing at once is the normal case, not an
    edge case.
 5. **Nothing fires → `AGENTS.md` alone governs.** Do not hunt for a rule to apply.

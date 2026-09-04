@@ -133,7 +133,7 @@ Every install guide follows an 11-section structure (sections 0-10), with 9 requ
 
 **Section Purposes**:
 
-**AI-First Install Guide**: The "TL;DR" that lets users paste a prompt to their AI assistant and get guided through installation. Include what the AI will do and expected time.
+**AI-First Install Guide**: The one-paste shortcut that lets users hand a prompt to their AI assistant and get guided through installation. Include what the AI will do and expected time.
 
 **Overview**: Explain what the tool does, why it's valuable, and show an architecture diagram. Include comparison table if relevant alternatives exist.
 

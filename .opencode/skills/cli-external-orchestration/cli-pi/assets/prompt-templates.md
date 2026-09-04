@@ -33,19 +33,19 @@ This asset provides structured, copy-paste ready dispatch templates for invoking
 
 > **Exit code caveat:** the pin observed exit `0` then exit `1` on identical unauthenticated calls. Every template below assumes the caller inspects output text, not the exit code alone.
 > **Offline caveat:** `--verbose` without `--offline` can hang 2+ minutes when no network path is available. Pass `--offline` whenever no live provider call is intended.
-> **No enforced model allowlist at this layer:** unlike `cli-cursor`/`cli-devin`, Pi is a multi-provider passthrough; use the authenticated provider roster in `cli-reference.md` §13 rather than guessing at an unconfirmed model id.
+> **No enforced model allowlist at this layer:** unlike `cli-cursor`/`cli-devin`, Pi is a multi-provider passthrough. Use the authenticated provider roster in `cli-reference.md` §13 rather than guessing at an unconfirmed model id.
 
 | Flag | Purpose |
 |---|---|
-| `-p` / `--print` | Non-interactive mode — process the prompt and exit. Skill default for one-shot dispatch. |
-| `--mode text` | Text output — the default mode. |
-| `--mode json` | JSONL event stream — one JSON object per line, not a single document. |
-| `--mode rpc` | Persistent stdin/stdout JSONL protocol — requires a lifecycle owner (see `integration-patterns.md` §7). |
-| `--tools <list>` | Comma-separated tool allowlist (e.g. `read,grep,find,ls`) — enforced by the CLI, not a prompt sentence. |
-| `--thinking <level>` | `off` through `max` — independent of `--model`, unlike Cursor/Devin's model-id-baked effort tiers. |
-| `--offline` | Disable startup network operations — skill default when no live provider call is intended. |
-| `--approve` / `-a` | Trust project-local files for this run — required even to read project package state. |
-| `--continue` / `-c`, `--resume` / `-r` | Session continuity — use only with a stable session reference. |
+| `-p` / `--print` | Non-interactive mode. Process the prompt and exit. Skill default for one-shot dispatch. |
+| `--mode text` | Text output, the default mode. |
+| `--mode json` | JSONL event stream, one JSON object per line, not a single document. |
+| `--mode rpc` | Persistent stdin/stdout JSONL protocol. Requires a lifecycle owner (see `integration-patterns.md` §7). |
+| `--tools <list>` | Comma-separated tool allowlist (e.g. `read,grep,find,ls`), enforced by the CLI, not a prompt sentence. |
+| `--thinking <level>` | `off` through `max`, independent of `--model`, unlike Cursor/Devin's model-id-baked effort tiers. |
+| `--offline` | Disable startup network operations, the skill default when no live provider call is intended. |
+| `--approve` / `-a` | Trust project-local files for this run. Required even to read project package state. |
+| `--continue` / `-c`, `--resume` / `-r` | Session continuity. Use only with a stable session reference. |
 
 ---
 

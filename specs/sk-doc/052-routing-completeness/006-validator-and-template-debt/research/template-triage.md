@@ -26,8 +26,10 @@ prose that only an author reads. Some sit in the block a template copies into a 
 have to stay where they are. And some are there because the scanner still reads a span it masks
 everywhere else.
 
-This is a triage, not a rewrite. Nothing under `.opencode/` was edited for it. The output is a
-per-file class, a ranked order, and a list of scanner defects for the owner of `hvr_scan.py`.
+Sections 1 through 11 are the triage as it stood on 2026-09-03, when nothing under `.opencode/`
+had been edited. Their output is a per-file class, a ranked order, and a list of scanner defects
+for the owner of `hvr_scan.py`. **Section 12 records the sweep the operator then authorized, and
+its counts supersede every number above it.** Read it first if you want the current state.
 
 ---
 
@@ -351,26 +353,183 @@ passes against the current one.
 
 ## 11. THE ASK
 
-The triage is done and nothing was rewritten. Four decisions, in the order the work would run.
+**All four were answered, and section 12 records what happened.** They are kept as written
+because the reasoning behind each answer is easier to judge against the question that prompted it.
 
-1. **Tier 1, 136 occurrences across 14 files.** Approve a prose pass over guidance text only. It
+1. **Tier 1, 136 occurrences across 14 files. Approved and done.** Approve a prose pass over guidance text only. It
    touches no fenced payload, changes no generated document, and needs no downstream check. The
    proof is a re-scan showing those files at zero and every payload fence byte-identical.
-2. **Tier 2, 134 occurrences across 24 files.** Approve or decline per template. A yes changes what
+2. **Tier 2, 134 occurrences across 24 files. Approved for every template except the exemptions.** Approve or decline per template. A yes changes what
    the next authored document contains, so the pass would be one commit per owning skill with the
    consumer named in the message. `skill-scaffold-template.md` is the only one a program reads.
-3. **Tier 3, 10 occurrences.** Rule on `harness`, then choose the exemption mechanism. Without a
+3. **Tier 3, 10 occurrences. `harness` ruled literal and left in place. The mechanism is still unbuilt.** Rule on `harness`, then choose the exemption mechanism. Without a
    mechanism the next scan re-reports all ten.
-4. **Tier 4, 29 occurrences plus the nesting defect.** Route to the owner of `hvr_scan.py`. Shape A
+4. **Tier 4, 29 occurrences plus the nesting defect. Both shapes settled.** Shape B was ruled on
+   in the scanner. Shape A turned out to need no scanner change at all: all ten occurrences were
+   inside `{PROMPT ...}` placeholders in the two playbook templates, and the sweep rewrote the
+   placeholders, which is the better fix because the placeholder was modelling banned punctuation
+   for the author who fills it in. Route to the owner of `hvr_scan.py`. Shape A
    is a straight fix. Shape B needs a ruling first.
 
-A rewrite pass authorized on tiers 1 and 2 together would touch 38 files under `.opencode/`, all of
-them templates, and would change emitted output in 24 of them. Tier 1 alone touches 14 files and
-changes no output at all.
+The estimate held exactly. The sweep touched 38 template files under `.opencode/`, and 24 of them
+carry an emitted blocker. Emitted output changed in 23. The twenty-fourth is
+`changelog-template.md`, whose single emitted occurrence is the `&nbsp;` entity and stays.
 
 ---
 
-## 12. RELATED RESOURCES
+## 12. THE SWEEP, 2026-09-04
+
+The operator authorized the rewrite across every class except the exemptions, on the condition
+that each emitted change is an improvement rather than a quieter scan. This section records what
+the sweep did, what it declined, and what each file's consumer said before and after.
+
+### Re-measurement against the triage
+
+The triage's counts predate both scanner rulings, so the sweep re-enumerated first, using
+`is_template_path` over `git ls-files` and the shipped entry point with `--all --json`.
+
+| Measurement | Files detected | Files with a blocker | Blockers |
+|---|---:|---:|---:|
+| Tracked repo-wide, as the triage recorded it | 53 | 41 | 530 |
+| Tracked repo-wide, at the start of this sweep | 54 | 41 | 509 |
+| Tracked repo-wide, after the sweep | 54 | 8 | 22 |
+
+Two numbers moved and one did not. The denominator gained a file because
+`sk-create-benchmark/assets/shared/source-template.md` was added after the triage ran, and it
+carries no blocker, so the count of files with a blocker held at 41. The occurrence count fell
+by 21, which is the emitted-frontmatter ruling of 2026-09-04 taking 19 occurrences across five
+files, plus two more the same masking change removed from files the triage listed at a higher
+count. Nothing else in the triage's per-file table failed to reproduce.
+
+### Result per file
+
+Guidance and Emitted split the Before column by where each blocker sat. A blocker in a
+discarded markdown shell counts as guidance, because nothing carries it into a new file.
+
+| Template | Before | After | Guidance | Emitted | What it emits |
+|---|---:|---:|---:|---:|---|
+| `cli-external-orchestration/cli-opencode/assets/prompt-templates.md` | 62 | 0 | 53 | 9 | Dispatch prompt text, never a file |
+| `sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md` | 38 | 0 | 38 | 0 | A benchmark profile `.json`, markdown shell discarded |
+| `sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` | 35 | 2 | 28 | 7 | Frontmatter blocks copied into new docs |
+| `sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-pattern-fixture-template.md` | 29 | 0 | 29 | 0 | A fixture `.json`, markdown shell discarded |
+| `sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md` | 27 | 0 | 7 | 20 | `<mode>/behavior-benchmark/behavior-benchmark.md` |
+| `sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md` | 25 | 0 | 14 | 11 | A hub `SKILL.md` |
+| `sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md` | 23 | 0 | 18 | 5 | `scenarios/<id>.md` |
+| `sk-doc/sk-create-agent/assets/agent-template.md` | 20 | 0 | 14 | 6 | An agent `.md` |
+| `sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-code-task-fixture-template.md` | 20 | 0 | 20 | 0 | A fixture `.json`, markdown shell discarded |
+| `sk-doc/sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md` | 20 | 4 | 7 | 13 | `<hub>/benchmark/README.md` |
+| `sk-doc/sk-create-command/assets/command-template.md` | 17 | 0 | 13 | 4 | A slash command |
+| `sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md` | 16 | 0 | 11 | 5 | A procedure card |
+| `sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md` | 14 | 0 | 3 | 11 | A playbook index |
+| `sk-design-md-generator/assets/design-md-prompt-template.md` | 13 | 2 | 4 | 9 | A write-phase prompt |
+| `sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md` | 13 | 0 | 10 | 3 | One catalog entry |
+| `sk-doc/sk-create-command/assets/command-router-template.md` | 12 | 0 | 9 | 3 | A command router |
+| `sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md` | 12 | 0 | 0 | 12 | A hub `ROUTER.md` |
+| `cli-external-orchestration/cli-cursor/assets/prompt-templates.md` | 11 | 0 | 11 | 0 | Dispatch prompt text, never a file |
+| `sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md` | 11 | 0 | 6 | 5 | One playbook scenario |
+| `cli-external-orchestration/cli-codex/assets/prompt-templates.md` | 10 | 0 | 10 | 0 | Dispatch prompt text, never a file |
+| `cli-external-orchestration/cli-pi/assets/prompt-templates.md` | 10 | 0 | 10 | 0 | Dispatch prompt text, never a file |
+| `sk-doc/sk-create-repo-rule/assets/repo-rule-template.md` | 9 | 0 | 8 | 1 | A `repo-rules/*.md` |
+| `sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md` | 8 | 0 | 1 | 7 | `baselines/claude-baseline.md` |
+| `sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md` | 7 | 0 | 4 | 3 | `feature-catalog.md` |
+| `sk-doc/sk-create-readme/assets/install-guide-template.md` | 6 | 5 | 6 | 0 | An install guide |
+| `sk-doc/sk-create-skill/assets/skill/skill-md-template.md` | 5 | 0 | 5 | 0 | Guidance only |
+| `sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md` | 4 | 0 | 2 | 2 | A root `REPO RULES.md` |
+| `sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md` | 4 | 0 | 0 | 4 | A runtime sync manifest |
+| `sk-doc/sk-create-skill/assets/skill/skill-asset-template.md` | 3 | 0 | 3 | 0 | Guidance only |
+| `sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` | 3 | 0 | 3 | 0 | Guidance only |
+| `sk-doc/sk-create-skill/assets/skill/skill-scaffold-template.md` | 3 | 0 | 0 | 3 | A skill `SKILL.md`, written by `init_skill.py` |
+| `cli-external-orchestration/cli-claude-code/assets/prompt-templates.md` | 2 | 0 | 2 | 0 | Dispatch prompt text, never a file |
+| `sk-doc/shared/assets/llmstxt-templates.md` | 2 | 0 | 2 | 0 | An `llms.txt` |
+| `sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md` | 2 | 0 | 1 | 1 | `benchmarks/<date>/benchmark-report.md` |
+| `sk-doc/sk-create-command/assets/command-presentation-template.md` | 2 | 0 | 0 | 2 | A presentation asset |
+| `cli-external-orchestration/cli-devin/assets/prompt-templates.md` | 1 | 0 | 1 | 0 | Dispatch prompt text, never a file |
+| `sk-doc/sk-create-changelog/assets/changelog-template.md` | 1 | 1 | 0 | 1 | A versioned changelog entry |
+| `sk-git/assets/commit-message-template.md` | 1 | 0 | 1 | 0 | A commit message |
+
+Under `.opencode/` the sweep closed 501 blockers down to 14, across 38 files. 354 sat in
+guidance and 147 in emitted text.
+
+### Why each emitted rewrite is an improvement
+
+One line per file whose payload changed. The test is whether the generated document reads
+better, not whether the scan is quieter.
+
+| Template | The emitted change | Why the output is better |
+|---|---|---|
+| `cli-opencode/assets/prompt-templates.md` | Nine dispatch-prompt directives split at the punctuation | A model reading a rules list gets two rules where an aside used to hang off the first |
+| `behavior-benchmark-index-template.md` | Twenty contract sentences in the emitted index | The index states a measurement contract, and each clause now stands as its own assertion instead of trailing a dash |
+| `skill-benchmark-readme-template.md` | Thirteen lines in the emitted hub index, four left as exemptions | Same reason, and the run-label immutability rule now reads as an instruction rather than a parenthetical |
+| `parent-skill-root-router-template.md` | Twelve lines including the H1 and the two state tables | The two router states are the document's whole point, and each now reads as a complete claim |
+| `parent-skill-hub-template.md` | Eleven lines of the emitted hub `SKILL.md`, including the compiled-routing directive | The ALWAYS and ESCALATE bullets are read as commands, and a command should be one sentence |
+| `manual-testing-playbook-template.md` | Eleven lines, including the `{PROMPT ...}` placeholders | The placeholder told an author to write a prompt while modelling banned punctuation inside it |
+| `design-md-prompt-template.md` | Nine cardinal rules in the emitted write-phase prompt, two left as exemptions | Each cardinal rule is now one sentence, which is how a model reads a numbered constraint |
+| `behavior-benchmark-baseline-template.md` | Seven lines including the H1 | The capture-provenance bullets each name one fact now |
+| `frontmatter-templates.md` | Seven copy-paste field rows and yaml comments, one left as an exemption | A field rule that fits one sentence is easier to check against a real block |
+| `agent-template.md` | Six lines of the emitted agent `.md` | The budget table cells read as two values rather than one clause |
+| `skill-procedure-template.md` | Five lines of the emitted card | The proof gate and the redaction steps are now separate imperatives |
+| `manual-testing-playbook-snippet-template.md` | Five lines including the prompt placeholder | Same reason as the index template |
+| `behavior-benchmark-scenario-template.md` | The emitted scenario H1 separator | New scenarios stop seeding the character the standard bans, at the cost of differing from the shipped siblings until those are corrected |
+| `command-template.md` | Four lines including two `**Inputs:**` rows | An input line that names a placeholder and then explains it reads better as one clause |
+| `skill-sync-manifest-template.md` | Four table cells | `No, same inode` says the same thing as the dash form and survives a plain-text render |
+| `command-router-template.md` | Three lines of the emitted router | The input gate and the dispatch prohibition are each one rule now |
+| `feature-catalog-snippet-template.md` | Three lines, two of them Related Resources bullets | The bullets now match the separator the rest of the tree uses |
+| `feature-catalog-template.md` | Three lines, same shape | Same reason |
+| `skill-scaffold-template.md` | Three resource-domain bullets in the emitted `SKILL.md` | `references/ holds ...` is a sentence, where the dash form was a label |
+| `command-presentation-template.md` | Two auto-resolution rules | Two rules instead of one compound rule |
+| `repo-rules-router-template.md` | Two lines of the emitted `REPO RULES.md` | The Gate 5 sentence and the compose rule are each self-contained |
+| `repo-rule-template.md` | The section-one scaffold line | A colon introduces the list it was already introducing |
+| `benchmark-report-template.md` | The process-narrative opening | It now uses the same word its own guidance comment uses, `narrative` |
+
+### What is left, and why
+
+Fourteen occurrences under `.opencode/` stay, across five files. None is a punctuation habit.
+
+| File and line | Count | Class | Reason it stays |
+|---|---:|---|---|
+| `sk-create-readme/assets/install-guide-template.md:432` | 5 | Quotes the ban list | The line tells an author which words are banned by naming them. A rewrite deletes the instruction |
+| `sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md:53, 65, 172, 190` | 4 | Literal noun | Names the Lane C benchmark `harness`, a real component under `system-deep-loop/deep-improvement`. `scope-and-exemptions.md` section 4 already rules that a term's sense decides |
+| `sk-design-md-generator/assets/design-md-prompt-template.md:51` | 2 | Identifier | The two spans name the literal headings `## Tokens — Colors` and `## Tokens — Spacing & Shapes`, hardcoded in `backend/scripts/schema-v3.ts` and asserted by `backend/tests/build-write-prompt.test.ts`. Rewriting them points the prompt at sections the builder never emits |
+| `sk-create-frontmatter/assets/frontmatter-templates.md:261` | 1 | Literal noun | Names the Claude Code `harness` as the runtime imposing the described limits |
+| `sk-create-frontmatter/assets/frontmatter-templates.md:291` | 1 | Verbatim quotation | The 545-character `sk-code` description as it actually read before the trim. Editing it makes the before-and-after example describe something that never shipped |
+| `sk-create-changelog/assets/changelog-template.md:92` | 1 | Markup token | The span is `&nbsp;`, an HTML entity used as a blank-line spacer. The character is entity syntax, not punctuation |
+
+Three more detected templates live under `specs/` and were left alone. Two sit in a `z_archive`
+tree and the third is a shipped research asset, and `scope-and-exemptions.md` section 3 puts a
+shipped spec document out of scope because its bytes are the record of what was decided. They
+hold eight occurrences between them.
+
+### The exemption mechanism is still missing
+
+Every row in the table above will be re-reported by the next scan. The scanner has no way to
+express an exemption today, so the record lives here and nowhere the tooling reads.
+
+Two of the six rows are a term whose sense is literal, one is text about the banned words, one
+is a quotation, one is markup syntax, and one is an identifier. A single mechanism covers all
+six: a path-and-span allowlist the scanner consults, parsed from `scope-and-exemptions.md` so
+the reason sits beside the rule rather than in a report. A marker comment on the preceding line
+is the cheaper build and keeps the reason next to the span, but it puts a scanner directive into
+a template payload, which is exactly the kind of text a template must not carry into the file it
+emits. The allowlist is the better fit for that reason alone.
+
+### Proof the sweep changed nothing else
+
+| Check | Scope | Result |
+|---|---|---|
+| Fence-position comparison against a pre-sweep copy | All 37 templates | Every changed line sits in the same position class before and after. No fence boundary moved, and no `json` payload changed at all |
+| `validate_document.py` issue count | All 37 templates | Identical before and after, file by file |
+| `outsourced-agent-handback-docs.vitest.ts` | cli-opencode, cli-claude-code | 2 passed, 1 skipped, before and after |
+| Template inventory greps from `templates-inventory.md` | cli-opencode | 16 headers and 15 bash blocks, unchanged. The scenario's own `TEMPLATE 12 —` grep was repinned to the new separator |
+| `test_create_skill_contract.py` and `test_skill_contract.py` | parent-skill-hub, hub scaffold, skill scaffold | 27 and 4 passed. The lockstep directive test needed the identical edit in `scaffold/hub-skill-scaffold.md`, which it got |
+| `leaf-resource-contract.test.cjs`, `root-router-contract.test.cjs` | agent, changelog, install-guide, skill-md, root router | Exit 0, output byte-identical to the baseline |
+| `validate-playbook-package.test.cjs`, `validate-playbook-topology.test.cjs` | Both playbook templates | Exit 0, output byte-identical |
+| `test_validator_fixtures.py`, `validate_catalog_package.py` | Both feature-catalog templates | Fixtures exit 0. The package validator exits 1 both before and after on the same 1162 lines, a pre-existing state this sweep did not touch |
+| `build-write-prompt.test.ts` | design-md prompt | 6 passed, confirming the two exempted heading identifiers still match the builder |
+| `test_hvr_scan.py` | The scanner itself | Exit 0, unchanged |
+
+---
+
+## 13. RELATED RESOURCES
 
 - [`../implementation-summary.md`](../implementation-summary.md) - the phase that measured the backlog.
 - [`../../research/findings-register.md`](../../research/findings-register.md) - finding 26, the live backlog row.

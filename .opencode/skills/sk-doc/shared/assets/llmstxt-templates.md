@@ -220,7 +220,7 @@ Group documents into logical sections:
 - **Code samples** → EXAMPLES
 - **Setup/contribution** → DEVELOPMENT
 
-### Step 3: Prioritize by User Journey
+### Step 3: Prioritize by User Flow
 
 Order sections by typical user flow:
 1. What is this? (blockquote)
@@ -477,7 +477,7 @@ Before publishing, verify:
 - [ ] Descriptions explain what reader will learn
 
 ### Content
-- [ ] Sections ordered by user journey priority
+- [ ] Sections ordered by user-flow priority
 - [ ] No duplicate links
 - [ ] No outdated/deprecated resources
 - [ ] Prefer .md files over .html when both exist

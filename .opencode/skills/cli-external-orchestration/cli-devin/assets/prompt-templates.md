@@ -527,7 +527,7 @@ JSONEOF
 node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json [spec-folder]
 ```
 
-Structured JSON is the required save path. You can pass the payload via temp file, `--stdin`, or `--json`; do not call `generate-context.js` with only a spec folder.
+Structured JSON is the required save path. You can pass the payload via temp file, `--stdin`, or `--json`. Do not call `generate-context.js` with only a spec folder.
 
 ---
 

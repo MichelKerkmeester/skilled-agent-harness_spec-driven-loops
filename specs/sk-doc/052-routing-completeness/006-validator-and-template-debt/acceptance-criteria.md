@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/006-validator-and-template-debt"
-    last_updated_at: "2026-09-02T18:47:58Z"
+    last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Re-ran the criteria verifications and recorded each result"
-    next_safe_action: "None; the criteria are settled"
+    recent_action: "Added the sweep criterion and re-verified the three original rows"
+    next_safe_action: "Build the exemption mechanism named in the triage"
     blockers: []
     key_files: []
     session_dedup:
@@ -42,7 +42,7 @@ _memory:
 **Packet:** sk-doc/052-routing-completeness/006-validator-and-template-debt
 **Level:** 3
 **Status:** Complete
-**Date:** 2026-09-02
+**Date:** 2026-09-04
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -57,6 +57,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given a scanner fixture whose bytes are pinned by tests, When the document validator runs, Then it is exempt | Re-run 2026-09-02: `validate_document.py:1` exits 0 on `voice-clean.md:1` and `voice-dirty.md:1`, each reporting `Fixture tree: holds the shapes it exercises`. The exemption landed in `d229b0a24d` | Met | |
 | AC-002 | REQ-002 | Given a template whose payload is a fenced block, When it is scanned, Then a seeded blocker is caught | Re-run 2026-09-02 on a probe template: `hvr_scan.py:1` reports `template payload detected`, then 1 hard blocker and exit 1 with the character seeded inside the fence, and 0 blockers with exit 0 once it is removed | Met | |
 | AC-003 | REQ-003 | Given forty-eight planning documents carrying superseded boilerplate, When the phase closes, Then none carries it | `grep -rl 'it owns the Setup, Implementation, and Verification' specs/` returns nothing beyond this file. Re-run 2026-09-02: one match, `acceptance-criteria.md:1`, which is this criterion quoting the sentence it retired. The real count was fifty-six documents, not forty-eight, and all were rewritten in `d229b0a24d` | Met | |
+| AC-004 | REQ-002 | Given a detected template carrying a hard blocker, When the sweep closes, Then the blocker is removed or recorded with the reason it must stay | Re-scan 2026-09-04 via `hvr_scan.py:1` over all 54 detected templates, recorded in `research/template-triage.md:380`: 509 blockers across 41 files fall to 22 across 8. Under `.opencode/` the 14 that remain are five files of exemptions, each with a class and a reason in `research/template-triage.md` section 12. The other 8 sit in three spec-folder templates that `scope-and-exemptions.md` section 3 puts out of scope. Every emitted rewrite carries a one-line improvement judgment, and nine consumer suites plus a per-file `validate_document.py` count are identical to their pre-sweep baseline | Met | |
 
 ### Status values
 
@@ -83,9 +84,15 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All three criteria were re-verified from the current tree: the fixture exemption holds, a
-blocker seeded inside a template fence is caught, and the retired sentence survives in one
-place only, this criterion. What was consciously left out is the backlog those measurements
-exposed. Forty-five of fifty-three templates carry a blocker in their payload, and rewriting a
-payload changes what a template emits, so that is a decision per template rather than a sweep.
+All four criteria were verified from the current tree: the fixture exemption holds, a blocker
+seeded inside a template fence is caught, the retired sentence survives in one place only, this
+criterion, and the template backlog is swept.
+
+The backlog the first three measurements exposed is now closed. The operator authorized the
+rewrite on 2026-09-04, and 509 blockers across 41 detected templates fell to 22 across 8. What
+is left is not punctuation habit: two files name a real component whose name the standard bans,
+one quotes the ban list to teach it, one quotes a historical description verbatim, one names two
+headings hardcoded in a builder, one is an HTML entity, and three are spec documents whose bytes
+are a record. The scanner still has no way to express any of that, which is the one thing this
+phase leaves open.
 <!-- /ANCHOR:closure -->

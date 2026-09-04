@@ -122,7 +122,7 @@ Verification:
 ```
 
 These examples are tightened versions of real commits in this repository's
-own history (`5baf52ff74`, `cf639da725`, `bd693dfc37`) — grounded in what
+own history (`5baf52ff74`, `cf639da725`, `bd693dfc37`), grounded in what
 actually gets committed here, not generic auth/API scaffolding.
 
 ---

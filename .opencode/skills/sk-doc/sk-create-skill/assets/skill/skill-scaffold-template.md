@@ -38,9 +38,9 @@ Do not use this skill for:
 
 ### Resource Domains
 
-- `references/` — optional guidance and domain knowledge.
-- `assets/` — optional templates and reusable output material.
-- `scripts/` — optional deterministic automation.
+- `references/` holds optional guidance and domain knowledge.
+- `assets/` holds optional templates and reusable output material.
+- `scripts/` holds optional deterministic automation.
 
 ### Smart Router Pseudocode
 

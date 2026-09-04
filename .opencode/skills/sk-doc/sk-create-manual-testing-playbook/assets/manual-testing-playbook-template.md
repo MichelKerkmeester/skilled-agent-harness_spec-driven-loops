@@ -31,7 +31,7 @@ Templates for creating manual testing playbooks with deterministic scenarios, st
 - **Feature-catalog shaped files**: Per-feature playbook files should mirror feature-catalog snippet structure by leading with prose, then current reality, then structured source references.
 - **Evidence-driven**: Every scenario requires captured evidence with explicit verdicts.
 - **Validator-limited**: The current validator checks the root playbook for markdown structure, but it does not recurse into category folders or verify cross-file references yet.
-- **Evergreen**: Playbooks validate current behavior. Scenario IDs are allowed; spec or phase packet-history references are not.
+- **Evergreen**: Playbooks validate current behavior. Scenario IDs are allowed, and spec or phase packet-history references are not.
 
 **Location Convention**: `{SKILL_PATH}/manual-testing-playbook/`
 
@@ -47,7 +47,7 @@ manual-testing-playbook/
     └── feature-name.md
 ```
 
-Category folders and per-feature files use descriptive kebab-case names; the root `manual-testing-playbook.md` index owns display order, not the folder name.
+Category folders and per-feature files use descriptive kebab-case names. The root `manual-testing-playbook.md` index owns display order, not the folder name.
 
 **Existing Examples**:
 - `.opencode/skills/system-spec-kit/manual-testing-playbook/` (integrated root playbook + 195 per-feature files)
@@ -102,7 +102,7 @@ ID format:
 - `PREFIX`: 1-5 uppercase letters identifying the category.
 - `NNN`: zero-padded 3-digit sequence number starting at 001.
 - IDs are unique across the entire playbook.
-- Gaps are allowed; do not renumber published IDs.
+- Gaps are allowed, but do not renumber published IDs.
 - IDs should identify current validation scenarios, not the packet that created them. Replace packet-history notes with source anchors or feature references.
 
 Per-feature file path:
@@ -172,13 +172,13 @@ Canonical package artifacts:
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`. Generated report Markdown is renderer-owned and never hand-authored.
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides a derived census of deterministic scenarios across categories validating the `{SKILL_SLUG}` skill surface. The operator validator computes those counts from the walked tree; do not hand-maintain them. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
+This playbook provides a derived census of deterministic scenarios across categories validating the `{SKILL_SLUG}` skill surface. The operator validator computes those counts from the walked tree, so do not hand-maintain them. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note ({PLAYBOOK_DATE}): {COVERAGE_NOTE}.
 
@@ -312,7 +312,7 @@ This section records wave planning and capacity guidance for the manual testing 
 Verify {OBJECTIVE}.
 
 #### Scenario Contract
-Prompt: `{PROMPT — natural-human by default; use RCAF "As a {ROLE}, ..." only when actor is an AI orchestrator. See references/prompt-voice.md.}`
+Prompt: `{PROMPT, natural-human by default. Use RCAF "As a {ROLE}, ..." only when the actor is an AI orchestrator. See references/prompt-voice.md.}`
 
 {SCENARIO_CONTRACT_SUMMARY}
 
@@ -332,7 +332,7 @@ Desired user-visible outcome: {DESIRED_USER_OUTCOME}
 Verify {OBJECTIVE_2}.
 
 #### Scenario Contract
-Prompt: `{PROMPT_2 — natural-human by default; use RCAF only for orchestrator-as-actor scenarios per references/prompt-voice.md}`
+Prompt: `{PROMPT_2, natural-human by default. Use RCAF only for orchestrator-as-actor scenarios per references/prompt-voice.md}`
 
 {SCENARIO_CONTRACT_SUMMARY_2}
 
@@ -395,11 +395,11 @@ Operators run the exact prompt and command sequence for `{FEATURE_ID}` and confi
 
 - Objective: {OBJECTIVE}
 - Real user request: `{REAL_USER_REQUEST}`
-- Prompt: `{PROMPT — natural-human by default; use RCAF "As a {ROLE}, ..." only when actor is an AI orchestrator. See references/prompt-voice.md.}`
+- Prompt: `{PROMPT, natural-human by default. Use RCAF "As a {ROLE}, ..." only when the actor is an AI orchestrator. See references/prompt-voice.md.}`
 - Expected execution process: {EXPECTED_PROCESS}
 - Expected signals: {EXPECTED_SIGNALS}
 - Desired user-visible outcome: {DESIRED_USER_OUTCOME}
-- Pass/fail: PASS if {PASS_CONDITION}; FAIL if {FAIL_CONDITION}
+- Pass/fail: PASS if {PASS_CONDITION}, FAIL if {FAIL_CONDITION}
 
 ---
 
@@ -415,7 +415,7 @@ Operators run the exact prompt and command sequence for `{FEATURE_ID}` and confi
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| {FEATURE_ID} | {FEATURE_NAME} | Verify {OBJECTIVE} | `{EXACT_PROMPT}` | 1. `{COMMAND_1}` -> 2. `{COMMAND_2}` | Step 1: {SIGNAL_1}; Step 2: {SIGNAL_2} | {EVIDENCE_DESCRIPTION} | PASS if {PASS_CONDITION}; FAIL if {FAIL_CONDITION} | {TRIAGE_STEPS} |
+| {FEATURE_ID} | {FEATURE_NAME} | Verify {OBJECTIVE} | `{EXACT_PROMPT}` | 1. `{COMMAND_1}` -> 2. `{COMMAND_2}` | Step 1: {SIGNAL_1}, Step 2: {SIGNAL_2} | {EVIDENCE_DESCRIPTION} | PASS if {PASS_CONDITION}, FAIL if {FAIL_CONDITION} | {TRIAGE_STEPS} |
 
 ### Optional Supplemental Checks
 

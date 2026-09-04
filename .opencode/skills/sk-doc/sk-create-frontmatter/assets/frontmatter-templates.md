@@ -122,11 +122,11 @@ Level 3: Field Format
 |---------------|------------------|-----------------|-----------------|
 | **SKILL.md** | ✅ Always | `name`, `description`, `allowed-tools`, `version` | `tags`, `category` |
 | **Command** | ✅ Always | `description`, `argument-hint`, `allowed-tools` | `name`, `model`, `version` |
-| **Skill Reference/Asset** | ✅ Always | `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version` | — |
-| **Knowledge (outside skills)** | ❌ Never | — | — |
+| **Skill Reference/Asset** | ✅ Always | `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version` | n/a |
+| **Knowledge (outside skills)** | ❌ Never | n/a | n/a |
 | **Spec** | ✅ Always, per `system-spec-kit` | Owned by that skill, not by this contract | n/a |
 | **README** (beside a `SKILL.md`) | ✅ Always | `title`, `description`, `trigger_phrases`, `version` | `importance_tier`, `contextType` |
-| **README** (anywhere else) | ⚪ Optional | — | Add a block only when the doc should be discoverable |
+| **README** (anywhere else) | ⚪ Optional | n/a | Add a block only when the doc should be discoverable |
 | **Feature Catalog** | ✅ Always | `title`, `description`, `trigger_phrases`, `version` | `importance_tier`, plus `last_updated` on the root index |
 | **Testing Playbook** | ✅ Always | `title`, `description`, `version` | Runner-specific keys only, added one at a time when a runner reads them |
 | **Agent** | ✅ Always | `name`, `description`, and the runtime's authority key: `permission:` under `.opencode/agents/`, `tools:` elsewhere | `mode`, `temperature`, `mcpServers` |
@@ -146,7 +146,7 @@ Spec-folder documents are not in this group. They carry frontmatter and `system-
 - These documents are pure content
 - Adds confusion about document purpose
 
-**Exception — skill references and assets**: docs under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` are NOT frontmatter-free knowledge files. They carry the full 5-field block (see the Skill Reference/Asset entry above and the template in Section 4); skill and folder `README.md` files are exempt.
+**Exception for skill references and assets**: docs under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` are NOT frontmatter-free knowledge files. They carry the full 5-field block (see the Skill Reference/Asset entry above and the template in Section 4). Skill and folder `README.md` files are exempt.
 
 ### Decision Framework
 
@@ -189,7 +189,7 @@ Is this document invoked programmatically?
 | `allowed-tools` | ✅ Required | ✅ Required | ❌ N/A | ❌ N/A | ❌ Uses `permission:` or `tools:` | Comma-separated tool list |
 | `argument-hint` | ❌ N/A | ✅ Required | ❌ N/A | ❌ N/A | ❌ N/A | Syntax hint: `<required> [optional]` |
 | `model` | ❌ N/A | ⚪ Optional | ❌ N/A | ❌ N/A | ❌ N/A | Override default model (rarely used) |
-| `version` | ✅ Required | ⚪ Optional | ✅ Required | ✅ Required | ❌ Out of scope | 4-part `X.Y.Z.W` for skill docs; see [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
+| `version` | ✅ Required | ⚪ Optional | ✅ Required | ✅ Required | ❌ Out of scope | 4-part `X.Y.Z.W` for skill docs. See [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
 | `tags` | ⚪ Optional | ❌ N/A | ❌ N/A | ❌ N/A | ❌ N/A | Categorization keywords |
 
 ---
@@ -220,7 +220,7 @@ name: 123-skill  # Cannot start with number
 
 ### `description` Field
 
-**Purpose**: Human-readable explanation of what the skill/command does. Also feeds the Skill Advisor's lexical-lane scoring — the description's keyword density is what makes the skill discoverable to the model.
+**Purpose**: Human-readable explanation of what the skill/command does. Also feeds the Skill Advisor's lexical-lane scoring, where the description's keyword density is what makes the skill discoverable to the model.
 
 **Format Requirements**:
 - One to two sentences maximum
@@ -262,35 +262,35 @@ The Claude Code harness imposes two limits that authors don't see directly:
 
 | Constant | Value | Source |
 |----------|------:|--------|
-| Per-skill soft target | **≤ 130 chars** | Project convention; routing-keyword density stays high |
-| Per-command soft target | **≤ 110 chars** | Project convention; commands are terser by nature |
+| Per-skill soft target | **≤ 130 chars** | Project convention, keeping routing-keyword density high |
+| Per-command soft target | **≤ 110 chars** | Project convention, since commands are terser by nature |
 | Per-item hard cap | **1,536 chars** | Claude Code internal limit (combined `description` + `when_to_use`) |
-| Project soft-ceiling | **5,600 chars** | Total of all project descriptions; leaves ~2,400-char headroom for Claude Code built-ins under the default `SLASH_COMMAND_TOOL_CHAR_BUDGET = 8000` |
+| Project soft-ceiling | **5,600 chars** | Total of all project descriptions, leaving ~2,400-char headroom for Claude Code built-ins under the default `SLASH_COMMAND_TOOL_CHAR_BUDGET = 8000` |
 
 When project total exceeds the 8,000-char default, Claude Code **silently drops** the longest descriptions from its available-skills list. Skills stay invocable explicitly, but the model can no longer auto-suggest them. (Packet 083 had to trim 36 descriptions because the project had grown to ~10,050 chars and 15 skills were dropped.)
 
-**Trim style — DROP**:
+**Trim style, what to DROP**:
 - Product enumerations (`ClickUp/Notion/Figma/Chrome…`)
-- Stack lists (`Webflow/HTML/CSS/JS/Motion.dev/GSAP…`) — see *Stack-agnostic phrasing* below
+- Stack lists (`Webflow/HTML/CSS/JS/Motion.dev/GSAP…`), covered by *Stack-agnostic phrasing* below
 - Marketing prose (`Mandatory for…`, `Provides…efficient…`, `…best-in-class…`)
 - Parenthetical jargon (`(gold battery, staleness model, exclude-rule confidence tiers)`)
 
-**Trim style — KEEP**:
+**Trim style, what to KEEP**:
 - Skill name token (the literal skill name appearing in the description boosts the explicit-author lane)
 - Primary verb (`orchestrate`, `validate`, `dispatch`, `audit`)
 - Primary domain noun (`MCP`, `code-review`, `prompts`, `git workflow`)
-- Mode suffixes (`:auto`, `:confirm`, `:apply`) — these are advisor trigger tokens
-- Numeric specifics (`9 steps`, `5-dim scoring`, `4 MCP servers`) — they signal real capability
+- Mode suffixes (`:auto`, `:confirm`, `:apply`), which are advisor trigger tokens
+- Numeric specifics (`9 steps`, `5-dim scoring`, `4 MCP servers`), which signal real capability
 
-**Stack-agnostic phrasing** (project rule): never enumerate specific stacks (Webflow / Go / Next.js / Python frameworks…) in skill descriptions. The smart router detects the active stack at dispatch time; baking stacks into the description ages poorly and consumes routing-keyword budget that should go to the verb + domain noun.
+**Stack-agnostic phrasing** (project rule): never enumerate specific stacks (Webflow / Go / Next.js / Python frameworks…) in skill descriptions. The smart router detects the active stack at dispatch time. Baking stacks into the description ages poorly and consumes routing-keyword budget that should go to the verb + domain noun.
 
 **Before/after example** (sk-code, packet 083, 545 → 125 chars):
 
 ```yaml
-# Before — 545 chars: enumerated stacks + library lists + marketing prose
+# Before (545 chars): enumerated stacks + library lists + marketing prose
 description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: Motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack Motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
 
-# After — 125 chars: skill name implicit, verb+domain noun preserved, smart-router phrase kept
+# After (125 chars): skill name implicit, verb+domain noun preserved, smart-router phrase kept
 description: "Multi-stack coding standards and verification. Smart router auto-detects the active surface and loads matching code patterns."
 ```
 
@@ -366,12 +366,12 @@ model: opus
 
 | Field | Format | Rules |
 |-------|--------|-------|
-| `title` | Plain string | Non-empty; usually mirrors the H1 |
-| `description` | Single line | Non-empty; no folded (`>`) or multiline scalars |
-| `trigger_phrases` | YAML block list | 3-8 items; distinctive lowercase multi-word phrases drawn from the doc's content |
-| `importance_tier` | Enum | `constitutional` \| `critical` \| `important` \| `normal` \| `temporary` \| `deprecated` — default `normal`; `important` only for formal contract/invariant docs |
+| `title` | Plain string | Non-empty, and usually mirrors the H1 |
+| `description` | Single line | Non-empty, with no folded (`>`) or multiline scalars |
+| `trigger_phrases` | YAML block list | 3-8 distinctive lowercase multi-word phrases drawn from the doc's content |
+| `importance_tier` | Enum | `constitutional` \| `critical` \| `important` \| `normal` \| `temporary` \| `deprecated`. Default `normal`, with `important` only for formal contract/invariant docs |
 | `contextType` | Enum | `planning` \| `research` \| `implementation` \| `general` |
-| `version` | `X.Y.Z.W` | Required; 4-part; inserted as the last key in the block; derived per [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
+| `version` | `X.Y.Z.W` | Required, 4-part, inserted as the last key in the block, derived per [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
 
 **Trigger phrase quality**:
 ```yaml
@@ -437,7 +437,7 @@ allowed-tools: Read, Write, Bash
 
 **Required Fields**: `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`
 
-Every doc under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` carries this full 5-field block (`README.md` files are exempt). The Skill Advisor harvests it as a flag-gated routing signal (`SPECKIT_ADVISOR_DOC_TRIGGERS`) with doc-level `matchedDocs` pointers. Spec Kit Memory never indexes skill docs — these fields exist for advisor routing, not memory search.
+Every doc under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` carries this full 5-field block (`README.md` files are exempt). The Skill Advisor harvests it as a flag-gated routing signal (`SPECKIT_ADVISOR_DOC_TRIGGERS`) with doc-level `matchedDocs` pointers. Spec Kit Memory never indexes skill docs, so these fields exist for advisor routing rather than memory search.
 
 ```yaml
 ---
@@ -698,7 +698,7 @@ validation_rules:
     field_formats:
       version:
         pattern: "^\\d+\\.\\d+\\.\\d+\\.\\d+$"
-        description: "4-part X.Y.Z.W; see frontmatter-versioning.md"
+        description: "4-part X.Y.Z.W, see frontmatter-versioning.md"
       name:
         pattern: "^[a-z][a-z0-9-]*$"
         description: "lowercase-with-hyphens"
@@ -726,7 +726,7 @@ validation_rules:
         pattern: "contains < or ["
 
   SkillReferenceAsset:
-    # .opencode/skills/*/references/ and assets/ docs; README.md exempt
+    # .opencode/skills/*/references/ and assets/ docs, README.md exempt
     frontmatter_required: true
     required_fields:
       - title
@@ -738,7 +738,7 @@ validation_rules:
     field_formats:
       version:
         pattern: "^\\d+\\.\\d+\\.\\d+\\.\\d+$"
-        description: "4-part X.Y.Z.W; last key in the block; see frontmatter-versioning.md"
+        description: "4-part X.Y.Z.W, last key in the block, see frontmatter-versioning.md"
       description:
         type: "single-line"
       trigger_phrases:
@@ -1110,7 +1110,7 @@ Document type?
 | **Testing Playbook** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
 | **Agent** | ✅ Required | ✅ Required | ❌ N/A | ❌ N/A (uses `permission:` or `tools:`) |
 
-Skill references/assets additionally require `trigger_phrases` (3-8), `importance_tier`, and `contextType` — see Section 3.
+Skill references/assets additionally require `trigger_phrases` (3-8), `importance_tier`, and `contextType`. See Section 3.
 Feature catalogs additionally require `trigger_phrases` and `version`. Testing playbooks require `title` and `version`. Agents require the authority key their own runtime reads, and carry no `version`. Section 4 has all three.
 
 ### Common Mistakes

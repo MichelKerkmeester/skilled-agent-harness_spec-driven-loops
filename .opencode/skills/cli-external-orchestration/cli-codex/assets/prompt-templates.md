@@ -36,11 +36,11 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
 | Flag                           | Purpose                                                                             |
 | ------------------------------ | ----------------------------------------------------------------------------------- |
 | `--model gpt-5.5`              | Skill default model. Override per dispatch with `gpt-5.6-luna` / `gpt-5.6-terra` / `gpt-5.6-sol` when the task wants deeper reasoning. Required pin. |
-| `-c model_reasoning_effort="high"` | Reasoning effort. **Required pin for templates.** Levels: `none`, `minimal`, `low`, `medium` (skill default), `high`, `xhigh`, `max`, `ultra`. Ceiling is per-model: `gpt-5.5` ≤ `xhigh`; `gpt-5.6-luna` / `gpt-5.6-terra` ≤ `max`; `gpt-5.6-sol` ≤ `ultra`. |
-| `-c service_tier="fast"`        | Fast service tier — **opt-in only**. Project memory rule: never pass by default; pass explicitly per invocation when fast tier is intentional. |
+| `-c model_reasoning_effort="high"` | Reasoning effort. **Required pin for templates.** Levels: `none`, `minimal`, `low`, `medium` (skill default), `high`, `xhigh`, `max`, `ultra`. Ceiling is per-model: `gpt-5.5` ≤ `xhigh`, `gpt-5.6-luna` / `gpt-5.6-terra` ≤ `max`, `gpt-5.6-sol` ≤ `ultra`. |
+| `-c service_tier="fast"`        | Fast service tier, **opt-in only**. Project memory rule: never pass by default. Pass explicitly per invocation when fast tier is intentional. |
 | `--sandbox read-only`          | Safe mode: read files, no writes or shell commands                                  |
 | `--sandbox workspace-write`    | Allow file writes and build commands within workspace                               |
-| `--sandbox danger-full-access` | Full shell access — **requires explicit user approval**                             |
+| `--sandbox danger-full-access` | Full shell access, **requires explicit user approval**                             |
 | `--full-auto`                  | Equivalent to `--ask-for-approval never --sandbox workspace-write`. Non-interactive auto-approval mode for `codex exec`. |
 | `--search`                     | Enable live web browsing during execution                                           |
 | `-i` / `--image`               | Attach an image file as visual input                                                |
@@ -60,7 +60,7 @@ Generate a complete single-file application from a description.
 codex exec "Create a [description] application in [language]. Requirements: [requirements]. Output a single complete file with all imports, error handling, and comments. Start immediately." \
   --model gpt-5.5 -c model_reasoning_effort="high" --sandbox workspace-write
 ```
-<!-- pinned model/effort; service_tier omitted per project policy (never default to fast) -->
+<!-- pinned model/effort, service_tier omitted per project policy (never default to fast) -->
 
 **Example:**
 
@@ -669,9 +669,9 @@ JSONEOF
 node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]
 ```
 
-Structured JSON is the required save path. You can pass the payload via temp file, `--stdin`, or `--json`; do not call `generate-context.js` with only a spec folder. If `[spec-folder]` is passed on the CLI, that explicit target overrides any payload `specFolder`.
+Structured JSON is the required save path. You can pass the payload via temp file, `--stdin`, or `--json`. Do not call `generate-context.js` with only a spec folder. If `[spec-folder]` is passed on the CLI, that explicit target overrides any payload `specFolder`.
 
-Accepted field names still include documented compatibility aliases such as `sessionSummary` / `session_summary`, `nextSteps` / `next_steps`, `userPrompts` / `user_prompts`, and `recentContext` / `recent_context`. Use the canonical field names shown above for new payloads. Persistence behavior for next-step fields: the first item becomes `Next: ...` and sets `NEXT_ACTION`; additional items become `Follow-up: ...`.
+Accepted field names still include documented compatibility aliases such as `sessionSummary` / `session_summary`, `nextSteps` / `next_steps`, `userPrompts` / `user_prompts`, and `recentContext` / `recent_context`. Use the canonical field names shown above for new payloads. Persistence behavior for next-step fields: the first item becomes `Next: ...` and sets `NEXT_ACTION`, and additional items become `Follow-up: ...`.
 
 If `/tmp/save-context-data-<session-id>.json` is passed explicitly and cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture for that error.
 
@@ -703,7 +703,7 @@ codex exec -p ai-council "Design 3 alternative caching strategies for this API. 
   --model gpt-5.5 -c model_reasoning_effort="xhigh" -s read-only
 ```
 
-### Medium Reasoning (default — code, review, docs)
+### Medium Reasoning (default: code, review, docs)
 
 `medium` is the skill default. Works for code generation, standard review, implementation, and documentation:
 
@@ -723,7 +723,7 @@ codex exec "Generate comprehensive unit tests for @./[file]." \
 
 ### Mixed Effort Workflow
 
-Use `high` for analysis, then `medium` for implementation — same model, different depth:
+Use `high` for analysis, then `medium` for implementation, the same model at a different depth:
 
 ```bash
 # Step 1: Deep analysis at high reasoning

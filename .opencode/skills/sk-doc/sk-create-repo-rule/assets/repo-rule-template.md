@@ -68,7 +68,7 @@ vaguer rule than you have.>**
 
 ## 1. <FIRST SECTION, ALL CAPS>
 
-<The mechanism the rule turns on — the ladder, the tiers, the registers. Whatever scale
+<The mechanism the rule turns on: the ladder, the tiers, the registers. Whatever scale
 the rest of the sections refer back to.>
 
 <Every section must name a failure it prevents. If you cannot name one, cut the section.>
@@ -106,22 +106,22 @@ not a rule of this set.
 
 | Element | Why it is fixed |
 |---------|-----------------|
-| Six-key frontmatter, in order | One key order across all nine; discovery depends on it |
+| Six-key frontmatter, in order | One key order across all nine, and discovery depends on it |
 | `# Rule: <Subject>` | 9/9 |
-| Routed-from line | 9/9; it is how a reader knows where the file sits |
-| Subordination line, verbatim | 9/9; the rule declaring its own rank below `AGENTS.md` |
-| `## Fires when` | 9/9; unnumbered |
-| `## The rule` with one bold sentence | 9/9; unnumbered |
+| Routed-from line | 9/9, and it is how a reader knows where the file sits |
+| Subordination line, verbatim | 9/9, the rule declaring its own rank below `AGENTS.md` |
+| `## Fires when` | 9/9, unnumbered |
+| `## The rule` with one bold sentence | 9/9, unnumbered |
 | Uppercase numbered sections, sequential | 9/9 |
-| One `---` per numbered section | 9/9 including the router — the strongest invariant in the corpus |
-| Closing `SELF-CHECK` | 9/9; always the last numbered section |
+| One `---` per numbered section | 9/9 including the router, the strongest invariant in the corpus |
+| Closing `SELF-CHECK` | 9/9, always the last numbered section |
 | A resolving back-link to the router | 9/9 |
 
 ---
 
 ## 4. TWO THINGS THAT LOOK LIKE STYLE AND ARE NOT
 
-**Quote `title` and `description`.** Both routinely contain a colon — `title` always
+**Quote `title` and `description`.** Both routinely contain a colon, and `title` always
 does. Unquoted, the frontmatter is invalid YAML, and the failure is invisible to a
 reader: it looks right and only a parser objects. Every shipped rule failed this on
 first authoring.

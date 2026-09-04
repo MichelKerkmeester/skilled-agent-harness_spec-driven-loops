@@ -32,7 +32,7 @@ Each feature file is the canonical home for detailed current-reality reference m
 
 ## 2. FRONTMATTER CONTRACT
 
-All per-feature snippet files require this frontmatter block. Fields marked `# required` must appear in every file; fields marked `# optional` may be omitted if not applicable.
+All per-feature snippet files require this frontmatter block. Fields marked `# required` must appear in every file. Fields marked `# optional` may be omitted if not applicable.
 
 ```yaml
 ---
@@ -50,8 +50,8 @@ version: 1.0.0.0
 
 **Field notes:**
 - `trigger_phrases` must match the H3 feature heading used in the root `feature-catalog.md` (plus natural language alternates)
-- `importance_tier: "important"` is reserved for features that should rank as high-signal in skill-advisor routing — omit for standard entries
-- `title` must equal the matching root H3 literally. `description` must match the root H3 Description after case, whitespace, and Markdown-punctuation normalization; harmless punctuation differences are allowed, but a different claim is not.
+- `importance_tier: "important"` is reserved for features that should rank as high-signal in skill-advisor routing. Omit it for standard entries
+- `title` must equal the matching root H3 literally. `description` must match the root H3 Description after case, whitespace, and Markdown-punctuation normalization, so harmless punctuation differences are allowed, but a different claim is not.
 
 ---
 
@@ -95,7 +95,7 @@ version: 1.0.0.0
 
 ### {SECONDARY_BEHAVIOR_ASPECT}
 
-{Description of a distinct aspect — quality gates, routing logic, async behavior, etc.}
+{Description of a distinct aspect: quality gates, routing logic, async behavior, etc.}
 
 <!-- Add further H3 sub-headings as needed. Common ones:
      Configuration | Quality Gates | Edge Cases | Async & Safety | Post-Action Behavior -->
@@ -127,8 +127,8 @@ version: 1.0.0.0
 - Feature file path: `{CATEGORY_DIR}/{FEATURE_SLUG}.md`
 
 Related references:
-- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
-- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
+- [{neighboring-feature}.md]({neighboring-feature}.md) - {brief description}
+- [{neighboring-feature}.md]({neighboring-feature}.md) - {brief description}
 ```
 
 ---
@@ -136,8 +136,8 @@ Related references:
 ## 4. AUTHORING NOTES
 
 **Frontmatter**
-- `trigger_phrases` must align with the H3 feature heading in the root catalog — copy the heading exactly as one phrase, then add natural-language alternates and the tool/command name.
-- Use `importance_tier: "important"` only for features that must surface in every relevant search — omit for standard catalog entries.
+- `trigger_phrases` must align with the H3 feature heading in the root catalog. Copy the heading exactly as one phrase, then add natural-language alternates and the tool/command name.
+- Use `importance_tier: "important"` only for features that must surface in every relevant search. Omit it for standard catalog entries.
 
 **H1 heading**
 - Include the tool or command name in parentheses when the feature maps to a named MCP tool, CLI command, or function: `# Memory indexing (memory_save)`.
@@ -145,13 +145,13 @@ Related references:
 
 **OVERVIEW**
 - First paragraph: one-liner summary matching the root catalog description.
-- Second paragraph: additional detail — typical caller, failure modes, or non-obvious scope. Do not repeat the root catalog verbatim.
-- Keep frontmatter `description` in normalized parity with the root H3 Description; it is the machine-readable one-line summary, not a measurement snapshot.
+- Second paragraph: additional detail such as the typical caller, failure modes, or non-obvious scope. Do not repeat the root catalog verbatim.
+- Keep frontmatter `description` in normalized parity with the root H3 Description. It is the machine-readable one-line summary, not a measurement snapshot.
 
 **HOW IT WORKS**
 - Describe behavior from the caller/operator perspective, not from the implementation.
-- If the section exceeds 3 paragraphs, break it into H3 sub-headings — e.g. `### Core Behavior`, `### Quality Gates`, `### Configuration`, `### Edge Cases`. Don't let a wall of prose stand without navigation anchors.
-- Use the optional subsections (Trigger / Auto-Fire Path / Class / Caveats) for features with distinct runtime modes (auto-fire, half-auto, manual); omit them for simple request/response features.
+- If the section exceeds 3 paragraphs, break it into H3 sub-headings such as `### Core Behavior`, `### Quality Gates`, `### Configuration`, `### Edge Cases`. Don't let a wall of prose stand without navigation anchors.
+- Use the optional subsections (Trigger / Auto-Fire Path / Class / Caveats) for features with distinct runtime modes (auto-fire, half-auto, manual), and omit them for simple request/response features.
 - If the feature is not yet implemented, say so clearly in this section and leave SOURCE FILES tables empty or stub-only.
 
 **SOURCE FILES**
@@ -162,7 +162,7 @@ Related references:
 - Do not freeze measured counts or dated census snapshots in prose. Derive structural rosters from the root links and SOURCE FILES tables instead.
 
 **SOURCE METADATA**
-- Preserve the feature file path after publication — other docs link to this path. Category folders and per-feature files use descriptive kebab-case names without numeric prefixes.
+- Preserve the feature file path after publication, because other docs link to this path. Category folders and per-feature files use descriptive kebab-case names without numeric prefixes.
 - Related references: link to the immediately adjacent features in the same category directory so readers can navigate without returning to the root catalog.
 
 ---

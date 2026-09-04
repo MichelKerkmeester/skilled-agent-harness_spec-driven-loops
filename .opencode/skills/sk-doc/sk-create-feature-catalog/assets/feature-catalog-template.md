@@ -31,7 +31,7 @@ Templates for creating feature catalogs that combine top-level capability invent
 - **Reference-rich**: Per-feature files carry source-file tables, implementation anchors, and metadata.
 - **Stable naming**: Category directory names and feature file slugs should remain stable after publication.
 - **Packet-history free**: Catalogs cite current source files and validation anchors, not spec or phase packet numbers.
-- **Feature-leaf scoped**: A leaf documents one capability with its own SOURCE FILES table; category overviews and retirement records are classified separately during bijection repair.
+- **Feature-leaf scoped**: A leaf documents one capability with its own SOURCE FILES table. Category overviews and retirement records are classified separately during bijection repair.
 - **Roster-derived**: Structural counts and inventories are derived from links and source tables. Do not publish dated measurement snapshots in catalog prose.
 
 **Location Convention**: `{SKILL_PATH}/feature-catalog/`
@@ -79,7 +79,7 @@ Each category groups related features under its own directory.
 Directory and file rules:
 - Category directories use descriptive kebab-case names such as `category-name` (no numeric prefix).
 - Per-feature files use kebab-case names such as `feature-name.md` (no numeric prefix).
-- Per-feature snippet order is defined by the root catalog listing order; filenames do not encode order. Display order is owned by the root catalog index (`feature-catalog.md`), not the folder name.
+- Per-feature snippet order is defined by the root catalog listing order, and filenames do not encode order. Display order is owned by the root catalog index (`feature-catalog.md`), not the folder name.
 - Published slugs should remain stable unless the feature is intentionally renamed.
 
 Per-feature file shape:
@@ -211,7 +211,7 @@ version: 1.0.0.0
 
 ### {SECONDARY_BEHAVIOR_ASPECT}
 
-{Description of a distinct aspect — quality gates, routing logic, async behavior, etc.}
+{Description of a distinct aspect: quality gates, routing logic, async behavior, etc.}
 
 <!-- Add further H3 sub-headings as needed. Common ones:
      Configuration | Quality Gates | Edge Cases | Async & Safety | Post-Action Behavior -->
@@ -243,8 +243,8 @@ version: 1.0.0.0
 - Feature file path: `{CATEGORY_DIR}/{FEATURE_SLUG}.md`
 
 Related references:
-- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
-- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
+- [{neighboring-feature}.md]({neighboring-feature}.md) - {brief description}
+- [{neighboring-feature}.md]({neighboring-feature}.md) - {brief description}
 ```
 
 ---
@@ -254,10 +254,10 @@ Related references:
 - Add frontmatter to both the root catalog and per-feature files.
 - Add `trigger_phrases` to every per-feature file frontmatter. Phrases must match the H3 feature heading in the root catalog, plus natural-language alternates and the tool or command name.
 - Add `importance_tier: "important"` only for Tier 1 critical features that must always surface in search routing. Omit for standard catalog entries.
-- In per-feature files, if `HOW IT WORKS` exceeds 3 paragraphs, break it into H3 sub-headings — e.g. `### Core Behavior`, `### Quality Gates`, `### Configuration`, `### Edge Cases`. Long unbroken prose sections should always have navigation anchors.
+- In per-feature files, if `HOW IT WORKS` exceeds 3 paragraphs, break it into H3 sub-headings such as `### Core Behavior`, `### Quality Gates`, `### Configuration`, `### Edge Cases`. Long unbroken prose sections should always have navigation anchors.
 - Keep the root catalog readable by summarizing behavior instead of dumping raw source-file tables there.
 - Put implementation and test anchor detail in the per-feature files.
-- SOURCE FILES "Validation And Tests" Type column: use the canonical taxonomy documented in [feature-catalog-snippet-template.md](./feature-catalog-snippet-template.md) §4 — do not invent new Type values.
+- SOURCE FILES "Validation And Tests" Type column: use the canonical taxonomy documented in [feature-catalog-snippet-template.md](./feature-catalog-snippet-template.md) §4. Do not invent new Type values.
 - Preserve stable file paths once other docs start linking to them.
 - Use numbered all-caps H2 section headers in the root catalog. Do not add a Table of Contents.
 - Do not write packet-history references such as "added in packet 033" or "Phase 017 update". Rewrite them as current behavior plus a source file, test, or reference-doc link.

@@ -42,10 +42,10 @@ Presentation source of truth for `/<namespace>:<command>`. The router owns mode 
 
 For `:confirm` or no suffix, the consolidated setup prompt is the first visible response. Ask all applicable questions once, then wait.
 
-For `:auto`, do not show the consolidated prompt by default. Resolve setup through the auto-resolution rules below; ask targeted questions only for fields that cannot be defaulted.
+For `:auto`, do not show the consolidated prompt by default. Resolve setup through the auto-resolution rules below, and ask targeted questions only for fields that cannot be defaulted.
 
 ### Auto Pre-Bound Setup Answers
-[Optional marker block accepted in the prompt body, with the field schema. Unknown fields warn; malformed lines are parse errors.]
+[Optional marker block accepted in the prompt body, with the field schema. Unknown fields warn, and malformed lines are parse errors.]
 
 ### Auto Resolution Table
 | Field | Required | Default | Targeted-ask when |

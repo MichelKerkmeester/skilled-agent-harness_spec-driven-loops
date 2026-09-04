@@ -63,11 +63,11 @@ Purpose: Document how [RUNTIME_DIR] derives from the canonical `.opencode/` tree
 
 | Surface | Mechanism | Source | Can it drift? | Checker |
 |---|---|---|---|---|
-| [WHOLE-DIR SURFACE] | whole-dir symlink | [EXACT SOURCE] | No — same inode | n/a |
+| [WHOLE-DIR SURFACE] | whole-dir symlink | [EXACT SOURCE] | No, same inode | n/a |
 | [PER-FILE SURFACE] | per-file symlink | [EXACT SOURCE] | [Yes/No] | [CHECKER OR n/a] |
 | [GENERATED SURFACE] | generated | [EXACT SOURCE] | Yes | [CHECKER] |
-| [HAND-AUTHORED SURFACE] | hand-authored | [EXACT SOURCE OR —] | [Yes/No/n/a] | [CHECKER OR n/a] |
-| [OPERATOR-LOCAL SURFACE] | operator-local | [LOCAL-ONLY ORIGIN] | No — not synced | n/a |
+| [HAND-AUTHORED SURFACE] | hand-authored | [EXACT SOURCE OR n/a] | [Yes/No/n/a] | [CHECKER OR n/a] |
+| [OPERATOR-LOCAL SURFACE] | operator-local | [LOCAL-ONLY ORIGIN] | No, not synced | n/a |
 
 ## 3. WHEN TO SYNC
 
@@ -121,7 +121,7 @@ description: "[DESCRIPTION WITH A COLON: QUOTE THIS]"
 
 ## 7. DRIFT CHECKS
 
-<!-- Authoring guidance: Every command must run unchanged from the repository root. Use exit semantics exactly as implemented: 0 ok / 1 drift; document any additional exit codes explicitly. -->
+<!-- Authoring guidance: Every command must run unchanged from the repository root. Use exit semantics exactly as implemented: 0 ok / 1 drift, and document any additional exit codes explicitly. -->
 
 | Check | Command | Exit |
 |---|---|---|

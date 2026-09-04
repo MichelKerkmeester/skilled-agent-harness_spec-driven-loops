@@ -34,11 +34,11 @@ Usage:
   3. Fill every {{PLACEHOLDER}} and remove every <!-- guidance --> comment.
   4. Author one scenarios/<PREFIX>-NNN-<slug>.md per row (scenario template) and one
      baselines/claude-baseline.md (baseline template). Keep the SCENARIO TABLE and the
-     scenario files in exact sync — same IDs, entry surfaces, clarity, expected
+     scenario files in exact sync on IDs, entry surfaces, clarity, expected
      interaction, and budgets.
 
 The normative measurement contract (rubric, buckets, budget formula, ID prefixes)
-is NOT restated here — it lives once in:
+is NOT restated here. It lives once in:
   .opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md
 -->
 
@@ -52,15 +52,15 @@ is NOT restated here — it lives once in:
 This package specifies what an executor **model** should do once the
 `{{INVOCATION_SURFACE}}` surface is triggered with a realistic user prompt. It is
 a `behavior-benchmark` package carried by the `{{MODE}}` mode-packet, alongside
-the packages the sibling deep-loop workflow sub-skills carry; the single-source
+the packages the sibling deep-loop workflow sub-skills carry. The single-source
 measurement contract it instantiates is
 [../../shared/behavior-benchmark/framework.md](../../shared/behavior-benchmark/framework.md),
-which is normative — where this index or a scenario note diverges, that framework
+which is normative. Where this index or a scenario note diverges, that framework
 prevails. Each scenario here is a self-contained run contract scored on the
 framework's five-dimension rubric and classified into exactly one terminal bucket.
 
 The scenarios do not re-probe generic routing behavior the sibling packages
-already cover; they concentrate on the behaviors **distinctive to `{{MODE}}`** —
+already cover. They concentrate on the behaviors **distinctive to `{{MODE}}`**:
 {{ONE_LINE_LIST_OF_THE_DISTINCTIVE_INVARIANTS_OR_BEHAVIORS_WITH_SKILL_MD_OR_REFERENCE_CITES}}.
 
 ### Framework extensions this package declares
@@ -71,19 +71,19 @@ already cover; they concentrate on the behaviors **distinctive to `{{MODE}}`** �
      introduces no extensions (mode already in the enum AND prefix already in the
      ID-prefix table). -->
 
-- **`mode: "{{MODE}}"`** — {{WHERE_THIS_MODE_VALUE_IS_ALREADY_CARRIED_IN_THE_SHIPPED_MODE_AND_WHY_IT_EXTENDS_THE_FRAMEWORK_ENUM}}
-- **ID prefix `{{PREFIX}}`** ({{PREFIX_EXPANSION}}) — extends the framework's fixed per-package prefix table.
+- **`mode: "{{MODE}}"`**: {{WHERE_THIS_MODE_VALUE_IS_ALREADY_CARRIED_IN_THE_SHIPPED_MODE_AND_WHY_IT_EXTENDS_THE_FRAMEWORK_ENUM}}
+- **ID prefix `{{PREFIX}}`** ({{PREFIX_EXPANSION}}) extends the framework's fixed per-package prefix table.
 
 ---
 
 ## 2. SCENARIO TABLE
 
-<!-- One row per scenario file. Entry ∈ {E1,E2,E3,E4}; Clarity ∈ {C1,C2,C3};
-     Expected ∈ {autonomous, question_halt, fail_fast}; Budget is the
+<!-- One row per scenario file. Entry ∈ {E1,E2,E3,E4}, Clarity ∈ {C1,C2,C3},
+     Expected ∈ {autonomous, question_halt, fail_fast}, and Budget is the
      provisional framework floor (180000 ms) until a baseline lands, capped by
      mode at 900000 ms (research/review) or 1500000 ms
-     (ai-council/improvement/alignment) — confirm against framework.md BUDGET
-     POLICY; do not invent a per-scenario number. -->
+     (ai-council/improvement/alignment). Confirm against framework.md BUDGET
+     POLICY, and do not invent a per-scenario number. -->
 
 | ID | Title | Entry | Clarity | Expected | Budget |
 | --- | --- | --- | --- | --- | --- |
@@ -100,7 +100,7 @@ already cover; they concentrate on the behaviors **distinctive to `{{MODE}}`** �
      which axes are intentionally NOT exercised (with a one-line reason). This is
      the section a reviewer reads to confirm the matrix is not lopsided. -->
 
-Entry-surface coverage: {{E1_COUNT_AND_CELLS}}, {{E2_COUNT_AND_CELLS}}, {{E3_COUNT_AND_CELLS}}, {{E4_COUNT_AND_CELLS}}. Clarity coverage: {{C1_COUNT_AND_CELLS}}, {{C2_COUNT_AND_CELLS}}, {{C3_COUNT_AND_CELLS}} — {{ONE_LINE_ON_WHETHER_THE_MATRIX_EXERCISES_UNDER_SPECIFIED_INPUT_NOT_JUST_THE_FULLY_PINNED_PATH}}. Invariant coverage: {{WHICH_MODE_INVARIANT_IS_ISOLATED_IN_WHICH_CELL}}. Boundary coverage: {{WHICH_DECLINE_OR_BOUNDARY_CELLS_GUARD_WHICH_ADJACENT_MODE}}.
+Entry-surface coverage: {{E1_COUNT_AND_CELLS}}, {{E2_COUNT_AND_CELLS}}, {{E3_COUNT_AND_CELLS}}, {{E4_COUNT_AND_CELLS}}. Clarity coverage: {{C1_COUNT_AND_CELLS}}, {{C2_COUNT_AND_CELLS}}, {{C3_COUNT_AND_CELLS}}. {{ONE_LINE_ON_WHETHER_THE_MATRIX_EXERCISES_UNDER_SPECIFIED_INPUT_NOT_JUST_THE_FULLY_PINNED_PATH}}. Invariant coverage: {{WHICH_MODE_INVARIANT_IS_ISOLATED_IN_WHICH_CELL}}. Boundary coverage: {{WHICH_DECLINE_OR_BOUNDARY_CELLS_GUARD_WHICH_ADJACENT_MODE}}.
 
 {{ONE_PARAGRAPH_NAMING_ANY_AXIS_INTENTIONALLY_NOT_EXERCISED_AND_WHY_E_G_E4_ALREADY_COVERED_BY_SIBLINGS}}
 
@@ -113,20 +113,20 @@ The runner is
 invoked per cell as one run of one scenario contract against one executor, with
 the scenario's `fixture` absorbing all writes for the run. Checkpoint and
 delegation-evidence extraction, the no-progress watchdog, scoring, and
-classification are owned by that runner; results are emitted as result JSON whose
-`schemaVersion` echoes each scenario's contract — `1` for the schema-v1 core
+classification are owned by that runner. Results are emitted as result JSON whose
+`schemaVersion` echoes each scenario's contract: `1` for the schema-v1 core
 scenarios, `2` for scenarios that declare `"schema_version": 2` (adding the
 `postconditions`, `directDispatch`, and `boundary` result sections). Run
-evidence — transcripts, result JSONs, scorecards — lands
-in the **spec packet phase that executed the round**, never inside this package;
+evidence, meaning transcripts, result JSONs and scorecards, lands
+in the **spec packet phase that executed the round** and never inside this package.
 a result cited from this index must point to its evidence in that executing phase.
 
 **Fixtures and configs are provisioned by the executing round, not shipped in this
-package** (the package holds the contract; the packet holds the proof). Each
-scenario names the `fixture` directory it binds{{AND_ANY_CONFIG_FILE_IT_CONSUMES}};
+package** (the package holds the contract, the packet holds the proof). Each
+scenario names the `fixture` directory it binds{{AND_ANY_CONFIG_FILE_IT_CONSUMES}}, and
 the executing round provisions that directory with the corpus each cell's body
 describes. Per-scenario baseline checkpoints live in
-[./baselines/claude-baseline.md](./baselines/claude-baseline.md); until a Claude
+[./baselines/claude-baseline.md](./baselines/claude-baseline.md). Until a Claude
 leg has been captured, every cell's D5 is `null` and its `budget_ms` is the
 framework-floor provisional value shown in the table above, not a baseline-derived
 one.
@@ -135,8 +135,8 @@ one.
 
 ## 5. RELATED RESOURCES
 
-- [../../shared/behavior-benchmark/framework.md](../../shared/behavior-benchmark/framework.md) — the normative measurement contract this package instantiates (five-dimension rubric, terminal buckets, ID-prefix table, budget formula).
-- [../../shared/behavior-benchmark/behavior-bench-run.cjs](../../shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
-- [../README.md](../README.md) — the mode README (its availability / build-state note for the invocation surface, when applicable).
-- [../SKILL.md](../SKILL.md) — the mode contract: state machine, delegation contract, and the invariants these scenarios probe.
-- [./baselines/claude-baseline.md](./baselines/claude-baseline.md) — per-scenario Claude-leg baseline checkpoints.
+- [../../shared/behavior-benchmark/framework.md](../../shared/behavior-benchmark/framework.md) - the normative measurement contract this package instantiates (five-dimension rubric, terminal buckets, ID-prefix table, budget formula).
+- [../../shared/behavior-benchmark/behavior-bench-run.cjs](../../shared/behavior-benchmark/behavior-bench-run.cjs) - the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
+- [../README.md](../README.md) - the mode README (its availability / build-state note for the invocation surface, when applicable).
+- [../SKILL.md](../SKILL.md) - the mode contract: state machine, delegation contract, and the invariants these scenarios probe.
+- [./baselines/claude-baseline.md](./baselines/claude-baseline.md) - per-scenario Claude-leg baseline checkpoints.

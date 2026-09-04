@@ -81,10 +81,10 @@ version: 1.0.0.0
 
 ```
 
-Every reference file carries this full 5-field frontmatter block: the Skill Advisor harvests it as routing signal (3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content; `importance_tier` defaults to `normal`, `important` only for formal contract docs; `contextType` one of `planning|research|implementation|general`). See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for field rules.
+Every reference file carries this full 5-field frontmatter block: the Skill Advisor harvests it as routing signal (3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content. `importance_tier` defaults to `normal`, with `important` only for formal contract docs. `contextType` is one of `planning|research|implementation|general`). See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for field rules.
 
 > **WARNING: DO NOT duplicate content between intro and Section 1.**
-> The intro is a hook; Section 1 provides the details.
+> The intro is a hook. Section 1 provides the details.
 
 #### GOOD Intro Structure
 
