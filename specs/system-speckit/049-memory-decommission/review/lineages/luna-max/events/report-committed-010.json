@@ -1,0 +1,48 @@
+{
+  "stem": "deep_review.review_report_committed",
+  "scope": {
+    "runId": "fanout-luna-max-1788500810815-bsonv7",
+    "sessionId": "fanout-luna-max-1788500810815-bsonv7",
+    "reportRevisionId": "report-010"
+  },
+  "data": {
+    "finalizedEventRange": {
+      "firstEventId": "event-887941d2-425a-4015-8f7d-7a9e2e8db6a1",
+      "lastEventId": "iteration-010-graph-convergence"
+    },
+    "findingRegistryInputDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "deduplicationPolicyDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "verdictInputDigests": [
+      "0000000000000000000000000000000000000000000000000000000000000000",
+      "0000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "unresolvedFindingIds": ["F001", "F002", "F003", "F004", "F005", "F006"],
+    "deferredFindingIds": [],
+    "reportDigest": "9892428bfb465cd64bbc23c4f2120d7260233b7c26169cd155767ccccbea6684",
+    "sectionManifest": {
+      "sectionIds": [
+        "executive-summary",
+        "planning-trigger",
+        "active-finding-registry",
+        "remediation-workstreams",
+        "spec-seed",
+        "plan-seed",
+        "traceability-status",
+        "deferred-items",
+        "dimension-expansion-map",
+        "search-ledger",
+        "audit-appendix"
+      ],
+      "manifestDigest": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "reportReceiptRef": "review-report-010"
+  },
+  "eventId": "report-committed-010",
+  "producer": {
+    "name": "deep-review-inline-fanout",
+    "version": "1.0.0"
+  },
+  "correlationId": "synthesis-010",
+  "causationId": "synthesis-started-010",
+  "idempotencyKey": "report-committed-010"
+}

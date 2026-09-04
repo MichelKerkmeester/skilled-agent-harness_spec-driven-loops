@@ -161,6 +161,7 @@ Aggregate scope. Per-phase detail lives in each child plan.
 | 4 | 004-grep-convention-doc-retrofit/ | Define and enforce the grep-optimized doc convention; retrofit 22,127 active spec docs | Complete |
 | 5 | 005-ripgrep-retrieval-research/ | Research phase, complete: five-iteration deep research on ripgrep-first retrieval and trigger-index design; its ranked amendments are folded into phases 001 and 004 | Complete |
 | 6 | 006-legacy-memory-surface-inventory/ | Research phase, complete: five-iteration exhaustive inventory of every surface that references or integrates the memory subsystem; its worklists are folded into phases 002 and 003 | Complete |
+| 7 | 007-deep-review-remediation/ | Ten-iteration deep review of the finished packet on gpt-5.6-luna (effort max, fast tier) and the remediation of its six findings: a fail-closed trigger-index reader, closed completion rows in phases 001, 002 and 005, the retired-prefix criterion restated to its proven form, owner and checkpoint on every open decision, and the release-environment caveat | Complete |
 
 ### Phase Transition Rules
 
@@ -182,6 +183,7 @@ Aggregate scope. Per-phase detail lives in each child plan.
 | 004-grep-convention-doc-retrofit | (packet complete) | Convention enforced by `validate.sh`; retrofit applied to all 22,127 active docs with no unresolved variants | `validate.sh --recursive --strict` on the parent; retrofit residue rescan |
 | 005-ripgrep-retrieval-research | 001-trigger-index-replacement, 004-grep-convention-doc-retrofit | Research phase, ran before build: the ranked amendments in `research/lineages/luna-max/research.md` are folded into the 001 and 004 specs, plans, tasks and acceptance criteria | Five iteration files on disk; amended 001 and 004 docs validate `--strict` |
 | 006-legacy-memory-surface-inventory | 002-memory-consumer-rewire, 003-spec-memory-server-removal | Research phase, ran before build: the classified inventory and worklists in `research/lineages/luna-max/research.md` become the 002 rewire list and the 003 deletion list, with the preserve set honored | Five iteration files on disk; every worklist item assigned to 002 or 003 |
+| 007-deep-review-remediation | (packet complete) | Review verdict CONDITIONAL with P0 0, P1 4, P2 2; every finding verified against the files, fixed or answered, and the packet validates recursively with 0 errors afterwards |
 <!-- /ANCHOR:phase-map -->
 
 ---

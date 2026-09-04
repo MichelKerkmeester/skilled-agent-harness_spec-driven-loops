@@ -1,0 +1,745 @@
+{
+  "sessionId": "fanout-luna-max-1788500810815-bsonv7",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": "maxIterationsReached",
+  "status": "INCOMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Trigger-index reader accepts malformed postings and can return incomplete results",
+      "file": ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs",
+      "line": 71,
+      "description": "A parseable but invalid committed index can be accepted by the reader and treated as a clean miss or incomplete result rather than an error requiring regeneration.",
+      "findingClass": "contract-mismatch",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "Replacement retrieval implementation",
+      "affectedSurfaceHints": [
+        "trigger-index-reader",
+        "committed-index"
+      ],
+      "contentHash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Research fold-in gates remain open while the parent declares the research integrated",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/tasks.md",
+      "line": 62,
+      "description": "The parent completion state asserts that research amendments and worklists were folded into build phases although both research task documents leave their fold-in task open.",
+      "findingClass": "traceability-drift",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "The contradiction is within the target spec-folder phase map and research task closure documents.",
+      "affectedSurfaceHints": [
+        "phase-005-fold-in",
+        "phase-006-fold-in",
+        "parent-phase-map"
+      ],
+      "contentHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Phase completion gates contradict the completed status",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md",
+      "line": 70,
+      "description": "The packet can be read as release-ready even though completion gates explicitly declared in two completed build phases remain unchecked.",
+      "findingClass": "traceability-drift",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "The inconsistency is entirely within the target spec-folder closure documents.",
+      "affectedSurfaceHints": [
+        "phase-001-closure",
+        "phase-002-closure",
+        "parent-phase-map"
+      ],
+      "contentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "Parent exact-zero residue criterion is closed despite literal matches",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/goal.md",
+      "line": 94,
+      "description": "The parent completion criterion requires an exact zero-hit retired-prefix search, but the DONE WHEN evidence records 17 matching files and closes the row under a narrower live-surface interpretation.",
+      "findingClass": "traceability-drift",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "Target spec-folder completion criterion and repository scan",
+      "affectedSurfaceHints": [
+        "parent-completion-criterion",
+        "retired-prefix-residue",
+        "historical-allowlist"
+      ],
+      "contentHash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Report-only exception debt has no named owner or expiry",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/implementation-summary.md",
+      "line": 207,
+      "description": "Phase 004 records residual warning/refusal classes and says escalation occurs once their owners fix them, but the packet names no owner, due date, expiry, or renewal checkpoint for that debt.",
+      "findingClass": "documentation-debt",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "Phase 004 exception accounting and parent decision log",
+      "affectedSurfaceHints": [
+        "report-only-exceptions",
+        "residual-ownership",
+        "severity-escalation"
+      ],
+      "contentHash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "dimension": "maintainability",
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Main-checkout model-server dependency remains an explicit release-readiness caveat",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/goal.md",
+      "line": 141,
+      "description": "The parent records that the main checkout lacks a dependency required for the spawned shared model server, while phase 003's live acceptance evidence was gathered from the worktree environment.",
+      "findingClass": "deployment-readiness",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "Target spec-folder host caveat and phase-003 live evidence",
+      "affectedSurfaceHints": [
+        "main-checkout-node-modules",
+        "shared-model-server",
+        "release-handoff"
+      ],
+      "contentHash": "6666666666666666666666666666666666666666666666666666666666666666",
+      "dimension": "maintainability",
+      "firstSeen": 9,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Trigger-index reader accepts malformed postings and can return incomplete results",
+      "file": ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs",
+      "line": 71,
+      "description": "A parseable but invalid committed index can be accepted by the reader and treated as a clean miss or incomplete result rather than an error requiring regeneration.",
+      "findingClass": "contract-mismatch",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "Replacement retrieval implementation",
+      "affectedSurfaceHints": [
+        "trigger-index-reader",
+        "committed-index"
+      ],
+      "contentHash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Research fold-in gates remain open while the parent declares the research integrated",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/tasks.md",
+      "line": 62,
+      "description": "The parent completion state asserts that research amendments and worklists were folded into build phases although both research task documents leave their fold-in task open.",
+      "findingClass": "traceability-drift",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "The contradiction is within the target spec-folder phase map and research task closure documents.",
+      "affectedSurfaceHints": [
+        "phase-005-fold-in",
+        "phase-006-fold-in",
+        "parent-phase-map"
+      ],
+      "contentHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Phase completion gates contradict the completed status",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md",
+      "line": 70,
+      "description": "The packet can be read as release-ready even though completion gates explicitly declared in two completed build phases remain unchecked.",
+      "findingClass": "traceability-drift",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "The inconsistency is entirely within the target spec-folder closure documents.",
+      "affectedSurfaceHints": [
+        "phase-001-closure",
+        "phase-002-closure",
+        "parent-phase-map"
+      ],
+      "contentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "Parent exact-zero residue criterion is closed despite literal matches",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/goal.md",
+      "line": 94,
+      "description": "The parent completion criterion requires an exact zero-hit retired-prefix search, but the DONE WHEN evidence records 17 matching files and closes the row under a narrower live-surface interpretation.",
+      "findingClass": "traceability-drift",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "Target spec-folder completion criterion and repository scan",
+      "affectedSurfaceHints": [
+        "parent-completion-criterion",
+        "retired-prefix-residue",
+        "historical-allowlist"
+      ],
+      "contentHash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Report-only exception debt has no named owner or expiry",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/implementation-summary.md",
+      "line": 207,
+      "description": "Phase 004 records residual warning/refusal classes and says escalation occurs once their owners fix them, but the packet names no owner, due date, expiry, or renewal checkpoint for that debt.",
+      "findingClass": "documentation-debt",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "Phase 004 exception accounting and parent decision log",
+      "affectedSurfaceHints": [
+        "report-only-exceptions",
+        "residual-ownership",
+        "severity-escalation"
+      ],
+      "contentHash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "dimension": "maintainability",
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Trigger-index reader accepts malformed postings and can return incomplete results",
+      "file": ".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs",
+      "line": 71,
+      "description": "A parseable but invalid committed index can be accepted by the reader and treated as a clean miss or incomplete result rather than an error requiring regeneration.",
+      "findingClass": "contract-mismatch",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "Replacement retrieval implementation",
+      "affectedSurfaceHints": [
+        "trigger-index-reader",
+        "committed-index"
+      ],
+      "contentHash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Research fold-in gates remain open while the parent declares the research integrated",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/tasks.md",
+      "line": 62,
+      "description": "The parent completion state asserts that research amendments and worklists were folded into build phases although both research task documents leave their fold-in task open.",
+      "findingClass": "traceability-drift",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "The contradiction is within the target spec-folder phase map and research task closure documents.",
+      "affectedSurfaceHints": [
+        "phase-005-fold-in",
+        "phase-006-fold-in",
+        "parent-phase-map"
+      ],
+      "contentHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Phase completion gates contradict the completed status",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md",
+      "line": 70,
+      "description": "The packet can be read as release-ready even though completion gates explicitly declared in two completed build phases remain unchecked.",
+      "findingClass": "traceability-drift",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "The inconsistency is entirely within the target spec-folder closure documents.",
+      "affectedSurfaceHints": [
+        "phase-001-closure",
+        "phase-002-closure",
+        "parent-phase-map"
+      ],
+      "contentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "Parent exact-zero residue criterion is closed despite literal matches",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/goal.md",
+      "line": 94,
+      "description": "The parent completion criterion requires an exact zero-hit retired-prefix search, but the DONE WHEN evidence records 17 matching files and closes the row under a narrower live-surface interpretation.",
+      "findingClass": "traceability-drift",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "Target spec-folder completion criterion and repository scan",
+      "affectedSurfaceHints": [
+        "parent-completion-criterion",
+        "retired-prefix-residue",
+        "historical-allowlist"
+      ],
+      "contentHash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Report-only exception debt has no named owner or expiry",
+      "file": ".opencode/specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/implementation-summary.md",
+      "line": 207,
+      "description": "Phase 004 records residual warning/refusal classes and says escalation occurs once their owners fix them, but the packet names no owner, due date, expiry, or renewal checkpoint for that debt.",
+      "findingClass": "documentation-debt",
+      "deltaStatus": "reaffirmed",
+      "scopeProof": "Phase 004 exception accounting and parent decision log",
+      "affectedSurfaceHints": [
+        "report-only-exceptions",
+        "residual-ownership",
+        "severity-escalation"
+      ],
+      "contentHash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "dimension": "maintainability",
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 2
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.7,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "contract-mismatch",
+      "documentation-debt",
+      "incomplete-removal",
+      "unsafe-input",
+      "state-integrity",
+      "traceability-drift"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "traceability-drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          4,
+          7,
+          8
+        ]
+      },
+      "contract-mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          5,
+          6,
+          8,
+          9
+        ]
+      },
+      "incomplete-removal": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5,
+          7
+        ]
+      },
+      "state-integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          5,
+          6
+        ]
+      },
+      "unsafe-input": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "documentation-debt": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3,
+          4,
+          7,
+          8,
+          9
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "contract-mismatch",
+      "incomplete-removal",
+      "unsafe-input",
+      "state-integrity",
+      "traceability-drift",
+      "documentation-debt"
+    ],
+    "covered": [
+      "contract-mismatch",
+      "incomplete-removal",
+      "unsafe-input",
+      "state-integrity",
+      "traceability-drift",
+      "documentation-debt"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 7,
+      "executed": 7,
+      "pass": 2,
+      "partial": 1,
+      "fail": 3,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 3
+    },
+    "results": [
+      {
+        "protocol": "dimension-coverage",
+        "status": "pass",
+        "evidenceRefs": [".opencode/specs/system-speckit/049-memory-decommission/spec.md:156-184"]
+      },
+      {
+        "protocol": "spec-code",
+        "status": "fail",
+        "evidenceRefs": [".opencode/specs/system-speckit/049-memory-decommission/spec.md:156-184", ".opencode/specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:70-76"]
+      },
+      {
+        "protocol": "checklist-evidence",
+        "status": "fail",
+        "evidenceRefs": [".opencode/specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/tasks.md:61-73", ".opencode/specs/system-speckit/049-memory-decommission/002-memory-consumer-rewire/tasks.md:188-194"]
+      },
+      {
+        "protocol": "trigger-index-structural-validation",
+        "status": "fail",
+        "evidenceRefs": [".opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs:71-178", ".opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs:369-403"]
+      },
+      {
+        "protocol": "security-boundary",
+        "status": "pass",
+        "evidenceRefs": [".opencode/specs/system-speckit/049-memory-decommission/goal.md:129-132"]
+      },
+      {
+        "protocol": "host-environment-parity",
+        "status": "partial",
+        "evidenceRefs": [".opencode/specs/system-speckit/049-memory-decommission/goal.md:141-142", ".opencode/specs/system-speckit/049-memory-decommission/003-spec-memory-server-removal/acceptance-criteria.md:62-70"]
+      },
+      {
+        "protocol": "resource-map",
+        "status": "notApplicable",
+        "evidenceRefs": []
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "saturatedDirections": [
+      "parent-closure",
+      "runtime-boundary",
+      "research-handoff",
+      "exception-debt",
+      "reader-writer-contract",
+      "parser-safety",
+      "residue-proof",
+      "environment-parity",
+      "final-replay"
+    ],
+    "remainingFrontier": [],
+    "currentFocus": "terminal-synthesis"
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

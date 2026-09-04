@@ -1,0 +1,47 @@
+{
+  "stem": "deep_review.graph_convergence_evaluated",
+  "scope": {
+    "runId": "fanout-luna-max-1788500810815-bsonv7",
+    "sessionId": "fanout-luna-max-1788500810815-bsonv7",
+    "generation": 1,
+    "iterationId": "iteration-010"
+  },
+  "data": {
+    "rawSignals": {
+      "noveltyRatio": 0,
+      "coverageRatio": 1,
+      "findingStabilityRatio": 0.96,
+      "evidenceDensityRatio": 0.94,
+      "hotspotSaturationRatio": 0.94,
+      "observationDigest": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "weightedSignals": {
+      "noveltyRatio": 0,
+      "coverageRatio": 1,
+      "findingStabilityRatio": 0.96,
+      "evidenceDensityRatio": 0.94,
+      "hotspotSaturationRatio": 0.94,
+      "observationDigest": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "dimensionCoverageDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "protocolCoverageDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "findingStability": "stable",
+    "p0p1ResolutionState": "blocked",
+    "evidenceDensity": 0.94,
+    "hotspotSaturation": 0.94,
+    "decision": "continue",
+    "policyFingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+    "blockerIds": ["F001", "F002", "F003", "F004", "F005", "F006"],
+    "stopCandidate": false,
+    "graphDecision": "unavailable",
+    "graphDigest": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "eventId": "iteration-010-graph-convergence",
+  "producer": {
+    "name": "deep-review-inline-fanout",
+    "version": "1.0.0"
+  },
+  "correlationId": "iteration-010-final-replay",
+  "causationId": null,
+  "idempotencyKey": "iteration-010-graph-convergence"
+}

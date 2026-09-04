@@ -59,7 +59,7 @@ contextType: "general"
 - [x] T010 Confirm five iteration files, five deltas and the receipts are on disk (`research/lineages/luna-max/events/synthesis-committed.json`)
 - [x] T011 Confirm the stop reason is `maxIterationsReached` and the ratios ran 0.92 to 0.68 (`research/lineages/luna-max/research.md` section 17)
 - [x] T012 Confirm sections 11 and 12 cite a file and a line for every ranked amendment (`research/lineages/luna-max/research.md`)
-- [ ] T013 In progress, owned by other agents: fold the amendments into phases 001 and 004 so their spec, plan, tasks and acceptance docs cite this research where they changed
+- [x] T013 Done: fold the amendments into phases 001 and 004 so their spec, plan, tasks and acceptance docs cite this research where they changed — phase 001 spec.md cites this research 1 time(s) and phase 004 spec.md 1 time(s); both phases are Complete
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -69,7 +69,7 @@ contextType: "general"
 
 - [x] The research itself is complete: five iterations and one synthesis, all on disk
 - [x] No `[B]` blocked tasks remaining
-- [ ] T013 closes when both build phases cite this research
+- [x] T013 closes when both build phases cite this research — both do, see above
 <!-- /ANCHOR:completion -->
 
 ---

@@ -33,11 +33,11 @@ contextType: "general"
 <!-- ANCHOR:now-next-later -->
 ## 2. PHASES: NOW / NEXT / LATER
 
-**Now:** Done. Focus: phase 004, the grep-optimized doc convention and its retrofit across the active spec corpus. All four build phases are complete — the trigger index and ripgrep contract are built and proven, every consumer is rewired, the memory engine with its registrations and documentation is gone, and the corpus now conforms. Exit signal met: the `GREP_CONVENTION` rule is registered always-on in `validate.sh` and the rescan reports residue 0 across 22,094 documents.
+**Now:** Done. Focus: the ten-iteration deep review (phase 007) and its remediation, after phase 004, the grep-optimized doc convention and its retrofit across the active spec corpus. All four build phases are complete — the trigger index and ripgrep contract are built and proven, every consumer is rewired, the memory engine with its registrations and documentation is gone, and the corpus now conforms. Exit signal met: the `GREP_CONVENTION` rule is registered always-on in `validate.sh` and the rescan reports residue 0 across 22,094 documents.
 
 **Next:** Planned. Focus: packet closeout. Seven open decisions are waiting, three carried up from phase 003 and four from phase 004 — the default spawner of the shared HF model server, the eight dependencies with no importer, the fate of `lib/description/repair.ts`, escalating the report-only convention classes from warn to error, authoring frontmatter for the 55 canonical documents that refused a partial block, normalizing the `importance_tier` and `contextType` vocabularies, and sharing `js-yaml` between the retrofit classifier and the validator. Exit signal: `validate.sh --recursive --strict` over the packet exits 0 and every phase reports its acceptance criteria closeable.
 
-**Later:** Planned. Focus: land `branches/017-memory-decommission`. Phase 004 is on the branch as seven commits, one for the convention, two for the tooling and four for the corpus; phase 003's removal is still uncommitted in the worktree with the before state at `cc6a50271e`. Exit signal: the removal and the retrofit are both on the branch as reviewable commits with the packet's seven completion criteria holding.
+**Later:** Planned. Focus: land `branches/017-memory-decommission`. Every phase, the review and the remediation are committed on the branch; nothing is pushed. Landing needs the operator's push go-ahead, the main-checkout dependency reinstall recorded as the release caveat, and the open decisions reviewed at that checkpoint.
 <!-- /ANCHOR:now-next-later -->
 
 ---

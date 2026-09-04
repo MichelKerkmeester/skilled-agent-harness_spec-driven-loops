@@ -1,0 +1,33 @@
+{
+  "stem": "deep_review.run_completed",
+  "scope": {
+    "runId": "fanout-luna-max-1788500810815-bsonv7",
+    "sessionId": "fanout-luna-max-1788500810815-bsonv7"
+  },
+  "data": {
+    "terminalStatus": "incomplete",
+    "convergenceEventId": "iteration-010-convergence",
+    "synthesisEventId": "synthesis-started-010",
+    "reportEventId": "report-committed-010",
+    "continuityEventId": "continuity-not-run",
+    "finalLedgerTailHash": "0a445b7b655ff8eff756f7bbad8cf881dd6ec87b641c66f4778dddacf5dcad99",
+    "counts": {
+      "dimensions": 4,
+      "iterations": 10,
+      "candidates": 6,
+      "findings": 6,
+      "evidence": 20
+    },
+    "verdict": "incomplete",
+    "completionReason": null,
+    "incompleteReason": "The max-iterations ceiling was reached with an active conditional review verdict, and continuity generation was intentionally not run in detached-lineage mode."
+  },
+  "eventId": "run-completed-010",
+  "producer": {
+    "name": "deep-review-inline-fanout",
+    "version": "1.0.0"
+  },
+  "correlationId": "synthesis-010",
+  "causationId": "report-committed-010",
+  "idempotencyKey": "run-completed-010"
+}

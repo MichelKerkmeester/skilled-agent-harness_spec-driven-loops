@@ -1,0 +1,53 @@
+{
+  "mode": "review",
+  "topic": "Read-only release-readiness review of the memory decommission spec folder",
+  "sessionId": "fanout-luna-max-1788500810815-bsonv7",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "requestedLineageMode": "auto",
+  "generation": 1,
+  "continuedFromRun": null,
+  "artifactDir": ".opencode/specs/system-speckit/049-memory-decommission/review/lineages/luna-max",
+  "fanoutLineageArtifactDir": ".opencode/specs/system-speckit/049-memory-decommission/review/lineages/luna-max",
+  "specFolder": ".opencode/specs/system-speckit/049-memory-decommission",
+  "reviewTarget": ".opencode/specs/system-speckit/049-memory-decommission",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "executionMode": "auto",
+  "requestedExecutionMode": "AUTONOMOUS",
+  "executor": {
+    "kind": "cli-codex",
+    "executable": "codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900
+  },
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "telemetry-only-before-ceiling",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "severityThreshold": "P2",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["skill_agent", "agent_cross_runtime", "feature_catalog_code", "playbook_capability"]
+  },
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "createdAt": "2026-09-04T05:59:30.000Z"
+}

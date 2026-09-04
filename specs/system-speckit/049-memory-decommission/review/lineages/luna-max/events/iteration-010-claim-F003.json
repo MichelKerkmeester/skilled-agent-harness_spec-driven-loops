@@ -1,0 +1,41 @@
+{
+  "stem": "deep_review.claim_adjudication_recorded",
+  "scope": {
+    "runId": "fanout-luna-max-1788500810815-bsonv7",
+    "sessionId": "fanout-luna-max-1788500810815-bsonv7",
+    "generation": 1,
+    "iterationId": "iteration-010",
+    "dimensionId": "traceability",
+    "candidateId": "candidate-F003-replay",
+    "findingId": "F003"
+  },
+  "data": {
+    "claimDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "evidenceRefs": [
+      "evidence-F003-phase-001",
+      "evidence-F003-phase-002",
+      "evidence-F003-parent-map"
+    ],
+    "counterevidenceSoughtRefs": [
+      "phase-001-manual-verification-receipt",
+      "phase-002-manual-verification-receipt"
+    ],
+    "alternativeExplanationDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "finalSeverity": "P1",
+    "impact": 0.8,
+    "confidence": 0.98,
+    "downgradeTrigger": "none",
+    "transition": "finding-reaffirmed",
+    "validatorFingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+    "adjudicationOutcome": "accepted",
+    "predecessorAdjudicationEventId": null
+  },
+  "eventId": "iteration-010-claim-F003",
+  "producer": {
+    "name": "deep-review-inline-fanout",
+    "version": "1.0.0"
+  },
+  "correlationId": "iteration-010-claim-replay",
+  "causationId": null,
+  "idempotencyKey": "iteration-010-claim-F003"
+}

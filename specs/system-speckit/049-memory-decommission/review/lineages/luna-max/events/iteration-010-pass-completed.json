@@ -1,0 +1,53 @@
+{
+  "stem": "deep_review.dimension_pass_completed",
+  "scope": {
+    "runId": "fanout-luna-max-1788500810815-bsonv7",
+    "sessionId": "fanout-luna-max-1788500810815-bsonv7",
+    "generation": 1,
+    "iterationId": "iteration-010",
+    "dimensionId": "final-adversarial-replay"
+  },
+  "data": {
+    "passNumber": 10,
+    "targetRefs": [
+      "parent-closure-criteria",
+      "phase-001-002-completion-gates",
+      "phase-005-006-fold-in",
+      "phase-004-exception-debt",
+      "phase-003-environment-handoff",
+      "trigger-index-reader",
+      "trigger-index-generator-and-tests"
+    ],
+    "filesReviewed": [
+      "spec-root-closure",
+      "parent-goal-criterion",
+      "phase-001-closure",
+      "phase-002-closure",
+      "phase-003-environment",
+      "phase-004-exception-debt",
+      "phase-005-fold-in",
+      "phase-006-fold-in",
+      "trigger-index-reader",
+      "trigger-index-generator",
+      "trigger-index-tests"
+    ],
+    "searchCoverageDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "passStatus": "complete",
+    "rawFindingCounts": {
+      "candidates": 6,
+      "adjudicated": 6,
+      "p0": 0,
+      "p1": 4,
+      "p2": 2
+    },
+    "nextFocusRef": "terminal-synthesis"
+  },
+  "eventId": "iteration-010-pass-completed",
+  "producer": {
+    "name": "deep-review-inline-fanout",
+    "version": "1.0.0"
+  },
+  "correlationId": "iteration-010-final-replay",
+  "causationId": null,
+  "idempotencyKey": "iteration-010-pass-completed"
+}

@@ -1,0 +1,35 @@
+{
+  "stem": "deep_review.run_resumed",
+  "scope": {
+    "runId": "fanout-luna-max-1788500810815-bsonv7",
+    "sessionId": "fanout-luna-max-1788500810815-bsonv7",
+    "generation": 1
+  },
+  "prevEventHash": "6ab6974c6764373d8ae7db17d8087673324866dd70aa0b78c37e42272a6094f4",
+  "replay": {
+    "fingerprint_version": 1,
+    "final_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "replay_input_digests": {}
+  },
+  "data": {
+    "priorTailDigest": "6ab6974c6764373d8ae7db17d8087673324866dd70aa0b78c37e42272a6094f4",
+    "sourceSessionId": "fanout-luna-max-1788500810815-bsonv7",
+    "resumeReason": "Existing lineage has complete iterations 1 through 9; continue inline through the configured hard iteration ceiling.",
+    "continuedFromRunId": "fanout-luna-max-1788500810815-bsonv7",
+    "compatibilityDecision": "exact",
+    "recoveryReceiptRef": "resume-iteration-010"
+  },
+  "eventId": "resume-iteration-010",
+  "streamId": "deep-review-ledger",
+  "streamSequence": 42,
+  "occurredAt": "2026-09-04T06:50:00.000Z",
+  "recordedAt": "2026-09-04T06:50:00.000Z",
+  "producer": {
+    "name": "deep-review-inline-fanout",
+    "version": "1.0.0"
+  },
+  "authorityEpoch": 1,
+  "correlationId": "fanout-luna-max-1788500810815-bsonv7-resume-010",
+  "causationId": null,
+  "idempotencyKey": "resume-iteration-010"
+}

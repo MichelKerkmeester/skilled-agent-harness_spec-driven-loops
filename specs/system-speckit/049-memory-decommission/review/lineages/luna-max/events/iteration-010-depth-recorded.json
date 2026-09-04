@@ -1,0 +1,53 @@
+{
+  "stem": "deep_review.review_depth_recorded",
+  "scope": {
+    "runId": "fanout-luna-max-1788500810815-bsonv7",
+    "sessionId": "fanout-luna-max-1788500810815-bsonv7",
+    "generation": 1,
+    "iterationId": "iteration-010"
+  },
+  "data": {
+    "reviewDepthSchemaVersion": "2",
+    "applicability": "applicable",
+    "targetSelectionDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "requiredBugClasses": [
+      "contract-mismatch",
+      "incomplete-removal",
+      "unsafe-input",
+      "state-integrity",
+      "traceability-drift",
+      "documentation-debt"
+    ],
+    "coveredBugClasses": [
+      "contract-mismatch",
+      "incomplete-removal",
+      "unsafe-input",
+      "state-integrity",
+      "traceability-drift",
+      "documentation-debt"
+    ],
+    "ruledOutBugClasses": [],
+    "deferredBugClasses": [],
+    "blockedBugClasses": [],
+    "searchLedgerRowDigests": [
+      "0000000000000000000000000000000000000000000000000000000000000000",
+      "0000000000000000000000000000000000000000000000000000000000000000",
+      "0000000000000000000000000000000000000000000000000000000000000000",
+      "0000000000000000000000000000000000000000000000000000000000000000",
+      "0000000000000000000000000000000000000000000000000000000000000000",
+      "0000000000000000000000000000000000000000000000000000000000000000",
+      "0000000000000000000000000000000000000000000000000000000000000000",
+      "0000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "degraded"
+  },
+  "eventId": "iteration-010-depth-recorded",
+  "producer": {
+    "name": "deep-review-inline-fanout",
+    "version": "1.0.0"
+  },
+  "correlationId": "iteration-010-final-replay",
+  "causationId": null,
+  "idempotencyKey": "iteration-010-depth-recorded"
+}
