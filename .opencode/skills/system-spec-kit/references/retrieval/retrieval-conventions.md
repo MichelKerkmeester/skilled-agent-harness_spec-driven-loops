@@ -72,7 +72,7 @@ Every recipe below is literal. Copy the flags rather than paraphrasing them, bec
 
 - `--no-config` is mandatory. Without it `RIPGREP_CONFIG_PATH` can inject arguments the caller never wrote.
 - `--hidden` is mandatory. The `.opencode` root holds dotted directories with live documentation, and without the flag ripgrep skips them without a word, so a miss there reads as a clean no-match. The `.git` exclusion glob keeps the flag from reaching repository internals.
-- `--glob '!**/z_archive/**'` and `--glob '!**/node_modules/**'` keep archived packets and vendored trees out of the result set.
+- `--glob '!**/z_archive/**'`, `--glob '!**/node_modules/**'` and `--glob '!**/.git/**'` keep archived packets, vendored trees and repository internals out of the result set; the last one exists because `--hidden` would otherwise let ripgrep into `.git`.
 - `-- 'phrase'` separates the pattern from the flags, so a phrase beginning with a hyphen is a pattern and not a parse error.
 - `--fixed-strings` treats the phrase literally. `--ignore-case` applies Unicode simple case folding.
 
@@ -82,7 +82,7 @@ Line-addressable evidence, one JSON object per line.
 
 ```text
 rg --no-config --hidden --json --fixed-strings --ignore-case \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' \
   -- 'phrase' specs .opencode
 ```
 
@@ -93,7 +93,7 @@ One path per matching file, at most one match read per file.
 ```text
 rg --no-config --hidden --fixed-strings --ignore-case \
   --files-with-matches --max-count 1 \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' \
   -- 'phrase' specs .opencode
 ```
 
@@ -103,7 +103,7 @@ A separate recipe, because counting is its own output mode.
 
 ```text
 rg --no-config --hidden --fixed-strings --ignore-case --count \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' \
   -- 'phrase' specs .opencode
 ```
 
@@ -113,7 +113,7 @@ The structured recipe from Section 2.1 plus a bounded context option. Keep the b
 
 ```text
 rg --no-config --hidden --json --fixed-strings --ignore-case -C 2 \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' \
   -- 'phrase' specs .opencode
 ```
 
@@ -121,7 +121,7 @@ Label every returned line as anchor evidence or body evidence. Anchor evidence i
 
 ```text
 rg --no-config --hidden --fixed-strings --ignore-case \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' \
   -- '<!-- ANCHOR:summary -->' specs
 ```
 
@@ -227,7 +227,7 @@ Ripgrep reads state the caller did not pass on the command line. For a reproduci
 | `.ignore` | Same, ripgrep-and-friends specific | Same |
 | `.rgignore` | Same, ripgrep specific | Same |
 
-**Glob order matters.** Later globs override earlier ones. `--glob '*.md'` selects Markdown, and the two exclusion globs that follow it remove `z_archive` and `node_modules` from that selection. Reversing the order re-admits what the exclusions were there to remove. When a recipe is edited, keep the positive glob first and the exclusions last, and document any override a caller adds.
+**Glob order matters.** Later globs override earlier ones. `--glob '*.md'` selects Markdown, and the three exclusion globs that follow it remove `z_archive`, `node_modules` and `.git` from that selection. Reversing the order re-admits what the exclusions were there to remove. When a recipe is edited, keep the positive glob first and the exclusions last, and document any override a caller adds.
 
 ---
 

@@ -56,11 +56,12 @@ Frozen choices. Changing one is an amendment.
 | D2 | Uncommitted operator work in the main checkout is preserved and never staged into a landing commit |
 | D3 | Every reference, README or asset created or changed since 5220257bf7 conforms to the sk-create-skill template for its class, checked by that skill's own validators, not by eye |
 | D4 | The review loop is /deep:review, 10 iterations, no early convergence, executor cli-codex gpt-5.6-luna, reasoning max, service tier fast, on a bounded file list. Findings are fixed at source, re-verified, and the loop is rerun until a pass reports no P0 or P1 |
-| D5 | The preserved set stays untouched: skill advisor, shared HF model server and its socket, shared embeddings and IPC, deep-loop locks and projections, historical evidence |
+| D5 | The preserved set stays untouched: skill advisor, shared HF model server and its socket, shared embeddings and IPC, deep-loop locks and projections, historical evidence. A security P1 inside it gets the smallest fail-closed fix, logged as a deviation |
 | D6 | Debt means anything one of these reports: residue sweep live records, trigger-index nondeterminism, validate.sh errors on any touched packet, template validator failures, stale generated metadata, a skipped gate, or a doc or hook that describes or serves a surface that no longer exists |
 | D7 | READMEs, root first, describe continuity and retrieval; no "memory database", "memory system" or "cognitive memory" framing survives. Command names, paths and frontmatter keys stay literal |
 | D8 | The package at `system-spec-kit/mcp-server` holds no MCP: it becomes `system-spec-kit/runtime`, shaped like `system-deep-loop/runtime` (a library under `lib/`, CLI entry points under `scripts/`, hook adapters under `hooks/`, its own manifest and tests, no server), the MCP SDK and every dependency without an importer are dropped, and all path references follow. This runs as its own phase after the first review loop and gets a review pass of its own |
 | D9 | The 13.8 GB retired database on this machine is deleted only on an explicit operator yes |
+| D11 | The zvec semantic lane, its vendored fork, packets 050 and 051 and the pi package entry are retired from the tree; the fork repository and clones outside it are the operator's |
 | D10 | CLI delegation strategy: reasoning-heavy review and verification lanes run gpt-5.6-luna at max reasoning on the fast tier through the GPT provider, via cli-codex or cli-opencode; bulk and parallel lanes run GLM 5.3 Flash at max thinking or DeepSeek V4 Flash at max through DevPass (LLM Gateway), via cli-pi or cli-opencode. The executor is the HOW inside a skill-owned workflow and never overrides the route |
 <!-- /ANCHOR:directive -->
 
@@ -87,11 +88,11 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] main and skilled/v4.0.0.0 contain the decommission: no memory MCP server in any runtime config, no spec-memory hook, plugin or launcher, and the residue sweep reports zero live records on both branches
+- [ ] main and skilled/v4.0.0.0 contain the decommission: no memory MCP server in any runtime config, no spec-memory hook, plugin or launcher, the residue sweep reports zero live records on both branches, and the drift-guard workflow is green on both
 - [ ] Every document created or changed since 5220257bf7 under references/, README files and command assets passes the sk-create-skill validators for its class with zero errors
 - [ ] validate.sh --strict exits 0 on packets 049 (recursive), 050 and 051 from the landed tree
 - [ ] The trigger index regenerates byte-identical on main
-- [ ] No README frames a memory database as existing; git hooks write no drift markers for the removed index
+- [ ] No README frames a memory database as existing; git hooks write no drift markers for the removed index; no zvec or system-plugins surface remains
 - [ ] The engine package carries no mcp name, no MCP SDK, no importer-less dependency, and every gate that used the old path passes on the new one
 - [ ] A /deep:review run of 10 iterations with gpt-5.6-luna reports no P0 or P1 on the landed tree, and each earlier finding names its fix commit; the rename phase passes its own review
 - [ ] Doctor routes validate, the skill-root audit passes, and no zg, model-server or codex process survives the run
@@ -134,6 +135,14 @@ and findings belong here.
 | F010 plugin documentation still advertises the retired memory-plugin kill switch | P2 | `d3a1e2f437` removed the flags from the configuration lists; this commit removes the last mentions in the plugin test guidance and the shared-library rows |
 | F009 the advisor's local shared-payload copy accepts producer values the canonical context contract does not | P2 | handed to the skill advisor's owner under D5; latent parity gap, no live failure |
 | F004 the memory doctor route names a checklist artifact that does not exist and a gold-battery pass policy from the retired search engine | P1 | `a74f78875d`: the route points at the 049 phase 001 acceptance criteria, the frozen parity baseline and the latency report, and its pass policy states the lookup exit contract, the 200 ms cold budget, byte-identical regeneration and zero unexplained parity differences |
+
+### Review pass 2 findings and fixes
+
+| Finding | Severity | Fix |
+|---------|----------|-----|
+| P2-F001 the public ripgrep wrapper builds its own recipes and never gained `--hidden` or the `.git` exclusion, so it diverged from the lane it fronts | P1 | this commit: the wrapper's recipes open with the same head flags and glob set as the lane; the parity assertion is green again and every recipe is asserted to carry both |
+| P2-F002 the copyable recipes in the conventions omit the `.git` exclusion the prose calls mandatory | P2 | this commit: all six recipes carry it and the glob-order note names three exclusions |
+| P2-F003 the wrapper drops a third positional silently, so an unquoted phrase searches its first word | P2 | this commit: extra positionals are refused with a message that says to quote the phrase |
 
 ### DONE WHEN
 

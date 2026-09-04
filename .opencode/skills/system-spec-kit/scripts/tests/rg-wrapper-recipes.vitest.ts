@@ -13,6 +13,7 @@ import {
   assertRecipeParity,
   countRecipe,
   parseArgs,
+  RECIPE_BUILDERS,
   pathRecipe,
   search,
   structuredRecipe,
@@ -61,25 +62,25 @@ function write(root: string, relativePath: string, lines: string[]): void {
 describe('recipe builders', () => {
   it('spells the structured recipe exactly as the convention writes it', () => {
     expect(structuredRecipe('phrase', ['specs', '.opencode'])).toEqual([
-      '--no-config', '--json', '--fixed-strings', '--ignore-case',
-      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**',
+      '--no-config', '--hidden', '--json', '--fixed-strings', '--ignore-case',
+      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**',
       '--', 'phrase', 'specs', '.opencode',
     ]);
   });
 
   it('spells the path recipe exactly as the convention writes it', () => {
     expect(pathRecipe('phrase', ['specs', '.opencode'])).toEqual([
-      '--no-config', '--fixed-strings', '--ignore-case',
+      '--no-config', '--hidden', '--fixed-strings', '--ignore-case',
       '--files-with-matches', '--max-count', '1',
-      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**',
+      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**',
       '--', 'phrase', 'specs', '.opencode',
     ]);
   });
 
   it('spells the count recipe exactly as the convention writes it', () => {
     expect(countRecipe('phrase', ['specs', '.opencode'])).toEqual([
-      '--no-config', '--fixed-strings', '--ignore-case', '--count',
-      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**',
+      '--no-config', '--hidden', '--fixed-strings', '--ignore-case', '--count',
+      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**',
       '--', 'phrase', 'specs', '.opencode',
     ]);
   });
@@ -107,6 +108,11 @@ describe('recipe builders', () => {
 
   it('carries the same flag set as the shared retrieval lane', () => {
     expect(assertRecipeParity('phrase', DEFAULT_SEARCH_ROOTS)).toEqual([]);
+    for (const recipe of Object.values(RECIPE_BUILDERS)) {
+      const argv = recipe('phrase', DEFAULT_SEARCH_ROOTS);
+      expect(argv).toContain('--hidden');
+      expect(argv).toContain('!**/.git/**');
+    }
   });
 });
 
@@ -199,6 +205,7 @@ describe('argument parsing', () => {
   it('refuses an unknown recipe, a missing phrase and an unknown flag', () => {
     expect(() => parseArgs(['fuzzy', 'phrase'])).toThrow(/must be one of/);
     expect(() => parseArgs(['count'])).toThrow(/phrase is required/);
+    expect(() => parseArgs(['path', 'foo', 'bar'])).toThrow(/unexpected extra argument/);
     expect(() => parseArgs(['count', 'phrase', '--sort'])).toThrow(/unknown argument/);
     expect(() => parseArgs(['count', 'phrase', '--root'])).toThrow(/requires a value/);
   });
