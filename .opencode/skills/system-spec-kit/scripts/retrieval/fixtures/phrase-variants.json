@@ -1,5 +1,5 @@
 {
-  "manifestHash": "948a256397fd0a7a25813140f3a67708a4bfd1f7f851ff64cfc8ba46182dae4a",
+  "manifestHash": "ec40c825262f7863d7a16baaeba27964b9529b3abc270d43f1c4ba96c6473d3d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7881,6 +7881,9 @@
     "049 substrate stress tasks": [
       "049 substrate stress tasks"
     ],
+    "049 supersession": [
+      "049 supersession"
+    ],
     "051 closeout reconciliation": [
       "051 closeout reconciliation"
     ],
@@ -8460,6 +8463,9 @@
     "409 scenario count guard": [
       "409 scenario count guard"
     ],
+    "444 signal sweep": [
+      "444 signal sweep"
+    ],
     "45 iteration deep research": [
       "45 iteration deep research"
     ],
@@ -8675,6 +8681,9 @@
     ],
     "absorbed tracker pointers tasks": [
       "absorbed tracker pointers tasks"
+    ],
+    "abstain regression": [
+      "abstain regression"
     ],
     "abstraction layers": [
       "abstraction layers"
@@ -9114,6 +9123,9 @@
     "add item to checklist": [
       "add item to checklist"
     ],
+    "add llm gateway to pi": [
+      "add llm gateway to pi"
+    ],
     "add manual testing scenarios checkpoint enrichment frontproxy worktree": [
       "add manual testing scenarios checkpoint enrichment frontproxy worktree"
     ],
@@ -9373,6 +9385,9 @@
     "adr decision records": [
       "adr decision records"
     ],
+    "adr disposition": [
+      "adr disposition"
+    ],
     "adr governance for embedder advisor": [
       "ADR governance for embedder + advisor"
     ],
@@ -9384,6 +9399,9 @@
     ],
     "adr req dr packet label cleanup": [
       "ADR REQ DR packet label cleanup"
+    ],
+    "adr utilization review": [
+      "adr utilization review"
     ],
     "advanced canvas claudian project manager plan": [
       "advanced canvas claudian project manager plan"
@@ -9519,6 +9537,9 @@
     ],
     "advisor auth helper": [
       "advisor auth helper"
+    ],
+    "advisor baseline": [
+      "advisor baseline"
     ],
     "advisor bridge import repair": [
       "advisor bridge import repair"
@@ -9665,6 +9686,9 @@
     "advisor feature catalog": [
       "advisor feature catalog"
     ],
+    "advisor feature flag": [
+      "advisor feature flag"
+    ],
     "advisor feedback calibration": [
       "advisor feedback calibration"
     ],
@@ -9796,6 +9820,9 @@
     ],
     "advisor lane metadata scoring": [
       "advisor lane metadata scoring"
+    ],
+    "advisor lane weight": [
+      "advisor lane weight"
     ],
     "advisor latency bench": [
       "advisor latency bench"
@@ -10200,6 +10227,9 @@
     "advisor status diagnostic only": [
       "advisor_status diagnostic only"
     ],
+    "advisor status fields": [
+      "advisor status fields"
+    ],
     "advisor status handler": [
       "advisor status handler"
     ],
@@ -10256,6 +10286,15 @@
     ],
     "advisor tools": [
       "advisor tools"
+    ],
+    "advisor top recommendation": [
+      "advisor top recommendation"
+    ],
+    "advisor transport": [
+      "advisor transport"
+    ],
+    "advisor transport disagreement": [
+      "advisor transport disagreement"
     ],
     "advisor transport fallback budget": [
       "advisor transport fallback budget"
@@ -13677,6 +13716,9 @@
     "backend abstraction": [
       "backend abstraction"
     ],
+    "backend outage policy": [
+      "backend outage policy"
+    ],
     "backend scripts tests directory rules": [
       "backend scripts tests directory rules"
     ],
@@ -13803,6 +13845,12 @@
     "bar chart layout": [
       "bar chart layout"
     ],
+    "bar growth plan": [
+      "bar growth plan"
+    ],
+    "bar line composed chart": [
+      "bar line composed chart"
+    ],
     "barcode detector scan image": [
       "barcode detector scan image"
     ],
@@ -13814,6 +13862,12 @@
     ],
     "bare readme rewrite": [
       "bare readme rewrite"
+    ],
+    "bare token collision": [
+      "bare token collision"
+    ],
+    "bare token swallowing": [
+      "bare token swallowing"
     ],
     "bare worktree dist warning": [
       "bare worktree dist warning"
@@ -13865,6 +13919,9 @@
     ],
     "baseline surface precedence": [
       "baseline surface precedence"
+    ],
+    "baseline tasks": [
+      "baseline tasks"
     ],
     "baseline taxonomy and state census": [
       "baseline taxonomy and state census"
@@ -14793,6 +14850,18 @@
     "bits ui accessibility parity": [
       "bits-ui accessibility parity"
     ],
+    "black cell acceptance": [
+      "black cell acceptance"
+    ],
+    "black cell defect": [
+      "black cell defect"
+    ],
+    "black cell fix plan": [
+      "black cell fix plan"
+    ],
+    "black cell tasks": [
+      "black cell tasks"
+    ],
     "blast radius": [
       "blast radius"
     ],
@@ -15029,6 +15098,9 @@
     ],
     "boilerplate": [
       "boilerplate"
+    ],
+    "boilerplate rewrite evidence": [
+      "boilerplate rewrite evidence"
     ],
     "boolean expression": [
       "boolean expression"
@@ -16008,8 +16080,17 @@
     "canary profile naming plan": [
       "canary profile naming plan"
     ],
+    "canary prompts": [
+      "canary prompts"
+    ],
+    "canary re pin": [
+      "canary re-pin"
+    ],
     "canary re pin after red run": [
       "canary re-pin after red run"
+    ],
+    "canary re pin decision": [
+      "canary re-pin decision"
     ],
     "canary re pin discipline": [
       "canary re-pin discipline"
@@ -16527,6 +16608,12 @@
     ],
     "catalog link closure tasks": [
       "catalog link closure tasks"
+    ],
+    "catalog mirror check": [
+      "catalog mirror check"
+    ],
+    "catalog mirror check tasks": [
+      "catalog mirror check tasks"
     ],
     "catalog naming convention": [
       "catalog naming convention"
@@ -17145,6 +17232,18 @@
     "channel suppression grounded precision delta": [
       "channel suppression grounded precision delta"
     ],
+    "chart aesthetics": [
+      "chart aesthetics"
+    ],
+    "chart aesthetics research": [
+      "chart aesthetics research"
+    ],
+    "chart bar growth": [
+      "chart bar growth"
+    ],
+    "chart bar growth summary": [
+      "chart bar growth summary"
+    ],
     "chart binary asset disposition": [
       "chart binary asset disposition"
     ],
@@ -17157,14 +17256,77 @@
     "chart catalog": [
       "chart catalog"
     ],
+    "chart catalog acceptance": [
+      "chart catalog acceptance"
+    ],
+    "chart catalog correction": [
+      "chart catalog correction"
+    ],
+    "chart catalog decisions": [
+      "chart catalog decisions"
+    ],
+    "chart catalog goal": [
+      "chart catalog goal"
+    ],
+    "chart catalog plan": [
+      "chart catalog plan"
+    ],
     "chart catalog resolution": [
       "chart catalog resolution"
+    ],
+    "chart catalog summary": [
+      "chart catalog summary"
+    ],
+    "chart catalog tasks": [
+      "chart catalog tasks"
+    ],
+    "chart checker extension decisions": [
+      "chart checker extension decisions"
+    ],
+    "chart checker extension plan": [
+      "chart checker extension plan"
+    ],
+    "chart checker extension results": [
+      "chart checker extension results"
+    ],
+    "chart checker extension tasks": [
+      "chart checker extension tasks"
+    ],
+    "chart chrome decisions": [
+      "chart chrome decisions"
+    ],
+    "chart chrome proof": [
+      "chart chrome proof"
+    ],
+    "chart chrome proof plan": [
+      "chart chrome proof plan"
+    ],
+    "chart chrome proof summary": [
+      "chart chrome proof summary"
+    ],
+    "chart chrome proof tasks": [
+      "chart chrome proof tasks"
+    ],
+    "chart chrome rollout": [
+      "chart chrome rollout"
+    ],
+    "chart chrome rollout plan": [
+      "chart chrome rollout plan"
+    ],
+    "chart chrome rollout summary": [
+      "chart chrome rollout summary"
+    ],
+    "chart chrome rollout tasks": [
+      "chart chrome rollout tasks"
     ],
     "chart closeout checklist": [
       "chart closeout checklist"
     ],
     "chart closeout gates": [
       "chart closeout gates"
+    ],
+    "chart closeout tasks": [
+      "chart closeout tasks"
     ],
     "chart color roles": [
       "chart color roles"
@@ -17178,11 +17340,38 @@
     "chart colour system count": [
       "chart colour system count"
     ],
+    "chart command plan": [
+      "chart command plan"
+    ],
+    "chart command summary": [
+      "chart command summary"
+    ],
+    "chart command surface": [
+      "chart command surface"
+    ],
+    "chart command tasks": [
+      "chart command tasks"
+    ],
+    "chart composed form": [
+      "chart composed form"
+    ],
+    "chart contract correction": [
+      "chart contract correction"
+    ],
+    "chart contract correction tasks": [
+      "chart contract correction tasks"
+    ],
+    "chart contract corrections": [
+      "chart contract corrections"
+    ],
     "chart contrast": [
       "chart contrast"
     ],
     "chart contrast gate design": [
       "chart contrast gate design"
+    ],
+    "chart contrast gates per theme": [
+      "chart contrast gates per theme"
     ],
     "chart contrast measurements": [
       "chart contrast measurements"
@@ -17193,23 +17382,83 @@
     "chart corpus check": [
       "chart corpus check"
     ],
+    "chart corpus checker extension": [
+      "chart corpus checker extension"
+    ],
+    "chart corpus chrome": [
+      "chart corpus chrome"
+    ],
     "chart corpus record": [
       "chart corpus record"
     ],
     "chart corpus sizing": [
       "chart corpus sizing"
     ],
+    "chart dark theme": [
+      "chart dark theme"
+    ],
+    "chart dark theme acceptance": [
+      "chart dark theme acceptance"
+    ],
+    "chart dark theme decisions": [
+      "chart dark theme decisions"
+    ],
+    "chart dark theme goal": [
+      "chart dark theme goal"
+    ],
+    "chart dark theme plan": [
+      "chart dark theme plan"
+    ],
+    "chart dark theme summary": [
+      "chart dark theme summary"
+    ],
+    "chart dark theme tasks": [
+      "chart dark theme tasks"
+    ],
     "chart data block": [
       "chart data block"
+    ],
+    "chart decision record": [
+      "chart decision record"
+    ],
+    "chart decision tasks": [
+      "chart decision tasks"
+    ],
+    "chart determinism proof": [
+      "chart determinism proof"
+    ],
+    "chart empty data notice": [
+      "chart empty data notice"
     ],
     "chart family definitions": [
       "chart family definitions"
     ],
+    "chart fidelity adjudication": [
+      "chart fidelity adjudication"
+    ],
+    "chart fidelity decisions": [
+      "chart fidelity decisions"
+    ],
+    "chart fidelity plan": [
+      "chart fidelity plan"
+    ],
+    "chart fidelity summary": [
+      "chart fidelity summary"
+    ],
+    "chart fidelity tasks": [
+      "chart fidelity tasks"
+    ],
     "chart file layer": [
       "chart file layer"
     ],
+    "chart fork disposition": [
+      "chart fork disposition"
+    ],
     "chart form coverage": [
       "chart form coverage"
+    ],
+    "chart formatter binding": [
+      "chart formatter binding"
     ],
     "chart forms authored": [
       "chart forms authored"
@@ -17226,8 +17475,62 @@
     "chart from table obsidian": [
       "chart from table obsidian"
     ],
+    "chart glow fork": [
+      "chart glow fork"
+    ],
+    "chart gradient clause scope": [
+      "chart gradient clause scope"
+    ],
+    "chart gradient stroke rule": [
+      "chart gradient stroke rule"
+    ],
+    "chart headline audit": [
+      "chart headline audit"
+    ],
+    "chart hover dim": [
+      "chart hover dim"
+    ],
+    "chart hover tooltip": [
+      "chart hover tooltip"
+    ],
+    "chart in figure legend": [
+      "chart in-figure legend"
+    ],
     "chart index": [
       "chart index"
+    ],
+    "chart interaction acceptance": [
+      "chart interaction acceptance"
+    ],
+    "chart interaction decisions": [
+      "chart interaction decisions"
+    ],
+    "chart interaction goal": [
+      "chart interaction goal"
+    ],
+    "chart interaction hygiene decision": [
+      "chart interaction hygiene decision"
+    ],
+    "chart interaction layer": [
+      "chart interaction layer"
+    ],
+    "chart interaction plan": [
+      "chart interaction plan"
+    ],
+    "chart interaction summary": [
+      "chart interaction summary"
+    ],
+    "chart interaction tasks": [
+      "chart interaction tasks"
+    ],
+    "chart legend dim results": [
+      "chart legend dim results"
+    ],
+    "chart legend tasks": [
+      "chart legend tasks"
+    ],
+    "chart library research": [
+      "chart library research"
     ],
     "chart lookup": [
       "chart lookup"
@@ -17237,6 +17540,21 @@
     ],
     "chart missing type labels": [
       "chart missing type labels"
+    ],
+    "chart mode reachability": [
+      "chart mode reachability"
+    ],
+    "chart mono tabular figures": [
+      "chart mono tabular figures"
+    ],
+    "chart motion plan": [
+      "chart motion plan"
+    ],
+    "chart motion summary": [
+      "chart motion summary"
+    ],
+    "chart motion tasks": [
+      "chart motion tasks"
     ],
     "chart not rendering": [
       "chart not rendering"
@@ -17253,8 +17571,23 @@
     "chart packet closeout": [
       "chart packet closeout"
     ],
+    "chart packet closeout plan": [
+      "chart packet closeout plan"
+    ],
+    "chart packet closeout results": [
+      "chart packet closeout results"
+    ],
     "chart palette": [
       "chart palette"
+    ],
+    "chart phase 001 summary": [
+      "chart phase 001 summary"
+    ],
+    "chart phase 002 summary": [
+      "chart phase 002 summary"
+    ],
+    "chart phase 003 summary": [
+      "chart phase 003 summary"
     ],
     "chart placement decision": [
       "chart placement decision"
@@ -17271,14 +17604,89 @@
     "chart playbook tasks": [
       "chart playbook tasks"
     ],
+    "chart radius ladder": [
+      "chart radius ladder"
+    ],
+    "chart radius ladder summary": [
+      "chart radius ladder summary"
+    ],
+    "chart radius token decision": [
+      "chart radius token decision"
+    ],
+    "chart radius token plan": [
+      "chart radius token plan"
+    ],
+    "chart radius token tasks": [
+      "chart radius token tasks"
+    ],
+    "chart range window disposition": [
+      "chart range window disposition"
+    ],
+    "chart reduce motion": [
+      "chart reduce motion"
+    ],
+    "chart reference research results": [
+      "chart reference research results"
+    ],
     "chart reference scan": [
       "chart reference scan"
     ],
     "chart references": [
       "chart references"
     ],
+    "chart remediation criteria": [
+      "chart remediation criteria"
+    ],
+    "chart remediation plan": [
+      "chart remediation plan"
+    ],
+    "chart remediation summary": [
+      "chart remediation summary"
+    ],
+    "chart remediation tasks": [
+      "chart remediation tasks"
+    ],
+    "chart research decisions": [
+      "chart research decisions"
+    ],
+    "chart research loop": [
+      "chart research loop"
+    ],
+    "chart research results": [
+      "chart research results"
+    ],
+    "chart research tasks": [
+      "chart research tasks"
+    ],
+    "chart reveal wipe": [
+      "chart reveal wipe"
+    ],
+    "chart reveal wipe summary": [
+      "chart reveal wipe summary"
+    ],
+    "chart review closure gate": [
+      "chart review closure gate"
+    ],
+    "chart review fixes": [
+      "chart review fixes"
+    ],
+    "chart review remediation": [
+      "chart review remediation"
+    ],
+    "chart review results": [
+      "chart review results"
+    ],
+    "chart review task list": [
+      "chart review task list"
+    ],
     "chart routing integration": [
       "chart routing integration"
+    ],
+    "chart series capacity": [
+      "chart series capacity"
+    ],
+    "chart shared geometry defaults": [
+      "chart shared geometry defaults"
     ],
     "chart skeleton": [
       "chart skeleton"
@@ -17301,11 +17709,32 @@
     "chart template dependency decision": [
       "chart template dependency decision"
     ],
+    "chart template improvement": [
+      "chart template improvement"
+    ],
+    "chart template improvements": [
+      "chart template improvements"
+    ],
     "chart template rules": [
       "chart template rules"
     ],
     "chart template skill": [
       "chart template skill"
+    ],
+    "chart tooltip recipe": [
+      "chart tooltip recipe"
+    ],
+    "chart tooltip results": [
+      "chart tooltip results"
+    ],
+    "chart tooltip tasks": [
+      "chart tooltip tasks"
+    ],
+    "chart type scale": [
+      "chart type scale"
+    ],
+    "chart type scale results": [
+      "chart type scale results"
     ],
     "chart validator": [
       "chart validator"
@@ -17315,6 +17744,18 @@
     ],
     "chart validator negative control": [
       "chart validator negative control"
+    ],
+    "chart version convention": [
+      "chart version convention"
+    ],
+    "chart visual decision record": [
+      "chart visual decision record"
+    ],
+    "chart visual overhaul": [
+      "chart visual overhaul"
+    ],
+    "chart visual overhaul recommendations": [
+      "chart visual overhaul recommendations"
     ],
     "chart visual pass defects": [
       "chart visual pass defects"
@@ -17529,6 +17970,9 @@
     ],
     "check template headers": [
       "check-template-headers"
+    ],
+    "check that never looked": [
+      "check that never looked"
     ],
     "check the notion integration identity": [
       "check the Notion integration identity"
@@ -20387,6 +20831,18 @@
     "cli unknown fallback": [
       "cli unknown fallback"
     ],
+    "cli versus mcp": [
+      "cli versus mcp"
+    ],
+    "cli versus mcp runners": [
+      "cli versus mcp runners"
+    ],
+    "cli versus mcp summary": [
+      "cli versus mcp summary"
+    ],
+    "cli versus mcp tasks": [
+      "cli versus mcp tasks"
+    ],
     "cli vs mcp transport": [
       "cli vs mcp transport"
     ],
@@ -20804,6 +21260,9 @@
     "close the loop measurement": [
       "close-the-loop measurement"
     ],
+    "close the routing findings": [
+      "close the routing findings"
+    ],
     "closed gate replay": [
       "closed-gate replay"
     ],
@@ -20830,6 +21289,9 @@
     ],
     "closeout tasks": [
       "closeout tasks"
+    ],
+    "closeout verification": [
+      "closeout verification"
     ],
     "closure gate": [
       "closure gate"
@@ -23514,6 +23976,9 @@
     "command asset layer research run": [
       "command asset layer research run"
     ],
+    "command asset naming": [
+      "command asset naming"
+    ],
     "command asset output migration summary": [
       "command asset output migration summary"
     ],
@@ -23637,6 +24102,9 @@
     "command canon remediation": [
       "command canon remediation"
     ],
+    "command catalog drift": [
+      "command catalog drift"
+    ],
     "command census freeze": [
       "command census freeze"
     ],
@@ -23649,11 +24117,26 @@
     "command checker self test tasks": [
       "command checker self-test tasks"
     ],
+    "command column invariant": [
+      "command column invariant"
+    ],
+    "command column test cases": [
+      "command column test cases"
+    ],
     "command consolidation": [
       "command consolidation"
     ],
+    "command contract": [
+      "command contract"
+    ],
     "command contract adapter": [
       "command contract adapter"
+    ],
+    "command contract plan": [
+      "command contract plan"
+    ],
+    "command contract reconciliation": [
+      "command contract reconciliation"
     ],
     "command contract schema": [
       "command contract schema"
@@ -23666,6 +24149,9 @@
     ],
     "command contract single source": [
       "command contract single source"
+    ],
+    "command contract tasks": [
+      "command contract tasks"
     ],
     "command creation pitfalls": [
       "command creation pitfalls"
@@ -23787,6 +24273,9 @@
     "command metadata ingestion tasks": [
       "command metadata ingestion tasks"
     ],
+    "command metadata mirror": [
+      "command metadata mirror"
+    ],
     "command metadata no longer required": [
       "command-metadata no longer required"
     ],
@@ -23814,6 +24303,9 @@
     "command mirror restoration tasks": [
       "command mirror restoration tasks"
     ],
+    "command mirror sync": [
+      "command mirror sync"
+    ],
     "command mode matrix": [
       "command mode matrix"
     ],
@@ -23825,6 +24317,9 @@
     ],
     "command naming gate tasks": [
       "command naming gate tasks"
+    ],
+    "command parity chart diagram": [
+      "command parity chart diagram"
     ],
     "command path contract tasks": [
       "command path contract tasks"
@@ -23933,6 +24428,9 @@
     ],
     "command surface router awareness remediation": [
       "command surface router awareness remediation"
+    ],
+    "command surface tasks": [
+      "command surface tasks"
     ],
     "command surface validator rewrite": [
       "command surface validator rewrite"
@@ -24773,6 +25271,9 @@
     "compiled routing ready manifest boundary": [
       "compiled routing ready manifest boundary"
     ],
+    "compiled routing refresh": [
+      "compiled routing refresh"
+    ],
     "compiled routing refresh sequence": [
       "compiled routing refresh sequence"
     ],
@@ -24793,6 +25294,9 @@
     ],
     "compiled routing restore tasks": [
       "compiled routing restore tasks"
+    ],
+    "compiled routing restored": [
+      "compiled routing restored"
     ],
     "compiled routing restored to serving": [
       "compiled routing restored to serving"
@@ -24817,6 +25321,9 @@
     ],
     "compiled routing topology reduction": [
       "compiled routing topology reduction"
+    ],
+    "compiled routing waiver": [
+      "compiled routing waiver"
     ],
     "compiled routing withdrawal": [
       "compiled-routing-withdrawal"
@@ -25064,6 +25571,24 @@
     "composeafter requiresauthorityfrom tasks": [
       "composeAfter requiresAuthorityFrom tasks"
     ],
+    "composed form acceptance": [
+      "composed form acceptance"
+    ],
+    "composed form decisions": [
+      "composed form decisions"
+    ],
+    "composed form goal": [
+      "composed form goal"
+    ],
+    "composed form plan": [
+      "composed form plan"
+    ],
+    "composed form summary": [
+      "composed form summary"
+    ],
+    "composed form tasks": [
+      "composed form tasks"
+    ],
     "composer": [
       "composer"
     ],
@@ -25160,6 +25685,9 @@
     "concurrent daemon corruption shipped": [
       "concurrent daemon corruption shipped"
     ],
+    "concurrent edit blocker": [
+      "concurrent edit blocker"
+    ],
     "concurrent first write loser replays winner": [
       "concurrent first-write loser replays winner"
     ],
@@ -25228,6 +25756,9 @@
     ],
     "confidence cutoff shim": [
       "confidence cutoff shim"
+    ],
+    "confidence floor 0 82": [
+      "confidence floor 0.82"
     ],
     "confidence reranker weight removal": [
       "confidence reranker weight removal"
@@ -25679,6 +26210,9 @@
     "content hash gated description": [
       "content hash gated description"
     ],
+    "content hash guard": [
+      "content hash guard"
+    ],
     "content hash idempotency": [
       "content_hash idempotency"
     ],
@@ -26031,6 +26565,9 @@
     "contract design synthesis plan": [
       "contract design synthesis plan"
     ],
+    "contract drift": [
+      "contract drift"
+    ],
     "contract drift clean": [
       "contract drift clean"
     ],
@@ -26049,11 +26586,26 @@
     "contract leakage": [
       "contract leakage"
     ],
+    "contract level chart change": [
+      "contract level chart change"
+    ],
     "contract not corpus": [
       "contract not corpus"
     ],
     "contract parity un skip": [
       "contract-parity un-skip"
+    ],
+    "contract question": [
+      "contract question"
+    ],
+    "contract questions": [
+      "contract questions"
+    ],
+    "contract reconciliation": [
+      "contract reconciliation"
+    ],
+    "contract reconciliation tasks": [
+      "contract reconciliation tasks"
     ],
     "contract schemas build plan": [
       "contract schemas build plan"
@@ -26515,6 +27067,9 @@
     "corpus reindex tasks gate zero": [
       "corpus reindex tasks gate zero"
     ],
+    "corpus restyle tasks": [
+      "corpus restyle tasks"
+    ],
     "corpus seeded sweep": [
       "corpus seeded sweep"
     ],
@@ -26541,6 +27096,12 @@
     ],
     "corpus use proof status": [
       "corpus use proof status"
+    ],
+    "corpus wide restyle": [
+      "corpus wide restyle"
+    ],
+    "corpus wide restyle plan": [
+      "corpus wide restyle plan"
     ],
     "corrected phase2 baseline": [
       "corrected phase2 baseline"
@@ -26920,6 +27481,9 @@
     "coverage certificate tasks": [
       "coverage certificate tasks"
     ],
+    "coverage check": [
+      "coverage check"
+    ],
     "coverage closure join gate decision": [
       "coverage-closure join gate decision"
     ],
@@ -26934,6 +27498,9 @@
     ],
     "coverage fails open corpus": [
       "coverage fails open corpus"
+    ],
+    "coverage floor": [
+      "coverage floor"
     ],
     "coverage gate": [
       "coverage gate"
@@ -26964,6 +27531,9 @@
     ],
     "coverage graph query ts": [
       "coverage-graph-query.ts"
+    ],
+    "coverage graph repoint": [
+      "coverage graph repoint"
     ],
     "coverage graph schema": [
       "coverage graph schema"
@@ -27001,11 +27571,17 @@
     "coverage matrix p0 p1 gaps": [
       "coverage matrix P0 P1 gaps"
     ],
+    "coverage measurement": [
+      "coverage measurement"
+    ],
     "coverage nodes table": [
       "coverage_nodes table"
     ],
     "coverage quality assessment": [
       "coverage quality assessment"
+    ],
+    "coverage query": [
+      "coverage query"
     ],
     "cp 001": [
       "cp-001"
@@ -27046,11 +27622,17 @@
     "create": [
       "create"
     ],
+    "create a chart": [
+      "create a chart"
+    ],
     "create a comment": [
       "Create a comment"
     ],
     "create a data source": [
       "Create a data source"
+    ],
+    "create a diagram": [
+      "create a diagram"
     ],
     "create a git worktree": [
       "create a git worktree"
@@ -27241,8 +27823,17 @@
     "create chart": [
       "create chart"
     ],
+    "create chart command": [
+      "create chart command"
+    ],
     "create chart in note": [
       "create chart in note"
+    ],
+    "create chart router": [
+      "create chart router"
+    ],
+    "create chart shipped": [
+      "create chart shipped"
     ],
     "create checklist": [
       "create checklist"
@@ -27650,6 +28241,9 @@
     ],
     "create frontmatter mode": [
       "create frontmatter mode"
+    ],
+    "create frontmatter playbook execution": [
+      "create-frontmatter playbook execution"
     ],
     "create generator naming implementation": [
       "create generator naming implementation"
@@ -28195,6 +28789,18 @@
     "cross functional process": [
       "cross functional process"
     ],
+    "cross hub vocabulary": [
+      "cross hub vocabulary"
+    ],
+    "cross hub vocabulary plan": [
+      "cross hub vocabulary plan"
+    ],
+    "cross hub vocabulary summary": [
+      "cross hub vocabulary summary"
+    ],
+    "cross hub vocabulary tasks": [
+      "cross hub vocabulary tasks"
+    ],
     "cross lane scripts": [
       "cross-lane scripts"
     ],
@@ -28224,6 +28830,9 @@
     ],
     "cross launcher spawn coordination": [
       "cross-launcher spawn coordination"
+    ],
+    "cross lineage merge": [
+      "cross lineage merge"
     ],
     "cross mode anti convergence": [
       "cross-mode anti-convergence"
@@ -29735,6 +30344,9 @@
     "daemon task registry shutdown": [
       "daemon task registry shutdown"
     ],
+    "daemon versus python scorer": [
+      "daemon versus python scorer"
+    ],
     "daemon wal checkpoint before sigkill": [
       "daemon WAL checkpoint before SIGKILL"
     ],
@@ -29767,6 +30379,9 @@
     ],
     "dangling symlink task": [
       "dangling symlink task"
+    ],
+    "dark chrome warm cast": [
+      "dark chrome warm cast"
     ],
     "dark deep loop event ledger": [
       "dark deep-loop event ledger"
@@ -29806,6 +30421,18 @@
     ],
     "dark mode omission": [
       "dark mode omission"
+    ],
+    "dark palette derivation": [
+      "dark palette derivation"
+    ],
+    "dark palette results": [
+      "dark palette results"
+    ],
+    "dark palette tasks": [
+      "dark palette tasks"
+    ],
+    "dark palette twin": [
+      "dark palette twin"
     ],
     "dark shadow only catalog labeling": [
       "dark shadow-only catalog labeling"
@@ -30371,8 +30998,14 @@
     "declared capability loss": [
       "declared capability loss"
     ],
+    "declared signal closure": [
+      "declared signal closure"
+    ],
     "decommission copilot hook bridge": [
       "decommission copilot hook bridge"
+    ],
+    "decommission landing": [
+      "decommission landing"
     ],
     "decommission superset": [
       "decommission superset"
@@ -32945,6 +33578,9 @@
     "deep research delivery": [
       "deep research delivery"
     ],
+    "deep research dispatch": [
+      "deep research dispatch"
+    ],
     "deep research document diff": [
       "deep research document diff"
     ],
@@ -34184,6 +34820,9 @@
     "deepseek flash max pin summary": [
       "deepseek flash max pin summary"
     ],
+    "deepseek flash vision plan": [
+      "deepseek flash vision plan"
+    ],
     "deepseek guard implementation": [
       "deepseek guard implementation"
     ],
@@ -34255,6 +34894,12 @@
     ],
     "deepseek v4 flash tasks": [
       "deepseek v4 flash tasks"
+    ],
+    "deepseek v4 flash vision": [
+      "deepseek v4 flash vision"
+    ],
+    "deepseek v4 flash vision cli": [
+      "deepseek v4 flash vision cli"
     ],
     "deepseek v4 max devin": [
       "deepseek v4 max devin"
@@ -36043,6 +36688,9 @@
     "determinism parity common recipes": [
       "determinism parity common recipes"
     ],
+    "determinism proof tasks": [
+      "determinism proof tasks"
+    ],
     "deterministic": [
       "deterministic"
     ],
@@ -36786,6 +37434,30 @@
     ],
     "devin wrapper": [
       "devin-wrapper"
+    ],
+    "devpass cli opencode catalog": [
+      "devpass cli-opencode catalog"
+    ],
+    "devpass llmgateway roster": [
+      "devpass llmgateway roster"
+    ],
+    "devpass pi custom provider": [
+      "devpass pi custom provider"
+    ],
+    "devpass pi plan": [
+      "devpass pi plan"
+    ],
+    "devpass pi provider": [
+      "devpass pi provider"
+    ],
+    "devpass pi wired": [
+      "devpass pi wired"
+    ],
+    "devpass roster plan": [
+      "devpass roster plan"
+    ],
+    "devpass roster status": [
+      "devpass roster status"
     ],
     "devtools quick commands": [
       "devtools quick commands"
@@ -38186,6 +38858,9 @@
     "doctor dq route tasks": [
       "doctor dq route tasks"
     ],
+    "doctor drift check": [
+      "doctor drift check"
+    ],
     "doctor embeddings cold start timeout implementation plan": [
       "doctor embeddings cold-start timeout implementation plan"
     ],
@@ -38400,6 +39075,9 @@
     "document creation mcp": [
       "document creation mcp"
     ],
+    "document diff": [
+      "document diff"
+    ],
     "document diff accessibility plan": [
       "document diff accessibility plan"
     ],
@@ -38534,6 +39212,9 @@
     ],
     "document type detection": [
       "document type detection"
+    ],
+    "document versus registry drift": [
+      "document versus registry drift"
     ],
     "documentation": [
       "documentation"
@@ -39607,6 +40288,9 @@
     "embedder comment cleanup": [
       "embedder comment cleanup"
     ],
+    "embedder decision": [
+      "embedder decision"
+    ],
     "embedder default drift fix": [
       "embedder default drift fix"
     ],
@@ -39835,6 +40519,9 @@
     "embedding coverage changelog": [
       "embedding coverage changelog"
     ],
+    "embedding coverage count": [
+      "embedding coverage count"
+    ],
     "embedding coverage guard": [
       "embedding coverage guard"
     ],
@@ -39940,6 +40627,9 @@
     "embedding null return gguf q8": [
       "embedding null return GGUF Q8"
     ],
+    "embedding population": [
+      "embedding population"
+    ],
     "embedding profile": [
       "embedding profile"
     ],
@@ -40018,6 +40708,9 @@
     "embedding reconcile tasks": [
       "embedding reconcile tasks"
     ],
+    "embedding refresh plan": [
+      "embedding refresh plan"
+    ],
     "embedding regime alert": [
       "embedding regime alert"
     ],
@@ -40074,6 +40767,9 @@
     ],
     "embedding status reconciliation": [
       "embedding status reconciliation"
+    ],
+    "embedding tasks": [
+      "embedding tasks"
     ],
     "embedding variant per subsystem": [
       "embedding variant per subsystem"
@@ -40189,11 +40885,20 @@
     "emoji": [
       "emoji"
     ],
+    "emphasis glow decision": [
+      "emphasis glow decision"
+    ],
     "emphasize by de emphasizing": [
       "emphasize by de-emphasizing"
     ],
     "empty code graph readiness": [
       "empty code graph readiness"
+    ],
+    "empty data notice results": [
+      "empty data notice results"
+    ],
+    "empty data notice tasks": [
+      "empty data notice tasks"
     ],
     "empty diff upsert handling": [
       "empty diff upsert handling"
@@ -40239,6 +40944,12 @@
     ],
     "enable modes removed": [
       "enable-modes removed"
+    ],
+    "enable rollback": [
+      "enable rollback"
+    ],
+    "enable tasks": [
+      "enable tasks"
     ],
     "enable the obsidian cli": [
       "enable the obsidian CLI"
@@ -41021,6 +41732,9 @@
     "evidence rule successor": [
       "evidence rule successor"
     ],
+    "evidence runner no pipe": [
+      "evidence runner no pipe"
+    ],
     "evidence substance checker fix plan": [
       "evidence substance checker fix plan"
     ],
@@ -41032,6 +41746,27 @@
     ],
     "evidence substance checker tasks": [
       "evidence substance checker tasks"
+    ],
+    "evilcharts adoption build": [
+      "evilcharts adoption build"
+    ],
+    "evilcharts research": [
+      "evilcharts research"
+    ],
+    "evilcharts research plan": [
+      "evilcharts research plan"
+    ],
+    "evilcharts research summary": [
+      "evilcharts research summary"
+    ],
+    "evilcharts strategy": [
+      "evilcharts strategy"
+    ],
+    "evilcharts synthesis": [
+      "evilcharts synthesis"
+    ],
+    "evilcharts tasks": [
+      "evilcharts tasks"
     ],
     "ex 037 ex 042 authored and wired": [
       "EX-037 EX-042 authored and wired"
@@ -41225,6 +41960,9 @@
     "executor behavior scoring contract": [
       "executor behavior scoring contract"
     ],
+    "executor check": [
+      "executor check"
+    ],
     "executor cli hardening": [
       "executor cli hardening"
     ],
@@ -41276,6 +42014,9 @@
     "executor delegation finalization boundary plan": [
       "executor delegation finalization boundary plan"
     ],
+    "executor delegation override": [
+      "executor delegation override"
+    ],
     "executor delegation scorer contract": [
       "executor-delegation scorer contract"
     ],
@@ -41305,6 +42046,9 @@
     ],
     "executor matrix audit progress": [
       "executor matrix audit progress"
+    ],
+    "executor override approach": [
+      "executor override approach"
     ],
     "executor parity final state": [
       "executor parity final state"
@@ -42525,6 +43269,9 @@
     "fan out stress testing": [
       "fan-out stress testing"
     ],
+    "fan out task list": [
+      "fan-out task list"
+    ],
     "fan out vs sequential batches": [
       "fan-out vs sequential batches"
     ],
@@ -42584,6 +43331,9 @@
     ],
     "fanout fulfillment artifact contract": [
       "fanout fulfillment artifact contract"
+    ],
+    "fanout glm pin regression": [
+      "fanout glm pin regression"
     ],
     "fanout ledger resume": [
       "fanout ledger resume"
@@ -43681,6 +44431,9 @@
     "filters jsonc": [
       "filters.jsonc"
     ],
+    "final gate pass": [
+      "final gate pass"
+    ],
     "final regression and operator runbook": [
       "final-regression-and-operator-runbook"
     ],
@@ -43716,6 +44469,12 @@
     ],
     "final state gate sweep results": [
       "final state gate sweep results"
+    ],
+    "final state pass": [
+      "final state pass"
+    ],
+    "final state proof": [
+      "final state proof"
     ],
     "final state sweep acceptance": [
       "final state sweep acceptance"
@@ -43824,6 +44583,12 @@
     ],
     "findings first severity ordering": [
       "findings first severity ordering"
+    ],
+    "findings reconciliation": [
+      "findings reconciliation"
+    ],
+    "findings register": [
+      "findings register"
     ],
     "findings registry": [
       "findings registry"
@@ -44149,6 +44914,9 @@
     "fixture drift plural skills rename": [
       "fixture drift plural skills rename"
     ],
+    "fixture exemption validator": [
+      "fixture exemption validator"
+    ],
     "fixture freshness audit rerank sidecar": [
       "fixture freshness audit rerank sidecar"
     ],
@@ -44259,6 +45027,9 @@
     ],
     "flatten asset subfolders tasks": [
       "flatten asset subfolders tasks"
+    ],
+    "flattened specs tree pointer": [
+      "flattened specs tree pointer"
     ],
     "flattening convention": [
       "flattening convention"
@@ -44806,6 +45577,9 @@
     "fork attribution tasks": [
       "fork attribution tasks"
     ],
+    "fork comparison tasks": [
+      "fork comparison tasks"
+    ],
     "fork deep pi": [
       "fork deep-pi"
     ],
@@ -45350,6 +46124,9 @@
     "frontmatter continuity block validation": [
       "frontmatter continuity block validation"
     ],
+    "frontmatter contract": [
+      "frontmatter contract"
+    ],
     "frontmatter contract decision": [
       "frontmatter contract decision"
     ],
@@ -45407,6 +46184,12 @@
     "frontmatter migration tasks": [
       "frontmatter migration tasks"
     ],
+    "frontmatter mode reachability": [
+      "frontmatter mode reachability"
+    ],
+    "frontmatter mode reachability measurement": [
+      "frontmatter mode reachability measurement"
+    ],
     "frontmatter mode skeleton": [
       "frontmatter mode skeleton"
     ],
@@ -45449,6 +46232,9 @@
     "frontmatter pilot tasks": [
       "frontmatter pilot tasks"
     ],
+    "frontmatter playbook execution results": [
+      "frontmatter playbook execution results"
+    ],
     "frontmatter probe verification": [
       "frontmatter probe verification"
     ],
@@ -45481,6 +46267,9 @@
     ],
     "frontmatter two stage routing": [
       "frontmatter two stage routing"
+    ],
+    "frontmatter utilization review": [
+      "frontmatter utilization review"
     ],
     "frontmatter validation compose status": [
       "frontmatter validation compose status"
@@ -45520,6 +46309,9 @@
     ],
     "frontproxy 32001 retryable vs 32002 failclosed framing": [
       "frontproxy 32001 retryable vs 32002 failclosed framing"
+    ],
+    "frozen corpus gate": [
+      "frozen corpus gate"
     ],
     "frozen corpus routing replay": [
       "frozen corpus routing replay"
@@ -45655,6 +46447,12 @@
     ],
     "full icon ruleset": [
       "full icon ruleset"
+    ],
+    "full inventory 252": [
+      "full inventory 252"
+    ],
+    "full inventory intent": [
+      "full inventory intent"
     ],
     "full manual playbook execution": [
       "full manual playbook execution"
@@ -45875,6 +46673,30 @@
     "gate 7": [
       "gate 7"
     ],
+    "gate a signal closure": [
+      "gate a signal closure"
+    ],
+    "gate a summary": [
+      "gate a summary"
+    ],
+    "gate b realistic corpus": [
+      "gate b realistic corpus"
+    ],
+    "gate b routing rate": [
+      "gate b routing rate"
+    ],
+    "gate b summary": [
+      "gate b summary"
+    ],
+    "gate b target": [
+      "gate b target"
+    ],
+    "gate b target derivation": [
+      "gate b target derivation"
+    ],
+    "gate b vocabulary limit": [
+      "gate b vocabulary limit"
+    ],
     "gate baseline evidence": [
       "gate baseline evidence"
     ],
@@ -45892,6 +46714,9 @@
     ],
     "gate matrix negative controls": [
       "gate matrix negative controls"
+    ],
+    "gate measurement": [
+      "gate measurement"
     ],
     "gate obligation check": [
       "gate obligation check"
@@ -46034,6 +46859,18 @@
     ],
     "gemini 3 7 flash openrouter cli": [
       "gemini 3.7 flash openrouter cli"
+    ],
+    "gemini 3 8 flash roster swap": [
+      "gemini 3.8 flash roster swap"
+    ],
+    "gemini 3 8 flash swap": [
+      "gemini 3.8 flash swap"
+    ],
+    "gemini 3 8 swap plan": [
+      "gemini 3.8 swap plan"
+    ],
+    "gemini 3 8 swap status": [
+      "gemini 3.8 swap status"
     ],
     "gemini flash high roster": [
       "gemini flash high roster"
@@ -46707,6 +47544,9 @@
     "glm 5 3 flash gemini roster": [
       "glm-5.3-flash gemini roster"
     ],
+    "glm 5 3 flash max not xhigh": [
+      "glm-5.3-flash max not xhigh"
+    ],
     "glm 5 3 opencode go": [
       "glm 5.3 opencode-go"
     ],
@@ -46734,8 +47574,20 @@
     "glm grok specs relocation": [
       "glm grok specs relocation"
     ],
+    "glm max restored": [
+      "glm max restored"
+    ],
     "glm parent hub routing synthesis": [
       "glm parent hub routing synthesis"
+    ],
+    "glm thinking tier": [
+      "glm thinking tier"
+    ],
+    "glm thinking tier per route": [
+      "glm thinking tier per route"
+    ],
+    "glm thinking tier plan": [
+      "glm thinking tier plan"
     ],
     "glm to mimo fallback": [
       "glm to mimo fallback"
@@ -46793,6 +47645,9 @@
     ],
     "globalseenids insert or ignore code graph": [
       "globalSeenIds INSERT OR IGNORE code-graph"
+    ],
+    "glow layer comparison": [
+      "glow layer comparison"
     ],
     "go no go plan": [
       "go no-go plan"
@@ -47234,6 +48089,9 @@
     ],
     "gpt 5 5 verify dispatch": [
       "gpt-5.5 verify dispatch"
+    ],
+    "gpt 5 6 luna devpass": [
+      "gpt-5.6 luna devpass"
     ],
     "gpt 5 6 luna max cursor devin": [
       "gpt-5.6 luna max cursor devin"
@@ -48179,6 +49037,9 @@
     "hash class replay pool": [
       "hash-class replay pool"
     ],
+    "hash guard": [
+      "hash guard"
+    ],
     "head footer panel structure": [
       "head footer panel structure"
     ],
@@ -48400,6 +49261,9 @@
     ],
     "heartbeat staleness detection owner lease": [
       "heartbeat staleness detection owner lease"
+    ],
+    "heat matrix band defect": [
+      "heat matrix band defect"
     ],
     "held out and gold sets": [
       "held-out and gold sets"
@@ -49358,6 +50222,18 @@
     "hub surface drift implementation": [
       "hub surface drift implementation"
     ],
+    "hub surface truth": [
+      "hub surface truth"
+    ],
+    "hub surface truth plan": [
+      "hub surface truth plan"
+    ],
+    "hub surface truth summary": [
+      "hub surface truth summary"
+    ],
+    "hub surface truth tasks": [
+      "hub surface truth tasks"
+    ],
     "hub versus standalone skill class": [
       "hub versus standalone skill class"
     ],
@@ -49501,6 +50377,9 @@
     ],
     "hvr style": [
       "hvr style"
+    ],
+    "hvr template backlog": [
+      "hvr template backlog"
     ],
     "hvr voice rules": [
       "hvr voice rules"
@@ -50498,6 +51377,9 @@
     "incumbent inventory parity tasks": [
       "incumbent inventory parity tasks"
     ],
+    "independent percentages legend": [
+      "independent percentages legend"
+    ],
     "independent review verification": [
       "independent review verification"
     ],
@@ -50674,6 +51556,9 @@
     ],
     "inject agent definition into cli dispatch prompt": [
       "inject agent definition into cli dispatch prompt"
+    ],
+    "injectable project root": [
+      "injectable project root"
     ],
     "injection bloat audit plan": [
       "injection bloat audit plan"
@@ -51386,6 +52271,9 @@
     "invaliddatabasedirerror reindex": [
       "InvalidDatabaseDirError reindex"
     ],
+    "invariant 6c approach": [
+      "invariant 6c approach"
+    ],
     "invariant verification tasks": [
       "invariant verification tasks"
     ],
@@ -51403,6 +52291,9 @@
     ],
     "inventory and frozen rename map tasks": [
       "inventory and frozen rename map tasks"
+    ],
+    "inventory completion checklist": [
+      "inventory completion checklist"
     ],
     "inventory research plan": [
       "inventory research plan"
@@ -51517,6 +52408,9 @@
     ],
     "isexternalmcpprocess misclassification": [
       "isExternalMcpProcess misclassification"
+    ],
+    "isglmflashxhighpinnedmodel": [
+      "isGlmFlashXhighPinnedModel"
     ],
     "ishookenabled architecture": [
       "isHookEnabled architecture"
@@ -52175,6 +53069,9 @@
     "keyword collision check": [
       "keyword collision check"
     ],
+    "keyword collision fix": [
+      "keyword collision fix"
+    ],
     "keyword router ceiling finding": [
       "keyword router ceiling finding"
     ],
@@ -52276,6 +53173,9 @@
     ],
     "labeled set gap threshold harness": [
       "labeled set gap threshold harness"
+    ],
+    "landing verification loop": [
+      "landing verification loop"
     ],
     "lane 001 disposition": [
       "lane 001 disposition"
@@ -52482,6 +53382,12 @@
     "lane wave status": [
       "lane wave status"
     ],
+    "lane weight enable": [
+      "lane weight enable"
+    ],
+    "lane weight research": [
+      "lane weight research"
+    ],
     "lane weight source of truth": [
       "lane weight source of truth"
     ],
@@ -52577,6 +53483,9 @@
     ],
     "latency bench runner": [
       "latency bench runner"
+    ],
+    "latency sweep": [
+      "latency sweep"
     ],
     "launch wrapper child detection guard hook": [
       "launch wrapper child detection guard hook"
@@ -54318,6 +55227,33 @@
     "llm variant per subsystem": [
       "llm variant per subsystem"
     ],
+    "llmgateway bare id": [
+      "llmgateway bare id"
+    ],
+    "llmgateway both rosters": [
+      "llmgateway both rosters"
+    ],
+    "llmgateway luna roster": [
+      "llmgateway luna roster"
+    ],
+    "llmgateway opencode catalog": [
+      "llmgateway opencode catalog"
+    ],
+    "llmgateway pi config": [
+      "llmgateway pi config"
+    ],
+    "llmgateway pi models json": [
+      "llmgateway pi models.json"
+    ],
+    "llmgateway provider block": [
+      "llmgateway provider block"
+    ],
+    "llmgateway provider cli opencode": [
+      "llmgateway provider cli-opencode"
+    ],
+    "llmgateway rosters": [
+      "llmgateway rosters"
+    ],
     "llms txt specification": [
       "llms txt specification"
     ],
@@ -54395,6 +55331,9 @@
     ],
     "local embedding model menu cleanup": [
       "local embedding model menu cleanup"
+    ],
+    "local embedding policy": [
+      "local embedding policy"
     ],
     "local embedding provider": [
       "local embedding provider"
@@ -54768,6 +55707,15 @@
     "low signal query": [
       "low signal query"
     ],
+    "luna devpass": [
+      "luna devpass"
+    ],
+    "luna devpass done": [
+      "luna devpass done"
+    ],
+    "luna devpass plan": [
+      "luna devpass plan"
+    ],
     "luna high acceptance build record": [
       "luna high acceptance build record"
     ],
@@ -54818,6 +55766,9 @@
     ],
     "luna review remediation plan": [
       "LUNA review remediation plan"
+    ],
+    "luna through llm gateway": [
+      "luna through llm gateway"
     ],
     "luna update sonnet verify": [
       "LUNA update Sonnet verify"
@@ -58082,6 +59033,9 @@
     "measurement driven implementation": [
       "measurement driven implementation"
     ],
+    "measurement regime": [
+      "measurement regime"
+    ],
     "measurement traceability implementation plan": [
       "measurement traceability implementation plan"
     ],
@@ -59566,6 +60520,9 @@
     "metadata refresh tasks": [
       "metadata refresh tasks"
     ],
+    "metadata regeneration": [
+      "metadata regeneration"
+    ],
     "metadata regeneration implementation plan": [
       "metadata regeneration implementation plan"
     ],
@@ -59853,6 +60810,9 @@
     ],
     "misreading guard": [
       "misreading guard"
+    ],
+    "miss mechanism": [
+      "miss mechanism"
     ],
     "missing active vector success": [
       "missing active vector success"
@@ -62353,6 +63313,9 @@
     "no consumer parses frontmatter": [
       "no consumer parses frontmatter"
     ],
+    "no drift no debt": [
+      "no drift no debt"
+    ],
     "no go conditions": [
       "no-go conditions"
     ],
@@ -63327,6 +64290,12 @@
     "numstat gated edit count": [
       "numstat gated edit count"
     ],
+    "numstat inflation measurement": [
+      "numstat inflation measurement"
+    ],
+    "numstat inflation remeasured": [
+      "numstat inflation remeasured"
+    ],
     "o nofollow final component": [
       "o_nofollow final component"
     ],
@@ -63544,6 +64513,9 @@
     "obsidian cli measurement": [
       "obsidian cli measurement"
     ],
+    "obsidian cli or mcp": [
+      "obsidian cli or mcp"
+    ],
     "obsidian cli preflight": [
       "obsidian cli preflight"
     ],
@@ -63588,6 +64560,12 @@
     ],
     "obsidian deep research": [
       "obsidian deep research"
+    ],
+    "obsidian default surface": [
+      "obsidian default surface"
+    ],
+    "obsidian default surface result": [
+      "obsidian default surface result"
     ],
     "obsidian delete note": [
       "obsidian_delete_note"
@@ -63718,8 +64696,14 @@
     "obsidian mcp integration": [
       "obsidian mcp integration"
     ],
+    "obsidian mcp latency": [
+      "obsidian mcp latency"
+    ],
     "obsidian mcp manual": [
       "obsidian mcp manual"
+    ],
+    "obsidian mcp measurement": [
+      "obsidian mcp measurement"
     ],
     "obsidian mcp not found": [
       "obsidian mcp not found"
@@ -63751,6 +64735,9 @@
     "obsidian mcp tools": [
       "obsidian MCP tools",
       "obsidian mcp tools"
+    ],
+    "obsidian measurement tasks": [
+      "obsidian measurement tasks"
     ],
     "obsidian meta bind plugin": [
       "obsidian-meta-bind-plugin"
@@ -63918,11 +64905,17 @@
     "obsidian snippets folder": [
       "obsidian snippets folder"
     ],
+    "obsidian surface comparison": [
+      "obsidian surface comparison"
+    ],
     "obsidian surface detection": [
       "obsidian surface detection"
     ],
     "obsidian surface manifest refresh": [
       "obsidian surface manifest refresh"
+    ],
+    "obsidian surface measurement plan": [
+      "obsidian surface measurement plan"
     ],
     "obsidian surface objective": [
       "obsidian surface objective"
@@ -65597,6 +66590,9 @@
     "out of scope write rejection": [
       "out_of_scope_write rejection"
     ],
+    "outage behaviour": [
+      "outage behaviour"
+    ],
     "outbound link blind spot": [
       "outbound link blind spot"
     ],
@@ -65765,8 +66761,17 @@
     "overloaded root summary": [
       "overloaded root summary"
     ],
+    "override apply": [
+      "override apply"
+    ],
     "override scope to self": [
       "override scope to self"
+    ],
+    "override versus default": [
+      "override versus default"
+    ],
+    "overview renumbering": [
+      "overview renumbering"
     ],
     "owasp coverage patterns": [
       "owasp coverage patterns"
@@ -66285,6 +67290,15 @@
     "packet metadata regeneration summary": [
       "packet metadata regeneration summary"
     ],
+    "packet pointer regex widening plan": [
+      "packet_pointer regex widening plan"
+    ],
+    "packet pointer regex widening tasks": [
+      "packet_pointer regex widening tasks"
+    ],
+    "packet pointer two segment requirement": [
+      "packet_pointer two segment requirement"
+    ],
     "packet reconciliation": [
       "packet reconciliation"
     ],
@@ -66347,6 +67361,18 @@
     ],
     "palette and luminance check": [
       "palette and luminance check"
+    ],
+    "palette block amendment": [
+      "palette block amendment"
+    ],
+    "palette block amendment decision": [
+      "palette block amendment decision"
+    ],
+    "palette block amendment results": [
+      "palette block amendment results"
+    ],
+    "palette block amendment tasks": [
+      "palette block amendment tasks"
     ],
     "paper ink accent muted tokens": [
       "paper ink accent muted tokens"
@@ -66969,6 +67995,12 @@
     "payload count invariant memory context": [
       "payload count invariant memory_context"
     ],
+    "payload scanning approach": [
+      "payload scanning approach"
+    ],
+    "payload scanning checklist": [
+      "payload scanning checklist"
+    ],
     "payload transformation trace": [
       "payload transformation trace"
     ],
@@ -67196,6 +68228,9 @@
     ],
     "per folder readme swarm": [
       "per-folder readme swarm"
+    ],
+    "per form interaction table": [
+      "per form interaction table"
     ],
     "per hub canary rollback drill": [
       "per-hub canary rollback drill"
@@ -69135,6 +70170,9 @@
     "pi api key": [
       "pi api key"
     ],
+    "pi bare model id llmgateway": [
+      "pi bare model id llmgateway"
+    ],
     "pi built in tools": [
       "pi built-in tools"
     ],
@@ -69330,6 +70368,12 @@
     ],
     "pi compaction dedup reset": [
       "pi compaction dedup reset"
+    ],
+    "pi config repair": [
+      "pi config repair"
+    ],
+    "pi config repair enabled models": [
+      "pi config repair enabled models"
     ],
     "pi cross ai dispatch": [
       "pi cross-ai dispatch"
@@ -71585,6 +72629,12 @@
     "prefer stored socket tasks": [
       "prefer stored socket tasks"
     ],
+    "preferred obsidian surface": [
+      "preferred obsidian surface"
+    ],
+    "prefers color scheme chart": [
+      "prefers color scheme chart"
+    ],
     "prefers reduced motion": [
       "prefers reduced motion"
     ],
@@ -73584,6 +74634,9 @@
     "rasterize diagram": [
       "rasterize diagram"
     ],
+    "ratchet run": [
+      "ratchet run"
+    ],
     "ratified transition versioning rollback policy": [
       "ratified transition versioning rollback policy"
     ],
@@ -74294,6 +75347,9 @@
     ],
     "realclaudian": [
       "realclaudian"
+    ],
+    "realistic corpus result": [
+      "realistic corpus result"
     ],
     "realpath lease canonicalization": [
       "realpath lease canonicalization"
@@ -75441,6 +76497,9 @@
     "refresh manifest concurrency fix": [
       "refresh manifest concurrency fix"
     ],
+    "refresh run": [
+      "refresh run"
+    ],
     "refresh skill embeddings test": [
       "refresh skill embeddings test"
     ],
@@ -75495,6 +76554,9 @@
     "register cli reference leaves tasks": [
       "register cli reference leaves tasks"
     ],
+    "register edit": [
+      "register edit"
+    ],
     "register feature files feature catalog phases": [
       "register feature files feature_catalog phases"
     ],
@@ -75503,6 +76565,9 @@
     ],
     "register obsidian mode": [
       "register obsidian mode"
+    ],
+    "register reconciliation": [
+      "register reconciliation"
     ],
     "register sk create frontmatter": [
       "register sk-create-frontmatter"
@@ -75560,6 +76625,9 @@
     ],
     "registry fingerprint": [
       "registry fingerprint"
+    ],
+    "registry is source of truth": [
+      "registry is source of truth"
     ],
     "registry roster drift readme": [
       "registry roster drift readme"
@@ -76301,6 +77369,9 @@
     "remove voyage cohere reranker": [
       "remove voyage cohere reranker"
     ],
+    "remove xhigh override": [
+      "remove xhigh override"
+    ],
     "rename a db class": [
       "rename a db- class"
     ],
@@ -76445,8 +77516,14 @@
     "renumber 006 014 to 001 009": [
       "renumber 006-014 to 001-009"
     ],
+    "renumber overview sections": [
+      "renumber overview sections"
+    ],
     "renumber specs": [
       "renumber specs"
+    ],
+    "renumber tasks": [
+      "renumber tasks"
     ],
     "reopenactivedatabase coordinator": [
       "reopenActiveDatabase coordinator"
@@ -76643,6 +77720,9 @@
     ],
     "repo readme cleanup phase": [
       "repo README cleanup phase"
+    ],
+    "repo rule": [
+      "repo rule"
     ],
     "repo rule anatomy": [
       "repo rule anatomy"
@@ -77292,6 +78372,9 @@
     "research dead ends section": [
       "research dead ends section"
     ],
+    "research design": [
+      "research design"
+    ],
     "research divergent convergence": [
       "research divergent convergence"
     ],
@@ -77474,6 +78557,9 @@
     ],
     "research plan": [
       "research plan"
+    ],
+    "research plan tasks": [
+      "research plan tasks"
     ],
     "research program delivery": [
       "research program delivery"
@@ -78154,6 +79240,12 @@
     "retire a rule": [
       "retire a rule"
     ],
+    "retire deepseek v4 pro": [
+      "retire deepseek v4 pro"
+    ],
+    "retire deepseek v4 pro roster": [
+      "retire deepseek v4 pro roster"
+    ],
     "retire derivation": [
       "retire derivation"
     ],
@@ -78583,6 +79675,12 @@
     "revalidate deep loop phases against head": [
       "revalidate deep-loop phases against HEAD"
     ],
+    "reveal wipe plan": [
+      "reveal wipe plan"
+    ],
+    "reveal wipe tasks": [
+      "reveal wipe tasks"
+    ],
     "reversal cost order": [
       "reversal cost order"
     ],
@@ -78607,11 +79705,17 @@
     "reverse underscore migration": [
       "reverse underscore migration"
     ],
+    "revert drill": [
+      "revert drill"
+    ],
     "revert embeddings provider ollama pin": [
       "revert embeddings provider ollama pin"
     ],
     "revert embeddings provider pin": [
       "revert embeddings provider pin"
+    ],
+    "revert rule": [
+      "revert rule"
     ],
     "review": [
       "review"
@@ -79930,6 +81034,9 @@
     "routing benchmark tasks": [
       "routing benchmark tasks"
     ],
+    "routing completeness": [
+      "routing completeness"
+    ],
     "routing compression plan": [
       "routing compression plan"
     ],
@@ -79990,8 +81097,14 @@
     "routing drift remediation tasks": [
       "routing drift remediation tasks"
     ],
+    "routing edit verification": [
+      "routing edit verification"
+    ],
     "routing evaluation unit": [
       "routing evaluation unit"
+    ],
+    "routing findings status": [
+      "routing findings status"
     ],
     "routing gold corpus per hub": [
       "routing gold corpus per hub"
@@ -80004,6 +81117,12 @@
     ],
     "routing helper fallback plan": [
       "routing-helper fallback plan"
+    ],
+    "routing hit rate": [
+      "routing hit rate"
+    ],
+    "routing hit rate 180": [
+      "routing hit rate 180"
     ],
     "routing idea presentations": [
       "routing idea presentations"
@@ -80037,6 +81156,9 @@
     ],
     "routing parity remediation": [
       "routing parity remediation"
+    ],
+    "routing refresh tasks": [
+      "routing refresh tasks"
     ],
     "routing registry drift guard": [
       "routing registry drift guard"
@@ -80112,6 +81234,9 @@
     ],
     "rrf hybrid retrieval eval": [
       "RRF hybrid retrieval eval"
+    ],
+    "rrf interaction": [
+      "rrf interaction"
     ],
     "rrf parameter sweep": [
       "RRF parameter sweep"
@@ -82667,6 +83792,9 @@
     "semantic intent tags": [
       "semantic intent tags"
     ],
+    "semantic lane enablement": [
+      "semantic lane enablement"
+    ],
     "semantic lane health": [
       "semantic lane health"
     ],
@@ -82843,6 +83971,9 @@
     ],
     "serial enablement driver": [
       "serial enablement driver"
+    ],
+    "series mapping check": [
+      "series mapping check"
     ],
     "server adopted dimension": [
       "server-adopted dimension"
@@ -84306,6 +85437,15 @@
     "single responsibility smell check": [
       "single responsibility smell check"
     ],
+    "single segment packet pointer": [
+      "single segment packet pointer"
+    ],
+    "single segment packet pointer plan": [
+      "single segment packet pointer plan"
+    ],
+    "single segment packet pointer tasks": [
+      "single segment packet pointer tasks"
+    ],
     "single sk design hub identity": [
       "single sk-design hub identity"
     ],
@@ -85539,8 +86679,26 @@
     "sk create chart": [
       "sk-create-chart"
     ],
+    "sk create chart appearance": [
+      "sk-create-chart appearance"
+    ],
+    "sk create chart fidelity": [
+      "sk-create-chart fidelity"
+    ],
+    "sk create chart redesign": [
+      "sk-create-chart redesign"
+    ],
+    "sk create chart research": [
+      "sk-create-chart research"
+    ],
+    "sk create chart routing": [
+      "sk-create-chart routing"
+    ],
     "sk create chart scaffold": [
       "sk-create-chart scaffold"
+    ],
+    "sk create command": [
+      "sk-create-command"
     ],
     "sk create command audit": [
       "sk-create-command audit"
@@ -89481,6 +90639,9 @@
     "skill embedding cache invalidation": [
       "skill embedding cache invalidation"
     ],
+    "skill embedding coverage": [
+      "skill embedding coverage"
+    ],
     "skill entry documentation alignment": [
       "skill entry documentation alignment"
     ],
@@ -90188,6 +91349,9 @@
     ],
     "skill validation standards": [
       "skill validation standards"
+    ],
+    "skill vector refresh": [
+      "skill vector refresh"
     ],
     "skill version bump audit": [
       "skill version bump audit"
@@ -91201,6 +92365,9 @@
     "spec kit relocation tasks": [
       "spec kit relocation tasks"
     ],
+    "spec kit residue": [
+      "spec kit residue"
+    ],
     "spec kit restructure verification": [
       "spec-kit restructure verification"
     ],
@@ -91550,6 +92717,9 @@
     ],
     "spec validation scripts": [
       "spec validation scripts"
+    ],
+    "specdoc frontmatter 004": [
+      "SPECDOC_FRONTMATTER_004"
     ],
     "specfolder parentchain drift": [
       "specFolder parentChain drift"
@@ -92897,6 +94067,9 @@
     "status enum schema close": [
       "status enum schema close"
     ],
+    "status instrumentation": [
+      "status instrumentation"
+    ],
     "status schema by list": [
       "status schema by list"
     ],
@@ -93083,6 +94256,9 @@
     ],
     "storybook will not start": [
       "storybook will not start"
+    ],
+    "strategic milestones": [
+      "strategic milestones"
     ],
     "strategy tracking": [
       "strategy tracking"
@@ -93404,6 +94580,15 @@
     ],
     "stripe style reference validation": [
       "Stripe style reference validation"
+    ],
+    "stroke weight comparison": [
+      "stroke weight comparison"
+    ],
+    "stroke weight fork": [
+      "stroke weight fork"
+    ],
+    "stroke weight sheet": [
+      "stroke weight sheet"
     ],
     "strong top hit earns citable": [
       "strong top hit earns citable"
@@ -94160,6 +95345,12 @@
     "surface code asymmetric": [
       "surface code asymmetric"
     ],
+    "surface comparison checklist": [
+      "surface comparison checklist"
+    ],
+    "surface comparison outcome": [
+      "surface comparison outcome"
+    ],
     "surface design plan reading order": [
       "surface design plan reading order"
     ],
@@ -94318,6 +95509,9 @@
     ],
     "sweep cursor storage decision": [
       "sweep cursor storage decision"
+    ],
+    "sweep design": [
+      "sweep design"
     ],
     "sweep eligibility gate daemon classifier": [
       "sweep eligibility gate daemon classifier"
@@ -95939,6 +97133,9 @@
     "template fence fix": [
       "template fence fix"
     ],
+    "template first then documents": [
+      "template first then documents"
+    ],
     "template folder restructure": [
       "template folder restructure"
     ],
@@ -96056,6 +97253,12 @@
     "template parity tasks": [
       "template parity tasks"
     ],
+    "template payload blockers": [
+      "template payload blockers"
+    ],
+    "template payload scanning": [
+      "template payload scanning"
+    ],
     "template placeholder allowlist": [
       "template placeholder allowlist"
     ],
@@ -96121,6 +97324,9 @@
     ],
     "template token extraction": [
       "template token extraction"
+    ],
+    "template triage": [
+      "template triage"
     ],
     "template validation orchestrator": [
       "template validation orchestrator"
@@ -96325,6 +97531,9 @@
     ],
     "test validation": [
       "test validation"
+    ],
+    "test versus code": [
+      "test versus code"
     ],
     "testing debugging patterns": [
       "testing debugging patterns"
@@ -96544,6 +97753,9 @@
     ],
     "three state convergence signal": [
       "three-state convergence signal"
+    ],
+    "three suite regression control": [
+      "three suite regression control"
     ],
     "three tier setup resolution": [
       "three-tier setup resolution"
@@ -97218,6 +98430,9 @@
     "transport authority destination local rollout": [
       "transport authority destination-local rollout"
     ],
+    "transport baseline summary": [
+      "transport baseline summary"
+    ],
     "transport down fail open": [
       "transport-down fail-open"
     ],
@@ -97659,6 +98874,9 @@
     "twelve principles of animation": [
       "twelve principles of animation"
     ],
+    "twenty row system re check": [
+      "twenty row system re-check"
+    ],
     "two anchor systems evidence": [
       "two anchor systems evidence"
     ],
@@ -97707,8 +98925,14 @@
     "two launcher test flag flip implementation plan": [
       "two-launcher test flag flip implementation plan"
     ],
+    "two lineage fan out": [
+      "two lineage fan-out"
+    ],
     "two model deep research plan": [
       "two model deep research plan"
+    ],
+    "two model fan out results": [
+      "two model fan out results"
     ],
     "two model research queue": [
       "two model research queue"
@@ -99043,6 +100267,9 @@
     "validation scripts": [
       "validation scripts"
     ],
+    "validator and template debt": [
+      "validator and template debt"
+    ],
     "validator audit": [
       "validator audit"
     ],
@@ -99100,6 +100327,15 @@
     "validator symlink resolve": [
       "validator symlink resolve"
     ],
+    "validator template debt plan": [
+      "validator template debt plan"
+    ],
+    "validator template debt summary": [
+      "validator template debt summary"
+    ],
+    "validator template debt tasks": [
+      "validator template debt tasks"
+    ],
     "validator warn heuristics": [
       "validator-warn heuristics"
     ],
@@ -99151,6 +100387,9 @@
     "vault rest api": [
       "vault rest api"
     ],
+    "vault safety rules": [
+      "vault safety rules"
+    ],
     "vault tools instead of obsidian tools": [
       "vault tools instead of obsidian tools"
     ],
@@ -99181,6 +100420,9 @@
     "vec store rebuild 004": [
       "vec-store rebuild 004"
     ],
+    "vec table upsert": [
+      "vec table upsert"
+    ],
     "vec weight fts weight tuning": [
       "vec_weight fts_weight tuning"
     ],
@@ -99207,6 +100449,9 @@
     ],
     "vector checkpoint lane disposition": [
       "vector checkpoint lane disposition"
+    ],
+    "vector coverage gap": [
+      "vector coverage gap"
     ],
     "vector coverage repair": [
       "vector coverage repair"
@@ -99291,6 +100536,12 @@
     ],
     "vendored guidance decision record": [
       "vendored guidance decision record"
+    ],
+    "vendored reference charting library": [
+      "vendored reference charting library"
+    ],
+    "vendored source research": [
+      "vendored source research"
     ],
     "venn diagram layout": [
       "venn diagram layout"
@@ -99768,6 +101019,9 @@
     ],
     "vocabulary invariance": [
       "vocabulary invariance"
+    ],
+    "vocabulary phase checklist": [
+      "vocabulary phase checklist"
     ],
     "vocabulary rehome verification": [
       "vocabulary rehome verification"
@@ -100551,11 +101805,23 @@
     "weekly task filter": [
       "weekly task filter"
     ],
+    "weight decision": [
+      "weight decision"
+    ],
+    "weight override": [
+      "weight override"
+    ],
     "weight reranker conditional penalty": [
       "WEIGHT_RERANKER conditional penalty"
     ],
     "weight reranker penalty removal": [
       "weight reranker penalty removal"
+    ],
+    "weight sweep plan": [
+      "weight sweep plan"
+    ],
+    "weight sweep points": [
+      "weight sweep points"
     ],
     "weighted stop vote": [
       "weighted stop vote"
@@ -100753,6 +102019,9 @@
     "which model for pi dispatch": [
       "which model for pi dispatch"
     ],
+    "which obsidian surface": [
+      "which obsidian surface"
+    ],
     "which palette for a chart": [
       "which palette for a chart"
     ],
@@ -100765,6 +102034,9 @@
     "which review checklist to load": [
       "which review checklist to load"
     ],
+    "which scorer governs routing": [
+      "which scorer governs routing"
+    ],
     "which skill should handle this": [
       "which skill should handle this"
     ],
@@ -100774,6 +102046,9 @@
     "which system uses cocoindex or mk spec memory": [
       "which system uses cocoindex or mk-spec-memory"
     ],
+    "which template blockers are safe to fix": [
+      "which template blockers are safe to fix"
+    ],
     "which visual form to use": [
       "which visual form to use"
     ],
@@ -100782,6 +102057,9 @@
     ],
     "who consumes trigger phrases": [
       "who consumes trigger_phrases"
+    ],
+    "who owns this finding": [
+      "who owns this finding"
     ],
     "who reads frontmatter templates": [
       "who reads frontmatter templates",
@@ -101481,6 +102759,9 @@
     ],
     "xce research based refinement changelogs": [
       "xce research based refinement changelogs"
+    ],
+    "xhigh override removed": [
+      "xhigh override removed"
     ],
     "xss prevention frontend": [
       "xss prevention frontend"

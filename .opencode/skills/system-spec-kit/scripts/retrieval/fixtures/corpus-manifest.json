@@ -1,5 +1,5 @@
 {
-  "corpusHash": "af1e27ddc7d44509450a42593d93229f535af961daf8f185ec790802991373cb",
+  "corpusHash": "3557cb158e45e000c70f8e319d4c0ac7aa0cef9a870771e7afbe8ba69322bda3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -16,7 +16,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27492,
+  "includedPathCount": 28052,
   "includedPaths": [
     ".opencode/skills/.state/advisor/README.md",
     ".opencode/skills/.state/authority/README.md",
@@ -2135,6 +2135,7 @@
     ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/theme-activation.md",
     ".opencode/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-cli/README.md",
     ".opencode/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp/README.md",
+    ".opencode/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md",
     ".opencode/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md",
     ".opencode/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md",
     ".opencode/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md",
@@ -5581,6 +5582,7 @@
     ".opencode/skills/sk-design/references/motion-principles.md",
     ".opencode/skills/sk-design/references/review-checklist.md",
     ".opencode/skills/sk-design/references/ux-laws.md",
+    ".opencode/skills/sk-doc/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/README.md",
     ".opencode/skills/sk-doc/ROUTER.md",
     ".opencode/skills/sk-doc/SKILL.md",
@@ -5661,7 +5663,9 @@
     ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
     ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/disambiguation-required.md",
     ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/no-keyword-match.md",
+    ".opencode/skills/sk-doc/scripts/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/scripts/README.md",
+    ".opencode/skills/sk-doc/scripts/tests/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/scripts/tests/README.md",
     ".opencode/skills/sk-doc/scripts/tests/code-folder/flat-contents-pass/README.md",
     ".opencode/skills/sk-doc/scripts/tests/code-folder/negative/broken-links/README.md",
@@ -5792,9 +5796,12 @@
     ".opencode/skills/sk-doc/sk-create-chart/README.md",
     ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
     ".opencode/skills/sk-doc/sk-create-chart/changelog/v1.0.0.0.md",
+    ".opencode/skills/sk-doc/sk-create-chart/changelog/v1.1.0.0.md",
+    ".opencode/skills/sk-doc/sk-create-chart/changelog/v1.2.0.0.md",
     ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/corpus-integrity/a-chart-that-draws-nothing.md",
     ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/corpus-integrity/catalog-resolves-both-ways.md",
     ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/corpus-integrity/colour-comes-from-one-source.md",
+    ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/delivery-and-routing/a-delivery-on-a-dark-system.md",
     ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/delivery-and-routing/form-choice-and-the-diagram-boundary.md",
     ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/delivery-and-routing/opens-with-no-build-step.md",
     ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/manual-testing-playbook.md",
@@ -6161,7 +6168,9 @@
     ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
     ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
     ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md",
+    ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/README.md",
+    ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/.pytest_cache/README.md",
     ".opencode/skills/sk-git/README.md",
     ".opencode/skills/sk-git/SKILL.md",
     ".opencode/skills/sk-git/assets/commit-message-template.md",
@@ -7453,6 +7462,7 @@
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/five-lane-fusion.md",
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md",
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/projection.md",
+    ".opencode/skills/system-skill-advisor/mcp-server/.pytest_cache/README.md",
     ".opencode/skills/system-skill-advisor/mcp-server/README.md",
     ".opencode/skills/system-skill-advisor/mcp-server/bench/README.md",
     ".opencode/skills/system-skill-advisor/mcp-server/compat/README.md",
@@ -7501,6 +7511,8 @@
     ".opencode/skills/system-skill-advisor/mcp-server/tests/python/README.md",
     ".opencode/skills/system-skill-advisor/mcp-server/tests/schemas/README.md",
     ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/README.md",
+    ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
+    ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
     ".opencode/skills/system-skill-advisor/mcp-server/tests/skill-graph/README.md",
     ".opencode/skills/system-skill-advisor/mcp-server/tests/utils/README.md",
     ".opencode/skills/system-skill-advisor/mcp-server/tools/README.md",
@@ -8769,6 +8781,23 @@
     "specs/cli-external-orchestration/059-dispatch-surface-truthfulness/plan.md",
     "specs/cli-external-orchestration/059-dispatch-surface-truthfulness/spec.md",
     "specs/cli-external-orchestration/059-dispatch-surface-truthfulness/tasks.md",
+    "specs/cli-external-orchestration/060-devpass-roster-vision-gemini-3-8/acceptance-criteria.md",
+    "specs/cli-external-orchestration/060-devpass-roster-vision-gemini-3-8/implementation-summary.md",
+    "specs/cli-external-orchestration/060-devpass-roster-vision-gemini-3-8/plan.md",
+    "specs/cli-external-orchestration/060-devpass-roster-vision-gemini-3-8/spec.md",
+    "specs/cli-external-orchestration/060-devpass-roster-vision-gemini-3-8/tasks.md",
+    "specs/cli-external-orchestration/061-glm-5-3-flash-thinking-tier-per-route/implementation-summary.md",
+    "specs/cli-external-orchestration/061-glm-5-3-flash-thinking-tier-per-route/plan.md",
+    "specs/cli-external-orchestration/061-glm-5-3-flash-thinking-tier-per-route/spec.md",
+    "specs/cli-external-orchestration/061-glm-5-3-flash-thinking-tier-per-route/tasks.md",
+    "specs/cli-external-orchestration/062-devpass-pi-custom-provider/implementation-summary.md",
+    "specs/cli-external-orchestration/062-devpass-pi-custom-provider/plan.md",
+    "specs/cli-external-orchestration/062-devpass-pi-custom-provider/spec.md",
+    "specs/cli-external-orchestration/062-devpass-pi-custom-provider/tasks.md",
+    "specs/cli-external-orchestration/063-devpass-gpt-5-6-luna/implementation-summary.md",
+    "specs/cli-external-orchestration/063-devpass-gpt-5-6-luna/plan.md",
+    "specs/cli-external-orchestration/063-devpass-gpt-5-6-luna/spec.md",
+    "specs/cli-external-orchestration/063-devpass-gpt-5-6-luna/tasks.md",
     "specs/hooks/001-hook-docs-relocation/decision-record.md",
     "specs/hooks/001-hook-docs-relocation/fix-report-preexisting-ghosts.md",
     "specs/hooks/001-hook-docs-relocation/implementation-summary.md",
@@ -9927,7 +9956,14 @@
     "specs/mcp-tooling/018-code-mode-variable-prefixes/plan.md",
     "specs/mcp-tooling/018-code-mode-variable-prefixes/spec.md",
     "specs/mcp-tooling/018-code-mode-variable-prefixes/tasks.md",
+    "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/acceptance-criteria.md",
+    "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/goal.md",
+    "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/implementation-summary.md",
+    "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/plan.md",
+    "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/spec.md",
+    "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/tasks.md",
     "specs/mcp-tooling/019-official-obsidian-cli/acceptance-criteria.md",
+    "specs/mcp-tooling/019-official-obsidian-cli/goal.md",
     "specs/mcp-tooling/019-official-obsidian-cli/implementation-summary.md",
     "specs/mcp-tooling/019-official-obsidian-cli/plan.md",
     "specs/mcp-tooling/019-official-obsidian-cli/spec.md",
@@ -14620,7 +14656,14 @@
     "specs/sk-doc/038-authoring-hardening/003-per-root-enforcement/spec.md",
     "specs/sk-doc/038-authoring-hardening/003-per-root-enforcement/tasks.md",
     "specs/sk-doc/038-authoring-hardening/spec.md",
+    "specs/sk-doc/039-create-with-human-voice/001-utilization-review/acceptance-criteria.md",
+    "specs/sk-doc/039-create-with-human-voice/001-utilization-review/goal.md",
+    "specs/sk-doc/039-create-with-human-voice/001-utilization-review/implementation-summary.md",
+    "specs/sk-doc/039-create-with-human-voice/001-utilization-review/plan.md",
+    "specs/sk-doc/039-create-with-human-voice/001-utilization-review/spec.md",
+    "specs/sk-doc/039-create-with-human-voice/001-utilization-review/tasks.md",
     "specs/sk-doc/039-create-with-human-voice/acceptance-criteria.md",
+    "specs/sk-doc/039-create-with-human-voice/goal.md",
     "specs/sk-doc/039-create-with-human-voice/implementation-summary.md",
     "specs/sk-doc/039-create-with-human-voice/plan.md",
     "specs/sk-doc/039-create-with-human-voice/spec.md",
@@ -14792,6 +14835,14 @@
     "specs/sk-doc/049-sk-create-frontmatter/007-human-voice-playbook/plan.md",
     "specs/sk-doc/049-sk-create-frontmatter/007-human-voice-playbook/spec.md",
     "specs/sk-doc/049-sk-create-frontmatter/007-human-voice-playbook/tasks.md",
+    "specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/acceptance-criteria.md",
+    "specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/decision-record.md",
+    "specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/goal.md",
+    "specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/implementation-summary.md",
+    "specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/plan.md",
+    "specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/spec.md",
+    "specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/tasks.md",
+    "specs/sk-doc/049-sk-create-frontmatter/goal.md",
     "specs/sk-doc/049-sk-create-frontmatter/spec.md",
     "specs/sk-doc/050-sk-doc-playbook-coverage/001-authoring-surfaces/acceptance-criteria.md",
     "specs/sk-doc/050-sk-doc-playbook-coverage/001-authoring-surfaces/implementation-summary.md",
@@ -14847,7 +14898,477 @@
     "specs/sk-doc/051-sk-create-chart/006-playbook-and-closeout/plan.md",
     "specs/sk-doc/051-sk-create-chart/006-playbook-and-closeout/spec.md",
     "specs/sk-doc/051-sk-create-chart/006-playbook-and-closeout/tasks.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/acceptance-criteria.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/decision-record.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/goal.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/implementation-summary.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/plan.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/deep-research-dashboard.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/deep-research-strategy.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/iterations/iteration-001.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/iterations/iteration-002.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/iterations/iteration-003.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/iterations/iteration-004.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/iterations/iteration-005.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/iterations/iteration-006.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/iterations/iteration-007.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/iterations/iteration-008.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/iterations/iteration-009.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/iterations/iteration-010.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/research.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/resource-map.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03/lineages/codex-luna-max/synthesis-v1.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/spec.md",
+    "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/tasks.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/acceptance-criteria.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/README.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/accessibility/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/accessibility/references/A11Y-PATTERNS.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/accessibility/references/WCAG.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/agent-browser/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/animation-vocabulary/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/commit-and-push/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/AGENTS.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/README.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/rules/_sections.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/rules/_template.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/rules/architecture-avoid-boolean-props.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/rules/architecture-compound-components.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/rules/patterns-children-over-render-props.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/rules/patterns-explicit-variants.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/rules/react19-no-forwardref.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/rules/state-context-interface.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/rules/state-decouple-implementation.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/rules/state-lift-state.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/copywriting/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/copywriting/references/copy-frameworks.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/copywriting/references/natural-transitions.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/emil-design-eng/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/frontend-design/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/anti-patterns.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/assets.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/color.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/component-cookbook.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/c1-outlined-chip.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/c2-inline-form-as-cta.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/c3-typographic-link.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/c4-sticky-bottom-bar.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/f1-bento-grid.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/f2-sticky-scroll-stack.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/f3-tabular-spec-sheet.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/f4-step-sequence.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/f5-annotated-screenshot.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/f6-product-card-grid.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/ft1-mast-headed.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/ft2-inline-rule-single-line.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/ft3-index-style-category-list.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/ft4-dense-typographic.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/ft5-statement.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/ft6-letter-close.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/ft7-newsletter-first.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/ft8-marquee-scroll.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/h1-marquee.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/h2-split-diptych.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/h3-quote-led.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/h4-stat-led.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/h5-letter-hero.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/h6-photographic-fold.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/h7-demo-video-clipped-by-viewport-edge.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/h8-mockup-split-browser-framed.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/h9-custom-illustration-centerpiece.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n1-wordmark-2-links.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n10-floating-on-scroll-morph.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n11-mega-menu.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n12-banner-retract.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n13-inline-cmdk-pill.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n1b-saas-three-section.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n2-floating-chip.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n3-side-rail.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n4-hidden-behind-k.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n5-floating-pill.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n6-newspaper-masthead.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n7-brutal-slab.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n8-terminal-command.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/n9-edge-aligned-minimal.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/s1-left-margin-numbered.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/s2-hanging.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/s3-sticky-pinned.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/s4-inline-no-break.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/s5-bottom-anchored.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/t1-pull-quote-with-marginalia.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/t2-logo-wall-hairline.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/t3-single-huge-quote.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/components/t4-numbered-stat-strip.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/contract.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/copy.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/custom-craft.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/custom-theme.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/design-md.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/export-formats.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/floating-nav.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/genres/atmospheric.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/genres/editorial.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/genres/modern-minimal.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/genres/playful.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/hero-enrichment.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/imagery-kit.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/interaction-and-states.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/layout-and-space.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/01-bento-grid.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/02-long-document.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/03-marquee-hero.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/04-stat-led.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/05-workbench.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/06-conversational-faq.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/07-manifesto.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/08-photographic.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/09-quote-led.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/10-specimen.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/11-catalogue.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/12-letter.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/13-index-first.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/14-narrative-workflow.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/15-split-studio.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/16-feature-stack.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/17-type-specimen.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/18-portfolio-grid.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/19-map-diagram.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/20-ecosystem-index.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/macrostructures/21-component-playground.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/microinteractions.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/motion.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/preview-examples.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/responsive.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/slop-test.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/structure.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/study.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/themes/carnival.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/themes/cobalt.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/themes/hum.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/themes/lumen.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/typography.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/verbs/audit.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/hallmark/references/verbs/redesign.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/improve/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/improve/references/audit-playbook.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/improve/references/closing-the-loop.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/improve/references/plan-template.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/nodejs-backend-patterns/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/nodejs-backend-patterns/references/advanced-patterns.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/nodejs-best-practices/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/AGENTS.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/README.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/_sections.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/_template.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/advanced-effect-event-deps.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/advanced-event-handler-refs.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/advanced-init-once.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/advanced-use-latest.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/async-api-routes.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/async-cheap-condition-before-await.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/async-defer-await.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/async-dependencies.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/async-parallel.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/async-suspense-boundaries.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/bundle-analyzable-paths.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/bundle-barrel-imports.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/bundle-conditional.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/bundle-defer-third-party.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/bundle-dynamic-imports.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/bundle-preload.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/client-event-listeners.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/client-localstorage-schema.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/client-passive-event-listeners.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/client-swr-dedup.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-batch-dom-css.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-cache-function-results.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-cache-property-access.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-cache-storage.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-combine-iterations.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-early-exit.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-flatmap-filter.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-hoist-regexp.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-index-maps.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-length-check-first.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-min-max-loop.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-request-idle-callback.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-set-map-lookups.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/js-tosorted-immutable.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-activity.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-animate-svg-wrapper.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-conditional-render.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-content-visibility.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-hoist-jsx.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-hydration-no-flicker.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-hydration-suppress-warning.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-resource-hints.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-script-defer-async.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-svg-precision.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rendering-usetransition-loading.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-defer-reads.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-dependencies.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-derived-state-no-effect.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-derived-state.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-functional-setstate.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-lazy-state-init.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-memo-with-default-value.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-memo.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-move-effect-to-event.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-no-inline-components.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-simple-expression-in-memo.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-split-combined-hooks.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-transitions.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-use-deferred-value.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/rerender-use-ref-transient-values.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/server-after-nonblocking.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/server-auth-actions.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/server-cache-lru.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/server-cache-react.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/server-dedup-props.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/server-hoist-static-io.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/server-no-shared-module-state.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/server-parallel-fetching.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/server-parallel-nested-fetching.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/rules/server-serialization.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/review-animations/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/review-animations/STANDARDS.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/seo-audit/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/seo-audit/references/ai-writing-detection.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/seo-audit/references/international-seo.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/seo/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/setup-matt-pocock-skills/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/setup-matt-pocock-skills/domain.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/setup-matt-pocock-skills/issue-tracker-github.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/setup-matt-pocock-skills/issue-tracker-gitlab.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/setup-matt-pocock-skills/issue-tracker-local.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/setup-matt-pocock-skills/triage-labels.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/shadcn/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/shadcn/cli.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/shadcn/customization.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/shadcn/mcp.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/shadcn/rules/base-vs-radix.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/shadcn/rules/composition.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/shadcn/rules/forms.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/shadcn/rules/icons.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/shadcn/rules/styling.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-css-patterns/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-css-patterns/references/accessibility.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-css-patterns/references/animations.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-css-patterns/references/component-patterns.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-css-patterns/references/configuration.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-css-patterns/references/layout-patterns.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-css-patterns/references/performance.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-css-patterns/references/reference.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-css-patterns/references/responsive-design.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-v4-shadcn/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-v4-shadcn/references/advanced-usage.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-v4-shadcn/references/common-gotchas.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-v4-shadcn/references/dark-mode.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-v4-shadcn/references/migration-guide.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/tailwind-v4-shadcn/references/plugins-reference.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/typescript-advanced-types/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/AGENTS.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/README.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/assets/templates/_template.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/_sections.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/compose-intersection.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/compose-lazy-recursive.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/compose-pipe.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/compose-preprocess.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/compose-shared-schemas.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/error-avoid-throwing-in-refine.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/error-custom-messages.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/error-i18n.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/error-path-for-nested.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/error-use-flatten.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/object-discriminated-unions.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/object-extend-for-composition.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/object-optional-vs-nullable.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/object-partial-for-updates.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/object-pick-omit.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/object-strict-vs-strip.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/parse-async-for-async-refinements.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/parse-avoid-double-validation.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/parse-handle-all-issues.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/parse-never-trust-json.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/parse-use-safeparse.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/parse-validate-early.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/perf-arrays.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/perf-avoid-dynamic-creation.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/perf-cache-schemas.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/perf-lazy-loading.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/perf-zod-mini.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/refine-add-path.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/refine-catch.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/refine-defaults.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/refine-transform-coerce.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/refine-vs-superrefine.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/schema-avoid-optional-abuse.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/schema-coercion-for-form-data.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/schema-string-validations.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/schema-use-enums.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/schema-use-primitives-correctly.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/schema-use-unknown-not-any.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/type-branded-types.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/type-enable-strict-mode.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/type-export-schemas-and-types.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/type-input-vs-output.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/references/type-use-z-infer.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/agent-browser/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/commit-and-push/SKILL.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.contexts/echarts-provider.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.github/PULL_REQUEST_TEMPLATE.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/AGENTS.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/CLAUDE.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/CODE_OF_CONDUCT.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/CONTRIBUTING.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/README.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/goal.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/implementation-summary.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/plan.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/deepseek-flash-max/deep-research-dashboard.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/deepseek-flash-max/deep-research-strategy.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/deepseek-flash-max/iterations/iteration-001.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/deepseek-flash-max/iterations/iteration-002.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/deepseek-flash-max/iterations/iteration-003.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/deepseek-flash-max/iterations/iteration-004.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/deepseek-flash-max/iterations/iteration-005.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/deepseek-flash-max/research.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/glm-flash-xhigh/deep-research-dashboard.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/glm-flash-xhigh/deep-research-strategy.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/glm-flash-xhigh/iterations/iteration-001.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/glm-flash-xhigh/iterations/iteration-002.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/glm-flash-xhigh/iterations/iteration-003.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/glm-flash-xhigh/iterations/iteration-004.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/glm-flash-xhigh/iterations/iteration-005.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages/glm-flash-xhigh/research.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/research/research.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/spec.md",
+    "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/tasks.md",
+    "specs/sk-doc/051-sk-create-chart/goal.md",
     "specs/sk-doc/051-sk-create-chart/spec.md",
+    "specs/sk-doc/052-routing-completeness/001-transport-and-baseline/acceptance-criteria.md",
+    "specs/sk-doc/052-routing-completeness/001-transport-and-baseline/goal.md",
+    "specs/sk-doc/052-routing-completeness/001-transport-and-baseline/implementation-summary.md",
+    "specs/sk-doc/052-routing-completeness/001-transport-and-baseline/plan.md",
+    "specs/sk-doc/052-routing-completeness/001-transport-and-baseline/research/transport-finding.md",
+    "specs/sk-doc/052-routing-completeness/001-transport-and-baseline/spec.md",
+    "specs/sk-doc/052-routing-completeness/001-transport-and-baseline/tasks.md",
+    "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/acceptance-criteria.md",
+    "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/goal.md",
+    "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/implementation-summary.md",
+    "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/plan.md",
+    "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/research/gate-a-measurement.md",
+    "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/research/unresolved-signal-decisions.md",
+    "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/spec.md",
+    "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/tasks.md",
+    "specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/acceptance-criteria.md",
+    "specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/goal.md",
+    "specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/implementation-summary.md",
+    "specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/plan.md",
+    "specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/research/gate-b-measurement.md",
+    "specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/spec.md",
+    "specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/tasks.md",
+    "specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/acceptance-criteria.md",
+    "specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/goal.md",
+    "specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/implementation-summary.md",
+    "specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/plan.md",
+    "specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/spec.md",
+    "specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/tasks.md",
+    "specs/sk-doc/052-routing-completeness/005-hub-surface-truth/acceptance-criteria.md",
+    "specs/sk-doc/052-routing-completeness/005-hub-surface-truth/goal.md",
+    "specs/sk-doc/052-routing-completeness/005-hub-surface-truth/implementation-summary.md",
+    "specs/sk-doc/052-routing-completeness/005-hub-surface-truth/plan.md",
+    "specs/sk-doc/052-routing-completeness/005-hub-surface-truth/spec.md",
+    "specs/sk-doc/052-routing-completeness/005-hub-surface-truth/tasks.md",
+    "specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/acceptance-criteria.md",
+    "specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/goal.md",
+    "specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/implementation-summary.md",
+    "specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/plan.md",
+    "specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/research/template-triage.md",
+    "specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/spec.md",
+    "specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/tasks.md",
+    "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/acceptance-criteria.md",
+    "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/decision-record.md",
+    "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md",
+    "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/implementation-summary.md",
+    "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/plan.md",
+    "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md",
+    "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/tasks.md",
+    "specs/sk-doc/052-routing-completeness/goal.md",
+    "specs/sk-doc/052-routing-completeness/research/findings-register.md",
+    "specs/sk-doc/052-routing-completeness/roadmap.md",
+    "specs/sk-doc/052-routing-completeness/spec.md",
+    "specs/sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks/acceptance-criteria.md",
+    "specs/sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks/decision-record.md",
+    "specs/sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks/goal.md",
+    "specs/sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks/implementation-summary.md",
+    "specs/sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks/plan.md",
+    "specs/sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks/spec.md",
+    "specs/sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks/tasks.md",
+    "specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout/acceptance-criteria.md",
+    "specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout/decision-record.md",
+    "specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout/goal.md",
+    "specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout/implementation-summary.md",
+    "specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout/plan.md",
+    "specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout/spec.md",
+    "specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout/tasks.md",
+    "specs/sk-doc/053-chart-visual-overhaul/003-motion-layer/acceptance-criteria.md",
+    "specs/sk-doc/053-chart-visual-overhaul/003-motion-layer/goal.md",
+    "specs/sk-doc/053-chart-visual-overhaul/003-motion-layer/implementation-summary.md",
+    "specs/sk-doc/053-chart-visual-overhaul/003-motion-layer/plan.md",
+    "specs/sk-doc/053-chart-visual-overhaul/003-motion-layer/spec.md",
+    "specs/sk-doc/053-chart-visual-overhaul/003-motion-layer/tasks.md",
+    "specs/sk-doc/053-chart-visual-overhaul/004-interaction-layer/acceptance-criteria.md",
+    "specs/sk-doc/053-chart-visual-overhaul/004-interaction-layer/decision-record.md",
+    "specs/sk-doc/053-chart-visual-overhaul/004-interaction-layer/goal.md",
+    "specs/sk-doc/053-chart-visual-overhaul/004-interaction-layer/implementation-summary.md",
+    "specs/sk-doc/053-chart-visual-overhaul/004-interaction-layer/plan.md",
+    "specs/sk-doc/053-chart-visual-overhaul/004-interaction-layer/spec.md",
+    "specs/sk-doc/053-chart-visual-overhaul/004-interaction-layer/tasks.md",
+    "specs/sk-doc/053-chart-visual-overhaul/005-dark-theme/acceptance-criteria.md",
+    "specs/sk-doc/053-chart-visual-overhaul/005-dark-theme/decision-record.md",
+    "specs/sk-doc/053-chart-visual-overhaul/005-dark-theme/goal.md",
+    "specs/sk-doc/053-chart-visual-overhaul/005-dark-theme/implementation-summary.md",
+    "specs/sk-doc/053-chart-visual-overhaul/005-dark-theme/plan.md",
+    "specs/sk-doc/053-chart-visual-overhaul/005-dark-theme/spec.md",
+    "specs/sk-doc/053-chart-visual-overhaul/005-dark-theme/tasks.md",
+    "specs/sk-doc/053-chart-visual-overhaul/006-catalog-and-contract/acceptance-criteria.md",
+    "specs/sk-doc/053-chart-visual-overhaul/006-catalog-and-contract/decision-record.md",
+    "specs/sk-doc/053-chart-visual-overhaul/006-catalog-and-contract/goal.md",
+    "specs/sk-doc/053-chart-visual-overhaul/006-catalog-and-contract/implementation-summary.md",
+    "specs/sk-doc/053-chart-visual-overhaul/006-catalog-and-contract/plan.md",
+    "specs/sk-doc/053-chart-visual-overhaul/006-catalog-and-contract/spec.md",
+    "specs/sk-doc/053-chart-visual-overhaul/006-catalog-and-contract/tasks.md",
+    "specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout/acceptance-criteria.md",
+    "specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout/decision-record.md",
+    "specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout/goal.md",
+    "specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout/implementation-summary.md",
+    "specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout/plan.md",
+    "specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout/spec.md",
+    "specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout/tasks.md",
+    "specs/sk-doc/053-chart-visual-overhaul/goal.md",
+    "specs/sk-doc/053-chart-visual-overhaul/spec.md",
+    "specs/sk-doc/054-chart-review-remediation/acceptance-criteria.md",
+    "specs/sk-doc/054-chart-review-remediation/implementation-summary.md",
+    "specs/sk-doc/054-chart-review-remediation/plan.md",
+    "specs/sk-doc/054-chart-review-remediation/spec.md",
+    "specs/sk-doc/054-chart-review-remediation/tasks.md",
+    "specs/sk-doc/055-chart-command-surface/acceptance-criteria.md",
+    "specs/sk-doc/055-chart-command-surface/implementation-summary.md",
+    "specs/sk-doc/055-chart-command-surface/plan.md",
+    "specs/sk-doc/055-chart-command-surface/spec.md",
+    "specs/sk-doc/055-chart-command-surface/tasks.md",
+    "specs/sk-doc/056-command-contract-reconciliation/acceptance-criteria.md",
+    "specs/sk-doc/056-command-contract-reconciliation/implementation-summary.md",
+    "specs/sk-doc/056-command-contract-reconciliation/plan.md",
+    "specs/sk-doc/056-command-contract-reconciliation/spec.md",
+    "specs/sk-doc/056-command-contract-reconciliation/tasks.md",
     "specs/sk-git/007-continuous-integration-workflow/implementation-summary.md",
     "specs/sk-git/007-continuous-integration-workflow/plan.md",
     "specs/sk-git/007-continuous-integration-workflow/spec.md",
@@ -17379,6 +17900,35 @@
     "specs/system-skill-advisor/023-model-server-default-spawn/plan.md",
     "specs/system-skill-advisor/023-model-server-default-spawn/spec.md",
     "specs/system-skill-advisor/023-model-server-default-spawn/tasks.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation/acceptance-criteria.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation/goal.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation/plan.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation/spec.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation/tasks.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/002-embedding-population/acceptance-criteria.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/002-embedding-population/decision-record.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/002-embedding-population/goal.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/002-embedding-population/plan.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/002-embedding-population/spec.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/002-embedding-population/tasks.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research/acceptance-criteria.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research/goal.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research/plan.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research/spec.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research/tasks.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/acceptance-criteria.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/decision-record.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/goal.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/plan.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/spec.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/tasks.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/acceptance-criteria.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/goal.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/plan.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/spec.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/tasks.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/goal.md",
+    "specs/system-skill-advisor/023-semantic-lane-enablement/spec.md",
     "specs/system-speckit/000-release/001-context-pack/spec.md",
     "specs/system-speckit/000-release/002-per-packet-extraction/spec.md",
     "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/deepseek-v4-pro-max/iteration-1.md",
@@ -27499,6 +28049,10 @@
     "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/review-report.md",
     "specs/system-speckit/049-memory-decommission/roadmap.md",
     "specs/system-speckit/049-memory-decommission/spec.md",
+    "specs/system-speckit/050-single-segment-packet-pointer/implementation-summary.md",
+    "specs/system-speckit/050-single-segment-packet-pointer/plan.md",
+    "specs/system-speckit/050-single-segment-packet-pointer/spec.md",
+    "specs/system-speckit/050-single-segment-packet-pointer/tasks.md",
     "specs/system-speckit/050-zvec-grep-fork-integration/acceptance-criteria.md",
     "specs/system-speckit/050-zvec-grep-fork-integration/goal.md",
     "specs/system-speckit/050-zvec-grep-fork-integration/implementation-summary.md",
@@ -27509,10 +28063,16 @@
     "specs/system-speckit/051-zvec-grep-vendoring/implementation-summary.md",
     "specs/system-speckit/051-zvec-grep-vendoring/plan.md",
     "specs/system-speckit/051-zvec-grep-vendoring/spec.md",
-    "specs/system-speckit/051-zvec-grep-vendoring/tasks.md"
+    "specs/system-speckit/051-zvec-grep-vendoring/tasks.md",
+    "specs/system-speckit/052-memory-decommission-landing/acceptance-criteria.md",
+    "specs/system-speckit/052-memory-decommission-landing/goal.md",
+    "specs/system-speckit/052-memory-decommission-landing/implementation-summary.md",
+    "specs/system-speckit/052-memory-decommission-landing/plan.md",
+    "specs/system-speckit/052-memory-decommission-landing/spec.md",
+    "specs/system-speckit/052-memory-decommission-landing/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "948a256397fd0a7a25813140f3a67708a4bfd1f7f851ff64cfc8ba46182dae4a",
+  "manifestHash": "ec40c825262f7863d7a16baaeba27964b9529b3abc270d43f1c4ba96c6473d3d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27523,6 +28083,10 @@
     {
       "path": ".opencode/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".opencode/skills/mcp-code-mode/mcp-server/node_modules",
+      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/sk-code/benchmark/fixtures",
@@ -27577,7 +28141,15 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".opencode/skills/sk-communication/cli-communication-projection/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/sk-communication/cli-communication-projection/test/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/sk-design-md-generator/backend/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -27597,11 +28169,27 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/sk-doc/sk-create-frontmatter/assets/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures",
       "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/sk-vision/vision-runtime/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -27613,6 +28201,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/fixtures",
       "reason": "excluded directory"
     },
@@ -27621,8 +28217,12 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/system-deep-loop/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/system-deep-loop/runtime/node_modules",
-      "reason": "symlinked directory"
+      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/system-deep-loop/runtime/tests/fixtures",
@@ -27677,8 +28277,12 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/system-spec-kit/mcp-server/dist/lib/eval/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/system-spec-kit/mcp-server/node_modules",
-      "reason": "symlinked directory"
+      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/system-spec-kit/mcp-server/shared",
@@ -27709,8 +28313,12 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/system-spec-kit/mcp-server/tmp-test-fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/system-spec-kit/node_modules",
-      "reason": "symlinked directory"
+      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/system-spec-kit/scripts/mcp-server",
@@ -27718,7 +28326,7 @@
     },
     {
       "path": ".opencode/skills/system-spec-kit/scripts/node_modules",
-      "reason": "symlinked directory"
+      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures",
@@ -27738,10 +28346,14 @@
     },
     {
       "path": ".opencode/skills/system-spec-kit/shared/node_modules",
-      "reason": "symlinked directory"
+      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/system-spec-kit/templates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/tmp-test-fixtures",
       "reason": "excluded directory"
     },
     {
@@ -27763,6 +28375,18 @@
     {
       "path": "specs/agents/z_archive",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/ai-systems",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/anobel.com",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/app-mobile-cli",
+      "reason": "symlinked directory"
     },
     {
       "path": "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/scratch",
@@ -27974,6 +28598,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/059-dispatch-surface-truthfulness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/060-devpass-roster-vision-gemini-3-8/scratch",
       "reason": "excluded directory"
     },
     {
@@ -28401,12 +29029,20 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp-tooling/019-official-obsidian-cli/scratch",
       "reason": "excluded directory"
     },
     {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/obsidian",
+      "reason": "symlinked directory"
     },
     {
       "path": "specs/sk-code/z_archive",
@@ -28765,6 +29401,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/039-create-with-human-voice/001-utilization-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/039-create-with-human-voice/scratch",
       "reason": "excluded directory"
     },
@@ -28889,6 +29529,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/050-sk-doc-playbook-coverage/001-authoring-surfaces/scratch",
       "reason": "excluded directory"
     },
@@ -28922,6 +29566,162 @@
     },
     {
       "path": "specs/sk-doc/051-sk-create-chart/006-playbook-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/accessibility",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/animation-vocabulary",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/composition-patterns",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/copywriting",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/emil-design-eng",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/frontend-design",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/hallmark",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/improve",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/nodejs-backend-patterns",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/nodejs-best-practices",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/react-best-practices",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/review-animations",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/seo",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/seo-audit",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/setup-matt-pocock-skills",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/shadcn",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/tailwind-css-patterns",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/tailwind-v4-shadcn",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/typescript-advanced-types",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/zod",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/001-transport-and-baseline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/005-hub-surface-truth/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/053-chart-visual-overhaul/001-visual-proof-and-forks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/053-chart-visual-overhaul/002-chrome-rollout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/053-chart-visual-overhaul/003-motion-layer/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/053-chart-visual-overhaul/004-interaction-layer/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/053-chart-visual-overhaul/007-composed-form-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/054-chart-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/055-chart-command-surface/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/056-command-contract-reconciliation/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29326,6 +30126,26 @@
     },
     {
       "path": "specs/system-skill-advisor/023-model-server-default-spawn/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/023-semantic-lane-enablement/002-embedding-population/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
@@ -30713,11 +31533,19 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/050-single-segment-packet-pointer/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/050-zvec-grep-fork-integration/scratch",
       "reason": "excluded directory"
     },
     {
       "path": "specs/system-speckit/051-zvec-grep-vendoring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/052-memory-decommission-landing/scratch",
       "reason": "excluded directory"
     },
     {
