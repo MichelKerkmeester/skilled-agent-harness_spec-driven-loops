@@ -13,10 +13,9 @@ _memory:
     packet_pointer: "system-speckit/053-spec-kit-runtime-rename"
     last_updated_at: "2026-09-04T19:16:06Z"
     last_updated_by: "code-agent"
-    recent_action: "Moved the engine to runtime/, pruned the manifest and rewrote every reference"
-    next_safe_action: "Commit the move as one commit, then run the ten-iteration review"
-    blockers:
-      - "Packet 052 validates with a stale source fingerprint from commit b960584085, which this packet did not touch"
+    recent_action: "Committed the move as aef7852400 and launched the rename review"
+    next_safe_action: "Read the pass 3 review report and fix every P0 and P1 at source"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/runtime/package.json"
       - ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs"

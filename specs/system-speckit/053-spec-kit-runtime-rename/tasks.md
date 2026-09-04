@@ -47,7 +47,7 @@ contextType: "general"
 - [x] T004 324 files moved under `git mv`; manifest renamed `@spec-kit/runtime` and cut from 12 dependencies to 4; `npm install` at the workspace root removed 126 packages and `npm ci --dry-run` exits 0
 - [x] T005 379 files rewritten in place plus 84 symlinks repointed; `rg` and `git grep` both return zero live hits for the old path and the old npm name
 - [x] T006 `npm run rebuild` exits 0 and records both freshness entries; shared, scripts and runtime typecheck clean; all 19 registered adapters exit 0 with no missing module; the HF model server boots from the new path, resolves `runtime/database` and closes cleanly
-- [ ] T007 Commit the move as one commit; fast-forward main; push
+- [x] T007 One commit `aef7852400` of 708 files; `main` fast-forwarded to it and both `main` and `skilled/v4.0.0.0` sit at it on origin
 <!-- /ANCHOR:phase-2 -->
 
 ---
