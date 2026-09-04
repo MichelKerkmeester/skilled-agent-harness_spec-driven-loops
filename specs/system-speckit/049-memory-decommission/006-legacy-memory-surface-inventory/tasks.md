@@ -60,7 +60,7 @@ contextType: "research"
 
 - [x] T011 Run the final case-insensitive scan-to-artifact parity audit: zero extra rows, zero stale rows, zero parser errors, zero required-field omissions, zero exclusion violations
 - [x] T012 Correct the parent estimates: 41 tools confirmed, tracked tree at 1,481 files, flag counts of 410 in the server tree and 872 externally and the roughly 167 consumer figure identified as a logical estimate rather than a path count
-- [ ] T013 Fold the worklists and the preserve set into the phase 002 and phase 003 spec, plan, tasks and acceptance docs. In progress, owned by the build phases
+- [x] T013 Fold the worklists and the preserve set into the phase 002 and phase 003 spec, plan, tasks and acceptance docs. Done: phase 002 spec.md cites this research 1 time(s) and phase 003 spec.md 1 time(s); both phases are Complete
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -70,7 +70,7 @@ contextType: "research"
 
 - [x] Five iteration files and the synthesis exist on disk with the stop reason recorded
 - [x] Parity audit passed with no unexplained rows
-- [ ] T013 fold-in closed by phases 002 and 003
+- [x] T013 fold-in closed by phases 002 and 003 — both Complete and citing this research
 <!-- /ANCHOR:completion -->
 
 ---
