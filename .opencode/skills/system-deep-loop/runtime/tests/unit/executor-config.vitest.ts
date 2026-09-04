@@ -21,7 +21,6 @@ import {
   PI_DEFAULT_MODEL,
   isPiModelAllowed,
   isFlashMaxPinnedModel,
-  isGlmFlashXhighPinnedModel,
   pinReasoningEffortForModel,
 } from '../../lib/deep-loop/executor-config';
 
@@ -882,14 +881,15 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(pinReasoningEffortForModel('minimax-m3', null)).toBe(null);
   });
 
-  // GLM-5.3-Flash has no `max` variant on any route; dispatching it at `max` sends a tier the
-  // model does not accept, so its pin is `xhigh` on both the bare and vendor-prefixed literals.
-  it('pins GLM-5.3-Flash to xhigh rather than max', () => {
-    expect(pinReasoningEffortForModel('glm-5.3-flash', 'high')).toBe('xhigh');
-    expect(pinReasoningEffortForModel('z-ai/glm-5.3-flash', 'high')).toBe('xhigh');
-    expect(pinReasoningEffortForModel('z-ai/glm-5.3-flash', null)).toBe('xhigh');
-    expect(pinReasoningEffortForModel('opencode-go/glm-5.3-flash', undefined)).toBe('xhigh');
-    expect(isGlmFlashXhighPinnedModel('deepseek-v4-flash')).toBe(false);
-    expect(isGlmFlashXhighPinnedModel('glm-5.1')).toBe(false);
+  // Both literals that reach this pin are route-bound: the bare one is opencode-go's and the
+  // vendor-prefixed one is OpenRouter's, and GLM-5.3-Flash offers low/high/max on both with no
+  // xhigh. Its xhigh ceiling is real but belongs to the Cline route, which dispatches directly
+  // under its own tier map and never reaches this function.
+  it('pins GLM-5.3-Flash to max on both route-bound literals', () => {
+    expect(pinReasoningEffortForModel('glm-5.3-flash', 'high')).toBe('max');
+    expect(pinReasoningEffortForModel('z-ai/glm-5.3-flash', 'high')).toBe('max');
+    expect(pinReasoningEffortForModel('z-ai/glm-5.3-flash', null)).toBe('max');
+    expect(pinReasoningEffortForModel('opencode-go/glm-5.3-flash', undefined)).toBe('max');
+    expect(pinReasoningEffortForModel('glm-5.1', 'high')).toBe('high');
   });
 });
