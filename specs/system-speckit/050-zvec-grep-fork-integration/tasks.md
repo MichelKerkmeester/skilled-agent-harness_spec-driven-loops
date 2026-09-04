@@ -45,13 +45,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 [P] Ollama embedding backend: model class, catalog entries, factory case, help text, docs, unit and live smoke tests (fork `src/engine/models/`)
-- [ ] T006 [P] Direct-mode stdio MCP server with the daemon's tool contract, `zg install --mode direct`, tests, docs (fork `src/mcp/`, `src/cli/`)
-- [ ] T007 [P] `zvec-lane.mjs` with `index`, `status`, `search`, binary resolution, forced direct mode, rank-tuple JSON, exit mapping (`scripts/retrieval/zvec-lane.mjs`)
-- [ ] T008 Project config for the index root and ignore rules; `.zvec-grep/` in `.gitignore`
-- [ ] T009 Doctor `zvec` route (`.opencode/commands/doctor/**`)
-- [ ] T010 Third-lane section in the retrieval conventions (`references/retrieval/retrieval-conventions.md`)
-- [ ] T011 Baseline index and five concept queries (`scratch/baseline-queries.md`)
+- [x] T005 [P] Ollama embedding backend: model class, catalog entries, factory case, help text, docs, unit and live smoke tests (fork `src/engine/models/`)
+- [x] T006 [P] Direct-mode stdio MCP server with the daemon's tool contract, `zg install --mode direct`, tests, docs (fork `src/mcp/`, `src/cli/`)
+- [x] T007 [P] `zvec-lane.mjs` with `index`, `status`, `search`, binary resolution, forced direct mode, rank-tuple JSON, exit mapping (`scripts/retrieval/zvec-lane.mjs`)
+- [x] T008 Project config for the index root and ignore rules; `.zvec-grep/` in `.gitignore`
+- [x] T009 Doctor `zvec` route (`.opencode/commands/doctor/**`)
+- [x] T010 Third-lane section in the retrieval conventions (`references/retrieval/retrieval-conventions.md`)
+- [x] T011 Baseline index and five concept queries (`scratch/baseline-queries.md`); post-fix latency row pending the fork perf branch
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -113,10 +113,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks
+- [x] CHK-011 [P0] No console errors or warnings
+- [x] CHK-012 [P1] Error handling implemented
+- [x] CHK-013 [P1] Code follows project patterns
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -149,9 +149,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] Input validation implemented
+- [x] CHK-032 [P1] Auth/authz working correctly: not applicable, loopback Ollama only, no credentials
 <!-- /ANCHOR:security -->
 
 ---
@@ -159,8 +159,8 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] Code comments adequate
 - [ ] CHK-042 [P2] README updated (if applicable)
 <!-- /ANCHOR:docs -->
 
@@ -169,7 +169,7 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-050 [P1] Temp files in scratch/ only
 - [ ] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 

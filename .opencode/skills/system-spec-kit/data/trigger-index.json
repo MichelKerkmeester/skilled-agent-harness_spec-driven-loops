@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1b6d9b827773137e9828de2c5147f3d34d9f1a1e5bf9a50328f9899a92e1197e",
+  "manifestHash": "7f01b46d4fdb8b9cdd6ea0c1151858cbbc340f93362181eab97140d3f6c04a18",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13110,7 +13110,13 @@
     "specs/system-speckit/049-memory-decommission/007-deep-review-remediation/tasks.md",
     "specs/system-speckit/049-memory-decommission/goal.md",
     "specs/system-speckit/049-memory-decommission/roadmap.md",
-    "specs/system-speckit/049-memory-decommission/spec.md"
+    "specs/system-speckit/049-memory-decommission/spec.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/acceptance-criteria.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/goal.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/implementation-summary.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/plan.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/spec.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -22374,7 +22380,8 @@
       13060,
       13066,
       13072,
-      13078
+      13078,
+      13101
     ],
     "ac traceability table": [
       11223,
@@ -22471,7 +22478,8 @@
       13060,
       13066,
       13072,
-      13078
+      13078,
+      13101
     ],
     "acceptance criteria closure gate": [
       12828
@@ -35193,7 +35201,8 @@
       13060,
       13066,
       13072,
-      13078
+      13078,
+      13101
     ],
     "closure gate implementation": [
       12827
@@ -39755,6 +39764,9 @@
     "concept level novelty tasks": [
       7153
     ],
+    "concept versus exact retrieval": [
+      1758
+    ],
     "conceptual novelty plateau": [
       1365
     ],
@@ -40580,6 +40592,9 @@
     ],
     "contiguous prefix stop consolidation": [
       12045
+    ],
+    "continuation notes": [
+      13103
     ],
     "continue post review closeout": [
       2508
@@ -52397,11 +52412,20 @@
     "direct invocation required false block fixed": [
       7764
     ],
+    "direct mode mcp": [
+      13105
+    ],
     "direct provider adapter collapse": [
       10849
     ],
     "direct smoke vs live cli evidence": [
       10355
+    ],
+    "direct stdio lane": [
+      13104
+    ],
+    "direct stdio task": [
+      13106
     ],
     "directexecutor quoted guard removal": [
       2604
@@ -62623,7 +62647,8 @@
       13079,
       13084,
       13089,
-      13098
+      13098,
+      13102
     ],
     "goal capability probes": [
       2526
@@ -66707,7 +66732,8 @@
       13062,
       13068,
       13074,
-      13080
+      13080,
+      13103
     ],
     "implementation summary 025": [
       5980
@@ -69122,6 +69148,9 @@
     ],
     "lane local tests": [
       1295
+    ],
+    "lane merge rule": [
+      1758
     ],
     "lane migration legacy retirement": [
       7487
@@ -82225,6 +82254,12 @@
     "ollama and bge promotion arc changelog": [
       9556
     ],
+    "ollama backend lane": [
+      13104
+    ],
+    "ollama backend task": [
+      13106
+    ],
     "ollama bge promotion follow ups": [
       9557
     ],
@@ -82270,6 +82305,9 @@
     ],
     "ollama embedder registry summary": [
       9541
+    ],
+    "ollama embedding backend": [
+      13105
     ],
     "ollama embeddings": [
       1827
@@ -84361,7 +84399,8 @@
       13079,
       13084,
       13089,
-      13098
+      13098,
+      13102
     ],
     "packet handoff alignment": [
       4702
@@ -92383,6 +92422,9 @@
     ],
     "prompt time mutation block hardening": [
       11855
+    ],
+    "prompt time semantic brief": [
+      13102
     ],
     "prompt token contract": [
       3479,
@@ -103212,6 +103254,12 @@
     ],
     "semantic rename engine tasks": [
       5248
+    ],
+    "semantic retrieval hook": [
+      13102
+    ],
+    "semantic retrieval lane": [
+      13105
     ],
     "semantic role layer tokens": [
       850
@@ -121320,7 +121368,8 @@
       1842,
       1847,
       1853,
-      1859
+      1859,
+      13103
     ],
     "validation first workflow": [
       1037
@@ -122424,7 +122473,8 @@
       13060,
       13066,
       13072,
-      13078
+      13078,
+      13101
     ],
     "wal autocheckpoint 256": [
       10162,
@@ -123109,7 +123159,8 @@
       1842,
       1847,
       1853,
-      1859
+      1859,
+      13103
     ],
     "when does a folder need code md": [
       551
@@ -124225,6 +124276,30 @@
     ],
     "zoom into this part of the image": [
       1145
+    ],
+    "zvec concept lane": [
+      1758
+    ],
+    "zvec grep fork": [
+      13105
+    ],
+    "zvec grep hook concern": [
+      13102
+    ],
+    "zvec grep integration plan": [
+      13104
+    ],
+    "zvec grep tasks": [
+      13106
+    ],
+    "zvec lane": [
+      13105
+    ],
+    "zvec lane verification": [
+      13106
+    ],
+    "zvec lane wrapper": [
+      13104
     ]
   },
   "schemaVersion": 2

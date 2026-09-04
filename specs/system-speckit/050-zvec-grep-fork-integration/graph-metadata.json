@@ -45,11 +45,21 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
+      "scripts/retrieval/zvec-lane.mjs",
       "references/retrieval/retrieval-conventions.md",
+      "scratch/baseline-queries.md",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/zvec-lane.vitest.ts",
       ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      "specs/system-speckit/050-zvec-grep-fork-integration/scratch/baseline-queries.md",
       "mcp-server/vitest.config.ts",
-      "scripts/retrieval/lib/rg-lane.mjs"
+      "scripts/retrieval/lib/rg-lane.mjs",
+      "scripts/tests/zvec-lane.vitest.ts",
+      ".opencode/hooks/README.md",
+      ".opencode/hooks/skill-advisor/README.md",
+      ".opencode/hooks/injection-contract.md"
     ],
     "entities": [
       {
@@ -77,15 +87,39 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
+        "name": "zvec-lane.mjs",
+        "kind": "file",
+        "path": "scripts/retrieval/zvec-lane.mjs",
+        "source": "derived"
+      },
+      {
         "name": "retrieval-conventions.md",
         "kind": "doc",
         "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-queries.md",
+        "kind": "doc",
+        "path": "scratch/baseline-queries.md",
+        "source": "derived"
+      },
+      {
+        "name": "zvec-lane.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/zvec-lane.vitest.ts",
         "source": "derived"
       },
       {
@@ -98,6 +132,18 @@
         "name": "rg-lane.mjs",
         "kind": "file",
         "path": "scripts/retrieval/lib/rg-lane.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
         "source": "derived"
       },
       {
@@ -159,47 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 049 retired the spec-kit memory database and left two retrieval lanes: the committed trigger index for Gate 1 and the ripgrep recipes for free text",
     "created_at": "2026-09-04T10:59:06Z",
-    "last_save_at": "2026-09-04T11:07:19.388Z",
+    "last_save_at": "2026-09-04T13:40:43.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +217,15 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a4cb2076ed60a0bbe07bb144ec6f9125a9024949ed542f7f16b964bd5a175f1",
+    "source_fingerprint": "sha256:1bea894675032dbedc032ca8a0c0aba9e8e03349f7ea7d3a80a415934c13ea82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8f1c5381d0856b249601dbb826113e040151dd844c9f57a83fa707b0fed7211b",
+      "spec.md": "1163bb50b735a9d2703f9518a12d7ab4aaea96f882744f46654422a4eb559b54",
       "plan.md": "973845bb09c37416314770bf03c3546dd5d6cb2a4959606851a50c10853619a6",
-      "tasks.md": "c6b58a6d51d143856387b2bba9b4bc7db0413de7017ceab495279745108578b4",
+      "tasks.md": "d385ef2def2bafcb61ae5b4a64e9d60f3c84ec494fab2c88d23f22624dfc03a8",
       "implementation-summary.md": "9a8f70af469d2b5304fb72de4bde4607e6b177fae3c3de3e1c07672b41d22e45"
     },
     "last_active_child_id": null,

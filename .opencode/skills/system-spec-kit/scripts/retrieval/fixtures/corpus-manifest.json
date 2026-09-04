@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ea8fcfa93b453d14363b54ded83751740b92f80c2ae54595a735b82c1907bf35",
+  "corpusHash": "12182ed13295a6ce13e266a9e6c2c566f653f2cdb70157b0c087c8fa1f261599",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -16,7 +16,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27440,
+  "includedPathCount": 27446,
   "includedPaths": [
     ".opencode/skills/.state/advisor/README.md",
     ".opencode/skills/.state/authority/README.md",
@@ -27457,10 +27457,16 @@
     "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-009.md",
     "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/review-report.md",
     "specs/system-speckit/049-memory-decommission/roadmap.md",
-    "specs/system-speckit/049-memory-decommission/spec.md"
+    "specs/system-speckit/049-memory-decommission/spec.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/acceptance-criteria.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/goal.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/implementation-summary.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/plan.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/spec.md",
+    "specs/system-speckit/050-zvec-grep-fork-integration/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1b6d9b827773137e9828de2c5147f3d34d9f1a1e5bf9a50328f9899a92e1197e",
+  "manifestHash": "7f01b46d4fdb8b9cdd6ea0c1151858cbbc340f93362181eab97140d3f6c04a18",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30641,10 +30647,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages",
       "reason": "excluded directory"
     },
@@ -30654,6 +30656,10 @@
     },
     {
       "path": "specs/system-speckit/049-memory-decommission/007-deep-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-zvec-grep-fork-integration/scratch",
       "reason": "excluded directory"
     },
     {

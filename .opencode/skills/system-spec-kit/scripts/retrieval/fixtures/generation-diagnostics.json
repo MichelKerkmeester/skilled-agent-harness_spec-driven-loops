@@ -3,10 +3,10 @@
     "duplicate-phrase": 63,
     "missing-frontmatter": 6414,
     "non-yaml-frontmatter": 1,
-    "ok": 13038,
+    "ok": 13044,
     "valid-empty-list": 7924
   },
-  "documentsScanned": 27440,
+  "documentsScanned": 27446,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "1b6d9b827773137e9828de2c5147f3d34d9f1a1e5bf9a50328f9899a92e1197e",
+  "manifestHash": "7f01b46d4fdb8b9cdd6ea0c1151858cbbc340f93362181eab97140d3f6c04a18",
   "parserVersion": "1.0.0",
   "rows": [
     {
@@ -97594,10 +97594,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages",
       "reason": "excluded directory"
     },
@@ -97607,6 +97603,10 @@
     },
     {
       "path": "specs/system-speckit/049-memory-decommission/007-deep-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-zvec-grep-fork-integration/scratch",
       "reason": "excluded directory"
     },
     {

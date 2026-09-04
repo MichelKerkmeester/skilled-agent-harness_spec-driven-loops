@@ -106,7 +106,7 @@ A reader in any runtime can run one semantic query over `specs/` and `.opencode/
 
 - **SC-001**: A fresh process runs `node zvec-lane.mjs search "<concept query>"` and returns ranked hits in under five seconds against the baseline index, with no zvec-grep process left running afterwards.
 - **SC-002**: The fork's unit suite passes on both branches, and a JSON-RPC `tools/call` over stdio returns hits with no daemon listening on port 7999.
-- **SC-003**: The 049 residue sweep still reports zero live records, and the trigger index is byte-identical after this packet.
+- **SC-003**: The 049 residue sweep still reports zero live records, the trigger index regenerates byte-identical on a second run, and its only delta from the committed index is this packet's own documents. Measured 2026-09-04: live 0 over 3,169 paths; two runs at the same hash; six paths added, all under this packet, zero removed.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -119,7 +119,7 @@ A reader in any runtime can run one semantic query over `specs/` and `.opencode/
 | Dependency | Ollama running locally with an embedding model pulled | No embeddings, so no index | The lane reports the unreachable host on `status`; the fork's model2vec backend stays as the offline fallback |
 | Dependency | The fork clone at a known path or `ZVEC_GREP_BIN` set | Lane cannot find a binary | Resolution order is documented and the doctor route names which step failed |
 | Risk | Upstream zvec-grep moves under the fork | Med | Both fork branches are small and rebase cleanly; the integration lane depends only on the CLI contract |
-| Risk | Direct mode re-embeds changed files on every query | Med | Measured in the baseline; if query latency exceeds the budget the lane indexes explicitly and searches with change detection off |
+| Risk | Direct mode scans the workspace on every query | High, confirmed | Measured 38 s per query on the baseline: the fork walks all 24,304 paths to compute a status the CLI only uses for a stale hint, recompiling every glob per path. Fixed in the fork on `perf/direct-query-scan`; until it lands the lane is interactive-only |
 | Risk | Index contents leak into git | Low | `.zvec-grep/` ignored at the repository root before the first index run |
 <!-- /ANCHOR:risks -->
 
@@ -134,7 +134,7 @@ A reader in any runtime can run one semantic query over `specs/` and `.opencode/
 
 ### Performance
 - **NFR-P01**: Search on a warm index returns in under five seconds from a fresh process, including the Ollama embedding of the query.
-- **NFR-P02**: A full index of the corpus completes in under fifteen minutes on this machine with `nomic-embed-text`.
+- **NFR-P02**: A full index of the corpus completes within the wrapper's three-hour ceiling on this machine with `nomic-embed-text` through Ollama. Measured 2026-09-04: about 83 minutes for 24,304 files, roughly 270 files a minute; the earlier fifteen-minute figure was a guess and is withdrawn.
 
 ### Security
 - **NFR-S01**: The lane talks only to `127.0.0.1` Ollama; no remote embedding endpoint is configured or reachable through it.
@@ -182,7 +182,8 @@ A reader in any runtime can run one semantic query over `specs/` and `.opencode/
 
 ## 10. OPEN QUESTIONS
 
-- Pin the fork as an npm dependency once published, or vendor the built `dist/`? Decided after the fork branches merge.
+- Vendoring decided 2026-09-04: the fork is installed inside `.opencode` as a git subtree under the hook concern (`goal.md` D7).
+- Should the corpus scope include the validator registry and rule references? Query 4 of the baseline misses because "which rule" questions resolve to code the scope excludes.
 - Should Gate 1 consult the semantic lane when the trigger index returns nothing? Not in this packet; recorded for the retrieval conventions follow-up.
 <!-- /ANCHOR:questions -->
 

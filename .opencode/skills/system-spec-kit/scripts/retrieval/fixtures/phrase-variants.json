@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1b6d9b827773137e9828de2c5147f3d34d9f1a1e5bf9a50328f9899a92e1197e",
+  "manifestHash": "7f01b46d4fdb8b9cdd6ea0c1151858cbbc340f93362181eab97140d3f6c04a18",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -25133,6 +25133,9 @@
     "concept level novelty tasks": [
       "concept-level novelty tasks"
     ],
+    "concept versus exact retrieval": [
+      "concept versus exact retrieval"
+    ],
     "conceptual novelty plateau": [
       "conceptual novelty plateau"
     ],
@@ -25891,6 +25894,9 @@
     ],
     "contiguous prefix stop consolidation": [
       "contiguous prefix stop consolidation"
+    ],
+    "continuation notes": [
+      "continuation notes"
     ],
     "continue post review closeout": [
       "continue post-review closeout"
@@ -37198,11 +37204,20 @@
     "direct invocation required false block fixed": [
       "DIRECT INVOCATION REQUIRED false block fixed"
     ],
+    "direct mode mcp": [
+      "direct mode mcp"
+    ],
     "direct provider adapter collapse": [
       "direct provider adapter collapse"
     ],
     "direct smoke vs live cli evidence": [
       "direct smoke vs live CLI evidence"
+    ],
+    "direct stdio lane": [
+      "direct stdio lane"
+    ],
+    "direct stdio task": [
+      "direct stdio task"
     ],
     "directexecutor quoted guard removal": [
       "directExecutor quoted guard removal"
@@ -52446,6 +52461,9 @@
     "lane local tests": [
       "lane-local tests"
     ],
+    "lane merge rule": [
+      "lane merge rule"
+    ],
     "lane migration legacy retirement": [
       "lane migration legacy retirement"
     ],
@@ -64252,6 +64270,12 @@
     "ollama and bge promotion arc changelog": [
       "ollama and bge promotion arc changelog"
     ],
+    "ollama backend lane": [
+      "ollama backend lane"
+    ],
+    "ollama backend task": [
+      "ollama backend task"
+    ],
     "ollama bge promotion follow ups": [
       "ollama bge promotion follow-ups"
     ],
@@ -64296,6 +64320,9 @@
     ],
     "ollama embedder registry summary": [
       "ollama embedder registry summary"
+    ],
+    "ollama embedding backend": [
+      "ollama embedding backend"
     ],
     "ollama embeddings": [
       "ollama embeddings"
@@ -72608,6 +72635,9 @@
     ],
     "prompt time mutation block hardening": [
       "prompt-time mutation block hardening"
+    ],
+    "prompt time semantic brief": [
+      "prompt-time semantic brief"
     ],
     "prompt token contract": [
       "prompt-token-contract"
@@ -82681,6 +82711,12 @@
     ],
     "semantic rename engine tasks": [
       "semantic rename engine tasks"
+    ],
+    "semantic retrieval hook": [
+      "semantic retrieval hook"
+    ],
+    "semantic retrieval lane": [
+      "semantic retrieval lane"
     ],
     "semantic role layer tokens": [
       "semantic role layer tokens"
@@ -101611,6 +101647,30 @@
     ],
     "zoom into this part of the image": [
       "zoom into this part of the image"
+    ],
+    "zvec concept lane": [
+      "zvec concept lane"
+    ],
+    "zvec grep fork": [
+      "zvec-grep fork"
+    ],
+    "zvec grep hook concern": [
+      "zvec-grep hook concern"
+    ],
+    "zvec grep integration plan": [
+      "zvec-grep integration plan"
+    ],
+    "zvec grep tasks": [
+      "zvec-grep tasks"
+    ],
+    "zvec lane": [
+      "zvec lane"
+    ],
+    "zvec lane verification": [
+      "zvec lane verification"
+    ],
+    "zvec lane wrapper": [
+      "zvec lane wrapper"
     ]
   }
 }
