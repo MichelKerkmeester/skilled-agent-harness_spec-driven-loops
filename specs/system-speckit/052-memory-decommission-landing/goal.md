@@ -123,7 +123,8 @@ and findings belong here.
 | Fast-forward v4 and main after the rename | Done | `main` = `skilled/v4.0.0.0` = `aef7852400` on origin; v4 then carries `c65d188abb` through live-sync |
 | Deep review loop, pass 3, attempt 1 | Done, rejected by the runner | the rename phase's own review under packet 053 over the 453 content-changed files of the rename diff; five iterations completed (2 P1, 3 P2, all fixed below) before the runner rejected the lineage: the launch had redirected the runner's own stdout into the packet's `scratch/`, which the write-containment check reverted as an out-of-scope write. Kept as `review/lineages/luna-max-pass3.attempt-1-stalled` in worktree 044 |
 | Deep review loop, pass 3, attempt 2 | Done, rejected by the runner | relaunched at `c7986c870b` with the runner log outside the repository; codex exited with code 1 after 11 seconds and no stdout. Reproduced by hand: the Codex account had hit its usage limit, retry allowed from 00:55 local. The runner drains the child's stderr without keeping it, so the lineage log is empty; recorded as an observation below. Kept as `luna-max-pass3.attempt-2-usage-limit` |
-| Deep review loop, pass 3, attempt 3 | Scheduled | relaunch at 00:56 local on the same head and label |
+| Deep review loop, pass 3, attempt 3 | Done | ten iterations at `c7986c870b` in 34 minutes, verdict CONDITIONAL: 2 P1, 2 P2, all raised in the first three iterations and none new after; fixed below at `c2898fbad8` and `ad541ce059`. Kept as `luna-max-pass3.attempt-3-conditional` |
+| Deep review loop, pass 3, attempt 4 | Running | the clean-pass rerun D4 requires, on the head that carries every fix |
 | Deep review loop, first launch | Done | ten iterations, gpt-5.6-luna max fast, stop policy max-iterations. First launch read the repository through wildcard scope and compacted twice inside iteration one; stopped and set aside as `lineages/luna-max.attempt-1-unbounded`. Relaunched on a 438-file scope list; iteration one took three minutes over 13 files |
 
 ### Review findings and fixes
@@ -166,6 +167,15 @@ and findings belong here.
 | DR-004 stale `mcp_server` vocabulary in code comments, test constants and identifiers | P2 | `3b72d7dd18`: 34 code and test files renamed to runtime wording; found alongside and fixed: the import-policy guard still matched `mcp_server/(lib|core|handlers)` so relative imports into the runtime internals passed unchecked (its test went 2 failed to 4 passed); the source-dist alignment eval keyed on the old directory |
 | DR-005 the freshness shell test cleaned a cache file under the old package id | P2 | `3b72d7dd18`: glob follows the runtime id; test 2 of 2 |
 | Found alongside: `scripts/doctor.sh` probed the removed MCP SDK and sqlite-vec, so the doctor route would fail strict on any fresh clone | P1 (own finding) | `3b72d7dd18`: probes better-sqlite3 and zod; strict run passes |
+
+### Review pass 3, attempt 3 findings and fixes
+
+| Finding | Severity | Fix |
+|---------|----------|-----|
+| DR-001 the symlink guard added for attempt 1's finding called `statSync` on the link, so a dangling `scripts/runtime` (fresh checkout, runtime not built) turned the scripts freshness check into an error | P1 | `c2898fbad8`: a link whose target is missing is skipped like a directory link; walker unit tests cover a regular tree, a directory link and a dangling link |
+| DR-004 the runtime manifest kept `chokidar` on the strength of an advisor fallback candidate that the advisor's own installed copy always shadows | P1 | `c2898fbad8`: dropped from the manifest, the tsconfig path mapping and the lockfile (29 lockfile lines); the advisor's candidate list is preserved-set and untouched, its second entry now never resolves; `ad541ce059` records the reversed decision in the 053 summary |
+| DR-002 the shim override accepts any absolute regular file; asked for it to be documented as trusted input and tested for a dangling link | P2 | `ad541ce059` documents it as a trusted operator or test input, not a hardening boundary; `c2898fbad8` adds the dangling-link test (5 shim tests) |
+| DR-003 the fixture READMEs, the root README's doctor lock path and the Devin fallback text still named `mcp_server` or `mcp-server` | P2 | `ad541ce059` and `c2898fbad8`: runtime wording; the lock path now names the advisor package that actually owns it |
 
 ### DONE WHEN
 
