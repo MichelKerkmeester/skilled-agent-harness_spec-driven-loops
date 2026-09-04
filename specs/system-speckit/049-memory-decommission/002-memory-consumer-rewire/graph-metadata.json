@@ -196,8 +196,8 @@
     ],
     "causal_summary": "427 files reference the memory MCP surface",
     "created_at": "2026-09-02T11:04:50Z",
-    "last_save_at": "2026-09-02T11:16:14.270Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-03T07:40:58.313Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -206,11 +206,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:586f5a9a254eae4ef1fd7146881e33bb066974cb23ce97d964827812f6a04eed",
+    "source_fingerprint": "sha256:54b5fb18c923425aa3f863664672e808b1fbcd2b600e7ace549a5404a53968bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0b739ab778e7275a2c05762b0b0a6208268cb0d40edba00e8af7b5f942d17100",
-      "plan.md": "9afd7f5c77f47894c7a4326eb13cce8be52adb7167b2ea400e04f6a4df9f901a",
+      "plan.md": "9caab814c31f44d8f5cebfe9286c6afe0ae7987a5e9cc501c9678f86d46cea0e",
       "tasks.md": "c716cb47c3e98e142fba55507b73bc87a1f232cbfb423bb16bbb9822eda0051d",
       "implementation-summary.md": "c37084e621e0fb79b033b7b4223b0b643e2c66151fda422ab8b0fb526031d2d6"
     },

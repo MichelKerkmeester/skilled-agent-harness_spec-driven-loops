@@ -1,19 +1,17 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
-  "description": "Define and enforce the grep-optimized spec-doc convention and retrofit it across active spec docs.",
+  "description": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
   "keywords": [
-    "define",
-    "enforce",
-    "grep-optimized",
-    "spec-doc",
-    "convention",
-    "retrofit",
-    "across",
-    "active",
-    "spec",
-    "docs"
+    "retrieval",
+    "ripgrep",
+    "quality",
+    "property",
+    "corpus",
+    "rather",
+    "ranking"
   ],
-  "lastUpdated": "2026-09-02T11:13:09.258Z",
+  "lastUpdated": "2026-09-02T14:45:18.836Z",
   "specId": "004",
   "folderSlug": "grep-convention-doc-retrofit",
   "parentChain": [
@@ -21,6 +19,5 @@
     "049-memory-decommission"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }
