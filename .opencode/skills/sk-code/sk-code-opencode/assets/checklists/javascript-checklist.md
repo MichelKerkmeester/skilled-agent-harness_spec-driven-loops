@@ -147,10 +147,9 @@ export default async function ExamplePlugin(ctx, options = {}) {
 }
 ```
 
-**Plugin paths**: Files in `.opencode/plugins/` and
-`.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/` MUST use ESM
-(`export default`) — see `quality-standards.md` §10 OpenCode Plugin Exemption
-Tier.
+**Plugin paths**: Files in `.opencode/plugins/` MUST use ESM (`export default`),
+and files in `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/`
+MUST use ESM — see `quality-standards.md` §10 OpenCode Plugin Exemption Tier.
 
 **Plugin runtime output (P0)**:
 ```markdown

@@ -36,7 +36,7 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 - ❌ Text searching (use Grep tool)
 - ❌ File discovery (use Glob tool)
 - ❌ Bash commands (use Bash tool)
-- ❌ Continuity recovery (use `/speckit:resume` first; only use native Spec Kit Memory tools after `handover.md -> _memory.continuity -> spec docs` has been exhausted)
+- ❌ Continuity recovery (use `/speckit:resume`, which walks `handover.md -> _memory.continuity -> spec docs`)
 
 > See Section 4 for details on Native MCP vs Code Mode distinction.
 
@@ -415,7 +415,7 @@ This skill operates within the behavioral framework defined in [AGENTS.md](../..
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
 - **Tool Routing**: Per AGENTS.md Section 6 decision tree
-- **Memory**: Context preserved via Spec Kit Memory MCP
+- **Continuity**: Context preserved by `/memory:save`, which writes through `generate-context.js`
 
 ### Cross-Skill Collaboration
 

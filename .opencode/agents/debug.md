@@ -10,7 +10,6 @@ permission:
   bash: allow
   grep: allow
   glob: allow
-  memory: deny
   webfetch: deny
   chrome_devtools: deny
   task: deny

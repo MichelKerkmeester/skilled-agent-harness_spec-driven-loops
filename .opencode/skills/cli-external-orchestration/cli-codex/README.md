@@ -250,7 +250,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of the OpenAI provider, the model roster and the effort ladder |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |
 | [`references/codex-tools.md`](./references/codex-tools.md) | Built-in capabilities: the review subcommand, `--search`, MCP and sessions |
-| [`references/hook-contract.md`](./references/hook-contract.md) | Native hook contract and Spec Kit Memory startup wiring |
+| [`references/hook-contract.md`](./references/hook-contract.md) | Native hook contract and Spec Kit startup wiring |
 | [`references/agent-delegation.md`](./references/agent-delegation.md) | Profile roster, routing table and invocation patterns |
 | [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Fast-path prompt discipline and the CLEAR check |
 | [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates for common tasks |

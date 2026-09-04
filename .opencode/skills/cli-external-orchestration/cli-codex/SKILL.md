@@ -323,7 +323,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 - [cli-reference.md](./references/cli-reference.md) - Complete CLI subcommands, flags, sandbox modes, and config reference
 - [integration-patterns.md](./references/integration-patterns.md) - Cross-AI orchestration patterns and workflows
 - [codex-tools.md](./references/codex-tools.md) - Built-in capabilities documentation (/review, --search, MCP, session management)
-- [hook-contract.md](./references/hook-contract.md) - Native hook contract and Spec Kit Memory startup/advisor wiring
+- [hook-contract.md](./references/hook-contract.md) - Native hook contract and Spec Kit startup/advisor wiring
 - [agent-delegation.md](./references/agent-delegation.md) - Codex agent roster, routing table, and invocation patterns
 
 ### Templates and Assets
@@ -375,7 +375,7 @@ This skill operates within the behavioral framework defined in [AGENTS.md](../..
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
 - **Tool Routing**: Per AGENTS.md Section 6 decision tree
-- **Memory**: Context preserved via Spec Kit Memory MCP
+- **Continuity**: Context preserved by `/memory:save`, which writes through `generate-context.js`
 - **Execution**: Shared deep-loop runtime (`../../system-deep-loop/runtime/scripts/fanout-run.cjs`)
 
 **Tool roles**: Bash dispatches the CLI; Read/Glob/Grep validate output.

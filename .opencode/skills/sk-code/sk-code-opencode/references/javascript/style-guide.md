@@ -57,7 +57,7 @@ but follow ESM module syntax instead of CommonJS.
 - `.mjs` and plugin ESM files do not require `'use strict'`
 
 **Evidence**: `.opencode/skills/system-spec-kit/scripts/utils/logger.ts:1-3`,
-`.opencode/skills/system-spec-kit/mcp-server/lib/errors/core.ts:1-3`
+`.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts:1-3`
 
 ---
 
@@ -147,16 +147,16 @@ const max_retries = 3;      // snake_case (reserved for variables)
 
 ```javascript
 // CORRECT
-class MemoryError extends Error { }
+class SpecFolderError extends Error { }
 class ConfigLoader { }
-class VectorIndex { }
+class TriggerIndex { }
 
 // INCORRECT
-class memoryError { }       // camelCase
-class memory_error { }      // snake_case
+class specFolderError { }   // camelCase
+class spec_folder_error { } // snake_case
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/lib/errors/core.ts`
+**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts`
 
 ### Variable Names
 
@@ -449,7 +449,7 @@ const { loadConfig } = require('./config');
 const logger = require('../utils/logger');
 ```
 
-**Evidence**: `mcp-server/context-server.ts:5-68`
+**Evidence**: `mcp-server/lib/search/folder-discovery.ts:1-26`
 
 ---
 

@@ -173,7 +173,7 @@ Perform 3-5 focused research actions.
 **Citation rule**: Every finding must cite a source:
 - `[SOURCE: https://url]` for web sources
 - `[SOURCE: path/to/file:line]` for codebase sources
-- `[SOURCE: memory:spec-folder]` for memory hits
+- `[SOURCE: path:line]` for retrieval hits from the trigger index or a ripgrep recipe
 - `[INFERENCE: based on X and Y]` for derived conclusions
 
 **Source diversity**: Aim for >=2 independent sources per key finding. The orchestrator flags single-weak-source answers during convergence quality checks.

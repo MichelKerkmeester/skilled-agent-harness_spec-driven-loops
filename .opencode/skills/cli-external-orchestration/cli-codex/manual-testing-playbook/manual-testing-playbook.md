@@ -504,7 +504,7 @@ This category covers 2 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify `codex --enable codex_hooks` (or `[features].codex_hooks = true` in config) plus `--full-auto` runs the documented Spec Kit Memory hooks at `SessionStart` and `UserPromptSubmit`, injecting the advisor brief into the model context.
+Verify `codex --enable codex_hooks` (or `[features].codex_hooks = true` in config) plus `--full-auto` runs the documented Spec Kit hooks at `SessionStart` and `UserPromptSubmit`, injecting the advisor brief into the model context.
 
 #### Scenario Contract
 
@@ -512,7 +512,7 @@ Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a 
 
 Expected signals: `~/.codex/hooks.json` lists both hooks at the documented paths. `codex --enable codex_hooks exec --full-auto` exits 0. The hook smoke checks documented in `references/hook-contract.md` §6 succeed when invoked manually (`{}` for session-start, `Advisor:` prefix for user-prompt-submit). The test file is written.
 
-Desired user-visible outcome: Evidence that Spec Kit Memory's startup context and skill-advisor brief are wired into Codex via the documented hook contract.
+Desired user-visible outcome: Evidence that Spec Kit's startup context and skill-advisor brief are wired into Codex via the documented hook contract.
 
 #### Test Execution
 

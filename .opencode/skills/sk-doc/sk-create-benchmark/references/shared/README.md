@@ -68,10 +68,7 @@ The case studies, pitfalls, and worked example cover the **MCP promotion** famil
 
 ### Benchmark examples
 
-| Path | What | Status |
-| --- | --- | --- |
-| _(folder removed from disk with the memory MCP server. See case-studies.md Case study 1 for the narrative.)_ | text-embedder bake-off ([case-studies.md](case-studies.md) Case study 1) | Was promoted, tree since removed |
-| _(folder removed from disk. See case-studies.md Case study 2 for the narrative.)_ | experimental coco-index code-embedder bake-off ([case-studies.md](case-studies.md) Case study 2) | Archived, never promoted |
+Two worked examples are written up in [`case-studies.md`](case-studies.md): a text-embedder bake-off that earned promotion (Case study 1) and a correctly-formatted code-embedder bake-off that was deliberately never promoted (Case study 2). Read them for the promote-or-archive judgment; each reads as narrative rather than a link.
 
 ### Related sk-doc references
 

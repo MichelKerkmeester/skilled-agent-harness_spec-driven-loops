@@ -16,7 +16,7 @@ This scenario validates Memory Epilogue handback for `CO-022`. It focuses on con
 
 ### Why This Matters
 
-The Memory Handback Protocol is the canonical context-preservation bridge between cli-opencode dispatches and the project's Spec Kit Memory system. Without it, every cross-AI dispatch's findings are ephemeral. The handback delimiters and JSON shape are part of the cli-opencode skill's contract with `generate-context.js`. If the dispatched session emits malformed delimiters, missing required fields or a payload that does not parse, the entire continuity story between cross-AI workflows and spec-kit memory regresses. This test validates the end-to-end handback path.
+The Memory Handback Protocol is the canonical context-preservation bridge between cli-opencode dispatches and the project's continuity docs. Without it, every cross-AI dispatch's findings are ephemeral. The handback delimiters and JSON shape are part of the cli-opencode skill's contract with `generate-context.js`. If the dispatched session emits malformed delimiters, missing required fields or a payload that does not parse, the entire continuity story between cross-AI workflows and the `/memory:save` writer regresses. This test validates the end-to-end handback path.
 
 ---
 

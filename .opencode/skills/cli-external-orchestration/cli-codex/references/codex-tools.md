@@ -207,7 +207,7 @@ codex resume [session-id]
 - Iterative refinement where prior context matters
 - Multi-phase workflows where each phase builds on the last
 
-**Compared to Claude Code:** Claude Code does not have built-in session persistence between invocations. The Spec Kit Memory MCP provides structured memory across sessions, but Codex's `resume`/`fork` maintains full conversation and tool-call context from the previous session.
+**Compared to Claude Code:** Claude Code does not have built-in session persistence between invocations; it reconstructs continuity from the spec folder's `handover.md` and continuity docs. Codex's `resume`/`fork` maintains full conversation and tool-call context from the previous session.
 
 ---
 
@@ -329,7 +329,7 @@ These capabilities provide functionality comparable to Claude Code's built-in to
 | **Image analysis** | `Read` (multimodal) | `--image` / `-i` flag | Both support image input |
 | **Code review (diff)** | Manual diff + Read | `/review` command | Codex `/review` is diff-aware |
 | **Models** | 3 (Anthropic) | 1 (OpenAI: GPT-5.5) | Codex skill uses GPT-5.5 at configurable reasoning effort |
-| **Session continuity** | Spec Kit Memory MCP | `resume`, `fork` | Codex preserves tool-call history |
+| **Session continuity** | Spec-folder continuity docs | `resume`, `fork` | Codex preserves tool-call history |
 | **Cloud execution** | Not built-in | `codex cloud` | Codex-exclusive |
 | **Agent system** | `.claude/agents/` | `.codex/agents/*.toml` | Both support specialized agents |
 

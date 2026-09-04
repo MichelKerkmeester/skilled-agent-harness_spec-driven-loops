@@ -1,6 +1,6 @@
 ---
 title: "Codex CLI Hook Contract"
-description: "Codex CLI hook configuration, event payloads, stdout injection, exit semantics, and Spec Kit Memory parity wiring."
+description: "Codex CLI hook configuration, event payloads, stdout injection, exit semantics, and Spec Kit hook wiring."
 trigger_phrases:
   - "codex hooks"
   - "codex hook contract"
@@ -20,7 +20,7 @@ version: 1.4.0.13
 ## 1. OVERVIEW
 
 Codex CLI 0.130.0 exposes native hooks behind the stable `hooks` feature flag.
-Spec Kit Memory uses the native `SessionStart` and `UserPromptSubmit` surfaces
+Spec Kit uses the native `SessionStart` and `UserPromptSubmit` surfaces
 to inject startup context and the compact skill-advisor brief.
 
 ---
@@ -74,13 +74,13 @@ outer array plus nested `hooks` array shape:
 }
 ```
 
-When appending Spec Kit Memory hooks, preserve existing Superset `notify.sh`
+When appending Spec Kit hooks, preserve existing Superset `notify.sh`
 entries. Multiple hooks for one event run concurrently, so hook commands must be
 idempotent and must not rely on registration order.
 
 ### 3.1 Tool-Level Guard Adapters (Claude / OpenCode parity)
 
-Beyond the memory/lifecycle hooks, Codex mirrors the repo's guard hooks as thin
+Beyond the session-lifecycle hooks, Codex mirrors the repo's guard hooks as thin
 adapters over the same runtime-neutral cores the Claude hooks and OpenCode plugins
 use. Each fails open (exit 0 on empty/malformed stdin); the two deny-capable guards
 emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
@@ -183,7 +183,7 @@ timeout so the user can see the advisor surface is installed.
 
 ---
 
-## 7. SPEC KIT MEMORY WIRING
+## 7. SPEC KIT HOOK WIRING
 
 Installed paths:
 

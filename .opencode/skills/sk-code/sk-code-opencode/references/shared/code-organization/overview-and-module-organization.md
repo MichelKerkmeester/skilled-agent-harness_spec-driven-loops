@@ -38,7 +38,7 @@ This reference defines how to organize files, structure modules, and order impor
 
 | Pattern | Source File | Line Reference |
 |---------|-------------|----------------|
-| TypeScript module structure | `.opencode/skills/system-spec-kit/mcp-server/context-server.ts` | Lines 1-70 |
+| TypeScript module structure | `.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts` | Lines 1-45 |
 | TypeScript exports | `.opencode/skills/system-spec-kit/scripts/core/config.ts` | Export block near file end |
 | Python imports | `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` | Import block near file top |
 | Shell structure | `lib/common.sh` | Lines 1-40 |
@@ -140,15 +140,14 @@ Each module should have ONE primary purpose:
 ```
 mcp-server/
 ├── handlers/
-│   ├── memory-search.ts    # Handles memory search
-│   ├── memory-save.ts      # Handles memory save
-│   └── memory-crud.ts      # Handles memory CRUD
+│   └── memory-index-discovery.ts  # Resolves the trigger-index location
 ├── lib/
-│   ├── errors.ts           # Error definitions
-│   ├── providers/
-│   │   └── embeddings.ts   # Embedding generation
+│   ├── config/
+│   │   └── spec-doc-paths.ts      # Path resolution and its error type
+│   ├── search/
+│   │   └── folder-discovery.ts    # Packet description discovery
 │   └── validation/
-│       └── preflight.ts    # Input validation
+│       └── spec-doc-structure.ts  # Document structure validation
 ```
 
 **Bad** - Mixed responsibilities:

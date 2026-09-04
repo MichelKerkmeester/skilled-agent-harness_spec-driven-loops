@@ -159,8 +159,8 @@ module.exports = {
 
 Use this template for non-plugin `.js/.cjs` utility modules. For
 `.opencode/plugins/` and
-`.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/`, use ESM default
-export instead.
+`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/`, use ESM
+instead.
 
 ```javascript
 module.exports = {

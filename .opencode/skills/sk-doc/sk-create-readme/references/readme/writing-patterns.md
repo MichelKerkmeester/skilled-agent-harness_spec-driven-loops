@@ -93,9 +93,9 @@ Numbered subsections appear inside Feature sections (3.1, 3.2 at H3 and 3.1.1, 3
 Place a one-sentence description in a blockquote immediately after the H1 title, before the first `---`.
 
 ```markdown
-# Spec Kit Memory - MCP Server
+# Skill Advisor - MCP Server
 
-> AI memory that persists across sessions, models and tools without poisoning your context window.
+> Routes every prompt to the skill that owns it, so the right instructions load before the first tool call.
 
 ---
 ```

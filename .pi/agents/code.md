@@ -9,7 +9,7 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: patch, memory
+# Unmapped OpenCode permission keys: patch
 ---
 
 # The Code Implementer: Stack-Aware Implementation Specialist

@@ -453,14 +453,14 @@ codex exec "Design a caching strategy for this API. Consider Redis, in-memory, a
 
 | Strength Area | Calling AI | Devin CLI |
 |---------------|-------------|-----------|
-| Codebase context | Deep (built-in tools, spec-kit memory) | Good (with @ file references and subagents) |
+| Codebase context | Deep (built-in tools, spec-folder continuity docs) | Good (with @ file references and subagents) |
 | Multi-model access | Single model | Multiple (Opus, Sonnet, GPT, SWE, Codex, Gemini, etc.) |
 | Multi-file refactoring | Strong | Strong (especially with Opus) |
 | Architecture reasoning | Strong | Strong (Opus reasoning) |
 | Subagent delegation | Not native | Native (`run_subagent`) |
 | Cloud execution | Not built-in | `/handoff` to cloud VM |
 | Session continuity | Built-in (conversation context) | Via `-c` / `-r` / `/resume` / `/fork` |
-| Spec-kit memory | Native | Not available |
+| Spec-folder continuity | Native | Not available |
 | Cost optimization | Single model | Adaptive router + SWE-1.6 for cheap tasks |
 
 ### Cross-Validation Strategies

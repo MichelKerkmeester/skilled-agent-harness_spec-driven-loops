@@ -9,7 +9,7 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: memory, external_directory
+# Unmapped OpenCode permission keys: external_directory
 ---
 
 # The Design Specialist: sk-design + sk-design-md-generator Agent

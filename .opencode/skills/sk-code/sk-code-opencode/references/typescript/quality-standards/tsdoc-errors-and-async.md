@@ -41,26 +41,26 @@ TypeScript uses TSDoc format. Unlike JSDoc, TSDoc does not include `{type}` anno
 
 ```typescript
 /**
- * Search memory database for matching entries.
+ * Look up trigger-index entries matching a query.
  *
- * Performs hybrid search combining vector similarity and BM25 keyword
- * matching, then applies RRF fusion to combine rankings.
+ * Scans the generated trigger index for phrase matches, then ranks the
+ * surviving packets by how many distinct phrases each one matched.
  *
  * @param query - Search query text
- * @param options - Search configuration
- * @returns Array of matching memory entries sorted by relevance
- * @throws {@link MemoryError} If database connection fails
+ * @param options - Lookup configuration
+ * @returns Array of matching trigger entries sorted by relevance
+ * @throws {@link SpecFolderError} If the spec folder cannot be resolved
  * @throws {@link ValidationError} If query exceeds maximum length
  *
  * @example
  * ```typescript
- * const results = await searchMemories('authentication', {
+ * const results = await lookupTriggers('authentication', {
  *   limit: 5,
  *   specFolder: 'specs/007-auth',
  * });
  * ```
  */
-export async function searchMemories(
+export async function lookupTriggers(
   query: string,
   options: SearchOptions = {},
 ): Promise<SearchResult[]> {
@@ -72,7 +72,7 @@ export async function searchMemories(
 
 ```typescript
 /**
- * Configuration for memory search operations.
+ * Configuration for trigger-index lookup operations.
  *
  * @remarks
  * All properties have sensible defaults. Only `query` is required

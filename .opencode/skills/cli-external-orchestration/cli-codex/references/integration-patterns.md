@@ -567,13 +567,13 @@ codex exec "Create a caching layer with TTL support and LRU eviction" \
 
 | Strength Area | Calling AI | Codex CLI |
 |---------------|-------------|-----------|
-| Codebase context | Deep (built-in tools, spec-kit memory) | Good (with @file references) |
+| Codebase context | Deep (built-in tools, spec-folder continuity docs) | Good (with @file references) |
 | Web search | Via web search tool | Via `--search` flag |
 | Multi-file refactoring | Strong | Strong |
 | Architecture reasoning | Strong | Strong (xhigh reasoning) |
 | Sandbox-isolated execution | No (direct file access) | Yes (enforced by sandbox mode) |
 | Session continuity | Built-in (conversation context) | Via `codex resume` / `codex fork` |
-| Spec-kit memory | Native | Not available |
+| Spec-folder continuity | Native | Not available |
 | Real-time information | Via web search tool | Via `--search` flag |
 
 ### Cross-Validation Strategies

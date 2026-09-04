@@ -20,16 +20,15 @@ What `opencode run` brings that the sibling cli-* dispatches do not. Each capabi
 
 ## 1. OVERVIEW
 
-The sibling cli-* skills (cli-claude-code, cli-opencode) dispatch a raw model or external autonomous CLI behind a thin wrapper. The dispatched tool loads no OpenCode project plugin runtime, no OpenCode skills, no MCP tools, and no Spec Kit Memory unless the calling AI manually attaches files or pastes context.
+The sibling cli-* skills (cli-claude-code, cli-opencode) dispatch a raw model or external autonomous CLI behind a thin wrapper. The dispatched tool loads no OpenCode project plugin runtime, no OpenCode skills, and no MCP tools unless the calling AI manually attaches files or pastes context.
 
 `opencode run` is different. It spawns a full OpenCode session. That session loads:
 
 1. Every plugin registered in the project's `opencode.json`
 2. Every skill under `.opencode/skills/`
 3. Every MCP tool wired through `opencode.json` and `.utcp_config.json`
-4. The full Spec Kit Memory MCP database
-5. The project's CLAUDE.md / AGENTS.md instructions
-6. The structural code graph and Code Graph semantic index
+4. The project's CLAUDE.md / AGENTS.md instructions
+5. The project's spec folders and their continuity docs
 
 The cli-opencode skill exists because no sibling provides this. It is the bridge between an external AI and the full plugin / skill / MCP runtime this repo defines.
 
@@ -42,7 +41,7 @@ The cli-opencode skill exists because no sibling provides this. It is the bridge
 When `opencode run` starts a session, the runtime loads every plugin, skill, and MCP server the project configures. The dispatched agent has access to:
 
 - All `Skill` invocations the calling AI has access to (system-spec-kit, sk-doc, `sk-code` surface routing, etc.)
-- All MCP tools (Spec Kit Memory's 40+ tools, Code Graph structural query + Grep, Code Mode for ClickUp / Figma / external services, sequential thinking)
+- All MCP tools (the Skill Advisor's routing tools, and Code Mode's manuals for ClickUp / Figma / GitHub / Notion / Obsidian and the other external services)
 - Every project-local plugin
 - The repo's CLAUDE.md / AGENTS.md instruction set as the system prompt
 
@@ -188,7 +187,7 @@ opencode run \
 | Sibling | Persistent state | Memory continuity | Plugin runtime |
 |---------|-------------------|-------------------|----------------|
 | cli-claude-code | Per-session conversation log | `--continue` / `--resume <id>` | None (raw Claude) |
-| **cli-opencode** | Shared `~/.local/share/opencode/` SQLite database + storage tree (`opencode.db`, `storage/`, `snapshot/`), inspectable per-session via `opencode export <id>` | `--continue` / `-s <id>` / `--fork` | **Full plugin + skill + MCP + Spec Kit Memory** |
+| **cli-opencode** | Shared `~/.local/share/opencode/` SQLite database + storage tree (`opencode.db`, `storage/`, `snapshot/`), inspectable per-session via `opencode export <id>` | `--continue` / `-s <id>` / `--fork` | **Full plugin + skill + MCP** |
 
 The shared session database at `~/.local/share/opencode/` is what makes use case 2 (parallel detached sessions) possible — each session id is independently addressable via `opencode export <id>`, even though sessions share the same underlying database rather than each getting its own filesystem directory.
 

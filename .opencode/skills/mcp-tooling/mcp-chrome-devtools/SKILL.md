@@ -315,7 +315,7 @@ This skill operates within the behavioral framework defined in [AGENTS.md](../..
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
 - **Tool Routing**: Per AGENTS.md Section 6 decision tree
-- **Memory**: Context preserved via Spec Kit Memory MCP
+- **Continuity**: Context preserved by `/memory:save`, which writes through `generate-context.js`
 
 ### Tool Usage Guidelines
 

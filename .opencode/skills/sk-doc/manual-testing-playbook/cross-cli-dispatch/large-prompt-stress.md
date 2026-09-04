@@ -43,8 +43,8 @@ Large prompts can stall dispatchers, truncate resource traces, or bury the actua
 ## 2. SCENARIO CONTRACT
 
 - Objective: Verify sk-doc routes the scenario to `SKILL_CREATION` with the expected resources.
-- Real user request: `sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit memory database; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.`
-- Prompt: `sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit memory database; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.`
+- Real user request: `sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit metadata graph; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.`
+- Prompt: `sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit metadata graph; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.`
 - Expected signals: Intent resolves to `SKILL_CREATION`; loaded resources match `expected_resources`.
 - Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
 - Pass/fail: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
@@ -55,7 +55,7 @@ Large prompts can stall dispatchers, truncate resource traces, or bury the actua
 
 ### Prompt
 
-- Prompt: `sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit memory database; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.`
+- Prompt: `sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit metadata graph; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.`
 
 ### Commands
 
@@ -68,7 +68,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit memory database; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.
+sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit metadata graph; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.
 ```
 
 ### Expected

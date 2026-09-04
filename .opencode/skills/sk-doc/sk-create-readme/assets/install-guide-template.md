@@ -364,10 +364,10 @@ Use 3-column format: Error → Cause → Fix
 - Format: `MCP - [Tool Name].md` or `CLI - [Tool Name].md`
 - Use title case for tool names
 - Examples:
-  - ✅ `MCP - Spec Kit Memory.md`
+  - ✅ `MCP - Skill Advisor.md`
   - ✅ `MCP - Figma.md`
   - ✅ `CLI - Browser Debugger.md`
-  - ❌ `spec-kit-memory-install.md` (wrong format)
+  - ❌ `skill-advisor-install.md` (wrong format)
 
 ### Command Block Standards
 
@@ -989,8 +989,8 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 - [core-standards.md](../../shared/references/core-standards.md) - Document formatting standards
 
 ### Examples
-- [MCP - Spec Kit Memory.md](../../../../../install-guides/MCP%20-%20Spec%20Kit%20Memory.md) - MCP server example
-- [MCP - Code Mode.md](../../../../../install-guides/MCP%20-%20Code%20Mode.md) - Code Mode installation
+- [MCP - Skill Advisor.md](../../../../install-guides/MCP%20-%20Skill%20Advisor.md) - MCP server example
+- [MCP - Code Mode.md](../../../../install-guides/MCP%20-%20Code%20Mode.md) - Code Mode installation
 
 ### Skill Reference
 - [sk-doc SKILL.md](../../SKILL.md) - Mode 4: Install Guide Creation

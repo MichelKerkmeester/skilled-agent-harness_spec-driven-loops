@@ -105,7 +105,7 @@ Transport terms must not be conflated:
 
 | Transport | Status in this packet | Safe statement |
 |---|---|---|
-| stdio | **Confirmed live (phase 007)** | `sequential_thinking` and `system-spec-memory` both connected via stdio |
+| stdio | **Confirmed live (phase 007)** | Two stdio servers connected in the phase-007 run; both have since been retired from `.pi/mcp.json`, so re-confirm against the servers it registers now |
 | streamable HTTP | Documented-only for pi-mcp-extension | Do not claim live connection |
 | SSE | Documented-only for pi-mcp-extension | Do not claim live connection |
 | Pi RPC JSONL | Confirmed as Pi's process protocol | It is not MCP transport |

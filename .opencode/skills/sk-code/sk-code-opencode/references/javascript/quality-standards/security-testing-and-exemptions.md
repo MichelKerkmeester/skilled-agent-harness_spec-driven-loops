@@ -254,7 +254,7 @@ OpenCode plugin entrypoints and helper modules are exempt from the CommonJS expo
 
 This exemption applies to:
 - `.opencode/plugins/*.{js,mjs,ts}`
-- `.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/*.{js,mjs,ts}`
+- `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/*.{js,mjs,ts}`
 
 ### Exempted Standards
 

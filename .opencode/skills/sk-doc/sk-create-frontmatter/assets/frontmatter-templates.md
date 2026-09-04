@@ -353,7 +353,7 @@ model: opus
 
 ### Skill Reference/Asset Fields
 
-**Purpose**: Routing metadata on every skill reference/asset doc. The Skill Advisor harvests these fields (flag-gated via `SPECKIT_ADVISOR_DOC_TRIGGERS`) and surfaces matching docs as `matchedDocs` pointers when ranking skills. Spec Kit Memory deliberately does not index skill docs.
+**Purpose**: Routing metadata on every skill reference/asset doc. The Skill Advisor harvests these fields (flag-gated via `SPECKIT_ADVISOR_DOC_TRIGGERS`) and surfaces matching docs as `matchedDocs` pointers when ranking skills.
 
 | Field | Format | Rules |
 |-------|--------|-------|
@@ -428,7 +428,7 @@ allowed-tools: Read, Write, Bash
 
 **Required Fields**: `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`
 
-Every doc under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` carries this full 5-field block (`README.md` files are exempt). The Skill Advisor harvests it as a flag-gated routing signal (`SPECKIT_ADVISOR_DOC_TRIGGERS`) with doc-level `matchedDocs` pointers. Spec Kit Memory never indexes skill docs — these fields exist for advisor routing, not memory search.
+Every doc under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` carries this full 5-field block (`README.md` files are exempt). The Skill Advisor harvests it as a flag-gated routing signal (`SPECKIT_ADVISOR_DOC_TRIGGERS`) with doc-level `matchedDocs` pointers. These fields exist for advisor routing: `/memory:search` reaches skill docs lexically with ripgrep and never reads this block.
 
 ```yaml
 ---

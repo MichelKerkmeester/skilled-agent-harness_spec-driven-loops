@@ -155,8 +155,8 @@ module.exports = {
 ```
 
 Do not use this pattern for `.mjs`, `.opencode/plugins/`, or
-`.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/`; those are ESM
-surfaces.
+`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/`; those are
+ESM surfaces.
 
 ### TypeScript ES Module Exports
 

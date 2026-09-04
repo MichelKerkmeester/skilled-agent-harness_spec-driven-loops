@@ -33,7 +33,7 @@ Validate that with `SPECKIT_ADVISOR_DOC_TRIGGERS=true` the scan harvests referen
 
 - MCP server built; daemon spawned by a launcher whose environment carries the flag (the launcher forwards only `CHILD_ENV_ALLOWLIST` keys — a daemon predating the flag flip must be respawned via a fresh session, never SIGTERM-recycled).
 - Trusted caller for the scan (`--trusted` on the CLI or a trusted MCP env block).
-- Spec Kit Memory MCP reachable for the negative boundary check.
+- Generated trigger index present at `.opencode/skills/system-spec-kit/data/trigger-index.json` for the negative boundary check.
 
 ---
 
@@ -62,7 +62,7 @@ sqlite3 .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sq
 - Scan result carries `docs` counters (~355 scanned / 84 indexed on the 2026-06-11 corpus; grows as the frontmatter campaign lands) and `skill_docs` row count matches.
 - The recommend response ranks `runtime/` carrying `matchedDocs: ["references/script-interface-contract.md"]` with `doc_reference_signal` evidence.
 - A doc-only match at `normal` tier stays below the 0.8 pass threshold (assists ranking, cannot hard-route alone).
-- Memory returns zero skill-doc results (skill docs are advisor-owned; memory never indexes them).
+- The trigger-index lookup returns zero skill-doc results (skill docs are advisor-owned; the trigger index covers spec docs only).
 - Flag-off: no `docs` counters, `skill_docs` empty, no `matchedDocs` field, scores identical to pre-feature.
 
 ### Failure Modes

@@ -87,101 +87,58 @@ crate/
 
 ```
 mcp-server/
-├── context-server.ts           # Entry point
 ├── tsconfig.json               # TypeScript config
 ├── package.json
-├── run-tests.js                # Test runner
+├── eslint.config.mjs           # Lint config
+├── api/                        # Public entry surface
+│   ├── index.ts                # Barrel exports
+│   └── graph-refresh.ts        # Graph refresh entry point
 ├── configs/                    # Runtime configuration
+│   ├── cognitive.ts
 │   └── search-weights.json
 ├── core/                       # Core state and config
-│   ├── index.ts                # Barrel exports
-│   ├── config.ts               # Server configuration
-│   └── db-state.ts             # Database state management
+│   └── config.ts               # Server configuration
 ├── handlers/                   # Request handlers
-│   ├── index.ts                # Barrel exports
-│   ├── memory-search.ts        # Search operations
-│   ├── memory-save.ts          # Save operations
-│   ├── memory-crud.ts          # CRUD operations
-│   ├── memory-context.ts       # Context retrieval
-│   ├── memory-index.ts         # Index management
-│   ├── memory-triggers.ts      # Trigger matching
-│   ├── causal-graph.ts         # Causal graph operations
-│   ├── checkpoints.ts          # Checkpoint management
-│   └── session-learning.ts     # Session learning
-├── formatters/                 # Output formatting
-│   ├── index.ts                # Barrel exports
-│   ├── search-results.ts       # Search result formatting
-│   └── token-metrics.ts        # Token usage metrics
-├── hooks/                      # Lifecycle hooks
-│   ├── index.ts                # Barrel exports
-│   └── memory-surface.ts       # Memory surfacing hook
+│   ├── memory-index-discovery.ts
+│   └── save/                   # Save-path handlers
+│       └── spec-folder-mutex.ts
+├── hooks/                      # Per-runtime lifecycle hook adapters
+│   ├── shared-provenance.ts
+│   ├── claude/                 # Claude Code adapters
+│   ├── codex/                  # Codex CLI adapters
+│   ├── cursor/
+│   ├── devin/
+│   ├── opencode/
+│   └── pi/
 ├── lib/                        # Libraries and utilities
-│   ├── errors.ts               # Error re-exports
-│   ├── architecture/           # Architecture definitions
-│   │   └── layer-definitions.ts
-│   ├── cache/                  # Caching layer
-│   │   └── tool-cache.ts
+│   ├── MODULE-MAP.md           # Module ownership map
 │   ├── cognitive/              # Cognitive science models
-│   │   ├── archival-manager.ts
-│   │   ├── attention-decay.ts
-│   │   ├── co-activation.ts
-│   │   ├── fsrs-scheduler.ts
-│   │   ├── prediction-error-gate.ts
-│   │   ├── tier-classifier.ts
-│   │   └── working-memory.ts
-│   ├── config/                 # Type and memory config
-│   │   ├── memory-types.ts
-│   │   └── type-inference.ts
-│   ├── embeddings/             # (placeholder)
-│   ├── errors/                 # Error definitions
-│   │   ├── index.ts            # Barrel exports
-│   │   ├── core.ts             # Core error classes
-│   │   └── recovery-hints.ts   # Recovery suggestions
-│   ├── interfaces/             # (placeholder)
-│   ├── learning/               # (placeholder)
-│   ├── parsing/                # Input parsing
-│   │   ├── memory-parser.ts
-│   │   └── trigger-matcher.ts
-│   ├── providers/              # External service providers
-│   │   ├── embeddings.ts       # Embedding generation
-│   │   └── retry-manager.ts    # Retry logic
-│   ├── response/               # Response formatting
-│   │   └── envelope.ts         # Response envelope
-│   ├── scoring/                # Relevance scoring
-│   │   ├── composite-scoring.ts
-│   │   ├── confidence-tracker.ts
-│   │   ├── folder-scoring.ts
-│   │   └── importance-tiers.ts
-│   ├── search/                 # Search engines
-│   │   ├── bm25-index.ts       # BM25 text search
-│   │   ├── hybrid-search.ts    # Hybrid search pipeline
-│   │   ├── intent-classifier.ts
-│   │   ├── vector-index.ts     # Vector similarity search
-│   │   └── vector-index-impl.js # Native implementation
-│   ├── session/                # Session management
-│   │   └── session-manager.ts
+│   ├── config/                 # Path and flag resolution
+│   │   ├── capability-flags.ts
+│   │   └── spec-doc-paths.ts
+│   ├── context/                # Shared payload shaping
+│   ├── continuity/             # Continuity record writers
+│   ├── description/            # Packet description merge
+│   ├── discovery/              # Spec document discovery
+│   ├── extraction/             # Entity extraction
+│   ├── graph/                  # Generated-metadata graph
+│   ├── parsing/                # Content normalization
+│   ├── resume/                 # Resume ladder
+│   ├── search/                 # Folder discovery for search
+│   ├── spec/                   # Packet shape predicates
 │   ├── storage/                # Persistence layer
-│   │   ├── access-tracker.ts
-│   │   ├── causal-edges.ts
-│   │   ├── checkpoints.ts
-│   │   ├── incremental-index.ts
 │   │   └── transaction-manager.ts
+│   ├── templates/
+│   ├── test-helpers/
 │   ├── utils/                  # General utilities
-│   │   ├── format-helpers.ts
-│   │   └── path-security.ts
-│   └── validation/             # Input validation
-│       └── preflight.ts
+│   └── validation/             # Document and metadata validation
 ├── scripts/                    # Server-specific scripts
-│   └── generate-trigger-index.mjs
-├── utils/                      # Top-level utilities
-│   ├── index.ts                # Barrel exports
-│   ├── batch-processor.ts
-│   ├── json-helpers.ts
-│   └── validators.ts
-├── tests/                      # Test files (*.test.ts, *.test.js)
-│   ├── fixtures/               # Test fixture data
-│   └── *.test.ts / *.test.js
-└── database/                   # SQLite files (gitignored)
+│   ├── run-tests.mjs           # Test runner
+│   └── finalize-dist.mjs       # Build finalization
+├── tests/                      # Test files (*.vitest.ts)
+│   ├── _support/               # Shared test support
+│   └── __helpers__/            # Test helpers
+└── dist/                       # Compiled output (gitignored)
 ```
 
 ### Script Directory Structure

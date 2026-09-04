@@ -451,7 +451,7 @@ This template is NOT an `opencode run` invocation — it is the user-facing mess
 
 ## 14. TEMPLATE 13 — MEMORY EPILOGUE (REUSABLE TAIL)
 
-Append this block to any prompt that produces evidence the calling AI wants to save through Spec Kit Memory.
+Append this block to any prompt that produces evidence the calling AI wants to write back through `/memory:save`.
 
 ```text
 Memory Epilogue:

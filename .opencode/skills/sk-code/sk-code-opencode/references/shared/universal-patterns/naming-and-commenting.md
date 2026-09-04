@@ -38,9 +38,9 @@ This reference defines patterns that apply universally across JavaScript, TypeSc
 
 | Pattern | Source File | Line Reference |
 |---------|-------------|----------------|
-| Reference comments | `.opencode/skills/system-spec-kit/mcp-server/context-server.ts` | Near file top and import blocks |
+| Reference comments | `.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts` | Near file top and import blocks |
 | Section organization | `.opencode/skills/system-spec-kit/scripts/core/config.ts` | Numbered divider blocks |
-| Naming conventions | `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts` | Throughout |
+| Naming conventions | `.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts` | Throughout |
 | Python docstrings | `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` | Module and function docstrings |
 
 ---

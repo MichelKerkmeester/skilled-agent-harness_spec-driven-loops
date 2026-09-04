@@ -245,14 +245,14 @@ TypeScript uses TSDoc format for documentation comments. See `quality-standards.
 
 ```typescript
 /**
- * Search memory database for matching entries.
+ * Look up trigger-index entries matching a query.
  *
  * @param query - Search query text
- * @param options - Search configuration
- * @returns Array of matching memory entries
- * @throws {@link MemoryError} If database connection fails
+ * @param options - Lookup configuration
+ * @returns Array of matching trigger entries
+ * @throws {@link SpecFolderError} If the spec folder cannot be resolved
  */
-async function memorySearch(
+async function lookupTriggers(
   query: string,
   options: SearchOptions = {},
 ): Promise<SearchResult[]> {

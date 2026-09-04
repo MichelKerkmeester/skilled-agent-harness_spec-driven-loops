@@ -43,7 +43,7 @@ contract. Do not force one JavaScript module style across all paths.
 | `.js/.cjs` Node utilities outside plugin loader paths | CommonJS with `'use strict'` | Default for legacy runtime helpers and standalone scripts |
 | `.mjs` files | ESM | The verifier skips `'use strict'` enforcement for `.mjs` |
 | `.opencode/plugins/*.{js,mjs,ts}` | ESM default export | Required by the OpenCode plugin loader |
-| `.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/*.{js,mjs,ts}` | ESM default export | Bridge helpers follow the plugin-loader contract |
+| `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/*.{js,mjs,ts}` | ESM | Bridge helpers follow the plugin-loader contract |
 
 ### CommonJS Pattern
 
@@ -132,7 +132,7 @@ function processData(input, options) {
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts`
+**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts`
 
 ### Try-Catch Pattern
 
@@ -150,7 +150,7 @@ async function fetchData(query) {
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts`
+**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts`
 
 ### Custom Error Classes
 
@@ -158,29 +158,29 @@ Extend Error for domain-specific errors.
 
 ```javascript
 /**
- * Custom error for memory operations.
+ * Custom error for spec-folder operations.
  */
-class MemoryError extends Error {
+class SpecFolderError extends Error {
   /**
-   * Create a MemoryError.
-   * @param {string} code - Error code (e.g., 'DB_CONNECTION_FAILED')
+   * Create a SpecFolderError.
+   * @param {string} code - Error code (e.g., 'SPEC_FOLDER_OUTSIDE_ROOT')
    * @param {string} message - Error description
    * @param {Object} [details] - Additional details
    */
   constructor(code, message, details = {}) {
     super(message);
-    this.name = 'MemoryError';
+    this.name = 'SpecFolderError';
     this.code = code;
     this.details = details;
     this.recoveryHint = undefined;
-    Object.setPrototypeOf(this, MemoryError.prototype);
+    Object.setPrototypeOf(this, SpecFolderError.prototype);
   }
 }
 
-module.exports = { MemoryError };
+module.exports = { SpecFolderError };
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/lib/errors/core.ts`
+**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts`
 
 ### Error Response Pattern
 
@@ -204,12 +204,12 @@ All console output uses bracketed module identifier.
 
 ```javascript
 // Format: [module-name] Message
-console.log(`[context-server] Server started on port ${port}`);
-console.error(`[memory-search] Search failed: ${error.message}`);
+console.log(`[transaction-manager] Commit completed in ${elapsedMs}ms`);
+console.error(`[folder-discovery] Description merge failed: ${error.message}`);
 console.warn(`[config] Using default value for missing key: ${key}`);
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/context-server.ts`
+**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/lib/storage/transaction-manager.ts`
 
 ### Log Levels
 
@@ -230,28 +230,28 @@ Required for all exported functions.
 
 ```javascript
 /**
- * Search memory database for matching entries.
+ * Look up trigger-index entries matching a query.
  *
  * @param {string} query - Search query text
- * @param {Object} options - Search configuration
+ * @param {Object} options - Lookup configuration
  * @param {number} [options.limit=10] - Maximum results to return
  * @param {string} [options.specFolder] - Filter by spec folder path
  * @param {string[]} [options.anchors] - Filter by anchor types
- * @returns {Promise<Array<Object>>} Array of matching memory entries
- * @throws {MemoryError} If database connection fails
+ * @returns {Promise<Array<Object>>} Array of matching trigger entries
+ * @throws {SpecFolderError} If the spec folder cannot be resolved
  *
  * @example
- * const results = await memorySearch('authentication', {
+ * const results = await lookupTriggers('authentication', {
  *   limit: 5,
  *   specFolder: 'specs/007-auth'
  * });
  */
-async function memorySearch(query, options = {}) {
+async function lookupTriggers(query, options = {}) {
   // implementation
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs`
 
 ### Type Annotations
 

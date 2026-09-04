@@ -157,7 +157,7 @@ Per CHK-033, the calling AI MUST confirm with the operator before passing `--sha
 
 ### When to use
 
-The calling AI is a non-Anthropic CLI (OpenCode, Copilot). The task requires OpenCode-specific plugins or skills (e.g. spec-kit workflows, the Spec Kit Memory MCP database, the structural code graph). The non-Anthropic CLI cannot load the project's plugins on its own — cli-opencode is the documented bridge.
+The calling AI is a non-Anthropic CLI (OpenCode, Copilot). The task requires OpenCode-specific plugins or skills (e.g. spec-kit workflows, the project's spec folders and their continuity docs, the skill advisor). The non-Anthropic CLI cannot load the project's plugins on its own — cli-opencode is the documented bridge.
 
 ### Smart-router signal
 
@@ -367,7 +367,7 @@ The bug is in opencode v1.14.39. The fix would be: in the `run` subcommand entry
 
 ## 7. MEMORY HANDBACK
 
-cli-opencode dispatches that produce evidence for a Spec Kit Memory save MUST include the Memory Epilogue at the end of the prompt. The dispatched session adds `MEMORY_HANDBACK_START` / `MEMORY_HANDBACK_END` delimiters around a structured JSON payload that the calling AI extracts and feeds to `generate-context.js`.
+cli-opencode dispatches that produce evidence for a `/memory:save` continuity write MUST include the Memory Epilogue at the end of the prompt. The dispatched session adds `MEMORY_HANDBACK_START` / `MEMORY_HANDBACK_END` delimiters around a structured JSON payload that the calling AI extracts and feeds to `generate-context.js`.
 
 The full Memory Handback Protocol is shared with cli-claude-code and cli-opencode. See SKILL.md Section 4 (RULES) for the canonical 7-step procedure. The same JSON normalization (camelCase / snake_case aliases) and post-010 save gates apply.
 

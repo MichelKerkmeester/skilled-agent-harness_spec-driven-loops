@@ -199,7 +199,6 @@ permission:
   grep: allow
   glob: allow
   webfetch: deny
-  memory: allow
   chrome_devtools: deny
   task: deny
   list: allow

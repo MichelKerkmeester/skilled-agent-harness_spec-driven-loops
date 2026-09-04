@@ -11,7 +11,6 @@ permission:
   bash: allow
   grep: allow
   glob: allow
-  memory: allow
   list: allow
   webfetch: deny
   chrome_devtools: deny

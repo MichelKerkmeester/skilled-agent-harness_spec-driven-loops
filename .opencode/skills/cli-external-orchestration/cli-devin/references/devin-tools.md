@@ -381,7 +381,7 @@ devin list --format json
 | **OS-level sandbox** | Not built-in | `--sandbox` flag | Devin-exclusive |
 | **Session continuity** | Built-in (conversation) | `-c`, `-r`, `/fork`, `/revert` | Devin preserves full context |
 | **MCP integration** | Native | `devin mcp` subcommands | Both support MCP protocol |
-| **Memory/persistence** | Spec Kit Memory MCP | Session resume/fork | Different approaches |
+| **Memory/persistence** | Spec-folder continuity docs | Session resume/fork | Different approaches |
 | **Image input** | `Read` (multimodal) | Clipboard paste (`Ctrl+V`) | Both support image input |
 
 ---

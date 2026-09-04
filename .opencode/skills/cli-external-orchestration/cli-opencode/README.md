@@ -1,6 +1,6 @@
 ---
 title: cli-opencode
-description: Gives an external AI assistant the project's full runtime in one dispatch: every plugin, skill, MCP server and the Spec Kit Memory database, plus parallel detached sessions for ablation and worker farms.
+description: Gives an external AI assistant the project's full runtime in one dispatch: every plugin, skill and registered MCP server, plus parallel detached sessions for ablation and worker farms.
 trigger_phrases:
   - "delegate to opencode"
   - "opencode run"
@@ -13,7 +13,7 @@ version: 1.4.2.0
 
 # cli-opencode
 
-> Give any external AI assistant the project's full runtime in one dispatch: every plugin, skill, MCP server and the Spec Kit Memory database, plus parallel detached sessions for ablation and worker farms.
+> Give any external AI assistant the project's full runtime in one dispatch: every plugin, skill and registered MCP server, plus parallel detached sessions for ablation and worker farms.
 
 ---
 
@@ -21,7 +21,7 @@ version: 1.4.2.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | One-shot dispatch into the project's full plugin, skill, MCP and Spec Kit Memory runtime, plus parallel detached sessions and cross-AI handback |
+| **Use it for** | One-shot dispatch into the project's full plugin, skill and MCP runtime, plus parallel detached sessions and cross-AI handback |
 | **Invoke with** | "delegate to opencode", "opencode run", "parallel detached", "cross-ai handback" or auto-routing on OpenCode keywords |
 | **Works on** | Any external runtime (Claude Code, OpenCode, raw shell) and from inside OpenCode for parallel detached workers |
 | **Produces** | Structured JSON event streams, code changes with full project context, parallel research sessions and cross-AI handback results |
@@ -32,7 +32,7 @@ version: 1.4.2.0
 
 ### Why This Skill Exists
 
-An external session that needs the project's whole runtime has no native path to get it. The memory database, the code graph, every plugin and skill, the MCP toolset: none of that loads from outside. Hand-building an `opencode run` invocation hits the non-obvious traps. The dispatch hangs at zero percent CPU when stdin stays open. The current OpenCode rejects a top-level `--agent general` without saying why. A caller that is itself OpenCode risks a self-dispatch loop that burns tokens. This skill standardizes the dispatch across the documented use cases and refuses self-invocation.
+An external session that needs the project's whole runtime has no native path to get it. Every plugin and skill, the registered MCP servers, the spec folders and their continuity docs: none of that loads from outside. Hand-building an `opencode run` invocation hits the non-obvious traps. The dispatch hangs at zero percent CPU when stdin stays open. The current OpenCode rejects a top-level `--agent general` without saying why. A caller that is itself OpenCode risks a self-dispatch loop that burns tokens. This skill standardizes the dispatch across the documented use cases and refuses self-invocation.
 
 ### What It Does
 
@@ -44,7 +44,7 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 
 | Capability | What the skill can operate |
 |---|---|
-| **One-shot full-runtime dispatch** | `opencode run` loads every plugin in `opencode.json`, every skill under `.opencode/skills/`, every MCP server and the Spec Kit Memory database |
+| **One-shot full-runtime dispatch** | `opencode run` loads every plugin in `opencode.json`, every skill under `.opencode/skills/` and every MCP server registered there |
 | **Parallel detached sessions** | separate session ids and state in the shared `~/.local/share/opencode/` database for ablation suites and worker farms |
 | **Cross-AI handback** | bridges the dispatch result back into the caller's spec folder through the Memory Handback |
 | **Provider and model surface** | reaches the `opencode-go`, `minimax`, `xiaomi` and `openai` provider catalogs through `references/providers-and-models.md` |
@@ -77,7 +77,7 @@ opencode run \
   --model opencode-go/deepseek-v4-flash --variant max \
   --format json \
   --dir "$REPO_ROOT" \
-  "Act as a context-retrieval agent: search memory context and return the top findings." \
+  "Act as a context-retrieval agent: search the spec docs with the ripgrep retrieval conventions and return the top findings." \
   </dev/null
 ```
 
@@ -102,11 +102,11 @@ The session runs under its own session id in the shared `~/.local/share/opencode
 
 ### The Dispatch Lifecycle
 
-The calling AI composes a prompt, passes it through the smart router to load matching references, then dispatches `opencode run` with an explicit model, variant, format and directory. OpenCode starts a session that loads every plugin in `opencode.json`, every skill under `.opencode/skills/`, every MCP server and the Spec Kit Memory database. The calling AI parses the JSON event stream incrementally, validates the output and integrates it. The whole round-trip is non-interactive: send the prompt, get the response, exit.
+The calling AI composes a prompt, passes it through the smart router to load matching references, then dispatches `opencode run` with an explicit model, variant, format and directory. OpenCode starts a session that loads every plugin in `opencode.json`, every skill under `.opencode/skills/` and every MCP server registered there. The calling AI parses the JSON event stream incrementally, validates the output and integrates it. The whole round-trip is non-interactive: send the prompt, get the response, exit.
 
 ### The Full-Runtime Difference
 
-This is what sets cli-opencode apart from every sibling in the cli-* family. A sibling dispatch sends a raw model behind a thin CLI wrapper, with no plugins, no skills, no MCP tools and no memory database. `opencode run` loads the project wholesale. One command gives the dispatched session access to Spec Kit Memory's tool set, the code graph for structural queries, the skill advisor, sequential thinking and every project-specific plugin. That is the reason you reach for this skill when the task needs project context rather than a model alone.
+This is what sets cli-opencode apart from every sibling in the cli-* family. A sibling dispatch sends a raw model behind a thin CLI wrapper, with no plugins, no skills and no MCP tools. `opencode run` loads the project wholesale. One command gives the dispatched session the skill advisor, Code Mode's external-service manuals, every skill under `.opencode/skills/` and every project-specific plugin. That is the reason you reach for this skill when the task needs project context rather than a model alone.
 
 ### The Two Non-Obvious Rules
 
@@ -140,7 +140,7 @@ OpenCode resolves project-local agent files from `.opencode/agents/<slug>.md`, b
 
 ### When To Use This Skill
 
-Reach for cli-opencode when a task needs the project's full runtime: the memory database, the code graph, every plugin, skill and MCP tool. Use it too for a parallel detached session on ablation or worker-farm work. A non-Anthropic CLI that needs OpenCode as a bridge to a project subsystem such as spec-kit, memory, the code graph and the skill advisor also lands here. Skip it for simple tasks the caller can answer directly, for raw model dispatch where a sibling cli-* is leaner, for the interactive OpenCode TUI and for anything a plain shell command already covers.
+Reach for cli-opencode when a task needs the project's full runtime: every plugin, skill and MCP tool. Use it too for a parallel detached session on ablation or worker-farm work. A non-Anthropic CLI that needs OpenCode as a bridge to a project subsystem such as spec-kit or the skill advisor also lands here. Skip it for simple tasks the caller can answer directly, for raw model dispatch where a sibling cli-* is leaner, for the interactive OpenCode TUI and for anything a plain shell command already covers.
 
 ### Sibling Boundaries
 
@@ -161,7 +161,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 | Skill | Relationship |
 |---|---|
-| `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges an OpenCode dispatch back into the caller's spec folder. |
+| `system-spec-kit` | Owns spec folders and continuity. The Memory Handback bridges an OpenCode dispatch back into the caller's spec folder. |
 | `sk-code` | Owns code standards and verification. cli-opencode dispatches the work, sk-code governs the quality of what comes back. |
 | `mcp-code-mode` | Orchestrates external MCP tool calls. The dispatched OpenCode session has MCP tools loaded natively. |
 ---
@@ -185,7 +185,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 **Q: What does the full-runtime dispatch buy over a sibling cli-* skill?**
 
-A: A sibling cli-* skill dispatches to a single provider's binary. cli-opencode dispatches into a session that loads every plugin, skill, MCP server and the Spec Kit Memory database for the project. When the task needs the code graph, memory search, a project-specific plugin or the skill advisor, only cli-opencode provides all of them in one shot. When it only needs a model, a sibling is leaner.
+A: A sibling cli-* skill dispatches to a single provider's binary. cli-opencode dispatches into a session that loads every plugin, skill and registered MCP server for the project. When the task needs a project-local skill, a project-specific plugin or the skill advisor, only cli-opencode provides all of them in one shot. When it only needs a model, a sibling is leaner.
 
 **Q: When do I need a parallel detached session?**
 

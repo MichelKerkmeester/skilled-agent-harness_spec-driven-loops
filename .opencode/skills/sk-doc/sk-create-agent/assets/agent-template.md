@@ -75,7 +75,6 @@ permission:
   grep: allow
   glob: allow
   webfetch: deny
-  memory: allow
   chrome_devtools: deny
   task: deny
   list: allow
@@ -83,7 +82,6 @@ permission:
   external_directory: deny
 mcpServers:
   - system_skill_advisor
-  - code_graph
 ---
 ```
 
@@ -108,7 +106,7 @@ Decision rule: authoring for `.opencode/agents/` emits `permission:` (never bare
 | `mode` | string | Yes | `subagent`, `agent`, `primary`, or `all` as supported by runtime |
 | `temperature` | float | Yes | Usually `0.1`; use higher values only when variation is useful |
 | `permission` | object | Yes | Runtime capability boundary |
-| `mcpServers` | list | No | Explicit MCP servers available to the agent, for example `[system_skill_advisor, code_graph]` |
+| `mcpServers` | list | No | Explicit MCP servers available to the agent, for example `[system_skill_advisor, code_mode]` |
 
 ### Mode Reference
 
@@ -132,7 +130,6 @@ The `name` value and emitted filename stem must both match `^[a-z0-9]+(?:-[a-z0-
 | `grep` | Exact content search | `allow` |
 | `glob` | File discovery | `allow` |
 | `webfetch` | Fetch URLs | `deny` unless external research is in scope |
-| `memory` | Spec Kit Memory | `allow` for continuity-aware agents |
 | `chrome_devtools` | Browser inspection | `deny` unless browser testing is core |
 | `task` | Dispatch sub-agents | `deny` for LEAF agents, `allow` for orchestrators |
 | `list` | Directory listing | `allow` |
@@ -315,7 +312,7 @@ The refusal MUST appear verbatim for stress tests and operator audit. Silent ref
 
 1. **RECEIVE** -> Parse request, caller intent, active spec folder, and explicit scope.
 2. **SCOPE LOCK** -> Define in-scope paths, concepts, and write boundaries before acting.
-3. **LOAD CONTEXT** -> Read command state, packet docs, memory, graph, or code sources required by the role.
+3. **LOAD CONTEXT** -> Read command state, packet docs, continuity docs, or code sources required by the role.
 4. **EXECUTE** -> Perform the smallest role-appropriate action with allowed tools.
 5. **VERIFY** -> Check outputs against actual evidence and command contracts.
 6. **DELIVER** -> Return structured output with citations, gaps, and next actions.
@@ -375,12 +372,12 @@ Agents must treat hook context as an input source, not as unquestionable truth.
 ```markdown
 ## N. HOOK-INJECTED CONTEXT ROUTING
 
-Use hook-injected startup, graph, memory, or skill-advisor context as a routing hint.
+Use hook-injected startup or skill-advisor context as a routing hint.
 
 1. If hook context names an active spec folder, verify it against packet docs before writing or claiming continuity.
 2. If hook context is stale, run the role-appropriate refresh or fallback path before relying on it.
 3. If hook context contradicts files, report the contradiction and cite both sources.
-4. If no hook context is present, continue with canonical file and memory recovery.
+4. If no hook context is present, continue with canonical file and continuity-doc recovery.
 5. Never treat injected context as permission to exceed the agent's write or dispatch boundary.
 ```
 
@@ -439,7 +436,7 @@ Keep agent-body responsibilities separate from command-orchestrator responsibili
 □ [Domain-specific check 3]
 
 EVIDENCE VALIDATION (MANDATORY):
-□ All claims have citations (file:line, memory ID, URL, or explicit "CITATION: NONE")
+□ All claims have citations (file:line, packet path, URL, or explicit "CITATION: NONE")
 □ Cited files or records were actually inspected
 □ No placeholder content remains
 □ Output follows the required structure
@@ -537,7 +534,6 @@ permission:
   grep: allow
   glob: allow
   webfetch: deny
-  memory: allow
   chrome_devtools: deny
   task: deny
   list: allow
@@ -612,7 +608,7 @@ Each binding line must appear on its own line, grep-checkable verbatim.
 
 1. **RECEIVE** -> Parse request, caller intent, active spec folder, and explicit scope.
 2. **SCOPE LOCK** -> Define in-scope paths, concepts, and write boundaries before acting.
-3. **LOAD CONTEXT** -> Read command state, packet docs, memory, graph, or code sources required by the role.
+3. **LOAD CONTEXT** -> Read command state, packet docs, continuity docs, or code sources required by the role.
 4. **EXECUTE** -> Perform the smallest role-appropriate action with allowed tools.
 5. **VERIFY** -> Check outputs against actual evidence and command contracts.
 6. **DELIVER** -> Return structured output with citations, gaps, and next actions.
@@ -652,12 +648,12 @@ Each binding line must appear on its own line, grep-checkable verbatim.
 
 ## 4. HOOK-INJECTED CONTEXT ROUTING
 
-Use hook-injected startup, graph, memory, or skill-advisor context as a routing hint.
+Use hook-injected startup or skill-advisor context as a routing hint.
 
 1. If hook context names an active spec folder, verify it against packet docs before writing or claiming continuity.
 2. If hook context is stale, run the role-appropriate refresh or fallback path before relying on it.
 3. If hook context contradicts files, report the contradiction and cite both sources.
-4. If no hook context is present, continue with canonical file and memory recovery.
+4. If no hook context is present, continue with canonical file and continuity-doc recovery.
 5. Never treat injected context as permission to exceed the agent's write or dispatch boundary.
 
 ---
@@ -746,7 +742,7 @@ Verify every path exists before shipping; a resource list full of dead paths is 
 | Agent | File | Type | Key Patterns |
 | --- | --- | --- | --- |
 | `@code` | `code.md` | LEAF implementation subagent | Stack-aware implementation via `sk-code`, orchestrator-only dispatch convention, write-capable scoped edits |
-| `@context` | `context.md` | LEAF read-only subagent | Canonical continuity retrieval, no nested dispatch, no mutation, Context Package output, `mcpServers` for memory + Code Graph |
+| `@context` | `context.md` | LEAF read-only subagent | Canonical continuity retrieval, no nested dispatch, no mutation, Context Package output |
 | `@debug` | `debug.md` | LEAF debugging subagent | 5-phase root-cause workflow, prompted opt-in after repeated failures, scoped debug artifacts |
 | `@deep-research` | `deep-research.md` | LEAF research subagent | Single research iteration, externalized state, convergence-driven command orchestration |
 | `@deep-review` | `deep-review.md` | LEAF review subagent | Single review iteration, BINDING emission, canonical REFUSE, scoped review packet writes |

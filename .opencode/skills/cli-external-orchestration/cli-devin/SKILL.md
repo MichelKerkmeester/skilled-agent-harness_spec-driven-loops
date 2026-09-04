@@ -458,7 +458,7 @@ This skill operates within the behavioral framework defined in [AGENTS.md](../..
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
 - **Tool Routing**: Per AGENTS.md Section 6 decision tree
-- **Memory**: Context preserved via Spec Kit Memory MCP
+- **Continuity**: Context preserved by `/memory:save`, which writes through `generate-context.js`
 - **Execution**: Shared deep-loop runtime (`../../system-deep-loop/runtime/scripts/fanout-run.cjs`)
 
 **Tool roles**: Bash dispatches the CLI; Read/Glob/Grep validate output.
