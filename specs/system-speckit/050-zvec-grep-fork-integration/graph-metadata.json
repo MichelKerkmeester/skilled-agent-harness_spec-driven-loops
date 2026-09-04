@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/050-zvec-grep-fork-integration",
+  "spec_folder": "system-speckit/050-zvec-grep-fork-integration",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "zvec-grep fork",
+      "semantic retrieval lane",
+      "ollama embedding backend",
+      "direct mode mcp",
+      "zvec lane",
+      "zvec-grep integration plan",
+      "ollama backend lane",
+      "direct stdio lane",
+      "zvec lane wrapper",
+      "zvec-grep tasks",
+      "ollama backend task",
+      "direct stdio task"
+    ],
+    "key_topics": [
+      "zvec-grep",
+      "fork",
+      "semantic",
+      "retrieval",
+      "lane",
+      "ollama",
+      "embedding",
+      "backend",
+      "direct",
+      "mode",
+      "mcp",
+      "zvec"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "references/retrieval/retrieval-conventions.md",
+      ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      "mcp-server/vitest.config.ts",
+      "scripts/retrieval/lib/rg-lane.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp-server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rg-lane.mjs",
+        "kind": "file",
+        "path": "scripts/retrieval/lib/rg-lane.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shell",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 049 retired the spec-kit memory database and left two retrieval lanes: the committed trigger index for Gate 1 and the ripgrep recipes for free text",
+    "created_at": "2026-09-04T10:59:06Z",
+    "last_save_at": "2026-09-04T11:07:19.388Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1a4cb2076ed60a0bbe07bb144ec6f9125a9024949ed542f7f16b964bd5a175f1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8f1c5381d0856b249601dbb826113e040151dd844c9f57a83fa707b0fed7211b",
+      "plan.md": "973845bb09c37416314770bf03c3546dd5d6cb2a4959606851a50c10853619a6",
+      "tasks.md": "c6b58a6d51d143856387b2bba9b4bc7db0413de7017ceab495279745108578b4",
+      "implementation-summary.md": "9a8f70af469d2b5304fb72de4bde4607e6b177fae3c3de3e1c07672b41d22e45"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
