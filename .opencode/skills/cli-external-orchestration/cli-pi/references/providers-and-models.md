@@ -79,7 +79,7 @@ OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--pro
 |----------|-------|
 | `deepseek-v4-flash` | Latency-optimized reasoning model pinned to `--thinking max` by policy; opencode-go is the fan-out provider for this model (the bare `deepseek-v4-flash` literal composes `opencode-go/deepseek-v4-flash`). A live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07 |
 | `qwen3.8-max` | Qwen 3.8 Max; a live `pi --provider opencode-go --model qwen3.8-max -p` dispatch completed a real turn 2026-08-07 |
-| `glm-5.3-flash` | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model dispatched at its top tier `--thinking xhigh` — there is no `max` variant on any route; list-verified in `opencode models opencode-go` on 2026-08-27. Reachable as `--provider opencode-go --model glm-5.3-flash` |
+| `glm-5.3-flash` | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has no `xhigh` — dispatched at its top tier `--thinking max`; ladder re-verified in `opencode models opencode-go --verbose` on 2026-09-04. Reachable as `--provider opencode-go --model glm-5.3-flash` |
 
 ### openrouter
 
@@ -90,7 +90,7 @@ OpenRouter passthrough (base `https://openrouter.ai/api/v1`). Select with `--pro
 | Model id | Notes |
 |----------|-------|
 | `deepseek/deepseek-v4-flash-latest` | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--thinking max`. Distinct from the opencode-go-routed bare `deepseek-v4-flash`. Dispatched as `openrouter/deepseek/deepseek-v4-flash-latest` |
-| `z-ai/glm-5.3-flash` | GLM-5.3-Flash via OpenRouter; reasoning model whose top tier is `xhigh` — there is **no `max` variant on any route**, and dispatching at `max` sends a tier the model does not accept — pinned to `--thinking xhigh`; list-verified in `opencode models openrouter` on 2026-08-27. Dispatched as `openrouter/z-ai/glm-5.3-flash`. Replaces the retired Ox Alpha stealth route |
+| `z-ai/glm-5.3-flash` | GLM-5.3-Flash via OpenRouter; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has **no `xhigh`** — pinned to `--thinking max`; ladder re-verified in `opencode models openrouter --verbose` on 2026-09-04. Dispatched as `openrouter/z-ai/glm-5.3-flash`. Replaces the retired Ox Alpha stealth route. **The top tier is per-route:** `max` on OpenRouter and opencode-go, `xhigh` only on Cline, whose `.pi` tier map already reflects that |
 | `google/gemini-3.7-flash` | Gemini 3.7 Flash via OpenRouter; reasoning model (variants `low`/`medium`/`high`) dispatched at its top tier `--thinking high`; list-verified in `opencode models openrouter` on 2026-08-27 (not dispatch-tested). Dispatched as `openrouter/google/gemini-3.7-flash` |
 
 ### cline-pass
@@ -106,9 +106,29 @@ Policy: the DeepSeek V4 Flash and GLM-5.3-Flash entries here are reasoning model
 | Model id | Notes |
 |----------|-------|
 | `cline-pass/cline-pass/deepseek-v4-flash` | DeepSeek V4 Flash via the Cline provider; reasoning model dispatched **only at `--thinking xhigh`** (its top tier; no `max` here). Config-only provider, not a Pi builtin; live dispatch verified 2026-08-18 with a real `CLINE_API_KEY`. Three-segment reference (model `id` = `cline-pass/deepseek-v4-flash`). Distinct from the opencode-go / openrouter Flash routes above |
-| `cline-pass/z-ai/glm-5.3-flash` | GLM-5.3-Flash via the Cline provider. Reasoning model dispatched **only at `--thinking xhigh`** — its top tier, and the same ceiling on every route, not a Cline limitation. Config-only provider, not a Pi builtin; context 1.31M, output 131K. Three-segment reference (model `id` = `z-ai/glm-5.3-flash`, the **`z-ai/` vendor prefix**, not `cline-pass/`); dispatch-verified via the local Cline runtime on 2026-08-27 (`cline-pass` session with `model: z-ai/glm-5.3-flash`). The **same underlying model** as `openrouter/z-ai/glm-5.3-flash`, reached through a different provider — pick the route deliberately. Direct-dispatch route (the deep-loop cli-pi fan-out routes the shared `z-ai/glm-5.3-flash` literal via OpenRouter) |
+| `cline-pass/z-ai/glm-5.3-flash` | GLM-5.3-Flash via the Cline provider. Reasoning model dispatched **only at `--thinking xhigh`** — the top tier *on this route*. The ceiling is per-route, not per-model: Cline has `xhigh` and no `max`, OpenRouter and opencode-go have `max` and no `xhigh`, and the DevPass route has both. Config-only provider, not a Pi builtin; context 1.31M, output 131K. Three-segment reference (model `id` = `z-ai/glm-5.3-flash`, the **`z-ai/` vendor prefix**, not `cline-pass/`); dispatch-verified via the local Cline runtime on 2026-08-27 (`cline-pass` session with `model: z-ai/glm-5.3-flash`). The **same underlying model** as `openrouter/z-ai/glm-5.3-flash`, reached through a different provider — pick the route deliberately. Direct-dispatch route (the deep-loop cli-pi fan-out routes the shared `z-ai/glm-5.3-flash` literal via OpenRouter) |
 
-Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the six authenticated providers above have a confirmed installed catalog.
+### llmgateway
+
+DevPass (LLM Gateway) account, base `https://api.llmgateway.io/v1`, OpenAI-compatible, added to Pi **by config** — a `providers.llmgateway` block in `.pi/models.json` (`api: openai-completions`, env-keyed `${LLMGATEWAY_API_KEY}`) plus five `enabledModels` entries in `.pi/settings.json`. Not a Pi builtin; full setup, verification and removal live in [.pi/custom-providers.md](../../../../../.pi/custom-providers.md) §3. DevPass is a flat-price subscription, so these four bill the plan rather than per token.
+
+Model-id gotcha, and it is the **inverse of cline-pass above**: LLM Gateway takes the **bare** id, so every reference here is **two-segment** (`llmgateway/<id>`). Confirmed against the live API — `"model": "deepseek-v4-flash"` returns `200`, `"model": "llmgateway/deepseek-v4-flash"` returns `400 "Provider llmgateway does not support model deepseek-v4-flash"`. Do not carry the cline-pass slashed form across. The gateway also rewrites ids upstream in its response (`gonka24/deepseek-v4-flash`, `zai/glm-5.3-flash`, `google-vertex/gemini-3.8-flash`); those names are informational and must never be sent.
+
+Credential: same `${VAR}` rule as cline-pass — `${LLMGATEWAY_API_KEY}`, never opencode's `{env:...}`. Export it in `~/.zshenv` so dispatched shells inherit it. pi does not read opencode's auth store, even though both hold a key for this same account.
+
+Effort policy: the five ladders differ, so there is no single tier for this provider — pass `--thinking` explicitly. Pi's global `defaultThinkingLevel` is `xhigh`, which only three of these five accept, so relying on the default is wrong here.
+
+**Direct-dispatch route only.** The bare literals `deepseek-v4-flash`, `glm-5.3-flash` and `gpt-5.6-luna` already belong to opencode-go or openai-codex in `PI_MODEL_PROVIDERS`, and one literal maps to one provider, so these entries are intentionally absent from `PI_SUPPORTED_MODELS` and unreachable from the deep-loop fan-out — the same constraint that keeps the Cline GLM route direct-only.
+
+| Model id | Notes |
+|----------|-------|
+| `llmgateway/deepseek-v4-flash` | DeepSeek V4 Flash via DevPass; reasoning, full ladder `minimal`→**`max`**; context 1.05M, output 384K. Dispatch-verified 2026-09-04 (real pi turn at `--thinking max`) |
+| `llmgateway/deepseek-v4-flash-vision-exp` | DeepSeek V4 Flash Vision; the only image-capable entry on this roster. Sparse ladder — **only `low`, `high`, `max`**; context 1.05M, output 384K. Dispatch-verified 2026-09-04 at `--thinking max` (text round-trip; image input not yet exercised) |
+| `llmgateway/glm-5.3-flash` | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route that has both. Context 1.05M, output 131K. Dispatch-verified 2026-09-04 at `--thinking max` |
+| `llmgateway/gpt-5.6-luna` | GPT-5.6 Luna via DevPass; reasoning **and vision**; ladder `none`→**`max`**. Context 1.05M (input cap 922K), output 128K. **`temperature` unsupported** on this entry. Dispatch-verified 2026-09-04 at `--thinking max`. Same model family as the `openai-codex` Luna slugs, different route and different billing — pick deliberately |
+| `llmgateway/gemini-3.8-flash` | Gemini 3.8 Flash via DevPass; reasoning, ladder tops at **`high`** — no `xhigh`, no `max`. Context 1.05M, output 1.05M. Dispatch-verified 2026-09-04 at `--thinking high` |
+
+Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the seven authenticated providers above have a confirmed installed catalog.
 
 ---
 

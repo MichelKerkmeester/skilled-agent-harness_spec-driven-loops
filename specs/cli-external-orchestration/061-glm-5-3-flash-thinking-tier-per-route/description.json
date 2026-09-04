@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/061-glm-5-3-flash-thinking-tier-per-route",
+  "description": "Commit `d47d73f8bb` (2026-08-29), \"fix(deep-loop): pin GLM-5.3-Flash to xhigh, its real top tier, not max\", added `isGlmFlashXhighPinnedModel` to",
+  "keywords": [
+    "commit",
+    "d47d73f8bb",
+    "deep-loop",
+    "pin",
+    "glm-5",
+    "3-flash",
+    "xhigh",
+    "real",
+    "top",
+    "tier",
+    "max",
+    "isglmflashxhighpinnedmodel"
+  ],
+  "lastUpdated": "2026-09-04T13:47:03.821Z",
+  "specId": "061",
+  "folderSlug": "glm-5-3-flash-thinking-tier-per-route",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

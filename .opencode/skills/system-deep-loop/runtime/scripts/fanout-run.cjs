@@ -1900,6 +1900,12 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // policy — never dispatched below max. DeepSeek is bare on cli-pi, provider-prefixed on
 // cli-opencode, and its OpenRouter `-latest` variant is the same family and pinned too;
 // GLM-5.3-Flash matches its bare opencode-go literal and its OpenRouter `z-ai/` literal.
+//
+// A top tier belongs to the ROUTE, not to the model name. GLM-5.3-Flash offers
+// low/high/max on both OpenRouter and opencode-go — the only two routes whose literals
+// reach here — and no xhigh on either. Its xhigh ceiling is real but Cline-only, and the
+// Cline route is direct-dispatch with its own tier map, so it never arrives here.
+//
 // Gemini 3.7 Flash tops at `high` (no `max`) and is intentionally not matched; the devin
 // `-max` uid bakes the tier into the id and is not matched. Duplicated as a plain function
 // so the pin lands inside the synchronous command builders below.
@@ -1907,16 +1913,9 @@ function isFlashMaxPinnedModel(model) {
   return /(^|\/)(deepseek-v4-flash(-latest)?|glm-5\.3-flash)$/.test(model);
 }
 
-// GLM-5.3-Flash's top tier is `xhigh`; it has no `max` variant on any route.
-// Mirrors isGlmFlashXhighPinnedModel in executor-config.ts.
-function isGlmFlashXhighPinnedModel(model) {
-  return /(^|\/)glm-5\.3-flash$/.test(model);
-}
-
-// Effective reasoning effort after the Flash top-tier pin, which differs per family.
+// Effective reasoning effort after the Flash top-tier pin.
 // Mirrors pinReasoningEffortForModel in executor-config.ts.
 function pinReasoningEffortForModel(model, reasoningEffort) {
-  if (isGlmFlashXhighPinnedModel(model)) return 'xhigh';
   return isFlashMaxPinnedModel(model) ? 'max' : reasoningEffort;
 }
 

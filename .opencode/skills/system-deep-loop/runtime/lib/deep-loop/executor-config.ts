@@ -217,9 +217,16 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
 
 /**
  * DeepSeek V4 Flash and GLM-5.3-Flash are reasoning models pinned to their TOP tier: they are
- * never dispatched at a lower effort. Their top tiers differ, so the pin is per-family.
- * DeepSeek V4 Flash tops out at `max`. GLM-5.3-Flash tops out at `xhigh` — it has no `max`
- * variant, and dispatching it at `max` sends a tier the model does not accept.
+ * never dispatched at a lower effort. Both top out at `max` on every route reachable from
+ * here, so one pin covers them.
+ *
+ * A model's top tier is a property of the ROUTE, not of the model name. GLM-5.3-Flash
+ * exposes `low`/`high`/`max` on both OpenRouter and opencode-go — the only two routes whose
+ * literals reach this function — and has no `xhigh` on either. It does top out at `xhigh` on
+ * Cline, which is why that belief exists; but the Cline route is direct-dispatch only and
+ * carries its own tier map, so it never arrives here. Pinning every GLM literal to `xhigh`
+ * therefore sent both fan-out routes a tier their provider does not offer.
+ *
  * DeepSeek's id is bare on cli-pi (`deepseek-v4-flash`, fronted by opencode-go) and
  * provider-prefixed on cli-opencode
  * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the OpenRouter `-latest`
@@ -233,17 +240,11 @@ export function isFlashMaxPinnedModel(model: string): boolean {
   return /(^|\/)(deepseek-v4-flash(-latest)?|glm-5\.3-flash)$/.test(model);
 }
 
-/** GLM-5.3-Flash's top tier is `xhigh`; it has no `max` variant on any route. */
-export function isGlmFlashXhighPinnedModel(model: string): boolean {
-  return /(^|\/)glm-5\.3-flash$/.test(model);
-}
-
-/** Effective reasoning effort after the Flash top-tier pin, which differs per family. */
+/** Effective reasoning effort after the Flash top-tier pin. */
 export function pinReasoningEffortForModel(
   model: string,
   reasoningEffort: string | null | undefined,
 ): string | null | undefined {
-  if (isGlmFlashXhighPinnedModel(model)) return 'xhigh';
   return isFlashMaxPinnedModel(model) ? 'max' : reasoningEffort;
 }
 

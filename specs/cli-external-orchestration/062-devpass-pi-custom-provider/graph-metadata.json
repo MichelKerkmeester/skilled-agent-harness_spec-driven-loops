@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/062-devpass-pi-custom-provider",
+  "spec_folder": "cli-external-orchestration/062-devpass-pi-custom-provider",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devpass pi custom provider",
+      "llmgateway pi models.json",
+      "add llm gateway to pi",
+      "pi bare model id llmgateway",
+      "devpass pi plan",
+      "llmgateway provider block",
+      "implementation",
+      "plan",
+      "tasks",
+      "devpass pi provider",
+      "llmgateway pi config",
+      "devpass pi wired"
+    ],
+    "key_topics": [
+      "devpass",
+      "custom",
+      "provider",
+      "llmgateway",
+      "models",
+      "json",
+      "llm",
+      "gateway",
+      "bare",
+      "model",
+      "plan",
+      "block"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/models.json",
+      ".pi/custom-providers.md",
+      ".pi/settings.json",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "custom-providers.md",
+        "kind": "doc",
+        "path": ".pi/custom-providers.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "four",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "pi builds its runtime provider set from a compiled-in catalog plus every `providers.` block in `.pi/models.json`",
+    "created_at": "2026-09-04T16:40:39.496Z",
+    "last_save_at": "2026-09-04T17:26:22.511Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9a0e145e3a60223f19a0fca6ff48718a7a5f38c2ced412fe7e4a1cf44cefd330",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "84434807605f4490a5c7876580bce1cb3f60492986fa2518d65db6c29971bd57",
+      "plan.md": "a343cc3d436c7f9ca82fbc3e99bc516171386cdd033109ca11473029f832ed34",
+      "tasks.md": "c0a9eef5089b20b7a0bcff88d586d90e385bc2cbf897bae1c7e9aa9b511ae776",
+      "implementation-summary.md": "1d724cbcf743ba9d2e7df515b424e9a525b193613155e5a1c81294b6226cff01"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

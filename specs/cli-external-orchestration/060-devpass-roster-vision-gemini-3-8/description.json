@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/060-devpass-roster-vision-gemini-3-8",
+  "description": "Three distinct truth gaps sit in the CLI hub at once, and each one makes a document lie about what a dispatch will do",
+  "keywords": [
+    "three",
+    "distinct",
+    "truth",
+    "gaps",
+    "sit",
+    "cli",
+    "hub",
+    "one",
+    "document",
+    "lie",
+    "about",
+    "dispatch"
+  ],
+  "lastUpdated": "2026-09-04T17:36:51.040Z",
+  "specId": "060",
+  "folderSlug": "devpass-roster-vision-gemini-3-8",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
