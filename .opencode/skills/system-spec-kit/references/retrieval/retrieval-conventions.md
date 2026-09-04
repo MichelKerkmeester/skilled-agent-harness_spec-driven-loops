@@ -261,6 +261,8 @@ Use one canonical spelling in emitted frontmatter. A reader may recognize the `t
 
 Hybrid BM25 and local vector retrieval over an on-disk index, behind the wrapper at `.opencode/skills/system-spec-kit/scripts/retrieval/zvec-lane.mjs`. It answers the query the other two lanes cannot: one where the caller knows the idea and not the wording.
 
+The tool is the harness's own fork of zvec-grep, vendored at `.opencode/skills/system-plugins/zvec-grep/` as a git subtree and built in place; see that folder's README for the build and update steps. The wrapper resolves an entry point in a fixed order: the `SPECKIT_ZVEC_GREP_BIN` override, then the vendored build, then a `zg` on PATH, then a fork checkout outside the harness. The vendored copy outranks PATH deliberately, because the global package is upstream and lacks the fork's Ollama embedder and its scan-free direct query; an unbuilt vendored copy is reported by `/doctor zvec`, never silently replaced.
+
 ### When It Is The Right Lane
 
 | Query shape | Lane |
@@ -318,7 +320,7 @@ Merging is by rank within lane, and the lane order is the boundary rule above: f
 
 ### What This Lane Costs
 
-The index is generated state under `.zvec-grep/`, git-ignored and rebuildable, and it is stale the moment the corpus moves. zvec-grep reuses its stored file selection until an explicit `--rebuild` or `--reset-paths`, so editing the committed scope changes nothing until someone rebuilds. Building embeds the whole corpus with a local model, which is expensive enough to be an operator action rather than a background one; `/doctor zvec` reports on the lane and never builds it.
+The index is generated state under `.zvec-grep/`, git-ignored and rebuildable, and it is stale the moment the corpus moves. zvec-grep reuses its stored file selection until an explicit `--rebuild` or `--reset-paths`, so editing the committed scope changes nothing until someone rebuilds. Building embeds the whole corpus through the local Ollama server, about 270 files a minute on this corpus, which is expensive enough to be an operator action rather than a background one; `/doctor zvec` reports on the lane and never builds it.
 
 ---
 

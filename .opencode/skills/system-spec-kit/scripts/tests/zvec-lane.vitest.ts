@@ -23,6 +23,7 @@ import {
   search,
   spawnArgv,
   status,
+  vendoredEntry,
 } from '../retrieval/zvec-lane.mjs';
 
 const FIXTURES = path.resolve(__dirname, '..', 'retrieval', 'fixtures');
@@ -65,7 +66,27 @@ function stubEnv(scenario: string): NodeJS.ProcessEnv {
 // Binary resolution
 // ───────────────────────────────────────────────────────────────
 
+// A vendored entry that does not exist, so each test below proves one rung
+// without depending on whether this machine has built the harness copy.
+const NO_VENDORED = { vendored: path.join(os.tmpdir(), 'zvec-no-vendored', 'index.js') };
+
 describe('binary resolution', () => {
+  it('prefers the vendored harness build over an installed zg on PATH', () => {
+    const onPath = tempDir('zvec-path-');
+    fs.writeFileSync(path.join(onPath, 'zg'), '#!/bin/sh\n', { mode: 0o755 });
+    const vendoredDir = tempDir('zvec-vendored-');
+    const vendored = path.join(vendoredDir, 'index.js');
+    fs.writeFileSync(vendored, '', 'utf8');
+
+    expect(resolveZvecGrep({ PATH: onPath }, { vendored })).toEqual({ entry: vendored, source: 'vendored' });
+  });
+
+  it('anchors the vendored entry to the harness tree, not the working directory', () => {
+    expect(vendoredEntry().endsWith(path.join(
+      '.opencode', 'skills', 'system-plugins', 'zvec-grep', 'dist', 'cli', 'index.js',
+    ))).toBe(true);
+  });
+
   it('prefers an explicit override over everything else', () => {
     const onPath = tempDir('zvec-path-');
     fs.writeFileSync(path.join(onPath, 'zg'), '#!/bin/sh\n', { mode: 0o755 });
@@ -81,7 +102,7 @@ describe('binary resolution', () => {
     const installed = path.join(onPath, 'zg');
     fs.writeFileSync(installed, '#!/bin/sh\n', { mode: 0o755 });
 
-    expect(resolveZvecGrep({ PATH: onPath })).toEqual({ entry: installed, source: 'path' });
+    expect(resolveZvecGrep({ PATH: onPath }, NO_VENDORED)).toEqual({ entry: installed, source: 'path' });
   });
 
   it('walks PATH in order, so the first executable zg wins', () => {
@@ -90,7 +111,7 @@ describe('binary resolution', () => {
     fs.writeFileSync(path.join(first, 'zg'), '#!/bin/sh\n', { mode: 0o755 });
     fs.writeFileSync(path.join(second, 'zg'), '#!/bin/sh\n', { mode: 0o755 });
 
-    expect(resolveZvecGrep({ PATH: [first, second].join(path.delimiter) }).entry)
+    expect(resolveZvecGrep({ PATH: [first, second].join(path.delimiter) }, NO_VENDORED).entry)
       .toBe(path.join(first, 'zg'));
   });
 
@@ -98,12 +119,12 @@ describe('binary resolution', () => {
     const onPath = tempDir('zvec-path-');
     fs.writeFileSync(path.join(onPath, 'zg'), '#!/bin/sh\n', { mode: 0o644 });
 
-    expect(resolveZvecGrep({ PATH: onPath }).source).not.toBe('path');
+    expect(resolveZvecGrep({ PATH: onPath }, NO_VENDORED).source).not.toBe('path');
   });
 
   it('falls back past PATH to the fork checkout, or to the bare name when neither exists', () => {
     const empty = tempDir('zvec-empty-');
-    const resolution = resolveZvecGrep({ PATH: empty, HOME: process.env.HOME });
+    const resolution = resolveZvecGrep({ PATH: empty, HOME: process.env.HOME }, NO_VENDORED);
 
     // The last two rungs are machine-dependent by design: the fork checkout
     // answers only where it is cloned. Both outcomes are asserted so the test
@@ -118,7 +139,7 @@ describe('binary resolution', () => {
 
   it('returns the bare tool name when no rung answers, so the spawn error names the tool', () => {
     const empty = tempDir('zvec-empty-');
-    expect(resolveZvecGrep({ HOME: empty, PATH: empty })).toEqual({ entry: 'zg', source: 'fallback' });
+    expect(resolveZvecGrep({ HOME: empty, PATH: empty }, NO_VENDORED)).toEqual({ entry: 'zg', source: 'fallback' });
   });
 
   it('runs a non-executable module through the interpreter and an executable directly', () => {

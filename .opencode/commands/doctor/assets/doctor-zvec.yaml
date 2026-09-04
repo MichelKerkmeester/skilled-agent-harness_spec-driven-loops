@@ -61,6 +61,8 @@ upstream_assets:
   scope_config: ".zvec-grep-lane.json"
   index_directory: ".zvec-grep/"
   manifest_path: ".zvec-grep/manifest.json"
+  vendored_entry: ".opencode/skills/system-plugins/zvec-grep/dist/cli/index.js"
+  resolution_order: "SPECKIT_ZVEC_GREP_BIN override → vendored build → zg on PATH → fork checkout outside the harness"
   binary_override_env: "SPECKIT_ZVEC_GREP_BIN"
   execution_mode: "direct (ZVEC_GREP_MODE is forced on every spawn; the lane runs no daemon)"
   status_policy: "Exit 0 = index present and ready. Exit 1 = a valid empty answer: no index, or an index that exists but is not ready. Exit 2 or higher = an execution fault, reported with stderr attached and never as a not-ready."
@@ -93,9 +95,9 @@ mutation_boundaries:
 # ─────────────────────────────────────────────────────────────────
 lane_signals:
   binary_unresolved:
-    detection: "The lane reports binarySource=fallback, meaning no override, no zg on PATH and no fork checkout answered"
+    detection: "The lane reports binarySource=fallback, meaning no override, no vendored build, no zg on PATH and no fork checkout answered"
     severity: high
-    note: "Every subcommand fails until an entry point exists. Set SPECKIT_ZVEC_GREP_BIN or install the CLI."
+    note: "Every subcommand fails until an entry point exists. Build the vendored copy under .opencode/skills/system-plugins/zvec-grep (npm ci && npm run build) or set SPECKIT_ZVEC_GREP_BIN."
   index_absent:
     detection: "indexPresent is false; no manifest exists under the index directory"
     severity: medium
@@ -118,6 +120,10 @@ lane_signals:
     detection: "The lane reports ollama.reachable=false for an ollama/ embedding reference"
     severity: high
     note: "Every vector search fails at the embed step until the server answers at ollama.url. The index itself is intact; the ripgrep lane is unaffected. ZVEC_GREP_OLLAMA_URL overrides the endpoint."
+  vendored_not_built:
+    detection: "binarySource is path or fork-clone while .opencode/skills/system-plugins/zvec-grep exists without dist/cli/index.js"
+    severity: high
+    note: "The harness copy of the fork is present but unbuilt, so a different build answered. The global zg is upstream and lacks the fork's Ollama backend and scan-free direct query; run the build step in the system-plugins README."
   fork_binary_in_use:
     detection: "binarySource=fork-clone, meaning the working checkout answered rather than an installed CLI"
     severity: low

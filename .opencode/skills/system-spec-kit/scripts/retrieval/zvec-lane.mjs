@@ -112,8 +112,8 @@ function readTimeoutMs(name, fallback) {
 // ───────────────────────────────────────────────────────────────
 
 /**
- * Fork checkout, tried last. The clone is a working tree rather than an
- * install, so the entry point is a plain module that needs an interpreter — see
+ * Fork checkout outside the harness, tried last. The clone is a working tree
+ * rather than an install, so the entry point is a plain module that needs an interpreter — see
  * `spawnArgv`, which is why the resolution records the path and not a decision
  * about how to run it.
  *
@@ -132,18 +132,42 @@ export function forkCloneEntry(env) {
 }
 
 /**
+ * The copy of the fork the harness ships, anchored to this file rather than to
+ * the working directory so the lane finds it from any cwd and never picks up a
+ * different checkout's build. Built output is not committed, so the path names
+ * an entry point that exists only after the package's build step has run.
+ *
+ * @returns {string} Absolute path to the vendored build's entry point.
+ */
+export function vendoredEntry() {
+  return path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    '..', '..', '..', 'system-plugins', 'zvec-grep', 'dist', 'cli', 'index.js',
+  );
+}
+
+/**
  * Resolves the zvec-grep entry point and records which rung answered, so a
  * report names the build it measured rather than a name that could have come
- * from anywhere. An explicit override wins, then an installed `zg`, then the
- * fork checkout.
+ * from anywhere. An explicit override wins, then the vendored copy, then an
+ * installed `zg`, then the fork checkout. The vendored copy outranks PATH
+ * because the global package is upstream, not the fork, and the lane depends on
+ * fork behaviour: the Ollama backend and the direct query that does not scan.
  *
  * @param {NodeJS.ProcessEnv} [env] Environment to read.
- * @returns {{ entry: string, source: 'env' | 'path' | 'fork-clone' | 'fallback' }} Resolution.
+ * @param {{ vendored?: string }} [candidates] Fixed rungs, injectable so a test
+ *   can prove the order on a machine that has, or lacks, the vendored build.
+ * @returns {{ entry: string, source: 'env' | 'vendored' | 'path' | 'fork-clone' | 'fallback' }} Resolution.
  */
-export function resolveZvecGrep(env = process.env) {
+export function resolveZvecGrep(env = process.env, candidates = {}) {
   const override = env[ZVEC_BIN_ENV];
   if (typeof override === 'string' && override.length > 0) {
     return { entry: override, source: 'env' };
+  }
+
+  const vendored = candidates.vendored ?? vendoredEntry();
+  if (isReadableFile(vendored)) {
+    return { entry: vendored, source: 'vendored' };
   }
 
   const pathDirs = String(env.PATH ?? '').split(path.delimiter).filter(Boolean);

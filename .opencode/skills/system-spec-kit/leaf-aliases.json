@@ -86,6 +86,11 @@
   },
   {
     "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/retrieval/retrieval-conventions.md",
+    "diskPath": "references/retrieval/retrieval-conventions.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
     "leafResourceId": "references/structure/folder-routing.md",
     "diskPath": "references/structure/folder-routing.md"
   },
@@ -93,6 +98,11 @@
     "workflowMode": "system-spec-kit",
     "leafResourceId": "references/structure/folder-structure.md",
     "diskPath": "references/structure/folder-structure.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/structure/grep-convention.md",
+    "diskPath": "references/structure/grep-convention.md"
   },
   {
     "workflowMode": "system-spec-kit",
