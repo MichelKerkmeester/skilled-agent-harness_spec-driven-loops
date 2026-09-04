@@ -1,6 +1,6 @@
 ---
 title: "Goal: Memory DB Deprecation Landed and Verified"
-description: "Land the memory-database decommission and the zvec retrieval lane on skilled/v4.0.0.0 and main, align every new or updated reference document with the sk-create-skill templates, and prove zero drift, residue or debt through a bounded update, verification and review loop."
+description: "Land the memory-database decommission and the zvec retrieval lane on skilled/v4.0.0.0 and main, remove every memory-database framing from the READMEs, turn the surviving spec-kit package from an MCP identity into a CLI engine, and prove zero drift, residue or debt through a bounded update, verification and review loop."
 trigger_phrases:
   - "packet goal"
   - "decommission landing"
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Land the memory-database decommission and the zvec retrieval lane on skilled/v4.0.0.0 and main, align every new or updated reference document with the sk-create-skill templates, and prove zero drift, residue or debt through a bounded update, verification and review loop.
+**Objective:** Land the memory-database decommission and the zvec retrieval lane on skilled/v4.0.0.0 and main, remove every memory-database framing from the READMEs, turn the surviving spec-kit package from an MCP identity into a CLI engine, and prove zero drift, residue or debt through a bounded update, verification and review loop.
 
 ### Decisions
 
@@ -53,12 +53,15 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Landing is a merge of worktrees/044-zvec-grep-integration into skilled/v4.0.0.0, then skilled/v4.0.0.0 into main, locally. Nothing is pushed without a fresh operator go-ahead |
-| D2 | Uncommitted operator work in the main checkout is preserved: stashed before the merge, reapplied after, conflicts resolved in favour of the operator's edits and listed |
+| D1 | Landing is a merge of worktrees/044-zvec-grep-integration into skilled/v4.0.0.0, then skilled/v4.0.0.0 into main, locally; pushes to both follow as work lands, under the operator's standing go-ahead given 2026-09-04 |
+| D2 | Uncommitted operator work in the main checkout is preserved and never staged into a landing commit |
 | D3 | Every reference, README or asset created or changed since 5220257bf7 conforms to the sk-create-skill template for its class, checked by that skill's own validators, not by eye |
-| D4 | The review loop is /deep:review, 10 iterations, no early convergence, executor cli-codex gpt-5.6-luna, reasoning max, service tier fast. Findings are fixed at source, re-verified, and the loop is rerun until a pass reports no P0 or P1 |
+| D4 | The review loop is /deep:review, 10 iterations, no early convergence, executor cli-codex gpt-5.6-luna, reasoning max, service tier fast, on a bounded file list. Findings are fixed at source, re-verified, and the loop is rerun until a pass reports no P0 or P1 |
 | D5 | The preserved set stays untouched: skill advisor, shared HF model server and its socket, shared embeddings and IPC, deep-loop locks and projections, historical evidence |
-| D6 | Debt means anything one of these reports: residue sweep live records, trigger-index nondeterminism, validate.sh errors on any touched packet, template validator failures, stale generated metadata, a skipped gate, or a doc that describes a surface that no longer exists |
+| D6 | Debt means anything one of these reports: residue sweep live records, trigger-index nondeterminism, validate.sh errors on any touched packet, template validator failures, stale generated metadata, a skipped gate, or a doc or hook that describes or serves a surface that no longer exists |
+| D7 | READMEs, root first, describe continuity and retrieval; no "memory database", "memory system" or "cognitive memory" framing survives. Command names, paths and frontmatter keys stay literal |
+| D8 | The package at `system-spec-kit/mcp-server` holds no MCP: it becomes `system-spec-kit/runtime`, shaped like `system-deep-loop/runtime` (a library under `lib/`, CLI entry points under `scripts/`, hook adapters under `hooks/`, its own manifest and tests, no server), the MCP SDK and every dependency without an importer are dropped, and all path references follow. This runs as its own phase after the first review loop and gets a review pass of its own |
+| D9 | The 13.8 GB retired database on this machine is deleted only on an explicit operator yes |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -87,8 +90,10 @@ here are invisible to whatever judges completion.
 - [ ] main and skilled/v4.0.0.0 contain the decommission: no memory MCP server in any runtime config, no spec-memory hook, plugin or launcher, and the residue sweep reports zero live records on both branches
 - [ ] Every document created or changed since 5220257bf7 under references/, README files and command assets passes the sk-create-skill validators for its class with zero errors
 - [ ] validate.sh --strict exits 0 on packets 049 (recursive), 050 and 051 from the landed tree
-- [ ] The trigger index regenerates byte-identical on main, and the operator's stashed edits are reapplied with every file accounted for
-- [ ] A /deep:review run of 10 iterations with gpt-5.6-luna reports no P0 or P1 on the landed tree, and each earlier finding names its fix commit
+- [ ] The trigger index regenerates byte-identical on main
+- [ ] No README frames a memory database as existing; git hooks write no drift markers for the removed index
+- [ ] The engine package carries no mcp name, no MCP SDK, no importer-less dependency, and every gate that used the old path passes on the new one
+- [ ] A /deep:review run of 10 iterations with gpt-5.6-luna reports no P0 or P1 on the landed tree, and each earlier finding names its fix commit; the rename phase passes its own review
 - [ ] Doctor routes validate, the skill-root audit passes, and no zg, model-server or codex process survives the run
 <!-- /ANCHOR:completion -->
 
@@ -138,5 +143,6 @@ and findings belong here.
 | Validator class defect: install-scripts folder README | `install-guides/install-scripts/README.md` is a folder index classified as an `install_guide` by its path and fails the same five sections at `5220257bf7`. Owner: sk-doc type detection |
 | `validate-command-references.cjs` depends on machine-local databases | Four doctor asset rows point at ignored sqlite files; the check passes where the daemons have run and fails in a fresh worktree. Owner: doctor commands. Not fixed here |
 | OPERATOR DECISION: the retired memory database on this machine | `system-spec-kit/mcp-server/database/context-index.sqlite` is 13.8 GB of ignored local state, with two launcher logs and drift files beside it. Nothing reads it any more. Deleting it is destructive to historical data and needs a yes; rollback is impossible after deletion, so a copy to external storage first is the safe path |
-| OPEN DECISION: rename the surviving engine package | `system-spec-kit/mcp-server/` serves no MCP any more; it is the validation, metadata and continuity engine. The rename touches validate.sh, doctor routes, test configs and many docs, so it is its own packet |
+| DECIDED 2026-09-04: the surviving package becomes a CLI engine (D8) | Nothing in `system-spec-kit/mcp-server/` imports the MCP SDK outside compiled output and tests; the package is the validation, metadata, continuity and hook-adapter engine behind CLI entry points. The operator chose to remove its MCP identity rather than keep the name. 149 files reference the path; the rename runs as the next phase after the first review loop |
+| OPERATOR ASK 2026-09-04: READMEs must not frame a memory database | The root README still led with a memory framework, a cognitive-memory layer and a memory section; a docs lane is reframing it and nine other READMEs around continuity and retrieval. Found alongside: the git hooks still write drift markers for the removed index on every commit, and the engine package still carries the drift-healing module and search-weight configs whose only callers are tests; a code lane is removing them |
 <!-- /ANCHOR:log -->
