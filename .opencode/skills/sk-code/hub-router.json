@@ -49,7 +49,7 @@
   },
   "vocabularyClasses": {
     "hub-identity": {
-      "keywords": ["sk-code", "code-family", "mode-registry", "workflowmode", "backendkind", "surface-router", "surface-aware", "smart-router", "code surface detection", "two-axis hub", "surface-aware code implementation", "workflow doctrine", "verification commands", "surface detection routing", "code work"]
+      "keywords": ["sk-code", "sk-code hub", "code-family", "mode-registry", "workflowmode", "backendkind", "surface-router", "surface-aware", "smart-router", "code surface detection", "two-axis hub", "surface-aware code implementation", "workflow doctrine", "verification commands", "language-specific verification commands", "surface detection routing", "code work"]
     },
     "quality-aliases": {
       "keywords": ["quality", "code quality", "quality gate", "code-quality", "stack-specific code quality gate", "surface checklist", "surface checklists", "quality check", "check before done", "author quality gate", "pre-verification quality check"]

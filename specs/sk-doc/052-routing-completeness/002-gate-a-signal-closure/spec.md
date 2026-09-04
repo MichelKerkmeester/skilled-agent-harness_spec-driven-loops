@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 2: gate-a-signal-closure"
-description: "Across five hubs 234 of 444 declared signals resolved to exactly one mode. The distribution was the finding rather than the total, and the follow-up fix moved the number without closing every signal."
+description: "Across five hubs 234 of 444 declared signals resolved to exactly one mode. The distribution was the finding rather than the total, and the fixes each unresolved signal was given have now been applied and measured at 345 of 388."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -12,14 +12,15 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/002-gate-a-signal-closure"
-    last_updated_at: "2026-09-03T22:40:00Z"
+    last_updated_at: "2026-09-04T12:15:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Closed the phase against a fresh sweep at HEAD"
-    next_safe_action: "Hand the sk-doc activation-pin defect to its owner"
+    recent_action: "Applied the seven named fixes and measured the sweep on both sides"
+    next_safe_action: "Hand the three scorer-held signals to the scorer owner"
     blockers: []
     key_files:
       - "research/unresolved-signal-decisions.md"
-      - "research/gate-a-rerun-2026-09-03.tsv"
+      - "research/gate-a-fix-before-2026-09-04.tsv"
+      - "research/gate-a-fix-after-2026-09-04.tsv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-02-052-002-gate-a-signal-closure"
@@ -31,6 +32,8 @@ _memory:
       - "The executor hub resolved 7 of its 115 signals and had never been measured"
       - "All 50 unresolved signals carry a decision, grouped by twelve distinct mechanisms"
       - "Nineteen of the 21 deferrals are declared discovery-only by their own hub router"
+      - "Raising a phrase means declaring it in the hub's top-level intent_signals, not editing a weight"
+      - "deep-review, dom inspect, task list and lighthouse are held by scorer abstention gates no hub metadata reaches"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Phase 2: gate-a-signal-closure
@@ -46,8 +49,10 @@ Every signal the five parent hubs declare was swept through the daemon-backed ad
 classified into one bucket. The baseline came out at 234 of 444 resolved, one hub had never
 been measured at all, and the follow-up fix moved the total to 328 against the same frozen
 corpus. A fresh sweep on 2026-09-03 returns 339 of 389 against today's declared vocabulary once a
-stale activation pin is held aside, and every one of the 50 signals outside that total now
-carries a recorded decision.
+stale activation pin is held aside, and every one of the 50 signals outside that total carries a
+recorded decision. On 2026-09-04 the fixes those decisions named were applied and measured on
+both sides: 338 of 389 before, 345 of 388 after, with no hub losing a signal and both accuracy
+gates returning the same numbers they returned before.
 
 **Key Decisions**: Gate A is measured across all five hubs rather than the hub under audit,
 and rank is read from the comparator output rather than re-derived from the `score` field.

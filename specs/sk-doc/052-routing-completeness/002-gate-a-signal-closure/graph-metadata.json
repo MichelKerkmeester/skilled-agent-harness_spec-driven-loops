@@ -48,6 +48,8 @@
       "goal.md",
       "implementation-summary.md",
       "research/unresolved-signal-decisions.md",
+      "research/gate-a-fix-before-2026-09-04.tsv",
+      "research/gate-a-fix-after-2026-09-04.tsv",
       "research/gate-a-rerun-2026-09-03.tsv",
       "research/gate-a-measurement.md",
       "research/gate-a-raw.tsv",
@@ -55,9 +57,10 @@
       ".opencode/skills/cli-external-orchestration/hub-router.json",
       ".opencode/skills/cli-external-orchestration/mode-registry.json",
       ".opencode/skills/cli-external-orchestration/graph-metadata.json",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json",
-      ".opencode/bin/skill-advisor.cjs"
+      ".opencode/skills/sk-code/hub-router.json",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/mcp-tooling/graph-metadata.json"
     ],
     "entities": [
       {
@@ -103,6 +106,18 @@
         "source": "derived"
       },
       {
+        "name": "gate-a-fix-before-2026-09-04.tsv",
+        "kind": "file",
+        "path": "research/gate-a-fix-before-2026-09-04.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-fix-after-2026-09-04.tsv",
+        "kind": "file",
+        "path": "research/gate-a-fix-after-2026-09-04.tsv",
+        "source": "derived"
+      },
+      {
         "name": "gate-a-rerun-2026-09-03.tsv",
         "kind": "file",
         "path": "research/gate-a-rerun-2026-09-03.tsv",
@@ -142,24 +157,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/cli-external-orchestration/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "executor-delegation.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scorer-eval-baseline.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/skill-advisor.cjs",
         "source": "derived"
       },
       {
@@ -203,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
     "created_at": "2026-09-02T16:34:05Z",
-    "last_save_at": "2026-09-03T22:35:12.739Z",
+    "last_save_at": "2026-09-04T10:11:16.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9eda54627d4740e7efeb25d4af90e505ee3f5ce2634911356f601ff29ff6d1f",
+    "source_fingerprint": "sha256:d7243a4b58e399ff47f1d422c2644193245316a8501b8528372cb656754026fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e72add1886030a468ebc7527f82fda9e098f870803cbe646f21775465fcae3a",
+      "spec.md": "86e31a0b39f2c63126adbc56013f39f635d98aa16078359f0f3cc7dbf592ac5a",
       "plan.md": "8ae4a6aab4bcfb34b7dfb6aa834eae0922271f58364749b9094da2d8d72ea38d",
-      "tasks.md": "1c7dfe3c6c11f551c1c8bacf429665c1785176a219ec0c2837336bab64a40388",
-      "implementation-summary.md": "44a34fb5b031602f5738957d3c40a46c0803460ed114dade68323ed9e28c269e"
+      "tasks.md": "2bc5f7dfef1de181a45bd0db5ac3d9c29e161a58e999d3ed18986c8e1854af60",
+      "implementation-summary.md": "cc3a4b764df7784d727b65282bf9437d0def7885f1669a56fd6b0de615f0de0b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 2: gate-a-signal-closure"
-description: "Every task this phase ran, with the evidence that settles it, and the one task still open because 50 declared signals do not resolve."
+description: "Every task this phase ran, with the evidence that settles it, from the first Gate A sweep through applying the fixes each unresolved signal was given."
 trigger_phrases:
   - "tasks"
   - "name"
@@ -11,14 +11,15 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/002-gate-a-signal-closure"
-    last_updated_at: "2026-09-03T22:40:00Z"
+    last_updated_at: "2026-09-04T12:15:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Closed T011 with a decision per unresolved signal"
-    next_safe_action: "Hand the sk-doc activation-pin defect to its owner"
+    recent_action: "Applied and measured the seven fixes the decisions named"
+    next_safe_action: "Hand the three scorer-held signals to the scorer owner"
     blockers: []
     key_files:
-      - "research/gate-a-rerun-2026-09-03.tsv"
       - "research/unresolved-signal-decisions.md"
+      - "research/gate-a-fix-before-2026-09-04.tsv"
+      - "research/gate-a-fix-after-2026-09-04.tsv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-02-052-002-gate-a-signal-closure"
@@ -78,6 +79,11 @@ _memory:
 - [x] T010 Tally the raw replies twice by independent methods. Evidence: a Python pass and a `jq` pass both returned 234 RESOLVED of 444 and agreed per hub.
 - [x] T011 Re-run the sweep and confirm no signal sits in an unresolved bucket without a decision. Evidence: re-swept at HEAD `fe1ec30fe8` on 2026-09-03 over 389 declared signals, `research/gate-a-rerun-2026-09-03.tsv`, all 389 calls exit 0. Holding the stale sk-doc pin aside, the unresolved set is the same 50 signals as the 2026-09-02 capture, member for member. `research/unresolved-signal-decisions.md` records a decision for all 50 in twelve groups, and an exact-set check confirms one group per signal with no duplicate and no gap.
 - [x] T012 Re-run the regression suites after the fix. Evidence: 444 signals, 180 realistic prompts and 224 controls on the five hubs outside scope, with no hub losing a prompt it owned.
+- [x] T013 Apply the seven fixes the decision table names, each in the file it names. Evidence: two hub-identity keywords in `.opencode/skills/sk-code/hub-router.json`, one retirement and one raised phrase in `system-deep-loop/graph-metadata.json`, and one raised phrase each in the `sk-doc`, `sk-code`, `cli-external-orchestration` and `mcp-tooling` metadata, three of them in mcp-tooling.
+- [x] T014 Re-measure every declared signal before and after, one call per signal with its exit status in its own file. Evidence: `research/gate-a-fix-before-2026-09-04.tsv` at 389 rows and `research/gate-a-fix-after-2026-09-04.tsv` at 388, all calls exit 0, RESOLVED 338 to 345 and NO_RECOMMENDATION 13 to 6.
+- [x] T015 Repair the sweep driver's reply-file naming before trusting either capture. Evidence: sixteen slugs collided, including `deep-review` against `deep review`. Replies are now indexed by position, and the correction reversed one row that had reported RESOLVED on another signal's reply.
+- [x] T016 Carry the compiled-routing refresh for the hashed byte source that changed. Evidence: sk-code's policy hash moved from `241349267d47f6c4` to `73625b574f1612d9`, both the runtime and authored manifests were refreshed, `compiled-route-sync.cjs --check` and `--verify` exit 0, `compiled-route-guard.cjs` exits 0 with five hubs fresh, and all five canaries rebuilt green.
+- [x] T017 Run the accuracy gate and the ratchet the way continuous integration does, before and after. Evidence: `score-routing-corpus.py` returns `overall_pass: true` with identical advisor and Gate 3 numbers on both sides, and `scorer-eval-baseline-ratchet.vitest.ts` passes 7 of 7 on both sides.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -118,7 +124,7 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md. REQ-001 through REQ-003 map to AC-001 through AC-003.
+- [x] CHK-001 [P0] Requirements documented in spec.md. REQ-001 through REQ-003 map to AC-001 through AC-005, with AC-004 and AC-005 both tracing to REQ-003.
 - [x] CHK-002 [P0] Technical approach defined in plan.md, section 3.
 - [x] CHK-003 [P1] Dependencies identified and available. Phase 001 rules loaded before classification.
 <!-- /ANCHOR:pre-impl -->
@@ -139,7 +145,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] All acceptance criteria met. AC-001, AC-002 and AC-003 all read Met after the 2026-09-03 re-sweep and the decision table.
+- [x] CHK-020 [P0] All acceptance criteria met. AC-001 through AC-005 all read Met: the first three after the 2026-09-03 re-sweep and the decision table, the last two after the 2026-09-04 fix pass and its before-and-after measurement.
 - [x] CHK-021 [P0] Manual testing complete. The sweep, the double tally and the re-run were all run and read.
 - [x] CHK-022 [P1] Edge cases tested. Single-token signals and empty recommendation arrays were measured as they are.
 - [x] CHK-023 [P1] Error scenarios validated. Tied scores were re-derived against the array order after the score re-sort inflated one hub.
@@ -174,7 +180,7 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized. All three record AC-003 as Met and the phase as Complete.
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized. All three record AC-001 through AC-005 as Met and the phase as Complete.
 - [x] CHK-041 [P1] Code comments adequate. The override change carries its reasoning at the site.
 - [x] CHK-042 [P2] README updated. Not applicable.
 <!-- /ANCHOR:docs -->
@@ -199,7 +205,7 @@ _memory:
 | P1 Items | 13 | 13/13 |
 | P2 Items | 4 | 4/4 |
 
-**Verification Date**: 2026-09-03
+**Verification Date**: 2026-09-04
 <!-- /ANCHOR:summary -->
 
 ---
@@ -229,7 +235,7 @@ _memory:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [x] CHK-120 [P0] Rollback procedure documented. `git revert 08eb67a0de` restores every changed routing file together.
+- [x] CHK-120 [P0] Rollback procedure documented. `git revert 08eb67a0de` restores the earlier routing files together. Undoing the 2026-09-04 pass means reverting the six vocabulary edits, re-running the manifest refresh for sk-code, and rebuilding the graph, which is exactly the sequence the baseline capture used.
 - [x] CHK-121 [P0] Feature flag configured. Not applicable, since routing files carry no toggle.
 - [x] CHK-122 [P1] Monitoring/alerting configured. Canary fixtures serve that role during a fix.
 - [x] CHK-123 [P1] Runbook created. The reproduction commands in `research/gate-a-measurement.md`.
@@ -252,7 +258,7 @@ _memory:
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [x] CHK-140 [P1] All spec documents synchronized. spec.md, plan.md, tasks.md and acceptance-criteria.md all record AC-003 as Met.
+- [x] CHK-140 [P1] All spec documents synchronized. spec.md, plan.md, tasks.md and acceptance-criteria.md all record the fix pass and its measurement.
 - [x] CHK-141 [P1] API documentation complete. Not applicable.
 - [x] CHK-142 [P2] User-facing documentation updated. Not applicable.
 - [x] CHK-143 [P2] Knowledge transfer documented. `research/gate-a-measurement.md` carries the method, and `research/unresolved-signal-decisions.md` carries a decision per unresolved signal with its mechanism.

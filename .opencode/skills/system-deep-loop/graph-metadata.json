@@ -57,7 +57,8 @@
     "deep-review wave",
     "release readiness",
     "ai council deliberation",
-    "agent improvement benchmark"
+    "agent improvement benchmark",
+    "evaluate agent"
   ],
   "derived": {
     "trigger_phrases": [
@@ -87,7 +88,6 @@
       "deep-improvement",
       "agent-improvement",
       "model benchmark",
-      "benchmark a model or prompt framework",
       "skill benchmark"
     ],
     "key_topics": [
