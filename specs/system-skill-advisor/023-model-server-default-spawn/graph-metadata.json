@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/023-model-server-default-spawn",
+  "spec_folder": "system-skill-advisor/023-model-server-default-spawn",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "model server default spawn",
+      "skill advisor arms the model server",
+      "hf-embed socket sun_path limit",
+      "SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED default",
+      "model server spawn plan",
+      "socket directory resolvers agree",
+      "demand listener lazy spawn",
+      "launcher supervision model server child",
+      "model server spawn tasks",
+      "flip the spawn default",
+      "socket fallback tasks",
+      "live demand proof"
+    ],
+    "key_topics": [
+      "model",
+      "server",
+      "default",
+      "spawn",
+      "skill",
+      "advisor",
+      "arms",
+      "hf-embed",
+      "socket",
+      "limit",
+      "plan",
+      "directory"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/system-skill-advisor-launcher.cjs",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/bin/hf-model-server.cjs",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/launcher-model-server-default.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/launcher-bootstrap.vitest.ts",
+      "mcp-server/ENV-REFERENCE.md",
+      ".claude/mcp.json",
+      ".cursor/mcp.json",
+      "shared/embeddings/providers/hf-local.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-model-server-default.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/launcher-model-server-default.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-bootstrap.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/launcher-bootstrap.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp-server/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Launcher",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The memory server's launcher used to start the shared HF model server on first embed demand",
+    "created_at": "2026-09-04T05:06:33Z",
+    "last_save_at": "2026-09-04T05:21:53.079Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:598a905ea1d805a87ac3f8d310c8da23eae247f35658446180e5c923bfacadfa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "865f06119709138a6ea71c7e6a4a57b5d41d80658d4bbb4ad6ff19e58be66f44",
+      "plan.md": "19bed9734c73c689dcb0f6b2871060255dc9376a45c5f3bd0b1276f63b3e3c57",
+      "tasks.md": "41568ef061e54826c8dc3594949a396fe43c265bcb86438fb13e5a213cde1a98",
+      "implementation-summary.md": "4a2603a2d4e4234be28646f6109da9e02a8dabcfb203fffdaf82e5b246a20d9d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
