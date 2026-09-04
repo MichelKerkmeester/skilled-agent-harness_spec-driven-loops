@@ -50,7 +50,11 @@
       ".opencode/skills/system-plugins/README.md",
       "data/trigger-index.json",
       "specs/system-speckit/049-memory-decommission/goal.md",
-      "specs/system-speckit/050-zvec-grep-fork-integration/goal.md"
+      "specs/system-speckit/050-zvec-grep-fork-integration/goal.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".pi/mcp.json",
+      ".cursor/mcp.json"
     ],
     "entities": [
       {
@@ -99,6 +103,18 @@
         "name": "trigger-index.json",
         "kind": "config",
         "path": "data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -184,23 +200,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-04T17:54:37.030Z",
+    "last_save_at": "2026-09-04T17:58:53.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4c1ac3021c2e320bc32d6ebe4901d2037c6a576cc1a2cafa0f4be1cc86e4978",
+    "source_fingerprint": "sha256:334546f1683e52131315f979881cbe07a5b6e80be7656d05ba62b2dbe0d49ed6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1ce4d8a948c306bcb1d055c2540da7399186e58a8e595771af29e0267d58a3b0",
