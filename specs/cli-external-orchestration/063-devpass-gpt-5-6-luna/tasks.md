@@ -80,7 +80,35 @@ _memory:
 - [x] T014 The other four through cli-opencode, so its rows are tested not inferred [evidence: `OC-deepseek-v4-flash`, `OC-deepseek-v4-flash-vision-exp`, `OC-glm-5.3-flash` at max; `OC-gemini-3.8-flash` at high]
 - [x] T015 pi config integrity [evidence: five models in the block; both files parse; operator formatting intact]
 - [x] T016 No secret in any tracked file [evidence: `apiKey` remains the `${LLMGATEWAY_API_KEY}` reference]
+
 <!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Independent Review Remediation
+
+Reviewed by a fresh Gemini 3.8 Flash agent at `high` through the DevPass route, briefed with a frozen scope and told to attack four named claims. Verdict **PASS — 0 P0, 1 P1, 3 P2**; all four substantive claims verified independently, including the one most likely to be a P0.
+
+- [x] T017 Verify each finding against the repo before acting [evidence: all four reproduced — `ox-alpha` appears 9x in `.pi/custom-providers.md` and 0x in either `.pi` config; "these four" survives in two files; the cli-opencode per-route summary omits the DevPass route; `.pi/models.json` carries no `temperature` key]
+- [x] T018 **P1** — retire every stale Ox Alpha reference in `.pi/custom-providers.md` [evidence: 9 mentions reduced to 1 deliberate retirement note; the §5 verification command at line 127 would have returned `404 model not found` as written]
+- [x] T019 **P1 extra, missed by the review** — `enabledModels` carries only two cline entries, not three: `deepseek-v4-pro` is declared in the provider block but never enabled, so it is dispatchable only by explicit `--model`. Now stated
+- [x] T020 **P2** — "these four" → "these five" in both files
+- [x] T021 **P2** — the cli-opencode per-route GLM summary now names the DevPass route as carrying both `xhigh` and `max`
+- [x] T022 **P2** — the Luna temperature claim now attributes the constraint to the provider catalog rather than implying pi's entry declares it
+- [x] T023 Confirm no regression [evidence: both `.pi` files still parse; one `ox-alpha` string remains and it is the retirement note]
+
+### Second review round
+
+A second fresh Gemini 3.8 Flash agent reviewed the remediation itself, on the premise that a drift fix is the change most likely to introduce new drift. It was told to derive ground truth from the two `.pi` JSON files before reading any prose, with config winning every disagreement. Verdict **PASS — 0 P0, 2 P1, 2 P2**. It confirmed the first round held: Ox Alpha clean, counts clean, GLM tier ceilings consistent across all five files, and the `enabledModels` asymmetry accurately stated.
+
+- [x] T024 Verify the four new findings before acting [evidence: all four reproduced; the fourth needed care — a grep for "deepseek" in the cline-pass table returns 2, but one is prose, so the table really does carry a single DeepSeek row]
+- [x] T025 **P1** — `.pi/custom-providers.md` instructed a `deepseek-v4-pro` dispatch and claimed the cli-pi roster documents it. It does not, and that roster is closed, so the doc was teaching a forbidden dispatch. Now recorded as a config leftover pending removal, with the contradiction between `pi` accepting it and the skill forbidding it stated outright
+- [x] T026 **P1** — three "the only vision entry" claims contradicted Luna and Gemini being documented as image-capable in the same tables. Stale residue from before Luna was added; all three corrected to name the three image-capable entries
+- [x] T027 **P2** — Luna's pi ladder was written `none`→`max` in opencode's vocabulary; pi's lowest tier is `off`, and `minimal` is unmapped, so the active range is `low`→`max`
+- [x] T028 **P2** — "The DeepSeek entries" was plural over a single-row table
+- [x] T029 Confirm no regression [evidence: zero exclusivity claims remain; both `.pi` files parse]
+<!-- /ANCHOR:phase-4 -->
 
 ---
 

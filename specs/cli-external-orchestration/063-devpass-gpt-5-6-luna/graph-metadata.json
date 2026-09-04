@@ -190,7 +190,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Independent Review Remediation Reviewed",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The operator asked for GPT-5.6 Luna on the DevPass route, then for both CLI rosters to carry it",
     "created_at": "2026-09-04T17:36:54.270Z",
-    "last_save_at": "2026-09-04T17:36:54.270Z",
+    "last_save_at": "2026-09-04T18:43:19.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7e2d0324fca3c18adc3b243b245d4bfe0365c2d9314f95d797f75dbb2593686",
+    "source_fingerprint": "sha256:25cc2d7b0b3db70abaa8a5278ed7b4321701187a02ff9f68723013a6e586226b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5d5c4998db64a6c34432a15187d146a02ecf52af2d21a1d968608eb5c8c6dcd",
       "plan.md": "1ee2101f7a3f018d06ee8a142b487a31b6e38535e1d7b9dfa894aef2cc395814",
-      "tasks.md": "f0bbd4c747354a28b59cb722031a560d87098790cd0ccdadad534a155176f3f3",
-      "implementation-summary.md": "2d98e611c6a4f8481c809b610859667bc0424d0a64afe307064fce4221f2b723"
+      "tasks.md": "86b8011013d662991aa42e8cb0b35e6d24c0322fce251d849a5c3af5679c2a30",
+      "implementation-summary.md": "16582b9947f8efe5685e30a2bff2f08f8e9fe9a51a471e9048f7321255d513e5"
     },
     "last_active_child_id": null,
     "last_active_at": null
