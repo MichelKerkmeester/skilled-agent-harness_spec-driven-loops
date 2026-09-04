@@ -74,11 +74,11 @@ export const EXECUTION_MODE = 'direct';
 export const CONFIG_FILENAME = '.zvec-grep-lane.json';
 
 /**
- * Embedding reference used when the config names none. A setting rather than a
- * constant because the backend moves to Ollama once that lands, and only this
- * default changes when it does.
+ * Embedding reference used when the config names none. Ollama is the default
+ * because it embeds through the local model server; the in-process transformers
+ * backend runs the same model on every CPU core and pins the machine.
  */
-export const DEFAULT_EMBEDDING = 'local/nomic-embed-text-v1.5';
+export const DEFAULT_EMBEDDING = 'ollama/nomic-embed-text-v1.5';
 
 /** Result cap for a search, matching the tool's own default. */
 export const DEFAULT_LIMIT = 7;
@@ -90,10 +90,22 @@ export const INDEX_DIRECTORY = '.zvec-grep';
 const MAX_STDOUT_BYTES = 64 * 1024 * 1024;
 
 /** Indexing downloads a model on first use and walks the corpus once. */
-const INDEX_TIMEOUT_MS = 60 * 60 * 1000;
+const INDEX_TIMEOUT_MS = readTimeoutMs('SPECKIT_ZVEC_INDEX_TIMEOUT_MS', 3 * 60 * 60 * 1000);
 
 /** A query loads the model and hits the index. */
-const QUERY_TIMEOUT_MS = 10 * 60 * 1000;
+const QUERY_TIMEOUT_MS = readTimeoutMs('SPECKIT_ZVEC_QUERY_TIMEOUT_MS', 10 * 60 * 1000);
+
+/**
+ * A full index of this corpus through Ollama measured about 270 files a minute,
+ * so a fixed one-hour ceiling killed the first real run two thirds through.
+ * The ceiling is generous by default and overridable for slower embedders.
+ */
+function readTimeoutMs(name, fallback) {
+  const raw = process.env[name];
+  if (raw === undefined || raw === '') return fallback;
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
 
 // ───────────────────────────────────────────────────────────────
 // 2. BINARY RESOLUTION

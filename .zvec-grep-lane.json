@@ -17,7 +17,7 @@
     "file-selection settings until an explicit --reset-paths or --rebuild."
   ],
   "mode": "direct",
-  "embedding": "local/nomic-embed-text-v1.5",
+  "embedding": "ollama/nomic-embed-text-v1.5",
   "globs": [
     "specs/**/*.md",
     ".opencode/skills/**/*.md",
