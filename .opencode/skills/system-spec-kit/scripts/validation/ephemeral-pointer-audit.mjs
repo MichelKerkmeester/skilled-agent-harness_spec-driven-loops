@@ -52,8 +52,8 @@ const SKIP_DIRS = new Set([
   ".pytest_cache",
 ]);
 
-// Extensionless files (e.g. .opencode/bin/spec-kit-mcp) are scanned when their
-// shebang marks them as Node or Python — those use //, /* */, or # comments.
+// Extensionless files are scanned when their shebang marks them as Node or
+// Python — those use //, /* */, or # comments.
 const SHEBANG_NODE = /^#!.*\b(node|deno|bun)\b/;
 const SHEBANG_PY = /^#!.*\bpython[0-9.]*\b/;
 

@@ -63,7 +63,7 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
   beforeEach(() => {
     workRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'dist-alignment-test-'));
     // Synthesize the package-root marker (the checker walks parents until it
-    // finds a folder containing both `mcp_server` and `scripts`).
+    // finds a folder containing both `runtime` and `scripts`).
     fs.mkdirSync(path.join(workRoot, 'runtime'), { recursive: true });
     fs.mkdirSync(path.join(workRoot, 'scripts'), { recursive: true });
     fs.mkdirSync(path.join(workRoot, 'scripts', 'dist'), { recursive: true });

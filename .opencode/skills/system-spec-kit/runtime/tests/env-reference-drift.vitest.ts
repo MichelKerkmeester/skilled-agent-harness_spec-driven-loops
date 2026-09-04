@@ -2,7 +2,7 @@
 // MODULE: ENV_REFERENCE Drift Guard
 // ───────────────────────────────────────────────────────────────
 // Collects every SPECKIT_* environment token read by the spec-kit
-// mcp_server runtime source and asserts each one is either documented in
+// runtime package source and asserts each one is either documented in
 // ENV_REFERENCE.md or listed on the explicit internal ignore-list. This stops
 // a future env addition from silently skipping the operator-facing doc.
 //
@@ -16,9 +16,9 @@ import { describe, expect, it } from 'vitest';
 import { readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const MCP_SERVER_ROOT = resolve(__dirname, '..');
-const SYSTEM_SPEC_KIT_ROOT = resolve(MCP_SERVER_ROOT, '..');
-const ENV_REFERENCE_PATH = resolve(MCP_SERVER_ROOT, 'ENV-REFERENCE.md');
+const RUNTIME_ROOT = resolve(__dirname, '..');
+const SYSTEM_SPEC_KIT_ROOT = resolve(RUNTIME_ROOT, '..');
+const ENV_REFERENCE_PATH = resolve(RUNTIME_ROOT, 'ENV-REFERENCE.md');
 // The two surviving flag registries. `lib/search/graph-flags.ts` was removed
 // with the memory engine; reading a missing path here throws before any
 // assertion runs, which would take the whole guard down rather than fail it.
@@ -69,7 +69,7 @@ interface DocumentedFlagRow {
 }
 
 function collectRuntimeTsFiles(): string[] {
-  const entries = readdirSync(MCP_SERVER_ROOT, {
+  const entries = readdirSync(RUNTIME_ROOT, {
     recursive: true,
     withFileTypes: true,
   });
@@ -79,9 +79,9 @@ function collectRuntimeTsFiles(): string[] {
     // entry.parentPath is the absolute directory in Node >= 20.12.
     const dir = (entry as unknown as { parentPath?: string; path?: string }).parentPath
       ?? (entry as unknown as { path?: string }).path
-      ?? MCP_SERVER_ROOT;
+      ?? RUNTIME_ROOT;
     const absPath = resolve(dir, entry.name);
-    const relPath = absPath.slice(MCP_SERVER_ROOT.length + 1);
+    const relPath = absPath.slice(RUNTIME_ROOT.length + 1);
     if (isExcludedPath(relPath)) continue;
     files.push(absPath);
   }
@@ -92,7 +92,7 @@ function collectRuntimeEnvTokens(): Map<string, string> {
   // token -> first relative path that reads it (for failure diagnostics).
   const tokens = new Map<string, string>();
   for (const absPath of collectRuntimeTsFiles()) {
-    const relPath = absPath.slice(MCP_SERVER_ROOT.length + 1);
+    const relPath = absPath.slice(RUNTIME_ROOT.length + 1);
     const source = readFileSync(absPath, 'utf8');
     ENV_READ_RE.lastIndex = 0;
     let match: RegExpExecArray | null;
@@ -103,7 +103,7 @@ function collectRuntimeEnvTokens(): Map<string, string> {
   }
 
   for (const relPath of FLAG_REGISTRY_PATHS) {
-    const source = readFileSync(resolve(MCP_SERVER_ROOT, relPath), 'utf8');
+    const source = readFileSync(resolve(RUNTIME_ROOT, relPath), 'utf8');
     FLAG_STRING_LITERAL_RE.lastIndex = 0;
     let match: RegExpExecArray | null;
     while ((match = FLAG_STRING_LITERAL_RE.exec(source)) !== null) {
@@ -186,7 +186,7 @@ function collectRuntimeDefaultPolarities(): Map<string, boolean> {
   const constants = new Map<string, string>();
 
   for (const relPath of FLAG_REGISTRY_PATHS) {
-    const source = readFileSync(resolve(MCP_SERVER_ROOT, relPath), 'utf8');
+    const source = readFileSync(resolve(RUNTIME_ROOT, relPath), 'utf8');
     for (const match of source.matchAll(
       /\bconst\s+([A-Z][A-Z0-9_]*)\s*=\s*['"](SPECKIT_[A-Z0-9_]+)['"]/g,
     )) {

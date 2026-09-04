@@ -6,8 +6,8 @@
 // fail-open process boundary.
 
 import { spawnSync } from 'node:child_process';
-import { existsSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { existsSync, statSync } from 'node:fs';
+import { dirname, isAbsolute, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
@@ -27,9 +27,22 @@ export interface HostDirectiveLifecycleBoundary {
   readonly boundary: 'startup' | 'resume' | 'compact' | 'clear' | 'post-compact';
 }
 
+// An override names one executable module. It must be absolute, so a relative
+// path cannot be resolved against whatever cwd Claude happened to spawn the hook
+// with, and it must be a regular file, so a directory or a dangling link falls
+// back to the install-anchored walk instead of being handed to node.
+function isRegularFileOverride(candidate: string): boolean {
+  if (!isAbsolute(candidate)) return false;
+  try {
+    return statSync(candidate).isFile();
+  } catch {
+    return false;
+  }
+}
+
 function resolveTarget(): string | null {
   const override = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_BOUNDARY_TARGET;
-  if (override && existsSync(override)) return override;
+  if (override && isRegularFileOverride(override)) return override;
 
   let current = dirname(fileURLToPath(import.meta.url));
   for (let depth = 0; depth < MAX_ROOT_WALK_DEPTH; depth += 1) {

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Rebuild every MCP server's dist after a source change and flag launcher
-# changes a running process cannot pick up.
+# Rebuild every daemon-backed package dist after a source change and flag
+# launcher changes a running process cannot pick up.
 #
 # Why this exists: dist/ is gitignored (a build artifact), so pulling source
-# changes does NOT update the running servers — each server's dist must be
-# rebuilt locally. The servers also build from different roots, which is
+# changes does NOT update a running daemon or the compiled engine — each package's dist must be
+# rebuilt locally. The packages build from different roots, which is
 # easy to miss and leaves one running stale code. This script builds
 # all of them so none is forgotten.
 #
@@ -37,10 +37,10 @@ build_pkg() {
   fi
 }
 
-echo "== Building MCP server dists =="
-# spec-kit: builds @spec-kit/shared too via TS project references.
+echo "== Building package dists =="
+# spec-kit runtime engine: builds @spec-kit/shared too via TS project references.
 build_pkg "spec-kit" ".opencode/skills/system-spec-kit/runtime"
-# system-skill-advisor: build if it ships a build script.
+# system-skill-advisor MCP daemon: build if it ships a build script.
 build_pkg "advisor" ".opencode/skills/system-skill-advisor/mcp-server"
 
 if [ "$FAIL" -ne 0 ]; then

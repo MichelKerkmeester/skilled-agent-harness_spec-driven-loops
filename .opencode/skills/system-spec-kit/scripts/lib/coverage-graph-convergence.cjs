@@ -1,5 +1,5 @@
 'use strict';
-// sourceDiversity is an adapter replicating the MCP handler's canonical algorithm. Do not diverge. See .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
+// sourceDiversity is an adapter replicating the deep-loop runtime's canonical algorithm. Do not diverge. See .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
 
 // ---------------------------------------------------------------
 // MODULE: Coverage Graph Convergence
@@ -46,7 +46,7 @@ function parseMetadata(metadata) {
 
 /**
  * Normalize the in-memory graph into the canonical research-signal shape used
- * by the MCP layer.
+ * by the deep-loop runtime signal layer.
  *
  * @param {{ nodes: Map, edges: Map }} graph
  * @returns {{ nodes: Array<{ id: string, kind: string, metadata: object | null }>, edges: Array<{ sourceId: string, targetId: string, relation: string }> }}

@@ -12,10 +12,10 @@ const Database = require('better-sqlite3');
 */
 
 const ROOT = path.join(__dirname, '..', '..');
-const MCP_DIST = path.join(ROOT, 'runtime', 'dist');
-const VECTOR_INDEX_PATH = path.join(MCP_DIST, 'lib', 'search', 'vector-index');
-const EMBEDDINGS_PATH = path.join(MCP_DIST, 'lib', 'providers', 'embeddings');
-const RETRY_MANAGER_PATH = path.join(MCP_DIST, 'lib', 'providers', 'retry-manager');
+const RUNTIME_DIST = path.join(ROOT, 'runtime', 'dist');
+const VECTOR_INDEX_PATH = path.join(RUNTIME_DIST, 'lib', 'search', 'vector-index');
+const EMBEDDINGS_PATH = path.join(RUNTIME_DIST, 'lib', 'providers', 'embeddings');
+const RETRY_MANAGER_PATH = path.join(RUNTIME_DIST, 'lib', 'providers', 'retry-manager');
 
 const results = {
   passed: 0,

@@ -14,7 +14,7 @@ FIXTURE="$SCRIPT_DIR/../test-fixtures/053-template-compliant-level2"
 SOURCE="$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts"
 DIST="$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/dist/lib/validation/orchestrator.js"
 REBUILD_COMMAND="cd .opencode/skills/system-spec-kit/runtime && npm run build"
-CACHE_GLOB="$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/dist/lib/validation/.dist-freshness-system-spec-kit-mcp_server-"*.json
+CACHE_GLOB="$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/dist/lib/validation/.dist-freshness-system-spec-kit-runtime-"*.json
 
 PASSED=0
 FAILED=0

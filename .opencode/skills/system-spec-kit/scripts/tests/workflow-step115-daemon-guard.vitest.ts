@@ -49,7 +49,7 @@ describe('canonical save follow-ups', () => {
   });
 
   it('still refreshes graph metadata through the top-level API', () => {
-    expect(workflowSource).toContain("tryImportMcpApi('@spec-kit/runtime/api')");
+    expect(workflowSource).toContain("tryImportRuntimeApi('@spec-kit/runtime/api')");
     expect(workflowSource).toContain('refreshGraphMetadata(validatedSpecFolderPath, graphRefreshOptions)');
   });
 

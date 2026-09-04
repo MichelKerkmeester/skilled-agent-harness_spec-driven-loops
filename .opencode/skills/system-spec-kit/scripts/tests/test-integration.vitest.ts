@@ -19,7 +19,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 const require = createRequire(import.meta.url);
 const SKILL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SCRIPTS_DIR = path.join(SKILL_ROOT, 'scripts');
-const MCP_SERVER_DIR = path.join(SKILL_ROOT, 'runtime');
+const RUNTIME_DIR = path.join(SKILL_ROOT, 'runtime');
 const TEMPLATES_DIR = path.join(SKILL_ROOT, 'templates');
 const createdTempRoots = new Set<string>();
 
@@ -167,9 +167,9 @@ describe('validation pipeline integration', () => {
 
 describe('cognitive memory export parity', () => {
   it('keeps the working-memory and attention-decay export contracts intact', () => {
-    const workingMemoryPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'cognitive', 'working-memory.js');
-    const attentionDecayPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'cognitive', 'attention-decay.js');
-    const coActivationPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'cognitive', 'co-activation.js');
+    const workingMemoryPath = path.join(RUNTIME_DIR, 'dist', 'lib', 'cognitive', 'working-memory.js');
+    const attentionDecayPath = path.join(RUNTIME_DIR, 'dist', 'lib', 'cognitive', 'attention-decay.js');
+    const coActivationPath = path.join(RUNTIME_DIR, 'dist', 'lib', 'cognitive', 'co-activation.js');
 
     expect(fs.existsSync(workingMemoryPath)).toBe(true);
     expect(fs.existsSync(attentionDecayPath)).toBe(true);
@@ -229,8 +229,8 @@ describe('spec-folder creation and template parity', () => {
 
 describe('checkpoint integration parity', () => {
   it('preserves checkpoint exports, schema validation, and compression signals', () => {
-    const checkpointsPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'storage', 'checkpoints.js');
-    const handlersPath = path.join(MCP_SERVER_DIR, 'dist', 'handlers', 'checkpoints.js');
+    const checkpointsPath = path.join(RUNTIME_DIR, 'dist', 'lib', 'storage', 'checkpoints.js');
+    const handlersPath = path.join(RUNTIME_DIR, 'dist', 'handlers', 'checkpoints.js');
     const checkpoints = require(checkpointsPath);
     const handlers = require(handlersPath);
     const checkpointsSource = fs.readFileSync(checkpointsPath, 'utf-8');
@@ -271,13 +271,13 @@ describe('checkpoint integration parity', () => {
 });
 
 describe('cross-cutting export surface parity', () => {
-  it('keeps the key scripts and MCP export surfaces available', () => {
+  it('keeps the key scripts and runtime export surfaces available', () => {
     const core = require(path.join(SCRIPTS_DIR, 'dist', 'core', 'index.js'));
     const extractors = require(path.join(SCRIPTS_DIR, 'dist', 'extractors', 'index.js'));
     const specFolder = require(path.join(SCRIPTS_DIR, 'dist', 'spec-folder', 'index.js'));
-    const mcpCore = require(path.join(MCP_SERVER_DIR, 'dist', 'core', 'index.js'));
-    const vectorIndex = require(path.join(MCP_SERVER_DIR, 'dist', 'lib', 'search', 'vector-index.js'));
-    const errors = require(path.join(MCP_SERVER_DIR, 'dist', 'lib', 'errors.js'));
+    const runtimeCore = require(path.join(RUNTIME_DIR, 'dist', 'core', 'index.js'));
+    const vectorIndex = require(path.join(RUNTIME_DIR, 'dist', 'lib', 'search', 'vector-index.js'));
+    const errors = require(path.join(RUNTIME_DIR, 'dist', 'lib', 'errors.js'));
 
     expect(core.CONFIG).toBeDefined();
     expect(typeof core.findActiveSpecsDir).toBe('function');
@@ -286,8 +286,8 @@ describe('cross-cutting export surface parity', () => {
     expect(typeof extractors.extractDiagrams).toBe('function');
     expect(typeof specFolder.detectSpecFolder).toBe('function');
     expect(typeof specFolder.setupContextDirectory).toBe('function');
-    expect(mcpCore.LIB_DIR).toBeDefined();
-    expect(typeof mcpCore.checkDatabaseUpdated).toBe('function');
+    expect(runtimeCore.LIB_DIR).toBeDefined();
+    expect(typeof runtimeCore.checkDatabaseUpdated).toBe('function');
     expect(typeof vectorIndex.EMBEDDING_DIM).toBe('number');
     expect(
       typeof vectorIndex.indexMemory === 'function' ||

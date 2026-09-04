@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: Edge Cases — Hook + Code Graph Resilience
 // ───────────────────────────────────────────────────────────────
-// Tests for empty transcript, MCP unavailable, expired cache,
+// Tests for empty transcript, missing dependencies, expired cache,
 // concurrent sessions, and other boundary conditions.
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';

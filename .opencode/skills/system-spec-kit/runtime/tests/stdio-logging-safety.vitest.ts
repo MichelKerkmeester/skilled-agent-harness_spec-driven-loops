@@ -73,7 +73,7 @@ function collectRuntimeSources(root: string): string[] {
   return results.sort();
 }
 
-describe('MCP stdio logging safety', () => {
+describe('stdio logging safety', () => {
   // drift: verified against shipped behavior during Unit H
   it('uses stderr-safe logging in runtime sources', () => {
     const offenders = SOURCE_ROOTS

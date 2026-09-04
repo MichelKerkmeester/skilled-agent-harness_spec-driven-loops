@@ -226,7 +226,13 @@ function collectSourceFiles(pkg, root, entryName) {
     if (stat.isDirectory()) {
       if (shouldSkipPath(candidate, root, pkg)) return;
       for (const entry of fs.readdirSync(candidate)) {
-        visit(path.join(candidate, entry));
+        const child = path.join(candidate, entry);
+        // A symlinked directory points at another package's tree (for example
+        // scripts/runtime -> ../runtime/dist). Its contents are that package's
+        // outputs, not this package's sources, so descending would make every
+        // rebuild there flag this package stale.
+        if (fs.lstatSync(child).isSymbolicLink() && fs.statSync(child).isDirectory()) continue;
+        visit(child);
       }
       return;
     }

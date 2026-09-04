@@ -10,7 +10,7 @@
 //
 // Standalone by design: the existing Stop owner (session-stop.ts, compiled to
 // dist/hooks/claude/session-stop.js) is a dist-built TypeScript module, and
-// this phase is barred from editing mcp_server .ts sources or rebuilding
+// this hook is barred from editing runtime .ts sources or rebuilding
 // dist. Rather than extend that owner, this file is a second, independent
 // Stop hook -- plain, directly runnable .cjs, requiring no build step -- that
 // settings.json invokes alongside it under the same Stop matcher. It reads

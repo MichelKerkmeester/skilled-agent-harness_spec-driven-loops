@@ -21,7 +21,7 @@ import { describe, expect, it } from 'vitest';
 // guessed wrong, and so the test stays valid if the test tree is reorganized.
 const here = dirname(fileURLToPath(import.meta.url));
 // here = .opencode/skills/system-spec-kit/runtime/tests/embedders
-//   ..(embedders→tests) ..(→mcp_server) ..(→system-spec-kit) ..(→skills) ..(→.opencode) /bin
+//   ..(embedders→tests) ..(→runtime) ..(→system-spec-kit) ..(→skills) ..(→.opencode) /bin
 const moduleUnderTest = resolve(here, '..', '..', '..', '..', '..', 'bin', 'hf-model-server.cjs');
 const requireCjs = createRequire(import.meta.url);
 

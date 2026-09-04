@@ -96,8 +96,8 @@ function detectLevel(folderPath: string): number | null {
 // Mirrors the single-source-of-truth contract enforced by validate.sh /
 // check-files.sh: a folder is a phase parent when it has at least one direct
 // NNN-slug child that carries spec.md or description.json. Kept local because
-// this shared module is the leaf layer consumed by mcp_server and scripts; it
-// must not depend on the mcp_server copy of the detector.
+// this shared module is the leaf layer consumed by the runtime package and
+// scripts; it must not depend on the runtime copy of the detector.
 function isPhaseParent(folderPath: string): boolean {
   let entries: fs.Dirent[];
   try {

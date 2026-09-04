@@ -88,7 +88,7 @@ describe('production database isolation', () => {
     }
   });
 
-  it('detects a Vitest config that globs MCP server tests without isolation setup', () => {
+  it('detects a Vitest config that globs runtime tests without isolation setup', () => {
     const skillRoot = path.resolve(import.meta.dirname, '..', '..');
     const configSources = collectVitestConfigs(skillRoot).map((configPath) => [
       configPath,

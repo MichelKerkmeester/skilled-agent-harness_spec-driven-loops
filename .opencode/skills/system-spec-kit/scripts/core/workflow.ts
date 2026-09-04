@@ -249,10 +249,10 @@ function scrubWorkflowSavePayloadTextFields(
 }
 
 /**
- * Shared helper for dynamic MCP-server API imports with consistent degradation.
+ * Shared helper for dynamic runtime API imports with consistent degradation.
  * All call sites log warnings on failure and return the provided fallback.
  */
-async function tryImportMcpApi(specifier: string): Promise<any | null> {
+async function tryImportRuntimeApi(specifier: string): Promise<any | null> {
   try {
     return await import(specifier);
   } catch (err: unknown) {
@@ -1237,7 +1237,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   );
   // Load description.json to include memoryNameHistory in slug candidates.
   let memoryNameHistoryForSlug: readonly string[] = [];
-  const slugApiModule = await tryImportMcpApi('@spec-kit/runtime/api');
+  const slugApiModule = await tryImportRuntimeApi('@spec-kit/runtime/api');
   if (slugApiModule) {
     const pfDesc = slugApiModule.loadPerFolderDescription(path.resolve(specFolder));
     if (pfDesc?.memoryNameHistory) {
@@ -1430,8 +1430,8 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   // Update per-folder description.json memory tracking (runs on every canonical save)
   if (ctxFileWritten) {
     try {
-      const descApiModule = await tryImportMcpApi('@spec-kit/runtime/api');
-      if (!descApiModule) throw new Error('MCP server API unavailable for description update');
+      const descApiModule = await tryImportRuntimeApi('@spec-kit/runtime/api');
+      if (!descApiModule) throw new Error('runtime API unavailable for description update');
       const { loadPerFolderDescription: loadPFD, savePerFolderDescription: savePFD, generatePerFolderDescription: genPFD } = descApiModule;
       const specFolderAbsolute = path.resolve(specFolder);
       await withSavePfdLock(specFolderAbsolute, async () => {
@@ -1517,9 +1517,9 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   const shouldRunExplicitSaveFollowUps = true;
   if (shouldRunExplicitSaveFollowUps) {
     try {
-      const graphApiModule = await tryImportMcpApi('@spec-kit/runtime/api');
+      const graphApiModule = await tryImportRuntimeApi('@spec-kit/runtime/api');
       if (!graphApiModule) {
-        throw new Error('MCP server API unavailable for graph-metadata refresh');
+        throw new Error('runtime API unavailable for graph-metadata refresh');
       }
       const { refreshGraphMetadata } = graphApiModule as {
         refreshGraphMetadata?: (

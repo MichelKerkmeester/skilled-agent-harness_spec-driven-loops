@@ -6,7 +6,7 @@
  *
  * Covers:
  *   - Syntax validation (node --check, bash -n)
- *   - MCP module import chain (require 144 files)
+ *   - Runtime module import chain (require 144 files)
  *   - Scripts module imports (require 53 files)
  *   - Naming compliance sweep (zero snake_case function defs)
  *   - Cross-reference integrity (orphaned snake_case calls)
@@ -21,8 +21,8 @@ const { pathToFileURL } = require('url');
 // 1. PATHS
 // ───────────────────────────────────────────────────────────────
 const SCRIPTS_ROOT = path.resolve(__dirname, '..');
-const MCP_ROOT = path.resolve(__dirname, '../../runtime');
-const BASE_ROOT = path.resolve(MCP_ROOT, '..');
+const RUNTIME_ROOT = path.resolve(__dirname, '../../runtime');
+const BASE_ROOT = path.resolve(RUNTIME_ROOT, '..');
 
 // Approved temporary debt while migration is still in progress.
 // Guardrail: fail if counts increase or if new files start introducing debt.
@@ -171,9 +171,9 @@ function t1SyntaxValidation() {
   section('T1: Syntax Validation');
 
   // JS files
-  const mcpJs = walkFiles(MCP_ROOT, '.js');
+  const runtimeJs = walkFiles(RUNTIME_ROOT, '.js');
   const scriptsJs = walkFiles(SCRIPTS_ROOT, '.js');
-  const discoveredJs = [...mcpJs, ...scriptsJs];
+  const discoveredJs = [...runtimeJs, ...scriptsJs];
   const allJs = discoveredJs.filter((filePath) => !isTestFile(filePath));
 
   let jsFail = 0;
@@ -245,13 +245,13 @@ function canLoadViaDynamicImport(filePath) {
 }
 
 // ════════════════════════════════════════════════════════════════════════
-// MCP MODULE IMPORT CHAIN
+// RUNTIME MODULE IMPORT CHAIN
 // ════════════════════════════════════════════════════════════════════════
-function t2McpImports() {
-  section('T2: MCP Module Import Chain');
+function t2RuntimeImports() {
+  section('T2: Runtime Module Import Chain');
 
   // Exclude tests and compatibility CLI wrappers; import-chain gate focuses on reusable modules.
-  const files = walkFiles(MCP_ROOT, '.js').filter((filePath) => {
+  const files = walkFiles(RUNTIME_ROOT, '.js').filter((filePath) => {
     const normalized = filePath.split(path.sep).join('/');
     return !normalized.includes('/tests/') &&
       !normalized.includes('/dist/scripts/') &&
@@ -286,7 +286,7 @@ function t2McpImports() {
     fail(`require: ${f.file}`, f.error);
   }
   if (results.importFail === 0) {
-    pass(`${results.ok} MCP modules loaded OK (${results.dbSkip} skipped: runtime deps)`);
+    pass(`${results.ok} runtime modules loaded OK (${results.dbSkip} skipped: runtime deps)`);
   }
 }
 
@@ -340,7 +340,7 @@ function t10NamingCompliance() {
   section('T10: Naming Compliance Sweep');
 
   // Scan TypeScript source files (not compiled .js/.d.ts in dist/) for naming compliance
-  const allTs = [...walkFiles(MCP_ROOT, '.ts'), ...walkFiles(SCRIPTS_ROOT, '.ts')]
+  const allTs = [...walkFiles(RUNTIME_ROOT, '.ts'), ...walkFiles(SCRIPTS_ROOT, '.ts')]
     .filter((filePath) => {
       const normalized = filePath.split(path.sep).join('/');
       return !normalized.includes('/dist/') && !normalized.includes('/tests/') && !normalized.endsWith('.d.ts');
@@ -446,7 +446,7 @@ function t7CrossReference() {
 
   // Check source-of-truth TypeScript only. Dist output can include transpiler artifacts.
   const prodTs = [
-    ...walkFiles(MCP_ROOT, '.ts'),
+    ...walkFiles(RUNTIME_ROOT, '.ts'),
     ...walkFiles(SCRIPTS_ROOT, '.ts'),
   ].filter((filePath) => {
     const normalized = filePath.split(path.sep).join('/');
@@ -583,7 +583,7 @@ console.log('\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\
 const start = Date.now();
 
 t1SyntaxValidation();
-t2McpImports();
+t2RuntimeImports();
 t9ScriptsImports();
 t10NamingCompliance();
 t7CrossReference();

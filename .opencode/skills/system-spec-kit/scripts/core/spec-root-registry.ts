@@ -129,7 +129,7 @@ export const SPEC_ROOT_RESOLVERS = [
     file: 'runtime/lib/search/folder-discovery.ts:1363-1379',
     symbol: 'getSpecsBasePaths',
     consumerOrEffect:
-      'Generic MCP spec-base discovery enumerates the legacy root before the canonical root.',
+      'Generic runtime spec-base discovery enumerates the legacy root before the canonical root.',
     precedence: 'legacy-first',
   },
   {

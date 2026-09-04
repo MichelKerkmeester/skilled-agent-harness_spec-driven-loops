@@ -63,7 +63,7 @@ function makeGraph(nodes: GraphNode[], edges: GraphEdge[]): Graph {
 /**
  * Canonicalization note: these tests exercise the CJS
  * coverage-graph-convergence helper AFTER it was refactored into a thin
- * adapter over the MCP canonical signal algorithms. The canonical definitions
+ * adapter over the deep-loop runtime's canonical signal algorithms. The definitions
  * are question-centric:
  *   - sourceDiversity: average distinct source quality classes per question
  *     reachable via ANSWERS → CITES paths (default threshold 1.5)

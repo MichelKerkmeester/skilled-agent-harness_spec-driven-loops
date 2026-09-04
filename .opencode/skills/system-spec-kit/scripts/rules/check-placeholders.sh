@@ -9,7 +9,7 @@ set -euo pipefail
 # Rule: PLACEHOLDER_FILLED
 # Severity: error
 # Description: Detects unfilled spec-doc placeholders: [YOUR_VALUE_HERE:], [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:]
-# Parity: mirrors mcp_server orchestrator validatePlaceholders. Mustache {{...}} is NOT flagged
+# Parity: mirrors the runtime orchestrator validatePlaceholders. Mustache {{...}} is NOT flagged
 # (not canonical spec-doc placeholder syntax; legit spec-doc content uses it).
 
 # ───────────────────────────────────────────────────────────────

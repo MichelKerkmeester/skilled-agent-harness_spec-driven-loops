@@ -2016,7 +2016,7 @@ async function testLibRetryManagerReexport() {
 
   try {
     const scriptsRetryManagerPath = path.join(SCRIPTS_DIR, 'lib', 'retry-manager.js');
-    const mcpRetryManagerPath = path.join(
+    const runtimeRetryManagerPath = path.join(
       ROOT,
       'runtime',
       'dist',
@@ -2032,14 +2032,14 @@ async function testLibRetryManagerReexport() {
       fail('T-032a: scripts retry-manager module removed', `Unexpected file: ${scriptsRetryManagerPath}`);
     }
 
-    // Test 2: canonical retry-manager implementation exists in MCP provider layer
-    if (fs.existsSync(mcpRetryManagerPath)) {
-      pass('T-032b: retry-manager lives under MCP provider layer', 'Canonical module present');
+    // Test 2: canonical retry-manager implementation exists in the runtime provider layer
+    if (fs.existsSync(runtimeRetryManagerPath)) {
+      pass('T-032b: retry-manager lives under the runtime provider layer', 'Canonical module present');
     } else {
-      fail('T-032b: retry-manager lives under MCP provider layer', `Missing file: ${mcpRetryManagerPath}`);
+      fail('T-032b: retry-manager lives under the runtime provider layer', `Missing file: ${runtimeRetryManagerPath}`);
     }
 
-    const retryManager = require(mcpRetryManagerPath);
+    const retryManager = require(runtimeRetryManagerPath);
 
     // Test 3: getRetryStats is exported from canonical module
     if (typeof retryManager.getRetryStats === 'function') {
@@ -2083,7 +2083,7 @@ async function testLibRetryManagerReexport() {
       fail('T-032g: BACKOFF_DELAYS constant exported', 'Not an array or empty');
     }
 
-    // Test 8: Other core functions are exported (from mcp_server re-export)
+    // Test 8: Other core functions are exported (from the runtime re-export)
     const expectedFunctions = ['get_retry_queue', 'get_failed_embeddings', 'retry_embedding', 'mark_as_failed', 'reset_for_retry'];
     let allExported = true;
     const missingFns = [];
@@ -2096,7 +2096,7 @@ async function testLibRetryManagerReexport() {
     if (allExported) {
       pass('T-032h: All core functions exported', expectedFunctions.join(', '));
     } else {
-      skip('T-032h: Core retry functions not re-exported from mcp_server', `Deferred: mcp_server module not compiled`);
+      skip('T-032h: Core retry functions not re-exported from the runtime package', `Deferred: runtime module not compiled`);
     }
 
   } catch (error) {

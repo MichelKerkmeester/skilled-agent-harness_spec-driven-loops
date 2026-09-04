@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // NOTE: This script enforces shared/ neutrality and runtime/scripts/ wrapper-only rules.
-// The companion check for Scripts -> MCP-internals import policy lives in:
+// The companion check for Scripts -> runtime-internals import policy lives in:
 //   check-no-mcp-lib-imports-ast.ts (AST-based, with allowlist governance)
 // Both checks should be run together for full boundary compliance.
 

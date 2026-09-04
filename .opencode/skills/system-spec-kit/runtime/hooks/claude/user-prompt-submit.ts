@@ -5,10 +5,10 @@
 // Thin process-boundary shim. The advisor implementation lives in
 // system-skill-advisor; this path stays for existing runtime settings.
 
-import { readSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { readSync, existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, isAbsolute, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
 
@@ -34,10 +34,23 @@ const MAX_ROOT_WALK_DEPTH = 14;
 // 2. TARGET RESOLUTION & SHIM DISPATCH
 // ───────────────────────────────────────────────────────────────────
 
+// An override names one executable module. It must be absolute, so a relative
+// path cannot be resolved against whatever cwd Claude happened to spawn the hook
+// with, and it must be a regular file, so a directory or a dangling link falls
+// back to the install-anchored walk instead of being handed to node.
+function isRegularFileOverride(candidate: string): boolean {
+  if (!isAbsolute(candidate)) return false;
+  try {
+    return statSync(candidate).isFile();
+  } catch {
+    return false;
+  }
+}
+
 function resolveTarget(): string | null {
   // Test/install override: an explicit absolute target wins over the walk.
   const override = process.env.SPECKIT_USER_PROMPT_TARGET;
-  if (override && existsSync(override)) {
+  if (override && isRegularFileOverride(override)) {
     return override;
   }
   let current = dirname(fileURLToPath(import.meta.url));

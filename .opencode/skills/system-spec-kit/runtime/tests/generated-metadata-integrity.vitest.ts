@@ -267,8 +267,8 @@ describe('status-completion consistency check (D4-P0-001 regression)', () => {
     expect(report.violations.map((violation) => violation.code)).not.toContain('STATUS_COMPLETE_EVIDENCE_MISMATCH');
   });
 
-  // Regression for T2-P1-002/T2-P1-003: the MCP validation orchestrator (validateFolder,
-  // the entrypoint the MCP server actually calls) never passed the flag through to
+  // Regression: the validation orchestrator (validateFolder, the entrypoint the
+  // runtime API exposes) never passed the flag through to
   // resolveGeneratedMetadataIntegrity, so SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE had
   // no effect via that path even though the CLI bridge (validate.sh) wired it correctly.
   it('enforces the gate at the orchestrator entrypoint (validateFolder) when explicitly enabled', () => {

@@ -18,7 +18,7 @@ echo "MODULE_VERSION: $(node -e 'console.log(process.versions.modules)')"
 echo "Platform:       $(uname -s) $(uname -m)"
 echo ""
 
-# Step 1: Rebuild better-sqlite3 (mcp_server)
+# Step 1: Rebuild better-sqlite3 (runtime package)
 echo "── Step 1: Rebuilding better-sqlite3..."
 cd "$ROOT_DIR/runtime"
 npm rebuild better-sqlite3
@@ -57,7 +57,7 @@ echo "   ✓ .node-version-marker updated"
 
 echo ""
 echo "╔══════════════════════════════════════════════════════════╗"
-echo "║  Done! Restart the MCP server to apply changes.         ║"
+echo "║  Done! Restart your session to apply changes.            ║"
 echo "╚══════════════════════════════════════════════════════════╝"
 
 # Exit codes:

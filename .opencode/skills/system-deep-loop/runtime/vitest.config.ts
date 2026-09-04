@@ -1,7 +1,7 @@
 // MODULE: runtime/ Vitest Config
 //
 // Self-contained discovery config so the runtime suite runs from this skill
-// root (npm test) without borrowing the system-spec-kit MCP server config.
+// root (npm test) without borrowing the system-spec-kit runtime config.
 // The system-spec-kit config still discovers these same tests for the
 // combined CI run; this config covers the standalone path.
 

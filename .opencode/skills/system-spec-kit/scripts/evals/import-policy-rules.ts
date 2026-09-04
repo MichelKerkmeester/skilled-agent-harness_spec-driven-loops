@@ -16,7 +16,7 @@ const PROHIBITED_PACKAGE_IMPORTS = [
 ];
 
 const RELATIVE_INTERNAL_RUNTIME_IMPORT_RE =
-  /^\.\.(?:\/\.\.)*\/(?:mcp_server\/(?:lib|core|handlers)|shared)(?:$|\/)/;
+  /^\.\.(?:\/\.\.)*\/(?:runtime\/(?:lib|core|handlers)|shared)(?:$|\/)/;
 
 function normalizeRelativeImportPath(importPath: string): string {
   if (!importPath.startsWith('.')) {

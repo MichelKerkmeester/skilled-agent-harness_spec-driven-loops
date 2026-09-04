@@ -228,7 +228,7 @@ const DIST_TARGETS: DistTarget[] = [
 // broader DIST_TARGETS set, derive the package segment from the dist root.
 function mapDistFileToSource(packageRoot: string, target: DistTarget, distFile: string): OrphanedDistFile {
   const absoluteDistRoot = path.join(packageRoot, target.distRoot);
-  const packageSegment = target.distRoot.startsWith('scripts') ? 'scripts' : 'mcp_server';
+  const packageSegment = target.distRoot.startsWith('scripts') ? 'scripts' : 'runtime';
   const relativeDistPath = toPosix(path.relative(path.join(packageRoot, packageSegment), distFile));
   const sourceRelativePath = path.relative(absoluteDistRoot, distFile).replace(/\.js$/, '.ts');
   const expectedSource = path.join(packageRoot, target.sourceRoot, sourceRelativePath);

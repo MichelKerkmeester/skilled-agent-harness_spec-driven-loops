@@ -17,10 +17,10 @@ const path = require('path');
 // ───────────────────────────────────────────────────────────────
 // 1. PATHS
 // ───────────────────────────────────────────────────────────────
-const MCP_ROOT = path.resolve(__dirname, '../../runtime');
+const RUNTIME_ROOT = path.resolve(__dirname, '../../runtime');
 const SCRIPTS_ROOT = path.resolve(__dirname, '..');
-const HANDLERS_DIR = path.join(MCP_ROOT, 'handlers');
-const BASE_ROOT = path.resolve(MCP_ROOT, '..');
+const HANDLERS_DIR = path.join(RUNTIME_ROOT, 'handlers');
+const BASE_ROOT = path.resolve(RUNTIME_ROOT, '..');
 
 // ───────────────────────────────────────────────────────────────
 // 2. TEST STATE

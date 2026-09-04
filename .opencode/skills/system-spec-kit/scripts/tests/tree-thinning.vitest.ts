@@ -2,7 +2,7 @@
 // PageIndex — pre-pipeline token reduction
 //
 // Run with: vitest run tests/tree-thinning.vitest.ts
-// (requires vitest configured in this package, or run from mcp_server
+// (requires vitest configured in this package, or run from runtime/
 //  After adjusting import path)
 import { describe, it, expect } from 'vitest';
 import {

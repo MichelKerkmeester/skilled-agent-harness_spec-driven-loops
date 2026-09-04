@@ -2,7 +2,7 @@
 // MODULE: Index, Public API surface
 // ────────────────────────────────────────────────────────────────
 // @public, Only export what external consumers (scripts/, other packages) need.
-// Internal mcp_server code should import from lib/ directly, not through this barrel.
+// Internal runtime code should import from lib/ directly, not through this barrel.
 // Consumer scripts import from '@spec-kit/runtime/api' instead of lib/.
 // Every export below has a named caller in the scripts workspace; adding one
 // without a caller re-widens the surface that made this package hard to shrink.

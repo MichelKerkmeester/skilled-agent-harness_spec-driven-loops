@@ -79,17 +79,17 @@ async function testBug001() {
     // runtime/core (config.ts defines DB_UPDATED_FILE; index.ts imports
     // and writes it). This test now asserts ownership lives in runtime/
     // and the retired scripts-side wrapper stays deleted (negative assertion).
-    const mcpServerCoreConfig = path.join(ROOT, 'runtime', 'core', 'config.ts');
-    const mcpServerCoreIndex = path.join(ROOT, 'runtime', 'core', 'index.ts');
+    const runtimeCoreConfig = path.join(ROOT, 'runtime', 'core', 'config.ts');
+    const runtimeCoreIndex = path.join(ROOT, 'runtime', 'core', 'index.ts');
     const scriptsMemoryIndexerTs = path.join(ROOT, 'scripts', 'core', 'memory-indexer.ts');
 
-    let mechanismInMcpServer = false;
-    if (fs.existsSync(mcpServerCoreConfig) && fs.existsSync(mcpServerCoreIndex)) {
-      const configSource = fs.readFileSync(mcpServerCoreConfig, 'utf8');
-      const indexSource = fs.readFileSync(mcpServerCoreIndex, 'utf8');
+    let mechanismInRuntime = false;
+    if (fs.existsSync(runtimeCoreConfig) && fs.existsSync(runtimeCoreIndex)) {
+      const configSource = fs.readFileSync(runtimeCoreConfig, 'utf8');
+      const indexSource = fs.readFileSync(runtimeCoreIndex, 'utf8');
       const configDefinesMarker = /\bDB_UPDATED_FILE\b/.test(configSource) && configSource.includes('.db-updated');
       const indexImportsMarker = /\bDB_UPDATED_FILE\b/.test(indexSource);
-      mechanismInMcpServer = configDefinesMarker && indexImportsMarker;
+      mechanismInRuntime = configDefinesMarker && indexImportsMarker;
     }
 
     let scriptsSideRetired = true;
@@ -98,12 +98,12 @@ async function testBug001() {
       scriptsSideRetired = !/\bnotifyDatabaseUpdated\b/.test(memoryIndexerSource);
     }
 
-    if (mechanismInMcpServer && scriptsSideRetired) {
+    if (mechanismInRuntime && scriptsSideRetired) {
       pass('T-005a: Notification mechanism in runtime/ (post-v3.4.1.0)',
            'DB_UPDATED_FILE defined in runtime/core/config.ts + imported in runtime/core/index.ts; scripts-side notifyDatabaseUpdated stays retired');
     } else {
       fail('T-005a: Notification mechanism in runtime/ (post-v3.4.1.0)',
-           `mechanismInMcpServer=${mechanismInMcpServer}, scriptsSideRetired=${scriptsSideRetired}`);
+           `mechanismInRuntime=${mechanismInRuntime}, scriptsSideRetired=${scriptsSideRetired}`);
     }
     
     // Test 2: Check detection in db-state.js (moved from context-server after modularization)
