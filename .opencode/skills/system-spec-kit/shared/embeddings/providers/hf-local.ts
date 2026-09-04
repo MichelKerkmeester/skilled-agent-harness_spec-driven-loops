@@ -51,7 +51,7 @@ const ADVISOR_OWNER_LEASE_FILE_NAME = '.skill-advisor-owner.json';
 // Task prefixes required by nomic-embed-text-v1.5
 // See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
 // NOTE: legacy compatibility export, not the current default, kept for consumers
-// (shared/embeddings.ts, shared/index.ts, mcp-server/lib/providers/embeddings.ts).
+// (shared/embeddings.ts, shared/index.ts, runtime/lib/providers/embeddings.ts).
 // New code should call getPrefixFor() instead — see PREFIX_REGISTRY below.
 /** Defines task prefix. */
 export const TASK_PREFIX: TaskPrefixMap = {
@@ -315,7 +315,7 @@ function parseBoundedPositiveInteger(value: string | undefined, fallback: number
 function systemSpecKitRoot(): string {
   let currentDir = path.dirname(fileURLToPath(import.meta.url));
   while (currentDir !== path.dirname(currentDir)) {
-    if (existsSync(path.join(currentDir, 'mcp-server')) && existsSync(path.join(currentDir, 'shared'))) {
+    if (existsSync(path.join(currentDir, 'runtime')) && existsSync(path.join(currentDir, 'shared'))) {
       return currentDir;
     }
     currentDir = path.dirname(currentDir);
@@ -327,7 +327,7 @@ function systemSpecKitRoot(): string {
     path.resolve(process.cwd(), '.opencode', 'skills', 'system-spec-kit'),
   ];
   for (const candidate of cwdCandidates) {
-    if (existsSync(path.join(candidate, 'mcp-server')) && existsSync(path.join(candidate, 'shared'))) {
+    if (existsSync(path.join(candidate, 'runtime')) && existsSync(path.join(candidate, 'shared'))) {
       return candidate;
     }
   }
@@ -347,7 +347,7 @@ function defaultSpawnAuthorityDbDir(): string {
   if (configuredDbPath) {
     return path.dirname(path.resolve(configuredDbPath));
   }
-  return path.join(systemSpecKitRoot(), 'mcp-server', 'database');
+  return path.join(systemSpecKitRoot(), 'runtime', 'database');
 }
 
 function normalizeListenTarget(value: string | undefined): string | null {
@@ -689,7 +689,20 @@ export class HfLocalProvider implements IEmbeddingProvider {
         timeoutMs,
       });
       const state = parseHealthState(response.body);
-      if (state === 'ready' || state === 'loading') {
+      if (state === 'ready') {
+        // A ready server that serves a different model would answer the first
+        // embed with a 404, so availability has to mean "ready for this model".
+        const expectedModel = options.model || process.env.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL;
+        const healthModel = parseHealthModel(response.body);
+        if (healthModel !== null && healthModel !== expectedModel) {
+          return {
+            available: false,
+            reason: `HF local model server at ${formatServerTarget(target)} serves ${healthModel}, not ${expectedModel}`,
+          };
+        }
+        return { available: true };
+      }
+      if (state === 'loading') {
         return { available: true };
       }
       if (state === 'error') {
@@ -826,8 +839,16 @@ export class HfLocalProvider implements IEmbeddingProvider {
         const state = parseHealthState(response.body);
         const healthModel = parseHealthModel(response.body);
         if (state === 'ready') {
+          if (healthModel !== null && healthModel !== this.modelName) {
+            // Latching ready here would hand every later embed a 404; failing
+            // now names the resident model so the caller can pick another tier.
+            this.isHealthy = false;
+            throw new Error(
+              `HF local model is not loaded: requested ${this.modelName}; server loaded ${healthModel}`,
+            );
+          }
           this.serverState = 'ready';
-          this.isHealthy = healthModel === null || healthModel === this.modelName;
+          this.isHealthy = true;
           this.readyLatch = { at: Date.now() };
           return;
         }
