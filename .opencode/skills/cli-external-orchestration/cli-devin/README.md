@@ -181,7 +181,7 @@ A: When the task benefits from a second AI perspective or a fresh context window
 
 **Q: Which model should I pick?**
 
-A: The default `swe` (alias for `swe-1-7-lightning`) balances speed and cost. Use `deepseek-v4-pro-max` or `gpt-5-6-luna-max` for reasoning-heavy work, `glm-5-2` for general generation, `swe-1-7` for max-effort SWE work and `swe-1-7-lightning` for quick edits. The curated roster lives in `references/providers-and-models.md` and the full family list is available through `devin models list`.
+A: The default `swe` (alias for `swe-1-7-lightning`) balances speed and cost. Use `gpt-5-6-luna-max` for reasoning-heavy work, `glm-5-2` for general generation, `swe-1-7` for max-effort SWE work and `swe-1-7-lightning` for quick edits. The curated roster lives in `references/providers-and-models.md` and the full family list is available through `devin models list`.
 
 **Q: Can Devin keep working after I close my laptop?**
 

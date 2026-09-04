@@ -239,7 +239,7 @@ Every OpenCode-side claim below is sourced from a live `opencode run --help` cap
 
 | Capability | Claude Code | OpenCode |
 |------------|-------------|-----------|
-| **Deep Reasoning** | `--effort` (low/medium/high/xhigh/max) | `--variant` (provider-specific reasoning effort — e.g. `high` default on `deepseek-v4-pro`, up to `xhigh` on the `openai/gpt-5.6-*` family) |
+| **Deep Reasoning** | `--effort` (low/medium/high/xhigh/max) | `--variant` (provider-specific reasoning effort — e.g. `high` default on `opencode-go/deepseek-v4-flash`, up to `xhigh` on the `openai/gpt-5.6-*` family) |
 | **Code Editing** | Built-in Edit tool (surgical diff-based) | Workspace-write sandbox via its own agent tool permissions |
 | **Structured Output** | `--json-schema` (schema-validated) | `--format json` newline-delimited event stream (prompt-shaped, not schema-validated) |
 | **Read-Only Mode** | `--permission-mode plan` (session-level flag) | No CLI-level read-only flag; achieved via a read-only agent's own tool permissions (e.g. the `context` subagent) |

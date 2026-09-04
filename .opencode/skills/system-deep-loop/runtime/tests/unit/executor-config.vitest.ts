@@ -792,7 +792,7 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
       'cursor-grok-4.6-medium-fast',
       'cursor-grok-4.6-xhigh',
       'cursor-grok-4.6-xhigh-fast',
-      'gemini-3.7-flash-high',
+      'gemini-3.8-flash-high',
       'glm-5.2-high',
       'glm-5.2-max',
       'gpt-5.6-luna-max',
@@ -813,7 +813,8 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
     expect(isCursorModelAllowed('auto')).toBe(false);
     expect(isCursorModelAllowed('gpt-5.6-sol-high-fast')).toBe(false);
     expect(isCursorModelAllowed('claude-opus-4-8-xhigh')).toBe(false);
-    expect(isCursorModelAllowed('gemini-3.7-flash-low')).toBe(false);
+    expect(isCursorModelAllowed('gemini-3.8-flash-low')).toBe(false);
+    expect(isCursorModelAllowed('gemini-3.7-flash-high')).toBe(false);
   });
 });
 
@@ -823,7 +824,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'deepseek-v4-flash',
       'deepseek/deepseek-v4-flash-latest',
       'glm-5.3-flash',
-      'google/gemini-3.7-flash',
+      'google/gemini-3.8-flash',
       'gpt-5.6-luna',
       'gpt-5.6-sol',
       'mimo-v2.5-pro',
@@ -868,7 +869,7 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(isFlashMaxPinnedModel('deepseek-v4-flash-max')).toBe(false);
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash-max')).toBe(false);
     expect(isFlashMaxPinnedModel('qwen3.8-max')).toBe(false);
-    expect(isFlashMaxPinnedModel('google/gemini-3.7-flash')).toBe(false);
+    expect(isFlashMaxPinnedModel('google/gemini-3.8-flash')).toBe(false);
     expect(isFlashMaxPinnedModel('openai/gpt-5.6-luna')).toBe(false);
   });
 

@@ -310,3 +310,10 @@ specs/**/lineages/*/.codex-home/
 # never belongs in history: a committed one outlives its process and describes an
 # owner that no longer exists.
 .canonical-save.lock/
+
+# The spec-kit retrieval index and its backups. These are rebuilt from the spec
+# tree on demand and reach tens of gigabytes, so they are machine state rather
+# than history: committing one would bloat every clone forever to describe an
+# index that is stale the moment a spec doc changes.
+.opencode/skills/system-spec-kit/mcp-server/database/
+.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl

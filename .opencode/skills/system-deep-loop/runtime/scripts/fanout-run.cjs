@@ -1971,7 +1971,7 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
 // Grok 4.5 (2026-08-12) — both versions are live and dispatchable on Cursor.
 // GPT-5.6 Luna Max (gpt-5.6-luna-max, gpt-5.6-luna-max-fast) joined 2026-08-14,
 // list-verified via `cursor-agent --list-models` (not dispatch-tested).
-// Gemini 3.7 Flash High (gemini-3.7-flash-high) joined 2026-08-15, the first
+// Gemini 3.8 Flash High (gemini-3.8-flash-high) replaced the 3.7 tier on 2026-09-04; the first
 // Gemini id in the curated Cursor scope — list-verified and dispatch-tested.
 const CURSOR_ALLOWED_MODELS = new Set([
   'composer-2.5',
@@ -1990,7 +1990,7 @@ const CURSOR_ALLOWED_MODELS = new Set([
   'cursor-grok-4.6-medium-fast',
   'cursor-grok-4.6-xhigh',
   'cursor-grok-4.6-xhigh-fast',
-  'gemini-3.7-flash-high',
+  'gemini-3.8-flash-high',
   'glm-5.2-high',
   'glm-5.2-max',
   'gpt-5.6-luna-max',
@@ -2015,7 +2015,7 @@ const PI_ALLOWED_MODELS = new Set([
   // openrouter/<upstream>/<model> selector. No other model routes through OpenRouter.
   'deepseek/deepseek-v4-flash-latest',
   'z-ai/glm-5.3-flash',
-  'google/gemini-3.7-flash',
+  'google/gemini-3.8-flash',
   // opencode-go also fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
   // composes opencode-go/glm-5.3-flash — distinct from the OpenRouter `z-ai/` literal above.
   // GLM-5.3-Flash on Cline reuses the SAME `z-ai/glm-5.3-flash` literal as OpenRouter, and one
@@ -2119,15 +2119,12 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // DeepSeek max tiers (deepseek-v4-flash-max, deepseek-v4-pro-max) and the first
 // GPT-5.6 persona uids (gpt-5-6-luna-max, gpt-5-6-luna-max-priority; -priority
 // is Devin's Fast variant) joined 2026-08-14, list-verified via `devin models
-// list` (not dispatch-tested). Gemini 3.7 Flash High (gemini-3-7-flash-high)
+// list` (not dispatch-tested). Gemini 3.8 Flash High (gemini-3-8-flash-high)
 // joined 2026-08-15, the first Gemini uid in the curated Devin scope —
 // list-verified and dispatch-tested.
 const DEVIN_ALLOWED_MODELS = new Set([
-  'deepseek-v4',
   'deepseek-v4-flash-max',
-  'deepseek-v4-pro',
-  'deepseek-v4-pro-max',
-  'gemini-3-7-flash-high',
+  'gemini-3-8-flash-high',
   'glm-5-2',
   'glm-5-2-1m',
   'glm-5-2-max',
@@ -2223,7 +2220,7 @@ const PI_MODEL_PROVIDERS = new Map([
   // the 3-segment openrouter/<upstream>/<model> selector Pi's OpenRouter roster expects.
   ['deepseek/deepseek-v4-flash-latest', 'openrouter'],
   ['z-ai/glm-5.3-flash', 'openrouter'],
-  ['google/gemini-3.7-flash', 'openrouter'],
+  ['google/gemini-3.8-flash', 'openrouter'],
   // opencode-go fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}` yields
   // the opencode-go/glm-5.3-flash selector. Distinct from the OpenRouter `z-ai/` literal above.
   ['glm-5.3-flash', 'opencode-go'],

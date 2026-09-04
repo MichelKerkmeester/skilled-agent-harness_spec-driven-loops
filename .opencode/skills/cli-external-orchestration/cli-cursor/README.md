@@ -45,7 +45,7 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 | Guard | What the skill knows how to operate |
 |---|---|
 | **Smart router** | Score task intent across code generation, review, Composer dispatch, read-only plan or ask exploration and agent delegation, then load only the matching references |
-| **Model allowlist** | Enforce the exact 21 Cursor model ids across Composer, Gemini 3.7 Flash High, GLM 5.2, GPT-5.6 Luna Max and Grok (4.5 and 4.6), rejecting `auto` and parameterized `model[effort=...]` brackets |
+| **Model allowlist** | Enforce the exact 21 Cursor model ids across Composer, Gemini 3.8 Flash High, GLM 5.2, GPT-5.6 Luna Max and Grok (4.5 and 4.6), rejecting `auto` and parameterized `model[effort=...]` brackets |
 | **Auth pre-flight** | Read `cursor-agent about` output text and halt on "Not logged in" before the first dispatch |
 | **Self-invocation guard** | Detect `CURSOR_AGENT` or `CURSOR_CONVERSATION_ID` plus `cursor-agent` process ancestry, then refuse to load |
 | **Memory handback** | Extract a live Cursor session's context in 7 steps and persist it through `generate-context.js` |
@@ -126,7 +126,7 @@ When any layer matches, the skill returns a refusal and loads nothing. The cli-X
 
 ### Model Selection And Execution Modes
 
-Dispatch is scoped to an enforced 21-id allowlist. Cursor's own `auto` router is deliberately excluded, since it can silently resolve outside the set. **Composer** (`composer-2.5` and `composer-2.5-fast`) is Cursor's native model and the skill default — those are Composer's only two tiers; it has no `-max` (1M-context "Max Mode") variant, so there is no Composer Max Mode to dispatch. **Gemini 3.7 Flash High** (`gemini-3.7-flash-high`) is the first Gemini id in the curated scope. **GLM 5.2** (`glm-5.2-high`, `glm-5.2-max`), **GPT-5.6 Luna Max** (`gpt-5.6-luna-max`, `gpt-5.6-luna-max-fast`), and **Grok** (4.5's 6 tiers `cursor-grok-4.5-{low,medium,high}[-fast]` and 4.6's 8 tiers `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]`) round out the allowlist. Effort tiers are baked directly into a model id. There is no `--reasoning-effort` flag. The parameterized `model[effort=...]` bracket some sibling CLIs support is rejected outright by Cursor CLI.
+Dispatch is scoped to an enforced 21-id allowlist. Cursor's own `auto` router is deliberately excluded, since it can silently resolve outside the set. **Composer** (`composer-2.5` and `composer-2.5-fast`) is Cursor's native model and the skill default — those are Composer's only two tiers; it has no `-max` (1M-context "Max Mode") variant, so there is no Composer Max Mode to dispatch. **Gemini 3.8 Flash High** (`gemini-3.8-flash-high`) is the first Gemini id in the curated scope. **GLM 5.2** (`glm-5.2-high`, `glm-5.2-max`), **GPT-5.6 Luna Max** (`gpt-5.6-luna-max`, `gpt-5.6-luna-max-fast`), and **Grok** (4.5's 6 tiers `cursor-grok-4.5-{low,medium,high}[-fast]` and 4.6's 8 tiers `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]`) round out the allowlist. Effort tiers are baked directly into a model id. There is no `--reasoning-effort` flag. The parameterized `model[effort=...]` bracket some sibling CLIs support is rejected outright by Cursor CLI.
 
 Three execution modes govern how a dispatch behaves: the default agent mode (reads and writes, gated by approval flags), `--mode plan` (read-only planning) and `--mode ask` (read-only Q&A). Approval is a separate axis from the sandbox. `--auto-review` (Smart Auto) auto-runs safe actions and prompts for the rest. `--force` and `--yolo` (Run Everything) never prompt. Omitting both leaves Cursor's own default prompt-and-block behavior in place, which cannot proceed unattended.
 
@@ -188,7 +188,7 @@ A: You can. This skill exists for when an external AI assistant (Claude Code, Co
 
 **Q: When do I pick Composer over Grok or GLM?**
 
-A: Pick `composer-2.5` or `composer-2.5-fast` (the default) when the task specifically wants Cursor's own house model or when no other model is named. Pick `cursor-grok-4.5-{low,medium,high}[-fast]`, `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]`, `gemini-3.7-flash-high`, `glm-5.2-{high,max}`, or `gpt-5.6-luna-{max,max-fast}` when the task or user explicitly names Grok, Gemini 3.7 Flash High, GLM, or GPT-5.6 Luna Max. Dispatch is enforced to exactly these 21 ids. Every other hosted GPT persona/tier, plus Claude, other Gemini and Kimi ids and `auto`, are all out of scope for this skill.
+A: Pick `composer-2.5` or `composer-2.5-fast` (the default) when the task specifically wants Cursor's own house model or when no other model is named. Pick `cursor-grok-4.5-{low,medium,high}[-fast]`, `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]`, `gemini-3.8-flash-high`, `glm-5.2-{high,max}`, or `gpt-5.6-luna-{max,max-fast}` when the task or user explicitly names Grok, Gemini 3.8 Flash High, GLM, or GPT-5.6 Luna Max. Dispatch is enforced to exactly these 21 ids. Every other hosted GPT persona/tier, plus Claude, other Gemini and Kimi ids and `auto`, are all out of scope for this skill.
 
 **Q: The task ran but nothing changed. What happened?**
 

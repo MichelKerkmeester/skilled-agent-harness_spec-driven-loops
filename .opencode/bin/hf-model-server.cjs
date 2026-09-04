@@ -12,6 +12,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
+const crypto = require('crypto');
 const http = require('http');
 const net = require('net');
 const path = require('path');
@@ -190,6 +191,33 @@ function assertLoopbackBindAllowed(target, options = {}) {
   );
   error.code = 'EPERM_NONLOOPBACK_BIND';
   throw error;
+}
+
+// The bind guard lets an operator open a routable interface only when a token is
+// configured, so the token has to be checked on every request too, or the opt-in
+// buys nothing: the guard would gate the bind while the route stayed open to
+// anyone who could reach the port. When no token is configured the server is
+// loopback-only by the guard above and the check is a no-op.
+function configuredAuthToken(env = process.env) {
+  return typeof env.HF_EMBED_AUTH_TOKEN === 'string' ? env.HF_EMBED_AUTH_TOKEN.trim() : '';
+}
+
+function assertRequestAuthorized(headers, options = {}) {
+  const expected = configuredAuthToken(options.env ?? process.env);
+  if (expected.length === 0) {
+    return;
+  }
+  const raw = headers && typeof headers.authorization === 'string' ? headers.authorization.trim() : '';
+  const presented = raw.toLowerCase().startsWith('bearer ') ? raw.slice(7).trim() : '';
+  const expectedBuffer = Buffer.from(expected, 'utf8');
+  const presentedBuffer = Buffer.from(presented, 'utf8');
+  const matches = presentedBuffer.length === expectedBuffer.length
+    && crypto.timingSafeEqual(presentedBuffer, expectedBuffer);
+  if (!matches) {
+    const error = new Error('Unauthorized: this embedding server requires a bearer token');
+    error.code = 'EAUTH_EMBED_TOKEN';
+    throw error;
+  }
 }
 
 // Perimeter guard: assert the socket directory is owned by the current
@@ -941,6 +969,12 @@ function createHfModelServer(options = {}) {
 
   async function requestHandler(request, response) {
     const url = new URL(request.url || '/', 'http://127.0.0.1');
+    try {
+      assertRequestAuthorized(request.headers, { env: options.env ?? process.env });
+    } catch (error) {
+      writeJson(response, 401, { error: getErrorMessage(error) });
+      return;
+    }
     let body = {};
     if (request.method === 'POST') {
       try {
@@ -1170,6 +1204,7 @@ module.exports = {
   SOCKET_FILE_NAME,
   SOCKET_RESIDENT_PROBE_TIMEOUT_MS,
   assertLoopbackBindAllowed,
+  assertRequestAuthorized,
   assertSingleSessionBeforeDispose,
   assertSocketDirOwnership,
   computeShutdownFailsafeMs,

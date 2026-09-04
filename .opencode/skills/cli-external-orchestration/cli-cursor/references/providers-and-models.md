@@ -68,7 +68,7 @@ Sorted alphabetically by model id, not grouped by family.
 | 18 | `glm-5.2-max` | GLM 5.2 (via Cursor) | — | Z.AI GLM 5.2, Max (paid) tier |
 | 19 | `gpt-5.6-luna-max` | GPT-5.6 Luna (via Cursor) | — | Max thinking tier; first GPT-5.6 persona in the allowlist |
 | 20 | `gpt-5.6-luna-max-fast` | GPT-5.6 Luna (via Cursor) | — | Max tier, low-latency `-fast` variant |
-| 21 | `gemini-3.7-flash-high` | Gemini 3.7 (via Cursor) | — | Google Gemini 3.7 Flash, High thinking tier; Cursor displays it as "Gemini 3.7 Flash" — the tier lives in the id suffix |
+| 21 | `gemini-3.8-flash-high` | Gemini 3.8 (via Cursor) | — | Google Gemini 3.8 Flash, High thinking tier; Cursor displays it as "Gemini 3.8 Flash" — the tier lives in the id suffix |
 
 **Any other id — including `auto`, every other GPT-5.6 persona/tier, and every Claude / other Gemini / Kimi id in Cursor's full roster — is out of scope.** Escalate to the operator rather than dispatching or silently substituting the closest-sounding allowed model. Do NOT query `cursor-agent --list-models` to justify an off-list id; that command lists Cursor's full roster, not this skill's scope.
 
@@ -76,7 +76,7 @@ Sorted alphabetically by model id, not grouped by family.
 
 **GPT-5.6 Luna Max joins the allowlist (2026-08-14).** `gpt-5.6-luna-max` and `gpt-5.6-luna-max-fast` are the first GPT-5.6 persona ids in the curated Cursor scope (18 → 20). Both were confirmed present verbatim in the live `cursor-agent --list-models` output on 2026-08-14 ("GPT-5.6 Luna 1M Max" / "GPT-5.6 Luna Max Fast"). Only the Max tier is curated in-scope — the other Luna tiers (none/low/medium/high/xhigh) and the Sol/Terra personas remain out of scope. Unlike the Grok 4.6 ids, these two were **list-verified only, not dispatch-tested** (operator decision), so this catalog makes no dispatch-test claim for them.
 
-**Gemini 3.7 Flash High joins the allowlist (2026-08-15).** `gemini-3.7-flash-high` is the first Gemini id in the curated Cursor scope (20 → 21). Cursor's display name for it is just "Gemini 3.7 Flash" — the High tier lives in the id suffix, unlike sibling tiers `gemini-3.7-flash-low` and `gemini-3.7-flash-medium`, which stay out of scope. The id was confirmed present verbatim in the live `cursor-agent --list-models` output and **dispatch-tested end-to-end** on 2026-08-15 (probe dispatch returned a live model response, exit 0).
+**Gemini 3.8 Flash High joins the allowlist (2026-08-15).** `gemini-3.8-flash-high` is the first Gemini id in the curated Cursor scope (20 → 21). Cursor's display name for it is just "Gemini 3.8 Flash" — the High tier lives in the id suffix, unlike sibling tiers `gemini-3.8-flash-low` and `gemini-3.8-flash-medium`, which stay out of scope. The id was confirmed present verbatim in the live `cursor-agent --list-models` output and **dispatch-tested end-to-end** on 2026-08-15 (probe dispatch returned a live model response, exit 0).
 
 ---
 
@@ -111,7 +111,7 @@ If Cursor is not authenticated, the mode ASKS the operator to run `cursor-agent 
 | Family | How to select effort | Available tiers (as id suffixes) |
 |--------|----------------------|----------------------------------|
 | Composer | No tier suffix; `-fast` is a latency variant, not an effort tier | `composer-2.5`, `composer-2.5-fast` |
-| Gemini 3.7 | Pick the exact tiered id; only High is curated in-scope | `gemini-3.7-flash-high` |
+| Gemini 3.8 | Pick the exact tiered id; only High is curated in-scope | `gemini-3.8-flash-high` |
 | GLM 5.2 | Pick the exact tiered id | `-high`, `-max` |
 | GPT-5.6 Luna | Only the Max tier is curated in-scope; `-fast` is the low-latency variant | `gpt-5.6-luna-max`, `gpt-5.6-luna-max-fast` |
 | Grok 4.5 | Pick the exact id with the desired tier suffix (each has a `-fast` sibling) | `-low`, `-low-fast`, `-medium`, `-medium-fast`, `-high`, `-high-fast` |

@@ -193,11 +193,11 @@ export const PI_SUPPORTED_MODELS = [
   // OpenRouter carries three models here, each keeping its upstream provider path so
   // `${provider}/${model}` composes the full three-segment OpenRouter selector:
   // DeepSeek V4 Flash (openrouter/deepseek/deepseek-v4-flash-latest), GLM-5.3-Flash
-  // (openrouter/z-ai/glm-5.3-flash), and Gemini 3.7 Flash (openrouter/google/gemini-3.7-flash).
+  // (openrouter/z-ai/glm-5.3-flash), and Gemini 3.8 Flash (openrouter/google/gemini-3.8-flash).
   // No other model routes through OpenRouter.
   'deepseek/deepseek-v4-flash-latest',
   'z-ai/glm-5.3-flash',
-  'google/gemini-3.7-flash',
+  'google/gemini-3.8-flash',
   // opencode-go also fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
   // composes opencode-go/glm-5.3-flash — a distinct literal from the OpenRouter `z-ai/` one
   // above, so each routes to its own provider. GLM-5.3-Flash on Cline reuses the SAME
@@ -278,7 +278,8 @@ export function pinReasoningEffortForModel(
  * dispatch-test claim is made for them.
  *
  * Gemini 3.7 Flash High joined this allowlist (2026-08-15):
- * gemini-3.7-flash-high — the first Gemini id in the curated Cursor scope.
+ * gemini-3.8-flash-high — the Gemini id in the curated Cursor scope, moved up
+ * from 3.7 on 2026-09-04 once cursor-agent listed the 3.8 tiers.
  * Cursor's display name is just "Gemini 3.7 Flash" but the id carries the
  * -high suffix; the low and medium sibling tiers stay out of scope.
  * Confirmed present verbatim in the live `cursor-agent --list-models` output
@@ -302,7 +303,7 @@ export const CURSOR_SUPPORTED_MODELS = [
   'cursor-grok-4.6-medium-fast',
   'cursor-grok-4.6-xhigh',
   'cursor-grok-4.6-xhigh-fast',
-  'gemini-3.7-flash-high',
+  'gemini-3.8-flash-high',
   'glm-5.2-high',
   'glm-5.2-max',
   'gpt-5.6-luna-max',
@@ -349,7 +350,9 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * dispatch-test claim is made for them.
  *
  * Gemini 3.7 Flash High joined this allowlist (2026-08-15):
- * gemini-3-7-flash-high — the first Gemini uid in the curated Devin scope
+ * gemini-3-8-flash-high — the Gemini uid in the curated Devin scope, moved up
+ * from 3.7 on 2026-09-04. Devin also moved its bare `gemini` alias onto the 3.8
+ * family, and prices 3.8 at twice 3.7
  * (sixth curated family). Devin labels it "Gemini 3.7 Flash High" with a 1M
  * context window; the minimal/low/medium sibling tiers stay out of scope.
  * Confirmed present verbatim in the live `devin models list` output and
@@ -357,11 +360,8 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * exit 0) on 2026-08-15.
  */
 export const DEVIN_SUPPORTED_MODELS = [
-  'deepseek-v4',
   'deepseek-v4-flash-max',
-  'deepseek-v4-pro',
-  'deepseek-v4-pro-max',
-  'gemini-3-7-flash-high',
+  'gemini-3-8-flash-high',
   'glm-5-2',
   'glm-5-2-1m',
   'glm-5-2-max',

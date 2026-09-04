@@ -488,15 +488,21 @@ async function readIncomingMessage(response: IncomingMessage): Promise<unknown> 
 
 async function nodeHttpTransport(request: HfLocalTransportRequest): Promise<HfLocalJsonResponse> {
   const requestBody = request.body === undefined ? undefined : JSON.stringify(request.body);
+  // The server enforces the same token on every request once one is configured,
+  // so the client presents it whenever the environment carries it.
+  const authToken = typeof process.env.HF_EMBED_AUTH_TOKEN === 'string' ? process.env.HF_EMBED_AUTH_TOKEN.trim() : '';
+  const headers: Record<string, string | number> = {};
+  if (requestBody !== undefined) {
+    headers['content-type'] = 'application/json';
+    headers['content-length'] = Buffer.byteLength(requestBody);
+  }
+  if (authToken.length > 0) {
+    headers.authorization = `Bearer ${authToken}`;
+  }
   const options: RequestOptions = {
     method: request.method,
     path: request.path,
-    headers: requestBody === undefined
-      ? undefined
-      : {
-          'content-type': 'application/json',
-          'content-length': Buffer.byteLength(requestBody),
-        },
+    headers: Object.keys(headers).length > 0 ? headers : undefined,
   };
 
   if (request.target.kind === 'tcp') {

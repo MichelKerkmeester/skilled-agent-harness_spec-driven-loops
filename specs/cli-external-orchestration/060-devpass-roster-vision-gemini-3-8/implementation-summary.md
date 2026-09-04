@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "cli-external-orchestration/060-devpass-roster-vision-gemini-3-8"
     last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Created stub doc; implementation not started"
-    next_safe_action: "Run T002 baseline capture, then execute WS1-WS3"
+    recent_action: "All six workstreams shipped and verified"
+    next_safe_action: "None - work is complete and verified"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-060-devpass-vision-gemini"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 060-devpass-roster-vision-gemini-3-8 |
-| **Completed** | Not completed |
+| **Completed** | 2026-09-04 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,29 +48,31 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This packet is planned, not implemented. It exists so the DevPass
-onboarding, the vision rollout, the Gemini version swap, the DeepSeek V4 Pro retirement
-and the pi-config repair are all specified before any skill document or enforced roster
-is edited, and this file is the stub that will hold the write-up once that work runs.
+Six workstreams that all reduce to one thing: every model fact the CLI hub states now matches what the live CLIs accept.
 
-What has been done is research, and it is banked rather than remembered. The DevPass
-credential was confirmed live, the four chosen models were read out of the provider
-catalog with their thinking ladders and prices, the vision variant was checked
-provider by provider, and the operator's gate on the widest Gemini reach was run
-against both the cursor and devin CLIs. Those captures sit in `scratch/baseline/` so
-the next session reads evidence instead of trusting a summary of it.
+**DevPass reaches both CLIs.** Five models on a provider that was authenticated in opencode but catalogued nowhere, so a paid subscription was unusable from either skill. The rule that could not be copied from the neighbouring Cline block is the model id — LLM Gateway takes a bare id and rejects a prefixed one, the exact inverse — and it was settled by negative control against the live API before any config was written.
+
+**Vision is documented from measurement, not from a flag.** Three of the five DevPass entries accept images. A generated solid-colour PNG was put through each: Luna and Gemini 3.8 named the colour correctly; DeepSeek V4 Flash Vision got it right once in three tries. That last result is the one worth having — `attachment: true` was never evidence that a model reads what it is sent, and the catalogs now carry the measured behaviour instead of the capability bit.
+
+**Gemini moved 3.7 to 3.8 across four CLI modes and three enforced rosters**, with both the cursor and devin ids dispatch-tested rather than list-verified.
+
+**DeepSeek V4 Pro is gone.** It survived on one roster under three ids, because `deepseek-v4` is the family uid and a grep for `-pro` reports a clean removal while leaving the model dispatchable. Removing the ids was the easy half; five documents recommended it for reasoning-heavy work and now name `gpt-5-6-luna-max`. Leaving those would have converted a documentation problem into a dispatch-time rejection.
+
+**The pi config is repaired**, and a CI gate that had been failing on both branches is fixed: eleven hook symlinks in the per-runtime mirrors were orphaned when the memory decommission rewired those configs to call `.opencode/` paths directly.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Created | The scope, the four-model roster, and the two false claims to correct |
-| `plan.md` | Created | Three workstreams over one verification gate |
-| `tasks.md` | Created | Ordered tasks; Phase 1 complete, Phases 2 and 3 pending |
-| `acceptance-criteria.md` | Created | Twelve closure criteria, all Unmet |
-| `scratch/baseline/` | Created | Four live captures backing the Phase 1 claims |
-
-No file outside this packet folder has been touched.
+| `cli-opencode/references/providers-and-models.md` | Modified | DevPass section, vision rows, Gemini 3.8, per-model variant row |
+| `cli-pi/references/providers-and-models.md` | Modified | DevPass section, Gemini 3.8, V4 Pro removal |
+| `cli-cursor/` (5 surfaces), `cli-devin/` (4 surfaces) | Modified | Gemini 3.8; V4 Pro retired and its recommendations repointed |
+| `cli-claude-code/references/claude-tools.md` | Modified | `--variant` example no longer names a retired model |
+| `executor-config.ts`, `fanout-run.cjs` | Modified | Three rosters: Gemini 3.8, three V4 Pro ids removed |
+| `executor-config.vitest.ts`, `fanout-run.vitest.ts` | Modified | Fixtures plus negatives asserting the retired ids reject |
+| `.pi/models.json`, `.pi/settings.json`, `.pi/custom-providers.md` | Modified | DevPass provider, V4 Pro deleted, Gemini enabled |
+| `.claude/`, `.codex/`, `.cursor/`, `.devin/` hooks | Deleted | 11 orphaned mirror symlinks failing the parity gate |
+| `.gitignore` | Modified | The 26 GB retrieval index and its decisions log |
 <!-- /ANCHOR:what-built -->
 
 ---

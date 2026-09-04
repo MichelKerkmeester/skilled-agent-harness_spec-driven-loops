@@ -188,6 +188,37 @@ describe('DR-002-P1-001 tcp:// loopback bind enforcement', () => {
   });
 });
 
+// ── Request-boundary token enforcement ────────────────────────────────────────
+
+describe('request authorization when a token is configured', () => {
+  const env = { HF_EMBED_AUTH_TOKEN: 's3cret' };
+
+  it('is a no-op when no token is configured', () => {
+    expect(() => mod.assertRequestAuthorized({}, { env: {} })).not.toThrow();
+  });
+
+  it('rejects a request with no authorization header', () => {
+    expect(() => mod.assertRequestAuthorized({}, { env })).toThrowError(/bearer token/i);
+  });
+
+  it('rejects a wrong token and a non-bearer scheme', () => {
+    expect(() => mod.assertRequestAuthorized({ authorization: 'Bearer nope' }, { env })).toThrowError(/bearer token/i);
+    expect(() => mod.assertRequestAuthorized({ authorization: 'Basic s3cret' }, { env })).toThrowError(/bearer token/i);
+    let code: string | undefined;
+    try {
+      mod.assertRequestAuthorized({ authorization: 'Bearer nope' }, { env });
+    } catch (e) {
+      code = (e as NodeJS.ErrnoException).code;
+    }
+    expect(code).toBe('EAUTH_EMBED_TOKEN');
+  });
+
+  it('accepts the configured token as a bearer credential', () => {
+    expect(() => mod.assertRequestAuthorized({ authorization: 'Bearer s3cret' }, { env })).not.toThrow();
+    expect(() => mod.assertRequestAuthorized({ authorization: 'bearer s3cret' }, { env })).not.toThrow();
+  });
+});
+
 // ── Socket-dir ownership assertion ────────────────────────────────────────────
 
 describe('DR-001-P2-001 socket-dir ownership assertion', () => {

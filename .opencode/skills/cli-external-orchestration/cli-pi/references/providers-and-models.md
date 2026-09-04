@@ -85,13 +85,13 @@ OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--pro
 
 OpenRouter passthrough (base `https://openrouter.ai/api/v1`). Select with `--provider openrouter --model <upstream>/<id>`; the deep-loop fan-out composes the full `openrouter/<upstream>/<id>` selector from the allowlisted model literal (the literal keeps its upstream provider path, so `${provider}/${model}` is three segments here). The DeepSeek Flash `-latest` variant is a reasoning model and is pinned to `--thinking max` by the same policy as the bare id.
 
-> **OpenRouter here carries exactly three models: DeepSeek V4 Flash (`deepseek/deepseek-v4-flash-latest`), GLM-5.3-Flash (`z-ai/glm-5.3-flash`), and Gemini 3.7 Flash (`google/gemini-3.7-flash`).** No other model may be routed through OpenRouter — these are the only three entries in the Pi OpenRouter allowlist. Other models (e.g. GPT-5.6 Luna/Sol) must go through their own providers (openai-codex, etc.), never OpenRouter.
+> **OpenRouter here carries exactly three models: DeepSeek V4 Flash (`deepseek/deepseek-v4-flash-latest`), GLM-5.3-Flash (`z-ai/glm-5.3-flash`), and Gemini 3.8 Flash (`google/gemini-3.8-flash`).** No other model may be routed through OpenRouter — these are the only three entries in the Pi OpenRouter allowlist. Other models (e.g. GPT-5.6 Luna/Sol) must go through their own providers (openai-codex, etc.), never OpenRouter.
 
 | Model id | Notes |
 |----------|-------|
 | `deepseek/deepseek-v4-flash-latest` | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--thinking max`. Distinct from the opencode-go-routed bare `deepseek-v4-flash`. Dispatched as `openrouter/deepseek/deepseek-v4-flash-latest` |
 | `z-ai/glm-5.3-flash` | GLM-5.3-Flash via OpenRouter; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has **no `xhigh`** — pinned to `--thinking max`; ladder re-verified in `opencode models openrouter --verbose` on 2026-09-04. Dispatched as `openrouter/z-ai/glm-5.3-flash`. Replaces the retired Ox Alpha stealth route. **The top tier is per-route:** `max` on OpenRouter and opencode-go, `xhigh` only on Cline, whose `.pi` tier map already reflects that |
-| `google/gemini-3.7-flash` | Gemini 3.7 Flash via OpenRouter; reasoning model (variants `low`/`medium`/`high`) dispatched at its top tier `--thinking high`; list-verified in `opencode models openrouter` on 2026-08-27 (not dispatch-tested). Dispatched as `openrouter/google/gemini-3.7-flash` |
+| `google/gemini-3.8-flash` | Gemini 3.8 Flash via OpenRouter; reasoning model (variants `low`/`medium`/`high`) dispatched at its top tier `--thinking high` — no `xhigh`, no `max`; list-verified in `opencode models openrouter` on 2026-09-04. Dispatched as `openrouter/google/gemini-3.8-flash` |
 
 ### cline-pass
 
@@ -123,10 +123,10 @@ Effort policy: the five ladders differ, so there is no single tier for this prov
 | Model id | Notes |
 |----------|-------|
 | `llmgateway/deepseek-v4-flash` | DeepSeek V4 Flash via DevPass; reasoning, full ladder `minimal`→**`max`**; context 1.05M, output 384K. Dispatch-verified 2026-09-04 (real pi turn at `--thinking max`) |
-| `llmgateway/deepseek-v4-flash-vision-exp` | DeepSeek V4 Flash Vision; image-capable, as are `gpt-5.6-luna` and `gemini-3.8-flash` below. Sparse ladder — **only `low`, `high`, `max`**; context 1.05M, output 384K. Dispatch-verified 2026-09-04 at `--thinking max` (text round-trip; image input not yet exercised) |
+| `llmgateway/deepseek-v4-flash-vision-exp` | DeepSeek V4 Flash Vision; image-capable, as are `gpt-5.6-luna` and `gemini-3.8-flash` below. Sparse ladder — **only `low`, `high`, `max`**; context 1.05M, output 384K. Dispatch-verified 2026-09-04 at `--thinking max`. **Image reads are unreliable** — 1 correct out of 3 solid-colour probes; the image arrives, the answer cannot be trusted from one sample |
 | `llmgateway/glm-5.3-flash` | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route that has both. Context 1.05M, output 131K. Dispatch-verified 2026-09-04 at `--thinking max` |
-| `llmgateway/gpt-5.6-luna` | GPT-5.6 Luna via DevPass; reasoning **and vision**; `minimal` is unmapped here so its pi ladder runs `low`→**`max`** (pi's lowest tier is `off`, not `none`). Context 1.05M (input cap 922K), output 128K. **`temperature` unsupported** on this entry. Dispatch-verified 2026-09-04 at `--thinking max`. Same model family as the `openai-codex` Luna slugs, different route and different billing — pick deliberately |
-| `llmgateway/gemini-3.8-flash` | Gemini 3.8 Flash via DevPass; reasoning, ladder tops at **`high`** — no `xhigh`, no `max`. Context 1.05M, output 1.05M. Dispatch-verified 2026-09-04 at `--thinking high` |
+| `llmgateway/gpt-5.6-luna` | GPT-5.6 Luna via DevPass; reasoning **and vision** (image round-trip verified 2026-09-04); `minimal` is unmapped here so its pi ladder runs `low`→**`max`** (pi's lowest tier is `off`, not `none`). Context 1.05M (input cap 922K), output 128K. **`temperature` unsupported** on this entry. Dispatch-verified 2026-09-04 at `--thinking max`. Same model family as the `openai-codex` Luna slugs, different route and different billing — pick deliberately |
+| `llmgateway/gemini-3.8-flash` | Gemini 3.8 Flash via DevPass; reasoning and vision (image round-trip verified 2026-09-04); ladder tops at **`high`** — no `xhigh`, no `max`. Context 1.05M, output 1.05M. Dispatch-verified 2026-09-04 at `--thinking high` |
 
 Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the seven authenticated providers above have a confirmed installed catalog.
 

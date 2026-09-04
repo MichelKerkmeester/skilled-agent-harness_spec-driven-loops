@@ -1,1 +1,0 @@
-../../.opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-end.js

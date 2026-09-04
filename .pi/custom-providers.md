@@ -34,13 +34,13 @@ The free Ox Alpha tune was retired from this block and replaced by GLM-5.3-Flash
 - Enabled in the picker: `.pi/settings.json` under `enabledModels`, entries `"cline-pass/cline-pass/deepseek-v4-flash"` and `"cline-pass/z-ai/glm-5.3-flash"`. **DeepSeek V4 Pro is declared in the provider block but is NOT in `enabledModels`**, so it is dispatchable by explicit `--model` and absent from the picker
 - Default: `.pi/settings.json` `defaultProvider` is `"cline-pass"` and `defaultModel` is `"z-ai/glm-5.3-flash"` (operator-selected; set it to any cline-pass model)
 
-**Model ids**: the pi reference is three-segment — provider `cline-pass` plus the model `id`. The DeepSeek entries keep a `cline-pass/` prefix (`cline-pass/cline-pass/deepseek-v4-flash`, `…/deepseek-v4-pro`), matching opencode's form. **GLM-5.3-Flash is different**: its Cline `id` carries the vendor prefix `z-ai/glm-5.3-flash`, so its reference is `cline-pass/z-ai/glm-5.3-flash`, not `cline-pass/glm-5.3-flash`. Both forms still satisfy Cline's required `modelType/model` shape (see the model-id gotcha below).
+**Model ids**: the pi reference is three-segment — provider `cline-pass` plus the model `id`. The DeepSeek entry keeps a `cline-pass/` prefix (`cline-pass/cline-pass/deepseek-v4-flash`), matching opencode's form. **GLM-5.3-Flash is different**: its Cline `id` carries the vendor prefix `z-ai/glm-5.3-flash`, so its reference is `cline-pass/z-ai/glm-5.3-flash`, not `cline-pass/glm-5.3-flash`. Both forms still satisfy Cline's required `modelType/model` shape (see the model-id gotcha below).
 
 ### Dispatch
 
 Select flash with `--provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash`, or GLM-5.3-Flash with `--model cline-pass/z-ai/glm-5.3-flash`. The cli-pi skill roster documents both under its `### cline-pass` section.
 
-**DeepSeek V4 Pro is a config leftover, not a dispatch target.** Its object is still in the provider block, but it is absent from `enabledModels` *and* absent from the cli-pi skill roster — and that roster is a closed one where an unlisted model is forbidden. So `pi` will accept it on an explicit `--model` while the skill forbids it. Treat it as pending removal rather than as an option; the cli-opencode catalog already records V4 Pro as retired.
+DeepSeek V4 Pro was retired from this block on 2026-09-04. Its object, its `enabledModels` entry and its rows in every CLI roster are gone, so `pi` and the skills now agree that it is not a dispatch target. Cline still offers it upstream; the exclusion is a curation decision, not an availability one.
 
 ### Thinking And Effort
 
@@ -83,9 +83,9 @@ All five are reasoning models, and their ladders differ, so each carries its own
 | Model | Ceiling | Notes |
 |-------|---------|-------|
 | `deepseek-v4-flash` | `max` | Full ladder `minimal`→`max` |
-| `deepseek-v4-flash-vision-exp` | `max` | Sparse ladder — only `low`, `high`, `max`; accepts image input |
+| `deepseek-v4-flash-vision-exp` | `max` | Sparse ladder — only `low`, `high`, `max`. Accepts image input, but reads it **unreliably**: 1 of 3 solid-colour probes answered correctly |
 | `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh`, and unlike Cline, which tops out at `xhigh` with no `max` |
-| `gpt-5.6-luna` | `max` | Full ladder minus `minimal`, so the active range here is `low`→`max`. Also **image-capable**. The provider catalog reports **no `temperature` support**, so do not pass one — pi's own entry declares no temperature key either way |
+| `gpt-5.6-luna` | `max` | Full ladder minus `minimal`, so the active range here is `low`→`max`. **Image-capable, verified** by a real image round-trip on 2026-09-04. The provider catalog reports **no `temperature` support**, so do not pass one — pi's own entry declares no temperature key either way |
 | `gemini-3.8-flash` | `high` | No `xhigh`, no `max` — requesting either sends a tier the model does not have |
 
 The global `defaultThinkingLevel` is `xhigh`, which only three of these five accept. Pass `--thinking` explicitly rather than relying on the default.
@@ -140,7 +140,7 @@ pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4-flash --th
 pi -p "reply OK" --provider llmgateway --model llmgateway/gemini-3.8-flash --thinking high --mode text
 ```
 
-Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash`, `…/deepseek-v4-pro`, and `…/z-ai/glm-5.3-flash` rows plus the five `llmgateway` rows, and each dispatch returns a model reply rather than a `400 invalid model format`, a `400 Provider llmgateway does not support model …`, or a `401 Unauthorized`.
+Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash` and `…/z-ai/glm-5.3-flash` rows plus the five `llmgateway` rows, and each dispatch returns a model reply rather than a `400 invalid model format`, a `400 Provider llmgateway does not support model …`, or a `401 Unauthorized`.
 
 `pi auth check` is **not** a credential test here. It never sends a completion, so it reports `{"status":"ready"}` whenever the provider block carries any non-empty `apiKey` value — including an unresolved placeholder that Cline will reject. Only the round-trip lines prove the credential. Its one honest signal is the opposite direction: `{"status":"invalid","reason":"invalid_state"}` means the provider block itself did not load.
 

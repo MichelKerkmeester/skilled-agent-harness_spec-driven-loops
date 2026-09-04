@@ -39,7 +39,7 @@
       "retire"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -51,6 +51,7 @@
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".pi/models.json",
       ".pi/settings.json",
+      ".pi/custom-providers.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
@@ -59,8 +60,7 @@
       ".opencode/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/README.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md"
+      ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md"
     ],
     "entities": [
       {
@@ -124,6 +124,12 @@
         "source": "derived"
       },
       {
+        "name": "custom-providers.md",
+        "kind": "doc",
+        "path": ".pi/custom-providers.md",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
@@ -154,12 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -167,12 +167,6 @@
       },
       {
         "name": "Flash Vision",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execute Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,6 +190,12 @@
         "source": "derived"
       },
       {
+        "name": "Adding Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Three distinct truth gaps sit in the CLI hub at once, and each one makes a document lie about what a dispatch will do",
     "created_at": "2026-09-04T11:49:59.788Z",
-    "last_save_at": "2026-09-04T18:48:15.853Z",
+    "last_save_at": "2026-09-04T19:03:15.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11d0df420e74ee904ac979d26e626f23e1f86dde9917e1ea3338e530d274a6b6",
+    "source_fingerprint": "sha256:f78c618520ca19412da5acacb9deb8da0becf484b08bf8bbf7070521637fd087",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b5bdd51fc9a905768b737932b6f33dd9a4877c031523c8a82f7c9cbfc4b248f3",
+      "spec.md": "4be612ea4462853b0552aedd52b2a2a57cc6e40cfdbfd1e7ccfeef9a3aebae6a",
       "plan.md": "5c3cd5198f8b0bcec8d8147e0cd09efc45ec082e0f6dd5299f46d6057508ec79",
-      "tasks.md": "d801a0b15a93c04c57e8752eb693dc985a8fc385fab6852931db67761c831674",
-      "implementation-summary.md": "13af545e3695b2621e201d69dbc29369d395c029e748d1211bc3212ba67d1a94"
+      "tasks.md": "3b36a38119a9cc3b23a4eb270ff8e9e5a5756b57c09ad395fd5e36cdb3b1432b",
+      "implementation-summary.md": "a8538c17d4b6fe0641faaaaca71c3d0a9bb94e406a4dde99a6f270ec3afd4ab8"
     },
     "last_active_child_id": null,
     "last_active_at": null

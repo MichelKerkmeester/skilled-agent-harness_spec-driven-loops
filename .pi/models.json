@@ -25,21 +25,6 @@
           }
         },
         {
-          "id": "cline-pass/deepseek-v4-pro",
-          "name": "DeepSeek V4 Pro",
-          "reasoning": true,
-          "contextWindow": 1000000,
-          "maxTokens": 384000,
-          "thinkingLevelMap": {
-            "minimal": null,
-            "low": null,
-            "medium": null,
-            "high": "high",
-            "max": null,
-            "xhigh": "xhigh"
-          }
-        },
-        {
           "id": "z-ai/glm-5.3-flash",
           "name": "GLM-5.3-Flash",
           "reasoning": true,

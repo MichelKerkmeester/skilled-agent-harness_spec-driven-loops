@@ -174,7 +174,7 @@ Alphabetical by family:
 | Family | Allowed ids | Notes |
 |-------|----|-------|
 | **Composer** (Cursor-native) ★ default | `composer-2.5`, `composer-2.5-fast` | The direct analog to a provider's own house model — Cursor-exclusive |
-| **Gemini 3.7** (via Cursor) | `gemini-3.7-flash-high` | Google Gemini 3.7 Flash, High thinking tier only. Cursor displays it as "Gemini 3.7 Flash" — the tier lives in the id suffix; `-low`/`-medium` stay out of scope |
+| **Gemini 3.8** (via Cursor) | `gemini-3.8-flash-high` | Google Gemini 3.8 Flash, High thinking tier only. Cursor displays it as "Gemini 3.8 Flash" — the tier lives in the id suffix; `-low`/`-medium` stay out of scope |
 | **GLM 5.2** (via Cursor) | `glm-5.2-high`, `glm-5.2-max` | Z.AI's GLM 5.2, 2 tiers |
 | **GPT-5.6 Luna** (via Cursor) | `gpt-5.6-luna-max`, `gpt-5.6-luna-max-fast` | Max thinking tier only, plus its low-latency `-fast` variant. Other Luna tiers and the Sol/Terra personas stay out of scope |
 | **Grok 4.5** (via Cursor) | `cursor-grok-4.5-low`, `cursor-grok-4.5-low-fast`, `cursor-grok-4.5-medium`, `cursor-grok-4.5-medium-fast`, `cursor-grok-4.5-high`, `cursor-grok-4.5-high-fast` | xAI's Grok 4.5, 3 thinking tiers, each with a `-fast` variant |
@@ -192,7 +192,7 @@ Effort tiers are suffixes on the id (`-low`/`-medium`/`-high`/`-xhigh`/`-fast`/`
 |-----------|-----------------|-----------|
 | General delegation | `composer-2.5` (default) | Cursor's own model; predictable and always allowed |
 | Task specifically wants Cursor's own model | `composer-2.5` / `composer-2.5-fast` | Cursor-exclusive, no hosted-provider equivalent |
-| Task specifically wants Gemini, GLM, GPT-5.6 Luna, or Grok at a tier | An exact allowed id (e.g. `gemini-3.7-flash-high`, `glm-5.2-max`, `gpt-5.6-luna-max`, `cursor-grok-4.6-high`) | Effort is baked into the id; only these 19 non-Composer ids are permitted |
+| Task specifically wants Gemini, GLM, GPT-5.6 Luna, or Grok at a tier | An exact allowed id (e.g. `gemini-3.8-flash-high`, `glm-5.2-max`, `gpt-5.6-luna-max`, `cursor-grok-4.6-high`) | Effort is baked into the id; only these 19 non-Composer ids are permitted |
 | Task wants any model outside the allowlist | **Not supported** | Escalate to the user — do not substitute an allowed model silently |
 
 Always specify `--model` explicitly in scripts for predictability; omitting it defaults to `composer-2.5`, never `auto`.

@@ -168,7 +168,7 @@ devin -p -- "prompt words here"    # Same, using -- separator
 devin
 
 # Non-interactive with model selection
-devin -p --model deepseek-v4-pro-max -- "Refactor utils.ts to use async/await"
+devin -p --model gpt-5-6-luna-max -- "Refactor utils.ts to use async/await"
 
 # With permission mode for file edits
 devin -p --permission-mode accept-edits -- "Add error handling to auth.ts"
@@ -206,14 +206,14 @@ Devin dispatches **`swe`** (alias → `swe-1-7-lightning`) at the **`accept-edit
 
 ```bash
 # Command flag
-devin --model deepseek-v4-pro-max -- refactor this module
+devin --model gpt-5-6-luna-max -- refactor this module
 devin --model glm-5-2 -- explain this code
 devin -p --model swe -- "list all TODO comments"
 
 # Slash command (inside REPL)
-/model deepseek-v4-pro-max
+/model gpt-5-6-luna-max
 /model glm-5-2
-/model deepseek-v4-pro
+/model deepseek-v4-flash-max
 
 # Config file (~/.config/devin/config.json)
 {
@@ -227,9 +227,9 @@ devin -p --model swe -- "list all TODO comments"
 
 | Task Type | Model | Rationale |
 |-----------|-------|-----------|
-| Architecture decisions | `deepseek-v4-pro-max` / `gpt-5-6-luna-max` | Multi-faceted analysis benefits from deep reasoning |
-| Security audits | `deepseek-v4-pro-max` | Catches subtle vulnerability patterns |
-| Complex planning | `deepseek-v4-pro-max` / `glm-5-2-max` | Multi-strategy evaluation benefits from depth |
+| Architecture decisions | `gpt-5-6-luna-max` | Multi-faceted analysis benefits from deep reasoning |
+| Security audits | `gpt-5-6-luna-max` | Catches subtle vulnerability patterns |
+| Complex planning | `gpt-5-6-luna-max` / `glm-5-2-max` | Multi-strategy evaluation benefits from depth |
 | Code generation | `glm-5-2` / `glm-5-2-max` | Balanced for most generation tasks |
 | Standard code review | `glm-5-2` / `swe-1-7` | Efficient for pattern-based review |
 | Implementation | `glm-5-2` / `swe-1-7` | Balanced for translating specs to code |
@@ -491,7 +491,7 @@ devin -p --permission-mode auto --model swe -- "Map the authentication flow"
 devin -p --permission-mode accept-edits --model swe -- "Add error handling to all API routes"
 
 # ELEVATED RISK: Dangerous mode — use only with explicit approval
-devin -p --permission-mode dangerous --model deepseek-v4-pro-max -- "Migrate database schema"
+devin -p --permission-mode dangerous --model gpt-5-6-luna-max -- "Migrate database schema"
 
 # AUTONOMOUS: OS-enforced sandbox
 devin --sandbox -p --model swe -- "Run the test suite and fix failures"
@@ -600,7 +600,7 @@ devin list --format json
 
 | Variable | Purpose | Example |
 |----------|---------|---------|
-| `DEVIN_MODEL` | Default model override | `swe`, `glm-5-2`, `deepseek-v4-pro-max` |
+| `DEVIN_MODEL` | Default model override | `swe`, `glm-5-2`, `gpt-5-6-luna-max` |
 | `DEVIN_PERMISSION_MODE` | Default permission mode | `auto`, `accept-edits`, `smart`, `dangerous` |
 | `DEVIN_SANDBOX` | Enable sandbox | `1` |
 | `DEVIN_PROJECT_DIR` | Project root directory (set automatically by Devin on session start) | `/path/to/project` |
