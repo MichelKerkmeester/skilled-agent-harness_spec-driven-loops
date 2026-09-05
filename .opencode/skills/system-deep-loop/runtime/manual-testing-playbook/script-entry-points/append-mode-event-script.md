@@ -83,7 +83,7 @@ append-mode-event.cjs matches the documented current reality, the source anchors
 - Artifacts created under the run directory:
   - `deep-research-ledger/frames/0000000000000001.frame`
   - `deep-research-audit-ledger/frames/0000000000000001.frame`
-  - `research/deep-research-state.jsonl` — the projected legacy file
+  - `research/deep-research-state.jsonl` — the projected legacy file, nested here because `--run-directory <tmp>/run` in this scenario is a bare directory, i.e. shaped like a spec folder. The nesting is NOT fixed: it follows the run directory's own role. When `--run-directory` is already the mode's artifact directory (a workflow's `{artifact_dir}`, ending in `research/` or `review/`) or a fan-out lineage's private sub-packet under it (`.../research/lineages/<label>/`), the same file lands directly at the run directory's root instead — `<run-directory>/deep-research-state.jsonl`, with no second nested `research/` copy underneath it.
   - `.legacy-projection-watermarks/research-state.json`
   - `locks-and-fencing-v1/<digest>/grant-journal.jsonl`
 - The projected legacy record reads:
@@ -142,7 +142,7 @@ Exit 2 is the refusal path, demonstrably: it is a halt, never a licence to write
 
 | File | Role |
 |---|---|
-| `tests/unit/mode-append-gateway.vitest.ts` | Primary regression coverage for append-mode-event.cjs (11 tests; its fixture pins authority at `legacy_authoritative` and asserts the legacy projection is refreshed). |
+| `tests/unit/mode-append-gateway.vitest.ts` | Primary regression coverage for append-mode-event.cjs (18 tests; its fixture pins authority at `legacy_authoritative`, asserts the legacy projection is refreshed, and pins the projected path for all three run-directory shapes -- spec folder, artifact directory, fan-out lineage directory -- across both research and review). |
 
 ### Conformance
 

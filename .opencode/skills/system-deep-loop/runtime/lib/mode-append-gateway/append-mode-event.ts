@@ -10,7 +10,7 @@
 // validation, transition authorization, fenced append, and legacy projection.
 // It does not reimplement any of these concerns.
 
-import { resolve } from 'node:path';
+import { basename, dirname, resolve } from 'node:path';
 
 import {
   AppendOnlyLedger,
@@ -195,20 +195,63 @@ function resolveModeSurfaceId(mode: string): string {
   return mode.startsWith('deep-') ? `${mode.slice(5)}-state` : `${mode}-state`;
 }
 
+/**
+ * A projection contract's default `relativePath` is resolved against the
+ * gateway's shadow root, which is `options.runDirectory` — and that
+ * directory is not always the spec folder the contract's default assumes.
+ * The workflows, and fan-out lineages beneath them, already resolve
+ * `runDirectory` to the mode's own artifact directory (or one lineage's
+ * private sub-packet inside it) before invoking the gateway; a caller that
+ * still passes the spec folder itself is the one shape where the state log
+ * genuinely lives one level down, inside a `research/`/`review/` child.
+ *
+ * Detect which shape the run directory already is, from its own path
+ * segments, rather than trust a contract default that only fits one of
+ * them:
+ *   - the run directory's own name is the mode's artifact-folder name
+ *     (a root packet's flat `research/`/`review/` directory);
+ *   - its parent is the mode's artifact-folder name (a child-phase packet's
+ *     `research/{packet}` subfolder); or
+ *   - its parent is `lineages` (any fan-out lineage's private sub-packet,
+ *     root or child-phase).
+ * Any of these means the run directory already IS the artifact/lineage
+ * root, so the legacy file belongs at that root, not nested a second time
+ * under another `research/`/`review/` copy. Only a bare spec-folder path
+ * matches none of them, and that is the one case the historical nested
+ * default was ever correct for.
+ */
+function resolveLegacyStateRelativePath(
+  modeDirName: 'research' | 'review',
+  legacyFileName: string,
+  runDirectory: string,
+): string {
+  const normalized = resolve(runDirectory);
+  const leafName = basename(normalized);
+  const parentName = basename(dirname(normalized));
+  const isModeArtifactDirectory = leafName === modeDirName || parentName === modeDirName;
+  const isLineageDirectory = parentName === 'lineages';
+  return isModeArtifactDirectory || isLineageDirectory
+    ? legacyFileName
+    : `${modeDirName}/${legacyFileName}`;
+}
+
 function resolveDefaultProjectionContract(
   mode: string,
   ledgerId: string,
+  runDirectory: string,
 ): LegacyProjectionContract<JsonObject> | null {
   if (mode === 'deep-research' || mode === 'research') {
     return createDeepResearchProjectionContract({
       ledgerId,
       streamIds: Object.freeze([ledgerId]),
+      relativePath: resolveLegacyStateRelativePath('research', 'deep-research-state.jsonl', runDirectory),
     }) as unknown as LegacyProjectionContract<JsonObject>;
   }
   if (mode === 'deep-review' || mode === 'review') {
     return createDeepReviewStateProjectionContract({
       ledgerId,
       streamIds: Object.freeze([ledgerId]),
+      relativePath: resolveLegacyStateRelativePath('review', 'deep-review-state.jsonl', runDirectory),
     }) as unknown as LegacyProjectionContract<JsonObject>;
   }
   return null;
@@ -429,7 +472,7 @@ export async function appendModeEvent(
 
     if (refreshBoundary !== null) {
       const contract = options.projectionContract
-        ?? resolveDefaultProjectionContract(options.mode, options.ledger.ledgerId);
+        ?? resolveDefaultProjectionContract(options.mode, options.ledger.ledgerId, options.runDirectory);
 
       if (!contract) {
         projectionRefreshed = false;

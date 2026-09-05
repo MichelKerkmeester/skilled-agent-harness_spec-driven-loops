@@ -58,11 +58,52 @@ function sampleRunInitializedEvent(): Record<string, unknown> {
   };
 }
 
+function sampleReviewRunInitializedEvent(): Record<string, unknown> {
+  const digest = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+  return {
+    stem: 'deep_review.run_initialized',
+    scope: { runId: 'run-authority-001-review', sessionId: 'session-authority-001-review', generation: 1 },
+    data: {
+      target: {
+        targetId: 'target-cli',
+        targetType: 'file',
+        artifactRef: 'artifact:cli',
+        sourceDigest: digest,
+        contentDigest: digest,
+      },
+      lineageMode: 'fresh',
+      maxIterations: 7,
+      convergencePolicyVersion: 'convergence@1',
+      reviewModeContractDigest: digest,
+      initialReleaseReadinessState: 'not-assessed',
+    },
+  };
+}
+
 const temporaryDirectories: string[] = [];
 
 function createTempDir(prefix: string): string {
   const dir = mkdtempSync(join(tmpdir(), `append-mode-event-cli-${prefix}-`));
   temporaryDirectories.push(dir);
+  return dir;
+}
+
+// The three directory roles a caller can hand the CLI as --run-directory: a
+// bare spec folder, the mode's own artifact directory, or one fan-out
+// lineage's private sub-packet under it.
+type RunDirectoryShape = 'spec-folder' | 'artifact-directory' | 'lineage-directory';
+
+function createShapedRunDir(
+  prefix: string,
+  modeDirName: 'research' | 'review',
+  shape: RunDirectoryShape,
+): string {
+  const base = createTempDir(prefix);
+  if (shape === 'spec-folder') return base;
+  const dir = shape === 'artifact-directory'
+    ? join(base, modeDirName)
+    : join(base, modeDirName, 'lineages', 'lineage-a');
+  mkdirSync(dir, { recursive: true });
   return dir;
 }
 
@@ -240,6 +281,74 @@ describe('append-mode-event CLI subprocess execution', () => {
     expect(row2.type).toBe('event');
     expect(row2.event).toBe('question_registered');
     expect(row2.questionId).toBe('question-1');
+  });
+
+  describe('projection lands beside the declared state log for every run-directory shape', () => {
+    // The CLI hands --run-directory straight through to the gateway as its
+    // shadow root. Production callers pass three different kinds of
+    // directory: a bare spec folder, the mode's own artifact directory, or
+    // one fan-out lineage's private sub-packet under it. The projected
+    // legacy file must land beside the state log the caller actually
+    // declared in every case, never doubly nested under a second copy of
+    // the mode directory.
+    const shapes: readonly RunDirectoryShape[] = ['spec-folder', 'artifact-directory', 'lineage-directory'];
+
+    const modes: ReadonlyArray<{
+      readonly cliMode: string;
+      readonly modeDirName: 'research' | 'review';
+      readonly legacyFileName: string;
+      readonly sampleEvent: () => Record<string, unknown>;
+    }> = [
+      {
+        cliMode: 'deep-research',
+        modeDirName: 'research',
+        legacyFileName: 'deep-research-state.jsonl',
+        sampleEvent: sampleRunInitializedEvent,
+      },
+      {
+        cliMode: 'deep-review',
+        modeDirName: 'review',
+        legacyFileName: 'deep-review-state.jsonl',
+        sampleEvent: sampleReviewRunInitializedEvent,
+      },
+    ];
+
+    for (const { cliMode, modeDirName, legacyFileName, sampleEvent } of modes) {
+      for (const shape of shapes) {
+        it(`${cliMode}: a ${shape} run directory gets exactly one state file at the declared path`, () => {
+          const runDir = createShapedRunDir(`shape-${cliMode}-${shape}`, modeDirName, shape);
+          const eventJsonPath = join(runDir, 'event.json');
+          writeFileSync(eventJsonPath, JSON.stringify(sampleEvent()), 'utf8');
+
+          const result = runCli([
+            '--mode',
+            cliMode,
+            '--run-directory',
+            runDir,
+            '--event-json',
+            eventJsonPath,
+          ]);
+
+          expect(result.exitCode).toBe(0);
+          expect(result.json.ok).toBe(true);
+          expect(result.json.projectionRefreshed).toBe(true);
+          expect(result.json.projectionError).toBeNull();
+
+          const expectedPath = shape === 'spec-folder'
+            ? join(runDir, modeDirName, legacyFileName)
+            : join(runDir, legacyFileName);
+          expect(existsSync(expectedPath)).toBe(true);
+
+          // The bug this guards: a contract default sized for the spec-folder
+          // shape, applied to a run directory that is already the artifact or
+          // lineage root, doubly nests the file instead of landing at the
+          // declared path.
+          if (shape !== 'spec-folder') {
+            expect(existsSync(join(runDir, modeDirName, legacyFileName))).toBe(false);
+          }
+        });
+      }
+    }
   });
 
   it('exits with status 1 when event JSON file does not exist', () => {

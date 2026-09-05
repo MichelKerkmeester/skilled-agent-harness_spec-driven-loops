@@ -6,7 +6,7 @@
 // write path for mode state. The gateway validates, authorizes, fences,
 // and projects each event.
 
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
@@ -19,11 +19,15 @@ import { AuthorizationVerdicts, AuthorizationReasonCodes } from '../../lib/autho
 import { appendModeEvent, ModeAppendGatewayErrorCodes } from '../../lib/mode-append-gateway/index.js';
 import { resolveAuthorityRoot } from '../../lib/authority-root/index.js';
 import { createFixtureEventRegistry, createFixturePolicyRegistry } from '../fixtures/authorized-ledger-fixtures.js';
-import { prepareEventWrite } from '../../lib/event-envelope/index.js';
+import { canonicalBytes, prepareEventWrite, sha256Bytes } from '../../lib/event-envelope/index.js';
 import {
   createDeepResearchEventRegistry,
   prepareDeepResearchEvent,
 } from '../../lib/deep-research-ledger-schema/index.js';
+import {
+  createDeepReviewEventRegistry,
+  prepareDeepReviewEvent,
+} from '../../lib/deep-review-ledger-schema/index.js';
 
 import type { EventWritePreflight } from '../../lib/event-envelope/index.js';
 import type { EventTypeRegistry } from '../../lib/event-envelope/index.js';
@@ -112,6 +116,135 @@ function createTestBinding(): ResolvedCutoverBinding {
     streamId: 'test-stream-id',
     decidedAt: new Date().toISOString(),
   };
+}
+
+// The three directory roles a caller can hand the gateway as `runDirectory`:
+// a bare spec folder, the mode's own flat or child-phase artifact directory,
+// or one fan-out lineage's private sub-packet.
+type ProjectionShape = 'spec-folder' | 'artifact-directory' | 'lineage-directory';
+const SHAPES: readonly ProjectionShape[] = ['spec-folder', 'artifact-directory', 'lineage-directory'];
+
+function digestOf(value: unknown): string {
+  return sha256Bytes(canonicalBytes(value));
+}
+
+function createModeHarness(mode: 'deep-research' | 'deep-review', rootDirectory: string) {
+  const registry = mode === 'deep-research'
+    ? createDeepResearchEventRegistry()
+    : createDeepReviewEventRegistry();
+  const ledgerId = `${mode}-ledger`;
+  const auditLedgerId = `${mode}-audit-ledger`;
+  const authorityProvider = () => FIXTURE_AUTHORITY;
+
+  const ledger = new AppendOnlyLedger(
+    { rootDirectory, ledgerId, auditLedgerId, authorityProvider },
+    registry,
+  );
+
+  const policyId = `${mode}-shape-policy`;
+  const policies = new TransitionPolicyRegistry([{
+    policyId,
+    policyVersion: 1,
+    evaluatorVersion: '1',
+    ruleIds: ['allow-all'],
+    capturedAuthorizationState: { state: FIXTURE_AUTHORITY.state, epoch: FIXTURE_AUTHORITY.epoch },
+    evaluate: () => ({
+      verdict: AuthorizationVerdicts.ALLOW,
+      reasonCode: AuthorizationReasonCodes.ALLOWED,
+      matchedRuleIds: ['allow-all'],
+    }),
+  }]);
+
+  const gateway = new TransitionAuthorizationGateway(
+    {
+      rootDirectory,
+      auditLedgerId,
+      authorityProvider,
+      identityResolver: (context) => ({
+        actorId: context.evaluationInput.actorId,
+        capabilityId: 'write',
+        evidenceDigest: context.evaluationInput.evidenceDigest,
+      }),
+    },
+    ledger,
+    policies,
+  );
+
+  return { registry, ledger, policies, gateway, policyId };
+}
+
+/** A minimal valid `run_initialized` record for whichever mode is under test. */
+function buildRunInitializedRecord(
+  mode: 'deep-research' | 'deep-review',
+  registry: EventTypeRegistry,
+): EventWritePreflight {
+  if (mode === 'deep-research') {
+    return prepareDeepResearchEvent({
+      stem: 'deep_research.run_initialized' as const,
+      scope: { runId: 'test-run-shape', lineageId: 'test-lineage-shape' },
+      prevEventHash: '0'.repeat(64),
+      replay: {
+        fingerprint_version: 1,
+        final_digest: '0'.repeat(64),
+        replay_input_digests: {},
+      },
+      data: {
+        generation: 1,
+        charterDigest: '0'.repeat(64),
+        configDigest: '0'.repeat(64),
+        executorFingerprint: '0'.repeat(64),
+        replayFingerprint: '0'.repeat(64),
+        maxIterations: 5,
+        convergencePolicyVersion: '1.0.0',
+      },
+      eventId: 'event-shape-research',
+      streamId: 'deep-research-ledger',
+      streamSequence: 1,
+      occurredAt: '2026-08-19T00:00:00.000Z',
+      recordedAt: '2026-08-19T00:00:00.000Z',
+      producer: { name: 'test', version: '1' },
+      authorityEpoch: 1,
+      correlationId: 'test-correlation-shape-research',
+      causationId: null,
+      idempotencyKey: 'test-key-shape-research',
+    }, registry);
+  }
+
+  const hash = digestOf('shape-fixture-review');
+  return prepareDeepReviewEvent({
+    stem: 'deep_review.run_initialized' as const,
+    scope: { runId: 'test-run-shape', sessionId: 'test-session-shape', generation: 1 },
+    prevEventHash: '0'.repeat(64),
+    replay: {
+      fingerprint_version: 1,
+      final_digest: hash,
+      replay_input_digests: { configuration: hash },
+    },
+    data: {
+      target: {
+        targetId: 'target-shape',
+        targetType: 'file',
+        artifactRef: 'artifact:shape',
+        sourceDigest: hash,
+        contentDigest: hash,
+      },
+      lineageMode: 'fresh' as const,
+      maxIterations: 5,
+      convergencePolicyVersion: 'convergence@1',
+      reviewModeContractDigest: hash,
+      initialReleaseReadinessState: 'not-assessed' as const,
+    },
+    eventId: 'event-shape-review',
+    streamId: 'deep-review-ledger',
+    streamSequence: 1,
+    occurredAt: '2026-08-19T00:00:00.000Z',
+    recordedAt: '2026-08-19T00:00:00.000Z',
+    producer: { name: 'test', version: '1' },
+    authorityEpoch: 1,
+    correlationId: 'test-correlation-shape-review',
+    causationId: null,
+    idempotencyKey: 'test-key-shape-review',
+  }, registry);
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -502,7 +635,7 @@ describe('mode append gateway', () => {
     expect(events).toHaveLength(1);
   });
 
-  it('projection success: projects legacy JSONL state file when appending deep-research event', async () => {
+  it('projection success: run directory shaped like a spec folder projects legacy JSONL state file nested under research/', async () => {
     const rootDirectory = temporaryRoot('projection-success');
     const authorityRoot = temporaryRoot('proj-success-auth');
     const registry = createDeepResearchEventRegistry();
@@ -609,6 +742,94 @@ describe('mode append gateway', () => {
       expect(row.maxIterations).toBe(5);
       expect(row.generation).toBe(1);
     }
+  });
+
+  describe('projection relative path follows the run directory role, not a fixed nesting depth', () => {
+    // The gateway's shadow root is `runDirectory` itself. Callers hand it three
+    // different kinds of directory: a bare spec folder, the mode's own artifact
+    // directory (its flat `research/`/`review/`, or a child-phase packet one
+    // level inside it), or one fan-out lineage's private sub-packet under
+    // either of those. The legacy state file must land beside whatever state
+    // log the caller actually declared for that directory, in every case --
+    // never doubly nested under a second `research/`/`review/` copy.
+
+    function runDirectoryForShape(
+      root: string,
+      modeDirName: 'research' | 'review',
+      shape: ProjectionShape,
+    ): string {
+      if (shape === 'spec-folder') return root;
+      if (shape === 'artifact-directory') return join(root, modeDirName);
+      return join(root, modeDirName, 'lineages', 'lineage-a');
+    }
+
+    function expectedLegacyStatePath(
+      runDirectory: string,
+      modeDirName: 'research' | 'review',
+      legacyFileName: string,
+      shape: ProjectionShape,
+    ): string {
+      return shape === 'spec-folder'
+        ? join(runDirectory, modeDirName, legacyFileName)
+        : join(runDirectory, legacyFileName);
+    }
+
+    const cases: ReadonlyArray<{
+      readonly mode: 'deep-research' | 'deep-review';
+      readonly modeDirName: 'research' | 'review';
+      readonly legacyFileName: string;
+      readonly shape: ProjectionShape;
+    }> = SHAPES.flatMap((shape) => [
+      { mode: 'deep-research', modeDirName: 'research', legacyFileName: 'deep-research-state.jsonl', shape },
+      { mode: 'deep-review', modeDirName: 'review', legacyFileName: 'deep-review-state.jsonl', shape },
+    ]);
+
+    it.each(cases)(
+      '$mode: run directory shaped like a $shape lands the projection at the declared state-log path',
+      async ({ mode, modeDirName, legacyFileName, shape }) => {
+        const root = temporaryRoot(`shape-${mode}-${shape}`);
+        const authorityRoot = temporaryRoot(`shape-${mode}-${shape}-auth`);
+        const runDirectory = runDirectoryForShape(root, modeDirName, shape);
+        mkdirSync(runDirectory, { recursive: true });
+
+        const { registry, ledger, policies, gateway, policyId } = createModeHarness(mode, runDirectory);
+        const eventRecord = buildRunInitializedRecord(mode, registry);
+
+        const result = await appendModeEvent({
+          mode,
+          runDirectory,
+          eventRecord,
+          authorityRoot,
+          policy: {
+            policyId,
+            policyVersion: 1,
+            policyDigest: policies.resolve(policyId, 1).digest,
+          },
+          policyRegistry: policies,
+          authorizationGateway: gateway,
+          ledger,
+          eventRegistry: registry,
+          binding: createTestBinding(),
+        });
+
+        expect(result.ok).toBe(true);
+        if (!result.ok) return;
+        expect(result.projectionRefreshed).toBe(true);
+        expect(result.projectionError).toBeNull();
+
+        const expectedPath = expectedLegacyStatePath(runDirectory, modeDirName, legacyFileName, shape);
+        expect(existsSync(expectedPath)).toBe(true);
+
+        // The bug this guards: a contract default sized for the spec-folder
+        // shape, applied to a run directory that is already the artifact or
+        // lineage root, doubly nests the file under a second copy of the
+        // mode directory instead of landing at the declared path.
+        if (shape !== 'spec-folder') {
+          const doublyNestedPath = join(runDirectory, modeDirName, legacyFileName);
+          expect(existsSync(doublyNestedPath)).toBe(false);
+        }
+      },
+    );
   });
 
   it('binding failure: returns named phase and reason', async () => {
