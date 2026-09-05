@@ -5,18 +5,6 @@
 import type { HfLocalDtype } from './embeddings/providers/hf-local.js';
 // Single source of truth for cross-workspace types.
 // Used across shared/, runtime/, and scripts/.
-//
-// DB normalization types (MemoryDbRow, Memory, conversion fns)
-// live in ./normalization.ts — import from there for DB ↔ App
-// conversions.
-// ---------------------------------------------------------------
-
-// Import normalization types for local use (Memory used in IVectorStore.get)
-// and re-export so consumers can import from here
-import type { MemoryDbRow, Memory } from './normalization.js';
-export type { MemoryDbRow, Memory };
-export { dbRowToMemory, memoryToDbRow, partialDbRowToMemory } from './normalization.js';
-
 // ---------------------------------------------------------------
 // 1. EMBEDDING TYPES
 // ---------------------------------------------------------------
@@ -259,7 +247,7 @@ export interface IVectorStore {
   search(embedding: number[], options?: SearchOptions): Promise<SearchResult[]>;
   upsert(id: number | string, embedding: number[], metadata: Record<string, unknown>): Promise<void>;
   delete(id: number | string): Promise<boolean>;
-  get(id: number | string): Promise<Memory | null>;
+  get(id: number | string): Promise<Record<string, unknown> | null>;
   getStats(): Promise<StoreStats>;
   isAvailable(): boolean;
   getEmbeddingDimension?(): number;

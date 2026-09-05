@@ -141,14 +141,7 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   // Docs that use "kind" as a JSON/YAML schema-enum field (verified values: document / code /
   // structured_data / startup / unresolved), a CLI grouping label, or incidental plain English.
   if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/session-resume.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/session-start-startup.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/encoding-intent-capture-at-index-time-r16.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/memory-maintenance-and-migration-clis.md')) return true;
   if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md')) return true;
-  // Docs describing real "capabilities" surfaces: the MCP server public-API barrel exposes MCP
-  // server capabilities, and the spec-memory plugin status tool reports its capability boundaries.
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/mcp-server-public-api-barrel.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-memory-plugin.md')) return true;
   return false;
 }
 

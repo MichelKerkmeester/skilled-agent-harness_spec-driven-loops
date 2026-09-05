@@ -21,12 +21,7 @@
   "dependencies": {
     "@spec-kit/runtime": "file:../runtime",
     "@spec-kit/shared": "file:../shared",
-    "better-sqlite3": "^12.11.1",
-    "js-yaml": "^4.3.0",
-    "sqlite-vec": "0.1.7-alpha.2"
-  },
-  "optionalDependencies": {
-    "sqlite-vec-darwin-arm64": "0.1.7-alpha.2"
+    "js-yaml": "^4.3.0"
   },
   "devDependencies": {
     "tsx": "4.22.4",

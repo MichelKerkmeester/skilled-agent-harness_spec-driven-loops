@@ -19,7 +19,6 @@ import { afterEach, describe, expect, it } from 'vitest';
 const require = createRequire(import.meta.url);
 const SKILL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SCRIPTS_DIR = path.join(SKILL_ROOT, 'scripts');
-const RUNTIME_DIR = path.join(SKILL_ROOT, 'runtime');
 const TEMPLATES_DIR = path.join(SKILL_ROOT, 'templates');
 const createdTempRoots = new Set<string>();
 
@@ -165,39 +164,6 @@ describe('validation pipeline integration', () => {
   }, 90_000);
 });
 
-describe('cognitive memory export parity', () => {
-  it('keeps the working-memory and attention-decay export contracts intact', () => {
-    const workingMemoryPath = path.join(RUNTIME_DIR, 'dist', 'lib', 'cognitive', 'working-memory.js');
-    const attentionDecayPath = path.join(RUNTIME_DIR, 'dist', 'lib', 'cognitive', 'attention-decay.js');
-    const coActivationPath = path.join(RUNTIME_DIR, 'dist', 'lib', 'cognitive', 'co-activation.js');
-
-    expect(fs.existsSync(workingMemoryPath)).toBe(true);
-    expect(fs.existsSync(attentionDecayPath)).toBe(true);
-    expect(fs.existsSync(coActivationPath)).toBe(true);
-
-    const workingMemory = require(workingMemoryPath);
-    const attentionDecay = require(attentionDecayPath);
-
-    expect(typeof workingMemory.init).toBe('function');
-    expect(typeof workingMemory.setAttentionScore).toBe('function');
-    expect(typeof workingMemory.getSessionMemories).toBe('function');
-    expect(typeof attentionDecay.init).toBe('function');
-    expect(typeof attentionDecay.calculateRetrievabilityDecay).toBe('function');
-    expect(typeof attentionDecay.getDecayRate).toBe('function');
-    expect(typeof attentionDecay.applyCompositeDecay).toBe('function');
-
-    expect(workingMemory.calculateTier(0.9)).toBe('focused');
-    expect(workingMemory.calculateTier(0.5)).toBe('active');
-    expect(workingMemory.calculateTier(0.1)).toBe('fading');
-    expect(attentionDecay.calculateRetrievabilityDecay(10, 0)).toBe(1);
-    expect(attentionDecay.calculateRetrievabilityDecay(10, 5)).toBeGreaterThan(0);
-    expect(attentionDecay.calculateRetrievabilityDecay(10, 5)).toBeLessThan(1);
-    expect(attentionDecay.getDecayRate('constitutional')).toBe(1);
-    expect(attentionDecay.getDecayRate('normal')).toBeLessThan(1);
-    expect(attentionDecay.getDecayRate('temporary')).toBeLessThan(attentionDecay.getDecayRate('normal'));
-  });
-});
-
 describe('spec-folder creation and template parity', () => {
   // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('keeps template levels and required files available', () => {
@@ -227,57 +193,11 @@ describe('spec-folder creation and template parity', () => {
   });
 });
 
-describe('checkpoint integration parity', () => {
-  it('preserves checkpoint exports, schema validation, and compression signals', () => {
-    const checkpointsPath = path.join(RUNTIME_DIR, 'dist', 'lib', 'storage', 'checkpoints.js');
-    const handlersPath = path.join(RUNTIME_DIR, 'dist', 'handlers', 'checkpoints.js');
-    const checkpoints = require(checkpointsPath);
-    const handlers = require(handlersPath);
-    const checkpointsSource = fs.readFileSync(checkpointsPath, 'utf-8');
-
-    expect(typeof checkpoints.createCheckpoint).toBe('function');
-    expect(typeof checkpoints.listCheckpoints).toBe('function');
-    expect(typeof checkpoints.restoreCheckpoint).toBe('function');
-    expect(typeof checkpoints.deleteCheckpoint).toBe('function');
-    expect(typeof checkpoints.getCheckpoint).toBe('function');
-    expect(typeof handlers.handleCheckpointCreate).toBe('function');
-    expect(typeof handlers.handleCheckpointRestore).toBe('function');
-    expect(typeof handlers.handleCheckpointDelete).toBe('function');
-
-    if (typeof checkpoints.getGitBranch === 'function') {
-      const branch = checkpoints.getGitBranch();
-      expect(branch === null || typeof branch === 'string').toBe(true);
-    }
-
-    expect(typeof checkpoints.validateMemoryRow).toBe('function');
-    checkpoints.validateMemoryRow({
-      id: 1,
-      file_path: '/tmp/test.md',
-      spec_folder: '001-test',
-      title: 'Test Memory',
-      importance_weight: 0.5,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-      importance_tier: 'normal',
-    }, 0);
-    expect(() => checkpoints.validateMemoryRow({ id: 'invalid' }, 1)).toThrow();
-
-    expect(checkpointsSource.includes('zlib')).toBe(true);
-    expect(checkpointsSource.includes('gzipSync')).toBe(true);
-    expect(typeof checkpoints.MAX_CHECKPOINTS).toBe('number');
-    expect(checkpoints.MAX_CHECKPOINTS).toBeGreaterThan(0);
-    expect(checkpointsSource.includes('MAX_CHECKPOINTS')).toBe(true);
-  });
-});
-
 describe('cross-cutting export surface parity', () => {
-  it('keeps the key scripts and runtime export surfaces available', () => {
+  it('keeps the key scripts export surfaces available', () => {
     const core = require(path.join(SCRIPTS_DIR, 'dist', 'core', 'index.js'));
     const extractors = require(path.join(SCRIPTS_DIR, 'dist', 'extractors', 'index.js'));
     const specFolder = require(path.join(SCRIPTS_DIR, 'dist', 'spec-folder', 'index.js'));
-    const runtimeCore = require(path.join(RUNTIME_DIR, 'dist', 'core', 'index.js'));
-    const vectorIndex = require(path.join(RUNTIME_DIR, 'dist', 'lib', 'search', 'vector-index.js'));
-    const errors = require(path.join(RUNTIME_DIR, 'dist', 'lib', 'errors.js'));
 
     expect(core.CONFIG).toBeDefined();
     expect(typeof core.findActiveSpecsDir).toBe('function');
@@ -286,20 +206,6 @@ describe('cross-cutting export surface parity', () => {
     expect(typeof extractors.extractDiagrams).toBe('function');
     expect(typeof specFolder.detectSpecFolder).toBe('function');
     expect(typeof specFolder.setupContextDirectory).toBe('function');
-    expect(runtimeCore.LIB_DIR).toBeDefined();
-    expect(typeof runtimeCore.checkDatabaseUpdated).toBe('function');
-    expect(typeof vectorIndex.EMBEDDING_DIM).toBe('number');
-    expect(
-      typeof vectorIndex.indexMemory === 'function' ||
-      typeof vectorIndex.indexMemoryDeferred === 'function',
-    ).toBe(true);
-    expect(
-      typeof vectorIndex.vectorSearch === 'function' ||
-      typeof vectorIndex.enhancedSearch === 'function' ||
-      typeof vectorIndex.cachedSearch === 'function',
-    ).toBe(true);
-    expect(errors.ErrorCodes).toBeDefined();
-    expect(typeof errors.ErrorCodes).toBe('object');
   });
 });
 

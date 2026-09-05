@@ -13,7 +13,7 @@
 #   0  - Health checks passed (or advisory mode complete)
 #   1  - Invalid arguments
 #   20 - runtime dist missing
-#   26 - Runtime Node imports missing (better-sqlite3, zod)
+#   26 - Runtime Node imports missing (zod)
 
 set -euo pipefail
 
@@ -54,19 +54,17 @@ fi
 log_pass "Node interpreter: $NODE_BIN"
 
 # Critical imports the runtime package resolves at first use.
-DEP_CHECK_MODULES="better-sqlite3 zod"
+DEP_CHECK_MODULES="zod"
 DEP_CHECK_MISSING=()
 for mod in $DEP_CHECK_MODULES; do
     ( cd "$RUNTIME_DIR" && "$NODE_BIN" -e "require('$mod')" 2>/dev/null ) || DEP_CHECK_MISSING+=("$mod")
 done
 
 if [[ ${#DEP_CHECK_MISSING[@]} -eq 0 ]]; then
-    log_pass "Runtime imports OK (better-sqlite3 + zod)"
+    log_pass "Runtime imports OK (zod)"
 else
     log_warn "Runtime imports FAILED — missing modules: ${DEP_CHECK_MISSING[*]}"
     echo "  Fix via: ( cd $SKILL_DIR && npm install )"
-    echo "  If the native module (better-sqlite3) fails, see"
-    echo "  $SKILL_DIR/scripts/setup/rebuild-native-modules.sh"
     if [[ "$STRICT_MODE" == true ]]; then
         exit 26
     fi

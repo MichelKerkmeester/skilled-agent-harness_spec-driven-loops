@@ -241,13 +241,6 @@ vi.mock('@spec-kit/shared/parsing/memory-sufficiency', () => ({
   evaluateMemorySufficiency: evaluateMemorySufficiencyMock,
 }));
 
-vi.mock('@spec-kit/runtime/api/providers', () => ({
-  retryManager: {
-    getRetryStats: () => ({ queue_size: 0 }),
-    processRetryQueue: vi.fn(async () => ({ processed: 0, succeeded: 0, failed: 0 })),
-  },
-}));
-
 function createSessionData(specFolderName: string): SessionData {
   return {
     TITLE: 'Memory Search Bug Fixes',

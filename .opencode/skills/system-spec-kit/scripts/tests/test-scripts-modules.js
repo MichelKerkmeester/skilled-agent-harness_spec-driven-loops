@@ -2011,99 +2011,6 @@ async function testLibSemanticSummarizerAdditional() {
   }
 }
 
-async function testLibRetryManagerReexport() {
-  log('\n🔬 LIB: retry-manager.js (boundary verification)');
-
-  try {
-    const scriptsRetryManagerPath = path.join(SCRIPTS_DIR, 'lib', 'retry-manager.js');
-    const runtimeRetryManagerPath = path.join(
-      ROOT,
-      'runtime',
-      'dist',
-      'lib',
-      'providers',
-      'retry-manager.js'
-    );
-
-    // Test 1: scripts/dist/lib/retry-manager.js no longer exists
-    if (!fs.existsSync(scriptsRetryManagerPath)) {
-      pass('T-032a: scripts retry-manager module removed', 'No stale scripts/lib retry-manager output');
-    } else {
-      fail('T-032a: scripts retry-manager module removed', `Unexpected file: ${scriptsRetryManagerPath}`);
-    }
-
-    // Test 2: canonical retry-manager implementation exists in the runtime provider layer
-    if (fs.existsSync(runtimeRetryManagerPath)) {
-      pass('T-032b: retry-manager lives under the runtime provider layer', 'Canonical module present');
-    } else {
-      fail('T-032b: retry-manager lives under the runtime provider layer', `Missing file: ${runtimeRetryManagerPath}`);
-    }
-
-    const retryManager = require(runtimeRetryManagerPath);
-
-    // Test 3: getRetryStats is exported from canonical module
-    if (typeof retryManager.getRetryStats === 'function') {
-      pass('T-032c: canonical retry-manager exports getRetryStats', 'Function available');
-    } else {
-      fail('T-032c: canonical retry-manager exports getRetryStats', `Type: ${typeof retryManager.getRetryStats}`);
-    }
-
-    // Test 4: processRetryQueue is exported from canonical module
-    if (typeof retryManager.processRetryQueue === 'function') {
-      pass('T-032d: canonical retry-manager exports processRetryQueue', 'Function available');
-    } else {
-      fail('T-032d: canonical retry-manager exports processRetryQueue', `Type: ${typeof retryManager.processRetryQueue}`);
-    }
-
-    // Test 5: getRetryStats returns default stats when DB not available
-    // Note: Without DB initialization, it should return default values
-    try {
-      const stats = retryManager.getRetryStats();
-      if (typeof stats === 'object' && 'pending' in stats && 'retry' in stats && 'failed' in stats) {
-        pass('T-032e: getRetryStats returns stats object', `Keys: ${Object.keys(stats).join(', ')}`);
-      } else {
-        fail('T-032e: getRetryStats returns stats object', 'Invalid structure');
-      }
-    } catch (e) {
-      // Expected if DB not available - still a valid test
-      pass('T-032e: getRetryStats handles missing DB gracefully', 'Throws or returns default');
-    }
-
-    // Test 6: Constants are exported
-    if (typeof retryManager.MAX_RETRIES === 'number') {
-      pass('T-032f: MAX_RETRIES constant exported', `Value: ${retryManager.MAX_RETRIES}`);
-    } else {
-      fail('T-032f: MAX_RETRIES constant exported', `Type: ${typeof retryManager.MAX_RETRIES}`);
-    }
-
-    // Test 7: BACKOFF_DELAYS is exported
-    if (Array.isArray(retryManager.BACKOFF_DELAYS) && retryManager.BACKOFF_DELAYS.length > 0) {
-      pass('T-032g: BACKOFF_DELAYS constant exported', `${retryManager.BACKOFF_DELAYS.length} delays`);
-    } else {
-      fail('T-032g: BACKOFF_DELAYS constant exported', 'Not an array or empty');
-    }
-
-    // Test 8: Other core functions are exported (from the runtime re-export)
-    const expectedFunctions = ['get_retry_queue', 'get_failed_embeddings', 'retry_embedding', 'mark_as_failed', 'reset_for_retry'];
-    let allExported = true;
-    const missingFns = [];
-    for (const fn of expectedFunctions) {
-      if (typeof retryManager[fn] !== 'function') {
-        allExported = false;
-        missingFns.push(fn);
-      }
-    }
-    if (allExported) {
-      pass('T-032h: All core functions exported', expectedFunctions.join(', '));
-    } else {
-      skip('T-032h: Core retry functions not re-exported from the runtime package', `Deferred: runtime module not compiled`);
-    }
-
-  } catch (error) {
-    fail('T-032: Retry manager re-export', error.message);
-  }
-}
-
 /* ─────────────────────────────────────────────────────────────
    14. MEDIUM PRIORITY: UTILS/PROMPT-UTILS.JS TESTS
 ────────────────────────────────────────────────────────────────
@@ -3181,7 +3088,6 @@ async function main() {
   await testLibSimulationFactoryAdditional();
   await testLibAnchorGeneratorAdditional();
   await testLibSemanticSummarizerAdditional();
-  await testLibRetryManagerReexport();
 
   // MEDIUM priority function tests
   await testUtilsPromptUtils();

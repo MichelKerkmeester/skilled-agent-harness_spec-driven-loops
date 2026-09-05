@@ -12,11 +12,7 @@ import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
-// External packages
-import Database from 'better-sqlite3';
-
 // Internal modules
-import { DB_PATH } from '@spec-kit/shared/paths';
 import { validateFilePath } from '@spec-kit/shared/utils/path-security';
 import { promptUser, promptUserChoice } from '../utils/prompt-utils.js';
 import { CONFIG, findActiveSpecsDir, getAllExistingSpecsDirs, SPEC_FOLDER_PATTERN, findChildFolderAsync } from '../core/index.js';
@@ -34,18 +30,6 @@ import { buildSessionActivitySignal } from '../lib/session-activity-signal.js';
 /* ───────────────────────────────────────────────────────────────
    1. INTERFACES
 ------------------------------------------------------------------*/
-
-interface SessionLearningRow {
-  spec_folder?: unknown;
-  created_at?: unknown;
-  updated_at?: unknown;
-}
-
-interface SessionRow {
-  spec_folder: string;
-  created_at: string;
-  updated_at: string;
-}
 
 interface FolderQualityAssessment {
   score: number;
@@ -115,27 +99,16 @@ function getSpecFolderFromCollectedData(collectedData: AlignmentCollectedData | 
     : null;
 }
 
-function getSpecFolderFromSessionRow(row: unknown): string | null {
-  if (!row || typeof row !== 'object') {
-    return null;
-  }
-
-  const specFolder = (row as { spec_folder?: unknown }).spec_folder;
-  return typeof specFolder === 'string' && specFolder.trim().length > 0
-    ? specFolder
-    : null;
-}
-
 /* ───────────────────────────────────────────────────────────────
    2. HELPER FUNCTIONS
 ------------------------------------------------------------------*/
 
 const TEST_FIXTURE_MARKERS: string[] = ['test', 'tests', 'fixture', 'fixtures'];
 const SCRATCH_MARKERS: string[] = ['scratch', 'tmp', 'temp'];
-const SESSION_LOOKBACK_HOURS = 24;
-const SESSION_ROW_LIMIT = 25;
 const LOW_CONFIDENCE_RECENCY_WINDOW_MS = 10 * 60 * 1000;
-const RECENT_CHILD_WINDOW_MS = SESSION_LOOKBACK_HOURS * 60 * 60 * 1000;
+// 24 hours: a sibling folder touched within the same day counts as "recently active"
+// for parent-affinity boosting (see applyParentAffinityBoost below).
+const RECENT_CHILD_WINDOW_MS = 24 * 60 * 60 * 1000;
 
 function filterArchiveFolders(folders: string[]): string[] {
   return folders.filter((folder) => !isArchiveFolder(folder));
@@ -151,22 +124,6 @@ function normalizeSlashes(value: string): string {
 
 function splitPathSegments(value: string): string[] {
   return normalizeSlashes(value).split('/').filter(Boolean);
-}
-
-function parseTimestamp(value: unknown): number {
-  if (typeof value !== 'string' || value.trim().length === 0) {
-    return 0;
-  }
-
-  const raw = value.trim();
-  const normalized = raw.includes('T') ? raw : raw.replace(' ', 'T');
-  const withZone = /[zZ]$|[+\-]\d{2}:\d{2}$/.test(normalized) ? normalized : `${normalized}Z`;
-  const parsed = Date.parse(withZone);
-  return Number.isFinite(parsed) ? parsed : 0;
-}
-
-function getSessionTimestamp(row: SessionLearningRow): number {
-  return parseTimestamp(row.created_at) || parseTimestamp(row.updated_at);
 }
 
 function isPathWithin(parentPath: string, childPath: string): boolean {
@@ -716,7 +673,7 @@ async function resolveSessionSpecFolderPaths(
     const approvedRoot = specsDirs.find((specsDir) => isPathWithin(specsDir, resolvedSpecFolder));
 
     if (!approvedRoot) {
-      console.warn(`Skipping session_learning spec_folder outside specs roots: ${resolvedSpecFolder}`);
+      console.warn(`Skipping spec_folder reference outside specs roots: ${resolvedSpecFolder}`);
     } else {
       await addCandidate(resolvedSpecFolder);
       const relativeToSpecs = getRelativePathToSpecsRoot(resolvedSpecFolder, specsDirs);
@@ -770,87 +727,6 @@ async function resolveSessionSpecFolderPaths(
   }
 
   return Array.from(resolvedPaths);
-}
-
-async function buildSessionCandidates(
-  rows: SessionRow[],
-  specsDirs: string[]
-): Promise<SessionCandidate[]> {
-  const parentCache = await collectSpecParentCache(specsDirs);
-  const byCanonicalKey = new Map<string, SessionCandidate>();
-
-  for (const row of rows) {
-    const specFolder = getSpecFolderFromSessionRow(row);
-    if (!specFolder) continue;
-    const trimmedSpecFolder = specFolder.trim();
-    // Fix F6 — validate session-learning paths against approved roots.
-    if (path.isAbsolute(trimmedSpecFolder)) {
-      const resolvedAbsoluteSpecFolder = path.resolve(trimmedSpecFolder);
-      if (!isUnderApprovedSpecsRoots(resolvedAbsoluteSpecFolder)) {
-        console.warn(
-          `[folder-detector] Skipping session-learning row with unapproved absolute spec_folder: ${resolvedAbsoluteSpecFolder}`
-        );
-        continue;
-      }
-    }
-
-    const recencyMs = getSessionTimestamp(row);
-    const recencyIso = recencyMs > 0 ? new Date(recencyMs).toISOString() : 'unknown';
-    const resolvedPaths = await resolveSessionSpecFolderPaths(trimmedSpecFolder, specsDirs, parentCache);
-
-    for (const resolvedPath of resolvedPaths) {
-      const canonicalKey = getCanonicalSpecKey(resolvedPath, specsDirs);
-      const qualityPath = getRelativePathToSpecsRoot(resolvedPath, specsDirs) || path.basename(resolvedPath);
-      const quality = assessFolderQuality(qualityPath);
-
-      const existing = byCanonicalKey.get(canonicalKey);
-      if (!existing) {
-        byCanonicalKey.set(canonicalKey, {
-          path: resolvedPath,
-          canonicalKey,
-          quality,
-          recencyMs,
-          recencyIso,
-          sourceSpecFolder: specFolder,
-        });
-        continue;
-      }
-
-      if (shouldPreferPath(existing.path, resolvedPath, specsDirs)) {
-        existing.path = resolvedPath;
-      }
-      if (recencyMs > existing.recencyMs) {
-        existing.recencyMs = recencyMs;
-        existing.recencyIso = recencyIso;
-        existing.sourceSpecFolder = specFolder;
-      }
-    }
-  }
-
-  return Array.from(byCanonicalKey.values());
-}
-
-async function promptSessionCandidateSelection(
-  rankedCandidates: SessionCandidate[],
-  specsDirs: string[],
-  reason: string
-): Promise<SessionCandidate | null> {
-  const shortlist = rankedCandidates.slice(0, Math.min(3, rankedCandidates.length));
-  console.log(`   [Priority 2.5] Low-confidence session match: ${reason}`);
-  shortlist.forEach((candidate, index) => {
-    const display = formatCandidatePathForLog(candidate.path, specsDirs);
-    console.log(`   ${index + 1}. ${display} (quality=${candidate.quality.label}, recency=${candidate.recencyIso})`);
-  });
-  console.log(`   ${shortlist.length + 1}. Skip session-learning selection and continue\n`);
-
-  const choice = await promptUserChoice(
-    `   Select target folder (1-${shortlist.length + 1}): `,
-    shortlist.length + 1
-  );
-  if (choice <= shortlist.length) {
-    return shortlist[choice - 1];
-  }
-  return null;
 }
 
 async function collectAutoDetectCandidates(specsDirs: string[]): Promise<AutoDetectCandidate[]> {
@@ -1335,69 +1211,6 @@ async function detectSpecFolder(
       }
 
       console.warn(`   Spec folder from data not found: ${specFolderFromData}`);
-    }
-  }
-
-  // Priority 2.5: Session learning DB lookup (most recent preflight spec folder)
-  try {
-    const db = new Database(DB_PATH, { readonly: true });
-    try {
-      const rows = db.prepare(
-        `SELECT spec_folder, created_at, updated_at
-         FROM session_learning
-         WHERE created_at > datetime('now', '-' || ? || ' hours')
-         ORDER BY created_at DESC
-         LIMIT ?`
-      ).all(SESSION_LOOKBACK_HOURS, SESSION_ROW_LIMIT) as SessionRow[];
-
-      const sessionCandidates = await buildSessionCandidates(rows, specsDirsForDetection);
-      const rankedSessionCandidates = rankSessionCandidates(sessionCandidates);
-
-      if (rankedSessionCandidates.length > 0) {
-        const confidence = assessSessionConfidence(rankedSessionCandidates);
-        let selected: SessionCandidate | null = rankedSessionCandidates[0];
-
-        if (confidence.lowConfidence) {
-          if (isInteractiveTTY()) {
-            const confirmed = await promptSessionCandidateSelection(
-              rankedSessionCandidates,
-              specsDirsForDetection,
-              confidence.reason
-            );
-            if (confirmed) {
-              selected = confirmed;
-            } else {
-              console.log('   [Priority 2.5] Session-learning selection skipped by user; falling through.');
-              selected = null;
-            }
-          } else {
-            console.warn(`   [Priority 2.5] Low-confidence session match (${confidence.reason}); falling through.`);
-            selected = null;
-          }
-        }
-
-        if (selected) {
-          logSelectionRationale(
-            'Priority 2.5',
-            selected.path,
-            specsDirsForDetection,
-            selected.quality,
-            `source=session_learning, recency=${selected.recencyIso}, reason=${confidence.reason}`
-          );
-          return selected.path;
-        }
-      }
-    } finally {
-      db.close();
-    }
-  } catch (err: unknown) {
-    if (err instanceof Error && process.env.DEBUG) {
-      console.debug(`   [Priority 2.5] Session learning lookup skipped: ${err.message}`);
-    }
-
-    // DB not available, table missing, or folder doesn't exist — fall through to next priority
-    if (process.env.DEBUG && !(err instanceof Error)) {
-      console.debug(`   [Priority 2.5] Session learning lookup skipped: ${String(err)}`);
     }
   }
 

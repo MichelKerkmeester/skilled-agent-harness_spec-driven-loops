@@ -8,20 +8,30 @@ import type {
   ArchivePattern,
   FolderScore,
   FolderScoreOptions,
-  Memory,
   ScoreWeights,
   TierWeights,
 } from '../types.js';
 
 // Folder-level relevance scoring for spec-folder memories.
 
+/**
+ * The camelCase memory fields folder-scoring functions read directly.
+ * Kept narrow and local rather than importing an app-wide Memory type,
+ * since scoring only ever touches this handful of fields.
+ */
+interface FolderMemoryCamelCaseFields {
+  updatedAt?: string;
+  createdAt?: string;
+  importanceTier?: string;
+  specFolder?: string;
+}
 
 /**
  * Loose input type for folder-scoring functions.
- * Accepts any partial Memory (camelCase) plus arbitrary extra fields
+ * Accepts any partial memory record (camelCase) plus arbitrary extra fields
  * (snake_case DB columns, search-enriched properties, etc.).
  */
-export type FolderMemoryInput = Partial<Memory> & Record<string, unknown>;
+export type FolderMemoryInput = FolderMemoryCamelCaseFields & Record<string, unknown>;
 
 // ---------------------------------------------------------------
 // 1. CONSTANTS

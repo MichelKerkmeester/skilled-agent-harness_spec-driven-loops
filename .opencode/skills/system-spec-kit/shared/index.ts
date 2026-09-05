@@ -9,9 +9,6 @@
 // 1. TYPE DEFINITIONS
 // ---------------------------------------------------------------
 export type {
-  // DB normalization types
-  MemoryDbRow,
-  Memory,
   // Database interface types (canonical)
   PreparedStatement,
   Database,
@@ -86,13 +83,6 @@ export {
   type SourceAllocation,
   type AllocationResult,
 } from './budget-allocator.js';
-
-// DB normalization functions
-export {
-  dbRowToMemory,
-  memoryToDbRow,
-  partialDbRowToMemory,
-} from './types.js';
 
 // Context type definitions (single source of truth)
 export type { CanonicalContextType, ContextType } from './context-types.js';

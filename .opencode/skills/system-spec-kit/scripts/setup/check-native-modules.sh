@@ -53,13 +53,6 @@ echo ""
 echo "-- Module Probes --"
 echo ""
 
-# Probe better-sqlite3
-if node -e "require('$ROOT_DIR/runtime/node_modules/better-sqlite3')" 2>/dev/null; then
-  echo "better-sqlite3:    [OK] loads"
-else
-  echo "better-sqlite3:    [FAIL] did not load" >&2
-fi
-
 # Probe sharp (optional)
 if [[ -d "$ROOT_DIR/shared/node_modules/sharp" ]]; then
   if node -e "require('$ROOT_DIR/shared/node_modules/sharp')" 2>/dev/null; then

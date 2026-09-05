@@ -15,9 +15,6 @@
       "node_modules/@types"
     ],
     "paths": {
-      "better-sqlite3": [
-        "../node_modules/@types/better-sqlite3/index.d.ts"
-      ],
       "vitest": [
         "node_modules/vitest/dist/index.d.ts"
       ],

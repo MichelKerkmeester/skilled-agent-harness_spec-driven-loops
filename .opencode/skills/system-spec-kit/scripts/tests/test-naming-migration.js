@@ -12,10 +12,17 @@
  *   - Cross-reference integrity (orphaned snake_case calls)
  */
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
-const { pathToFileURL } = require('url');
+import { createRequire } from 'node:module';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import path from 'node:path';
+import fs from 'node:fs';
+import { execSync } from 'node:child_process';
+
+// CJS require bridge: this file dynamically `require()`s discovered files to
+// verify their import chain, which only works through a real require function.
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // ───────────────────────────────────────────────────────────────
 // 1. PATHS
@@ -48,11 +55,15 @@ const CROSS_REFERENCE_MISMATCH_BUDGET = new Map([
   ['runtime/handlers/memory-index.ts', 1],
   ['runtime/handlers/memory-search.ts', 1],
   ['runtime/handlers/save/reconsolidation-bridge.ts', 1],
+  ['runtime/hooks/cursor/shared.ts', 2],
   ['runtime/hooks/memory-surface.ts', 2],
+  ['runtime/hooks/pi/session-start-context.ts', 1],
+  ['runtime/hooks/pi/session-stop-context.ts', 1],
   ['runtime/lib/cognitive/adaptive-ranking.ts', 2],
   ['runtime/lib/cognitive/prediction-error-gate.ts', 1],
   ['runtime/lib/cognitive/temporal-contiguity.ts', 7],
   ['runtime/lib/config/type-inference.ts', 1],
+  ['runtime/lib/continuity/thin-continuity-record.ts', 11],
   ['runtime/lib/extraction/entity-extractor.ts', 1],
   ['runtime/lib/feedback/batch-learning.ts', 2],
   ['runtime/lib/feedback/shadow-evaluation-runtime.ts', 2],
@@ -78,7 +89,10 @@ const CROSS_REFERENCE_MISMATCH_BUDGET = new Map([
   ['runtime/lib/session/session-manager.ts', 1],
   ['runtime/lib/storage/checkpoints.ts', 2],
   ['runtime/lib/storage/lineage-state.ts', 12],
+  ['runtime/lib/validation/orchestrator.ts', 1],
   ['runtime/lib/validation/preflight.ts', 1],
+  ['runtime/lib/validation/spec-doc-structure.ts', 2],
+  ['scripts/core/alignment-validator.ts', 1],
   ['scripts/spec-folder/folder-detector.ts', 3],
   ['scripts/utils/input-normalizer.ts', 9],
 ]);

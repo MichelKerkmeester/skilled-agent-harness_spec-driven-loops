@@ -40,11 +40,9 @@
   },
   "dependencies": {
     "@spec-kit/shared": "file:../shared",
-    "better-sqlite3": "^12.6.2",
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.13",
     "@vitest/coverage-v8": "^4.1.9",
     "eslint": "^9.39.1",
     "globals": "^16.4.0",
