@@ -268,11 +268,11 @@ The second pass (GPT-5.6 LUNA max through DevPass) was rejected by the runner af
 
 | Finding | Severity | What was wrong | Fix | Commit |
 |---------|----------|----------------|-----|--------|
-| F001 | P1 | The CLI package's `test` script ran Vitest through the runtime config instead of the skill-root projects config the root test claim relies on | `test` now runs `--config ../../vitest.config.ts --project cli` | `c7d2772435` |
-| F003 | P1 | The shared package-root resolver required a sibling `scripts/` directory and a pre-existing `runtime/database/`, so it returned null in the live tree | Landmarks are `runtime/cli` and `shared`; the derived database folder is no longer a precondition | `c7d2772435` |
-| F005 | P1 | Acceptance criteria said Planned, the plan left Definition of Done unchecked, and the summary carried a Level 3 marker beside a Level 2 table | Status, checkboxes and marker reconciled to the authored Level 2 document set | `c7d2772435` |
-| F006 | P1 | The skill doc, the root README and the changelog template still linked or invoked `scripts/` paths | Three links and one command repointed to `runtime/cli/` | `c7d2772435` |
-| F007 | P1 | Two committed scan helpers hardcoded one workstation's absolute repository path | Removed; nothing referenced them | `c7d2772435` |
+| F001 | P1 | The CLI package's `test` script ran Vitest through the runtime config instead of the skill-root projects config the root test claim relies on | `test` now runs `--config ../../vitest.config.ts --project cli` | `de9a2301e1` |
+| F003 | P1 | The shared package-root resolver required a sibling `scripts/` directory and a pre-existing `runtime/database/`, so it returned null in the live tree | Landmarks are `runtime/cli` and `shared`; the derived database folder is no longer a precondition | `de9a2301e1` |
+| F005 | P1 | Acceptance criteria said Planned, the plan left Definition of Done unchecked, and the summary carried a Level 3 marker beside a Level 2 table | Status, checkboxes and marker reconciled to the authored Level 2 document set | `de9a2301e1` |
+| F006 | P1 | The skill doc, the root README and the changelog template still linked or invoked `scripts/` paths | Three links and one command repointed to `runtime/cli/` | `de9a2301e1` |
+| F007 | P1 | Two committed scan helpers hardcoded one workstation's absolute repository path | Removed; nothing referenced them | `de9a2301e1` |
 
 The embeddings harness the root test invokes was CommonJS under an ESM package and failed on `require`; it is now `test-embeddings-factory.cjs` and runs clean.
 <!-- /ANCHOR:verification -->
