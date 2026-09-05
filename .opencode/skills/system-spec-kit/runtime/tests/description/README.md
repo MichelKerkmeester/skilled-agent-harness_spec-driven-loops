@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 3 |
+| Code files | 2 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -68,7 +68,6 @@ Run the owning package test command from the nearest package boundary.
 |---|---|
 | `description-merge.vitest.ts` | TS source file in this folder. |
 | `repair-specimens.vitest.ts` | TS source file in this folder. |
-| `repair.vitest.ts` | TS source file in this folder. |
 
 ---
 

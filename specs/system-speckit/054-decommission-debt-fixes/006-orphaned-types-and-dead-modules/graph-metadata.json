@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       "shared/types.ts",
-      "runtime/lib/cognitive/rollout-policy.ts",
-      "runtime/lib/description/repair.ts",
-      "scripts/spec-folder/alignment-validator.ts",
-      "scripts/check-markdown-links.cjs",
-      ".opencode/skills/system-spec-kit/shared/types.ts",
       "shared/index.ts",
-      "runtime/tests/rollout-policy.vitest.ts",
-      "runtime/tests/description/repair.vitest.ts",
-      "scripts/lib/completion-state.test.mjs",
-      "runtime/scripts/tests/resource-map-extractor.vitest.ts",
-      "runtime/vitest.config.ts",
-      ".opencode/skills/system-spec-kit/runtime/lib/cognitive/rollout-policy.ts",
-      ".opencode/skills/system-spec-kit/runtime/lib/description/repair.ts",
-      ".opencode/skills/system-spec-kit/scripts/lib/completion-state.test.mjs"
+      "lib/README.md",
+      "shared/algorithms/adaptive-fusion.ts",
+      "lib/search/folder-discovery.ts",
+      "lib/description/README.md",
+      "tests/description/README.md",
+      "tests/description/fixtures/README.md",
+      "runtime/tests/resource-map-extractor.vitest.ts",
+      ".opencode/commands/agent-router.md",
+      "runtime/scripts/README.md",
+      "runtime/tests/description/repair-specimens.vitest.ts",
+      "runtime/tests/description/description-merge.vitest.ts",
+      "runtime/lib/MODULE-MAP.md",
+      "runtime/lib/README.md"
     ],
     "entities": [
       {
@@ -100,63 +100,57 @@
         "source": "derived"
       },
       {
-        "name": "rollout-policy.ts",
-        "kind": "code",
-        "path": "runtime/lib/cognitive/rollout-policy.ts",
-        "source": "derived"
-      },
-      {
-        "name": "repair.ts",
-        "kind": "code",
-        "path": "runtime/lib/description/repair.ts",
-        "source": "derived"
-      },
-      {
-        "name": "alignment-validator.ts",
-        "kind": "code",
-        "path": "scripts/spec-folder/alignment-validator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-markdown-links.cjs",
-        "kind": "file",
-        "path": "scripts/check-markdown-links.cjs",
-        "source": "derived"
-      },
-      {
         "name": "index.ts",
         "kind": "code",
         "path": "shared/index.ts",
         "source": "derived"
       },
       {
-        "name": "rollout-policy.vitest.ts",
-        "kind": "test",
-        "path": "runtime/tests/rollout-policy.vitest.ts",
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/README.md",
         "source": "derived"
       },
       {
-        "name": "repair.vitest.ts",
-        "kind": "test",
-        "path": "runtime/tests/description/repair.vitest.ts",
+        "name": "adaptive-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/adaptive-fusion.ts",
         "source": "derived"
       },
       {
-        "name": "completion-state.test.mjs",
-        "kind": "file",
-        "path": "scripts/lib/completion-state.test.mjs",
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": "lib/search/folder-discovery.ts",
         "source": "derived"
       },
       {
         "name": "resource-map-extractor.vitest.ts",
         "kind": "test",
-        "path": "runtime/scripts/tests/resource-map-extractor.vitest.ts",
+        "path": "runtime/tests/resource-map-extractor.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "runtime/vitest.config.ts",
+        "name": "agent-router.md",
+        "kind": "doc",
+        "path": ".opencode/commands/agent-router.md",
+        "source": "derived"
+      },
+      {
+        "name": "repair-specimens.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/description/repair-specimens.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "description-merge.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/description/description-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "MODULE-MAP.md",
+        "kind": "doc",
+        "path": "runtime/lib/MODULE-MAP.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Six",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/shared/types.ts` still exports `IVectorStore` (line 246), `SearchOptions` (189), `SearchResult` (204), `StoreStats` (239), and the structural `Database` (171), `DatabaseExtended` (179), and `PreparedStatement` (157) interfaces; a repository-wide search finds no importer of any of these seven symbols outside `types.ts` itself and `shared/index.ts`'s barrel re-export - no implementer, no caller, no test",
     "created_at": "2026-09-05T06:13:07Z",
-    "last_save_at": "2026-09-05T06:42:25.190Z",
+    "last_save_at": "2026-09-05T07:33:41.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:185628d5ff94c50e2329dc283a23efc4b82a2943150e9b9793ab4c8250adb8d7",
+    "source_fingerprint": "sha256:9081d232e874a8e0edfb8ffaf1c5c367edc9e17054bb3405402f514042bc2c56",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5a4adc4d06590c4bdafeff83415ac3ce83360fe00144776ef3a3c3014bfcbf4e",
-      "plan.md": "bf1677f650f428c8ab517ec18856979d05f76e69085db6ae40766f7422efd901",
-      "tasks.md": "4c09d93f3c99f5664080b13c516c7475a22d15c63e49d1c6ab065be2d9ac05ed",
-      "implementation-summary.md": "69c607b7cf81dafcceb465c2e85b43f4a79ed8673c2914f559ba913a4805dc70"
+      "spec.md": "b82897b739713a608465e7fdef49c944f579d4e075f23820f50a5668d866234d",
+      "plan.md": "98e747cfdf8144a1f5100729781ad2e13e745ca620d2d5f895bbe06d8ec98fa7",
+      "tasks.md": "d108d7985c466333d6c146cedc74e59edebdb4b4f77240602e1b654806c0e3ae",
+      "implementation-summary.md": "a5e8c5e921cb0a50e54844b9acb3bd0c0bc8834c11cc1c775d227e5dbeb161e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

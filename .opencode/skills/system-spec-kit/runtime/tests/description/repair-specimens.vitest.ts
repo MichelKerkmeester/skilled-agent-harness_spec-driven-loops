@@ -8,7 +8,6 @@ import path from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { mergePreserveRepair } from '../../lib/description/repair';
 import type { PerFolderDescription } from '../../lib/search/folder-discovery';
 
 type DiscoveryModule = typeof import('../../lib/search/folder-discovery');
@@ -170,54 +169,6 @@ describe('description.json schema-error repair specimens', () => {
     const repaired = discovery.loadPerFolderDescription(specimen.dir);
     expect(repaired).not.toBeNull();
     expect(repaired!.description).toBe('Rebuilt infrastructure primitives summary');
-  });
-
-  it('applies mergePreserveRepair to committed specimens without dropping authored keys', async () => {
-    const { discovery } = await loadModules();
-
-    for (const fixtureName of FIXTURE_NAMES) {
-      const specimen = createSpecFolderWithDescription(fixtureName, (payload) => ({
-        ...payload,
-        memorySequence: 'broken',
-      }));
-      cleanupTargets.push(specimen.dir);
-
-      const loadResult = discovery.loadExistingDescription(specimen.dir);
-      expect(loadResult.ok).toBe(false);
-      expect(loadResult.reason).toBe('schema_error');
-
-      const canonical = buildCanonicalDescription(specimen.payload, {
-        description: `Regenerated ${fixtureName}`,
-        keywords: ['regenerated', fixtureName],
-        lastUpdated: '2026-04-18T19:00:00.000Z',
-        memorySequence: 13,
-      });
-
-      const repaired = mergePreserveRepair({
-        partial: loadResult.partial!,
-        canonicalOverrides: {
-          specFolder: canonical.specFolder,
-          description: canonical.description,
-          keywords: canonical.keywords,
-          lastUpdated: canonical.lastUpdated,
-          specId: canonical.specId,
-          folderSlug: canonical.folderSlug,
-          parentChain: canonical.parentChain,
-          memorySequence: canonical.memorySequence,
-        },
-      });
-
-      expect(repaired.merged.description).toBe(`Regenerated ${fixtureName}`);
-      expect(repaired.merged.keywords).toEqual(['regenerated', fixtureName]);
-      expect(repaired.merged.memorySequence).toBe(13);
-      if ('title' in specimen.payload) {
-        expect(repaired.merged.title).toBe(specimen.payload.title);
-      }
-      if ('trigger_phrases' in specimen.payload) {
-        expect(repaired.merged.trigger_phrases).toEqual(specimen.payload.trigger_phrases);
-      }
-      expect(repaired.preservedKeys.length).toBeGreaterThan(0);
-    }
   });
 
   it('preserves a synthetic unknown passthrough key through schema-error repair', async () => {

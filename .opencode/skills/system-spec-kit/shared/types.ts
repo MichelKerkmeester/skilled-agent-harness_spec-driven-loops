@@ -150,112 +150,7 @@ export interface BatchEmbeddingOptions {
 export type ModelDimensions = Record<string, number>;
 
 // ---------------------------------------------------------------
-// 2. DATABASE INTERFACE TYPES
-// ---------------------------------------------------------------
-
-/** Prepared statement interface (structural supertype of better-sqlite3 Statement) */
-export interface PreparedStatement {
-  all(...params: unknown[]): unknown[];
-  get(...params: unknown[]): unknown | undefined;
-  run(...params: unknown[]): { changes: number; lastInsertRowid: number | bigint };
-}
-
-/**
- * Canonical Database interface — structural subset of better-sqlite3.
- * Use this for modules that need basic query operations without
- * depending on better-sqlite3 types directly.
- *
- * Files that already `import type Database from 'better-sqlite3'`
- * are fine — the real type is a superset of this interface.
- */
-export interface Database {
-  prepare(sql: string): PreparedStatement;
-}
-
-/**
- * Extended Database interface with transaction and exec support.
- * Use this when a module needs DDL execution or transactions.
- */
-export interface DatabaseExtended extends Database {
-  transaction<T>(fn: () => T): () => T;
-  exec(sql: string): void;
-}
-
-// ---------------------------------------------------------------
-// 3. VECTOR STORE TYPES
-// ---------------------------------------------------------------
-
-/** Search options for vector store queries */
-export interface SearchOptions {
-  limit?: number;
-  threshold?: number;
-  filters?: Record<string, unknown>;
-  anchors?: string[];
-}
-
-/**
- * Canonical search result — unified across all search paths.
- * This replaces the prior incompatible SearchResult definitions:
- *   - shared/types.ts (had id: string, score, metadata)
- *   - memory-search.ts (had id: number, similarity)
- *
- * All search code should use this single type.
- */
-export interface SearchResult {
-  /** DB primary key (always number) */
-  id: number;
-  /**
-   * Normalized relevance score (0-1). Semantics depend on `scoringMethod`:
-   * - `'vector'` — cosine similarity between query and memory embeddings
-   * - `'bm25'` — BM25 term-frequency relevance (min-max normalized to 0-1)
-   * - `'hybrid'` — weighted combination of vector + lexical scores
-   * - `'rrf'` — Reciprocal Rank Fusion across multiple retrieval methods
-   * - `'fallback'` — best-effort score from degraded search path
-   */
-  score: number;
-  /**
-   * Disambiguates `.score` semantics. Indicates which scoring algorithm
-   * produced the `score` value. One of: `'vector'`, `'bm25'`, `'hybrid'`,
-   * `'rrf'`, `'fallback'`.
-   */
-  scoringMethod?: 'vector' | 'bm25' | 'hybrid' | 'rrf' | 'fallback';
-  /** Memory content (when include_content is true) */
-  content?: string;
-  /** Memory title */
-  title?: string | null;
-  /** Importance tier */
-  tier?: string;
-  /** Spec folder path */
-  specFolder?: string;
-  /** Memory file path */
-  filePath?: string;
-  /** Trigger phrases */
-  triggerPhrases?: string[];
-  /** Additional metadata for extensibility */
-  metadata?: Record<string, unknown>;
-}
-
-/** Vector store statistics */
-export interface StoreStats {
-  totalMemories: number;
-  totalEmbeddings: number;
-  dimensions: number;
-}
-
-/** Interface for vector store implementations */
-export interface IVectorStore {
-  search(embedding: number[], options?: SearchOptions): Promise<SearchResult[]>;
-  upsert(id: number | string, embedding: number[], metadata: Record<string, unknown>): Promise<void>;
-  delete(id: number | string): Promise<boolean>;
-  get(id: number | string): Promise<Record<string, unknown> | null>;
-  getStats(): Promise<StoreStats>;
-  isAvailable(): boolean;
-  getEmbeddingDimension?(): number;
-  close(): void;
-}
-
-// ---------------------------------------------------------------
-// 3. RETRY / ERROR CLASSIFICATION TYPES
+// 2. RETRY / ERROR CLASSIFICATION TYPES
 // ---------------------------------------------------------------
 
 /** Configuration for retry with exponential backoff */
@@ -296,7 +191,7 @@ export interface RetryAttemptLogEntry {
 }
 
 // ---------------------------------------------------------------
-// 4. FOLDER SCORING TYPES
+// 3. FOLDER SCORING TYPES
 // ---------------------------------------------------------------
 
 /** Archive pattern with multiplier for folder scoring */
@@ -349,7 +244,7 @@ export type TierWeights = Record<string, number>;
 export type RankingMode = 'score' | 'recency' | 'activity' | 'importance';
 
 // ---------------------------------------------------------------
-// 5. CHUNKING TYPES
+// 4. CHUNKING TYPES
 // ---------------------------------------------------------------
 
 /** Priority patterns for semantic chunking */
@@ -367,7 +262,7 @@ export interface PriorityBuckets {
 }
 
 // ---------------------------------------------------------------
-// 6. TRIGGER EXTRACTOR TYPES
+// 5. TRIGGER EXTRACTOR TYPES
 // ---------------------------------------------------------------
 
 /** Trigger extractor configuration */
@@ -448,14 +343,14 @@ export interface ExtractionResult {
 }
 
 // ---------------------------------------------------------------
-// 7. PATH SECURITY TYPES
+// 6. PATH SECURITY TYPES
 // ---------------------------------------------------------------
 
 // Path security functions use primitive types (string, string[], null).
 // No custom types needed beyond the function signatures themselves.
 
 // ---------------------------------------------------------------
-// 8. PROFILE SLUG TYPES
+// 7. PROFILE SLUG TYPES
 // ---------------------------------------------------------------
 
 /** Parsed profile slug components */
@@ -477,7 +372,7 @@ export interface ProfileJson {
 }
 
 // ---------------------------------------------------------------
-// 9. TASK PREFIX TYPES
+// 8. TASK PREFIX TYPES
 // ---------------------------------------------------------------
 
 /** Task prefix constants for embedding task types */

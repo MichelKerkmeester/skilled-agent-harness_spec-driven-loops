@@ -1,25 +1,25 @@
 ---
-title: "Description Library: Metadata Shape And Repair"
-description: "Schema, merge and repair helpers for spec-folder description metadata."
+title: "Description Library: Metadata Shape And Merge"
+description: "Schema and merge helpers for spec-folder description metadata."
 trigger_phrases:
   - "description metadata"
   - "description.json repair"
 ---
 
-# Description Library: Metadata Shape And Repair
+# Description Library: Metadata Shape And Merge
 
 ---
 
 ## 1. OVERVIEW
 
-`lib/description/` owns the typed helpers for reading, merging, summarizing and repairing spec-folder description metadata. It separates canonical generated fields from authored optional fields so updates can refresh derived data without dropping user-authored metadata, and it holds the one shared synopsis extractor both generated summary fields derive from.
+`lib/description/` owns the typed helpers for reading, merging and summarizing spec-folder description metadata. It separates canonical generated fields from authored optional fields so updates can refresh derived data without dropping user-authored metadata, and it holds the one shared synopsis extractor both generated summary fields derive from.
 
 Current state:
 
 - Defines the accepted `description.json` shape with `zod` schemas.
 - Preserves known authored keys and unknown pass-through keys during merges.
 - Derives the `description` and `causal_summary` generated fields from one shared extractor and precedence, so the two fields cannot drift from different readings of the same `spec.md`.
-- Provides a small repair helper that applies canonical overrides to partial metadata.
+- The schema-error repair path (a `description.json` that fails schema validation) calls `mergeDescription` directly from `lib/search/folder-discovery.ts`; the folder previously also carried a `repair.ts` wrapper over the same call, but nothing but its own tests ever used it, so it was removed rather than kept as an unused second path to the same merge.
 
 ---
 
@@ -35,9 +35,6 @@ description-schema.ts
 description-merge.ts
   | merges existing, canonical and incoming records
   v
-repair.ts
-  | exposes merge-preserving repair for partial records (test-only consumer today)
-  v
 description metadata result
 
 packet-synopsis.ts
@@ -46,7 +43,7 @@ packet-synopsis.ts
 consumed by lib/search/folder-discovery.ts and lib/graph/generated-metadata-drift.ts
 ```
 
-Dependency direction: `repair.ts` -> `description-merge.ts` -> `description-schema.ts`. `packet-synopsis.ts` -> `../parsing/content-normalizer.ts` (independent of the merge/schema chain).
+Dependency direction: `description-merge.ts` -> `description-schema.ts`. `packet-synopsis.ts` -> `../parsing/content-normalizer.ts` (independent of the merge/schema chain). `lib/search/folder-discovery.ts` calls `mergeDescription` directly for both the schema-valid and schema-error repair paths.
 
 ---
 
@@ -57,7 +54,6 @@ description/
 +-- description-merge.ts   # Merge order and preservation rules
 +-- description-schema.ts  # Schemas, reserved keys and issue formatting
 +-- packet-synopsis.ts     # Shared synopsis extractor for description + causal_summary
-+-- repair.ts              # Merge-preserving repair wrapper
 `-- README.md
 ```
 
@@ -70,7 +66,6 @@ description/
 | `description-schema.ts` | Declares canonical derived keys, authored keys, tracking keys and `zod` schemas. |
 | `description-merge.ts` | Combines existing metadata, canonical fields and incoming values with explicit preservation reports. |
 | `packet-synopsis.ts` | Derives a packet synopsis from `spec.md` (Overview paragraph, then Problem/Purpose sentence, then frontmatter description, then title, then first body line), clamped to a per-field length limit. Consumed by `lib/search/folder-discovery.ts` and `lib/graph/generated-metadata-drift.ts`. |
-| `repair.ts` | Reuses the merge path for partial records that need canonical overrides. Test-only consumer today (`tests/description/repair*.vitest.ts`); no production caller yet. |
 
 ---
 
@@ -79,7 +74,7 @@ description/
 | Boundary | Rule |
 |---|---|
 | Imports | May import `zod`, sibling description modules, and `../parsing/content-normalizer.ts`. |
-| Exports | Exposes schema types, merge helpers and repair helpers. |
+| Exports | Exposes schema types and merge helpers. |
 | Ownership | Owns metadata shape and merge behavior. It does not scan folders or write files by itself. |
 
 Main merge flow:
@@ -110,7 +105,6 @@ return merged record plus key reports
 | `formatDescriptionSchemaIssues` | Function | Convert schema issues to stable field messages. |
 | `pickCanonicalDescriptionFields` | Function | Extract canonical derived and authored fields. |
 | `mergeDescription` | Function | Merge existing, canonical and incoming metadata. |
-| `mergePreserveRepair` | Function | Repair a partial record while preserving authored fields. |
 | `derivePacketSynopsis` | Function | Derive the `description` or `causal_summary` synopsis from `spec.md` content. |
 | `truncateSynopsisAtWordBoundary` | Function | Clamp a synopsis to a length limit without cutting the final word. |
 
@@ -124,7 +118,7 @@ Run from `.opencode/skills/system-spec-kit/runtime`.
 npx vitest run tests/description tests/folder-discovery.vitest.ts
 ```
 
-Expected result: description-merge, repair, and folder-discovery (which exercises `packet-synopsis.ts`) suites pass.
+Expected result: description-merge, repair-specimens, and folder-discovery (which exercises `packet-synopsis.ts`) suites pass.
 
 ---
 

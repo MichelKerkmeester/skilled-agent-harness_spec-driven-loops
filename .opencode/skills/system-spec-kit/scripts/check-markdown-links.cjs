@@ -23,7 +23,7 @@ const path = require('path');
 
 const ROOTS = [
   '.opencode/skills', '.opencode/commands', '.opencode/agents',
-  '.claude/agents', '.claude/commands', '.opencode/agents', '.opencode/commands',
+  '.claude/agents', '.claude/commands',
 ];
 
 // Files in these path segments are not link-checked: archives/runtime dumps (broken links

@@ -5,7 +5,7 @@ trigger_phrases:
   - "description fixtures"
   - "description json repair"
   - "spec folder description test data"
-  - "mergePreserveRepair fixtures"
+  - "description repair fixtures"
 ---
 
 # Description Fixtures: Spec Folder Description Test Data
@@ -16,7 +16,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/description/fixtures/` owns mock `description.json` payloads for the description repair and merge system. The fixtures represent real spec folder descriptions from Phase 017 of the system-spec-kit project, enabling comprehensive testing of `mergePreserveRepair` logic.
+`tests/description/fixtures/` owns mock `description.json` payloads for the description repair and merge system. The fixtures represent real spec folder descriptions from Phase 017 of the system-spec-kit project, enabling comprehensive testing of the schema-error repair and merge paths in `lib/search/folder-discovery.ts`.
 
 Current state:
 
@@ -58,7 +58,7 @@ Run from the repository root.
 cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/description/repair-specimens.vitest.ts
 ```
 
-Expected result: exit code 0, all 6 tests pass.
+Expected result: exit code 0, all 7 tests pass.
 
 ---
 

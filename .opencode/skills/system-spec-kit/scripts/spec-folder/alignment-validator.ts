@@ -581,7 +581,7 @@ async function validateContentAlignment(
     }
   } catch (error: unknown) {
     if (error instanceof Error) {
-      // Could not read alternatives - proceed with warning
+      console.log(`   Warning: Could not read alternative spec folders (${error.message}) - continuing without suggestions`);
     }
   }
 

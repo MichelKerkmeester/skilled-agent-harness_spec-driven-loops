@@ -17,7 +17,7 @@ type EmitArgs = {
   createdAt?: string;
 };
 
-const { emitResourceMap } = require('../../../scripts/resource-map/extract-from-evidence.cjs') as {
+const { emitResourceMap } = require('../../scripts/resource-map/extract-from-evidence.cjs') as {
   emitResourceMap(args: EmitArgs): string;
 };
 
@@ -64,7 +64,10 @@ describe('resource-map extractor', () => {
     expect(findLine(markdown, '- **By category**:')).toBe(
       '- **By category**: READMEs=1, Documents=1, Commands=1, Agents=1, Skills=1, Specs=2, Scripts=1, Tests=1, Config=1, Meta=1',
     );
-    expect(findLine(markdown, '- **Missing on disk**:')).toBe('- **Missing on disk**: 7');
+    // Missing-on-disk is a live count against the real repo tree (categorization
+    // above is not), so it tracks actual file presence rather than a frozen
+    // snapshot; re-verify against disk if a referenced fixture path is renamed.
+    expect(findLine(markdown, '- **Missing on disk**:')).toBe('- **Missing on disk**: 9');
     expect(headings(markdown)).toMatchInlineSnapshot(`
       [
         "## 1. READMEs",
@@ -104,7 +107,7 @@ describe('resource-map extractor', () => {
             iteration: 1,
             type: 'finding',
             source_paths: [
-              '.opencode/commands/speckit/deep-research.md',
+              '.opencode/commands/agent-router.md',
               '.opencode/skills/system-deep-loop/deep-research/references/convergence.md',
             ],
             citations: [
@@ -115,7 +118,7 @@ describe('resource-map extractor', () => {
           {
             iteration: 2,
             type: 'finding',
-            source_paths: ['.opencode/commands/speckit/deep-research.md'],
+            source_paths: ['.opencode/commands/agent-router.md'],
             citations: [
               { path: '.opencode/skills/system-deep-loop/deep-research/SKILL.md' },
               { path: '.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs' },
@@ -124,7 +127,7 @@ describe('resource-map extractor', () => {
           {
             iteration: 3,
             type: 'finding',
-            source_paths: ['.opencode/commands/speckit/deep-research.md'],
+            source_paths: ['.opencode/commands/agent-router.md'],
             citations: [
               { path: '.opencode/skills/system-deep-loop/deep-research/SKILL.md' },
               { path: 'notes/research-support.txt' },
@@ -137,7 +140,7 @@ describe('resource-map extractor', () => {
     expect(findLine(markdown, '- **By category**:')).toBe(
       '- **By category**: READMEs=0, Documents=1, Commands=1, Agents=0, Skills=3, Specs=1, Scripts=0, Tests=0, Config=0, Meta=0',
     );
-    expect(findLine(markdown, '- **Missing on disk**:')).toBe('- **Missing on disk**: 2');
+    expect(findLine(markdown, '- **Missing on disk**:')).toBe('- **Missing on disk**: 3');
     expect(headings(markdown)).toMatchInlineSnapshot(`
       [
         "## 2. Documents",
@@ -147,7 +150,7 @@ describe('resource-map extractor', () => {
       ]
     `);
     expect(markdown).toContain(
-      '| .opencode/commands/speckit/deep-research.md | Cited | OK | Citations=3; Iterations=3 |',
+      '| .opencode/commands/agent-router.md | Cited | OK | Citations=3; Iterations=3 |',
     );
     expect(markdown).toContain(
       '| .opencode/skills/system-deep-loop/deep-research/SKILL.md | Cited | OK | Citations=3; Iterations=3 |',
@@ -179,7 +182,7 @@ describe('resource-map extractor', () => {
             event: 'new_finding',
             finding_id: 'F-RANGE',
             severity: 'P2',
-            file: '.opencode/commands/speckit/deep-review.md:10-20',
+            file: '.opencode/commands/agent-router.md:10-20',
           },
         ],
       ],
@@ -187,7 +190,7 @@ describe('resource-map extractor', () => {
 
     // Paths with :line suffixes resolve to real files on disk → status OK, not MISSING.
     expect(markdown).toContain('| .opencode/skills/system-deep-loop/deep-review/SKILL.md | Analyzed | OK |');
-    expect(markdown).toContain('| .opencode/commands/speckit/deep-review.md | Analyzed | OK |');
+    expect(markdown).toContain('| .opencode/commands/agent-router.md | Analyzed | OK |');
     // The suffix must be stripped — no leaked `:250` or `:10-20` anywhere.
     expect(markdown).not.toContain(':250');
     expect(markdown).not.toContain(':10-20');

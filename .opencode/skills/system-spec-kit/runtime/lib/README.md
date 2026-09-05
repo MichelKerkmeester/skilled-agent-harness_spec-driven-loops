@@ -72,7 +72,7 @@ utils, config and parsing do not import domain modules
 | Continuity | `continuity/`, `resume/`, `context/` | Own continuity records, the resume ladder and the shared payload envelope. |
 | Discovery | `discovery/`, `config/` | Locate spec documents and name the canonical spec-document set. |
 | Content | `parsing/`, `extraction/` | Normalize markdown and extract entities from it. |
-| Support | `utils/`, `cognitive/`, `hooks/`, `test-helpers/` | Shared plumbing: path identity, rollout gates, hook policy, test helpers. |
+| Support | `utils/`, `hooks/`, `test-helpers/` | Shared plumbing: path identity, hook policy, test helpers. |
 
 ---
 
@@ -80,7 +80,6 @@ utils, config and parsing do not import domain modules
 
 ```text
 lib/
-├── cognitive/       # Rollout-percentage gate behind feature flags
 ├── config/          # Canonical spec-document filenames and capability flags
 ├── context/         # Shared payload and provenance envelope
 ├── continuity/      # Authored continuity snapshots and thin continuity records

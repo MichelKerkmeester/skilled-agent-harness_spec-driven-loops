@@ -9,10 +9,6 @@
 // 1. TYPE DEFINITIONS
 // ---------------------------------------------------------------
 export type {
-  // Database interface types (canonical)
-  PreparedStatement,
-  Database,
-  DatabaseExtended,
   // Embedding types
   EmbeddingProfileData,
   EmbeddingProfile,
@@ -28,11 +24,6 @@ export type {
   LazyLoadingStats,
   BatchEmbeddingOptions,
   ModelDimensions,
-  // Vector store types
-  SearchOptions,
-  SearchResult,
-  StoreStats,
-  IVectorStore,
   // Retry / Error classification types
   RetryConfig,
   ErrorClassification,

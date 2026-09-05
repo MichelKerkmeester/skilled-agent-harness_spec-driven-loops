@@ -43,9 +43,9 @@ Six independent, low-coupling cleanups: delete or re-home seven orphaned type ex
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Typecheck and touched suites passing
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Typecheck and touched suites passing
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -168,9 +168,9 @@ Setup (grep-prove every item) ──► Core (delete/re-home/fix each item indep
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline typecheck output captured for `shared`, `scripts`, `runtime`
-- [ ] Baseline `check-markdown-links.cjs` output (counts and broken list) captured
-- [ ] Baseline `vitest run` executed-file list captured, to confirm the two orphaned tests are indeed absent from it today
+- [x] Baseline typecheck output captured for `shared`, `scripts`, `runtime`
+- [x] Baseline `check-markdown-links.cjs` output (counts and broken list) captured
+- [x] Baseline `vitest run` executed-file list captured, to confirm the two orphaned tests are indeed absent from it today
 
 ### Rollback Procedure
 1. Revert the specific item's commit.

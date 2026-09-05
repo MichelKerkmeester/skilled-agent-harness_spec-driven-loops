@@ -28,14 +28,6 @@ The inventory is derived from the files in each folder and from the import edges
 
 ## 2. MODULE INVENTORY
 
-### `cognitive/`
-
-- Purpose: Owns the rollout-percentage gate that decides whether a percentage-gated feature is on for this process.
-- Key files:
-  - `rollout-policy.ts` — reads `SPECKIT_ROLLOUT_PERCENT` (0-100, default 100) and clamps it.
-- Primary consumers:
-  - None in production `lib/` code today; only its own test (`tests/rollout-policy.vitest.ts`) imports it. Kept as the shared rollout-bucket implementation for a future percentage-gated flag.
-
 ### `config/`
 
 - Purpose: Owns the canonical spec-document filename set, spec-folder identity resolution, and the phase-gated capability flags.
@@ -69,12 +61,11 @@ The inventory is derived from the files in each folder and from the import edges
 
 ### `description/`
 
-- Purpose: Owns `description.json`: its schema, the merge rule that preserves authored keys, the shared synopsis extractor, and merge-preserving repair.
+- Purpose: Owns `description.json`: its schema, the merge rule that preserves authored keys, and the shared synopsis extractor.
 - Key files:
   - `description-schema.ts` — Zod schema plus the canonical derived and reserved key sets.
   - `description-merge.ts` — merges incoming fields over authored ones and reports which keys were overridden.
   - `packet-synopsis.ts` — the one shared extractor behind both generated summary fields, so `description` and `causal_summary` cannot drift from the same `spec.md`.
-  - `repair.ts` — merge-preserving repair over a partial `description.json`. Test-only consumer today (`tests/description/repair*.vitest.ts`); no production caller yet.
 - Primary consumers:
   - `lib/search/folder-discovery.ts`
   - `lib/graph/graph-metadata-parser.ts`, `lib/graph/generated-metadata-drift.ts`
@@ -229,7 +220,6 @@ of its own — every flag reads `process.env` directly.
 
 Foundation modules:
 
-- `cognitive`
 - `spec`
 - `templates`
 - `discovery`
