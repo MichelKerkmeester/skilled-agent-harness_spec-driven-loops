@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/056-integration-research-remediation/001-index-root-and-docs",
-  "spec_folder": "system-speckit/056-integration-research-remediation/001-index-root-and-docs",
+  "packet_id": "system-speckit/056-integration-research-remediation/003-hook-markers-and-improvement-family",
+  "spec_folder": "system-speckit/056-integration-research-remediation/003-hook-markers-and-improvement-family",
   "parent_id": "system-speckit/056-integration-research-remediation",
   "children_ids": [],
   "manual": {
@@ -11,10 +11,10 @@
   },
   "derived": {
     "trigger_phrases": [
-      "trigger index repo root",
-      "skill docs missing from index",
-      "rule registry count",
-      "runtime api boundary",
+      "hook drift marker claude cursor",
+      "mkHookDrift fallback",
+      "improvement artifact family",
+      "improvement config rule",
       "implementation plan",
       "technical approach",
       "task breakdown",
@@ -25,18 +25,18 @@
       "waiver adr"
     ],
     "key_topics": [
-      "trigger",
-      "index",
-      "repo",
-      "root",
-      "skill",
-      "docs",
-      "missing",
-      "rule",
-      "registry",
-      "count",
-      "runtime",
-      "api"
+      "hook",
+      "drift",
+      "marker",
+      "claude",
+      "cursor",
+      "mkhookdrift",
+      "fallback",
+      "improvement",
+      "artifact",
+      "family",
+      "config",
+      "rule"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -46,18 +46,19 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "runtime/cli/retrieval/generate-trigger-index.mjs",
-      "runtime/data/trigger-index.json",
-      "runtime/cli/tests/retrieval-repo-root.vitest.ts",
-      "runtime/cli/tests/validator-registry-doc-count.vitest.ts",
-      "runtime/cli/tests/test-validation-extended.sh",
-      "runtime/api/README.md",
-      "tests/test-validation-extended.sh",
+      ".claude/settings.json",
+      ".cursor/hooks.json",
+      ".opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      "runtime/tests/hook-adapter-path-parity.vitest.ts",
+      "references/structure/folder-structure.md",
+      "runtime/cli/rules/check-improvement-artifacts.sh",
+      "runtime/cli/lib/validator-registry.json",
+      "runtime/hooks/claude/README.md",
+      "runtime/hooks/cursor/README.md",
+      "rules/check-improvement-artifacts.sh",
       "retrieval/lib/corpus.mjs",
-      "tests/retrieval-repo-root.vitest.ts",
-      "tests/validator-registry-doc-count.vitest.ts",
-      "tests/retrieval-coverage-parity.vitest.ts",
-      "tests/trigger-index.vitest.ts"
+      ".codex/hooks.json",
+      "dist/hooks/claude/session-prime.js"
     ],
     "entities": [
       {
@@ -91,39 +92,51 @@
         "source": "derived"
       },
       {
-        "name": "generate-trigger-index.mjs",
-        "kind": "file",
-        "path": "runtime/cli/retrieval/generate-trigger-index.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-index.json",
+        "name": "settings.json",
         "kind": "config",
-        "path": "runtime/data/trigger-index.json",
+        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
-        "name": "retrieval-repo-root.vitest.ts",
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-path-parity.vitest.ts",
         "kind": "test",
-        "path": "runtime/cli/tests/retrieval-repo-root.vitest.ts",
+        "path": "runtime/tests/hook-adapter-path-parity.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "validator-registry-doc-count.vitest.ts",
-        "kind": "test",
-        "path": "runtime/cli/tests/validator-registry-doc-count.vitest.ts",
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": "references/structure/folder-structure.md",
         "source": "derived"
       },
       {
-        "name": "test-validation-extended.sh",
+        "name": "check-improvement-artifacts.sh",
         "kind": "script",
-        "path": "runtime/cli/tests/test-validation-extended.sh",
+        "path": "runtime/cli/rules/check-improvement-artifacts.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/lib/validator-registry.json",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": "runtime/api/README.md",
+        "path": "runtime/hooks/claude/README.md",
         "source": "derived"
       },
       {
@@ -133,15 +146,9 @@
         "source": "derived"
       },
       {
-        "name": "retrieval-coverage-parity.vitest.ts",
-        "kind": "test",
-        "path": "tests/retrieval-coverage-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-index.vitest.ts",
-        "kind": "test",
-        "path": "tests/trigger-index.vitest.ts",
+        "name": "session-prime.js",
+        "kind": "code",
+        "path": "dist/hooks/claude/session-prime.js",
         "source": "derived"
       },
       {
@@ -163,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Every Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -170,12 +183,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -193,21 +200,15 @@
         "source": "derived"
       },
       {
-        "name": "Overview Replace",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Anchor",
+        "name": "Overview Each Claude",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The trigger-index generator resolved the repository root one directory short after the CLI nested under runtime/, so the published index carried spec documents only; the skill README also claimed a 46-rule registry against 37 real entries. Both are fixed with tests that pin them.",
-    "created_at": "2026-09-05T21:16:56Z",
-    "last_save_at": "2026-09-05T22:19:47.265Z",
+    "causal_summary": "Claude and Cursor hook registrations now carry the same self-diagnosing drift fallback as Codex and Devin, and the improvement/ artifact family the deep-improvement commands write is documented in the folder structure and checked by a validator rule.",
+    "created_at": "2026-09-05T21:16:58Z",
+    "last_save_at": "2026-09-05T22:22:01.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8021c8cb544f37d9ca2f94ad290b189a178ee08d9240addad8dfa731cbf3553",
+    "source_fingerprint": "sha256:ab6a0ac9dc6f901bbd231439bde2a06f076b8958341cceaab468b2a4e194a203",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f52b4a472963292095bf34920c3fdd50898e6815ac617d9d1fe4def354592799",
-      "plan.md": "107a8f844c8036e070d4a53244612f2f286b00ef3b5a548eff6f785fff9211aa",
-      "tasks.md": "d16af8a6e5803b106650192b65717a7ef19887be572db9e658e3dd6a340b3668",
-      "implementation-summary.md": "78cfb8cf9ed463811266cd1a84dfab55aeaded977c577f4764f04fb246fff513"
+      "spec.md": "1c7fe8620f74f600a4ca4bcc43d8f2c1b4348b6a903b0d3c13c815685767ef62",
+      "plan.md": "8ba80f43392b5d7eafdd41eac86059e67de73092c10c97a972f015d659289dc9",
+      "tasks.md": "1362030a63494bf50849d8467cc51ce8bf39c63621c75727ac60312a928d0fcc",
+      "implementation-summary.md": "393052174a010f68c27259ebdd9945686ea0393b7573c1a1c662ce2d55bbf1db"
     },
     "last_active_at": null
   }

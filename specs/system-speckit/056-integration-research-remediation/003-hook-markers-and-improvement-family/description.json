@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/056-integration-research-remediation/003-hook-markers-and-improvement-family",
+  "description": "Claude and Cursor hook registrations now carry the same self-diagnosing drift fallback as Codex and Devin, and the improvement/ artifact family the",
+  "keywords": [
+    "claude",
+    "cursor",
+    "hook",
+    "registrations",
+    "now",
+    "carry",
+    "same",
+    "self-diagnosing",
+    "drift",
+    "fallback",
+    "codex",
+    "devin",
+    "improvement",
+    "artifact",
+    "family"
+  ],
+  "lastUpdated": "2026-09-05T22:22:00.894Z",
+  "specId": "003",
+  "folderSlug": "hook-markers-and-improvement-family",
+  "parentChain": [
+    "system-speckit",
+    "056-integration-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -101,3 +101,27 @@ Follow the ordered tasks in `tasks.md`.
 - **Trigger**: a refresh drops a child that a packet must keep.
 - **Procedure**: revert the writer commit; the rule and sweep are read-only and can stay.
 <!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:ai-protocol -->
+## 8. AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+- Read the files this phase names before editing; confirm the failing behavior with the verification command first.
+- Never run the whole deep-loop suite in this environment; run named files.
+
+### Task Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Follow `tasks.md` order; verification tasks run after every implementation task |
+| TASK-SCOPE | Touch only the files the phase names; report anything outside it |
+| Comment hygiene | Code comments carry the durable why, never packet or task identifiers |
+
+### Status Reporting Format
+Per finding: root cause, files changed, the exact rerun command and its result line.
+
+### Blocked Task Protocol
+Mark the task `[B]`, state what blocks it and which file or decision would unblock it, and continue with unblocked tasks.
+<!-- /ANCHOR:ai-protocol -->
