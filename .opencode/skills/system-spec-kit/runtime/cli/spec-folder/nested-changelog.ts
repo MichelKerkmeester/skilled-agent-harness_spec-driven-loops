@@ -623,9 +623,15 @@ function detectMode(specFolder: string, explicitMode: CliOptions['mode']): Neste
 
 function buildOutputPath(rootSpecFolder: string, specFolder: string, mode: NestedChangelogMode, overridePath: string | null): string {
   if (overridePath) {
-    return path.isAbsolute(overridePath)
-      ? overridePath
-      : path.join(CONFIG.PROJECT_ROOT, overridePath);
+    // An explicit output path is still a write on the caller's behalf, so it is
+    // held to the same boundary as the default path: nothing leaves the project
+    // root, whether the override is given relative or absolute.
+    const resolved = path.resolve(CONFIG.PROJECT_ROOT, overridePath);
+    const relative = path.relative(CONFIG.PROJECT_ROOT, resolved);
+    if (relative === '' || relative.startsWith('..') || path.isAbsolute(relative)) {
+      throw new Error(`--output must resolve inside the project root: ${overridePath}`);
+    }
+    return resolved;
   }
 
   const rootName = path.basename(rootSpecFolder);
@@ -720,7 +726,7 @@ function generateNestedChangelogMarkdown(data: NestedChangelogData): string {
 
 /** Write a rendered packet-local changelog to its resolved output path. */
 function writeNestedChangelog(data: NestedChangelogData): string {
-  const absoluteOutputPath = path.join(CONFIG.PROJECT_ROOT, data.outputPath);
+  const absoluteOutputPath = path.resolve(CONFIG.PROJECT_ROOT, data.outputPath);
   fs.mkdirSync(path.dirname(absoluteOutputPath), { recursive: true });
   fs.writeFileSync(absoluteOutputPath, generateNestedChangelogMarkdown(data), 'utf8');
   return absoluteOutputPath;

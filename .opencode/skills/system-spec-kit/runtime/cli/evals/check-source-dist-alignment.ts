@@ -149,6 +149,11 @@ function findJsFiles(dir: string): string[] {
 // `runtime/dist/`. Empty/optional dist roots are skipped at scan time.
 const DIST_TARGETS: DistTarget[] = [
   {
+    label: 'runtime/cli',
+    distRoot: path.join('runtime', 'cli', 'dist'),
+    sourceRoot: path.join('runtime', 'cli'),
+  },
+  {
     label: 'runtime/lib',
     distRoot: path.join('runtime', 'dist', 'lib'),
     sourceRoot: path.join('runtime', 'lib'),

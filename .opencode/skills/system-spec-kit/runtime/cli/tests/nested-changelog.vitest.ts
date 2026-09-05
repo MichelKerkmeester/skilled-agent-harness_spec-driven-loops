@@ -126,6 +126,22 @@ The generator can now resolve phase folders and derive packet-local changelog pa
     expect(markdown).toContain('Packet-level changelog generation now ships beside the implementation summary');
   });
 
+  it('confines an explicit output path to the project root', () => {
+    const rootSpec = makeTempProjectRoot();
+    writeFile(path.join(rootSpec, 'spec.md'), '# Feature Specification: Bounded Output');
+    writeFile(path.join(rootSpec, 'tasks.md'), '- [x] T001 Keep writes inside the root');
+
+    const outside = path.join(os.tmpdir(), `nested-changelog-escape-${process.pid}.md`);
+    expect(() => buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: outside }))
+      .toThrow(/inside the project root/);
+    expect(() => buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: '../escape.md' }))
+      .toThrow(/inside the project root/);
+
+    const inside = buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: 'notes/changelog.md' });
+    expect(inside.outputPath).toBe('notes/changelog.md');
+    expect(writeNestedChangelog(inside)).toBe(path.join(CONFIG.PROJECT_ROOT, 'notes', 'changelog.md'));
+  });
+
   it('writes a phase changelog into the parent packet changelog folder', () => {
     const rootSpec = makeTempProjectRoot();
     const phaseSpec = path.join(rootSpec, '029-review-remediation');

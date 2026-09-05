@@ -56,10 +56,10 @@ Dependency direction: entrypoints ───▶ source modules ───▶ lib a
 ## 3. PACKAGE TOPOLOGY
 
 ```text
-scripts/
+runtime/cli/
 +-- spec/                  # Spec lifecycle shell entrypoints
 +-- rules/                 # Validation rule scripts
-+-- memory/                # Continuity save and ranking CLIs
++-- continuity/            # Continuity save and ranking CLIs
 +-- graph/                 # Graph metadata backfill CLI
 +-- config/                # Config barrel boundary for script modules
 +-- validation/            # Validation, evidence and comment-hygiene checks
@@ -118,7 +118,7 @@ Disallowed direction:
 |---|---|
 | `spec/` | Creates, upgrades, validates, completes and archives spec folders. |
 | `rules/` | Holds validation checks used by `spec/validate.sh`. |
-| `memory/generate-context.ts` | Builds structured continuity save output and metadata updates. |
+| `continuity/generate-context.ts` | Builds structured continuity save output and metadata updates. |
 | `graph/backfill-graph-metadata.ts` | Refreshes graph metadata across spec folders. |
 | `config/` | Exposes the script-side config barrel boundary for non-core modules. |
 | `runtime-mirrors/` | Keeps runtime mirror exclusions and native command exceptions aligned with generated mirror trees. |
@@ -243,7 +243,7 @@ Run targeted shell or Vitest checks when editing one script zone. Use the parent
 - [`spec/README.md`](spec/README.md)
 - [`lib/README.md`](lib/README.md)
 - [`rules/README.md`](rules/README.md)
-- [`memory/README.md`](memory/README.md)
+- [`continuity/README.md`](continuity/README.md)
 - [`evals/README.md`](evals/README.md)
 - [`setup/README.md`](setup/README.md)
 - [`ops/README.md`](ops/README.md)
