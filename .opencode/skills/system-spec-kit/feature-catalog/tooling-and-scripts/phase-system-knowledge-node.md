@@ -44,9 +44,9 @@ The current system is therefore not just descriptive documentation. The node is 
 | `.opencode/skills/system-spec-kit/references/structure/phase-definitions.md` | Reference | Full phase taxonomy, thresholds, parent/child conventions, and lifecycle rules |
 | `.opencode/commands/speckit/plan.md` | Command | Operator workflow contract for `:with-phases` decomposition and `--phase-folder` planning |
 | `.opencode/commands/speckit/complete.md` | Command | End-to-end phase decomposition and child-phase completion workflow |
-| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Script | Creates phased parent/child spec structures and supports append mode for existing parents |
-| `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` | Script | Computes documentation-level scoring plus the separate phase recommendation and suggested phase count |
-| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Script | Runs recursive validation across a phase parent and its child folders |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Script | Creates phased parent/child spec structures and supports append mode for existing parents |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` | Script | Computes documentation-level scoring plus the separate phase recommendation and suggested phase count |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Script | Runs recursive validation across a phase parent and its child folders |
 
 ---
 

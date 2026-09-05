@@ -8,10 +8,10 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const { discoverLineages, measureLineage, aggregate } = require('../../../skills/system-spec-kit/scripts/metrics/fable-metrics.cjs');
+const { discoverLineages, measureLineage, aggregate } = require('../../../skills/system-spec-kit/runtime/cli/metrics/fable-metrics.cjs');
 
 const DEFAULT_TARGET = path.resolve(__dirname, '../../../specs/skilled-agent-orchestration/144-operate-like-fable-5/002-fable-mode-efficiency-research/research');
-const DEFAULT_BASELINE = path.resolve(__dirname, '../../../skills/system-spec-kit/scripts/metrics/fable-baseline.json');
+const DEFAULT_BASELINE = path.resolve(__dirname, '../../../skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json');
 
 function flag(name) { const i = process.argv.indexOf(name); return i !== -1 ? process.argv[i + 1] : null; }
 

@@ -40,9 +40,9 @@ Applies to all shell files in:
 
 | File | Evidence |
 |------|----------|
-| `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh` | JSON escaping, repo-root + phase-parent detection utilities |
-| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Color definitions, TTY detection, logging functions, exit-code counters |
-| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Strict mode, argument parsing, control flow |
+| `.opencode/skills/system-spec-kit/runtime/cli/lib/shell-common.sh` | JSON escaping, repo-root + phase-parent detection utilities |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Color definitions, TTY detection, logging functions, exit-code counters |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Strict mode, argument parsing, control flow |
 
 ---
 
@@ -56,7 +56,7 @@ Applies to all shell files in:
 #!/usr/bin/env bash
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh:1`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/lib/shell-common.sh:1`
 
 ### File Header
 
@@ -88,7 +88,7 @@ Use the standard header format for identification:
 #   └── level-3/        # Core + Verification + Architecture (~540 LOC)
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1-20`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:1-20`
 
 ### Strict Mode
 
@@ -104,7 +104,7 @@ set -euo pipefail
 | `-u` | Error on undefined variables |
 | `-o pipefail` | Pipe fails if any command fails |
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:22`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:22`
 
 ### Section Organization
 
@@ -128,7 +128,7 @@ log_info() {
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:74-77`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:340-343`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:74-77`, `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:340-343`
 
 ---
 
@@ -165,7 +165,7 @@ _json_escape() {
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh:37-45`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/lib/shell-common.sh:37-45`
 
 ### Variables
 
@@ -191,7 +191,7 @@ WARNINGS=0
 JSON_MODE=false
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:45-47`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh:24-33`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:45-47`, `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:24-33`
 
 ---
 
@@ -219,7 +219,7 @@ if [[ ! -t 1 ]]; then
 fi
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:74-77`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:74-77`
 
 ### Usage in Output
 
@@ -264,7 +264,7 @@ log_info() {
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:335-343`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:335-343`
 
 ### Detail Logging
 
@@ -276,7 +276,7 @@ log_detail() {
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:345`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:345`
 
 ### Inline Comments
 

@@ -1,11 +1,20 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding",
-  "description": "Phase 1: continuity-freshness-claim-binding",
+  "description": "`evaluateCompletionFreshness` (`.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:292-349`) scans `spec.md`, `plan.md`,",
   "keywords": [
-    "phase",
-    "continuity-freshness-claim-binding"
+    "evaluatecompletionfreshness",
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "scripts",
+    "validation",
+    "continuity-freshness",
+    "scans",
+    "spec",
+    "plan"
   ],
-  "lastUpdated": "2026-09-05T06:13:04.530Z",
+  "lastUpdated": "2026-09-05T07:34:50.865Z",
   "specId": "001",
   "folderSlug": "continuity-freshness-claim-binding",
   "parentChain": [
@@ -13,6 +22,5 @@
     "054-decommission-debt-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

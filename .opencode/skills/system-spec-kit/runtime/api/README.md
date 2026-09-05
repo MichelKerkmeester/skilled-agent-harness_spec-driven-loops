@@ -77,4 +77,4 @@ Expected result: import policy tests pass and README validation exits `0` with n
 
 - [Runtime engine](../README.md)
 - [Runtime tests](../tests/README.md)
-- [Import policy allowlist](../../scripts/evals/import-policy-allowlist.json)
+- [Import policy allowlist](../cli/evals/import-policy-allowlist.json)

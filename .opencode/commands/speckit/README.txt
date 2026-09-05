@@ -50,12 +50,12 @@ Most commands load a YAML workflow from `assets/` and execute it step by step, s
 
 Retrieval runs on two local mechanisms and no background service:
 
-- **The generated trigger index**, read by `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`. It matches a prompt against author-declared `trigger_phrases`.
+- **The generated trigger index**, read by `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`. It matches a prompt against author-declared `trigger_phrases`.
 - **The ripgrep recipes** in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`, which find a phrase anywhere in the corpus with no index at all.
 
 Both are lexical. A phrase that is not written in the corpus is not found, and `search` says so rather than returning a nearest guess. Section 7 lists what that costs.
 
-Writing goes through one script: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`. It keeps atomic same-directory update and lock semantics, needs no daemon, and has no indexing handoff after it. Ripgrep cannot write, so no retrieval recipe substitutes for it.
+Writing goes through one script: `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`. It keeps atomic same-directory update and lock semantics, needs no daemon, and has no indexing handoff after it. Ripgrep cannot write, so no retrieval recipe substitutes for it.
 
 <!-- /ANCHOR:overview -->
 
@@ -266,7 +266,7 @@ Both retrieval mechanisms behind `search` are runnable by hand, which is the poi
 
 ```bash
 # The trigger-index lane
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "resume work session context"
 
 # The free-text lane, path-only recipe, scoped to one packet
@@ -276,7 +276,7 @@ rg --no-config --fixed-strings --ignore-case \
   -- 'trigger index generator' specs/012-rate-limiting
 
 # Regenerate the trigger index after editing a document's trigger_phrases
-node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
 Copy the recipe flags literally. `--no-config` stops `RIPGREP_CONFIG_PATH` from injecting arguments you never wrote, the two exclusion globs keep archived packets and vendored trees out of the result set, and `--` makes a phrase beginning with a hyphen a pattern rather than a parse error.
@@ -358,7 +358,7 @@ Retrieval is lexical. It matches the text you typed, not the meaning. Rephrase u
 
 **Q: How do I refresh retrieval after editing a document?**
 
-For the free-text lane, you do not: `rg` reads the files directly, so an edit is visible immediately. For the trigger lane, rerun `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` after changing a document's `trigger_phrases`.
+For the free-text lane, you do not: `rg` reads the files directly, so an edit is visible immediately. For the trigger lane, rerun `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` after changing a document's `trigger_phrases`.
 
 <!-- /ANCHOR:faq -->
 
@@ -395,8 +395,8 @@ For the free-text lane, you do not: `rg` reads the files directly, so an edit is
 | [system-spec-kit SKILL.md](../../skills/system-spec-kit/SKILL.md) | Spec folder workflow, documentation levels, packet continuity |
 | [AGENTS.md](../../../AGENTS.md) | Gate system, agent routing, spec folder requirements |
 | [Ripgrep Retrieval Conventions](../../skills/system-spec-kit/references/retrieval/retrieval-conventions.md) | The recipes, scoping rules, exit-status mapping and ranking tuple behind `search` |
-| [Trigger index lookup](../../skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs) | The keyed Gate 1 lane over the generated index |
-| [Trigger index generator](../../skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs) | Regenerates the index from document frontmatter |
-| [Continuity writer](../../skills/system-spec-kit/scripts/dist/memory/generate-context.js) | The named packet-local writer `save` invokes |
+| [Trigger index lookup](../../skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs) | The keyed Gate 1 lane over the generated index |
+| [Trigger index generator](../../skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs) | Regenerates the index from document frontmatter |
+| [Continuity writer](../../skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js) | The named packet-local writer `save` invokes |
 
 <!-- /ANCHOR:related-documents -->

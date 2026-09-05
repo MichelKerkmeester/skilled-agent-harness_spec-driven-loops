@@ -59,7 +59,7 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 
 ## 4. POST-CHECKS
 
-- [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <path> --strict`.
+- [ ] Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <path> --strict`.
 - [ ] grep verification: `rg -n "ANCHOR:metadata|ANCHOR:summary|ANCHOR:notation|_memory:|packet_pointer" <path>`.
 - [ ] grep verification: `rg -n "\"title\"|\"contextType\"|\"derived\"" <path>/description.json <path>/graph-metadata.json`.
 - [ ] Cross-runtime mirror parity check if the spec folder changes command or agent mirrors.

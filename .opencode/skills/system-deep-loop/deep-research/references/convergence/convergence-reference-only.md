@@ -93,7 +93,7 @@ Locked fields are not optimizer-tunable:
 - lineage fields such as `sessionId`, `lineageMode`, and `generation`;
 - reducer ownership and file protection policies.
 
-The canonical optimizer manifest is `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`.
+The canonical optimizer manifest is `.opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`.
 
 ---
 

@@ -42,10 +42,10 @@ npm install
 
 ```bash
 # Test spec-folder retrieval (no server)
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "spec folder question"
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder question"
 
 # Test embedding providers
-node .opencode/skills/system-spec-kit/scripts/test-embeddings-factory.js
+node .opencode/skills/system-spec-kit/runtime/cli/test-embeddings-factory.js
 ```
 
 ---

@@ -11,7 +11,7 @@ import {
   recordSmartRouterPromptObservation,
   startSmartRouterCompliancePrompt,
   telemetryFilePath,
-} from '../../scripts/observability/smart-router-telemetry';
+} from '../cli/observability/smart-router-telemetry';
 
 const TELEMETRY_DIR_ENV = 'SPECKIT_SMART_ROUTER_TELEMETRY_DIR';
 const TELEMETRY_PATH_ENV = 'SPECKIT_SMART_ROUTER_TELEMETRY_PATH';

@@ -38,7 +38,7 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 
 - Scripts are Node executables with `#!/usr/bin/env node`.
 - Line 2 is `'use strict';`.
-- Scripts resolve `system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs`.
+- Scripts resolve `system-spec-kit/runtime/cli/node_modules/tsx/dist/loader.mjs`.
 - If `DEEP_LOOP_TSX_LOADED !== '1'`, the script spawns Node with `--import <tsx-loader>` and original args.
 - The child receives cwd, env plus `DEEP_LOOP_TSX_LOADED=1`, and stdin when stdin is not a TTY.
 

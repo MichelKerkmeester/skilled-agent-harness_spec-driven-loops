@@ -140,7 +140,7 @@
       "invocation_aliases": ["/speckit:plan", "/speckit:implement", "/speckit:complete", "/speckit:resume", ":auto suffix", ":confirm suffix", ":autopilot suffix", ":unattended suffix", "--unattended flag"],
       "workflow_schema_ref": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md"
     },
-    "memory": {
+    "continuity": {
       "topology": "direct-dispatch",
       "router_path": [
         ".opencode/commands/speckit/save.md",
@@ -161,7 +161,7 @@
       },
       "owned_assets": [
         { "purpose": "presentation", "path": ".opencode/commands/speckit/assets/<command>-presentation.txt" },
-        { "purpose": "script", "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js (consumed; owned by system-spec-kit)" }
+        { "purpose": "script", "path": ".opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js (consumed; owned by system-spec-kit)" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",

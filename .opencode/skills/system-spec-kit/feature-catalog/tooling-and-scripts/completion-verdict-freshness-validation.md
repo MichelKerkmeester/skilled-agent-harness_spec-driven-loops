@@ -35,9 +35,9 @@ The validation helper recomputes a normalized continuity fingerprint from packet
 
 | File | Layer | Role |
 |---|---|---|
-| `scripts/validation/continuity-freshness.ts` | Script | Fingerprint recompute, packet-scoped dirty paths, warn/enforce behavior |
+| `runtime/cli/validation/continuity-freshness.ts` | Script | Fingerprint recompute, packet-scoped dirty paths, warn/enforce behavior |
 | `runtime/lib/validation/spec-doc-structure.ts` | Shared | Normalized continuity fingerprint helper |
-| `scripts/spec/validate.sh` | Script | Strict validation rule wiring and flag gate |
+| `runtime/cli/spec/validate.sh` | Script | Strict validation rule wiring and flag gate |
 | `references/validation/validation-rules.md` | Reference | Operator documentation for the rule and flags |
 | `runtime/ENV-REFERENCE.md` | Reference | Documents completion freshness flags |
 

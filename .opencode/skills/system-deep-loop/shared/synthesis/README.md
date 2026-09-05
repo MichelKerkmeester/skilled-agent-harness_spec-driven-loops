@@ -17,7 +17,7 @@ Shared re-export seam for `emitResourceMap`, the workflow output renderer that r
 
 | File | Purpose |
 |------|---------|
-| `resource-map.cjs` | Re-exports `emitResourceMap` (and sibling exports) from `system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`. Carries no logic of its own. |
+| `resource-map.cjs` | Re-exports `emitResourceMap` (and sibling exports) from `system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`. Carries no logic of its own. |
 
 ---
 
@@ -32,4 +32,4 @@ Shared re-export seam for `emitResourceMap`, the workflow output renderer that r
 
 ## 4. RELATED
 
-- [`system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`](../../../system-spec-kit/scripts/resource-map/extract-from-evidence.cjs) (single implementation)
+- [`system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`](../../../system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs) (single implementation)

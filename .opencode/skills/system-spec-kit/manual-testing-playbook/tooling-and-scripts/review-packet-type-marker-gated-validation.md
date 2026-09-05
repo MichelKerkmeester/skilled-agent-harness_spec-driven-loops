@@ -19,7 +19,7 @@ This scenario validates the review packet type in `validate.sh`. A `<!-- SPECKIT
 
 - Objective: Confirm the review marker selects the review level, waives plan/tasks/implementation-summary and requires only the lean review record plus its review report.
 - Real user request: `Validate the review packet type: a spec.md carrying the SPECKIT_LEVEL review marker should validate clean with only the review record and review/review-report.md present, and should not demand plan.md, tasks.md or implementation-summary.md.`
-- Prompt: `Validate the review packet type marker-gated validation against bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <spec-folder> and report cited pass/fail evidence.`
+- Prompt: `Validate the review packet type marker-gated validation against bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --strict <spec-folder> and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: validate.sh reports the detected level as `review` via the explicit marker, validates the lean review record and review/review-report.md file set, and never flags missing plan.md, tasks.md or implementation-summary.md. A clean scaffold exits 0 under `--strict`; an archived packet with unrelated warnings may exit 2 without invalidating the review-file waiver.
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,7 +31,7 @@ This scenario validates the review packet type in `validate.sh`. A `<!-- SPECKIT
 
 ### Prompt
 
-`Validate the review packet type marker-gated validation against bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <spec-folder> and report cited pass/fail evidence.`
+`Validate the review packet type marker-gated validation against bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --strict <spec-folder> and report cited pass/fail evidence.`
 
 ### Commands
 
@@ -43,7 +43,7 @@ This scenario validates the review packet type in `validate.sh`. A `<!-- SPECKIT
    ```
 3. Validate the packet under strict mode:
    ```bash
-   bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
+   bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
    ```
 4. Check the detected level and exit code in the output.
 
@@ -77,7 +77,7 @@ Output:
 
 Command:
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ".opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation" --strict
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh ".opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation" --strict
 ```
 
 Output:
@@ -125,7 +125,7 @@ RESULT: FAILED
 
 Exit-code check command:
 ```bash
-bash -c 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ".opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation" --strict; status=$?; printf "\nEXIT_CODE=%s\n" "$status"'
+bash -c 'bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh ".opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation" --strict; status=$?; printf "\nEXIT_CODE=%s\n" "$status"'
 ```
 
 Exit-code output:
@@ -141,13 +141,13 @@ Archived-packet caveat: this packet proves marker detection and the heavy-doc wa
 
 ### Failure Triage
 
-Inspect the review-marker detection in `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` (the `<!-- SPECKIT_LEVEL: review -->` branch that sets `DETECTED_LEVEL=review`). Confirm the review level maps to the lean `spec + review/review-report` required-file set and that the `review.spec.md.tmpl` template carries the marker.
+Inspect the review-marker detection in `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` (the `<!-- SPECKIT_LEVEL: review -->` branch that sets `DETECTED_LEVEL=review`). Confirm the review level maps to the lean `spec + review/review-report` required-file set and that the `review.spec.md.tmpl` template carries the marker.
 
 ---
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Validator: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- Validator: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh`
 - Template: `.opencode/skills/system-spec-kit/templates/packet-types/review.spec.md.tmpl`
 
 ---

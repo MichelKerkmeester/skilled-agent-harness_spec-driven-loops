@@ -153,14 +153,14 @@ Parse the response into the returned contract fields. In `:auto` mode, proceed o
 The Emit phase stages and commits three files atomically:
 
 1. `spec.md` — canonical specification (per Level 1 / 2 / 3 / 3+ template)
-2. `description.json` — generated via `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js <folder> <base>`
+2. `description.json` — generated via `node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js <folder> <base>`
 3. `graph-metadata.json` — generated via backfill or authored with supersedes/depends_on from `manual_relationships`
 
 **Staged semantics:**
 - Write to `<file>.tmp` first
 - After all three temp writes succeed, rename atomically
 - On any failure mid-write: remove temp files, preserve pre-existing files, emit exact recovery command
-- Helper: `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh` for full trio generation
+- Helper: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` for full trio generation
 
 **Success condition:** All three canonical files present and structurally valid BEFORE the optional memory-save branch runs. The save branch is never the success gate.
 
@@ -221,7 +221,7 @@ Memory save runs AFTER Emit success, only when:
 
 Invocation:
 ```bash
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json <spec-folder>
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json <spec-folder>
 ```
 
 Report save result independently from trio success — a failed save never invalidates a successful trio.
@@ -283,11 +283,11 @@ Reads `handover.md` and `_memory.continuity` for `reentry_reason` and `resume_qu
 | Spec-kit templates | `.opencode/skills/system-spec-kit/templates/` (Level 1 / 2 / 3 / 3+) |
 | Phase-parent template | `templates/packet-types/phase-parent.spec.md.tmpl` (lean trio template) |
 | Migration-bridge template | `templates/packet-types/context-index.md.tmpl` (optional; for reorganized phase parents) |
-| Recommend-level helper | `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` |
-| Create helper | `.opencode/skills/system-spec-kit/scripts/spec/create.sh` |
-| Description generator | `.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js` |
-| Memory save script | `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` |
-| Validator | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
+| Recommend-level helper | `.opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` |
+| Create helper | `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` |
+| Description generator | `.opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js` |
+| Memory save script | `.opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` |
+| Validator | `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <folder> --strict` |
 | Deep-research spec check | `.opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` |
 
 ---

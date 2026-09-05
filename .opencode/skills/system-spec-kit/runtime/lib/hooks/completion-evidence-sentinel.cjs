@@ -51,7 +51,7 @@ const childProcess = require('node:child_process');
 // wrapper has a fixed 5s timeout that is safe for an isolated Claude
 // subprocess but too loose for a call made directly on the OpenCode plugin
 // host, which the spawn would block in full for its whole duration.
-const completionState = require('../../../scripts/lib/completion-state.cjs');
+const completionState = require('../../cli/lib/completion-state.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

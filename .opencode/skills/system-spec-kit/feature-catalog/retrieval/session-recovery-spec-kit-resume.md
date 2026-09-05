@@ -28,7 +28,7 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 - **`_memory.continuity`** (in `implementation-summary.md`) -- Supporting continuity state when `handover.md` is absent or needs enrichment from the canonical packet.
 - **Packet-first spec docs and bounded anchors** -- `spec.md`, `plan.md`, `tasks.md` and the `<!-- ANCHOR:... -->` blocks inside them, read directly rather than retrieved.
 - **The ripgrep recipes** in `references/retrieval/retrieval-conventions.md` §2 -- Free-text evidence when the packet is thin and the operator needs to locate a phrase across `specs/` and `.opencode/`. Ripgrep produces matches; the caller ranks them per §5.
-- **The trigger index** -- `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs "<prompt>"` matches a prompt against author-declared `trigger_phrases` when the operator does not yet know which packet to open.
+- **The trigger index** -- `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` matches a prompt against author-declared `trigger_phrases` when the operator does not yet know which packet to open.
 
 There is no session inference, no semantic paraphrase and no candidate ranking behind this workflow. When the ladder produces nothing, the command asks rather than guessing; `references/retrieval/retrieval-conventions.md` §1 records that boundary as a deliberate loss.
 
@@ -71,16 +71,16 @@ There is no session inference, no semantic paraphrase and no candidate ranking b
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Reference | The ripgrep invocation contract and the caller-side ranking tuple |
-| `.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs` | Script | Trigger-index lookup, the keyed prompt-to-packet lane |
-| `.opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` | Script | Generates the index the lookup reads |
-| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Script | Continuity writer: produces the `_memory.continuity` block the ladder reads |
+| `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` | Script | Trigger-index lookup, the keyed prompt-to-packet lane |
+| `.opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` | Script | Generates the index the lookup reads |
+| `.opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts` | Script | Continuity writer: produces the `_memory.continuity` block the ladder reads |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `scripts/retrieval/measure-cold-lookup.mjs` | Automated check | Cold-lookup cost of the trigger-index lane |
-| `scripts/tests/manual-playbook-runner.vitest.ts` | Automated test | Scenario runner contract for the resume playbook entry |
+| `runtime/cli/retrieval/measure-cold-lookup.mjs` | Automated check | Cold-lookup cost of the trigger-index lane |
+| `runtime/cli/tests/manual-playbook-runner.vitest.ts` | Automated test | Scenario runner contract for the resume playbook entry |
 
 ---
 

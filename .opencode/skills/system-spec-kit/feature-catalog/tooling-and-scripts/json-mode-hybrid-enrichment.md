@@ -44,17 +44,17 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 
 | File | Role |
 |------|------|
-| `scripts/types/session-types.ts` | Structured JSON contract types for `toolCalls` and `exchanges` |
-| `scripts/utils/input-normalizer.ts` | Snake_case JSON compatibility, structured-summary normalization, `projectPhase` propagation (fast-path and slow-path) |
-| `scripts/extractors/collect-session-data.ts` | Wave 2 count, confidence, and outcome handling |
-| `scripts/extractors/quality-scorer.ts` | Quality score computation; penalty-only model |
-| `scripts/extractors/session-extractor.ts` | `resolveProjectPhase()` for projectPhase override |
-| `scripts/core/workflow.ts` | JSON/file authority behavior, structured-input routing, trigger-phrase filtering, post-save review invocation gating, and SHA1-based pre-save overlap checks |
-| `scripts/core/post-save-review.ts` | Post-save review logic, severity grading, MEMORY METADATA-aware field checks, `computeReviewScorePenalty()`, multi-token path fragment detection |
-| `scripts/extractors/contamination-filter.ts` | Contamination filter extension: 4 additional text fields, 18 new patterns (33 -> 51 total) |
-| `scripts/lib/validate-memory-quality.ts` | V13 YAML parsing and memory-quality validation |
-| `scripts/renderers/template-renderer.ts` | Optional-placeholder handling for compact tool/exchange sections |
-| `scripts/memory/generate-context.ts` | CLI help text and structured-first save workflow documentation |
+| `runtime/cli/types/session-types.ts` | Structured JSON contract types for `toolCalls` and `exchanges` |
+| `runtime/cli/utils/input-normalizer.ts` | Snake_case JSON compatibility, structured-summary normalization, `projectPhase` propagation (fast-path and slow-path) |
+| `runtime/cli/extractors/collect-session-data.ts` | Wave 2 count, confidence, and outcome handling |
+| `runtime/cli/extractors/quality-scorer.ts` | Quality score computation; penalty-only model |
+| `runtime/cli/extractors/session-extractor.ts` | `resolveProjectPhase()` for projectPhase override |
+| `runtime/cli/core/workflow.ts` | JSON/file authority behavior, structured-input routing, trigger-phrase filtering, post-save review invocation gating, and SHA1-based pre-save overlap checks |
+| `runtime/cli/core/post-save-review.ts` | Post-save review logic, severity grading, MEMORY METADATA-aware field checks, `computeReviewScorePenalty()`, multi-token path fragment detection |
+| `runtime/cli/extractors/contamination-filter.ts` | Contamination filter extension: 4 additional text fields, 18 new patterns (33 -> 51 total) |
+| `runtime/cli/lib/validate-memory-quality.ts` | V13 YAML parsing and memory-quality validation |
+| `runtime/cli/renderers/template-renderer.ts` | Optional-placeholder handling for compact tool/exchange sections |
+| `runtime/cli/continuity/generate-context.ts` | CLI help text and structured-first save workflow documentation |
 
 ### FEATURE BREAKDOWN
 
@@ -144,16 +144,16 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 
 | File | Type | Role |
 |---|---|---|
-| `scripts/tests/generate-context-cli-authority.vitest.ts` | Automated test | Structured-input precedence for `--stdin` and `--json` |
-| `scripts/tests/input-normalizer-unit.vitest.ts` | Automated test | Fast-path field propagation, FILES conversion, and enum validation |
-| `scripts/tests/post-save-review.vitest.ts` | Automated test | Post-save review PASS-path coverage and score-penalty computation |
-| `scripts/tests/project-phase-e2e.vitest.ts` | Automated test | Explicit `projectPhase` propagation through the save pipeline |
-| `scripts/tests/quality-scorer-calibration.vitest.ts` | Automated test | Live scorer calibration coverage |
-| `scripts/tests/task-enrichment.vitest.ts` | Automated test | Summary enrichment and count preservation behavior |
-| `scripts/tests/template-mustache-sections.vitest.ts` | Automated test | Compact `toolCalls` and `exchanges` template sections |
-| `scripts/tests/trigger-phrase-filter.vitest.ts` | Automated test | Trigger-phrase filter coverage for path fragments, short tokens, and shingle subsets |
-| `scripts/tests/validation-v13-v14-v12.vitest.ts` | Automated test | V12/V13/V14 validation behavior |
-| `scripts/tests/workflow-e2e.vitest.ts` | Automated test | End-to-end save pipeline with structured JSON inputs |
+| `runtime/cli/tests/generate-context-cli-authority.vitest.ts` | Automated test | Structured-input precedence for `--stdin` and `--json` |
+| `runtime/cli/tests/input-normalizer-unit.vitest.ts` | Automated test | Fast-path field propagation, FILES conversion, and enum validation |
+| `runtime/cli/tests/post-save-review.vitest.ts` | Automated test | Post-save review PASS-path coverage and score-penalty computation |
+| `runtime/cli/tests/project-phase-e2e.vitest.ts` | Automated test | Explicit `projectPhase` propagation through the save pipeline |
+| `runtime/cli/tests/quality-scorer-calibration.vitest.ts` | Automated test | Live scorer calibration coverage |
+| `runtime/cli/tests/task-enrichment.vitest.ts` | Automated test | Summary enrichment and count preservation behavior |
+| `runtime/cli/tests/template-mustache-sections.vitest.ts` | Automated test | Compact `toolCalls` and `exchanges` template sections |
+| `runtime/cli/tests/trigger-phrase-filter.vitest.ts` | Automated test | Trigger-phrase filter coverage for path fragments, short tokens, and shingle subsets |
+| `runtime/cli/tests/validation-v13-v14-v12.vitest.ts` | Automated test | V12/V13/V14 validation behavior |
+| `runtime/cli/tests/workflow-e2e.vitest.ts` | Automated test | End-to-end save pipeline with structured JSON inputs |
 | `runtime/tests/embedding-retry-stats.vitest.ts` | Automated test | `embeddingRetry` type and zero-state contract |
 | `runtime/tests/retry-manager-health.vitest.ts` | Automated test | Zero-DB `embeddingRetry` snapshot accessor coverage |
 

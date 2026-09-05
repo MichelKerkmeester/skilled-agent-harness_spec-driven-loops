@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join, dirname, relative } from 'node:path';
 
 const require = createRequire(import.meta.url);
-const distFreshness = require('../../scripts/lib/dist-freshness.cjs') as {
+const distFreshness = require('../cli/lib/dist-freshness.cjs') as {
   checkPackageFreshness: (packageId: string, options?: Record<string, unknown>) => Record<string, unknown>;
   writePackageSourceHashCache: (packageId: string, options?: Record<string, unknown>) => Record<string, unknown>;
 };

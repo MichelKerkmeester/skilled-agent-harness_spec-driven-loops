@@ -63,7 +63,7 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 
 ## 4. POST-CHECKS
 
-- [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` against the owning spec folder when the skill change is part of a spec folder.
+- [ ] Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` against the owning spec folder when the skill change is part of a spec folder.
 - [ ] Run `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code` for the live parent-hub example; use the same script with the actual target skill root when reviewing another skill.
 - [ ] For a flat skill, verify the skill frontmatter includes `description`, `allowed-tools`, and `version` when the skill's family uses versions.
 - [ ] For a parent hub, verify `mode-registry.json` has `modes[]` entries with `workflowMode`, `packetKind`, `backendKind`, `packet`, `packetSkillName`, `toolSurface`, and `advisorRouting`.

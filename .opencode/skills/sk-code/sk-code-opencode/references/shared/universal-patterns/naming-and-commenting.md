@@ -39,7 +39,7 @@ This reference defines patterns that apply universally across JavaScript, TypeSc
 | Pattern | Source File | Line Reference |
 |---------|-------------|----------------|
 | Reference comments | `.opencode/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts` | Near file top and import blocks |
-| Section organization | `.opencode/skills/system-spec-kit/scripts/core/config.ts` | Numbered divider blocks |
+| Section organization | `.opencode/skills/system-spec-kit/runtime/cli/core/config.ts` | Numbered divider blocks |
 | Naming conventions | `.opencode/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts` | Throughout |
 | Python docstrings | `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` | Module and function docstrings |
 

@@ -269,7 +269,7 @@ Nested packet-local changelogs are a separate output mode for spec folders and p
 **Canonical Generator**:
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js <spec-folder> --write
+node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
 ```
 
 The global component versioning rules in this file do not apply to nested packet changelogs.

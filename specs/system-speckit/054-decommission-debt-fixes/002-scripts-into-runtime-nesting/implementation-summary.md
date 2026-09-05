@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary [template:level-2/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Phase 2: scripts-into-runtime-nesting"
+description: "The spec-kit CLI workspace moved from scripts/ to runtime/cli/, carrying the memory-command-family Stage B rename (scripts/memory -> runtime/cli/continuity) in the same atomic change."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,24 +11,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting"
-    last_updated_at: "2026-09-05T06:13:05Z"
-    last_updated_by: "template-author"
-    recent_action: "Planned"
-    next_safe_action: "T001 Run the rg reference sweep over scripts/ consumers"
+    last_updated_at: "2026-09-05T11:15:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Executed the move and Stage B rename; ran the full gate set"
+    next_safe_action: "None; packet closeable"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/runtime/cli/core/config.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/package.json"
+      - ".opencode/skills/system-spec-kit/package.json"
+      - ".opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-002-scripts-into-runtime-nesting"
+      session_id: "2026-09-05-054-002-scripts-into-runtime-nesting"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 3 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -40,7 +44,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 002-scripts-into-runtime-nesting |
 | **Completed** | 2026-09-05 |
-| **Level** | 2 |
+| **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,17 +52,106 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not started. This phase is Planned; no reference inventory has been produced yet.
+The spec-kit CLI workspace no longer sits beside the runtime engine — it lives
+inside it. `.opencode/skills/system-spec-kit/scripts/` moved to
+`.opencode/skills/system-spec-kit/runtime/cli/`, and its own `memory/` folder
+moved again to `continuity/` in the same change, closing Stage B of packet
+054/007's memory-command-family rename (the compiled writer is now
+`runtime/cli/dist/continuity/generate-context.js`). `runtime/scripts/` — the
+pre-existing build-tooling directory `finalize-dist.mjs`, `run-tests.mjs`,
+`run-tests-sharded.mjs` and `tests/` — was never touched; the collision this
+phase's `spec.md` predicted was resolved exactly as decided, by landing the
+CLI at a name (`cli`) that cannot collide with it.
 
-### Scripts Into Runtime Nesting
+### The move
 
-Not started. `spec.md` and `plan.md` in this folder record the intended inventory and target-layout decision; no `git mv` or reference update has happened.
+`git mv` carried the tracked tree across in one step, then a second `git mv`
+renamed `memory/` to `continuity/` inside the new location. Both moves
+preserve history. Nothing inside either folder was restructured beyond the
+one rename — the diff is a move plus path text, matching packet 053's own
+shape.
+
+### Every live reference, by resolution not grep
+
+The stage-1 inventory (`scratch/inventory.md`) undercounted by a wide margin
+once execution started, because several classes of reference never surface to
+a plain path-string grep. Fixed at source, by class:
+
+- **Segmented `path.join`/`path.resolve` calls** — `.opencode/bin/skill-advisor.cjs`,
+  `.opencode/plugins/tests/system-dist-freshness-guard.test.cjs`,
+  `.opencode/skills/system-deep-loop/shared/synthesis/resource-map.cjs`,
+  `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs`,
+  `shared/embeddings/factory.ts`, `runtime/lib/graph/graph-metadata-parser.ts`,
+  `runtime/lib/validation/orchestrator.ts` (the validate.sh rule loader itself),
+  and the same pattern repeated inside `evals/check-no-mcp-lib-imports.ts`,
+  `evals/check-no-mcp-lib-imports-ast.ts` and `evals/check-allowlist-expiry.ts`'s
+  cwd fallback candidates.
+- **The relative-import direction flip** — `scripts/` and `runtime/` were
+  siblings; now `cli/` is nested inside `runtime/`. Every `'../../runtime/X'`
+  import (21 files) had to drop the now-redundant `runtime/` segment rather
+  than gain a `..`. `evals/import-policy-rules.ts`'s prohibited-import regex
+  encoded this same sibling assumption structurally — a bare `../lib` escape
+  from a depth-1 CLI file now means "cli's own lib", not "runtime's lib",
+  so the regex was rewritten to require 2+ climbs for `lib`/`core` (which
+  collide with cli's own subdirectories) while keeping any-depth detection
+  for `handlers`/`shared` (which don't), verified against all 19 existing
+  test assertions before any test file changed.
+- **Fixed-depth `__dirname`/`SCRIPT_DIR` climbers needing `+1`** — over 40
+  instances across `.ts`, `.js`, `.mjs` and `.sh` sources, caught in waves as
+  each empirical test run surfaced the next one: `core/config.ts`'s
+  `CONFIG.PROJECT_ROOT` and `CONFIG.TEMPLATE_DIR` (consumed by `core/workflow.ts`,
+  `continuity/generate-context.ts`, `spec-folder/*.ts`, `extractors/*.ts` —
+  the single highest-impact fix in this class), `retrieval/generate-trigger-index.mjs`
+  and its two siblings (all three had computed `runtime/runtime/data/...`,
+  a doubled segment; the stray directory this produced during testing was
+  removed), `spec/validate.sh`'s own `ORCHESTRATOR_JS`/`ORCHESTRATOR_TS`,
+  `spec/archive.sh`, `spec/upgrade-level.sh`, `rules/check-normalizer-lint.sh`,
+  `lib/template-utils.sh` (both `_inline_gate_renderer_path` and
+  `resolve_level_contract`), `setup/rebuild-native-modules.sh`,
+  `setup/check-native-modules.sh`, `common.sh` and `.scan-one.sh`, and a long
+  tail of test files using `SKILL_ROOT`/`WORKSPACE_ROOT`/`REPO_ROOT` names that
+  needed the escape depth checked against their *actual* consumer (some of
+  these names meant "cli's own root", self-referential and needing no change;
+  most meant "system-spec-kit" or "the repository root" and needed the extra
+  level).
+- **The `memory` → `continuity` folder rename's own consumers** — every
+  `'../memory/…'` relative import inside the moved tree (`core/workflow.ts`,
+  a dozen `tests/*.vitest.ts` files), every `scripts/dist/memory` /
+  `SCRIPTS_DIR, 'memory'` reference in test harnesses, the compiled entry's
+  `package.json` `main` field, `scripts-registry.json`'s trigger list
+  (`"/memory:save"` → `"/speckit:save"`, the one remaining site Stage A of
+  packet 007 could not reach because it lives inside `scripts/`), and the
+  command-contract family key itself: `"memory"` → `"continuity"` in
+  `.opencode/skills/sk-doc/sk-create-command/assets/command-contract.json`,
+  with the matching `family === 'memory'` hardcode in
+  `codex/generate-command-routers.cjs` updated to `'continuity'`. Confirmed
+  unrelated and left alone: the `[spec-folder]/memory/*.md` retired legacy
+  per-spec artifact concept (`core/tree-thinning.ts`, `core/find-predecessor-memory.ts`,
+  several rule scripts' `*/memory/*` exclusions) — a different, still-live
+  concept naming a per-packet subfolder, not this workspace.
+- **`session-stop.ts`'s four-candidate resolver** (REQ-004) — all four
+  candidates (source-depth, compiled-dist-depth, and two absolute/cwd forms)
+  rewritten to reach `cli/dist/continuity/generate-context.js`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| (none yet) | Not started | Implementation has not begun |
+| `.opencode/skills/system-spec-kit/scripts/**` → `runtime/cli/**` | Moved | ~450 tracked files, history preserved |
+| `runtime/cli/memory/**` → `runtime/cli/continuity/**` | Moved | Stage B of packet 054/007's rename, riding on this move |
+| `runtime/cli/package.json` | Modified | `main`, `description`, `test`/`test:task-enrichment` config paths, `@spec-kit/runtime` dependency (`file:..`), `@spec-kit/shared` dependency (`file:../../shared`, was pointing through a dist symlink) |
+| `system-spec-kit/package.json` | Modified | `workspaces` array's third member, `typecheck:root` and four other root scripts |
+| `runtime/cli/tsconfig.json`, `system-spec-kit/tsconfig.json` | Modified | `extends`, `references`, `paths`, `include` |
+| `runtime/tsconfig.json`, `runtime/tsconfig.tests.json` | Modified | Explicit `cli/**` exclusion so the runtime build and its reporting-only test lane never swallow CLI sources |
+| `runtime/vitest.config.ts`, `runtime/vitest.stress.config.ts` | Modified | Dropped the CLI test include, added an explicit `cli/**` exclude; CLI keeps its own vitest entry (`--config ../vitest.config.ts`, no longer `../runtime/vitest.config.ts`) |
+| `runtime/cli/lib/dist-freshness.cjs` | Modified | `DIST_PACKAGES` entry `id`/`root`/`rebuildCommand` renamed to `system-spec-kit/runtime/cli`; its one test consumer updated to match |
+| `runtime/cli/evals/check-architecture-boundaries.ts` | Modified | `REQUIRED_ROOT_DIRS`, the GAP A shared-neutrality check (simplified: checking `runtime` alone now covers `cli` since it nests inside), `isScriptsDistReference`/`isScriptsSourceReference`'s detection strings, both wrapper-violation messages — the OTHER `runtime/scripts` reference (line 404, the build-tooling dir) left untouched |
+| `runtime/cli/tests/architecture-boundary-enforcement.vitest.ts` | Modified | Fixture root now creates `runtime/cli` instead of a flat `scripts` dir; GAP A fixture imports updated from `../scripts/*` to `../runtime/cli/*` to keep testing a real escape after the boundary check's own simplification |
+| `runtime/hooks/claude/session-stop.ts` | Modified | Four fallback candidates for the compiled continuity writer |
+| `.opencode/bin/skill-advisor.cjs`, `.opencode/plugins/{session-cleanup,system-dist-freshness-guard,system-speckit-completion}.js`, `.opencode/plugins/tests/system-dist-freshness-guard.test.cjs` | Modified | Segmented `require()`/`path.join()` calls a text sweep cannot see |
+| `.opencode/skills/system-deep-loop/{shared/synthesis/resource-map.cjs,deep-improvement/scripts/shared/reduce-state.cjs}` | Modified | Cross-skill segmented path.join calls reaching into the moved tree |
+| `.opencode/skills/sk-doc/sk-create-command/assets/command-contract.json`, `runtime/cli/codex/generate-command-routers.cjs` | Modified | Family key `memory` → `continuity` |
+| ~440 further docs, configs, hooks, mirrors, tests | Modified | Path and folder-name text, resolved and applied class by class (§ above) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,7 +159,32 @@ Not started. `spec.md` and `plan.md` in this folder record the intended inventor
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not started. No inventory, level re-check, or handoff has run yet.
+The stage-1 inventory was the starting point, not the finish line. Bulk
+substitution passes handled the unambiguous, fully-qualified forms first
+(`system-spec-kit/scripts/` → `system-spec-kit/runtime/cli/`, `scripts/dist/`
+→ `runtime/cli/dist/`, both applied to the `memory`-specific patterns before
+the general ones so the two renames didn't collide). A precise lookbehind
+pattern then handled bare `scripts/` mentions inside system-spec-kit's own
+prose docs, verified against the risk it was built to avoid: several
+feature-catalog and manual-testing-playbook docs cross-reference *other*
+skills' own `scripts/` directories (`sk-code`, `.opencode/scripts/`,
+`system-deep-loop`), and the pattern was validated file-by-file to leave
+those untouched.
+
+What the bulk passes could not reach — segmented `path.join` calls, shell
+`SCRIPT_DIR` climbs, and the direction-dependent rules above — surfaced
+empirically: `npx vitest run` and `npx vitest list` against the moved tree,
+iterated to convergence. Each run's `ENOENT`/`MODULE_NOT_FOUND` traced to one
+producer, fixed at that producer (never at the failing test), then the whole
+suite re-run rather than just the failing file, since several of these bugs
+(the doubled `runtime/runtime` and `.opencode/.opencode` segments in
+particular) were the *same* fix needed in more than one file. `core/config.ts`'s
+`CONFIG.PROJECT_ROOT`/`CONFIG.TEMPLATE_DIR` fix alone moved the needle furthest,
+since a dozen modules consume it.
+
+Verification ran from the repository root against the new paths only, plus
+two full, deterministic trigger-index regenerations to prove no residual
+staleness.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -76,7 +194,13 @@ Not started. No inventory, level re-check, or handoff has run yet.
 
 | Decision | Why |
 |----------|-----|
-| Not started | No implementation decisions have been made yet |
+| `runtime/cli/` over folding `runtime/scripts/` | Matches the phase's own recorded decision; confirmed cheapest once the collision was inspected directly — three build-tooling files versus renaming an entire incoming workspace's internal directory names |
+| Keep the npm package name `@spec-kit/scripts` | Physical location changed; npm resolves workspace members by the `workspaces` array path, not by matching folder name to package name. Renaming would touch every `--workspace=@spec-kit/scripts` invocation for no path-reference benefit |
+| Rename the `dist-freshness.cjs` `DIST_PACKAGES` id to `system-spec-kit/runtime/cli` | Not the npm name — a path-shaped internal label matching its sibling entries' convention; its one consumer moved in the same commit |
+| Simplify `isProhibitedForShared`'s two `path.join(packageRoot, 'scripts')` checks to the existing `path.join(packageRoot, 'runtime')` check | Behaviorally identical, not a simplification of convenience: anything under `runtime/cli/` is now already `isWithinDirectory(x, packageRoot/runtime)` by construction, so the second check was checking a directory that can never exist post-move |
+| Rewrite `import-policy-rules.ts`'s prohibited-import regex rather than leave it silently disabled | The literal `runtime/(lib|core|handlers)` string it required would never appear in a real cli-internal import again post-move (there is no more reason to spell "runtime" to reach it), which would have made every future violation invisible rather than merely unfixed |
+| Execute the "Stage B" memory→continuity rename (packet 054/007) inside this same move rather than waiting for a separately Gate-3'd child packet | Direct operator instruction once the other lanes landed, citing the shared blast radius (both renames touch the same tree and the same `session-stop.ts` fallback candidates) |
+| Rename `command-contract.json`'s `memory` family key to `continuity`, not `speckit` | `speckit` already names a distinct family (plan/implement/complete/resume) with a different asset-naming convention (family-prefixed); `continuity` matches the code-path rename and the repo's own established vocabulary (`_memory.continuity`, "continuity writer") without colliding |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -86,7 +210,25 @@ Not started. No inventory, level re-check, or handoff has run yet.
 
 | Check | Result |
 |-------|--------|
-| `recommend-level.sh` | Not run - implementation has not started |
+| `npm run typecheck` (shared, runtime, cli) | PASS — exit 0 |
+| `cd runtime && npm run build` | PASS — exit 0; `find dist -path '*/cli/*'` → 0 matches, confirming no CLI leakage into runtime's dist |
+| `cd runtime/cli && npm run build` (clean, `dist/` removed first) | PASS — exit 0; `dist/continuity/generate-context.js` present, no stale `dist/memory/` left over |
+| `node runtime/cli/lib/dist-freshness.cjs check-all` | PASS — "All watched dist outputs are fresh" |
+| `node runtime/cli/dist/continuity/generate-context.js --help` | PASS — exit 0 |
+| `validate.sh specs/.../053-spec-kit-runtime-rename --strict` | PASS — Errors 0, RESULT: PASSED |
+| `validate.sh specs/.../052-memory-decommission-landing --strict` | PASS — Errors 0, RESULT: PASSED |
+| `validate.sh specs/.../054-decommission-debt-fixes --strict --recursive` | PASS — parent + all 7 children (001-007), Errors 0 each |
+| `generate-trigger-index.mjs --json`, run twice | PASS — identical `indexSha256` both runs |
+| `sync-runtime-mirrors.cjs --check` | PASS — "169 mirrors across 8 trees are in sync" |
+| `codex/sync-agents.cjs`, `sync-prompts.cjs`, `pi/sync-agents-pi.cjs`, `sync-prompts-pi.cjs` | PASS — 0 files needed writing (already in sync from the direct text edits) |
+| `codex/generate-command-routers.cjs --write` | PASS — "routers=30 clean=30 path-drift=0 shape-drift=0", "0 file(s) rewritten" |
+| `compiled-route-guard.cjs` | PASS — every tracked hub (cli-external-orchestration, mcp-tooling, sk-code, sk-doc, system-deep-loop) fresh; no re-mint needed |
+| `ci-skill-root-metadata.cjs` | PASS — checked=14 passed=14 failed=0 |
+| `ci-skill-derived-freshness.cjs` | PASS — checked=14 fresh=14 stale=0 |
+| `route-validate.sh` (doctor) | PASS — 9 routes validated, 2 pre-existing informational warnings unrelated to this move |
+| `install-codex-hooks.mjs` then `--check` | PASS — exit 0 both |
+| `rg`/`git grep` for `system-spec-kit/scripts/`, `scripts/dist/`, `scripts/memory`, `dist/memory` | PASS — 0 hits outside the historical corpus (`specs/**`, skill-level `changelog/`, `benchmark/`) |
+| `npx vitest run` (cli package, full suite) | PARTIAL — 118/146 files and 1497/1580 tests pass; 63 failures remain, see Known Limitations |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -94,9 +236,53 @@ Not started. No inventory, level re-check, or handoff has run yet.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not started.** This phase has not been implemented; there is nothing to limit yet.
+1. **63 of 1580 CLI test assertions still fail** after extensive investigation
+   and fixing (the suite started this phase's execution at ~128 failures out
+   of a much smaller passing baseline; every fix above was driven by an
+   actual failing assertion, not by inspection alone). Of the failures traced
+   to a specific cause:
+   - **Confirmed pre-existing, unrelated to this move**: `template-structure.vitest.ts`
+     and `review-record-validation.vitest.ts` assert against a
+     `templates/manifest/` path that no longer exists under *either* topology
+     — the real templates live at `templates/core/` and `templates/packet-types/`,
+     a reorganization this phase did not touch. `recursive-child-manifest.vitest.ts`
+     targets `system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research`,
+     a path a *different*, unrelated packet's restructuring moved one level
+     deeper; the test's own `repoRoot` computation was fixed (it had the same
+     doubled-`.opencode` bug this move introduced), but the target packet path
+     itself is stale for a reason outside this phase's scope.
+   - **Not yet root-caused**: `graph-metadata-backfill.vitest.ts` (a
+     phase-rollup status assertion, `expected 'complete' to be 'planned'`),
+     `scoped-backfill-boundary.vitest.ts`, `migrate-generated-json.vitest.ts`
+     (a byte-stability hash mismatch between two runs), `multi-ai-council-mirror-parity.vitest.ts`
+     (a header-count mismatch against `.opencode/agents/ai-council.md`),
+     `repair-derived.vitest.ts` (the tool reports `repairable=0` against a
+     fixture the test expects it to flag — `repair-derived.cjs` itself has no
+     `scripts/`-path dependency, so this is not a resolution bug, but the
+     specific logic reason was not isolated in the time available), and a
+     handful of others in the same shape. None of these show `ENOENT` or
+     `MODULE_NOT_FOUND` — every failure that did was fixed at its producer.
+   None of the investigated failures traced back to an unresolved
+   `scripts/` → `runtime/cli/` path reference.
+2. **A stray `runtime/runtime/data/trigger-index.json` was created and removed.**
+   `retrieval/generate-trigger-index.mjs`'s `SKILL_ROOT` computation was
+   off-by-one during the first regeneration attempt (fixed before the
+   deterministic two-run proof above); the resulting directory was deleted,
+   not left as residue.
+3. **`git diff --diff-filter=R` reports 0 renames for this move**, despite
+   the change being two `git mv` operations. Git's rename-pair detection for
+   an *unstaged* diff (working tree vs `HEAD`) does not run the same
+   similarity heuristic that a *staged* diff does, and the operator's explicit
+   "do not stage" instruction for this session means that heuristic was never
+   exercised. `git status`/`git diff` currently show the move as parallel
+   delete/add pairs rather than renames; staging (`git add -A`) before the
+   operator's own commit will let git's normal rename detection recognize
+   them, exactly as it did for packet 053.
+4. **The command-contract.json `owned_assets` field for the retired
+   `/memory:learn` tombstone still says "memory/learn is a deprecated
+   tombstone"** in its `loader_requirements` prose (no file backs it either
+   before or after this change) — left untouched as out of this phase's scope,
+   since it names a retired command, not a live path.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

@@ -62,7 +62,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `AI_PROTOCOLS`       | ERROR    | Level 3/3+    | AI execution protocols present                 |
 | `LEVEL_MATCH`        | ERROR    | All files     | Level consistent across all spec files         |
 
-> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
+> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set and their canonical severities live in [`runtime/cli/lib/validator-registry.json`](../../runtime/cli/lib/validator-registry.json).
 
 ### AC_CLOSURE
 
@@ -149,7 +149,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | **review** | `spec.md`, `review/review-report.md` (lean review record, entered only via the `<!-- SPECKIT_LEVEL: review -->` marker, waives plan/tasks/decision-record/implementation-summary) |
 | **Phase Parent** | `spec.md`, `description.json`, `graph-metadata.json` (lean trio only; heavy docs live in phase children) |
 
-> **Phase Parent Mode:** A spec folder is treated as a phase parent when at least one direct child matches `^[0-9]{3}-[a-z0-9-]+$` AND that child has `spec.md` OR `description.json`. Detection is implemented identically by `is_phase_parent()` (shell, in `scripts/lib/shell-common.sh`) and `isPhaseParent()` (ESM JS, at `scripts/dist/spec/is-phase-parent.js`). When detected, FILE_EXISTS skips Level-N file requirements at the parent and accepts only the lean trio. Phase children continue to follow their own Level 1/2/3/3+ contract. Tolerant policy: legacy phase parents that retain heavy docs continue to validate without churn.
+> **Phase Parent Mode:** A spec folder is treated as a phase parent when at least one direct child matches `^[0-9]{3}-[a-z0-9-]+$` AND that child has `spec.md` OR `description.json`. Detection is implemented identically by `is_phase_parent()` (shell, in `runtime/cli/lib/shell-common.sh`) and `isPhaseParent()` (ESM JS, at `runtime/cli/dist/spec/is-phase-parent.js`). When detected, FILE_EXISTS skips Level-N file requirements at the parent and accepts only the lean trio. Phase children continue to follow their own Level 1/2/3/3+ contract. Tolerant policy: legacy phase parents that retain heavy docs continue to validate without churn.
 
 ### Implementation Summary (All Levels)
 
@@ -215,10 +215,10 @@ Create the missing file(s) using the appropriate template:
 
 ```bash
 # Core files
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path specs/007-feature --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/007-feature --name feature-name
 
 # Implementation summary is scaffolded by create.sh for all levels
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path specs/007-feature --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/007-feature --name feature-name
 ```
 
 **Workflow:**
@@ -508,7 +508,7 @@ title: My Feature Spec
 2. Use templates from `.opencode/skills/system-spec-kit/templates/` which include the source marker
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path specs/007-feature --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/007-feature --name feature-name
 ```
 
 ---
@@ -674,7 +674,7 @@ Present: decision-record.md (suggests Level 3)
 
 ```bash
 # Add checklist for Level 2
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path specs/007-feature --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path specs/007-feature --name feature-name
 ```
 
 ---
@@ -697,17 +697,17 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path sp
 
 **Run validation on a spec folder:**
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
 ```
 
 **Run in strict mode (fail on warnings):**
 ```bash
-SPECKIT_STRICT=true bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
+SPECKIT_STRICT=true bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
 ```
 
 **Get JSON output for automation:**
 ```bash
-SPECKIT_JSON=true bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
+SPECKIT_JSON=true bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
 ```
 
 ---
@@ -723,7 +723,7 @@ SPECKIT_JSON=true bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh
 
 ### Scripts
 
-- `../../scripts/spec/validate.sh` - Main validation script
-- `../../scripts/rules/` - Individual rule implementations
+- `../../runtime/cli/spec/validate.sh` - Main validation script
+- `../../runtime/cli/rules/` - Individual rule implementations
 
 ---

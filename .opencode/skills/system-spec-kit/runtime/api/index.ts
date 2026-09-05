@@ -27,7 +27,7 @@ export {
   ZERO_CONTINUITY_FINGERPRINT,
 } from '../lib/validation/spec-doc-structure.js';
 
-// --- Folder discovery (used by scripts/spec-folder, scripts/core, scripts/memory) ---
+// --- Folder discovery (used by scripts/spec-folder, scripts/core, runtime/cli/continuity) ---
 export {
   generatePerFolderDescription,
   savePerFolderDescription,
@@ -40,7 +40,7 @@ export {
 } from '../lib/search/folder-discovery.js';
 export type { PerFolderDescription, LoadResult } from '../lib/search/folder-discovery.js';
 
-// --- Graph metadata (used by scripts/core, scripts/graph, scripts/memory) ---
+// --- Graph metadata (used by scripts/core, scripts/graph, runtime/cli/continuity) ---
 export {
   GRAPH_METADATA_DOCUMENT_TYPE,
   GRAPH_METADATA_FILENAME,

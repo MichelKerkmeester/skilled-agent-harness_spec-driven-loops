@@ -82,8 +82,8 @@ default_shared_paths() {
 .opencode/skills/system-spec-kit/node_modules
 .opencode/skills/system-spec-kit/runtime/node_modules
 .opencode/skills/system-spec-kit/runtime/dist
-.opencode/skills/system-spec-kit/scripts/dist
-.opencode/skills/system-spec-kit/scripts/node_modules
+.opencode/skills/system-spec-kit/runtime/cli/dist
+.opencode/skills/system-spec-kit/runtime/cli/node_modules
 PATHS
 }
 

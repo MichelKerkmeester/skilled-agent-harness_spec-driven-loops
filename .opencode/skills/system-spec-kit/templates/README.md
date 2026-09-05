@@ -73,9 +73,9 @@ templates/
 Allowed dependency direction:
 
 ```text
-scripts/spec/create.sh → templates/spec-kit-docs.json
-scripts/templates/inline-gate-renderer.* → templates/manifest/*.md.tmpl
-scripts/spec/validate.sh → the level contract at templates/spec-kit-docs.json
+runtime/cli/spec/create.sh → templates/spec-kit-docs.json
+runtime/cli/templates/inline-gate-renderer.* → templates/manifest/*.md.tmpl
+runtime/cli/spec/validate.sh → the level contract at templates/spec-kit-docs.json
 docs → examples and maintainer guides
 ```
 
@@ -151,7 +151,7 @@ templates/
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Imports   | Scripts read this folder as data. Template files do not import code.                                                                                 |
 | Exports   | Rendered packet docs are written into `specs/` by `create.sh`, not by this folder directly.                                                          |
-| Ownership | Template content, Level contracts and rendered examples belong here. Runtime validation logic belongs in `scripts/` and `runtime/lib/templates/`. |
+| Ownership | Template content, Level contracts and rendered examples belong here. Runtime validation logic belongs in `runtime/cli/` and `runtime/lib/templates/`. |
 
 Render flow:
 
@@ -190,9 +190,9 @@ Render flow:
 | `spec-kit-docs.json`               | Data file         | Primary Level and document contract consumed by scripts. |
 | `core/`, `addons/` and `packet-types/` `*.md.tmpl`                        | Template files    | Rendered into packet markdown files.                     |
 | `examples/level_*`                          | Reference folders | Show expected rendered output by Level.                  |
-| `scripts/spec/create.sh`                    | Script caller     | Reads this folder to scaffold packets.                   |
-| `scripts/spec/validate.sh`                  | Script caller     | Reads the same contract to validate packets.             |
-| `scripts/templates/inline-gate-renderer.sh` | Script caller     | Renders gated template blocks for a selected Level.      |
+| `runtime/cli/spec/create.sh`                    | Script caller     | Reads this folder to scaffold packets.                   |
+| `runtime/cli/spec/validate.sh`                  | Script caller     | Reads the same contract to validate packets.             |
+| `runtime/cli/templates/inline-gate-renderer.sh` | Script caller     | Renders gated template blocks for a selected Level.      |
 
 ---
 
@@ -201,7 +201,7 @@ Render flow:
 Run from the repository root.
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/example --strict
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/example --strict
 ```
 
 Expected result for a real spec folder: the validator reads the manifest contract and reports no missing required docs or gated sections.
@@ -217,5 +217,5 @@ For template changes, also run the template and resolver test suite used by the 
 - [Migration Guide](./MIGRATION.md)
 - [System Spec Kit Skill](../SKILL.md)
 - [Template Resolver](../runtime/lib/templates/level-contract-resolver.ts)
-- [Spec Scaffolder](../scripts/spec/create.sh)
-- [Spec Validator](../scripts/spec/validate.sh)
+- [Spec Scaffolder](../runtime/cli/spec/create.sh)
+- [Spec Validator](../runtime/cli/spec/validate.sh)

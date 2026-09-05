@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-09-02T19:26:07.374Z",
+  "generated": "2026-09-05T08:27:33.451740Z",
   "folders": [
     {
       "specFolder": "agents/001-terminal-proof-discipline",
@@ -34015,6 +34015,67 @@
       "lastUpdated": "2026-08-27T22:04:02.106Z"
     },
     {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/026-codex-lineage-auth-isolation",
+      "description": "A per-lineage CODEX_HOME isolates the credential file along with the session state, so every codex fan-out lineage authenticates as nobody and burns",
+      "keywords": [
+        "per-lineage",
+        "isolates",
+        "credential",
+        "file",
+        "along",
+        "session",
+        "state",
+        "every",
+        "codex",
+        "fan-out",
+        "lineage",
+        "authenticates",
+        "nobody",
+        "burns"
+      ],
+      "lastUpdated": "2026-09-05T08:23:02.540Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/027-executor-availability-docs",
+      "description": "Every `/deep:` presentation contract documented the executor field as `native | cli-opencode | cli-claude-code`",
+      "keywords": [
+        "every",
+        "deep",
+        "presentation",
+        "contract",
+        "documented",
+        "executor",
+        "field",
+        "native",
+        "cli-opencode",
+        "cli-claude-code"
+      ],
+      "lastUpdated": "2026-08-31T08:36:53.495Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard",
+      "description": "A cli-codex fan-out lineage spawned a nested `codex exec` on every iteration and returned zero findings, and write containment reverted a concurrent",
+      "keywords": [
+        "cli-codex",
+        "fan-out",
+        "lineage",
+        "spawned",
+        "nested",
+        "codex",
+        "exec",
+        "every",
+        "iteration",
+        "returned",
+        "zero",
+        "findings",
+        "write",
+        "containment",
+        "reverted",
+        "concurrent"
+      ],
+      "lastUpdated": "2026-09-02T17:39:27.569Z"
+    },
+    {
       "specFolder": "system-deep-loop/037-graph-engineering",
       "description": "The system-deep-loop workflows are iteration-based loops with linear dispatch, externalized JSONL state, and convergence detection",
       "keywords": [
@@ -34133,44 +34194,6 @@
         "alone"
       ],
       "lastUpdated": "2026-08-15T14:41:04.637Z"
-    },
-    {
-      "specFolder": "system-deep-loop/038-codex-lineage-auth-isolation",
-      "description": "A per-lineage CODEX_HOME isolates the credential file along with the session state, so every codex fan-out lineage authenticates as nobody and burns",
-      "keywords": [
-        "per-lineage",
-        "isolates",
-        "credential",
-        "file",
-        "along",
-        "session",
-        "state",
-        "every",
-        "codex",
-        "fan-out",
-        "lineage",
-        "authenticates",
-        "nobody",
-        "burns"
-      ],
-      "lastUpdated": "2026-08-30T18:13:17.668Z"
-    },
-    {
-      "specFolder": "system-deep-loop/039-executor-availability-docs",
-      "description": "Every `/deep:` presentation contract documented the executor field as `native | cli-opencode | cli-claude-code`",
-      "keywords": [
-        "every",
-        "deep",
-        "presentation",
-        "contract",
-        "documented",
-        "executor",
-        "field",
-        "native",
-        "cli-opencode",
-        "cli-claude-code"
-      ],
-      "lastUpdated": "2026-08-31T08:36:53.495Z"
     },
     {
       "specFolder": "system-deep-loop/z_archive/001-sk-recursive-agent-loop",

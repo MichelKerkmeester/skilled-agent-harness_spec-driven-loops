@@ -17,7 +17,7 @@
   "references": [
     { "path": "./shared" },
     { "path": "./runtime" },
-    { "path": "./scripts" }
+    { "path": "./runtime/cli" }
   ],
   "exclude": ["node_modules"]
 }

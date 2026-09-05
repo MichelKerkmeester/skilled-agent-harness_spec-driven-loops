@@ -45,10 +45,10 @@ The shipped extractor behavior in this slice currently works as follows:
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts` | Extractor | Normalizes file references, preserves richer description/action metadata, anchors observations, and deduplicates repeated observation noise |
-| `.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts` | Extractor | Detects ASCII diagrams, summarizes conversation phases, and generates auto conversation-flow data |
-| `.opencode/skills/system-spec-kit/scripts/extractors/session-activity-signal.ts` | Extractor boundary | Re-exports the shared session-activity signal builder into the extractor surface |
-| `.opencode/skills/system-spec-kit/scripts/extractors/index.ts` | Barrel export | Exposes the extractor-layer API surface, including file, diagram, session, implementation-guide, contamination, quality, and activity-signal modules |
+| `.opencode/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts` | Extractor | Normalizes file references, preserves richer description/action metadata, anchors observations, and deduplicates repeated observation noise |
+| `.opencode/skills/system-spec-kit/runtime/cli/extractors/diagram-extractor.ts` | Extractor | Detects ASCII diagrams, summarizes conversation phases, and generates auto conversation-flow data |
+| `.opencode/skills/system-spec-kit/runtime/cli/extractors/session-activity-signal.ts` | Extractor boundary | Re-exports the shared session-activity signal builder into the extractor surface |
+| `.opencode/skills/system-spec-kit/runtime/cli/extractors/index.ts` | Barrel export | Exposes the extractor-layer API surface, including file, diagram, session, implementation-guide, contamination, quality, and activity-signal modules |
 
 ---
 

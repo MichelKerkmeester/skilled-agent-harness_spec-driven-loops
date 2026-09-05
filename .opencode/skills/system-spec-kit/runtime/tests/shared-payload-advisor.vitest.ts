@@ -33,7 +33,7 @@ function makeAdvisorEnvelope(metadata: AdvisorEnvelopeMetadata = advisorMetadata
       sourceRefs: [
         { kind: 'skill-inventory', path: '.opencode/skills/sk-code/SKILL.md' },
         { kind: 'skill-graph', path: '.opencode/skills/sk-code/graph-metadata.json' },
-        { kind: 'advisor-runtime', path: '.opencode/skills/system-spec-kit/scripts/skill_advisor.py' },
+        { kind: 'advisor-runtime', path: '.opencode/skills/system-spec-kit/runtime/cli/skill_advisor.py' },
       ],
     },
   });

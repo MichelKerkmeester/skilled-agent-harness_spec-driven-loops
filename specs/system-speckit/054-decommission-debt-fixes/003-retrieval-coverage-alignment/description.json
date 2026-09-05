@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment",
-  "description": "Phase 3: retrieval-coverage-alignment",
+  "description": "The trigger-index corpus walker (`.opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:20-31`) sets `CORPUSROOTS = ['specs',",
   "keywords": [
-    "phase",
-    "retrieval-coverage-alignment"
+    "trigger-index",
+    "corpus",
+    "walker",
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "scripts",
+    "retrieval",
+    "lib",
+    "mjs",
+    "sets",
+    "corpusroots",
+    "specs"
   ],
-  "lastUpdated": "2026-09-05T06:13:06.142Z",
+  "lastUpdated": "2026-09-05T07:22:24.158Z",
   "specId": "003",
   "folderSlug": "retrieval-coverage-alignment",
   "parentChain": [
@@ -13,6 +25,5 @@
     "054-decommission-debt-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

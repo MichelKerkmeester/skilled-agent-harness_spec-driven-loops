@@ -47,7 +47,7 @@ Pi's prompt-template discovery is non-recursive. The generated 36-file flat dire
 
 ### Optional Supplemental Checks
 
-- Run `node .opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs --check` and retain its count and drift result.
+- Run `node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check` and retain its count and drift result.
 
 ---
 
@@ -66,7 +66,7 @@ Pi's prompt-template discovery is non-recursive. The generated 36-file flat dire
 | File | Role |
 |---|---|
 | `.pi/prompts/` | Generated flat prompt files |
-| `.opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs` | Generator and drift checker |
+| `.opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs` | Generator and drift checker |
 
 ---
 

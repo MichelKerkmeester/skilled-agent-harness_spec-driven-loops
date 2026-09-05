@@ -11,7 +11,10 @@
     "sk-doc/051-sk-create-chart/005-routing-integration",
     "sk-doc/051-sk-create-chart/006-playbook-and-closeout",
     "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
-    "sk-doc/051-sk-create-chart/008-evilcharts-reference-research"
+    "sk-doc/051-sk-create-chart/008-evilcharts-reference-research",
+    "sk-doc/051-sk-create-chart/009-chart-visual-overhaul",
+    "sk-doc/051-sk-create-chart/010-chart-review-remediation",
+    "sk-doc/051-sk-create-chart/011-chart-command-surface"
   ],
   "manual": {
     "depends_on": [],
@@ -50,9 +53,13 @@
       "goal.md",
       ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/commands/create/chart.md",
       "006-playbook-and-closeout/implementation-summary.md",
       "007-fidelity-and-library-research/goal.md",
-      "008-evilcharts-reference-research/goal.md"
+      "010-chart-review-remediation/implementation-summary.md",
+      "008-evilcharts-reference-research/goal.md",
+      "009-chart-visual-overhaul/goal.md",
+      "011-chart-command-surface/implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,6 +84,12 @@
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "chart.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/chart.md",
         "source": "derived"
       },
       {
@@ -122,6 +135,12 @@
         "source": "derived"
       },
       {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -134,19 +153,13 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. BINDING",
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
@@ -154,17 +167,17 @@
     ],
     "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-03T07:28:19.334Z",
+    "last_save_at": "2026-09-05T08:46:34.163Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:dd74bc1c98358ef64ae99947107027559cfa344c4eec06c693cb0379ccfba0f2",
+    "source_fingerprint": "sha256:16b306fe4b579451548e9b6d424333dd587bcc410c6d91febbcc62f8bed4ef73",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "09fe02b80c67a73c5886b666ffab25cb70ae2c3cc91abcd28921eb7d277c7a9c"
+      "spec.md": "0af66469edd842235e4e6dc8211290a723e392a7f262cdeb57bbb390bf0685cd"
     },
     "last_active_child_id": "sk-doc/051-sk-create-chart/006-playbook-and-closeout",
     "last_active_at": null

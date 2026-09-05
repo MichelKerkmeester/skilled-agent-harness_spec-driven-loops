@@ -1,0 +1,173 @@
+{
+  "description": "Deliberate survivors of the memory-surface residue sweep. Every row exempts a path prefix (plain startsWith) or a glob from the live count and must say why in plain words. Exemptions win over the structural historical rule, so an explicit row stays visible as an explicit row. The rule for adding one: exempt a file that is itself deleted or is pure narrative, never a file that survives the decommission — hiding a whole live config to silence one registration line would let real residue in behind it.",
+  "entries": [
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs",
+      "reason": "The sweep itself. Its term list is the thing being searched for."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json",
+      "reason": "This file. Its exemption paths name the surface the sweep searches for."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/runtime/cli/tests/sweep-memory-residue.vitest.ts",
+      "reason": "The sweep's own tests. Their fixtures have to contain the terms to prove the classifier works."
+    },
+    {
+      "pathPrefixOrGlob": "specs/system-speckit/049-memory-decommission/",
+      "reason": "The decommission packet's own documents. They have to name the surface they are retiring."
+    },
+    {
+      "pathPrefixOrGlob": "**/changelog/**",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "pathPrefixOrGlob": "**/changelog.md",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "pathPrefixOrGlob": "**/changelog-*.md",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "pathPrefixOrGlob": "**/CHANGELOG.md",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "pathPrefixOrGlob": "**/CHANGELOG-*.md",
+      "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
+    },
+    {
+      "pathPrefixOrGlob": "specs/**/audit/**",
+      "reason": "Recorded research or run evidence under a spec packet's audit directory is a historical artifact of the retired surface, never a live instruction; rewriting it would falsify the record."
+    },
+    {
+      "pathPrefixOrGlob": "specs/**/evidence/**",
+      "reason": "Recorded research or run evidence under a spec packet's evidence directory is a historical artifact of the retired surface, never a live instruction; rewriting it would falsify the record."
+    },
+    {
+      "pathPrefixOrGlob": "specs/**/fixers/**",
+      "reason": "Recorded research or run evidence under a spec packet's fixers directory is a historical artifact of the retired surface, never a live instruction; rewriting it would falsify the record."
+    },
+    {
+      "pathPrefixOrGlob": "specs/**/seats/**",
+      "reason": "Recorded research or run evidence under a spec packet's seats directory is a historical artifact of the retired surface, never a live instruction; rewriting it would falsify the record."
+    },
+    {
+      "pathPrefixOrGlob": "specs/**/logs/**",
+      "reason": "Recorded research or run evidence under a spec packet's logs directory is a historical artifact of the retired surface, never a live instruction; rewriting it would falsify the record."
+    },
+    {
+      "pathPrefixOrGlob": "specs/**/measurements/**",
+      "reason": "Recorded research or run evidence under a spec packet's measurements directory is a historical artifact of the retired surface, never a live instruction; rewriting it would falsify the record."
+    },
+    {
+      "pathPrefixOrGlob": "specs/**/backlog/**",
+      "reason": "Recorded research or run evidence under a spec packet's backlog directory is a historical artifact of the retired surface, never a live instruction; rewriting it would falsify the record."
+    },
+    {
+      "pathPrefixOrGlob": "specs/**/context/**",
+      "reason": "Recorded research or run evidence under a spec packet's context directory is a historical artifact of the retired surface, never a live instruction; rewriting it would falsify the record."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      "reason": "False positive: memory_save is the classifier category for prompts that say save context or /memory:save, not a tool call."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/runtime/cli/tests/gate-3-classifier.vitest.ts",
+      "reason": "False positive: tests the memory_save prompt category, not a tool call."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/runtime/cli/tests/memory-sufficiency.vitest.ts",
+      "reason": "Fixture text quoting a historical save gate message; the gate lives in the continuity writer."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/runtime/cli/tests/nested-changelog.vitest.ts",
+      "reason": "Fixture text; historical narrative inside a test fixture."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "reason": "Lives in the engine tree; excluded with it."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md",
+      "reason": "Dated transport confirmation kept as evidence with a retirement clause."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts",
+      "reason": "Negative guard listing the retired tool names so they cannot reappear in the workflow."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-deep-loop/runtime/references/script-interface-contract.md",
+      "reason": "One historical sentence explaining why the runtime scripts exist."
+    },
+    {
+      "pathPrefixOrGlob": "**/benchmark/reports/",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "pathPrefixOrGlob": "**/benchmarks/",
+      "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/runtime/cli/tests/workflow-step115-daemon-guard.vitest.ts",
+      "reason": "Negative guard asserting the retired index scan and daemon probe never return to the save path."
+    },
+    {
+      "pathPrefixOrGlob": "specs/",
+      "reason": "Spec packet documents are historical narrative of the work they record, and spec-doc content changes belong to the retrofit phase; a live tool grant never lives in a packet."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      "reason": "Its retired-tool to successor mapping table names the tools it maps, so a reader can find the replacement."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "Its retired-tool to successor mapping table names the tools it maps, so a reader can find the replacement."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      "reason": "Names the retired tools it replaces so a reader can map each one to its recipe."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/plugins/tests/opencode-goal-tool-path.test.cjs",
+      "reason": "Negative assertion that the retired server name is forbidden as a goal tool path."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md",
+      "reason": "Two historical lines explaining why a scenario step changed."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json",
+      "reason": "Captured scorer baseline; dated evidence that is never rewritten."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts",
+      "reason": "Routing vocabulary for the surviving /memory:save command: the labeled-corpus bucket and its accuracy slice are named after the prompts they group, not after a tool call."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts",
+      "reason": "Routing vocabulary for the surviving /memory:save command: the accuracy-bucket key is part of the validate output schema and renaming it would break the captured baseline."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-validate.vitest.ts",
+      "reason": "Routing vocabulary for the surviving /memory:save command: the test reads the accuracy-bucket key its handler emits."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
+      "reason": "Routing vocabulary for the surviving /memory:save command: the ratchet compares the accuracy-bucket key recorded in the captured baseline."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs",
+      "reason": "Routing vocabulary for the surviving /memory:save command: the capture script writes the accuracy-bucket key the baseline records."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts",
+      "reason": "Routing vocabulary for the surviving /memory:save command: a prompt keyword the scorer matches on, not a tool call."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md",
+      "reason": "Dated evidence: a recorded transcript of a step as originally run against the retired memory MCP, labelled as such in the document."
+    }
+  ]
+}

@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `CC-021` and confirm the
 
 ### Optional Supplemental Checks
 
-After extracting the JSON payload, feed it to `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` against a sandbox spec folder (never a live operator packet) and confirm the save completes, proving the handback fully integrates with the canonical continuity save path.
+After extracting the JSON payload, feed it to `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` against a sandbox spec folder (never a live operator packet) and confirm the save completes, proving the handback fully integrates with the canonical continuity save path.
 
 ---
 

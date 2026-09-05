@@ -414,7 +414,7 @@ workflow:
     activities:
       - |
         IF changelog_mode = nested:
-          Run: node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js {spec_folder} --json
+          Run: node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --json
           Read canonical templates:
             - .opencode/skills/system-spec-kit/templates/changelog/root.md
             - .opencode/skills/system-spec-kit/templates/changelog/phase.md
@@ -583,7 +583,7 @@ workflow:
     activities:
       - |
         IF changelog_mode = nested:
-          Run: node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js {spec_folder} --write
+          Run: node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --write
           Verify the written packet-local file matches nested_output_path
       - "Construct output path: .opencode/changelog/{primary_component}/v{next_version}.md"
       - "Write changelog_content to output path using Write tool"

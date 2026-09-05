@@ -28,7 +28,7 @@ The script is the structured-handoff half of the failure-threshold offer flow. A
 
 ### Core Behavior
 
-The generator lives at `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh`. It accepts `--spec-folder`, `--task-id`, `--error-category`, `--error-message`, `--affected-files`, `--hypothesis`, and `--errors-json`, populates a five-section markdown body, and writes the file into the named spec folder.
+The generator lives at `.opencode/skills/system-spec-kit/runtime/cli/spec/scaffold-debug-delegation.sh`. It accepts `--spec-folder`, `--task-id`, `--error-category`, `--error-message`, `--affected-files`, `--hypothesis`, and `--errors-json`, populates a five-section markdown body, and writes the file into the named spec folder.
 
 The output file always carries five numbered H2 headings: `PROBLEM SUMMARY`, `ATTEMPTED FIXES`, `CONTEXT FOR SPECIALIST`, `RECOMMENDED NEXT STEPS`, and `HANDOFF CHECKLIST`. Each attempt row in `--errors-json` produces a corresponding approach/result entry under ATTEMPTED FIXES. The frontmatter includes a `_memory.continuity` block with `packet_pointer` set to the spec folder relative path and `last_updated_by: "scaffold-debug-delegation.sh"` so continuity reads can locate the handoff.
 
@@ -48,7 +48,7 @@ The two workflow YAMLs that drive the offer flow are `speckit-implement-auto.yam
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` | Script | Generates the five-section debug-delegation markdown from failure-trail flags and JSON attempt rows, with collision-driven file versioning |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/scaffold-debug-delegation.sh` | Script | Generates the five-section debug-delegation markdown from failure-trail flags and JSON attempt rows, with collision-driven file versioning |
 | `.opencode/commands/speckit/assets/speckit-implement-auto.yaml` | Workflow asset | Carries the debug_delegation block that prompts the operator with y / continue manually / skip after the failure threshold |
 | `.opencode/commands/speckit/assets/speckit-complete-auto.yaml` | Workflow asset | Carries the debug_escalation block that prompts the operator without autonomous @debug dispatch |
 | `.opencode/agents/debug.md` | Agent | Defines the Debug Context Handoff schema that the scaffold script writes against |

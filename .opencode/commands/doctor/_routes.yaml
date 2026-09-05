@@ -38,7 +38,7 @@ routes:
     gate3_location: "<packet_scratch>/doctor-speckit-retrieval-report.<timestamp>.md + <packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     mcp_tools: []   # file-and-script diagnostic; no MCP calls and no background service
     script_invocations:
-      - 'node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "resume work session context"  # index present AND lookup runs: exit 0 = hits, 1 = clean no-hit, 2+ = missing or unreadable index, reported with stderr and never as a no-hit'
+      - 'node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "resume work session context"  # index present AND lookup runs: exit 0 = hits, 1 = clean no-hit, 2+ = missing or unreadable index, reported with stderr and never as a no-hit'
       - "rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'trigger index generator' specs .opencode  # conventions resolve"
     trigger_phrases:
       - "trigger index drift"
@@ -174,9 +174,9 @@ routes:
     gate3_location: "n/a (read-only mirror-parity diagnostic; every checker runs in its check-only form and writes nothing)"
     mcp_tools: []   # script-only mirror parity read; no MCP calls
     script_invocations:
-      - 'node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs --check'
-      - 'node .opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs --check'
-      - 'node .opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs --check'
+      - 'node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check'
+      - 'node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check'
+      - 'node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check'
       - 'node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs'
       - 'node .opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs'
       - 'node .opencode/bin/install-codex-hooks.mjs --check'

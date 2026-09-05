@@ -74,7 +74,7 @@ The two lanes answer different questions. Prompt-to-declared-phrase matching is 
 The keyed lookup over the generated index. Reads a file and exits.
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<QUERY>"
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<QUERY>"
 ```
 
 1. Run the command with the resolved `QUERY`.

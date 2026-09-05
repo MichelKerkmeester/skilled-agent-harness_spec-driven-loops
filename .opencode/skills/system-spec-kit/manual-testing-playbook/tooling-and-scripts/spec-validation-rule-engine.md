@@ -40,13 +40,13 @@ Validate Spec Validation Rule Engine against the documented validation surface a
 
 ### Commands
 
-1. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json`
-2. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header || true`
-3. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header --strict || true`
-4. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase --recursive --json`
-5. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run scripts/tests/continuity-freshness.vitest.ts --config runtime/vitest.config.ts`
-6. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run scripts/tests/evidence-marker-lint.vitest.ts --config runtime/vitest.config.ts`
-7. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run scripts/tests/normalizer-lint.vitest.ts --config runtime/vitest.config.ts`
+1. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 --json`
+2. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/054-template-extra-header || true`
+3. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/054-template-extra-header --strict || true`
+4. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive --json`
+5. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/continuity-freshness.vitest.ts --config runtime/vitest.config.ts`
+6. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/evidence-marker-lint.vitest.ts --config runtime/vitest.config.ts`
+7. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/normalizer-lint.vitest.ts --config runtime/vitest.config.ts`
 
 ### Expected
 
@@ -63,7 +63,7 @@ Validation transcript for the warning-bearing fixture plus JSON output for the c
 
 ### Failure Triage
 
-Inspect `scripts/spec/validate.sh`, `.speckit.yaml` rule ordering, `scripts/validation/*.ts`, and `scripts/rules/check-*.sh` severity mapping if warnings, strict escalation, or recursive phase reporting are inconsistent
+Inspect `runtime/cli/spec/validate.sh`, `.speckit.yaml` rule ordering, `runtime/cli/validation/*.ts`, and `runtime/cli/rules/check-*.sh` severity mapping if warnings, strict escalation, or recursive phase reporting are inconsistent
 
 ---
 

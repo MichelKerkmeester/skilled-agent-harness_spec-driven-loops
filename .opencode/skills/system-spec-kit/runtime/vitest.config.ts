@@ -16,10 +16,10 @@ export default defineConfig({
     include: [
       'runtime/tests/**/*.{vitest,test}.ts',
       '../system-deep-loop/runtime/tests/**/*.{vitest,test}.ts',
-      'scripts/tests/**/*.{vitest,test}.ts',
     ],
     exclude: [
       'runtime/tests/archive/**',
+      'runtime/cli/**',
     ],
     setupFiles: [
       path.resolve(import.meta.dirname, 'tests', '_support', 'vitest-setup.ts'),

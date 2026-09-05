@@ -731,7 +731,7 @@ node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts
   --input-file council-report.md \
   --memory-save-payload-out /tmp/council-payload.json
 
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   /tmp/council-payload.json <packet>
 ```
 

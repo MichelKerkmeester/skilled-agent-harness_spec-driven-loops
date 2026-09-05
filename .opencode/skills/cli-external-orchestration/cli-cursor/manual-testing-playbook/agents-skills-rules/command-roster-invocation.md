@@ -40,7 +40,7 @@ The command roster is a separate parity surface from custom agents. File presenc
    node <<'NODE'
    const fs = require("node:fs");
    const path = require("node:path");
-   const { isCanonicalMirrorExcluded } = require("./.opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs");
+   const { isCanonicalMirrorExcluded } = require("./.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs");
    const excludedDirs = new Set(["assets", "scripts", "fixtures"]);
    const canonical = [];
    function walk(dir, relative = "") {

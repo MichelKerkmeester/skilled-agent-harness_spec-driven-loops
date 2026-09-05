@@ -24,7 +24,7 @@ const {
   formatCheckError,
   formatWarning,
   packageForSourceFile,
-} = require('../skills/system-spec-kit/scripts/lib/dist-freshness.cjs');
+} = require('../skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

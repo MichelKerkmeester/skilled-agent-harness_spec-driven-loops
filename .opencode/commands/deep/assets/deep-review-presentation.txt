@@ -325,7 +325,7 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 - Inject discovered code patterns into strategy.md "Known Context" section alongside the continuity-ladder findings
 
 #### After Completing
-- `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]`
+- `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]`
 - Verify that the canonical save routed continuity into the expected packet doc (decision-record.md / implementation-summary.md / handover.md)
 
 #### Anchor Tags (Automatic)
@@ -419,7 +419,7 @@ Convergence thresholds and recovery settings used by this command are a governed
 - Prompt optimization is deferred future work (Phase 4b) and will use generated prompt packs, never direct agent markdown mutation
 
 **References:**
-- Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+- Optimizer configuration: `.opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`
 - Tunable thresholds: `convergenceThreshold`, `stuckThreshold`, `maxIterations`, `compositeStopScore`
 - Convergence reference: `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
 

@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/051-sk-create-chart/011-chart-command-surface",
+  "description": "`sk-doc` routes fifteen workflow packets, and fourteen of them have their own slash command",
+  "keywords": [
+    "sk-doc",
+    "routes",
+    "fifteen",
+    "workflow",
+    "packets",
+    "fourteen",
+    "them",
+    "own",
+    "slash",
+    "command"
+  ],
+  "lastUpdated": "2026-09-05T08:27:18.891Z",
+  "specId": "011",
+  "folderSlug": "chart-command-surface",
+  "parentChain": [
+    "sk-doc",
+    "051-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

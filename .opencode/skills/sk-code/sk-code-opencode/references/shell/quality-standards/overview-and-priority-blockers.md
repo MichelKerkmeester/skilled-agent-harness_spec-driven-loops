@@ -51,7 +51,7 @@ Every shell script must start with the portable shebang:
 #!/usr/bin/env bash
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh:1`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/lib/shell-common.sh:1`
 
 ### Strict Mode
 
@@ -67,7 +67,7 @@ set -euo pipefail
 | `-u` | Error on undefined vars | Catches typos, missing args |
 | `-o pipefail` | Pipe failure propagation | Catches hidden pipe errors |
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:22`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:22`
 
 ### Double-Quoted Variables
 
@@ -245,7 +245,7 @@ if [[ ! -t 1 ]]; then
 fi
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:74-77`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:74-77`
 
 ### Function Documentation
 

@@ -74,20 +74,20 @@ Phase children continue to follow the normal Level 1–3+ rows above for their a
 
 **Level 1 Scaffold Commands (Baseline):**
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path specs/###-name --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/###-name --name feature-name
 ```
 
 **Level 2 Scaffold Commands (complete set):**
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path specs/###-name --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path specs/###-name --name feature-name
 ```
 
 **Level 3 Scaffold Commands (complete set):**
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3 --path specs/###-name --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path specs/###-name --name feature-name
 # Optional:
 mkdir -p specs/###-name/research
-bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
+bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name/research \
   .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
@@ -95,10 +95,10 @@ bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh 
 
 **Level 3+ Scaffold Commands (complete set):**
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3+ --path specs/###-name --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --path specs/###-name --name feature-name
 # Optional:
 mkdir -p specs/###-name/research
-bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
+bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3+ \
   --out-dir specs/###-name/research \
   .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
@@ -269,7 +269,7 @@ Content that will be indexed...
 - `next-steps` - Planned next actions
 - `context` - Background context
 
-**Generation:** Use `/speckit:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/` to update the packet's canonical continuity surfaces, primarily `_memory.continuity` inside `implementation-summary.md`.
+**Generation:** Use `/speckit:save` or `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/` to update the packet's canonical continuity surfaces, primarily `_memory.continuity` inside `implementation-summary.md`.
 
 ---
 
@@ -312,22 +312,22 @@ mkdir -p specs/###-short-name/
 
 **Level 1 (Baseline) - ALL features start here:**
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path specs/###-name --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/###-name --name feature-name
 ```
 
 **Level 2 (Verification) - Complete set:**
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path specs/###-name --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path specs/###-name --name feature-name
 ```
 
 **Level 3 (Full) - Complete set:**
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3 --path specs/###-name --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path specs/###-name --name feature-name
 ```
 
 **Level 3+ (Extended) - Complete set:**
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3+ --path specs/###-name --name feature-name
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --path specs/###-name --name feature-name
 ```
 
 ### Step 5: Copy Optional Templates (Level 3/3+ - If Needed)
@@ -335,7 +335,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3+ --path s
 ```bash
 # Comprehensive Research
 mkdir -p specs/###-name/research
-bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
+bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name/research \
   .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl

@@ -208,18 +208,18 @@ cat > /tmp/test-save-context.json << 'EOF'
 EOF
 
 # Execute script directly
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   /tmp/test-save-context.json \
   "049-anchor-context-retrieval"
 
 # Inline JSON mode (preferred for routine saves)
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   --json '{"specFolder":"049-anchor-context-retrieval","sessionSummary":"Implemented anchor retrieval..."}' \
   "049-anchor-context-retrieval"
 
 # Stdin mode (preferred for routine saves)
 echo '{"specFolder":"049-anchor-context-retrieval","sessionSummary":"..."}' | \
-  node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin
+  node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin
 
 ```
 
@@ -241,7 +241,7 @@ If that explicit CLI argument resolves to a phase folder, the command keeps that
 | Checkpoint         | Verification                                           | Action on Failure        |
 | ------------------ | ------------------------------------------------------ | ------------------------ |
 | Node.js installed  | `node --version`                                       | Install Node.js          |
-| Script exists      | `test -f .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` | Check skill installation |
+| Script exists      | `test -f .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` | Check skill installation |
 | JSON valid         | `jq . < input.json`                                    | Fix JSON syntax          |
 | Spec folder exists | `test -d specs/###/`                                   | Create spec folder       |
 | Target exists under specs roots | Use the exact root-spec or phase-folder path you want to save into | Re-run with an explicit CLI target |
@@ -267,11 +267,11 @@ The Phase 018 save path is packet-first. Retired `[spec]/memory/*.md` writes are
 | Property | What it means |
 |----------|---------------|
 | Packet-local | Writes land inside the resolved spec folder. The one documented reach outside it is the phase-parent pointer bubble-up, which updates only the parent's `graph-metadata.json`. |
-| Atomic, same-directory | The generated metadata pair is written to a temp file beside its target and moved into place with `fs.renameSync` (POSIX-atomic), so a crashed save leaves the previous JSON intact rather than torn. Helper: `atomicWriteJson` in `scripts/memory/generate-context.ts`. |
+| Atomic, same-directory | The generated metadata pair is written to a temp file beside its target and moved into place with `fs.renameSync` (POSIX-atomic), so a crashed save leaves the previous JSON intact rather than torn. Helper: `atomicWriteJson` in `runtime/cli/continuity/generate-context.ts`. |
 | Locked | The packet-local `.canonical-save.lock` is acquired before any canonical continuity file is mutated. Parallel saves against the same folder fail fast; a lock whose owner process is gone is reclaimed with a warning. Together this keeps simultaneous handoff writes from interleaving. |
 | Metadata-refreshing | The save refreshes the generated metadata pair (`description.json` and `graph-metadata.json`) for the packet, plus the phase-parent pointer. |
 
-Retrieval is a separate, generated artifact. Regenerate the trigger index with `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` when trigger phrases changed; the save neither runs it nor depends on it.
+Retrieval is a separate, generated artifact. Regenerate the trigger index with `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` when trigger phrases changed; the save neither runs it nor depends on it.
 
 ### Continuity Block Shape
 
@@ -299,11 +299,11 @@ specs/###-feature-name/
 
 ### Phase Parent Save Routing
 
-When the save target is a phase parent (detected via `isPhaseParent()` from `.opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js`), the generator follows a different routing contract that matches the lean trio policy:
+When the save target is a phase parent (detected via `isPhaseParent()` from `.opencode/skills/system-spec-kit/runtime/cli/dist/spec/is-phase-parent.js`), the generator follows a different routing contract that matches the lean trio policy:
 
-- **At a phase parent**: skip the `implementation-summary.md` continuity write at parent (parents do not require that file at all). Instead, atomically update the parent's `graph-metadata.json` `derived.last_active_child_id = null` and `derived.last_active_at = ISO_8601_NOW`. Logic at `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:493` (`updatePhaseParentPointersAfterSave`).
+- **At a phase parent**: skip the `implementation-summary.md` continuity write at parent (parents do not require that file at all). Instead, atomically update the parent's `graph-metadata.json` `derived.last_active_child_id = null` and `derived.last_active_at = ISO_8601_NOW`. Logic at `.opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:493` (`updatePhaseParentPointersAfterSave`).
 - **At a child of a phase parent**: write the child's normal `_memory.continuity` to its `implementation-summary.md` AND atomically update the parent's `graph-metadata.json` `derived.last_active_child_id` to the child's `packet_id` plus a fresh `last_active_at`. The bubble-up uses the same atomic write helper.
-- **Atomic write**: same-directory temp file + `fs.renameSync` (POSIX-atomic). Helper at `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:387` (`atomicWriteJson`). Prevents torn JSON state under concurrent saves.
+- **Atomic write**: same-directory temp file + `fs.renameSync` (POSIX-atomic). Helper at `.opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:387` (`atomicWriteJson`). Prevents torn JSON state under concurrent saves.
 - **Resume integration**: `/speckit:resume` reads `derived.last_active_child_id` first when the target is a phase parent. If non-null and `last_active_at` is within 24 hours, recurse directly into that child. Otherwise fall back to listing children with statuses. `--no-redirect` bypasses the pointer entirely.
 
 #### Phase Parent Output Location (lean trio)
@@ -375,7 +375,7 @@ The canonical save path updates packet docs first. Two active source families ca
 | Spec documents | `<active-spec-folder>/**/*.md` and `specs/**/*.md` | Per-type multiplier | `findSpecDocuments()` |
 | Graph metadata | `graph-metadata.json` adjacent to spec docs | Packet metadata weighting | Graph metadata parser + scan pipeline |
 
-Spec documents are retrieved from the working tree, never from a database. The committed trigger index answers Gate 1 through `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`, and free-text retrieval follows the ripgrep recipes in `references/retrieval/retrieval-conventions.md`, scoped by track and packet. Retrieval is lexical only: paraphrase, fusion, decay and access tracking are unsupported, and a miss is a clean no-hit.
+Spec documents are retrieved from the working tree, never from a database. The committed trigger index answers Gate 1 through `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`, and free-text retrieval follows the ripgrep recipes in `references/retrieval/retrieval-conventions.md`, scoped by track and packet. Retrieval is lexical only: paraphrase, fusion, decay and access tracking are unsupported, and a miss is a clean no-hit.
 
 For context recovery, follow the continuity ladder: `handover.md`, then `_memory.continuity`, then the packet's spec docs read directly, then the ripgrep context recipe with bounded context.
 
@@ -604,7 +604,7 @@ Legacy rendered continuity templates were retired in v3.4.0.0. The post-save qua
 
 ```bash
 # Verify memory system installation
-ls -la .opencode/skills/system-spec-kit/scripts/
+ls -la .opencode/skills/system-spec-kit/runtime/cli/
 
 # Check spec folder structure
 tree specs/###-name/
@@ -613,7 +613,7 @@ tree specs/###-name/
 cat input.json | jq .
 
 # Test script execution
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --help
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --help
 ```
 
 ---

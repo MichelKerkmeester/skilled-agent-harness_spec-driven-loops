@@ -40,7 +40,7 @@ Validate SPECKIT_COMPLETION_FRESHNESS and SPECKIT_COMPLETION_FRESHNESS_ENFORCE w
 1. Copy a complete Level 1 spec folder into a disposable sandbox.
 2. Modify an in-scope spec doc after the stored continuity fingerprint is present, or intentionally set a stale `session_dedup.fingerprint` in the sandbox frontmatter.
 3. Unset both flags: `unset SPECKIT_COMPLETION_FRESHNESS SPECKIT_COMPLETION_FRESHNESS_ENFORCE`.
-4. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <sandbox-spec-folder> --strict` and capture exit code plus output.
+4. Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <sandbox-spec-folder> --strict` and capture exit code plus output.
 5. Enable warn mode: `export SPECKIT_COMPLETION_FRESHNESS=true`; `unset SPECKIT_COMPLETION_FRESHNESS_ENFORCE`; rerun validation.
 6. Enable enforce mode: `export SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`; rerun validation.
 7. Disable both flags, rerun validation, and compare with the baseline output.
@@ -68,7 +68,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Inspect `scripts/validation/continuity-freshness.ts`, `scripts/spec/validate.sh`, and continuity freshness vitest suites. Confirm the sandbox actually contains a stale fingerprint or dirty packet-scoped path before judging a pass as false negative.
+Inspect `runtime/cli/validation/continuity-freshness.ts`, `runtime/cli/spec/validate.sh`, and continuity freshness vitest suites. Confirm the sandbox actually contains a stale fingerprint or dirty packet-scoped path before judging a pass as false negative.
 
 ---
 
@@ -85,10 +85,10 @@ Inspect `scripts/validation/continuity-freshness.ts`, `scripts/spec/validate.sh`
 
 | File | Role |
 |---|---|
-| `scripts/validation/continuity-freshness.ts` | Freshness rule implementation |
-| `scripts/spec/validate.sh` | Strict validation flag wiring |
+| `runtime/cli/validation/continuity-freshness.ts` | Freshness rule implementation |
+| `runtime/cli/spec/validate.sh` | Strict validation flag wiring |
 | `runtime/tests/continuity-freshness.vitest.ts` | MCP-side freshness coverage |
-| `scripts/tests/continuity-freshness.vitest.ts` | Script-side freshness coverage |
+| `runtime/cli/tests/continuity-freshness.vitest.ts` | Script-side freshness coverage |
 
 ---
 

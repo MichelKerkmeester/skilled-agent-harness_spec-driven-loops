@@ -100,7 +100,7 @@ Spec folder is passed explicitly as a CLI argument with alignment validation to 
 
 | Step | Action              | Mechanism                                     |
 | ---- | ------------------- | --------------------------------------------- |
-| 1    | Check CLI argument  | `node .opencode/.../scripts/dist/memory/generate-context.js data.json [spec-folder]` |
+| 1    | Check CLI argument  | `node .opencode/.../runtime/cli/dist/continuity/generate-context.js data.json [spec-folder]` |
 | 2    | Prompt if missing   | AI agent asks user for folder                 |
 | 3    | Validate path       | Confirm `specs/###-name/` exists              |
 | 4    | Calculate alignment | Score against conversation context            |
@@ -232,10 +232,10 @@ only, own, same, so, than, too, very, just, also
 
 ```bash
 # Explicit spec folder with JSON input (recommended)
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js data.json "006-opencode/014-stateless-alignment"
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js data.json "006-opencode/014-stateless-alignment"
 
 # With sub-folder
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js data.json "122-skill-standardization/002-api-refactor"
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js data.json "122-skill-standardization/002-api-refactor"
 ```
 
 ### AI Agent Workflow
@@ -244,7 +244,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js da
 2. AI agent determines spec folder from conversation context
 3. AI agent calls script with explicit path:
    ```bash
-   node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/context.json "014-stateless-alignment"
+   node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/context.json "014-stateless-alignment"
    ```
 4. Canonical continuity is routed into packet docs such as `implementation-summary.md`, `handover.md`, and `decision-record.md`; generated metadata files are refreshed for search and graph traversal.
 
@@ -331,14 +331,14 @@ Folders matching these patterns are automatically excluded:
 
 ```bash
 # Skip alignment prompts, use most recent folder
-AUTO_SAVE_MODE=true node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js data.json
+AUTO_SAVE_MODE=true node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js data.json
 ```
 
 ### Explicit Folder Argument
 
 ```bash
 # Bypass scoring, use specified folder
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js data.json "122-specific-folder"
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js data.json "122-specific-folder"
 ```
 
 ### Session Preferences
@@ -496,7 +496,7 @@ Available folders:
 **Example:**
 ```bash
 # Folder 003-new-work doesn't exist yet
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js data.json "122-feature/003-new-work"
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js data.json "122-feature/003-new-work"
 # Creates: specs/122-feature/003-new-work/memory/
 ```
 

@@ -78,8 +78,8 @@ Render flow:
 
 | Entrypoint | Use |
 |---|---|
-| `scripts/templates/inline-gate-renderer.ts` | Render one gated template for one Level. |
-| `scripts/templates/inline-gate-renderer.sh` | Shell wrapper for renderer use from scripts. |
+| `runtime/cli/templates/inline-gate-renderer.ts` | Render one gated template for one Level. |
+| `runtime/cli/templates/inline-gate-renderer.sh` | Shell wrapper for renderer use from scripts. |
 | `spec-kit-docs.json` | Contract source read by scaffold and validation code. |
 
 ---
@@ -90,7 +90,7 @@ Run template and spec validation from the repository root after contract edits:
 
 ```bash
 npm --prefix .opencode/skills/system-spec-kit/runtime run typecheck
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
 ```
 
 Rendered output should match the intended public Level contract and must not leak private manifest terms.

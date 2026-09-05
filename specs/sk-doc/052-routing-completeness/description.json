@@ -1,16 +1,18 @@
 {
   "level": "3",
   "specFolder": "sk-doc/052-routing-completeness",
-  "description": "routing completeness and findings closure",
+  "description": "A hub can be complete in every registry and still not be reachable",
   "keywords": [
-    "routing",
-    "completeness",
-    "findings",
-    "closure"
+    "hub",
+    "complete",
+    "every",
+    "registry",
+    "still",
+    "reachable"
   ],
-  "lastUpdated": "2026-09-02T21:41:53.194Z",
+  "lastUpdated": "2026-09-04T06:00:27.158Z",
   "specId": "052",
-  "folderSlug": "routing-completeness-and",
+  "folderSlug": "routing-completeness",
   "parentChain": [
     "sk-doc"
   ],

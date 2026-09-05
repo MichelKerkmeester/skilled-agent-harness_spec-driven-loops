@@ -7,7 +7,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   extractSpecIdCandidates,
   validateMemoryQualityContent,
-} from '../../../scripts/lib/validate-memory-quality';
+} from '../../cli/lib/validate-memory-quality';
 
 const currentSpecFolder = 'system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/049-substrate-stress-coverage';
 const tempRoots: string[] = [];

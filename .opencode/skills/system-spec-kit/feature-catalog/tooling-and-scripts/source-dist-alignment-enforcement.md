@@ -38,7 +38,7 @@ The corresponding policy is documented in `ARCHITECTURE.md` under "Source-Dist A
 
 | File | Layer | Role |
 |------|-------|------|
-| `scripts/evals/check-source-dist-alignment.ts` | Script (evals) | Source-dist alignment enforcement: scans dist/lib/*.js, maps to lib/*.ts, reports orphans |
+| `runtime/cli/evals/check-source-dist-alignment.ts` | Script (evals) | Source-dist alignment enforcement: scans dist/lib/*.js, maps to lib/*.ts, reports orphans |
 
 ### Validation And Tests
 

@@ -34,7 +34,7 @@ When `/speckit:complete` or any other workflow needs to write a new spec folder,
 Run the system-spec-kit scaffold from the repository root:
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh \
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh \
   --skip-branch \
   --short-name "opencode-authoring-recipe" \
   --number 078 \
@@ -74,13 +74,13 @@ Verification gate: run `rg -n "_memory:|packet_pointer|recent_action|last_update
 ### Step 5: Refresh metadata
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js \
+node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js \
   <folder> \
   <repo-root> \
   --description "Short description for memory search" \
   --level N
 
-node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/backfill-graph-metadata.js \
+node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/backfill-graph-metadata.js \
   --root <folder>
 ```
 
@@ -89,7 +89,7 @@ Verification gate: confirm `description.json` and `graph-metadata.json` exist an
 ### Step 6: validate.sh --strict gate
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <folder> --strict
 ```
 
 Must exit with 0 errors AND 0 warnings (warnings count as failures under `--strict`).
@@ -129,6 +129,6 @@ Verification gate: confirm `git status --short` only includes the intended packe
 ## 6. RELATED RESOURCES
 
 - spec-folder-authoring-checklist.md (companion checklist, same directory)
-- system-spec-kit/scripts/spec/validate.sh (the gate)
-- system-spec-kit/scripts/dist/spec-folder/generate-description.js (metadata refresh)
+- system-spec-kit/runtime/cli/spec/validate.sh (the gate)
+- system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js (metadata refresh)
 - system-spec-kit/templates/{spec,plan,tasks,implementation-summary}.md.tmpl (canonical templates)

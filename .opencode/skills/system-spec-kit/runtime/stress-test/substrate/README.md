@@ -18,7 +18,7 @@ trigger_phrases:
 
 | File | Coverage |
 |---|---|
-| `v-rule-save-flood-stress.vitest.ts` | Cross-spec contamination rules under a 50-save canonical-doc flood, driven against `extractSpecIdCandidates()` and `validateMemoryQualityContent()` from `../../../scripts/lib/validate-memory-quality`. Each case builds its own temp root and removes it in `afterEach`. |
+| `v-rule-save-flood-stress.vitest.ts` | Cross-spec contamination rules under a 50-save canonical-doc flood, driven against `extractSpecIdCandidates()` and `validateMemoryQualityContent()` from `../../cli/lib/validate-memory-quality`. Each case builds its own temp root and removes it in `afterEach`. |
 
 ---
 

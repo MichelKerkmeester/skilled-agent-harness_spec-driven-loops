@@ -64,7 +64,7 @@ The system comprises 4 components spanning references, agent definitions, and va
 | `.claude/agents/speckit.md` | Agent Def | Claude Code distributed-governance spec authoring with embedded contract |
 | `.opencode/agents/speckit.md` | Agent Def | Copilot distributed-governance spec authoring with embedded contract |
 | `.opencode/agents/speckit.toml` | Agent Def | OpenCode distributed-governance spec authoring with embedded contract |
-| `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` | Engine | Contract extraction CLI |
+| `.opencode/skills/system-spec-kit/runtime/cli/utils/template-structure.js` | Engine | Contract extraction CLI |
 
 ---
 

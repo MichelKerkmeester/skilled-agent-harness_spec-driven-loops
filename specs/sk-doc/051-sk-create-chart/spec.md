@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/051-sk-create-chart"
     last_updated_at: "2026-09-02T00:00:00Z"
     last_updated_by: "phase-6-closeout"
-    recent_action: "Closed phase 007 and reconciled the phase map against what shipped"
-    next_safe_action: "Work the twelve open fidelity items in 007/goal.md"
+    recent_action: "Reconciled the phase map, handoff criteria and open questions against phases 009 through 011"
+    next_safe_action: "Review the two recorded open questions before scheduling new phase work"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/sk-create-chart/SKILL.md"
@@ -25,15 +25,17 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "The packet changelog still describes the scaffold release and is contradicted by the shipped tree"
-      - "A bare two-word chart form name scores below the mandatory-invoke bar at stage one"
-      - "Twelve fidelity recommendations from phase 007 are open, tracked in 007/goal.md"
+      - "A bare two-word chart form name still scores below the mandatory-invoke bar, confirmed unchanged by phase 011's own scope"
+      - "Whether the packet changelog still matches the corpus after phases 010 and 011 is not settled by either phase's own documents"
     answered_questions:
       - "Placement is a workflow mode under sk-doc, recorded as ADR-001"
       - "Nothing is copied from the reference, recorded as ADR-002"
-      - "The first corpus carries twenty chart forms across six question families"
+      - "The corpus carries twenty-one chart forms across six question families, after phase 009 added the composed form"
       - "Report mode is cut, recorded as ADR-007"
       - "No charting library is adopted, decided in phase 007"
+      - "Phase 007's twelve fidelity recommendations are closed: seven applied, three partial by decision, two refused in writing"
+      - "Phase 008's adjudicated recommendation set is built, across all seven of phase 009's own child phases"
+      - "Phase 010 closed all five checker holes it recorded on arrival"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -124,8 +126,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
 | `.opencode/skills/sk-doc/sk-create-chart/**` | Create | 3, 4, 6 | The mode, its authored corpus and its playbook |
-| Hub registry, router, vocabulary and leaf manifest | Modify | 5 | Registration and stage-two routing |
-| Canary fixtures and pinned digests | Modify | 5, 6 | Single-route coverage for the new surface |
+| `.opencode/skills/sk-doc/sk-create-chart/**` | Modify | 9, 10 | The corpus chrome, motion, interaction and dark theme, then the catalog and contract reconciliation, then the review-found rendering defects and checker gaps |
+| Hub registry, router, vocabulary and leaf manifest | Modify | 5, 11 | Registration and stage-two routing, then the command binding and its derived advisor projection |
+| Canary fixtures and pinned digests | Modify | 5, 6, 11 | Single-route coverage for the new surface, then the re-pin the command router forces |
+| `.opencode/commands/create/chart.md` and its runtime mirrors | Create | 11 | The thin command router, its owned assets and its reach across every runtime |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -144,7 +148,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 5 | 005-routing-integration/ | Registration and both routing stages, plus canary coverage | Complete |
 | 6 | 006-playbook-and-closeout/ | The manual testing playbook, then the whole-fleet gates | Complete |
 | 7 | 007-fidelity-and-library-research/ | Renumber the reference overviews from one, measure the shipped corpus against six open-source charting libraries, and apply what the research proves | Complete |
-| 8 | 008-evilcharts-reference-research/ | Reverse-engineer the vendored evilcharts source, and rank what it does that the corpus does not into concrete template and contract changes | In Progress |
+| 8 | 008-evilcharts-reference-research/ | Reverse-engineer the vendored evilcharts source, and rank what it does that the corpus does not into concrete template and contract changes | Complete |
+| 9 | 009-chart-visual-overhaul/ | Rebuild the chart corpus to the look two research lineages proved, in dependency order, decomposed into seven child phases of its own | Complete |
+| 10 | 010-chart-review-remediation/ | Close the rendering defects and checker holes a fresh review found, and reconcile the documents that disagreed with the packet | Complete |
+| 11 | 011-chart-command-surface/ | Build `/create:chart` and land it on every runtime surface a command has to reach | Complete |
 
 ### Phase Transition Rules
 
@@ -164,6 +171,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 005 | 006 | The skill is reachable in both routing stages, not merely registered | The advisor selects it, the router resolves it, and its leaves resolve on disk |
 | 006 | 007 | The playbook validates under the operator-scenario contract with a nonzero operator count, and the fleet gates pass from the final state | The playbook is in place and `check-corpus.cjs --render` passes from the shipped tree |
 | 007 | 008 | The corpus is correct against upstream convention, and the remaining complaint is how it looks | Phase 7 is closed, and its own goal document records every item as applied or refused in writing |
+| 008 | 009 | Both research lineages complete their five iterations each, and their findings are adjudicated into one recommendation set with a verdict per item | `research/research.md` ranks every recommendation with an evilcharts `file:line` behind it, and no file under the chart skill changed yet |
+| 009 | 010 | Every one of the seven child phases closes against its own goal document | `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED` from the final state |
+| 010 | 011 | Every defect the review found carries a before and after measurement, and every checker hole left open carries the mutation that proves it | `check-corpus.cjs --render` prints `RESULT: PASSED`, and each new assertion was watched failing on a mutated copy with the rule unwired as the control |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -175,20 +185,49 @@ Both of the packet's original questions are answered. Placement is a workflow mo
 documentation hub, recorded as ADR-001, decided on tie-break machinery rather than on size.
 Licensing is settled by ADR-002: nothing is copied, and the skill is built from the ideas.
 
-The size question is answered too. The first corpus carries twenty chart forms across six
-question families, sized by data-shape coverage rather than against the reference count.
+The size question is answered too, and the count moved. The first corpus carried twenty chart
+forms across six question families, sized by data-shape coverage rather than against the
+reference count. Phase 009 added a twenty-first, the composed bar and line form, for the one
+question the index had no row for. Phase 010 holds that count as a boundary rather than a
+target: its own scope excludes any new chart form. Phase 011 corrects the packet's own
+hub-facing count from twenty to twenty-one, in the hub mode table and the hub README.
 
-Two items close as recorded unknowns rather than as answers. The packet changelog still
-describes the scaffold release, so it tells a reader the corpus is empty and nothing routes,
-and both statements are false in the tree that reader is holding. And a bare two-word chart
-form name scores below the mandatory-invoke bar at the first routing stage, while a full
-request carrying the same name clears it comfortably. Both are recorded with their evidence in
-`006-playbook-and-closeout/implementation-summary.md`.
+Two items closed as recorded unknowns in `006-playbook-and-closeout/implementation-summary.md`,
+and the two have since diverged. The packet changelog complaint is answered: phase 007 rewrote
+it into a versioned set and moved the version forward, recorded in
+`007-fidelity-and-library-research/goal.md`. Neither phase 010 nor phase 011 records a further
+changelog edit in its own documents, so whether the changelog still matches the corpus after
+those two phases is not settled by what either one wrote. The bare two-word chart form name
+still scores below the mandatory-invoke bar. Phase 011 confirms it is unchanged: its own scope
+names two plausible chart prompts that still abstain and calls that a property of the scorer
+rather than a wiring gap.
 
-Phase 007 adds a third. It measured the corpus against six open-source charting libraries and
-shipped three of the ten template-level improvements it found. The other twelve recommendations
-are open, five of them contract-level and waiting on an operator call. They are tracked with
-their evidence in `007-fidelity-and-library-research/goal.md`.
+Phase 007's twelve open fidelity recommendations are answered now, not open. Seven are applied:
+the number formatter, null and NaN filtering, the minimum-size guard, the budget comments, the
+display-ready time labels, the computed-value exception and the in-figure notice. Three close
+partial by a recorded decision: the series-mapping descriptions on three forms that state a data
+fact no edit to the block would update, the gradient-ramp legend that shipped as discrete
+swatches rather than a continuous ramp under ADR-006 and the narrow-viewport assertion that
+proves the affordance is declared rather than that a phone-width browser has stopped squashing
+it. Two are refused in writing: pattern fills, because every form already satisfies the colour
+rule another way, and the diverging colour system, because no catalog form consumes a midpoint
+ramp. All twelve dispositions are recorded in `007-fidelity-and-library-research/goal.md`.
+
+Phase 008 turned a second research pass, over a vendored MIT charting library, into one
+adjudicated recommendation set: nine changes both lineages agreed on, four they contradicted and
+four left to the operator. Phase 009 built that set across seven of its own child phases, and
+its own Phase Documentation Map records all seven as Complete, including the phase that renders
+the weight and glow fork and the phase that ships the dark theme and the composed form. Phase
+009's own frontmatter and its own section 4 still list those four operator calls as open, which
+reads as staleness inside that document rather than as a fact about the corpus, since a phase
+cannot close while the decision its own deliverable depends on stays unmade.
+
+Phase 010 was a fresh review that found rendering defects a green corpus check had certified,
+and eight places where the packet's documents disagreed with the packet. Every one of its
+success criteria reports Met. The packet's own account of its checker holes closed too: the
+five holes phase 010 recorded on arrival are shut, per its own
+`010-chart-review-remediation/implementation-summary.md`, each by a narrower parser rather than
+a wider pattern, and none of the twenty-one shipped forms started failing under the wider rule.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -69,6 +69,6 @@ Run the consumer script or test that reads any changed setting before claiming b
 
 ## 6. RELATED
 
-- [`../scripts/core/config.ts`](../scripts/core/config.ts) - Main config loader.
-- [`../scripts/lib/content-filter.ts`](../scripts/lib/content-filter.ts) - Filter config consumer.
+- [`../runtime/cli/core/config.ts`](../runtime/cli/core/config.ts) - Main config loader.
+- [`../runtime/cli/lib/content-filter.ts`](../runtime/cli/lib/content-filter.ts) - Filter config consumer.
 - [`../references/memory/memory-system.md`](../references/memory/memory-system.md) - Retrieval and continuity behavior reference.

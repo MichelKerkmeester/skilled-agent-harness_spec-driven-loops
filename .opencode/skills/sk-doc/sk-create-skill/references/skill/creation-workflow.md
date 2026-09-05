@@ -200,7 +200,7 @@ The decision is based on the skill directory role, not on the number of files. A
 
 1. Run `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <skill>/README.md --type readme` and require zero issues.
 2. Run the HVR checks for em dashes, semicolons, Oxford commas and banned words on the README prose.
-3. Run `node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs` and confirm the README links resolve.
+3. Run `node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` and confirm the README links resolve.
 4. Run `rg -n '^version:' <skill>/README.md` and require a four-part version field. Confirm a matching changelog entry exists.
 
 Only after all four checks pass should the workflow continue to Step 5.

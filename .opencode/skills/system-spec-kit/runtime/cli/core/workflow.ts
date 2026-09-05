@@ -1,0 +1,1796 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Workflow
+// ───────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+// Main workflow orchestrator -- coordinates data loading, extraction, rendering, and file output
+// Node stdlib
+import * as path from 'node:path';
+import * as fsSync from 'node:fs';
+// Internal modules
+import { CONFIG, findActiveSpecsDir, getSpecsDirectories } from './config.js';
+import { resolveSpecFolderCanonical } from './spec-root-canonical-resolver.js';
+import {
+  extractConversations,
+  extractDecisions,
+  extractDiagrams,
+  enhanceFilesWithSemanticDescriptions,
+} from '../extractors/index.js';
+import { detectSpecFolder, ensureSpecFolderExists } from '../spec-folder/index.js';
+import { generateContentSlug } from '../utils/slug-utils.js';
+import { toCanonicalRelativePath } from '../utils/file-helpers.js';
+import { pickPreferredMemoryTask, shouldEnrichTaskFromSpecTitle } from '../utils/task-enrichment.js';
+import {
+  buildSpecAffinityTargets,
+  evaluateCollectedDataSpecAffinity,
+} from '../utils/spec-affinity.js';
+import { deriveMemoryDescription } from '../lib/memory-frontmatter.js';
+import {
+  isAllowlistedShortProductName,
+} from '../lib/trigger-phrase-sanitizer.js';
+import { shouldAutoSave, collectSessionData } from '../extractors/collect-session-data.js';
+import type { CollectedDataFull } from '../extractors/collect-session-data.js';
+import type { SemanticFileInfo } from '../extractors/file-extractor.js';
+import { filterContamination, getContaminationPatternLabels, SEVERITY_RANK, type ContaminationSeverity } from '../extractors/contamination-filter.js';
+import {
+  scoreMemoryQuality as scoreMemoryQualityV2,
+  type ValidationSignal,
+} from '../extractors/quality-scorer.js';
+import {
+  determineValidationDisposition,
+  validateMemoryQualityContent,
+} from '../lib/validate-memory-quality.js';
+import { extractSpecFolderContext } from '../extractors/spec-folder-extractor.js';
+import { extractGitContext } from '../extractors/git-context-extractor.js';
+
+import { createFilterPipeline } from '../lib/content-filter.js';
+import type { FilterStats, ContaminationAuditRecord } from '../lib/content-filter.js';
+import {
+  generateImplementationSummary,
+  buildWeightedEmbeddingSections,
+  formatSummaryAsMarkdown,
+  extractFileChanges,
+} from '../lib/semantic-summarizer.js';
+import { EMBEDDING_DIM, MODEL_NAME } from '../lib/embeddings.js';
+import {
+  evaluateMemorySufficiency,
+} from '@spec-kit/shared/parsing/memory-sufficiency';
+import { validateMemoryTemplateContract } from '@spec-kit/shared/parsing/memory-template-contract';
+import { evaluateSpecDocHealth } from '@spec-kit/shared/parsing/spec-doc-health';
+import { scrubSecretsDetailed } from '@spec-kit/shared/parsing/secret-scrubber';
+import * as simFactory from '../lib/simulation-factory.js';
+import { loadCollectedData as loadCollectedDataFromLoader } from '../loaders/data-loader.js';
+import { applyTreeThinning } from './tree-thinning.js';
+import { structuredLog } from '../utils/logger.js';
+import type { FileChange, SessionData } from '../types/session-types.js';
+import type { ThinFileInput } from './tree-thinning.js';
+import { getSourceCapabilities } from '../utils/source-capabilities.js';
+import { normalizeInputData } from '../utils/input-normalizer.js';
+import type { RawInputData } from '../utils/input-normalizer.js';
+import { resolveSaveMode, SaveMode } from '../types/save-mode.js';
+
+// Extracted modules
+import { stripWorkflowHtmlOutsideCodeFences, escapeLiteralAnchorExamples } from './content-cleaner.js';
+import {
+  buildMemoryTitle,
+  extractSpecTitle,
+} from './title-builder.js';
+import {
+  resolveTreeThinningContent,
+} from './workflow-path-utils.js';
+import {
+  readExplicitMemoryText,
+  resolveParentSpec,
+} from './memory-metadata.js';
+import {
+  injectQualityMetadata,
+  injectSpecDocHealthMetadata,
+} from './frontmatter-editor.js';
+import { shouldIndexMemory, formatSufficiencyAbort } from './quality-gates.js';
+import { summarizeAuditCounts } from './workflow-accessors.js';
+import {
+  resolveAlignmentTargets,
+  matchesAlignmentTarget,
+  applyThinningToFileChanges,
+} from './alignment-validator.js';
+import {
+  hasResearchIterationDirectories,
+  runBackfillResearchMetadata,
+} from '../continuity/backfill-research-metadata.js';
+import { dirnameFromImportMeta } from '../lib/esm-entry.js';
+import { isProcessAlive } from './daemon-detect.js';
+
+const moduleDir = dirnameFromImportMeta(import.meta.url);
+
+// ───────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────
+
+// Trigger phrase filter — suppresses path fragments, short tokens, and shingle subsets.
+const TRIGGER_ALLOW_LIST = new Set(['rag', 'bm25', 'mcp', 'adr', 'jwt', 'api', 'cli', 'llm', 'ai']);
+
+function normalizeWorkflowTriggerKey(value: string): string {
+  return value.toLowerCase().replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function filterTriggerPhrases(
+  phrases: string[],
+  manualPhraseKeys: Set<string> = new Set(),
+): string[] {
+  // Stage 1: Remove entries containing path separators (forward/backslash, multi-word path segments)
+  let filtered = phrases.filter(p => {
+    const trimmed = p.trim();
+    const comparisonKey = normalizeWorkflowTriggerKey(trimmed);
+    if (trimmed.includes('/') || trimmed.includes('\\')) return false;
+    if (manualPhraseKeys.has(comparisonKey)) {
+      return true;
+    }
+    if (/^\d{1,3}\s/.test(trimmed)) {
+      return false;
+    }
+    return true;
+  });
+
+  // Stage 2: Remove entries where every word is under 3 characters (unless in allow-list)
+  filtered = filtered.filter(p => {
+    const comparisonKey = normalizeWorkflowTriggerKey(p);
+    if (manualPhraseKeys.has(comparisonKey)) {
+      return true;
+    }
+    const words = p.trim().split(/\s+/);
+    if (words.length === 1 && words[0].length < 3 && !TRIGGER_ALLOW_LIST.has(words[0].toLowerCase())) {
+      return false;
+    }
+    // Multi-word: keep if at least one word >= 3 chars or any word is in allow-list
+    if (words.every(w => w.length < 3) && !words.some(w => TRIGGER_ALLOW_LIST.has(w.toLowerCase()))) {
+      return false;
+    }
+    return true;
+  });
+
+  // Stage 3: Remove n-gram shingle phrases that are substrings of longer retained phrases
+  const lowerPhrases = filtered.map((p) => p.toLowerCase().replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim());
+  filtered = filtered.filter((p, idx) => {
+    const lower = lowerPhrases[idx];
+    if (manualPhraseKeys.has(lower)) {
+      return true;
+    }
+    if (isAllowlistedShortProductName(p)) {
+      return true;
+    }
+    // Check if this phrase is a substring of any other (longer) phrase
+    for (let j = 0; j < lowerPhrases.length; j++) {
+      if (j !== idx && (
+        (lowerPhrases[j] === lower && j < idx)
+        || (lowerPhrases[j].length > lower.length && lowerPhrases[j].includes(lower))
+      )) {
+        return false;
+      }
+    }
+    return true;
+  });
+
+  return filtered;
+}
+
+/**
+ * Insert content after YAML frontmatter, preserving frontmatter at byte 0.
+ * Frontmatter is a block delimited by `---\n` at position 0 and a closing `---\n`.
+ * If no frontmatter is found, prepends the content (original behavior).
+ */
+function insertAfterFrontmatter(content: string, insertion: string): string {
+  if (!content.startsWith('---')) {
+    return insertion + content;
+  }
+  // Find the closing --- (skip the opening ---)
+  const closingIdx = content.indexOf('\n---', 3);
+  if (closingIdx === -1) {
+    return insertion + content;
+  }
+  // Find the end of the closing --- line
+  const afterClosing = content.indexOf('\n', closingIdx + 4);
+  const insertionPoint = afterClosing === -1 ? content.length : afterClosing + 1;
+  return content.slice(0, insertionPoint) + insertion + content.slice(insertionPoint);
+}
+
+type WorkflowScrubWarn = (message: string) => void;
+
+type WorkflowSavePayloadTextFields = {
+  contentSlug: string;
+  rawCtxFilename: string;
+  memoryTitle: string;
+  memoryDescription: string;
+  sessionData: SessionData;
+  collectedData: CollectedDataFull;
+};
+
+function scrubWorkflowStringField(value: string, fieldPath: string, warn?: WorkflowScrubWarn): string {
+  const scrubResult = scrubSecretsDetailed(value);
+  if (scrubResult.redactions > 0) {
+    warn?.(`[workflow] Redacted ${scrubResult.redactions} secret(s) [${scrubResult.kinds.join(', ')}] from ${fieldPath} before durable save`);
+  }
+  return scrubResult.text;
+}
+
+function scrubWorkflowTextTree(value: unknown, fieldPath: string, warn?: WorkflowScrubWarn): unknown {
+  if (typeof value === 'string') {
+    return scrubWorkflowStringField(value, fieldPath, warn);
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item, index) => scrubWorkflowTextTree(item, `${fieldPath}[${index}]`, warn));
+  }
+
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, entry]) => [
+        key,
+        scrubWorkflowTextTree(entry, `${fieldPath}.${key}`, warn),
+      ]),
+    );
+  }
+
+  return value;
+}
+
+function scrubWorkflowSavePayloadTextFields(
+  fields: WorkflowSavePayloadTextFields,
+  warn?: WorkflowScrubWarn,
+): WorkflowSavePayloadTextFields {
+  return {
+    contentSlug: scrubWorkflowStringField(fields.contentSlug, 'contentSlug', warn),
+    rawCtxFilename: scrubWorkflowStringField(fields.rawCtxFilename, 'rawCtxFilename', warn),
+    memoryTitle: scrubWorkflowStringField(fields.memoryTitle, 'memoryTitle', warn),
+    memoryDescription: scrubWorkflowStringField(fields.memoryDescription, 'memoryDescription', warn),
+    sessionData: scrubWorkflowTextTree(fields.sessionData, 'sessionData', warn) as SessionData,
+    collectedData: scrubWorkflowTextTree(fields.collectedData, 'collectedData', warn) as CollectedDataFull,
+  };
+}
+
+/**
+ * Shared helper for dynamic runtime API imports with consistent degradation.
+ * All call sites log warnings on failure and return the provided fallback.
+ */
+async function tryImportRuntimeApi(specifier: string): Promise<any | null> {
+  try {
+    return await import(specifier);
+  } catch (err: unknown) {
+    console.warn(`[workflow] Failed to import ${specifier}: ${err instanceof Error ? err.message : String(err)}`);
+    return null;
+  }
+}
+
+/** The retrieval package's index reader, frontmatter reader and path-alias folder, resolved once per process. */
+interface TriggerIndexRetrievalLibrary {
+  loadIndex: (indexPath?: string, options?: { hashIndex?: boolean }) => {
+    index: { paths: string[]; phrases: Record<string, number[]> };
+  };
+  readTriggerPhrases: (rawContent: string) => { phrases: Array<{ normalized: string }> };
+  canonicalRelativePath: (relativePath: string) => string;
+  /** Repository root the retrieval package's own paths are relative to. */
+  repoRoot: string;
+}
+
+let cachedTriggerIndexRetrievalLibrary: TriggerIndexRetrievalLibrary | null | undefined;
+
+/**
+ * Locates and imports the retrieval package's lookup/frontmatter/corpus
+ * modules from this file's real on-disk location rather than from
+ * `CONFIG.PROJECT_ROOT`, which a caller may point at a throwaway workspace.
+ * Two candidate offsets cover both the TS-source and compiled-dist layouts,
+ * since a dynamic import can't rely on one fixed relative offset across them.
+ * Resolution is cached after the first attempt, success or failure.
+ */
+async function loadTriggerIndexRetrievalLibrary(): Promise<TriggerIndexRetrievalLibrary | null> {
+  if (cachedTriggerIndexRetrievalLibrary !== undefined) {
+    return cachedTriggerIndexRetrievalLibrary;
+  }
+
+  const retrievalDirCandidates = [
+    path.resolve(moduleDir, '..', 'retrieval'),
+    path.resolve(moduleDir, '..', '..', 'retrieval'),
+  ];
+  const retrievalDir = retrievalDirCandidates.find(
+    (candidate) => fsSync.existsSync(path.join(candidate, 'lookup-trigger-index.mjs')),
+  );
+  if (!retrievalDir) {
+    cachedTriggerIndexRetrievalLibrary = null;
+    return null;
+  }
+
+  try {
+    const [lookupModule, frontmatterModule, corpusModule] = await Promise.all([
+      import(path.join(retrievalDir, 'lookup-trigger-index.mjs')),
+      import(path.join(retrievalDir, 'lib', 'frontmatter.mjs')),
+      import(path.join(retrievalDir, 'lib', 'corpus.mjs')),
+    ]);
+    cachedTriggerIndexRetrievalLibrary = {
+      loadIndex: lookupModule.loadIndex,
+      readTriggerPhrases: frontmatterModule.readTriggerPhrases,
+      canonicalRelativePath: corpusModule.canonicalRelativePath,
+      // scripts/retrieval sits five levels under the repo root: retrieval → scripts →
+      // system-spec-kit → skills → .opencode → repo root.
+      repoRoot: path.resolve(retrievalDir, '..', '..', '..', '..', '..'),
+    };
+  } catch {
+    cachedTriggerIndexRetrievalLibrary = null;
+  }
+
+  return cachedTriggerIndexRetrievalLibrary;
+}
+
+/** Outcome of comparing a packet's own `spec.md` trigger phrases against the committed trigger index. */
+interface TriggerIndexFreshnessResult {
+  status: 'fresh' | 'stale' | 'no-phrases' | 'unavailable';
+  /** Repo-relative path of the document compared, when it could be resolved. */
+  documentPath?: string;
+  /** Phrases spec.md declares that the index does not (yet) attribute to it. */
+  added?: string[];
+  /** Phrases the index attributes to spec.md that spec.md no longer declares. */
+  removed?: string[];
+}
+
+/**
+ * Compares `spec.md`'s current `trigger_phrases` frontmatter against what the
+ * committed trigger index records for that same document, using the
+ * retrieval package's own frontmatter reader and index loader so the
+ * comparison can never drift from what the generator itself considers
+ * current. Never throws: a missing spec.md, an unparseable index, or a
+ * retrieval library that can't be located all degrade to 'unavailable' so a
+ * canonical save is never blocked on this (NFR-R01/R02).
+ *
+ * `options.indexPath` overrides the committed index location; production
+ * callers omit it and get the retrieval package's own default.
+ */
+async function checkTriggerIndexFreshness(
+  specFolderPath: string,
+  options: { indexPath?: string } = {},
+): Promise<TriggerIndexFreshnessResult> {
+  let rawContent: string;
+  try {
+    rawContent = fsSync.readFileSync(path.join(specFolderPath, 'spec.md'), 'utf8');
+  } catch {
+    return { status: 'unavailable' };
+  }
+
+  const library = await loadTriggerIndexRetrievalLibrary();
+  if (!library) {
+    return { status: 'unavailable' };
+  }
+
+  const currentPhrases = new Set(
+    library.readTriggerPhrases(rawContent).phrases.map((phrase) => phrase.normalized),
+  );
+  // Nothing declared: the edge case this phase documents as "nothing to compare".
+  if (currentPhrases.size === 0) {
+    return { status: 'no-phrases' };
+  }
+
+  let loaded: { index: { paths: string[]; phrases: Record<string, number[]> } };
+  try {
+    loaded = library.loadIndex(options.indexPath, { hashIndex: false });
+  } catch {
+    return { status: 'unavailable' };
+  }
+
+  const documentPath = library.canonicalRelativePath(
+    toCanonicalRelativePath(path.join(specFolderPath, 'spec.md'), library.repoRoot),
+  );
+  const pathId = loaded.index.paths.indexOf(documentPath);
+  const indexedPhrases = new Set<string>();
+  if (pathId !== -1) {
+    for (const [phrase, postings] of Object.entries(loaded.index.phrases)) {
+      if (postings.includes(pathId)) {
+        indexedPhrases.add(phrase);
+      }
+    }
+  }
+
+  const added = Array.from(currentPhrases).filter((phrase) => !indexedPhrases.has(phrase)).sort();
+  const removed = Array.from(indexedPhrases).filter((phrase) => !currentPhrases.has(phrase)).sort();
+  if (added.length === 0 && removed.length === 0) {
+    return { status: 'fresh', documentPath: documentPath || undefined };
+  }
+
+  return { status: 'stale', documentPath: documentPath || undefined, added, removed };
+}
+
+/** Refresh phase-parent pointers from the workflow's resolved save target. */
+async function refreshPhaseParentPointersAfterSave(resolvedSpecFolderPath: string): Promise<void> {
+  const directParentGraphPath = path.join(
+    path.dirname(resolvedSpecFolderPath),
+    'graph-metadata.json',
+  );
+  if (!fsSync.existsSync(directParentGraphPath)) {
+    return;
+  }
+
+  const { updatePhaseParentPointersAfterSave } = await import('../continuity/generate-context.js');
+  updatePhaseParentPointersAfterSave(resolvedSpecFolderPath);
+}
+
+// ───────────────────────────────────────────────────────────────
+// 3. INTERFACES
+// ───────────────────────────────────────────────────────────────
+
+/** Configuration options for the memory generation workflow. */
+export interface WorkflowOptions {
+  /** Path to a JSON file containing pre-collected session data. */
+  dataFile?: string;
+  /** Explicit spec folder path or name to target (bypasses auto-detection). */
+  specFolderArg?: string;
+  /** Pre-loaded collected data object (skips file-based loading). */
+  collectedData?: CollectedDataFull;
+  /** Custom async loader function for collected data (alternative to dataFile). */
+  loadDataFn?: () => Promise<CollectedDataFull>;
+  /** Custom async function to collect live session data from the environment. */
+  collectSessionDataFn?: (
+    collectedData: CollectedDataFull | null,
+    specFolderName?: string | null,
+    explicitSessionId?: string,
+  ) => Promise<SessionData>;
+  /** When true, suppresses non-error console output during execution. */
+  silent?: boolean;
+  /** Optional session ID forwarded from CLI --session-id flag. */
+  sessionId?: string;
+  /** Requested canonical save planner mode forwarded from the CLI wrapper. */
+  plannerMode?: 'plan-only' | 'full-auto' | 'hybrid';
+}
+
+/** Result object returned after a successful workflow execution. */
+export interface WorkflowResult {
+  /** Absolute path to the spec folder (post-v3.4.1.0: no per-save context subdirectory is created). */
+  contextDir: string;
+  /** Relative path of the resolved spec folder. */
+  specFolder: string;
+  /** Basename of the spec folder (e.g., "015-outsourced-agent-handback"). */
+  specFolderName: string;
+  /** List of absolute paths for all files written during this run (canonical spec docs via content-router). */
+  writtenFiles: string[];
+  /** Numeric memory ID from the retired legacy indexer. Always null: this workflow no longer indexes. */
+  memoryId: number | null;
+  /** Non-fatal warnings encountered while persisting workflow artifacts. */
+  warnings: string[];
+  /** Summary statistics for the generated memory. */
+  stats: {
+    /** Number of conversation messages processed. */
+    messageCount: number;
+    /** Number of decisions extracted. */
+    decisionCount: number;
+    /** Number of diagrams extracted. */
+    diagramCount: number;
+    /** Quality score (0-100) from the quality scorer. */
+    qualityScore: number;
+    /** Whether the data originated from a simulation rather than a live session. */
+    isSimulation: boolean;
+  };
+}
+
+// ───────────────────────────────────────────────────────────────
+// 4. WORKFLOW RUN LOCK
+// ───────────────────────────────────────────────────────────────
+
+let workflowRunQueue: Promise<void> = Promise.resolve();
+
+/** Filesystem lock directory for cross-process serialization. */
+const WORKFLOW_MODULE_DIR = moduleDir;
+const WORKFLOW_LOCK_DIR = path.resolve(WORKFLOW_MODULE_DIR, '../../.workflow-lock');
+const WORKFLOW_LOCK_OWNER_PATH = path.join(WORKFLOW_LOCK_DIR, 'owner.json');
+const LEGACY_LOCK_STALE_MS = 5_000;
+const SAVE_PFD_LOCK_NAME = '.savePFD.lock';
+const SAVE_PFD_LOCK_STALE_MS = 5_000;
+
+interface WorkflowLockOwner {
+  pid: number;
+  acquiredAt: string;
+}
+
+function writeWorkflowLockOwner(): void {
+  const owner: WorkflowLockOwner = {
+    pid: process.pid,
+    acquiredAt: new Date().toISOString(),
+  };
+  fsSync.writeFileSync(WORKFLOW_LOCK_OWNER_PATH, JSON.stringify(owner, null, 2), 'utf8');
+}
+
+function clearWorkflowLockDir(): void {
+  try {
+    fsSync.rmSync(WORKFLOW_LOCK_DIR, { recursive: true, force: true });
+  } catch (_err: unknown) {
+    // Best-effort stale lock cleanup.
+  }
+}
+
+function shouldClearStaleWorkflowLock(): boolean {
+  try {
+    const ownerRaw = fsSync.existsSync(WORKFLOW_LOCK_OWNER_PATH)
+      ? fsSync.readFileSync(WORKFLOW_LOCK_OWNER_PATH, 'utf8')
+      : null;
+
+    if (ownerRaw) {
+      const owner = JSON.parse(ownerRaw) as Partial<WorkflowLockOwner>;
+      return !isProcessAlive(typeof owner.pid === 'number' ? owner.pid : NaN);
+    }
+
+    const lockStats = fsSync.statSync(WORKFLOW_LOCK_DIR);
+    return (Date.now() - lockStats.mtimeMs) >= LEGACY_LOCK_STALE_MS;
+  } catch (_err: unknown) {
+    return true;
+  }
+}
+
+/**
+ * Acquire the filesystem lock via atomic mkdir.
+ * Uses exponential backoff; gives up after ~30 s total wait.
+ */
+async function acquireFilesystemLock(): Promise<boolean> {
+  const MAX_TOTAL_MS = 30_000;
+  let waited = 0;
+  let delay = 100;
+
+  while (waited < MAX_TOTAL_MS) {
+    try {
+      fsSync.mkdirSync(WORKFLOW_LOCK_DIR, { recursive: false });
+      writeWorkflowLockOwner();
+      return true; // lock acquired
+    } catch (err: unknown) {
+      if ((err as NodeJS.ErrnoException).code !== 'EEXIST') {
+        // Unexpected error (permissions, etc.) -- skip fs lock
+        return false;
+      }
+      if (shouldClearStaleWorkflowLock()) {
+        clearWorkflowLockDir();
+        continue;
+      }
+      // Lock held by another process -- wait with backoff
+      await new Promise<void>((resolve) => setTimeout(resolve, delay));
+      waited += delay;
+      delay = Math.min(delay * 2, 4_000);
+    }
+  }
+  // Timed out -- proceed without fs lock (fallback to in-process queue)
+  console.warn('[workflow] Filesystem lock acquisition timed out after 30 s; proceeding without fs lock.');
+  return false;
+}
+
+function releaseFilesystemLock(): void {
+  try {
+    clearWorkflowLockDir();
+  } catch (_err: unknown) {
+    // Lock dir already removed or never created -- benign
+  }
+}
+
+async function withWorkflowRunLock<TResult>(operation: () => Promise<TResult>): Promise<TResult> {
+  // Belt: in-process promise queue (serialises concurrent calls in same process)
+  const priorRun = workflowRunQueue;
+  let releaseCurrentRun: () => void = () => undefined;
+  workflowRunQueue = new Promise<void>((resolve) => {
+    releaseCurrentRun = resolve;
+  });
+
+  await priorRun;
+
+  // Suspenders: filesystem-based lock (serialises across processes)
+  const fsLockAcquired = await acquireFilesystemLock();
+
+  try {
+    return await operation();
+  } finally {
+    if (fsLockAcquired) {
+      releaseFilesystemLock();
+    }
+    releaseCurrentRun();
+  }
+}
+
+function isSavePfdLockStale(lockPath: string): boolean {
+  try {
+    const lockStats = fsSync.statSync(lockPath);
+    return (Date.now() - lockStats.mtimeMs) >= SAVE_PFD_LOCK_STALE_MS;
+  } catch (_err: unknown) {
+    return true;
+  }
+}
+
+async function acquireSavePfdLock(folderPath: string): Promise<boolean> {
+  const lockPath = path.join(folderPath, SAVE_PFD_LOCK_NAME);
+  const MAX_TOTAL_MS = 5_000;
+  let waited = 0;
+  let delay = 25;
+
+  while (waited < MAX_TOTAL_MS) {
+    try {
+      const lockFd = fsSync.openSync(lockPath, 'wx');
+      try {
+        fsSync.writeFileSync(lockFd, JSON.stringify({
+          pid: process.pid,
+          acquiredAt: new Date().toISOString(),
+        }, null, 2), 'utf8');
+      } finally {
+        fsSync.closeSync(lockFd);
+      }
+      return true;
+    } catch (err: unknown) {
+      if ((err as NodeJS.ErrnoException).code !== 'EEXIST') {
+        return false;
+      }
+      if (isSavePfdLockStale(lockPath)) {
+        fsSync.rmSync(lockPath, { force: true });
+        continue;
+      }
+      await new Promise<void>((resolve) => setTimeout(resolve, delay));
+      waited += delay;
+      delay = Math.min(delay * 2, 250);
+    }
+  }
+
+  console.warn(`[workflow] ${SAVE_PFD_LOCK_NAME} acquisition timed out for ${folderPath}; proceeding without folder lock.`);
+  return false;
+}
+
+function releaseSavePfdLock(folderPath: string): void {
+  fsSync.rmSync(path.join(folderPath, SAVE_PFD_LOCK_NAME), { force: true });
+}
+
+async function withSavePfdLock<TResult>(
+  folderPath: string,
+  operation: () => Promise<TResult>,
+): Promise<TResult> {
+  const lockAcquired = await acquireSavePfdLock(folderPath);
+  try {
+    return await operation();
+  } finally {
+    if (lockAcquired) {
+      releaseSavePfdLock(folderPath);
+    }
+  }
+}
+
+// ───────────────────────────────────────────────────────────────
+// 5. CAPTURED-SESSION ENRICHMENT
+// ───────────────────────────────────────────────────────────────
+
+async function enrichCapturedSessionData(
+  collectedData: CollectedDataFull,
+  specFolder: string,
+  projectRoot: string
+): Promise<CollectedDataFull> {
+  // Only enrich runtime-captured inputs — structured/manual saves are authoritative.
+  if (resolveSaveMode(collectedData) !== SaveMode.Capture) return collectedData;
+
+  const enriched: CollectedDataFull = { ...collectedData };
+
+  try {
+    // Run spec-folder and git extraction in parallel
+    const [specContext, gitContext] = await Promise.all([
+      extractSpecFolderContext(path.resolve(specFolder)).catch((err: unknown) => {
+        const msg = err instanceof Error ? err.message : String(err);
+        console.warn(`[workflow] enrichment degraded: ${msg}`);
+        return null;
+      }),
+      extractGitContext(projectRoot, specFolder).catch((err: unknown) => {
+        const msg = err instanceof Error ? err.message : String(err);
+        console.warn(`[workflow] enrichment degraded: ${msg}`);
+        return null;
+      }),
+    ]);
+
+    // Track which enrichment sources were available
+    enriched._specContextLoaded = specContext !== null;
+    enriched._gitContextLoaded = gitContext !== null;
+
+    // Merge spec-folder observations (provenance-tagged, won't conflict with live data)
+    if (specContext) {
+      const existingObs = enriched.observations || [];
+      enriched.observations = [
+        ...existingObs,
+        ...specContext.observations,
+      ];
+
+      // Merge FILES (deduplicate by path, prefer existing descriptions)
+      const existingFiles = enriched.FILES || [];
+      const existingPaths = new Set(
+        existingFiles.map((f) => (f.FILE_PATH || f.path || '').toLowerCase())
+      );
+      const newFiles = specContext.FILES.filter(
+        (f) => !existingPaths.has(f.FILE_PATH.toLowerCase())
+      );
+      enriched.FILES = [...existingFiles, ...newFiles];
+
+      // Merge trigger phrases
+      if (specContext.triggerPhrases.length > 0) {
+        enriched._manualTriggerPhrases = [
+          ...(enriched._manualTriggerPhrases || []),
+          ...specContext.triggerPhrases,
+        ];
+      }
+
+      // Merge decisions
+      if (specContext.decisions.length > 0) {
+        enriched._manualDecisions = [
+          ...(enriched._manualDecisions || []),
+          ...specContext.decisions,
+        ];
+      }
+
+      // Use spec summary if collectedData summary is missing or generic
+      if (specContext.summary && (!enriched.SUMMARY || enriched.SUMMARY === 'Development session')) {
+        enriched.SUMMARY = specContext.summary;
+      }
+
+      // Merge recentContext
+      if (specContext.recentContext.length > 0) {
+        enriched.recentContext = [
+          ...(enriched.recentContext || []),
+          ...specContext.recentContext,
+        ];
+      }
+    }
+
+    // Merge git context
+    if (gitContext) {
+      const existingObs = enriched.observations || [];
+      enriched.observations = [
+        ...existingObs,
+        ...gitContext.observations,
+      ];
+
+      // Merge FILES (deduplicate by path)
+      const existingFiles = enriched.FILES || [];
+      const existingPaths = new Set(
+        existingFiles.map((f) => (f.FILE_PATH || f.path || '').toLowerCase())
+      );
+      const newFiles = gitContext.FILES.filter(
+        (f) => !existingPaths.has(f.FILE_PATH.toLowerCase())
+      );
+      enriched.FILES = [...existingFiles, ...newFiles];
+
+      // Append git summary to existing summary
+      if (gitContext.summary) {
+        const existing = enriched.SUMMARY || '';
+        enriched.SUMMARY = existing
+          ? `${existing}. Git: ${gitContext.summary}`
+          : gitContext.summary;
+      }
+
+      // Propagate git provenance metadata for template rendering (M-007d)
+      enriched.headRef = gitContext.headRef;
+      enriched.commitRef = gitContext.commitRef;
+      enriched.repositoryState = gitContext.repositoryState;
+      enriched.isDetachedHead = gitContext.isDetachedHead;
+    }
+
+    const narrativeObservations = (enriched.observations || []).filter(
+      (observation) => observation?._synthetic !== true
+    );
+    // Synthetic observations provide file coverage but do not influence session narrative
+    enriched._narrativeObservations = narrativeObservations;
+
+  } catch (err: unknown) {
+    // Enrichment failure is non-fatal — proceed with whatever data we have
+    console.warn(`   Warning: Stateless enrichment failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
+  return enriched;
+}
+
+// ───────────────────────────────────────────────────────────────
+// 6. MAIN WORKFLOW
+// ───────────────────────────────────────────────────────────────
+
+/**
+ * Main workflow orchestrator: coordinates data loading, extraction, rendering,
+ * quality scoring, and atomic file output to produce a memory context file.
+ *
+ * @param options - Configuration controlling data source, spec folder, and output behavior.
+ * @returns A WorkflowResult describing the output files, resolved spec folder, and stats.
+ */
+async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResult> {
+  return withWorkflowRunLock(async () => {
+    const {
+      dataFile,
+      specFolderArg,
+      collectedData: preloadedData,
+      loadDataFn,
+      collectSessionDataFn,
+      silent = false,
+    } = options;
+
+    const hasDirectDataContext = (
+      dataFile !== undefined ||
+      preloadedData !== undefined ||
+      loadDataFn !== undefined
+    );
+    const activeDataFile = dataFile ?? (hasDirectDataContext ? null : CONFIG.DATA_FILE);
+    const configuredSpecFolderArg = specFolderArg ?? (hasDirectDataContext ? null : CONFIG.SPEC_FOLDER_ARG);
+    const activeSpecFolderArg = configuredSpecFolderArg
+      ? resolveSpecFolderCanonical(configuredSpecFolderArg, CONFIG.PROJECT_ROOT)
+      : configuredSpecFolderArg;
+
+
+    const log = silent
+      ? (): void => {}
+      : (message: string = ''): void => {
+          structuredLog('info', message || 'workflow event', { component: 'workflow' });
+        };
+    const warn = silent
+      ? (): void => {}
+      : (message: string = ''): void => {
+          structuredLog('warn', message || 'workflow warning', { component: 'workflow' });
+        };
+    const workflowWarnings: string[] = [];
+
+    log('Starting memory skill workflow...\n');
+    // Step 1: Load collected data
+    log('Step 1: Loading collected data...');
+
+    let collectedData: CollectedDataFull | null;
+    if (preloadedData) {
+      // Normalize JSON-derived preloaded data so sessionSummary → userPrompts,
+      // keyDecisions → _manualDecisions, filesChanged → FILES, etc.
+      const normalized = normalizeInputData(preloadedData as unknown as RawInputData);
+      // Explicit field projection instead of unsafe spread merge.
+      // Only overlay normalized fields that the normalizer actually produces,
+      // preserving preloadedData's non-normalized fields (e.g., _source, _sessionId).
+      const n = normalized as Record<string, unknown>;
+      collectedData = Object.assign({}, preloadedData, {
+        userPrompts: n.userPrompts ?? preloadedData.userPrompts,
+        observations: n.observations ?? preloadedData.observations,
+        recentContext: n.recentContext ?? preloadedData.recentContext,
+        FILES: n.FILES ?? preloadedData.FILES,
+        SPEC_FOLDER: n.SPEC_FOLDER ?? preloadedData.SPEC_FOLDER,
+        _manualDecisions: n._manualDecisions ?? preloadedData._manualDecisions,
+        _manualTriggerPhrases: n._manualTriggerPhrases ?? preloadedData._manualTriggerPhrases,
+        TECHNICAL_CONTEXT: n.TECHNICAL_CONTEXT ?? preloadedData.TECHNICAL_CONTEXT,
+        title: n.title ?? preloadedData.title,
+        description: n.description ?? preloadedData.description,
+        causalLinks: n.causalLinks ?? preloadedData.causalLinks,
+        causal_links: n.causal_links ?? preloadedData.causal_links,
+        importanceTier: n.importanceTier ?? preloadedData.importanceTier,
+        contextType: n.contextType ?? preloadedData.contextType,
+        projectPhase: n.projectPhase ?? preloadedData.projectPhase,
+        saveMode: n.saveMode ?? preloadedData.saveMode,
+      }) as CollectedDataFull;
+      log('   Using pre-loaded data (normalized)');
+    } else if (loadDataFn) {
+      // Guard loadDataFn result with explicit null check.
+      collectedData = (await loadDataFn()) || null;
+      log('   Loaded via custom function');
+    } else {
+      collectedData = await loadCollectedDataFromLoader({
+        dataFile: activeDataFile,
+        specFolderArg: activeSpecFolderArg,
+      });
+      log(`   Loaded from ${collectedData?._isSimulation ? 'simulation' : 'data source'}`);
+    }
+
+    if (!collectedData) {
+      throw new Error('No data available - provide dataFile, collectedData, or loadDataFn');
+    }
+    collectedData.saveMode = resolveSaveMode(collectedData);
+
+    // Step 1.5: Captured-session alignment check
+    // When no JSON data file was provided, data comes from the active OpenCode session.
+    // Verify the captured content relates to the target spec folder to prevent
+    // Cross-spec contamination (e.g., session working on spec A saved to spec B).
+    const isCapturedSessionMode = collectedData.saveMode === SaveMode.Capture;
+    if (isCapturedSessionMode && activeSpecFolderArg && (collectedData.observations || collectedData.FILES)) {
+      const alignmentTargets = await resolveAlignmentTargets(activeSpecFolderArg);
+      const specAffinityTargets = buildSpecAffinityTargets(activeSpecFolderArg);
+      const specAffinity = evaluateCollectedDataSpecAffinity(collectedData, specAffinityTargets);
+
+      if (!specAffinity.hasAnchor) {
+        // Q1: Downgrade Block A from hard abort to warning when spec folder was explicitly
+        // provided via CLI argument. The user's explicit intent overrides the anchor check.
+        // Blocks B and C (file-path overlap) remain as hard blocks for safety.
+        const alignMsg = `ALIGNMENT_WARNING: Captured-session content matched the workspace but not the target spec folder "${activeSpecFolderArg}". ` +
+          `No spec-specific anchors were found beyond workspace identity (matched files: ${specAffinity.matchedFileTargets.length}, ` +
+          `matched phrases: ${specAffinity.matchedPhrases.length}, matched spec id: ${specAffinity.matchedSpecId ? 'yes' : 'no'}). ` +
+          `Proceeding because spec folder was explicitly provided via CLI argument.`;
+        warn(`   ${alignMsg}`);
+      }
+
+      const allFilePaths = (collectedData.observations || [])
+        .flatMap((obs: { files?: string[] }) => obs.files || [])
+        .concat((collectedData.FILES || []).map((f: { FILE_PATH?: string; path?: string }) => f.FILE_PATH || f.path || ''));
+
+      const totalPaths = allFilePaths.length;
+      if (totalPaths > 0 && (alignmentTargets.keywordTargets.length > 0 || alignmentTargets.fileTargets.length > 0)) {
+        const relevantPaths = allFilePaths.filter((fp: string) => {
+          return matchesAlignmentTarget(fp, alignmentTargets);
+        });
+        const overlapRatio = relevantPaths.length / totalPaths;
+        // Raised from 0.05 to 0.15 — 5% threshold let mostly-foreign content through
+        if (overlapRatio < 0.15) {
+          const alignMsg = `ALIGNMENT_BLOCK: Only ${(overlapRatio * 100).toFixed(0)}% of captured file paths relate to spec folder "${activeSpecFolderArg}". ` +
+            `The active session appears to be working on a different task (alignment keywords: [${alignmentTargets.keywordTargets.join(', ')}], ` +
+            `total paths: ${totalPaths}, matching: ${relevantPaths.length}). ` +
+            `Aborting to prevent cross-spec contamination. To force, pass data via JSON file.`;
+          warn(`   ${alignMsg}`);
+          throw new Error(alignMsg);
+        }
+      }
+    }
+    log();
+
+    // Step 2: Detect spec folder with context alignment
+    log('Step 2: Detecting spec folder...');
+    const specFolder: string = await detectSpecFolder(collectedData, {
+      specFolderArg: activeSpecFolderArg,
+    });
+    const specsDir: string = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
+    const normalizedSpecFolder = path.resolve(specFolder).replace(/\\/g, '/');
+    const candidateSpecsDirs = Array.from(new Set([
+      specsDir,
+      ...getSpecsDirectories(),
+      path.join(CONFIG.PROJECT_ROOT, 'specs'),
+      path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
+    ]));
+
+    let specFolderName = '';
+    for (const candidateRoot of candidateSpecsDirs) {
+      const normalizedRoot = path.resolve(candidateRoot).replace(/\\/g, '/');
+      const relative = path.relative(normalizedRoot, normalizedSpecFolder).replace(/\\/g, '/');
+      if (
+        relative &&
+        relative !== '.' &&
+        relative !== '..' &&
+        !relative.startsWith('../') &&
+        !path.isAbsolute(relative)
+      ) {
+        specFolderName = relative;
+        break;
+      }
+    }
+
+    if (!specFolderName) {
+      const marker = '/specs/';
+      const markerIndex = normalizedSpecFolder.lastIndexOf(marker);
+      specFolderName = markerIndex >= 0
+        ? normalizedSpecFolder.slice(markerIndex + marker.length)
+        : path.basename(normalizedSpecFolder);
+    }
+    log(`   Using: ${specFolder}\n`);
+
+    // Step 3: Validate the target spec folder
+    log('Step 3: Validating spec folder...');
+    const validatedSpecFolderPath: string = await ensureSpecFolderExists(specFolder);
+    log(`   Using existing spec folder: ${validatedSpecFolderPath}\n`);
+
+    // Define contamination cleaning functions before enrichment.
+    let hadContamination = false;
+    let contaminationMaxSeverity: ContaminationSeverity | null = null;
+    const contaminationAuditTrail: ContaminationAuditRecord[] = [];
+    const extractorPatternCounts = new Map<string, number>();
+    let extractorProcessedFieldCount = 0;
+    let extractorCleanedFieldCount = 0;
+    let extractorRemovedPhraseCount = 0;
+    const captureSource = typeof collectedData?._source === 'string' ? collectedData._source : undefined;
+    const captureCapabilities = getSourceCapabilities(captureSource);
+    const cleanContaminationText = (input: string): string => {
+      extractorProcessedFieldCount++;
+      const filtered = filterContamination(
+        input,
+        undefined,
+        captureSource ? { captureSource: captureCapabilities.source, sourceCapabilities: captureCapabilities } : undefined,
+      );
+      if (filtered.hadContamination) {
+        hadContamination = true;
+        extractorCleanedFieldCount++;
+        extractorRemovedPhraseCount += filtered.removedPhrases.length;
+        if (filtered.maxSeverity !== null) {
+          if (contaminationMaxSeverity === null || SEVERITY_RANK[filtered.maxSeverity] > SEVERITY_RANK[contaminationMaxSeverity]) {
+            contaminationMaxSeverity = filtered.maxSeverity;
+          }
+        }
+        for (const label of filtered.matchedPatterns) {
+          extractorPatternCounts.set(label, (extractorPatternCounts.get(label) ?? 0) + 1);
+        }
+      }
+      return escapeLiteralAnchorExamples(filtered.cleanedText);
+    };
+    const cleanObservations = (
+      observations: CollectedDataFull['observations'] | undefined
+    ): CollectedDataFull['observations'] | undefined => {
+      if (!observations) {
+        return observations;
+      }
+      // Clean ALL observations, not just provenanced ones.
+      return observations.map((observation) => {
+        if (!observation) {
+          return observation;
+        }
+        return {
+          ...observation,
+          title: observation.title ? cleanContaminationText(observation.title) : observation.title,
+          narrative: observation.narrative ? cleanContaminationText(observation.narrative) : observation.narrative,
+          facts: observation.facts?.map((fact) => (
+            typeof fact === 'string'
+              ? cleanContaminationText(fact)
+              : {
+                ...fact,
+                text: typeof fact.text === 'string' ? cleanContaminationText(fact.text) : fact.text
+              }
+          )),
+        };
+      });
+    };
+
+    // Pre-enrichment contamination cleaning pass.
+    {
+      const preCleanedObservations = cleanObservations(collectedData.observations);
+      const preCleanedSummary = (typeof collectedData.SUMMARY === 'string' && collectedData.SUMMARY.length > 0)
+        ? cleanContaminationText(collectedData.SUMMARY) : collectedData.SUMMARY;
+      // Clean _JSON_SESSION_SUMMARY (raw sessionSummary title candidate).
+      const preCleanedJsonSummary = (typeof (collectedData as Record<string, unknown>)._JSON_SESSION_SUMMARY === 'string' &&
+        ((collectedData as Record<string, unknown>)._JSON_SESSION_SUMMARY as string).length > 0)
+        ? cleanContaminationText((collectedData as Record<string, unknown>)._JSON_SESSION_SUMMARY as string)
+        : (collectedData as Record<string, unknown>)._JSON_SESSION_SUMMARY;
+      // Clean _manualDecisions array entries.
+      const preCleanedDecisions = Array.isArray((collectedData as Record<string, unknown>)._manualDecisions)
+        ? ((collectedData as Record<string, unknown>)._manualDecisions as unknown[]).map((d: unknown) => {
+            if (typeof d === 'string') return cleanContaminationText(d);
+            if (d && typeof d === 'object') {
+              const obj = { ...(d as Record<string, unknown>) };
+              for (const key of Object.keys(obj)) {
+                if (typeof obj[key] === 'string') obj[key] = cleanContaminationText(obj[key] as string);
+              }
+              return obj;
+            }
+            return d;
+          })
+        : (collectedData as Record<string, unknown>)._manualDecisions;
+      // Clean recentContext array entries.
+      const preCleanedRecentCtx = Array.isArray(collectedData.recentContext)
+        ? collectedData.recentContext.map((entry) => ({
+            ...entry,
+            request: typeof entry.request === 'string' ? cleanContaminationText(entry.request) : entry.request,
+            learning: typeof entry.learning === 'string' ? cleanContaminationText(entry.learning) : entry.learning,
+          }))
+        : collectedData.recentContext;
+      // Clean technicalContext KEY and VALUE strings.
+      const preCleanedTechCtx = Array.isArray((collectedData as Record<string, unknown>).TECHNICAL_CONTEXT)
+        ? ((collectedData as Record<string, unknown>).TECHNICAL_CONTEXT as Array<{ KEY: string; VALUE: string }>).map((entry) => ({
+            KEY: typeof entry.KEY === 'string' ? cleanContaminationText(entry.KEY) : entry.KEY,
+            VALUE: typeof entry.VALUE === 'string' ? cleanContaminationText(entry.VALUE) : entry.VALUE,
+          }))
+        : (collectedData as Record<string, unknown>).TECHNICAL_CONTEXT;
+      // Only spread fields that exist on the original to avoid adding undefined keys
+      const cleanedFields: Record<string, unknown> = {
+        observations: preCleanedObservations,
+        SUMMARY: preCleanedSummary,
+      };
+      if ('_JSON_SESSION_SUMMARY' in collectedData) cleanedFields._JSON_SESSION_SUMMARY = preCleanedJsonSummary;
+      if ('_manualDecisions' in collectedData) cleanedFields._manualDecisions = preCleanedDecisions;
+      if ('recentContext' in collectedData) cleanedFields.recentContext = preCleanedRecentCtx;
+      if ('TECHNICAL_CONTEXT' in collectedData) cleanedFields.TECHNICAL_CONTEXT = preCleanedTechCtx;
+      collectedData = { ...collectedData, ...cleanedFields } as typeof collectedData;
+      const extractorAudit: ContaminationAuditRecord = {
+        stage: 'extractor-scrub',
+        timestamp: new Date().toISOString(),
+        patternsChecked: getContaminationPatternLabels(),
+        matchesFound: summarizeAuditCounts(extractorPatternCounts),
+        actionsTaken: [
+          `cleaned_fields:${extractorCleanedFieldCount}`,
+          `removed_phrases:${extractorRemovedPhraseCount}`,
+        ],
+        passedThrough: [
+          `processed_fields:${extractorProcessedFieldCount}`,
+        ],
+      };
+      contaminationAuditTrail.push(extractorAudit);
+      structuredLog('info', 'contamination_audit', extractorAudit);
+
+      // Count-based severity escalation: mass low-severity matches indicate
+      // pervasive contamination that warrants a higher penalty
+      if (hadContamination && contaminationMaxSeverity === 'low' && extractorRemovedPhraseCount >= 10) {
+        contaminationMaxSeverity = 'medium';
+      }
+      // Escalate medium to high for pervasive contamination
+      if (hadContamination && contaminationMaxSeverity === 'medium' && extractorRemovedPhraseCount >= 20) {
+        contaminationMaxSeverity = 'high';
+      }
+    }
+
+    // Step 3.5: Enrich captured-session data with spec folder and git context
+    if (isCapturedSessionMode) {
+      // Capture pre-enrichment file references so the post-check only judges
+      // paths introduced by enrichment (not caller-provided direct inputs).
+      const preEnrichmentPaths = new Set(
+        ((collectedData.observations || [])
+          .flatMap((obs: { files?: string[] }) => obs.files || [])
+          .concat((collectedData.FILES || []).map((f: { FILE_PATH?: string; path?: string }) => f.FILE_PATH || f.path || '')))
+          .map((fp: string) => fp.trim())
+          .filter((fp: string) => fp.length > 0)
+      );
+
+      log('Step 3.5: Enriching captured-session data...');
+      collectedData = await enrichCapturedSessionData(collectedData, specFolder, CONFIG.PROJECT_ROOT);
+      log('   Enrichment complete');
+
+      // Post-enrichment alignment re-check — enrichment can introduce
+      // New foreign content (e.g., git context from other spec folders).
+      // Re-verify alignment at a lower threshold (10%) to catch this.
+      // Uses resolved specFolder (not raw activeSpecFolderArg) for accurate keyword matching.
+      if (specFolder && (collectedData.observations || collectedData.FILES)) {
+        const alignmentTargetsPost = await resolveAlignmentTargets(specFolder);
+
+        const allFilePathsPost = (collectedData.observations || [])
+          .flatMap((obs: { files?: string[] }) => obs.files || [])
+          .concat((collectedData.FILES || []).map((f: { FILE_PATH?: string; path?: string }) => f.FILE_PATH || f.path || ''));
+        const addedPathsPost = allFilePathsPost
+          .map((fp: string) => fp.trim())
+          .filter((fp: string) => fp.length > 0 && !preEnrichmentPaths.has(fp));
+
+        const totalPathsPost = addedPathsPost.length;
+        if (totalPathsPost > 0 && (alignmentTargetsPost.keywordTargets.length > 0 || alignmentTargetsPost.fileTargets.length > 0)) {
+          const relevantPathsPost = addedPathsPost.filter((fp: string) => {
+            return matchesAlignmentTarget(fp, alignmentTargetsPost);
+          });
+          const overlapRatioPost = relevantPathsPost.length / totalPathsPost;
+          if (overlapRatioPost < 0.10) {
+            const postAlignMsg = `POST_ENRICHMENT_ALIGNMENT_BLOCK: After enrichment, only ${(overlapRatioPost * 100).toFixed(0)}% of file paths relate to spec folder "${specFolder}". ` +
+              `Enrichment may have introduced cross-spec contamination (alignment keywords: [${alignmentTargetsPost.keywordTargets.join(', ')}], ` +
+              `total paths: ${totalPathsPost}, matching: ${relevantPathsPost.length}). Aborting.`;
+            warn(`   ${postAlignMsg}`);
+            throw new Error(postAlignMsg);
+          }
+        }
+      }
+      log();
+    }
+    // PROVENANCE BLOCK START
+    if (collectedData.saveMode !== SaveMode.Capture) {
+      const gitContext = await extractGitContext(CONFIG.PROJECT_ROOT, specFolder).catch(() => null);
+      collectedData.headRef = gitContext?.headRef ?? null;
+      collectedData.commitRef = gitContext?.commitRef ?? null;
+      collectedData.repositoryState = gitContext?.repositoryState ?? 'unavailable';
+      collectedData.isDetachedHead = gitContext?.isDetachedHead ?? false;
+    }
+    // PROVENANCE BLOCK END
+
+    // Clean FILE descriptions that may contain contamination from git commit subjects
+    if (collectedData.FILES && Array.isArray(collectedData.FILES)) {
+      const preFileCleanedCount = extractorCleanedFieldCount;
+      const preFileRemovedCount = extractorRemovedPhraseCount;
+      const filesList = collectedData.FILES;
+      collectedData = {
+        ...collectedData,
+        FILES: filesList.map((file) => ({
+          ...file,
+          DESCRIPTION: file.DESCRIPTION ? cleanContaminationText(file.DESCRIPTION) : file.DESCRIPTION,
+        })),
+      };
+      const fileDescCleanedCount = extractorCleanedFieldCount - preFileCleanedCount;
+      const fileDescRemovedCount = extractorRemovedPhraseCount - preFileRemovedCount;
+      if (fileDescCleanedCount > 0) {
+        const fileDescAudit: ContaminationAuditRecord = {
+          stage: 'extractor-scrub',
+          timestamp: new Date().toISOString(),
+          patternsChecked: getContaminationPatternLabels(),
+          matchesFound: summarizeAuditCounts(extractorPatternCounts),
+          actionsTaken: [
+            `file_desc_cleaned:${fileDescCleanedCount}`,
+            `file_desc_removed_phrases:${fileDescRemovedCount}`,
+          ],
+          passedThrough: [
+            `total_files:${filesList.length}`,
+          ],
+        };
+        contaminationAuditTrail.push(fileDescAudit);
+        structuredLog('info', 'contamination_audit', fileDescAudit);
+      }
+    }
+
+    // Steps 4-7: Parallel data extraction
+    log('Steps 4-7: Extracting data (parallel execution)...\n');
+
+    const sessionDataFn = collectSessionDataFn || collectSessionData;
+    if (!sessionDataFn) {
+      throw new Error(
+        'Missing session data collector function.\n' +
+        '  - If calling runWorkflow() directly, pass { collectSessionDataFn: yourFunction } in options\n' +
+        '  - If using generate-context.js, ensure extractors/collect-session-data.js exports collectSessionData'
+      );
+    }
+
+    const rawUserPrompts = Array.isArray(collectedData?.userPrompts) ? collectedData.userPrompts : [];
+    // Type assertion with documented contract — CollectedDataFull is the canonical shape
+    const collectedDataWithNarrative = collectedData as CollectedDataFull & {
+      _narrativeObservations?: CollectedDataFull['observations'];
+    };
+
+    const filteredUserPrompts = rawUserPrompts.map((message) => {
+      const cleanedPrompt = cleanContaminationText(message.prompt || '');
+      return {
+        ...message,
+        prompt: cleanedPrompt,
+      };
+    });
+
+    const filteredSummary = (
+      typeof collectedData.SUMMARY === 'string' && collectedData.SUMMARY.length > 0
+    )
+      ? cleanContaminationText(collectedData.SUMMARY)
+      : collectedData.SUMMARY;
+    const filteredObservations = cleanObservations(collectedData.observations);
+    const filteredNarrativeObservations = cleanObservations(
+      collectedDataWithNarrative._narrativeObservations,
+    );
+    collectedData = {
+      ...collectedData,
+      userPrompts: filteredUserPrompts,
+      SUMMARY: filteredSummary,
+      observations: filteredObservations,
+      // Force CLI-resolved spec folder into collectedData so all parallel
+      // extractors (decisions, diagrams, conversations) see the authoritative value
+      SPEC_FOLDER: specFolderName || collectedData.SPEC_FOLDER,
+    };
+    collectedDataWithNarrative._narrativeObservations = filteredNarrativeObservations;
+
+    const narrativeObservations = Array.isArray(
+      filteredNarrativeObservations
+    )
+      ? filteredNarrativeObservations || []
+      : (collectedData.observations || []);
+    const narrativeCollectedData: CollectedDataFull = {
+      ...collectedData,
+      observations: narrativeObservations,
+    };
+
+    const [sessionData, conversations, decisions, diagrams] = await Promise.all([
+    (async () => {
+      log('   Collecting session data...');
+      const result = await sessionDataFn(narrativeCollectedData, specFolderName, options.sessionId);
+      log('   Session data collected');
+      return result;
+    })(),
+    (async () => {
+      log('   Extracting conversations...');
+      const result = await extractConversations(collectedData as Parameters<typeof extractConversations>[0]);
+      log(`   Found ${result.MESSAGES.length} messages`);
+      return result;
+    })(),
+    (async () => {
+      log('   Extracting decisions...');
+      const result = await extractDecisions(collectedData as Parameters<typeof extractDecisions>[0]);
+      log(`   Found ${result.DECISIONS.length} decisions`);
+      return result;
+    })(),
+    (async () => {
+      log('   Extracting diagrams...');
+      const result = await extractDiagrams(collectedData as Parameters<typeof extractDiagrams>[0]);
+      log(`   Found ${result.DIAGRAMS.length} diagrams`);
+      return result;
+    })()
+  ]);
+    log('\n   All extraction complete (parallel execution)\n');
+
+  // Step 7.5: Generate semantic implementation summary
+  log('Step 7.5: Generating semantic summary...');
+
+  const allMessages = (collectedData?.userPrompts || []).map((m) => {
+    const cleanedPrompt = m.prompt || '';
+    return {
+      prompt: cleanedPrompt,
+      content: cleanedPrompt,
+      timestamp: m.timestamp
+    };
+  });
+
+  // Run content through filter pipeline for quality scoring
+  const filterPipeline = createFilterPipeline();
+  const filteredMessages = filterPipeline.filter(allMessages);
+  const normalizedMessages = filteredMessages.map((message) => {
+    const prompt = typeof message.prompt === 'string'
+      ? message.prompt
+      : (typeof message.content === 'string' ? message.content : '');
+    return {
+      prompt,
+      content: typeof message.content === 'string' ? message.content : prompt,
+      timestamp: typeof message.timestamp === 'string' ? message.timestamp : undefined,
+    };
+  });
+  const filterStats: FilterStats = filterPipeline.getStats();
+  contaminationAuditTrail.push(...filterStats.contaminationAudit);
+
+  log(`   Content quality: ${filterStats.qualityScore}/100 (${filterStats.noiseFiltered} noise, ${filterStats.duplicatesRemoved} duplicates filtered from ${filterStats.totalProcessed} items)`);
+  if (filterPipeline.isLowQuality()) {
+    warn(`   Warning: Low quality content detected (input_completeness_score: ${filterStats.qualityScore}/100, threshold: ${filterPipeline.config.quality?.warnThreshold || 20})`);
+  }
+
+  const implSummary = generateImplementationSummary(
+    normalizedMessages,
+    (collectedData?.observations || []) as Parameters<typeof generateImplementationSummary>[1]
+  );
+
+  const semanticFileChanges: Map<string, SemanticFileInfo> = extractFileChanges(
+    normalizedMessages,
+    (collectedData?.observations || []) as Parameters<typeof extractFileChanges>[1]
+  );
+  const enhancedFiles: FileChange[] = enhanceFilesWithSemanticDescriptions(
+    sessionData.FILES || [],
+    semanticFileChanges
+  );
+
+  formatSummaryAsMarkdown(implSummary);
+
+  log(`   Generated summary: ${implSummary.filesCreated.length} created, ${implSummary.filesModified.length} modified, ${implSummary.decisions.length} decisions\n`);
+
+  // Step 7.6: Tree thinning — pre-pipeline token reduction
+  // Operates on spec folder files BEFORE pipeline stages and scoring.
+  // Bottom-up merging of small files reduces token overhead in the retrieval pipeline.
+  log('Step 7.6: Applying tree thinning...');
+  const thinFileInputs: ThinFileInput[] = enhancedFiles.map((f) => ({
+    path: f.FILE_PATH,
+    content: resolveTreeThinningContent(f, specFolder),
+  }));
+  const thinningResult = applyTreeThinning(thinFileInputs);
+  const effectiveFiles = applyThinningToFileChanges(enhancedFiles, thinningResult);
+  const fileRowsReduced = Math.max(0, enhancedFiles.length - effectiveFiles.length);
+  log(`   Tree thinning: ${thinningResult.stats.totalFiles} files, ` +
+      `${thinningResult.stats.thinnedCount} content-as-summary, ` +
+      `${thinningResult.stats.mergedCount} merged-into-parent, ` +
+      `~${thinningResult.stats.tokensSaved} tokens saved, ` +
+      `${fileRowsReduced} rendered rows reduced\n`);
+
+  // Step 8: Populate templates
+  log('Step 8: Populating template...');
+
+  const specFolderBasename: string = path.basename(sessionData.SPEC_FOLDER || specFolderName);
+  const folderBase: string = specFolderBasename.replace(/^\d+-/, '');
+
+    let enrichedTask = implSummary.task;
+    const dataSource = typeof collectedData?._source === 'string' ? collectedData._source : null;
+    const specTitle = extractSpecTitle(specFolder);
+    const allowSpecTitleFallback = shouldEnrichTaskFromSpecTitle(
+      enrichedTask,
+      dataSource,
+      activeDataFile
+    );
+
+    if (allowSpecTitleFallback) {
+      if (specTitle.length >= 8) {
+        enrichedTask = specTitle;
+        log(`   Enriched task from spec.md: "${enrichedTask}"`);
+      }
+    }
+
+  const preferredMemoryTask = pickPreferredMemoryTask(
+    enrichedTask || '',
+    specTitle,
+    folderBase,
+    [
+      sessionData._JSON_SESSION_SUMMARY || '',  // Raw JSON sessionSummary as first candidate
+      sessionData.QUICK_SUMMARY || '',
+      sessionData.TITLE || '',
+      sessionData.SUMMARY || '',
+    ],
+    allowSpecTitleFallback
+  );
+  // Load description.json to include memoryNameHistory in slug candidates.
+  let memoryNameHistoryForSlug: readonly string[] = [];
+  const slugApiModule = await tryImportRuntimeApi('@spec-kit/runtime/api');
+  if (slugApiModule) {
+    const pfDesc = slugApiModule.loadPerFolderDescription(path.resolve(specFolder));
+    if (pfDesc?.memoryNameHistory) {
+      memoryNameHistoryForSlug = pfDesc.memoryNameHistory;
+    }
+  }
+  let contentSlug: string = generateContentSlug(preferredMemoryTask, folderBase, memoryNameHistoryForSlug);
+  let rawCtxFilename: string = `${sessionData.DATE}_${sessionData.TIME}__${contentSlug}.md`;
+  const explicitMemoryText = readExplicitMemoryText(collectedData);
+
+  let memoryTitle = explicitMemoryText.title
+    ?? buildMemoryTitle(preferredMemoryTask, specFolderName, sessionData.DATE, contentSlug);
+  let memoryDescription = explicitMemoryText.description
+    ?? deriveMemoryDescription({
+      summary: sessionData.SUMMARY,
+      title: memoryTitle,
+    });
+
+  const scrubbedSavePayloadFields = scrubWorkflowSavePayloadTextFields({
+    contentSlug,
+    rawCtxFilename,
+    memoryTitle,
+    memoryDescription,
+    sessionData,
+    collectedData,
+  }, warn);
+  contentSlug = scrubbedSavePayloadFields.contentSlug;
+  rawCtxFilename = scrubbedSavePayloadFields.rawCtxFilename;
+  memoryTitle = scrubbedSavePayloadFields.memoryTitle;
+  memoryDescription = scrubbedSavePayloadFields.memoryDescription;
+  Object.assign(sessionData, scrubbedSavePayloadFields.sessionData);
+  collectedData = scrubbedSavePayloadFields.collectedData;
+
+  const currentSnakeCaseCausalLinks = (
+    collectedData.causal_links
+    && typeof collectedData.causal_links === 'object'
+    && !Array.isArray(collectedData.causal_links)
+  ) ? { ...(collectedData.causal_links as Record<string, unknown>) } : null;
+  const currentCamelCaseCausalLinks = (
+    collectedData.causalLinks
+    && typeof collectedData.causalLinks === 'object'
+    && !Array.isArray(collectedData.causalLinks)
+  ) ? { ...(collectedData.causalLinks as Record<string, unknown>) } : null;
+  const existingSupersedes = [currentSnakeCaseCausalLinks, currentCamelCaseCausalLinks]
+    .flatMap((value) => (Array.isArray(value?.supersedes) ? value.supersedes : []))
+    .filter((value): value is string => typeof value === 'string' && value.trim().length > 0)
+    .map((value) => value.trim());
+  if (existingSupersedes.length === 0 && collectedData.saveMode === SaveMode.Json) {
+    const { findPredecessorMemory } = await import('./find-predecessor-memory.js');
+    const predecessorSessionId = await findPredecessorMemory(specFolder, {
+      title: memoryTitle,
+      // memoryDescription already IS the explicit description when one was
+      // given — post-scrub. Reaching back to the pre-scrub explicit value
+      // would hand unredacted text to the predecessor matcher.
+      description: memoryDescription,
+      summary: sessionData.SUMMARY,
+      sessionId: sessionData.SESSION_ID,
+      filename: rawCtxFilename,
+      sourceSessionId: sessionData.SOURCE_SESSION_ID,
+      causal_links: currentSnakeCaseCausalLinks ?? undefined,
+      causalLinks: currentCamelCaseCausalLinks ?? undefined,
+    });
+
+    if (predecessorSessionId) {
+      const nextCausalLinks = {
+        ...(currentSnakeCaseCausalLinks ?? currentCamelCaseCausalLinks ?? {}),
+        supersedes: [predecessorSessionId],
+      };
+      collectedData.causal_links = nextCausalLinks;
+      collectedData.causalLinks = nextCausalLinks;
+    }
+  }
+  collectedData.causal_links = {
+    ...((currentSnakeCaseCausalLinks ?? currentCamelCaseCausalLinks ?? {}) as Record<string, unknown>),
+  };
+  collectedData.causalLinks = collectedData.causal_links;
+  const effectiveDecisionCount = Math.max(sessionData.DECISION_COUNT, decisions.DECISIONS.length);
+
+  // Path A retired the legacy [spec]/memory/*.md output, so workflow no longer
+  // renders a compatibility document in-memory before skipping the write.
+  const duplicateExistingFilename: string | null = null;
+
+  const isSimulation: boolean = !collectedData || !!collectedData._isSimulation || simFactory.requiresSimulation(collectedData);
+  log(`   Template populated (quality: ${filterStats.qualityScore}/100)\n`);
+
+  // Content cleaning — strip leaked HTML tags from rendered content
+  // Preserves HTML inside fenced code blocks (```...```) which is legitimate code.
+  // Earlier steps here validated, scored, and gated a rendered memory artifact that
+  // no longer exists. Quality, sufficiency and template-contract checks for
+  // canonical-doc saves now run in the post-save review and in validate.sh.
+
+  const sessionObservations = Array.isArray(sessionData.OBSERVATIONS) ? sessionData.OBSERVATIONS : [];
+  const sessionFiles = Array.isArray(sessionData.FILES) ? sessionData.FILES : [];
+  const sessionOutcomes = Array.isArray(sessionData.OUTCOMES) ? sessionData.OUTCOMES : [];
+  const sessionDecisions = Array.isArray(decisions.DECISIONS) ? decisions.DECISIONS : [];
+  const canonicalQualityContent = [
+    `# ${sessionData.TITLE}`,
+    sessionData.QUICK_SUMMARY,
+    sessionData.SUMMARY,
+    ...sessionObservations.map((observation) => [
+      observation.TITLE,
+      observation.NARRATIVE,
+      observation.FACTS_LIST,
+    ].filter(Boolean).join('\n')),
+    ...sessionFiles.map((file) => `${file.FILE_PATH}: ${file.DESCRIPTION}`),
+    ...sessionOutcomes.map((outcome) => outcome.OUTCOME),
+    sessionData.NEXT_ACTION ? `Next: ${sessionData.NEXT_ACTION}` : '',
+    sessionData.BLOCKERS ? `Blockers: ${sessionData.BLOCKERS}` : '',
+  ].filter((entry) => typeof entry === 'string' && entry.trim().length > 0).join('\n\n');
+  const canonicalTriggerPhrases = filterTriggerPhrases([
+    ...(Array.isArray(collectedData._manualTriggerPhrases) ? collectedData._manualTriggerPhrases : []),
+    sessionData.TITLE,
+    sessionData.TOPIC,
+    specFolderName,
+  ].filter((phrase): phrase is string => typeof phrase === 'string' && phrase.trim().length > 0));
+  const sufficiencyResult = evaluateMemorySufficiency({
+    title: sessionData.TITLE,
+    content: canonicalQualityContent,
+    triggerPhrases: canonicalTriggerPhrases,
+    sourceClassification: sessionData.CONTEXT_TYPE,
+    files: sessionFiles.map((file) => ({
+      path: file.FILE_PATH,
+      description: file.DESCRIPTION,
+      synthetic: file._synthetic,
+      provenance: file._provenance,
+      specRelevant: true,
+    })),
+    observations: sessionObservations.map((observation) => ({
+      title: observation.TITLE,
+      narrative: observation.NARRATIVE,
+      facts: observation.FACTS_LIST ? [observation.FACTS_LIST] : [],
+      specRelevant: true,
+    })),
+    decisions: sessionDecisions.map((decision) => [
+      decision.TITLE,
+      decision.CHOSEN,
+      decision.RATIONALE,
+    ].filter(Boolean).join(' - ')),
+    nextActions: sessionData.NEXT_ACTION ? [sessionData.NEXT_ACTION] : [],
+    blockers: sessionData.BLOCKERS ? [sessionData.BLOCKERS] : [],
+    outcomes: sessionOutcomes.map((outcome) => outcome.OUTCOME),
+    recentContext: Array.isArray(collectedData.recentContext) ? collectedData.recentContext : [],
+    anchors: ['summary', 'observations', 'files', 'outcomes'],
+  });
+  const qualityValidation = validateMemoryQualityContent(canonicalQualityContent);
+  const validatorSignals: ValidationSignal[] = qualityValidation.ruleResults.map((signal) => ({
+    ruleId: signal.ruleId,
+    passed: signal.passed,
+  }));
+  const qualityResult = scoreMemoryQualityV2({
+    content: canonicalQualityContent,
+    validatorSignals,
+    hadContamination,
+    contaminationSeverity: contaminationMaxSeverity,
+    messageCount: sessionData.MESSAGE_COUNT,
+    toolCount: sessionData.TOOL_COUNT,
+    decisionCount: effectiveDecisionCount,
+    sufficiencyScore: sufficiencyResult.score,
+    insufficientContext: !sufficiencyResult.pass,
+  });
+  if (!sufficiencyResult.pass) {
+    throw new Error(formatSufficiencyAbort(sufficiencyResult));
+  }
+  if (qualityResult.score01 < CONFIG.QUALITY_ABORT_THRESHOLD) {
+    throw new Error(
+      `QUALITY_GATE_ABORT: Memory quality score ${qualityResult.score100}/100 `
+      + `(${qualityResult.score01.toFixed(2)}) is below minimum threshold `
+      + `(${CONFIG.QUALITY_ABORT_THRESHOLD.toFixed(2)})`
+    );
+  }
+
+  // Step 9: Write files with atomic writes and rollback on failure
+  log('Step 9: Writing files...');
+  if (duplicateExistingFilename) {
+    log(`   Legacy duplicate detection skipped for retired artifact ${rawCtxFilename}`);
+  }
+  const writtenFiles: string[] = [];
+  log('   Skipping legacy [spec]/memory/*.md writes');
+
+  // The legacy memory-file stub hard-coded
+  // ctxFileWritten = false, which silently disabled the description.json
+  // memorySequence + lastUpdated update block on every canonical save.
+  // Post-v3.4.1.0 the legacy [spec]/memory/*.md artifact is intentionally not
+  // written (see duplicateExistingFilename above), so there is no duplicate
+  // condition to guard against — the description.json tracking must run on
+  // every canonical save to keep lastUpdated / memorySequence fresh.
+  const ctxFileWritten = true;
+  const metadataSaveTimestamp = new Date().toISOString();
+  // Update per-folder description.json memory tracking (runs on every canonical save)
+  if (ctxFileWritten) {
+    try {
+      const descApiModule = await tryImportRuntimeApi('@spec-kit/runtime/api');
+      if (!descApiModule) throw new Error('runtime API unavailable for description update');
+      const { loadPerFolderDescription: loadPFD, savePerFolderDescription: savePFD, generatePerFolderDescription: genPFD } = descApiModule;
+      const specFolderAbsolute = path.resolve(specFolder);
+      await withSavePfdLock(specFolderAbsolute, async () => {
+        let existing = loadPFD(specFolderAbsolute);
+
+        // Regenerate missing/corrupt description.json from spec.md + path structure.
+        if (!existing) {
+          const specsBaseDirs = Array.from(new Set([
+            ...getSpecsDirectories(),
+            path.join(CONFIG.PROJECT_ROOT, 'specs'),
+            path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
+          ]));
+          for (const base of specsBaseDirs) {
+            const regenerated = genPFD(specFolderAbsolute, path.resolve(base));
+            if (regenerated) {
+              savePFD(regenerated, specFolderAbsolute);
+              existing = regenerated;
+              log('   Regenerated missing description.json');
+              break;
+            }
+          }
+        }
+
+        if (!existing) {
+          return;
+        }
+
+        const MAX_MEMORY_SEQUENCE_RETRIES = 3;
+        const MEMORY_SEQUENCE_RETRY_DELAY_MS = 25;
+        let memorySequenceUpdated = false;
+
+        for (let attempt = 1; attempt <= MAX_MEMORY_SEQUENCE_RETRIES; attempt++) {
+          const sequenceSnapshot = attempt === 1 ? existing : loadPFD(specFolderAbsolute);
+          if (!sequenceSnapshot) {
+            break;
+          }
+
+          // Integration-tested via workflow-memory-tracking.vitest.ts (F3 coverage).
+          const rawSeq = Number(sequenceSnapshot.memorySequence) || 0;
+          // Defensive clamp handles Infinity/NaN/negative/overflow edge cases (F11 fix).
+          const expectedSeq = (Number.isSafeInteger(rawSeq) && rawSeq >= 0) ? rawSeq + 1 : 1;
+          sequenceSnapshot.memorySequence = expectedSeq;
+          sequenceSnapshot.memoryNameHistory = [
+            ...(sequenceSnapshot.memoryNameHistory || []).slice(-19),
+            rawCtxFilename,
+          ];
+          // Bump lastUpdated on every
+          // canonical save so metadata-freshness consumers (graph readiness,
+          // staleness detectors, /speckit:search ranking) see a live timestamp.
+          // Previously this field was never written by the canonical-save path —
+          // a grep over runtime/cli/dist/continuity/*.js returned zero matches.
+          sequenceSnapshot.lastUpdated = metadataSaveTimestamp;
+          savePFD(sequenceSnapshot, specFolderAbsolute);
+
+          const verified = loadPFD(specFolderAbsolute);
+          if (verified && verified.memorySequence === expectedSeq) {
+            memorySequenceUpdated = true;
+            break;
+          }
+
+          if (attempt < MAX_MEMORY_SEQUENCE_RETRIES) {
+            console.warn(`[workflow] memorySequence lost-update detected on attempt ${attempt}; retrying`);
+            await new Promise<void>((resolve) => setTimeout(resolve, MEMORY_SEQUENCE_RETRY_DELAY_MS));
+          }
+        }
+
+        if (!memorySequenceUpdated) {
+          console.warn('[workflow] memorySequence update could not be confirmed after 3 attempts; continuing');
+        }
+      });
+    } catch (descErr: unknown) {
+      // Log error instead of silently swallowing.
+      console.warn(`[workflow] description.json tracking error: ${descErr instanceof Error ? descErr.message : String(descErr)}`);
+    }
+  } else {
+    log('   Context file was a duplicate — skipping description tracking');
+  }
+
+  // Unconditional by design. Gating these follow-ups on planner mode made the default
+  // plan-only save a structural no-op for graph-metadata.json: last_save_at never
+  // advanced and the post-save quality review never ran. Every canonical save refreshes
+  // graph metadata and runs the review, whatever the planner mode.
+  const shouldRunExplicitSaveFollowUps = true;
+  if (shouldRunExplicitSaveFollowUps) {
+    try {
+      const graphApiModule = await tryImportRuntimeApi('@spec-kit/runtime/api');
+      if (!graphApiModule) {
+        throw new Error('runtime API unavailable for graph-metadata refresh');
+      }
+      const { refreshGraphMetadata } = graphApiModule as {
+        refreshGraphMetadata?: (
+          specFolderPath: string,
+          options?: {
+            now?: Date | string;
+            statusOverride?: string | null;
+            saveLineage?: 'description_only' | 'graph_only' | 'same_pass';
+          },
+        ) => { created: boolean; filePath: string };
+      };
+      if (typeof refreshGraphMetadata !== 'function') {
+        throw new Error('refreshGraphMetadata export unavailable');
+      }
+      const graphRefreshOptions = {
+        now: metadataSaveTimestamp,
+        saveLineage: 'same_pass',
+      } as const;
+      const graphRefreshResult = refreshGraphMetadata(validatedSpecFolderPath, graphRefreshOptions);
+      log(`   ${graphRefreshResult.created ? 'Created' : 'Refreshed'} ${path.basename(graphRefreshResult.filePath)}`);
+      await refreshPhaseParentPointersAfterSave(validatedSpecFolderPath);
+    } catch (graphErr: unknown) {
+      throw new Error(`[workflow] graph-metadata refresh failed: ${graphErr instanceof Error ? graphErr.message : String(graphErr)}`);
+    }
+
+    if (hasResearchIterationDirectories(validatedSpecFolderPath)) {
+      const researchBackfillSummary = runBackfillResearchMetadata({
+        specFolderPath: validatedSpecFolderPath,
+        dryRun: false,
+      });
+      if (researchBackfillSummary.failed > 0) {
+        const firstFailure = researchBackfillSummary.failures[0];
+        throw new Error(
+          `[workflow] research metadata backfill failed: ${firstFailure?.directory ?? 'unknown'} — ${firstFailure?.error ?? 'unknown error'}`,
+        );
+      }
+      log(
+        '   Research iteration metadata backfill'
+        + `: ${researchBackfillSummary.descriptionCreated} description.json`
+        + `, ${researchBackfillSummary.graphCreated} graph-metadata.json`
+        + `, ${researchBackfillSummary.unchanged} unchanged`,
+      );
+    }
+  } else {
+    log('   Deferred graph metadata refresh to explicit follow-up');
+  }
+  log();
+
+  // Step 10: Success confirmation
+  log('Legacy memory artifact write skipped.\n');
+  log(`Validated spec folder: ${validatedSpecFolderPath}\n`);
+  log('Summary:');
+  log(`  - ${conversations.MESSAGES.length} messages captured`);
+  log(`  - ${effectiveDecisionCount} key decisions documented`);
+  log(`  - ${diagrams.DIAGRAMS.length} diagrams preserved`);
+  log(`  - Session duration: ${sessionData.DURATION}\n`);
+
+  // Step 11: Semantic memory indexing
+  log('Step 11: Indexing semantic memory...');
+
+  let memoryId: number | null = null;
+  log('   Skipping retired legacy memory indexing');
+
+  // Retrieval is source-owned: the trigger index is a generated artifact, not a
+  // save-time side effect, so the save only reads the committed index and
+  // points at the generator when it no longer matches this packet.
+  const triggerIndexRegenerateHint = '   Trigger index: run node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs when trigger phrases changed';
+  try {
+    const freshness = await checkTriggerIndexFreshness(validatedSpecFolderPath);
+    if (freshness.status === 'stale') {
+      const staleMessage = `   Trigger index: STALE for ${freshness.documentPath ?? 'spec.md'}`
+        + ` (added: ${freshness.added?.join(', ') || 'none'}; removed: ${freshness.removed?.join(', ') || 'none'});`
+        + ' run node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs';
+      warn(staleMessage);
+      workflowWarnings.push(staleMessage);
+    } else if (freshness.status === 'fresh') {
+      log(`   Trigger index: up to date for ${freshness.documentPath ?? 'this packet'}`);
+    } else if (freshness.status === 'no-phrases') {
+      log('   Trigger index: packet declares no trigger_phrases; nothing to compare');
+    } else {
+      log(triggerIndexRegenerateHint);
+    }
+  } catch {
+    log(triggerIndexRegenerateHint);
+  }
+
+  // Step 11.75: Post-save quality review — wire into production pipeline.
+  // Runs the post-save reviewer against the canonical spec-doc save artifacts.
+  // Non-blocking: review failures are logged but do not abort the workflow.
+  if (shouldRunExplicitSaveFollowUps) {
+    try {
+      const { reviewPostSaveQuality, printPostSaveReview } = await import('./post-save-review.js');
+      const reviewResult = reviewPostSaveQuality({
+        savedFilePath: validatedSpecFolderPath,
+        collectedData: collectedData as Parameters<typeof reviewPostSaveQuality>[0]['collectedData'],
+        inputMode: options.plannerMode,
+      });
+      printPostSaveReview(reviewResult);
+    } catch (reviewErr: unknown) {
+      const reviewErrMsg = reviewErr instanceof Error ? reviewErr.message : String(reviewErr);
+      warn(`   Warning: Post-save review skipped: ${reviewErrMsg}`);
+    }
+  }
+
+  log();
+
+      return {
+        contextDir: validatedSpecFolderPath,
+        specFolder,
+        specFolderName,
+        writtenFiles,
+        memoryId,
+        warnings: workflowWarnings,
+        stats: {
+          messageCount: conversations.MESSAGES.length,
+          decisionCount: decisions.DECISIONS.length,
+          diagramCount: diagrams.DIAGRAMS.length,
+          qualityScore: filterStats.qualityScore,
+          isSimulation
+        }
+      };
+  });
+}
+
+// ───────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ───────────────────────────────────────────────────────────────
+
+export { stripWorkflowHtmlOutsideCodeFences } from './content-cleaner.js';
+
+export {
+  checkTriggerIndexFreshness,
+  filterTriggerPhrases,
+  refreshPhaseParentPointersAfterSave,
+  releaseFilesystemLock,
+  runWorkflow,
+  scrubWorkflowSavePayloadTextFields,
+};
+export type { TriggerIndexFreshnessResult };

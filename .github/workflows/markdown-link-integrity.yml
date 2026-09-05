@@ -26,7 +26,7 @@ jobs:
       - name: Check markdown link integrity (whole-repo)
         run: |
           set -euo pipefail
-          GUARD=".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs"
+          GUARD=".opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs"
           if [ ! -f "$GUARD" ]; then
             echo "::warning::markdown-link guard not found at $GUARD — skipping"
             exit 0

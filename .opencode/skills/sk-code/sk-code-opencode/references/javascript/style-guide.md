@@ -56,7 +56,7 @@ but follow ESM module syntax instead of CommonJS.
 - Immediately followed by `'use strict';` directive for `.js/.cjs` files
 - `.mjs` and plugin ESM files do not require `'use strict'`
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/utils/logger.ts:1-3`,
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/utils/logger.ts:1-3`,
 `.opencode/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts:1-3`
 
 ---
@@ -100,7 +100,7 @@ Large files are organized using numbered section dividers.
 | 4     | CORE LOGIC       | Main implementation               |
 | 5     | EXPORTS          | Module public interface           |
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/core/config.ts`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/core/config.ts`
 
 ---
 

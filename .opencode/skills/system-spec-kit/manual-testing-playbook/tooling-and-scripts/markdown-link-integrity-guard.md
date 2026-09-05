@@ -18,8 +18,8 @@ This scenario validates the markdown link integrity guard. It focuses on running
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the guard names every missing markdown link target, moves its count by exactly one when a link is injected, and ignores link syntax inside inline code.
-- Real user request: `Please validate the markdown link integrity guard against node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs and tell me whether the expected signals are present: the baseline is recorded; --self-test passes all cases; an injected broken link raises the count by one and is named; inline-code link syntax is not flagged.`
-- Prompt: `Validate the markdown link integrity guard against node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs and report cited pass/fail evidence.`
+- Real user request: `Please validate the markdown link integrity guard against node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs and tell me whether the expected signals are present: the baseline is recorded; --self-test passes all cases; an injected broken link raises the count by one and is named; inline-code link syntax is not flagged.`
+- Prompt: `Validate the markdown link integrity guard against node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: the baseline summary line is recorded; --self-test exits 0 with all cases passing; an injected broken link raises the broken count by exactly one and names the offending link; inline-code link syntax is not flagged
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -32,13 +32,13 @@ This scenario validates the markdown link integrity guard. It focuses on running
 ### Prompt
 
 ```
-Validate the markdown link integrity guard against node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs and report cited pass/fail evidence.
+Validate the markdown link integrity guard against node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs` and record the summary line as the baseline broken count
-2. `node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs --self-test` and confirm exit 0 with all cases passing
+1. `node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` and record the summary line as the baseline broken count
+2. `node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs --self-test` and confirm exit 0 with all cases passing
 3. Append one line to an active scanned doc that links to a target which does not exist on disk (describe it as a relative path with no matching file)
 4. Re-run the whole-tree scan and confirm the count is baseline + 1 with the injected link named in the output
 5. Revert the injected line and confirm the scan returns to the baseline count
@@ -52,7 +52,7 @@ the baseline count is recorded; --self-test passes all cases; the injected broke
 Baseline scan command. The tree is not link-clean: six pre-existing broken links survive, so the baseline is exit 1 with a known set rather than exit 0. The injection legs below are what prove the guard, by showing a seventh link appear and then disappear against that fixed baseline.
 
 ```text
-$ node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs
+$ node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs
 check-markdown-links: 7888 files, 13414 links checked, 6 broken
 
 Broken markdown links (target resolves under neither the file dir nor repo root):
@@ -70,7 +70,7 @@ Observed exit code: 1
 Self-test command:
 
 ```text
-$ node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs --self-test
+$ node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs --self-test
 PASS  inline-code link ignored  → [] (expect [])
 PASS  real link on same line as inline code caught  → [missing.md] (expect [missing.md])
 PASS  ref-style def inside inline code ignored  → [] (expect [])
@@ -91,7 +91,7 @@ Injected broken link for guard verification: [injected missing target](./definit
 Injected scan command:
 
 ```text
-$ node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs
+$ node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs
 check-markdown-links: 7888 files, 13415 links checked, 7 broken
 
 Broken markdown links (target resolves under neither the file dir nor repo root):
@@ -103,7 +103,7 @@ Observed exit code: 1
 Reverted scan command:
 
 ```text
-$ node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs
+$ node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs
 check-markdown-links: 7888 files, 13414 links checked, 6 broken
 
 Broken markdown links (target resolves under neither the file dir nor repo root):

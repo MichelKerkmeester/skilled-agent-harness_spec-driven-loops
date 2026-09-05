@@ -11,7 +11,7 @@ description: "How .pi derives from .opencode: two generators for agents and prom
 
 ## 1. OVERVIEW
 
-Pi consumes flat real files, so two generators in `.opencode/skills/system-spec-kit/scripts/pi/` transform the canonical trees into Pi's dialect. Both own their output directory: write mode regenerates changed files and prunes anything the canonical tree no longer justifies (a retired command's stale prompt was the live drift mode here).
+Pi consumes flat real files, so two generators in `.opencode/skills/system-spec-kit/runtime/cli/pi/` transform the canonical trees into Pi's dialect. Both own their output directory: write mode regenerates changed files and prunes anything the canonical tree no longer justifies (a retired command's stale prompt was the live drift mode here).
 
 Canonical for agents is `.opencode/agents/` — the same upstream Codex uses, *not* the `.claude/agents/` fork that Cursor and Devin symlink. The generator maps OpenCode's `permission:` block onto Pi's built-in tool names, so a `.pi/agents/*.md` never byte-matches either parent tree.
 
@@ -49,8 +49,8 @@ Prompt names are the flattened command path (`create/agent.md` → `create-agent
 
 ```bash
 # Regenerate both owned trees (write mode also prunes stale output)
-node .opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs
-node .opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs
+node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
+node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs
 
 # Verify roster coverage across all six runtime surfaces
 node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
@@ -98,8 +98,8 @@ Each prompt is a small stub that points at the canonical file rather than duplic
 
 | Check | Command | Exit |
 |---|---|---|
-| Generated agents | `node .opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs --check` | 0 ok / 1 drift |
-| Generated prompts | `node .opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs --check` | 0 ok / 1 drift |
+| Generated agents | `node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check` | 0 ok / 1 drift |
+| Generated prompts | `node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check` | 0 ok / 1 drift |
 | Roster coverage | `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
 
@@ -117,7 +117,7 @@ Each prompt is a small stub that points at the canonical file rather than duplic
 
 | Document | Purpose |
 |---|---|
-| `.opencode/skills/system-spec-kit/scripts/pi/README.md` | The generator contract |
+| `.opencode/skills/system-spec-kit/runtime/cli/pi/README.md` | The generator contract |
 | [`extensions/README.md`](extensions/README.md) | Why the guard layer is native code |
 | `.opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/` | Executable scenarios for these surfaces |
 | [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) | Sibling runtime manifests |

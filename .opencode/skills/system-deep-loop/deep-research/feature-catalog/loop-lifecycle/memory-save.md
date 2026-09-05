@@ -24,7 +24,7 @@ Memory save is the loop's final preservation step. It hands the finished packet 
 
 ## 2. HOW IT WORKS
 
-The live save contract is narrow. After synthesis, the workflows call `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}` and treat that command as the supported save boundary. The loop does not define an additional indexing phase inside its own contract.
+The live save contract is narrow. After synthesis, the workflows call `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}` and treat that command as the supported save boundary. The loop does not define an additional indexing phase inside its own contract.
 
 The save rules also reject manual writes under `memory/`. The command entrypoint and YAML workflows explicitly mark hand-authored continuity artifacts as unsupported for this path. The workflow expects the save script to produce the support artifact and then verifies the result instead of building those files itself.
 
@@ -46,7 +46,7 @@ The save rules also reject manual writes under `memory/`. The command entrypoint
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies the save phase uses the supported continuity path after synthesis. |
-| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Vitest | Verifies the command assets stay aligned on reducer execution and canonical deep-research packet references. |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-research-contract-parity.vitest.ts` | Vitest | Verifies the command assets stay aligned on reducer execution and canonical deep-research packet references. |
 
 ---
 

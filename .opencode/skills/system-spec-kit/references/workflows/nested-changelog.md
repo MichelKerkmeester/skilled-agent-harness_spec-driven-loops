@@ -34,7 +34,7 @@ Generate packet-local changelog files for spec roots and phase child folders.
 ## 3. GENERATOR
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js <spec-folder> --write
+node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
 ```
 
 ### Modes

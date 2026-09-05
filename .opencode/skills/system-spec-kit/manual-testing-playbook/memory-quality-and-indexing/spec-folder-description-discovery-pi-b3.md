@@ -47,7 +47,7 @@ Validate spec folder description discovery and description.json fallback behavio
 6. Verify missing description.json falls back to spec.md without forcing a write
 7. Attempt generation against an out-of-base or prefix-bypass path → verify rejection and no file written
 8. Use spec.md with large YAML frontmatter and CRLF-heavy line endings → verify extracted description comes from post-frontmatter content
-9. Run `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` → verify the regenerated `runtime/data/trigger-index.json` carries this packet, then look it up with `lookup-trigger-index.mjs "<a declared trigger phrase>"`
+9. Run `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` → verify the regenerated `runtime/data/trigger-index.json` carries this packet, then look it up with `lookup-trigger-index.mjs "<a declared trigger phrase>"`
 
 ### Expected
 

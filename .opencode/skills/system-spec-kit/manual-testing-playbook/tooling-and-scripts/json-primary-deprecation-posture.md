@@ -37,9 +37,9 @@ Validate JSON-primary deprecation posture against the documented validation surf
 
 ### Commands
 
-1. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"test","sessionSummary":"test"}' <spec-folder>` → expect exit 0
-2. `printf '{"specFolder":"test","sessionSummary":"test"}' | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder>` → expect exit 0
-3. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json <spec-folder>` → expect exit 0
+1. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"test","sessionSummary":"test"}' <spec-folder>` → expect exit 0
+2. `printf '{"specFolder":"test","sessionSummary":"test"}' | node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin <spec-folder>` → expect exit 0
+3. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json <spec-folder>` → expect exit 0
 
 ### Expected
 

@@ -277,10 +277,10 @@ The `validate.sh` script enforces these rules:
 
 | Script | Purpose |
 |--------|---------|
-| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Spec folder validation |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | File existence checks |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-folder-naming.sh` | Folder naming validation |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh` | YAML frontmatter validation |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Spec folder validation |
+| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-files.sh` | File existence checks |
+| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-folder-naming.sh` | Folder naming validation |
+| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-frontmatter.sh` | YAML frontmatter validation |
 
 ### Related References
 

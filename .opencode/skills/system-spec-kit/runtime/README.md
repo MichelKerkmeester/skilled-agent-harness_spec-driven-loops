@@ -21,7 +21,7 @@ importance_tier: "important"
 
 This package owns three things that the rest of Spec Kit builds on.
 
-- **Spec folder validation.** `lib/validation/orchestrator.ts` decides every rule verdict for a spec folder. `../scripts/spec/validate.sh` is a thin front end over its compiled output and deliberately implements no rules of its own.
+- **Spec folder validation.** `lib/validation/orchestrator.ts` decides every rule verdict for a spec folder. `cli/spec/validate.sh` is a thin front end over its compiled output and deliberately implements no rules of its own.
 - **Generated packet metadata.** `lib/graph/` and `lib/description/` derive, merge, validate, and serialize the two generated JSON files a spec folder carries — `description.json` and `graph-metadata.json` — plus the integrity and drift gates that prove they still match the documents they summarize.
 - **Runtime hook adapters.** `hooks/` holds the per-runtime adapters for Claude, Codex, Cursor, Devin, and Pi, together with the runtime-neutral Gate-3 spec-gate core they all call.
 
@@ -31,10 +31,10 @@ The package has no server process and no transport of its own. Its build artifac
 
 Two consumers, and no third.
 
-- **The scripts workspace** (`@spec-kit/scripts`) declares `"@spec-kit/runtime": "file:../runtime"` and imports the barrel as `@spec-kit/runtime/api`. Live callers include `../scripts/spec-folder/generate-description.ts`, `../scripts/core/workflow.ts`, `../scripts/memory/generate-context.ts`, and `../scripts/memory/backfill-research-metadata.ts`. Imports that reach past the barrel into `lib/`, `core/`, or `handlers/` are rejected by the import-policy checks in `../scripts/evals/` unless they carry a governed allowlist entry.
+- **The scripts workspace** (`@spec-kit/scripts`) declares `"@spec-kit/runtime": "file:../runtime"` and imports the barrel as `@spec-kit/runtime/api`. Live callers include `cli/spec-folder/generate-description.ts`, `cli/core/workflow.ts`, `cli/continuity/generate-context.ts`, and `cli/continuity/backfill-research-metadata.ts`. Imports that reach past the barrel into `lib/`, `core/`, or `handlers/` are rejected by the import-policy checks in `cli/evals/` unless they carry a governed allowlist entry.
 - **The runtime hook configs** name files under `hooks/` directly. `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json`, and `.devin/hooks.v1.json` register a mix of compiled `dist/hooks/<runtime>/*.js` outputs and directly-runnable `.mjs`/`.cjs` adapters. Pi discovers `hooks/pi/*` through relative symlinks in `.pi/extensions/`.
 
-`../scripts/spec/validate.sh` is a third consumer in practice but not an import one: it resolves `dist/lib/validation/orchestrator.js`, guards it with the `validation-orchestrator` freshness entry in `../scripts/lib/dist-freshness.cjs`, and refuses to run against a stale build.
+`cli/spec/validate.sh` is a third consumer in practice but not an import one: it resolves `dist/lib/validation/orchestrator.js`, guards it with the `validation-orchestrator` freshness entry in `cli/lib/dist-freshness.cjs`, and refuses to run against a stale build.
 
 ---
 
@@ -159,7 +159,7 @@ Canonical spec-document discovery includes `spec.md`, `plan.md`, `tasks.md`, `ch
 
 | Boundary | Rule |
 |---|---|
-| Public API | External callers import `@spec-kit/runtime/api`. Reaching into `lib/`, `core/`, or `handlers/` needs a governed allowlist entry in `../scripts/evals/import-policy-allowlist.json`. |
+| Public API | External callers import `@spec-kit/runtime/api`. Reaching into `lib/`, `core/`, or `handlers/` needs a governed allowlist entry in `cli/evals/import-policy-allowlist.json`. |
 | Internal imports | Package-internal code imports the owning module directly rather than routing back through `api/index.ts`. |
 | Rule ownership | Validation rules live in `lib/validation/`. Shell front ends stay thin. |
 | Generated metadata | The drift and integrity gates read and report. Writes go through the parser's explicit write path so a check cannot dirty the file it checks. |
@@ -203,7 +203,7 @@ Main flow, validation:
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `@spec-kit/runtime/api` | Package export | The supported import surface, resolved to `dist/api/index.js`. |
-| `dist/lib/validation/orchestrator.js` | Runtime artifact | Compiled validation orchestrator resolved by `../scripts/spec/validate.sh`. |
+| `dist/lib/validation/orchestrator.js` | Runtime artifact | Compiled validation orchestrator resolved by `cli/spec/validate.sh`. |
 | `dist/hooks/<runtime>/*.js` | Runtime artifacts | Compiled lifecycle adapters registered by each runtime's hook config. |
 | `hooks/<runtime>/*.mjs`, `hooks/<runtime>/*.cjs` | Hook scripts | Directly-runnable adapters with no build step. |
 | `scripts/finalize-dist.mjs` | Script | Post-build step that records freshness entries and prunes stale dist roots. |
@@ -229,7 +229,7 @@ npm run lint                  # eslint . --ext .ts
 npm run test:core             # vitest run
 npm run test:sharded          # scripts/run-tests-sharded.mjs
 npm run typecheck:tests       # tsconfig.tests.json
-npm run test:spec-validation   # the tracked validation suites in ../scripts/tests
+npm run test:spec-validation   # the tracked validation suites in cli/tests
 ```
 
 `test:sharded` covers the Vitest lane; `test:spec-validation` covers the tracked shell
@@ -255,5 +255,5 @@ Expected result: build, typecheck, and tests exit 0, README validation reports n
 - [`lib/README.md`](./lib/README.md)
 - [`lib/MODULE-MAP.md`](./lib/MODULE-MAP.md)
 - [`hooks/README.md`](./hooks/README.md)
-- [`../scripts/README.md`](../scripts/README.md)
+- [`cli/README.md`](cli/README.md)
 - [`../ARCHITECTURE.md`](../ARCHITECTURE.md)

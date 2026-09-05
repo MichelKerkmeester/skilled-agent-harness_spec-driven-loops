@@ -361,5 +361,5 @@ npx vitest run tests/deep-loop/permissions-gate.vitest.ts
 Packet validation:
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
 ```

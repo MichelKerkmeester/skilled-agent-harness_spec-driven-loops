@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "packet_id": "063-template-compliant-level3",
+  "spec_folder": "system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "053-template-compliant-level2",
+        "reason": "Sibling template-compliance fixture at the adjacent documentation level",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fixture",
+      "template",
+      "level 3"
+    ],
+    "key_topics": [
+      "validator fixture",
+      "template compliance",
+      "decision records"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/spec.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/plan.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/tasks.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/decision-record.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Validator regression fixtures must remain valid as the template contract evolves",
+    "created_at": "2026-06-11T00:00:00Z",
+    "last_save_at": "2026-06-11T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/spec.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/plan.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/tasks.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/decision-record.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e8de3726d7aa99637c6c5006d7a4d220d4afc3325844559d2e033db9a50e9f43",
+    "source_fingerprint_docset": 3
+  }
+}

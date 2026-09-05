@@ -39,26 +39,28 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "scripts/spec/validate.sh",
-      "scripts/memory/generate-context.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      "scripts/dist/memory/generate-context.js",
-      "scripts/retrieval/lookup-trigger-index.mjs",
-      ".opencode/skills/system-spec-kit/package.json",
-      "scripts/lib/dist-freshness.cjs",
-      ".claude/settings.json",
-      ".codex/hooks.json",
-      ".devin/hooks.v1.json",
-      ".cursor/hooks.json",
-      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
-      ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh"
+      "runtime/cli/dist/continuity/generate-context.js",
+      "scratch/inventory.md",
+      ".opencode/bin/skill-advisor.cjs",
+      ".opencode/plugins/tests/system-dist-freshness-guard.test.cjs",
+      ".opencode/skills/system-deep-loop/shared/synthesis/resource-map.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+      "shared/embeddings/factory.ts",
+      "runtime/lib/graph/graph-metadata-parser.ts",
+      "runtime/lib/validation/orchestrator.ts",
+      "core/config.ts",
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      "cli/dist/continuity/generate-context.js",
+      "runtime/cli/package.json",
+      "runtime/cli/tsconfig.json",
+      "runtime/tsconfig.json"
     ],
     "entities": [
       {
@@ -92,63 +94,81 @@
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": "scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
         "name": "generate-context.js",
         "kind": "code",
-        "path": "scripts/dist/memory/generate-context.js",
+        "path": "runtime/cli/dist/continuity/generate-context.js",
         "source": "derived"
       },
       {
-        "name": "lookup-trigger-index.mjs",
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "scratch/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
         "kind": "file",
-        "path": "scripts/retrieval/lookup-trigger-index.mjs",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-dist-freshness-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-dist-freshness-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/shared/synthesis/resource-map.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "runtime/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
         "source": "derived"
       },
       {
         "name": "package.json",
         "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/package.json",
+        "path": "runtime/cli/package.json",
         "source": "derived"
       },
       {
-        "name": "dist-freshness.cjs",
-        "kind": "file",
-        "path": "scripts/lib/dist-freshness.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
+        "name": "tsconfig.json",
         "kind": "config",
-        "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "recommend-level.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh",
+        "path": "runtime/cli/tsconfig.json",
         "source": "derived"
       },
       {
@@ -186,29 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/` runs two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (the `@spec-kit/scripts` CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`)",
     "created_at": "2026-09-05T06:13:04Z",
-    "last_save_at": "2026-09-05T06:29:15.098Z",
+    "last_save_at": "2026-09-05T09:12:29.766Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2acc866c4ee07f01d0b2d0721a92f50f92878b5bb59038c65fdb8281dba4839b",
+    "source_fingerprint": "sha256:8d7e3500c4b05538b0fd3c7036e1603ee132e4bdd12d3c6c29cd87ec6cbe15a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d287eda127199fe20422af4ae936cbb2126f6f1a7b96fa34f8f9095b139c46cc",
+      "spec.md": "1b8ca21a8973e26e4201e9834f73262131d8eec4177be54c304020e6d06a99e7",
       "plan.md": "1d9b8f76670caf398d00e6d474a9d42704ddaff454eb229b74f453129c87a562",
-      "tasks.md": "7d2eadc4a7045d62e702559d88bc450c0ef82afd41c25e7f4cf216d814d594f8",
-      "implementation-summary.md": "840c1535432bfe125b23eedeac73d4c631e809da6c3d875b6cc87fafc3186733"
+      "tasks.md": "142193e0c0c7531428eb9b997d3e4de62cf9ae1c418c0d9a407a38cdd04f9883",
+      "implementation-summary.md": "41b98ae789775c9cba59af98ceb2a756b348a26e97a91f34917e68f68dbb66f6"
     },
     "last_active_child_id": null,
     "last_active_at": null

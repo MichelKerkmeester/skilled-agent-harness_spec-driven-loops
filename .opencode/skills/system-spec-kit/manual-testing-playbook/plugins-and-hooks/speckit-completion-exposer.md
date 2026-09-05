@@ -25,7 +25,7 @@ expected_leaf_resources: []
 
 - OpenCode plugin adapter: `.opencode/plugins/system-speckit-completion.js` (`tool.register`, no hooks, cannot block or write; registers exactly one tool, `system_speckit_completion`).
 - Claude/Bash CLI shim (parity front door, not a hook): `.opencode/bin/speckit-completion.cjs` -- Claude has no plugin tool-register surface, so this thin shim prints the identical merged JSON payload to stdout for a Bash-invoked caller.
-- Shared runtime-neutral core: `.opencode/skills/system-spec-kit/scripts/lib/completion-state.cjs` (`computeCompletionState`), which both adapters call through unchanged and which never throws -- any resolution/exec/parse failure degrades only the affected section to `{status:'unavailable', error}`.
+- Shared runtime-neutral core: `.opencode/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs` (`computeCompletionState`), which both adapters call through unchanged and which never throws -- any resolution/exec/parse failure degrades only the affected section to `{status:'unavailable', error}`.
 
 A related but distinct sibling exists in the same skill: `.opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs` (Claude `Stop` hook) and its OpenCode counterpart `system-completion-sentinel.js` (`session.idle`). Both reuse `completion-state.cjs`'s script-path constant and JSON-parse helper for their own advisory "did the last completion claim have recorded evidence" policy, but they are a separate consumer with their own core (`completion-evidence-sentinel.cjs`) and separate kill-switch -- out of scope for this scenario, which targets only the `system_speckit_completion` tool and its CLI shim.
 
@@ -35,7 +35,7 @@ This scenario validates: the plugin's own kill-switch regression test; a live in
 
 ## 2. SCENARIO CONTRACT
 
-- Preconditions: Node is on `PATH`. `.opencode/plugins/system-speckit-completion.js` and its core `.opencode/skills/system-spec-kit/scripts/lib/completion-state.cjs` exist (confirmed, see Evidence). At least one real Level-2 COMPLETE, one Level-2 EVIDENCE_MISSING, and one Level-3 spec folder exist in this repo so all three checklist code paths are exercised without inventing fixtures.
+- Preconditions: Node is on `PATH`. `.opencode/plugins/system-speckit-completion.js` and its core `.opencode/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs` exist (confirmed, see Evidence). At least one real Level-2 COMPLETE, one Level-2 EVIDENCE_MISSING, and one Level-3 spec folder exist in this repo so all three checklist code paths are exercised without inventing fixtures.
 - Real user-facing trigger: an agent operating under the COMPLETION VERIFICATION gate calls the OpenCode tool `system_speckit_completion({specFolder, strict})` (or, from Claude, runs the CLI shim) instead of hand-composing and hand-merging separate `check-completion.sh --json` and `calculate-completeness.sh --json` calls.
 - Expected signals: the plugin's kill-switch unit test reports all assertions passed with exit 0; a live tool call against a Level-2 COMPLETE fixture returns `level:2`, `checklist.status:"COMPLETE"`, `checklist.passed:true`; a live tool call against a Level-2 fixture whose checklist is settled at EVIDENCE_MISSING returns that real status and `checklist.passed:false` with `qualityGates.p0MissingEvidence>0` (never degraded to `"unavailable"`); a live tool call against a Level-3 fixture (decision-record.md present) returns `level:3`; passing `strict:true` returns `checklist.strict:true` in the same payload shape; the CLI shim invoked on the same Level-2 COMPLETE fixture returns the same `level`/`checklist.status`/`checklist.passed` as the live tool call; the CLI shim with no args exits non-zero and prints usage; `SYSTEM_SPECKIT_COMPLETION_DISABLED=1` makes the plugin factory return `{}` (no `tool` key at all) while an unset or non-`"1"` value leaves `hooks.tool.system_speckit_completion` registered with a callable `execute`.
 - Desired user-visible outcome: a concise pass/fail verdict citing the exact captured command output.
@@ -155,9 +155,9 @@ Capture, for every step in the Commands sequence above:
 - OpenCode plugin adapter: `.opencode/plugins/system-speckit-completion.js`
 - Plugin regression test: `.opencode/plugins/tests/system-speckit-completion.test.cjs`
 - Claude/Bash CLI shim: `.opencode/bin/speckit-completion.cjs`
-- Shared runtime-neutral core: `.opencode/skills/system-spec-kit/scripts/lib/completion-state.cjs`
-- Core's own vitest suite (currently outside project `include` globs, see Evidence): `.opencode/skills/system-spec-kit/scripts/lib/completion-state.test.mjs`
-- Shelled scripts merged by the core: `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh`, `.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh`
+- Shared runtime-neutral core: `.opencode/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs`
+- Core's own vitest suite (currently outside project `include` globs, see Evidence): `.opencode/skills/system-spec-kit/runtime/cli/lib/completion-state.test.mjs`
+- Shelled scripts merged by the core: `.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`, `.opencode/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh`
 - Plugin entrypoint registry (confirms adapter role and kill-switch env): `.opencode/plugins/README.md` §3
 - Related-but-distinct sibling consumer (out of scope here, sharing infrastructure only): `.opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`, `.opencode/plugins/system-completion-sentinel.js`, `.opencode/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`
 

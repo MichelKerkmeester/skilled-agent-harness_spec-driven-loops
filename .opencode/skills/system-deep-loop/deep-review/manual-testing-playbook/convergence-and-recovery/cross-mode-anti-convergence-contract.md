@@ -52,7 +52,7 @@ Validate the deep-review anti-convergence floor, fail-closed stop policy, runtim
 1. `bash: rg -n '"antiConvergence"|"minIterations": 2|"convergenceMode": "default"|"stopPolicy": "fail-closed"' .opencode/skills/system-deep-loop/deep-review/assets/deep-review-config.json`
 2. `bash: rg -n '"stopPolicy": "fail-closed"' .opencode/skills/system-deep-loop/deep-review/assets/runtime-capabilities.json`
 3. `bash: rg -n 'missing stopPolicy|stopPolicy must be "fail-closed"|validateStopPolicy' .opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs`
-4. `bash: rg -n 'antiConvergence.convergenceMode|convergenceMode|minIterations<=maxIterations|minIterations|maxIterations' .opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+4. `bash: rg -n 'antiConvergence.convergenceMode|convergenceMode|minIterations<=maxIterations|minIterations|maxIterations' .opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`
 
 ### Expected
 
@@ -89,7 +89,7 @@ Privilege the live config and runtime helper over older references. If the optim
 | `.opencode/skills/system-deep-loop/deep-review/assets/runtime-capabilities.json` | Review runtime capability matrix with fail-closed stop policy |
 | `.opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs` | Review shim around the shared runtime capability resolver |
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs` | Shared fail-closed stop-policy validation |
-| `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Optimizer invariant group and locked convergence-mode fields |
+| `.opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json` | Optimizer invariant group and locked convergence-mode fields |
 
 ---
 

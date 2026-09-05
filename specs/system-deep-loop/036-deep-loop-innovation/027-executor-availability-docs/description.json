@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/027-executor-availability-docs",
+  "description": "Every `/deep:` presentation contract documented the executor field as `native | cli-opencode | cli-claude-code`",
+  "keywords": [
+    "every",
+    "deep",
+    "presentation",
+    "contract",
+    "documented",
+    "executor",
+    "field",
+    "native",
+    "cli-opencode",
+    "cli-claude-code"
+  ],
+  "lastUpdated": "2026-09-05T08:23:02.548Z",
+  "specId": "027",
+  "folderSlug": "executor-availability-docs",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

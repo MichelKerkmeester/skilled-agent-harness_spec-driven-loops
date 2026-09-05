@@ -21,8 +21,8 @@ This scenario validates phase-system knowledge node for `236`. It focuses on con
 
 
 - Objective: Confirm the documented phase model aligns with the live creation, workflow, and validation surfaces.
-- Real user request: `Please validate Phase-System Knowledge Node against bash .opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh and tell me whether the expected signals are present: phase-system shell and JS tests pass; recursive validation succeeds on the valid-phase fixture; direct phase-link validation passes.`
-- Prompt: `Validate Phase-System Knowledge Node against bash .opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh and report cited pass/fail evidence.`
+- Real user request: `Please validate Phase-System Knowledge Node against bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh and tell me whether the expected signals are present: phase-system shell and JS tests pass; recursive validation succeeds on the valid-phase fixture; direct phase-link validation passes.`
+- Prompt: `Validate Phase-System Knowledge Node against bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: phase-system shell and JS tests pass; recursive validation succeeds on the valid-phase fixture; direct phase-link validation passes
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -35,14 +35,14 @@ This scenario validates phase-system knowledge node for `236`. It focuses on con
 ### Prompt
 
 ```
-Validate Phase-System Knowledge Node against bash .opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh and report cited pass/fail evidence.
+Validate Phase-System Knowledge Node against bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `bash .opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh`
-2. `node .opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js`
-3. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase --recursive`
+1. `bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js`
+3. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive`
 
 ### Expected
 

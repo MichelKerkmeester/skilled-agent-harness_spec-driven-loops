@@ -47,7 +47,7 @@ contextType: "general"
 
 **Research folded in:** phase Now, target 2026-09-02. Status: Done. Evidence: commit 6102eb9d2e; 005 and 006 syntheses under their research/lineages/luna-max directories.
 
-**Runtime defects fixed:** phase Now, target 2026-09-02. Status: Done. Evidence: specs/system-deep-loop/040-cli-lineage-nesting-and-containment-guard, commits 2c2687e260 and 54e65e115a, whole suite 2531 passed.
+**Runtime defects fixed:** phase Now, target 2026-09-02. Status: Done. Evidence: specs/system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard, commits 2c2687e260 and 54e65e115a, whole suite 2531 passed.
 
 **Parity proven:** phase Done, target the 001 acceptance rows AC-001 to AC-008 Met. Status: Done. Evidence: phase 001 is Complete in the parent Phase Documentation Map; its parity-check baseline and latency report are recorded in `001-trigger-index-replacement/`.
 

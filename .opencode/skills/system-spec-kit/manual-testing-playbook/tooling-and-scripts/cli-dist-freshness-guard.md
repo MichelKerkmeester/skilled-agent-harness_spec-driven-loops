@@ -93,7 +93,7 @@ A restored run that still exits 69 means the restore was not byte-exact — conf
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` | Shared `checkPackageFreshness()` module: mtime comparison, lazy same-session hash cache, `DIST_PACKAGES` registry (7 watched packages) |
+| `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` | Shared `checkPackageFreshness()` module: mtime comparison, lazy same-session hash cache, `DIST_PACKAGES` registry (7 watched packages) |
 | `.opencode/bin/skill-advisor.cjs` | `ensureFreshDist` guard, exit 69, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
 | `.opencode/bin/skill-advisor.cjs` | Same guard for skill-advisor, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
 

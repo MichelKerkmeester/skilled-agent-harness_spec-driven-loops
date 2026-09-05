@@ -49,9 +49,9 @@ Where a surviving scenario used to open with a daemon prerequisite or close with
 | Retired step | Successor |
 |---|---|
 | Start the memory daemon before the run | Nothing to start. For the one daemon that remains, `node .opencode/bin/skill-advisor.cjs advisor_status --format json` reports health |
-| `memory_match_triggers(prompt)` to surface context | `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs "<prompt>"` |
+| `memory_match_triggers(prompt)` to surface context | `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` |
 | `memory_search` / `memory_context` to find evidence | The ripgrep recipes in `references/retrieval/retrieval-conventions.md` §2 |
-| `memory_save` to persist the run | The packet-local continuity writer and `scripts/memory/generate-context.ts` |
+| `memory_save` to persist the run | The packet-local continuity writer and `runtime/cli/continuity/generate-context.ts` |
 
 Scenario counts are derived by the runner from the walked tree; do not hand-maintain them here.
 
@@ -319,6 +319,6 @@ Category notes and the retired ID range: [`doctor-commands/README.md`](doctor-co
 Automated coverage is tracked in two places:
 
 - The **Catalog Entry** column in Section 7, which maps each scenario to the feature-catalog leaf whose SOURCE FILES table names the regression tests.
-- The scenario runner at `scripts/tests/manual-playbook-runner.ts`, which walks this package, parses each scenario's `Playbook ID` and command sequence, and reports scenarios it cannot execute deterministically as `SKIP` with a named blocker.
+- The scenario runner at `runtime/cli/tests/manual-playbook-runner.ts`, which walks this package, parses each scenario's `Playbook ID` and command sequence, and reports scenarios it cannot execute deterministically as `SKIP` with a named blocker.
 
 The runner derives its scenario census from the walked tree. A scenario file added or removed without updating Section 7 will show up as an orphan in the link audit, not as a silent gap.

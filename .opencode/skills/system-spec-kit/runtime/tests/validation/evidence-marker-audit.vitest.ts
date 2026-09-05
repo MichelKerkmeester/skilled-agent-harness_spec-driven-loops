@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 
 import { describe, expect, it } from 'vitest';
 
-import { parseMarkers } from '../../../scripts/validation/evidence-marker-audit.js';
+import { parseMarkers } from '../../cli/validation/evidence-marker-audit.js';
 
 function loadFixture(name: string): string {
   return readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8');

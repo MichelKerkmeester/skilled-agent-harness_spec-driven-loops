@@ -23,7 +23,7 @@ One contract detail matters when reading a result: a criterion whose Status is `
 
 - Objective: Confirm the total and the evidence come from the same table, that a column inserted before `AC-ID` does not silence the rule, and that a packet marked `Incomplete` does not activate it.
 - Real user request: `Check that the acceptance-coverage advisory is actually measuring the criteria document, not reporting zero because it is reading somewhere else.`
-- Prompt: `Validate the AC_COVERAGE single-source ratio against .opencode/skills/system-spec-kit/scripts/tests/check-ac-coverage.sh and a live packet, and report cited pass/fail evidence.`
+- Prompt: `Validate the AC_COVERAGE single-source ratio against .opencode/skills/system-spec-kit/runtime/cli/tests/check-ac-coverage.sh and a live packet, and report cited pass/fail evidence.`
 - Expected execution process: Run the unit suite, then read the advisory line from a real packet whose criteria carry citations, then run the two shape controls below.
 - Expected signals: the suite passes every case; a packet whose Verification cells carry `file:line` reports a full ratio rather than `0/N`; a table with a column before `AC-ID` still reports a ratio rather than the no-op message; a packet whose summary Status is `Incomplete` reports the gate as not active.
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -35,17 +35,17 @@ One contract detail matters when reading a result: a criterion whose Status is `
 
 ### Prompt
 
-`Validate the AC_COVERAGE single-source ratio against .opencode/skills/system-spec-kit/scripts/tests/check-ac-coverage.sh and a live packet, and report cited pass/fail evidence.`
+`Validate the AC_COVERAGE single-source ratio against .opencode/skills/system-spec-kit/runtime/cli/tests/check-ac-coverage.sh and a live packet, and report cited pass/fail evidence.`
 
 ### Commands
 
 1. Run the rule's unit suite:
    ```bash
-   bash .opencode/skills/system-spec-kit/scripts/tests/check-ac-coverage.sh
+   bash .opencode/skills/system-spec-kit/runtime/cli/tests/check-ac-coverage.sh
    ```
 2. Read the advisory from a live packet whose criteria carry citations:
    ```bash
-   bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+   bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
      specs/system-speckit/042-nested-goal-template-addon/002-durable-slice-validator --strict \
      | grep AC_COVERAGE
    ```
@@ -60,7 +60,7 @@ One contract detail matters when reading a result: a criterion whose Status is `
    | me | AC-001 | REQ-001 | Given x, When y, Then z | `a.sh:1` | Met | - |
    | me | AC-002 | REQ-002 | Given x, When y, Then z | prose only | Met | - |
    TABLE
-   bash -c 'source .opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh
+   bash -c 'source .opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh
             run_check "'"$T"'/p" 2 >/dev/null 2>&1; echo "$RULE_MESSAGE"'
    rm -rf "$T"
    ```
@@ -74,7 +74,7 @@ The suite passes every case. The live packet reports a full ratio. The shifted-c
 
 Command:
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/tests/check-ac-coverage.sh
+bash .opencode/skills/system-spec-kit/runtime/cli/tests/check-ac-coverage.sh
 ```
 
 Output (tail):
@@ -87,7 +87,7 @@ Output (tail):
 
 Command:
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
   specs/system-speckit/042-nested-goal-template-addon/002-durable-slice-validator --strict | grep AC_COVERAGE
 ```
 
@@ -116,10 +116,10 @@ PASS when the total and the covered count come from the same table, a column bef
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Rule: `.opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh`
-- Automated gate: `.opencode/skills/system-spec-kit/scripts/tests/check-ac-coverage.sh`
-- Closure rule the citation exemption rests on: `.opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh`
-- Validator: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- Rule: `.opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh`
+- Automated gate: `.opencode/skills/system-spec-kit/runtime/cli/tests/check-ac-coverage.sh`
+- Closure rule the citation exemption rests on: `.opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-closure.sh`
+- Validator: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh`
 
 ---
 

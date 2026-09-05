@@ -41,7 +41,7 @@ Validate Spec-Folder Detection and Description Metadata against cd .opencode/ski
 1. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js`
 2. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-alignment-validator.js`
 3. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-subfolder-resolution.js`
-4. `npx tsx .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"`
+4. `npx tsx .opencode/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"`
 
 ### Expected
 
@@ -113,7 +113,7 @@ TEST: Subfolder Resolution (subfolder-utils + core/index)
 RESULTS: 32 passed, 0 failed, 0 skipped
 ```
 
-Command 4 was not executed: `npx tsx .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"` would update `description.json` under the target spec folder, but this run's allowed write paths permit only `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-detection-and-description.md`. The required `description.json` output or timestamp under the target spec folder is therefore missing for this execution.
+Command 4 was not executed: `npx tsx .opencode/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"` would update `description.json` under the target spec folder, but this run's allowed write paths permit only `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-detection-and-description.md`. The required `description.json` output or timestamp under the target spec folder is therefore missing for this execution.
 
 ### Pass / Fail
 
@@ -122,7 +122,7 @@ Command 4 was not executed: `npx tsx .opencode/skills/system-spec-kit/scripts/sp
 
 ### Failure Triage
 
-Inspect `scripts/spec-folder/folder-detector.ts`, `alignment-validator.ts`, `directory-setup.ts`, and `generate-description.ts` if a path cannot be resolved or description generation fails
+Inspect `runtime/cli/spec-folder/folder-detector.ts`, `alignment-validator.ts`, `directory-setup.ts`, and `generate-description.ts` if a path cannot be resolved or description generation fails
 
 ---
 

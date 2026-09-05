@@ -15,7 +15,7 @@ const REPLAY_HELPER = join(
 );
 const TEST_COUNCIL_MATRIX = join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/scripts/test-council-matrix.sh',
+  '.opencode/skills/system-spec-kit/runtime/cli/test-council-matrix.sh',
 );
 
 const tempDirs: string[] = [];

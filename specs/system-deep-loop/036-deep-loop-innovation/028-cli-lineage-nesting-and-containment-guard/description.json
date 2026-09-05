@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard",
+  "description": "A cli-codex fan-out lineage spawned a nested `codex exec` on every iteration and returned zero findings, and write containment reverted a concurrent",
+  "keywords": [
+    "cli-codex",
+    "fan-out",
+    "lineage",
+    "spawned",
+    "nested",
+    "codex",
+    "exec",
+    "every",
+    "iteration",
+    "returned",
+    "zero",
+    "findings",
+    "write",
+    "containment",
+    "reverted",
+    "concurrent"
+  ],
+  "lastUpdated": "2026-09-05T08:41:07.673Z",
+  "specId": "028",
+  "folderSlug": "cli-lineage-nesting-and-containment-guard",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

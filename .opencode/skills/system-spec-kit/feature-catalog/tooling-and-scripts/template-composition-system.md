@@ -43,22 +43,22 @@ The shipped behavior currently works as follows:
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts` | Resolver | Returns the document contract for each public Level |
-| `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts` | Renderer | Applies inline Level gates before a document is written |
-| `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh` | Shell wrapper | Lets shell scripts call the renderer without duplicating logic |
-| `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` | Shell helper | Exposes `resolve_level_contract` and shared template helpers |
-| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Scaffolder | Creates Level and phase-parent packets from the resolver output |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | Validator | Verifies required files from the Level contract |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh` | Validator | Verifies Level-gated sections after rendering |
+| `.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.ts` | Renderer | Applies inline Level gates before a document is written |
+| `.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh` | Shell wrapper | Lets shell scripts call the renderer without duplicating logic |
+| `.opencode/skills/system-spec-kit/runtime/cli/lib/template-utils.sh` | Shell helper | Exposes `resolve_level_contract` and shared template helpers |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Scaffolder | Creates Level and phase-parent packets from the resolver output |
+| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-files.sh` | Validator | Verifies required files from the Level contract |
+| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-sections.sh` | Validator | Verifies Level-gated sections after rendering |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `scripts/tests/level-contract-resolver.vitest.ts` | Automated test | Resolver output for Level 1, Level 2, Level 3, Level 3+, and phase-parent packets |
-| `scripts/tests/inline-gate-renderer.vitest.ts` | Automated test | Inline gate grammar and render behavior |
-| `scripts/tests/scaffold-golden-snapshots.vitest.ts` | Automated test | Fresh scaffold snapshots across public Levels |
-| `scripts/tests/template-structure.vitest.ts` | Automated test | Rendered template structure and section expectations |
-| `scripts/tests/workflow-invariance.vitest.ts` | Automated test | Public vocabulary invariance across command, agent, catalog, playbook, and generated-doc surfaces |
+| `runtime/cli/tests/level-contract-resolver.vitest.ts` | Automated test | Resolver output for Level 1, Level 2, Level 3, Level 3+, and phase-parent packets |
+| `runtime/cli/tests/inline-gate-renderer.vitest.ts` | Automated test | Inline gate grammar and render behavior |
+| `runtime/cli/tests/scaffold-golden-snapshots.vitest.ts` | Automated test | Fresh scaffold snapshots across public Levels |
+| `runtime/cli/tests/template-structure.vitest.ts` | Automated test | Rendered template structure and section expectations |
+| `runtime/cli/tests/workflow-invariance.vitest.ts` | Automated test | Public vocabulary invariance across command, agent, catalog, playbook, and generated-doc surfaces |
 
 ---
 

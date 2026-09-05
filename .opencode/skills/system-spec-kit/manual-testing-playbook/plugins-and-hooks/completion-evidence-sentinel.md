@@ -351,8 +351,8 @@ Capture, for every step in the Commands sequence above:
 - Core vitest suite: `.opencode/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts`
 - Claude Stop hook (adapter): `.opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`
 - Claude Stop hook vitest suite: `.opencode/skills/system-spec-kit/runtime/tests/hook-completion-evidence-stop.vitest.ts`
-- Shared completion-state helper: `.opencode/skills/system-spec-kit/scripts/lib/completion-state.cjs`
-- Checklist evaluator script: `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh`
+- Shared completion-state helper: `.opencode/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs`
+- Checklist evaluator script: `.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`
 - Claude hook wiring: `.claude/settings.json` (`hooks.Stop`)
 
 ---

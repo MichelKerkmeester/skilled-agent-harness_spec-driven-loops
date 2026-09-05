@@ -66,7 +66,7 @@ def _hook_enabled(concern):
     return True
 
 
-CHECKER_REL = ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs"
+CHECKER_REL = ".opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs"
 
 
 def repo_root_from_script() -> str:

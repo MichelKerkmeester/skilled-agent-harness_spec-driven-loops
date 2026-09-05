@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/053-command-contract-reconciliation",
+  "spec_folder": "sk-doc/053-command-contract-reconciliation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command contract",
+      "command catalog drift",
+      "sk-create-command",
+      "command asset naming",
+      "command metadata mirror",
+      "command contract plan",
+      "contract reconciliation",
+      "catalog mirror check",
+      "doctor drift check",
+      "command contract tasks",
+      "contract reconciliation tasks",
+      "catalog mirror check tasks"
+    ],
+    "key_topics": [
+      "command",
+      "contract",
+      "catalog",
+      "drift",
+      "sk-create-command",
+      "asset",
+      "naming",
+      "metadata",
+      "mirror",
+      "plan",
+      "reconciliation",
+      "check"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.schema.json",
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-router-template.md",
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-template.md",
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-presentation-template.md",
+      ".opencode/skills/sk-doc/sk-create-command/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-command/README.md",
+      ".opencode/skills/sk-doc/sk-create-command/references/worked-example.md",
+      ".opencode/skills/sk-doc/sk-create-command/references/common-pitfalls.md",
+      ".opencode/skills/sk-doc/sk-create-command/references/router-presentation-split.md",
+      ".opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+      "scratch/contract-paths.cjs",
+      ".opencode/skills/sk-doc/command-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.schema.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-router-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-router-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-presentation-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-presentation-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "worked-example.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/references/worked-example.md",
+        "source": "derived"
+      },
+      {
+        "name": "common-pitfalls.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/references/common-pitfalls.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-presentation-split.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/references/router-presentation-split.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-catalog-mirror-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "contract-paths.cjs",
+        "kind": "file",
+        "path": "scratch/contract-paths.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-create-command` teaches people how to write OpenCode commands, and its `command-contract.json` calls itself the single machine-readable source of behavioural truth that templates, validators, benchmark adapters and generated routers read instead of restating",
+    "created_at": "2026-09-04T10:38:14Z",
+    "last_save_at": "2026-09-05T08:28:38.741Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c226ad9e289167ced7201575be9ec1389864cb91729f62840fed35b0b09d15af",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3a2cea75cb4c73d3bc487e752b8ec90d98946195f29cb5338727199ace324f0e",
+      "plan.md": "8cf00c5febd6814947441279936ba78bf16a1b9d6c0f60ffd260b39bd66b4d13",
+      "tasks.md": "03cbc5662be57adbec78e7a98f9a2429a0bedce0150ccc8282639994f26fa3de",
+      "implementation-summary.md": "49c0643a5793e2daadfa8b6d3e9744c42c33535b1c8db2681113a08d8f2b6b40"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

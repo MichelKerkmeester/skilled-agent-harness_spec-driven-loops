@@ -56,11 +56,11 @@ erase the drift it exists to surface.
 
 | File | Role |
 |------|------|
-| `scripts/spec/repair-derived.cjs` | The tool |
-| `scripts/spec/README-repair-derived.md` | Usage and the derived-versus-authored boundary |
-| `scripts/tests/repair-derived.vitest.ts` | Fixture tests covering repair, refusal, containment and idempotence |
-| `scripts/spec/validate.sh` | Supplies the diagnosis and the detected level |
-| `scripts/graph/backfill-graph-metadata.ts` | The re-derivation entry point |
+| `runtime/cli/spec/repair-derived.cjs` | The tool |
+| `runtime/cli/spec/README-repair-derived.md` | Usage and the derived-versus-authored boundary |
+| `runtime/cli/tests/repair-derived.vitest.ts` | Fixture tests covering repair, refusal, containment and idempotence |
+| `runtime/cli/spec/validate.sh` | Supplies the diagnosis and the detected level |
+| `runtime/cli/graph/backfill-graph-metadata.ts` | The re-derivation entry point |
 | `.github/workflows/strict-pass-freshness-sweep.yml` | Runs it in reporting mode |
 
 ## 4. SOURCE METADATA

@@ -50,7 +50,7 @@ Validate deep-research graphEvents stay flat in iteration records and use active
 ### Commands
 1. `bash: rg -n 'graphEvents|Graph Events|type \\| \"question\"|type \\| \"finding\"|type \\| \"source\"|type \\| \"edge\"' .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`
 2. `bash: rg -n 'graphEvents|iteration records|graph-aware convergence' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-3. `bash: rg -n \"type: 'question'|type: 'finding'|type: 'source'\" .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts`
+3. `bash: rg -n \"type: 'question'|type: 'finding'|type: 'source'\" .opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts`
 ### Expected
 `graphEvents` documented as iteration-record input; the state-format example uses flat `type` values; active graph tests use `question`, `finding`, and `source` node types.
 ### Evidence
@@ -75,7 +75,7 @@ Privilege `references/state/state-format.md` for the payload contract, `referenc
 |---|---|
 | `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical flat `graphEvents` payload example and field table |
 | `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Graph-aware research convergence contract; documents `graphEvents` as iteration-record input |
-| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts` | Active graph tests using flat `question` / `finding` / `source` node types |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts` | Active graph tests using flat `question` / `finding` / `source` node types |
 
 ---
 

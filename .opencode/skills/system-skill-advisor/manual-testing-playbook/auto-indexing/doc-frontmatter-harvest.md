@@ -54,7 +54,7 @@ sqlite3 .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sq
 ```
 
 3. Call `advisor_recommend({ prompt: "coverage graph script exit codes" })` (MCP or CLI) and read the top candidate.
-4. Negative boundary check: `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "coverage graph script exit codes"` must return spec-doc packets only, never a skill doc.
+4. Negative boundary check: `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "coverage graph script exit codes"` must return spec-doc packets only, never a skill doc.
 5. Flag-off invariance probe: in an isolated workspace copy without the flag, rerun steps 1-3.
 
 ### Expected Signals

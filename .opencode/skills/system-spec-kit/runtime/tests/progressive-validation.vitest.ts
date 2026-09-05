@@ -27,7 +27,7 @@ vi.setConfig({ testTimeout: 120_000 });
 // --- Constants -------------------------------------------------
 const SCRIPTS_DIR = path.resolve(
   __dirname,
-  '../../scripts/spec'
+  '../cli/spec'
 );
 const PROGRESSIVE_VALIDATE = path.join(SCRIPTS_DIR, 'progressive-validate.sh');
 const VALIDATE_SH = path.join(SCRIPTS_DIR, 'validate.sh');

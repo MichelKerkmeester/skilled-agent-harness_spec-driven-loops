@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision"
-    last_updated_at: "2026-09-05T09:45:00Z"
+    last_updated_at: "2026-09-05T11:20:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Marked AC-001/AC-002 Met, AC-003 Superseded by ADR-001"
-    next_safe_action: "Open the stage B follow-on packet so AC-004 can be met"
+    recent_action: "Executed Stage B inside 002-scripts-into-runtime-nesting"
+    next_safe_action: "None; packet closeable"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-05-054-007-memory-command-family-naming-decision-stage-a"
       parent_session_id: null
-    completion_pct: 75
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +43,7 @@ _memory:
 
 **Packet:** system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-05
 <!-- /ANCHOR:metadata -->
 
@@ -59,7 +59,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given the two naming options, When `spec.md` is read, Then each option's blast radius is grouped by consumer class with a reproducible `rg` command | `spec.md:74-88` (Scope, Files to Change); `decision-record.md:44-52` (ADR-001 consumer-class table) | Met | - |
 | AC-002 | REQ-002 | Given the operator's decision, When it is made, Then `decision-record.md` exists in this folder and names the chosen option before any rename work is scheduled | `decision-record.md:60` names Option B, hard cutover | Met | - |
 | AC-003 | REQ-003 | Given Option A is chosen, When the decision record is written, Then it also names the follow-on documentation task (README/ARCHITECTURE/`memory-system.md` clarification) rather than leaving it implicit | `decision-record.md:60` — not applicable, Option B was chosen | Superseded | ADR-001 |
-| AC-004 | REQ-004 | Given Option B is chosen, When the follow-on execution packet is opened, Then its scope explicitly names `runtime/hooks/claude/session-stop.ts:73-76` | `scratch/code-path-followups.md:11` already names the site with file:line as the Stage B seed; the follow-on packet itself (`tasks.md:20` T005) has not been opened under Gate 3 yet | Unmet | - |
+| AC-004 | REQ-004 | Given Option B is chosen, When the follow-on execution packet is opened, Then its scope explicitly names `runtime/hooks/claude/session-stop.ts:73-76` | Stage B executed inside `specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/` per an operator-approved scope amendment (shared blast radius with the scripts -> runtime/cli move); that packet's `implementation-summary.md` records all four `session-stop.ts` fallback candidates rewritten and verified | Met | - |
 
 ### Status values
 
@@ -86,7 +86,7 @@ Note: AC-003 and AC-004 are mutually exclusive by construction - only the row ma
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001, AC-002 are Met and AC-003 is Superseded (Option B was chosen). AC-004 stays Unmet until a Stage B follow-on packet is opened under Gate 3 and its `spec.md` explicitly names `runtime/hooks/claude/session-stop.ts:73-76`; `scratch/code-path-followups.md` in this folder is the seed for that packet.
+AC-001, AC-002 are Met, AC-003 is Superseded (Option B was chosen), and AC-004 is Met: Stage B executed inside `002-scripts-into-runtime-nesting/` per an operator-approved scope amendment rather than a separately Gate-3'd packet, rewriting `runtime/hooks/claude/session-stop.ts:73-76`'s four fallback candidates and every other code-path consumer named in `scratch/code-path-followups.md`.
 <!-- /ANCHOR:closure -->

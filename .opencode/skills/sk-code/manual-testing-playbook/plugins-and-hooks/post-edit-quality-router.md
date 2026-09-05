@@ -233,8 +233,8 @@ check, and `.claude/settings.json` wiring).
   - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
   - `.opencode/skills/sk-doc/sk-create-diagram/scripts/validate-flowchart.sh`
   - `.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh`
-  - `.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh`
-  - `.opencode/skills/system-spec-kit/scripts/rules/check-links.sh`
+  - `.opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh`
+  - `.opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh`
   - `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
 
 ---
@@ -334,8 +334,8 @@ Checker-path existence check (all six canonical paths `post-edit-router.cjs` dis
 OK  .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh
 OK  .opencode/skills/sk-doc/sk-create-diagram/scripts/validate-flowchart.sh
 OK  .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
-OK  .opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh
-OK  .opencode/skills/system-spec-kit/scripts/rules/check-links.sh
+OK  .opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh
+OK  .opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh
 OK  .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
 ```
 

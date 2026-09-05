@@ -251,7 +251,7 @@ async function lookupTriggers(query, options = {}) {
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`
 
 ### Type Annotations
 

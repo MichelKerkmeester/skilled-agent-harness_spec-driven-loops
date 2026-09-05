@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/051-sk-create-chart"
     last_updated_at: "2026-09-02T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the durable directive and bound the phase that still has open work"
-    next_safe_action: "Work phase 007 against its own goal document"
+    recent_action: "Reconciled the binding table and progress log for phases 009 to 011"
+    next_safe_action: "Review the two open questions recorded above before scheduling new work"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/sk-create-chart/SKILL.md"
@@ -23,12 +23,16 @@ _memory:
       fingerprint: "sha256:65e0a180c813a87bf44ba1364baec6db4aabafafe1c2796d06352a971bc3b6f0"
       session_id: "2026-09-02-051-sk-create-chart"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions:
-      - "The phase map row for phase 7 still carries scaffold placeholders"
+      - "A bare two-word chart form name still scores below the mandatory-invoke bar, confirmed unchanged by phase 011's own scope"
+      - "Whether the packet changelog still matches the corpus after phases 010 and 011 is not settled by either phase's own documents"
     answered_questions:
       - "Placement is a workflow mode under sk-doc"
       - "Nothing is copied from the reference implementation"
+      - "Phase 007's twelve fidelity recommendations are closed: seven applied, three partial by decision, two refused in writing"
+      - "Phase 008's adjudicated recommendation set is built, across all seven of phase 009's own child phases"
+      - "Phase 010 closed all five checker holes it recorded on arrival"
 ---
 # Goal: sk-create-chart
 
@@ -71,9 +75,14 @@ phase and binds as if written here.
 |-------|---------------|
 | 007-fidelity-and-library-research | `007-fidelity-and-library-research/goal.md` |
 | 008-evilcharts-reference-research | `008-evilcharts-reference-research/goal.md` |
+| 009-chart-visual-overhaul | `009-chart-visual-overhaul/goal.md` |
+| 010-chart-review-remediation | `010-chart-review-remediation/implementation-summary.md` |
+| 011-chart-command-surface | `011-chart-command-surface/implementation-summary.md` |
 
 Phases 001 through 006 closed before this document existed and carry no goal of
-their own. Their record is the `implementation-summary.md` in each folder.
+their own. Phases 010 and 011 closed after this document existed and carry no
+goal of their own either. Their record is the `implementation-summary.md` in
+each folder.
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -92,8 +101,8 @@ verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
 - [ ] `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED`
-- [ ] Every phase folder under `specs/sk-doc/051-sk-create-chart/` reports its acceptance criteria closeable
-- [ ] The phase map row for phase 7 in `spec.md:145` names real scope and a real status
+- [ ] Every phase folder under `specs/sk-doc/051-sk-create-chart/` carries a Status of Complete in its own spec.md or implementation-summary.md metadata table
+- [ ] Every phase-map row in `spec.md` names real scope and a real status, with no placeholder text left in any row
 - [ ] `validate.sh specs/sk-doc/051-sk-create-chart --strict --recursive` prints `RESULT: PASSED` for every folder
 <!-- /ANCHOR:completion -->
 
@@ -110,13 +119,17 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| 001 source inventory and placement | Done | Phase map row at `spec.md:138` |
-| 002 translation and voice | Done | Phase map row at `spec.md:139` |
-| 003 packet scaffold | Done | Phase map row at `spec.md:140` |
-| 004 native chart build | Done | Twenty templates under `.opencode/skills/sk-doc/sk-create-chart/assets/templates/` |
-| 005 routing integration | Done | Phase map row at `spec.md:142` |
+| 001 source inventory and placement | Done | Phase map row at `spec.md:144` |
+| 002 translation and voice | Done | Phase map row at `spec.md:145` |
+| 003 packet scaffold | Done | Phase map row at `spec.md:146` |
+| 004 native chart build | Done | Twenty-one templates under `.opencode/skills/sk-doc/sk-create-chart/assets/templates/`, after phase 009 added the composed form |
+| 005 routing integration | Done | Phase map row at `spec.md:148` |
 | 006 playbook and closeout | Done | `.opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/` |
-| 007 fidelity and library research | In Progress | Shipped as `abf77df9d0`, and twelve recommendations stay open, tracked in its own goal document |
+| 007 fidelity and library research | Done | Twelve recommendations closed, seven applied, three partial by decision, two refused in writing, per its own completion criteria, all checked |
+| 008 evilcharts reference research | Done | `008-evilcharts-reference-research/goal.md`, Status Complete |
+| 009 chart visual overhaul | Done | `009-chart-visual-overhaul/goal.md`, all seven of its own child phases Complete |
+| 010 chart review remediation | Done | `010-chart-review-remediation/implementation-summary.md`, Status Complete |
+| 011 chart command surface | Done | `011-chart-command-surface/implementation-summary.md`, Status Complete |
 
 ### Deviations and findings
 
@@ -124,4 +137,5 @@ and findings belong here.
 |------|------|
 | The phase map row for phase 7 was never filled in | `spec.md:145` still reads `[Phase 7 scope]` and `Pending`, and `spec.md:162` still reads `[Criteria TBD]`, although the phase shipped |
 | Phases 001 through 006 carry no goal document | This addon arrived after they closed. Adding one now would be a record rather than a directive |
+| This reconciliation pass found two more stale rows | `spec.md`'s phase-map row for phase 8 read `In Progress` after phase 8 itself had already closed `Complete`, and this document's own row for phase 7 still read `In Progress` with the twelve recommendations called open after phase 7 itself had closed all twelve. Both are corrected here, sourced from each phase's own document |
 <!-- /ANCHOR:log -->

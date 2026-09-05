@@ -36,7 +36,7 @@ The shim first sets a default socket directory when needed, checks its built CLI
 
 The skill-advisor launcher mirrors child exit or signal state and expects the owning runtime or operator to restart it after a child crash.
 
-Spec-folder retrieval has no CLI on this page and no daemon behind it. It is two committed scripts under `system-spec-kit/scripts/retrieval/` plus the ripgrep recipes in `../retrieval/retrieval-conventions.md`, and none of the exit codes, warm-only rules or recovery steps below apply to it.
+Spec-folder retrieval has no CLI on this page and no daemon behind it. It is two committed scripts under `system-spec-kit/runtime/cli/retrieval/` plus the ripgrep recipes in `../retrieval/retrieval-conventions.md`, and none of the exit codes, warm-only rules or recovery steps below apply to it.
 
 ### CLI Versus MCP: When To Use Which
 

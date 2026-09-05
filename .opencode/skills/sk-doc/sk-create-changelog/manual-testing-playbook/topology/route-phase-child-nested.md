@@ -40,13 +40,13 @@ Operators run the exact prompt and command sequence for `CHG-002` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CHG-002 | Route a phase child to nested output | Select nested mode and deterministic phase output | `Create the packet-local changelog for this phase child. Detect the nested topology, use the spec-kit generator and report the deterministic output path. Do not calculate a global version.` | 1. `agent: Read SKILL.md section 4 and references/topology-edge-cases.md` -> 2. `bash: test -d specs/sk-doc/001-authoring-surfaces` -> 3. `bash: node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js specs/sk-doc/001-authoring-surfaces --json` -> 4. `agent: State why no global version applies` | Step 1 names phase-child nested mode. Step 2 exits 0. Step 3 returns the generator's deterministic output path. Step 4 says nested output is not four-part versioned | Exact prompt, topology rule, target-directory output and exit status, generator JSON and exit status, nested-version explanation | PASS if the generator selects a packet-local path and global versioning is excluded. FAIL if a global component file or version is proposed | 1. Confirm the folder is a phase child. 2. Use the generator output as the path authority. 3. Remove any global version calculation |
+| CHG-002 | Route a phase child to nested output | Select nested mode and deterministic phase output | `Create the packet-local changelog for this phase child. Detect the nested topology, use the spec-kit generator and report the deterministic output path. Do not calculate a global version.` | 1. `agent: Read SKILL.md section 4 and references/topology-edge-cases.md` -> 2. `bash: test -d specs/sk-doc/001-authoring-surfaces` -> 3. `bash: node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js specs/sk-doc/001-authoring-surfaces --json` -> 4. `agent: State why no global version applies` | Step 1 names phase-child nested mode. Step 2 exits 0. Step 3 returns the generator's deterministic output path. Step 4 says nested output is not four-part versioned | Exact prompt, topology rule, target-directory output and exit status, generator JSON and exit status, nested-version explanation | PASS if the generator selects a packet-local path and global versioning is excluded. FAIL if a global component file or version is proposed | 1. Confirm the folder is a phase child. 2. Use the generator output as the path authority. 3. Remove any global version calculation |
 
 ### Commands
 
 1. `agent: Read SKILL.md section 4 and references/topology-edge-cases.md`
 2. `bash: test -d specs/sk-doc/001-authoring-surfaces`
-3. `bash: node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js specs/sk-doc/001-authoring-surfaces --json`
+3. `bash: node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js specs/sk-doc/001-authoring-surfaces --json`
 4. `agent: State why no global version applies`
 
 ### Expected

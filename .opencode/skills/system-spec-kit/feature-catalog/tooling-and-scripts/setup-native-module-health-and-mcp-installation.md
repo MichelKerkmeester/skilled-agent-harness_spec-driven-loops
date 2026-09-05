@@ -16,7 +16,7 @@ version: 3.6.0.13
 
 ## 1. OVERVIEW
 
-This setup surface combines two neighboring but distinct responsibilities inside `scripts/setup/`: prerequisite validation for spec-driven implementation workflows, and native-module health for the Spec Kit workspace.
+This setup surface combines two neighboring but distinct responsibilities inside `runtime/cli/setup/`: prerequisite validation for spec-driven implementation workflows, and native-module health for the Spec Kit workspace.
 
 Taken together, these scripts validate the active feature-folder shape, probe native Node module health, rebuild ABI-sensitive packages after runtime changes, and record a compatibility marker.
 
@@ -44,10 +44,10 @@ For post-rebuild verification, the authoritative check is that `validate.sh` run
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh` | Workflow guard | Resolves feature-folder paths, validates required spec documents, and optionally invokes spec validation |
-| `.opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh` | Diagnostic probe | Compares recorded versus active Node ABI details and probes native package loadability |
-| `.opencode/skills/system-spec-kit/scripts/setup/rebuild-native-modules.sh` | Repair script | Rebuilds ABI-sensitive modules, optionally clears cache, and refreshes the Node-version marker |
-| `.opencode/skills/system-spec-kit/scripts/setup/record-node-version.js` | Marker writer | Persists the current Node/runtime compatibility snapshot into `.node-version-marker` |
+| `.opencode/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh` | Workflow guard | Resolves feature-folder paths, validates required spec documents, and optionally invokes spec validation |
+| `.opencode/skills/system-spec-kit/runtime/cli/setup/check-native-modules.sh` | Diagnostic probe | Compares recorded versus active Node ABI details and probes native package loadability |
+| `.opencode/skills/system-spec-kit/runtime/cli/setup/rebuild-native-modules.sh` | Repair script | Rebuilds ABI-sensitive modules, optionally clears cache, and refreshes the Node-version marker |
+| `.opencode/skills/system-spec-kit/runtime/cli/setup/record-node-version.js` | Marker writer | Persists the current Node/runtime compatibility snapshot into `.node-version-marker` |
 
 ---
 

@@ -23,7 +23,7 @@ expected_leaf_resources: []
 `system-dist-freshness-guard` is an OpenCode plugin that warns when a locally compiled TypeScript
 `dist/` output is stale relative to its source, so a Bash dispatch or a new session never
 silently trusts an out-of-date build. It reuses the shared `checkAllFreshness()` /
-`checkPackageFreshness()` helpers from `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs`
+`checkPackageFreshness()` helpers from `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`
 against a fixed registry of seven watched packages (`system-spec-kit/shared`,
 `system-spec-kit/scripts`, `system-spec-kit/runtime`, `mcp-code-mode/mcp-server`,
 `sk-design/sk-design-md-generator/backend`).
@@ -60,7 +60,7 @@ the real repository state.
   Bash command, and (d) the Claude-side `SessionStart` wrapper agrees with the same finding.
 - Preconditions: repository checked out at its current commit; Node available on `PATH`;
   `.opencode/plugins/system-dist-freshness-guard.js` and
-  `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` present.
+  `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` present.
 - Real user-facing trigger: starting a new OpenCode session (fires `session.created`), or
   running a Bash command containing `validate.sh` or `opencode run` (fires the risky-bash
   refresh), while at least one watched package's compiled `dist/` predates its TypeScript
@@ -101,7 +101,7 @@ confirm the plugin (a) detects real stale/fresh dist state for every watched
 2. Run the shared checker directly against the live repo to get ground truth:
 
    ```bash
-   node .opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs check-all --json
+   node .opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check-all --json
    ```
 
    Expected: JSON `{"status": "stale"|"fresh"|"degraded", "results": [...]}` for the 7 packages;
@@ -144,7 +144,7 @@ confirm the plugin (a) detects real stale/fresh dist state for every watched
      console.warn = (m) => captured.push("warn:" + m);
      console.error = (m) => captured.push("error:" + m);
      console.log = (m) => captured.push("log:" + m);
-     await hooks["tool.execute.before"]({ tool: "bash" }, { args: { command: "bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh some-spec --strict" } });
+     await hooks["tool.execute.before"]({ tool: "bash" }, { args: { command: "bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh some-spec --strict" } });
      console.warn = w; console.error = e; console.log = l;
      console.log(JSON.stringify(captured));
    })();
@@ -198,7 +198,7 @@ Capture, for every step in the Commands sequence above:
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Plugin: `.opencode/plugins/system-dist-freshness-guard.js`
 - Plugin unit test: `.opencode/plugins/tests/system-dist-freshness-guard.test.cjs`
-- Shared core: `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs`
+- Shared core: `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`
 - Claude `SessionStart` wrapper: `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
 - Claude `PostToolUse(Write|Edit)` hook: `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
 - Claude hook router: `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs`

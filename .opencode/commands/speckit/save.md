@@ -16,8 +16,8 @@ Inputs:
 
 Outputs:
 - Default response is a save plan: target route, proposed edits, blockers, advisories, and follow-up actions.
-- Explicit apply/full-auto runs `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` with AI-authored JSON. That script is the whole write.
-- Retrieval freshness is a separate, optional step: regenerate the trigger index with `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` when the packet's `trigger_phrases` changed. There is no indexing handoff, no daemon to wait for and no launcher file to check.
+- Explicit apply/full-auto runs `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` with AI-authored JSON. That script is the whole write.
+- Retrieval freshness is a separate, optional step: regenerate the trigger index with `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` when the packet's `trigger_phrases` changed. There is no indexing handoff, no daemon to wait for and no launcher file to check.
 
 Guardrails:
 - Do not use standalone `memory/*.md` files as save destinations.
@@ -65,8 +65,8 @@ Tool map:
 
 | Need | Script |
 | --- | --- |
-| Continuity frontmatter, description and graph-metadata refresh | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` |
-| Trigger-index regeneration, only when `trigger_phrases` changed | `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` |
+| Continuity frontmatter, description and graph-metadata refresh | `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` |
+| Trigger-index regeneration, only when `trigger_phrases` changed | `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Trigger phrase correction | Edit the packet document's `trigger_phrases` frontmatter, then rerun the writer |
 
 The writer keeps atomic same-directory update and lock semantics and depends on no background service. Ripgrep cannot write, so no retrieval recipe substitutes for it.

@@ -9,7 +9,7 @@ import {
   predictSmartRouterRoute,
   runMeasurement,
   type CorpusRow,
-} from '../../scripts/observability/smart-router-measurement';
+} from '../cli/observability/smart-router-measurement';
 
 interface AdvisorHookResult {
   status: 'ok';

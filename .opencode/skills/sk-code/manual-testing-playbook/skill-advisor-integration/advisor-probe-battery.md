@@ -10,7 +10,7 @@ version: 3.5.0.9
 
 This scenario verifies the END-TO-END accuracy of sk-code routing via the skill advisor. Unlike SD-* / LS-* / RD-* scenarios that test single prompts, SA-001 runs a battery of ≥15 positive controls (should win sk-code at ≥0.80) and ≥5 negative controls (should NOT win sk-code).
 
-Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` (2026-05-03), sk-code accuracy is **50%** (4/8 correct), well below deep-research (88.6%) and deep-review (81.8%). This scenario establishes a fresh accuracy measurement against a curated probe set.
+Baseline: per `.opencode/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl` (2026-05-03), sk-code accuracy is **50%** (4/8 correct), well below deep-research (88.6%) and deep-review (81.8%). This scenario establishes a fresh accuracy measurement against a curated probe set.
 
 ---
 
@@ -34,7 +34,7 @@ Prompt: this scenario runs the full P1-P15 / N1-N5 probe battery listed below th
 | P8 | OPENCODE | Config | `Generate a replacement gate3-baseline.json fixture for the first 100 prompts.` (golden set rr-iter3-064) |
 | P9 | OPENCODE | TypeScript | `Refactor the corpus scoring helper so it emits stable JSONL keys in sorted order.` (golden set rr-iter3-065) |
 | P10 | OPENCODE | Shell | `Build a tiny script that counts how many prompts mention /speckit:resume.` (golden set rr-iter3-070) |
-| P11 | OPENCODE | Shell | `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spec/validate.sh to clean up the temp dir on exit.` |
+| P11 | OPENCODE | Shell | `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.` |
 | P12 | WEBFLOW | n/a | `Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it behind an IntersectionObserver.` |
 | P13 | WEBFLOW | n/a | `Wire up a GSAP timeline that animates the hero section on page load with motion.dev fallback.` |
 | P14 | WEBFLOW | n/a | `Initialize an HLS.js video player on .video-hero with adaptive bitrate fallback.` |
@@ -121,7 +121,7 @@ If negative FPR > 0:
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` — advisor binary.
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` — sk-code signals + adjacency.
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/labeled-prompts.jsonl` — golden set source (used for P2-P10).
-- `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` — baseline accuracy reference (50% for sk-code per that file's own recorded measurement).
+- `.opencode/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl` — baseline accuracy reference (50% for sk-code per that file's own recorded measurement).
 
 ---
 

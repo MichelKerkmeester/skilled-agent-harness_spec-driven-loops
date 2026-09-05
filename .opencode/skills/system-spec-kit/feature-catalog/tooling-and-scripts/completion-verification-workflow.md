@@ -61,7 +61,7 @@ Exit behavior is intentionally narrow: `0` means completion is allowed, `1` mean
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh` | Script | Parses `checklist.md`, derives priority state, enforces evidence rules, and returns human-readable or JSON completion status |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh` | Script | Parses `checklist.md`, derives priority state, enforces evidence rules, and returns human-readable or JSON completion status |
 
 ---
 

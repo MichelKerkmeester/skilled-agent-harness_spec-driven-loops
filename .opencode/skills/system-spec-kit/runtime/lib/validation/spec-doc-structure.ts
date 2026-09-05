@@ -103,7 +103,7 @@ interface ParsedFrontmatter {
 
 const DEFAULT_FRONTMATTER_ALLOWLIST = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  '../../../scripts/lib/frontmatter-grandfather-allowlist.json',
+  '../../cli/lib/frontmatter-grandfather-allowlist.json',
 );
 
 const SPEC_DOC_RULE_ORDER: readonly SpecDocRuleName[] = [

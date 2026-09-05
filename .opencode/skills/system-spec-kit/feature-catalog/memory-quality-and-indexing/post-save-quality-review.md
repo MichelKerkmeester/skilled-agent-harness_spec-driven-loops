@@ -51,10 +51,10 @@ The review output is machine-readable so callers and downstream quality monitors
 
 | File | Layer | Role |
 |------|-------|------|
-| `scripts/core/post-save-review.ts` | Script | Post-save review logic: frontmatter comparison, severity classification, machine-readable output, `computeReviewScorePenalty()` export |
-| `scripts/core/workflow.ts` | Script | Invokes post-save review at Step 10.5, passes original JSON payload and saved file path |
-| `scripts/memory/generate-context.ts` | Script | CLI entrypoint; delegates save workflow to `workflow.ts` |
-| `scripts/utils/input-normalizer.ts` | Script | Normalizes JSON payload fields before comparison (snake_case/camelCase parity) |
+| `runtime/cli/core/post-save-review.ts` | Script | Post-save review logic: frontmatter comparison, severity classification, machine-readable output, `computeReviewScorePenalty()` export |
+| `runtime/cli/core/workflow.ts` | Script | Invokes post-save review at Step 10.5, passes original JSON payload and saved file path |
+| `runtime/cli/continuity/generate-context.ts` | Script | CLI entrypoint; delegates save workflow to `workflow.ts` |
+| `runtime/cli/utils/input-normalizer.ts` | Script | Normalizes JSON payload fields before comparison (snake_case/camelCase parity) |
 
 ### FEATURE BREAKDOWN
 
@@ -94,8 +94,8 @@ The review output is machine-readable so callers and downstream quality monitors
 
 | File | Type | Role |
 |---|---|---|
-| `scripts/tests/post-save-review.vitest.ts` | Automated test | Severity classification, detection checks, machine-readable output shape, score-penalty computation |
-| `scripts/tests/workflow-e2e.vitest.ts` | Automated test | End-to-end coverage of Step 10.5 placement within the save workflow |
+| `runtime/cli/tests/post-save-review.vitest.ts` | Automated test | Severity classification, detection checks, machine-readable output shape, score-penalty computation |
+| `runtime/cli/tests/workflow-e2e.vitest.ts` | Automated test | End-to-end coverage of Step 10.5 placement within the save workflow |
 
 ---
 

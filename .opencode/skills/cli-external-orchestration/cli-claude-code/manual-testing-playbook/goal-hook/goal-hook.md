@@ -18,7 +18,7 @@ The runtime-neutral goal core does not register a Claude Code adapter or command
 - Real user request: `Set a goal for this Claude Code session.`
 - Prompt: `Verify that this repository does not expose the OpenCode-only goal command to Claude Code, registers no Claude goal adapter, and makes no unproven claim about a separate live Claude goal feature.`
 - Expected execution process: inspect the goal adapter tree -> verify `.claude/commands` is a real filtered directory -> verify the OpenCode goal command is absent while a shared command is symlinked -> run the mirror check -> read the runtime matrix and routing rule.
-- Exact command sequence: run `test ! -e .opencode/hooks/goal/claude`; `test -d .claude/commands && test ! -L .claude/commands`; `test ! -e .claude/commands/goal-opencode.md`; `test -L .claude/commands/agent-router.md`; then run `node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs --check` and scan `.claude/settings.json` for goal registrations.
+- Exact command sequence: run `test ! -e .opencode/hooks/goal/claude`; `test -d .claude/commands && test ! -L .claude/commands`; `test ! -e .claude/commands/goal-opencode.md`; `test -L .claude/commands/agent-router.md`; then run `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` and scan `.claude/settings.json` for goal registrations.
 - Expected signals: no `goal/claude` adapter or Claude goal registration; the Claude command root is not a whole-directory symlink; `goal-opencode.md` is absent; a shared command is linked; the mirror check passes.
 - Evidence requirements: capture every path-check and mirror-check exit status, the registration scan, and the exact README and constitutional routing lines.
 - Desired user-visible outcome: Repository-discovery PASS plus an explicit statement that live product-native behavior remains unverified.
@@ -49,7 +49,7 @@ This scenario proves repository discovery only. It does not assert that a specif
 || `../../../../../hooks/goal/README.md` | Current support matrix and sibling-core boundary. |
 || `../../../../../hooks/goal/lib/goal-core.cjs` | Scoped core that has no Claude caller. |
 || `../../../../../commands/goal-opencode.md` | OpenCode-only command, not a Claude Code fallback. |
-|| `../../../../../skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs` | Filtered Claude command mirror authority. |
+|| `../../../../../skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs` | Filtered Claude command mirror authority. |
 
 ---
 

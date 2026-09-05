@@ -81,7 +81,7 @@ The retrieval contract is `references/retrieval/retrieval-conventions.md`, and t
 When an AI assistant asks "Which spec folder?" at Gate 3, choose Option B (New):
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh 042-my-feature
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh 042-my-feature
 ```
 
 The script creates `specs/042-my-feature/` with the Level 1 starters, initializes `description.json` and prepares the packet docs plus a `scratch/` workspace:
@@ -100,7 +100,7 @@ Continuity no longer writes to `[spec]/memory/*.md`. Use `/speckit:save` to rout
 **Step 2: Save context at the end of a session.**
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   --json '{"specFolder":"042-my-feature","user_prompts":["Implement login form validation"],"observations":["Added client-side validation for empty email and password"],"recent_context":["Touched auth form schema and submit handler"],"toolCalls":["npm test -- auth"],"exchanges":["Verified the error states render before submit"]}' \
   specs/042-my-feature/
 ```
@@ -126,7 +126,7 @@ The system reads the question, classifies the task intent and routes to the righ
 **Step 5: Validate a spec folder.**
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
   specs/[project]/042-my-feature/
 ```
 
@@ -135,7 +135,7 @@ The default validation set runs the non-strict rules from the 46-rule registry. 
 **Step 6: Verify retrieval works.**
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "spec folder"; echo "exit=$?"
 ```
 
@@ -144,7 +144,7 @@ Exit `0` means the index resolved candidates, `1` means a clean miss and `2` mea
 If the index is missing, rebuild it:
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
 ### Common Patterns
@@ -288,7 +288,7 @@ the evaluation harness, and none of that came back in another form.
 Retrieval is now two lexical lanes over committed files. `lookup-trigger-index.mjs` matches a
 prompt against author-declared `trigger_phrases` through the generated index, and the ripgrep
 recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus.
-Continuity is written by `scripts/dist/memory/generate-context.js` into the packet itself and read
+Continuity is written by `runtime/cli/dist/continuity/generate-context.js` into the packet itself and read
 back through the ladder `/speckit:resume` walks. Semantic paraphrase, ranking fusion, decay,
 access tracking, session dedup and graph traversal have no successor: a phrase nobody wrote is a
 clean no-hit.
@@ -364,11 +364,11 @@ Note: in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a wr
 
 ### No MCP Server
 
-This skill registers no MCP server of its own. Retrieval runs from two committed scripts under `scripts/retrieval/`, and continuity is written by `scripts/dist/memory/generate-context.js`. There is nothing to add to `mcpServers` for a generic MCP client, and nothing to keep warm.
+This skill registers no MCP server of its own. Retrieval runs from two committed scripts under `runtime/cli/retrieval/`, and continuity is written by `runtime/cli/dist/continuity/generate-context.js`. There is nothing to add to `mcpServers` for a generic MCP client, and nothing to keep warm.
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
-node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
 ### Feature Flags
@@ -405,10 +405,10 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 .opencode/skills/system-spec-kit/
 ├── SKILL.md                    # AI workflow instructions (when to use, gates, rules)
 ├── README.md                   # This file (what it does, how to use it)
-├── ARCHITECTURE.md             # Boundary contract: scripts/ vs runtime/
+├── ARCHITECTURE.md             # Boundary contract: runtime/cli/ vs runtime/
 ├── templates/                  # Manifest template source
 │   └── manifest/               # Rendered by Level contract resolver + inline renderer
-├── scripts/                    # CLI tools (TypeScript source + Bash)
+├── runtime/cli/                    # CLI tools (TypeScript source + Bash)
 │   ├── spec/                   # Spec folder management scripts
 │   ├── memory/                 # Continuity scripts
 │   ├── templates/              # Template composition (manifest renderer)
@@ -441,11 +441,11 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 | File | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | AI agent instructions: routing rules, gates, validation procedures, template application |
-| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `scripts/` and `runtime/` |
+| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `runtime/cli/` and `runtime/` |
 | [`runtime/README.md`](./runtime/README.md) | engine architecture, the public API surface, build and validation commands |
-| [`scripts/spec/create.sh`](./scripts/spec/create.sh) | create spec folders with level-appropriate template files |
-| [`scripts/spec/validate.sh`](./scripts/spec/validate.sh) | run the validation set from the 46-rule registry on any spec folder |
-| `scripts/dist/memory/generate-context.js` | update packet continuity state from structured JSON |
+| [`runtime/cli/spec/create.sh`](./scripts/spec/create.sh) | create spec folders with level-appropriate template files |
+| [`runtime/cli/spec/validate.sh`](./scripts/spec/validate.sh) | run the validation set from the 46-rule registry on any spec folder |
+| `runtime/cli/dist/continuity/generate-context.js` | update packet continuity state from structured JSON |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | complete catalog of implemented features |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | manual scenarios that validate the catalog |
 
@@ -468,11 +468,11 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 The Gate 1 lookup exits `2`. That is a bad invocation or an unreadable index, never a clean miss.
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
 ls -l .opencode/skills/system-spec-kit/runtime/data/trigger-index.json
 ```
 
-Exit `0` means candidates were found and `1` means none were. If the index file is missing or truncated, regenerate it with `scripts/retrieval/generate-trigger-index.mjs`.
+Exit `0` means candidates were found and `1` means none were. If the index file is missing or truncated, regenerate it with `runtime/cli/retrieval/generate-trigger-index.mjs`.
 
 ### Continuity Save Fails or Creates an Empty File
 
@@ -494,8 +494,8 @@ The save runs but the payload is rejected by the sufficiency gate or the structu
 
 ```bash
 ls -la specs/[project]/NNN-feature/
-bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh specs/[project]/NNN-feature/
-bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[project]/NNN-feature/ [target-level]
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh specs/[project]/NNN-feature/
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[project]/NNN-feature/ [target-level]
 ```
 
 ### Retrieval Misses Content You Know Exists
@@ -519,17 +519,17 @@ There is no paraphrase matching to fall back to. Retrieval is lexical.
 | Retrieval seems wrong | rerun the lookup and read the exit status: `0` hit, `1` clean miss, `2` broken |
 | Session context lost after crash | use `/speckit:resume` to select the fresher folder-local source |
 | Placeholder check fails | run `check-placeholders.sh` and replace all `[PLACEHOLDER]` values |
-| Stale results after save | rerun `scripts/retrieval/generate-trigger-index.mjs` |
+| Stale results after save | rerun `runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Too many near-duplicate results | check that the interference penalty is active in feature flags |
 | Trigger index absent in a fresh clone | it is committed at `runtime/data/trigger-index.json`; a missing file means a bad checkout, not a build step |
 
 ### Diagnostic Commands
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh specs/[project]/NNN-feature/
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/[project]/NNN-feature/ --verbose
-bash .opencode/skills/system-spec-kit/scripts/check-api-boundary.sh
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh specs/[project]/NNN-feature/
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/[project]/NNN-feature/ --verbose
+bash .opencode/skills/system-spec-kit/runtime/cli/check-api-boundary.sh
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
 ```
 
 ---
@@ -569,7 +569,7 @@ A: SKILL.md contains instructions for AI agents: when to activate, routing rules
 A: Run `upgrade-level.sh` with the target level. It renders and injects the additional Level contract sections into the existing folder. Then run `check-placeholders.sh` to find new placeholder values that need filling.
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[project]/NNN-feature/ 2
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[project]/NNN-feature/ 2
 ```
 
 ---
@@ -605,7 +605,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[proje
 
 | Script | Purpose |
 |---|---|
-| `generate-context.ts` | source for the runtime entry point `scripts/dist/memory/generate-context.js` |
+| `generate-context.ts` | source for the runtime entry point `runtime/cli/dist/continuity/generate-context.js` |
 | `backfill-frontmatter.ts` | add missing frontmatter to generated context artifacts |
 | `backfill-research-metadata.ts` | backfill missing metadata files under `research/*/iterations/` |
 | `rank-memories.ts` | rank continuity records by relevance for a query |
@@ -613,7 +613,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[proje
 | `ast-parser.ts` | parse markdown AST for section extraction |
 | `fix-memory-h1.mjs` | fix heading levels in older generated artifacts |
 
-TypeScript sources compile to `scripts/dist/`.
+TypeScript sources compile to `runtime/cli/dist/`.
 
 ### Validation Helper Scripts
 
@@ -634,7 +634,7 @@ The manual testing playbook runs every scenario behind these checks.
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | AI agent instructions, routing, gates and validation |
-| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `scripts/` and `runtime/` |
+| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `runtime/cli/` and `runtime/` |
 | [`runtime/README.md`](./runtime/README.md) | engine architecture, the public API surface, build and validation commands |
 | [`references/memory/memory-system.md`](./references/memory/memory-system.md) | detailed retrieval and continuity reference |
 | [`references/workflows/intake-contract.md`](./references/workflows/intake-contract.md) | shared spec-folder intake contract for plan, complete and resume re-entry |

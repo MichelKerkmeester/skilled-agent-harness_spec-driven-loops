@@ -193,7 +193,7 @@ while [[ $# -gt 0 ]]; do
 done
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:121-133`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:121-133`
 
 ---
 

@@ -1,0 +1,34 @@
+{
+  "specFolder": "<spec-folder>",
+  "sessionSummary": "Phase 3 replay preserves spec kit retrieval language, semantic search adjacency, and the mcp integration topic without introducing junk trigger phrases.",
+  "triggerPhrases": [
+    "spec kit",
+    "semantic search",
+    "mcp"
+  ],
+  "filesModified": [
+    {
+      "path": ".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+      "action": "Modified",
+      "description": "Applies the reusable sanitizer without disturbing healthy trigger phrases"
+    }
+  ],
+  "nextSteps": [
+    "Keep the happy-path fixture green"
+  ],
+  "expectedAbsentTriggers": [
+    "kit/026",
+    "graph",
+    "level spec"
+  ],
+  "expectedPresentTriggers": [
+    "spec kit",
+    "semantic search",
+    "mcp"
+  ],
+  "expectedAbsentTopics": [
+    "tiers full",
+    "level spec"
+  ],
+  "expectedPresentTopics": []
+}

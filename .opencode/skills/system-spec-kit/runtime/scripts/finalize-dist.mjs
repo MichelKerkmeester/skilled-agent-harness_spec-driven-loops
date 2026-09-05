@@ -14,7 +14,7 @@ const workspaceRoot = path.resolve(serverDir, '..', '..', '..', '..');
 const {
   recordPackageBuild,
   writePackageSourceHashCache,
-} = require(path.join(serverDir, '..', 'scripts', 'lib', 'dist-freshness.cjs'));
+} = require(path.join(serverDir, 'cli', 'lib', 'dist-freshness.cjs'));
 const FRESHNESS_PACKAGE_ID = 'system-spec-kit/runtime';
 const staleDistRoots = [
   'system-spec-kit',

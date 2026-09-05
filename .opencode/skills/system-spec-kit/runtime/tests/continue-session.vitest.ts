@@ -31,7 +31,7 @@ let collectSessionData: CollectSessionDataModule | null = null;
 let collectSessionDataLoaded = false;
 
 try {
-  const collectSessionDataPath = path.join(__dirname, '../../scripts/dist/extractors/collect-session-data.js');
+  const collectSessionDataPath = path.join(__dirname, '../cli/dist/extractors/collect-session-data.js');
   collectSessionData = customRequire(collectSessionDataPath) as CollectSessionDataModule;
   collectSessionDataLoaded = true;
 } catch (_err: unknown) {

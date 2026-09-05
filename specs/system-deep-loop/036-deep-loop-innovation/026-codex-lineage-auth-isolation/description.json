@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/026-codex-lineage-auth-isolation",
+  "description": "A per-lineage CODEX_HOME isolates the credential file along with the session state, so every codex fan-out lineage authenticates as nobody and burns",
+  "keywords": [
+    "per-lineage",
+    "isolates",
+    "credential",
+    "file",
+    "along",
+    "session",
+    "state",
+    "every",
+    "codex",
+    "fan-out",
+    "lineage",
+    "authenticates",
+    "nobody",
+    "burns"
+  ],
+  "lastUpdated": "2026-09-05T08:37:33.576Z",
+  "specId": "026",
+  "folderSlug": "codex-lineage-auth-isolation",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

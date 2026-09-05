@@ -41,16 +41,16 @@ Scaffold one packet for each supported Level, validate each packet with strict m
 ### Commands
 
 1. `TMPDIR=$(mktemp -d)`
-2. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path "$TMPDIR/test-1" --name "test-1"`
-3. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$TMPDIR/test-1" --strict`
-4. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path "$TMPDIR/test-2" --name "test-2"`
-5. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$TMPDIR/test-2" --strict`
-6. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3 --path "$TMPDIR/test-3" --name "test-3"`
-7. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$TMPDIR/test-3" --strict`
-8. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3+ --path "$TMPDIR/test-3-plus" --name "test-3-plus"`
-9. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$TMPDIR/test-3-plus" --strict`
-10. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level phase-parent --path "$TMPDIR/test-phase-parent" --name "test-phase-parent"`
-11. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$TMPDIR/test-phase-parent" --strict`
+2. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path "$TMPDIR/test-1" --name "test-1"`
+3. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-1" --strict`
+4. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path "$TMPDIR/test-2" --name "test-2"`
+5. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-2" --strict`
+6. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path "$TMPDIR/test-3" --name "test-3"`
+7. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-3" --strict`
+8. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --path "$TMPDIR/test-3-plus" --name "test-3-plus"`
+9. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-3-plus" --strict`
+10. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level phase-parent --path "$TMPDIR/test-phase-parent" --name "test-phase-parent"`
+11. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-phase-parent" --strict`
 12. `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/workflow-invariance.vitest.ts`
 13. `rm -rf "$TMPDIR"`
 
@@ -68,7 +68,7 @@ Command transcript for each scaffold, strict validation, and invariance run:
 (no output)
 ```
 
-2. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path "$TMPDIR/test-1" --name "test-1"`
+2. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path "$TMPDIR/test-1" --name "test-1"`
 
 ```text
 description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-1
@@ -85,7 +85,7 @@ description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000
   SPEC_FOLDER:  /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-1
 ```
 
-3. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$TMPDIR/test-1" --strict`
+3. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-1" --strict`
 
 ```text
 Spec Folder Validation v3.0.0
@@ -101,7 +101,7 @@ Summary: Errors: 2  Warnings: 0
 RESULT: FAILED
 ```
 
-4. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path "$TMPDIR/test-2" --name "test-2"`
+4. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path "$TMPDIR/test-2" --name "test-2"`
 
 ```text
 description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-2
@@ -118,7 +118,7 @@ description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000
   SPEC_FOLDER:  /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-2
 ```
 
-5. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$TMPDIR/test-2" --strict`
+5. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-2" --strict`
 
 ```text
 Spec Folder Validation v3.0.0
@@ -134,7 +134,7 @@ Summary: Errors: 2  Warnings: 0
 RESULT: FAILED
 ```
 
-6. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3 --path "$TMPDIR/test-3" --name "test-3"`
+6. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path "$TMPDIR/test-3" --name "test-3"`
 
 ```text
 description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-3
@@ -151,7 +151,7 @@ description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000
   SPEC_FOLDER:  /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-3
 ```
 
-7. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$TMPDIR/test-3" --strict`
+7. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-3" --strict`
 
 ```text
 Spec Folder Validation v3.0.0
@@ -167,7 +167,7 @@ Summary: Errors: 2  Warnings: 0
 RESULT: FAILED
 ```
 
-8. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3+ --path "$TMPDIR/test-3-plus" --name "test-3-plus"`
+8. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --path "$TMPDIR/test-3-plus" --name "test-3-plus"`
 
 ```text
 description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-3-plus
@@ -184,7 +184,7 @@ description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000
   SPEC_FOLDER:  /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-3-plus
 ```
 
-9. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$TMPDIR/test-3-plus" --strict`
+9. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-3-plus" --strict`
 
 ```text
 Spec Folder Validation v3.0.0
@@ -200,7 +200,7 @@ Summary: Errors: 2  Warnings: 0
 RESULT: FAILED
 ```
 
-10. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level phase-parent --path "$TMPDIR/test-phase-parent" --name "test-phase-parent"`
+10. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level phase-parent --path "$TMPDIR/test-phase-parent" --name "test-phase-parent"`
 
 ```text
 description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-phase-parent
@@ -218,7 +218,7 @@ description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000
   SPEC_FOLDER:  /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-phase-parent
 ```
 
-11. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$TMPDIR/test-phase-parent" --strict`
+11. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-phase-parent" --strict`
 
 ```text
 Auto-enabled recursive validation: phase child folders detected.

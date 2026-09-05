@@ -224,7 +224,7 @@ function cloneRoot(source: string, label: string): string {
 function runWorker(rootDirectory: string, index: number): Promise<Record<string, unknown>> {
   const tsxLoader = resolve(
     import.meta.dirname,
-    '../../../../system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs',
+    '../../../../system-spec-kit/runtime/cli/node_modules/tsx/dist/loader.mjs',
   );
   const worker = resolve(import.meta.dirname, '../fixtures/authorized-ledger-worker.ts');
   return new Promise((resolveWorker, rejectWorker) => {

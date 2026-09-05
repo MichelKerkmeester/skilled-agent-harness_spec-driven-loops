@@ -290,8 +290,8 @@ The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community
 |---|---|---|
 | `.opencode/skills/cli-external-orchestration/cli-pi/SKILL.md` | Routing, self-invocation guard, provider preflight, headless modes, and hard rules | `PI-001`, `PI-002`, `PI-003`, `PI-017`, `PI-018` |
 | `.opencode/skills/cli-external-orchestration/cli-pi/references/cli-reference.md` | Confirmed flags, config-dir override, JSON/RPC distinctions, and output-first failure handling | `PI-001`, `PI-002`, `PI-017` |
-| `.opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs` | Flat prompt generation and drift checking | `PI-007`, `PI-008` |
-| `.opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-009`, `PI-010` |
+| `.opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs` | Flat prompt generation and drift checking | `PI-007`, `PI-008` |
+| `.opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-009`, `PI-010` |
 | `.pi/extensions/*.ts` and the installed Pi extension declarations | Extension factories, event registration, guard-core, session-lifecycle bridge behavior, and paired advisory delivery | `PI-014`, `PI-015`, `PI-016`, `PI-020`, `PI-022` |
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Pi model allowlist and default | `PI-017` |
 | `.pi/models.json`, `.pi/settings.json`, and `.pi/custom-providers.md` | Config-wired cline-pass provider block, three-segment references, and the slashed model-id contract | `PI-023` |

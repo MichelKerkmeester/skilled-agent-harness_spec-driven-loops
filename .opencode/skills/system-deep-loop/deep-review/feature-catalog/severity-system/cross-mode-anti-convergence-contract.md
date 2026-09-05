@@ -42,7 +42,7 @@ The optimizer manifest carries an invariant group for the same contract: `antiCo
 | `assets/runtime-capabilities.json` | Runtime matrix | Declares the fail-closed stop policy consumed by the runtime capability resolver. |
 | `scripts/runtime-capabilities.cjs` | Mode shim | Binds `deep-review` to the shared runtime capability resolver and local matrix path. |
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs` | Shared runtime | Validates that every loaded matrix includes `stopPolicy: "fail-closed"`. |
-| `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Optimizer | Defines the invariant group that locks convergence mode and rejects `minIterations > maxIterations`. |
+| `.opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json` | Optimizer | Defines the invariant group that locks convergence mode and rejects `minIterations > maxIterations`. |
 
 ### Validation And Tests
 
@@ -57,7 +57,7 @@ The optimizer manifest carries an invariant group for the same contract: `antiCo
 - Group: Severity system
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `severity-system/cross-mode-anti-convergence-contract.md`
-- Primary sources: `assets/deep-review-config.json`, `assets/runtime-capabilities.json`, `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs`, `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+- Primary sources: `assets/deep-review-config.json`, `assets/runtime-capabilities.json`, `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs`, `.opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`
 
 Related references:
 - [quality-gates.md](../../feature-catalog/severity-system/quality-gates.md) - Quality gates

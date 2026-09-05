@@ -205,7 +205,7 @@ workflow:
     steps:
       step_write_continuity:
         action: "Write the session's continuity update with the continuity writer after synthesis"
-        command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
+        command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
         payload_note: "Compose the session JSON yourself and write it before invoking the writer; the loader fails closed when the explicit JSON file is absent. Use a session-scoped temp filename."
         writes:
           - "{spec_folder}/description.json"

@@ -64,7 +64,7 @@ The stress Vitest config lives at the package root as `../vitest.stress.config.t
 | File or directory | Responsibility |
 |---|---|
 | `../vitest.stress.config.ts` | Limits Vitest discovery to this folder, disables file parallelism, and raises the per-test timeout to 240 seconds. |
-| `substrate/v-rule-save-flood-stress.vitest.ts` | Cross-spec contamination rules under a 50-save canonical-doc flood, run against pure validation logic in `../../scripts/lib/validate-memory-quality`. |
+| `substrate/v-rule-save-flood-stress.vitest.ts` | Cross-spec contamination rules under a 50-save canonical-doc flood, run against pure validation logic in `../cli/lib/validate-memory-quality`. |
 
 ---
 

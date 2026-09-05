@@ -405,7 +405,7 @@ Feature file: [DAC-032](../manual-testing-playbook/council-graph-value-compariso
 | `.opencode/skills/system-spec-kit/runtime/tests/ai-council-permission-scope.vitest.ts` | DAC-003, DAC-004, DAC-011, DAC-012, DAC-017 |
 | `.opencode/skills/system-spec-kit/runtime/tests/ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
 | `.opencode/skills/system-spec-kit/runtime/tests/ai-council-rollback.vitest.ts` | DAC-010 |
-| `.opencode/skills/system-spec-kit/scripts/tests/ai-council-persist-artifacts.vitest.ts` | DAC-005, DAC-007 |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/ai-council-persist-artifacts.vitest.ts` | DAC-005, DAC-007 |
 | `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | DAC-019, DAC-020, DAC-021, DAC-022, DAC-023, DAC-024 |
 | `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | DAC-027, DAC-028, DAC-029, DAC-030, DAC-031, DAC-032 |
 | Operator A/B comparison (with-graph vs no-graph baseline) | Operator-runnable contract mirrors the automated DAC-027..DAC-032 fixtures |

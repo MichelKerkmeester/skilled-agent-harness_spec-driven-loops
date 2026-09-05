@@ -51,7 +51,7 @@ Devin also discovers the 12 `.opencode/skills/` packets on its own, with no mirr
 
 ```bash
 # Refresh every symlink tree (devin agents + hooks, and the cursor trees)
-node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs
+node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 
 # Verify roster coverage across all five runtime surfaces
 node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
@@ -105,7 +105,7 @@ Valid `--permission-mode` values are `normal` (alias `auto`, default), `accept-e
 
 | Check | Command | Exit |
 |---|---|---|
-| Symlink trees incl. `hooks/` | `node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
+| Symlink trees incl. `hooks/` | `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
 | Roster coverage | `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
 

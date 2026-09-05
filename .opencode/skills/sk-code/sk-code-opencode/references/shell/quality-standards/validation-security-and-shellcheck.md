@@ -163,7 +163,7 @@ log_error "RULE" "Description of error"
 log_info "RULE" "Informational message"
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:325-343`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:325-343`
 
 ### JSON Mode Support
 

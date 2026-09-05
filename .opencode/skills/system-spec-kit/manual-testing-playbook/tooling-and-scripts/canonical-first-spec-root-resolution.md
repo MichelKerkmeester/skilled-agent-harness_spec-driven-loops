@@ -143,7 +143,7 @@ Validate canonical-first spec-root resolution in an operating-system temporary w
 
    ```bash
    cd .opencode/skills/system-spec-kit
-   npx vitest run scripts/tests/spec-root-canonical-resolver.vitest.ts scripts/tests/spec-root-collision-classifier.vitest.ts scripts/tests/spec-root-write-guard.vitest.ts scripts/tests/spec-root-validation-matrix.vitest.ts --config runtime/vitest.config.ts --root .
+   npx vitest run runtime/cli/tests/spec-root-canonical-resolver.vitest.ts runtime/cli/tests/spec-root-collision-classifier.vitest.ts runtime/cli/tests/spec-root-write-guard.vitest.ts runtime/cli/tests/spec-root-validation-matrix.vitest.ts --config runtime/vitest.config.ts --root .
    ```
 
 ### Expected
@@ -166,7 +166,7 @@ Capture the printed `SPEC_ROOT_PLAYGROUND` path, the complete JSON object, the d
 
 ### Failure Triage
 
-Inspect `scripts/core/spec-root-canonical-resolver.ts` first for precedence or explicit-path failures, `scripts/core/spec-root-collision-classifier.ts` and `scripts/core/spec-root-write-guard.ts` for divergence failures, and `scripts/tests/spec-root-validation-matrix.vitest.ts` for no-alias regressions. A failure in this disposable scenario is implementation-branch evidence only; do not attempt production migration or alias removal as a troubleshooting shortcut.
+Inspect `runtime/cli/core/spec-root-canonical-resolver.ts` first for precedence or explicit-path failures, `runtime/cli/core/spec-root-collision-classifier.ts` and `runtime/cli/core/spec-root-write-guard.ts` for divergence failures, and `runtime/cli/tests/spec-root-validation-matrix.vitest.ts` for no-alias regressions. A failure in this disposable scenario is implementation-branch evidence only; do not attempt production migration or alias removal as a troubleshooting shortcut.
 
 ---
 
@@ -183,10 +183,10 @@ Inspect `scripts/core/spec-root-canonical-resolver.ts` first for precedence or e
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/scripts/core/spec-root-canonical-resolver.ts:43-72` | Canonical-first bare-name resolution, explicit-path preservation, and legacy-only read fallback |
-| `.opencode/skills/system-spec-kit/scripts/core/spec-root-write-guard.ts:14-38` | Writer-freeze enforcement and divergent-duplicate rejection |
-| `.opencode/skills/system-spec-kit/scripts/tests/spec-root-canonical-resolver.vitest.ts:35-79` | Focused tests for the resolver contract |
-| `.opencode/skills/system-spec-kit/scripts/tests/spec-root-validation-matrix.vitest.ts:185-205` | No-alias guarded write with no plain `specs/` root materialized |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-canonical-resolver.ts:43-72` | Canonical-first bare-name resolution, explicit-path preservation, and legacy-only read fallback |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-write-guard.ts:14-38` | Writer-freeze enforcement and divergent-duplicate rejection |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/spec-root-canonical-resolver.vitest.ts:35-79` | Focused tests for the resolver contract |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/spec-root-validation-matrix.vitest.ts:185-205` | No-alias guarded write with no plain `specs/` root materialized |
 | `.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/research.md:138-147` | Deployment and alias-retirement gates; not evidence of production execution |
 
 ---

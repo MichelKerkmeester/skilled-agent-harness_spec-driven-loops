@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: system-deep-loop recommendations implementation (evidence-ledger runtime + per-mode migration)"
-description: "Implement the 178 research recommendations from packets 065/001 + 065/002 into the shipped system-deep-loop runtime and its per-mode workstreams. The research established that all 178 recs converge on ONE architecture — an append-only typed event ledger guarded by a fail-closed transition-authorization gateway, with sealed/frozen reference artifacts, versioned replay fingerprints, receipts/certificates, and blinded/counterfactual adjudication — and that the correct program builds the shared substrate ONCE, then gives each mode its own typed schema over it. The load-bearing constraint (from a GPT-5.6-sol ultra design review): the runtime holds in-flight state and cannot be swapped big-bang, so the new substrate lands ADDITIVE + DARK + non-authoritative behind compatibility adapters and shadow-parity, authority cuts over one mode at a time behind a rollback window, and legacy writers retire only after zero-use telemetry. Phase parent for a phase parent whose direct children are eight thematic group parents plus the research and migration host packets; the groups hold the original research-to-closeout, remediation, hardening, review, and executor phases. The PHASE DOCUMENTATION MAP is the current child inventory."
+description: "Implement the 178 research recommendations from packets 065/001 + 065/002 into the shipped system-deep-loop runtime and its per-mode workstreams. The research established that all 178 recs converge on ONE architecture — an append-only typed event ledger guarded by a fail-closed transition-authorization gateway, with sealed/frozen reference artifacts, versioned replay fingerprints, receipts/certificates, and blinded/counterfactual adjudication — and that the correct program builds the shared substrate ONCE, then gives each mode its own typed schema over it. The load-bearing constraint (from a GPT-5.6-sol ultra design review): the runtime holds in-flight state and cannot be swapped big-bang, so the new substrate lands ADDITIVE + DARK + non-authoritative behind compatibility adapters and shadow-parity, authority cuts over one mode at a time behind a rollback window, and legacy writers retire only after zero-use telemetry. Phase parent whose direct children are nine thematic group parents from the consolidation, holding the original research-to-closeout, remediation, hardening, review and executor phases, followed by flat leaf children appended in creation order as later work landed. Three of those leaves, 026 to 028, were merged in from separate top-level packets on 2026-09-05. The PHASE DOCUMENTATION MAP is the current child inventory and timeline.md is the creation-order lineage."
 trigger_phrases:
   - "deep-loop recommendations implementation"
   - "implement the 178 deep-loop recs"
@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
-<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; mechanics live in each child's plan.md, the architecture + rec-ledger decisions in 004's children (`001-spine-architecture-adr/plan.md`, `002-recommendation-ledger-bijective-map/`). -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; mechanics live in each child's plan.md, the architecture + rec-ledger decisions in `001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/`'s children (`001-spine-architecture-adr/plan.md`, `002-recommendation-ledger-bijective-map/`). -->
 
 # Feature Specification: system-deep-loop Recommendations Implementation
 
@@ -50,7 +50,7 @@ _memory:
 | **Owner skill** | system-deep-loop (owns the runtime subsystems, the five deep modes + benchmark variants, and the externalized-state contract) |
 | **Origin** | Operator: "do that [017-depth multi-phase planning] for our deep-loop innovation multi-phases spec … all the recs from the initial 45 iterations and all those after as well, the 40 after … collaborate with GPT 5.6 SOL ULTRA on how to properly plan and spec this" |
 | **Inputs** | 065/001 (8 ranked recs R1-R8), 065/002 run-1 (59 runtime recs + fan-out finding), 065/002 run-2 (111 per-mode recs). Machine-readable: the three `findings-registry*.json`. |
-| **Review** | GPT-5.6-sol (ultra) design review returned **REQUESTED_CHANGES**; this decomposition folds in every P0/P1. See `004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md`. |
+| **Review** | GPT-5.6-sol (ultra) design review returned **REQUESTED_CHANGES**; this decomposition folds in every P0/P1. See `001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md`. |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -120,19 +120,43 @@ recommendations assigned to exactly one phase or explicitly deferred**.
 <!-- ANCHOR:phases -->
 ## PHASE MAP & OUTCOMES
 
-After grouping, the parent has eight thematic group parents (plus the research host packet 057 and this migration phase 058). Per-phase outcomes live in each group parent and its children; the full creation order of every child is in the root `timeline.md`.
+After grouping, the parent has nine thematic group parents from the consolidation (`001` through `009`), then flat leaf children appended in creation order as later work landed. Two of those later additions, `012-runtime-enablement` and `019-risky-followup-remediation`, are themselves phase parents with their own children, but neither is one of the original nine consolidation groups. The full creation order of every child, including the former top-level numbering of the three children merged in from separate packets, is in the root `timeline.md`.
 
-| # | Group parent | Theme | Status |
-|---|--------------|-------|--------|
-| 1 | `001-research-inputs-and-architecture` | research inputs + architecture contract | complete |
-| 2 | `002-substrate-and-orchestration` | ledger substrate + orchestration | in_progress |
-| 3 | `003-mode-contracts-migration-and-cutover` | mode contracts + authority cutover | in_progress |
-| 4 | `004-gate-closeout-and-drift` | whole-system gate + closeout + drift | in_progress |
-| 5 | `005-blocker-closeout` | cutover blocker closeouts | in_progress |
-| 6 | `006-runtime-docs-and-integrity-hardening` | runtime docs + integrity hardening | in_progress |
-| 7 | `007-executor-and-cli-hardening` | executor + CLI hardening | in_progress |
-| 8 | `008-review-and-rollback-followup` | review + rollback follow-up | complete |
-| 9 | `009-innovation-gap-remediation` | gap-analysis remediation: measurement, fail-closed identity, mode cutover | planned |
+| # | Child | Kind | Theme | Status |
+|---|-------|------|-------|--------|
+| 1 | `001-research-inputs-and-architecture` | group parent | research inputs, baseline taxonomy, architecture transition contract | complete |
+| 2 | `002-substrate-and-orchestration` | group parent | ledger substrate, fan-out orchestration, convergence and health | complete |
+| 3 | `003-mode-contracts-migration-and-cutover` | group parent | mode contracts, migration, authority cutover, legacy retirement | in_progress |
+| 4 | `004-gate-closeout-and-drift` | group parent | whole-system gate, closeout, drift census and revalidation | in_progress |
+| 5 | `005-blocker-closeout` | group parent | cutover blocker closeouts: evidence, shadow parity, write boundaries | complete |
+| 6 | `006-runtime-docs-and-integrity-hardening` | group parent | runtime docs, integrity hardening, identity and lock hardening | in_progress |
+| 7 | `007-executor-and-cli-hardening` | group parent | executor and CLI hardening, write-containment, executor repair | in_progress |
+| 8 | `008-review-and-rollback-followup` | group parent | runtime code review, rollback hardening, containment exemption | complete |
+| 9 | `009-innovation-gap-remediation` | group parent | gap-analysis remediation: fail-closed identity, authority cutover, status reconciliation | in_progress |
+| 10 | `010-weak-model-loop-adherence` | leaf | weak-model write-boundary hardening for DeepSeek lineages | complete |
+| 11 | `011-cli-pi-fanout-execution` | leaf | cli-pi fan-out execution drives DeepSeek lineage to completion | complete |
+| 12 | `012-runtime-enablement` | group parent | turn on dark substrate, cutover, retire legacy writers | complete |
+| 13 | `013-runtime-agent-gateway-alignment` | leaf | migrate leaf agents to the append gateway | complete |
+| 14 | `014-gateway-alignment-review` | leaf | deep-review hunting for gaps the 013 fix missed | in_progress |
+| 15 | `015-gateway-contract-remediation` | leaf | remediate the state-write contract to one gateway path | complete |
+| 16 | `016-system-deep-loop-review` | leaf | broad deep-review for drift, bugs and issues | in_progress |
+| 17 | `017-runtime-latent-issue-remediation` | leaf | verify-then-fix remediation of the 016 audit's P0/P1 findings | in_progress |
+| 18 | `018-pre-existing-test-triage` | leaf | triage pre-existing runtime test failures, fix one drift | complete |
+| 19 | `019-risky-followup-remediation` | group parent | remediate two risky pre-existing test failures, phase parent | complete |
+| 20 | `020-tsx-boot-spaced-path-hardening` | leaf | harden tsx boot, containment root for spaced paths | complete |
+| 21 | `021-containment-symlink-autoscope` | leaf | auto-resolve containment root through symlinked artifact trees | complete |
+| 22 | `022-phase0-dispatch-anchor` | leaf | anchor Phase-0 dispatch gate to objective marker | complete |
+| 23 | `023-cross-runtime-dispatch` | leaf | retire the Phase-0 dispatch-context self-classification gate | complete |
+| 24 | `024-executor-kind-routing` | leaf | deterministic per-kind dispatch for cli-cursor, devin, pi | complete |
+| 25 | `025-deprecate-deep-alignment` | leaf | remove deep-alignment, cascade to conformance-benchmark capability | complete |
+| 26 | `026-codex-lineage-auth-isolation` | leaf | codex lineage 401 traced to an isolated CODEX_HOME, fix reverted | withdrawn |
+| 27 | `027-executor-availability-docs` | leaf | correct command contracts to state real executor sets | complete |
+| 28 | `028-cli-lineage-nesting-and-containment-guard` | leaf | stop nested codex exec, preserve containment recovery patch | complete |
+
+Three children arrived by merge and renumbering from separate top-level packets:
+- `026-codex-lineage-auth-isolation` was `system-deep-loop/038-codex-lineage-auth-isolation`. Its fix was reverted after a review returned FAIL, so the packet is kept as an investigation record and carries `deferred` in `graph-metadata.json`, the nearest value the status enum admits.
+- `027-executor-availability-docs` was `system-deep-loop/039-executor-availability-docs`.
+- `028-cli-lineage-nesting-and-containment-guard` was `system-deep-loop/040-cli-lineage-nesting-and-containment-guard`. It reads `complete` here because its own `acceptance-criteria.md` closure gate is Met on all ten rows, while `graph-metadata.json` derives `in_progress` from 21 unevidenced boilerplate rows still open in its `tasks.md`. The gate is the closure authority, the ledger is a record, and both are left honest rather than reconciled by back-filling evidence.
 
 <!-- /ANCHOR:phases -->
 
@@ -182,21 +206,37 @@ Deferred to the phase that owns the decision (per the SOL review):
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-Direct children after grouping: eight thematic group parents plus the later closeout and enablement packets. The root also holds two host packets — 057 (the grouping research) and 058 (this migration phase) — and the loose dispositions.md file. Each group's own children and the full lineage are in the group parents and `timeline.md`.
+Direct children after grouping: nine thematic group parents from the consolidation, then flat leaf children appended in creation order as later work landed. Two of the later additions, `012-runtime-enablement/` and `019-risky-followup-remediation/`, are themselves phase parents with their own children. The full lineage of every child, including the former top-level numbering of the three children merged in from separate packets, is in the root `timeline.md`.
 
-| # | Group parent | Status |
-|---|--------------|--------|
+| # | Child | Status |
+|---|-------|--------|
 | 1 | `001-research-inputs-and-architecture/` | complete |
-| 2 | `002-substrate-and-orchestration/` | in_progress |
+| 2 | `002-substrate-and-orchestration/` | complete |
 | 3 | `003-mode-contracts-migration-and-cutover/` | in_progress |
 | 4 | `004-gate-closeout-and-drift/` | in_progress |
-| 5 | `005-blocker-closeout/` | in_progress |
+| 5 | `005-blocker-closeout/` | complete |
 | 6 | `006-runtime-docs-and-integrity-hardening/` | in_progress |
 | 7 | `007-executor-and-cli-hardening/` | in_progress |
 | 8 | `008-review-and-rollback-followup/` | complete |
-| 9 | `009-innovation-gap-remediation/` | planned |
+| 9 | `009-innovation-gap-remediation/` | in_progress |
 | 10 | `010-weak-model-loop-adherence/` | complete |
 | 11 | `011-cli-pi-fanout-execution/` | complete |
 | 12 | `012-runtime-enablement/` | complete |
+| 13 | `013-runtime-agent-gateway-alignment/` | complete |
+| 14 | `014-gateway-alignment-review/` | in_progress |
+| 15 | `015-gateway-contract-remediation/` | complete |
+| 16 | `016-system-deep-loop-review/` | in_progress |
+| 17 | `017-runtime-latent-issue-remediation/` | in_progress |
+| 18 | `018-pre-existing-test-triage/` | complete |
+| 19 | `019-risky-followup-remediation/` | complete |
+| 20 | `020-tsx-boot-spaced-path-hardening/` | complete |
+| 21 | `021-containment-symlink-autoscope/` | complete |
+| 22 | `022-phase0-dispatch-anchor/` | complete |
+| 23 | `023-cross-runtime-dispatch/` | complete |
+| 24 | `024-executor-kind-routing/` | complete |
+| 25 | `025-deprecate-deep-alignment/` | complete |
+| 26 | `026-codex-lineage-auth-isolation/` | withdrawn |
+| 27 | `027-executor-availability-docs/` | complete |
+| 28 | `028-cli-lineage-nesting-and-containment-guard/` | complete |
 
 <!-- /ANCHOR:phase-map -->

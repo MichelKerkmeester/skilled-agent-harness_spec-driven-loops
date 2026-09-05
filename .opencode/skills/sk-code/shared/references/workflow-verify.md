@@ -80,7 +80,7 @@ This subsection applies only to the OpenCode surface. It is present in the share
 OpenCode verification starts with the real spec validation contract when a spec folder is in scope:
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
 ```
 
 The authoritative `validate.sh` exit-code contract is: `0=pass`, `1=user error`, `2=validation error`, `3=system error`. Do not describe exit `1` as warnings; warnings only become a failing validation outcome under `--strict`, which exits `2` unless the folder is grandfathered. `--strict` also runs strict-only validators such as evidence-marker lint, generated-metadata integrity/drift checks, command-tree parity, and completion freshness when that feature flag is enabled.

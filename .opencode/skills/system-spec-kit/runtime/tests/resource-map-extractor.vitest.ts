@@ -17,7 +17,7 @@ type EmitArgs = {
   createdAt?: string;
 };
 
-const { emitResourceMap } = require('../../scripts/resource-map/extract-from-evidence.cjs') as {
+const { emitResourceMap } = require('../cli/resource-map/extract-from-evidence.cjs') as {
   emitResourceMap(args: EmitArgs): string;
 };
 
@@ -121,7 +121,7 @@ describe('resource-map extractor', () => {
             source_paths: ['.opencode/commands/agent-router.md'],
             citations: [
               { path: '.opencode/skills/system-deep-loop/deep-research/SKILL.md' },
-              { path: '.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs' },
+              { path: '.opencode/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs' },
             ],
           },
           {

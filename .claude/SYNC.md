@@ -59,7 +59,7 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all
 
 # 2. Refresh every symlink tree this repo owns (includes .claude/hooks)
-node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs
+node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 
 # 3. Confirm coverage across all five runtime surfaces
 node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
@@ -100,7 +100,7 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 | Check | Command | Exit |
 |---|---|---|
 | Agent fork alignment | `node .opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` | 0 ok / non-zero blocks commit |
-| Symlink trees incl. `hooks/` | `node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
+| Symlink trees incl. `hooks/` | `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
 | Roster coverage, all runtimes | `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift / 2 canonical missing |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
 
@@ -122,4 +122,4 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 | [`hooks/README.md`](hooks/README.md) | Why `hooks/` is discovery-only and not the execution path |
 | [`agents/README.txt`](agents/README.txt) | Agent roster |
 | [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) | Sibling runtime manifests |
-| `.opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs` | The symlink-tree generator |
+| `.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs` | The symlink-tree generator |

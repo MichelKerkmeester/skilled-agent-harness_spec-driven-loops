@@ -80,8 +80,8 @@ dist/
 .opencode/skills/system-spec-kit/shared/**/*.js.map
 .opencode/skills/system-spec-kit/shared/**/*.d.ts
 .opencode/skills/system-spec-kit/shared/**/*.d.ts.map
-.opencode/skills/system-spec-kit/scripts/tests/*.vitest.d.ts.map
-.opencode/skills/system-spec-kit/scripts/tests/*.vitest.js.map
+.opencode/skills/system-spec-kit/runtime/cli/tests/*.vitest.d.ts.map
+.opencode/skills/system-spec-kit/runtime/cli/tests/*.vitest.js.map
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Database files

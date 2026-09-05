@@ -21,8 +21,8 @@ This scenario validates Phase detection scoring for `PHASE-001`. It focuses on R
 
 
 - Objective: Run `recommend-level.sh --recommend-phases --json` on a high-complexity spec and verify scoring output.
-- Real user request: `` Please validate Phase detection scoring against bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec> and tell me whether the expected signals are present: JSON output contains `recommended_phases` (boolean), `phase_score` (number), `suggested_phase_count` (number), and 4 dimension scores: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%); simple specs score low. ``
-- Prompt: `Validate Phase detection scoring against bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec> and report cited pass/fail evidence.`
+- Real user request: `` Please validate Phase detection scoring against bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --recommend-phases --json specs/<target-spec> and tell me whether the expected signals are present: JSON output contains `recommended_phases` (boolean), `phase_score` (number), `suggested_phase_count` (number), and 4 dimension scores: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%); simple specs score low. ``
+- Prompt: `Validate Phase detection scoring against bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --recommend-phases --json specs/<target-spec> and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: JSON output contains `recommended_phases` (boolean), `phase_score` (number), `suggested_phase_count` (number), and 4 dimension scores: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%); simple specs score low
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -35,13 +35,13 @@ This scenario validates Phase detection scoring for `PHASE-001`. It focuses on R
 ### Prompt
 
 ```
-Validate Phase detection scoring against bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec> and report cited pass/fail evidence.
+Validate Phase detection scoring against bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --recommend-phases --json specs/<target-spec> and report cited pass/fail evidence.
 ```
 
 ### Commands
 
 1. Create or identify a high-complexity spec folder (>500 LOC, multiple concerns)
-2. `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec>`
+2. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --recommend-phases --json specs/<target-spec>`
 3. Inspect JSON output for `recommended_phases`, `phase_score`, and `suggested_phase_count` fields
 4. Verify all 4 scoring dimensions are present in output: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%)
 5. Run on a simple spec folder and confirm `recommended_phases` is false

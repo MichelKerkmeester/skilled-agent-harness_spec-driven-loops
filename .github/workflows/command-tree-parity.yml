@@ -19,7 +19,7 @@ jobs:
       - name: Compare command trees
         run: |
           set -euo pipefail
-          CHECKER=".opencode/skills/system-spec-kit/scripts/validate-command-tree-parity.sh"
+          CHECKER=".opencode/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh"
           # Fail closed in CI: a required guard must exist. A PR that deletes or
           # moves the checker must not silently disable its own gate.
           if [ ! -f "$CHECKER" ]; then

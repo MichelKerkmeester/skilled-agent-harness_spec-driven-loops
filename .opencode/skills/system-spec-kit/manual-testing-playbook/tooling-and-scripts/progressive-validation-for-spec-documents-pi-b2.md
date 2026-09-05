@@ -70,7 +70,7 @@ Re-run used `rc=$?` and captured the real command exit code.
 Level 1 command:
 
 ```bash
-bash ".opencode/skills/system-spec-kit/scripts/spec/progressive-validate.sh" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --level 1; rc=$?; printf '\nEXIT_CODE=%s\n' "$rc"
+bash ".opencode/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --level 1; rc=$?; printf '\nEXIT_CODE=%s\n' "$rc"
 ```
 
 Level 1 observed output:
@@ -112,7 +112,7 @@ EXIT_CODE=2
 Level 2 command used dry-run because the only allowed write path for this scenario execution is this scenario file:
 
 ```bash
-bash ".opencode/skills/system-spec-kit/scripts/spec/progressive-validate.sh" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --level 2 --dry-run; rc=$?; printf '\nEXIT_CODE=%s\n' "$rc"
+bash ".opencode/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --level 2 --dry-run; rc=$?; printf '\nEXIT_CODE=%s\n' "$rc"
 ```
 
 Level 2 observed output:
@@ -140,7 +140,7 @@ EXIT_CODE=2
 Level 3 command used dry-run because the only allowed write path for this scenario execution is this scenario file:
 
 ```bash
-bash ".opencode/skills/system-spec-kit/scripts/spec/progressive-validate.sh" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --level 3 --dry-run; rc=$?; printf '\nEXIT_CODE=%s\n' "$rc"
+bash ".opencode/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --level 3 --dry-run; rc=$?; printf '\nEXIT_CODE=%s\n' "$rc"
 ```
 
 Level 3 observed output:
@@ -171,7 +171,7 @@ EXIT_CODE=2
 Level 4 verbose command used dry-run because the only allowed write path for this scenario execution is this scenario file:
 
 ```bash
-bash ".opencode/skills/system-spec-kit/scripts/spec/progressive-validate.sh" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --level 4 --dry-run --verbose; rc=$?; printf '\nEXIT_CODE=%s\n' "$rc"
+bash ".opencode/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --level 4 --dry-run --verbose; rc=$?; printf '\nEXIT_CODE=%s\n' "$rc"
 ```
 
 Level 4 observed report and diff output:
@@ -222,7 +222,7 @@ EXIT_CODE=2
 Level 4 JSON report command:
 
 ```bash
-bash ".opencode/skills/system-spec-kit/scripts/spec/progressive-validate.sh" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --level 4 --dry-run --json; rc=$?; printf '\nEXIT_CODE=%s\n' "$rc"
+bash ".opencode/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --level 4 --dry-run --json; rc=$?; printf '\nEXIT_CODE=%s\n' "$rc"
 ```
 
 Level 4 JSON observed output:

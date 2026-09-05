@@ -88,7 +88,7 @@ Privilege the YAML synthesis step and reducer behavior over secondary docs if th
 | `.opencode/commands/deep/assets/deep-research-auto.yaml` | Autonomous synthesis emission step |
 | `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Confirm-mode synthesis emission step |
 | `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer flag handling and write path |
-| `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Shared template renderer and research-shape adapter |
+| `.opencode/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` | Shared template renderer and research-shape adapter |
 | `.opencode/skills/system-spec-kit/runtime/scripts/tests/resource-map-extractor.vitest.ts` | Focused regression coverage for the emitted output shape |
 
 ---

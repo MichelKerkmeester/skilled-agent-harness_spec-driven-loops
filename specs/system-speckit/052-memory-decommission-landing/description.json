@@ -1,17 +1,27 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/052-memory-decommission-landing",
-  "description": "memory decommission landing and verification",
+  "description": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine,",
   "keywords": [
+    "packets",
+    "removed",
     "memory",
-    "decommission",
-    "landing",
-    "verification"
+    "database",
+    "replaced",
+    "trigger",
+    "index",
+    "ripgrep",
+    "semantic",
+    "lane",
+    "vendored",
+    "engine"
   ],
-  "lastUpdated": "2026-09-04T17:48:43.976Z",
-  "specId": "001",
+  "lastUpdated": "2026-09-05T03:05:35.008Z",
+  "specId": "052",
   "folderSlug": "memory-decommission-landing",
-  "parentChain": [],
+  "parentChain": [
+    "system-speckit"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

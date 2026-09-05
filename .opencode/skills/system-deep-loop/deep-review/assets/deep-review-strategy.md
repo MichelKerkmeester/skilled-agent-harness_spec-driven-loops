@@ -205,7 +205,7 @@ Reference snippet showing a partially populated strategy file mid-review. Use th
 
 ## 4. NEXT FOCUS
 - Dimension: test-coverage
-- Files: .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts
+- Files: .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .opencode/skills/system-spec-kit/runtime/cli/tests/deep-research-contract-parity.vitest.ts
 - Why: Iteration 2 surfaced a P0 (convergence-path coverage gap); needs a focused follow-up before correctness can terminate PASS.
 
 ## 9. COVERAGE MATRIX

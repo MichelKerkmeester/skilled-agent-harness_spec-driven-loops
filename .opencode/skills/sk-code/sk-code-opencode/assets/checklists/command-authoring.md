@@ -55,14 +55,14 @@ This checklist keeps user-invoked commands consistent with the two live command 
 4. For YAML-router commands, add or update presentation and workflow assets under the command asset directory.
 5. For contract-renderer commands, keep the wrapper minimal and update the rendered contract source or deep-loop runtime assets instead of duplicating behavior in the wrapper.
 6. Reference the owning skill and any agent dispatch contracts by exact path or command name.
-7. Run `node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs` for Claude parity; do not add manual command mirrors or `.opencode/prompts` entries.
+7. Run `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs` for Claude parity; do not add manual command mirrors or `.opencode/prompts` entries.
 8. Validate links, command examples, contract-renderer references, and YAML workflow references.
 
 ---
 
 ## 4. POST-CHECKS
 
-- [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` against the owning spec folder when the command change is part of a spec folder.
+- [ ] Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` against the owning spec folder when the command change is part of a spec folder.
 - [ ] grep verification for command frontmatter: `rg -n "^(description|argument-hint|allowed-tools):" .opencode/commands/create/skill.md .opencode/commands/speckit/complete.md .opencode/commands/deep/research.md`.
 - [ ] grep verification for YAML-router assets: `rg -n "create_skill_(auto|confirm)\\.yaml|speckit_complete_(auto|confirm)\\.yaml|presentation" .opencode/commands/create/skill.md .opencode/commands/speckit/complete.md`.
 - [ ] grep verification for contract-renderer commands: `rg -n "render-command-contract\\.cjs|deep/research" .opencode/commands/deep/research.md .opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs`.

@@ -32,13 +32,13 @@ Validates spec folder structure and content against level requirements.
 **Usage:**
 ```bash
 # Basic validation
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/001-feature/
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/001-feature/
 
 # Quiet mode (suppress non-essential output)
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --quiet specs/001-feature/
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --quiet specs/001-feature/
 
 # JSON output
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --json specs/001-feature/
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --json specs/001-feature/
 ```
 
 **Exit Codes:**
@@ -60,10 +60,10 @@ Verifies all checklist items are marked complete before claiming "done".
 **Usage:**
 ```bash
 # Check completion status
-bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh specs/001-feature/
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh specs/001-feature/
 
 # JSON output for automation
-bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh --json specs/001-feature/
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh --json specs/001-feature/
 ```
 
 **Requirements:**
@@ -83,13 +83,13 @@ Updates the target packet's canonical continuity surfaces from conversation cont
 **Usage:**
 ```bash
 # JSON file mode (preferred) - pass structured JSON data file
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/001-feature/
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/001-feature/
 
 # Inline JSON mode - pass structured JSON directly
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"001-feature","sessionSummary":"..."}' specs/001-feature/
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"001-feature","sessionSummary":"..."}' specs/001-feature/
 
 # Stdin mode - pipe structured JSON
-echo '{"specFolder":"001-feature","sessionSummary":"..."}' | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin
+echo '{"specFolder":"001-feature","sessionSummary":"..."}' | node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin
 ```
 
 **Environment Variables:**
@@ -112,25 +112,25 @@ Creates new spec folders with appropriate templates.
 **Usage:**
 ```bash
 # Interactive mode
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh
 
 # With arguments
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --name "feature-name"
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --name "feature-name"
 
 # With explicit path
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path specs/###-name --name "feature-name"
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path specs/###-name --name "feature-name"
 
 # Sub-folder mode
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --subfolder specs/001-parent/ --topic "iteration-2"
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --subfolder specs/001-parent/ --topic "iteration-2"
 ```
 
 `--path` resolves and validates the target before writing; traversal outside the repository is rejected.
 
 Set `SPECKIT_POST_VALIDATE=1` to opt into immediate post-create `validate.sh --quiet` checks.
 
-**Phase creation**: `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --phase --phases 3 --phase-names 'foundation,implementation,integration' 'OAuth2 flow'`
-**Append phases**: `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --phase --parent specs/022-feature --phases 2 --phase-names 'stabilization,rollout' 'OAuth2 flow'`
-**Recursive validation**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/022-feature/ --recursive`
+**Phase creation**: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --phase --phases 3 --phase-names 'foundation,implementation,integration' 'OAuth2 flow'`
+**Append phases**: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --phase --parent specs/022-feature --phases 2 --phase-names 'stabilization,rollout' 'OAuth2 flow'`
+**Recursive validation**: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/022-feature/ --recursive`
 These commands create/validate direct-child phase packets
 under a coordination root.
 
@@ -159,10 +159,10 @@ Recommends appropriate documentation level based on feature characteristics.
 **Usage:**
 ```bash
 # Basic recommendation
-bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh "Add user authentication"
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh "Add user authentication"
 
 # With feature flags
-bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --auth --api "Add OAuth login"
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --auth --api "Add OAuth login"
 ```
 
 **Feature Flags:**
@@ -183,7 +183,7 @@ The resolver is the library that reads `templates/spec-kit-docs.json` for `creat
 
 **Usage:**
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
+bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir /tmp/spec-kit-render \
   .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl \

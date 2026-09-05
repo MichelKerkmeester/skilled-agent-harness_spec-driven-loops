@@ -43,7 +43,7 @@ Agent mirrors are executable project resources. A filename or count alone is ins
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PI-009 | Pi-subagents agent parsing and tool surface | Validate project agent mirrors and generic delegation tools | `List your available tools and report whether the pi-subagents delegation tools are present. Do not modify files. If provider credentials are missing, return that exact blocker.` | `node .opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs --check` -> `find .pi/agents -maxdepth 1 -name '*.md' | wc -l` -> `PI_CODING_AGENT_DIR=<tmp> pi --offline --approve -p "list your available tools" </dev/null` | Sync output reports 13; file count is 13; no schema error; tool names appear when the live session reaches tool listing | Captured sync output: `[pi-agent-sync] PASS: 13 agents are in sync.` Prior captured live implementation evidence reports exit `0` with `subagent`, `subagent_wait`, `subagent_supervisor`, and `intercom`. Fresh isolated re-probe output reached `No API key found for the selected model.` with `probe_rc=1` and no agent-schema error. | PASS for current parse/sync and the existing captured live tool-surface evidence. SKIP the fresh provider-backed confirmation with blocker `provider credentials are absent on this machine`. FAIL on any schema or extension-load error. | Inspect the first invalid agent file, rerun the sync checker, and keep community-package behavior distinct from Pi core. |
+| PI-009 | Pi-subagents agent parsing and tool surface | Validate project agent mirrors and generic delegation tools | `List your available tools and report whether the pi-subagents delegation tools are present. Do not modify files. If provider credentials are missing, return that exact blocker.` | `node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check` -> `find .pi/agents -maxdepth 1 -name '*.md' | wc -l` -> `PI_CODING_AGENT_DIR=<tmp> pi --offline --approve -p "list your available tools" </dev/null` | Sync output reports 13; file count is 13; no schema error; tool names appear when the live session reaches tool listing | Captured sync output: `[pi-agent-sync] PASS: 13 agents are in sync.` Prior captured live implementation evidence reports exit `0` with `subagent`, `subagent_wait`, `subagent_supervisor`, and `intercom`. Fresh isolated re-probe output reached `No API key found for the selected model.` with `probe_rc=1` and no agent-schema error. | PASS for current parse/sync and the existing captured live tool-surface evidence. SKIP the fresh provider-backed confirmation with blocker `provider credentials are absent on this machine`. FAIL on any schema or extension-load error. | Inspect the first invalid agent file, rerun the sync checker, and keep community-package behavior distinct from Pi core. |
 
 ### Optional Supplemental Checks
 
@@ -66,7 +66,7 @@ Agent mirrors are executable project resources. A filename or count alone is ins
 | File | Role |
 |---|---|
 | `.pi/agents/` | 13 generated project agent mirrors |
-| `.opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs` | Generator and sync checker |
+| `.opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs` | Generator and sync checker |
 | `.pi/settings.json` | Installed package list |
 
 ---

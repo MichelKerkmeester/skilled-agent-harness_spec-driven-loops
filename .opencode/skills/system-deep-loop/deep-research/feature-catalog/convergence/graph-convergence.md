@@ -46,7 +46,7 @@ The reducer consumes the newest `graph_convergence` event and surfaces its verdi
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts` | Vitest | Verifies graph convergence events reach the reducer and dashboard correctly. |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/graph-aware-stop.vitest.ts` | Vitest | Verifies graph convergence events reach the reducer and dashboard correctly. |
 | `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/graph-convergence-signals.md` | Manual playbook | Verifies graph convergence signals are derived and exposed correctly. |
 | `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/graph-aware-stop-gate.md` | Manual playbook | Verifies graph-aware stop gates can block or allow synthesis. |
 

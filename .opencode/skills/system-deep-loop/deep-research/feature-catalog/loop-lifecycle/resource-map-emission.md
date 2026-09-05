@@ -36,7 +36,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Shared script | Normalizes research evidence and renders the ten-category resource map. |
+| `.opencode/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` | Shared script | Normalizes research evidence and renders the ten-category resource map. |
 | `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Adds the `--emit-resource-map` path and honors `config.resource_map.emit`. |
 | `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow | Triggers emission during synthesis before final `research.md` compilation. |
 | `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors the same synthesis-time emission path in confirm mode. |
@@ -56,7 +56,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 - Group: Loop lifecycle
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `loop-lifecycle/resource-map-emission.md`
-- Primary sources: `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`, `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`, `.opencode/commands/deep/assets/deep-research-auto.yaml`, `.opencode/commands/deep/assets/deep-research-confirm.yaml`
+- Primary sources: `.opencode/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`, `.opencode/commands/deep/assets/deep-research-auto.yaml`, `.opencode/commands/deep/assets/deep-research-confirm.yaml`
 Related references:
 - [memory-save.md](../../feature-catalog/loop-lifecycle/memory-save.md) — Memory save
 - [fanout-dispatch.md](../../feature-catalog/loop-lifecycle/fanout-dispatch.md) — Fan-out loop dispatch

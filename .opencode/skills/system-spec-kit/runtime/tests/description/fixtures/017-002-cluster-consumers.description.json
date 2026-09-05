@@ -66,7 +66,7 @@
   },
   "qualityGate": {
     "requirement": "/deep:start-review-loop :auto ×7 on Wave B scope emits ZERO new P0, ZERO new P1",
-    "validator": "bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict on 017 folder exits 0 with 0 warnings"
+    "validator": "bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --strict on 017 folder exits 0 with 0 warnings"
   },
   "memorySequence": 0,
   "memoryNameHistory": []

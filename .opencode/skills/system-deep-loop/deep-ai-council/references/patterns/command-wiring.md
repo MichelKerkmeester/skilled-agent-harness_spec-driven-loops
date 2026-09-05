@@ -77,7 +77,7 @@ node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts
   $CONVERGED_FLAG
 
 # 3. Optional: route payload through the existing canonical memory save workflow.
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   "$PAYLOAD" "$PACKET"
 ```
 
@@ -119,7 +119,7 @@ steps:
     uses: shell.exec
     if: "${packet.enable_memory_save}"
     command: >
-      node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
+      node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js
       "${runtime.tmp}/council-payload.json"
       "${packet.spec_folder}"
 ```
@@ -175,4 +175,4 @@ It always exits `0` and is not part of `validate.sh --strict`.
 - Output schema: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`
 - State format: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
 - Persistence helper: `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
-- Memory save entrypoint: `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
+- Memory save entrypoint: `.opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`

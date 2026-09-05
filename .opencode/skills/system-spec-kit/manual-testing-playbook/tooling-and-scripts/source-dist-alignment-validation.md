@@ -38,7 +38,7 @@ Validate Source-dist alignment validation against cd .opencode/skills/system-spe
 ### Commands
 
 1. `cd .opencode/skills/system-spec-kit`
-2. `npx ts-node --transpile-only scripts/evals/check-source-dist-alignment.ts`
+2. `npx ts-node --transpile-only runtime/cli/evals/check-source-dist-alignment.ts`
 3. Check exit code is 0
 4. Verify "violations: 0" in output
 

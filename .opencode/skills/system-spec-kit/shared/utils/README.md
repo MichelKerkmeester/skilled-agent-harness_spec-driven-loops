@@ -49,7 +49,7 @@ Disallowed dependency direction:
 
 ```text
 utils/* -> runtime/*
-utils/* -> scripts/*
+utils/* -> runtime/cli/*
 utils/* -> database modules
 utils/* -> network clients
 ```

@@ -59,11 +59,11 @@ User request: $ARGUMENTS
 
 ```bash
 # 1. Regenerate both owned trees (each deletes output it no longer expects)
-node .opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs
-node .opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs
+node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs
+node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs
 
 # 2. Refresh the hooks discovery mirror
-node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs
+node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 
 # 3. Push repo hook config to the user-global file Codex actually reads
 node .opencode/bin/install-codex-hooks.mjs          # backs up first; --dry-run to preview
@@ -107,9 +107,9 @@ developer_instructions = '''
 
 | Check | Command | Exit |
 |---|---|---|
-| Generated agents | `node .opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs --check` | 0 ok / 1 drift |
-| Generated prompts | `node .opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs --check` | 0 ok / 1 drift |
-| Hooks discovery mirror | `node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
+| Generated agents | `node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check` | 0 ok / 1 drift |
+| Generated prompts | `node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check` | 0 ok / 1 drift |
+| Hooks discovery mirror | `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
 | Prompt mirror identity | `node .opencode/commands/scripts/validate-command-references.cjs` | 0 ok / 1 violation |
 | Outbound hook install | `node .opencode/bin/install-codex-hooks.mjs --check` | 0 ok / 1 drift |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
@@ -131,6 +131,6 @@ developer_instructions = '''
 | Document | Purpose |
 |---|---|
 | [`hooks/README.md`](hooks/README.md) | Why `hooks/` is discovery-only |
-| `.opencode/skills/system-spec-kit/scripts/codex/README.md` | The generator contract |
+| `.opencode/skills/system-spec-kit/runtime/cli/codex/README.md` | The generator contract |
 | `.opencode/bin/README.md` | `install-codex-hooks.mjs` ownership model and worktree guard |
 | [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) | Sibling runtime manifests |

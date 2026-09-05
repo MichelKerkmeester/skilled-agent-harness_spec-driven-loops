@@ -68,7 +68,7 @@ async function loadModules(): Promise<{
 }> {
   vi.resetModules();
   const discovery = await import('../../lib/search/folder-discovery');
-  await import('../../../scripts/spec-folder/generate-description');
+  await import('../../cli/spec-folder/generate-description');
   return { discovery };
 }
 

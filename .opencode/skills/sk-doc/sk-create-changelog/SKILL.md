@@ -226,7 +226,7 @@ Nested output paths from the shared template:
 Nested mode uses the spec-kit generator and templates:
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js <spec-folder> --write
+node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
 ```
 
 Canonical nested templates are `.opencode/skills/system-spec-kit/templates/changelog/root.md` and `.opencode/skills/system-spec-kit/templates/changelog/phase.md`.
@@ -446,7 +446,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <com
 3. **Determine version.** If nested mode, skip version calculation. If global mode, list existing files in the target folder, parse the latest `vX.Y.Z.B` version, choose bump type from explicit `--bump` or auto-detection, calculate the next version, and increment the build segment if the file already exists.
 4. **Generate content.** Read `assets/changelog-template.md` for global mode or the spec-kit nested template for nested mode. Set date when needed. Select compact format for fewer than 10 non-major changes. Select expanded format for 10 or more changes, major changes, or breaking changes. Write a 1-3 sentence summary that leads with why the release matters. Generate category sections, files-changed detail, test impact when applicable, schema changes when applicable, and upgrade guidance.
 5. **Validate quality.** Check format, version, and content before writing. Confirm required sections are present, version is strictly greater than the latest global version, no target file exists, summary is non-empty, files changed are real paths, and upgrade guidance is present. Auto-fix small missing sections when safe, then revalidate.
-6. **Write the file.** If nested mode, run `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js {spec_folder} --write` and verify the output path. If global mode, write `.opencode/changelog/{primary_component}/v{next_version}.md` and read back the first lines to verify creation. If secondary components exist, note them as additional changelog candidates rather than writing extra files silently.
+6. **Write the file.** If nested mode, run `node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --write` and verify the output path. If global mode, write `.opencode/changelog/{primary_component}/v{next_version}.md` and read back the first lines to verify creation. If secondary components exist, note them as additional changelog candidates rather than writing extra files silently.
 7. **Report and preserve context.** Report status, path, component, version, bump type, summary, section count, and files tracked. If a spec folder was the source, note that context can be preserved through the normal memory save workflow. Do not claim completion until the written file has been verified.
 
 Hard gates:

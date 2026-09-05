@@ -27,9 +27,9 @@ The memory MCP server was removed: its 41 tools, daemon, launcher, plugin, hooks
 
 | Retired surface | Where the capability lives now |
 |---|---|
-| `memory_match_triggers` prompt-to-phrase matching | The generated trigger index, read by `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs "<prompt>"` |
+| `memory_match_triggers` prompt-to-phrase matching | The generated trigger index, read by `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` |
 | `memory_search`, `memory_quick_search`, `memory_context` | The ripgrep recipes in `references/retrieval/retrieval-conventions.md` §2, ranked caller-side per §5 |
-| `memory_save` continuity writes | The packet-local continuity writer and `scripts/memory/generate-context.ts` |
+| `memory_save` continuity writes | The packet-local continuity writer and `runtime/cli/continuity/generate-context.ts` |
 | Session resume and context assembly | `/speckit:resume` over the `handover.md` -> `_memory.continuity` -> spec-doc ladder |
 | Daemon health checks | `node .opencode/bin/skill-advisor.cjs advisor_status --format json` for the one daemon that remains |
 
@@ -43,7 +43,7 @@ Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session 
 
 #### Description
 
-Automates two import rules: `shared/` must not import from `runtime/` or `scripts/`, and `runtime/scripts/` must contain only thin wrappers.
+Automates two import rules: `shared/` must not import from `runtime/` or `runtime/cli/`, and `runtime/scripts/` must contain only thin wrappers.
 
 #### Current Reality
 
@@ -63,7 +63,7 @@ Gives unqualified packet names a stable canonical winner, preserves explicit pat
 
 #### Current Reality
 
-The resolver, collision classifier and write guard ship in `scripts/core/`; the real-data migration and alias retirement remain deployment-gated.
+The resolver, collision classifier and write guard ship in `runtime/cli/core/`; the real-data migration and alias retirement remain deployment-gated.
 
 #### Source Files
 
@@ -127,7 +127,7 @@ Checklist completion verifier that enforces P0/P1 completion, evidence markers a
 
 #### Current Reality
 
-`scripts/spec/check-completion.sh` reads `checklist.md` from the packet under test.
+`runtime/cli/spec/check-completion.sh` reads `checklist.md` from the packet under test.
 
 #### Source Files
 
@@ -143,7 +143,7 @@ Shared workflow modules that load configuration, build titles and topics, edit f
 
 #### Current Reality
 
-`scripts/core/workflow.ts` and its siblings own the save path; the indexing and lease behavior that used to reach into the MCP server is now source-owned.
+`runtime/cli/core/workflow.ts` and its siblings own the save path; the indexing and lease behavior that used to reach into the MCP server is now source-owned.
 
 #### Source Files
 
@@ -175,7 +175,7 @@ Repairs the packet facts recomputable from repository state and refuses the ones
 
 #### Current Reality
 
-`scripts/spec/repair-derived.cjs` ships with its own README and vitest coverage.
+`runtime/cli/spec/repair-derived.cjs` ships with its own README and vitest coverage.
 
 #### Source Files
 
@@ -191,7 +191,7 @@ Shared source-vs-dist staleness detection for local TypeScript build outputs.
 
 #### Current Reality
 
-`scripts/lib/dist-freshness.cjs` backs `validate.sh`'s hard exit-3 backstop, a Claude Code hook, an OpenCode plugin, and the surviving `skill-advisor.cjs` shim.
+`runtime/cli/lib/dist-freshness.cjs` backs `validate.sh`'s hard exit-3 backstop, a Claude Code hook, an OpenCode plugin, and the surviving `skill-advisor.cjs` shim.
 
 #### Source Files
 
@@ -303,7 +303,7 @@ A 4-level pipeline — detect, auto-fix, suggest, report — layered on top of `
 
 #### Current Reality
 
-`scripts/spec/progressive-validate.sh` drives it; the authoritative verdict still comes from `validate.sh`.
+`runtime/cli/spec/progressive-validate.sh` drives it; the authoritative verdict still comes from `validate.sh`.
 
 #### Source Files
 
@@ -319,7 +319,7 @@ Creates missing `description.json` and `graph-metadata.json` files under researc
 
 #### Current Reality
 
-`scripts/memory/backfill-research-metadata.ts` runs from `scripts/core/workflow.ts` and has vitest coverage.
+`runtime/cli/continuity/backfill-research-metadata.ts` runs from `runtime/cli/core/workflow.ts` and has vitest coverage.
 
 #### Source Files
 
@@ -351,7 +351,7 @@ Extractor-layer session enrichment for files, diagrams and activity signals, plu
 
 #### Current Reality
 
-`scripts/extractors/` feeds the continuity writer, not a memory index.
+`runtime/cli/extractors/` feeds the continuity writer, not a memory index.
 
 #### Source Files
 
@@ -431,7 +431,7 @@ Spec-folder detection, alignment validation, directory setup and description-met
 
 #### Current Reality
 
-`scripts/spec-folder/` owns detection and `generate-description.ts` owns the generated `description.json`.
+`runtime/cli/spec-folder/` owns detection and `generate-description.ts` owns the generated `description.json`.
 
 #### Source Files
 
@@ -559,7 +559,7 @@ Reduces token counts before spec-folder consolidation by classifying files and m
 
 #### Current Reality
 
-`scripts/core/tree-thinning.ts` runs from the workflow module and has vitest coverage.
+`runtime/cli/core/tree-thinning.ts` runs from the workflow module and has vitest coverage.
 
 #### Source Files
 
@@ -593,7 +593,7 @@ Generates per-folder `description.json` metadata for every packet.
 
 #### Current Reality
 
-`scripts/spec-folder/generate-description.ts` is the surviving producer; the vector-search short-circuit it used to feed went with the memory engine.
+`runtime/cli/spec-folder/generate-description.ts` is the surviving producer; the vector-search short-circuit it used to feed went with the memory engine.
 
 #### Source Files
 
@@ -609,7 +609,7 @@ After canonical packet continuity is written, compares saved frontmatter against
 
 #### Current Reality
 
-`scripts/core/post-save-review.ts` runs at the end of the continuity write; HIGH findings must be patched by hand.
+`runtime/cli/core/post-save-review.ts` runs at the end of the continuity write; HIGH findings must be patched by hand.
 
 #### Source Files
 
@@ -747,7 +747,7 @@ See [`feature-flag-reference/runtime-config-contract.md`](feature-flag-reference
 
 #### Description
 
-`config/filters.jsonc` is the file-backed contract for the content-filter pipeline used by `scripts/lib/content-filter.ts`.
+`config/filters.jsonc` is the file-backed contract for the content-filter pipeline used by `runtime/cli/lib/content-filter.ts`.
 
 #### Current Reality
 

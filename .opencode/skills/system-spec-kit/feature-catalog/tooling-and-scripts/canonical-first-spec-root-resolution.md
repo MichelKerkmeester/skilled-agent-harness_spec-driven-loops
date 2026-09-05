@@ -46,32 +46,32 @@ The implementation branch therefore contains the resolver, guards, migration pri
 
 ### 1) Canonical-first resolution and explicit-path preservation
 
-- `.opencode/skills/system-spec-kit/scripts/core/spec-root-canonical-resolver.ts:12-18` recognizes explicit root-qualified inputs.
-- `.opencode/skills/system-spec-kit/scripts/core/spec-root-canonical-resolver.ts:43-72` preserves absolute and qualified paths, checks `.opencode/specs` first, falls back to an existing legacy-only packet, and otherwise returns the canonical candidate.
-- `.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360` orders canonical before legacy for active-root selection while enumerating and realpath-deduplicating both existing roots.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-canonical-resolver.ts:12-18` recognizes explicit root-qualified inputs.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-canonical-resolver.ts:43-72` preserves absolute and qualified paths, checks `.opencode/specs` first, falls back to an existing legacy-only packet, and otherwise returns the canonical candidate.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/config.ts:321-360` orders canonical before legacy for active-root selection while enumerating and realpath-deduplicating both existing roots.
 
 ### 2) Fail-closed collision and writer guards
 
-- `.opencode/skills/system-spec-kit/scripts/core/spec-root-collision-classifier.ts:12-23` defines the five collision classes and the allow/reject result.
-- `.opencode/skills/system-spec-kit/scripts/core/spec-root-collision-classifier.ts:145-169` selects canonical-only, legacy-only, same-inode, or byte-identical states and rejects divergence or an unreadable ownership state.
-- `.opencode/skills/system-spec-kit/scripts/core/spec-root-write-guard.ts:14-38` applies the writer freeze and rejects `divergent-duplicate` writes with observed-root evidence.
-- `.opencode/skills/system-spec-kit/scripts/core/spec-writer-freeze.ts:130-194` provides durable freeze, unfreeze, inspection, and fail-closed write assertions.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-collision-classifier.ts:12-23` defines the five collision classes and the allow/reject result.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-collision-classifier.ts:145-169` selects canonical-only, legacy-only, same-inode, or byte-identical states and rejects divergence or an unreadable ownership state.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-write-guard.ts:14-38` applies the writer freeze and rejects `divergent-duplicate` writes with observed-root evidence.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-writer-freeze.ts:130-194` provides durable freeze, unfreeze, inspection, and fail-closed write assertions.
 
 ### 3) Lossless migration, inventory, and compatibility telemetry
 
-- `.opencode/skills/system-spec-kit/scripts/core/spec-root-migration.ts:213-265` quarantines verified legacy-only packets before moving them and defers divergent duplicates.
-- `.opencode/skills/system-spec-kit/scripts/core/spec-root-migration-manifest.ts:162-173` hashes framed packet file sets with SHA-256.
-- `.opencode/skills/system-spec-kit/scripts/core/spec-root-migration-manifest.ts:225-247` builds the deterministic read-only manifest and counts divergent packets.
-- `.opencode/skills/system-spec-kit/scripts/core/spec-root-fallback-telemetry.ts:13-47` records legacy fallback/write activity and exposes the clean compatibility-window predicate.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-migration.ts:213-265` quarantines verified legacy-only packets before moving them and defers divergent duplicates.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-migration-manifest.ts:162-173` hashes framed packet file sets with SHA-256.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-migration-manifest.ts:225-247` builds the deterministic read-only manifest and counts divergent packets.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-fallback-telemetry.ts:13-47` records legacy fallback/write activity and exposes the clean compatibility-window predicate.
 
 ### 4) Integrated writers and validation matrix
 
-- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:27-28` imports the canonical resolver and write guard; `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:913-917` resolves the requested packet and applies the guard before writing.
-- `.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-815` selects `.opencode/specs` as the creation root before applying an optional track.
-- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:14` imports the canonical resolver; `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:925` uses it for the configured packet argument.
-- `.opencode/skills/system-spec-kit/scripts/core/spec-root-fixtures.ts:46-123` defines the R1-R10 root-state contract.
-- `.opencode/skills/system-spec-kit/scripts/tests/spec-root-canonical-resolver.vitest.ts:35-79` covers canonical-first bare names, new canonical targets, legacy-only fallback, explicit paths, and traversal rejection.
-- `.opencode/skills/system-spec-kit/scripts/tests/spec-root-validation-matrix.vitest.ts:89-205` exercises R1-R10 and proves a guarded no-alias write does not materialize `specs/`.
+- `.opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:27-28` imports the canonical resolver and write guard; `.opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:913-917` resolves the requested packet and applies the guard before writing.
+- `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:811-815` selects `.opencode/specs` as the creation root before applying an optional track.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:14` imports the canonical resolver; `.opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:925` uses it for the configured packet argument.
+- `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-fixtures.ts:46-123` defines the R1-R10 root-state contract.
+- `.opencode/skills/system-spec-kit/runtime/cli/tests/spec-root-canonical-resolver.vitest.ts:35-79` covers canonical-first bare names, new canonical targets, legacy-only fallback, explicit paths, and traversal rejection.
+- `.opencode/skills/system-spec-kit/runtime/cli/tests/spec-root-validation-matrix.vitest.ts:89-205` exercises R1-R10 and proves a guarded no-alias write does not materialize `specs/`.
 
 ### 5) Deployment-gated status
 
@@ -82,21 +82,21 @@ The implementation branch therefore contains the resolver, guards, migration pri
 
 | File | Layer | Role |
 |---|---|---|
-| `scripts/core/spec-root-canonical-resolver.ts` | Script | Canonical-first resolution with explicit-path preservation and legacy-only read fallback |
-| `scripts/core/spec-root-collision-classifier.ts` | Script | Five-state physical-root classification and fail-closed divergence decision |
-| `scripts/core/spec-root-write-guard.ts` | Script | Writer-freeze and divergent-duplicate enforcement at mutation boundaries |
-| `scripts/core/spec-root-migration.ts` | Script | Verified quarantine and legacy-to-canonical packet migration |
-| `scripts/core/spec-root-migration-manifest.ts` | Script | Deterministic hashed migration preflight manifest |
-| `scripts/core/spec-root-fallback-telemetry.ts` | Script | Compatibility fallback counters and clean-window gate |
+| `runtime/cli/core/spec-root-canonical-resolver.ts` | Script | Canonical-first resolution with explicit-path preservation and legacy-only read fallback |
+| `runtime/cli/core/spec-root-collision-classifier.ts` | Script | Five-state physical-root classification and fail-closed divergence decision |
+| `runtime/cli/core/spec-root-write-guard.ts` | Script | Writer-freeze and divergent-duplicate enforcement at mutation boundaries |
+| `runtime/cli/core/spec-root-migration.ts` | Script | Verified quarantine and legacy-to-canonical packet migration |
+| `runtime/cli/core/spec-root-migration-manifest.ts` | Script | Deterministic hashed migration preflight manifest |
+| `runtime/cli/core/spec-root-fallback-telemetry.ts` | Script | Compatibility fallback counters and clean-window gate |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `scripts/tests/spec-root-canonical-resolver.vitest.ts` | Automated test | Resolver precedence, explicit paths, fallback, and containment |
-| `scripts/tests/spec-root-collision-classifier.vitest.ts` | Automated test | Collision-state contract over materialized R fixtures |
-| `scripts/tests/spec-root-write-guard.vitest.ts` | Automated test | Divergence rejection and writer-freeze enforcement |
-| `scripts/tests/spec-root-validation-matrix.vitest.ts` | Automated test | R1-R10 integration and no-alias write behavior |
+| `runtime/cli/tests/spec-root-canonical-resolver.vitest.ts` | Automated test | Resolver precedence, explicit paths, fallback, and containment |
+| `runtime/cli/tests/spec-root-collision-classifier.vitest.ts` | Automated test | Collision-state contract over materialized R fixtures |
+| `runtime/cli/tests/spec-root-write-guard.vitest.ts` | Automated test | Divergence rejection and writer-freeze enforcement |
+| `runtime/cli/tests/spec-root-validation-matrix.vitest.ts` | Automated test | R1-R10 integration and no-alias write behavior |
 | `../../manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md` | Manual playbook | Temporary-workspace operator validation for the five user-visible behaviors |
 
 ---

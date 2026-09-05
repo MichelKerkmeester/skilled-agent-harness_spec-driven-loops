@@ -27,10 +27,10 @@ Two mechanisms, and they answer different questions. A keyed lookup matches a pr
 | Component | Location | Purpose |
 |-----------|----------|---------|
 | Trigger index | `runtime/data/trigger-index.json` | Committed index over author-declared `trigger_phrases`; the Gate 1 lookup surface |
-| Index generator | `scripts/retrieval/generate-trigger-index.mjs` | Rebuilds the index from spec-doc and skill-doc frontmatter |
-| Index lookup | `scripts/retrieval/lookup-trigger-index.mjs` | Resolves a prompt from a cold Node process; exit `0` hit, `1` miss, `2` broken |
+| Index generator | `runtime/cli/retrieval/generate-trigger-index.mjs` | Rebuilds the index from spec-doc and skill-doc frontmatter |
+| Index lookup | `runtime/cli/retrieval/lookup-trigger-index.mjs` | Resolves a prompt from a cold Node process; exit `0` hit, `1` miss, `2` broken |
 | Free-text lane | `rg`, per `../retrieval/retrieval-conventions.md` | Finds a phrase anywhere, with no index at all |
-| Continuity writer | `scripts/dist/memory/generate-context.js` | The only writer of `_memory.continuity`; source at `scripts/memory/generate-context.ts` |
+| Continuity writer | `runtime/cli/dist/continuity/generate-context.js` | The only writer of `_memory.continuity`; source at `runtime/cli/continuity/generate-context.ts` |
 
 There is no server, no database and no daemon in that table. That is the point: a fresh clone answers Gate 1 before anything is built, and a flapping background process cannot degrade a session.
 
@@ -81,7 +81,7 @@ The tier is a human signal about a document's weight. It is not a search boost: 
 ### Gate 1 trigger lookup
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "<prompt>"
 ```
 
@@ -167,7 +167,7 @@ There is no session inference at any step. Each rung is a file read, and a missi
 `/speckit:save` composes structured JSON and hands it to the writer:
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   /tmp/save-context-data-<session-id>.json \
   specs/<track>/<NNN-name>
 ```
@@ -181,7 +181,7 @@ An explicit spec-folder target on the command line is authoritative and wins ove
 ## 7. REGENERATING THE INDEX
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
 Run it when a document's `trigger_phrases` changed. The artifact is committed, so regeneration belongs in the same commit as the frontmatter edit that motivated it; a stale index is the single most common cause of a lookup that "should" have matched.
@@ -226,7 +226,7 @@ The required behavior on a no-hit is to say so. A caller that degrades to an app
 
 ```bash
 # The index exists and resolves a known phrase
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "spec folder"; echo "exit=$?"
 
 # The free-text lane agrees the content is where you think it is
@@ -235,7 +235,7 @@ rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 
   -- 'spec folder' specs .opencode
 
 # A packet still validates after a continuity save
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/<track>/<NNN-name> --strict
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<track>/<NNN-name> --strict
 ```
 
 ---
@@ -250,9 +250,9 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/<track>/<NN
 - [environment-variables.md](../config/environment-variables.md) - Configuration options
 
 ### Scripts
-- `scripts/retrieval/generate-trigger-index.mjs` - Builds the trigger index
-- `scripts/retrieval/lookup-trigger-index.mjs` - Reads the trigger index
-- `scripts/dist/memory/generate-context.js` - Continuity writer (compiled from `scripts/memory/generate-context.ts`)
+- `runtime/cli/retrieval/generate-trigger-index.mjs` - Builds the trigger index
+- `runtime/cli/retrieval/lookup-trigger-index.mjs` - Reads the trigger index
+- `runtime/cli/dist/continuity/generate-context.js` - Continuity writer (compiled from `runtime/cli/continuity/generate-context.ts`)
 
 ### Related Skills
 - `system-spec-kit` - Parent skill orchestrating spec folder workflow

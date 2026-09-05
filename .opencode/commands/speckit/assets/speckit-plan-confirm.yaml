@@ -45,7 +45,7 @@ optional_workflows:
     pre_workflow_steps:
       - id: P1
         name: Analyze Scope
-        command: "bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --json --recommend-phases --phase-threshold {phase_threshold} --loc {estimated_loc} --files {estimated_files}"
+        command: "bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --json --recommend-phases --phase-threshold {phase_threshold} --loc {estimated_loc} --files {estimated_files}"
         output: phase_recommendation
       - id: P2
         name: Define Decomposition
@@ -53,7 +53,7 @@ optional_workflows:
         output: phase_plan
       - id: P3
         name: Create Folders
-        command: 'bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {parent_level}'
+        command: 'bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {parent_level}'
         output: parent_and_child_folders
       - id: P4
         name: Populate Templates
@@ -64,7 +64,7 @@ optional_workflows:
       phase_child_header: Level template contract
     post_decomposition:
       action: "Update spec_path to first child phase folder, continue with normal workflow"
-      validation: "bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --recursive {parent_folder}"
+      validation: "bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive {parent_folder}"
     checkpoint:
       enabled: true
       prompt: |
@@ -242,7 +242,7 @@ available_templates:
     resource_map: level_contract_optional_resource-map.md
 
 template_compliance:
-  strict_validation_command: ".opencode/skills/system-spec-kit/scripts/spec/validate.sh [SPEC_FOLDER] --strict"
+  strict_validation_command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
   prompt_contract:
     rule: "When a workflow step writes spec docs, embed the matching inline scaffold below in the authoring prompt and preserve the required ANCHOR/H2 order from the canonical template."
   inline_scaffolds:
@@ -592,7 +592,7 @@ workflow:
           wait_for: "User response before finalizing spec.md"
       citation_requirement: "[SOURCE: file.md:lines] for code | [CITATION: URL] for external | [CITATION: NONE] for general knowledge"
     post_write_validation:
-      command: ".opencode/skills/system-spec-kit/scripts/spec/validate.sh [SPEC_FOLDER] --strict"
+      command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair spec.md template drift before proceeding"
     validation: spec_complete
     checkpoint:
@@ -730,7 +730,7 @@ workflow:
           wait_for: "User decision"
       escalation: { trigger: "2 failed attempts OR 10 minutes elapsed", action: "Present options with current findings" }
     post_write_validation:
-      command: ".opencode/skills/system-spec-kit/scripts/spec/validate.sh [SPEC_FOLDER] --strict"
+      command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair plan.md template drift before proceeding"
     validation: approach_defined
     checkpoint:
@@ -757,10 +757,10 @@ workflow:
       - { label: "View Summary", description: "Show planning summary" }
     post_save_indexing:
       pre_index_instruction:
-        command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json {spec_path}"
+        command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_path}"
         note: "First compose structured JSON, then run generate-context.js. Nothing else runs after it."
-      writer: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
-      critical_note: "generate-context.js is the whole write. There is no indexing handoff, no daemon to wait for and no launcher file to check. Regenerate the trigger index with node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs when the packet's trigger_phrases changed."
+      writer: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
+      critical_note: "generate-context.js is the whole write. There is no indexing handoff, no daemon to wait for and no launcher file to check. Regenerate the trigger index with node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs when the packet's trigger_phrases changed."
       # Narrative timing moved from `when:` to `after:` (T-YML-PLN-04 — separates predicate-`when:` from prose-`after:`).
       after: "Immediately after the generated continuity artifact is written to disk"
     anchor_requirements:

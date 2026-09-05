@@ -48,9 +48,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate source-diversity threshold blocks STOP and records blockedStop persistence.
 ### Commands
-1. `bash: rg -n 'SOURCE_DIVERSITY_THRESHOLD|evaluateGraphGates|sourceDiversityGate|allPass' .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs`
+1. `bash: rg -n 'SOURCE_DIVERSITY_THRESHOLD|evaluateGraphGates|sourceDiversityGate|allPass' .opencode/skills/system-spec-kit/runtime/cli/lib/coverage-graph-convergence.cjs`
 2. `bash: rg -n 'blockedStop|blocked_stop|graph-aware convergence|graphEvents|sourceDiversity' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-3. `bash: rg -n 'sourceDiversity|threshold: 0.4|blocking' .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts`
+3. `bash: rg -n 'sourceDiversity|threshold: 0.4|blocking' .opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts`
 ### Expected
 `SOURCE_DIVERSITY_THRESHOLD = 0.4`; low `sourceDiversity` fails the guard; deep-research convergence persists blocked-stop state when legal-stop gates fail.
 ### Evidence
@@ -73,9 +73,9 @@ Privilege `coverage-graph-convergence.cjs` for the enforcement contract and `ref
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs` | Canonical graph stop-guard helper; threshold constants and `evaluateGraphGates()` |
+| `.opencode/skills/system-spec-kit/runtime/cli/lib/coverage-graph-convergence.cjs` | Canonical graph stop-guard helper; threshold constants and `evaluateGraphGates()` |
 | `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Deep-research legal-stop and blocked-stop contract, including graph-aware convergence |
-| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts` | Cross-layer threshold assertions for graph stop-guard behavior |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts` | Cross-layer threshold assertions for graph stop-guard behavior |
 
 ---
 

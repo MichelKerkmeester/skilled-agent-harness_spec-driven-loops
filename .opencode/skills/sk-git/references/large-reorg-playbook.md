@@ -133,9 +133,9 @@ work (a bare worktree silently no-ops — see §8b Caveat 1). Run, in order:
 
 ```bash
 # 1. Regenerate per-folder metadata for moved/renamed spec folders
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js <spec-folder>
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js <spec-folder>
 # 2. Strict-validate affected packets
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
 ```
 
 NEVER reuse a strict-validate result from inside the worktree — treat it as meaningless.

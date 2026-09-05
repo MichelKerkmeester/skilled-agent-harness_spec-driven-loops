@@ -666,7 +666,7 @@ cat > /tmp/save-context-data-<session-id>.json << 'JSONEOF'
 JSONEOF
 
 # Save via generate-context.js JSON mode
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]
 ```
 
 Structured JSON is the required save path. You can pass the payload via temp file, `--stdin`, or `--json`. Do not call `generate-context.js` with only a spec folder. If `[spec-folder]` is passed on the CLI, that explicit target overrides any payload `specFolder`.

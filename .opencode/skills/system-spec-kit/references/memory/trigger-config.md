@@ -90,11 +90,11 @@ function detectTrigger(userMessage: string): boolean {
 Trigger matching is a keyed lookup over the generated index. It runs from a cold Node process, needs no service and no embeddings:
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "I want to save context for this session"
 ```
 
-The result carries the matched paths, the phrases that matched and a match class. Exit `0` means candidates were found, `1` means none were, `2` means a bad invocation or an unreadable index. Regenerate the index with `scripts/retrieval/generate-trigger-index.mjs` after frontmatter changes.
+The result carries the matched paths, the phrases that matched and a match class. Exit `0` means candidates were found, `1` means none were, `2` means a bad invocation or an unreadable index. Regenerate the index with `runtime/cli/retrieval/generate-trigger-index.mjs` after frontmatter changes.
 
 **Usage Scenarios:**
 - Gate 1 prompt matching against author-declared phrases
@@ -128,7 +128,7 @@ The Gate 3 enforcement trigger set uses 33 trigger phrases to detect file modifi
 
 ```bash
 # User says: "refactor the authentication module"
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "refactor the authentication module"
 # Returns: Gate 3 file-modification trigger match, phrases: ["refactor"]
 # AI then asks: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Skip"
@@ -379,7 +379,7 @@ Before deploying custom triggers:
 - [SKILL.md](../../SKILL.md) - Main workflow-memory skill documentation
 
 ### Scripts
-- [generate-context.ts](../../scripts/memory/generate-context.ts) - Context generation script
+- [generate-context.ts](../../runtime/cli/continuity/generate-context.ts) - Context generation script
 
 ### Related Skills
 - `system-skill-advisor` - Skill routing over its own advisor metadata

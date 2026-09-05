@@ -47,6 +47,8 @@
       "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md",
+      "runtime/cli/continuity/generate-context.ts",
+      "runtime/cli/dist/continuity/generate-context.js",
       ".opencode/commands/speckit/save.md",
       ".opencode/commands/speckit/assets/save-presentation.txt",
       ".opencode/commands/speckit/README.txt",
@@ -58,9 +60,7 @@
       ".claude/agents/orchestrate.md",
       ".codex/agents/orchestrate.toml",
       ".pi/agents/orchestrate.md",
-      ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      "scratch/code-path-followups.md",
-      "scratch/scripts-dist-memory-blast-radius.txt"
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json"
     ],
     "entities": [
       {
@@ -97,6 +97,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": "runtime/cli/dist/continuity/generate-context.js",
         "source": "derived"
       },
       {
@@ -154,18 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "code-path-followups.md",
-        "kind": "doc",
-        "path": "scratch/code-path-followups.md",
-        "source": "derived"
-      },
-      {
-        "name": "scripts-dist-memory-blast-radius.txt",
-        "kind": "file",
-        "path": "scratch/scripts-dist-memory-blast-radius.txt",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The surviving continuity writer and retrieval commands still carry the word \"memory\" throughout their names, paths, and package metadata: the `/memory:save` and `/memory:search` commands (`.opencode/commands/memory/save.md`, `.opencode/commands/memory/search.md`); the writer itself, `scripts/memory/generate-context.ts`, compiled to `scripts/dist/memory/generate-context.js`; the `@spec-kit/scripts` package description, `\"CLI tools for spec-kit context generation and memory management\"` (`scripts/package.json:4`); the `/doctor memory` route (`.opencode/commands/doctor/routes.yaml:33-38`, target",
     "created_at": "2026-09-05T06:13:08Z",
-    "last_save_at": "2026-09-05T07:39:13.240Z",
+    "last_save_at": "2026-09-05T09:13:01.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90c87c73ed1600cf2556d801614e9a52c05978c62f4593f8871bb093614feb67",
+    "source_fingerprint": "sha256:7d7341e2191cbad360a63cf8a589e618fbd1331e549c67839d63b5fe042aa25f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "257f35116be3069dcfc82e2b197f5331215074a3b7a64a2671bd32808c038488",
       "plan.md": "d95feb4d8cc7a86c9c89148177baa98530b05b471e51eb970c50113773ebdd70",
-      "tasks.md": "8ca87352d4335342a91fea80b8dfe1ed36f20630b73fa69aadc7d7e9678e92e6",
+      "tasks.md": "56ec9fe02a46ed96d598eb67442f02d6dce1050faade42a992029ea67acf99a1",
       "decision-record.md": "5ee0231696f2277a4531dde242a0d8c25824ab769ff653f42610e79fc1cac2dd",
-      "implementation-summary.md": "eec8979d94ce67affb72afa768d9bddadf0e789e09224d834f7aec4fb70e4aa7"
+      "implementation-summary.md": "f5b4a1f214928a40c45749dc770d6d4cf94ea533b2165415c5c5fb6791219b9a"
     },
     "last_active_child_id": null,
     "last_active_at": null

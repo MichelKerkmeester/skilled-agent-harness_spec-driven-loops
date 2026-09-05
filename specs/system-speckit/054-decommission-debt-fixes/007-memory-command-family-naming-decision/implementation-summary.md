@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision"
     last_updated_at: "2026-09-05T09:40:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Renamed the memory command family to speckit and re-verified the runtime mirrors"
-    next_safe_action: "Open the stage B follow-on packet under Gate 3 to move scripts/memory to scripts/continuity"
+    recent_action: "Executed Stage B inside 002-scripts-into-runtime-nesting"
+    next_safe_action: "None; packet closeable"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-05-054-007-memory-command-family-naming-decision-stage-a"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Keep literal (Option A) or rename with a compatibility window (Option B)? Operator chose Option B, hard cutover, no aliases"
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-memory-command-family-naming-decision |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The operator decided directly (2026-09-05): rename the memory command family into the spec-kit family, hard cutover, no aliases. Stage A of that decision is done: `/memory:save` and `/memory:search` are gone, `/speckit:save` and `/speckit:search` exist in their place under `.opencode/commands/speckit/`, `/doctor memory` is `/doctor speckit-retrieval`, and every live document-level reference to the old names outside `system-spec-kit`'s `scripts/`, `runtime/` and `shared/` is updated. Stage B — moving the compiled writer's own code path (`scripts/memory/` to `scripts/continuity/`) — is scoped and inventoried but not started; it needs its own follow-on packet under Gate 3.
+The operator decided directly (2026-09-05): rename the memory command family into the spec-kit family, hard cutover, no aliases. Stage A of that decision is done: `/memory:save` and `/memory:search` are gone, `/speckit:save` and `/speckit:search` exist in their place under `.opencode/commands/speckit/`, `/doctor memory` is `/doctor speckit-retrieval`, and every live document-level reference to the old names outside `system-spec-kit`'s `scripts/`, `runtime/` and `shared/` is updated. Stage B — moving the compiled writer's own code path — is also done: it executed inside `002-scripts-into-runtime-nesting/` per an operator-approved scope amendment once that phase's scripts -> runtime/cli move was in flight, since both renames touch the same tree. The writer now lives at `runtime/cli/continuity/generate-context.ts` (compiled to `runtime/cli/dist/continuity/generate-context.js`), the `command-contract.json` family key is `continuity`, and `generate-command-routers.cjs`'s hardcode matches. See that packet's `implementation-summary.md` for the full evidence.
 
 ### Memory Command Family Naming Decision
 
@@ -136,7 +136,7 @@ A repository-wide grep for the exact command-name tokens (`/memory:save`, `/memo
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Stage B not started.** `scripts/memory/`, `scripts/dist/memory/generate-context.js`, the session-stop hook's four fallback path candidates, `scripts/package.json`'s description, and the `command-contract.json`/`generate-command-routers.cjs` family-key pair still say `memory`. `scratch/code-path-followups.md` is the starting inventory; T005 in `tasks.md` stays open until that follow-on packet is opened under Gate 3.
+1. **Stage B complete**, executed inside `002-scripts-into-runtime-nesting/` per an operator-approved scope amendment rather than a separately Gate-3'd packet (shared blast radius with that phase's scripts -> runtime/cli move). `scripts/memory/` moved to `runtime/cli/continuity/`, the compiled entry is `runtime/cli/dist/continuity/generate-context.js`, the session-stop hook's four fallback candidates now resolve there, `runtime/cli/package.json`'s description says "continuity management", and `command-contract.json`'s family key plus `generate-command-routers.cjs`'s hardcode both read `continuity`. See that packet's `implementation-summary.md` for the full evidence.
 2. **`system-skill-advisor`'s routing corpus untouched.** Its vocabulary maps and routing-accuracy fixtures still reference the old command names as example strings; that packet is actively owned elsewhere (024) and was left alone.
 3. **Generated metadata (`description.json`, `graph-metadata.json`) needs a repair pass.** This document and the spec/tasks amendments above were written after the file changes; `repair-derived.cjs --apply` regenerates the derived fields and the description fingerprint before this phase's `validate.sh --strict` can pass clean.
 <!-- /ANCHOR:limitations -->

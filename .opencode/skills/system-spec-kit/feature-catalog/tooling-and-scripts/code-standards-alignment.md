@@ -106,7 +106,7 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
 - TypeScript configs:
   - `tsconfig.json` (workspace references)
   - `runtime/tsconfig.json`
-  - `scripts/tsconfig.json`
+  - `runtime/cli/tsconfig.json`
 - Script entry points:
   - `runtime/package.json` (`lint`, `check`)
   - `package.json` at `system-spec-kit` root (`typecheck`)

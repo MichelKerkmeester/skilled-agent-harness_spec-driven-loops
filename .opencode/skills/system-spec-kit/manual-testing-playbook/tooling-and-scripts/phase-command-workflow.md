@@ -58,12 +58,12 @@ All 7 steps execute in sequence; scoring output visible; folders created with co
 2026-07-02 manual execution transcript:
 
 ```bash
-$ bash ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh" --json --recommend-phases --phase-threshold 0.6 --loc 500 --files 8
+$ bash ".opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh" --json --recommend-phases --phase-threshold 0.6 --loc 500 --files 8
 ERROR: --phase-threshold must be a positive integer
 ```
 
 ```bash
-$ bash ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh" --json --recommend-phases --phase-threshold 300 --loc 500 --files 8
+$ bash ".opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh" --json --recommend-phases --phase-threshold 300 --loc 500 --files 8
 {
   "recommended_level": 1,
   "level_name": "Baseline",

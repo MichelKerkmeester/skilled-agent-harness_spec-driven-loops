@@ -40,7 +40,7 @@ Validate 270a resource-map template exists on disk
 ### Commands
 
 1. `TMPDIR=$(mktemp -d)`
-2. `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3 --path "$TMPDIR/test-resource-map" --name "test-resource-map"`
+2. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path "$TMPDIR/test-resource-map" --name "test-resource-map"`
 3. `RESOURCE_TEMPLATE=$(find .opencode/skills/system-spec-kit/templates -path "*/resource-map.md.tmpl" -print -quit)`
 4. `cp "$RESOURCE_TEMPLATE" "$TMPDIR/test-resource-map/resource-map.md"`
 5. `test -f "$TMPDIR/test-resource-map/resource-map.md" && echo PRESENT`

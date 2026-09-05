@@ -116,7 +116,7 @@ describe('deep research per-iteration lineage context YAML contract', () => {
     const text = readWorkflowYaml();
     const generateBlock = stepBlock(text, 'step_generate_context');
 
-    expect(generateBlock).toContain('node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js');
+    expect(generateBlock).toContain('node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js');
     expect(text).not.toContain('step_index_memory:');
   });
 

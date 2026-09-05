@@ -40,7 +40,7 @@ Validate spec-doc structure validator and continuity frontmatter enforcement.
 ### Commands
 
 1. Create or pick a spec doc with a deliberately malformed `_memory.continuity` block
-2. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <target-spec>`
+2. Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --strict <target-spec>`
 3. Confirm the five rules appear in the expected order
 4. Repair the continuity block and rerun
 5. Confirm the document passes cleanly
@@ -72,7 +72,7 @@ Inspect `runtime/lib/validation/spec-doc-structure.ts` rule dispatch, validate.s
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/spec-doc-structure-validator.md](../../feature-catalog/memory-quality-and-indexing/spec-doc-structure-validator.md)
-- Source files: `runtime/lib/validation/spec-doc-structure.ts`, `scripts/spec/validate.sh`
+- Source files: `runtime/lib/validation/spec-doc-structure.ts`, `runtime/cli/spec/validate.sh`
 
 ---
 

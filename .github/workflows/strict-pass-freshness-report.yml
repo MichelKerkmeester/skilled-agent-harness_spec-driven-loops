@@ -53,8 +53,8 @@ jobs:
           # The leading ./ is load-bearing: node --import reads a bare path as a
           # package name, so without it the loader never resolves and the sweep
           # dies before it reads a single packet.
-          node --import ./.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs \
-            .opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts \
+          node --import ./.opencode/skills/system-spec-kit/runtime/cli/node_modules/tsx/dist/loader.mjs \
+            .opencode/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts \
             --roots specs \
             --format json > .strict-pass-freshness/report.json
           sweep_status=$?
@@ -91,7 +91,7 @@ jobs:
         continue-on-error: true
         run: |
           set -euo pipefail
-          node .opencode/skills/system-spec-kit/scripts/spec/repair-derived.cjs --roots specs || true
+          node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --roots specs || true
 
       - name: Publish the report
         if: always()

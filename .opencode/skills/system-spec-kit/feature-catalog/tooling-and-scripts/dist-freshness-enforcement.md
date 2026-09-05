@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 Dist-freshness enforcement is a shared source-vs-dist staleness check for local TypeScript build outputs: it compares the newest mtime among a package's watched source files against its compiled dist entry and reports whether the dist output is stale, without ever attempting to rebuild it itself.
 
-The check lives in one module, `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs`, and is consumed by four independent classes of caller across the repo: the daemon-backed CLI shims, a hard validation backstop, a Claude Code hook, and an OpenCode plugin. Each consumer decides its own response to staleness — some fail closed, some only warn — but every consumer asks the same shared module the same question against the same `DIST_PACKAGES` registry, so there is one place that defines what "stale" means.
+The check lives in one module, `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`, and is consumed by four independent classes of caller across the repo: the daemon-backed CLI shims, a hard validation backstop, a Claude Code hook, and an OpenCode plugin. Each consumer decides its own response to staleness — some fail closed, some only warn — but every consumer asks the same shared module the same question against the same `DIST_PACKAGES` registry, so there is one place that defines what "stale" means.
 
 ---
 
@@ -33,7 +33,7 @@ The check lives in one module, `.opencode/skills/system-spec-kit/scripts/lib/dis
 
 The module has four independent classes of caller, one of which fans out to the surviving CLI shim:
 
-2. **`validate.sh`'s compiled-orchestrator backstop**: `resolve_orchestrator()` in `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` calls the module scoped to `system-spec-kit/runtime`'s `validation-orchestrator` entry before delegating a validation run to the compiled Node orchestrator. A stale result prints `ERROR: validate.sh compiled validation orchestrator is stale.` plus the rebuild command and exits **3** — a hard, fail-closed backstop with no auto-rebuild.
+2. **`validate.sh`'s compiled-orchestrator backstop**: `resolve_orchestrator()` in `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` calls the module scoped to `system-spec-kit/runtime`'s `validation-orchestrator` entry before delegating a validation run to the compiled Node orchestrator. A stale result prints `ERROR: validate.sh compiled validation orchestrator is stale.` plus the rebuild command and exits **3** — a hard, fail-closed backstop with no auto-rebuild.
 3. **Claude Code PostToolUse hook**: `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` (a Python script despite the `.sh` extension) is wired into `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh`, which fires on every `Write`/`Edit`. It calls the module's `check-file` command against the edited file and, if the file falls under a watched source tree and that package is stale, prints a `STALE DIST WARNING: <package> -- run: <rebuild command>` banner. It always exits 0 — warn-only, never blocking the edit.
 4. **OpenCode plugin**: `.opencode/plugins/system-dist-freshness-guard.js` hooks `tool.execute.before` and warns via `console.warn` (never throws) before a Bash call matching `opencode run` or `validate\.sh` when any of the 7 watched packages is stale, and warns once per session on the `session.created` event (deduped by session ID).
 
@@ -51,9 +51,9 @@ None of the four consumer classes auto-rebuilds on detecting staleness. This was
 
 | File | Layer | Role |
 |---|---|---|
-| `scripts/lib/dist-freshness.cjs` | Shared | `checkPackageFreshness()`, `checkFileFreshness()`, `checkAllFreshness()`, the `DIST_PACKAGES` registry, and the module's own CLI (`check`, `check-file`, `check-all`, `list`) |
+| `runtime/cli/lib/dist-freshness.cjs` | Shared | `checkPackageFreshness()`, `checkFileFreshness()`, `checkAllFreshness()`, the `DIST_PACKAGES` registry, and the module's own CLI (`check`, `check-file`, `check-all`, `list`) |
 | `.opencode/bin/skill-advisor.cjs` | Script | Same guard for the `skill-advisor-cli` entry |
-| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Script | `resolve_orchestrator()` hard backstop, exit 3 |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Script | `resolve_orchestrator()` hard backstop, exit 3 |
 | `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Handler | PostToolUse warn-only checker (Python, `.sh` extension) |
 | `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` | Handler | Dispatches the dist-staleness checker on every `Write`/`Edit` |
 | `.opencode/plugins/system-dist-freshness-guard.js` | Handler | OpenCode plugin: `tool.execute.before` and `session.created` warnings |
@@ -62,7 +62,7 @@ None of the four consumer classes auto-rebuilds on detecting staleness. This was
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh` | Automated test | Asserts `validate.sh` exits 3 on a stale compiled orchestrator and passes through once fresh |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/test-dist-freshness.sh` | Automated test | Asserts `validate.sh` exits 3 on a stale compiled orchestrator and passes through once fresh |
 | `tooling-and-scripts/cli-dist-freshness-guard.md` | Manual playbook | CLI-shim guard trip, override, and restore (playbook ID 429) |
 | `tooling-and-scripts/validate-sh-dist-freshness-backstop.md` | Manual playbook | `validate.sh` hard backstop trip and restore (playbook ID 455) |
 

@@ -19,8 +19,8 @@ This scenario validates spec lifecycle automation for `237`. It focuses on confi
 
 
 - Objective: Confirm lifecycle tool availability across recommendation, upgrade, completeness, completion, and archival surfaces.
-- Real user request: `Please validate Spec Lifecycle Automation against bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --help and tell me whether the expected signals are present: help output available for lifecycle entrypoints; upgrade regression suite passes; completeness JSON is emitted; completion gate returns a stable status.`
-- Prompt: `Validate Spec Lifecycle Automation against bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --help and report cited pass/fail evidence.`
+- Real user request: `Please validate Spec Lifecycle Automation against bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --help and tell me whether the expected signals are present: help output available for lifecycle entrypoints; upgrade regression suite passes; completeness JSON is emitted; completion gate returns a stable status.`
+- Prompt: `Validate Spec Lifecycle Automation against bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --help and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: help output available for lifecycle entrypoints; upgrade regression suite passes; completeness JSON is emitted; completion gate returns a stable status
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -33,16 +33,16 @@ This scenario validates spec lifecycle automation for `237`. It focuses on confi
 ### Prompt
 
 ```
-Validate Spec Lifecycle Automation against bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --help and report cited pass/fail evidence.
+Validate Spec Lifecycle Automation against bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --help and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --help`
-2. `bash .opencode/skills/system-spec-kit/scripts/tests/test-upgrade-level.sh`
-3. `bash .opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json`
-4. `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json`
-5. `bash .opencode/skills/system-spec-kit/scripts/spec/archive.sh --help`
+1. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --help`
+2. `bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-upgrade-level.sh`
+3. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 --json`
+4. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 --json`
+5. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/archive.sh --help`
 
 ### Expected
 
@@ -50,7 +50,7 @@ Recommendation and archive help text is available; upgrade-level regression suit
 
 ### Evidence
 
-Command 1: `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --help`
+Command 1: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --help`
 
 ```text
 SpecKit Level Recommendation Algorithm
@@ -99,7 +99,7 @@ LEVELS:
   Level 3 (Full):         70+         - Critical/architectural, comprehensive docs
 ```
 
-Command 2: `bash .opencode/skills/system-spec-kit/scripts/tests/test-upgrade-level.sh`
+Command 2: `bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-upgrade-level.sh`
 
 ```text
 
@@ -139,11 +139,11 @@ Command 2: `bash .opencode/skills/system-spec-kit/scripts/tests/test-upgrade-lev
   Results: 14 passed, 0 failed, 0 skipped (of 14)
 ```
 
-Command 3: `bash .opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json`
+Command 3: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 --json`
 
 ```json
 {
-  "spec_folder": ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3",
+  "spec_folder": ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3",
   "files_analyzed": 4,
   "overall_completion": 100,
   "total_placeholders": 0,
@@ -155,11 +155,11 @@ Command 3: `bash .opencode/skills/system-spec-kit/scripts/spec/calculate-complet
 }
 ```
 
-Command 4: `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json`
+Command 4: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 --json`
 
 ```json
 {
-  "folder": ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3",
+  "folder": ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3",
   "status": "EVIDENCE_MISSING",
   "passed": false,
   "strict": false,
@@ -182,7 +182,7 @@ Command 4: `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.
 }
 ```
 
-Command 5: `bash .opencode/skills/system-spec-kit/scripts/spec/archive.sh --help`
+Command 5: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/archive.sh --help`
 
 ```text
 archive-spec.sh - Archive completed spec folders
@@ -216,7 +216,7 @@ NOTES:
 
 ### Failure Triage
 
-Inspect `scripts/spec/recommend-level.sh`, `scripts/tests/test-upgrade-level.sh`, `scripts/spec/calculate-completeness.sh`, and `scripts/spec/archive.sh` if a lifecycle stage is missing or inconsistent
+Inspect `runtime/cli/spec/recommend-level.sh`, `runtime/cli/tests/test-upgrade-level.sh`, `runtime/cli/spec/calculate-completeness.sh`, and `runtime/cli/spec/archive.sh` if a lifecycle stage is missing or inconsistent
 
 ---
 

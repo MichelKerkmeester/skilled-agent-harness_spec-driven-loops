@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/051-sk-create-chart/010-chart-review-remediation",
+  "spec_folder": "sk-doc/051-sk-create-chart/010-chart-review-remediation",
+  "parent_id": "sk-doc/051-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart review remediation",
+      "heat matrix band defect",
+      "chart series capacity",
+      "chart headline audit",
+      "series mapping check",
+      "chart remediation plan",
+      "chart review fixes",
+      "black cell fix plan",
+      "chart remediation tasks",
+      "chart review task list",
+      "black cell tasks",
+      "chart remediation criteria"
+    ],
+    "key_topics": [
+      "chart",
+      "review",
+      "remediation",
+      "heat",
+      "matrix",
+      "band",
+      "defect",
+      "series",
+      "capacity",
+      "headline",
+      "audit",
+      "mapping"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/checker-holes-closed.txt",
+      "scripts/README.md",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/heat-matrix.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/calendar-grid.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/unit-ring.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/unit-grid.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-bars.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/treemap.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/parallel-axes.html",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checker-holes-closed.txt",
+        "kind": "file",
+        "path": "scratch/checker-holes-closed.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "heat-matrix.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/heat-matrix.html",
+        "source": "derived"
+      },
+      {
+        "name": "calendar-grid.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/calendar-grid.html",
+        "source": "derived"
+      },
+      {
+        "name": "unit-ring.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/unit-ring.html",
+        "source": "derived"
+      },
+      {
+        "name": "unit-grid.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/unit-grid.html",
+        "source": "derived"
+      },
+      {
+        "name": "stacked-bars.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-bars.html",
+        "source": "derived"
+      },
+      {
+        "name": "treemap.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/treemap.html",
+        "source": "derived"
+      },
+      {
+        "name": "stacked-area.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html",
+        "source": "derived"
+      },
+      {
+        "name": "parallel-axes.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/parallel-axes.html",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The corpus check passed on every one of these",
+    "created_at": "2026-09-04T07:19:37.295Z",
+    "last_save_at": "2026-09-05T08:28:32.102Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8f7dc47bd1b547d0d4a42a5c3d0940da64e9ad2d97dff693f4d80286abf7fe56",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fcda23b7286dd26d91f9ee4ead05c1bf1f079dde7dbcbecb5dc680cc608ef190",
+      "plan.md": "53b1b50fa0f009540c9a3c0b83d3e59bc8b21853697089ac44b5da800c32b534",
+      "tasks.md": "d027d22cca0ae1e8a68689ebdec3c937831c013630c2202cfc270c4418614307",
+      "implementation-summary.md": "ff1cbb5d54eb4035e8b58b05802008b6719f560a4ffd4e63d3f279510e277500"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

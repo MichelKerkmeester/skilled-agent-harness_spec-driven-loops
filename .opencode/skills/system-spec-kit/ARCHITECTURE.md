@@ -12,7 +12,7 @@ importance_tier: "important"
 
 # Architecture: system-spec-kit
 
-> Current-reality architecture for the `system-spec-kit` package. Authored code lives in `scripts/`, `runtime/`, and `shared/`. Continuity is rebuilt through `/speckit:resume` and canonical spec documents.
+> Current-reality architecture for the `system-spec-kit` package. Authored code lives in `runtime/cli/`, `runtime/`, and `shared/`. Continuity is rebuilt through `/speckit:resume` and canonical spec documents.
 
 ---
 
@@ -20,7 +20,7 @@ importance_tier: "important"
 
 `system-spec-kit` is split into three authored zones plus generated build output:
 
-- `scripts/` owns CLI generation, validation, indexing, evals, and packet tooling. TypeScript and shell.
+- `runtime/cli/` owns CLI generation, validation, indexing, evals, and packet tooling. TypeScript and shell.
 - `runtime/` owns the spec-kit engine: spec folder validation, generated packet metadata, description generation, and the per-runtime hook adapters. It is consumed as a library, not run as a service. TypeScript.
 - `shared/` owns neutral modules imported by both scripts and the engine. TypeScript.
 - Each zone carries its own generated `dist/`, gitignored and rebuilt from source. Not authored.
@@ -53,7 +53,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  └─────────────────────────┬─────────────────────────────────┘  │
 │                            │                                    │
 │  ┌────────────────┐     ┌──┴──────────────┐                     │
-│  │   scripts/     │     │    shared/      │                     │
+│  │   runtime/cli/     │     │    shared/      │                     │
 │  │ create.sh      │────▶│ embeddings.ts   │                     │
 │  │ validate.sh    │     │ trigger-extract │                     │
 │  │ generate-      │     │ chunking.ts     │                     │
@@ -61,9 +61,9 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  │ evals/         │     │ scoring/        │                     │
 │  └────────────────┘     └─────────────────┘                     │
 │                                                                 │
-│  Dependency direction: scripts/ ──▶ runtime/api/             │
+│  Dependency direction: runtime/cli/ ──▶ runtime/api/             │
 │                        runtime/ ──▶ shared/                  │
-│                        scripts/ ──▶ shared/                     │
+│                        runtime/cli/ ──▶ shared/                     │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -74,7 +74,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 
 ```text
 system-spec-kit/
-├── scripts/                # CLI generation, validation, indexing, evals
+├── runtime/cli/                # CLI generation, validation, indexing, evals
 ├── runtime/             # Spec-kit engine, consumed as a library
 │   ├── api/                # Public barrel for the scripts workspace
 │   ├── handlers/           # Spec-document discovery and the save-path folder mutex
@@ -82,7 +82,7 @@ system-spec-kit/
 │   ├── hooks/              # Per-runtime hook adapters and the shared spec-gate core
 │   ├── core/               # Runtime path and config resolution
 │   ├── data/               # Committed trigger index the Gate 1 lookup reads
-│   ├── scripts/            # Build finalizer, metadata repair, test runners
+│   ├── runtime/cli/            # Build finalizer, metadata repair, test runners
 │   ├── tests/              # Vitest coverage
 │   └── stress-test/        # Opt-in load and contention suites
 ├── shared/                 # Neutral modules importable by scripts + engine
@@ -93,11 +93,11 @@ system-spec-kit/
 
 Allowed dependency direction:
 
-- `scripts/ ──▶ runtime/api/`
+- `runtime/cli/ ──▶ runtime/api/`
 - `runtime/ ──▶ shared/`
-- `scripts/ ──▶ shared/`
+- `runtime/cli/ ──▶ shared/`
 
-Reverse imports are blocked by lint and CI. Imports that reach past `runtime/api/` into `lib/`, `core/` or `handlers/` are rejected by the import-policy checks in `scripts/evals/` unless they carry a governed allowlist entry.
+Reverse imports are blocked by lint and CI. Imports that reach past `runtime/api/` into `lib/`, `core/` or `handlers/` are rejected by the import-policy checks in `runtime/cli/evals/` unless they carry a governed allowlist entry.
 
 ---
 
@@ -122,8 +122,8 @@ Spec-kit treats canonical spec documents as the durable continuity record. The g
 **Key modules:**
 
 - `/speckit:resume` owns the read path, walking the continuity ladder above.
-- `scripts/dist/memory/generate-context.js` owns the write path.
-- `scripts/retrieval/generate-trigger-index.mjs` builds the lookup surface; `scripts/retrieval/lookup-trigger-index.mjs` reads it.
+- `runtime/cli/dist/continuity/generate-context.js` owns the write path.
+- `runtime/cli/retrieval/generate-trigger-index.mjs` builds the lookup surface; `runtime/cli/retrieval/lookup-trigger-index.mjs` reads it.
 
 ---
 
@@ -131,7 +131,7 @@ Spec-kit treats canonical spec documents as the durable continuity record. The g
 
 The engine is composed of focused subsystems that share a public barrel and a filesystem contract.
 
-**Validation.** `lib/validation/orchestrator.ts` owns every spec folder rule verdict. `scripts/spec/validate.sh` is a thin front end over its compiled output and implements no rules of its own; it refuses to run against a stale build rather than returning a stale verdict. `lib/templates/level-contract-resolver.ts` supplies the per-level document contract, and `lib/spec/is-phase-parent.ts` is the single detection rule for phase parents.
+**Validation.** `lib/validation/orchestrator.ts` owns every spec folder rule verdict. `runtime/cli/spec/validate.sh` is a thin front end over its compiled output and implements no rules of its own; it refuses to run against a stale build rather than returning a stale verdict. `lib/templates/level-contract-resolver.ts` supplies the per-level document contract, and `lib/spec/is-phase-parent.ts` is the single detection rule for phase parents.
 
 **Generated packet metadata.** `lib/graph/` and `lib/description/` derive, merge, validate and serialize the two generated JSON files a spec folder carries — `description.json` and `graph-metadata.json`. Reads and writes stay split: the parser writes, while the integrity and drift gates only report, so a check cannot dirty the files it exists to keep clean. `lib/description/packet-synopsis.ts` is the one shared extractor behind both generated summary fields, so they cannot drift from the same `spec.md`.
 
@@ -151,12 +151,12 @@ disagrees with it is the thing to fix.
 
 | Surface | Owner today | What it is |
 |---------|-------------|------------|
-| `runtime/data/trigger-index.json` | `scripts/retrieval/generate-trigger-index.mjs` (writer), `lookup-trigger-index.mjs` (reader) | The committed Gate 1 retrieval index over author-declared trigger phrases |
+| `runtime/data/trigger-index.json` | `runtime/cli/retrieval/generate-trigger-index.mjs` (writer), `lookup-trigger-index.mjs` (reader) | The committed Gate 1 retrieval index over author-declared trigger phrases |
 | `runtime/database/` | The HF model server in `.opencode/bin` | Its sockets, leases and logs; no index, no database of ours |
 | `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` | `shared/paths.ts` and `shared/embeddings/` for the skill advisor | The advisor's own embedding store location; nothing in this skill opens a database |
 | `.opencode/skills/system-skill-advisor/mcp-server/database/` | The skill advisor | Its routing graph and doctor state; the only MCP daemon this repository still runs |
 | `.opencode/skills/system-deep-loop/runtime/database/` | The deep-loop runtime | Coverage and council graphs for research, review and council loops |
-| `scripts/dist/memory/generate-context.js`, `/speckit:save`, `/speckit:search` | The scripts workspace | The continuity writer and the retrieval commands; "memory" here is the command family's literal name, not a store |
+| `runtime/cli/dist/continuity/generate-context.js`, `/speckit:save`, `/speckit:search` | The scripts workspace | The continuity writer and the retrieval commands; "memory" here is the command family's literal name, not a store |
 | `shared/ipc/`, `@modelcontextprotocol/sdk` in `shared/` | The skill advisor daemon through `shared/ipc` | The IPC seam the advisor's MCP transport is built on |
 
 ---
@@ -177,7 +177,7 @@ Spec-kit ships a runtime hook surface that wires into each AI client's session l
 
 Spec-kit's quality gates run at three layers.
 
-**Spec folder validation.** `scripts/spec/validate.sh` enforces 20 rules across required files, anchor structure, frontmatter shape, template source markers, continuity freshness, and phase-parent detection. Strict mode treats warnings as failures.
+**Spec folder validation.** `runtime/cli/spec/validate.sh` enforces 20 rules across required files, anchor structure, frontmatter shape, template source markers, continuity freshness, and phase-parent detection. Strict mode treats warnings as failures.
 
 **Save gate.** Every `/speckit:save` runs through 3 layers: intake validation (input schema + duplicate detection), content router (places content in the right canonical doc), and post-save quality review (DQI scoring + structural lint).
 

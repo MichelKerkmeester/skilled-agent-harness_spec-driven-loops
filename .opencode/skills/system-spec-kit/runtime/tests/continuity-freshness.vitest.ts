@@ -7,11 +7,11 @@ import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { buildContinuityFingerprint } from '../lib/validation/spec-doc-structure';
-import { validateContinuityFreshness } from '../../scripts/validation/continuity-freshness';
+import { validateContinuityFreshness } from '../cli/validation/continuity-freshness';
 
 const THIS_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(THIS_DIR, '../../../../..');
-const VALIDATE_SCRIPT = path.resolve(THIS_DIR, '../../scripts/spec/validate.sh');
+const VALIDATE_SCRIPT = path.resolve(THIS_DIR, '../cli/spec/validate.sh');
 const REVIEWER_STALE_VERDICT = path.resolve(
   REPO_ROOT,
   '.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-stale-verdict.json',

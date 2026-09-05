@@ -65,35 +65,35 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
   ```
 - Part I spot-check command output:
   ```text
-  $ grep -n 'crypto.randomBytes' .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
+  $ grep -n 'crypto.randomBytes' .opencode/skills/system-spec-kit/runtime/cli/extractors/session-extractor.ts
   89:  const randomPart = crypto.randomBytes(6).toString('hex'); // 6 bytes = 12 hex chars = 48 bits
 
-  $ grep -n 'qualityAbortThreshold' .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/config.ts
-  .opencode/skills/system-spec-kit/scripts/core/config.ts:37:  qualityAbortThreshold: number;
-  .opencode/skills/system-spec-kit/scripts/core/config.ts:107:    log('warn', 'qualityAbortThreshold invalid or out of range 0.0-1.0 (or legacy 1-100), using default', {
-  .opencode/skills/system-spec-kit/scripts/core/config.ts:115:    log('warn', 'qualityAbortThreshold uses legacy 1-100 scale and was auto-converted to canonical 0.0-1.0', {
-  .opencode/skills/system-spec-kit/scripts/core/config.ts:154:  validated.qualityAbortThreshold = normalizeQualityAbortThreshold(
-  .opencode/skills/system-spec-kit/scripts/core/config.ts:155:    validated.qualityAbortThreshold,
-  .opencode/skills/system-spec-kit/scripts/core/config.ts:156:    defaults.qualityAbortThreshold,
-  .opencode/skills/system-spec-kit/scripts/core/config.ts:242:    qualityAbortThreshold: 0.15,
-  .opencode/skills/system-spec-kit/scripts/core/config.ts:306:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
+  $ grep -n 'qualityAbortThreshold' .opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts .opencode/skills/system-spec-kit/runtime/cli/core/config.ts
+  .opencode/skills/system-spec-kit/runtime/cli/core/config.ts:37:  qualityAbortThreshold: number;
+  .opencode/skills/system-spec-kit/runtime/cli/core/config.ts:107:    log('warn', 'qualityAbortThreshold invalid or out of range 0.0-1.0 (or legacy 1-100), using default', {
+  .opencode/skills/system-spec-kit/runtime/cli/core/config.ts:115:    log('warn', 'qualityAbortThreshold uses legacy 1-100 scale and was auto-converted to canonical 0.0-1.0', {
+  .opencode/skills/system-spec-kit/runtime/cli/core/config.ts:154:  validated.qualityAbortThreshold = normalizeQualityAbortThreshold(
+  .opencode/skills/system-spec-kit/runtime/cli/core/config.ts:155:    validated.qualityAbortThreshold,
+  .opencode/skills/system-spec-kit/runtime/cli/core/config.ts:156:    defaults.qualityAbortThreshold,
+  .opencode/skills/system-spec-kit/runtime/cli/core/config.ts:242:    qualityAbortThreshold: 0.15,
+  .opencode/skills/system-spec-kit/runtime/cli/core/config.ts:306:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
 
-  $ grep -n 'claude-code-capture\|opencode-cli-capture\|copilot-cli-capture' .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
-  .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:28:  | 'claude-code-capture'
-  .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:29:  | 'opencode-cli-capture'
-  .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:30:  | 'copilot-cli-capture'
+  $ grep -n 'claude-code-capture\|opencode-cli-capture\|copilot-cli-capture' .opencode/skills/system-spec-kit/runtime/cli/loaders/data-loader.ts .opencode/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts
+  .opencode/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:28:  | 'claude-code-capture'
+  .opencode/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:29:  | 'opencode-cli-capture'
+  .opencode/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:30:  | 'copilot-cli-capture'
 
-  $ grep -n 'INSUFFICIENT_CONTEXT_ABORT\|evaluateMemorySufficiency' .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts
-  .opencode/skills/system-spec-kit/scripts/core/workflow.ts:56:  evaluateMemorySufficiency,
-  .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1590:  const sufficiencyResult = evaluateMemorySufficiency({
+  $ grep -n 'INSUFFICIENT_CONTEXT_ABORT\|evaluateMemorySufficiency' .opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts
+  .opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:56:  evaluateMemorySufficiency,
+  .opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:1590:  const sufficiencyResult = evaluateMemorySufficiency({
   .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:59:export const MEMORY_SUFFICIENCY_REJECTION_CODE = 'INSUFFICIENT_CONTEXT_ABORT' as const;
   .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:311:export function evaluateMemorySufficiency(snapshot: MemoryEvidenceSnapshot): MemorySufficiencyResult {
 
-  $ grep -n 'WORKFLOW_HTML_COMMENT_RE\|stripWorkflowHtmlOutsideCodeFences' .opencode/skills/system-spec-kit/scripts/core/workflow.ts
+  $ grep -n 'WORKFLOW_HTML_COMMENT_RE\|stripWorkflowHtmlOutsideCodeFences' .opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts
   73:import { stripWorkflowHtmlOutsideCodeFences, escapeLiteralAnchorExamples } from './content-cleaner.js';
   1913:export { stripWorkflowHtmlOutsideCodeFences } from './content-cleaner.js';
 
-  $ grep -n 'SYSTEM_SPEC_KIT_CAPTURE_SOURCE\|trigger_phrases' .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
+  $ grep -n 'SYSTEM_SPEC_KIT_CAPTURE_SOURCE\|trigger_phrases' .opencode/skills/system-spec-kit/runtime/cli/loaders/data-loader.ts .opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts
   (no output)
   ```
 - `cd .opencode/skills/system-spec-kit/scripts && npm run check` failed:
@@ -159,7 +159,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
   ```
 - Spec validation command failed for the pre-approved spec folder:
   ```text
-  $ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/031-manual-playbook-execution-sweep
+  $ bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/specs/system-speckit/031-manual-playbook-execution-sweep
   Auto-enabled recursive validation: phase child folders detected.
 
   Spec Folder Validation v3.0.0
@@ -193,7 +193,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
 
   RESULT: FAILED
   ```
-- The remaining M-007 matrix commands were not run because this task allowed writes only to `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md`, while the documented matrix includes write-producing commands such as `npm run build`, `npm run test:legacy` (`npm run build && ...`), MCP `npm run build` (`tsc --build && node scripts/finalize-dist.mjs`), and manual `generate-context.js` save/index scenarios that create or update files outside the allowed path.
+- The remaining M-007 matrix commands were not run because this task allowed writes only to `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md`, while the documented matrix includes write-producing commands such as `npm run build`, `npm run test:legacy` (`npm run build && ...`), MCP `npm run build` (`tsc --build && node runtime/cli/finalize-dist.mjs`), and manual `generate-context.js` save/index scenarios that create or update files outside the allowed path.
 
 ### Pass / Fail
 

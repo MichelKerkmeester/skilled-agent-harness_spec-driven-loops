@@ -44,7 +44,7 @@ The validator is wired into the save pipeline and the dedicated regression suite
 |------|-------|------|
 | `runtime/lib/validation/spec-doc-structure.ts` | Lib | Five-rule validator bridge for phase 018 spec-doc writes |
 | `runtime/handlers/memory-save.ts` | Handler | Save-path integration that invokes the validator before storage |
-| `scripts/spec/validate.sh` | Shell | Rule exposure and `--strict` orchestration surface |
+| `runtime/cli/spec/validate.sh` | Shell | Rule exposure and `--strict` orchestration surface |
 
 ### Validation And Tests
 

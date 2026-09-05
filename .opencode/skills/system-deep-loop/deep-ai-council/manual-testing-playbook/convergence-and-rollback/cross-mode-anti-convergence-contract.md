@@ -50,7 +50,7 @@ A council can appear to agree after one round before the critique and disagreeme
 1. `bash: rg -n '"antiConvergence"|"minRounds": 2|"convergenceMode": "default"|"stopPolicy": "fail-closed"' .opencode/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-config.json`
 2. `bash: rg -n '"stopPolicy": "fail-closed"|minRounds|maxRounds|invariants' .opencode/skills/system-deep-loop/deep-ai-council/assets/runtime-capabilities.json`
 3. `bash: rg -n 'missing stopPolicy|stopPolicy must be "fail-closed"|validateStopPolicy' .opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs`
-4. `bash: rg -n 'antiConvergence.convergenceMode|convergenceMode|minIterations<=maxIterations|minIterations|maxIterations' .opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+4. `bash: rg -n 'antiConvergence.convergenceMode|convergenceMode|minIterations<=maxIterations|minIterations|maxIterations' .opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`
 
 ### Expected
 
@@ -71,7 +71,7 @@ Check the config first, then the runtime capability matrix. Treat the optimizer 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-033 | Cross-mode anti-convergence contract | Verify council min-round floor and fail-closed guards | `Check whether deep-ai-council has a minimum round floor and fail-closed stop policy before convergence is trusted.` | `bash: rg -n '"antiConvergence"|"minRounds": 2|"convergenceMode": "default"|"stopPolicy": "fail-closed"' .opencode/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-config.json -> bash: rg -n '"stopPolicy": "fail-closed"|minRounds|maxRounds|invariants' .opencode/skills/system-deep-loop/deep-ai-council/assets/runtime-capabilities.json -> bash: rg -n 'missing stopPolicy|stopPolicy must be "fail-closed"|validateStopPolicy' .opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs -> bash: rg -n 'antiConvergence.convergenceMode|convergenceMode|minIterations<=maxIterations|minIterations|maxIterations' .opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Council config, runtime matrix, resolver, and optimizer anchors present | Grep output lines | PASS if explicit | Inspect config, then runtime matrix |
+| DAC-033 | Cross-mode anti-convergence contract | Verify council min-round floor and fail-closed guards | `Check whether deep-ai-council has a minimum round floor and fail-closed stop policy before convergence is trusted.` | `bash: rg -n '"antiConvergence"|"minRounds": 2|"convergenceMode": "default"|"stopPolicy": "fail-closed"' .opencode/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-config.json -> bash: rg -n '"stopPolicy": "fail-closed"|minRounds|maxRounds|invariants' .opencode/skills/system-deep-loop/deep-ai-council/assets/runtime-capabilities.json -> bash: rg -n 'missing stopPolicy|stopPolicy must be "fail-closed"|validateStopPolicy' .opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs -> bash: rg -n 'antiConvergence.convergenceMode|convergenceMode|minIterations<=maxIterations|minIterations|maxIterations' .opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json` | Council config, runtime matrix, resolver, and optimizer anchors present | Grep output lines | PASS if explicit | Inspect config, then runtime matrix |
 
 ---
 
@@ -91,7 +91,7 @@ Check the config first, then the runtime capability matrix. Treat the optimizer 
 | `.opencode/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-config.json` | Council anti-convergence config |
 | `.opencode/skills/system-deep-loop/deep-ai-council/assets/runtime-capabilities.json` | Council runtime capability policy and invariant names |
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs` | Shared fail-closed stop-policy validation |
-| `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Shared anti-convergence optimizer invariant group |
+| `.opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json` | Shared anti-convergence optimizer invariant group |
 
 ---
 

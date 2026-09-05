@@ -919,8 +919,8 @@ Expected signals: `RESOURCE_MAP` is the dominant intent; the loaded resource set
 
 ## 15. AUTOMATED TEST CROSS-REFERENCE
 
-- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`: runtime mirror alignment, capability matrix coverage, and artifact naming.
-- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`: reducer idempotency, question resolution, finding counts, convergence score, and dashboard content.
+- `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-research-contract-parity.vitest.ts`: runtime mirror alignment, capability matrix coverage, and artifact naming.
+- `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts`: reducer idempotency, question resolution, finding counts, convergence score, and dashboard content.
 
 ---
 

@@ -24,7 +24,7 @@
 // remain a thin, default-export-only OpenCode plugin while a Claude/Bash CLI
 // shim consumes the identical core. A .cjs core is imported here as the ESM
 // default export, exactly like system-deep-loop-guard.js.
-import core from '../skills/system-spec-kit/scripts/lib/completion-state.cjs';
+import core from '../skills/system-spec-kit/runtime/cli/lib/completion-state.cjs';
 import { tool } from '@opencode-ai/plugin/tool';
 
 // ─────────────────────────────────────────────────────────────────────────────

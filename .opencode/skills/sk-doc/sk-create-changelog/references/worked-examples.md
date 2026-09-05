@@ -98,7 +98,7 @@ This packet adds the `create-changelog` sub-skill to the sk-doc parent hub and r
 
 **Annotations**:
 - The exact packet-local shape is owned by `.opencode/skills/system-spec-kit/templates/changelog/root.md` and `phase.md`.
-- Use the nested generator: `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js <spec-folder> --write`.
+- Use the nested generator: `node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write`.
 - The output filename is deterministic, such as `changelog-<packet>-root.md` or `changelog-<packet>-<phase-folder>.md`.
 - Do not invent a `vX.Y.Z.W.md` filename for packet-local output.
 

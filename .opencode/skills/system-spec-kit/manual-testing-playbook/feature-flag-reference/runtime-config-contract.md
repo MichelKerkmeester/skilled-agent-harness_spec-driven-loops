@@ -59,7 +59,7 @@ sandbox copies of `config.jsonc`, captured runtime config output for each load, 
 
 ### Failure Triage
 
-Inspect `scripts/core/config.ts` merge and validation flow, confirm the test run is loading the intended sandbox file, and verify any observed behavior change is not coming from a different runtime path outside the core config loader
+Inspect `runtime/cli/core/config.ts` merge and validation flow, confirm the test run is loading the intended sandbox file, and verify any observed behavior change is not coming from a different runtime path outside the core config loader
 
 ---
 

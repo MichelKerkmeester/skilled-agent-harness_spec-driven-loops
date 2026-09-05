@@ -66,7 +66,7 @@ The static token can be correct while a full language-model turn still remains u
 | File | Role |
 |---|---|
 | `.pi/prompts/deep-research.md` | Generated prompt and static `$ARGUMENTS` evidence |
-| `.opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs` | Generator source |
+| `.opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs` | Generator source |
 
 ---
 

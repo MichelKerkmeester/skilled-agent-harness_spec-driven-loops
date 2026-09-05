@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "packet_id": "053-template-compliant-level2",
+  "spec_folder": "system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fixture"
+    ],
+    "key_topics": [
+      "validator fixture",
+      "template compliance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/spec.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/plan.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/tasks.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Validator regression fixtures must represent valid packets",
+    "created_at": "2026-03-16T00:00:00Z",
+    "last_save_at": "2026-04-19T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/spec.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/plan.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/tasks.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:baa214914a97cbbc3276c967655d7e2dc5df889b0815823083546287649e613b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "385c472ffe7e2b10dbad5cf35fdf5c3b845ad4ff1fdf670e1cd9318ba461a7d0",
+      "plan.md": "cc5e594d868e1fd8d78da31598b76773754ed16de7466fe53c7870043c7c3979",
+      "tasks.md": "9e8fcef0b019f24dde42946cb1206633b4790fc491efa91fd5f200407325d18b",
+      "implementation-summary.md": "72f25cad52a6206b1a86dfed0b24aca1a2be02b81c4533b9cf567d1559824ab0"
+    }
+  }
+}

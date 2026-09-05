@@ -81,7 +81,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | `LEVEL_DECLARED`     | INFO     | Level explicitly stated in spec.md metadata         |
 | `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs in spec docs (spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, implementation-summary.md) and generated continuity support artifacts |
 
-> **Partial reference:** This table lists a commonly-encountered subset. The authoritative, complete rule set lives in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
+> **Partial reference:** This table lists a commonly-encountered subset. The authoritative, complete rule set lives in [`runtime/cli/lib/validator-registry.json`](../../runtime/cli/lib/validator-registry.json).
 
 ### Placeholder Patterns Detected
 
@@ -106,13 +106,13 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ```bash
 # Validate a spec folder
-.opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
+.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
 
 # JSON output for tooling
-.opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/ --json
+.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/ --json
 
 # Strict mode (warnings become errors)
-.opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/ --strict
+.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/ --strict
 ```
 
 ### Environment Variables
@@ -145,7 +145,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 The Completion Verification Rule requires running validation before claiming completion:
 
 ```bash
-.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder>
+.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder>
 ```
 
 ### /spec_kit:complete Step 11
@@ -170,8 +170,8 @@ Planned but not yet implemented:
 - [Quick Reference](../workflows/quick-reference.md) - Commands and troubleshooting
 
 ### Scripts
-- `../../scripts/spec/validate.sh` - Main validation script
-- `../../scripts/tests/test-validation.sh` - Test suite for validation
+- `../../runtime/cli/spec/validate.sh` - Main validation script
+- `../../runtime/cli/tests/test-validation.sh` - Test suite for validation
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator

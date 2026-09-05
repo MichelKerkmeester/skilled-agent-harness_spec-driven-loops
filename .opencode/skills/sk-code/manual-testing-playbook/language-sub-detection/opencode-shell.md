@@ -18,10 +18,10 @@ Verify language sub-detection for `.sh` / `.bash` files within OPENCODE. Shell r
 
 **Exact prompt**:
 ```
-Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spec/validate.sh to clean up the temp dir on exit.
+Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.
 ```
 
-Prompt: `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spec/validate.sh to clean up the temp dir on exit.`
+Prompt: `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.`
 
 **Expected detection**:
 - Surface: `OPENCODE`
@@ -44,7 +44,7 @@ Prompt: `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/sc
 
 ### Preconditions
 
-1. Target file exists: `bash: test -f .opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+1. Target file exists: `bash: test -f .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh`
 2. Shell sub-language reference set intact: 3 files under `sk-code-opencode/references/shell/`.
 
 ### Exact Command Sequence

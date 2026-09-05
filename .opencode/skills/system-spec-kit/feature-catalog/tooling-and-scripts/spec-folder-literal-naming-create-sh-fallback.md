@@ -25,7 +25,7 @@ This is the script-level half of the literal-naming discipline. When an operator
 
 ## 2. HOW IT WORKS
 
-The fallback path lives entirely inside `scripts/spec/create.sh`. When `--phase` is active and `--phase-names` is absent or under-supplied, the script synthesizes a child slug of the form `phase-${N}-PROVIDE-DESCRIPTIVE-SLUG` and writes a matching stderr line: `[speckit] Warning: Falling back to generic phase name 'phase-N-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs.`
+The fallback path lives entirely inside `runtime/cli/spec/create.sh`. When `--phase` is active and `--phase-names` is absent or under-supplied, the script synthesizes a child slug of the form `phase-${N}-PROVIDE-DESCRIPTIVE-SLUG` and writes a matching stderr line: `[speckit] Warning: Falling back to generic phase name 'phase-N-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs.`
 
 The validation phase scaffolded by the script also seeds an initial `001-validation-phase-PROVIDE-DESCRIPTIVE-SLUG` child for the validation track. Both placeholder paths share the same token so a single grep can locate every pending rename: `grep -rn 'PROVIDE-DESCRIPTIVE-SLUG' specs/` returns every child that still needs a literal slug.
 
@@ -39,7 +39,7 @@ Exit code remains 0 to keep scaffolding non-blocking. Downstream consumers (work
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Script | Generates phase children, emits PROVIDE-DESCRIPTIVE-SLUG placeholders, and writes one stderr warning per child when --phase-names is omitted |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Script | Generates phase children, emits PROVIDE-DESCRIPTIVE-SLUG placeholders, and writes one stderr warning per child when --phase-names is omitted |
 
 ### Validation And Tests
 

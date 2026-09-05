@@ -165,7 +165,7 @@ the phase sits in the worktree on `branches/017-memory-decommission`.
 | Every hook path named by the five hook configs | Present on disk |
 | Live skill advisor on the pruned code | `advisor_recommend` returns scored recommendations, exit 0; `advisor_status` freshness live; no memory process |
 | Shared `hf-embed` socket ownership | Live two-launcher test, 3 passed 2 skipped, plus `hf-local`'s default socket directory `/tmp/system-hf-embed` |
-| `validate.sh --strict` on `specs/system-deep-loop/040-cli-lineage-nesting-and-containment-guard` | Errors 0, Warnings 0, `RESULT: PASSED`, exit 0 |
+| `validate.sh --strict` on `specs/system-deep-loop/040-cli-lineage-nesting-and-containment-guard` (merged 2026-09-05 to `specs/system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard`) | Errors 0, Warnings 0, `RESULT: PASSED`, exit 0 |
 | `repair-derived.cjs` and the continuity writer | inspected=1 repairable=0 failed=0; `generate-context.js` exit 0 with the graph-metadata refresh logged |
 | Package census after the prune | 1,482 to 333 tracked files, 453,964 to about 68,270 lines, 20.3 MB to 2.8 MB; import-closed at 99 modules with 2 intentional orphans |
 | Residue sweep from the worktree root, final state, now covering `mcp-server` | live 0, livePaths 0 across 3,171 paths and 30,705 records, 43 reasoned allowlist entries; sweep test 29 pass |

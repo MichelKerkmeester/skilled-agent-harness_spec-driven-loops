@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules",
-  "description": "Phase 6: orphaned-types-and-dead-modules",
+  "description": "`.opencode/skills/system-spec-kit/shared/types.ts` still exports `IVectorStore` (line 246), `SearchOptions` (189), `SearchResult` (204), `StoreStats`",
   "keywords": [
-    "phase",
-    "orphaned-types-and-dead-modules"
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "shared",
+    "types",
+    "still",
+    "exports",
+    "ivectorstore",
+    "line",
+    "searchoptions",
+    "searchresult",
+    "storestats"
   ],
-  "lastUpdated": "2026-09-05T06:13:08.478Z",
+  "lastUpdated": "2026-09-05T07:33:36.395Z",
   "specId": "006",
   "folderSlug": "orphaned-types-and-dead-modules",
   "parentChain": [
@@ -13,6 +24,5 @@
     "054-decommission-debt-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

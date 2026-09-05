@@ -1,0 +1,139 @@
+---
+title: "Spec Folder Utilities"
+description: "TypeScript utilities for spec-folder detection, alignment checks, metadata generation and nested changelog output."
+trigger_phrases:
+  - "spec folder detection"
+  - "alignment validation"
+  - "folder utilities"
+---
+
+# Spec Folder Utilities
+
+> TypeScript utilities that resolve spec folders, score folder alignment and generate packet metadata.
+
+---
+
+## 1. OVERVIEW
+
+`scripts/spec-folder/` contains source modules used by continuity save and spec-maintenance workflows. The utilities detect active spec folders, validate content-to-folder alignment, create required packet directories, generate `description.json`, and build nested changelog data for root specs or phase children.
+
+Current state:
+
+- Source of truth is `scripts/spec-folder/*.ts`.
+- Compiled runtime output is `runtime/cli/dist/spec-folder/*.js`.
+- Explicit CLI targets are authoritative when save workflows pass a spec-folder argument.
+
+---
+
+## 2. PACKAGE TOPOLOGY
+
+```text
+scripts/spec-folder/
++-- index.ts                 # Public barrel for spec-folder utilities
++-- folder-detector.ts       # Spec-folder detection logic
++-- alignment-validator.ts   # Topic and folder alignment scoring
++-- directory-setup.ts       # Directory existence and setup helpers
++-- generate-description.ts  # description.json generator
++-- nested-changelog.ts      # Nested changelog data and CLI output
+`-- README.md
+```
+
+Generated output:
+
+```text
+runtime/cli/dist/spec-folder/
++-- index.js
++-- folder-detector.js
++-- alignment-validator.js
++-- directory-setup.js
++-- generate-description.js
+`-- nested-changelog.js
+```
+
+Allowed direction:
+
+- Continuity save workflows may import through `scripts/spec-folder/index.ts`.
+- CLI wrappers may run compiled output from `runtime/cli/dist/spec-folder/` after build.
+- Metadata generation may write `description.json` for a selected packet.
+
+Disallowed direction:
+
+- Source modules should not import generated `dist/` files.
+- Detection logic should not override an explicit CLI target.
+- Spec-folder utilities should not own continuity writing or packet persistence.
+
+---
+
+## 3. KEY FILES
+
+| File | Responsibility |
+|---|---|
+| `index.ts` | Exposes the public utility surface for script consumers. |
+| `folder-detector.ts` | Finds candidate spec folders from CLI data, prompts and context signals. |
+| `alignment-validator.ts` | Scores how well session topics match a target spec folder. |
+| `directory-setup.ts` | Ensures selected packet directories exist before downstream writes. |
+| `generate-description.ts` | Builds per-folder `description.json` metadata. |
+| `nested-changelog.ts` | Builds nested changelog payloads for root packets and phase children. |
+
+---
+
+## 4. COMMANDS
+
+Run from the repository root unless noted.
+
+```bash
+npm --prefix .opencode/skills/system-spec-kit/scripts run build
+```
+
+Expected result: TypeScript compiles and emits `runtime/cli/dist/spec-folder/` files.
+
+```bash
+node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder>
+```
+
+Expected result: prints nested changelog data for the supplied packet path when the path exists.
+
+```bash
+node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data.json specs/<###-feature-name>/
+```
+
+Expected result: continuity save workflow uses the explicit spec-folder target and supporting utilities from this folder.
+
+---
+
+## 5. BOUNDARIES
+
+| Boundary | Rule |
+|---|---|
+| CLI authority | Explicit folder arguments remain the selected target even if alignment scoring finds alternatives. |
+| Archive filtering | Detection filters archived folders before ranking candidates. |
+| Metadata | `generate-description.ts` owns `description.json`. Graph metadata belongs to graph-specific tooling. |
+| Persistence | These utilities prepare paths and metadata. Writing continuity stays with `runtime/cli/continuity/generate-context.ts`. |
+
+---
+
+## 6. VALIDATION
+
+Run the README validator after editing this file:
+
+```bash
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/cli/spec-folder/README.md
+```
+
+Run build and a compiled-module smoke check after changing source files:
+
+```bash
+npm --prefix .opencode/skills/system-spec-kit/scripts run build
+node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/index.js').then(m => console.log(Object.keys(m).length))"
+```
+
+Expected result: build passes and the compiled public barrel exports module members.
+
+---
+
+## 7. RELATED
+
+- [`../memory/README.md`](../memory/README.md)
+- [`../core/README.md`](../core/README.md)
+- [`../spec/README.md`](../spec/README.md)
+- [`../../README.md`](../../README.md)

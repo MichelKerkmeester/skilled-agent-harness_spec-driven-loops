@@ -40,13 +40,13 @@ Validate Completion Verification Workflow against the documented validation surf
 
 ### Commands
 
-1. `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1`
-2. `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json`
+1. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/062-template-compliant-level1`
+2. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 --json`
 3. `TMP_DIR="$(mktemp -d /tmp/speckit-completion-XXXXXX)"`
-4. `cp -R .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 "$TMP_DIR/level3-missing-evidence"`
+4. `cp -R .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 "$TMP_DIR/level3-missing-evidence"`
 5. `perl -0pi -e 's/ \\[EVIDENCE:[^\\n]+\\]//' "$TMP_DIR/level3-missing-evidence/checklist.md"`
-6. `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh "$TMP_DIR/level3-missing-evidence" --json || true`
-7. `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh "$TMP_DIR/level3-missing-evidence" --strict || true`
+6. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh "$TMP_DIR/level3-missing-evidence" --json || true`
+7. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh "$TMP_DIR/level3-missing-evidence" --strict || true`
 
 ### Expected
 
@@ -67,7 +67,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Inspect `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh`, especially checklist parsing, inherited priority logic, and evidence marker detection
+Inspect `.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`, especially checklist parsing, inherited priority logic, and evidence marker detection
 
 ---
 

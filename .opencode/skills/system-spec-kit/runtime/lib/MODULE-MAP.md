@@ -189,7 +189,7 @@ The inventory is derived from the files in each folder and from the import edges
   - `generated-metadata-integrity.ts` — validates the two generated JSON files against the shared schemas plus the canonical path-prefix and status-enum invariants. Severity resolution is left to the caller so the same check backs both the report-mode rollout and the enforced run.
 - Primary consumers:
   - `api/index.ts`
-  - `../scripts/spec/validate.sh`, through the compiled `dist/lib/validation/orchestrator.js`
+  - `cli/spec/validate.sh`, through the compiled `dist/lib/validation/orchestrator.js`
 
 ---
 
@@ -197,7 +197,7 @@ The inventory is derived from the files in each folder and from the import edges
 
 Status: **DOCUMENTATION-ONLY**
 
-No AST checker enforces the directions below inside `lib/`. The import-policy checks in `../scripts/evals/` enforce the package boundary — external callers must enter through `api/` — but not the internal layering.
+No AST checker enforces the directions below inside `lib/`. The import-policy checks in `cli/evals/` enforce the package boundary — external callers must enter through `api/` — but not the internal layering.
 
 ### 3.1 Dependency Roots
 
@@ -293,7 +293,7 @@ Target rule:
 ### Rule Verdicts
 
 - Canonical location: `lib/validation/orchestrator.ts`
-- Non-canonical location: shell front ends such as `../scripts/spec/validate.sh`
+- Non-canonical location: shell front ends such as `cli/spec/validate.sh`
 - Rule: the shell script resolves and invokes the compiled orchestrator. It implements no rules and interprets no verdicts.
 
 ### Generated Metadata Writes

@@ -4,7 +4,7 @@
 role: Diagnostic Operator reporting whether every runtime config dir still mirrors its canonical source
 purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor and .devin derive from .opencode, plus adapter-path resolution drift in the Codex and Devin hook fallback chains
 action: Run the five mirror checkers plus the hook-adapter fallback health check -> aggregate their verdicts -> report per-surface drift
-skill_owner: ".opencode/skills/system-spec-kit/scripts/"
+skill_owner: ".opencode/skills/system-spec-kit/runtime/cli/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
@@ -31,13 +31,13 @@ mutation_boundaries:
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  runtime_mirrors: ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs"
-  codex_agents: ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs"
-  codex_prompts: ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
+  runtime_mirrors: ".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs"
+  codex_agents: ".opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs"
+  codex_prompts: ".opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs"
   agent_roster: ".opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs"
   codex_hooks_installer: ".opencode/bin/install-codex-hooks.mjs"
-  pi_agents: ".opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs"
-  pi_prompts: ".opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs"
+  pi_agents: ".opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs"
+  pi_prompts: ".opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs"
 
 # ─────────────────────────────────────────────────────────────────
 # HOOK-ADAPTER FALLBACK HEALTH CHECKS
@@ -98,12 +98,12 @@ execution:
 output: |
   STATUS=OK when every checker reports in sync.
   STATUS=DRIFT when any checker reports drift, listing each drifting surface and the repair command for it:
-    runtime mirrors  -> node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs
-    codex agents     -> node .opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs
-    codex prompts    -> node .opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs
+    runtime mirrors  -> node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
+    codex agents     -> node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs
+    codex prompts    -> node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs
     codex hooks      -> node .opencode/bin/install-codex-hooks.mjs
-    pi agents        -> node .opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs
-    pi prompts       -> node .opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs
+    pi agents        -> node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
+    pi prompts       -> node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs
   The agent roster check has no generator; its drift is repaired by the runtime-mirrors generator or by hand
   for the authored surfaces (.opencode/agents, .codex/agents).
   Hook CONFIG STRUCTURE is deliberately out of scope for mirroring: the four runtimes use incompatible event

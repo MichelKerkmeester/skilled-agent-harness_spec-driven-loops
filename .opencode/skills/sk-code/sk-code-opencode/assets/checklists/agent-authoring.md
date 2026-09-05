@@ -58,7 +58,7 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 
 ## 4. POST-CHECKS
 
-- [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` against the owning spec folder when the agent change is part of a spec folder.
+- [ ] Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` against the owning spec folder when the agent change is part of a spec folder.
 - [ ] grep verification for OpenCode frontmatter shape: `rg -n "^(name|description|mode|permission):" .opencode/agents/code.md`.
 - [ ] grep verification for Claude frontmatter shape: `rg -n "^(name|description|tools):" .claude/agents/code.md`.
 - [ ] grep verification that agent frontmatter is not using the command/skill field: `rg -n "^allowed-tools:" .opencode/agents .claude/agents` should return no agent matches.

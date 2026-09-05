@@ -28,12 +28,12 @@ upstream_assets:
   contract: "local command design contract"
   conventions: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
   index_path: ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json"
-  lookup_command: 'node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"'
+  lookup_command: 'node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"'
   lookup_policy: "The lookup reads a file and exits. There is no socket to probe and no daemon to start. Exit 0 = at least one candidate, exit 1 = clean no-hit reported as an empty result, exit 2 or higher = an execution error reported with stderr attached and never as a no-hit."
-  generator_command: "node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs"
+  generator_command: "node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
   files:
     acceptance: "specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/acceptance-criteria.md"  # the bar the index and lookup were accepted against
-    latency_report: ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/latency-report.json"  # cold-lookup budget evidence
+    latency_report: ".opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/latency-report.json"  # cold-lookup budget evidence
   pass_policy:
     lookup_exit_class: "0 or 1 on the frozen prompt set; 2 or higher fails"  # the lookup contract, never a result count
     cold_lookup_p95_budget_ms: 200  # the budget the latency report was accepted under

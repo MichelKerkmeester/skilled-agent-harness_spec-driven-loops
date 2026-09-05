@@ -60,7 +60,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Inspect `scripts/extractors/file-extractor.ts`, `diagram-extractor.ts`, `session-activity-signal.ts`, and the extractor barrel if module loading or enrichment semantics fail
+Inspect `runtime/cli/extractors/file-extractor.ts`, `diagram-extractor.ts`, `session-activity-signal.ts`, and the extractor barrel if module loading or enrichment semantics fail
 
 ---
 

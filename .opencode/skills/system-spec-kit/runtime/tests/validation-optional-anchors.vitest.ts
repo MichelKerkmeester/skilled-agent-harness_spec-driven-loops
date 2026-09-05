@@ -7,8 +7,8 @@ import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 
 const THIS_DIR = path.dirname(fileURLToPath(import.meta.url));
-const FIXTURE_ROOT = path.resolve(THIS_DIR, '../../scripts/test-fixtures');
-const VALIDATE_SCRIPT = path.resolve(THIS_DIR, '../../scripts/spec/validate.sh');
+const FIXTURE_ROOT = path.resolve(THIS_DIR, '../cli/test-fixtures');
+const VALIDATE_SCRIPT = path.resolve(THIS_DIR, '../cli/spec/validate.sh');
 
 const TEMP_DIRS: string[] = [];
 

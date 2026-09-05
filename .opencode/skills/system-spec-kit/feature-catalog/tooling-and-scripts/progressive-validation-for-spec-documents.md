@@ -24,7 +24,7 @@ This tool checks your project documents for problems in four steps: find issues,
 
 ## 2. HOW IT WORKS
 
-The `progressive-validate.sh` wrapper in `scripts/spec/` runs a 4-level pipeline on top of `validate.sh`:
+The `progressive-validate.sh` wrapper in `runtime/cli/spec/` runs a 4-level pipeline on top of `validate.sh`:
 
 1. **Detect (Level 1)** delegates validation to `validate.sh` and captures the compatible detect exit status.
 2. **Auto-fix (Level 2)** applies safe mechanical fixes (date placeholders, heading normalization, whitespace/line-ending normalization) with logged before/after diffs.
@@ -43,7 +43,7 @@ Flags include `--level N`, `--dry-run`, `--json`, `--strict`, `--quiet` and `--v
 
 | File | Layer | Role |
 |------|-------|------|
-| `scripts/spec/progressive-validate.sh` | Script | Progressive 4-level validation wrapper around validate.sh |
+| `runtime/cli/spec/progressive-validate.sh` | Script | Progressive 4-level validation wrapper around validate.sh |
 
 ### Validation And Tests
 

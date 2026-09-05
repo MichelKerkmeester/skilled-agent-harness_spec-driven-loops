@@ -53,7 +53,7 @@ No `.cursor/skills/` — Cursor's own skills live in `~/.cursor/skills-cursor/` 
 
 ```bash
 # Refresh every symlink tree (cursor agents + commands + hooks, and the devin trees)
-node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs
+node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 
 # Verify roster coverage across all five runtime surfaces
 node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
@@ -94,7 +94,7 @@ Both refuse to accept a real file where a symlink belongs — that is a silent f
 
 | Check | Command | Exit |
 |---|---|---|
-| Symlink trees incl. `hooks/` | `node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
+| Symlink trees incl. `hooks/` | `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
 | Roster coverage | `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
 

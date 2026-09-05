@@ -36,7 +36,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Confirm phase 002's residue sweep returns empty before any deletion starts (done: phase 002 closed with live 0, livePaths 0, exit 0 and 79 reasoned exemptions)
-- [x] T002 Capture the baseline: advisor embedder resolves, `validate.sh --strict` passes on an existing packet, all five runtimes boot clean (done: advisor recommend and status exit 0; `validate.sh --strict` on `specs/system-deep-loop/040-cli-lineage-nesting-and-containment-guard` RESULT: PASSED; five runtimes booted before the first deletion)
+- [x] T002 Capture the baseline: advisor embedder resolves, `validate.sh --strict` passes on an existing packet, all five runtimes boot clean (done: advisor recommend and status exit 0; `validate.sh --strict` on `specs/system-deep-loop/040-cli-lineage-nesting-and-containment-guard` (merged 2026-09-05 to `specs/system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard`) RESULT: PASSED; five runtimes booted before the first deletion)
 - [x] T003 [P] Write down the preserve-set inventory so the closing audit has a before state to compare against (`spec.md` section 3) (done: the five-row preserve set in `spec.md` section 3 is the before state audited positively in T009)
 <!-- /ANCHOR:phase-1 -->
 

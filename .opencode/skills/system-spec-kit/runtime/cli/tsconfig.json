@@ -1,0 +1,40 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "module": "es2022",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@spec-kit/runtime/api": ["../api/index.ts"],
+      "@spec-kit/shared/*": ["../../shared/*"],
+      "@spec-kit/runtime/*": ["../*"]
+    }
+  },
+  "references": [
+    { "path": "../../shared" },
+    { "path": ".." }
+  ],
+  "include": [
+    "*.ts",
+    "config/**/*.ts",
+    "continuity/**/*.ts",
+    "core/**/*.ts",
+    "evals/**/*.ts",
+    "extractors/**/*.ts",
+    "graph/**/*.ts",
+    "lib/**/*.ts",
+    "loaders/**/*.ts",
+    "observability/**/*.ts",
+    "ops/**/*.ts",
+    "renderers/**/*.ts",
+    "spec/**/*.ts",
+    "spec-folder/**/*.ts",
+    "types/**/*.ts",
+    "utils/**/*.ts",
+    "validation/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "tests/**/*.vitest.ts"]
+}

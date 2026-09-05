@@ -25,7 +25,7 @@ Defines the exact heading hierarchy, required anchors, and content minimums for 
 
 ### Source of Truth
 
-- **Generator:** `template-structure.js` `loadTemplateContract()` output (`scripts/utils/template-structure.js`)
+- **Generator:** `template-structure.js` `loadTemplateContract()` output (`runtime/cli/utils/template-structure.js`)
 - **Applies to:** `distributed-governance spec authoring` agent definitions across all CLIs
 
 ### When to Use
@@ -41,7 +41,7 @@ Defines the exact heading hierarchy, required anchors, and content minimums for 
 After writing ANY spec folder `.md` file, immediately run:
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <SPEC_FOLDER> --strict
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <SPEC_FOLDER> --strict
 ```
 
 Fix ALL errors before proceeding to the next file or workflow step.
@@ -244,7 +244,7 @@ Phase-parent `spec.md` content discipline is a template convention, not a valida
 Before authoring (or fixing) a spec folder to pass `validate.sh --strict`, ask the contract engine directly rather than copying `templates/examples/level_N/` (whose anchor ids and section order **differ** from what the validator enforces). Two checks are independent: **required anchors** (presence) and **header order** — a doc can have every anchor yet still fail on ordering.
 
 ```bash
-cd .opencode/skills/system-spec-kit/scripts/utils
+cd .opencode/skills/system-spec-kit/runtime/cli/utils
 
 # Required anchors + section gates for a level (the ANCHORS_VALID source of truth):
 node template-structure.js level-contract 3
@@ -296,8 +296,8 @@ When templates in `templates/` change:
 - [decision-format.md](./decision-format.md) — Standard format for documenting decisions
 
 ### Scripts
-- [validate.sh](../../scripts/spec/validate.sh) — Validation orchestrator enforcing these contracts
-- [template-structure.js](../../scripts/utils/template-structure.js) — Contract extraction engine; run `level-contract`, `contract`, or `compare` (see §8.5) to discover required anchors + header order instead of guessing
+- [validate.sh](../../runtime/cli/spec/validate.sh) — Validation orchestrator enforcing these contracts
+- [template-structure.js](../../runtime/cli/utils/template-structure.js) — Contract extraction engine; run `level-contract`, `contract`, or `compare` (see §8.5) to discover required anchors + header order instead of guessing
 
 ### Templates
 - [template-guide.md](../templates/template-guide.md) — Template usage and composition rules

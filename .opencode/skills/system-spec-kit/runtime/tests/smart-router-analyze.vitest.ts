@@ -11,8 +11,8 @@ import {
   readTelemetryJsonl,
   writeTelemetryAnalysisReport,
   type TelemetryAnalysis,
-} from '../../scripts/observability/smart-router-analyze';
-import type { ComplianceRecord } from '../../scripts/observability/smart-router-telemetry';
+} from '../cli/observability/smart-router-analyze';
+import type { ComplianceRecord } from '../cli/observability/smart-router-telemetry';
 
 const roots = new Set<string>();
 

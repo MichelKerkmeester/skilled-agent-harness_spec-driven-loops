@@ -60,7 +60,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Inspect `scripts/core/memory-indexer.ts`, `post-save-review.ts`, `quality-scorer.ts`, `config.ts`, and workflow entrypoints if any targeted suite fails
+Inspect `runtime/cli/core/memory-indexer.ts`, `post-save-review.ts`, `quality-scorer.ts`, `config.ts`, and workflow entrypoints if any targeted suite fails
 
 ---
 

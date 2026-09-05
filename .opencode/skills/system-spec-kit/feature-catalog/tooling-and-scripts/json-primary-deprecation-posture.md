@@ -39,9 +39,9 @@ The shipped posture enforces the following behavior:
 
 | File | Role |
 |------|------|
-| `scripts/memory/generate-context.ts` | CLI argument parsing for `--json`, `--stdin`, and positional JSON file input |
-| `scripts/loaders/data-loader.ts` | Structured-input routing enforcement |
-| `scripts/types/session-types.ts` | Structured JSON enrichment types |
+| `runtime/cli/continuity/generate-context.ts` | CLI argument parsing for `--json`, `--stdin`, and positional JSON file input |
+| `runtime/cli/loaders/data-loader.ts` | Structured-input routing enforcement |
+| `runtime/cli/types/session-types.ts` | Structured JSON enrichment types |
 | `SKILL.md` | Operator guidance: JSON-primary deprecation posture |
 | `.opencode/commands/memory/save.md` | Save command alignment with the JSON-primary contract |
 
@@ -76,8 +76,8 @@ The shipped posture enforces the following behavior:
 
 | File | Type | Role |
 |---|---|---|
-| `scripts/tests/generate-context-cli-authority.vitest.ts` | Automated test | `--stdin` / `--json` structured-input precedence, explicit CLI target authority, and positional JSON file support |
-| `scripts/tests/generate-context-cli-authority.vitest.ts` | Automated test | Invalid inline JSON and missing-target failures for structured-input modes |
+| `runtime/cli/tests/generate-context-cli-authority.vitest.ts` | Automated test | `--stdin` / `--json` structured-input precedence, explicit CLI target authority, and positional JSON file support |
+| `runtime/cli/tests/generate-context-cli-authority.vitest.ts` | Automated test | Invalid inline JSON and missing-target failures for structured-input modes |
 
 ---
 

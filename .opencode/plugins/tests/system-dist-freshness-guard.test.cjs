@@ -22,7 +22,8 @@ const DIST_FRESHNESS_PATH = path.join(
   '..',
   'skills',
   'system-spec-kit',
-  'scripts',
+  'runtime',
+  'cli',
   'lib',
   'dist-freshness.cjs',
 );
@@ -48,7 +49,7 @@ const CHECK_DIST_WRAPPER = path.join(
   'check-dist-staleness.sh',
 );
 const CHECKER_REL = path.join(
-  '.opencode', 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs',
+  '.opencode', 'skills', 'system-spec-kit', 'runtime', 'cli', 'lib', 'dist-freshness.cjs',
 );
 const distFreshness = require(DIST_FRESHNESS_PATH);
 

@@ -38,7 +38,7 @@ Validate JSON mode structured summary hardening against toolCalls and report cit
 ### Commands
 
 1. Compose JSON payload with `toolCalls`, `exchanges`, `user_prompts`, `trigger_phrases`
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 3. Inspect rendered .md output for field preservation
 4. Verify decision confidence matches input
 5. Verify git_changed_file_count matches explicit count
@@ -76,7 +76,7 @@ Validate Post-save quality review output verification against sessionSummary and
 ### Commands
 
 1. Compose a complete JSON payload with `sessionSummary`, `triggerPhrases`, `keyDecisions`, `importanceTier`, `contextType`
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 3. Capture full stdout
 4. Locate the `POST-SAVE QUALITY REVIEW` block
 5. Verify it reads `PASSED` with 0 issues
@@ -96,7 +96,7 @@ CLI stdout log showing REVIEW block
 
 ### Failure Triage
 
-Check `scripts/core/post-save-review.ts`, `scripts/core/workflow.ts`, and CLI response rendering in `scripts/memory/generate-context.ts`
+Check `runtime/cli/core/post-save-review.ts`, `runtime/cli/core/workflow.ts`, and CLI response rendering in `runtime/cli/continuity/generate-context.ts`
 
 ---
 
@@ -109,7 +109,7 @@ Validate sessionSummary propagates to frontmatter title against sessionSummary a
 ### Commands
 
 1. Set `sessionSummary` to a descriptive, non-generic string (e.g., "Refactor auth pipeline for token refresh")
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 3. Read the rendered .md frontmatter
 4. Assert `title` field matches provided sessionSummary
 
@@ -141,7 +141,7 @@ Validate triggerPhrases propagate to frontmatter trigger_phrases against trigger
 ### Commands
 
 1. Set `triggerPhrases` to meaningful keyword phrases (e.g., ["auth refactor", "token refresh"])
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 3. Read the rendered .md frontmatter
 4. Assert `trigger_phrases` matches the provided array
 5. Assert no entry looks like a file path (contains `/` or `.ts`)
@@ -174,7 +174,7 @@ Validate keyDecisions propagate to non-zero decision_count against keyDecisions 
 ### Commands
 
 1. Set `keyDecisions` to an array of 2+ decision strings
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 3. Read the rendered .md file, including the `## MEMORY METADATA` YAML block
 4. Assert `decision_count` > 0 and equals `keyDecisions.length`
 
@@ -206,7 +206,7 @@ Validate importanceTier propagates to frontmatter importance_tier against import
 ### Commands
 
 1. Set `importanceTier` to `"important"`
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 3. Read the rendered .md frontmatter
 4. Assert `importance_tier` equals `"important"`
 
@@ -238,7 +238,7 @@ Validate contextType propagates for the full documented valid enum against conte
 ### Commands
 
 1. Save separate JSON payloads using `contextType` values `"implementation"`, `"review"`, `"debugging"`, and `"planning"`
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>` for each case
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>` for each case
 3. Read each rendered .md frontmatter
 4. Assert `context_type` matches the payload value every time
 

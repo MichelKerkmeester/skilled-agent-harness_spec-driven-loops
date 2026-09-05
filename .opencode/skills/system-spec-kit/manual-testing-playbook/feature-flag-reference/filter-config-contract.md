@@ -59,7 +59,7 @@ sandbox copies of `filters.jsonc`, captured before or after prompt lists for eac
 
 ### Failure Triage
 
-Inspect `scripts/lib/content-filter.ts` loader and merge logic, verify the fixture prompt list actually exercises noise plus dedupe plus quality branches, and confirm the malformed-config run did not silently reuse stale in-memory config from a prior execution
+Inspect `runtime/cli/lib/content-filter.ts` loader and merge logic, verify the fixture prompt list actually exercises noise plus dedupe plus quality branches, and confirm the malformed-config run did not silently reuse stale in-memory config from a prior execution
 
 ---
 

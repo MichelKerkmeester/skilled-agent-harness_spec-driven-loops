@@ -313,7 +313,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 When the calling AI needs to preserve session context from a Codex CLI delegation, run the canonical procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file). The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md). Codex-specific Memory Epilogue template: [assets/prompt-templates.md](./assets/prompt-templates.md) §13.
 
 ```bash
-printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin [spec-folder]
+printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin [spec-folder]
 ```
 
 ---

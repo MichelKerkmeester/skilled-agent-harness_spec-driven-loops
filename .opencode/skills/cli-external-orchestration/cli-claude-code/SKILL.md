@@ -305,7 +305,7 @@ Claude-Code-specific Memory Epilogue template: see [assets/prompt-templates.md](
 
 Example invocation:
 ```bash
-printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin [spec-folder]
+printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin [spec-folder]
 ```
 
 ---

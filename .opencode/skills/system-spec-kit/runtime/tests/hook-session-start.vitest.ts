@@ -11,7 +11,7 @@ import { createSharedPayloadEnvelope } from '../lib/context/shared-payload.js';
 import {
   CANONICAL_FOLD_VERSION,
   getUnicodeRuntimeFingerprint,
-} from '../../scripts/lib/unicode-normalization';
+} from '../cli/lib/unicode-normalization';
 import {
   formatHookOutput,
   truncateToTokenBudget,

@@ -207,7 +207,7 @@ available_templates:
     resource_map: level_contract_optional_resource-map.md
 
 template_compliance:
-  strict_validation_command: ".opencode/skills/system-spec-kit/scripts/spec/validate.sh [SPEC_FOLDER] --strict"
+  strict_validation_command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
   prompt_contract:
     rule: "When this workflow writes tasks.md or implementation-summary.md, embed the matching inline scaffold below in the authoring prompt and preserve required ANCHOR/H2 order."
   inline_scaffolds:
@@ -419,7 +419,7 @@ workflow:
       inline_scaffold_key: tasks_md
       writing_rule: "Embed template_compliance.inline_scaffolds.tasks_md in the prompt before writing tasks.md and preserve the required anchors/headers in order."
     post_write_validation:
-      command: ".opencode/skills/system-spec-kit/scripts/spec/validate.sh [SPEC_FOLDER] --strict"
+      command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair tasks.md template drift before proceeding"
     validation: tasks_documented
 
@@ -550,7 +550,7 @@ workflow:
       writing_rule: "Embed template_compliance.inline_scaffolds.implementation_summary_md in the prompt before writing implementation-summary.md."
     nested_changelog:
       generator:
-        command: "node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js [SPEC_FOLDER] --write"
+        command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js [SPEC_FOLDER] --write"
       evidence_sources: [implementation-summary.md, tasks.md, checklist.md, decision-record.md, spec.md]
       output_rules:
         root: "[SPEC_FOLDER]/changelog/changelog-<packet>-root.md"
@@ -560,7 +560,7 @@ workflow:
         required: true
         must_include: [Total items verified, P0 status (all complete), P1 status (complete or deferred), Deferred P2 with reasons, Link to checklist.md]
     post_write_validation:
-      command: ".opencode/skills/system-spec-kit/scripts/spec/validate.sh [SPEC_FOLDER] --strict"
+      command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair implementation-summary.md template drift before marking completion"
     validation: implementation_complete
     completion_checkpoint:
@@ -601,12 +601,12 @@ workflow:
     memory_creation:
       enforcement: HARD_BLOCK
       method: "MUST use structured JSON input with generate-context.js"
-      command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]"
+      command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]"
       forbidden: ["Manual Write/Edit authoring of files under retired memory/ paths (the runtime rejects them)"]
       violation_recovery: "DELETE the manually authored file, then re-run generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md"
     write_continuity:
-      writer: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
-      invocation: 'node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]'
+      writer: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
+      invocation: 'node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]'
       critical_note: "The writer is the whole write. It keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it."
       when: "Immediately after the canonical spec document is refreshed on disk"
     anchor_requirements:

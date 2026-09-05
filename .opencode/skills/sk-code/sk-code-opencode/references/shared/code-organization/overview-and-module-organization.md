@@ -39,7 +39,7 @@ This reference defines how to organize files, structure modules, and order impor
 | Pattern | Source File | Line Reference |
 |---------|-------------|----------------|
 | TypeScript module structure | `.opencode/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts` | Lines 1-45 |
-| TypeScript exports | `.opencode/skills/system-spec-kit/scripts/core/config.ts` | Export block near file end |
+| TypeScript exports | `.opencode/skills/system-spec-kit/runtime/cli/core/config.ts` | Export block near file end |
 | Python imports | `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` | Import block near file top |
 | Shell structure | `lib/common.sh` | Lines 1-40 |
 

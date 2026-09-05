@@ -92,30 +92,30 @@ Status: Implemented and strongly verified for the shared runtime contract. The a
 
 | File | Role |
 |------|------|
-| `scripts/loaders/data-loader.ts` | Structured-input routing enforcement |
-| `scripts/memory/generate-context.ts` | CLI entrypoint; `--stdin`, `--json`, and positional JSON file input all resolve through the structured-input contract |
-| `scripts/types/session-types.ts` | Structured JSON contract types for fields such as `toolCalls` and `exchanges` |
-| `scripts/utils/workspace-identity.ts` | Canonical `.opencode` workspace identity and path equivalence |
-| `scripts/utils/spec-affinity.ts` | Shared target-spec anchor evaluation for alignment and normalization |
+| `runtime/cli/loaders/data-loader.ts` | Structured-input routing enforcement |
+| `runtime/cli/continuity/generate-context.ts` | CLI entrypoint; `--stdin`, `--json`, and positional JSON file input all resolve through the structured-input contract |
+| `runtime/cli/types/session-types.ts` | Structured JSON contract types for fields such as `toolCalls` and `exchanges` |
+| `runtime/cli/utils/workspace-identity.ts` | Canonical `.opencode` workspace identity and path equivalence |
+| `runtime/cli/utils/spec-affinity.ts` | Shared target-spec anchor evaluation for alignment and normalization |
 | `shared/parsing/memory-sufficiency.ts` | Shared semantic sufficiency evaluator; `generate-context.js` is now its only caller |
 | `shared/parsing/memory-template-contract.ts` | Shared rendered-memory structural contract validator |
-| `scripts/utils/input-normalizer.ts` | `DataSource` typing, snake_case JSON compatibility, and tool-evidence shaping |
-| `scripts/extractors/collect-session-data.ts` | Template-field assembly, completion-status recovery, and structured summary preservation |
-| `scripts/extractors/decision-extractor.ts` | Decision-field deduplication and string-form decision splitting |
-| `scripts/extractors/implementation-guide-extractor.ts` | Generic-pattern suppression for saved memory output |
-| `scripts/extractors/conversation-extractor.ts` | Structured-data conversation synthesis when prompt arrays are sparse |
-| `scripts/extractors/contamination-filter.ts` | Source-aware contamination severity, including the Claude-only tool-path downgrade |
-| `scripts/extractors/spec-folder-extractor.ts` | Spec-folder enrichment |
-| `scripts/extractors/git-context-extractor.ts` | Git-context enrichment |
-| `scripts/core/workflow.ts` | Alignment warnings/blocks, insufficiency blocking, template-contract blocking, contamination-source threading, enrichment insertion, quality abort, and tool-count recovery |
-| `scripts/core/tree-thinning.ts` | Tree-thinning safeguards used by session capturing before downstream rendering and scoring |
-| `scripts/utils/validation-utils.ts` | Render validation helpers that ignore literal template syntax inside code spans |
-| `scripts/memory/validate-memory-quality.ts` | V1-V11 post-render quality gate for rendered spec-doc record output, including exported `HARD_BLOCK_RULES` |
-| `scripts/utils/slug-utils.ts` | Memory title and filename normalization after captured operator/debug text |
-| `scripts/core/quality-scorer.ts` | Legacy quality-score calibration and insufficiency caps |
-| `scripts/extractors/quality-scorer.ts` | V2 quality-score calibration and insufficiency flags |
-| `scripts/extractors/session-extractor.ts` | Session identity and project-state snapshot behavior |
-| `scripts/core/file-writer.ts` | Atomic writes and rollback |
+| `runtime/cli/utils/input-normalizer.ts` | `DataSource` typing, snake_case JSON compatibility, and tool-evidence shaping |
+| `runtime/cli/extractors/collect-session-data.ts` | Template-field assembly, completion-status recovery, and structured summary preservation |
+| `runtime/cli/extractors/decision-extractor.ts` | Decision-field deduplication and string-form decision splitting |
+| `runtime/cli/extractors/implementation-guide-extractor.ts` | Generic-pattern suppression for saved memory output |
+| `runtime/cli/extractors/conversation-extractor.ts` | Structured-data conversation synthesis when prompt arrays are sparse |
+| `runtime/cli/extractors/contamination-filter.ts` | Source-aware contamination severity, including the Claude-only tool-path downgrade |
+| `runtime/cli/extractors/spec-folder-extractor.ts` | Spec-folder enrichment |
+| `runtime/cli/extractors/git-context-extractor.ts` | Git-context enrichment |
+| `runtime/cli/core/workflow.ts` | Alignment warnings/blocks, insufficiency blocking, template-contract blocking, contamination-source threading, enrichment insertion, quality abort, and tool-count recovery |
+| `runtime/cli/core/tree-thinning.ts` | Tree-thinning safeguards used by session capturing before downstream rendering and scoring |
+| `runtime/cli/utils/validation-utils.ts` | Render validation helpers that ignore literal template syntax inside code spans |
+| `runtime/cli/continuity/validate-memory-quality.ts` | V1-V11 post-render quality gate for rendered spec-doc record output, including exported `HARD_BLOCK_RULES` |
+| `runtime/cli/utils/slug-utils.ts` | Memory title and filename normalization after captured operator/debug text |
+| `runtime/cli/core/quality-scorer.ts` | Legacy quality-score calibration and insufficiency caps |
+| `runtime/cli/extractors/quality-scorer.ts` | V2 quality-score calibration and insufficiency flags |
+| `runtime/cli/extractors/session-extractor.ts` | Session identity and project-state snapshot behavior |
+| `runtime/cli/core/file-writer.ts` | Atomic writes and rollback |
 
 ### FEATURE BREAKDOWN
 
@@ -200,21 +200,21 @@ The closure feature consists of these distinct shipped behaviors:
 
 | File | Type | Role |
 |---|---|---|
-| `scripts/tests/contamination-filter.vitest.ts` | Automated test | Contamination denylist severity tracking, Claude-only tool-path downgrade, and API error pattern detection |
-| `scripts/tests/workspace-identity.vitest.ts` | Automated test | `.opencode` workspace identity equivalence and rejection |
-| `scripts/tests/spec-affinity.vitest.ts` | Automated test | Target-spec anchor detection |
-| `scripts/tests/validation-rule-metadata.vitest.ts` | Automated test | Rule metadata registry and explicit write/index disposition coverage |
-| `scripts/tests/memory-sufficiency.vitest.ts` | Automated test | Shared insufficiency contract |
-| `scripts/tests/memory-template-contract.vitest.ts` | Automated test | Rendered-memory structural contract coverage |
-| `scripts/tests/quality-scorer-calibration.vitest.ts` | Automated test | Rich vs thin score differentiation |
-| `scripts/tests/task-enrichment.vitest.ts` | Automated test | Task and summary enrichment behavior |
-| `scripts/tests/memory-render-fixture.vitest.ts` | Automated test | Rendered-memory regression coverage |
-| `scripts/tests/generate-context-cli-authority.vitest.ts` | Automated test | Explicit CLI root-spec authority coverage plus `--stdin`, `--json`, and positional JSON file-input structured-path behavior |
-| `scripts/tests/semantic-signal-golden.vitest.ts` | Automated test | Trigger-phrase quality regression coverage for the canonical continuity output-quality fixes |
-| `scripts/tests/test-extractors-loaders.js` | Automated test | Dist/export regression suite for extractors and loader |
-| `scripts/tests/test-integration.vitest.ts` | Automated test | End-to-end script workflows; legacy `test-integration.js` test file removed |
-| `scripts/tests/workflow-e2e.vitest.ts` | Automated test | Real save-pipeline E2E coverage with temp-repo factory and the failed-embedding harness regression |
-| `scripts/tests/test-memory-quality-lane.js` | Automated test | **[LEGACY]** v2 diagnostic quality and insufficiency regression suite (kept for regression coverage only) |
+| `runtime/cli/tests/contamination-filter.vitest.ts` | Automated test | Contamination denylist severity tracking, Claude-only tool-path downgrade, and API error pattern detection |
+| `runtime/cli/tests/workspace-identity.vitest.ts` | Automated test | `.opencode` workspace identity equivalence and rejection |
+| `runtime/cli/tests/spec-affinity.vitest.ts` | Automated test | Target-spec anchor detection |
+| `runtime/cli/tests/validation-rule-metadata.vitest.ts` | Automated test | Rule metadata registry and explicit write/index disposition coverage |
+| `runtime/cli/tests/memory-sufficiency.vitest.ts` | Automated test | Shared insufficiency contract |
+| `runtime/cli/tests/memory-template-contract.vitest.ts` | Automated test | Rendered-memory structural contract coverage |
+| `runtime/cli/tests/quality-scorer-calibration.vitest.ts` | Automated test | Rich vs thin score differentiation |
+| `runtime/cli/tests/task-enrichment.vitest.ts` | Automated test | Task and summary enrichment behavior |
+| `runtime/cli/tests/memory-render-fixture.vitest.ts` | Automated test | Rendered-memory regression coverage |
+| `runtime/cli/tests/generate-context-cli-authority.vitest.ts` | Automated test | Explicit CLI root-spec authority coverage plus `--stdin`, `--json`, and positional JSON file-input structured-path behavior |
+| `runtime/cli/tests/semantic-signal-golden.vitest.ts` | Automated test | Trigger-phrase quality regression coverage for the canonical continuity output-quality fixes |
+| `runtime/cli/tests/test-extractors-loaders.js` | Automated test | Dist/export regression suite for extractors and loader |
+| `runtime/cli/tests/test-integration.vitest.ts` | Automated test | End-to-end script workflows; legacy `test-integration.js` test file removed |
+| `runtime/cli/tests/workflow-e2e.vitest.ts` | Automated test | Real save-pipeline E2E coverage with temp-repo factory and the failed-embedding harness regression |
+| `runtime/cli/tests/test-memory-quality-lane.js` | Automated test | **[LEGACY]** v2 diagnostic quality and insufficiency regression suite (kept for regression coverage only) |
 
 ---
 
@@ -229,9 +229,9 @@ The closure feature consists of these distinct shipped behaviors:
 - `cd .opencode/skills/system-spec-kit/scripts && npm run check`
 - `cd .opencode/skills/system-spec-kit/scripts && npm run build`
 - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/spec-affinity.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
-- `cd .opencode/skills/system-spec-kit/scripts/tests && node test-extractors-loaders.js`
+- `cd .opencode/skills/system-spec-kit/runtime/cli/tests && node test-extractors-loaders.js`
 - `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
-- `cd .opencode/skills/system-spec-kit/scripts/tests && node test-memory-quality-lane.js`
+- `cd .opencode/skills/system-spec-kit/runtime/cli/tests && node test-memory-quality-lane.js`
 - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/runtime && npm run lint`
 - `cd .opencode/skills/system-spec-kit/runtime && npm run build`
@@ -243,7 +243,7 @@ The closure feature consists of these distinct shipped behaviors:
 
 - Treat the commands in this section as the canonical reproducible baseline and capture fresh output each time; do not reuse historical test counts as evidence.
 - The current supported scripts baseline for this feature is: `npm run check`, `npm run build`, the targeted Vitest lanes above, and `npm run test:legacy` after build.
-- Source/dist alignment should report zero violations for both `runtime/dist/lib` and `scripts/dist`.
+- Source/dist alignment should report zero violations for both `runtime/dist/lib` and `runtime/cli/dist`.
 - Live-proof claims require fresh per-save-mode artifacts generated during the same verification run. No retained `research/` artifact is currently treated as canonical by this catalog.
 
 

@@ -52,12 +52,12 @@ Taken together, the lifecycle tooling currently covers recommendation, creation,
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Script | Creates new spec folders, versioned subfolders, phased parent-child structures, optional git branches, and post-create validation runs |
-| `.opencode/skills/system-spec-kit/scripts/spec/archive.sh` | Script | Archives, lists, and restores spec folders while enforcing path safety and a completeness threshold |
-| `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh` | Script | Enforces checklist completion rules, priority coverage, and evidence requirements before a spec can be claimed complete |
-| `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` | Script | Scores requested work to recommend documentation level and optional phase decomposition |
-| `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh` | Script | Upgrades existing spec folders to higher levels with backup creation, chained transformations, and rollback on failure |
-| `.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh` | Script | Measures placeholder replacement progress and optional content quality across root spec documents |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Script | Creates new spec folders, versioned subfolders, phased parent-child structures, optional git branches, and post-create validation runs |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/archive.sh` | Script | Archives, lists, and restores spec folders while enforcing path safety and a completeness threshold |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh` | Script | Enforces checklist completion rules, priority coverage, and evidence requirements before a spec can be claimed complete |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` | Script | Scores requested work to recommend documentation level and optional phase decomposition |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh` | Script | Upgrades existing spec folders to higher levels with backup creation, chained transformations, and rollback on failure |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh` | Script | Measures placeholder replacement progress and optional content quality across root spec documents |
 
 ---
 

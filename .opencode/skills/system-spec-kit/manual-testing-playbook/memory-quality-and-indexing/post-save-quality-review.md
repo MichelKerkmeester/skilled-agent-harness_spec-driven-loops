@@ -40,7 +40,7 @@ Validate post-save quality review issue detection and remediation guidance.
 ### Commands
 
 1. Compose full JSON payload: `sessionSummary` = descriptive title, `triggerPhrases` = keyword array, `keyDecisions` = 2+ items, `importanceTier` = "important", `contextType` = "implementation"
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 3. Capture stdout
 4. Locate `POST-SAVE QUALITY REVIEW` block
 5. Assert status = PASSED and issues = 0
@@ -65,7 +65,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Check `scripts/core/post-save-review.ts` for false-positive conditions
+Check `runtime/cli/core/post-save-review.ts` for false-positive conditions
 
 ---
 
@@ -78,7 +78,7 @@ Validate generic-title save reports a HIGH title issue.
 ### Commands
 
 1. Compose payload that would yield a generic title
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 3. Capture stdout
 4. Locate `POST-SAVE QUALITY REVIEW` block
 5. Assert a `[HIGH]` issue is reported for the title field
@@ -104,7 +104,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Inspect title-quality check in `scripts/core/post-save-review.ts` and the generic-title detection list
+Inspect title-quality check in `runtime/cli/core/post-save-review.ts` and the generic-title detection list
 
 ---
 
@@ -117,7 +117,7 @@ Validate path-fragment trigger phrases report a HIGH trigger issue.
 ### Commands
 
 1. Compose payload with `triggerPhrases` = ["auth refactor"] but arrange for heuristic override
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 3. Capture stdout
 4. Assert a `[HIGH]` issue for `trigger_phrases` containing path fragments
 
@@ -141,7 +141,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Check path-fragment detection regex in `scripts/core/post-save-review.ts`
+Check path-fragment detection regex in `runtime/cli/core/post-save-review.ts`
 
 ---
 
@@ -155,7 +155,7 @@ Validate mismatched importance tier reports a MEDIUM issue.
 
 1. Compose payload with `importanceTier` = "important"
 2. Force or simulate a pipeline override to "normal"
-3. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+3. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 4. Capture stdout
 5. Assert a `[MEDIUM]` issue for `importance_tier`
 
@@ -179,7 +179,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Inspect importance_tier comparison in `scripts/core/post-save-review.ts` and input-normalizer passthrough
+Inspect importance_tier comparison in `runtime/cli/core/post-save-review.ts` and input-normalizer passthrough
 
 ---
 
@@ -192,7 +192,7 @@ Validate missing key decision propagation reports a MEDIUM decision-count issue.
 ### Commands
 
 1. Compose payload with `keyDecisions` = ["Decision A", "Decision B"]
-2. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`
+2. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>`
 3. Capture stdout
 4. Assert a `[MEDIUM]` issue for `decision_count` = 0 despite non-empty payload
 
@@ -216,7 +216,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Check decision counting in `scripts/extractors/collect-session-data.ts` and the metadata-block parser in `scripts/core/post-save-review.ts`
+Check decision counting in `runtime/cli/extractors/collect-session-data.ts` and the metadata-block parser in `runtime/cli/core/post-save-review.ts`
 
 ---
 
@@ -300,9 +300,9 @@ Check computeReviewScorePenalty in post-save-review.ts and advisory logging in w
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/post-save-quality-review.md](../../feature-catalog/memory-quality-and-indexing/post-save-quality-review.md)
 - Related entry: [tooling-and-scripts/json-mode-hybrid-enrichment.md](../../manual-testing-playbook/tooling-and-scripts/json-mode-hybrid-enrichment.md)
-- Workflow hook: `scripts/core/post-save-review.ts`
-- Save pipeline: `scripts/core/workflow.ts`
-- CLI surface: `scripts/memory/generate-context.ts`
+- Workflow hook: `runtime/cli/core/post-save-review.ts`
+- Save pipeline: `runtime/cli/core/workflow.ts`
+- CLI surface: `runtime/cli/continuity/generate-context.ts`
 
 ---
 

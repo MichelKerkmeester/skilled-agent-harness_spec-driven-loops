@@ -54,7 +54,6 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "scripts/lib/dist-freshness.cjs",
       ".opencode/agents/deep-review.md",
       "shared/types.ts",
       "runtime/data/trigger-index.json",
@@ -62,8 +61,6 @@
       ".codex/hooks.json",
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
-      "runtime/scripts/tests/resource-map-extractor.vitest.ts",
-      "scripts/lib/completion-state.test.mjs",
       "data/trigger-index.json"
     ],
     "entities": [
@@ -95,12 +92,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "dist-freshness.cjs",
-        "kind": "file",
-        "path": "scripts/lib/dist-freshness.cjs",
         "source": "derived"
       },
       {
@@ -137,18 +128,6 @@
         "name": "hooks.v1.json",
         "kind": "config",
         "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map-extractor.vitest.ts",
-        "kind": "test",
-        "path": "runtime/scripts/tests/resource-map-extractor.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "completion-state.test.mjs",
-        "kind": "file",
-        "path": "scripts/lib/completion-state.test.mjs",
         "source": "derived"
       },
       {
@@ -210,11 +189,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The landing and rename packets closed with debt recorded rather than fixed: the scripts freshness table counted the trigger-index generator's fixtures as sources, the fan-out runner discarded lineage stderr, the review leaf could write iteration files at the cwd, a rollback runbook documented retired automation, a dead response type and a stale test name survived",
     "created_at": "2026-09-05T03:23:43Z",
-    "last_save_at": "2026-09-05T06:48:14.745Z",
+    "last_save_at": "2026-09-05T09:13:20.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,10 +221,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b96a3abc49ac3146e17e275a60ff08232701d58661d35888d3537df6f0ce742e",
+    "source_fingerprint": "sha256:a030456b8b3e53fe29d5b63a19656cc2b25ba7fc68f0d222c93574bbf9e0c6c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7cc532b49e641dc300ac62bed9982852d22a86e89d7a81faa14505f7eb5a9834",
+      "spec.md": "655f4eca0cefe358d1e4c448258ff0fb3f1ce163efe1073c8d943d7fc6c14873",
       "plan.md": "d3e8d36de30a64e86f8f63b19b6d7f449b7a4714199dc9620c5d0627ec230b48",
       "tasks.md": "7defb4e8de61ee6583fd440816b83295aa8f22b7927a906f893720ae6cf61b89",
       "implementation-summary.md": "81d5c97fc0495ab58064a11672a6164b3f6527b3e9622684322c3d90f4defc1c"

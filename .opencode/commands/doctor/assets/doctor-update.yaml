@@ -115,7 +115,7 @@ mutation_boundaries:
     - ".opencode/skill"  # compatibility symlink only
     - ".opencode/skill_legacy_backup_*"  # legacy layout backup before symlink bridge
     - ".opencode/skills/system-spec-kit/runtime/dist/**"  # generated MCP runtime output
-    - ".opencode/skills/system-spec-kit/scripts/dist/**"  # generated migration helper output
+    - ".opencode/skills/system-spec-kit/runtime/cli/dist/**"  # generated migration helper output
   forbidden_targets:
     - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:update
     - "<active-spec-folder>/description.json"  # spec metadata belongs to memory-save tooling
@@ -172,7 +172,7 @@ workflow:
     council_line: 0
     approval: "auto-acknowledge before database flock; this phase uses Bash/Node only, no MCP tools"
     purpose: "Resolve the fresh-start paradox: OpenCode can only register MCP tools at process startup, so missing dist/layout must be fixed before MCP-dependent phases run."
-    retrieval_lane: "Needs no bootstrap and no launcher entry: node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs reads a generated file and exits. Do not add a daemon or launcher contract for it."
+    retrieval_lane: "Needs no bootstrap and no launcher entry: node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs reads a generated file and exits. Do not add a daemon or launcher contract for it."
     command_preflight:
       script: ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
       command: "bash .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root . --json"
@@ -184,8 +184,8 @@ workflow:
       restart_message: "BOOTSTRAP_COMPLETE_RESTART_REQUIRED: restart OpenCode so MCP tools register, then rerun /doctor:update --resume-bootstrap"
       max_reentry_count: 1
     required_artifacts:
-      - ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js"
-      - ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js"
+      - ".opencode/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js"
+      - ".opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js"
     failure:
       emit_error: "runtime bootstrap failed before MCP registration; inspect .doctor-update.bootstrap.json"
       final_status: "failed"
@@ -214,7 +214,7 @@ workflow:
       OR (
         file_system_signals_detected >= 2 of [
           (.opencode/skill exists AND is a directory NOT a symlink),
-          (.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js does NOT exist),
+          (.opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js does NOT exist),
           (find . -path './.opencode' -prune -o -name 'memory' -type d -print | grep -q .),
           (find specs -mindepth 2 -name 'spec.md' | first-match dirname has no description.json)
         ]
@@ -225,7 +225,7 @@ workflow:
         check: "[ -d .opencode/skill ] && [ ! -L .opencode/skill ]"
         meaning: "v3.3-era singular directory present as a real directory (not bridge symlink)"
       signal_b:
-        check: "[ ! -f .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js ]"
+        check: "[ ! -f .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js ]"
         meaning: "scripts dist missing — fresh tarball install or post-clone state. This is the artifact Phase 8 itself invokes, and the one the Phase 0 bootstrap builds, so its absence is the same fresh-install signal the retired MCP server dist used to give."
       signal_c:
         check: "find specs -name 'memory' -type d -print -quit 2>/dev/null | grep -q ."
@@ -277,7 +277,7 @@ workflow:
           # the memory index scope. Per the archive-retention fix (commit b062b12b4), z_archive content IS
           # indexed into the memory DB and deprioritized via ARCHIVE_MULTIPLIERS 0.1; only
           # graph-metadata backfill's path-validator skips it.
-          node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js --active-only 2>&1 \
+          node .opencode/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --active-only 2>&1 \
             | tee .opencode/skills/system-skill-advisor/mcp-server/database/.doctor-update.backfill-graph.log
         timeout_seconds: 300
         on_failure: "warn but proceed (Phase 5.2 indexing will be partial); record failure in state log"
@@ -291,7 +291,7 @@ workflow:
             dir=$(dirname "$spec_md")
             if [ ! -f "$dir/description.json" ]; then
               missing_count=$((missing_count + 1))
-              if node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js \
+              if node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js \
                 "$dir" "$(pwd)" >/dev/null 2>&1; then
                 created_count=$((created_count + 1))
               else
@@ -366,7 +366,7 @@ workflow:
       state_log_requirement: "Record injected_failure=true, failed_step=<step>, and final_status=rolled_back when rollback is selected."
     execute:
       trigger-index:
-        action: "node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs  # full regeneration; the generator reads frontmatter and writes the index file, with no daemon and no incremental mode"
+        action: "node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs  # full regeneration; the generator reads frontmatter and writes the index file, with no daemon and no incremental mode"
       skill-graph: "system_skill_advisor.skill_graph_scan({})"
       advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"
       deep-loop-graph: "deep_loop_graph_upsert(...)"

@@ -171,7 +171,7 @@ The SpecKit validation and creation scripts require a Bash shell:
 Run scripts from Git Bash or WSL on Windows:
 ```bash
 # From Git Bash
-.opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/<001-feature>/
+.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<001-feature>/
 ```
 
 </details>
@@ -549,21 +549,21 @@ Retrieval over spec folders and skill docs is file-based. There is no server to 
 
 **Gate 1 trigger lookup:**
 ```bash
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
 ```
 
 Exit `0` means candidates were found, `1` means none were, and `2` means a bad invocation or an unreadable index. Branch on all three: an empty result is not a failure.
 
 **Regenerate the index** after spec-doc frontmatter changes:
 ```bash
-node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
 The generated artifact lives at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` and is committed, so a fresh clone answers Gate 1 before anything is built.
 
 **Free-text retrieval** uses the literal ripgrep recipes in [`retrieval-conventions.md`](../skills/system-spec-kit/references/retrieval/retrieval-conventions.md), scoped by track and packet. Copy the flags rather than paraphrasing them: `--no-config` and the two exclusion globs each close a specific failure.
 
-**Continuity saves** are written by `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, invoked through `/speckit:save`. The writer updates the packet's continuity surfaces in place; nothing is indexed afterwards.
+**Continuity saves** are written by `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`, invoked through `/speckit:save`. The writer updates the packet's continuity surfaces in place; nothing is indexed afterwards.
 
 **What this does not do.** Semantic paraphrase matching, vector and BM25 fusion, decay scoring, access tracking, session dedup and causal traversal have no file-based equivalent, and this install does not provide them. A query that matches nothing returns nothing rather than degrading to an approximate answer.
 
@@ -576,7 +576,7 @@ The generated artifact lives at `.opencode/skills/system-spec-kit/runtime/data/t
 **Quick Verification:**
 ```bash
 test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json && \
-  node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+  node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
     --json -- "spec folder" >/dev/null && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
@@ -1190,7 +1190,7 @@ npx utcp-mcp
 ### Trigger index missing
 ```bash
 # Regenerate it; the artifact is committed, so this is also how you repair a bad merge
-node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ls -l .opencode/skills/system-spec-kit/runtime/data/trigger-index.json
 ```
 
@@ -1205,7 +1205,7 @@ Embeddings serve Skill Advisor, not spec-folder retrieval. A retrieval miss is n
 ### Retrieval returns nothing
 ```bash
 # Exit 1 means a clean no-hit; exit 2 means the invocation or the index is broken
-node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
 
 # Free-text lane, per references/retrieval/retrieval-conventions.md
 rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \

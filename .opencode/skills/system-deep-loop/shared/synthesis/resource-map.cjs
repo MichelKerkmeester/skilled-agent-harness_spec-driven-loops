@@ -15,5 +15,5 @@ const path = require('node:path');
 
 // emitResourceMap (and any sibling exports of the extractor).
 module.exports = require(
-  path.join(__dirname, '..', '..', '..', 'system-spec-kit', 'scripts', 'resource-map', 'extract-from-evidence.cjs'),
+  path.join(__dirname, '..', '..', '..', 'system-spec-kit', 'runtime', 'cli', 'resource-map', 'extract-from-evidence.cjs'),
 );

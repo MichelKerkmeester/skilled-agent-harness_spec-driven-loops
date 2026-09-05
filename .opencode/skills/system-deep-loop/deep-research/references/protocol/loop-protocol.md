@@ -568,7 +568,7 @@ Preserve research context to memory system.
 
 ### Steps
 
-1. **Generate context**: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js {spec_folder}`
+1. **Generate context**: `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js {spec_folder}`
 2. **No extra indexing step in the live contract**: `generate-context.js` is the supported save boundary for this workflow
 3. **Verify**: Confirm memory/*.md file created with proper anchors
 

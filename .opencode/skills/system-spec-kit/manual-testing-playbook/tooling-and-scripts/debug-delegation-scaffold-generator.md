@@ -48,7 +48,7 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
    ```
 2. Run the scaffold generator with synthetic data:
    ```bash
-   bash .opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh \
+   bash .opencode/skills/system-spec-kit/runtime/cli/spec/scaffold-debug-delegation.sh \
      --spec-folder /tmp/scaf-test/<spec-folder> \
      --task-id "T999" \
      --error-category "test_failure" \
@@ -65,12 +65,12 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
    ```
 4. Run the generator a second time with the same args and confirm versioned output:
    ```bash
-   bash .opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh --spec-folder /tmp/scaf-test/<spec-folder> --task-id "T999" --errors-json '[{"approach":"x","result":"x"},{},{}]'
+   bash .opencode/skills/system-spec-kit/runtime/cli/spec/scaffold-debug-delegation.sh --spec-folder /tmp/scaf-test/<spec-folder> --task-id "T999" --errors-json '[{"approach":"x","result":"x"},{},{}]'
    test -f /tmp/scaf-test/<spec-folder>/debug-delegation-002.md
    ```
 5. Confirm no @debug autonomous dispatch (the script is plain Bash; verify by reading the script):
    ```bash
-   grep -n "Task tool\|subagent_type" .opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh  # expect zero matches
+   grep -n "Task tool\|subagent_type" .opencode/skills/system-spec-kit/runtime/cli/spec/scaffold-debug-delegation.sh  # expect zero matches
    ```
 6. Confirm the YAML configs surface a y/n/skip prompt rather than auto-dispatch:
    ```bash
@@ -107,7 +107,7 @@ Capture, for every step in the Commands sequence above:
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 
-- Helper script: `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh`
+- Helper script: `.opencode/skills/system-spec-kit/runtime/cli/spec/scaffold-debug-delegation.sh`
 - Schema source: `.opencode/agents/debug.md` (Debug Context Handoff format, lines 60-89)
 - Workflow YAML: `.opencode/commands/speckit/assets/speckit-implement-auto.yaml` (debug_delegation block) and `.../speckit-complete-auto.yaml` (debug_escalation block)
 - Operator constraint: the debug agent is user-invoked only; the workflow must never dispatch it autonomously.

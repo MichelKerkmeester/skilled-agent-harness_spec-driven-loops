@@ -540,7 +540,7 @@ Preserve review context to the memory system for future session recovery and cro
 
 2. **Generate context**: Run the memory save script with structured JSON via `--stdin`, `--json`, or a session-scoped JSON file:
    ```bash
-   node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"{spec_folder}","sessionSummary":"Deep review completed; see review/review-report.md for verdict and findings."}' {spec_folder}
+   node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"{spec_folder}","sessionSummary":"Deep review completed; see review/review-report.md for verdict and findings."}' {spec_folder}
    ```
 
 3. **No extra indexing step in the live contract**: `generate-context.js` is the supported save boundary for this workflow.

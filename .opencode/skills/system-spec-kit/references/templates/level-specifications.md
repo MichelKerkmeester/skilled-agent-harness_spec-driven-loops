@@ -496,7 +496,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 
 ```bash
 # Specify level directly (recommended)
-bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Complex migration" --level 3+
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh "Complex migration" --level 3+
 ```
 
 ### Template Adaptation
@@ -530,16 +530,16 @@ Use `upgrade-level.sh` to upgrade existing spec folders to a higher documentatio
 
 ```bash
 # Upgrade to Level 2 (auto-detects current level)
-bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 2
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 2
 
 # Upgrade to Level 3 (chains through intermediate levels automatically)
-bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 3
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3
 
 # Upgrade to Level 3+ (approval workflow + compliance)
-bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 3+
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3+
 
 # Preview changes without modifying files
-bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 3 --dry-run
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3 --dry-run
 ```
 
 **Supported upgrade paths:**
@@ -561,7 +561,7 @@ After `upgrade-level.sh` runs, newly injected template sections contain `<placeh
 4. Running `check-placeholders.sh` to verify none remain
 
 ```bash
-.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh specs/042-feature/
+.opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/042-feature/
 ```
 
 > **Note:** The script handles structural changes (file creation, addendum injection, backups). The AI handles semantic content — filling placeholders with project-specific information derived from existing documentation.
@@ -766,7 +766,7 @@ Some templates are not level-specific but can be used at any documentation level
 
 **Important:**
 - Canonical continuity is script-managed and should NOT be authored manually
-- Use `/speckit:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' specs/###-folder/`
+- Use `/speckit:save` or `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' specs/###-folder/`
 - Recovery should follow `handover.md -> _memory.continuity -> spec docs`
 - Scratch folder contents are temporary and should be cleaned up after work completes
 

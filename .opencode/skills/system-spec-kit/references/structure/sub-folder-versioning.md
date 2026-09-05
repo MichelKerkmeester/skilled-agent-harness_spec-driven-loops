@@ -75,13 +75,13 @@ User decides whether to:
 
 If creating a sub-folder, the user (with AI guidance):
 1. Chooses a descriptive name for the sub-folder
-2. Creates the folder structure manually or via `.opencode/skills/system-spec-kit/scripts/spec/create.sh --subfolder`
+2. Creates the folder structure manually or via `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --subfolder`
 3. Copies templates as needed
 
 **Script-assisted example:**
 
 ```bash
-.opencode/skills/system-spec-kit/scripts/spec/create.sh \
+.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh \
   --subfolder specs/<track> \
   --topic memory-overhaul \
   --level 3+ \

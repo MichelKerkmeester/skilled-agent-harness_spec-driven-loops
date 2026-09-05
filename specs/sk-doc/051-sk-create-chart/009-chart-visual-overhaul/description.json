@@ -1,0 +1,20 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/051-sk-create-chart/009-chart-visual-overhaul",
+  "description": "The operator does not like how `sk-create-chart` looks",
+  "keywords": [
+    "operator",
+    "like",
+    "sk-create-chart",
+    "looks"
+  ],
+  "lastUpdated": "2026-09-05T08:27:18.775Z",
+  "specId": "009",
+  "folderSlug": "chart-visual-overhaul",
+  "parentChain": [
+    "sk-doc",
+    "051-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

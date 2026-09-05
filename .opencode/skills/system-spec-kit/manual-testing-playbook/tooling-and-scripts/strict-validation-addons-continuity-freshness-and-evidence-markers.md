@@ -41,7 +41,7 @@ Validate Strict validation add-ons: continuity freshness and evidence markers ag
 1. Run a fixture or packet case that triggers continuity-freshness
 2. Run a malformed evidence-marker case through `validate.sh --strict`
 3. Run a duplicate-normalizer fixture through the normalizer lint path
-4. Run `scripts/validation/evidence-marker-audit.ts` on the same malformed evidence case and capture its report behavior
+4. Run `runtime/cli/validation/evidence-marker-audit.ts` on the same malformed evidence case and capture its report behavior
 
 ### Expected
 
@@ -79,7 +79,7 @@ Capture, for every step in the Commands sequence above:
 EXIT_CODE=1
 ```
 
-Result: continuity freshness and evidence-marker strict checks produced the expected strict failure surfaces, and the standalone audit script reported marker issues as a report/repair tool. The duplicate-normalizer fixture precondition is missing in the current repo state under this scenario's write restriction: the only duplicate-helper fixture is embedded in `scripts/tests/normalizer-lint.vitest.ts`, and that suite is currently skipped.
+Result: continuity freshness and evidence-marker strict checks produced the expected strict failure surfaces, and the standalone audit script reported marker issues as a report/repair tool. The duplicate-normalizer fixture precondition is missing in the current repo state under this scenario's write restriction: the only duplicate-helper fixture is embedded in `runtime/cli/tests/normalizer-lint.vitest.ts`, and that suite is currently skipped.
 
 ### Pass / Fail
 
@@ -88,7 +88,7 @@ Result: continuity freshness and evidence-marker strict checks produced the expe
 
 ### Failure Triage
 
-Inspect `scripts/spec/validate.sh`, `scripts/validation/continuity-freshness.ts`, `scripts/validation/evidence-marker-audit.ts`, and `scripts/rules/check-normalizer-lint.sh`
+Inspect `runtime/cli/spec/validate.sh`, `runtime/cli/validation/continuity-freshness.ts`, `runtime/cli/validation/evidence-marker-audit.ts`, and `runtime/cli/rules/check-normalizer-lint.sh`
 
 ---
 

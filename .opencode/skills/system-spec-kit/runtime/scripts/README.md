@@ -35,13 +35,13 @@ scripts/
 `-- README.md
 ```
 
-This folder holds scripts only; its one test suite (`resource-map-extractor.vitest.ts`, which actually covered `../../scripts/resource-map/extract-from-evidence.cjs`, not a script in this folder) now lives at `../tests/resource-map-extractor.vitest.ts`, under a real `vitest.config.ts` include glob.
+This folder holds scripts only; its one test suite (`resource-map-extractor.vitest.ts`, which actually covered `../cli/resource-map/extract-from-evidence.cjs`, not a script in this folder) now lives at `../tests/resource-map-extractor.vitest.ts`, under a real `vitest.config.ts` include glob.
 
 ### File Inventory
 
 | File | Purpose | Key Behavior |
 |---|---|---|
-| `finalize-dist.mjs` | Completes `npm run build` after `tsc --build` | Records the package build and source-hash cache through `../../scripts/lib/dist-freshness.cjs`, copies JSON assets into `dist/`, prunes stale dist roots, and checks the required artifacts are present. |
+| `finalize-dist.mjs` | Completes `npm run build` after `tsc --build` | Records the package build and source-hash cache through `../cli/lib/dist-freshness.cjs`, copies JSON assets into `dist/`, prunes stale dist roots, and checks the required artifacts are present. |
 | `run-tests.mjs` | Backs `npm test` | Routes `npm test -- --run ...` to the requested Vitest lane without running the full core suite first, under a process-group timeout that terminates the whole group on overrun. |
 | `run-tests-sharded.mjs` | Backs `npm run test:sharded` | Splits the suite into `SPECKIT_TEST_SHARDS` shards (default 12) and runs them serially, each in its own worker. |
 
@@ -49,7 +49,7 @@ This folder holds scripts only; its one test suite (`resource-map-extractor.vite
 
 ## 3. IMPLEMENTED STATE
 
-- `finalize-dist.mjs` runs as the last step of `npm run build` and maintains the `default` and `validation-orchestrator` freshness entries that `../../scripts/spec/validate.sh` checks before it will run.
+- `finalize-dist.mjs` runs as the last step of `npm run build` and maintains the `default` and `validation-orchestrator` freshness entries that `../cli/spec/validate.sh` checks before it will run.
 - `dist/` is gitignored, so a build is required after pulling source changes; the freshness guard turns a missed rebuild into an explicit error rather than a stale result.
 - The test runners are the supported entry points. Invoking Vitest directly bypasses both the shard split and the timeout bound.
 
@@ -69,4 +69,4 @@ npm run test:sharded   # full suite, sharded serially
 ## 5. RELATED
 
 - [`../README.md`](../README.md)
-- [`../../scripts/README.md`](../../scripts/README.md)
+- [`../cli/README.md`](../cli/README.md)

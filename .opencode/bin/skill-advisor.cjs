@@ -21,7 +21,7 @@ const { spawnSync } = require('child_process');
 const opencodeDir = path.resolve(__dirname, '..');
 const mcpServerDir = path.join(opencodeDir, 'skills', 'system-skill-advisor', 'mcp-server');
 const cliDist = path.join(mcpServerDir, 'dist', 'mcp-server', 'skill-advisor-cli.js');
-const { checkPackageFreshness } = require(path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'));
+const { checkPackageFreshness } = require(path.join(opencodeDir, 'skills', 'system-spec-kit', 'runtime', 'cli', 'lib', 'dist-freshness.cjs'));
 const defaultSocketDir = '/tmp/system-skill-advisor';
 const socketFileName = 'daemon-ipc.sock';
 const allowStale = process.env.SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1'

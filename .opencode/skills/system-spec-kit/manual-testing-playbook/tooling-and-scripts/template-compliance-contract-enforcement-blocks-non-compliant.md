@@ -73,7 +73,7 @@ Command 2, strict validation on compliant fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: .opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2
+  Folder: .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2
   Level:  2
 
 + FILE_EXISTS: All required files present for Level 2
@@ -92,7 +92,7 @@ Command 3, strict validation on extra-header warning fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: .opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header
+  Folder: .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/054-template-extra-header
   Level:  2
 
 + TEMPLATE_HEADERS: Template headers match in 5 file(s)
@@ -113,7 +113,7 @@ Command 4, strict validation on missing-header fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: .opencode/skills/system-spec-kit/scripts/test-fixtures/055-template-missing-header
+  Folder: .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/055-template-missing-header
   Level:  2
 
 x TEMPLATE_HEADERS: 1 template headers issue(s) found
@@ -131,7 +131,7 @@ Command 4, strict validation on reordered-anchor fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: .opencode/skills/system-spec-kit/scripts/test-fixtures/058-template-reordered-anchor
+  Folder: .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/058-template-reordered-anchor
   Level:  2
 
 + TEMPLATE_HEADERS: Template headers match in 5 file(s)
@@ -181,7 +181,7 @@ EXIT_CODE=0
 
 ### Failure Triage
 
-Inspect `references/validation/template-compliance-contract.md`, `.opencode/agents/speckit.toml`, `scripts/spec/validate.sh`, and `scripts/tests/test-validation-extended.sh` if strict validation passes broken fixtures or misses contract drift
+Inspect `references/validation/template-compliance-contract.md`, `.opencode/agents/speckit.toml`, `runtime/cli/spec/validate.sh`, and `runtime/cli/tests/test-validation-extended.sh` if strict validation passes broken fixtures or misses contract drift
 
 ---
 

@@ -70,10 +70,10 @@ function resolveGenerateContextScriptPath(): string | null {
     : undefined;
   const candidates = [
     explicitPath?.trim(),
-    resolve(HOOK_DIR, '../../../scripts/dist/memory/generate-context.js'),
-    resolve(HOOK_DIR, '../../../../scripts/dist/memory/generate-context.js'),
-    resolve(process.cwd(), '.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js'),
-    resolve(process.cwd(), 'scripts/dist/memory/generate-context.js'),
+    resolve(HOOK_DIR, '../../cli/dist/continuity/generate-context.js'),
+    resolve(HOOK_DIR, '../../../cli/dist/continuity/generate-context.js'),
+    resolve(process.cwd(), '.opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js'),
+    resolve(process.cwd(), 'runtime/cli/dist/continuity/generate-context.js'),
   ].filter((candidate): candidate is string => typeof candidate === 'string' && candidate.length > 0);
 
   for (const candidate of candidates) {

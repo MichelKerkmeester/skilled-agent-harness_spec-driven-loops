@@ -135,7 +135,7 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `npm test` | npm script | Bounded default runner (`../scripts/run-tests.mjs`). |
+| `npm test` | npm script | Bounded default runner (`cli/run-tests.mjs`). |
 | `npm run test:core` | npm script | Plain `vitest run` over this folder. |
 | `npm run test:sharded` | npm script | Full suite split into serial shards. |
 | `npx vitest run tests/<file>.vitest.ts` | CLI | Runs one focused suite. |

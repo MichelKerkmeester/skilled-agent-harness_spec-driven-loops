@@ -20,8 +20,8 @@ const RENAMED_TEST_REFERENCES: Record<string, string> = {
     '.opencode/skills/system-spec-kit/runtime/tests/multi-ai-council-audit-trail.vitest.ts',
   '.opencode/skills/system-spec-kit/runtime/tests/ai-council-rollback.vitest.ts':
     '.opencode/skills/system-spec-kit/runtime/tests/multi-ai-council-rollback.vitest.ts',
-  '.opencode/skills/system-spec-kit/scripts/tests/ai-council-persist-artifacts.vitest.ts':
-    '.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts',
+  '.opencode/skills/system-spec-kit/runtime/cli/tests/ai-council-persist-artifacts.vitest.ts':
+    '.opencode/skills/system-spec-kit/runtime/cli/tests/multi-ai-council-persist-artifacts.vitest.ts',
 };
 
 const TEST_FILE_REF =
@@ -55,10 +55,10 @@ function resolveTestReference(reference: string): string {
   if (withoutSkillPrefix.startsWith('runtime/tests/')) {
     return join(WORKSPACE_ROOT, '.opencode/skills/system-spec-kit', withoutSkillPrefix);
   }
-  if (withoutSkillPrefix.startsWith('scripts/tests/')) {
+  if (withoutSkillPrefix.startsWith('runtime/cli/tests/')) {
     return join(WORKSPACE_ROOT, '.opencode/skills/system-spec-kit', withoutSkillPrefix);
   }
-  if (withoutSkillPrefix.startsWith('../scripts/tests/')) {
+  if (withoutSkillPrefix.startsWith('cli/tests/')) {
     return resolve(RUNTIME_ROOT, withoutSkillPrefix);
   }
   if (normalizedReference.startsWith('.opencode/skills/system-deep-loop/runtime/tests/')) {
@@ -85,7 +85,7 @@ describe('council playbook anchor integrity', () => {
     const playbookFiles = walkMarkdown(PLAYBOOK_ROOT);
     const availableTests = new Set([
       ...walkVitest(join(RUNTIME_ROOT, 'tests')),
-      ...walkVitest(resolve(RUNTIME_ROOT, '../scripts/tests')),
+      ...walkVitest(resolve(RUNTIME_ROOT, 'cli/tests')),
       ...walkVitest(SKILL_ADVISOR_TEST_ROOT),
       ...walkVitest(DEEP_LOOP_RUNTIME_TEST_ROOT),
     ]);

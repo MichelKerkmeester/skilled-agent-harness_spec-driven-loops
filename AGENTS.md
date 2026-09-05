@@ -80,7 +80,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 
 #### GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT] BLOCK
 Trigger: EACH new user message (re-evaluate even in ongoing conversations)
-1. Run the trigger index lookup: `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` → Surface relevant context. It reads the committed index and needs no daemon
+1. Run the trigger index lookup: `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` → Surface relevant context. It reads the committed index and needs no daemon
 2. Classify intent: Research or Implementation
 3. Parse the request and judge confidence against the Confidence Thresholds below — that table is the single scale; do not carry a second one.
 4. Below the proceed bar → INVESTIGATE (max 3 iterations) → ESCALATE per §7.
@@ -270,7 +270,7 @@ The Completion Verification Rule remains an additional requirement for spec-pack
 
 #### COMPLETION VERIFICATION RULE [HARD] BLOCK
 Trigger: Claiming "done", "complete", "finished", "works"
-1. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` (exit 0 = pass, including a run that reported warnings · 1 = user error, meaning the run never validated anything · 2 = validation error · 3 = system error). A warning is advice and does not fail the run: `--strict` selects the rules that only run under strict, and no longer decides what a warning means. A rule that should block says so itself by reporting an error.
+1. Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` (exit 0 = pass, including a run that reported warnings · 1 = user error, meaning the run never validated anything · 2 = validation error · 3 = system error). A warning is advice and does not fail the run: `--strict` selects the rules that only run under strict, and no longer decides what a warning means. A rule that should block says so itself by reporting an error.
 2. Load `checklist.md` → verify ALL items → mark `[x]` with evidence.
 3. Reconcile completion metadata so packet docs do not claim conflicting completion states — covers:
    - `spec.md` status and shipped/current-state claims.
@@ -291,7 +291,7 @@ broken packet as green.
    with `cd "$(realpath .opencode)/skills/system-spec-kit/runtime" && npm run build`.
 2. **Invoke through `realpath`, and verify by content.** Where `.opencode` is a symlink, the spec
    scripts and generators can silently no-op — exit 0, zero output. Use
-   `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/scripts/spec/validate.sh" <folder> --strict`
+   `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/runtime/cli/spec/validate.sh" <folder> --strict`
    and confirm the rule lines appeared, rather than trusting the exit code.
 3. **A phase parent recurses into its children.** The printed output continues past the folder you
    asked about, so the tail describes the last child rather than your packet. Take the **first**
@@ -305,7 +305,7 @@ Trigger: "save context", "save memory", `/speckit:save`
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
 - **Compose the session JSON yourself** rather than letting the generator reconstruct one — you have strictly better information about your own session than any reconstruction does. Method selection, execution paths and validation checkpoints: `system-spec-kit/references/memory/save-workflow.md`.
-- **The save writes metadata, not prose.** The continuity writer `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` refreshes the generated metadata pair, and canonical doc content is owned by a different path. Editing the continuity frontmatter directly is a legitimate shortcut when only continuity changed.
+- **The save writes metadata, not prose.** The continuity writer `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` refreshes the generated metadata pair, and canonical doc content is owned by a different path. Editing the continuity frontmatter directly is a legitimate shortcut when only continuity changed.
 - **Read the post-save quality review before calling the save done.** HIGH issues must be patched by hand; the review is emitted, not advisory decoration.
 
 #### Self-Check (before ANY tool-using response):
@@ -382,7 +382,7 @@ The mechanics below are `system-spec-kit`'s, not this document's. Each has one o
 
 | Question                                                            | Where it is answered                                                                                                                                                                                                                                                                                                  |
 | ---------------------------------------------------------------------| -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Which level does this work need?**                                | `system-spec-kit/scripts/spec/recommend-level.sh` — deterministic scoring over LOC, file count and risk. It exists specifically to replace soft LOC guidance, so do not eyeball a line count. When its answer and your judgment differ, go higher.                                                                    |
+| **Which level does this work need?**                                | `system-spec-kit/runtime/cli/spec/recommend-level.sh` — deterministic scoring over LOC, file count and risk. It exists specifically to replace soft LOC guidance, so do not eyeball a line count. When its answer and your judgment differ, go higher.                                                                    |
 | **Which docs does that level require?**                             | `system-spec-kit/references/structure/folder-structure.md` §3 Level Requirements                                                                                                                                                                                                                                      |
 | **Is this a phased packet, and does it qualify?**                   | `system-spec-kit/references/structure/phase-definitions.md` §2 — carries both thresholds AND why the two scoring systems are separate                                                                                                                                                                                 |
 | **How is a phase parent shaped, and what is a child named?**        | `system-spec-kit/references/structure/phase-definitions.md` §3 — lean-trio policy, folder grammar, parent structure                                                                                                                                                                                                   |
@@ -474,7 +474,7 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
 | **Save context** | `/speckit:save`, or compose JSON → `generate-context.js` | — |
 | **End session** | `/speckit:save` | → `handover.md` update → continuation prompt |
-| **Trigger index maintenance** | `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` | run after trigger phrases change; commit the regenerated index |
+| **Trigger index maintenance** | `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` | run after trigger phrases change; commit the regenerated index |
 | **Analysis / evaluation** | `/speckit:search` | — |
 | **Doctor surface** | `/doctor <target>`; `/doctor:mcp install\|debug`; `/doctor:update` | — |
 

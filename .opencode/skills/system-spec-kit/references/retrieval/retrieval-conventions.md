@@ -34,7 +34,7 @@ Retrieval splits into a keyed lane, a free-text lane and a concept lane, and no 
 
 | Lane | Mechanism | Used for |
 |------|-----------|----------|
-| **Gate 1 trigger lookup** | The generated index at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`, read by `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs "<prompt>"` | Matching a prompt against author-declared `trigger_phrases` |
+| **Gate 1 trigger lookup** | The generated index at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`, read by `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` | Matching a prompt against author-declared `trigger_phrases` |
 | **Free-text evidence** | The ripgrep recipes in Section 2 | Finding a phrase anywhere in the corpus, with no index at all |
 
 The three answer different questions. Prompt-to-declared-phrase matching is a keyed lookup over an author-controlled field. Grepping prose is a scan. Concept search is a ranked retrieval over an embedded index, and it returns a passage that no literal query would have reached.
@@ -261,7 +261,7 @@ Use one canonical spelling in emitted frontmatter. A reader may recognize the `t
 
 ## 9. COVERAGE AND EXCLUSION POLICY
 
-The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep recipes (mirrored in code by `lib/rg-lane.mjs` and `rg-wrapper.mjs`) are two independent lanes over overlapping but not identical corpora. `scripts/tests/retrieval-coverage-parity.vitest.ts` enforces this table: a divergence not named below fails that test rather than drifting in silently.
+The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep recipes (mirrored in code by `lib/rg-lane.mjs` and `rg-wrapper.mjs`) are two independent lanes over overlapping but not identical corpora. `runtime/cli/tests/retrieval-coverage-parity.vitest.ts` enforces this table: a divergence not named below fails that test rather than drifting in silently.
 
 ### Root coverage
 
@@ -300,7 +300,7 @@ The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep r
 
 ### Scripts
 
-- `.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs` - Gate 1 trigger lookup over the generated index
-- `.opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs` - The Section 2 recipes behind one front door, with the Section 5 rank applied
+- `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` - Gate 1 trigger lookup over the generated index
+- `.opencode/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs` - The Section 2 recipes behind one front door, with the Section 5 rank applied
 
 ---

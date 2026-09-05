@@ -86,7 +86,7 @@ jobs:
             [ -n "$packet" ] || continue
             # --no-recursive keeps a phase parent from dragging in children this
             # PR never touched; each changed child is already in the list itself.
-            out=$(bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+            out=$(bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
                     "$packet" --strict --no-recursive 2>&1) || true
             # A stale or unbuilt orchestrator makes validate.sh refuse to run and
             # emit no rule output at all. Requiring the explicit verdict line
@@ -119,7 +119,7 @@ jobs:
             # worktree has no built dist of its own, and building one there
             # would make every packet read as failing at the base — which would
             # silently disable the gate rather than fail it.
-            base_out=$(bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+            base_out=$(bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
                           "$base_tree/$packet" --strict --no-recursive 2>&1) || true
             if ! grep -qE '^RESULT: (PASSED|FAILED)' <<<"$base_out"; then
               echo "::error file=$packet/spec.md::Validator produced no verdict for the base copy; failing closed"
@@ -128,7 +128,7 @@ jobs:
             fi
             if grep -q '^RESULT: PASSED' <<<"$base_out"; then
               echo "::error file=$packet/spec.md::Regression — this packet validated before this PR"
-              bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$packet" --strict --no-recursive 2>&1 \
+              bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$packet" --strict --no-recursive 2>&1 \
                 | grep -E '^\s*[x!]|^Summary:' | sed 's/^/    /' || true
               regressions=$((regressions + 1))
             else
@@ -141,7 +141,7 @@ jobs:
           if [ "$regressions" -gt 0 ]; then
             echo ""
             echo "BLOCKED: $regressions packet(s) regressed in this PR."
-            echo "Run: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict"
+            echo "Run: bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict"
             exit 1
           fi
           echo "No regressions: every failing packet already failed at the merge base."

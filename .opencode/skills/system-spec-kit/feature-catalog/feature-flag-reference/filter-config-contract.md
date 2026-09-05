@@ -17,7 +17,7 @@ This document captures the implemented behavior, source references, and remediat
 
 ## 1. OVERVIEW
 
-`config/filters.jsonc` is the file-backed contract for the content-filter pipeline used by `scripts/lib/content-filter.ts`. It controls whether the pipeline runs, the ordered stage list, and the threshold values for noise rejection, deduplication, and quality scoring.
+`config/filters.jsonc` is the file-backed contract for the content-filter pipeline used by `runtime/cli/lib/content-filter.ts`. It controls whether the pipeline runs, the ordered stage list, and the threshold values for noise rejection, deduplication, and quality scoring.
 
 Unlike `config.jsonc`, this file is loaded directly by the filter implementation rather than the core runtime loader, and its values are actively consumed at runtime.
 
@@ -29,7 +29,7 @@ The shipped filter contract is:
 
 | Contract Area | Current Reality |
 |---|---|
-| Loader path | `scripts/lib/content-filter.ts` reads `config/filters.jsonc`, strips JSONC comments, parses the file, and deep-merges user values onto a built-in `FilterConfig` default object. |
+| Loader path | `runtime/cli/lib/content-filter.ts` reads `config/filters.jsonc`, strips JSONC comments, parses the file, and deep-merges user values onto a built-in `FilterConfig` default object. |
 | Pipeline gate | `pipeline.enabled: true` keeps the filter active by default. If this flag is turned off, `filter()` returns the original prompt list without applying noise, dedupe, or quality stages. |
 | Stage order | `pipeline.stages` is consumed in declared order and currently ships as `["noise", "dedupe", "quality"]`. The pipeline checks `includes(...)` for each named stage, so the array controls both which stages run and the intended sequencing. |
 | Noise contract | `noise.enabled: true`, `minContentLength: 15`, and `minUniqueWords: 3` tighten the quality floor beyond code defaults (`5` and `2`). The config supports optional custom regex `patterns`, but the current file does not define any, so runtime filtering relies on the built-in `NOISE_PATTERNS` set plus wrapper stripping via `STRIP_PATTERNS`. |
@@ -49,7 +49,7 @@ The live contract is therefore both file-driven and code-guarded: `filters.jsonc
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/config/filters.jsonc` | Config Contract | Editable JSONC source for pipeline ordering, stage enablement, and threshold values |
-| `.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts` | Runtime | Loads and merges filter config, applies noise filtering, deduplication, quality scoring, and fallback defaults |
+| `.opencode/skills/system-spec-kit/runtime/cli/lib/content-filter.ts` | Runtime | Loads and merges filter config, applies noise filtering, deduplication, quality scoring, and fallback defaults |
 | `.opencode/skills/system-spec-kit/config/README.md` | Documentation | Describes the three-stage filter pipeline and notes that `filters.jsonc` is loaded directly by the content-filter module |
 
 ---

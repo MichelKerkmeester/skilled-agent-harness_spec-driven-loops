@@ -40,7 +40,7 @@ Point a directory override at a writable location outside read-only repo paths (
 
 ### Retrieval has no daemon
 
-Spec-folder retrieval is lexical and process-local: the generated trigger index under `data/`, read by `scripts/retrieval/lookup-trigger-index.mjs`, plus the ripgrep recipes in [`../retrieval/retrieval-conventions.md`](../retrieval/retrieval-conventions.md). No variable in this document reaches it, and there is no socket, warm-start or dist-freshness contract to tune.
+Spec-folder retrieval is lexical and process-local: the generated trigger index under `data/`, read by `runtime/cli/retrieval/lookup-trigger-index.mjs`, plus the ripgrep recipes in [`../retrieval/retrieval-conventions.md`](../retrieval/retrieval-conventions.md). No variable in this document reaches it, and there is no socket, warm-start or dist-freshness contract to tune.
 
 The one daemon an operator still meets is the skill advisor. Its CLI family (`SYSTEM_SKILL_ADVISOR_CLI_*`, `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`) and its scorer overrides are documented in `runtime/ENV-REFERENCE.md`.
 
@@ -107,19 +107,19 @@ Cloud providers (OpenAI/Voyage) can be selected by the cascade as a last resort 
 
 ```bash
 # JSON mode (preferred for routine saves)
-node scripts/dist/memory/generate-context.js --json '{"specFolder":"001-feature","sessionSummary":"..."}' specs/001-feature/
+node runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"001-feature","sessionSummary":"..."}' specs/001-feature/
 
 # Stdin mode with debug logging
-DEBUG=1 echo '{"specFolder":"001-feature","sessionSummary":"..."}' | node scripts/dist/memory/generate-context.js --stdin
+DEBUG=1 echo '{"specFolder":"001-feature","sessionSummary":"..."}' | node runtime/cli/dist/continuity/generate-context.js --stdin
 
 # Point the engine at a specs root outside the working directory
-SPECKIT_SPECS_DIR=/path/to/specs bash scripts/spec/validate.sh specs/001-feature/ --strict
+SPECKIT_SPECS_DIR=/path/to/specs bash runtime/cli/spec/validate.sh specs/001-feature/ --strict
 
 # Quiet mode for CI/CD
-SPECKIT_QUIET=true bash scripts/spec/validate.sh specs/001-feature/
+SPECKIT_QUIET=true bash runtime/cli/spec/validate.sh specs/001-feature/
 
 # Narrow a validation run to named rules; an unknown name fails the run
-SPECKIT_RULES=GENERATED_METADATA_INTEGRITY bash scripts/spec/validate.sh specs/001-feature/ --strict
+SPECKIT_RULES=GENERATED_METADATA_INTEGRITY bash runtime/cli/spec/validate.sh specs/001-feature/ --strict
 
 # Force local embeddings for the shared stack (no API key required)
 EMBEDDINGS_PROVIDER=hf-local node .opencode/bin/skill-advisor.cjs advisor_status --format json
@@ -133,14 +133,14 @@ EMBEDDINGS_PROVIDER=voyage VOYAGE_API_KEY=your-key-here \
 
 ## 6. VALIDATION AND GENERATED METADATA
 
-The live half of the package. `lib/validation/orchestrator.ts` runs the rule set, `lib/config/capability-flags.ts` gates generator behavior, and the `scripts/rules/*.sh` checks are invoked by `scripts/spec/validate.sh`. Boolean flags below use graduated semantics: they default ON and you disable them by setting `false`.
+The live half of the package. `lib/validation/orchestrator.ts` runs the rule set, `lib/config/capability-flags.ts` gates generator behavior, and the `runtime/cli/rules/*.sh` checks are invoked by `runtime/cli/spec/validate.sh`. Boolean flags below use graduated semantics: they default ON and you disable them by setting `false`.
 
 ### Run selection
 
 | Flag | Default | Purpose |
 |------|---------|---------|
 | `SPECKIT_RULES` | unset (all rules) | Narrows a run to a comma-separated subset of rule ids or aliases. An unrecognised name **throws** rather than matching nothing, so a narrowed run cannot report a clean pass for a packet nobody checked |
-| `SPECKIT_VALIDATE_SCRIPT` | Bundled `scripts/spec/validate.sh` | Overrides the `validate.sh` path the strict-pass-freshness sweep invokes per folder |
+| `SPECKIT_VALIDATE_SCRIPT` | Bundled `runtime/cli/spec/validate.sh` | Overrides the `validate.sh` path the strict-pass-freshness sweep invokes per folder |
 | `SPECKIT_FRONTMATTER_ALLOWLIST` | Bundled allowlist JSON | Path to the spec-doc frontmatter grandfather allowlist. A path that does not exist makes the check return false rather than throwing |
 | `SPECKIT_VERBOSE_RESOLVER` | unset | Exactly `1` appends the underlying cause's stack when the documentation-level contract resolver falls back |
 

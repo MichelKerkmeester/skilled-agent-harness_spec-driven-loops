@@ -45,6 +45,7 @@
     "dist",
     "../shared",
     "../shared/**",
+    "cli/**",
     "hooks/pi/**",
     "lib/test-helpers/**",
     "scripts/tests/**",

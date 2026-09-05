@@ -31,9 +31,9 @@ Canonical 7-step Memory Handback procedure shared across the three cli-* sibling
 4. **Redact and scrub**: Remove secrets, tokens, credentials, and any unnecessary sensitive values before writing the JSON file or sending the payload to the save script.
 5. **Choose a structured-input mode**: Save the scrubbed payload to `/tmp/save-context-data-<session-id>.json`, pipe it with `--stdin`, or pass it inline with `--json`.
 6. **Invoke generate-context.js**: Use one of:
-   - `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]`
-   - `printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin [spec-folder]`
-   - `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json "$JSON_PAYLOAD" [spec-folder]`
+   - `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]`
+   - `printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin [spec-folder]`
+   - `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json "$JSON_PAYLOAD" [spec-folder]`
 7. **Stop there**: The save is complete when `generate-context.js` returns. There is no indexing hand-off and no daemon to notify.
 
 ---

@@ -1,0 +1,264 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { describe, expect, it } from 'vitest';
+
+import { validateMemoryTemplateContract } from '../../shared/parsing/memory-template-contract';
+import { renderInlineGates } from '../templates/inline-gate-renderer';
+
+const TEMPLATES_ROOT = path.resolve(__dirname, '../../../templates');
+
+function readRenderedManifestSourceComment(templateName: string): string {
+  // Templates live in role-based folders (core/addons/packet-types); resolve by search.
+  let templatePath = path.join(TEMPLATES_ROOT, templateName);
+  for (const sub of ['core', 'addons', 'packet-types']) {
+    const candidate = path.join(TEMPLATES_ROOT, sub, templateName);
+    if (fs.existsSync(candidate)) {
+      templatePath = candidate;
+      break;
+    }
+  }
+  const rendered = renderInlineGates(fs.readFileSync(templatePath, 'utf8'), '1');
+  return rendered.match(/<!-- SPECKIT_TEMPLATE_SOURCE: [^\n]+ -->/)?.[0] ?? '';
+}
+
+function buildValidMemory(overrides: { triggerBlock?: string; bodyTail?: string } = {}): string {
+  return [
+    '---',
+    'title: "Memory Template Contract Proof"',
+    'description: "Contract-proof memory fixture with required anchors and frontmatter."',
+    overrides.triggerBlock ?? [
+      'trigger_phrases:',
+      '  - "memory template contract"',
+      '  - "contract proof"',
+    ].join('\n'),
+    'importance_tier: "normal"',
+    'contextType: "implementation"',
+    '---',
+    '',
+    '# Memory Template Contract Proof',
+    '',
+    '## SESSION SUMMARY',
+    '',
+    '| **Meta Data** | **Value** |',
+    '|:--------------|:----------|',
+    '| Total Messages | 3 |',
+    '',
+    '<!-- ANCHOR:continue-session -->',
+    '## CONTINUE SESSION',
+    '',
+    'Continue the implementation from the last verified checkpoint.',
+    '',
+    '<!-- /ANCHOR:continue-session -->',
+    '',
+    '<!-- ANCHOR:canonical-docs -->',
+    '## CANONICAL SOURCES',
+    '',
+    '- `decision-record.md` — Architectural decisions',
+    '- `implementation-summary.md` — Build story and verification',
+    '',
+    '<!-- /ANCHOR:canonical-docs -->',
+    '',
+    '<!-- ANCHOR:overview -->',
+    '## OVERVIEW',
+    '',
+    'All mandatory sections are present and correctly scaffolded.',
+    '',
+    '<!-- /ANCHOR:overview -->',
+    '',
+    '<!-- ANCHOR:evidence -->',
+    '## DISTINGUISHING EVIDENCE',
+    '',
+    '- Validated compact wrapper contract',
+    '- Removed project-state-snapshot, decisions, conversation',
+    '- Added canonical-docs, overview, evidence',
+    '',
+    '<!-- /ANCHOR:evidence -->',
+    '',
+    '<!-- ANCHOR:recovery-hints -->',
+    '## RECOVERY HINTS',
+    '',
+    'Re-run the validator and creation-path tests if this changes again.',
+    '',
+    '<!-- /ANCHOR:recovery-hints -->',
+    '',
+    '<!-- ANCHOR:metadata -->',
+    '## MEMORY METADATA',
+    '',
+    '```yaml',
+    'session_id: "test-session"',
+    '```',
+    '',
+    '<!-- /ANCHOR:metadata -->',
+    overrides.bodyTail ?? '',
+  ].join('\n');
+}
+
+describe('memory template contract validator', () => {
+  it('accepts the parser-contract probe when seeded from a rendered manifest template', () => {
+    const sourceComment = readRenderedManifestSourceComment('implementation-summary.md.tmpl');
+    const result = validateMemoryTemplateContract(
+      buildValidMemory({
+        bodyTail: [
+          '',
+          sourceComment,
+          '',
+          'Manifest probe: implementation-summary.md.tmpl',
+        ].join('\n'),
+      })
+    );
+
+    expect(sourceComment).toContain('SPECKIT_TEMPLATE_SOURCE');
+    expect(result.valid).toBe(true);
+    expect(result.violations).toEqual([]);
+  });
+
+  it('accepts a structurally compliant memory', () => {
+    const result = validateMemoryTemplateContract(buildValidMemory());
+
+    expect(result.valid).toBe(true);
+    expect(result.violations).toEqual([]);
+  });
+
+  it('rejects missing anchor/id scaffolding for mandatory sections', () => {
+    const result = validateMemoryTemplateContract(
+      buildValidMemory().replace('<!-- ANCHOR:canonical-docs -->\n', '')
+    );
+
+    expect(result.valid).toBe(false);
+    expect(result.missingAnchors).toContain('canonical-docs');
+  });
+
+  it('rejects malformed trigger_phrases frontmatter shapes', () => {
+    const result = validateMemoryTemplateContract(
+      buildValidMemory({ triggerBlock: 'trigger_phrases: "session summary"' })
+    );
+
+    expect(result.valid).toBe(false);
+    expect(result.violations.some((violation) => violation.code === 'invalid_trigger_phrases')).toBe(true);
+  });
+
+  it('rejects raw mustache leakage', () => {
+    const result = validateMemoryTemplateContract(
+      buildValidMemory({
+        bodyTail: [
+          '',
+          '---',
+          '',
+          '---',
+          '',
+          '## TABLE OF CONTENTS',
+          '',
+          '- [CONTINUE SESSION](#continue-session)',
+          '',
+          '{{TRIGGER_PHRASES}}',
+        ].join('\n'),
+      })
+    );
+
+    expect(result.valid).toBe(false);
+    expect(result.unexpectedTemplateArtifacts).toContain('raw_mustache_literal');
+  });
+
+  it('enforces conditional section scaffolding only when optional sections are present', () => {
+    const result = validateMemoryTemplateContract([
+      buildValidMemory(),
+      '',
+      '## 4. WORKFLOW VISUALIZATION',
+      '',
+      'This optional section intentionally omits its ANCHOR comment.',
+    ].join('\n'));
+
+    expect(result.valid).toBe(false);
+    expect(result.missingAnchors).toContain('workflow-visualization');
+  });
+
+  it('rejects missing blank line between frontmatter and body', () => {
+    const noBlankLine = buildValidMemory().replace('---\n\n# Memory', '---\n# Memory');
+    const result = validateMemoryTemplateContract(noBlankLine);
+
+    expect(result.valid).toBe(false);
+    expect(result.violations.some((v) => v.code === 'missing_blank_line_after_frontmatter')).toBe(true);
+  });
+
+  it('rejects orphaned closing metadata anchors outside the metadata section', () => {
+    const result = validateMemoryTemplateContract([
+      buildValidMemory(),
+      '',
+      '---',
+      '',
+      '*Generated by system-spec-kit skill v1.7.2*',
+      '',
+      '<!-- /ANCHOR:metadata -->',
+    ].join('\n'));
+
+    expect(result.valid).toBe(false);
+    expect(
+      result.violations.some(
+        (violation) =>
+          violation.code === 'missing_anchor_comment'
+          && violation.message.includes('duplicate or orphaned closing ANCHOR comments')
+      )
+    ).toBe(true);
+  });
+
+  describe('compact wrapper contract (phase 1)', () => {
+    it('accepts memory with canonical-docs, overview, evidence', () => {
+      const result = validateMemoryTemplateContract(buildValidMemory());
+
+      expect(result.valid).toBe(true);
+      expect(result.violations).toEqual([]);
+    });
+
+    it('rejects memory missing canonical-docs anchor', () => {
+      const result = validateMemoryTemplateContract(
+        buildValidMemory().replace(/<!-- ANCHOR:canonical-docs -->[\s\S]*?<!-- \/ANCHOR:canonical-docs -->/m, '')
+      );
+
+      expect(result.valid).toBe(false);
+      expect(result.violations.some(v => v.code === 'missing_section' && v.sectionId === 'canonical-docs')).toBe(true);
+    });
+
+    it('rejects memory missing overview anchor', () => {
+      const result = validateMemoryTemplateContract(
+        buildValidMemory().replace(/<!-- ANCHOR:overview -->[\s\S]*?<!-- \/ANCHOR:overview -->/m, '')
+      );
+
+      expect(result.valid).toBe(false);
+      expect(result.violations.some(v => v.code === 'missing_section' && v.sectionId === 'overview')).toBe(true);
+    });
+
+    it('rejects memory missing evidence anchor', () => {
+      const result = validateMemoryTemplateContract(
+        buildValidMemory().replace(/<!-- ANCHOR:evidence -->[\s\S]*?<!-- \/ANCHOR:evidence -->/m, '')
+      );
+
+      expect(result.valid).toBe(false);
+      expect(result.violations.some(v => v.code === 'missing_section' && v.sectionId === 'evidence')).toBe(true);
+    });
+
+    it('allows memory without old decisions section (no longer mandatory)', () => {
+      const memoryWithoutDecisions = buildValidMemory();
+      const result = validateMemoryTemplateContract(memoryWithoutDecisions);
+
+      expect(result.valid).toBe(true);
+      expect(result.missingAnchors).not.toContain('decisions');
+    });
+
+    it('allows memory without old conversation section (no longer mandatory)', () => {
+      const memoryWithoutConversation = buildValidMemory();
+      const result = validateMemoryTemplateContract(memoryWithoutConversation);
+
+      expect(result.valid).toBe(true);
+      expect(result.missingAnchors).not.toContain('session-history');
+      expect(result.missingAnchors).not.toContain('conversation');
+    });
+
+    it('allows memory without project-state-snapshot (no longer mandatory)', () => {
+      const memoryWithoutSnapshot = buildValidMemory();
+      const result = validateMemoryTemplateContract(memoryWithoutSnapshot);
+
+      expect(result.valid).toBe(true);
+      expect(result.missingAnchors).not.toContain('project-state-snapshot');
+    });
+  });
+});

@@ -649,7 +649,7 @@ I've enhanced the validation [implemented by @general-purpose] to include RFC 53
 **Trigger:** 15+ tool calls, 5+ files modified, user says "stopping"/"continue later", or session approaching context limits.
 **Action:** Suggest `/speckit:save` → mandate sub-agents save context → compile orchestration decisions summary → preserve task state, pending work, blockers.
 
-After complex multi-agent workflows, save orchestration context via JSON mode: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/`
+After complex multi-agent workflows, save orchestration context via JSON mode: `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/`
 
 #### Context Health Monitoring
 

@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `CO-022` and confirm the
 
 ### Optional Supplemental Checks
 
-For end-to-end continuity validation, after extracting the JSON payload, save it to a temp file and feed it to `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/co-022-payload.json` (only against a sandbox spec folder). Confirm the save completes and the POST-SAVE QUALITY REVIEW reports PASSED or only MEDIUM issues. This proves the handback fully integrates with `generate-context.js`.
+For end-to-end continuity validation, after extracting the JSON payload, save it to a temp file and feed it to `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/co-022-payload.json` (only against a sandbox spec folder). Confirm the save completes and the POST-SAVE QUALITY REVIEW reports PASSED or only MEDIUM issues. This proves the handback fully integrates with `generate-context.js`.
 
 ---
 

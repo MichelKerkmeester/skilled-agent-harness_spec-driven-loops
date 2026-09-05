@@ -1,16 +1,29 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/053-spec-kit-runtime-rename",
-  "description": "spec-kit runtime rename",
+  "description": "The memory decommission deleted the MCP server, its tools and its database, but kept the package that held them because the validation orchestrator,",
   "keywords": [
-    "spec-kit",
-    "runtime",
-    "rename"
+    "memory",
+    "decommission",
+    "deleted",
+    "mcp",
+    "server",
+    "tools",
+    "database",
+    "kept",
+    "package",
+    "held",
+    "them",
+    "because",
+    "validation",
+    "orchestrator"
   ],
-  "lastUpdated": "2026-09-04T19:16:06.266Z",
-  "specId": "001",
+  "lastUpdated": "2026-09-05T00:15:03.291Z",
+  "specId": "053",
   "folderSlug": "spec-kit-runtime-rename",
-  "parentChain": [],
+  "parentChain": [
+    "system-speckit"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

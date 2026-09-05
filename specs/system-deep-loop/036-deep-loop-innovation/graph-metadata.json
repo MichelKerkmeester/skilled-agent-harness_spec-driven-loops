@@ -16,19 +16,22 @@
     "system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence",
     "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution",
     "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
+    "system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment",
     "system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review",
+    "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
     "system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review",
+    "system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation",
     "system-deep-loop/036-deep-loop-innovation/018-pre-existing-test-triage",
     "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation",
-    "system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment",
-    "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
-    "system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation",
     "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
     "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
     "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor",
     "system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch",
     "system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing",
-    "system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment"
+    "system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment",
+    "system-deep-loop/036-deep-loop-innovation/026-codex-lineage-auth-isolation",
+    "system-deep-loop/036-deep-loop-innovation/027-executor-availability-docs",
+    "system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard"
   ],
   "manual": {
     "depends_on": [],
@@ -60,7 +63,8 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md"
     ],
     "entities": [
       {
@@ -108,16 +112,16 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-30T15:39:20.399Z",
+    "last_save_at": "2026-09-05T08:41:16.836Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d358c88abd8429f51ee747105d7dafac2cf3770c2af3ce2654af8745e5fdbc14",
+    "source_fingerprint": "sha256:888d0aa0b14d729746a228a0378b69b2045227e3892f2bc24b7c4e3e042ff3a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8fa06d3a0b2da5f26bfbbfad2b22ef54fa5f847cca8079f1c011c549562c0c2b"
+      "spec.md": "5d5da2e1cd22e88ae56d8ce7b10409bab732c1bcdfd4324c8d0a8390a0322e01"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review",
     "last_active_at": "2026-08-28T20:37:12.579Z"

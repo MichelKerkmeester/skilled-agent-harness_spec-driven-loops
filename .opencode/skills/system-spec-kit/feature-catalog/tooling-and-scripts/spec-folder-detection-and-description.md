@@ -47,11 +47,11 @@ The shipped behavior in this slice currently works as follows:
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts` | Detection/orchestration | Multi-priority spec-folder resolution, candidate ranking, low-confidence handling, and explicit-path recovery |
-| `.opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.ts` | Validation | Topic extraction, domain-aware alignment scoring, telemetry schema/docs drift checks, and interactive/non-interactive alignment gating |
-| `.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts` | Filesystem setup | Path sanitization, `NNN-name` enforcement, existence validation, and `memory/` directory creation |
-| `.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts` | CLI | Generates or refreshes per-folder `description.json` metadata from explicit text or `spec.md` content |
-| `.opencode/skills/system-spec-kit/scripts/spec-folder/index.ts` | Barrel export | Re-exports the spec-folder detection, validation, and setup API surface |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/folder-detector.ts` | Detection/orchestration | Multi-priority spec-folder resolution, candidate ranking, low-confidence handling, and explicit-path recovery |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts` | Validation | Topic extraction, domain-aware alignment scoring, telemetry schema/docs drift checks, and interactive/non-interactive alignment gating |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/directory-setup.ts` | Filesystem setup | Path sanitization, `NNN-name` enforcement, existence validation, and `memory/` directory creation |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts` | CLI | Generates or refreshes per-folder `description.json` metadata from explicit text or `spec.md` content |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/index.ts` | Barrel export | Re-exports the spec-folder detection, validation, and setup API surface |
 
 ---
 

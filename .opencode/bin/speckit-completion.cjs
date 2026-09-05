@@ -17,7 +17,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const path = require('node:path');
-const { computeCompletionState } = require('../skills/system-spec-kit/scripts/lib/completion-state.cjs');
+const { computeCompletionState } = require('../skills/system-spec-kit/runtime/cli/lib/completion-state.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. ARGUMENT PARSING

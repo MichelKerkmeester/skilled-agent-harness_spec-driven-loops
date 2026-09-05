@@ -4,7 +4,7 @@
 
 import type { HfLocalDtype } from './embeddings/providers/hf-local.js';
 // Single source of truth for cross-workspace types.
-// Used across shared/, runtime/, and scripts/.
+// Used across shared/, runtime/, and runtime/cli/.
 // ---------------------------------------------------------------
 // 1. EMBEDDING TYPES
 // ---------------------------------------------------------------

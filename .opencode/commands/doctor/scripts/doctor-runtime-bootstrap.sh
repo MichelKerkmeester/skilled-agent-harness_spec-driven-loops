@@ -51,8 +51,8 @@ KIT_DIR="$SKILLS_DIR/system-spec-kit"
 DB_DIR="$SKILLS_DIR/system-skill-advisor/mcp-server/database"
 STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
 LOCK_FILE="/tmp/doctor-runtime-bootstrap.lock"
-GRAPH_BACKFILL_DIST="$KIT_DIR/scripts/dist/graph/backfill-graph-metadata.js"
-DESCRIPTION_DIST="$KIT_DIR/scripts/dist/spec-folder/generate-description.js"
+GRAPH_BACKFILL_DIST="$KIT_DIR/runtime/cli/dist/graph/backfill-graph-metadata.js"
+DESCRIPTION_DIST="$KIT_DIR/runtime/cli/dist/spec-folder/generate-description.js"
 
 started_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 actions_file="$(mktemp "${TMPDIR:-/tmp}/doctor-runtime-bootstrap-actions.XXXXXX")"
@@ -151,8 +151,8 @@ fi
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
 DB_DIR="$SKILLS_DIR/system-skill-advisor/mcp-server/database"
 STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
-GRAPH_BACKFILL_DIST="$KIT_DIR/scripts/dist/graph/backfill-graph-metadata.js"
-DESCRIPTION_DIST="$KIT_DIR/scripts/dist/spec-folder/generate-description.js"
+GRAPH_BACKFILL_DIST="$KIT_DIR/runtime/cli/dist/graph/backfill-graph-metadata.js"
+DESCRIPTION_DIST="$KIT_DIR/runtime/cli/dist/spec-folder/generate-description.js"
 
 if [[ ! -d "$KIT_DIR" ]]; then
   fail "system-spec-kit not found at $KIT_DIR"
@@ -168,7 +168,7 @@ fi
 need_build=false
 if [[ ! -f "$GRAPH_BACKFILL_DIST" || ! -f "$DESCRIPTION_DIST" ]]; then
   need_build=true
-  record_action "detected missing scripts/dist migration helpers"
+  record_action "detected missing runtime/cli/dist migration helpers"
 fi
 
 if [[ "$need_build" == true ]]; then
@@ -205,8 +205,8 @@ if [[ "$need_build" == true ]]; then
   record_action "installed dependencies and built @spec-kit/runtime plus @spec-kit/scripts"
 fi
 
-[[ -f "$GRAPH_BACKFILL_DIST" ]] || fail "scripts/dist/graph/backfill-graph-metadata.js is still missing after bootstrap"
-[[ -f "$DESCRIPTION_DIST" ]] || fail "scripts/dist/spec-folder/generate-description.js is still missing after bootstrap"
+[[ -f "$GRAPH_BACKFILL_DIST" ]] || fail "runtime/cli/dist/graph/backfill-graph-metadata.js is still missing after bootstrap"
+[[ -f "$DESCRIPTION_DIST" ]] || fail "runtime/cli/dist/spec-folder/generate-description.js is still missing after bootstrap"
 
 finish_state "complete" ""
 emit "BOOTSTRAP_READY restart_required=$restart_required state_log=$STATE_FILE"

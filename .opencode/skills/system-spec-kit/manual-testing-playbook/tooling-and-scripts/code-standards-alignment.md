@@ -57,7 +57,7 @@ resolve. It was removed rather than reinterpreted: a lint count taken over a tre
 exists proves nothing about the tree that does.
 
 Re-run the three commands over the surviving surface (`runtime/lib/validation`, `lib/graph`,
-`lib/description`, `lib/templates`, `scripts/`, `shared/`) and capture the transcript here before
+`lib/description`, `lib/templates`, `runtime/cli/`, `shared/`) and capture the transcript here before
 this scenario carries a verdict again.
 
 ### Pass / Fail

@@ -79,7 +79,7 @@ Privilege the loop protocol Step 4a for the generation contract, the reducer scr
 | `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer script; `renderDashboard` generates the dashboard content; `reduceResearchState` writes it to disk |
 | `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
 | `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
-| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Automated verification; proves reducer idempotency and dashboard content correctness |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts` | Automated verification; proves reducer idempotency and dashboard content correctness |
 
 ---
 

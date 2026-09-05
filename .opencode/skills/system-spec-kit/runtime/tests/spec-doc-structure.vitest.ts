@@ -13,9 +13,9 @@ import {
 } from '../lib/validation/spec-doc-structure';
 
 const THIS_DIR = path.dirname(fileURLToPath(import.meta.url));
-const FIXTURE_ROOT = path.resolve(THIS_DIR, '../../scripts/test-fixtures');
-const VALIDATE_SCRIPT = path.resolve(THIS_DIR, '../../scripts/spec/validate.sh');
-const VALIDATOR_REGISTRY = path.resolve(THIS_DIR, '../../scripts/lib/validator-registry.json');
+const FIXTURE_ROOT = path.resolve(THIS_DIR, '../cli/test-fixtures');
+const VALIDATE_SCRIPT = path.resolve(THIS_DIR, '../cli/spec/validate.sh');
+const VALIDATOR_REGISTRY = path.resolve(THIS_DIR, '../cli/lib/validator-registry.json');
 
 const TEMP_DIRS: string[] = [];
 

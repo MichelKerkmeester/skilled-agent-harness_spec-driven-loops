@@ -54,14 +54,14 @@ Taken together, these files are the reusable infrastructure beneath the higher-l
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/scripts/core/config.ts` | Configuration core | Loads JSONC workflow settings, validates merged values, exports immutable config, and discovers active specs directories |
-| `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts` | Indexing core | Generates embeddings, extracts triggers, computes indexing metadata, writes memory rows, and updates embedding status metadata |
-| `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts` | Review core | Compares saved memory files against the original payload and produces severity-graded post-save quality findings |
-| `.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts` | Scoring core | Produces canonical quality scores, flags, warnings, and breakdowns for generated memory files |
-| `.opencode/skills/system-spec-kit/scripts/core/topic-extractor.ts` | Extraction helper | Derives semantic topics from summaries and decision text while filtering simulated and path-fragment noise |
-| `.opencode/skills/system-spec-kit/scripts/core/quality-gates.ts` | Policy helper | Decides whether indexing may proceed and formats semantic-sufficiency abort reasons |
-| `.opencode/skills/system-spec-kit/scripts/core/title-builder.ts` | Naming helper | Normalizes memory titles, builds dashboard-safe titles, and extracts normalized spec titles from `spec.md` |
-| `.opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts` | Metadata helper | Injects quality and health fields into frontmatter and guarantees minimum trigger/topic metadata |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/config.ts` | Configuration core | Loads JSONC workflow settings, validates merged values, exports immutable config, and discovers active specs directories |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/memory-indexer.ts` | Indexing core | Generates embeddings, extracts triggers, computes indexing metadata, writes memory rows, and updates embedding status metadata |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/post-save-review.ts` | Review core | Compares saved memory files against the original payload and produces severity-graded post-save quality findings |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/quality-scorer.ts` | Scoring core | Produces canonical quality scores, flags, warnings, and breakdowns for generated memory files |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/topic-extractor.ts` | Extraction helper | Derives semantic topics from summaries and decision text while filtering simulated and path-fragment noise |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/quality-gates.ts` | Policy helper | Decides whether indexing may proceed and formats semantic-sufficiency abort reasons |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/title-builder.ts` | Naming helper | Normalizes memory titles, builds dashboard-safe titles, and extracts normalized spec titles from `spec.md` |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/frontmatter-editor.ts` | Metadata helper | Injects quality and health fields into frontmatter and guarantees minimum trigger/topic metadata |
 
 ---
 
