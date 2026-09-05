@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The landing and rename packets closed with debt recorded rather than fixed: the scripts freshness table counted the trigger-index generator's fixtures as sources, the fan-out runner discarded lineage stderr, the review leaf could write iteration files at the cwd, a rollback runbook documented retired automation, a dead response type and a stale test name survived",
     "created_at": "2026-09-05T03:23:43Z",
-    "last_save_at": "2026-09-05T04:36:43.897Z",
+    "last_save_at": "2026-09-05T05:35:51.958Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab40963241589e89c065b8b0be5c52596d7919b5a341cb2128419f8d9deaa371",
+    "source_fingerprint": "sha256:4e25f75a4fe72230fea62e93bd15fa8361b73c852e16476689539b168268ce8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c3104ca194416343c87c6e79c490c9f924c692a0d0df9dcccae85aafa7973c2",
       "plan.md": "d3e8d36de30a64e86f8f63b19b6d7f449b7a4714199dc9620c5d0627ec230b48",
-      "tasks.md": "b0f60870a209477bed8eddd2757cff76f862db73715e71c5a0ba2fbebf45fd3b",
-      "implementation-summary.md": "e47a871a26e7e3136d26bd6f6fbc4e970fb46ba02e54ce25c681deebaa579b6f"
+      "tasks.md": "0912440382c816be4d75132c63467107990a3f3e7673260dade45d05083a7e47",
+      "implementation-summary.md": "2a055c367a94c47f65033dd061566db1fbaa8d43af59a5846ba73a16a66d17bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -60,6 +60,7 @@ contextType: "general"
 
 - [x] T010 Typecheck shared, scripts and runtime exit 0; touched suites unchanged or improved per agent report; 87 READMEs validated
 - [x] T011 Gates at `e0ae6d7063`: freshness stays green across two index runs without a re-stamp; sweep live 0; doctor routes 9; audits 14 of 14; routing guard fresh; validate strict PASSED on 052, 053 and this packet
+- [x] T014 Act on the Grok lineage: remove the code that still targeted the retired store (extractor storage half, transaction manager, shared row types, folder-detector session-learning lookup, three-arm parity harness, importer-less better-sqlite3 and sqlite-vec, tests bound to deleted modules, absent-playbook allowlist) at `159c036502` and `9141353b0d`; validate.sh fails closed when its freshness helper cannot run (`171465b256`); Devin fallback text and a retired doctor path fixed (`4333c4d7b4`)
 - [ ] T013 Two-executor review-angle deep research (gpt-5.6-luna max fast via Codex, grok-4.6 xhigh fast via Cursor, 20 iterations each) under `research/`; act on its findings
 - [ ] T012 Close this packet and record the outcome in packet 052's goal log
 <!-- /ANCHOR:phase-3 -->

@@ -102,6 +102,8 @@ My lane landed as two commits (`1200c71f22` code, `c34ccfeb47` docs) after typec
 | Agent mirror sync | OK, 3 agents |
 | Alignment lane | PASS - five agents, four commits, typecheck exit 0 each, suites unchanged or improved, 87 READMEs at 0 issues |
 | Session hooks | PASS - eleven adapters run clean from dist; runtime hook suites 16 of 16 and 1 of 1 after the test repairs |
+| Grok research lineage (20 iterations) | 10 key findings; confirmed and fixed at `159c036502`, `9141353b0d`, `171465b256`, `4333c4d7b4`; set aside as false positives after checking: the doctor-update snapshot paths (they are the skill advisor's own), the leftover `mcp-server/` tree (exists only in the review worktree, untracked build residue), and the eleven session registrations (restored by design) |
+| Continuity freshness tightening | REVERTED - reporting a fingerprint-less completion claim as stale would flag every closed packet, because claims are read from the spec status table while fingerprints live in the summary continuity block; recorded for the rule's owner |
 | Gates at `e0ae6d7063` | PASS - freshness, sweep, doctor, audits, routing guard, validate strict on three packets |
 <!-- /ANCHOR:verification -->
 
@@ -113,6 +115,8 @@ My lane landed as two commits (`1200c71f22` code, `c34ccfeb47` docs) after typec
 1. **The review-angle research is in progress** under `research/`; its findings are acted on before closure.
 2. **Recorded, not fixed, by the alignment pass:** two tests outside every vitest include glob (`runtime/scripts/tests/resource-map-extractor.vitest.ts`, `scripts/lib/completion-state.test.mjs`); three runtime modules with no production caller (cognitive rollout policy, storage transaction manager, description repair); 17 scripts test files red at HEAD before and after; 18 import-policy reach-through violations; a swallowed error in the alignment validator; duplicated roots in the markdown link checker.
 3. **Nesting `scripts/` under `runtime/`** is the next packet.
+4. **Continuity freshness cannot verify a completion claim today** because the claim and the fingerprint live in different documents; the rule keeps reporting such claims as skipped until its owner redesigns where the fingerprint is read from.
+5. **Orphaned type declarations remain in `shared/types.ts`** (`IVectorStore`, `SearchOptions`, `SearchResult`, `StoreStats`, the structural `Database` interfaces) with no implementer or caller; left because they are exported public surface.
 <!-- /ANCHOR:limitations -->
 
 ---
