@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/056-integration-research-remediation/001-index-root-and-docs",
+  "description": "The trigger-index generator resolved the repository root one directory short after the CLI nested under runtime/, so the published index carried spec",
+  "keywords": [
+    "trigger-index",
+    "generator",
+    "resolved",
+    "repository",
+    "root",
+    "one",
+    "directory",
+    "short",
+    "cli",
+    "nested",
+    "runtime",
+    "published",
+    "index",
+    "carried",
+    "spec"
+  ],
+  "lastUpdated": "2026-09-05T21:59:49.803Z",
+  "specId": "001",
+  "folderSlug": "index-root-and-docs",
+  "parentChain": [
+    "system-speckit",
+    "056-integration-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/056-integration-research-remediation/001-index-root-and-docs",
+  "spec_folder": "system-speckit/056-integration-research-remediation/001-index-root-and-docs",
+  "parent_id": "system-speckit/056-integration-research-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trigger index repo root",
+      "skill docs missing from index",
+      "rule registry count",
+      "runtime api boundary",
+      "implementation plan",
+      "technical approach",
+      "task breakdown",
+      "implementation tasks",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr"
+    ],
+    "key_topics": [
+      "trigger",
+      "index",
+      "repo",
+      "root",
+      "skill",
+      "docs",
+      "missing",
+      "rule",
+      "registry",
+      "count",
+      "runtime",
+      "api"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/retrieval/generate-trigger-index.mjs",
+      "runtime/data/trigger-index.json",
+      "runtime/cli/tests/retrieval-repo-root.vitest.ts",
+      "runtime/cli/tests/validator-registry-doc-count.vitest.ts",
+      "runtime/cli/tests/test-validation-extended.sh",
+      "runtime/api/README.md",
+      "tests/test-validation-extended.sh",
+      "retrieval/lib/corpus.mjs",
+      "tests/retrieval-repo-root.vitest.ts",
+      "tests/validator-registry-doc-count.vitest.ts",
+      "tests/retrieval-coverage-parity.vitest.ts",
+      "tests/trigger-index.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-repo-root.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/retrieval-repo-root.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry-doc-count.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/validator-registry-doc-count.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation-extended.sh",
+        "kind": "script",
+        "path": "runtime/cli/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/api/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": "retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-coverage-parity.vitest.ts",
+        "kind": "test",
+        "path": "tests/retrieval-coverage-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.vitest.ts",
+        "kind": "test",
+        "path": "tests/trigger-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Anchor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The trigger-index generator resolved the repository root one directory short after the CLI nested under runtime/, so the published index carried spec documents only; the skill README also claimed a 46-rule registry against 37 real entries. Both are fixed with tests that pin them.",
+    "created_at": "2026-09-05T21:16:56Z",
+    "last_save_at": "2026-09-05T21:59:50.012Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:79c0b0c318c1361223597e3b79bb0a497bfc88002bac26878da9d6eba4985eaf",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f52b4a472963292095bf34920c3fdd50898e6815ac617d9d1fe4def354592799",
+      "plan.md": "68be72867ff530432c5c7eaef52fb1ad38524e62de29f471b7a39294c97dab1b",
+      "tasks.md": "d16af8a6e5803b106650192b65717a7ef19887be572db9e658e3dd6a340b3668",
+      "implementation-summary.md": "78cfb8cf9ed463811266cd1a84dfab55aeaded977c577f4764f04fb246fff513"
+    },
+    "last_active_at": null
+  }
+}
