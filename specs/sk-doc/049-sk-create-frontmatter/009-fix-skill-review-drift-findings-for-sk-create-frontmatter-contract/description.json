@@ -1,0 +1,36 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract",
+  "description": "Phase 9: correct the frontmatter contract to its enforcement, make every scoreable declared trigger reach the mode, trim the hub description inside th",
+  "keywords": [
+    "phase",
+    "correct",
+    "frontmatter",
+    "contract",
+    "enforcement",
+    "every",
+    "scoreable",
+    "declared",
+    "trigger",
+    "reach",
+    "mode",
+    "trim",
+    "hub",
+    "description",
+    "inside",
+    "budget",
+    "sets",
+    "reconcile",
+    "packet",
+    "documents"
+  ],
+  "lastUpdated": "2026-09-05T13:45:51.511Z",
+  "specId": "009",
+  "folderSlug": "fix-skill-review-drift-findings-for-sk-create-frontmatter-contract",
+  "parentChain": [
+    "sk-doc",
+    "049-sk-create-frontmatter"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

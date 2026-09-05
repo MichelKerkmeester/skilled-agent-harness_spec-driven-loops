@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 1: utilization-review"
+title: "Acceptance Criteria: Phase 8: utilization-review"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -19,14 +19,14 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-02-049-008-implementation"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 1: utilization-review
+# Acceptance Criteria: Phase 8: utilization-review
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 

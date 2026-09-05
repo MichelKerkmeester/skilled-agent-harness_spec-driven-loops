@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: utilization-review [template:level-3/spec.md]"
+title: "Feature Specification: Phase 8: utilization-review"
 description: "The sk-create-frontmatter playbook had never been executed and the mode had never been measured for reachability, so nobody knew whether a person reaching for it gets what they came for. This phase runs all eleven scenarios, routes eight realistic prompts, and fixes what it can prove."
 trigger_phrases:
   - "frontmatter utilization review"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: Phase 1: utilization-review
+# Feature Specification: Phase 8: utilization-review
 
 <!-- SPECKIT_LEVEL: 3 -->
 

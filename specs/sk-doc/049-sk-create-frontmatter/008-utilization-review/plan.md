@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: utilization-review
+# Implementation Plan: Phase 8: utilization-review
 
 <!-- SPECKIT_LEVEL: 3 -->
 
