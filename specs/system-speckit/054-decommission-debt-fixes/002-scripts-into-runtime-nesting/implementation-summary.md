@@ -275,6 +275,30 @@ The second pass (GPT-5.6 LUNA max through DevPass) was rejected by the runner af
 | F007 | P1 | Two committed scan helpers hardcoded one workstation's absolute repository path | Removed; nothing referenced them | `c0254f4a8c` |
 
 The embeddings harness the root test invokes was CommonJS under an ESM package and failed on `require`; it is now `test-embeddings-factory.cjs` (`de9a2301e1`) and runs clean.
+
+### Third review pass
+
+Ten iterations of GPT-5.6 LUNA Max Fast (cli-cursor) over the widened scope at `3647a161cf` returned FAIL: 0 P0, 11 P1, 4 P2. Each finding was verified against the tree before it was acted on.
+
+| Finding | Severity | Verified | Fix | Commit |
+|---------|----------|----------|-----|--------|
+| F001 | P1 | Yes: planning prose still said the move would run elsewhere | Spec, plan and tasks now state that execution ran in this folder by operator instruction | `3a7e457c02` |
+| F002 | P1 | Yes: CLI README topology named `scripts/` and `memory/`; spec-folder README named `scripts/spec-folder/` | Both READMEs describe `runtime/cli/` and `continuity/` | `3a7e457c02`, `cda184165f` |
+| F003 | P1 | Yes: level-score evidence cited the pre-move path | Path noted as historical; score replayed from `runtime/cli/spec/recommend-level.sh` with the same result | `3a7e457c02`, `cda184165f` |
+| F004 | P1 | Yes: runbook resolved the Vitest config one level too deep | Runbook uses the skill-root projects config | `3a7e457c02` |
+| F005 | P2 | No: the named test carries no config path; the root config comment already describes the layout | None | — |
+| F006 | P2 | Yes: stress config excluded the retired `scripts/tests` | Excludes `runtime/cli/tests` | `3a7e457c02` |
+| F007 | P1 | Yes: an explicit `--output` path reached the write sink unchecked | Override must resolve inside the project root; regression test added | `cda184165f` |
+| F008 | P1 | Yes: three manifest paths no longer existed after remediation | Manifest refreshed to 450 existing paths | `3a7e457c02` |
+| F009 | P2 | Yes, as recorded history: `scratch/path-map.json` is the execution plan as drafted | Kept as written; scratch is recorded evidence | — |
+| F010 | P2 | Yes: two registry dependency entries named `scripts/` | Repointed to `runtime/cli/` | `3a7e457c02` |
+| F011 | P1 | Yes: test README commands ran Vitest from the wrong directory | Commands enter `runtime/cli` and use the projects config | `3a7e457c02` |
+| F012 | P1 | Yes: the CLI test lane ran before the build its dist-dependent tests need | `pretest` builds first | `3a7e457c02` |
+| F013 | P1 | Yes: dist-alignment eval omitted `runtime/cli/dist` and could not find the package root after the move | Target added; root landmarks are `runtime` and `shared`; eval passes, 183 files aligned | `cda184165f`, `8b5b9dcfc9` |
+| F014 | P1 | No: the deployed stop hook is a symlink into the built dist and its candidates match the source | None | — |
+| F015 | P1 | Yes: four workflow assets instructed `scripts/spec/create.sh` | Repointed to `runtime/cli/spec/create.sh`; mirrors in sync | `3a7e457c02` |
+
+The runner marked this lineage fatal because the leaf recorded no stop reason, although all ten iterations, state records and the report landed. That is deep-loop leaf-protocol debt and is recorded in packet 042.
 <!-- /ANCHOR:verification -->
 
 ---
