@@ -63,7 +63,7 @@ interface DistTarget {
 // 3. CONSTANTS
 // ───────────────────────────────────────────────────────────────
 
-const REQUIRED_ROOT_DIRS = ['runtime', 'scripts'] as const;
+const REQUIRED_ROOT_DIRS = ['runtime', 'shared'] as const;
 // Time-bounded allowlist for known stragglers surfaced by the
 // broadened scan. Each entry MUST include a follow-on owner and remediation
 // date. The harness orphan is being deleted in this packet;
