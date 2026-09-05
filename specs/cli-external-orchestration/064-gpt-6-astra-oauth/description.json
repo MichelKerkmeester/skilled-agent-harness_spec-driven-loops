@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/064-gpt-6-astra-oauth",
+  "description": "The operator asked for GPT-6 Astra at all thinking levels and in fast mode, through cli-pi, cli-opencode and cli-codex, over the official GPT provider",
+  "keywords": [
+    "operator",
+    "asked",
+    "gpt-6",
+    "astra",
+    "thinking",
+    "levels",
+    "fast",
+    "mode",
+    "cli-pi",
+    "cli-opencode",
+    "cli-codex",
+    "official",
+    "gpt",
+    "provider"
+  ],
+  "lastUpdated": "2026-09-05T11:38:12.333Z",
+  "specId": "064",
+  "folderSlug": "gpt-6-astra-oauth",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

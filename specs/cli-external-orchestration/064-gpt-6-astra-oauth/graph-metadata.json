@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/064-gpt-6-astra-oauth",
+  "spec_folder": "cli-external-orchestration/064-gpt-6-astra-oauth",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gpt-6 astra",
+      "astra oauth roster",
+      "astra thinking tiers",
+      "astra fast mode",
+      "astra oauth plan",
+      "astra codex pi rosters",
+      "implementation",
+      "plan",
+      "tasks",
+      "astra oauth",
+      "astra oauth summary",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "gpt-6",
+      "astra",
+      "oauth",
+      "roster",
+      "thinking",
+      "tiers",
+      "fast",
+      "mode",
+      "plan",
+      "codex",
+      "rosters",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md",
+      ".pi/pi-fast-mode-w-subagent-support-config.json",
+      ".pi/settings.json",
+      ".pi/models.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-fast-mode-w-subagent-support-config.json",
+        "kind": "config",
+        "path": ".pi/pi-fast-mode-w-subagent-support-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "On Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Astra",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Astra",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Astra",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Astra",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator asked for GPT-6 Astra at all thinking levels and in fast mode, through cli-pi, cli-opencode and cli-codex, over the official GPT provider only",
+    "created_at": "2026-09-05T10:56:54.895Z",
+    "last_save_at": "2026-09-05T11:38:27.559Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:39238ae7d1d8cffb58f2d2d4f2af44e19fa3903b5e4dbe44c60044391c5f7227",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4cfec184d624ab3521ed1668890bd2dcacc3711e166bd4ff9332693fe236a5de",
+      "plan.md": "512e554abae472eaba4932143f6e0529bb8fa8e6ee2062a26b993f59ff80b6e9",
+      "tasks.md": "0762d1a33a80d90a71f09f567f63531d73df7084810de8d6c581f566aafb70c8",
+      "implementation-summary.md": "2dc1b7e2822868044c983d12180feea7df141a3f4dacbaa368b41f7543d947da"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
