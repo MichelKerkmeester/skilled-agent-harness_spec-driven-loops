@@ -1,0 +1,428 @@
+{
+  "sessionId": "fanout-luna-max-review-1788599924929-d9wrhj",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": null,
+    "totalIterations": null,
+    "timestamp": "2026-09-05T10:23:49.924Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P0",
+      "title": "CLI workspace manifest was deleted instead of relocated",
+      "file": ".opencode/skills/system-spec-kit/package.json",
+      "line": 6,
+      "description": "The root workspace declares `runtime/cli`, but no `runtime/cli/package.json` exists, the old `scripts/package.json` is deleted, and root test scripts still invoke `--workspace=@spec-kit/scripts`; the nested CLI cannot be addressed as the declared workspace.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F001",
+      "severity": "P0",
+      "title": "CLI workspace manifest was deleted instead of relocated",
+      "file": ".opencode/skills/system-spec-kit/package.json",
+      "line": 6,
+      "description": "Root workspaces names runtime/cli, runtime/cli/package.json is absent, scripts/package.json is deleted, root scripts still target @spec-kit/scripts, and package-lock retains the scripts link.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct manifest reads, git tree inspection, and package-lock comparison within the bounded scope.",
+      "affectedSurfaceHints": [
+        "workspace manifest",
+        "package-lock",
+        "CLI package",
+        "root test scripts"
+      ],
+      "contentHash": "c2c96ba8b1180acdf5710638e63eab59bd4963566c5e65702145ef4036250029",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Execution verification retains a retired compiled path",
+      "file": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/scratch/execute-plan.md",
+      "line": 151,
+      "description": "The handoff still runs `runtime/cli/dist/memory/generate-context.js`, while the implementation summary identifies the shipped writer as `runtime/cli/dist/continuity/generate-context.js` at `implementation-summary.md:55-60` and the root smoke scripts use the continuity path.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Execution verification retains a retired compiled path",
+      "file": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/scratch/execute-plan.md",
+      "line": 151,
+      "description": "The execution plan invokes runtime/cli/dist/memory/generate-context.js, but implementation-summary.md and package scripts use runtime/cli/dist/continuity/generate-context.js.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct reads of the execution plan, implementation summary, and root package scripts.",
+      "affectedSurfaceHints": [
+        "execution handoff",
+        "compiled CLI entrypoint",
+        "package smoke tests"
+      ],
+      "contentHash": "3dc8262bf1405490f827620db0a304d8123a5f8ec941422efbf3df00deee13d6",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Root Vitest configuration omits the moved CLI test root",
+      "file": ".opencode/skills/system-spec-kit/vitest.config.ts",
+      "line": 7,
+      "description": "Root Vitest includes scripts/tests but not runtime/cli/tests; scripts/tests has zero regular files while runtime/cli/tests contains 146 top-level Vitest suites, and runtime/vitest.config.ts excludes runtime/cli.",
+      "findingClass": "test-isolation",
+      "deltaStatus": "active",
+      "scopeProof": "Direct config reads plus bounded filesystem counts of the old and moved test roots.",
+      "affectedSurfaceHints": [
+        "root test command",
+        "CLI regression coverage",
+        "verification evidence"
+      ],
+      "contentHash": "bfa721b4fc6390376b4288031d232c791a18398c3ea77eaa1a0698cd445e6aaf",
+      "dimension": "correctness of build/test discovery and maintainability of the verification contract. f003 is an active p1. no source or packet files were modified.",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness of build/test discovery and maintainability of the verification contract. f003 is an active p1. no source or packet files were modified."
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "Packet metadata and completion documents disagree about level and status",
+      "file": "spec.md",
+      "line": 1,
+      "description": "spec.md reports Level 3 and Complete while frontmatter remains Level 2; plan remains planning-only with an unchecked Definition of Done; acceptance remains Planned while implementation and tasks report completion; generated description and graph causal summary retain the old sibling layout.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Direct packet-document reads plus independent SHA-256 comparison of all four graph-metadata source documents.",
+      "affectedSurfaceHints": [
+        "packet routing",
+        "completion verification",
+        "handoff state",
+        "generated graph metadata"
+      ],
+      "contentHash": "06a9f80d89cb480b27257e0ce3bb069be4d04ee87d3560b04b581f662c15e832",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Moved CLI READMEs retain retired scripts paths and invalid build commands",
+      "file": "runtime/cli/README.md",
+      "line": 56,
+      "description": "Persistent package documentation describes scripts/ and memory/ topology and uses npm --prefix system-spec-kit/scripts commands although scripts/package.json is absent and the workspace destination is runtime/cli.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct reads of the moved package README command blocks and filesystem confirmation that the old package manifest is absent.",
+      "affectedSurfaceHints": [
+        "developer build command",
+        "operator validation",
+        "package topology",
+        "continuity path documentation"
+      ],
+      "contentHash": "2476ee05e75a964e11c4f4786c343c6d19b885646d849ce415afe65e8ab5e608",
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "title": "Script registry advertises retired scripts paths",
+      "file": "runtime/cli/scripts-registry.json",
+      "line": 25,
+      "description": "Twelve source entries retain scripts/... paths even though those files are absent and registry-loader.sh reads the moved registry as its active catalog.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct registry read, neighboring loader read, and bounded existence check against the moved source tree.",
+      "affectedSurfaceHints": [
+        "dynamic script discovery",
+        "operator queries",
+        "entrypoint catalog"
+      ],
+      "contentHash": "caf7f69f44ab769530325c700330a0f9d913eaa266cd88d76c68ef8ff0ded574",
+      "dimension": "correctness of ci and discovery consumers",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness of ci and discovery consumers"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "CI workflows install the deleted scripts workspace",
+      "file": ".github/workflows/changed-packet-validation.yml",
+      "line": 28,
+      "description": "Both workflows unconditionally cd into system-spec-kit/scripts and run npm ci although the old package directory and manifest are absent.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct reads of both workflow setup blocks plus filesystem confirmation that system-spec-kit/scripts/package.json is absent.",
+      "affectedSurfaceHints": [
+        "changed-packet CI",
+        "freshness report CI",
+        "dependency installation"
+      ],
+      "contentHash": "34c094b84fdfd5d2950e17246afc5ddd8024241ec9ca3784da759333765465f8",
+      "dimension": "correctness of ci and discovery consumers",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness of ci and discovery consumers"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P1",
+      "title": "Spec-root resolver inventory retains retired scripts paths",
+      "file": "runtime/cli/core/spec-root-registry.ts",
+      "line": 29,
+      "description": "Twelve inventory entries point to absent scripts/... files, while the moved implementations are under runtime/cli; the companion test checks only shape and prefix.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct registry and test reads plus bounded existence checks for every recorded source path.",
+      "affectedSurfaceHints": [
+        "root-resolution audit",
+        "coverage evidence",
+        "resolver inventory"
+      ],
+      "contentHash": "b9d9e1bfeafef67248b20f7b2fadb2abe7beb08b811a2a0f643194e4e8492789",
+      "dimension": "traceability of resolver coverage and correctness of fixed-depth path derivation. f008 is an active p1",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability of resolver coverage and correctness of fixed-depth path derivation. f008 is an active p1"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P1",
+      "title": "Moved test harness retains retired roots and doubled dist path",
+      "file": "runtime/cli/tests/test-phase-validation.js",
+      "line": 13,
+      "description": "The phase and embeddings harnesses resolve absent .opencode/skill or scripts paths; the embeddings path lands at absent runtime/shared/dist while shared/dist exists; the shipped-path assertion appends dist to an already compiled dist root and skips when absent.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct reads plus bounded existence checks for each referenced root and generated-output location.",
+      "affectedSurfaceHints": [
+        "test execution",
+        "relocation coverage",
+        "generated-output assertions"
+      ],
+      "contentHash": "9b6b1323136c30ea25b52d476c87a0cae145700791f49529f8ce96473adad864",
+      "dimension": "correctness of moved test entrypoints and maintainability of generated-output assertions. f009 is an active p1",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness of moved test entrypoints and maintainability of generated-output assertions. f009 is an active p1"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": false,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 2,
+    "P1": 9,
+    "P2": 0
+  },
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": "unavailable",
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

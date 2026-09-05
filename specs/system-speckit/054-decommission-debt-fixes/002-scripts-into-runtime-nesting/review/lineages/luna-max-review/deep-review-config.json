@@ -1,0 +1,127 @@
+{
+  "topic": "Review of scripts into runtime nesting",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "topicScope": "Bounded review of the target packet and the 420 paths declared by scratch/review-scope.txt; no source edits are authorized.",
+  "sessionId": "fanout-luna-max-review-1788599924929-d9wrhj",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 10,
+  "convergenceThreshold": 3.0,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
+  "createdAt": "2026-09-05T09:28:04Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "lineageModeBinding": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 3600,
+    "liveTools": {
+      "webSearch": "inherit"
+    }
+  },
+  "modeBinding": "review",
+  "qualityGateThreshold": true,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true,
+    "source": "absent-at-init"
+  },
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "reviewScope": {
+    "manifest": "scratch/review-scope.txt",
+    "fileCount": 420,
+    "scopeClass": "bounded",
+    "resourceMapGate": "skipped-absent-at-init",
+    "graphMode": "unavailable-write-surface-constrained"
+  },
+  "_optimizerManaged": {
+    "description": "Fan-out executor supplied by the detached lineage request.",
+    "tunableFields": [
+      "convergenceThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  }
+}
