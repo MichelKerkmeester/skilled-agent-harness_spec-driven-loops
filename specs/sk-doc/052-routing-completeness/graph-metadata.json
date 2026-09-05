@@ -10,7 +10,8 @@
     "sk-doc/052-routing-completeness/004-cross-hub-vocabulary",
     "sk-doc/052-routing-completeness/005-hub-surface-truth",
     "sk-doc/052-routing-completeness/006-validator-and-template-debt",
-    "sk-doc/052-routing-completeness/007-spec-kit-residue"
+    "sk-doc/052-routing-completeness/007-spec-kit-residue",
+    "sk-doc/052-routing-completeness/008-drift-after-closure"
   ],
   "manual": {
     "depends_on": [],
@@ -48,13 +49,19 @@
     "key_files": [
       "spec.md",
       "goal.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      "research/findings-register.md",
       "001-transport-and-baseline/goal.md",
       "002-gate-a-signal-closure/goal.md",
       "003-gate-b-realistic-corpus/goal.md",
       "004-cross-hub-vocabulary/goal.md",
       "005-hub-surface-truth/goal.md",
       "006-validator-and-template-debt/goal.md",
-      "007-spec-kit-residue/goal.md"
+      "007-spec-kit-residue/goal.md",
+      "008-drift-after-closure/goal.md"
     ],
     "entities": [
       {
@@ -67,6 +74,36 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_scan.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "findings-register.md",
+        "kind": "doc",
+        "path": "research/findings-register.md",
         "source": "derived"
       },
       {
@@ -118,43 +155,43 @@
         "source": "derived"
       },
       {
+        "name": "Every Level",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "numbers",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "criteria",
+        "name": "both",
         "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A hub can be complete in every registry and still not be reachable",
     "created_at": "2026-09-02T16:33:39Z",
-    "last_save_at": "2026-09-04T06:02:33.691Z",
+    "last_save_at": "2026-09-05T13:55:09.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:941adb8e59ced83aada964b2e5d7ece94f54e122cf483eefb147600a6c57cea7",
+    "source_fingerprint": "sha256:06324592d50f6ea3a0ca4b42f59ed939d675dda1b0f2a9912fc2c63b70269350",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7a387efbb8bf0081469a0ead24250f933c6dd4840b685abe40b8793f54ee708b"
+      "spec.md": "a4121d4af25879445fd3668008cf9c56e972c7977285815ab7c2eb5096264039"
     },
     "last_active_child_id": "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
     "last_active_at": "2026-09-02T21:41:53.247Z"

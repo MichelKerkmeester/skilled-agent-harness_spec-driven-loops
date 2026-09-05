@@ -1,0 +1,22 @@
+{
+  "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states",
+  "description": "The corpus answers a pointer inconsistently, and the inconsistency is not a design decision",
+  "keywords": [
+    "corpus",
+    "answers",
+    "pointer",
+    "inconsistently",
+    "inconsistency",
+    "design",
+    "decision"
+  ],
+  "lastUpdated": "2026-09-05T11:48:22.715Z",
+  "specId": "012",
+  "folderSlug": "chart-hover-and-pointer-states",
+  "parentChain": [
+    "sk-doc",
+    "051-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

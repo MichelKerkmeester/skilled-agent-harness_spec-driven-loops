@@ -1,0 +1,1 @@
+title: "Implementation Plan: Give every chart form a hover and pointer state, with the logic and templates to carry it [template:level-2/plan.md]"

@@ -18,11 +18,9 @@ _memory:
     next_safe_action: "Close the packet"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/mcp-server/lib/search/bm25-index.ts"
-      - ".opencode/skills/system-spec-kit/mcp-server/lib/search/channel-representation.ts"
-      - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts"
-      - ".opencode/skills/system-spec-kit/mcp-server/lib/storage/incremental-index.ts"
-      - ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-integration.vitest.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-kit-residue-decisions"

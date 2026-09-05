@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/052-routing-completeness/008-drift-after-closure",
+  "spec_folder": "sk-doc/052-routing-completeness/008-drift-after-closure",
+  "parent_id": "sk-doc/052-routing-completeness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "drift after closure",
+      "scaffold stopped rendering",
+      "gate a rerun",
+      "gate b rerun",
+      "parity pin regime",
+      "drift after closure plan",
+      "loader path fix",
+      "gate rerun plan",
+      "hub signal retirement",
+      "drift after closure tasks",
+      "gate rerun tasks",
+      "loader path tasks"
+    ],
+    "key_topics": [
+      "drift",
+      "closure",
+      "scaffold",
+      "stopped",
+      "rendering",
+      "gate",
+      "rerun",
+      "parity",
+      "pin",
+      "regime",
+      "plan",
+      "loader"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".opencode/skills/cli-external-orchestration/graph-metadata.json",
+      "research/gate-a-rerun-2026-09-05.tsv",
+      "research/gate-b-rerun-2026-09-05.tsv",
+      "runtime/cli/templates/inline-gate-renderer.sh",
+      "runtime/cli/lib/template-utils.sh",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/spec/validate.sh",
+      "node_modules/tsx/dist/loader.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-rerun-2026-09-05.tsv",
+        "kind": "file",
+        "path": "research/gate-a-rerun-2026-09-05.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "gate-b-rerun-2026-09-05.tsv",
+        "kind": "file",
+        "path": "research/gate-b-rerun-2026-09-05.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "template-utils.sh",
+        "kind": "script",
+        "path": "runtime/cli/lib/template-utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "loader.mjs",
+        "kind": "file",
+        "path": "node_modules/tsx/dist/loader.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A packet that closes on measured numbers stays true only while its inputs hold still",
+    "created_at": "2026-09-05T13:40:04Z",
+    "last_save_at": "2026-09-05T13:57:43.252Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e1b9519d64bdced3a6c70f0ccec4d5a339e016ae293a763c19908209b094d590",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2e5a7f3037a569117b7982f61ada292af3720dfd03c45bb1a0c3553a0b4498a5",
+      "plan.md": "7ea883b4b4d3d89af31f24da1fee485ac41b671a700e465164afc1dc262eb0bb",
+      "tasks.md": "986cf0ce893b5c75111c3d296316c2a7633cd56697a2048d1dc571c8b3dd5cbc",
+      "decision-record.md": "316ea42fae52f82b45319c228ccc9f8695fef3db60680fd1e5a2178d92a14ebe",
+      "implementation-summary.md": "72925f8f388b12dc9fc997cd4d9ddfe604a6c0a03288f3801ccf065831111a8b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

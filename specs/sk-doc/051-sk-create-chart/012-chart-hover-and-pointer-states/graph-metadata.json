@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states",
+  "spec_folder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states",
+  "parent_id": "sk-doc/051-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart hover state",
+      "chart pointer interaction",
+      "chart tooltip corpus",
+      "sk-create-chart interaction layer",
+      "hover template enforcement",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr"
+    ],
+    "key_topics": [
+      "chart",
+      "hover",
+      "state",
+      "pointer",
+      "interaction",
+      "tooltip",
+      "corpus",
+      "sk-create-chart",
+      "layer",
+      "template",
+      "enforcement",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "scripting",
+        "kind": "key_phrase",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. CRITERIA",
+        "kind": "heading",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The corpus answers a pointer inconsistently, and the inconsistency is not a design decision",
+    "created_at": "2026-09-05T11:11:08Z",
+    "last_save_at": "2026-09-05T13:42:55.859Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md"
+    ],
+    "source_fingerprint": "sha256:ceceff1426da0f2efbaf0990a74887de8ac3085519e8952184f8bc40b86e0ba5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2cf393a6565855106c18f3ea701b0b34f4ce4de97aec316ed33a154e35773a11",
+      "plan.md": "fc9166c715db09945f00099c615ba443faf9bbd91f305588065961f0db127c35",
+      "tasks.md": "cb64cfb0e62c1cd9e06dbbc65eab509de60fbcabc538a31ddd115e41804fe0a4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

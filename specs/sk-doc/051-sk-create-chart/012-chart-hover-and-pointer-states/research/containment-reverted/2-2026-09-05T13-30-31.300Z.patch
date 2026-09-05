@@ -1,0 +1,20 @@
+diff --git a/specs/sk-doc/049-sk-create-frontmatter/spec.md b/specs/sk-doc/049-sk-create-frontmatter/spec.md
+index ce66dd06db..7156669f97 100644
+--- a/specs/sk-doc/049-sk-create-frontmatter/spec.md
++++ b/specs/sk-doc/049-sk-create-frontmatter/spec.md
+@@ -141,6 +141,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
+ | 7 | 007-human-voice-playbook/ | The sibling voice mode has no playbook either, and the setup for authoring one is paid in phase 005 | Complete |
+ | 8 | 008-utilization-review/ | Execute all eleven playbook scenarios, measure whether a newcomer's prompt reaches the mode, and fix the defects that are provable and inside it | Complete |
+ 
++| 9 | 009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/ | [Phase 9 scope] | Pending |
+ ### Phase Transition Rules
+ 
+ - Each phase MUST pass `validate.sh` independently before the next phase begins
+@@ -159,6 +160,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
+ | 005-command-and-playbook | 006-verification-and-closeout | The playbook package validates and its scenarios load | The playbook package validator passes and the loader reports the authored scenario count |
+ | 006-verification-and-closeout | 007-human-voice-playbook | The fleet is green, so a second playbook is authored against a settled tree | Every gate in the phase 006 sweep passes |
+ | 007-human-voice-playbook | 008-utilization-review | The voice playbook package validates and the benchmark loader finds its scenarios, so both playbooks exist before either is executed | `validate-playbook-package.cjs` reports PASS at nine scenarios, and the scenario loader reports `shape=sk-doc scenarios=9` |
++| 008-utilization-review | 009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract | [Criteria TBD] | [Verification TBD] |
+ <!-- /ANCHOR:phase-map -->
+ 
+ ---

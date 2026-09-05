@@ -1,0 +1,11 @@
+{
+  "owner_pid": 65102,
+  "started_at_iso": "2026-09-05T11:14:14.180Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-09-05T11:14:14.180Z",
+  "packet_id": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-09-05T11:14:14.180Z",
+  "acquire_nonce": "65102-1788606854181-34cf88de-749e-4e14-b34d-3a449e93ec28"
+}

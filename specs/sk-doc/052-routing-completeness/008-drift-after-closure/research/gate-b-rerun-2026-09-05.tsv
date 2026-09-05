@@ -1,0 +1,181 @@
+hub	intended_mode	prompt	top_skill	top_mode	n_targets	action	n_recs	mode_top1
+sk-doc	sk-create-skill	I keep pasting the same five-step checklist into every agent conversation. Can you turn it into a reusable capability the team can invoke by name?			0		0	no
+sk-doc	sk-create-skill	How do I scaffold a brand-new package with its own instructions file, templates and a router, starting from nothing?			0		0	no
+sk-doc	sk-create-skill	We need a fresh reusable capability for logging coffee orders that any agent session can call up automatically when someone mentions ordering coffee.			0		0	no
+sk-doc	sk-create-skill	What goes into building a standalone capability package from scratch, versus just writing a one-off script?			0		0	no
+sk-doc	sk-create-skill	Can you build me a brand new OpenCode skill that formats JSON test fixtures before they get committed?	sk-code	sk-code-opencode	1	route	3	no
+sk-doc	sk-create-skill-parent	We have four related skills that keep stepping on each other. Can you merge them under one router with a shared registry?	sk-git		0		1	no
+sk-doc	sk-create-skill-parent	What's involved in setting up one hub that dispatches to several nested workflows depending on intent?			0		0	no
+sk-doc	sk-create-skill-parent	I want one identity that gets scored once by the advisor, then internally forwards to five different sub-workflows.			0		0	no
+sk-doc	sk-create-skill-parent	Our five overlapping packages need to become one umbrella package with mode-based dispatch instead of five separate lookups.			0		0	no
+sk-doc	sk-create-readme	Nobody on the team can figure out how to set this project up. Can you write the docs with proper install steps?	sk-doc		0	defer	3	no
+sk-doc	sk-create-readme	Does this folder have documentation explaining what it does and how to run it?	sk-doc		0	defer	3	no
+sk-doc	sk-create-readme	Draft a getting-started guide for this package, including a five-phase install walkthrough.	system-spec-kit		0		1	no
+sk-doc	sk-create-readme	Our repo's top-level docs are years out of date and don't mention the new build step. Can you refresh them?	sk-doc		0	defer	2	no
+sk-doc	sk-create-agent	I need a new dedicated persona that only has read and grep access, for auditing PRs.			0		0	no
+sk-doc	sk-create-agent	How do I define a persona's permission boundaries and runtime placement so it can't write files it shouldn't?	system-spec-kit		0		3	no
+sk-doc	sk-create-agent	Set up a fresh subagent file with the right permission block for delegating review work.	sk-code	sk-code-review	1	route	1	no
+sk-doc	sk-create-agent	We want a narrowly scoped persona that can only run inside the mobile-cli folder and nowhere else.	sk-code		0	defer	3	no
+sk-doc	sk-create-command	Can you wire up a new shortcut with an argument hint and a thin router that calls out to the real logic?			0		0	no
+sk-doc	sk-create-command	I want users to type one shortcut and have it delegate to the right workflow, but the router file should stay presentation-only.			0		0	no
+sk-doc	sk-create-command	What tools do I declare as allowed for a brand-new shortcut file?			0		0	no
+sk-doc	sk-create-command	We need a typed entry point that takes a target argument and hands off to three different workflows depending on a flag.			0		0	no
+sk-doc	sk-create-feature-catalog	We need an inventory of everything this package can do, organized by category, with each capability getting its own page.			0		0	no
+sk-doc	sk-create-feature-catalog	Is there a structured index of what this thing supports somewhere, or do I have to build one from scratch?	system-spec-kit		0		3	no
+sk-doc	sk-create-feature-catalog	Build me a root index plus per-capability pages that cite exact source lines.	sk-code		0	defer	3	no
+sk-doc	sk-create-feature-catalog	Every time someone asks what this tool can actually do, I end up grepping the code. Can we have one page that lists it all?	sk-code		0	defer	1	no
+sk-doc	sk-create-manual-testing-playbook	Before we ship this release, I want a step-by-step script a human tester can follow with clear pass or fail checkpoints.			0		0	no
+sk-doc	sk-create-manual-testing-playbook	How do we plan a release-readiness pass that multiple people can run in parallel and log evidence for?	system-deep-loop	review	1	route	3	no
+sk-doc	sk-create-manual-testing-playbook	Write out deterministic scenarios for someone to click through by hand.	sk-doc	sk-create-manual-testing-playbook	1	route	3	yes
+sk-doc	sk-create-manual-testing-playbook	We keep shipping regressions that automated checks miss. Can you put together a hands-on verification pass before the next release?	sk-code		0	defer	1	no
+sk-doc	sk-create-benchmark	I ran the model comparison and now need a proper writeup with a source file and the scenario contract documented.			0		0	no
+sk-doc	sk-create-benchmark	What's the standard structure for writing up a behavior comparison so someone else can reproduce it?			0		0	no
+sk-doc	sk-create-benchmark	Draft the report layout and fixture folder structure for a new reviewer-prompt comparison.	sk-code	sk-code-review	1	route	2	no
+sk-doc	sk-create-benchmark	How should I document the scoring dimensions and fixtures I used so the next person doesn't have to guess?			0		0	no
+sk-doc	sk-create-benchmark	I want a written report of how well this package handles realistic requests, formatted the way our other comparison reports look.			0		0	no
+sk-doc	sk-create-changelog	Can you write up what changed since the last tag, with the right version bump?	sk-doc		0	defer	3	no
+sk-doc	sk-create-changelog	Does this folder need its own local history of changes, or does it roll up into the project-wide one?			0		0	no
+sk-doc	sk-create-changelog	Add an entry documenting today's fixes.	sk-doc		0	defer	3	no
+sk-doc	sk-create-changelog	We're about to cut a release and nobody has written down what's actually different from the last one.			0		0	no
+sk-doc	sk-create-diff	I edited this Word document heavily. Can you show me a clean before-and-after comparison without needing version control?			0		0	no
+sk-doc	sk-create-diff	Is there a way to see exactly what changed between two drafts of this policy PDF?			0		0	no
+sk-doc	sk-create-diff	Generate a visual comparison of this markdown file's last revision.	sk-doc		0	defer	3	no
+sk-doc	sk-create-diff	Our contract went through four rounds of edits and I can't tell what actually moved between draft two and draft four.			0		0	no
+sk-doc	sk-create-diff	Can you show me exactly what changed between the last two versions of this policy document, without using git?			0		0	no
+sk-doc	sk-create-diagram	Can you sketch out a picture showing how these three services talk to each other during a failed request?			0		0	no
+sk-doc	sk-create-diagram	I need something visual that shows the decision branches in our approval flow.	sk-git		0		1	no
+sk-doc	sk-create-diagram	Draw the relationships between these three database tables.			0		0	no
+sk-doc	sk-create-diagram	Nobody on the team can follow this state machine from the code alone. Can you lay it out visually?	sk-code		0	defer	1	no
+sk-doc	sk-create-chart	I have a spreadsheet of quarterly revenue by region and want something people can glance at in a browser to see which region is winning.	sk-code	sk-code-webflow	1	route	1	no
+sk-doc	sk-create-chart	What's the best way to show this distribution of response times so a non-technical reviewer gets it immediately?			0		0	no
+sk-doc	sk-create-chart	Turn this list of vote counts into something visual I can drop into a report.			0		0	no
+sk-doc	sk-create-chart	Our dashboard needs a standalone page showing how these five metrics trend over the last twelve months.			0		0	no
+sk-doc	sk-create-frontmatter	What fields am I supposed to put in the metadata block at the top of this skill file, and how long can the description be?			0		0	no
+sk-doc	sk-create-frontmatter	My file's version number doesn't match the four-part format everyone else uses. What's the pattern?			0		0	no
+sk-doc	sk-create-frontmatter	Can you check whether this document is missing any required metadata fields?	sk-doc		0	defer	1	no
+sk-doc	sk-create-frontmatter	Half our files use a three-segment version string and half use four. Which one is actually correct?			0		0	no
+sk-doc	sk-create-quality-control	Before I publish this, can you tell me how good it actually is and where it falls short?			0		0	no
+sk-doc	sk-create-quality-control	Does this file pass the structural and voice checks we hold everything to?			0		0	no
+sk-doc	sk-create-quality-control	Take this rough draft and tighten it against our documentation standards.	sk-doc		0	defer	1	no
+sk-doc	sk-create-quality-control	I wrote this reference doc in a hurry and want an honest score on it before anyone else reads it.			0		0	no
+sk-doc	sk-create-quality-control	Can you check how good this write-up is and flag anything that falls short before I call it done?	sk-doc	sk-create-quality-control	1	route	3	yes
+sk-doc	sk-create-repo-rule	We keep hitting the same footgun across three different tasks. Should this become an enforced project rule, and if so how do I write it?	system-spec-kit		0		3	no
+sk-doc	sk-create-repo-rule	This entry in our project's rulebook is outdated. Can you update it?	sk-doc		0	defer	2	no
+sk-doc	sk-create-repo-rule	Is this pattern common enough to deserve its own line in the trigger table, or should I just leave a comment?			0		0	no
+sk-doc	sk-create-repo-rule	One of our old enforced rules doesn't apply anymore since we dropped that dependency. Can it be retired cleanly?			0		0	no
+sk-doc	sk-create-with-human-voice	This paragraph reads like a robot wrote it. Can you make it sound like a person typed it?			0		0	no
+sk-doc	sk-create-with-human-voice	Check whether this text has the usual telltale signs of AI writing, like throat-clearing or over-hedged phrasing.			0		0	no
+sk-doc	sk-create-with-human-voice	Rewrite this section so it doesn't sound generated.			0		0	no
+sk-doc	sk-create-with-human-voice	Every doc from the last sprint has that same stiff, over-explained tone. Can you loosen it up?			0		0	no
+sk-code	sk-code-quality	Before I mark this ticket done, can you run through the pre-merge checks and make sure I didn't leave stray comments in?	sk-git		0		3	no
+sk-code	sk-code-quality	Is this implementation actually ready, or am I missing something before I call it finished?			0		0	no
+sk-code	sk-code-quality	Check this function against our usual pre-merge checklist.	sk-git		0		1	no
+sk-code	sk-code-quality	I always forget one of the standard checks before marking something complete. Can you run the full gate on this change?	sk-code		0	defer	2	no
+sk-code	sk-code-review	Can you go through this pull request and flag anything that looks like a security hole or a correctness bug?	sk-git		0		1	no
+sk-code	sk-code-review	What would a reviewer say is wrong with this diff before I ask a teammate to look at it?			0		0	no
+sk-code	sk-code-review	Audit these changes for test quality and correctness before we merge.	sk-code	sk-code-quality	2	route	2	no
+sk-code	sk-code-review	This PR has been sitting for two days and nobody's looked at it closely. Can you give it a proper pass?	sk-git		0		1	no
+sk-code	sk-code-webflow	Our marketing site's hero animation is janky on mobile Safari. Can you look at the CSS and JS for what's causing it?	sk-code	sk-code-webflow	1	route	1	yes
+sk-code	sk-code-webflow	I just deployed a script through the CDN and the interaction stopped triggering. Can you figure out why?	sk-code	sk-code-webflow	1	route	1	yes
+sk-code	sk-code-webflow	Does this front-end component follow our implementation and performance standards before I publish it live?			0		0	no
+sk-code	sk-code-webflow	The custom code embed on our landing page is throwing console errors after the last CMS update.	sk-code		0	defer	2	no
+sk-code	sk-code-webflow	The button on our live site doesn't match what's in the design file. Can you tell me what's different and fix the site to match?	mcp-tooling	mcp-figma	1	route	3	no
+sk-code	sk-code-opencode	This shell hook keeps failing silently. Can you figure out why the check isn't catching it?	sk-code	sk-code-opencode	1	route	1	yes
+sk-code	sk-code-opencode	Does this TypeScript module follow our internal tooling standards before I ship it?	sk-code	sk-code-opencode	1	route	1	yes
+sk-code	sk-code-opencode	I'm writing a new setup script in Python for our internal tooling. Does this follow our conventions?	sk-code	sk-code-opencode	1	route	1	yes
+sk-code	sk-code-opencode	Our config file validation passes locally but breaks in the automated pipeline, and I can't tell why.			0		0	no
+sk-code	sk-code-mobile-cli	This screen in the mobile remote app doesn't match our ink-on-parchment palette. Can you check the components?	sk-code	sk-code-mobile-cli	1	route	1	yes
+sk-code	sk-code-mobile-cli	Does this component change respect our mobile design-system grammar before I merge it?	sk-git		0		3	no
+sk-code	sk-code-mobile-cli	Figure out why the design tokens aren't applying correctly on the handheld remote client.	sk-design		0		2	no
+sk-code	sk-code-mobile-cli	The settings panel on the pocket remote app looks inconsistent with the rest of the interface after my last change.			0		0	no
+sk-code	sk-code-obsidian	I added a new component to the plugin's source and it's breaking the naming convention. Can you look at it?			0		0	no
+sk-code	sk-code-obsidian	This change to our note-database plugin isn't compiling and I can't tell why.	sk-code	sk-code-obsidian	1	route	3	yes
+sk-code	sk-code-obsidian	Does this new component follow the plugin's existing class grammar before I open a PR?	sk-git		0		1	no
+sk-code	sk-code-obsidian	The build for our notes plugin is failing after I touched the sync logic, and the error message isn't helpful.	sk-code		0	defer	3	no
+sk-code	sk-code-obsidian	Can you check whether my notes plugin's source follows our db-star class naming before I open a PR, and also make sure the note I wrote about it in my vault has the right frontmatter?	sk-git		0		1	no
+mcp-tooling	mcp-chrome-devtools	The page is janky and I want to see what's actually happening in the DOM and network tab while it loads.	mcp-tooling		0	defer	1	no
+mcp-tooling	mcp-chrome-devtools	Can you run a performance audit on this page and tell me what's dragging the score down?	sk-code		0	defer	3	no
+mcp-tooling	mcp-chrome-devtools	Inspect this element in the live browser and tell me why the layout is broken.			0		0	no
+mcp-tooling	mcp-chrome-devtools	Something is firing three network requests when it should fire one, and I need to see it happen live.			0		0	no
+mcp-tooling	mcp-click-up	Mark task 4471 as done and log two hours against it.			0		0	no
+mcp-tooling	mcp-click-up	Can you pull my open work queue from our tracker and tell me what's overdue?			0		0	no
+mcp-tooling	mcp-click-up	Create a new task for the login bug and assign it to me.	sk-doc		0	defer	2	no
+mcp-tooling	mcp-click-up	I need to see how long everything on this list has actually been sitting in each stage before I report status.			0		0	no
+mcp-tooling	mcp-aside-devtools	Can you have an AI-driven browser click through the signup flow and tell me if it completes without errors?			0		0	no
+mcp-tooling	mcp-aside-devtools	I need an automated browser to fill out this form repeatedly with different test data.	sk-code	sk-code-webflow	1	route	1	no
+mcp-tooling	mcp-aside-devtools	Drive a browser session through our checkout flow and report where it breaks.	sk-code	sk-code-webflow	1	route	1	no
+mcp-tooling	mcp-aside-devtools	Can you use Aside to run through five different sign-in combinations and tell me which ones fail?			0		0	no
+mcp-tooling	mcp-figma	Pull the button component from our design file and tell me its exact padding and corner radius.			0		0	no
+mcp-tooling	mcp-figma	Can you render this frame from the design tool so I can see what the designer intended?			0		0	no
+mcp-tooling	mcp-figma	Extract the color values from this design file for me.			0		0	no
+mcp-tooling	mcp-figma	Our design file has a spacing scale I need the exact numbers from before I hardcode anything.	sk-design		0		1	no
+mcp-tooling	mcp-refero	Find me some real production examples of a pricing page with a toggle for monthly versus yearly.			0		0	no
+mcp-tooling	mcp-refero	I want to see how other products have handled a multi-step signup before we design ours.			0		0	no
+mcp-tooling	mcp-refero	Search for screenshots of settings screens that use a sidebar layout.			0		0	no
+mcp-tooling	mcp-refero	We're stuck on how to lay out a comparison table. Can you pull up how other sites have solved it?			0		0	no
+mcp-tooling	mcp-mobbin	Show me how a few different apps handle empty states on their dashboard screens.			0		0	no
+mcp-tooling	mcp-mobbin	I need examples of mobile checkout flows from real shipped apps for inspiration.			0		0	no
+mcp-tooling	mcp-mobbin	Pull up some flow references for a subscription cancellation screen.			0		0	no
+mcp-tooling	mcp-mobbin	Our empty-state design feels thin. What have other mobile apps actually shipped for this?			0		0	no
+mcp-tooling	mcp-mobbin	Find examples of how top apps design their onboarding carousel.			0		0	no
+mcp-tooling	mcp-obsidian	Can you add a new note to my vault with a frontmatter field for the health tracker plugin?	sk-doc	sk-create-frontmatter	1	route	3	no
+mcp-tooling	mcp-obsidian	My vault's query for open tasks isn't returning the notes I expect. Can you check the syntax?			0		0	no
+mcp-tooling	mcp-obsidian	Set up automatic backups for my notes folder.			0		0	no
+mcp-tooling	mcp-obsidian	I want a note that auto-populates with a table pulling from all my project notes, and I don't know the query syntax.			0		0	no
+mcp-tooling	mcp-notion	Can you create a new database in our workspace with a rollup field that sums hours from a related table?	sk-doc		0	defer	3	no
+mcp-tooling	mcp-notion	Search our workspace for the page about Q3 planning and pull its content.			0		0	no
+mcp-tooling	mcp-notion	I need to set up a formula property that flags overdue items.			0		0	no
+mcp-tooling	mcp-notion	Our workspace has three databases that should be linked by a relation and right now they're just sitting separate.			0		0	no
+mcp-tooling	mcp-magicpath	Look up how our design system defines its component library before I start building this screen.	sk-design-md-generator		0		3	no
+mcp-tooling	mcp-magicpath	Can you pull the canvas layout for this project so I know the intended structure?			0		0	no
+mcp-tooling	mcp-magicpath	Check what components already exist in our design-system tool before I create a new one.	sk-code		0	defer	3	no
+mcp-tooling	mcp-magicpath	I don't want to duplicate a card component that might already exist somewhere in our design library.			0		0	no
+cli-external-orchestration	cli-opencode	Can you kick off this refactor as a parallel OpenCode session while I keep working here?	cli-external-orchestration	cli-opencode	1	route	3	yes
+cli-external-orchestration	cli-opencode	I want to hand this task to a separate OpenCode run and get the results back with full context.	cli-external-orchestration	cli-opencode	1	route	3	yes
+cli-external-orchestration	cli-opencode	Delegate this to a detached OpenCode session so I'm not blocked waiting on it.	cli-external-orchestration	cli-opencode	1	route	2	yes
+cli-external-orchestration	cli-opencode	I need three variations of this explored at once in OpenCode, each isolated, then reported back together.	sk-code	sk-code-opencode	1	route	1	no
+cli-external-orchestration	cli-claude-code	Get a second opinion from Claude Code on whether this refactor is sound.	cli-external-orchestration	cli-claude-code	1	route	3	yes
+cli-external-orchestration	cli-claude-code	Can you hand this off to Claude Code and bring the structured findings back here?	cli-external-orchestration	cli-claude-code	1	route	2	yes
+cli-external-orchestration	cli-claude-code	Dispatch this edit to Claude Code so it applies the change directly.	cli-external-orchestration	cli-claude-code	1	route	3	yes
+cli-external-orchestration	cli-claude-code	I want a completely independent Claude Code pass on this before I trust my own read of it.	cli-external-orchestration	cli-claude-code	1	route	2	yes
+cli-external-orchestration	cli-codex	Have Codex take a pass at reviewing this PR for anything I might have missed.	sk-git		0		1	no
+cli-external-orchestration	cli-codex	Can you delegate a repo-wide analysis to Codex and cross-check its findings against mine?	sk-code	sk-code-review	1	route	1	no
+cli-external-orchestration	cli-codex	Ask Codex to do some quick web research and report back before I decide.	cli-external-orchestration		0	defer	1	no
+cli-external-orchestration	cli-codex	I want a Codex second opinion on this PR before I approve it.	cli-external-orchestration		0	defer	2	no
+cli-external-orchestration	cli-cursor	Spin up Cursor in ask mode so it can look at the code without touching anything.	cli-external-orchestration	cli-cursor	1	route	2	yes
+cli-external-orchestration	cli-cursor	Can you isolate this experiment in its own native git worktree using Cursor's agent?	cli-external-orchestration	cli-cursor	1	route	2	yes
+cli-external-orchestration	cli-cursor	Hand this task off to a cloud worker running Cursor's agent.	cli-external-orchestration	cli-cursor	1	route	1	yes
+cli-external-orchestration	cli-cursor	I want Cursor's agent to just answer questions about this file, not edit it.	cli-external-orchestration	cli-cursor	1	route	3	yes
+cli-external-orchestration	cli-devin	Hand this task off to Devin and have it delegate pieces to its own subagents.			0		0	no
+cli-external-orchestration	cli-devin	Can you get a cross-model validation pass on this from Devin?	system-spec-kit		0		1	no
+cli-external-orchestration	cli-devin	Kick off a cloud handoff so Devin can work on this while I'm away from my machine.			0		0	no
+cli-external-orchestration	cli-devin	I want Devin to spin up its own helpers to split this work up.			0		0	no
+cli-external-orchestration	cli-pi	Delegate this to Pi in guarded mode so it can only touch files inside this folder.			0		0	no
+cli-external-orchestration	cli-pi	Can you have Pi pull in one of its community packages for this task?			0		0	no
+cli-external-orchestration	cli-pi	Run this through Pi's JSON and RPC integration so I can wire it into our own tooling.	cli-external-orchestration		0	defer	3	no
+cli-external-orchestration	cli-pi	I need Pi running headless, callable from a script, not one that needs a terminal session open.			0		0	no
+system-deep-loop	research	I don't actually know which of these three caching strategies is right. Can you dig into this over several passes until you're confident?			0		0	no
+system-deep-loop	research	Investigate why our onboarding conversion dropped last month, and keep digging until you hit diminishing returns.			0		0	no
+system-deep-loop	research	Run an open-ended investigation into whether we should migrate off this library, checking in each pass with what's new.	sk-design		0		2	no
+system-deep-loop	research	Nobody on the team has a confident answer for why this metric moved. Can you keep pulling threads until something solid turns up?			0		0	no
+system-deep-loop	review	Before we ship, I want several passes of scrutiny over this codebase for anything a rushed read would miss, with severity ratings.			0		0	no
+system-deep-loop	review	Can you keep re-examining this module across multiple rounds until you stop finding new issues?	sk-git		0		1	no
+system-deep-loop	review	Give this pull request a release-readiness pass that doesn't stop after the first obvious bug.	sk-git		0		2	no
+system-deep-loop	review	We only ever get one shallow pass before merging and things slip through. Can you run this through several rounds of scrutiny instead?	sk-doc		0	defer	1	no
+system-deep-loop	review	I want you to keep circling back on this pull request across several passes, digging deeper each time, until nothing new turns up.	sk-git		0		1	no
+system-deep-loop	ai-council	I want several different perspectives arguing this architecture decision out before we commit to one.	sk-git		0		1	no
+system-deep-loop	ai-council	Can you have a few distinct viewpoints deliberate on this plan and converge on a recommendation?			0		0	no
+system-deep-loop	ai-council	Set up a panel-style discussion where different angles critique each other's proposals for this feature.			0		0	no
+system-deep-loop	ai-council	We keep going back and forth on this decision internally. Can you simulate a few opposing seats hashing it out until they land somewhere?			0		0	no
+system-deep-loop	agent-improvement	Can you score this persona's last few runs across a few dimensions and tell me if the new prompt version is actually better?	sk-prompt		0		1	no
+system-deep-loop	agent-improvement	I changed the reviewer persona's instructions. Is it safe to promote that change or should it roll back?	sk-doc		0	defer	1	no
+system-deep-loop	agent-improvement	Evaluate whether this candidate configuration is actually an improvement before I make it the default.			0		0	no
+system-deep-loop	agent-improvement	We tweaked the debugging persona's prompt last week and I have no idea if it's actually working better or just different.	sk-prompt		0		1	no
+system-deep-loop	model-benchmark	Can you have three different models take a crack at the same task and tell me which one came out ahead?			0		0	no
+system-deep-loop	model-benchmark	I want a deterministic run across a few models to see which one handles this task best.	cli-external-orchestration		0	defer	1	no
+system-deep-loop	model-benchmark	Run a graded comparison of these two prompt structures against a fixed set of test cases.	sk-prompt		0		3	no
+system-deep-loop	model-benchmark	We're choosing between two model providers for this workload and need real numbers, not vibes.			0		0	no
+system-deep-loop	skill-benchmark	How well does this package actually get discovered and routed to in real-world use? Can you measure it?			0		0	no
+system-deep-loop	skill-benchmark	I want a report on whether this capability is efficient and useful when a real request hits it, not just a routing check.			0		0	no
+system-deep-loop	skill-benchmark	Measure how this package performs against realistic requests and give me a ranked list of what to fix.	mcp-tooling		0	defer	1	no
+system-deep-loop	skill-benchmark	We think this package's routing is fine but nobody's actually tested it against realistic phrasing. Can you check?			0		0	no

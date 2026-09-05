@@ -151,14 +151,14 @@ worth buying, and the five contract questions are decided by their owner.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Modify | Repoint the import at the deep-loop runtime |
-| `system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts` | Modify | Repoint three imports at the deep-loop runtime |
-| `system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts` | Modify | Repoint the import at the deep-loop runtime |
-| `system-spec-kit/scripts/tests/session-isolation.vitest.ts` | Delete | Depends on retired MCP handler modules with no relocated equivalent |
-| `system-spec-kit/scripts/memory/generate-context.ts` | Modify | `main()` takes a defaulted project root |
-| `system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts` | Modify | Fixture moves to a throwaway packet under a temp root |
-| `system-spec-kit/scripts/tests/tree-thinning.vitest.ts` | Modify | Import the exported `FileEntry` alias its annotations already name |
-| `system-spec-kit/scripts/tests/progressive-validation.vitest.ts` | Modify | Declare the report shape the validation script prints |
+| `system-spec-kit/runtime/cli/tests/coverage-graph-integration.vitest.ts` | Modify | Repoint the import at the deep-loop runtime |
+| `system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts` | Modify | Repoint three imports at the deep-loop runtime |
+| `system-spec-kit/runtime/cli/tests/graph-convergence-parity.vitest.ts` | Modify | Repoint the import at the deep-loop runtime |
+| `system-spec-kit/runtime/cli/tests/session-isolation.vitest.ts` | Delete | Depends on retired MCP handler modules with no relocated equivalent |
+| `system-spec-kit/runtime/cli/continuity/generate-context.ts` | Modify | `main()` takes a defaulted project root |
+| `system-spec-kit/runtime/cli/tests/generate-context-cli-authority.vitest.ts` | Modify | Fixture moves to a throwaway packet under a temp root |
+| `system-spec-kit/runtime/cli/tests/tree-thinning.vitest.ts` | Modify | Import the exported `FileEntry` alias its annotations already name |
+| `system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts` | Modify | Declare the report shape the validation script prints |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -170,13 +170,15 @@ worth buying, and the five contract questions are decided by their owner.
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Every one of the eight recorded decisions is implemented or closed as superseded by packet 049, with the reason and the paths in `decision-record.md` |
+| REQ-002 | The sharded suite runs to completion without a shard killed by its bound, and its failures are counted rather than estimated |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | Every failure in a surviving tree is grouped by mechanism with a file and a line; failures inside 049's delete are counted and attributed by file |
+| REQ-004 | Unresolved references in surviving test files are fixed, and those inside the delete are recorded with their count |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -187,8 +189,9 @@ worth buying, and the five contract questions are decided by their owner.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: `npm run test:sharded` reports 12 of 12 shards with no shard exiting 124, and the failure count is a number read from the run, 181, not the 115 carried before
+- **SC-002**: The 31 surviving failures sit in 15 named mechanisms, and the 27 surviving unresolved references are fixed with the tree's type error count dropping by exactly 27
+- **SC-003**: The ADR-008 suite leaves `git status` clean, and the two ADR-005 drifts are ruled and green, 60 of 60
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -198,8 +201,9 @@ worth buying, and the five contract questions are decided by their owner.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Packet 049's delete list for `mcp-server/` | A decision closed as superseded is wrong if 049's scope moves | Every path was checked against 049 phase 003 §3 immediately before the ruling, and the check date sits beside each note |
+| Risk | Repointing a fixture at a real archived packet turns tests green by mutating the repository | High | `main()` takes an injectable project root and the fixture is a throwaway packet under a temp workspace |
+| Risk | A full suite run rewrites generated metadata under `specs/` | Med | The 20 rewritten files were restored, and the writer goes with 049 |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -209,25 +213,25 @@ worth buying, and the five contract questions are decided by their owner.
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P01**: The sharded suite completes inside its per-shard bound; the slowest shard ran 409s against a bound that used to kill the run
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S01**: No test writes into the real `specs/` tree; the write guard that rejected the archived packet stays in force
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R01**: A shard that times out keeps its non-zero status, so a killed shard and a failing shard stay distinguishable by the per-shard line
 
 ---
 
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
+- Empty input: an empty research claim set is a vacuous pass returning 1.0, by the producer's own documentation, and the test now says so
+- Maximum length: 989 modules across 12 shards is the largest run recorded, 34m00s of wall time
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
+- External service failure: a static ESM import that cannot resolve kills the whole test file with zero tests collected, which is why three files reported as failures with no diagnosis
+- Network timeout: not applicable, the suite runs offline
 
 ---
 
@@ -235,12 +239,12 @@ worth buying, and the five contract questions are decided by their owner.
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3** |
+| Scope | 14/25 | Files: 9 code files, LOC under 200, Systems: spec-kit tests, deep-loop runtime contracts |
+| Risk | 12/25 | Auth: N, API: N, Breaking: a `main()` signature gained a defaulted parameter |
+| Research | 18/20 | Nine decisions each read against 049's delete list and both producers |
+| Multi-Agent | 0/15 | Single session |
+| Coordination | 12/15 | Depends on 049's scope and two operator rulings |
+| **Total** | **56/100** | **Level 3** |
 
 ---
 
@@ -248,23 +252,24 @@ worth buying, and the five contract questions are decided by their owner.
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | 049's scope moves after a decision is closed as superseded | M | L | The check date is recorded beside each note; re-check before acting on any of them |
+| R-002 | A drifted assertion gets rewritten to match the code, writing the drift down as the specification | H | M | Both producers were read first and both already documented the behavior; the assertions now state the contract with its reason |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: [Title] (Priority: P0)
+### US-001: A maintainer reads the residue (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** spec-kit maintainer, **I want** every surviving failure named by its mechanism with a file and a line, **so that** fifteen numbers read as fifteen causes rather than one hundred and eighty-one symptoms.
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
 ---
 
-### US-002: [Title] (Priority: P1)
+### US-002: A test author runs the save-path suite (Priority: P1)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** test author, **I want** the CLI authority suite to build its own throwaway packet under a temp root, **so that** a green run never depends on the shape of the real `specs/` tree and never writes into it.
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 

@@ -11,7 +11,7 @@ contextType: "implementation"
 
 # Findings Register
 
-Forty findings, numbered 1 to 40. Each is fixed, owned by a phase, closed as a decision, or
+Forty-five findings, numbered 1 to 45. Each is fixed, owned by a phase, closed as a decision, or
 superseded by another packet.
 
 ---
@@ -56,6 +56,9 @@ with those phases rather than being asserted from this document.
 | 16 | Bare single-word tokens let one hub swallow another hub's core purpose | 004 | Fixed | `f8c2595ce0` qualified the three tokens |
 | 17 | Stage-one signals existed with no stage-two class to resolve to | 004 | Fixed | `461ef9261f` gave four of the five a class |
 | 18 | The benchmark mode reached its hub and resolved to nothing | 004 | Fixed | `461ef9261f` |
+| 41 | `spec kit runtime` declared by the CLI hub is won by `system-spec-kit` at 0.93 once the spec-kit engine moved under `runtime/` | 008 | Fixed | Retired from both intent-signal lists on 2026-09-05; mint `already-exists`, guard fresh, live replay `system-spec-kit` first and `delegate to opencode` still on the CLI hub. `008-drift-after-closure/decision-record.md` ADR-003 |
+| 42 | `trigger_phrases`, declared by `sk-doc` and resolved at 0.488 on 2026-09-04, returns nothing from both scorers on 2026-09-05 with no rejection reason and no change to the hub's metadata | 008 | Planned | Owner `system-skill-advisor`. `importance_tier` and `contextType` beside it still resolve. ADR-003 in phase 008 holds the evidence; a sweep of every underscored declared signal is the first step |
+| 43 | The Python and TypeScript parity pin reads three different numbers in one session, 113/108, 114/108 and 114/107 with two added regressions under an empty database directory, because the Python reference loads the daemon's local skill graph | 008 | Planned | Owner `system-skill-advisor`. Not in CI. Left unedited by D2; ADR-002 in phase 008 records all three readings and the two row ids |
 
 ---
 
@@ -82,6 +85,7 @@ with those phases rather than being asserted from this document.
 | 28 | Forty-eight planning documents carry boilerplate from a template since corrected | 006 | Fixed | `d229b0a24d` rewrote fifty-six documents, not forty-eight. Re-verified 2026-09-02: one match remains across `specs/`, the acceptance criterion that quotes the retired sentence |
 | 29 | A rule template emitted a banned character on the line its contract called verbatim | 006 | Fixed | `c1b3b780c3` corrected the template, and all nine shipped rules already used the other form |
 | 30 | Sixteen documents lacked the overview section the validator requires | 006 | Fixed | `d87e8dd162` fixed fourteen and left two scanner fixtures under the exemption |
+| 44 | The spec validator reported `PLACEHOLDER_FILLED` passing on a parent `spec.md` carrying 69 bracket placeholders, and `AC_CLOSURE` inactive below Level 2 on a Level 3 phase parent, so a closed packet with template boilerplate validated strict | 008 | Planned | Owner `system-spec-kit`. `check-placeholders.sh` counted 69 on the parent and 50 on phase 007 while `validate.sh --strict` printed `RESULT: PASSED`. The documents were filled by hand in phase 008; the rule gap is the finding |
 
 ---
 
@@ -96,6 +100,7 @@ with those phases rather than being asserted from this document.
 | 35 | Twelve test files collected no tests at all while reporting as failures | 007 | Fixed | Owned by phase 007 |
 | 36 | A launcher killed itself on a redirected stdin, under the repository's own rule | 007 | Fixed | Owned by phase 007 |
 | 37 | A daemon socket path exceeded the platform limit and could never bind | 007 | Fixed | Owned by phase 007 |
+| 45 | After `b4c2484696` nested the CLI workspace, the render wrapper resolved its skill root one level up, found no tsx loader, and fell into an inline renderer that writes to stdout, so every Level 3 scaffold produced no documents | 008 | Fixed | Three loader literals repointed to the skill root, landed in `743e626543` from `specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting` concurrently with this phase's identical edit. `scaffold-golden-snapshots.vitest.ts` 9 of 9 from 1 failed; a scratch Level 3 packet renders eleven documents. ADR-001 in phase 008 |
 
 ---
 

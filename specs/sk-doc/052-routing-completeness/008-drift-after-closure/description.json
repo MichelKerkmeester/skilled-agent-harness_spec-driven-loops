@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/052-routing-completeness/008-drift-after-closure",
+  "description": "A packet that closes on measured numbers stays true only while its inputs hold still",
+  "keywords": [
+    "packet",
+    "closes",
+    "measured",
+    "numbers",
+    "stays",
+    "true",
+    "only",
+    "while",
+    "inputs",
+    "hold",
+    "still"
+  ],
+  "lastUpdated": "2026-09-05T13:57:43.081Z",
+  "specId": "008",
+  "folderSlug": "drift-after-closure",
+  "parentChain": [
+    "sk-doc",
+    "052-routing-completeness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

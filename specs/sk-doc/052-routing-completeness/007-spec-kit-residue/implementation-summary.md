@@ -17,12 +17,12 @@ _memory:
     next_safe_action: "Close the packet"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
-      - ".opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts"
-      - ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts"
-      - ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs"
-      - ".opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts"
-      - ".opencode/skills/system-spec-kit/scripts/tests/tree-thinning.vitest.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/tests/generate-context-cli-authority.vitest.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/lib/coverage-graph-convergence.cjs"
+      - ".opencode/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/tests/tree-thinning.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-kit-residue-decisions"
@@ -200,14 +200,14 @@ exactly the 27, and both edited files now contribute zero.
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Modified | Repoint one import at the deep-loop runtime. Correct the stale layer name in the header |
-| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts` | Modified | Repoint three imports at the deep-loop runtime. Align the two drifted expectations with their producers |
-| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs` | Modified | Repoint the stale parity comment at the deep-loop runtime. Comment only |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts` | Modified | Repoint three imports at the deep-loop runtime. Align the two drifted expectations with their producers |
+| `.opencode/skills/system-spec-kit/runtime/cli/lib/coverage-graph-convergence.cjs` | Modified | Repoint the stale parity comment at the deep-loop runtime. Comment only |
 | `.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts` | Modified | Repoint one import at the deep-loop runtime |
 | `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts` | Deleted | Depends on five MCP handler modules retired with no relocated equivalent |
-| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modified | `main()` takes a defaulted project root and binds it before parsing |
-| `.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts` | Modified | Fixture becomes a throwaway packet under a temp root, track metadata included |
-| `.opencode/skills/system-spec-kit/scripts/tests/tree-thinning.vitest.ts` | Modified | Import the `FileEntry` alias twenty annotations already name |
-| `.opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts` | Modified | Declare the report shape the validation script prints, and mark three deferred assignments |
+| `.opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts` | Modified | `main()` takes a defaulted project root and binds it before parsing |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/generate-context-cli-authority.vitest.ts` | Modified | Fixture becomes a throwaway packet under a temp root, track metadata included |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/tree-thinning.vitest.ts` | Modified | Import the `FileEntry` alias twenty annotations already name |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts` | Modified | Declare the report shape the validation script prints, and mark three deferred assignments |
 | `specs/sk-doc/052-routing-completeness/007-spec-kit-residue/decision-record.md` | Modified | Nine resolutions, three outcomes, the daemon-recycle entry, seven adjacent findings |
 | `specs/sk-doc/052-routing-completeness/007-spec-kit-residue/tasks.md` | Modified | Real task ledger and verification checklist |
 | `specs/sk-doc/052-routing-completeness/007-spec-kit-residue/acceptance-criteria.md` | Modified | AC-004 met, AC-005 and AC-006 added, closure statement written |

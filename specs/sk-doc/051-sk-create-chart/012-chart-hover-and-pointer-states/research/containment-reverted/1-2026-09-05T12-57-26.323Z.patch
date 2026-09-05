@@ -1,0 +1,91 @@
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh b/.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh
+index 0e891dbd166..b9bf3e0ebb9 100755
+--- a/.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh
++++ b/.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh
+@@ -1675,7 +1675,7 @@ fi
+ # its own deriver fails validation the moment it exists, which teaches an author
+ # that the gate is broken before they have written a line.
+ _BACKFILL_TS="${SCRIPT_DIR}/../graph/backfill-graph-metadata.ts"
+-_TSX_LOADER="${SCRIPT_DIR}/../node_modules/tsx/dist/loader.mjs"
++_TSX_LOADER="${SCRIPT_DIR}/../../../node_modules/tsx/dist/loader.mjs"
+ if [[ -f "$_BACKFILL_TS" && -f "$_TSX_LOADER" ]]; then
+   node --import "$_TSX_LOADER" "$_BACKFILL_TS" "$FEATURE_DIR" >/dev/null 2>&1 \
+     || echo "  Warning: graph metadata derivation skipped" >&2
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh b/.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh
+index 07c760219a9..bbf19cc559b 100755
+--- a/.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh
++++ b/.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh
+@@ -25,7 +25,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ readonly VALIDATOR_REGISTRY_JSON="$SCRIPT_DIR/../lib/validator-registry.json"
+ readonly ORCHESTRATOR_JS="$SCRIPT_DIR/../../dist/lib/validation/orchestrator.js"
+ readonly ORCHESTRATOR_TS="$SCRIPT_DIR/../../lib/validation/orchestrator.ts"
+-readonly TSX_LOADER="$SCRIPT_DIR/../node_modules/tsx/dist/loader.mjs"
++readonly TSX_LOADER="$SCRIPT_DIR/../../../node_modules/tsx/dist/loader.mjs"
+ readonly DIST_FRESHNESS_CJS="$SCRIPT_DIR/../lib/dist-freshness.cjs"
+ readonly VERSION="3.0.0"
+ 
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh b/.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh
+index a72f8981336..ea086705067 100755
+--- a/.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh
++++ b/.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh
+@@ -8,7 +8,7 @@ set -euo pipefail
+ 
+ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ SKILL_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+-LOADER="$SKILL_ROOT/node_modules/tsx/dist/loader.mjs"
++LOADER="$SCRIPT_DIR/../../../node_modules/tsx/dist/loader.mjs"
+ RENDERER="$SCRIPT_DIR/inline-gate-renderer.ts"
+ 
+ if [[ ! -f "$LOADER" ]]; then
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/tests/generate-description-identity-safety.vitest.ts b/.opencode/skills/system-spec-kit/runtime/cli/tests/generate-description-identity-safety.vitest.ts
+index 2bf0ed07c97..dffc11a6c69 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/tests/generate-description-identity-safety.vitest.ts
++++ b/.opencode/skills/system-spec-kit/runtime/cli/tests/generate-description-identity-safety.vitest.ts
+@@ -8,7 +8,7 @@ import { afterEach, describe, expect, it } from 'vitest';
+ 
+ const testDir = path.dirname(fileURLToPath(import.meta.url));
+ const generatorPath = path.resolve(testDir, '..', 'spec-folder', 'generate-description.ts');
+-const tsxLoader = path.resolve(testDir, '..', 'node_modules', 'tsx', 'dist', 'loader.mjs');
++const tsxLoader = path.resolve(testDir, '..', '..', '..', 'node_modules', 'tsx', 'dist', 'loader.mjs');
+ const createdRoots = new Set<string>();
+ 
+ function runGenerator(identitySafety: string): Record<string, unknown> {
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts b/.opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts
+index 0bd05db56e8..134f0e7b268 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts
++++ b/.opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts
+@@ -96,7 +96,7 @@ describe('inline gate renderer', () => {
+       process.execPath,
+       [
+         '--import',
+-        path.resolve(__dirname, '../node_modules/tsx/dist/loader.mjs'),
++        path.resolve(__dirname, '../../../node_modules/tsx/dist/loader.mjs'),
+         path.resolve(__dirname, '../templates/inline-gate-renderer.ts'),
+         '--level',
+         '3',
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/tests/strict-pass-freshness.vitest.ts b/.opencode/skills/system-spec-kit/runtime/cli/tests/strict-pass-freshness.vitest.ts
+index 991e24863e8..4e1b50fa7e6 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/tests/strict-pass-freshness.vitest.ts
++++ b/.opencode/skills/system-spec-kit/runtime/cli/tests/strict-pass-freshness.vitest.ts
+@@ -13,7 +13,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
+ const scriptsRoot = path.resolve(__dirname, '..');
+ const repoRoot = path.resolve(scriptsRoot, '..', '..', '..', '..', '..');
+ const sweepScript = path.join(scriptsRoot, 'sweep', 'strict-pass-freshness.ts');
+-const tsxLoader = path.join(scriptsRoot, 'node_modules', 'tsx', 'dist', 'loader.mjs');
++const tsxLoader = path.join(scriptsRoot, '..', '..', 'node_modules', 'tsx', 'dist', 'loader.mjs');
+ const createdRoots = new Set<string>();
+ 
+ function writeFile(filePath: string, content: string): void {
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/tests/validation-gate-hardening.vitest.ts b/.opencode/skills/system-spec-kit/runtime/cli/tests/validation-gate-hardening.vitest.ts
+index 08aaa316c2e..1e73b530569 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/tests/validation-gate-hardening.vitest.ts
++++ b/.opencode/skills/system-spec-kit/runtime/cli/tests/validation-gate-hardening.vitest.ts
+@@ -12,7 +12,7 @@ const repoRoot = path.resolve(scriptsRoot, '..', '..', '..', '..', '..');
+ const validateScript = path.join(scriptsRoot, 'spec', 'validate.sh');
+ const statusClassifier = path.join(scriptsRoot, 'lib', 'status-classifier.sh');
+ const sweepScript = path.join(scriptsRoot, 'sweep', 'strict-pass-freshness.ts');
+-const tsxLoader = path.join(scriptsRoot, 'node_modules', 'tsx', 'dist', 'loader.mjs');
++const tsxLoader = path.join(scriptsRoot, '..', '..', 'node_modules', 'tsx', 'dist', 'loader.mjs');
+ const createdRoots = new Set<string>();
+ 
+ function makeWorkspace(): string {

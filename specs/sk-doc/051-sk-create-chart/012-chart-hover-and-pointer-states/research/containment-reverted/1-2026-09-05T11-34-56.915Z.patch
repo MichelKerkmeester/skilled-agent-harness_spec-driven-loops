@@ -1,0 +1,672 @@
+diff --git a/.opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json b/.opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json
+index c9b86b6d5f5..3301d7c52ef 100644
+--- a/.opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json
++++ b/.opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json
+@@ -821,7 +821,7 @@
+     ".opencode/skills/system-spec-kit/runtime/tests/validation",
+     ".opencode/skills/system-spec-kit/runtime/tools",
+     ".opencode/skills/system-spec-kit/runtime/utils",
+-    ".opencode/skills/system-spec-kit/scripts",
++    ".opencode/skills/system-spec-kit/runtime/cli",
+     ".opencode/skills/system-spec-kit/runtime/cli/codex",
+     ".opencode/skills/system-spec-kit/runtime/cli/config",
+     ".opencode/skills/system-spec-kit/runtime/cli/core",
+diff --git a/.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md b/.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md
+index 735dc561421..7432da2eded 100644
+--- a/.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md
++++ b/.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md
+@@ -186,4 +186,4 @@ Every authored file has a scaffold under `create-skill/assets/`; the two generat
+ 
+ - `graph-metadata.json`'s `derived.causal_summary` is authored prose describing why the skill matters, not a routing input. The Python compiler requires it to be non-empty solely so a root's identity is never blank.
+ - `sk-doc/hub-router.json`'s `routerPolicy.tieBreak` is derived at compile time from `routerSignals` key order by sk-doc's registry compiler. Hand-editing the authored array does not change runtime tie-break behavior, so keep it aligned with that derived order.
+-- `generate-description.ts` and `backfill-graph-metadata.ts` under `system-spec-kit/scripts` are spec-folder-only tooling and have no skill-root analog. `ci-skill-root-metadata.cjs --fix` is the only skill-root regenerator.
++- `generate-description.ts` and `backfill-graph-metadata.ts` under `system-spec-kit/runtime/cli` are spec-folder-only tooling and have no skill-root analog. `ci-skill-root-metadata.cjs --fix` is the only skill-root regenerator.
+diff --git a/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md b/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md
+index 2b019f02835..8ba28d3011c 100644
+--- a/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md
++++ b/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md
+@@ -166,8 +166,8 @@ The session capturing pipeline now handles structured JSON summaries as follows:
+ 
+ ### VERIFICATION SOURCES
+ 
+-- `cd .opencode/skills/system-spec-kit/scripts && npm run lint`
+-- `cd .opencode/skills/system-spec-kit/scripts && npx vitest run --config ../runtime/vitest.config.ts --root . tests/generate-context-cli-authority.vitest.ts tests/input-normalizer-unit.vitest.ts tests/post-save-review.vitest.ts tests/project-phase-e2e.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/template-mustache-sections.vitest.ts tests/trigger-phrase-filter.vitest.ts tests/validation-v13-v14-v12.vitest.ts tests/workflow-e2e.vitest.ts`
++- `cd .opencode/skills/system-spec-kit/runtime/cli && npm run lint`
++- `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run --config ../runtime/vitest.config.ts --root . tests/generate-context-cli-authority.vitest.ts tests/input-normalizer-unit.vitest.ts tests/post-save-review.vitest.ts tests/project-phase-e2e.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/template-mustache-sections.vitest.ts tests/trigger-phrase-filter.vitest.ts tests/validation-v13-v14-v12.vitest.ts tests/workflow-e2e.vitest.ts`
+ - `cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/embedding-retry-stats.vitest.ts tests/retry-manager-health.vitest.ts`
+ 
+ Related references:
+diff --git a/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md b/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md
+index 37c899fd940..e7668e2b1f4 100644
+--- a/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md
++++ b/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md
+@@ -88,8 +88,8 @@ The shipped posture enforces the following behavior:
+ 
+ ### VERIFICATION SOURCES
+ 
+-- `cd .opencode/skills/system-spec-kit/scripts && npm run check`
+-- `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`
++- `cd .opencode/skills/system-spec-kit/runtime/cli && npm run check`
++- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`
+ 
+ Related references:
+ - [json-mode-hybrid-enrichment.md](../../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md) — JSON mode structured summary hardening
+diff --git a/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md b/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md
+index 921371f8f64..56a38e776d8 100644
+--- a/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md
++++ b/.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md
+@@ -226,18 +226,18 @@ The closure feature consists of these distinct shipped behaviors:
+ - Manual playbook cross-reference: `M-007`
+ ### VERIFICATION SOURCES
+ 
+-- `cd .opencode/skills/system-spec-kit/scripts && npm run check`
+-- `cd .opencode/skills/system-spec-kit/scripts && npm run build`
+-- `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/spec-affinity.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
++- `cd .opencode/skills/system-spec-kit/runtime/cli && npm run check`
++- `cd .opencode/skills/system-spec-kit/runtime/cli && npm run build`
++- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/spec-affinity.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
+ - `cd .opencode/skills/system-spec-kit/runtime/cli/tests && node test-extractors-loaders.js`
+-- `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
++- `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
+ - `cd .opencode/skills/system-spec-kit/runtime/cli/tests && node test-memory-quality-lane.js`
+-- `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
++- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
+ - `cd .opencode/skills/system-spec-kit/runtime && npm run lint`
+ - `cd .opencode/skills/system-spec-kit/runtime && npm run build`
+ - `cd .opencode/skills/system-spec-kit/runtime && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
+ - `cd .opencode/skills/system-spec-kit/runtime && npm run test`
+-- `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts`
++- `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/runtime/cli`
+ 
+ ### Latest verification snapshot
+ 
+diff --git a/.opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md b/.opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md
+index bc947044296..d6f5c5db902 100644
+--- a/.opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md
++++ b/.opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md
+@@ -25,7 +25,7 @@ expected_leaf_resources: []
+ silently trusts an out-of-date build. It reuses the shared `checkAllFreshness()` /
+ `checkPackageFreshness()` helpers from `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`
+ against a fixed registry of seven watched packages (`system-spec-kit/shared`,
+-`system-spec-kit/scripts`, `system-spec-kit/runtime`, `mcp-code-mode/mcp-server`,
++`system-spec-kit/runtime/cli`, `system-spec-kit/runtime`, `mcp-code-mode/mcp-server`,
+ `sk-design/sk-design-md-generator/backend`).
+ 
+ The guard fires diagnostics on three triggers: OpenCode's `session.created` event (once per
+diff --git a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md
+index 78f22e1930a..8a42ca335a4 100644
+--- a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md
++++ b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md
+@@ -58,7 +58,7 @@ Validate canonical-first spec-root resolution in an operating-system temporary w
+ 2. Run the branch implementation against only that temporary playground. The script intentionally leaves the playground available for evidence inspection; it performs no checkout cleanup and has no path to the live spec roots.
+ 
+    ```bash
+-   cd .opencode/skills/system-spec-kit/scripts
++   cd .opencode/skills/system-spec-kit/runtime/cli
+    npx tsx <<'TS'
+    import * as fs from 'node:fs';
+    import * as path from 'node:path';
+diff --git a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md
+index 604f88d54da..038ed0d5c11 100644
+--- a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md
++++ b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md
+@@ -19,8 +19,8 @@ This scenario validates core workflow infrastructure for `240`. It focuses on co
+ 
+ 
+ - Objective: Confirm the shared workflow layer remains stable across indexing, review, scoring, and end-to-end workflow tests.
+-- Real user request: `Please validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts and tell me whether the expected signals are present: all targeted Vitest suites pass; post-save review assertions stay intact; indexing/scoring regressions do not fail.`
+-- Prompt: `Validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts and report cited pass/fail evidence.`
++- Real user request: `Please validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts and tell me whether the expected signals are present: all targeted Vitest suites pass; post-save review assertions stay intact; indexing/scoring regressions do not fail.`
++- Prompt: `Validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts and report cited pass/fail evidence.`
+ - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+ - Expected signals: all targeted Vitest suites pass; post-save review assertions stay intact; indexing/scoring regressions do not fail
+ - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+@@ -33,12 +33,12 @@ This scenario validates core workflow infrastructure for `240`. It focuses on co
+ ### Prompt
+ 
+ ```
+-Validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts and report cited pass/fail evidence.
++Validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts and report cited pass/fail evidence.
+ ```
+ 
+ ### Commands
+ 
+-1. `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`
++1. `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`
+ 
+ ### Expected
+ 
+diff --git a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md
+index b1c651cb2f5..7a23452b12c 100644
+--- a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md
++++ b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md
+@@ -77,20 +77,20 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
+     - `grep -n 'WORKFLOW_HTML_COMMENT_RE\|stripWorkflowHtmlOutsideCodeFences' .opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts`
+     - `grep -n 'SYSTEM_SPEC_KIT_CAPTURE_SOURCE\|trigger_phrases' .opencode/skills/system-spec-kit/runtime/cli/loaders/data-loader.ts .opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts`
+   - Targeted automated closure suite:
+-    - `cd .opencode/skills/system-spec-kit/scripts && npm run check`
+-    - `cd .opencode/skills/system-spec-kit/scripts && npm run build`
+-    - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/spec-affinity.vitest.ts tests/claude-code-capture.vitest.ts tests/opencode-cli-capture.vitest.ts tests/copilot-cli-capture.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/runtime-memory-inputs.vitest.ts tests/session-enrichment.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
++    - `cd .opencode/skills/system-spec-kit/runtime/cli && npm run check`
++    - `cd .opencode/skills/system-spec-kit/runtime/cli && npm run build`
++    - `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/spec-affinity.vitest.ts tests/claude-code-capture.vitest.ts tests/opencode-cli-capture.vitest.ts tests/copilot-cli-capture.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/runtime-memory-inputs.vitest.ts tests/session-enrichment.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
+   - JS verification suites:
+-    - `cd .opencode/skills/system-spec-kit/scripts && npm run test:legacy`
+-    - `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
++    - `cd .opencode/skills/system-spec-kit/runtime/cli && npm run test:legacy`
++    - `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
+     - `cd .opencode/skills/system-spec-kit/runtime/cli/tests && node test-memory-quality-lane.js`
+-    - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
++    - `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
+   - Standards checks:
+     - `cd .opencode/skills/system-spec-kit/runtime && npm run lint`
+     - `cd .opencode/skills/system-spec-kit/runtime && npm run build`
+     - `cd .opencode/skills/system-spec-kit/runtime && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
+     - `cd .opencode/skills/system-spec-kit/runtime && npm run test`
+-    - `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts`
++    - `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/runtime/cli`
+     - `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder>`
+   - Manual/e2e scenarios:
+     - `M-007a` Rich JSON-mode save: run `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js <json-data-file> 009-perfect-session-capturing` with a populated synthetic or sandbox JSON file and verify `qualityValidation.valid === true`, indexing succeeds, and a spec-doc record ID is returned.
+diff --git a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-extraction-and-enrichment.md b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-extraction-and-enrichment.md
+index 432b4e5411d..fc4428c8fce 100644
+--- a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-extraction-and-enrichment.md
++++ b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-extraction-and-enrichment.md
+@@ -19,8 +19,8 @@ This scenario validates session extraction and enrichment for `241`. It focuses
+ 
+ 
+ - Objective: Confirm extractor loading, enrichment behavior, and phase classification stability.
+-- Real user request: `Please validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js and tell me whether the expected signals are present: extractor loader script passes; targeted Vitest suites pass; enrichment-specific assertions remain green.`
+-- Prompt: `Validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js and report cited pass/fail evidence.`
++- Real user request: `Please validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-extractors-loaders.js and tell me whether the expected signals are present: extractor loader script passes; targeted Vitest suites pass; enrichment-specific assertions remain green.`
++- Prompt: `Validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-extractors-loaders.js and report cited pass/fail evidence.`
+ - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+ - Expected signals: extractor loader script passes; targeted Vitest suites pass; enrichment-specific assertions remain green
+ - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+@@ -33,13 +33,13 @@ This scenario validates session extraction and enrichment for `241`. It focuses
+ ### Prompt
+ 
+ ```
+-Validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js and report cited pass/fail evidence.
++Validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-extractors-loaders.js and report cited pass/fail evidence.
+ ```
+ 
+ ### Commands
+ 
+-1. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js`
+-2. `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/session-enrichment.vitest.ts tests/phase-classification.vitest.ts tests/description-enrichment.vitest.ts`
++1. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-extractors-loaders.js`
++2. `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/session-enrichment.vitest.ts tests/phase-classification.vitest.ts tests/description-enrichment.vitest.ts`
+ 
+ ### Expected
+ 
+diff --git a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-detection-and-description.md b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-detection-and-description.md
+index dd55669f106..0a68220feaf 100644
+--- a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-detection-and-description.md
++++ b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-detection-and-description.md
+@@ -19,8 +19,8 @@ This scenario validates spec-folder detection and description metadata for `242`
+ 
+ 
+ - Objective: Confirm folder detection, alignment safety, subfolder resolution, and description generation.
+-- Real user request: `Please validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js and tell me whether the expected signals are present: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors.`
+-- Prompt: `Validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.`
++- Real user request: `Please validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and tell me whether the expected signals are present: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors.`
++- Prompt: `Validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.`
+ - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+ - Expected signals: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors
+ - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+@@ -33,14 +33,14 @@ This scenario validates spec-folder detection and description metadata for `242`
+ ### Prompt
+ 
+ ```
+-Validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.
++Validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.
+ ```
+ 
+ ### Commands
+ 
+-1. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js`
+-2. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-alignment-validator.js`
+-3. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-subfolder-resolution.js`
++1. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js`
++2. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-alignment-validator.js`
++3. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-subfolder-resolution.js`
+ 4. `npx tsx .opencode/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"`
+ 
+ ### Expected
+diff --git a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-composition-system.md b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-composition-system.md
+index 611b0422888..50d7a661cd5 100644
+--- a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-composition-system.md
++++ b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-composition-system.md
+@@ -51,7 +51,7 @@ Scaffold one packet for each supported Level, validate each packet with strict m
+ 9. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-3-plus" --strict`
+ 10. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level phase-parent --path "$TMPDIR/test-phase-parent" --name "test-phase-parent"`
+ 11. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-phase-parent" --strict`
+-12. `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/workflow-invariance.vitest.ts`
++12. `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/workflow-invariance.vitest.ts`
+ 13. `rm -rf "$TMPDIR"`
+ 
+ ### Expected
+@@ -250,7 +250,7 @@ Summary: Errors: 2  Warnings: 0
+ RESULT: FAILED
+ ```
+ 
+-12. `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/workflow-invariance.vitest.ts`
++12. `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/workflow-invariance.vitest.ts`
+ 
+ ```text
+ Not re-run in the original transcript; the documented command now uses the npm workspace path for the scripts package.
+diff --git a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md
+index 8cae714f752..17abe278253 100644
+--- a/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md
++++ b/.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md
+@@ -48,7 +48,7 @@ Files below the 150-token small-file threshold merge into consolidated output; n
+ 
+ ### Evidence
+ 
+-Command run from `.opencode/skills/system-spec-kit/scripts`:
++Command run from `.opencode/skills/system-spec-kit/runtime/cli`:
+ 
+ ```bash
+ npm exec --no -- tsx --eval '
+diff --git a/.opencode/skills/system-spec-kit/package.json b/.opencode/skills/system-spec-kit/package.json
+index 0e6c291c3bc..4be5046bef5 100644
+--- a/.opencode/skills/system-spec-kit/package.json
++++ b/.opencode/skills/system-spec-kit/package.json
+@@ -17,10 +17,10 @@
+     "typecheck:root": "tsc -p shared/tsconfig.json && tsc --noEmit --composite false -p runtime/tsconfig.json && tsc --noEmit --composite false -p runtime/cli/tsconfig.json",
+     "build:watch": "tsc --build --watch",
+     "test": "npm run --workspaces=false test:root",
+-    "test:root": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed' && node runtime/cli/tests/test-embeddings-factory.js && npm run test --workspace=@spec-kit/runtime && npm run test --workspace=@spec-kit/scripts",
++    "test:root": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed' && node runtime/cli/tests/test-embeddings-factory.js && npm run test --workspace=@spec-kit/runtime && npm run test --workspace=@spec-kit/cli",
+     "test:runtime": "npm run test --workspace=@spec-kit/runtime",
+     "test:cli": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed'",
+-    "test:task-enrichment": "node runtime/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --root runtime/cli --config ../runtime/vitest.config.ts",
++    "test:task-enrichment": "npx vitest run runtime/cli/tests/task-enrichment.vitest.ts --config vitest.config.ts",
+     "test:embeddings": "node runtime/cli/tests/test-embeddings-factory.js",
+     "postinstall": "node runtime/cli/setup/record-node-version.js"
+   },
+diff --git a/.opencode/skills/system-spec-kit/runtime/api/README.md b/.opencode/skills/system-spec-kit/runtime/api/README.md
+index b413bb0a51f..ca313bd25bf 100644
+--- a/.opencode/skills/system-spec-kit/runtime/api/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/api/README.md
+@@ -65,7 +65,7 @@ Internal package code should import from its owning `lib/`, `handlers/`, or `cor
+ Run from the repository root:
+ 
+ ```bash
+-(cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/import-policy-rules.vitest.ts)
++(cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/import-policy-rules.vitest.ts)
+ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/api/README.md
+ ```
+ 
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/README.md b/.opencode/skills/system-spec-kit/runtime/cli/README.md
+index 2eff770045a..8b618134716 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/README.md
+@@ -190,7 +190,7 @@ This package owns local automation. Long-lived product behavior belongs in the s
+ ## 6. ENTRYPOINTS
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
+ node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<inline-json>' specs/<name>
+ # Or use --stdin, or a session-scoped temp file (e.g. /tmp/save-context-data-<session-id>.json).
+@@ -229,8 +229,8 @@ Before apply, preserve the affected `graph-metadata.json` files in version contr
+ Use repository-root commands:
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
+-npm --prefix .opencode/skills/system-spec-kit/scripts test
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli test
+ bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
+ ```
+ 
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/core/README.md b/.opencode/skills/system-spec-kit/runtime/cli/core/README.md
+index b1db363c5d8..d160d34c4e8 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/core/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/core/README.md
+@@ -200,7 +200,7 @@ No owner record and no live pid means the previous run died mid-save, so the loc
+ Run from the repository root unless noted.
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ ```
+ 
+ Expected result: TypeScript compiles and updates `runtime/cli/dist/`.
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/evals/README.md b/.opencode/skills/system-spec-kit/runtime/cli/evals/README.md
+index 1e38f281f66..0efa2231b8d 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/evals/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/evals/README.md
+@@ -80,7 +80,7 @@ Restricted import surfaces:
+ 
+ ## 4. COMMANDS
+ 
+-Run from `.opencode/skills/system-spec-kit/scripts` unless a command uses a repository-root path.
++Run from `.opencode/skills/system-spec-kit/runtime/cli` unless a command uses a repository-root path.
+ 
+ ```bash
+ npx tsx evals/check-no-mcp-lib-imports-ast.ts
+@@ -130,7 +130,7 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
+ Run policy checks after changing eval scripts:
+ 
+ ```bash
+-cd .opencode/skills/system-spec-kit/scripts
++cd .opencode/skills/system-spec-kit/runtime/cli
+ npx tsx evals/check-no-mcp-lib-imports-ast.ts
+ npx tsx evals/check-allowlist-expiry.ts
+ ```
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/evals/check-handler-cycles-ast.ts b/.opencode/skills/system-spec-kit/runtime/cli/evals/check-handler-cycles-ast.ts
+index 425c82c813e..23443a16588 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/evals/check-handler-cycles-ast.ts
++++ b/.opencode/skills/system-spec-kit/runtime/cli/evals/check-handler-cycles-ast.ts
+@@ -20,8 +20,8 @@ const moduleDir = dirnameFromImportMeta(import.meta.url);
+ 
+ function resolveHandlersRoot(): string {
+   const candidates = [
+-    // Source layout (tsx): scripts/evals/check-handler-cycles-ast.ts
+-    path.resolve(moduleDir, '../../runtime/handlers'),
++    // Source layout (tsx): runtime/cli/evals/check-handler-cycles-ast.ts
++    path.resolve(moduleDir, '../../handlers'),
+     // Compiled layout (node): runtime/cli/dist/evals/check-handler-cycles-ast.js
+     path.resolve(moduleDir, '../../../runtime/handlers'),
+     // CWD fallbacks
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/extractors/README.md b/.opencode/skills/system-spec-kit/runtime/cli/extractors/README.md
+index 59641dff15c..384222fa51a 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/extractors/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/extractors/README.md
+@@ -42,7 +42,7 @@ trigger_phrases:
+ Run extractor validation from the repository root:
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ ```
+ 
+ The sibling Vitest suite lives in `../tests/`. Targeted runs from `scripts/`:
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/lib/README.md b/.opencode/skills/system-spec-kit/runtime/cli/lib/README.md
+index ddbdb7b657b..133b8c0a6a7 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/lib/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/lib/README.md
+@@ -212,7 +212,7 @@ node -e "console.log(typeof require('./.opencode/skills/system-spec-kit/runtime/
+ Use repository-root commands:
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/lib/anchor-generator.js').then(m => console.log(typeof m.generateAnchorId))"
+ ```
+ 
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/loaders/README.md b/.opencode/skills/system-spec-kit/runtime/cli/loaders/README.md
+index db4118eb02f..b9282dc2d20 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/loaders/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/loaders/README.md
+@@ -38,7 +38,7 @@ trigger_phrases:
+ Run loader validation from the repository root:
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ node -e "const loaders=require('./.opencode/skills/system-spec-kit/runtime/cli/dist/loaders'); console.log(Object.keys(loaders).sort())"
+ python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/runtime/cli/loaders
+ ```
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md b/.opencode/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md
+index da34c6e1e81..64c4ce8baaf 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md
+@@ -60,7 +60,7 @@ Run the targeted spec-root suites with the alias absent, then repeat the filesys
+ 
+ ```bash
+ (
+-  cd .opencode/skills/system-spec-kit/scripts
++  cd .opencode/skills/system-spec-kit/runtime/cli
+   npm exec -- vitest run tests/spec-root-*.vitest.ts \
+     --config ../runtime/vitest.config.ts \
+     --root .
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/renderers/README.md b/.opencode/skills/system-spec-kit/runtime/cli/renderers/README.md
+index ece8e5a2c5a..e96e8031def 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/renderers/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/renderers/README.md
+@@ -95,7 +95,7 @@ Use this folder when a script needs template expansion that is shared across spe
+ Run from the repository root:
+ 
+ ```bash
+-cd .opencode/skills/system-spec-kit/scripts && npm run build
++cd .opencode/skills/system-spec-kit/runtime/cli && npm run build
+ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/cli/renderers/README.md
+ ```
+ 
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/spec-folder/README.md b/.opencode/skills/system-spec-kit/runtime/cli/spec-folder/README.md
+index 1fcd6bdbb8a..2d2a4294ec5 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/spec-folder/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/spec-folder/README.md
+@@ -82,7 +82,7 @@ Disallowed direction:
+ Run from the repository root unless noted.
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ ```
+ 
+ Expected result: TypeScript compiles and emits `runtime/cli/dist/spec-folder/` files.
+@@ -123,7 +123,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/sk
+ Run build and a compiled-module smoke check after changing source files:
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/index.js').then(m => console.log(Object.keys(m).length))"
+ ```
+ 
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/tests/README.md b/.opencode/skills/system-spec-kit/runtime/cli/tests/README.md
+index 7264dd60c09..6d8474625a8 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/tests/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/tests/README.md
+@@ -71,11 +71,11 @@ Not owned here:
+ Run from the repository root unless a command changes into `scripts/` explicitly:
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ node .opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
+ bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
+ bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
+-npx --prefix .opencode/skills/system-spec-kit/scripts vitest run \
++npx --prefix .opencode/skills/system-spec-kit/runtime/cli vitest run \
+   tests/test-integration.vitest.ts
+ python3 .opencode/skills/system-spec-kit/runtime/cli/tests/test_dual_threshold.py
+ ```
+@@ -87,11 +87,11 @@ python3 .opencode/skills/system-spec-kit/runtime/cli/tests/test_dual_threshold.p
+ Recommended targeted order after script changes:
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ node .opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
+ bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
+ bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
+-npx --prefix .opencode/skills/system-spec-kit/scripts vitest run \
++npx --prefix .opencode/skills/system-spec-kit/runtime/cli vitest run \
+   tests/test-integration.vitest.ts
+ ```
+ 
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/tests/test-embeddings-factory.js b/.opencode/skills/system-spec-kit/runtime/cli/tests/test-embeddings-factory.js
+index 4ec55d3394d..b68eeb004c5 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/tests/test-embeddings-factory.js
++++ b/.opencode/skills/system-spec-kit/runtime/cli/tests/test-embeddings-factory.js
+@@ -11,7 +11,7 @@ const path = require('path');
+ */
+ 
+ // Configure relative paths - embeddings consolidated to shared/ on 2024-12-31
+-const libPath = path.join(__dirname, '../../shared/dist');
++const libPath = path.join(__dirname, '../../../shared/dist');
+ 
+ /* ─────────────────────────────────────────────────────────────
+    2. TEST FUNCTION
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-validation.js b/.opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-validation.js
+index 88f26151825..41287f2e59e 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-validation.js
++++ b/.opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-validation.js
+@@ -12,12 +12,12 @@ const path = require('path');
+ const { execFileSync } = require('child_process');
+ 
+ const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
+-const SKILL_ROOT = path.join(REPO_ROOT, '.opencode', 'skill', 'system-spec-kit');
+-const CREATE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'create.sh');
+-const RECOMMEND_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'recommend-level.sh');
+-const VALIDATE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'validate.sh');
+-const ARCHIVE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'archive.sh');
+-const FIXTURE_ROOT = path.join(SKILL_ROOT, 'scripts', 'tests', 'fixtures');
++const SKILL_ROOT = path.join(REPO_ROOT, '.opencode', 'skills', 'system-spec-kit');
++const CREATE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'create.sh');
++const RECOMMEND_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'recommend-level.sh');
++const VALIDATE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'validate.sh');
++const ARCHIVE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'archive.sh');
++const FIXTURE_ROOT = path.join(SKILL_ROOT, 'runtime', 'cli', 'tests', 'fixtures');
+ const ALLOWED_SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
+ 
+ let passed = 0;
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js b/.opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
+index 0373169ccdc..6002d4dd525 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
++++ b/.opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
+@@ -2936,7 +2936,7 @@ async function testMemoryRankMemories() {
+ async function testWrapAllTemplatesShippedPath() {
+   log('\n\uD83D\uDD2C T233: wrap-all-templates shipped path');
+ 
+-  const DIST_WRAP = path.join(SCRIPTS_DIR, 'dist', 'wrap-all-templates.js');
++  const DIST_WRAP = path.join(SCRIPTS_DIR, 'lib', 'anchor-generator.js');
+ 
+   try {
+     if (!fs.existsSync(DIST_WRAP)) {
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/types/README.md b/.opencode/skills/system-spec-kit/runtime/cli/types/README.md
+index 49564415651..a65750d6de8 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/types/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/types/README.md
+@@ -130,7 +130,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/sk
+ Run the script build after changing type definitions:
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ ```
+ 
+ Expected result: TypeScript compiles and emits declarations for `session-types.ts` and `save-mode.ts`.
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/utils/README.md b/.opencode/skills/system-spec-kit/runtime/cli/utils/README.md
+index a19e287350e..53a6dbd9299 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/utils/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/utils/README.md
+@@ -88,7 +88,7 @@ This folder has no standalone CLI. Consumers import specific helpers after the
+ scripts package is built:
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/utils/path-utils.js')\
+ .then(m => console.log(typeof m.sanitizePath))"
+ node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/utils/index.js')\
+@@ -102,7 +102,7 @@ node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/utils/index
+ Use repository-root commands:
+ 
+ ```bash
+-npm --prefix .opencode/skills/system-spec-kit/scripts run build
++npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+ node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/utils/path-utils.js')\
+ .then(m => console.log(typeof m.sanitizePath))"
+ node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/utils/index.js')\
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/validation/README.md b/.opencode/skills/system-spec-kit/runtime/cli/validation/README.md
+index 196e4140ac1..b7e63fae5b2 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/validation/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/cli/validation/README.md
+@@ -85,7 +85,7 @@ Comment-hygiene smoke check over the spec-kit script tree:
+ 
+ ```bash
+ node .opencode/skills/system-spec-kit/runtime/cli/validation/ephemeral-pointer-audit.mjs \
+-  .opencode/skills/system-spec-kit/scripts
++  .opencode/skills/system-spec-kit/runtime/cli
+ echo $?   # 0 = clean, 1 = violations, 2 = bad invocation
+ ```
+ 
+diff --git a/.opencode/skills/system-spec-kit/runtime/lib/templates/README.md b/.opencode/skills/system-spec-kit/runtime/lib/templates/README.md
+index a964161e630..d939035a4dd 100644
+--- a/.opencode/skills/system-spec-kit/runtime/lib/templates/README.md
++++ b/.opencode/skills/system-spec-kit/runtime/lib/templates/README.md
+@@ -49,7 +49,7 @@ templates/
+ 
+ ## 6. VALIDATION
+ 
+-Run from `.opencode/skills/system-spec-kit/scripts`:
++Run from `.opencode/skills/system-spec-kit/runtime/cli`:
+ 
+ ```bash
+ npx vitest run tests/level-contract-resolver.vitest.ts tests/scaffold-golden-snapshots.vitest.ts
+diff --git a/.opencode/skills/system-spec-kit/runtime/package.json b/.opencode/skills/system-spec-kit/runtime/package.json
+index fb22fa5d794..e395e08188d 100644
+--- a/.opencode/skills/system-spec-kit/runtime/package.json
++++ b/.opencode/skills/system-spec-kit/runtime/package.json
+@@ -23,7 +23,7 @@
+     "test:core": "vitest run",
+     "test:council": "vitest run tests/multi-ai-council-runtime-parity.vitest.ts tests/multi-ai-council-permission-scope.vitest.ts tests/multi-ai-council-audit-trail.vitest.ts tests/multi-ai-council-rollback.vitest.ts ../../system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts ../../system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts tests/council-playbook-anchor-integrity.vitest.ts tests/council-helpers-smoke.vitest.ts cli/tests/multi-ai-council-persist-artifacts.vitest.ts",
+     "test:council:full": "bash cli/test-council-matrix.sh",
+-    "test:task-enrichment": "echo 'Task-enrichment tests run in @spec-kit/scripts workspace'",
++    "test:task-enrichment": "npx vitest run cli/tests/task-enrichment.vitest.ts --config ../vitest.config.ts",
+     "test:watch": "vitest",
+     "typecheck:tests": "tsc --noEmit --composite false -p tsconfig.tests.json",
+     "test:sharded": "node scripts/run-tests-sharded.mjs"
+diff --git a/.opencode/skills/system-spec-kit/vitest.config.ts b/.opencode/skills/system-spec-kit/vitest.config.ts
+index 9d3276282db..f44dca23429 100644
+--- a/.opencode/skills/system-spec-kit/vitest.config.ts
++++ b/.opencode/skills/system-spec-kit/vitest.config.ts
+@@ -4,16 +4,42 @@
+ 
+ import path from 'node:path';
+ 
++// The CLI workspace nests inside runtime/ and its own tsconfig chain resolves
++// modules under 'nodenext' (its cross-skill '.js'-suffixed imports resolve to
++// sibling '.ts' sources); the skill-root tsconfig above it still resolves under
++// plain 'node'. A single shared root/include set here would run CLI test files
++// under the wrong resolution mode and break those cross-skill imports, so the
++// CLI suite gets its own project rooted at runtime/cli instead.
+ export default {
+   test: {
+-    include: [
+-      'tests/**/*.vitest.ts',
+-      'scripts/tests/**/*.vitest.ts',
+-      'runtime/tests/**/*.vitest.ts',
++    projects: [
++      {
++        test: {
++          root: path.resolve(__dirname),
++          include: [
++            'tests/**/*.vitest.ts',
++            'runtime/tests/**/*.vitest.ts',
++          ],
++          setupFiles: [
++            path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-setup.ts'),
++          ],
++          globals: true,
++          name: 'root',
++        },
++      },
++      {
++        test: {
++          root: path.resolve(__dirname, 'runtime', 'cli'),
++          include: [
++            'tests/**/*.vitest.ts',
++          ],
++          setupFiles: [
++            path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-setup.ts'),
++          ],
++          globals: true,
++          name: 'cli',
++        },
++      },
+     ],
+-    setupFiles: [
+-      path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-setup.ts'),
+-    ],
+-    globals: true,
+   },
+ };

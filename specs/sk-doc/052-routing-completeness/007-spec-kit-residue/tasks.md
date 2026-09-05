@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Close the packet"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
-      - ".opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts"
-      - ".opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts"
-      - ".opencode/skills/system-spec-kit/scripts/tests/tree-thinning.vitest.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/tests/generate-context-cli-authority.vitest.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts"
+      - ".opencode/skills/system-spec-kit/runtime/cli/tests/tree-thinning.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-kit-residue-decisions"

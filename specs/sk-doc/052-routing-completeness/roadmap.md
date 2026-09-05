@@ -14,7 +14,7 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: roadmap | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> What is left after six of seven phases shipped, and where the routing number goes next.
+> What is left after eight phases shipped, and where the routing number goes next.
 
 ---
 
@@ -22,10 +22,10 @@ contextType: "general"
 ## 1. METADATA
 
 **Subject:** Routing completeness, findings closure, and what follows them
-**Status:** Active
+**Status:** Closed, with three owned follow-ups outside the packet
 **Horizon:** 2026-09 onward
 **Owner:** Operator
-**Last updated:** 2026-09-03
+**Last updated:** 2026-09-05
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -33,19 +33,20 @@ contextType: "general"
 <!-- ANCHOR:now-next-later -->
 ## 2. PHASES: NOW / NEXT / LATER
 
-**Now:** Phase `007-spec-kit-residue` is closed. It was worked against packet
-`specs/system-speckit/049-memory-decommission`, which deletes
-`.opencode/skills/system-spec-kit/mcp-server/` outright, 1,480 files and 453,813 lines. Five of
-the eight recorded decisions lived inside that tree, so the first move was not to implement
-anything. Each was re-read against 049 and marked done or superseded, with the reason in
-`decision-record.md`. ADR-005 and ADR-008 proceeded either way, because neither touches the
-deleted tree.
+**Now:** The packet is closed. Phase `008-drift-after-closure` re-measured both gates on
+2026-09-05 against the tree as it stands after `b4c2484696` nested the spec-kit CLI under
+`runtime/` and after `specs/system-speckit/049-memory-decommission` closed and removed
+`mcp-server/`. Gate A reads 343 of 388, two rows off its 2026-09-04 recording, both ruled.
+Gate B reads 20 of 180, one prompt off. The scaffolder the nesting had broken renders a full
+packet again, proven by the suite that was red.
 
-The same test then closed the three criteria those decisions left open. The suite runs to the end
-sharded, 12 of 12 shards in 34 minutes, and its 181 failures split into 31 in surviving trees,
-each in a named mechanism group, and 150 inside the delete that carry a count rather than a
-diagnosis. A full suite run does not leave `git status` clean: it rewrites 20 generated metadata
-files under `specs/` through a module that goes with 049. They were restored.
+Three findings leave the packet with an owner rather than a fix, all recorded in phase 008's
+decision record and in register rows 42 to 44. Two belong to `system-skill-advisor`: a
+declared signal that returns nothing from both scorers with no known mechanism, and a parity
+pin that reads three numbers in one session because the Python reference loads the daemon's
+local skill graph. One belongs to `system-spec-kit`: the strict validator passed a parent
+spec carrying 69 bracket placeholders and reports acceptance closure inactive on a Level 3
+phase parent.
 
 **Next:** Planned. Four items, three of them skill follow-ups already scaffolded and one
 fleet sweep.
@@ -67,13 +68,13 @@ utilization number rather than an assumption.
 
 The fleet template sweep has no folder yet. Phase 006 measured 24 of 40 templates in this
 tree hiding voice blockers inside their own fenced payload. Across the fleet the figure is
-45 of 53 once the payload is scanned. This is a decision per template rather than a bulk
-rewrite, because a template's fenced block is the deliverable and some of those characters
-are load-bearing. Exit signal: every one of the 53 templates has a recorded decision, fix or
-keep with the reason.
+45 of 53 once the payload is scanned, and `cb9fdb44f3` swept thirty-seven of them. This is a
+decision per template rather than a bulk rewrite, because a template's fenced block is the
+deliverable and some of those characters are load-bearing. Exit signal: every one of the 53
+templates has a recorded decision, fix or keep with the reason.
 
-All three follow-up phases now hold a goal.md, authored alongside this roadmap on 2026-09-02.
-Read the phase goal before working the phase; its criteria bind.
+All three follow-up phases hold a goal.md, authored on 2026-09-02. Read the phase goal
+before working the phase; its criteria bind.
 
 **Later:** Done as a plan. Focus: `specs/system-skill-advisor/023-semantic-lane-enablement`,
 five planned phases, no code change. Gate B measures 8 of 172 realistic phrasings, 4.7 percent,
@@ -96,14 +97,14 @@ Evidence: `03f5db4876`, "plan routing completeness, and settle which scorer gove
 
 **Gate A measured across five hubs:** phase Now, target 2026-09-02. Status: Done. Evidence:
 `dbc8678c9d` records 234 of 444; `08eb67a0de` resolves half the vocabulary that reached
-nothing.
+nothing; `726af58b4c` closes the signal audit at 345 of 388.
 
 **Gate B measured on a realistic corpus:** phase Now, target 2026-09-02. Status: Done.
 Evidence: `4a5de9e52b` records 8 of 180; `8c6d6fd455` fixes the denominator to 172.
 
 **Every finding owned:** phase Now, target 2026-09-02. Status: Done. Evidence: `d7f70069b9`,
 "give every finding an owner and every phase a runnable gate", and
-`research/findings-register.md`.
+`research/findings-register.md`, forty-five rows on 2026-09-05.
 
 **Hub surfaces reconciled with a check behind them:** phase Now, target 2026-09-02. Status:
 Done. Evidence: `8bb9011584`.
@@ -112,14 +113,21 @@ Done. Evidence: `8bb9011584`.
 "the suite never completed because of an infinite loop on the save path".
 
 **Residue decisions closed against 049:** phase Now, target on 049 phase 003 landing. Status:
-In Progress. Evidence: none yet; seven of eight decisions are still open.
+Done. Evidence: `0467949fc8` and `4be7058385`; nine rulings in
+`007-spec-kit-residue/decision-record.md`, and 049 has since closed with the tree removed in
+`aef7852400`.
+
+**Both gates re-measured after the tree moved:** phase Now, target 2026-09-05. Status: Done.
+Evidence: `008-drift-after-closure/research/`, two artifacts with the recorded bucket beside
+the re-run bucket, and the scaffold suite at 9 of 9.
 
 **Three follow-up phases authored:** phase Next, target after the residue closes. Status: In
 Progress. Evidence: a goal.md exists at each of the three paths above as of 2026-09-02; none
 of the three phases has run yet.
 
 **Fleet template sweep decided:** phase Next, target after the follow-up phases. Status:
-Planned. Evidence: the 45 of 53 count from phase 006 payload scanning.
+Planned. Evidence: the 45 of 53 count from phase 006 payload scanning, and the thirty-seven
+swept in `cb9fdb44f3`.
 
 **Semantic lane packet planned:** phase Later, target 2026-09-03. Status: Done. Evidence:
 `specs/system-skill-advisor/023-semantic-lane-enablement` at commit `c0ab5103fd`, six folders
@@ -131,14 +139,14 @@ validating strict and recursive at zero errors.
 <!-- ANCHOR:dependencies -->
 ## 4. DEPENDENCIES
 
-**Packet 049 scope:** needed by the residue closure, owner Operator. Status: Open. Risk and
-mitigation: 049 is still Pending and its scope can move, so a decision closed as superseded
-today could be wrong tomorrow. Re-check each path against 049 immediately before acting, and
-record the check date beside the note.
+**Packet 049 scope:** needed by the residue closure, owner Operator. Status: Closed. 049 is
+Complete and `mcp-server/` is gone, so every superseded ruling in phase 007 now rests on a
+delete that happened rather than one that was planned. Nothing remains to re-check.
 
 **The advisor scorer holding still:** needed by every measurement in this packet, owner
 Operator. Status: Ready. Risk and mitigation: changing the scorer voids Gate A and Gate B
-together. The semantic lane work is deliberately a separate packet for this reason.
+together. The semantic lane work is deliberately a separate packet for this reason, and phase
+008's parity finding is left for the advisor owner for the same reason.
 
 **Goal documents for the three follow-up phases:** needed by the Next milestone, owner
 whoever picks the phase up. Status: Ready. Risk and mitigation: all three exist as of
@@ -150,4 +158,9 @@ Status: Planned in 023 phase 002. Risk and mitigation: 9 of 14 skill nodes are e
 the five without a vector include mcp-tooling and system-deep-loop, so the lane has no data for
 the hubs that miss most even if its weight rises. The research phase settles weight and coverage
 together rather than one at a time.
+
+**A validator that reads the document, not only its registries:** needed before the next
+packet closes on a green run, owner `system-spec-kit`. Status: Planned, register row 44. Risk
+and mitigation: until the placeholder rule counts what `check-placeholders.sh` counts, run the
+checker by hand beside the validator before any completion claim.
 <!-- /ANCHOR:dependencies -->
