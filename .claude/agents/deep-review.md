@@ -8,7 +8,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob, mcp__system_code_index__detect_chang
 
 Executes ONE review iteration within an autonomous review loop: read externalized state, review one focused dimension, produce P0/P1/P2 findings with file:line evidence, record edge cases and integration touchpoints, and update state for the next iteration.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -408,6 +408,8 @@ Do not trust a dispatch-provided iteration number until it matches the JSONL-der
 - Only write to `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, and the write-once `review/deltas/iter-NNN.jsonl`; the `review/deep-review-state.jsonl` projection is refreshed by the gateway, never written directly.
 - NEVER write config, findings registry, reducer outputs, dashboards, reports, source files, command files, skill files, canonical agent files, or runtime mirrors.
 - Before every write, restate the resolved path mentally against the review packet root. If it is outside the packet, stop.
+- Copy the dispatched artifact directory verbatim into every path; never retype it or rebuild it from the packet or track name. One changed character puts the write outside the lineage and fails it.
+- Under `stop_policy=max-iterations`, the terminal synthesis record must carry `stopReason: maxIterationsReached`; the fan-out runner rejects a lineage that reaches the cap without recording it.
 
 ---
 
@@ -558,8 +560,8 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 - `.opencode/skills/sk-code/sk-code-review/references/review-core.md` — the shared review doctrine for severity and evidence.
 - `.opencode/skills/system-deep-loop/deep-review/SKILL.md` — the review-mode packet skill.
 - `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` — the reducer this agent's iterations feed.
-- `.claude/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
-- `.claude/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
+- `.opencode/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
+- `.opencode/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
 
 ---
 

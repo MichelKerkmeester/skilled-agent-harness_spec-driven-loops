@@ -422,6 +422,8 @@ Do not trust a dispatch-provided iteration number until it matches the JSONL-der
 - Only write to `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, and the write-once `review/deltas/iter-NNN.jsonl`; the `review/deep-review-state.jsonl` projection is refreshed by the gateway, never written directly.
 - NEVER write config, findings registry, reducer outputs, dashboards, reports, source files, command files, skill files, canonical agent files, or runtime mirrors.
 - Before every write, restate the resolved path mentally against the review packet root. If it is outside the packet, stop.
+- Copy the dispatched artifact directory verbatim into every path; never retype it or rebuild it from the packet or track name. One changed character puts the write outside the lineage and fails it.
+- Under `stop_policy=max-iterations`, the terminal synthesis record must carry `stopReason: maxIterationsReached`; the fan-out runner rejects a lineage that reaches the cap without recording it.
 
 ---
 

@@ -918,6 +918,34 @@ describe('fanout-run.cjs — native convergence threshold defaults', () => {
     expect(input).toContain('--convergence=0.1');
     expect(input).toContain('convergenceThreshold: 0.1');
   });
+
+  it('tells the leaf to copy the lineage directory verbatim and to record the max-iterations stop reason', () => {
+    const { buildLoopPrompt } = requireCjs(fanoutRunScript) as {
+      buildLoopPrompt: (...args: unknown[]) => string;
+    };
+    const prompt = buildLoopPrompt(
+      'review',
+      '.opencode/specs/system-speckit/999-fixture',
+      '.opencode/specs/system-speckit/999-fixture/review/lineages/fixture',
+      'rvw-fixture',
+      { label: 'fixture', kind: 'cli-opencode', model: 'fixture/model', iterations: 3 },
+      null,
+      { stopPolicy: 'max-iterations' },
+    );
+    expect(prompt).toContain('Copy that directory path verbatim into every write');
+    expect(prompt).toContain('stopReason "maxIterationsReached"');
+
+    const convergence = buildLoopPrompt(
+      'review',
+      '.opencode/specs/system-speckit/999-fixture',
+      '.opencode/specs/system-speckit/999-fixture/review/lineages/fixture',
+      'rvw-fixture',
+      { label: 'fixture', kind: 'cli-opencode', model: 'fixture/model', iterations: 3 },
+      null,
+      { stopPolicy: 'convergence' },
+    );
+    expect(convergence).not.toContain('stopReason "maxIterationsReached"');
+  });
 });
 
 describe('fanout-run.cjs — cli-codex adapter', () => {

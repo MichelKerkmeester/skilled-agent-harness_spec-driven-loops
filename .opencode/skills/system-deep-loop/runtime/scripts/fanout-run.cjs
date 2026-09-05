@@ -1364,6 +1364,14 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     `run generate-context.js, validate.sh (especially --recursive), or any git write/checkout/commit`,
     `command. Producing findings does not mean running the repo's tooling — a single out-of-scope`,
     `write fails this whole lineage.`,
+    `Copy that directory path verbatim into every write; never retype it or rebuild it from the`,
+    `packet or track name, because one changed character lands the write outside the lineage.`,
+    ...(hasIterationCap && stopPolicy === 'max-iterations'
+      ? [
+          `The terminal synthesis record must carry stopReason "maxIterationsReached"; the runner`,
+          `rejects a lineage whose synthesis reaches the cap without recording that reason.`,
+        ]
+      : []),
     ``,
     `When complete, output a single line: FANOUT_LINEAGE_COMPLETE:${lineage.label}`,
   ].join('\n');
