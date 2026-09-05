@@ -20,6 +20,7 @@ import {
 } from '../extractors/index.js';
 import { detectSpecFolder, ensureSpecFolderExists } from '../spec-folder/index.js';
 import { generateContentSlug } from '../utils/slug-utils.js';
+import { toCanonicalRelativePath } from '../utils/file-helpers.js';
 import { pickPreferredMemoryTask, shouldEnrichTaskFromSpecTitle } from '../utils/task-enrichment.js';
 import {
   buildSpecAffinityTargets,
@@ -259,6 +260,141 @@ async function tryImportRuntimeApi(specifier: string): Promise<any | null> {
     console.warn(`[workflow] Failed to import ${specifier}: ${err instanceof Error ? err.message : String(err)}`);
     return null;
   }
+}
+
+/** The retrieval package's index reader, frontmatter reader and path-alias folder, resolved once per process. */
+interface TriggerIndexRetrievalLibrary {
+  loadIndex: (indexPath?: string, options?: { hashIndex?: boolean }) => {
+    index: { paths: string[]; phrases: Record<string, number[]> };
+  };
+  readTriggerPhrases: (rawContent: string) => { phrases: Array<{ normalized: string }> };
+  canonicalRelativePath: (relativePath: string) => string;
+  /** Repository root the retrieval package's own paths are relative to. */
+  repoRoot: string;
+}
+
+let cachedTriggerIndexRetrievalLibrary: TriggerIndexRetrievalLibrary | null | undefined;
+
+/**
+ * Locates and imports the retrieval package's lookup/frontmatter/corpus
+ * modules from this file's real on-disk location rather than from
+ * `CONFIG.PROJECT_ROOT`, which a caller may point at a throwaway workspace.
+ * Two candidate offsets cover both the TS-source and compiled-dist layouts,
+ * since a dynamic import can't rely on one fixed relative offset across them.
+ * Resolution is cached after the first attempt, success or failure.
+ */
+async function loadTriggerIndexRetrievalLibrary(): Promise<TriggerIndexRetrievalLibrary | null> {
+  if (cachedTriggerIndexRetrievalLibrary !== undefined) {
+    return cachedTriggerIndexRetrievalLibrary;
+  }
+
+  const retrievalDirCandidates = [
+    path.resolve(moduleDir, '..', 'retrieval'),
+    path.resolve(moduleDir, '..', '..', 'retrieval'),
+  ];
+  const retrievalDir = retrievalDirCandidates.find(
+    (candidate) => fsSync.existsSync(path.join(candidate, 'lookup-trigger-index.mjs')),
+  );
+  if (!retrievalDir) {
+    cachedTriggerIndexRetrievalLibrary = null;
+    return null;
+  }
+
+  try {
+    const [lookupModule, frontmatterModule, corpusModule] = await Promise.all([
+      import(path.join(retrievalDir, 'lookup-trigger-index.mjs')),
+      import(path.join(retrievalDir, 'lib', 'frontmatter.mjs')),
+      import(path.join(retrievalDir, 'lib', 'corpus.mjs')),
+    ]);
+    cachedTriggerIndexRetrievalLibrary = {
+      loadIndex: lookupModule.loadIndex,
+      readTriggerPhrases: frontmatterModule.readTriggerPhrases,
+      canonicalRelativePath: corpusModule.canonicalRelativePath,
+      // scripts/retrieval sits five levels under the repo root: retrieval → scripts →
+      // system-spec-kit → skills → .opencode → repo root.
+      repoRoot: path.resolve(retrievalDir, '..', '..', '..', '..', '..'),
+    };
+  } catch {
+    cachedTriggerIndexRetrievalLibrary = null;
+  }
+
+  return cachedTriggerIndexRetrievalLibrary;
+}
+
+/** Outcome of comparing a packet's own `spec.md` trigger phrases against the committed trigger index. */
+interface TriggerIndexFreshnessResult {
+  status: 'fresh' | 'stale' | 'no-phrases' | 'unavailable';
+  /** Repo-relative path of the document compared, when it could be resolved. */
+  documentPath?: string;
+  /** Phrases spec.md declares that the index does not (yet) attribute to it. */
+  added?: string[];
+  /** Phrases the index attributes to spec.md that spec.md no longer declares. */
+  removed?: string[];
+}
+
+/**
+ * Compares `spec.md`'s current `trigger_phrases` frontmatter against what the
+ * committed trigger index records for that same document, using the
+ * retrieval package's own frontmatter reader and index loader so the
+ * comparison can never drift from what the generator itself considers
+ * current. Never throws: a missing spec.md, an unparseable index, or a
+ * retrieval library that can't be located all degrade to 'unavailable' so a
+ * canonical save is never blocked on this (NFR-R01/R02).
+ *
+ * `options.indexPath` overrides the committed index location; production
+ * callers omit it and get the retrieval package's own default.
+ */
+async function checkTriggerIndexFreshness(
+  specFolderPath: string,
+  options: { indexPath?: string } = {},
+): Promise<TriggerIndexFreshnessResult> {
+  let rawContent: string;
+  try {
+    rawContent = fsSync.readFileSync(path.join(specFolderPath, 'spec.md'), 'utf8');
+  } catch {
+    return { status: 'unavailable' };
+  }
+
+  const library = await loadTriggerIndexRetrievalLibrary();
+  if (!library) {
+    return { status: 'unavailable' };
+  }
+
+  const currentPhrases = new Set(
+    library.readTriggerPhrases(rawContent).phrases.map((phrase) => phrase.normalized),
+  );
+  // Nothing declared: the edge case this phase documents as "nothing to compare".
+  if (currentPhrases.size === 0) {
+    return { status: 'no-phrases' };
+  }
+
+  let loaded: { index: { paths: string[]; phrases: Record<string, number[]> } };
+  try {
+    loaded = library.loadIndex(options.indexPath, { hashIndex: false });
+  } catch {
+    return { status: 'unavailable' };
+  }
+
+  const documentPath = library.canonicalRelativePath(
+    toCanonicalRelativePath(path.join(specFolderPath, 'spec.md'), library.repoRoot),
+  );
+  const pathId = loaded.index.paths.indexOf(documentPath);
+  const indexedPhrases = new Set<string>();
+  if (pathId !== -1) {
+    for (const [phrase, postings] of Object.entries(loaded.index.phrases)) {
+      if (postings.includes(pathId)) {
+        indexedPhrases.add(phrase);
+      }
+    }
+  }
+
+  const added = Array.from(currentPhrases).filter((phrase) => !indexedPhrases.has(phrase)).sort();
+  const removed = Array.from(indexedPhrases).filter((phrase) => !currentPhrases.has(phrase)).sort();
+  if (added.length === 0 && removed.length === 0) {
+    return { status: 'fresh', documentPath: documentPath || undefined };
+  }
+
+  return { status: 'stale', documentPath: documentPath || undefined, added, removed };
 }
 
 /** Refresh phase-parent pointers from the workflow's resolved save target. */
@@ -1583,8 +1719,27 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   log('   Skipping retired legacy memory indexing');
 
   // Retrieval is source-owned: the trigger index is a generated artifact, not a
-  // save-time side effect, so the save only points at the generator.
-  log('   Trigger index: run node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs when trigger phrases changed');
+  // save-time side effect, so the save only reads the committed index and
+  // points at the generator when it no longer matches this packet.
+  const triggerIndexRegenerateHint = '   Trigger index: run node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs when trigger phrases changed';
+  try {
+    const freshness = await checkTriggerIndexFreshness(validatedSpecFolderPath);
+    if (freshness.status === 'stale') {
+      const staleMessage = `   Trigger index: STALE for ${freshness.documentPath ?? 'spec.md'}`
+        + ` (added: ${freshness.added?.join(', ') || 'none'}; removed: ${freshness.removed?.join(', ') || 'none'});`
+        + ' run node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs';
+      warn(staleMessage);
+      workflowWarnings.push(staleMessage);
+    } else if (freshness.status === 'fresh') {
+      log(`   Trigger index: up to date for ${freshness.documentPath ?? 'this packet'}`);
+    } else if (freshness.status === 'no-phrases') {
+      log('   Trigger index: packet declares no trigger_phrases; nothing to compare');
+    } else {
+      log(triggerIndexRegenerateHint);
+    }
+  } catch {
+    log(triggerIndexRegenerateHint);
+  }
 
   // Step 11.75: Post-save quality review — wire into production pipeline.
   // Runs the post-save reviewer against the canonical spec-doc save artifacts.
@@ -1631,9 +1786,11 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
 export { stripWorkflowHtmlOutsideCodeFences } from './content-cleaner.js';
 
 export {
+  checkTriggerIndexFreshness,
   filterTriggerPhrases,
   refreshPhaseParentPointersAfterSave,
   releaseFilesystemLock,
   runWorkflow,
   scrubWorkflowSavePayloadTextFields,
 };
+export type { TriggerIndexFreshnessResult };

@@ -21,6 +21,7 @@ import {
 import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
 import { resolveLastActiveChildFromStore } from '../graph/access-telemetry.js';
 import { listPhaseChildren } from '../spec/is-phase-parent.js';
+import { buildContinuityFingerprint } from '../validation/spec-doc-structure.js';
 
 /** Which authored surface a resume ladder ultimately drew its context from. */
 export type ResumeLadderSource = 'handover' | 'continuity' | 'spec-docs' | 'none';
@@ -331,25 +332,31 @@ function extractContinuityField(block: string, field: string): string | null {
   return match ? stripQuotes(match[1]) : null;
 }
 
-function extractContinuityList(block: string, field: string): string[] {
+/**
+ * Reads a scalar nested one level deeper than {@link extractContinuityField}
+ * (e.g. `session_dedup.fingerprint`, six spaces under a four-space parent
+ * mapping key). Used only by the handover packet-binding check, which reads
+ * an optional `_memory.continuity` block a handover is not required to carry.
+ */
+function extractNestedContinuityField(block: string, parentField: string, childField: string): string | null {
   const lines = block.split(/\r?\n/u);
-  const startIndex = lines.findIndex((line) => new RegExp(`^    ${field}:\\s*$`, 'u').test(line));
-  if (startIndex < 0) {
-    const inlineMatch = block.match(new RegExp(`^    ${field}:\\s*\\[(.*)\\]\\s*$`, 'mu'));
-    return inlineMatch
-      ? inlineMatch[1].split(',').map((entry) => stripQuotes(entry)).map((entry) => entry.trim()).filter(Boolean)
-      : [];
+  const parentIndex = lines.findIndex((line) => new RegExp(`^    ${parentField}:\\s*$`, 'u').test(line));
+  if (parentIndex < 0) {
+    return null;
   }
 
-  const result: string[] = [];
-  for (let index = startIndex + 1; index < lines.length; index += 1) {
+  for (let index = parentIndex + 1; index < lines.length; index += 1) {
     const line = lines[index];
-    if (!/^      - /u.test(line)) {
+    if (!/^      /u.test(line)) {
       break;
     }
-    result.push(stripQuotes(line.replace(/^      - /u, '')));
+    const match = line.match(new RegExp(`^      ${childField}:\\s*(.+)$`, 'u'));
+    if (match) {
+      return stripQuotes(match[1]);
+    }
   }
-  return result;
+
+  return null;
 }
 
 function extractHeadingTitle(markdownBody: string): string | null {
@@ -629,40 +636,17 @@ function parseHandoverSignal(snapshot: StableDocumentSnapshot): ResumeSignal | n
   };
 }
 
-function parseContinuitySignal(
-  snapshot: StableDocumentSnapshot,
-  resolvedSpecFolder: string | null,
-): ResumeSignal | null {
+function parseContinuitySignal(snapshot: StableDocumentSnapshot): ResumeSignal | null {
   const continuity = readThinContinuityRecord(snapshot.content);
 
+  // A continuity block that fails strict validation (a malformed
+  // session_dedup.fingerprint, an out-of-shape session_id, or any other
+  // MEMORY_0NN failure) is rejected outright rather than partially trusted
+  // through a manual field extraction that skips the same checks. The ladder
+  // falls through to the next tier (spec-doc signal) exactly as it already
+  // does for a missing implementation-summary.md.
   if (!continuity.ok || !continuity.record) {
-    const frontmatter = extractFrontmatter(snapshot.content);
-    const block = extractContinuityBlock(frontmatter);
-    if (!block) {
-      return null;
-    }
-
-    const packetPointer = extractContinuityField(block, 'packet_pointer');
-    const lastUpdatedAt = extractContinuityField(block, 'last_updated_at');
-    const lastUpdatedBy = extractContinuityField(block, 'last_updated_by');
-    const recentAction = extractContinuityField(block, 'recent_action');
-    const nextSafeAction = extractContinuityField(block, 'next_safe_action');
-
-    if (!packetPointer || !lastUpdatedAt || !lastUpdatedBy || !recentAction || !nextSafeAction) {
-      return null;
-    }
-
-    return {
-      source: 'continuity',
-      updatedAtMs: parseIsoMs(lastUpdatedAt) ?? snapshot.modifiedAtMs,
-      summary: uniqueStrings([recentAction, nextSafeAction]).join(' | '),
-      recentAction,
-      nextSafeAction,
-      blockers: extractContinuityList(block, 'blockers'),
-      keyFiles: extractContinuityList(block, 'key_files'),
-      documents: [toResumeDocument(snapshot, 'continuity')],
-      packetPointer: packetPointer ?? resolvedSpecFolder,
-    };
+    return null;
   }
 
   const record: ThinContinuityRecord = continuity.record;
@@ -677,6 +661,57 @@ function parseContinuitySignal(
     documents: [toResumeDocument(snapshot, 'continuity')],
     packetPointer: record.packet_pointer,
   };
+}
+
+/**
+ * A handover's optional packet-identity binding: a `_memory.continuity`
+ * block carrying `packet_pointer` and a nested `session_dedup.fingerprint`.
+ * The standard handover template never authors this block, so both are
+ * usually absent; when present, they let a handover claim it was written
+ * against one specific, verifiable continuity state instead of relying on
+ * its own timestamp alone.
+ */
+function extractHandoverBinding(content: string): { packetPointer: string | null; fingerprint: string | null } {
+  const block = extractContinuityBlock(extractFrontmatter(content));
+  if (!block) {
+    return { packetPointer: null, fingerprint: null };
+  }
+
+  return {
+    packetPointer: extractContinuityField(block, 'packet_pointer'),
+    fingerprint: extractNestedContinuityField(block, 'session_dedup', 'fingerprint'),
+  };
+}
+
+/**
+ * True only when a handover declares a packet pointer matching the resolved
+ * spec folder AND a fingerprint that matches the continuity document's
+ * actual current content, recomputed with the same
+ * {@link buildContinuityFingerprint} the continuity record itself is
+ * verified with (NFR-S02) rather than a new hashing scheme. This is the
+ * narrow escape hatch the trust ranking keeps open: a handover authored against a
+ * provably current continuity state can still win on freshness; an
+ * unbound one — the common case today — cannot outrank validated continuity
+ * on timestamp alone.
+ */
+function handoverBindingVerifies(
+  handoverContent: string,
+  resolvedSpecFolder: string | null,
+  continuitySnapshot: StableDocumentSnapshot | null,
+): boolean {
+  if (!resolvedSpecFolder || !continuitySnapshot) {
+    return false;
+  }
+
+  const binding = extractHandoverBinding(handoverContent);
+  if (!binding.packetPointer || !binding.fingerprint) {
+    return false;
+  }
+  if (normalizeSpecFolder(binding.packetPointer) !== resolvedSpecFolder) {
+    return false;
+  }
+
+  return binding.fingerprint === buildContinuityFingerprint(continuitySnapshot.content);
 }
 
 function parseSpecDocumentSignal(snapshots: StableDocumentSnapshot[]): ResumeSignal | null {
@@ -1011,21 +1046,22 @@ export function buildResumeLadder(options: ResumeLadderOptions = {}): ResumeLadd
   const implementationSummaryPath = path.join(folderPath, 'implementation-summary.md');
 
   let handoverSignal: ResumeSignal | null = null;
+  let handoverSnapshot: StableDocumentSnapshot | null = null;
   if (fs.existsSync(handoverPath)) {
     try {
-      handoverSignal = parseHandoverSignal(readStableMarkdownDocument(handoverPath, workspacePath));
+      handoverSnapshot = readStableMarkdownDocument(handoverPath, workspacePath);
+      handoverSignal = parseHandoverSignal(handoverSnapshot);
     } catch (error: unknown) {
       hints.push(`Skipping handover.md after fingerprint verification failed: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
   let continuitySignal: ResumeSignal | null = null;
+  let continuitySnapshot: StableDocumentSnapshot | null = null;
   if (fs.existsSync(implementationSummaryPath)) {
     try {
-      continuitySignal = parseContinuitySignal(
-        readStableMarkdownDocument(implementationSummaryPath, workspacePath),
-        resolution.resolvedSpecFolder,
-      );
+      continuitySnapshot = readStableMarkdownDocument(implementationSummaryPath, workspacePath);
+      continuitySignal = parseContinuitySignal(continuitySnapshot);
       if (!continuitySignal) {
         hints.push('implementation-summary.md continuity was missing or invalid; fell through to spec docs.');
       }
@@ -1060,9 +1096,20 @@ export function buildResumeLadder(options: ResumeLadderOptions = {}): ResumeLadd
   const specDocSignal = parseSpecDocumentSignal(specDocSnapshots);
 
   if (handoverSignal && continuitySignal) {
-    const primary = continuitySignal.updatedAtMs > handoverSignal.updatedAtMs ? continuitySignal : handoverSignal;
+    // An unbound handover — the common case, since the standard template
+    // carries no packet identity at all — can never outrank validated,
+    // packet-bound continuity on timestamp alone. Only a handover that
+    // verifies its own packet pointer and content fingerprint against this
+    // resolved folder re-enters the freshness comparison.
+    const handoverVerified = handoverSnapshot !== null
+      && handoverBindingVerifies(handoverSnapshot.content, resolution.resolvedSpecFolder, continuitySnapshot);
+    const primary = handoverVerified
+      ? (continuitySignal.updatedAtMs > handoverSignal.updatedAtMs ? continuitySignal : handoverSignal)
+      : continuitySignal;
     const secondary = primary === handoverSignal ? continuitySignal : handoverSignal;
-    hints.push(`Compared folder-local handover.md and _memory.continuity; selected ${primary.source} as the fresher resume source.`);
+    hints.push(handoverVerified
+      ? `Compared folder-local handover.md and _memory.continuity; selected ${primary.source} as the fresher resume source.`
+      : 'Preferred validated packet-bound continuity over an unbound handover.md regardless of timestamp.');
     return synthesizeResult({
       primary,
       secondary,

@@ -1,6 +1,6 @@
 ---
 title: "Resume: Continuity Ladder"
-description: "Builds the resume ladder that recovers packet continuity from handover.md, then _memory.continuity, then the canonical spec docs."
+description: "Builds the resume ladder that recovers packet continuity, trusting a validated packet-bound _memory.continuity record over an unbound handover.md before falling back to the canonical spec docs."
 trigger_phrases:
   - "resume ladder"
   - "session resume"
@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/resume/` owns the packet-recovery ladder used by session-resume flows. It resolves the active spec folder, follows a phase parent's last-active-child pointer to a valid child when present, and rebuilds packet continuity in one fixed precedence: `handover.md`, then `_memory.continuity`, then the canonical spec docs.
+`lib/resume/` owns the packet-recovery ladder used by session-resume flows. It resolves the active spec folder, follows a phase parent's last-active-child pointer to a valid child when present, and rebuilds packet continuity by trust rather than by document order: a validated, packet-bound `_memory.continuity` record outranks an unbound `handover.md` regardless of which is newer; a handover only competes on freshness when it declares its own matching packet pointer and a content fingerprint that verifies against the continuity document. Either document alone wins outright; both absent falls back to the canonical spec docs.
 
 Current state:
 
@@ -37,8 +37,9 @@ Current state:
                                        │                            │
                                        ▼                            ▼
                              ┌─────────────────────────────────────────────┐
-                             │ read handover.md, _memory.continuity,       │
-                             │ and canonical spec docs, in that precedence │
+                             │ read handover.md and _memory.continuity;    │
+                             │ trust ranks over document order; canonical  │
+                             │ spec docs are the fallback when both absent │
                              └─────────────────────┬───────────────────────┘
                                                     ▼
                                        ┌─────────────────────────┐
@@ -58,7 +59,7 @@ resume-ladder.ts → lib/discovery/, lib/continuity/thin-continuity-record.ts,
 
 | File | Responsibility |
 |---|---|
-| `resume-ladder.ts` | Resolves the target spec folder, redirects a phase parent to its active child, reads the handover/continuity/spec-doc precedence, and builds the size-budgeted restore panel. |
+| `resume-ladder.ts` | Resolves the target spec folder, redirects a phase parent to its active child, trust-ranks handover.md against `_memory.continuity` (falling back to canonical spec docs when both are absent), and builds the size-budgeted restore panel. |
 
 ---
 
@@ -89,8 +90,8 @@ Main flow:
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ read handover.md → _memory.continuity →  │
-│ canonical spec docs, first match wins    │
+│ trust-rank handover.md vs continuity;    │
+│ spec docs are the fallback if both absent│
 └──────────────────────────────────────────┘
                   │
                   ▼
