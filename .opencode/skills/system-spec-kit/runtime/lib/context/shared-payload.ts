@@ -5,11 +5,12 @@
 // shared by startup, recovery, and compaction surfaces.
 
 import { assertNever } from '../utils/exhaustiveness.js';
-import type { UnicodeRuntimeFingerprint } from '@spec-kit/shared/unicode-normalization';
 // Pull the sanitizer from the neutral utils seam instead of the
 // advisor renderer module. Cross-cutting payload code should depend inward
 // on `lib/utils/`; the renderer keeps the implementation.
 import { sanitizeSkillLabel } from '../utils/skill-label-sanitizer.js';
+
+import type { UnicodeRuntimeFingerprint } from '@spec-kit/shared/unicode-normalization';
 
 export const SHARED_PAYLOAD_KIND_VALUES = [
   'startup',
@@ -42,11 +43,13 @@ export const SHARED_PAYLOAD_TRUST_STATE_VALUES = [
 
 export type SharedPayloadTrustState = (typeof SHARED_PAYLOAD_TRUST_STATE_VALUES)[number];
 
+/** Whether a value is a valid shared payload trust state. */
 export function isSharedPayloadTrustState(value: unknown): value is SharedPayloadTrustState {
   return typeof value === 'string'
     && SHARED_PAYLOAD_TRUST_STATE_VALUES.includes(value as SharedPayloadTrustState);
 }
 
+/** Validate and narrow a value to a shared payload trust state, throwing otherwise. */
 export function assertSharedPayloadTrustState(value: unknown): SharedPayloadTrustState {
   if (!isSharedPayloadTrustState(value)) {
     throw new Error(
@@ -138,12 +141,14 @@ export const MULTIPLIER_REQUIRED_FIELDS = [
 
 export type MultiplierRequiredField = (typeof MULTIPLIER_REQUIRED_FIELDS)[number];
 
+/** Schema-versioned provenance and status metadata attached to a publishable metric. */
 export interface PublicationMethodologyMetadata {
   schemaVersion: string;
   methodologyStatus: PublicationMethodologyStatus;
   provenance: string[];
 }
 
+/** A metric value paired with its certainty, authority, and publication methodology. */
 export interface PublishableMetricField<T = unknown> {
   key: string;
   value: T;
@@ -152,12 +157,14 @@ export interface PublishableMetricField<T = unknown> {
   methodology: PublicationMethodologyMetadata;
 }
 
+/** Parser provenance, evidence status, and freshness authority for one structural claim. */
 export interface StructuralTrust {
   parserProvenance: ParserProvenance;
   evidenceStatus: EvidenceStatus;
   freshnessAuthority: FreshnessAuthority;
 }
 
+/** How central a file is in the dependency graph, with a caution note for high-degree files. */
 export interface HotFileBreadcrumb {
   degree: number;
   changeCarefullyReason: string;
@@ -176,6 +183,7 @@ export const SHARED_PAYLOAD_SOURCE_KIND_VALUES = [
 
 export type SharedPayloadSourceKind = (typeof SHARED_PAYLOAD_SOURCE_KIND_VALUES)[number];
 
+/** A structured source reference: which kind of source produced a section, and its path. */
 export interface SharedPayloadSourceRef {
   kind: SharedPayloadSourceKind;
   path: string;
@@ -229,6 +237,7 @@ export const EDGE_EVIDENCE_CLASS_VALUES = [
 
 export type EdgeEvidenceClass = (typeof EDGE_EVIDENCE_CLASS_VALUES)[number];
 
+/** Evidence class and numeric confidence attached to a graph edge. */
 export interface GraphEdgeEnrichment {
   edgeEvidenceClass: EdgeEvidenceClass;
   numericConfidence: number;
@@ -244,6 +253,7 @@ export type MultiplierAuthorityField = Pick<PublishableMetricField<number>, 'cer
 
 export type MultiplierAuthorityFields = Partial<Record<MultiplierRequiredField, MultiplierAuthorityField | null>>;
 
+/** One titled content section of a shared payload envelope, with its source and trust metadata. */
 export interface SharedPayloadSection {
   key: string;
   title: string;
@@ -263,6 +273,7 @@ export const SHARED_PAYLOAD_PRODUCER_VALUES = [
 
 export type SharedPayloadProducer = (typeof SHARED_PAYLOAD_PRODUCER_VALUES)[number];
 
+/** Producer, trust state, and source refs describing where a shared payload envelope came from. */
 export interface SharedPayloadProvenance {
   producer: SharedPayloadProducer;
   sourceSurface: string;
@@ -274,6 +285,7 @@ export interface SharedPayloadProvenance {
   runtimeFingerprint?: UnicodeRuntimeFingerprint;
 }
 
+/** Selection bookkeeping for a pre-merge shared payload: what was chosen from, and why. */
 export interface PreMergeSelectionMetadata {
   strategy: 'pre-merge';
   selectedFrom: string[];
@@ -284,6 +296,7 @@ export interface PreMergeSelectionMetadata {
   antiFeedbackGuards: string[];
 }
 
+/** The full shared payload contract: kind, sections, provenance, and optional metadata or selection. */
 export interface SharedPayloadEnvelope {
   kind: SharedPayloadKind;
   summary: string;
@@ -314,6 +327,7 @@ const ADVISOR_METADATA_ALLOWED_KEYS = [
   'status',
 ] as const;
 
+/** Thrown when a structural trust payload is missing required fields or carries a collapsed scalar. */
 export class StructuralTrustPayloadError extends Error {
   readonly code = 'STRUCTURAL_TRUST_PAYLOAD_INVALID';
 
@@ -335,31 +349,37 @@ function formatAllowedValues(values: readonly string[]): string {
   return values.join(', ');
 }
 
+/** Whether a value is a valid shared payload envelope kind. */
 export function isSharedPayloadKind(value: unknown): value is SharedPayloadKind {
   return typeof value === 'string'
     && SHARED_PAYLOAD_KIND_VALUES.includes(value as SharedPayloadKind);
 }
 
+/** Whether a value is a valid shared payload certainty. */
 export function isSharedPayloadCertainty(value: unknown): value is SharedPayloadCertainty {
   return typeof value === 'string'
     && SHARED_PAYLOAD_CERTAINTY_VALUES.includes(value as SharedPayloadCertainty);
 }
 
+/** Whether a value is a valid shared payload producer. */
 export function isSharedPayloadProducer(value: unknown): value is SharedPayloadProducer {
   return typeof value === 'string'
     && SHARED_PAYLOAD_PRODUCER_VALUES.includes(value as SharedPayloadProducer);
 }
 
+/** Whether a value is a valid shared payload source kind. */
 export function isSharedPayloadSourceKind(value: unknown): value is SharedPayloadSourceKind {
   return typeof value === 'string'
     && SHARED_PAYLOAD_SOURCE_KIND_VALUES.includes(value as SharedPayloadSourceKind);
 }
 
+/** Whether a value is a valid advisor envelope freshness. */
 export function isAdvisorEnvelopeFreshness(value: unknown): value is AdvisorEnvelopeFreshness {
   return typeof value === 'string'
     && ADVISOR_ENVELOPE_FRESHNESS_VALUES.includes(value as AdvisorEnvelopeFreshness);
 }
 
+/** Whether a value is a valid advisor envelope status. */
 export function isAdvisorEnvelopeStatus(value: unknown): value is AdvisorEnvelopeStatus {
   return typeof value === 'string'
     && ADVISOR_ENVELOPE_STATUS_VALUES.includes(value as AdvisorEnvelopeStatus);
@@ -410,26 +430,31 @@ function assertAdvisorEnvelopeStatus(value: unknown): AdvisorEnvelopeStatus {
   return value;
 }
 
+/** Whether a value is a valid parser provenance. */
 export function isParserProvenance(value: unknown): value is ParserProvenance {
   return typeof value === 'string'
     && PARSER_PROVENANCE_VALUES.includes(value as ParserProvenance);
 }
 
+/** Whether a value is a valid detector provenance. */
 export function isDetectorProvenance(value: unknown): value is DetectorProvenance {
   return typeof value === 'string'
     && DETECTOR_PROVENANCE_VALUES.includes(value as DetectorProvenance);
 }
 
+/** Whether a value is a valid evidence status. */
 export function isEvidenceStatus(value: unknown): value is EvidenceStatus {
   return typeof value === 'string'
     && EVIDENCE_STATUS_VALUES.includes(value as EvidenceStatus);
 }
 
+/** Whether a value is a valid freshness authority. */
 export function isFreshnessAuthority(value: unknown): value is FreshnessAuthority {
   return typeof value === 'string'
     && FRESHNESS_AUTHORITY_VALUES.includes(value as FreshnessAuthority);
 }
 
+/** Validate and narrow a value to a shared payload certainty, throwing otherwise. */
 export function assertSharedPayloadCertainty(value: unknown): SharedPayloadCertainty {
   if (!isSharedPayloadCertainty(value)) {
     throw new Error(
@@ -448,6 +473,7 @@ function assertParserProvenance(value: unknown): ParserProvenance {
   return value;
 }
 
+/** Validate and narrow a value to a detector provenance, throwing otherwise. */
 export function assertDetectorProvenance(value: unknown): DetectorProvenance {
   if (!isDetectorProvenance(value)) {
     throw new Error(
@@ -505,6 +531,7 @@ function assertAdvisorSkillLabel(value: unknown): string | null {
   return sanitized;
 }
 
+/** Validate an advisor envelope metadata payload, rejecting unknown or missing keys. */
 export function validateAdvisorEnvelopeMetadata(value: unknown): AdvisorEnvelopeMetadata {
   if (!isRecord(value)) {
     throw new Error('advisor envelope metadata requires an object payload.');
@@ -557,6 +584,7 @@ function assertSanitizedSourcePath(path: string): string {
   return sanitized;
 }
 
+/** Validate one source ref entry (string or structured), rejecting prompt-derived paths. */
 export function validateSharedPayloadSourceRef(value: unknown): SharedPayloadSourceRefValue {
   if (typeof value === 'string') {
     if (!isNonEmptyString(value)) {
@@ -591,11 +619,13 @@ function validateSharedPayloadSourceRefs(value: unknown): SharedPayloadSourceRef
   return value.map((sourceRef) => validateSharedPayloadSourceRef(sourceRef));
 }
 
+/** Whether a value is a valid measurement authority. */
 export function isMeasurementAuthority(value: unknown): value is MeasurementAuthority {
   return typeof value === 'string'
     && MEASUREMENT_AUTHORITY_VALUES.includes(value as MeasurementAuthority);
 }
 
+/** Validate and narrow a value to a measurement authority, throwing otherwise. */
 export function assertMeasurementAuthority(value: unknown): MeasurementAuthority {
   if (!isMeasurementAuthority(value)) {
     throw new Error(
@@ -605,6 +635,7 @@ export function assertMeasurementAuthority(value: unknown): MeasurementAuthority
   return value;
 }
 
+/** Map a detector provenance value onto the nearest parser provenance axis. */
 export function detectorProvenanceToParserProvenance(
   value: DetectorProvenance,
 ): ParserProvenance {
@@ -616,6 +647,7 @@ export function detectorProvenanceToParserProvenance(
   return assertParserProvenance(value);
 }
 
+/** Build a structural trust triple from evidence and freshness plus a detector or fallback parser provenance. */
 export function buildStructuralTrustFromProvenance(input: {
   evidenceStatus: EvidenceStatus;
   freshnessAuthority: FreshnessAuthority;
@@ -633,6 +665,7 @@ export function buildStructuralTrustFromProvenance(input: {
   });
 }
 
+/** Validate and normalize a publication methodology metadata payload. */
 export function createPublicationMethodologyMetadata(
   metadata: PublicationMethodologyMetadata,
 ): PublicationMethodologyMetadata {
@@ -665,6 +698,7 @@ export function createPublicationMethodologyMetadata(
   };
 }
 
+/** Validate and normalize a publishable metric field. */
 export function createPublishableMetricField<T>(
   field: PublishableMetricField<T>,
 ): PublishableMetricField<T> {
@@ -694,6 +728,7 @@ function assertStructuralTrustPayloadRecord(
   return payload as Record<string, unknown>;
 }
 
+/** Validate a structural trust payload, rejecting collapsed scalar fields and requiring all three axes. */
 export function validateStructuralTrustPayload(
   payload: unknown,
   options: { label?: string } = {},
@@ -726,10 +761,12 @@ export function validateStructuralTrustPayload(
   };
 }
 
+/** Validate a structural trust object and return it unchanged. */
 export function makeStructuralTrust(input: StructuralTrust): StructuralTrust {
   return validateStructuralTrustPayload(input, { label: 'Structural trust' });
 }
 
+/** Derive a structural trust triple from a structural-context status (ready, stale, or other). */
 export function buildStructuralContextTrust(
   structuralContext: { status: string; detectorProvenance?: unknown },
 ): StructuralTrust {
@@ -763,6 +800,7 @@ export function buildStructuralContextTrust(
   });
 }
 
+/** Validate a structural trust payload and spread its fields onto an existing object. */
 export function attachStructuralTrustFields<T extends object>(
   payload: T,
   trustPayload: unknown,
@@ -775,11 +813,13 @@ export function attachStructuralTrustFields<T extends object>(
   };
 }
 
+/** Whether a value is a valid graph edge evidence class. */
 export function isEdgeEvidenceClass(value: unknown): value is EdgeEvidenceClass {
   return typeof value === 'string'
     && EDGE_EVIDENCE_CLASS_VALUES.includes(value as EdgeEvidenceClass);
 }
 
+/** Validate and narrow a value to a graph edge evidence class, throwing otherwise. */
 export function assertEdgeEvidenceClass(value: unknown): EdgeEvidenceClass {
   if (!isEdgeEvidenceClass(value)) {
     throw new Error(
@@ -789,6 +829,7 @@ export function assertEdgeEvidenceClass(value: unknown): EdgeEvidenceClass {
   return value;
 }
 
+/** Validate a graph edge enrichment payload. */
 export function validateGraphEdgeEnrichment(
   value: unknown,
   options: { label?: string } = {},
@@ -813,6 +854,7 @@ export function validateGraphEdgeEnrichment(
   };
 }
 
+/** Validate a graph edge enrichment payload and spread its fields onto an existing object. */
 export function attachGraphEdgeEnrichment<T extends object>(
   payload: T,
   enrichment: unknown,
@@ -825,6 +867,7 @@ export function attachGraphEdgeEnrichment<T extends object>(
   };
 }
 
+/** Whether a structural trust object is fully resolved, with no axis left at 'unknown'. */
 export function isStructuralTrustComplete(value: StructuralTrust | null | undefined): value is StructuralTrust {
   if (!value) {
     return false;
@@ -836,6 +879,7 @@ export function isStructuralTrustComplete(value: StructuralTrust | null | undefi
     && trust.freshnessAuthority !== 'unknown';
 }
 
+/** Whether every required multiplier field carries provider-counted authority. */
 export function canPublishMultiplier(fields: MultiplierAuthorityFields): boolean {
   return MULTIPLIER_REQUIRED_FIELDS.every((fieldName) => {
     const field = fields[fieldName];
@@ -843,6 +887,7 @@ export function canPublishMultiplier(fields: MultiplierAuthorityFields): boolean
   });
 }
 
+/** Format a list of label and certainty pairs into one summary string. */
 export function summarizeCertaintyContract(entries: Array<{
   label: string;
   certainty: SharedPayloadCertainty;
@@ -860,6 +905,7 @@ function truncateInline(text: string, maxChars: number = SUMMARY_MAX_CHARS): str
   return `${normalized.slice(0, maxChars - 3).trimEnd()}...`;
 }
 
+/** Render an unknown value as a truncated, single-line summary string. */
 export function summarizeUnknown(value: unknown, maxChars: number = SUMMARY_MAX_CHARS): string {
   if (value === null || value === undefined) {
     return 'None';
@@ -923,6 +969,7 @@ function validateSharedPayloadMetadata(
   return undefined;
 }
 
+/** Build and validate a shared payload envelope from its parts, deriving a summary when none is given. */
 export function createSharedPayloadEnvelope(input: {
   kind: SharedPayloadKind;
   sections: SharedPayloadSection[];
@@ -998,12 +1045,13 @@ export function coerceSharedPayloadEnvelope(value: unknown): SharedPayloadEnvelo
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// Canonical mapping from structural freshness
-// to trust state. 'empty' and 'missing' indicate the graph scope has
-// no data (→ 'absent'); 'error' indicates the scope is unreachable
-// (→ 'unavailable'). Callers that only observe structural status
-// (no error axis) should use trustStateFromStructuralStatus instead.
+/**
+ * Canonical mapping from structural freshness to trust state. 'empty' and
+ * 'missing' indicate the graph scope has no data (-> 'absent'); 'error'
+ * indicates the scope is unreachable (-> 'unavailable'). Callers that only
+ * observe structural status (no error axis) should use
+ * {@link trustStateFromStructuralStatus} instead.
+ */
 export function trustStateFromGraphState(
   graphState: 'ready' | 'stale' | 'empty' | 'missing' | 'error',
 ): SharedPayloadTrustState {
@@ -1022,6 +1070,7 @@ export function trustStateFromGraphState(
   }
 }
 
+/** Map a structural status (ready, stale, or missing) to a shared payload trust state. */
 export function trustStateFromStructuralStatus(
   status: 'ready' | 'stale' | 'missing',
 ): SharedPayloadTrustState {
@@ -1037,6 +1086,7 @@ export function trustStateFromStructuralStatus(
   }
 }
 
+/** Derive a trust state from a cached timestamp and staleness threshold. */
 export function trustStateFromCache(
   cachedAt: string,
   maxAgeMs: number,
@@ -1049,6 +1099,7 @@ export function trustStateFromCache(
   return nowMs - cachedAtMs >= maxAgeMs ? 'stale' : 'cached';
 }
 
+/** Build pre-merge selection metadata, deduplicating the selectedFrom list. */
 export function createPreMergeSelectionMetadata(input: {
   selectedFrom: string[];
   fileCount: number;

@@ -1,26 +1,24 @@
 ---
-title: "Config: Memory and Spec Document Classification"
-description: "Configuration modules for memory decay, spec document path detection and rollout flags."
+title: "Config: Spec Document Paths and Capability Flags"
+description: "Canonical spec-document and graph-metadata path classification, spec-folder identity resolution, and the runtime's capability-flag vocabulary."
 trigger_phrases:
-  - "memory types"
-  - "half-life configuration"
-  - "type inference"
+  - "spec document paths"
+  - "capability flags"
+  - "spec folder identity"
 ---
 
-# Config: Memory and Spec Document Classification
+# Config: Spec Document Paths and Capability Flags
 
 ---
 
 ## 1. OVERVIEW
 
-`lib/config/` owns memory type configuration, spec document path detection, document type inference and memory roadmap capability flags. These modules convert file paths, frontmatter, tiers and runtime environment variables into typed configuration values used by indexing and retrieval.
+`lib/config/` owns two things: the canonical spec-document and graph-metadata path classification (including spec-folder identity resolution), and the runtime's capability-flag vocabulary. Domain modules read these instead of re-deriving path rules or re-parsing an environment variable's tristate.
 
 Current state:
 
-- `memory-types.ts` defines memory decay types, spec document configs and document type helpers.
-- `type-inference.ts` resolves memory types from content, paths, tiers and keywords.
-- `spec-doc-paths.ts` filters canonical spec documents and graph metadata paths, including `<packet>/review/review-report.md` and backfilled iteration-pack metadata files.
-- `capability-flags.ts` resolves memory roadmap rollout state and parser environment names.
+- `spec-doc-paths.ts` names the canonical spec-document filename set, classifies which paths count as spec documents or `graph-metadata.json`, excludes working-artifact segments (`scratch/`, `temp/`, iteration dirs), and resolves a folder's specs-root-relative identity (`specFolder`, `parentId`, `childrenIds`).
+- `capability-flags.ts` resolves each `SPECKIT_*` capability flag's tristate (opt-in / opt-out / default) from `process.env`, re-reading on every call so tests can flip a flag mid-run. It has no imports of its own.
 
 ---
 
@@ -29,153 +27,120 @@ Current state:
 ```text
 ╭──────────────────────────────────────────────╮
 │ lib/config/                                  │
-│ Classification and rollout settings          │
+│ Path classification and capability flags     │
 ╰──────────────────────────────────────────────╯
                     │
                     ▼
 ┌──────────────────────────────────────────────┐
 │ spec-doc-paths.ts                            │
-│ Path normalization and spec document gates   │
+│ Path normalization, spec/graph-metadata      │
+│ gates, and spec-folder identity resolution   │
 └──────────────┬───────────────────────────────┘
                │
                ▼
 ┌──────────────────────────────────────────────┐
-│ memory-types.ts                              │
-│ Decay config and document type config        │
-└──────────────┬───────────────────────────────┘
-               │
-               ▼
-┌──────────────────────────────────────────────┐
-│ type-inference.ts                            │
-│ Frontmatter, tier, path and keyword inference│
-└──────────────────────────────────────────────┘
+│ ../utils/index-scope.ts                      │
+│ shouldIndexForMemory() exclusion gate        │
+└────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────┐
 │ capability-flags.ts                          │
-│ Runtime roadmap and parser flags             │
+│ SPECKIT_* tristate resolution (no imports)   │
 └──────────────────────────────────────────────┘
 ```
 
 ---
 
-## 3. DIRECTORY TREE
+## 3. KEY FILES
 
-```text
-config/
-├── capability-flags.ts       # Runtime rollout flags and parser env name
-├── memory-types.ts           # Memory decay and spec document config
-├── spec-doc-paths.ts         # Spec document path gates and extraction helpers
-├── type-inference.ts         # Memory type inference from content and metadata
-└── README.md                 # Developer orientation
-```
-
----
-
-## 4. KEY FILES
-
-| File | Role |
+| File | Responsibility |
 |---|---|
-| `memory-types.ts` | Defines `MemoryTypeName`, half-lives, document types, spec document configs and validation helpers |
-| `type-inference.ts` | Applies ordered inference from explicit frontmatter, spec document paths, importance tiers, path patterns and keywords |
-| `spec-doc-paths.ts` | Normalizes spec paths, excludes working artifacts, accepts canonical review reports and iteration metadata, and extracts spec folder labels |
-| `capability-flags.ts` | Resolves roadmap flags and exports `SPECKIT_PARSER_ENV` |
+| `spec-doc-paths.ts` | Canonical spec-document filename set, spec/graph-metadata path gates, working-artifact exclusion, and `resolveSpecFolderIdentity()` / `SpecFolderIdentityError`. |
+| `capability-flags.ts` | `parseFlagTristate()` plus one documented env var and one derived boolean function per graduated capability (identity/merge safety, generated-metadata grandfather mode, the drift gate, generator hardening, idempotent description writes, the status-completion-consistency gate). |
 
 Imports used by this folder:
 
-| Import | Used By | Purpose |
+| Import | Used by | Purpose |
 |---|---|---|
-| `./spec-doc-paths.js` | `memory-types.ts`, `type-inference.ts` | Spec document path checks |
-| `../utils/index-scope.js` | `spec-doc-paths.ts` | Memory indexing scope gate |
-| `../cognitive/rollout-policy.js` | `capability-flags.ts` | Feature flag rollout check |
+| `../utils/index-scope.js` | `spec-doc-paths.ts` | `shouldIndexForMemory()` exclusion gate |
+| `node:fs` | `spec-doc-paths.ts` | Direct-child enumeration for `resolveSpecFolderIdentity()` |
+
+`capability-flags.ts` imports nothing; every flag reads `process.env` directly.
 
 ---
 
-## 5. BOUNDARIES AND FLOW
+## 4. BOUNDARIES AND FLOW
 
 Allowed imports:
 
-- Config modules may import path gates, index scope checks and rollout policy helpers.
-- Indexing, retrieval and scoring callers may import public config helpers directly from the owning file.
+- Config modules may import root-level utility seams (`../utils/`) only.
+- Domain modules import the specific config file that owns the surface they need.
 
 Disallowed ownership:
 
-- Config does not read or write memory rows.
-- Config does not apply ranking scores. It only returns typed classification data.
+- Config does not read or write generated JSON files. It only classifies paths and resolves flags.
+- Config does not decide a rule verdict; `lib/validation/` owns that.
 
-Inference flow:
+Path-classification flow:
 
 ```text
-Memory or spec document metadata
+Candidate filesystem path
           │
           ▼
-Normalize path and reject excluded working artifacts
+Normalize path (forward slashes, lowercase)
           │
           ▼
-Resolve spec document type when path is canonical
+Reject excluded segments (scratch/, temp/, memory/, iterations working files)
           │
           ▼
-Apply explicit frontmatter, tier, path or keyword inference
+Classify as spec document, graph-metadata.json, or neither
           │
           ▼
-Return memory type, document type and confidence
+Extract the owning spec folder (specs-root-relative)
 ```
 
 ---
 
-## 6. ENTRYPOINTS
+## 5. ENTRYPOINTS
 
-Memory type imports:
-
-```typescript
-import {
-  getDefaultType,
-  getHalfLife,
-  getHalfLifeForType,
-  getSpecDocumentConfig,
-  getValidTypes,
-  inferDocumentTypeFromPath,
-  isDecayEnabled,
-  isValidType,
-  resolveSpecDocumentType,
-  validateHalfLifeConfig,
-} from './memory-types.js'
-
-import type {
-  DocumentType,
-  MemoryTypeConfig,
-  MemoryTypeName,
-  SpecDocumentConfig,
-} from './memory-types.js'
-```
-
-Inference and path imports:
+Spec-document and identity imports:
 
 ```typescript
 import {
-  extractSpecFolderFromGraphMetadataPath,
-  extractSpecFolderFromSpecDocumentPath,
-  inferMemoryType,
-  inferMemoryTypesBatch,
+  SPEC_DOCUMENT_FILENAMES,
+  GRAPH_METADATA_FILENAME,
+  canClassifyAsSpecDocument,
+  canClassifyAsGraphMetadataPath,
   matchesSpecDocumentPath,
-  normalizeSpecPath,
-  validateInferredType,
-} from './type-inference.js'
+  isGraphMetadataPath,
+  extractSpecFolderFromSpecDocumentPath,
+  extractSpecFolderFromGraphMetadataPath,
+  resolveSpecFolderIdentity,
+  SpecFolderIdentityError,
+} from './spec-doc-paths.js'
+
+import type { SpecFolderIdentity } from './spec-doc-paths.js'
 ```
 
-Public surfaces:
+Capability-flag imports:
 
-| File | Export Groups |
-|---|---|
-| `memory-types.ts` | `MEMORY_TYPES`, `HALF_LIVES_DAYS`, `PATH_TYPE_PATTERNS`, `KEYWORD_TYPE_MAP`, `SPEC_DOCUMENT_CONFIGS`, helper functions and public types |
-| `type-inference.ts` | Inference helpers, batch inference, detailed suggestions and validation |
-| `spec-doc-paths.ts` | Path normalization, spec document gates, graph metadata gates and spec folder extraction |
-| `capability-flags.ts` | Roadmap flag helpers, `CAPABILITY_ENV`, `SPECKIT_PARSER_ENV` and public rollout types |
+```typescript
+import {
+  parseFlagTristate,
+  isIdentityMergeSafetyEnabled,
+  isGeneratedMetadataGrandfatherEnabled,
+  isGeneratedMetadataDriftGateEnabled,
+  isGeneratorHardeningEnabled,
+  isIdempotentDescriptionWritesEnabled,
+  isStatusCompletionConsistencyGateEnabled,
+} from './capability-flags.js'
+```
 
-There is no source `index.ts` in this folder. Import from the file that owns the needed surface.
+There is no `index.ts` in this folder. Import from the file that owns the needed surface.
 
 ---
 
-## 7. VALIDATION
+## 6. VALIDATION
 
 Run from the repository root after editing this README:
 
@@ -183,14 +148,14 @@ Run from the repository root after editing this README:
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/lib/config/README.md
 ```
 
-Use package TypeScript checks when changing any `.ts` module in this folder.
+Use the package TypeScript checks (`npm run typecheck` from `runtime/`) when changing either module in this folder.
 
 ---
 
-## 8. RELATED
+## 7. RELATED
 
 | Resource | Relationship |
 |---|---|
 | `../README.md` | Parent library map |
-| `../cognitive/README.md` | Rollout policy and decay consumers |
-| `../scoring/README.md` | Scoring consumers for type and tier data |
+| `../../ENV-REFERENCE.md` | Documented defaults for every `SPECKIT_*` capability flag |
+| `../validation/README.md` | The rule set that reads these flags and path classifications |

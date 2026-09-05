@@ -1,7 +1,9 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Rollout Policy
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Feature flag governance // hygiene-ok
+// Central home for the rollout/feature-flag vocabulary so callers share the
+// same bucket math and enablement semantics instead of each re-deriving it.
+
 const DEFAULT_ROLLOUT_PERCENT = 100;
 
 /** Read the global rollout percentage from SPECKIT_ROLLOUT_PERCENT (0-100, default 100).

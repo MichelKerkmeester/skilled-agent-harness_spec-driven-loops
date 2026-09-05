@@ -18,7 +18,7 @@
 /**
  * Snapshot the current values of the given process.env keys.
  *
- * @param keys env keys to capture
+ * @param keys - env keys to capture
  * @returns restore() function that resets each key to its captured value
  */
 export function snapshotEnv(keys: readonly string[]): () => void {

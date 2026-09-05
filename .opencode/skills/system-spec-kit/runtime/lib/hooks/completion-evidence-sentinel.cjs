@@ -57,9 +57,9 @@ const completionState = require('../../../scripts/lib/completion-state.cjs');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Mirrors quality-loop.ts's private COMPLETION_CLAIM_PATTERN verbatim. That
-// module does not export the constant, and this phase is barred from editing
-// mcp_server .ts sources or rebuilding dist to add an export, so the value is
+// Mirrors the runtime hook's private COMPLETION_CLAIM_PATTERN verbatim. That
+// module does not export the constant, and this sentinel must stay a plain
+// CommonJS file with no compiled-TypeScript dependency, so the value is
 // duplicated here rather than imported. Keep both copies byte-identical.
 const COMPLETION_CLAIM_PATTERN = /\b(completed|resolved|fixed|finished|shipped|released|deployed|implemented|occurred|happened)\b/i;
 

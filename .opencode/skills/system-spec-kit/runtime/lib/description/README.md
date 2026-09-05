@@ -12,12 +12,13 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/description/` owns the typed helpers for reading, merging and repairing spec-folder description metadata. It separates canonical generated fields from authored optional fields so updates can refresh derived data without dropping user-authored metadata.
+`lib/description/` owns the typed helpers for reading, merging, summarizing and repairing spec-folder description metadata. It separates canonical generated fields from authored optional fields so updates can refresh derived data without dropping user-authored metadata, and it holds the one shared synopsis extractor both generated summary fields derive from.
 
 Current state:
 
 - Defines the accepted `description.json` shape with `zod` schemas.
 - Preserves known authored keys and unknown pass-through keys during merges.
+- Derives the `description` and `causal_summary` generated fields from one shared extractor and precedence, so the two fields cannot drift from different readings of the same `spec.md`.
 - Provides a small repair helper that applies canonical overrides to partial metadata.
 
 ---
@@ -35,12 +36,17 @@ description-merge.ts
   | merges existing, canonical and incoming records
   v
 repair.ts
-  | exposes merge-preserving repair for partial records
+  | exposes merge-preserving repair for partial records (test-only consumer today)
   v
 description metadata result
+
+packet-synopsis.ts
+  | derives description/causal_summary from spec.md with one shared precedence
+  v
+consumed by lib/search/folder-discovery.ts and lib/graph/generated-metadata-drift.ts
 ```
 
-Dependency direction: `repair.ts` -> `description-merge.ts` -> `description-schema.ts`.
+Dependency direction: `repair.ts` -> `description-merge.ts` -> `description-schema.ts`. `packet-synopsis.ts` -> `../parsing/content-normalizer.ts` (independent of the merge/schema chain).
 
 ---
 
@@ -50,6 +56,7 @@ Dependency direction: `repair.ts` -> `description-merge.ts` -> `description-sche
 description/
 +-- description-merge.ts   # Merge order and preservation rules
 +-- description-schema.ts  # Schemas, reserved keys and issue formatting
++-- packet-synopsis.ts     # Shared synopsis extractor for description + causal_summary
 +-- repair.ts              # Merge-preserving repair wrapper
 `-- README.md
 ```
@@ -62,7 +69,8 @@ description/
 |---|---|
 | `description-schema.ts` | Declares canonical derived keys, authored keys, tracking keys and `zod` schemas. |
 | `description-merge.ts` | Combines existing metadata, canonical fields and incoming values with explicit preservation reports. |
-| `repair.ts` | Reuses the merge path for partial records that need canonical overrides. |
+| `packet-synopsis.ts` | Derives a packet synopsis from `spec.md` (Overview paragraph, then Problem/Purpose sentence, then frontmatter description, then title, then first body line), clamped to a per-field length limit. Consumed by `lib/search/folder-discovery.ts` and `lib/graph/generated-metadata-drift.ts`. |
+| `repair.ts` | Reuses the merge path for partial records that need canonical overrides. Test-only consumer today (`tests/description/repair*.vitest.ts`); no production caller yet. |
 
 ---
 
@@ -70,7 +78,7 @@ description/
 
 | Boundary | Rule |
 |---|---|
-| Imports | May import `zod` and sibling description modules. |
+| Imports | May import `zod`, sibling description modules, and `../parsing/content-normalizer.ts`. |
 | Exports | Exposes schema types, merge helpers and repair helpers. |
 | Ownership | Owns metadata shape and merge behavior. It does not scan folders or write files by itself. |
 
@@ -103,18 +111,20 @@ return merged record plus key reports
 | `pickCanonicalDescriptionFields` | Function | Extract canonical derived and authored fields. |
 | `mergeDescription` | Function | Merge existing, canonical and incoming metadata. |
 | `mergePreserveRepair` | Function | Repair a partial record while preserving authored fields. |
+| `derivePacketSynopsis` | Function | Derive the `description` or `causal_summary` synopsis from `spec.md` content. |
+| `truncateSynopsisAtWordBoundary` | Function | Clamp a synopsis to a length limit without cutting the final word. |
 
 ---
 
 ## 7. VALIDATION
 
-Run from the repository root.
+Run from `.opencode/skills/system-spec-kit/runtime`.
 
 ```bash
-npm test -- --runInBand
+npx vitest run tests/description tests/folder-discovery.vitest.ts
 ```
 
-Expected result: Description metadata tests and TypeScript checks pass.
+Expected result: description-merge, repair, and folder-discovery (which exercises `packet-synopsis.ts`) suites pass.
 
 ---
 

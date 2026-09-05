@@ -8,6 +8,7 @@ const SEGMENT_END = '(/|$)';
 export type IndexScopePolicySource = 'default' | 'scan-argument';
 export type IncludedSkillsList = 'all' | 'none' | string[];
 
+/** Resolved code-graph inclusion policy: which `.opencode/` folders and globs are indexed. */
 export interface IndexScopePolicy {
   includeSkills: boolean;
   includedSkillsList: IncludedSkillsList;
@@ -27,6 +28,7 @@ export interface IndexScopePolicy {
   excludedPluginGlobs: readonly string[];
 }
 
+/** Per-call overrides accepted by {@link shouldIndexForCodeGraph} when resolving its scope policy. */
 export interface ResolveIndexScopePolicyInput {
   includeSkills?: boolean | string[];
   includeAgents?: boolean;
@@ -209,6 +211,7 @@ function matchesOpencodeFolder(filePath: string, folder: string): boolean {
   );
 }
 
+/** Whether a path sits outside the z-future/external staging segments the memory index excludes. */
 export function shouldIndexForMemory(absolutePath: string): boolean {
   return !matchesAnyPattern(absolutePath, EXCLUDED_FOR_MEMORY);
 }
@@ -222,6 +225,7 @@ export function isExcludedFromGeneratedMetadata(absolutePath: string): boolean {
   return matchesAnyPattern(absolutePath, EXCLUDED_FOR_GENERATED_METADATA);
 }
 
+/** Whether a path should be included in the code graph under the given (or freshly resolved) scope policy. */
 export function shouldIndexForCodeGraph(
   absolutePath: string,
   policyInput?: IndexScopePolicy | ResolveIndexScopePolicyInput,

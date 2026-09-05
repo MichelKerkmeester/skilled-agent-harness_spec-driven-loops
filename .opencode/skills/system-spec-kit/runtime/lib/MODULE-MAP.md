@@ -34,8 +34,7 @@ The inventory is derived from the files in each folder and from the import edges
 - Key files:
   - `rollout-policy.ts` — reads `SPECKIT_ROLLOUT_PERCENT` (0-100, default 100) and clamps it.
 - Primary consumers:
-  - `lib/config/capability-flags.ts`
-  - `lib/search/search-flags.ts`
+  - None in production `lib/` code today; only its own test (`tests/rollout-policy.vitest.ts`) imports it. Kept as the shared rollout-bucket implementation for a future percentage-gated flag.
 
 ### `config/`
 
@@ -47,7 +46,7 @@ The inventory is derived from the files in each folder and from the import edges
   - `api/index.ts`
   - `handlers/memory-index-discovery.ts`
   - `lib/validation/orchestrator.ts`, `lib/validation/generated-metadata-integrity.ts`
-  - `lib/search/folder-discovery.ts`, `lib/search/search-flags.ts`
+  - `lib/search/folder-discovery.ts`, `lib/graph/graph-metadata-parser.ts`, `lib/spec/is-phase-parent.ts`, `lib/resume/resume-ladder.ts`
 
 ### `context/`
 
@@ -75,7 +74,7 @@ The inventory is derived from the files in each folder and from the import edges
   - `description-schema.ts` — Zod schema plus the canonical derived and reserved key sets.
   - `description-merge.ts` — merges incoming fields over authored ones and reports which keys were overridden.
   - `packet-synopsis.ts` — the one shared extractor behind both generated summary fields, so `description` and `causal_summary` cannot drift from the same `spec.md`.
-  - `repair.ts` — merge-preserving repair over a partial `description.json`.
+  - `repair.ts` — merge-preserving repair over a partial `description.json`. Test-only consumer today (`tests/description/repair*.vitest.ts`); no production caller yet.
 - Primary consumers:
   - `lib/search/folder-discovery.ts`
   - `lib/graph/graph-metadata-parser.ts`, `lib/graph/generated-metadata-drift.ts`
@@ -143,14 +142,12 @@ The inventory is derived from the files in each folder and from the import edges
 
 ### `search/`
 
-- Purpose: Owns per-folder description discovery and the runtime flag surface. Despite the folder name, it is now a discovery and flags module, not a retrieval engine.
+- Purpose: Owns per-folder description discovery. Despite the folder name, it is a discovery module, not a retrieval engine; runtime gates now live in `config/capability-flags.ts`.
 - Key files:
   - `folder-discovery.ts` — resolves a packet's description from its canonical documents so callers read one merged answer rather than guessing from a filename. Also owns `extractKeywords`, `slugifyFolderName` and `getSpecsBasePaths`.
-  - `search-flags.ts` — default-on runtime gates; set `SPECKIT_<FLAG>=false` to disable a graduated feature.
 - Primary consumers:
   - `api/index.ts`
   - `lib/graph/graph-metadata-parser.ts`
-  - `lib/config/capability-flags.ts`
 
 ### `spec/`
 
@@ -168,7 +165,7 @@ The inventory is derived from the files in each folder and from the import edges
 - Key files:
   - `transaction-manager.ts` — atomic write and pending-file helpers.
 - Primary consumers:
-  - `handlers/` and `lib/` modules that must not leave a half-written file behind
+  - None in production `api/`, `core/`, `handlers/`, or `lib/` code today; only `tests/transaction-manager*.vitest.ts` exercise it directly. Kept as the shared atomic-write primitive for a future filesystem-writing caller.
 
 ### `templates/`
 
@@ -232,7 +229,9 @@ Target rule:
 - These may be imported by any other `lib/` module, by handlers, and by hooks.
 - They should not import sibling domain modules.
 
-Observed exception: `config/capability-flags.ts` imports `cognitive/rollout-policy.ts` and `search/search-flags.ts`. It is a flag aggregator rather than a pure root, and this is the one root-level inversion in the tree.
+`config/spec-doc-paths.ts` imports `utils/index-scope.ts`; both are roots, so this is a
+root-to-root import rather than an inversion. `config/capability-flags.ts` has no imports
+of its own — every flag reads `process.env` directly.
 
 ### 3.2 Foundation Modules
 

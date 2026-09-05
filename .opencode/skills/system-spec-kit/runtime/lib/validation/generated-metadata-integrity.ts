@@ -15,19 +15,23 @@ import { perFolderDescriptionSchema } from '../description/description-schema.js
 import { SOURCE_FINGERPRINT_DOCSET, computeSourceFingerprintForFolder, parseCompletionPct, hasOpenTaskItems } from '../graph/graph-metadata-parser.js';
 import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
 
+/** Validation rule id reported for the generated-metadata integrity gate. */
 export const GENERATED_METADATA_INTEGRITY_RULE = 'GENERATED_METADATA_INTEGRITY' as const;
 
 /** Violation code for a derived.status:'complete' folder whose completion evidence disagrees. */
 export const STATUS_COMPLETE_EVIDENCE_MISMATCH_CODE = 'STATUS_COMPLETE_EVIDENCE_MISMATCH' as const;
 
+/** Which of a spec folder's two generated JSON files a violation belongs to. */
 export type GeneratedMetadataFile = 'graph-metadata.json' | 'description.json';
 
+/** One schema, path-prefix, or status-enum violation found in a generated metadata file. */
 export interface GeneratedMetadataViolation {
   file: GeneratedMetadataFile;
   code: string;
   message: string;
 }
 
+/** Result of validating a spec folder's generated metadata files against the integrity contract. */
 export interface GeneratedMetadataIntegrityReport {
   rule: typeof GENERATED_METADATA_INTEGRITY_RULE;
   /** Whether any generated file was present to validate. */
@@ -35,6 +39,7 @@ export interface GeneratedMetadataIntegrityReport {
   violations: GeneratedMetadataViolation[];
 }
 
+/** An integrity report resolved to a validator-consumable pass/error/info status and message. */
 export interface ResolvedIntegrityStatus {
   rule: typeof GENERATED_METADATA_INTEGRITY_RULE;
   status: 'pass' | 'error' | 'info';

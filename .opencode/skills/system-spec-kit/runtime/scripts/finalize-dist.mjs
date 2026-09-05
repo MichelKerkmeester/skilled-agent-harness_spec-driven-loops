@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Finalize Dist                                                           ║
+// ║ MODULE: Finalize Dist — post-build dist verification and freshness stamp ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import fs from 'node:fs';

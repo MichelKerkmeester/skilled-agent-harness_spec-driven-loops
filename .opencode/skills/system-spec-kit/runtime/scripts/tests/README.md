@@ -1,109 +1,45 @@
 ---
-title: "system spec kit runtime scripts tests: Code README"
-description: "Code-facing README for .opencode/skills/system-spec-kit/runtime/scripts/tests."
+title: "Scripts Tests"
+description: "Test suite for the runtime's package-local build and test-runner scripts."
 trigger_phrases:
-  - "system-spec-kit runtime/scripts/tests"
-  - "code README"
+  - "scripts tests"
+  - "resource map extractor test"
 ---
 
-# system spec kit runtime scripts tests
-
-Test code and validation helpers for this skill area.
+# Scripts Tests
 
 ---
 
 ## 1. OVERVIEW
 
-### Purpose
-
-This README documents the code-bearing folder `.opencode/skills/system-spec-kit/runtime/scripts/tests` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
-
-### Usage
-
-Use this file to identify the folder boundary, the likely verification path, and the local source files that need sk-code conventions. Keep behavior details in source comments and higher-level workflow details in the owning `SKILL.md`.
-
-### Key Statistics
-
-| Metric | Value |
-|---|---:|
-| Code files | 1 |
-| README scope | Direct files in this folder |
-| Audit context | Internal validation notes |
+`runtime/scripts/tests/` holds the test suite for the scripts in `runtime/scripts/` (the build finalizer and the bounded test runners). It is a flat folder with a single test file today.
 
 ---
 
-## 2. QUICK START
+## 2. KEY FILES
 
-**Step 1: Confirm the owner.**
-
-Start with `.opencode/skills/system-spec-kit/SKILL.md` for runtime routing and workflow boundaries.
-
-**Step 2: Inspect the local code.**
-
-```bash
-rg --files .opencode/skills/system-spec-kit/runtime/scripts/tests
-```
-
-Expected result: the command lists the source files summarized below.
-
-**Step 3: Verify changes.**
-
-Run the owning package test command from the nearest package boundary.
-
----
-
-## 3. FEATURES
-
-| Feature | What It Does |
+| File | Responsibility |
 |---|---|
-| Folder boundary | Documents direct code files under `runtime/scripts/tests`. |
-| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
-| Verification handoff | Records the expected owner and audit packet for follow-up work. |
+| `resource-map-extractor.vitest.ts` | Test suite exercising resource-map extraction behavior used by the runtime's scripts. |
 
 ---
 
-## 4. STRUCTURE
+## 3. BOUNDARIES
 
-| Path | Purpose |
+| Boundary | Rule |
 |---|---|
-| `resource-map-extractor.vitest.ts` | TS source file in this folder. |
+| Scope | This folder holds tests only. Implementation lives in the sibling `runtime/scripts/*.mjs` files it exercises. |
+| Ownership | Test content in this folder is owned by whichever agent maintains `runtime/scripts/`; this README documents structure and validation only. |
 
 ---
 
-## 5. CONFIGURATION
+## 4. VALIDATION
 
-| Setting | Default | Purpose |
-|---|---|---|
-| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
-| README scope | Direct folder | This file documents this folder, not sibling folders. |
+Known gap: `resource-map-extractor.vitest.ts` is not matched by any `include` glob in `runtime/vitest.config.ts` or the repository-root `vitest.config.ts`. Both target `runtime/tests/`, `scripts/tests/` under the sibling `scripts/` package, or `tests/`; none of those patterns cover `runtime/scripts/tests/`, so `npm test` and `npm run test:core` never run this file. Confirming behavior here requires either a temporary `include` override passed to Vitest, or exercising `../../../scripts/resource-map/extract-from-evidence.cjs` (the module this suite covers) directly. Widening `vitest.config.ts`'s `include` list is a test-selection behavior change outside a documentation-only edit; route it through whichever change is touching that file.
 
 ---
 
-## 6. USAGE EXAMPLES
+## 5. RELATED
 
-**Audit this folder**
-
-```text
-User request: Check .opencode/skills/system-spec-kit/runtime/scripts/tests for sk-code and README coverage.
-Skill routing: sk-code plus sk-doc.
-Expected output: Findings recorded in the 026 audit report.
-```
-
----
-
-## 7. TROUBLESHOOTING
-
-| What You See | Cause | Fix |
-|---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the 026 audit check. |
-| Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
-
----
-
-## 8. RELATED DOCUMENTS
-
-| Document | Purpose |
-|---|---|
-| [`system-spec-kit/SKILL.md`](../../../SKILL.md) | Runtime instructions for the owning skill. |
-| [`sk-code/SKILL.md`](../../../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill-readme-template.md`](../../../../sk-doc/sk-create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |
+- [`../README.md`](../README.md)
+- [`../../README.md`](../../README.md)

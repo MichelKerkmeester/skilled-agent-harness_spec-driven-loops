@@ -1,8 +1,10 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Vitest Stress Config
 // ───────────────────────────────────────────────────────────────
+
+import path from 'node:path';
+
 import { defineConfig } from 'vitest/config';
-import path from 'path';
 
 const STRESS_TIMEOUT_MS = 240_000;
 const TEARDOWN_TIMEOUT_MS = 1_000;

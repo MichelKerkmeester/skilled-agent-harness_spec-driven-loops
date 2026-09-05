@@ -24,6 +24,8 @@ Current responsibilities:
 - Expose transaction metrics so a caller can observe write volume and recovery activity.
 - Stay importable from the lightest possible caller: the helpers take a caller-supplied path and never reach into a domain layer.
 
+No production module in `api/`, `core/`, `handlers/`, or `lib/` calls into this file today; only `tests/transaction-manager*.vitest.ts` exercise it directly. It is kept as the shared atomic-write primitive for the next caller that must not leave a half-written file behind.
+
 ---
 
 ## 2. ARCHITECTURE

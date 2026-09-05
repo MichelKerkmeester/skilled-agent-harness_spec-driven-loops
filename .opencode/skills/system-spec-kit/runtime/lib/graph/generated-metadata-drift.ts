@@ -18,6 +18,7 @@ import {
   type SynopsisField,
 } from '../description/packet-synopsis.js';
 
+/** Validation rule id reported for the generated-metadata drift gate. */
 export const GENERATED_METADATA_DRIFT_RULE = 'GENERATED_METADATA_DRIFT' as const;
 
 // The packet docs whose content the synopsis can read. spec.md is the one the precedence
@@ -36,12 +37,14 @@ const SYNOPSIS_SOURCE_DOCS = [
   'resource-map.md',
 ] as const;
 
+/** One generated synopsis field whose stored value no longer matches a fresh re-derivation. */
 export interface DriftedSynopsisField {
   field: SynopsisField;
   stored: string;
   fresh: string;
 }
 
+/** Result of comparing a spec folder's stored synopsis fields against a fresh re-derivation. */
 export interface GeneratedMetadataDriftReport {
   rule: typeof GENERATED_METADATA_DRIFT_RULE;
   /** Whether a generated field plus a readable spec.md were present to compare. */
@@ -54,6 +57,7 @@ export interface GeneratedMetadataDriftReport {
   readErrors: string[];
 }
 
+/** A drift report resolved to a validator-consumable pass/error/info status and message. */
 export interface ResolvedDriftStatus {
   rule: typeof GENERATED_METADATA_DRIFT_RULE;
   status: 'pass' | 'error' | 'info';

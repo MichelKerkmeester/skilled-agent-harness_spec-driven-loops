@@ -34,7 +34,7 @@ templates/
 
 ## 4. ENTRYPOINTS
 
-- `resolveLevelContract(level)` returns a `LevelContract` for levels `1`, `2`, `3`, `3+` or `phase`.
+- `resolveLevelContract(level)` returns a `LevelContract` for levels `1`, `2`, `3`, `3+`, `phase`, `review` or `research`.
 - `serializeLevelContract(contract)` converts `Map` fields into plain objects for JSON-safe consumers.
 
 ---
@@ -49,11 +49,13 @@ templates/
 
 ## 6. VALIDATION
 
-Run from the repository root:
+Run from `.opencode/skills/system-spec-kit/scripts`:
 
 ```bash
-npm test -- --runInBand
+npx vitest run tests/level-contract-resolver.vitest.ts tests/scaffold-golden-snapshots.vitest.ts
 ```
+
+Expected result: the level-contract-resolver and scaffold-golden-snapshot suites pass.
 
 ---
 

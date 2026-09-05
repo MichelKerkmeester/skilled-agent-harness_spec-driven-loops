@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Entity Extractor
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Auto entity extraction // hygiene-ok
 // Pure-TS rule-based extraction, zero npm dependencies.
 import fs from 'node:fs';
 
@@ -32,8 +31,8 @@ export function normalizeEntityName(name: string): string {
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
-
 // ───────────────────────────────────────────────────────────────
+
 /** A single entity extracted from memory content. */
 export interface ExtractedEntity {
   /** The raw entity text as found in content. */
@@ -44,11 +43,13 @@ export interface ExtractedEntity {
   frequency: number;
 }
 
+/** Scope and mode for a {@link rebuildAutoEntities} pass. */
 export interface RebuildAutoEntitiesOptions {
   specFolder?: string | null;
   dryRun?: boolean;
 }
 
+/** Counts describing the outcome of a {@link rebuildAutoEntities} pass. */
 export interface RebuildAutoEntitiesResult {
   dryRun: boolean;
   specFolder: string | null;
@@ -72,6 +73,7 @@ interface CatalogEntityRow {
   entity_type: ExtractedEntity['type'];
 }
 
+/** Counts describing the outcome of a {@link refreshAutoEntitiesForMemory} call. */
 export interface RefreshAutoEntitiesForMemoryResult {
   removed: number;
   stored: number;
@@ -80,8 +82,8 @@ export interface RefreshAutoEntitiesForMemoryResult {
 
 // ───────────────────────────────────────────────────────────────
 // 2. EXTRACTION RULES
-
 // ───────────────────────────────────────────────────────────────
+
 /**
  * A declarative entity-extraction rule: a regex applied over content whose
  * captured group becomes an entity of `type`. Keeping rules as data (rather
@@ -246,8 +248,8 @@ export function extractEntities(content: string): ExtractedEntity[] {
 
 // ───────────────────────────────────────────────────────────────
 // 3. FILTERING
-
 // ───────────────────────────────────────────────────────────────
+
 /**
  * Filter entities through denylist + length checks.
  *
@@ -277,8 +279,8 @@ export function filterEntities(entities: ExtractedEntity[]): ExtractedEntity[] {
 
 // ───────────────────────────────────────────────────────────────
 // 4. STORAGE
-
 // ───────────────────────────────────────────────────────────────
+
 /**
  * Store extracted entities in the memory_entities table.
  *
@@ -318,6 +320,10 @@ export function storeEntities(
   }
 }
 
+/**
+ * Replace one memory's auto-generated entity rows with a freshly extracted set,
+ * rebuilding the entity catalog only when rows were actually removed.
+ */
 export function refreshAutoEntitiesForMemory(
   db: Database.Database,
   memoryId: number,
@@ -365,8 +371,8 @@ export function refreshAutoEntitiesForMemory(
 
 // ───────────────────────────────────────────────────────────────
 // 5. ENTITY CATALOG
-
 // ───────────────────────────────────────────────────────────────
+
 /**
  * Upsert entities into entity_catalog with alias normalization.
  *
@@ -609,7 +615,10 @@ export function rebuildAutoEntities(
   };
 }
 
+// ───────────────────────────────────────────────────────────────
 // 6. INTERNAL HELPERS (exported for testing)
+// ───────────────────────────────────────────────────────────────
+
 /**
  * Deduplicate raw extraction results by normalized text.
  * Entries with the same normalized form are merged, summing frequencies.

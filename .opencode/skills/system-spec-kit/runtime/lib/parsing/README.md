@@ -1,26 +1,25 @@
 ---
-title: "Parsing Modules"
-description: "Markdown parsing, trigger matching and content normalization for memory and spec-document ingestion."
+title: "Parsing: Markdown Content Normalization"
+description: "Markdown-to-plaintext normalization shared by packet-synopsis extraction and per-folder description discovery."
 trigger_phrases:
-  - "memory parser"
-  - "trigger matcher"
   - "content normalizer"
+  - "strip yaml frontmatter"
+  - "normalize content for embedding"
 ---
 
-# Parsing Modules
+# Parsing: Markdown Content Normalization
 
 ---
 
 ## 1. OVERVIEW
 
-`runtime/lib/parsing/` converts markdown and metadata into structured inputs for memory save, search, trigger matching and indexing flows.
+`runtime/lib/parsing/` normalizes raw markdown content before it feeds embedding-style text extraction or keyword-style tokenization. Raw markdown carries structural noise (YAML frontmatter, HTML comment anchors, pipe-table syntax, fence markers, checkbox notation) that degrades the quality of downstream text derivation, so this folder strips it once behind two composed entry points.
 
 Current state:
 
-- Memory file parsing extracts title, trigger phrases, tier, context type, content hash, anchors, causal links and document type from a markdown file.
-- Content normalization strips frontmatter, anchors, comments, fences, tables, lists and heading markers so downstream retrieval indexing sees clean text.
-- Trigger matching ranks indexed phrases against prompt text with cached, word-boundary-aware comparisons.
-- Helpers stay deterministic and side-effect-light except for explicit file reads.
+- `content-normalizer.ts` is the only implementation file in this folder.
+- Individual strip/normalize primitives (frontmatter, anchors, HTML comments, code fences, tables, lists, headings) compose into two pipelines: one for embedding-style text, one for BM25-style keyword text. The BM25 pipeline currently delegates to the same steps as the embedding pipeline; a separate entry point exists so BM25-specific adjustments can diverge later without touching the embedding path.
+- Consumed by `lib/description/packet-synopsis.ts` (strips frontmatter before deriving a synopsis) and `lib/search/folder-discovery.ts`.
 
 ---
 
@@ -28,9 +27,7 @@ Current state:
 
 ```text
 parsing/
-+-- memory-parser.ts        # Markdown metadata, anchor, causal-link and document-type extraction
-+-- content-normalizer.ts   # Markdown-to-plaintext normalization for retrieval indexing
-+-- trigger-matcher.ts      # Cached, word-boundary-aware trigger-phrase matching
++-- content-normalizer.ts   # Markdown-to-plaintext normalization primitives and pipelines
 `-- README.md
 ```
 
@@ -40,9 +37,7 @@ parsing/
 
 | File | Responsibility |
 |---|---|
-| `memory-parser.ts` | Extracts metadata, anchors, causal links, content hashes and document type from markdown files, with encoding-aware file reads. |
-| `content-normalizer.ts` | Removes frontmatter, anchors, comments, fences, tables, lists and heading markers before embedding and BM25 tokenization. |
-| `trigger-matcher.ts` | Matches prompt text against stored trigger phrases using normalized text, cached lookups and word-boundary-aware comparisons. |
+| `content-normalizer.ts` | Strips frontmatter, anchors, HTML comments, code fences, tables, lists and heading markers, and composes them into `normalizeContentForEmbedding` and `normalizeContentForBM25`. |
 
 ---
 
@@ -50,43 +45,54 @@ parsing/
 
 | Boundary | Rule |
 |---|---|
-| Inputs | Markdown file paths, markdown content and prompt text plus indexed trigger phrases. |
-| Outputs | Parsed metadata, normalized text and ranked phrase matches with cache and debug data. |
-| Discovery | Candidate-file discovery belongs in handlers and indexing helpers, not this directory. |
-| Persistence | Embeddings, BM25 storage and graph writes are downstream responsibilities outside this folder. |
-| Determinism | Helpers must stay deterministic and side-effect-light except for explicit file reads. |
+| Inputs | Raw markdown content as a string. |
+| Outputs | Normalized plaintext, or a single-purpose strip result (e.g. frontmatter-free content). |
+| Discovery | Candidate-file discovery and reading belong in `handlers/` and `lib/search/`, not this folder. |
+| Persistence | This folder performs no file I/O and no database writes. |
+| Determinism | Every function is a pure string transform with no side effects. |
 
-Parsing and script IO:
+Normalization pipeline (`normalizeContentForEmbedding`, reused by `normalizeContentForBM25`):
 
-| Flow | Input | Output |
-|---|---|---|
-| Memory file parsing | Markdown file path | Parsed title, trigger phrases, tier, context type, content hash, anchors, causal links and document type |
-| Content normalization | Markdown content | Text suitable for embedding and BM25 tokenization |
-| Trigger matching | Prompt text and indexed trigger phrases | Ranked memory matches plus cache and debug metadata |
+```text
+raw markdown
+  -> stripYamlFrontmatter
+  -> stripAnchors
+  -> stripHtmlComments
+  -> stripCodeFences
+  -> normalizeMarkdownTables
+  -> normalizeMarkdownLists
+  -> normalizeHeadings
+  -> collapse excess whitespace
+  -> normalized plaintext
+```
 
 ---
 
 ## 5. ENTRYPOINTS
 
-| Entrypoint | Type | Purpose |
-|---|---|---|
-| `parseMemoryFile` | Function (`memory-parser.ts`) | Parse a markdown file into indexable metadata. |
-| `readFileWithEncoding` | Function (`memory-parser.ts`) | Read markdown with encoding handling for parser callers. |
-| `extractAnchors` / `validateAnchors` | Functions (`memory-parser.ts`) | Expose anchor parsing and validation helpers. |
-| `normalizeContentForEmbedding` | Function (`content-normalizer.ts`) | Run the full normalization pipeline for embedding text. |
-| `normalizeContentForBM25` | Function (`content-normalizer.ts`) | Prepare markdown text for BM25 keyword indexing. |
-| `matchTriggerPhrases` / `matchTriggerPhrasesWithStats` | Functions (`trigger-matcher.ts`) | Match prompt text against stored trigger phrases, optionally with cache and timing stats. |
+| Entrypoint | Purpose |
+|---|---|
+| `stripYamlFrontmatter(content)` | Remove a leading `---\n...\n---` frontmatter block. |
+| `stripAnchors(content)` | Remove HTML comment anchor markers. |
+| `stripHtmlComments(content)` | Remove remaining HTML comments. |
+| `stripCodeFences(content)` | Drop fence markers and language id, keeping the code body. |
+| `normalizeMarkdownTables(content)` | Extract cell text from pipe tables. |
+| `normalizeMarkdownLists(content)` | Drop bullet and checkbox notation. |
+| `normalizeHeadings(content)` | Drop `#` heading markers. |
+| `normalizeContentForEmbedding(content)` | Run the full pipeline for embedding-style text. |
+| `normalizeContentForBM25(content)` | Run the same pipeline for BM25-style keyword text. |
 
 ---
 
 ## 6. VALIDATION
 
-Run parser and runtime validation from the repository root:
+Run from `.opencode/skills/system-spec-kit/runtime`.
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime run typecheck
-npm --prefix .opencode/skills/system-spec-kit/runtime test
+npx vitest run tests/content-normalizer.vitest.ts
 ```
+
+Expected result: the content-normalizer suite passes.
 
 For README-only edits, run the document validator:
 
@@ -100,6 +106,6 @@ Expected result: the validator exits with code `0`.
 
 ## 7. RELATED
 
+- [`../description/README.md`](../description/README.md)
 - [`../search/README.md`](../search/README.md)
-- [`../storage/README.md`](../storage/README.md)
 - [`../../handlers/README.md`](../../handlers/README.md)

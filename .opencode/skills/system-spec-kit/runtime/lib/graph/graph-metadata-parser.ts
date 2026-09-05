@@ -115,10 +115,12 @@ type GraphMetadataValidationFailure = {
   errors: GraphMetadataValidationError[];
 };
 
+/** Outcome of validating raw graph-metadata.json content: the typed result, or its errors. */
 export type GraphMetadataValidationResult =
   | GraphMetadataValidationSuccess
   | GraphMetadataValidationFailure;
 
+/** Options for {@link refreshGraphMetadataForSpecFolder}. */
 export interface GraphMetadataRefreshOptions {
   now?: Date | string;
   statusOverride?: string | null;
@@ -126,12 +128,14 @@ export interface GraphMetadataRefreshOptions {
   prune?: boolean;
 }
 
+/** Result of refreshing a spec folder's graph-metadata.json: where it was written and whether it was newly created. */
 export interface GraphMetadataRefreshResult {
   filePath: string;
   metadata: GraphMetadata;
   created: boolean;
 }
 
+/** A children_ids entry that no longer resolves to a folder on disk, flagged for pruning. */
 export interface GraphMetadataPruneCandidate {
   childId: string;
   targetPath: string;
@@ -743,6 +747,7 @@ function projectDocForFingerprint(relativePath: string, content: string): [strin
  */
 export const SOURCE_FINGERPRINT_DOCSET = 3;
 
+/** Compute the `sha256:`-prefixed source fingerprint over an already-collected set of packet docs. */
 export function computeSourceFingerprintFromDocs(
   docs: Array<{ relativePath: string; content: string }>,
 ): string {
@@ -799,6 +804,7 @@ function resolveParentId(specFolder: string): string | null {
   return segments.slice(0, -1).join('/');
 }
 
+/** Resolve the specs-root-relative children_ids for a spec folder from its on-disk phase children. */
 export function resolveChildrenIds(specFolderPath: string, specFolder: string): string[] {
   // With the hardening flag on, the derived children resolve through the one shared
   // listPhaseChildren enumeration that isPhaseParent also consumes, so the parent
@@ -1543,6 +1549,7 @@ function targetSpecFolderExists(targetPath: string): boolean {
   }
 }
 
+/** Find children_ids entries in the existing metadata that no longer resolve to a folder on disk. */
 export function collectChildrenPruneCandidates(
   specFolderPath: string,
   existing: GraphMetadata | null,
@@ -1835,6 +1842,7 @@ export function refreshGraphMetadataForSpecFolder(
   };
 }
 
+/** Alias for {@link refreshGraphMetadataForSpecFolder}, taking an already-resolved folder path. */
 export function refreshGraphMetadata(
   specFolderPath: string,
   options: GraphMetadataRefreshOptions = {},
@@ -1921,6 +1929,7 @@ export type {
   ResolvedDriftStatus,
 } from './generated-metadata-drift.js';
 
+/** Internal helpers exported for targeted unit testing only; not part of the graph-metadata API. */
 export const __testables = {
   readDoc,
   deriveStatus,

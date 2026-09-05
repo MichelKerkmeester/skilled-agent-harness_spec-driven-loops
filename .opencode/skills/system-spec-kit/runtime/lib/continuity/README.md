@@ -1,28 +1,30 @@
 ---
-title: "Continuity: Thin Record Contract"
-description: "Thin continuity record parsing, validation, serialization, and frontmatter update helpers."
+title: "Continuity: Thin Record and Authored Snapshot"
+description: "Thin continuity record parsing, validation and serialization, plus the authored snapshot writer that refreshes handover.md and implementation-summary.md."
 trigger_phrases:
   - "thin continuity"
   - "continuity record"
   - "_memory.continuity"
+  - "authored continuity snapshot"
 ---
 
-# Continuity: Thin Record Contract
+# Continuity: Thin Record and Authored Snapshot
 
-> Thin `_memory.continuity` parsing, validation, serialization, and markdown frontmatter update helpers.
+> Thin `_memory.continuity` parsing, validation, serialization, plus the snapshot writer that composes packet-local recovery markdown from it.
 
 ---
 
 ## 1. OVERVIEW
 
-`lib/continuity/` owns the thin `_memory.continuity` record contract used in spec-folder markdown frontmatter. It parses frontmatter, validates compact recovery fields, normalizes the record, enforces the byte budget, and writes the record back into markdown without taking over resume orchestration.
+`lib/continuity/` owns the thin `_memory.continuity` record contract used in spec-folder markdown frontmatter, and the authored snapshot writer built on top of it. Together they parse frontmatter, validate compact recovery fields, normalize the record, enforce its byte budget, and refresh the recovery-context block embedded in a packet's `handover.md` and `implementation-summary.md`.
 
 Current state:
 
-- `thin-continuity-record.ts` is the only implementation file in this folder.
+- `thin-continuity-record.ts` defines and validates the record contract.
+- `authored-continuity-snapshot.ts` composes a snapshot from the resume ladder plus the thin record and upserts it into packet-local markdown; it does not create memory rows or index mutations (its result always reports `createdMemoryRecords: 0` and `indexMutations: 0`).
 - The record keeps packet recovery compact with `packet_pointer`, timestamps, action fields, blockers, key files, optional `session_dedup`, completion percentage, and question IDs.
 - The byte budget is `THIN_CONTINUITY_MAX_BYTES`, currently `2048` bytes for the serialized `_memory.continuity` envelope.
-- The canonical recovery ladder remains `handover.md` → `_memory.continuity` → spec docs. This folder owns the middle record format only.
+- The canonical recovery ladder remains `handover.md` -> `_memory.continuity` -> spec docs. This folder owns the middle record format and the snapshot that keeps `handover.md` in sync with it.
 
 ---
 
@@ -33,6 +35,12 @@ Current state:
 │                    lib/continuity/                               │
 ╰──────────────────────────────────────────────────────────────────╯
 
+┌────────────────────┐      ┌─────────────────────────┐
+│ resume ladder       │ ───▶ │ authored-continuity-    │
+│ (lib/resume/)       │      │ snapshot.ts             │
+└─────────────────────┘      └────────────┬────────────┘
+                                           │
+                                           ▼
 ┌────────────────────┐      ┌─────────────────────────┐
 │ Markdown document  │ ───▶ │ extract frontmatter     │
 │ spec folder docs   │      │ _memory.continuity      │
@@ -46,15 +54,16 @@ Current state:
           │                                │
           ▼                                ▼
 ┌────────────────────┐      ┌─────────────────────────┐
-│ unchanged markdown │ ◀─── │ serialize or upsert     │
-│ body content       │      │ _memory.continuity YAML │
+│ handover.md and    │ ◀─── │ serialize or upsert     │
+│ implementation-    │      │ _memory.continuity YAML │
+│ summary.md         │      │ and recovery snapshot   │
 └────────────────────┘      └─────────────────────────┘
 
 Canonical recovery ladder:
 handover.md → _memory.continuity → spec docs
 ```
 
-Dependency direction: resume or save surfaces → `thin-continuity-record.ts` → markdown frontmatter parsing and serialization.
+Dependency direction: `authored-continuity-snapshot.ts` imports `lib/resume/resume-ladder.ts` and the sibling `thin-continuity-record.ts`. `thin-continuity-record.ts` has no local dependencies.
 
 ---
 
@@ -62,56 +71,79 @@ Dependency direction: resume or save surfaces → `thin-continuity-record.ts` �
 
 ```text
 continuity/
-+-- thin-continuity-record.ts  # Thin continuity types, validation, parsing, serialization, upsert helpers
-`-- README.md                  # Folder orientation
++-- authored-continuity-snapshot.ts  # Composes and upserts the recovery snapshot into handover.md / implementation-summary.md
++-- thin-continuity-record.ts        # Thin continuity types, validation, parsing, serialization, upsert helpers
+`-- README.md                        # Folder orientation
 ```
 
 Allowed dependency direction:
 
 ```text
-resume and save code → lib/continuity/thin-continuity-record.ts
-lib/continuity/thin-continuity-record.ts → local parsing and validation helpers
+resume and save code → lib/continuity/authored-continuity-snapshot.ts
+lib/continuity/authored-continuity-snapshot.ts → lib/resume/resume-ladder.ts, lib/continuity/thin-continuity-record.ts
+lib/continuity/thin-continuity-record.ts → local parsing and validation helpers only
 ```
 
 Disallowed dependency direction:
 
 ```text
 lib/continuity/ → session state persistence
-lib/continuity/ → resume ladder selection
+lib/continuity/ → resume ladder selection (it consumes the ladder, it does not build it)
 lib/continuity/ → spec document indexing
 ```
 
 ---
 
-## 4. DIRECTORY TREE
-
-```text
-continuity/
-+-- thin-continuity-record.ts  # Record contract and markdown frontmatter helpers
-`-- README.md                  # This file
-```
-
----
-
-## 5. KEY FILES
+## 4. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `thin-continuity-record.ts` | Defines `ThinContinuityRecord`, validates compact fields, serializes the `_memory.continuity` envelope, reads records from markdown or objects, and upserts records into markdown frontmatter. |
+| `authored-continuity-snapshot.ts` | Builds the resume ladder for a spec folder, derives continuity facets, and upserts the rendered recovery-context block into `handover.md` (always) and `implementation-summary.md` (when the record's continuity block needs an update). |
 
 ---
 
-## 6. BOUNDARIES AND FLOW
+## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
 |---|---|
-| Record ownership | Owns the shape and validation of `_memory.continuity`. |
-| Resume ownership | Does not choose active spec folders or traverse the full recovery ladder. |
+| Record ownership | `thin-continuity-record.ts` owns the shape and validation of `_memory.continuity`. |
+| Snapshot ownership | `authored-continuity-snapshot.ts` owns the packet-local recovery snapshot; it reads the resume ladder but does not choose which spec folder is active. |
 | Session ownership | Only validates optional `session_dedup` fields. It does not persist sessions. |
 | Frontmatter scope | Preserves existing frontmatter keys and replaces or inserts `_memory.continuity`. |
 | Budget | Keeps the serialized continuity envelope within `THIN_CONTINUITY_MAX_BYTES`. |
 
-Validation flow:
+Snapshot refresh flow:
+
+```text
+╭──────────────────────────────────────────╮
+│ refreshAuthoredContinuitySnapshot(opts)  │
+╰──────────────────────────────────────────╯
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ resolve spec folder path on disk         │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ buildResumeLadder() from lib/resume/     │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ buildContinuityFacets() + render markdown│
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+╭──────────────────────────────────────────╮
+│ upsert into handover.md and, when a      │
+│ continuity block already exists, into    │
+│ implementation-summary.md                │
+╰──────────────────────────────────────────╯
+```
+
+Thin-record validation flow:
 
 ```text
 ╭──────────────────────────────────────────╮
@@ -144,30 +176,13 @@ Validation flow:
 ╰──────────────────────────────────────────╯
 ```
 
-Write flow:
-
-```text
-upsertThinContinuityInMarkdown()
-        │
-        ▼
-parse current frontmatter
-        │
-        ▼
-writeThinContinuityRecord()
-        │
-        ▼
-mergeFrontmatterWithContinuity()
-        │
-        ▼
-markdown with updated _memory.continuity
-```
-
 ---
 
-## 7. ENTRYPOINTS
+## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
+| `refreshAuthoredContinuitySnapshot(options)` | Function | Refreshes the recovery-context snapshot embedded in `handover.md` and, when applicable, `implementation-summary.md`. |
 | `THIN_CONTINUITY_MAX_BYTES` | Constant | Maximum UTF-8 byte size for the serialized `_memory.continuity` envelope. |
 | `ThinContinuityRecord` | Type | Canonical thin record shape for packet-local recovery context. |
 | `validateThinContinuityRecord(input, options)` | Function | Normalizes and validates a continuity object, returning a record, YAML, byte count, or structured errors. |
@@ -178,7 +193,7 @@ markdown with updated _memory.continuity
 
 ---
 
-## 8. VALIDATION
+## 7. VALIDATION
 
 Run from the repository root unless noted.
 
@@ -198,7 +213,7 @@ For code changes in this folder, run the TypeScript or package-level checks used
 
 ---
 
-## 9. RELATED
+## 8. RELATED
 
 - [`../README.md`](../README.md)
 - [`../resume/README.md`](../resume/README.md)

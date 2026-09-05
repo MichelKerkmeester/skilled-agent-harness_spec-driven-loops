@@ -10,6 +10,10 @@ const INSTRUCTION_LABEL_PATTERN =
   /^\s*(SYSTEM|INSTRUCTION|IGNORE|EXECUTE)\s*[:=]|^\s*(<!--|```)|\b(ignore\s+(previous|all)\s+instructions|system\s*:|instruction\s*:|execute\s*:|developer\s*:|assistant\s*:)/i;
 const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 
+/**
+ * Fold, single-line, and strip a skill label of prompt-injection-shaped or control-character
+ * content, returning null when the result is empty or still looks like an embedded instruction.
+ */
 export function sanitizeSkillLabel(skillLabel: string | null | undefined): string | null {
   if (typeof skillLabel !== 'string') {
     return null;

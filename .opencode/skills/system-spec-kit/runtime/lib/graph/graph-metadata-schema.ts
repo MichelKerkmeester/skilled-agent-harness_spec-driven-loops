@@ -4,18 +4,25 @@
 
 import { z } from 'zod';
 
+/** Schema version stamped onto every graph-metadata.json file for forward compatibility checks. */
 export const GRAPH_METADATA_SCHEMA_VERSION = 1 as const;
+/** Document-type discriminator stamped onto graph-metadata.json. */
 export const GRAPH_METADATA_DOCUMENT_TYPE = 'graph_metadata' as const;
+/** Canonical filename for a spec folder's graph metadata document. */
 export const GRAPH_METADATA_FILENAME = 'graph-metadata.json' as const;
+/** Marker recorded on a graph metadata file upgraded from the legacy text-fallback format. */
 export const GRAPH_METADATA_MIGRATED_QUALITY_FLAG = 'graph_metadata_migrated' as const;
+/** Which generator pass produced the current save: description-only, graph-only, or both in one pass. */
 export const SAVE_LINEAGE_VALUES = ['description_only', 'graph_only', 'same_pass'] as const;
 
-// Closed set of legitimate lifecycle statuses for derived.status. The schema, the
-// status normalizer, the generated-metadata integrity rule and the parser re-derive
-// all read this one declaration so they agree on what counts as a valid status and
-// reject prose (multi-word narrative, em-dash summaries) at the boundary instead of
-// admitting any non-empty string. Single-token authored states (draft, placeholder,
-// blocked, deferred) stay admitted so a curated status is preserved, not narrative.
+/**
+ * Closed set of legitimate lifecycle statuses for derived.status. The schema, the
+ * status normalizer, the generated-metadata integrity rule and the parser re-derive
+ * all read this one declaration so they agree on what counts as a valid status and
+ * reject prose (multi-word narrative, em-dash summaries) at the boundary instead of
+ * admitting any non-empty string. Single-token authored states (draft, placeholder,
+ * blocked, deferred) stay admitted so a curated status is preserved, not narrative.
+ */
 export const GRAPH_METADATA_STATUS_VALUES = [
   'planned',
   'draft',
@@ -26,14 +33,19 @@ export const GRAPH_METADATA_STATUS_VALUES = [
   'complete',
   'unknown',
 ] as const;
+/** Maximum trigger phrases, key topics, key files, and entities a derived section may carry. */
 export const GRAPH_METADATA_TRIGGER_PHRASE_LIMIT = 12;
 export const GRAPH_METADATA_KEY_TOPIC_LIMIT = 12;
 export const GRAPH_METADATA_KEY_FILE_LIMIT = 20;
 export const GRAPH_METADATA_ENTITY_LIMIT = 24;
+/** Source of a migrated graph-metadata file; currently only the legacy text-fallback importer. */
 export type GraphMetadataMigrationSource = 'legacy';
+/** Which generator pass produced the current save. */
 export type SaveLineage = typeof SAVE_LINEAGE_VALUES[number];
+/** A packet's lifecycle status, drawn from {@link GRAPH_METADATA_STATUS_VALUES}. */
 export type GraphMetadataStatus = typeof GRAPH_METADATA_STATUS_VALUES[number];
 
+/** A structured reference from one packet to another (depends_on, supersedes, related_to). */
 export const packetReferenceSchema = z.object({
   packet_id: z.string().min(1),
   reason: z.string().min(1),
@@ -42,6 +54,7 @@ export const packetReferenceSchema = z.object({
   title: z.string().min(1).optional(),
 });
 
+/** A named entity discovered in a packet's documents, with the source that surfaced it. */
 export const graphEntityReferenceSchema = z.object({
   name: z.string().min(1),
   kind: z.string().min(1),
@@ -49,12 +62,14 @@ export const graphEntityReferenceSchema = z.object({
   source: z.string().min(1),
 });
 
+/** A packet's hand-authored relationships to other packets. */
 export const graphMetadataManualSchema = z.object({
   depends_on: z.array(packetReferenceSchema),
   supersedes: z.array(packetReferenceSchema),
   related_to: z.array(packetReferenceSchema),
 });
 
+/** Fields re-derived from a packet's source docs on every save. */
 export const graphMetadataDerivedSchema = z.object({
   trigger_phrases: z.array(z.string().min(1)).max(GRAPH_METADATA_TRIGGER_PHRASE_LIMIT),
   key_topics: z.array(z.string().min(1)).max(GRAPH_METADATA_KEY_TOPIC_LIMIT),
@@ -96,6 +111,7 @@ export const graphMetadataDerivedSchema = z.object({
   last_active_at: z.string().datetime({ offset: true }).nullable().optional(),
 });
 
+/** The strict graph-metadata.json contract: schema-version-stamped identity, manual relationships, and derived fields. */
 export const graphMetadataSchema = z.object({
   schema_version: z.literal(GRAPH_METADATA_SCHEMA_VERSION),
   packet_id: z.string().min(1),
@@ -118,10 +134,13 @@ export const graphMetadataSchema = z.object({
   derived: graphMetadataDerivedSchema,
 });
 
-// Reason and source stamped onto a manual relationship that was stored as a bare
-// packet-id string, matching the legacy text-file fallback so an upgraded reference is
-// indistinguishable from one the legacy importer produced.
+/**
+ * Reason and source stamped onto a manual relationship that was stored as a bare
+ * packet-id string, matching the legacy text-file fallback so an upgraded reference is
+ * indistinguishable from one the legacy importer produced.
+ */
 export const LEGACY_REFERENCE_REASON = 'Imported from legacy graph-metadata.json' as const;
+/** Source tag paired with {@link LEGACY_REFERENCE_REASON}. */
 export const LEGACY_REFERENCE_SOURCE = 'legacy' as const;
 
 // Legacy and hand-authored graph-metadata files stored manual relationships as bare
@@ -145,13 +164,15 @@ const graphMetadataManualLoadSchema = z.object({
   related_to: z.array(tolerantPacketReferenceSchema),
 });
 
-// Tolerant variant for loading an on-disk file whose derived.status may still be a
-// legacy non-enum string, or whose manual relationships are still bare strings. The
-// strict schema closes the enum and requires structured references for writes and for
-// the integrity rule, but a load must not crash on a legacy value: it reads the raw
-// status so a later re-derive can detect and drop it, and upgrades a string reference so
-// the relationship survives rather than being lost to the text fallback. Only the load
-// path uses this; everything that writes or validates goes through the strict schema.
+/**
+ * Tolerant variant for loading an on-disk file whose derived.status may still be a
+ * legacy non-enum string, or whose manual relationships are still bare strings. The
+ * strict schema closes the enum and requires structured references for writes and for
+ * the integrity rule, but a load must not crash on a legacy value: it reads the raw
+ * status so a later re-derive can detect and drop it, and upgrades a string reference so
+ * the relationship survives rather than being lost to the text fallback. Only the load
+ * path uses this; everything that writes or validates goes through the strict schema.
+ */
 export const graphMetadataLoadSchema = graphMetadataSchema.extend({
   manual: graphMetadataManualLoadSchema,
   derived: graphMetadataDerivedSchema.extend({
@@ -159,10 +180,15 @@ export const graphMetadataLoadSchema = graphMetadataSchema.extend({
   }),
 });
 
+/** A packet-to-packet reference, inferred from {@link packetReferenceSchema}. */
 export type PacketReference = z.infer<typeof packetReferenceSchema>;
+/** A named entity reference, inferred from {@link graphEntityReferenceSchema}. */
 export type GraphEntityReference = z.infer<typeof graphEntityReferenceSchema>;
+/** A packet's manual relationships, inferred from {@link graphMetadataManualSchema}. */
 export type GraphMetadataManual = z.infer<typeof graphMetadataManualSchema>;
+/** A packet's derived fields, inferred from {@link graphMetadataDerivedSchema}. */
 export type GraphMetadataDerived = z.infer<typeof graphMetadataDerivedSchema>;
+/** The full graph-metadata.json contract, inferred from {@link graphMetadataSchema}. */
 export type GraphMetadata = z.infer<typeof graphMetadataSchema>;
 
 /**

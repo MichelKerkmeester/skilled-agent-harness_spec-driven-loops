@@ -6,8 +6,8 @@
 //   1. It has ≥1 direct child matching ^[0-9]{3}-[a-z0-9-]+$
 //   2. ≥1 such child has spec.md OR description.json
 
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 
 import { isSpecLeafSegment } from '../config/spec-doc-paths.js';
 import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
@@ -63,12 +63,14 @@ export const PHASE_PARENT_ERROR_THRESHOLD = 40;
 
 export type PhaseParentHealthStatus = 'ok' | 'warning' | 'error' | 'not_phase_parent';
 
+/** Manifest-size advisory for a phase-parent folder, produced by {@link assessPhaseParentHealth}. */
 export interface PhaseParentHealth {
   childCount: number;
   status: PhaseParentHealthStatus;
   recommendation: string;
 }
 
+/** Whether a folder qualifies as a phase parent: at least one phase-child directory carries spec.md or description.json. */
 export function isPhaseParent(specFolderAbsPath: string): boolean {
   // With the hardening flag on, the classification reads the same listPhaseChildren
   // enumeration the derived children list maps, so the two can never disagree. With the
@@ -133,6 +135,7 @@ function countPhaseChildren(specFolderAbsPath: string): number {
 // `ok` => under warning threshold; `warning` => 20-40 children (consider
 // summarized manifest); `error` => >40 children (manifest unreadable, split
 // recommended); `not_phase_parent` => folder is not a phase parent.
+/** Assess a phase-parent folder's manifest size against the warning/error child-count thresholds. */
 export function assessPhaseParentHealth(specFolderAbsPath: string): PhaseParentHealth {
   if (!isPhaseParent(specFolderAbsPath)) {
     return {

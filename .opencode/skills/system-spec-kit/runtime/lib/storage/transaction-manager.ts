@@ -1,16 +1,18 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Transaction Manager
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Transaction wrappers on mutation handlers
-// Atomic file + index operations with pending file recovery
+// Atomic file + index operations with pending file recovery.
+
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+
 import type Database from 'better-sqlite3';
-import * as fs from 'fs';
-import * as path from 'path';
+
 import { resolveDatabasePaths } from '../../core/config.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
-----------------------------------------------------------------*/
+──────────────────────────────────────────────────────────────── */
 
 const PENDING_SUFFIX = '_pending';
 const TEMP_SUFFIX = '.tmp';
@@ -18,7 +20,7 @@ const PENDING_UNIQUE_SUFFIX_PATTERN = /^(?:[0-9a-f]{8}|[0-9a-f]{8}(?:-[0-9a-f]{4
 
 /* ───────────────────────────────────────────────────────────────
    2. INTERFACES
-----------------------------------------------------------------*/
+──────────────────────────────────────────────────────────────── */
 
 interface TransactionMetrics {
   totalAtomicWrites: number;
@@ -53,7 +55,7 @@ type IsCommittedCheck = (originalPath: string) => boolean;
 
 /* ───────────────────────────────────────────────────────────────
    3. MODULE STATE
-----------------------------------------------------------------*/
+──────────────────────────────────────────────────────────────── */
 
 const metrics: TransactionMetrics = {
   totalAtomicWrites: 0,
@@ -67,12 +69,14 @@ const activeTransactions = new WeakMap<object, number>();
 
 /* ───────────────────────────────────────────────────────────────
    4. METRICS
-----------------------------------------------------------------*/
+──────────────────────────────────────────────────────────────── */
 
+/** Return a snapshot copy of the module-level transaction metrics. */
 function getMetrics(): TransactionMetrics {
   return { ...metrics };
 }
 
+/** Reset all transaction metrics counters to zero. */
 function resetMetrics(): void {
   metrics.totalAtomicWrites = 0;
   metrics.totalDeletes = 0;
@@ -83,8 +87,9 @@ function resetMetrics(): void {
 
 /* ───────────────────────────────────────────────────────────────
    5. PATH HELPERS
-----------------------------------------------------------------*/
+──────────────────────────────────────────────────────────────── */
 
+/** Derive the `_pending` sibling path a pending-write recovery would look for. */
 function getPendingPath(filePath: string): string {
   const dir = path.dirname(filePath);
   const ext = path.extname(filePath);
@@ -135,14 +140,17 @@ function parsePendingPath(filePath: string): PendingPathInfo | null {
   return parseBasePendingPath(filePath);
 }
 
+/** Whether a path matches the pending-write naming convention (base or unique-suffixed). */
 function isPendingFile(filePath: string): boolean {
   return parsePendingPath(filePath) !== null;
 }
 
+/** Resolve a pending path back to the original file it stands in for. */
 function getOriginalPath(pendingPath: string): string {
   return parsePendingPath(pendingPath)?.originalPath ?? pendingPath;
 }
 
+/** Run `callback` inside a database transaction, reusing an already-open one instead of nesting. */
 function runInTransaction<T>(database: Database.Database, callback: () => T): T {
   const runCallback = (): T => {
     const depth = activeTransactions.get(database) ?? 0;
@@ -168,7 +176,7 @@ function runInTransaction<T>(database: Database.Database, callback: () => T): T 
 
 /* ───────────────────────────────────────────────────────────────
    6. ATOMIC FILE OPERATIONS
-----------------------------------------------------------------*/
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Write a file atomically using write-to-temp-then-rename pattern.
@@ -311,7 +319,7 @@ function executeAtomicSave(
 
 /* ───────────────────────────────────────────────────────────────
    7. RECOVERY
-----------------------------------------------------------------*/
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Find pending files in a directory (crash recovery).
@@ -338,6 +346,7 @@ function listFilesRecursive(dirPath: string): string[] {
   return files;
 }
 
+/** Recursively find every pending-write file under a directory. */
 function findPendingFiles(dirPath: string): string[] {
   try {
     if (!fs.existsSync(dirPath)) return [];
@@ -432,7 +441,7 @@ function recoverAllPendingFiles(
 
 /* ───────────────────────────────────────────────────────────────
    8. EXPORTS
-----------------------------------------------------------------*/
+──────────────────────────────────────────────────────────────── */
 
 export {
   PENDING_SUFFIX,

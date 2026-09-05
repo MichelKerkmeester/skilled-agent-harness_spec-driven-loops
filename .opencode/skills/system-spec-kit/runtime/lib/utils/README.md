@@ -1,177 +1,83 @@
 ---
-title: "Utils"
-description: "Utility functions for output formatting, path security, canonical path deduplication, and structured logging."
+title: "Utils: Path Identity and Scope"
+description: "Canonical path identity, index-scope invariants, prompt-safety label sanitization, and exhaustiveness checking shared across the runtime package."
 trigger_phrases:
-  - "utility functions"
-  - "format helpers"
-  - "path security"
   - "canonical path"
-  - "logger"
+  - "index scope"
+  - "skill label sanitizer"
+  - "assertNever"
 ---
 
-# Utils
+# Utils: Path Identity and Scope
 
-> Utility functions for output formatting, path security, canonical path deduplication, and structured logging.
+> Low-level shared plumbing: path identity, index scope, prompt-safety sanitization, and exhaustiveness checking.
 
 ---
 
 ## 1. OVERVIEW
 
-The utils module provides foundational utilities used throughout the runtime package. These include date formatting and path traversal security (re-exported from `@spec-kit/shared`).
+`lib/utils/` is a dependency root: it owns low-level shared plumbing that domain modules import, and it imports no domain module of its own. Four small, independent files live here.
 
-Those utilities support the Gate E continuity model where `/speckit:resume` restores packet context from `handover.md` -> `_memory.continuity` -> spec docs. Generated memory artifacts remain supporting only.
+Current state:
 
-### Key Benefits
-
-| Benefit | Description |
-|---------|-------------|
-| **Security** | Path traversal protection (CWE-22 mitigation) via `@spec-kit/shared` |
-| **Consistency** | Shared formatting across the codebase |
-
-### Module Statistics
-
-| Metric | Value |
-|--------|-------|
-| Utility modules | 4 |
-| Source | `format-helpers.ts`, `canonical-path.ts` and `logger.ts` are local. `path-security.ts` re-exports from `@spec-kit/shared` |
+- `canonical-path.ts` resolves a path to its realpath-based canonical identity, falling back to a resolved absolute path when the target does not exist yet (the atomic-save case).
+- `index-scope.ts` is the single source of truth for what is in scope for memory indexing, generated-metadata derivation, and code-graph scanning, and for the code-graph inclusion policy that gates `.opencode/` skills, agents, commands, specs, and plugins.
+- `skill-label-sanitizer.ts` strips instruction-shaped labels and control characters before a label reaches a prompt, so a hostile skill name cannot smuggle an instruction across the shared-payload transport boundary.
+- `exhaustiveness.ts` provides `assertNever()` for statically unreachable switch branches.
 
 ---
 
-## 2. STRUCTURE
+## 2. KEY FILES
 
-```
-utils/
- canonical-path.ts   # Canonical path identity for deduplication
- format-helpers.ts   # Output formatting utilities
- logger.ts           # Structured logging utilities
- path-security.ts    # Re-exports from @spec-kit/shared/utils/path-security
- README.md           # This file
-```
-
-### Key Files
-
-| File | Purpose |
-|------|---------|
-| `canonical-path.ts` | Canonical path identity for symlink-aware deduplication (`getCanonicalPathKey`) |
-| `format-helpers.ts` | Human-readable date formatting (`formatAgeString`) |
-| `logger.ts` | Structured logging utilities for runtime operations |
-| `path-security.ts` | Re-exports path validation and regex escaping from `@spec-kit/shared/utils/path-security` |
-| `index-scope.ts` | Shared path-policy module. Exports `shouldIndexForMemory`, `shouldIndexForCodeGraph`, `resolveCanonicalPath`, `GOVERNANCE_AUDIT_ACTIONS`, `recordTierDowngradeAudit`, `buildGovernanceLogicalKey`. Single source of truth for `z-future/` + `/external/` exclusions |
+| File | Responsibility |
+|---|---|
+| `canonical-path.ts` | `getCanonicalPathKey()`, `resolveCanonicalPath()`, and `canonicalizeForSpecFolderExtraction()` for symlink-aware path deduplication. |
+| `index-scope.ts` | `shouldIndexForMemory()`, `isExcludedFromGeneratedMetadata()`, `shouldIndexForCodeGraph()`, and the `IndexScopePolicy` resolution behind the code-graph inclusion flags. |
+| `skill-label-sanitizer.ts` | `sanitizeSkillLabel()`: canonical-folds, single-lines, and rejects instruction-shaped or control-character labels. |
+| `exhaustiveness.ts` | `assertNever()`: throws for a branch that should be statically unreachable. |
 
 ---
 
-## 3. FEATURES
+## 3. BOUNDARIES
 
-### Format Helpers (`format-helpers.ts`)
-
-| Function | Signature | Purpose |
-|----------|-----------|---------|
-| `formatAgeString` | `(dateString: string \| null) => string` | Convert date to human-readable age ("2 days ago", "yesterday", "never") |
-
-### Canonical Path (`canonical-path.ts`)
-
-| Function | Purpose |
-|----------|---------|
-| `getCanonicalPathKey` | Resolve a file path to its canonical identity (via `realpathSync`), collapsing symlink aliases for deduplication |
-
-### Index Scope (`index-scope.ts`)
-
-
-| Function | Purpose |
-|----------|---------|
-| `shouldIndexForMemory` | Predicate: is a given path admissible for the spec-doc record index under current policy? Rejects `z-future/` and `/external/` paths; callers use this at both discovery and save time for defense-in-depth |
-| `shouldIndexForCodeGraph` | Predicate: is a given path admissible for code-graph scanning? Shares exclusion rules with `shouldIndexForMemory` but may accept packet-specific overlays where additive |
-| `resolveCanonicalPath` | Resolve a path via `realpathSync` before policy evaluation so symlinked / aliased escape attempts cannot bypass exclusion checks |
-| `GOVERNANCE_AUDIT_ACTIONS` | Stable string constants for governance-audit `action` values: `tier_downgrade_non_constitutional_path` and `tier_downgrade_non_constitutional_path_cleanup`. Legacy from the removed constitutional tier, retained for audit-history compatibility — do not rename |
-| `recordTierDowngradeAudit` | Legacy helper that emitted a durable `governance_audit` row when a memory was normalized away from the (now removed) `constitutional` tier |
-| `buildGovernanceLogicalKey` | Build the stable logical key used to correlate governance-audit rows across processes |
-
-Excluded-from-index rule: the the retired constitutional rule docs directory is no longer indexed at all — its rule files are plain, unindexed reference docs, not a searchable memory tier.
-
-Operator maintenance CLI for pre-existing pollution: `scripts/dist/memory/cleanup-index-scope-violations.js` with `--apply` / `--verify`. Target verify counts: `z_future_rows=0`, `external_rows=0`.
-
-#### Index scope vs scoring decay (SSOT)
-
-Two distinct mechanisms govern how content surfaces in retrieval. Reasoning about them as one mechanism is the bug that packet 113 fixed.
-
-| Mechanism | Defined in | Behavior |
-|-----------|------------|----------|
-| Scope exclusion | `index-scope.ts:EXCLUDED_FOR_MEMORY` | Binary: a path is either admissible for indexing or absent from the index entirely. Cannot be retrieved at any score. |
-| Scoring decay | `shared/scoring/folder-scoring.ts:ARCHIVE_MULTIPLIERS` | Multiplicative penalty on indexed content. Path stays in the index but its score is multiplied by 0.05-0.2 before ranking. |
-
-Path placement is intentional and not interchangeable:
-
-| Path | Mechanism | Reason |
-|------|-----------|--------|
-| `z-future/` | scope-excluded | Speculative content with no decay multiplier defined; indexing at 1.0 would surface unproven ideas as authoritative |
-| `external/` | scope-excluded | Vendor / third-party content outside this repo's authority; indexing pollutes the spec-doc surface |
-| `z_archive/` | decay-only (0.1) | Shipped-but-archived spec content. Retrievable for pattern lookup, historical context, and continuity recovery — but deprioritized 10× so it doesn't drown current packets |
-| `scratch/`, `temp/`, `research/iterations/`, `review/iterations/` | spec-doc scope-excluded | Working artifacts and iteration outputs are not classified as canonical spec documents, so they are absent from spec-doc retrieval rather than merely downweighted. |
-| `prototype/`, `*-test*/` | decay-only (0.2) | Prototype and test-path content that is otherwise admissible remains indexed for discovery but penalized 5×. |
-
-The SSOT rule going forward: binary scope exclusion wins over scoring decay. If a path category is excluded before spec-document classification, any scoring multiplier for that path is unreachable for spec-doc retrieval. Keep archived content decay-only, and keep working iteration artifacts out of the canonical spec-doc surface.
-
-### Path Security (`path-security.ts`)
-
-Re-exports from `@spec-kit/shared/utils/path-security`:
-
-| Function | Purpose |
-|----------|---------|
-| `validateFilePath` | Validate path is within allowed directories |
-| `escapeRegex` | Escape special regex characters |
-
-### Logger (`logger.ts`)
-
-| Function | Purpose |
-|----------|---------|
-| Structured logging | Consistent log output for runtime operations |
+| Boundary | Rule |
+|---|---|
+| Imports | This folder imports nothing from sibling `lib/` domain modules. It may be imported by any other `lib/` module, by handlers, and by hooks. |
+| Exclusion source of truth | `EXCLUDED_FOR_MEMORY`, `EXCLUDED_FOR_CODE_GRAPH`, and `EXCLUDED_FOR_GENERATED_METADATA` in `index-scope.ts` are the only place `z-future`, `z_archive`, `external`, `node_modules`, `.git`, `dist`, and `vendor` segment exclusions are declared; callers read these functions rather than re-deriving their own skip lists. |
+| Prompt safety | `sanitizeSkillLabel()` is the only sanitizer `lib/context/shared-payload.ts` uses for label fields; it must stay in `lib/utils/` so cross-cutting payload code does not depend on an advisor-renderer module for it. |
 
 ---
 
-## 4. USAGE EXAMPLES
+## 4. ENTRYPOINTS
 
-### Format Helpers
+| Entrypoint | Type | Purpose |
+|---|---|---|
+| `getCanonicalPathKey(filePath)` | Function | Canonical identity string for path deduplication (realpath when possible, resolved absolute path otherwise). |
+| `resolveCanonicalPath(absPath)` | Function | Realpath a path, failing open to the caller-supplied absolute path when the target is missing or broken. |
+| `canonicalizeForSpecFolderExtraction(filePath)` | Function | Realpath a path for spec-folder extraction, walking up to the nearest existing ancestor when the file does not exist yet. |
+| `shouldIndexForMemory(absolutePath)` | Function | Whether a path sits outside the memory index's z-future/external exclusion segments. |
+| `isExcludedFromGeneratedMetadata(absolutePath)` | Function | Whether a path sits under a z-future/staging segment and must be excluded from generated metadata. |
+| `shouldIndexForCodeGraph(absolutePath, policy)` | Function | Whether a path should be included in the code graph under the given or freshly resolved scope policy. |
+| `sanitizeSkillLabel(skillLabel)` | Function | Sanitize a skill label to a single-line, control-character-free, non-instruction-shaped string, or `null`. |
+| `assertNever(value, context)` | Function | Throw for a branch that should be statically unreachable, with optional call-site context. |
 
-```typescript
-import { formatAgeString } from './format-helpers';
+---
 
-formatAgeString('2024-01-15T10:00:00Z'); // "2 weeks ago"
-formatAgeString(null);                    // "never"
+## 5. VALIDATION
+
+Run from `.opencode/skills/system-spec-kit/runtime`.
+
+```bash
+npx vitest run tests/index-scope.vitest.ts tests/exhaustiveness.vitest.ts tests/architecture-seam.vitest.ts
 ```
 
-### Path Security
-
-```typescript
-import { validateFilePath, escapeRegex } from './path-security';
-
-const allowed = ['/home/user/project', '/tmp'];
-const userPath = '../../../<blocked-path>';
-
-const safe = validateFilePath(userPath, allowed);
-// Returns null - path traversal blocked
-
-const escaped = escapeRegex('file.name (1)');
-// Returns: "file\\.name \\(1\\)"
-```
+Expected result: index-scope and exhaustiveness suites pass directly; the seam suite exercises `sanitizeSkillLabel()`. `canonical-path.ts` has no dedicated suite and is exercised indirectly through discovery tests.
 
 ---
 
-## 5. RELATED RESOURCES
+## 6. RELATED
 
-### Internal Documentation
-
-| Document | Purpose |
-|----------|---------|
-| [../README.md](../README.md) | Parent lib directory overview |
-| [../parsing/](../parsing/) | Uses `escapeRegex` for trigger matching |
-
-### Security References
-
-| Topic | Reference |
-|-------|-----------|
-| Path Traversal | CWE-22: Improper Limitation of Pathname |
-
----
-
-**Version**: 1.7.2
-**Last Updated**: 2026-02-16
+- [`../README.md`](../README.md)
+- [`../config/README.md`](../config/README.md)
+- [`../context/README.md`](../context/README.md)
+- [`../../handlers/README.md`](../../handlers/README.md)

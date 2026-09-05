@@ -6,8 +6,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+
 import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
 
+/** The five structural rules {@link runSpecDocStructureRule} can evaluate. */
 export type SpecDocRuleName =
   | 'FRONTMATTER_MEMORY_BLOCK'
   | 'MERGE_LEGALITY'
@@ -15,12 +17,14 @@ export type SpecDocRuleName =
   | 'CROSS_ANCHOR_CONTAMINATION'
   | 'POST_SAVE_FINGERPRINT';
 
+/** One specific diagnostic surfaced by a structural rule. */
 export interface RuleDiagnostic {
   code: string;
   severity: 'error' | 'warning';
   detail: string;
 }
 
+/** Outcome of evaluating one structural rule against a spec folder. */
 export interface RuleResult {
   rule: SpecDocRuleName;
   status: 'pass' | 'warn' | 'fail';
@@ -29,8 +33,10 @@ export interface RuleResult {
   diagnostics: RuleDiagnostic[];
 }
 
+/** Sentinel continuity fingerprint meaning "no session dedup has run yet". */
 export const ZERO_CONTINUITY_FINGERPRINT = `sha256:${'0'.repeat(64)}`;
 
+/** Where and how a proposed edit would merge into a spec document, for the MERGE_LEGALITY rule. */
 export interface MergePlan {
   targetFile?: string;
   targetAnchor?: string;
@@ -46,12 +52,14 @@ export interface MergePlan {
   chunkText?: string;
 }
 
+/** A proposed edit's routing details, for the CROSS_ANCHOR_CONTAMINATION rule. */
 export interface ContaminationPlan {
   routeCategory?: string;
   chunkText?: string;
   routeOverrideAccepted?: boolean;
 }
 
+/** The expected post-write file state, for the POST_SAVE_FINGERPRINT rule. */
 export interface PostSavePlan {
   file?: string;
   expectedFingerprint?: string;
@@ -61,6 +69,7 @@ export interface PostSavePlan {
   expectedMtimeMs?: number;
 }
 
+/** Inputs for {@link runSpecDocStructureRule}: the target folder, level, rule, and its plan. */
 export interface SpecDocRuleOptions {
   folder: string;
   level: string;
@@ -105,6 +114,7 @@ const SPEC_DOC_RULE_ORDER: readonly SpecDocRuleName[] = [
   'POST_SAVE_FINGERPRINT',
 ] as const;
 
+/** The full set of diagnostic codes each structural rule can emit, keyed by rule name. */
 export const RULE_FAILURE_CODES: Readonly<Record<SpecDocRuleName, readonly string[]>> = {
   FRONTMATTER_MEMORY_BLOCK: [
     'SPECDOC_FRONTMATTER_001',
@@ -181,10 +191,12 @@ function normalizeSpecKitLevel(raw: string): SpecKitLevel {
   throw new Error(`Unsupported spec kit level: ${raw || '(empty)'}`);
 }
 
-// Freeform workflow artifacts carry their own (non-continuity) frontmatter
-// schema and no spec-doc anchors, so they are exempt from the _memory-block and
-// anchor-sufficiency gates. No numbered level references these, so the exclusion
-// is inert for Levels 1-3+ and phase parents.
+/**
+ * Freeform workflow artifacts carry their own (non-continuity) frontmatter
+ * schema and no spec-doc anchors, so they are exempt from the _memory-block and
+ * anchor-sufficiency gates. No numbered level references these, so the exclusion
+ * is inert for Levels 1-3+ and phase parents.
+ */
 export const FREEFORM_WORKFLOW_DOCS = new Set(['review/review-report.md', 'research/research.md']);
 const CANONICAL_CONTINUITY_DOC = 'implementation-summary.md';
 const OPTIONAL_CONTINUITY_DOCS = new Set([
@@ -607,6 +619,7 @@ function parseAnchors(content: string): { anchors: AnchorOccurrence[]; errors: s
   return { anchors, errors };
 }
 
+/** Normalize continuity content (line endings, stamped fingerprint, trailing whitespace) so re-derives are stable. */
 export function normalizeForContinuityFingerprint(content: string): string {
   return content
     .replace(/\r\n/g, '\n')
@@ -614,6 +627,7 @@ export function normalizeForContinuityFingerprint(content: string): string {
     .replace(/[ \t]+$/gm, '');
 }
 
+/** Compute the sha256 continuity fingerprint of normalized content. */
 export function buildContinuityFingerprint(content: string): string {
   return `sha256:${createHash('sha256').update(normalizeForContinuityFingerprint(content), 'utf8').digest('hex')}`;
 }
@@ -1214,6 +1228,7 @@ function validatePostSaveFingerprint(folder: string, postSavePlan: PostSavePlan 
   );
 }
 
+/** Evaluate one named structural rule against a spec folder and return its result. */
 export function runSpecDocStructureRule(options: SpecDocRuleOptions): RuleResult {
   switch (options.rule) {
     case 'FRONTMATTER_MEMORY_BLOCK':

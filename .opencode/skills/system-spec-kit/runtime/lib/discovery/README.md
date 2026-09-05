@@ -52,13 +52,13 @@ discovery/
 
 ## 5. VALIDATION
 
-Run from the repository root.
+Run from `.opencode/skills/system-spec-kit/runtime`.
 
 ```bash
-npm test -- --runInBand
+npx vitest run tests/architecture-seam.vitest.ts
 ```
 
-Expected result: Tests that import discovery through the library seam pass.
+Expected result: the seam test, which imports `findSpecDocuments` through both this seam and the handler implementation and asserts they are the same function, passes.
 
 ---
 

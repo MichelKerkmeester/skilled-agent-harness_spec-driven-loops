@@ -1,28 +1,25 @@
 ---
-title: "Search: Folder Discovery and Runtime Flags"
-description: "Code-folder guide for per-folder description discovery and the package's runtime flag surface."
+title: "Search: Folder Discovery"
+description: "Code-folder guide for per-folder description discovery: generation, load, staleness detection and repair."
 trigger_phrases:
   - "folder discovery"
   - "per folder description"
-  - "search flags"
-  - "runtime flags"
 ---
 
-# Search: Folder Discovery and Runtime Flags
+# Search: Folder Discovery
 
-> Per-folder description discovery, plus the environment-backed flag surface the package reads.
+> Per-folder description discovery: generation, load, staleness detection and merge-preserving repair.
 
 ---
 
 ## 1. OVERVIEW
 
-`lib/search/` owns two things: resolving what a spec folder is about, and reading the runtime flags that gate optional behavior. The folder name is historical — this is a discovery and configuration module, not a retrieval engine.
+`lib/search/` owns resolving what a spec folder is about. The folder name is historical — this is a discovery module, not a retrieval engine. Despite the name, no `search-flags.ts` module lives here; the two environment flags this folder reads (`SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE`, `SPECKIT_GENERATED_METADATA_Z_EXCLUSION`) are read directly in `folder-discovery.ts` through the shared `parseFlagTristate()` reader from `lib/config/capability-flags.ts`.
 
 Current state:
 
-- `folder-discovery.ts` resolves a packet's description from its canonical documents so every caller reads one merged answer instead of guessing from a filename.
+- `folder-discovery.ts` is the only implementation file in this folder. It resolves a packet's description from its canonical documents so every caller reads one merged answer instead of guessing from a filename.
 - It owns both sides of `description.json`: generation and save, load with a typed result, staleness detection, and merge-preserving repair.
-- `search-flags.ts` exposes the default-on flag surface. Each helper reads one environment variable; setting `SPECKIT_<FLAG>=false` disables a graduated feature.
 - This is a domain package. It exposes no tools of its own; `api/index.ts` re-exports the discovery functions external callers need.
 
 ---
@@ -45,15 +42,9 @@ Current state:
 │ parser       │      │ on disk          │ ◀─── │ normalizer      │
 └──────────────┘      └──────────────────┘      └─────────────────┘
 
-┌──────────────┐      ┌──────────────────┐
-│ config/      │ ───▶ │ search-flags.ts  │
-│ capability   │      │ env tristates    │
-└──────────────┘      └──────────────────┘
-
 Dependency direction:
 folder-discovery ───▶ description, parsing, config, utils
-search-flags ───▶ cognitive/rollout-policy
-neither imports handlers or api
+it does not import handlers or api
 ```
 
 ---
@@ -63,7 +54,6 @@ neither imports handlers or api
 ```text
 lib/search/
 +-- folder-discovery.ts   # Per-folder description generation, load, staleness and repair
-+-- search-flags.ts       # Environment-backed runtime flags
 `-- README.md
 ```
 
@@ -73,7 +63,6 @@ Allowed dependency direction:
 folder-discovery.ts → lib/description/*
 folder-discovery.ts → lib/parsing/content-normalizer
 folder-discovery.ts → lib/config/*, lib/utils/*
-search-flags.ts → lib/cognitive/rollout-policy
 ```
 
 Disallowed dependency direction:
@@ -91,7 +80,6 @@ lib/search/ → lib/validation/ or lib/graph/ orchestration
 ```text
 lib/search/
 +-- folder-discovery.ts
-+-- search-flags.ts
 `-- README.md
 ```
 
@@ -101,8 +89,7 @@ lib/search/
 
 | File | Responsibility |
 |---|---|
-| `folder-discovery.ts` | Resolves a packet's description from its canonical documents into one merged answer. Owns `generatePerFolderDescription()`, `savePerFolderDescription()`, `loadPerFolderDescription()`, `loadExistingDescription()` and `wouldWritePerFolderDescription()`, plus staleness detection (`isPerFolderDescriptionStale`), the description cache helpers, `extractKeywords()`, `slugifyFolderName()`, `getSpecsBasePaths()` and the per-token similarity gate used when matching a query against folder descriptions. |
-| `search-flags.ts` | The package's flag surface. `parseFlagTristate()` is the shared reader; `isOptInEnabled()` and `isStrictOptInEnabled()` distinguish opt-in from strict opt-in. Individual helpers gate folder discovery, save-planner mode, reconsolidation, post-insert enrichment, quality gates and token budgeting. Production-ready flags are graduated to default-on and are disabled explicitly rather than enabled explicitly. |
+| `folder-discovery.ts` | Resolves a packet's description from its canonical documents into one merged answer. Owns `generatePerFolderDescription()`, `savePerFolderDescription()`, `loadPerFolderDescription()`, `loadExistingDescription()` and `wouldWritePerFolderDescription()`, plus staleness detection (`isPerFolderDescriptionStale`), the description cache helpers, `extractKeywords()`, `slugifyFolderName()`, `getSpecsBasePaths()`, the per-token similarity gate used when matching a query against folder descriptions, and its own two flag readers (`getRepairMergeSafe()`, `isGeneratedMetadataZExclusionEnabled()`). |
 
 `LoadResult` is a discriminated union rather than a nullable value, so a caller distinguishes "absent" from "present but invalid" instead of collapsing both to `null`.
 
@@ -159,7 +146,8 @@ Main flow:
 | `extractKeywords()` | Function | Extracts keywords from a description string. |
 | `slugifyFolderName()` | Function | Normalizes a folder name into a slug. |
 | `getSpecsBasePaths()` | Function | Resolves the base paths under which spec folders live. |
-| `parseFlagTristate()` | Function | Shared environment-flag reader used by every flag helper. |
+| `getRepairMergeSafe()` | Function | Whether description.json repairs preserve unrecognized authored keys (`SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE`). |
+| `isGeneratedMetadataZExclusionEnabled()` | Function | Whether `z-future`/`z_archive` segments are excluded from generated metadata (`SPECKIT_GENERATED_METADATA_Z_EXCLUSION`). |
 
 ---
 

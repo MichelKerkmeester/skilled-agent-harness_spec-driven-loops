@@ -3,10 +3,18 @@
 // ───────────────────────────────────────────────────────────────
 // Per-spec-folder save mutex to prevent concurrent indexing races (TOCTOU).
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 import { createHash, randomUUID } from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+
+// ───────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS & CONSTANTS
+// ───────────────────────────────────────────────────────────────
 
 // Serializing writes here is what makes a save atomic per spec folder, so two
 // writers racing the same folder cannot interleave and lose each other's work.
@@ -40,10 +48,15 @@ const lockHeartbeats = new Map<string, {
   timer: ReturnType<typeof setInterval>;
 }>();
 
+/** Handle to a held cross-process spec-folder lock, used to release or heartbeat it. */
 export interface InterprocessLockHandle {
   lockDir: string;
   token: string;
 }
+
+// ───────────────────────────────────────────────────────────────
+// 3. LOCK LIFECYCLE
+// ───────────────────────────────────────────────────────────────
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -313,6 +326,14 @@ async function acquireInterprocessLock(specFolder: string): Promise<Interprocess
   }
 }
 
+/**
+ * Run `fn` under an exclusive in-process and cross-process lock for `specFolder`,
+ * so two concurrent saves to the same folder cannot interleave their writes.
+ *
+ * @param specFolder - Spec folder identity to serialize on; falsy values share a global lock
+ * @param fn - Work to run while holding the lock
+ * @returns The resolved value of `fn`
+ */
 async function withSpecFolderLock<T>(specFolder: string, fn: () => Promise<T>): Promise<T> {
   const normalizedFolder = specFolder || '__global__';
   const chain = (SPEC_FOLDER_LOCKS.get(normalizedFolder) ?? Promise.resolve())
@@ -336,6 +357,10 @@ async function withSpecFolderLock<T>(specFolder: string, fn: () => Promise<T>): 
     }
   }
 }
+
+// ───────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────
 
 export {
   SPEC_FOLDER_LOCKS,

@@ -1,34 +1,23 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Content Normalizer
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Content-aware memory filename generation
-// Smarter memory content generation
-//
-// Purpose: Normalize raw markdown content before it is passed to
-// Embedding generation or BM25 indexing.  Raw markdown contains
-// Structural noise (YAML frontmatter, HTML comment anchors, pipe
-// Table syntax, fence markers, checkbox notation) that degrades
-// The quality of semantic embeddings and keyword retrieval.
-//
-// Integration points (do NOT modify those files here — reference only):
-//   - memory-parser.ts  ~line 159  : `content` is assigned from readFileWithEncoding()
-// → wrap with normalizeContentForEmbedding() before passing to generateDocumentEmbedding()
-//   - memory-save.ts    ~line 1093 : before generateDocumentEmbedding(parsed.content)
-// → normalizeContentForEmbedding(parsed.content)
-//   - bm25-index.ts     ~line 245  : where `content_text` is used for token building
-// → normalizeContentForBM25(content_text)
-//
-// ───────────────────────────────────────────────────────────────
-// 1. PRIMITIVE STRIP / NORMALIZE HELPERS
+// Normalizes raw markdown content before it feeds embedding generation or
+// BM25 indexing. Raw markdown carries structural noise (YAML frontmatter,
+// HTML comment anchors, pipe-table syntax, fence markers, checkbox notation)
+// that degrades the quality of semantic embeddings and keyword retrieval, so
+// folder-discovery and packet-synopsis extraction both normalize through the
+// two composed entry points below before deriving text from a document.
 
 // ───────────────────────────────────────────────────────────────
+// 1. PRIMITIVE STRIP / NORMALIZE HELPERS
+// ───────────────────────────────────────────────────────────────
+
 /**
  * Strip YAML frontmatter block from the top of a markdown file.
  *
- * Frontmatter is already parsed separately by memory-parser.ts into
- * structured fields (title, trigger_phrases, context_type, etc.), so
- * including it verbatim in the embedding text just adds repetitive
- * key-value noise.
+ * Frontmatter is already parsed separately into structured fields (title,
+ * trigger_phrases, context_type, etc.), so including it verbatim in the
+ * embedding text just adds repetitive key-value noise.
  *
  * Matches the canonical `---\n…\n---` form that starts at the very
  * first character of the document.
@@ -208,10 +197,6 @@ function collapseWhitespace(content: string): string {
  *
  * The result is a clean prose representation suitable for semantic
  * embedding models (current local defaults and compatible providers).
- *
- * Integration point:
- *   memory-parser.ts  ~line 159 after `readFileWithEncoding()`,
- *   memory-save.ts    ~line 1093 before `generateDocumentEmbedding()`.
  */
 export function normalizeContentForEmbedding(content: string): string {
   if (!content || typeof content !== 'string') {
@@ -248,9 +233,6 @@ export function normalizeContentForEmbedding(content: string): string {
  *   6. Normalize list notation
  *   7. Normalize headings
  *   8. Collapse excess whitespace
- *
- * Integration point:
- *   bm25-index.ts ~line 245 where `content_text` is used for token building.
  */
 export function normalizeContentForBM25(content: string): string {
   // The BM25 pipeline currently delegates to the same normalization

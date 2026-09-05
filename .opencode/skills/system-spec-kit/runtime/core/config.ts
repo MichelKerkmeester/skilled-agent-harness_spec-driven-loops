@@ -2,14 +2,14 @@
 // MODULE: Config
 // ────────────────────────────────────────────────────────────────
 
-import path from 'path';
-import fs from 'fs';
-import os from 'os';
+import path from 'node:path';
+import fs from 'node:fs';
+import os from 'node:os';
+
 import { DB_PATH } from '@spec-kit/shared/paths';
 
 // ────────────────────────────────────────────────────────────────
-// 1. TYPES 
-
+// 1. TYPES
 // ────────────────────────────────────────────────────────────────
 
 /** Input validation limits configuration */
@@ -24,8 +24,7 @@ export interface InputLimitsConfig {
 }
 
 // ────────────────────────────────────────────────────────────────
-// 2. PATH CONSTANTS 
-
+// 2. PATH CONSTANTS
 // ────────────────────────────────────────────────────────────────
 
 export const SERVER_DIR: string = path.join(import.meta.dirname, '..');
@@ -33,6 +32,7 @@ export const NODE_MODULES: string = path.join(SERVER_DIR, 'node_modules');
 export const LIB_DIR: string = path.join(import.meta.dirname, '..', 'lib');
 export const SHARED_DIR: string = path.join(SERVER_DIR, '..', 'shared');
 
+/** Resolved database directory, file path, and update-marker path for the current runtime. */
 export interface DatabasePaths {
   databaseDir: string;
   databasePath: string;
@@ -102,6 +102,7 @@ export let DATABASE_DIR: string;
 export let DATABASE_PATH: string;
 export let DB_UPDATED_FILE: string;
 
+/** Re-read the database path env vars and refresh the exported DATABASE_* bindings. */
 export function resolveDatabasePaths(): DatabasePaths {
   const resolvedDatabasePaths = computeDatabasePaths();
   DATABASE_DIR = resolvedDatabasePaths.databaseDir;
@@ -113,8 +114,7 @@ export function resolveDatabasePaths(): DatabasePaths {
 resolveDatabasePaths();
 
 // ────────────────────────────────────────────────────────────────
-// 3. BATCH PROCESSING CONFIGURATION 
-
+// 3. BATCH PROCESSING CONFIGURATION
 // ────────────────────────────────────────────────────────────────
 
 const parsedBatchSize = parseInt(process.env.SPEC_KIT_BATCH_SIZE || '5', 10);
@@ -123,15 +123,13 @@ const parsedBatchDelayMs = parseInt(process.env.SPEC_KIT_BATCH_DELAY_MS || '100'
 export const BATCH_DELAY_MS: number = Number.isFinite(parsedBatchDelayMs) && parsedBatchDelayMs > 0 ? parsedBatchDelayMs : 100;
 
 // ────────────────────────────────────────────────────────────────
-// 4. RATE LIMITING CONFIGURATION 
-
+// 4. RATE LIMITING CONFIGURATION
 // ────────────────────────────────────────────────────────────────
 
 export const INDEX_SCAN_COOLDOWN: number = 30000;
 
 // ────────────────────────────────────────────────────────────────
-// 5. QUERY VALIDATION LIMITS 
-
+// 5. QUERY VALIDATION LIMITS
 // ────────────────────────────────────────────────────────────────
 
 export const MAX_QUERY_LENGTH: number = 10000;
@@ -147,8 +145,7 @@ export const INPUT_LIMITS: Readonly<InputLimitsConfig> = {
 } as const;
 
 // ────────────────────────────────────────────────────────────────
-// 6. PATH VALIDATION 
-
+// 6. PATH VALIDATION
 // ────────────────────────────────────────────────────────────────
 
 export const DEFAULT_BASE_PATH: string = process.env.MEMORY_BASE_PATH || process.cwd();
@@ -160,12 +157,3 @@ export const ALLOWED_BASE_PATHS: string[] = [
 ]
   .filter(Boolean)
   .map(base => path.resolve(base));
-
-// ────────────────────────────────────────────────────────────────
-// 7. CACHE CONFIGURATION 
-
-// ────────────────────────────────────────────────────────────────
-
-/* ───────────────────────────────────────────────────────────────
-   8. (ESM exports above — no CommonJS module.exports needed)
-   ──────────────────────────────────────────────────────────────── */

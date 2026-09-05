@@ -2,19 +2,13 @@
 // MODULE: Memory Index Discovery Helpers
 // ────────────────────────────────────────────────────────────────
 
-/* ------- 1. DEPENDENCIES ------- */
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
 
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
-/**
- * Local rather than shared: the shared formatter sits beside the database
- * helpers, and importing it would make spec-folder discovery — which only
- * walks the filesystem — depend on the whole storage layer.
- */
-function toErrorMessage(error: unknown): string {
-  return error instanceof Error ? error.message : String(error);
-}
 import {
   extractSpecFolderFromGraphMetadataPath,
   GRAPH_METADATA_FILENAME,
@@ -26,7 +20,9 @@ import {
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
 import { shouldIndexForMemory } from '../lib/utils/index-scope.js';
 
-/* ------- 2. CONSTANTS ------- */
+// ────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ────────────────────────────────────────────────────────────────
 
 const SPEC_DISCOVERY_MAX_DEPTH = 20;
 const SPEC_DISCOVERY_MAX_NODES = 50_000;
@@ -55,18 +51,23 @@ function shouldAbortDiscoveryWalk(state: DiscoveryWalkState, label: string): boo
   return false;
 }
 
-/* ------- 3. DISCOVERY FUNCTIONS ------- */
+// ────────────────────────────────────────────────────────────────
+// 3. DISCOVERY FUNCTIONS
+// ────────────────────────────────────────────────────────────────
 
+/** Scope filter for a spec-document or graph-metadata discovery walk. */
 export interface SpecDiscoveryOptions {
   specFolder?: string | null;
 }
 
+/** Which safety caps a discovery walk hit while traversing the filesystem. */
 export interface DiscoveryCapExceeded {
   maxNodes: boolean;
   depth: boolean;
   gitignoreSize: boolean;
 }
 
+/** Discovered file paths plus the walk's warnings and cap-exceeded flags. */
 export type DiscoveryFileList = string[] & {
   warnings: string[];
   capExceeded: DiscoveryCapExceeded;

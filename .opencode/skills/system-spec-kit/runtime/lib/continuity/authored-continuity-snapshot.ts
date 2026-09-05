@@ -16,6 +16,7 @@ import {
   type ThinContinuityRecord,
 } from './thin-continuity-record.js';
 
+/** Inputs for refreshing the authored continuity snapshot embedded in packet-local markdown. */
 export interface AuthoredContinuitySnapshotOptions {
   workspacePath?: string;
   specFolder?: string | null;
@@ -25,6 +26,7 @@ export interface AuthoredContinuitySnapshotOptions {
   sessionId?: string | null;
 }
 
+/** Outcome of one authored-continuity-snapshot refresh, including which docs were touched. */
 export interface AuthoredContinuitySnapshotResult {
   status: 'disabled' | 'skipped' | 'updated';
   reason: string;
@@ -130,6 +132,13 @@ function buildContinuityRecord(params: {
   };
 }
 
+/**
+ * Refresh the recovery-context snapshot embedded in a spec folder's
+ * `handover.md` and, when present, its `implementation-summary.md`.
+ *
+ * @param options - Target spec folder, workspace root, and refresh actor/timestamp
+ * @returns The refresh outcome, including which documents were rewritten
+ */
 export function refreshAuthoredContinuitySnapshot(
   options: AuthoredContinuitySnapshotOptions,
 ): AuthoredContinuitySnapshotResult {

@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+
 import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
 import { isPhaseParent } from '../spec/is-phase-parent.js';
 import { runSpecDocStructureRule, FREEFORM_WORKFLOW_DOCS, type RuleResult, type SpecDocRuleName } from './spec-doc-structure.js';
@@ -23,6 +24,7 @@ import {
   isStatusCompletionConsistencyGateEnabled,
 } from '../config/capability-flags.js';
 
+/** Options controlling a {@link validateFolder} run. */
 export interface ValidateOpts {
   strict?: boolean;
   json?: boolean;
@@ -30,6 +32,7 @@ export interface ValidateOpts {
   verbose?: boolean;
 }
 
+/** One rule's verdict within a validation report. */
 export interface ValidationEntry {
   rule: string;
   status: 'pass' | 'warn' | 'error' | 'info';
@@ -37,6 +40,7 @@ export interface ValidationEntry {
   details: string[];
 }
 
+/** Full result of validating one spec folder: every rule entry plus the pass/fail summary. */
 export interface ValidationReport {
   folder: string;
   level: SpecKitLevel;
@@ -93,8 +97,10 @@ const CHECKLIST_H1_PREFIX = '# Verification Checklist:';
 const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
 const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces', 'nfr', 'edge-cases', 'complexity', 'phase-deps', 'effort', 'enhanced-rollback']);
 
+/** Severity a validator-registry rule is declared at (`skip` disables it entirely). */
 export type RegistrySeverity = 'error' | 'warn' | 'info' | 'skip';
 
+/** One rule entry from the shell-based validator registry. */
 export interface ValidatorRegistryEntry {
   rule_id: string;
   script_path: string;
@@ -866,6 +872,14 @@ function validateFrontmatterBasics(folder: string, level: SpecKitLevel): Validat
     : entry('FRONTMATTER_VALID', 'warn', `${missing.length} frontmatter continuity warning(s)`, missing);
 }
 
+/**
+ * Validate one spec folder against its level contract, structural rules, generated-metadata
+ * integrity, and the registered shell/JS validator rules.
+ *
+ * @param folderPath - Absolute path to the spec folder
+ * @param opts - Strict mode and output verbosity options
+ * @returns The full validation report, with every rule's entry and the pass/fail summary
+ */
 export function validateFolder(folderPath: string, opts: ValidateOpts = {}): ValidationReport {
   const folder = path.resolve(folderPath);
   if (!fs.existsSync(folder) || !fs.statSync(folder).isDirectory()) {
@@ -934,6 +948,7 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   };
 }
 
+/** Internal helpers exported for targeted unit testing only; not part of the validation API. */
 export const __testables = {
   mapShellRuleStatus,
   resolveRegistryRuleScript,

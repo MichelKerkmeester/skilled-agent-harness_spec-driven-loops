@@ -2,24 +2,27 @@
 // MODULE: Level Contract Resolver
 // ───────────────────────────────────────────────────────────────────
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. TYPES
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
+/** A spec packet's documentation level, which selects its required and optional docs. */
 export type SpecKitLevel = '1' | '2' | '3' | '3+' | 'phase' | 'review' | 'research';
 
+/** Docs a level only requires once implementation has actually started. */
 export interface LifecycleRequiredDocs {
   afterImplementationStarts: string[];
 }
 
+/** The resolved document and section-gate contract for one spec-kit level. */
 export interface LevelContract {
   requiredCoreDocs: string[];
   requiredAddonDocs: string[];
@@ -50,6 +53,7 @@ interface SpecKitDocsManifest {
   levels: Record<SpecKitLevel, ManifestLevelRow>;
 }
 
+/** JSON-safe form of {@link LevelContract}, with its Maps flattened to plain objects. */
 export interface SerializedLevelContract {
   requiredCoreDocs: string[];
   requiredAddonDocs: string[];
@@ -62,9 +66,9 @@ export interface SerializedLevelContract {
   frontmatterMarkerLevel: number;
 }
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. RESOLUTION
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_MANIFEST_PATH = path.resolve(MODULE_DIR, '../../../templates/spec-kit-docs.json');
@@ -223,6 +227,13 @@ function assertLevelRow(level: SpecKitLevel, row: ManifestLevelRow | undefined):
   return row;
 }
 
+/**
+ * Resolve and validate the document/section-gate contract for a spec-kit level
+ * from the templates manifest, throwing when the manifest is missing or malformed.
+ *
+ * @param level - The spec-kit level to resolve
+ * @returns The validated level contract, with defensive copies of every collection
+ */
 export function resolveLevelContract(level: SpecKitLevel): LevelContract {
   assertLevel(level);
   const manifest = loadManifest(level);
@@ -255,6 +266,7 @@ export function resolveLevelContract(level: SpecKitLevel): LevelContract {
   };
 }
 
+/** Flatten a {@link LevelContract}'s Maps into the plain-object shape JSON serialization needs. */
 export function serializeLevelContract(contract: LevelContract): SerializedLevelContract {
   return {
     requiredCoreDocs: [...contract.requiredCoreDocs],

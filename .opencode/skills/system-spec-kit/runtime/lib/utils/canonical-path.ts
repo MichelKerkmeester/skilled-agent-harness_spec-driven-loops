@@ -1,8 +1,9 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Canonical Path
 // ───────────────────────────────────────────────────────────────
-import fs from 'fs';
-import path from 'path';
+
+import fs from 'node:fs';
+import path from 'node:path';
 
 /** Returns true for errors indicating a missing path segment (ENOENT/ENOTDIR). */
 function isMissingPathError(err: unknown): boolean {

@@ -97,10 +97,12 @@ export type DescriptionKnownAuthoredOptionalFields = Pick<
   DescriptionKnownAuthoredOptionalKey
 >;
 
+/** Whether a description.json key is one of the schema's reserved (derived, authored, or tracking) keys. */
 export function isDescriptionReservedKey(key: string): key is DescriptionReservedKey {
   return RESERVED_KEY_SET.has(key);
 }
 
+/** Extract only the canonical derived and authored fields from a raw description.json object. */
 export function pickCanonicalDescriptionFields(
   value: Record<string, unknown>,
 ): DescriptionCanonicalFields {
@@ -139,6 +141,7 @@ function formatIssue(issue: ZodIssue): string {
   return `${field} must be ${formatExpectedType(field)}`;
 }
 
+/** Format Zod validation issues into deduplicated, human-readable field messages. */
 export function formatDescriptionSchemaIssues(issues: ZodIssue[]): string[] {
   const seen = new Set<string>();
   const formatted: string[] = [];

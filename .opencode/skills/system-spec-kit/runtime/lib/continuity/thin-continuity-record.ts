@@ -21,12 +21,14 @@ export type ThinContinuityErrorCode =
   | 'MEMORY_016'
   | 'MEMORY_017';
 
+/** Session-dedup fingerprint carried on a continuity record so a repeat save can be detected. */
 export interface ThinContinuitySessionDedup {
   fingerprint: string;
   session_id: string;
   parent_session_id: string | null;
 }
 
+/** The size-budgeted `_memory.continuity` record embedded in a spec doc's frontmatter. */
 export interface ThinContinuityRecord {
   packet_pointer: string;
   last_updated_at: string;
@@ -43,6 +45,7 @@ export interface ThinContinuityRecord {
 
 export type ContinuityFacetName = 'goal' | 'decision' | 'progress' | 'gotcha';
 
+/** The four recovery facets rendered from a continuity record for resume context. */
 export interface ContinuityFacets {
   goal: string[];
   decision: string[];
@@ -50,6 +53,7 @@ export interface ContinuityFacets {
   gotcha: string[];
 }
 
+/** Raw resume-ladder fields {@link buildContinuityFacets} can derive facets from, as an alternative to a full record. */
 export interface ContinuityFacetInput {
   summary?: string | null;
   recentAction?: string | null;
@@ -60,6 +64,7 @@ export interface ContinuityFacetInput {
   answeredQuestions?: string[] | null;
 }
 
+/** One field-level validation failure for a continuity record. */
 export interface ThinContinuityValidationError {
   code: ThinContinuityErrorCode;
   field: string;
@@ -67,6 +72,7 @@ export interface ThinContinuityValidationError {
   details?: Record<string, unknown>;
 }
 
+/** Legacy-mode fallbacks and tuning for {@link validateThinContinuityRecord}. */
 export interface ThinContinuityValidationOptions {
   legacyMode?: boolean;
   fallbackPacketPointer?: string;
@@ -75,6 +81,7 @@ export interface ThinContinuityValidationOptions {
   fallbackSessionId?: string;
 }
 
+/** Result of validating a raw continuity payload: the normalized record and its YAML, or errors. */
 export interface ThinContinuityValidationResult {
   ok: boolean;
   record?: ThinContinuityRecord;
@@ -83,10 +90,12 @@ export interface ThinContinuityValidationResult {
   errors: ThinContinuityValidationError[];
 }
 
+/** A read validation result, extended with the source document's parsed frontmatter. */
 export interface ThinContinuityReadResult extends ThinContinuityValidationResult {
   frontmatter?: Record<string, unknown>;
 }
 
+/** A write validation result, extended with the merged frontmatter and (when upserted) full markdown. */
 export interface ThinContinuityWriteResult extends ThinContinuityValidationResult {
   frontmatter?: Record<string, unknown>;
   markdown?: string;
@@ -196,6 +205,7 @@ function uniqueFacetItems(values: Array<string | null | undefined>, limit: numbe
   return result;
 }
 
+/** Derive the four recovery facets (goal, decision, progress, gotcha) from a continuity record or its raw inputs. */
 export function buildContinuityFacets(input: ThinContinuityRecord | ContinuityFacetInput): ContinuityFacets {
   const record = input as Partial<ThinContinuityRecord> & ContinuityFacetInput;
   const recentAction = record.recent_action ?? record.recentAction ?? null;
@@ -213,6 +223,7 @@ export function buildContinuityFacets(input: ThinContinuityRecord | ContinuityFa
   };
 }
 
+/** Render continuity facets as a Markdown recovery-context block. */
 export function renderContinuityFacets(facets: ContinuityFacets): string {
   const labels: Array<[ContinuityFacetName, string]> = [
     ['goal', 'Goal'],
@@ -928,6 +939,15 @@ function mergeFrontmatterWithContinuity(
   };
 }
 
+/**
+ * Validate and normalize a raw continuity payload against the thin-continuity
+ * contract, budget-compacting optional fields when the serialized envelope
+ * exceeds {@link THIN_CONTINUITY_MAX_BYTES}.
+ *
+ * @param input - Raw `_memory.continuity` payload to validate
+ * @param options - Legacy-mode fallbacks and validation tuning
+ * @returns The validation result, with the normalized record and its serialized YAML on success
+ */
 export function validateThinContinuityRecord(
   input: unknown,
   options: ThinContinuityValidationOptions = {},
@@ -1005,6 +1025,7 @@ export function validateThinContinuityRecord(
   };
 }
 
+/** Extract and validate the `_memory.continuity` block from a markdown document's frontmatter or an object source. */
 export function readThinContinuityRecord(
   source: string | UnknownRecord,
   options: ThinContinuityValidationOptions = {},
@@ -1026,10 +1047,12 @@ export function readThinContinuityRecord(
   }
 }
 
+/** Serialize a normalized continuity record to its `_memory.continuity` YAML block. */
 export function serializeThinContinuityRecord(record: ThinContinuityRecord, compactOptionalFields = false): string {
   return serializeEnvelope(record, compactOptionalFields).yaml;
 }
 
+/** Validate a continuity payload and merge it into an existing frontmatter object's `_memory.continuity`. */
 export function writeThinContinuityRecord(
   frontmatter: UnknownRecord,
   input: unknown,
@@ -1055,6 +1078,7 @@ export function writeThinContinuityRecord(
   }
 }
 
+/** Validate a continuity payload and upsert its `_memory.continuity` block into a markdown document's frontmatter. */
 export function upsertThinContinuityInMarkdown(
   markdown: string,
   input: unknown,

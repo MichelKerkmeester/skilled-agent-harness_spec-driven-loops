@@ -1,12 +1,12 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Entity Denylist
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Auto entity extraction
 // Common nouns and stop words filtered from entity extraction.
-// ───────────────────────────────────────────────────────────────
-// 1. COMMON NOUNS
 
 // ───────────────────────────────────────────────────────────────
+// 1. COMMON NOUNS
+// ───────────────────────────────────────────────────────────────
+
 // High-frequency English nouns that carry little entity signal.
 const COMMON_NOUNS: readonly string[] = [
   'thing', 'things', 'way', 'ways', 'time', 'times',
@@ -18,8 +18,8 @@ const COMMON_NOUNS: readonly string[] = [
 
 // ───────────────────────────────────────────────────────────────
 // 2. TECHNOLOGY STOP WORDS
-
 // ───────────────────────────────────────────────────────────────
+
 // Generic tech abbreviations too broad to serve as entity names.
 const TECHNOLOGY_STOP_WORDS: readonly string[] = [
   'app', 'api', 'sdk', 'cli', 'url',
@@ -30,8 +30,8 @@ const TECHNOLOGY_STOP_WORDS: readonly string[] = [
 
 // ───────────────────────────────────────────────────────────────
 // 3. GENERIC MODIFIERS
-
 // ───────────────────────────────────────────────────────────────
+
 // Adjectives/determiners that add no entity-level meaning.
 const GENERIC_MODIFIERS: readonly string[] = [
   'new', 'old', 'first', 'last', 'next',
@@ -41,8 +41,8 @@ const GENERIC_MODIFIERS: readonly string[] = [
 
 // ───────────────────────────────────────────────────────────────
 // 4. COMBINED ENTITY DENYLIST
-
 // ───────────────────────────────────────────────────────────────
+
 /**
  * Complete denylist of common nouns, technology stop words, and generic
  * modifiers that should be filtered from entity extraction results.
@@ -56,8 +56,8 @@ export const ENTITY_DENYLIST: Set<string> = new Set<string>([
 
 // ───────────────────────────────────────────────────────────────
 // 5. PUBLIC API
-
 // ───────────────────────────────────────────────────────────────
+
 /**
  * Check if a term is on the entity denylist (case-insensitive).
  *

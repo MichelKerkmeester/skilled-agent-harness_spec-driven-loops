@@ -22,8 +22,10 @@ import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
 import { resolveLastActiveChildFromStore } from '../graph/access-telemetry.js';
 import { listPhaseChildren } from '../spec/is-phase-parent.js';
 
+/** Which authored surface a resume ladder ultimately drew its context from. */
 export type ResumeLadderSource = 'handover' | 'continuity' | 'spec-docs' | 'none';
 
+/** One document the resume ladder read, with its content fingerprint and modification time. */
 export interface ResumeLadderDocument {
   type: 'handover' | 'continuity' | 'spec-doc';
   path: string;
@@ -32,6 +34,7 @@ export interface ResumeLadderDocument {
   modifiedAt: string;
 }
 
+/** How the target spec folder for a resume ladder was resolved. */
 export interface ResumeLadderResolution {
   kind: 'explicit' | 'cached' | 'unresolved';
   requestedSpecFolder: string | null;
@@ -40,6 +43,7 @@ export interface ResumeLadderResolution {
   folderPath: string | null;
 }
 
+/** The built resume ladder: recovered context, source documents, and the restore panel. */
 export interface ResumeLadderResult {
   phaseParent?: ResumeLadderPhaseParentContext;
   source: ResumeLadderSource;
@@ -56,12 +60,14 @@ export interface ResumeLadderResult {
   restorePanel: ResumeRestorePanel;
 }
 
+/** One direct phase-child considered when redirecting a resume into a phase parent's active child. */
 export interface ResumeLadderPhaseParentChild {
   name: string;
   qualifies: boolean;
   active: boolean;
 }
 
+/** Phase-parent redirect context attached to a resume ladder result. */
 export interface ResumeLadderPhaseParentContext {
   specFolder: string;
   redirectedSpecFolder: string | null;
@@ -70,6 +76,7 @@ export interface ResumeLadderPhaseParentContext {
   summary: string;
 }
 
+/** One recovered facet item that made it into the restore panel. */
 export interface ResumeRestorePanelItem {
   facet: ContinuityFacetName;
   label: string;
@@ -77,12 +84,14 @@ export interface ResumeRestorePanelItem {
   text: string;
 }
 
+/** A facet item dropped from the restore panel, and which budget cut it. */
 export interface ResumeRestorePanelOmission {
   facet: ContinuityFacetName;
   label: string;
   reason: 'item-budget' | 'char-budget';
 }
 
+/** The size-budgeted panel of restored (and omitted) continuity facets, plus its rendered markdown. */
 export interface ResumeRestorePanel {
   maxItems: number;
   maxChars: number;
@@ -95,6 +104,7 @@ export interface ResumeRestorePanel {
   markdown: string;
 }
 
+/** Inputs for {@link buildResumeLadder}. */
 export interface ResumeLadderOptions {
   specFolder?: string | null;
   fallbackSpecFolder?: string | null;

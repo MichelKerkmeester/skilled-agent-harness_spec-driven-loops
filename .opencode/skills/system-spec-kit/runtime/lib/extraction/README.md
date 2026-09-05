@@ -1,85 +1,93 @@
 ---
-title: "Extraction"
-description: "Post-tool extraction, redaction, entity extraction, and ontology checks for memory creation."
+title: "Extraction: Rule-Based Entity Extraction"
+description: "Pure-TypeScript rule-based entity extraction, its denylist, and the memory_entities/entity_catalog maintenance helpers."
 trigger_phrases:
-  - "extraction pipeline"
-  - "extraction adapter"
-  - "redaction gate"
+  - "entity extraction"
+  - "entity denylist"
+  - "entity catalog"
+  - "rebuild auto entities"
 ---
 
-# Extraction
+# Extraction: Rule-Based Entity Extraction
+
+---
 
 ## 1. OVERVIEW
 
-`lib/extraction/` turns selected tool output into memory-adjacent signals. It resolves target memory IDs, summarizes matched output, applies redaction, extracts entities, and optionally checks entity or relation pairs against an ontology schema.
+`lib/extraction/` owns rule-based entity extraction over document content, the denylist that keeps generic nouns and stop words out of the results, and the maintenance helpers that keep the `memory_entities` and `entity_catalog` database tables consistent. Extraction is pure TypeScript with zero npm dependencies; rules are declarative data (regex, capture group, entity type) rather than hand-written per-type parsing code.
+
+Current state:
+
+- Five built-in rules cover proper nouns, code-fence technology names, key-phrase continuations, markdown headings, and quoted strings.
+- `SPECKIT_ENTITY_CONFIG_PATH` can point at an external JSON rule file (see `entity-extraction-rules.json` for the reference shape); a missing, malformed, or invalid override falls back to the built-in rules so extraction never crashes on bad config.
+- Extracted entities are deduplicated by a normalized name, with frequencies summed across matches.
+- `rebuildAutoEntities()` gives a deterministic cleanup path: it deletes only `created_by='auto'` rows in scope, re-extracts from live `memory_index.content_text`, and rebuilds `entity_catalog` from the resulting rows.
 
 ---
 
 ## 2. DATA FLOW
 
 ```text
-tool result
-  -> stringifyToolResult()
-  -> matchRule()
-  -> summarize matched content
-  -> applyRedactionGate()
-  -> resolveMemoryIdFromText()
-  -> insert working-memory attention or extracted record data
-  -> optional entity and ontology checks
+content
+  -> loadEntityExtractionRules()
+  -> applyEntityRules() (regex match per rule, in order)
+  -> deduplicateEntities() (normalize + sum frequency)
+  -> filterEntities() (length + denylist checks)
+  -> storeEntities() / refreshAutoEntitiesForMemory()
+  -> updateEntityCatalog() or rebuildEntityCatalog()
 ```
 
-The extraction adapter fails closed when it cannot resolve a valid memory ID. Redaction runs before extracted content can reach downstream insert paths.
+`entity-extractor.ts` calls into `entity-denylist.ts`'s `isEntityDenied()` during filtering; the denylist has no dependency back on the extractor.
 
 ---
 
 ## 3. KEY FILES
 
-| File | Purpose |
+| File | Responsibility |
 |---|---|
-| `extraction-adapter.ts` | Matches tool output, summarizes content, resolves memory IDs, and records attention signals |
-| `redaction-gate.ts` | Redacts API keys, bearer tokens, private keys, email addresses, JWTs, and high-entropy values |
-| `entity-extractor.ts` | Extracts, filters, stores, and rebuilds rule-based memory entities |
-| `entity-denylist.ts` | Filters low-signal entity terms |
-| `ontology-hooks.ts` | Loads schema data and validates entity or relation pairs when enabled |
+| `entity-extractor.ts` | Rule loading (built-in or `SPECKIT_ENTITY_CONFIG_PATH` override), extraction, filtering, canonical name normalization, and the `memory_entities`/`entity_catalog` storage and rebuild helpers. |
+| `entity-denylist.ts` | Common nouns, technology stop words, and generic modifiers filtered from entity candidates; `isEntityDenied()` and `getEntityDenylistSize()`. |
+| `entity-extraction-rules.json` | Reference external rule file reproducing the five built-in rules exactly; a template for `SPECKIT_ENTITY_CONFIG_PATH` overrides. |
 
 ---
 
 ## 4. BOUNDARIES
 
-This module prepares extraction data and safety checks. It does not own canonical memory saves, response envelopes, search ranking, or graph traversal.
+This folder prepares extracted entity data and writes it to the database tables it owns (`memory_entities`, `entity_catalog`). It does not own canonical memory saves, response envelopes, search ranking, or graph traversal. `lib/graph/graph-metadata-parser.ts` is its one production consumer today.
 
 ---
 
 ## 5. ENTRYPOINTS
 
-| Entrypoint | Use |
+| Entrypoint | Purpose |
 |---|---|
-| `initExtractionAdapter()` | Connect extraction to the after-tool hook and database handle |
-| `getExtractionMetrics()` | Read matched, inserted, skipped, and redacted counters |
-| `resetExtractionMetrics()` | Reset extraction counters in tests or diagnostics |
-| `applyRedactionGate()` | Redact sensitive text and report matched categories |
-| `extractEntities()` | Extract rule-based entities from text |
-| `filterEntities()` | Remove denied or low-signal entities |
-| `storeEntities()` | Persist extracted entities for a memory record |
-| `updateEntityCatalog()` | Refresh canonical entity catalog rows |
-| `loadOntologySchema()` | Load the default or configured ontology schema |
-| `validateExtraction()` | Check an entity and relation pair against the schema |
+| `extractEntities(content)` | Extract and deduplicate rule-based entities from text. |
+| `filterEntities(entities)` | Remove single-character, over-length, and fully-denylisted entities. |
+| `loadEntityExtractionRules()` | Resolve the active rule set (built-in, or a valid `SPECKIT_ENTITY_CONFIG_PATH` override), cached after first load. |
+| `normalizeEntityName(name)` | Canonical lowercase, punctuation-stripped entity name for catalog keys. |
+| `storeEntities(db, memoryId, entities)` | Insert or replace entity rows for one memory record. |
+| `refreshAutoEntitiesForMemory(db, memoryId, entities)` | Replace one memory's `created_by='auto'` rows and rebuild or update the catalog as needed. |
+| `updateEntityCatalog(db, entities)` | Upsert entities into `entity_catalog` with alias normalization. |
+| `rebuildEntityCatalog(db)` | Deterministically rebuild `entity_catalog` from current `memory_entities` rows. |
+| `rebuildAutoEntities(db, options)` | Re-extract and re-store all `created_by='auto'` rows in scope, then rebuild the catalog. |
+| `isEntityDenied(term)` | Whether a term is on the entity denylist (case-insensitive). |
+| `getEntityDenylistSize()` | Size of the combined entity denylist set. |
 
 ---
 
 ## 6. VALIDATION
 
-- Extraction rules reject unsafe regex patterns at startup.
-- Redaction skips known-safe 40-character Git SHAs and UUIDs while still redacting high-entropy secrets.
-- Memory ID resolution checks the database before returning an ID.
-- Entity extraction deduplicates by normalized name and filters denylisted terms.
-- Ontology hooks fail open when disabled and validate against configured allowed types when enabled.
+Run from `.opencode/skills/system-spec-kit/runtime`.
+
+```bash
+npx vitest run tests/entity-extractor.vitest.ts
+```
+
+Expected result: rule loading, extraction, filtering, storage, and rebuild-path assertions pass.
 
 ---
 
 ## 7. RELATED
 
-- `../cognitive/README.md`
-- `../search/README.md`
-- `../storage/README.md`
-- `../../context-server.ts`
+- [`../README.md`](../README.md)
+- [`../graph/README.md`](../graph/README.md)

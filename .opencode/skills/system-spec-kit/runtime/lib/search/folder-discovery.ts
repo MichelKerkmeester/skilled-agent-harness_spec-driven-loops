@@ -6,6 +6,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as crypto from 'node:crypto';
+
 import { mergeDescription } from '../description/description-merge.js';
 import {
   formatDescriptionSchemaIssues,
@@ -66,6 +67,7 @@ export interface PerFolderDescription extends FolderDescription {
   level?: number | string;
 }
 
+/** Outcome of loading a packet's description.json: the parsed record, or why it could not be loaded. */
 export type LoadResult =
   | { ok: true; data: PerFolderDescription }
   | {
@@ -293,6 +295,7 @@ function getDescriptionWritePayload(
   return { ...desc };
 }
 
+/** Whether saving `desc` for `folderPath` would actually change the on-disk description.json. */
 export function wouldWritePerFolderDescription(
   desc: PerFolderDescription,
   folderPath: string,
@@ -307,12 +310,13 @@ export function wouldWritePerFolderDescription(
     || isDescriptionSourceFreshnessStale(prior, payload, folderPath);
 }
 
+/** Whether description.json repairs preserve unrecognized authored keys instead of overwriting them. */
 export function getRepairMergeSafe(): boolean {
   return DESCRIPTION_REPAIR_MERGE_SAFE;
 }
 
 // ───────────────────────────────────────────────────────────────
-// 5a. CONTENT FINGERPRINTS
+// 3. CONTENT FINGERPRINTS
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -407,6 +411,7 @@ function readRawPerFolderDescription(descPath: string): Record<string, unknown> 
   }
 }
 
+/** Read the per-token similarity threshold from SPECKIT_FOLDER_DISCOVERY_TOKEN_THRESHOLD, defaulting when unset or out of range. */
 export function getPerTokenSimilarityThreshold(): number {
   const rawValue = process.env.SPECKIT_FOLDER_DISCOVERY_TOKEN_THRESHOLD;
   if (!rawValue) return DEFAULT_PER_TOKEN_SIMILARITY_THRESHOLD;
@@ -577,7 +582,7 @@ function collectDiscoveredSpecStateWithTtl(basePaths: string[], nowMs = Date.now
 }
 
 // ───────────────────────────────────────────────────────────────
-// 3. DESCRIPTION EXTRACTION
+// 4. DESCRIPTION EXTRACTION
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -666,7 +671,7 @@ export function extractDescription(specContent: string): string {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 4. KEYWORD EXTRACTION
+// 5. KEYWORD EXTRACTION
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -705,7 +710,7 @@ export function extractKeywords(description: string): string[] {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 5. RELEVANCE SCORING / LOOKUP
+// 6. RELEVANCE SCORING / LOOKUP
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -783,6 +788,7 @@ function getComparableFolderTokens(folder: FolderDescription): string[] {
   return [...new Set(tokens.filter((token) => token.length >= 3))];
 }
 
+/** Bigram-overlap similarity between two tokens, in [0, 1] (1 for an exact match). */
 export function tokenSimilarity(left: string, right: string): number {
   if (left === right) return 1;
   if (left.length === 0 || right.length === 0) return 0;
@@ -807,6 +813,7 @@ export function tokenSimilarity(left: string, right: string): number {
   return (2 * intersection) / (leftBigrams.size + rightBigrams.size);
 }
 
+/** Whether every query term meets the per-token similarity threshold against at least one folder token. */
 export function passesPerTokenSimilarityGate(
   queryTerms: string[],
   folder: FolderDescription,
@@ -825,7 +832,7 @@ export function passesPerTokenSimilarityGate(
 }
 
 // ───────────────────────────────────────────────────────────────
-// 6. CACHE GENERATION
+// 7. CACHE GENERATION
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -1012,7 +1019,7 @@ function _processSpecFolder(
 }
 
 // ───────────────────────────────────────────────────────────────
-// 6a. SLUG HELPER
+// 7a. SLUG HELPER
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -1036,7 +1043,7 @@ function extractDescriptionWithFolderFallback(specContent: string, folderPath: s
 }
 
 // ───────────────────────────────────────────────────────────────
-// 6b. PER-FOLDER DESCRIPTION OPERATIONS
+// 7b. PER-FOLDER DESCRIPTION OPERATIONS
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -1140,6 +1147,7 @@ export function loadExistingDescription(folderPath: string): LoadResult {
   }
 }
 
+/** Load a folder's description.json, returning null when absent or invalid. */
 export function loadPerFolderDescription(folderPath: string): PerFolderDescription | null {
   const result = loadExistingDescription(folderPath);
   return result.ok ? result.data : null;
@@ -1227,7 +1235,7 @@ export function isPerFolderDescriptionStale(folderPath: string): boolean {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 7. CACHE I/O
+// 8. CACHE I/O
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -1358,7 +1366,7 @@ export function upsertDescriptionCacheEntry(
 }
 
 // ───────────────────────────────────────────────────────────────
-// 8. INTEGRATION HELPERS
+// 9. INTEGRATION HELPERS
 // ───────────────────────────────────────────────────────────────
 
 /**

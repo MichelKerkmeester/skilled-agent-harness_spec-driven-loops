@@ -2,9 +2,17 @@
 // MODULE: Spec Document Paths
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 
 import { shouldIndexForMemory } from '../utils/index-scope.js';
+
+// ───────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────
 
 export const SPEC_DOCUMENT_FILENAMES = new Set([
   'spec.md',
@@ -67,6 +75,11 @@ const SPEC_DISCOVERY_ONLY_EXCLUDE_DIRS = new Set([
 // Accept both canonical packet leaves like "010-feature" and numeric leaves like "010".
 const SPEC_LEAF_SEGMENT_PATTERN = /^\d{3}(?:[-_].+)?$/;
 
+// ───────────────────────────────────────────────────────────────
+// 3. PATH CLASSIFICATION
+// ───────────────────────────────────────────────────────────────
+
+/** Normalize a path to forward slashes and lowercase for case/platform-stable comparisons. */
 export function normalizeSpecPath(filePath: string | null | undefined): string {
   if (!filePath || typeof filePath !== 'string') {
     return '';
@@ -75,27 +88,32 @@ export function normalizeSpecPath(filePath: string | null | undefined): string {
   return filePath.replace(/\\/g, '/').toLowerCase();
 }
 
+/** Whether a path sits anywhere under a `specs/` directory. */
 export function isSpecsScopedPath(filePath: string | null | undefined): boolean {
   const normalizedPath = normalizeSpecPath(filePath);
   return normalizedPath.includes('/specs/') || normalizedPath.startsWith('specs/');
 }
 
+/** Whether a path falls under a scratch/temp/iteration working-artifact segment. */
 export function isWorkingArtifactPath(filePath: string | null | undefined): boolean {
   const normalizedPath = normalizeSpecPath(filePath);
   return WORKING_ARTIFACT_SEGMENTS.some((segment) => normalizedPath.includes(segment));
 }
 
+/** Whether a path is excluded from spec-document discovery (index-ignored or a known working segment). */
 export function isSpecDocumentExcludedPath(filePath: string | null | undefined): boolean {
   const normalizedPath = normalizeSpecPath(filePath);
   return !shouldIndexForMemory(normalizedPath)
     || SPEC_DOCUMENT_ONLY_EXCLUDED_SEGMENTS.some((segment) => normalizedPath.includes(segment));
 }
 
+/** Whether a path is the canonical `research/research.md` location. */
 export function isCanonicalResearchDocumentPath(filePath: string | null | undefined): boolean {
   const normalizedPath = normalizeSpecPath(filePath);
   return normalizedPath.endsWith('/research/research.md') || normalizedPath === 'research/research.md';
 }
 
+/** Whether a path is a `research.md` document, canonical or legacy leaf-level location. */
 export function isLegacyOrCanonicalResearchDocumentPath(filePath: string | null | undefined): boolean {
   const normalizedPath = normalizeSpecPath(filePath);
   return normalizedPath.endsWith('/research.md')
@@ -103,12 +121,14 @@ export function isLegacyOrCanonicalResearchDocumentPath(filePath: string | null 
     || isCanonicalResearchDocumentPath(normalizedPath);
 }
 
+/** Whether a path can be classified as an indexable spec document. */
 export function canClassifyAsSpecDocument(filePath: string | null | undefined): boolean {
   return isSpecsScopedPath(filePath)
     && shouldIndexForMemory(normalizeSpecPath(filePath))
     && !isSpecDocumentExcludedPath(filePath);
 }
 
+/** Whether a path can be classified as an indexable graph-metadata document. */
 export function canClassifyAsGraphMetadataPath(filePath: string | null | undefined): boolean {
   const normalizedPath = normalizeSpecPath(filePath);
   return isSpecsScopedPath(filePath)
@@ -116,6 +136,7 @@ export function canClassifyAsGraphMetadataPath(filePath: string | null | undefin
     && !GRAPH_METADATA_ONLY_EXCLUDED_SEGMENTS.some((segment) => normalizedPath.includes(segment));
 }
 
+/** Whether a discovery walk should descend into a given directory entry. */
 export function shouldDescendSpecDiscoveryDirectory(
   fullPath: string,
   entryName: string,
@@ -125,10 +146,12 @@ export function shouldDescendSpecDiscoveryDirectory(
     && !SPEC_DISCOVERY_ONLY_EXCLUDE_DIRS.has(entryName.toLowerCase());
 }
 
+/** Whether a path segment looks like a spec-folder leaf (e.g. `010-feature` or `010`). */
 export function isSpecLeafSegment(segment: string | null | undefined): boolean {
   return typeof segment === 'string' && SPEC_LEAF_SEGMENT_PATTERN.test(segment);
 }
 
+/** Whether a path is the given basename in a location the spec-document allowlist accepts. */
 export function matchesSpecDocumentPath(
   filePath: string | null | undefined,
   basename: string,
@@ -173,6 +196,7 @@ export function matchesSpecDocumentPath(
   );
 }
 
+/** Whether a path is a `graph-metadata.json` document in a location the allowlist accepts. */
 export function isGraphMetadataPath(filePath: string | null | undefined): boolean {
   if (!canClassifyAsGraphMetadataPath(filePath)) {
     return false;
@@ -193,6 +217,7 @@ export function isGraphMetadataPath(filePath: string | null | undefined): boolea
   return isSpecLeafSegment(parent);
 }
 
+/** Resolve the owning spec folder (specs-root-relative) for a spec-document path. */
 export function extractSpecFolderFromSpecDocumentPath(
   filePath: string | null | undefined,
 ): string | null {
@@ -225,6 +250,7 @@ export function extractSpecFolderFromSpecDocumentPath(
   return segments.slice(specsIndex + 1, segments.length - 1).join('/');
 }
 
+/** Resolve the owning spec folder (specs-root-relative) for a `graph-metadata.json` path. */
 export function extractSpecFolderFromGraphMetadataPath(
   filePath: string | null | undefined,
 ): string | null {
@@ -243,7 +269,7 @@ export function extractSpecFolderFromGraphMetadataPath(
 }
 
 // ───────────────────────────────────────────────────────────────
-// SHARED SPEC-FOLDER IDENTITY
+// 4. SHARED SPEC-FOLDER IDENTITY
 // ───────────────────────────────────────────────────────────────
 
 /** Canonical identity for one spec folder, derived from a single specs-root anchor. */
