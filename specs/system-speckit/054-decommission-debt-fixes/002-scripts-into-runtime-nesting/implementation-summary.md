@@ -317,6 +317,31 @@ Ten iterations were requested at `8b5b9dcfc9` on cursor's GPT-5.6 LUNA Max Fast;
 | Dist-alignment regression test omits the CLI target | P2 | Yes | `runtime/cli` added to the expected subtrees | `09aaac49e1` |
 | Native-module rebuild resolves the wrong root | P1 | Yes: `../..` landed on `runtime/` | Resolves the skill root like its sibling check script | `09aaac49e1` |
 | Phase-parent classification diverges between CLI entrypoint and runtime | P1 | Yes: the CLI copy ignored the generator-hardening default | CLI mirrors the runtime rule and its opt-out spellings; fixture folders classify the same | `56e17a9d3a`, `072da7777c` |
+
+### Fifth review pass
+
+Ten iterations of GPT-5.6 LUNA at max reasoning through DevPass (cli-opencode) at `072da7777c`, accepted by the runner with a recorded stop reason. Verdict CONDITIONAL: 0 P0, 10 P1, 8 P2. Five of the P1s are the reviewer noting that it could not replay a command from its read-only seat; each was replayed here.
+
+| Finding | Severity | Verified | Fix or replay | Commit |
+|---------|----------|----------|---------------|--------|
+| F001 workspace install and build not replayed | P1 | Replayed: `npm ci --dry-run` up to date; shared, runtime and cli build; freshness fresh | — | — |
+| F002 runtime tsconfig keeps `scripts` include and exclude | P2 | Yes | Both entries removed; runtime holds no TypeScript under `scripts/` | `714eaf2649` |
+| F003 path containment not replayed | P1 | Replayed: containment suites pass (council 28, changelog 3, path boundary tests green) | — | — |
+| F004 containment logic duplicated across CLI consumers | P2 | Yes, pre-existing | Recorded under Known Limitations as a follow-up | — |
+| F005 packet scope contradicts the shipped state | P1 | Yes: the problem statement and two out-of-scope lines were still planning-era | Reconciled; the original bounds kept as record | `714eaf2649` |
+| F006 inventory package-name guidance unbounded | P2 | Yes, as recorded history under `scratch/` | Kept as written | — |
+| F007 CLI READMEs keep `scripts/` topology | P1 | Yes: twelve subordinate READMEs still named `scripts/<folder>/` roots | Swept to `runtime/cli/<folder>/`; 28 READMEs re-validated with no errors | `714eaf2649` |
+| F008 registry entry keeps memory vocabulary | P2 | Yes | Continuity entry's outputs and gate renamed | `714eaf2649` |
+| F009 shipped-path harness skips when dist is missing | P1 | Yes | Fails instead; the lane builds first so a missing module is a broken build. Harness 316 of 316 | `714eaf2649` |
+| F010 embeddings harness comments keep scripts naming | P2 | No: the cited comment names shared/, not scripts/ | — | — |
+| F011 import policy and handler-root checks not replayed | P1 | Replayed: import-policy suite and the AST handler-cycle eval pass | — | — |
+| F012 API boundary comments keep scripts topology | P2 | Yes | Comments name the CLI workspace | `714eaf2649` |
+| F013 external consumer paths not replayed | P1 | Replayed: both workflows parse and name no `scripts` path | — | — |
+| F014 worktree artifact ownership undocumented | P2 | Observation, out of this phase's scope | Recorded under Known Limitations | — |
+| F015 fixture classification not replayed | P1 | Replayed: workflow-invariance suite passes | — | — |
+| F016 historical fixture vocabulary lacks guidance | P2 | Observation | Recorded under Known Limitations | — |
+| F017 generated metadata names the retired package identity | P1 | Yes: the causal summary derived from the planning-era problem statement | Regenerated from the reconciled statement, which names the retired identity only as history | `714eaf2649` and the metadata commit that follows |
+| F018 completion claims beside scaffold placeholders | P1 | Yes: a generator counts block with placeholder markers | Block removed | `714eaf2649` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -371,6 +396,8 @@ Ten iterations were requested at `8b5b9dcfc9` on cursor's GPT-5.6 LUNA Max Fast;
    tombstone"** in its `loader_requirements` prose (no file backs it either
    before or after this change) — left untouched as out of this phase's scope,
    since it names a retired command, not a live path.
+- Path containment is implemented separately in the changelog generator, the description generator and the shared path utilities; a follow-up could centralize it.
+- Worktree artifact ownership spans `worktree-session.sh` and the CI workflows without one document naming the boundary; fixture directories under `runtime/cli/tests` keep pre-move vocabulary by design as recorded data.
 <!-- /ANCHOR:limitations -->
 
 ---
