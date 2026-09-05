@@ -284,7 +284,13 @@ resolve_orchestrator() {
                 echo "Run: cd .opencode/skills/system-spec-kit/runtime && npm run build" >&2
                 exit 3
             elif [[ "$freshness_rc" -ne 0 ]]; then
-                echo "WARNING: dist freshness check could not run (exit $freshness_rc): $freshness_output" >&2
+                # A freshness check that cannot run proves nothing about the build it
+                # guards, so the run stops here instead of validating against output
+                # that may be stale.
+                echo "ERROR: validate.sh dist freshness check could not run (exit $freshness_rc)." >&2
+                [[ -n "$freshness_output" ]] && echo "$freshness_output" >&2
+                echo "Run: cd .opencode/skills/system-spec-kit/runtime && npm run build" >&2
+                exit 3
             fi
         fi
         ORCHESTRATOR_CMD=(node "$ORCHESTRATOR_JS")
