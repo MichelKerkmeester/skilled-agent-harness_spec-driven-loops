@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/package.json"
       - ".opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:7102ed9a9d28632a1566169bb015f93cc557a957ccf0a03b97469dbd83557848"
       session_id: "2026-09-05-054-002-scripts-into-runtime-nesting"
       parent_session_id: null
     completion_pct: 100

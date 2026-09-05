@@ -59,7 +59,7 @@ This is **Phase 2** of the decommission debt fixes specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-When this phase opened, `.opencode/skills/system-spec-kit/` ran two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (then `@spec-kit/scripts`, now `runtime/cli/` as `@spec-kit/cli`; the CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`). The operator wants `scripts/` nested inside `runtime/`. The skill's own `package.json:7-11` already declares `runtime` and `scripts` as sibling workspace members alongside `shared`, and `runtime/` already has its own `runtime/scripts/` directory (`finalize-dist.mjs`, `run-tests.mjs`, `run-tests-sharded.mjs`, `tests/`) - a literal `git mv scripts runtime/scripts` collides with content that already exists at that path. This mirrors the earlier `mcp-server` → `runtime` rename (packet 053, commit `aef7852400`, 708 files) in shape but not in size: every hook config, CI workflow, doctor asset, agent mirror, README, and the paths CLAUDE.md names directly (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `scripts/dist/memory/generate-context.js`, `scripts/retrieval/lookup-trigger-index.mjs`) would change.
+Before this phase, `.opencode/skills/system-spec-kit/` ran two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (then `@spec-kit/scripts`, now `runtime/cli/` as `@spec-kit/cli`; the CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`). The operator wants `scripts/` nested inside `runtime/`. The skill's own `package.json:7-11` already declares `runtime` and `scripts` as sibling workspace members alongside `shared`, and `runtime/` already has its own `runtime/scripts/` directory (`finalize-dist.mjs`, `run-tests.mjs`, `run-tests-sharded.mjs`, `tests/`) - a literal `git mv scripts runtime/scripts` collides with content that already exists at that path. This mirrors the earlier `mcp-server` → `runtime` rename (packet 053, commit `aef7852400`, 708 files) in shape but not in size: every hook config, CI workflow, doctor asset, agent mirror, README, and the paths CLAUDE.md names directly (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `scripts/dist/memory/generate-context.js`, `scripts/retrieval/lookup-trigger-index.mjs`) would change.
 
 ### Purpose
 A target layout is chosen that avoids the `runtime/scripts/` name collision, every reference to the old `scripts/` path is inventoried by resolution (import graphs, config file parsing, CI job execution) rather than text search alone, and the move is planned as one atomic commit with a rollback ref - but not executed in this phase, since the scope alone qualifies for Level 3 (see Risks).
@@ -78,36 +78,12 @@ A target layout is chosen that avoids the `runtime/scripts/` name collision, eve
 - Plan the ten-iteration review pass that packet 053 ran after its own rename, scoped to this move.
 
 ### Out of Scope
-- Executing the `git mv` itself was out of scope as planned; the operator then directed the move to run in this folder, and it did (see `implementation-summary.md`). The planning text above is kept as the record of the original bounded mid-flight.
-- Any behavior change inside either package - this is a path rename only.
-- Renaming `@spec-kit/scripts` or `@spec-kit/runtime` as npm package names was out of scope as planned; the review remediation later renamed the CLI package to `@spec-kit/cli` because the nested workspace could not keep the old name honestly (see the summary's disposition tables). Original bound: - only the on-disk directory relationship changes unless the execution phase's inventory shows the package name must move too.
+- Any behavior change inside either package beyond what the review findings named: the move is a path change, and the fixes that followed it are recorded one by one in `implementation-summary.md`.
 
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| (this phase) `spec.md`, `plan.md`, `tasks.md` | Create (already scaffolded) | Planning-only; no source files change in this phase |
-| (execution phase, out of scope here) `.opencode/skills/system-spec-kit/scripts/**` | Move | `git mv` to the chosen target layout |
-| (execution phase) `.opencode/skills/system-spec-kit/package.json` | Modify | `workspaces` array |
-| (execution phase) `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs`, hook configs, CI workflows, CLAUDE.md | Modify | Every resolved path reference |
-
-### Review Scope
-
-The review reads a bounded list, never a tree. The change set is the nesting commit's diff `19d54e03b1..b4c2484696` outside `specs/`, with pure renames excluded, plus every file under the spec-kit skill, the CI workflows and the doctor scripts whose content changed in the review-remediation commits that followed: 450 files, listed one per line in `scratch/review-scope.txt` (420 in the first pass; three paths removed in remediation dropped out). The 864 files moved without a content change are verified by the commands below, not by reading anything.
-
-**Reading budget.** Read only files in the list and the modules they import directly. Never expand a directory with a wildcard, and never read `node_modules`, `dist`, `benchmark`, `changelog`, `z_archive`, `manual-testing-playbook`, `feature-catalog`, or `runtime/data/trigger-index.json`. Cover a different part of the list in each iteration so ten iterations cover it roughly once, then spend the rest on findings already raised. Angles: root resolution that assumed the old depth, imports that flipped direction, the runtime build and test configs excluding `cli/`, the workspace and lockfile, hook symlinks and registrations, the continuity writer's new path in every caller, and the freshness table.
-
-**Repository-wide claims come from commands, not reading:**
-
-```bash
-rg -l 'system-spec-kit/scripts/|scripts/dist/|scripts/memory|dist/memory' . -g '!**/node_modules/**' -g '!**/dist/**' -g '!**/z_archive/**' -g '!**/changelog/**' -g '!**/benchmark/**' -g '!specs/**'   # no output
-node .opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check-all
-node .opencode/bin/compiled-route-guard.cjs
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs --json      # live must be 0
-NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-decommission-debt-fixes --strict --recursive
-```
-
-Out of the review's write scope: everything outside this phase's `review/` directory. This packet lives under `specs/system-speckit/` (no hyphen inside `speckit`); a path under `specs/system-spec-kit/`, or one beginning with a space, is outside the repository's tracked tree and is reverted by the runner's containment check.
+### Planning-time exclusions that were later executed here
+Two items were excluded when this phase was planned and then executed in this folder by operator decision; they are kept here as the record of the original bound, not as the current state.
+- Executing the `git mv` itself. Planned as a hand-off to a separate Level 3 packet; the operator directed the move to run here, and it did (`b4c2484696`).
+- Renaming `@spec-kit/scripts`. Planned as a package-name freeze; the review remediation renamed the CLI package to `@spec-kit/cli` because the nested workspace could not keep the old name honestly (`e354f144b5`).
 <!-- /ANCHOR:scope -->
 
 ---
