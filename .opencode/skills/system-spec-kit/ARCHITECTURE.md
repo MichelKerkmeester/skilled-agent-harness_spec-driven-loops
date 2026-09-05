@@ -135,7 +135,7 @@ The engine is composed of focused subsystems that share a public barrel and a fi
 
 **Generated packet metadata.** `lib/graph/` and `lib/description/` derive, merge, validate and serialize the two generated JSON files a spec folder carries — `description.json` and `graph-metadata.json`. Reads and writes stay split: the parser writes, while the integrity and drift gates only report, so a check cannot dirty the files it exists to keep clean. `lib/description/packet-synopsis.ts` is the one shared extractor behind both generated summary fields, so they cannot drift from the same `spec.md`.
 
-**Discovery and continuity.** `handlers/memory-index-discovery.ts` walks the filesystem for canonical spec documents and detects a folder's level; `lib/discovery/` re-exports it as a seam so `lib/` code depends inward rather than reaching sideways. `lib/continuity/` owns the bounded continuity record and `lib/resume/` builds the ladder a resume walks.
+**Discovery and continuity.** `handlers/spec-doc-discovery.ts` walks the filesystem for canonical spec documents and detects a folder's level; `lib/discovery/` re-exports it as a seam so `lib/` code depends inward rather than reaching sideways. `lib/continuity/` owns the bounded continuity record and `lib/resume/` builds the ladder a resume walks.
 
 **Hook adapters.** `hooks/{claude,codex,cursor,devin,pi}/` translate each runtime's payload onto shared implementations and emit that runtime's own envelope shape. Policy stays in `hooks/lib/spec-gate/spec-gate-core.mjs`, so the core never changes for a new runtime, and `lib/hooks/completion-evidence-sentinel.cjs` holds the runtime-neutral completion-evidence decision.
 

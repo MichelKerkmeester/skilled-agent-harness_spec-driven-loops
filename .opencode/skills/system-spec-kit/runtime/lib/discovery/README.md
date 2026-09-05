@@ -36,7 +36,7 @@ discovery/
 
 | File | Responsibility |
 |---|---|
-| `spec-document-finder.ts` | Re-exports `findSpecDocuments` and discovery types from `handlers/memory-index-discovery.js`. |
+| `spec-document-finder.ts` | Re-exports `findSpecDocuments` and discovery types from `handlers/spec-doc-discovery.js`. |
 
 ---
 

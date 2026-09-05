@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- `memory-index-discovery.ts` walks a workspace to find canonical spec documents, detect a folder's level, and locate `graph-metadata.json` files.
+- `spec-doc-discovery.ts` walks a workspace to find canonical spec documents, detect a folder's level, and locate `graph-metadata.json` files.
 - `save/spec-folder-mutex.ts` serializes work per spec folder across async chains and across processes.
 - Both are reached from `api/index.ts` or through the `lib/discovery/spec-document-finder.ts` seam. `lib/` code imports the seam rather than reaching sideways into this folder.
 - Discovery stays local rather than shared on purpose: it only walks the filesystem, and importing a shared formatter would make it depend on a much wider layer.
@@ -37,7 +37,7 @@ Current state:
 └────────────────┘      └──────────────────────────┘
 
 ┌────────────────┐      ┌──────────────────────────┐      ┌───────────────┐
-│ api/           │ ───▶ │ memory-index-discovery.ts│ ───▶ │ filesystem    │
+│ api/           │ ───▶ │ spec-doc-discovery.ts    │ ───▶ │ filesystem    │
 │ graph-refresh  │      │ document + level walk    │      │ spec folders  │
 └────────────────┘      └────────────┬─────────────┘      └───────────────┘
                                      ▲
@@ -56,7 +56,7 @@ Handlers import lib support modules; lib never imports handlers except through t
 
 ```text
 runtime/handlers/
-├── memory-index-discovery.ts   # Spec document discovery and spec-level detection
+├── spec-doc-discovery.ts       # Spec document discovery and spec-level detection
 ├── save/                       # Per-spec-folder save lock
 └── README.md
 ```
@@ -67,7 +67,7 @@ runtime/handlers/
 
 | File or directory | Responsibility |
 |---|---|
-| `memory-index-discovery.ts` | Exports `findSpecDocuments()`, `detectSpecLevel()` and `findGraphMetadataFiles()`, plus the `SpecDiscoveryOptions`, `DiscoveryFileList` and `DiscoveryCapExceeded` types. The returned list carries a cap-exceeded marker so a caller can tell a truncated walk from a complete one. |
+| `spec-doc-discovery.ts` | Exports `findSpecDocuments()`, `detectSpecLevel()` and `findGraphMetadataFiles()`, plus the `SpecDiscoveryOptions`, `DiscoveryFileList` and `DiscoveryCapExceeded` types. The returned list carries a cap-exceeded marker so a caller can tell a truncated walk from a complete one. |
 | `save/` | The per-spec-folder mutex. See `save/README.md`. |
 
 Canonical spec-document discovery covers the filenames named in `../lib/config/spec-doc-paths.ts`. `graph-metadata.json` is located through the graph-metadata path gate rather than the document filename set.

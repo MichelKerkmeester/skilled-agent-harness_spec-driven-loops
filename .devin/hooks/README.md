@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for Devin-specific hook adapters; runtime 
 
 ## 1. OVERVIEW
 
-`.devin/hooks/` contains 13 relative symlinks to Devin adapters owned under `.opencode/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, and `task-dispatch-guard.cjs` target `.opencode/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.opencode/hooks/README.md)); the rest target their owning skill under `.opencode/skills/`. Devin executes the real paths declared in `.devin/hooks.v1.json`. The mirror exists for discovery and direct comparison across runtimes.
+`.devin/hooks/` contains 19 relative symlinks to Devin adapters owned under `.opencode/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, and `task-dispatch-guard.cjs` target `.opencode/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.opencode/hooks/README.md)); the rest target their owning skill under `.opencode/skills/`. Devin executes the real paths declared in `.devin/hooks.v1.json`. The mirror exists for discovery and direct comparison across runtimes.
 
 The current registration is live under `devin -p` when events are top-level arrays with nested matcher groups. Six lifecycle events have fired in a corrected-schema session. `PermissionRequest` and `PostCompaction` remain unobserved because those events did not occur.
 
@@ -18,9 +18,10 @@ The current registration is live under `devin -p` when events are top-level arra
 
 | Group | Files |
 |-------|-------|
-| Session lifecycle | `session-start.js`, `session-stop.js`, `user-prompt-submit.js`, `post-compaction.cjs`, `completion-evidence-stop.cjs` |
+| Session lifecycle | `session-start.js`, `session-stop.js`, `user-prompt-submit.js`, `post-compaction.cjs`, `completion-evidence-stop.cjs`, `session-cleanup.sh` |
 | Spec and dispatch gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `task-dispatch-guard.cjs` |
-| Tool and quality adapters | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `mcp-route-guard.cjs` |
+| Tool and quality adapters | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `mcp-route-guard.cjs`, `permission-request-policy.mjs` |
+| Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `git-preflight-advisory.mjs` |
 
 The three `.js` links target the spec-kit runtime's compiled `runtime/dist/` output. A fresh checkout must build that package before those links resolve.
 

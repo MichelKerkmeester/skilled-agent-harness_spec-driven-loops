@@ -44,7 +44,7 @@ The inventory is derived from the files in each folder and from the import edges
   - `capability-flags.ts` — phase-aware rollout defaults across the `baseline`, `lineage`, `graph`, `adaptive` and `scope-governance` phases.
 - Primary consumers:
   - `api/index.ts`
-  - `handlers/memory-index-discovery.ts`
+  - `handlers/spec-doc-discovery.ts`
   - `lib/validation/orchestrator.ts`, `lib/validation/generated-metadata-integrity.ts`
   - `lib/search/folder-discovery.ts`, `lib/graph/graph-metadata-parser.ts`, `lib/spec/is-phase-parent.ts`, `lib/resume/resume-ladder.ts`
 
@@ -185,7 +185,7 @@ The inventory is derived from the files in each folder and from the import edges
   - `skill-label-sanitizer.ts` — strips instruction-shaped labels and control characters before a label reaches a prompt.
   - `exhaustiveness.ts` — `assertNever` for statically unreachable branches.
 - Primary consumers:
-  - `handlers/memory-index-discovery.ts`
+  - `handlers/spec-doc-discovery.ts`
   - `hooks/claude/hook-state.ts`
   - `lib/config/spec-doc-paths.ts`, `lib/context/shared-payload.ts`, `lib/search/folder-discovery.ts`
 
@@ -319,6 +319,6 @@ Target rule:
 
 ### Spec Document Discovery
 
-- Canonical location: `handlers/memory-index-discovery.ts`
+- Canonical location: `handlers/spec-doc-discovery.ts`
 - Seam for `lib/` callers: `lib/discovery/spec-document-finder.ts`
 - Rule: `lib/` code imports the seam. Handler code may import the implementation directly.

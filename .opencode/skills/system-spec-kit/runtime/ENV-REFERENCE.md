@@ -112,23 +112,30 @@ Directive-capsule lifecycle dedup has runtime-specific output cadence. Model-con
 ## 2. INFRASTRUCTURE
 
 **Ownership.** Every row here is either read by surviving package source or owned outside the
-package. *Read by this package:* the `SPECKIT_DB_DIR`/`SPEC_KIT_DB_DIR`/`MEMORY_DB_PATH`/
-`MEMORY_BASE_PATH` family in `core/config.ts`, whose `resolveDatabasePaths()` is still called by
-its own module-load side effect and by tests that exercise it directly; plus `SPECKIT_SPECS_DIR`
-and `SPECKIT_ROLLOUT_PERCENT`. *Shared, owned by the HF model server and the skill
-advisor:* `SPECKIT_IPC_SOCKET_DIR`, `SPECKIT_MAX_SECONDARY_CLIENTS`,
+package. *Read by this package:* `SPECKIT_SPECS_DIR` and `SPECKIT_ROLLOUT_PERCENT`.
+*Owned by the HF model server and the skill advisor, for the advisor's own database:*
+`SPECKIT_DB_DIR`/`SPEC_KIT_DB_DIR`/`MEMORY_DB_PATH` point the skill-advisor launcher at the
+database it owns; `shared/paths.ts` and `shared/config.ts` resolve the directory, and
+`shared/embeddings/factory.ts` and `shared/embeddings/profile.ts` read the same pair to keep the
+embedding layer pointed at it. The HF model server under `.opencode/bin` falls back to
+`runtime/database` as its own state directory only when the advisor has not pointed
+`MEMORY_DB_PATH` elsewhere — this package's own runtime code no longer has a live reader for any
+of the three. `SPECKIT_IPC_SOCKET_DIR`, `SPECKIT_MAX_SECONDARY_CLIENTS`,
 `SPECKIT_LAUNCHER_BRIDGE_DISABLED`, `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`, the `SPECKIT_LEASE_PROBE_*`
 trio and `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` — the skill-advisor launcher and the shared IPC bridge
-read them, so they survived the memory decommission. The rows that went out with that engine — the
-launcher log trio, the orphan-sweep budget pair, the eval database path, the rebind and write-lock
-overrides, the preflight `MCP_*` numbers and the boot FTS auto-heal — are gone from this table
-because nothing reads them any more.
+read them, so they survived the memory decommission. `MEMORY_BASE_PATH` has no reader left in
+either camp: `core/config.ts` still assigns it to an exported constant that nothing in `runtime/`
+imports outside of a same-package parity test, so the row is kept only because that assignment is
+still real code, not because anything depends on its value. The rows that went out with that
+engine — the launcher log trio, the orphan-sweep budget pair, the eval database path, the rebind
+and write-lock overrides, the preflight `MCP_*` numbers and the boot FTS auto-heal — are gone from
+this table because nothing reads them any more.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_DB_DIR` | (derived) | string | Directory override consulted by `computeDatabasePaths()`. `SPEC_KIT_DB_DIR` is checked first and wins; either one is resolved against `process.cwd()` and must land inside the project, home, or temporary directory or the call throws. | `core/config.ts` |
-| `MEMORY_DB_PATH` | (unset) | string | Explicit file path whose parent directory becomes the resolved database directory, but only when neither `SPEC_KIT_DB_DIR` nor `SPECKIT_DB_DIR` is set. A directory override intentionally wins over this path's parent. | `core/config.ts` |
-| `MEMORY_BASE_PATH` | `process.cwd()` | string | Workspace root used as `DEFAULT_BASE_PATH` for path validation. | `core/config.ts` |
+| `SPECKIT_DB_DIR` | (derived) | string | Directory override for the skill-advisor's own database, resolved by `getDbDir()`. `SPEC_KIT_DB_DIR` is checked first and wins; either one is resolved against `process.cwd()` and must pass `validateResolvedPath()` or the call throws. Not read anywhere in this package's own `runtime/` code. | `shared/config.ts`, `shared/embeddings/profile.ts`, `shared/embeddings/factory.ts` |
+| `MEMORY_DB_PATH` | (unset) | string | Explicit file path whose parent directory becomes the skill-advisor's resolved database directory, but only when neither `SPEC_KIT_DB_DIR` nor `SPECKIT_DB_DIR` is set. The name predates the memory-engine removal: the retired spec-kit memory server was this directory's original owner, and the skill-advisor launcher is now the live caller that points it at its own database. The HF model server's `hf-local` provider reads the same variable to keep its spawn-authority lease beside that database, falling back to `runtime/database` when it is unset. | `shared/paths.ts`, `shared/embeddings/factory.ts`, `shared/embeddings/providers/hf-local.ts` |
+| `MEMORY_BASE_PATH` | `process.cwd()` | string | Workspace root assigned to the exported `DEFAULT_BASE_PATH` constant. Nothing in `runtime/` imports that constant outside of a same-package parity test against `shared/paths.ts`, so this variable currently has no effect on running behavior. | `core/config.ts` |
 | `SPECKIT_SPECS_DIR` | (unset) | string | Fallback specs-root used when resolving a spec folder that is not directly under `process.cwd()`. `SPEC_KIT_SPECS_DIR` is checked first and wins. The candidate is `resolve(cwd, <override>, <specFolder>)` and is used only if it exists; otherwise resolution falls through to the spec-document finder. | `api/graph-refresh.ts` |
 | `SPECKIT_ROLLOUT_PERCENT` | `100` | number | Global rollout percentage (0-100) read by `getRolloutPercent()` and clamped to an integer. A missing or blank value uses the default. | `lib/cognitive/rollout-policy.ts` |
 | `SPECKIT_LAUNCHER_BRIDGE_DISABLED` | `false` | boolean | Rollback flag for launcher bridge mode. Set `1` to force legacy strict-single-writer behavior, where a secondary launcher prints `LEASE_HELD_BY` and exits instead of attaching to the daemon IPC socket. | `.opencode/bin/lib/launcher-ipc-bridge.cjs`, `.opencode/bin/system-skill-advisor-launcher.cjs` |
@@ -154,7 +161,7 @@ The live half of the package. `lib/validation/orchestrator.ts` runs the rule set
 | `SPECKIT_VERBOSE_RESOLVER` | (unset) | flag (`"1"`) | Exactly `1` appends the underlying cause's stack to the error the documentation-level contract resolver raises when it falls back. Diagnostic only. | `lib/templates/level-contract-resolver.ts`, `scripts/lib/template-utils.sh` |
 | `SPECKIT_FOLDER_DISCOVERY_TOKEN_THRESHOLD` | `0.45` | number (0..1) | Per-token similarity threshold for folder-discovery name matching. Non-numeric values, or values outside `[0,1]`, fall back to the default. | `lib/search/folder-discovery.ts` |
 | `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | `true` | boolean | Excludes `z_*` staging and archive folders from the spec-folder discovery scanner. Parsed as a tristate with default `true`; set `false` to restore the prior scanner that descended them. | `lib/search/folder-discovery.ts` |
-| `SPECKIT_INDEX_SPEC_DOCS` | `true` | boolean | Exactly the string `false` short-circuits spec-document discovery to an empty result with an empty discovery state. Any other value, including unset, leaves discovery on. | `handlers/memory-index-discovery.ts` |
+| `SPECKIT_INDEX_SPEC_DOCS` | `true` | boolean | Exactly the string `false` short-circuits spec-document discovery to an empty result with an empty discovery state. Any other value, including unset, leaves discovery on. | `handlers/spec-doc-discovery.ts` |
 | `SPECKIT_VALIDATE_SCRIPT` | (bundled `scripts/spec/validate.sh`) | string (path) | Overrides the `validate.sh` path the strict-pass-freshness sweep invokes per folder when re-baselining across multiple spec roots. Unset resolves the committed script next to the sweep tool. | `scripts/sweep/strict-pass-freshness.ts` |
 | `SPECKIT_TEMPLATES_BASE` | (bundled templates) | string (path) | Overrides the template root `scripts/spec/create.sh` copies a new packet's documents from. | `scripts/spec/create.sh` |
 | `SPECKIT_AC_COVERAGE` | `true` | boolean | Default-on advisory (INFO, non-blocking) acceptance-criteria coverage scan during spec validation. Set `false` to opt out. | `scripts/rules/check-ac-coverage.sh` |

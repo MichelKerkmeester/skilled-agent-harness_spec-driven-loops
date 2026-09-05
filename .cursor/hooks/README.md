@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Cursor hook scripts; 
 
 ## 1. OVERVIEW
 
-`.cursor/hooks/` contains 15 symlinks after including the session-start spec-gate prebind. `mcp-route-guard.mjs` and `task-dispatch-guard.mjs` target `.opencode/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.opencode/hooks/README.md)); the rest target their owning skill under `.opencode/skills/`. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
+`.cursor/hooks/` contains 17 symlinks after including the session-start spec-gate prebind. `mcp-route-guard.mjs` and `task-dispatch-guard.mjs` target `.opencode/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.opencode/hooks/README.md)); the rest target their owning skill under `.opencode/skills/`. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
 
 Four compiled ESM lifecycle adapters do not execute through their symlink because `runCursorHook()` compares the invocation path with the resolved module URL. Plain `.mjs` proxies do not use that guard, but all runtime wiring stays on one consistent set of real paths.
 
@@ -30,14 +30,16 @@ Four compiled ESM lifecycle adapters do not execute through their symlink becaus
 
 | Group | Files |
 |-------|-------|
-| Session lifecycle | `session-start.js`, `session-end.js`, `session-cleanup.sh`, `precompact.js`, `user-prompt-submit.js` |
+| Session lifecycle | `session-start.js`, `session-end.js`, `session-cleanup.sh`, `precompact.js`, `user-prompt-submit.js`, `goal-inject.mjs` |
 | Spec and dispatch gates | `spec-gate-prebind.mjs`, `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `task-dispatch-guard.mjs` |
 | Tool and MCP proxies | `post-tool-use.mjs`, `mcp-route-guard.mjs` |
-| Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs` |
+| Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `git-preflight-advisory.mjs` |
 
 `mcp-route-guard.mjs` recombines Cursor's split `mcp_server_name` and bare `tool_name` fields before delegating to the shared route-guard policy.
 
 `spec-gate-prebind.mjs` is wired on `sessionStart` through its real path. Its mirror is discovery-only, like every other entry here.
+
+`goal-inject.mjs` is a Cursor-only `sessionStart` goal-injection hook; it is not one of the two fully-portable guard cores below even though its target also lives under `.opencode/hooks/`.
 
 ---
 

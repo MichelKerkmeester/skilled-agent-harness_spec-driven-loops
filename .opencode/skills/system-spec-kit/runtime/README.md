@@ -145,7 +145,7 @@ runtime/
 | `lib/description/packet-synopsis.ts` | The one shared synopsis extractor behind both generated summary fields, so `description` and `causal_summary` cannot drift from the same `spec.md`. |
 | `lib/resume/resume-ladder.ts` | Builds the continuity ladder a resume reads. |
 | `lib/templates/level-contract-resolver.ts` | Resolves the per-level document contract the validation rules check against. |
-| `handlers/memory-index-discovery.ts` | Walks the filesystem to find spec documents and detect spec level. Deliberately local rather than shared so discovery does not depend on a wider layer. |
+| `handlers/spec-doc-discovery.ts` | Walks the filesystem to find spec documents and detect spec level. Deliberately local rather than shared so discovery does not depend on a wider layer. |
 | `handlers/save/spec-folder-mutex.ts` | Serializes work per spec folder across async chains and interprocess lock directories. |
 | `hooks/lib/spec-gate/spec-gate-core.mjs` | The runtime-neutral Gate-3 policy core every runtime adapter calls. Adapters translate payloads; they never decide policy. |
 | `core/config.ts` | Resolves runtime paths and input limits, and loads the validated cognitive config. |
