@@ -43,7 +43,7 @@ export interface PhaseParentHealth {
 // no runtime import, so it mirrors that rule: under hardening, membership is the
 // writer's leaf-segment shape; with the flag explicitly off, the strict slug.
 const GENERATOR_HARDENING_ENV = 'SPECKIT_GENERATOR_HARDENING';
-const FALSY_OPT_OUT = new Set(['0', 'false', 'off', 'no']);
+const FALSY_OPT_OUT = new Set(['0', 'false', 'off', 'no', 'disabled']);
 
 function isGeneratorHardeningEnabled(): boolean {
   const value = process.env[GENERATOR_HARDENING_ENV]?.trim().toLowerCase();
