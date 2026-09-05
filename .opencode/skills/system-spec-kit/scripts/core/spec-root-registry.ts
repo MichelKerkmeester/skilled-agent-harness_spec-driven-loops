@@ -83,7 +83,7 @@ export const SPEC_ROOT_RESOLVERS = [
     precedence: 'membership-only',
   },
   {
-    file: 'runtime/handlers/memory-index-discovery.ts:203-223,308-382',
+    file: 'runtime/handlers/spec-doc-discovery.ts:203-223,308-382',
     symbol: 'findSpecDocuments / findGraphMetadataFiles',
     consumerOrEffect: 'Spec-document and graph-metadata discovery use legacy only when canonical is absent.',
     precedence: 'canonical-first',

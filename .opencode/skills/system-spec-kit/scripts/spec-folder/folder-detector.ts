@@ -15,6 +15,7 @@ import { execFileSync } from 'node:child_process';
 // Internal modules
 import { validateFilePath } from '@spec-kit/shared/utils/path-security';
 import { promptUser, promptUserChoice } from '../utils/prompt-utils.js';
+import { CATEGORY_FOLDER_PATTERN } from '../core/subfolder-utils.js';
 import { CONFIG, findActiveSpecsDir, getAllExistingSpecsDirs, SPEC_FOLDER_PATTERN, findChildFolderAsync } from '../core/index.js';
 import {
   ALIGNMENT_CONFIG,
@@ -619,7 +620,7 @@ async function collectSpecParentCache(specsDirs: string[]): Promise<Map<string, 
           continue;
         }
 
-        if (!/^\d{2}--[a-z][a-z0-9-]*$/.test(entry)) continue;
+        if (!CATEGORY_FOLDER_PATTERN.test(entry)) continue;
 
         const categoryEntries = await fs.readdir(entryPath);
         for (const categoryChild of categoryEntries) {
@@ -659,8 +660,14 @@ async function resolveSessionSpecFolderPaths(
     const resolved = path.resolve(candidatePath);
     const withinSpecsRoot = specsDirs.some((specsDir) => isPathWithin(specsDir, resolved));
 
+    // A packet that resolves outside every specs root (for example a track
+    // symlinked to another checkout) is not a candidate, but it must not abort
+    // the resolution for the packets that do sit inside the roots.
     if (!withinSpecsRoot) {
-      throw new Error('Path escapes specs root');
+      if (process.env.DEBUG) {
+        console.debug(`   Skipping spec folder candidate outside specs roots: ${resolved}`);
+      }
+      return;
     }
 
     if (await pathIsDirectory(resolved)) {
@@ -791,7 +798,7 @@ async function collectAutoDetectCandidates(specsDirs: string[]): Promise<AutoDet
       }
       if (!topStat.isDirectory()) continue;
 
-      if (/^\d{2}--[a-z][a-z0-9-]*$/.test(topFolder)) {
+      if (CATEGORY_FOLDER_PATTERN.test(topFolder)) {
         let categoryEntries: string[] = [];
         try {
           categoryEntries = await fs.readdir(topPath);

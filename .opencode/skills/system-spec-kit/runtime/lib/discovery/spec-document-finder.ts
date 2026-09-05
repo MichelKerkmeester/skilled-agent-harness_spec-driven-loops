@@ -2,7 +2,7 @@
 // MODULE: Spec Document Finder Lib Seam
 // ───────────────────────────────────────────────────────────────
 // Lib-level wrapper around the existing `findSpecDocuments`
-// implementation in `handlers/memory-index-discovery.ts`. The implementation
+// implementation in `handlers/spec-doc-discovery.ts`. The implementation
 // can stay in handlers (it is consumed by handler-level code paths too), but
 // other lib modules should depend inward on this seam instead of reaching
 // across into a sibling handler module.
@@ -15,4 +15,4 @@ export {
   type SpecDiscoveryOptions,
   type DiscoveryFileList,
   type DiscoveryCapExceeded,
-} from '../../handlers/memory-index-discovery.js';
+} from '../../handlers/spec-doc-discovery.js';

@@ -7,7 +7,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { findSpecDocuments as findSpecDocumentsFromSeam } from '../lib/discovery/spec-document-finder.js';
-import { findSpecDocuments as findSpecDocumentsFromImpl } from '../handlers/memory-index-discovery.js';
+import { findSpecDocuments as findSpecDocumentsFromImpl } from '../handlers/spec-doc-discovery.js';
 import { sanitizeSkillLabel } from '../lib/utils/skill-label-sanitizer.js';
 
 describe('spec-kit-local boundary seams', () => {

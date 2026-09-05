@@ -10,7 +10,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   findGraphMetadataFiles,
   findSpecDocuments,
-} from '../handlers/memory-index-discovery';
+} from '../handlers/spec-doc-discovery';
 
 const tempRoots: string[] = [];
 

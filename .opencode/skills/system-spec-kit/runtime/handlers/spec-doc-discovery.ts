@@ -1,5 +1,9 @@
 // ────────────────────────────────────────────────────────────────
-// MODULE: Memory Index Discovery Helpers
+// MODULE: Spec Document Discovery Helpers
+// ────────────────────────────────────────────────────────────────
+// Walks a workspace to find canonical spec documents for generated metadata,
+// detect a folder's level, and locate graph-metadata.json files. This is
+// filesystem discovery, not an index into a memory database.
 // ────────────────────────────────────────────────────────────────
 
 // ────────────────────────────────────────────────────────────────
@@ -41,7 +45,7 @@ function shouldAbortDiscoveryWalk(state: DiscoveryWalkState, label: string): boo
 
   state.visitedNodes += 1;
   if (state.visitedNodes > SPEC_DISCOVERY_MAX_NODES) {
-    const warning = `[memory-index-discovery] ${label} aborted after ${SPEC_DISCOVERY_MAX_NODES} filesystem nodes`;
+    const warning = `[spec-doc-discovery] ${label} aborted after ${SPEC_DISCOVERY_MAX_NODES} filesystem nodes`;
     console.warn(warning);
     state.warnings.push(warning);
     state.maxNodesExceeded = true;
@@ -167,7 +171,7 @@ export function findSpecDocuments(workspacePath: string, options: SpecDiscoveryO
         const fullPath = path.join(dir, entry.name);
         if (entry.isDirectory()) {
           if (depth >= SPEC_DISCOVERY_MAX_DEPTH) {
-            const warning = `[memory-index-discovery] spec document discovery skipped ${fullPath} after reaching maxDepth=${SPEC_DISCOVERY_MAX_DEPTH}`;
+            const warning = `[spec-doc-discovery] spec document discovery skipped ${fullPath} after reaching maxDepth=${SPEC_DISCOVERY_MAX_DEPTH}`;
             console.warn(warning);
             state.warnings.push(warning);
             state.depthExceeded = true;
@@ -296,7 +300,7 @@ export function findGraphMetadataFiles(workspacePath: string, options: SpecDisco
         const fullPath = path.join(dir, entry.name);
         if (entry.isDirectory()) {
           if (depth >= SPEC_DISCOVERY_MAX_DEPTH) {
-            const warning = `[memory-index-discovery] graph metadata discovery skipped ${fullPath} after reaching maxDepth=${SPEC_DISCOVERY_MAX_DEPTH}`;
+            const warning = `[spec-doc-discovery] graph metadata discovery skipped ${fullPath} after reaching maxDepth=${SPEC_DISCOVERY_MAX_DEPTH}`;
             console.warn(warning);
             state.warnings.push(warning);
             state.depthExceeded = true;

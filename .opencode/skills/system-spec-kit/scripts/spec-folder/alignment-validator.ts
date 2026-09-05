@@ -247,26 +247,6 @@ async function fileExists(filePath: string): Promise<boolean> {
   }
 }
 
-async function resolveTelemetrySchemaDocsPaths(): Promise<{ schemaPath: string; docsPath: string }> {
-  const rootCandidates = [
-    path.resolve(moduleDir, '..', '..'),
-    path.resolve(moduleDir, '..', '..', '..'),
-  ];
-
-  for (const rootDir of rootCandidates) {
-    const schemaPath = path.join(rootDir, 'runtime', 'lib', 'telemetry', 'retrieval-telemetry.ts');
-    const docsPath = path.join(rootDir, 'runtime', 'lib', 'telemetry', 'README.md');
-
-    if (await fileExists(schemaPath) && await fileExists(docsPath)) {
-      return { schemaPath, docsPath };
-    }
-  }
-
-  throw new Error(
-    'Unable to locate telemetry schema/docs files for drift validation: expected runtime/lib/telemetry/retrieval-telemetry.ts and README.md'
-  );
-}
-
 async function validateTelemetrySchemaDocsDrift(
   options: TelemetrySchemaDocsValidationOptions = {}
 ): Promise<void> {
@@ -279,13 +259,14 @@ async function validateTelemetrySchemaDocsDrift(
     return;
   }
 
-  let schemaPath = options.schemaPath;
-  let docsPath = options.docsPath;
+  const schemaPath = options.schemaPath;
+  const docsPath = options.docsPath;
 
+  // The retrieval telemetry schema this check was written for left with the
+  // memory engine, so there is no default pair to resolve any more; callers
+  // name the schema and docs they want compared.
   if (!schemaPath || !docsPath) {
-    const defaultPaths = await resolveTelemetrySchemaDocsPaths();
-    schemaPath = schemaPath || defaultPaths.schemaPath;
-    docsPath = docsPath || defaultPaths.docsPath;
+    throw new Error('validateTelemetrySchemaDocsDrift requires explicit schemaPath and docsPath');
   }
 
   const schemaSource = await fs.readFile(schemaPath, 'utf-8');
@@ -498,7 +479,6 @@ async function validateContentAlignment(
   specFolderName: string,
   specsDir: string
 ): Promise<AlignmentResult> {
-  await validateTelemetrySchemaDocsDrift();
 
   const conversationTopics = extractConversationTopics(collectedData);
   const observationKeywords = extractObservationKeywords(collectedData);
@@ -623,7 +603,6 @@ async function validateFolderAlignment(
   specFolderName: string,
   specsDir: string
 ): Promise<AlignmentResult> {
-  await validateTelemetrySchemaDocsDrift();
 
   const conversationTopics = extractConversationTopics(collectedData);
 

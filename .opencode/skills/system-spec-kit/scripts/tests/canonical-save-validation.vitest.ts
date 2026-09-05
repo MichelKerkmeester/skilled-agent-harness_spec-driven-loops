@@ -14,7 +14,7 @@ const ROOT_026 = path.join(
   '..',
   '..',
   'specs',
-  'system-spec-kit',
+  'system-speckit',
   '026-graph-and-context-optimization',
 );
 const createdRoots = new Set<string>();
@@ -123,8 +123,7 @@ afterEach(() => {
 });
 
 describe('canonical-save validator rollout', () => {
-  // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('fails when a live packet root has metadata but no root spec', () => {
+  it('fails when a live packet root has metadata but no root spec', () => {
     const workspace = makeWorkspace();
     const packetRoot = createPacketRoot(workspace, '950-missing-root-spec', {
       includeSpec: false,
@@ -137,8 +136,7 @@ describe('canonical-save validator rollout', () => {
     expect(result.stdout).toContain('no canonical root spec.md');
   });
 
-  // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('fails when a live packet root graph metadata has empty source_docs', () => {
+  it('fails when a live packet root graph metadata has empty source_docs', () => {
     const workspace = makeWorkspace();
     const packetRoot = createPacketRoot(workspace, '951-empty-source-docs', {
       sourceDocs: [],
@@ -151,8 +149,7 @@ describe('canonical-save validator rollout', () => {
     expect(result.stdout).toContain('empty derived.source_docs');
   });
 
-  // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('grandfathers missing save_lineage before the cutoff and fails after it', () => {
+  it('grandfathers missing save_lineage before the cutoff and fails after it', () => {
     const workspace = makeWorkspace();
     const packetRoot = createPacketRoot(workspace, '952-lineage-window', {
       graphLastSaveAt: '2026-04-18T12:00:00.000Z',
@@ -171,8 +168,7 @@ describe('canonical-save validator rollout', () => {
     expect(enforced.stdout).toContain('save_lineage is required');
   });
 
-  // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('reports packet identity drift as a soft detector', () => {
+  it('reports packet identity drift as a soft detector', () => {
     const workspace = makeWorkspace();
     const packetRoot = createPacketRoot(workspace, '953-identity-drift', {
       continuityPacketPointer: 'system-spec-kit/other-packet',
@@ -184,8 +180,7 @@ describe('canonical-save validator rollout', () => {
     expect(result.stdout).toContain('Packet identity normalization drift detected');
   });
 
-  // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('reports description/graph freshness skew as a soft detector', () => {
+  it('reports description/graph freshness skew as a soft detector', () => {
     const workspace = makeWorkspace();
     const packetRoot = createPacketRoot(workspace, '954-freshness-skew', {
       descriptionLastUpdated: '2026-04-18T12:20:00.000Z',
@@ -199,8 +194,7 @@ describe('canonical-save validator rollout', () => {
     expect(result.stdout).toContain('freshness skew detected');
   });
 
-  // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('passes the canonical-save rule pack on the full 026 tree with the grandfathering window', () => {
+  it('passes the canonical-save rule pack on the full 026 tree with the grandfathering window', () => {
     const result = runValidate(
       ROOT_026,
       [

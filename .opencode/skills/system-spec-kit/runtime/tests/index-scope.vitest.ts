@@ -12,7 +12,7 @@ import {
 import {
   findGraphMetadataFiles,
   findSpecDocuments,
-} from '../handlers/memory-index-discovery.js';
+} from '../handlers/spec-doc-discovery.js';
 
 const tempDirs: string[] = [];
 

@@ -36,6 +36,18 @@ const results = {
   tests: [],
 };
 
+// A skip is only legitimate when it is caused by something about the machine or
+// checkout this run happens to execute on, not by a defect this suite should be
+// catching. Anything outside this list previously vanished as a silent skip,
+// which let the whole file exit green while testing nothing — enforce the
+// distinction here instead of trusting each call site to self-police it.
+const DOCUMENTED_SKIP_REASONS = [
+  'No specs directory found',
+  'No spec folders exist',
+  'No specs directories available',
+  'Alignment prompt requires interactive confirmation',
+];
+
 /* ─────────────────────────────────────────────────────────────
    2. TEST UTILITIES
 ────────────────────────────────────────────────────────────────
@@ -60,9 +72,44 @@ function fail(testName, reason) {
 }
 
 function skip(testName, reason) {
+  const isDocumentedEnvironmentCondition = DOCUMENTED_SKIP_REASONS.some((allowed) => reason.startsWith(allowed));
+  if (!isDocumentedEnvironmentCondition) {
+    fail(testName, `Skip reason is not a documented environment condition, so it counts as a failure: ${reason}`);
+    return;
+  }
   results.skipped++;
   results.tests.push({ name: testName, status: 'SKIP', reason });
   log(`   ⏭️  ${testName} (skipped: ${reason})`);
+}
+
+// Spec folders live one level under a category/track directory (e.g.
+// `system-spec-kit/049-memory-decommission`), not directly under the specs
+// root. Returns the first numbered folder found, preferring a top-level match
+// for backward compatibility, or null when the checkout truly has none.
+function discoverSampleSpecFolder(specsDir) {
+  const topEntries = fs.readdirSync(specsDir, { withFileTypes: true });
+
+  const topLevelMatch = topEntries.find((entry) => entry.isDirectory() && /^\d{3}-/.test(entry.name));
+  if (topLevelMatch) {
+    return topLevelMatch.name;
+  }
+
+  for (const entry of topEntries) {
+    if (!entry.isDirectory()) continue;
+    const trackPath = path.join(specsDir, entry.name);
+    let children;
+    try {
+      children = fs.readdirSync(trackPath, { withFileTypes: true });
+    } catch (_err) {
+      continue;
+    }
+    const childMatch = children.find((child) => child.isDirectory() && /^\d{3}-/.test(child.name));
+    if (childMatch) {
+      return path.join(entry.name, childMatch.name);
+    }
+  }
+
+  return null;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -86,10 +133,9 @@ async function testPriority1OverridesAll() {
       return;
     }
 
-    // Find an existing spec folder to use as CLI arg
-    const entries = fs.readdirSync(specsDir);
-    const specFolders = entries.filter(name => /^\d{3}-/.test(name));
-    if (specFolders.length === 0) {
+    // Find an existing spec folder to use as CLI arg (nested one level under its category/track)
+    const sampleSpecFolder = discoverSampleSpecFolder(specsDir);
+    if (!sampleSpecFolder) {
       skip('T-FD05a: Priority 1 overrides automatic detection', 'No spec folders exist');
       return;
     }
@@ -97,13 +143,13 @@ async function testPriority1OverridesAll() {
     const originalArg = CONFIG.SPEC_FOLDER_ARG;
     try {
       // Set CLI arg to a known existing folder
-      CONFIG.SPEC_FOLDER_ARG = specFolders[0];
+      CONFIG.SPEC_FOLDER_ARG = sampleSpecFolder;
       const result = await detectSpecFolder(null);
 
-      if (result.endsWith(specFolders[0])) {
-        pass('T-FD05a: Priority 1 overrides automatic detection', `CLI arg "${specFolders[0]}" → result ends with it`);
+      if (result.endsWith(sampleSpecFolder)) {
+        pass('T-FD05a: Priority 1 overrides automatic detection', `CLI arg "${sampleSpecFolder}" → result ends with it`);
       } else {
-        fail('T-FD05a: Priority 1 overrides automatic detection', `Expected path ending with "${specFolders[0]}", got: ${result}`);
+        fail('T-FD05a: Priority 1 overrides automatic detection', `Expected path ending with "${sampleSpecFolder}", got: ${result}`);
       }
     } finally {
       // Restore original value
@@ -127,10 +173,9 @@ async function testPriority2OverridesDb() {
       return;
     }
 
-    // Find an existing spec folder
-    const entries = fs.readdirSync(specsDir);
-    const specFolders = entries.filter(name => /^\d{3}-/.test(name));
-    if (specFolders.length === 0) {
+    // Find an existing spec folder (nested one level under its category/track)
+    const sampleSpecFolder = discoverSampleSpecFolder(specsDir);
+    if (!sampleSpecFolder) {
       skip('T-FD05b: Priority 2 overrides automatic detection', 'No spec folders exist');
       return;
     }
@@ -143,7 +188,7 @@ async function testPriority2OverridesDb() {
       // Call with collectedData containing SPEC_FOLDER
       // The alignment validator may interfere, so we pass minimal data
       const collectedData = {
-        SPEC_FOLDER: specFolders[0],
+        SPEC_FOLDER: sampleSpecFolder,
         userPrompts: [],
         observations: [],
         recentContext: [],
@@ -151,11 +196,13 @@ async function testPriority2OverridesDb() {
 
       const result = await detectSpecFolder(collectedData);
 
-      if (result.endsWith(specFolders[0])) {
-        pass('T-FD05b: Priority 2 overrides automatic detection', `Data SPEC_FOLDER "${specFolders[0]}" → result ends with it`);
+      if (result.endsWith(sampleSpecFolder)) {
+        pass('T-FD05b: Priority 2 overrides automatic detection', `Data SPEC_FOLDER "${sampleSpecFolder}" → result ends with it`);
       } else {
-        skip('T-FD05b: Priority 2 overrides automatic detection',
-          `Alignment redirected from "${specFolders[0]}" to "${path.basename(result)}"`);
+        // Not an environment condition — the alignment validator redirected away from the
+        // JSON-provided folder, so Priority 2 did not actually win as this check requires.
+        fail('T-FD05b: Priority 2 overrides automatic detection',
+          `Alignment redirected from "${sampleSpecFolder}" to "${path.basename(result)}" instead of honoring the JSON-provided SPEC_FOLDER`);
       }
     } finally {
       CONFIG.SPEC_FOLDER_ARG = originalArg;
@@ -540,6 +587,12 @@ async function main() {
   log('\n═══════════════════════════════════════════════════════════════');
   log(`RESULTS: ${results.passed} passed, ${results.failed} failed, ${results.skipped} skipped`);
   log('═══════════════════════════════════════════════════════════════\n');
+
+  const checksRan = results.passed + results.failed;
+  if (checksRan === 0) {
+    log('[folder-detector-functional] Every check skipped — zero checks ran, so this run proves nothing.');
+    process.exit(1);
+  }
 
   if (results.failed > 0) process.exit(1);
 }

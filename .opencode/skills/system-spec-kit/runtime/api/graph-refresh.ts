@@ -9,7 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { findSpecDocuments } from '../handlers/memory-index-discovery.js';
+import { findSpecDocuments } from '../handlers/spec-doc-discovery.js';
 import {
   refreshGraphMetadata as refreshGraphMetadataForResolvedFolder,
   type GraphMetadataRefreshOptions,

@@ -920,9 +920,9 @@ describe('workflow seam guardrail', () => {
   });
 
   // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('does not expose a legacy context filename for file-backed workflow saves', async () => {
+  it('does not expose a legacy context filename for file-backed workflow saves', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
-    const specFolderPath = path.join(tempRoot, '022-hybrid-rag-fusion');
+    const specFolderPath = path.join(tempRoot, '.opencode', 'specs', 'system-spec-kit', '022-hybrid-rag-fusion');
     const contextDir = path.join(tempRoot, 'memory');
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(contextDir, { recursive: true });
@@ -966,10 +966,14 @@ describe('workflow seam guardrail', () => {
     }
   });
 
-  // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('records the three-stage contamination audit trail in metadata.json', async () => {
+  // Path A retired the [spec]/memory/metadata.json sidecar this test originally read the
+  // audit trail from. The three-stage audit itself is still real (workflow.ts,
+  // content-filter.ts, and validate-memory-quality.ts each call structuredLog with
+  // message 'contamination_audit'); it now lands on stderr instead of a written file, so
+  // this asserts the same three-stage-in-order contract against that current surface.
+  it('records the three-stage contamination audit trail via structured logging', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
-    const specFolderPath = path.join(tempRoot, '009-perfect-session-capturing');
+    const specFolderPath = path.join(tempRoot, '.opencode', 'specs', 'system-spec-kit', '009-perfect-session-capturing');
     const contextDir = path.join(tempRoot, 'memory');
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(contextDir, { recursive: true });
@@ -984,6 +988,7 @@ describe('workflow seam guardrail', () => {
 
     const { runWorkflow } = await import('../core/workflow');
 
+    const stderrWriteSpy = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
     try {
       await runWorkflow({
         dataFile: '/tmp/context.json',
@@ -1002,24 +1007,35 @@ describe('workflow seam guardrail', () => {
         silent: true,
       });
 
-      expect(workflowHarness.writtenFiles).toHaveLength(1);
-      const metadata = JSON.parse(workflowHarness.writtenFiles[0].files['metadata.json']) as {
-        contaminationAudit: Array<{ stage: string }>;
-      };
-      expect(metadata.contaminationAudit.map((entry) => entry.stage)).toEqual([
-        'extractor-scrub',
-        'content-filter',
-        'post-render',
-      ]);
+      const auditStages = stderrWriteSpy.mock.calls
+        .map(([chunk]) => String(chunk).trim())
+        .filter(Boolean)
+        .map((line) => {
+          try {
+            return JSON.parse(line) as { message?: string; stage?: string };
+          } catch {
+            return null;
+          }
+        })
+        .filter((entry): entry is { message?: string; stage?: string } => entry?.message === 'contamination_audit')
+        .map((entry) => entry.stage);
+
+      expect(auditStages).toContain('extractor-scrub');
+      expect(auditStages).toContain('content-filter');
+      expect(auditStages).toContain('post-render');
+      // Order matters: each stage runs on the output of the one before it.
+      expect(auditStages.indexOf('extractor-scrub')).toBeLessThan(auditStages.indexOf('content-filter'));
+      expect(auditStages.indexOf('content-filter')).toBeLessThan(auditStages.indexOf('post-render'));
     } finally {
+      stderrWriteSpy.mockRestore();
       fs.rmSync(tempRoot, { recursive: true, force: true });
     }
   });
 
   // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('preserves source provenance inputs without reviving a legacy rendered memory file', async () => {
+  it('preserves source provenance inputs without reviving a legacy rendered memory file', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
-    const specFolderPath = path.join(tempRoot, '011-session-source-validation');
+    const specFolderPath = path.join(tempRoot, '.opencode', 'specs', 'system-spec-kit', '011-session-source-validation');
     const contextDir = path.join(tempRoot, 'memory');
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(contextDir, { recursive: true });
@@ -1079,9 +1095,9 @@ describe('workflow seam guardrail', () => {
   });
 
   // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('allows stateless saves when captured files match code paths declared in the target spec without returning a legacy filename', async () => {
+  it('allows stateless saves when captured files match code paths declared in the target spec without returning a legacy filename', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
-    const specFolderPath = path.join(tempRoot, '009-perfect-session-capturing');
+    const specFolderPath = path.join(tempRoot, '.opencode', 'specs', 'system-spec-kit', '009-perfect-session-capturing');
     const contextDir = path.join(tempRoot, 'memory');
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(contextDir, { recursive: true });
@@ -1386,9 +1402,9 @@ describe('workflow seam guardrail', () => {
   });
 
   // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('does not let file-backed state leak into a later stateless workflow run or expose legacy filenames', async () => {
+  it('does not let file-backed state leak into a later stateless workflow run or expose legacy filenames', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
-    const specFolderPath = path.join(tempRoot, '013-memory-search-bug-fixes');
+    const specFolderPath = path.join(tempRoot, '.opencode', 'specs', 'system-spec-kit', '013-memory-search-bug-fixes');
     const contextDir = path.join(tempRoot, 'memory');
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(contextDir, { recursive: true });
@@ -1448,9 +1464,9 @@ describe('workflow seam guardrail', () => {
   });
 
   // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('serializes overlapping workflow runs so per-run config state stays isolated', async () => {
+  it('serializes overlapping workflow runs so per-run config state stays isolated', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
-    const specFolderPath = path.join(tempRoot, '013-memory-search-bug-fixes');
+    const specFolderPath = path.join(tempRoot, '.opencode', 'specs', 'system-spec-kit', '013-memory-search-bug-fixes');
     const contextDir = path.join(tempRoot, 'memory');
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(contextDir, { recursive: true });
@@ -1517,10 +1533,14 @@ describe('workflow seam guardrail', () => {
 
     await Promise.all([firstRunPromise, secondRunPromise]);
 
-    expect(detectSnapshots).toEqual([
-      { specFolderArg: '001-first-run' },
-      { specFolderArg: '002-second-run' },
-    ]);
+    // runWorkflow now resolves specFolderArg to an absolute path via
+    // resolveSpecFolderCanonical() before handing it to detectSpecFolder, so
+    // only the relative suffix (order + per-run identity) is asserted here —
+    // the absolute prefix depends on CONFIG.PROJECT_ROOT, which this test
+    // deliberately leaves at its real (environment-dependent) value.
+    expect(detectSnapshots).toHaveLength(2);
+    expect(detectSnapshots[0].specFolderArg).toMatch(/(?:^|[/\\])001-first-run$/);
+    expect(detectSnapshots[1].specFolderArg).toMatch(/(?:^|[/\\])002-second-run$/);
     expect(CONFIG.DATA_FILE).toBeNull();
     expect(CONFIG.SPEC_FOLDER_ARG).toBeNull();
 
@@ -1528,9 +1548,9 @@ describe('workflow seam guardrail', () => {
   });
 
   // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('keeps direct preloaded workflow saves off the retired contextFilename contract', async () => {
+  it('keeps direct preloaded workflow saves off the retired contextFilename contract', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
-    const specFolderPath = path.join(tempRoot, '022-hybrid-rag-fusion');
+    const specFolderPath = path.join(tempRoot, '.opencode', 'specs', 'system-spec-kit', '022-hybrid-rag-fusion');
     const contextDir = path.join(tempRoot, 'memory');
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(contextDir, { recursive: true });

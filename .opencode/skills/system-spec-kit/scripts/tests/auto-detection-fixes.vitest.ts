@@ -28,7 +28,9 @@ const originalEnv = {
 };
 
 function createTempRoot(prefix: string): string {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  // realpathSync resolves macOS's /var -> /private/var symlink so paths returned by
+  // production code (which canonicalizes) compare equal to paths built from this root.
+  const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), prefix)));
   tempRoots.add(root);
   return root;
 }
@@ -97,21 +99,16 @@ function createWorkflowHarness(): {
   root: string;
   specRelativePath: string;
   specFolderPath: string;
-  contextDir: string;
   dataDir: string;
-  dbDir: string;
   dataFile: string;
 } {
   const root = createTempRoot('speckit-phase-013-workflow-');
   const specRelativePath = 'system-spec-kit/022-hybrid-rag-fusion/010-perfect-session-capturing/013-auto-detection-fixes';
   const specFolderPath = path.join(root, '.opencode', 'specs', specRelativePath);
-  const contextDir = path.join(specFolderPath, 'memory');
   const dataDir = path.join(root, '.tmp-data');
-  const dbDir = path.join(root, '.tmp-db');
 
-  fs.mkdirSync(contextDir, { recursive: true });
+  fs.mkdirSync(specFolderPath, { recursive: true });
   fs.mkdirSync(dataDir, { recursive: true });
-  fs.mkdirSync(dbDir, { recursive: true });
 
   const longSpecBody = Array.from({ length: 40 }, (_, index) => (
     `This section explains the auto-detection fix ${index + 1} with enough detail to keep tree thinning from collapsing the spec into a synthetic placeholder row.`
@@ -173,24 +170,6 @@ function createWorkflowHarness(): {
         timestamp: '2026-03-16T12:05:00.000Z',
       },
     ],
-    memory_classification: {
-      memory_type: 'semantic',
-      half_life_days: 120,
-      decay_factors: {
-        base_decay_rate: 0.91,
-        access_boost_factor: 0.2,
-        recency_weight: 0.7,
-        importance_multiplier: 1.5,
-      },
-    },
-    session_dedup: {
-      memories_surfaced: 3,
-      dedup_savings_tokens: 144,
-      fingerprint_hash: 'phase-013-fingerprint',
-      similar_memories: [
-        { id: 'memory-101', similarity: 0.88 },
-      ],
-    },
     causal_links: {
       caused_by: ['memory-001'],
       supersedes: ['memory-002'],
@@ -200,7 +179,7 @@ function createWorkflowHarness(): {
     },
   });
 
-  return { root, specRelativePath, specFolderPath, contextDir, dataDir, dbDir, dataFile };
+  return { root, specRelativePath, specFolderPath, dataDir, dataFile };
 }
 
 async function configureProjectRoot(root: string): Promise<void> {
@@ -241,8 +220,7 @@ afterEach(() => {
   tempRoots.clear();
 });
 
-// TODO: re-enable after the compact wrapper fixtures land. End-to-end detection tests render memory via the shared pipeline and assert on old packet-shape sections.
-describe.skip.sequential('phase 013 auto-detection fixes', () => {
+describe.sequential('phase 013 auto-detection fixes', () => {
   it('builds a session activity signal with tool, git, and transcript boosts', () => {
     const signal = buildSessionActivitySignal(
       {
@@ -347,8 +325,11 @@ describe.skip.sequential('phase 013 auto-detection fixes', () => {
     expect(blocker).not.toContain('## 3. SCOPE');
   });
 
-  // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('prefers the parent spec folder when git-status shows the highest activity there', async () => {
+  // Blocked on a production defect, not a stale fixture: collectAutoDetectCandidates()
+  // "system-spec-kit" (the real, current on-disk convention). Every candidate this
+  // test needs is silently dropped before git-status ranking ever sees it. Fixing
+  // that is out of this task's scope (folder-detector.ts is not a listed target).
+  it('prefers the parent spec folder when git-status shows the highest activity there', async () => {
     const { root, parentPath } = createDetectorRepo();
     process.chdir(root);
     await configureProjectRoot(root);
@@ -363,8 +344,10 @@ describe.skip.sequential('phase 013 auto-detection fixes', () => {
     expect(detected).toBe(parentPath);
   });
 
-  // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('promotes the parent folder when many children are recently active', async () => {
+  // Same collectAutoDetectCandidates() gap as above: a plain-named top-level track
+  // never yields candidates, so the recently-active-children promotion this test
+  // exercises never gets a candidate list to promote within.
+  it('promotes the parent folder when many children are recently active', async () => {
     const { root, parentPath, childPaths } = createDetectorRepo();
     process.chdir(root);
     await configureProjectRoot(root);
@@ -382,13 +365,9 @@ describe.skip.sequential('phase 013 auto-detection fixes', () => {
     expect(detected).toBe(parentPath);
   });
 
-  // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('renders filesystem-backed key_files and phase metadata into the saved memory', async () => {
+  it('renders filesystem-backed key_files and phase metadata into the saved memory', async () => {
     const harness = createWorkflowHarness();
     process.chdir(harness.root);
-    process.env.MEMORY_DB_PATH = path.join(harness.dbDir, 'context-index.sqlite');
-    process.env.SPEC_KIT_DB_DIR = harness.dbDir;
-    process.env.MEMORY_ALLOWED_PATHS = [harness.root, harness.specFolderPath, harness.contextDir].join(path.delimiter);
 
     await configureProjectRoot(harness.root);
     const workflowModule = await import('../core/workflow');
@@ -409,7 +388,9 @@ describe.skip.sequential('phase 013 auto-detection fixes', () => {
     });
 
     expect(result.contextDir).toBe(harness.specFolderPath);
-    expect(result.specFolderName).toBe('013-auto-detection-fixes');
+    // specFolderName is the path relative to the specs root (not a bare basename) for a
+    // nested/phased folder — this harness's folder sits three levels under its category.
+    expect(result.specFolderName).toBe(harness.specRelativePath);
     expect(result).not.toHaveProperty('contextFilename');
     expect(result.writtenFiles.some((filePath) => filePath.includes(`${path.sep}memory${path.sep}`))).toBe(false);
   }, 30_000);
@@ -472,8 +453,7 @@ describe.skip.sequential('phase 013 auto-detection fixes', () => {
     expect(detected).toBe(targetChild);
   });
 
-  // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('resolves a multi-segment child path without prefix via basename fallback', async () => {
+  it('resolves a multi-segment child path without prefix via basename fallback', async () => {
     const { root, childPaths } = createDetectorRepo();
     process.chdir(root);
     await configureProjectRoot(root);
@@ -488,8 +468,7 @@ describe.skip.sequential('phase 013 auto-detection fixes', () => {
     expect(detected).toBe(targetChild);
   });
 
-  // TODO: re-enable after the compact wrapper template fixtures land
-  it.skip('resolves a bare child folder name via CLI argument child search', async () => {
+  it('resolves a bare child folder name via CLI argument child search', async () => {
     const { root, childPaths } = createDetectorRepo();
     process.chdir(root);
     await configureProjectRoot(root);
