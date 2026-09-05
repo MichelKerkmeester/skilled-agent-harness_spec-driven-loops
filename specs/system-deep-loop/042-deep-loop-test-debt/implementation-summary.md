@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/runtime/cli/tests/review-reducer-fail-closed.vitest.ts"
       - ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-types.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d120b6b81e21eeffa13f2afce9c9c5a1ce489942d2b60947790614fd853e4cd0"
       session_id: "2026-09-05-042-deep-loop-test-debt"
       parent_session_id: null
     completion_pct: 100

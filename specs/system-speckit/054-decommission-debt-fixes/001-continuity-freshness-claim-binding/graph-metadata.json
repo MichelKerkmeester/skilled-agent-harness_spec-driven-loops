@@ -46,19 +46,11 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
       ".opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
-      ".opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts",
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/continuity-freshness.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts",
       ".opencode/skills/system-spec-kit/runtime/tests/validation-orchestrator-bridge.vitest.ts",
       ".opencode/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
       "runtime/tests/continuity-freshness.vitest.ts",
-      "scripts/memory/generate-context.ts",
-      "runtime/lib/continuity/thin-continuity-record.ts",
-      "scripts/tests/continuity-freshness.vitest.ts",
-      "scripts/core/memory-metadata.ts"
+      "runtime/lib/continuity/thin-continuity-record.ts"
     ],
     "entities": [
       {
@@ -92,45 +84,21 @@
         "source": "derived"
       },
       {
-        "name": "continuity-freshness.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
-        "source": "derived"
-      },
-      {
         "name": "orchestrator.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
         "source": "derived"
       },
       {
-        "name": "memory-metadata.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+        "name": "validation-orchestrator-bridge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/runtime/tests/validation-orchestrator-bridge.vitest.ts",
         "source": "derived"
       },
       {
         "name": "continuity-freshness.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/continuity-freshness.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context-cli-authority.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validation-orchestrator-bridge.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/runtime/tests/validation-orchestrator-bridge.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
         "source": "derived"
       },
       {
@@ -204,11 +172,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow Spec",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`evaluateCompletionFreshness` (`.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:292-349`) scans `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md` and `handover.md` for a completion claim (`completionpct === 100` or a status matching `complete|completed|done|shipped|implemented`, read from either frontmatter `status` or the metadata-table `Status` row)",
     "created_at": "2026-09-05T06:13:03Z",
-    "last_save_at": "2026-09-05T07:34:58.455Z",
+    "last_save_at": "2026-09-05T18:38:10.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d55a9a51368ab18776ad36bc8fbd1268b928cc88cb055f09c009cd9f9a68411a",
+    "source_fingerprint": "sha256:e7e33da28e67c6d5d791526a5152f69a0beccfc6aa500ac151a26eff35ade88f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "32bf05280583ed7d050faff02968329ed83d22df581a384cc19e5ca5a694d74b",
       "plan.md": "01ee63c4de5d7becb5f54a506732e628622a5f52b325f377a90a3a31cce9cbe7",
       "tasks.md": "a00840e0177b0bdb5c7a1e40bf12f2e1607803d3049642473c329c55d47f25ab",
-      "implementation-summary.md": "3b253ae7a5d6426cba636d6187b3b60fac163a86792f166740f58a9bd2525ed1"
+      "implementation-summary.md": "597815658b416a3e46ea8234be08e89b7ff11f2a71c5c9bb3276bfcbd022d9bf"
     },
     "last_active_child_id": null,
     "last_active_at": null

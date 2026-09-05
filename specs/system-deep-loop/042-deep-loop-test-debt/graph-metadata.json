@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Fix the pre-existing red tests and typecheck errors that the spec-kit nesting triage attributed to system-deep-loop: council persist-artifacts containment and fixture vantage, the reducer's fail-closed strategy anchors, the deep-review restart contract wording, and the runtime typecheck errors.",
     "created_at": "2026-09-05T11:40:23Z",
-    "last_save_at": "2026-09-05T15:48:28.236Z",
+    "last_save_at": "2026-09-05T18:38:19.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5759cb9e51f9391ab23da622bc931cf6df0e7f1f7d248011229b8a4282b14e0",
+    "source_fingerprint": "sha256:acb3f45267d3b83bbc7f6b62358fc5bc7b68ad093c74a284c0da5f93766442eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2ea8fb78460abb0701155cb11b8cfb31a9a31915b5700d80b30ff945e8e5f4ba",
       "plan.md": "8a087849743eebc7b2c6cc488bff771a03493ecf09806390bfaca55a040df8ff",
       "tasks.md": "7c3804c8da7a71645707e963ec78033680665f498236663de4e925c36d98257a",
-      "implementation-summary.md": "d120b6b81e21eeffa13f2afce9c9c5a1ce489942d2b60947790614fd853e4cd0"
+      "implementation-summary.md": "fac748d630db83a189f940f3d9787bc03562beff9d11e26f0b2f515327f6da77"
     },
     "last_active_child_id": null,
     "last_active_at": null

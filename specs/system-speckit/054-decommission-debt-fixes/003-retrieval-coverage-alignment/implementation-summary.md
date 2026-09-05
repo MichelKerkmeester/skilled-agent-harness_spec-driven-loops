@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:80ab238b1bacc202fe244287bc9206bd74d039186833c6e5ef45af1e9514c33a"
       session_id: "scaffold-003-retrieval-coverage-alignment"
       parent_session_id: null
     completion_pct: 100

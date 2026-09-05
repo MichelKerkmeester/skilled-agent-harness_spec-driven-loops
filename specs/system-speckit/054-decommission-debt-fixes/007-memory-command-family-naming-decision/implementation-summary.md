@@ -23,7 +23,7 @@ _memory:
       - ".opencode/commands/doctor/_routes.yaml"
       - "scratch/code-path-followups.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:ce3e6034e2f1f8ee61e22710491e1a78876284bd19010e130c194a9b60ebf664"
       session_id: "2026-09-05-054-007-memory-command-family-naming-decision-stage-a"
       parent_session_id: null
     completion_pct: 100

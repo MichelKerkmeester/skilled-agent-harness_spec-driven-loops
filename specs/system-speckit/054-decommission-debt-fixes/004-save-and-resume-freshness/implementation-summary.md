@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/core/workflow.ts"
       - ".opencode/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:94720d30ee75336bf474f95bb83675ced4ec09bb06088fd22b5f44c93a4e65d8"
       session_id: "2026-09-05-054-004-save-and-resume-freshness"
       parent_session_id: null
     completion_pct: 100

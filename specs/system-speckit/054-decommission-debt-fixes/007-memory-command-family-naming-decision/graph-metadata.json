@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The surviving continuity writer and retrieval commands still carry the word \"memory\" throughout their names, paths, and package metadata: the `/memory:save` and `/memory:search` commands (`.opencode/commands/memory/save.md`, `.opencode/commands/memory/search.md`); the writer itself, `scripts/memory/generate-context.ts`, compiled to `scripts/dist/memory/generate-context.js`; the `@spec-kit/scripts` package description, `\"CLI tools for spec-kit context generation and memory management\"` (`scripts/package.json:4`); the `/doctor memory` route (`.opencode/commands/doctor/routes.yaml:33-38`, target",
     "created_at": "2026-09-05T06:13:08Z",
-    "last_save_at": "2026-09-05T15:57:49.714Z",
+    "last_save_at": "2026-09-05T18:38:17.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e2308a6fb55c0fdb5c06dfaa323fd60b107abee9692a8b41425dbfb507288244",
+    "source_fingerprint": "sha256:28dd5d727ba772b89ba68ef3e36c387b65f1c483ff3d6376bcd2d81c6c7799ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "266d5828bf149ca513630de5b0585b3a005b7bbc706b84bba0dd181a5bc7dc97",
       "plan.md": "d95feb4d8cc7a86c9c89148177baa98530b05b471e51eb970c50113773ebdd70",
       "tasks.md": "56ec9fe02a46ed96d598eb67442f02d6dce1050faade42a992029ea67acf99a1",
       "decision-record.md": "5ee0231696f2277a4531dde242a0d8c25824ab769ff653f42610e79fc1cac2dd",
-      "implementation-summary.md": "ce3e6034e2f1f8ee61e22710491e1a78876284bd19010e130c194a9b60ebf664"
+      "implementation-summary.md": "f60de8ac26830fdfa1161b6cc2ec87d94e52081dc3acaa718ac48b134b25ec1d"
     },
     "last_active_child_id": null,
     "last_active_at": null

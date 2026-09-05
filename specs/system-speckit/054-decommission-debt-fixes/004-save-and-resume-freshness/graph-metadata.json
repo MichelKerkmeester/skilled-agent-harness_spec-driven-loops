@@ -47,20 +47,15 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       "runtime/data/trigger-index.json",
-      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/workflow-trigger-index-freshness.vitest.ts",
       ".opencode/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts",
       ".opencode/skills/system-spec-kit/runtime/tests/resume-ladder.vitest.ts",
       ".opencode/skills/system-spec-kit/runtime/tests/path-boundary.vitest.ts",
       ".opencode/skills/system-spec-kit/runtime/lib/resume/README.md",
-      "scripts/core/workflow.ts",
-      "scripts/memory/generate-context.ts",
       "runtime/lib/resume/resume-ladder.ts",
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
       "runtime/lib/continuity/thin-continuity-record.ts",
-      "scripts/tests/workflow-trigger-index-freshness.vitest.ts",
       "runtime/tests/resume-ladder.vitest.ts",
-      "runtime/tests/path-boundary.vitest.ts"
+      "runtime/tests/path-boundary.vitest.ts",
+      "runtime/lib/resume/README.md"
     ],
     "entities": [
       {
@@ -100,18 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow-trigger-index-freshness.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/workflow-trigger-index-freshness.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "resume-ladder.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts",
@@ -133,12 +116,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/runtime/lib/resume/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": "scripts/memory/generate-context.ts",
         "source": "derived"
       },
       {
@@ -206,11 +183,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Save",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Problem A - save completes without proving index freshness",
     "created_at": "2026-09-05T06:13:06Z",
-    "last_save_at": "2026-09-05T07:41:28.093Z",
+    "last_save_at": "2026-09-05T18:38:13.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00ffa2f32b503402fe0705296380291f2cfcf2caacde37b5283c0e50e41fe900",
+    "source_fingerprint": "sha256:c7d4cf8441e694b8bccabcd733a65d4c26d668f8a03d17488e179f615179bc69",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e15206e1b111fd3383515c273458f7fef61f51eabe31e6c07b15c397f3a36fa",
       "plan.md": "88945482b3e204c1f6dca08f493715572702a790e80b5defc230e95b65409641",
       "tasks.md": "54740c23027a79e62346aa3a04e9d4aed86214ac5aeb1b1fe217d0003de7ed91",
-      "implementation-summary.md": "94720d30ee75336bf474f95bb83675ced4ec09bb06088fd22b5f44c93a4e65d8"
+      "implementation-summary.md": "bfb9bcde93d3b632a6b3bf48eb843465f495a681204838af2215d11c607a1ebf"
     },
     "last_active_child_id": null,
     "last_active_at": null

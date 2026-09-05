@@ -47,14 +47,9 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       "runtime/package.json",
-      "scripts/package.json",
-      "scripts/tsconfig.json",
-      "scripts/lib/dist-freshness.cjs",
       ".opencode/bin/hf-model-server.cjs",
       ".claude/settings.json",
       ".opencode/skills/system-spec-kit/runtime/package.json",
-      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "scratch/review-scope.txt",
       ".opencode/logs/README.md",
       "data/trigger-index.json",
@@ -98,18 +93,6 @@
         "source": "derived"
       },
       {
-        "name": "tsconfig.json",
-        "kind": "config",
-        "path": "scripts/tsconfig.json",
-        "source": "derived"
-      },
-      {
-        "name": "dist-freshness.cjs",
-        "kind": "file",
-        "path": "scripts/lib/dist-freshness.cjs",
-        "source": "derived"
-      },
-      {
         "name": "hf-model-server.cjs",
         "kind": "file",
         "path": ".opencode/bin/hf-model-server.cjs",
@@ -119,12 +102,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -204,11 +181,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Engine",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Shell",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The memory decommission deleted the MCP server, its tools and its database, but kept the package that held them because the validation orchestrator, the metadata refresh, the continuity writer and the per-runtime hook adapters live inside it",
     "created_at": "2026-09-04T19:16:06Z",
-    "last_save_at": "2026-09-05T00:15:07.671Z",
+    "last_save_at": "2026-09-05T18:38:21.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46ae320378bf1fc506e7c4eb1979d22f11bf0e83426de1f0615fa2faee3f4c81",
+    "source_fingerprint": "sha256:5cf5da1dd42f1e4f51b4301143a425f862c287979e8838530c8249e3128d1c1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "690105cbe9698d7d379cc275de0daeb46497c70549a8fc2d2b2c99adf1030d99",
       "plan.md": "22895deca2ae469fa13740262b2d43596801462a1c0dd8581eeafeda81786bd7",
       "tasks.md": "48b8b37717f7b4cf22729fa28eeb04c12f80b807404e8f8a9f8f036c139ab0d9",
-      "implementation-summary.md": "12af08db4a578f1ec7fb26803fc7a58a17456958602b82f11e27239167a88321"
+      "implementation-summary.md": "d6b46744ddfac5f4e8d2f8a586f83e4f7ebb111a6b8b95447bcbff0d56e0c7ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

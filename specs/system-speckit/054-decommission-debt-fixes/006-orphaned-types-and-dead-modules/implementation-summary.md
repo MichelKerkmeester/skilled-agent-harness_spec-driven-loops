@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/runtime/tests/resource-map-extractor.vitest.ts"
       - ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a5e8c5e921cb0a50e54844b9acb3bd0c0bc8834c11cc1c775d227e5dbeb161e3"
       session_id: "2026-09-05-054-006-orphaned-types-and-dead-modules"
       parent_session_id: null
     completion_pct: 100

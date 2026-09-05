@@ -22,7 +22,7 @@ _memory:
       - ".opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml"
       - ".opencode/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:189b9e9f194558ba2c5182f505d5c0fcf6683ebfb90f3dccf592edf1b4a5d550"
       session_id: "2026-09-05-054-005-hook-fallback-failure-signal"
       parent_session_id: null
     completion_pct: 100

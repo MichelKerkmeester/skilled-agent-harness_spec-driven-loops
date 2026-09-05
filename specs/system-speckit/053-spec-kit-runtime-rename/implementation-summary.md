@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs"
       - ".opencode/bin/hf-model-server.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:12af08db4a578f1ec7fb26803fc7a58a17456958602b82f11e27239167a88321"
       session_id: "scaffold-053-spec-kit-runtime-rename"
       parent_session_id: null
     completion_pct: 80

@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts"
       - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:3b253ae7a5d6426cba636d6187b3b60fac163a86792f166740f58a9bd2525ed1"
       session_id: "scaffold-001-continuity-freshness-claim-binding"
       parent_session_id: null
     completion_pct: 100
