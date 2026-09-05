@@ -112,11 +112,12 @@ My lane landed as two commits (`1200c71f22` code, `c34ccfeb47` docs) after typec
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Seven remediation phases remain open** under this packet (continuity freshness claim binding, scripts nesting under runtime, retrieval coverage alignment, save and resume freshness, hook fallback failure signal, orphaned types and dead modules, the memory command-family naming decision). Each has its own spec, plan, tasks and acceptance criteria; none has started.
-2. **Recorded, not fixed, by the alignment pass:** two tests outside every vitest include glob (`runtime/scripts/tests/resource-map-extractor.vitest.ts`, `scripts/lib/completion-state.test.mjs`); three runtime modules with no production caller (cognitive rollout policy, storage transaction manager, description repair); 17 scripts test files red at HEAD before and after; 18 import-policy reach-through violations; a swallowed error in the alignment validator; duplicated roots in the markdown link checker.
-3. **Nesting `scripts/` under `runtime/`** is the next packet.
-4. **Continuity freshness cannot verify a completion claim today** because the claim and the fingerprint live in different documents; the rule keeps reporting such claims as skipped until its owner redesigns where the fingerprint is read from.
-5. **Orphaned type declarations remain in `shared/types.ts`** (`IVectorStore`, `SearchOptions`, `SearchResult`, `StoreStats`, the structural `Database` interfaces) with no implementer or caller; left because they are exported public surface.
+1. **The seven remediation phases are closed.** Continuity freshness claim binding (`787547dfc4`), the scripts nesting under `runtime/cli` with its review passes (`b4c2484696` through `714eaf2649`), retrieval coverage alignment (`3f0731e828`), save and resume freshness (`e378565f27`), the hook fallback failure signal (`b01d82e412`), orphaned types and dead modules (`1dab6e9e05`), and the command family rename (`9419e38e6b`, code paths with phase 002).
+2. **One CLI test file stays red on purpose:** `recursive-child-manifest.vitest.ts` asserts a goal-file manifest inside the operator's in-flight 036 packet and follows that packet.
+3. **Nine deep-loop runtime suite files are environment-dependent** (locale and collation child-process tests) and fail identically before and after every change here; recorded in packet 042 with the typecheck fix.
+4. **Continuity freshness binds a completion claim to the summary's fingerprint** since phase 001; a claim in a document without a fingerprint is reported as skipped by design, never as fresh.
+5. **Orphaned type declarations in `shared/types.ts`** (`IVectorStore`, `SearchOptions`, `SearchResult`, `StoreStats`, the structural `Database` interfaces) were removed or re-homed in phase 006; the remaining exported types all have callers.
+6. **Deep-loop leaf protocol:** two review lineages were rejected by the runner for a leaf writing to a mistyped track path, and one for a missing stop reason, while their iterations and reports had landed; recorded in packet 042 and mitigated by the phase 002 review-scope note.
 <!-- /ANCHOR:limitations -->
 
 ---
