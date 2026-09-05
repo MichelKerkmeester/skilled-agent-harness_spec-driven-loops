@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "When this phase opened, `.opencode/skills/system-spec-kit/` ran two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (then `@spec-kit/scripts`, now `runtime/cli/` as `@spec-kit/cli`; the CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`)",
+    "causal_summary": "Before this phase, `.opencode/skills/system-spec-kit/` ran two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (then `@spec-kit/scripts`, now `runtime/cli/` as `@spec-kit/cli`; the CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`)",
     "created_at": "2026-09-05T06:13:04Z",
-    "last_save_at": "2026-09-05T18:12:53.517Z",
+    "last_save_at": "2026-09-05T18:39:07.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea0bd0cc6d25dabf23be20487b940f0061d2e5ee808c65d6a9704d3d9634b6b4",
+    "source_fingerprint": "sha256:b65e8314d5575a7cd7a3f64f13e5c35f4184b634348786659bae5cc1c7b27af4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d9269bdb8ae4be75a9ba7da02d2d9755db64755e6d057ebd7b37e760cc9968e",
+      "spec.md": "418683f294d0fa1450a941863075914c7fe294e0bece69db95aa5c81ab24e498",
       "plan.md": "aa9e48f1cef7f720cafab62b6303b06e2509c6ed227c19410bd8231fc734f0a4",
       "tasks.md": "20277610b50b3da92b645bcaa77f4fe7e419dbaa9dc948a191e32e5bf0f4d36b",
-      "implementation-summary.md": "7102ed9a9d28632a1566169bb015f93cc557a957ccf0a03b97469dbd83557848"
+      "implementation-summary.md": "f05d5637f7623bdc312c3e159ae5086b348102e1ec806444c78cf4e80cc03380"
     },
     "last_active_child_id": null,
     "last_active_at": null

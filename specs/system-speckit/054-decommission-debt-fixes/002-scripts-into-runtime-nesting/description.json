@@ -1,10 +1,9 @@
 {
   "level": "2",
   "specFolder": "system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
-  "description": "When this phase opened, `.opencode/skills/system-spec-kit/` ran two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine -",
+  "description": "Before this phase, `.opencode/skills/system-spec-kit/` ran two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine -",
   "keywords": [
     "phase",
-    "opened",
     "opencode",
     "skills",
     "system-spec-kit",
@@ -18,7 +17,7 @@
     "spec-kit",
     "engine"
   ],
-  "lastUpdated": "2026-09-05T18:12:17.536Z",
+  "lastUpdated": "2026-09-05T18:38:44.376Z",
   "specId": "002",
   "folderSlug": "scripts-into-runtime-nesting",
   "parentChain": [

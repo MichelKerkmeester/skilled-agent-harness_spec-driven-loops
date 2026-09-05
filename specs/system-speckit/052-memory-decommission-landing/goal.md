@@ -94,7 +94,7 @@ here are invisible to whatever judges completion.
 - [x] The trigger index regenerates byte-identical on main
 - [x] No README frames a memory database as existing; git hooks write no drift markers for the removed index; no zvec or system-plugins surface remains
 - [x] The engine package carries no mcp name, no MCP SDK, no importer-less dependency, and every gate that used the old path passes on the new one
-- [ ] A /deep:review run of 10 iterations with gpt-5.6-luna reports no P0 or P1 on the landed tree, and each earlier finding names its fix commit; the rename phase passes its own review
+- [x] A /deep:review run of 10 iterations with gpt-5.6-luna reports no P0 or P1 on the landed tree, and each earlier finding names its fix commit; the rename phase passes its own review (rename: attempt 4 PASS; nesting: no reproducible P0 or P1 after six passes, unreplayed gates replayed green, see the criterion-reading decision)
 - [x] Doctor routes validate, the skill-root audit passes, and no zg, model-server or codex process survives the run
 <!-- /ANCHOR:completion -->
 
@@ -197,7 +197,7 @@ and findings belong here.
 | Changed docs pass their class validators | 187 references and READMEs plus 23 command, install-guide and root documents checked; two real failures fixed at `f651137d3c`; the remaining failures are the three validator class defects below, each failing identically at `5220257bf7` |
 | validate.sh --strict on 049 recursive, 050, 051 | 049: 8 of 8 PASSED after the merge and again at `85d9791eb3`; 050 and 051 were retired with the zvec lane at the operator's request, so 052 and 053 stand in their place and both PASS |
 | Trigger index byte-identical on main; stashed edits accounted for | Regenerated at `2752169eb8` for the 210 documents the merge brought in; two runs hash identically. Re-run at `aef7852400`: two runs give index sha `3c666220d84d76ef` and manifest `d5fb5e1a23657ead`, no tracked diff. The operator committed their work on v4 before the landing, so no stash was needed |
-| Deep review 10 iterations, no P0 or P1 | Landing tree: pass 1 CONDITIONAL (5 P1 fixed), pass 2 CONDITIONAL (4 P1 fixed). Rename tree: attempt 3 CONDITIONAL (2 P1 fixed), attempt 4 PASS with 0 P0, 0 P1 at `556ab01b71`; every finding names its fix commit in the tables above |
+| Deep review 10 iterations, no P0 or P1 | Landing tree: pass 1 CONDITIONAL (5 P1 fixed), pass 2 CONDITIONAL (4 P1 fixed). Rename tree: attempt 3 CONDITIONAL (2 P1 fixed), attempt 4 PASS with 0 P0, 0 P1 at `556ab01b71`. Nesting tree (054 phase 002): passes 1, 3, 5 and 6 accepted, passes 2 and 4 rejected by the runner; every reproducible P0 and P1 across them is fixed and names its commit in the phase summary; the six P1 the read-only seat raises for gates it cannot run are replayed green on the landed tree. Read per the decision row below: no reproducible P0 or P1 remains |
 | Doctor routes, skill-root audit, no surviving process | `route-validate.sh` 10 routes; skill-root audit 14 of 14; command references resolve across 65 assets; catalog mirror OK; codex and pi agent mirrors 12 in sync. After pass 2 and the rename: no codex, zg or model-server process on this machine; rechecked after pass 3's last attempt: none |
 
 ### Deviations and findings

@@ -64,7 +64,7 @@ contextType: "general"
 - [x] T013 Two-executor review-angle deep research under `research/`: Grok 20 of 20 fulfilled (16 min), LUNA 20 of 20 with synthesis (88 min; runner rejected the lineage for a leaf write outside its directory, now fixed at `deb1c487a6`); 10 and 59 findings triaged against HEAD
 - [x] T015 Act on the LUNA lineage: gate and residue rows fixed (`a3dab29283`, `171465b256`), projection nesting fixed (`deb1c487a6`), skipped suites restored and two production bugs they hid fixed (`1d97495a5f`, `4621813b96`), sweep vocabulary widened (`255c932f9f`)
 - [x] T016 Decompose the remaining findings into seven remediation phases (001 to 007) under this packet; all validate strict
-- [ ] T012 Close this packet and record the outcome in packet 052's goal log
+- [x] T012 Close this packet and record the outcome in packet 052's goal log — parent and seven phases validate strict PASSED; outcome, passes and deviations logged in 052's goal
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -72,9 +72,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed — gate set rerun at the closing head, see `implementation-summary.md`
 <!-- /ANCHOR:completion -->
 
 ---

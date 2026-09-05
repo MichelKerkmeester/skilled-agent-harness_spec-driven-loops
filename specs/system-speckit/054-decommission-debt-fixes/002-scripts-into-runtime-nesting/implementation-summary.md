@@ -342,6 +342,23 @@ Ten iterations of GPT-5.6 LUNA at max reasoning through DevPass (cli-opencode) a
 | F016 historical fixture vocabulary lacks guidance | P2 | Observation | Recorded under Known Limitations | — |
 | F017 generated metadata names the retired package identity | P1 | Yes: the causal summary derived from the planning-era problem statement | Regenerated from the reconciled statement, which names the retired identity only as history | `714eaf2649` and the metadata commit that follows |
 | F018 completion claims beside scaffold placeholders | P1 | Yes: a generator counts block with placeholder markers | Block removed | `714eaf2649` |
+
+### Sixth review pass
+
+Ten iterations of GPT-5.6 LUNA at max reasoning through DevPass at `f507e63f8d`, accepted by the runner. Verdict CONDITIONAL: 0 P0, 9 P1, 8 P2. Six P1s are again the read-only seat's unreplayed commands; the gates were replayed on the landed tree once more (install, typecheck, build, freshness, containment suites, import-policy suite, AST eval, workflow parse, fixture suite, shipped-path harness 316 of 316).
+
+| Finding | Severity | Verified | Fix or replay | Commit |
+|---------|----------|----------|---------------|--------|
+| F005 planning-era scope reads as current state | P1 | Yes | Scope split into what stays out of scope and the planning-time exclusions that were executed here | `747d60d6ff` |
+| F017 completion claim beside a zero fingerprint | P1 | Yes | Completion fingerprint stamped through the continuity metadata helper on this summary and on every closed packet in the program; the acceptance-criteria block keeps its placeholder because the freshness rule binds the claim to the summary | `747d60d6ff`, program-wide stamp commit |
+| F007 registry has no declared resolution root | P1 | Yes | `resolutionRoot` and `pathSemantics` declared at the top of the registry; the loader reads only `.scripts` | `1a3a5487d3` |
+| F001, F003, F010, F012, F013, F015 not replayed | P1 | Replayed here, all green | — | — |
+| F002 runtime tsconfig retains scripts exclusions | P2 | No: removed in the fifth-pass fix | — | — |
+| F008 continuity README diagrams name `scripts/` | P2 | Yes | Diagrams name `runtime/cli/` | `1a3a5487d3` |
+| F009 API comments name old consumers | P2 | Yes | Comments name `runtime/cli/` consumers | `1a3a5487d3` |
+| F011 runtime scripts boundary unexplained | P2 | Yes | Comment at the freshness source list explains `runtime/scripts` versus `runtime/cli` | `1a3a5487d3` |
+| F016 fixture vocabulary unlabeled | P2 | Yes | Fixtures README labels pre-move vocabulary as recorded data | `1a3a5487d3` |
+| F004, F006, F014 | P2 | Observations | Recorded under Known Limitations | — |
 <!-- /ANCHOR:verification -->
 
 ---

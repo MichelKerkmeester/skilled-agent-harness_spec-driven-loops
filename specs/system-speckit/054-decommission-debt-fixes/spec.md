@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-05 |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
@@ -204,7 +204,7 @@ REQUIREMENT_PLACEHOLDER
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-continuity-freshness-claim-binding/ | Bind a completion claim to one fingerprint, fix the silent skip-as-pass, extend tests | complete |
-| 2 | 002-scripts-into-runtime-nesting/ | Resolution-based inventory and the executed scripts/ to runtime/cli/ move carrying phase 007 stage B; its ten-iteration review pass is running | review |
+| 2 | 002-scripts-into-runtime-nesting/ | Resolution-based inventory and the executed scripts/ to runtime/cli/ move carrying phase 007 stage B; six review passes, every reproducible finding fixed and each fix commit recorded | complete |
 | 3 | 003-retrieval-coverage-alignment/ | Align the trigger-index and ripgrep exclusion/root policies, add a parity test | complete |
 | 4 | 004-save-and-resume-freshness/ | Save-time trigger-index staleness check; resume ladder trusts validated continuity over a newer unbound handover | complete |
 | 5 | 005-hook-fallback-failure-signal/ | Machine-detectable drift signal for Codex/Devin hook fallbacks; decide the Copilot wrapper fate | complete |

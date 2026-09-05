@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5e108ce9ee4b83340296b6a0bd59a404c40ada9d8f73e85fceb2aa3675867c4b"
       session_id: "054-decommission-debt-fixes"
       parent_session_id: null
     completion_pct: 0
@@ -105,6 +105,8 @@ My lane landed as two commits (`1200c71f22` code, `c34ccfeb47` docs) after typec
 | Grok research lineage (20 iterations) | 10 key findings; confirmed and fixed at `159c036502`, `9141353b0d`, `171465b256`, `4333c4d7b4`; set aside as false positives after checking: the doctor-update snapshot paths (they are the skill advisor's own), the leftover `mcp-server/` tree (exists only in the review worktree, untracked build residue), and the eleven session registrations (restored by design) |
 | Continuity freshness tightening | REVERTED - reporting a fingerprint-less completion claim as stale would flag every closed packet, because claims are read from the spec status table while fingerprints live in the summary continuity block; recorded for the rule's owner |
 | Gates at `e0ae6d7063` | PASS - freshness, sweep, doctor, audits, routing guard, validate strict on three packets |
+| Seven remediation phases | Complete - each validates strict PASSED; phase 002 carries six review passes with every reproducible finding fixed |
+| Gates at the closing head | PASS - typecheck (shared, runtime, cli) exit 0, deep-loop typecheck 0 errors, dist fresh, residue sweep live 0, route-validate 9 routes, compiled-route-guard fresh, skill-root audit 14 of 14, derived freshness 14 of 14, codex hooks OK, runtime mirrors 169 of 169, agent mirrors 12 of 12, contract drift OK, hook parity 100 of 100, CLI project 1568 of 1589 (one file follows the operator's in-flight 036 packet), legacy harness 316 of 316 |
 <!-- /ANCHOR:verification -->
 
 ---
