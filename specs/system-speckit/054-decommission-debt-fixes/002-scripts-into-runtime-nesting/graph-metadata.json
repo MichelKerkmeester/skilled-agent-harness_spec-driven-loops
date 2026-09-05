@@ -1,17 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/054-decommission-debt-fixes",
-  "spec_folder": "system-speckit/054-decommission-debt-fixes",
-  "parent_id": null,
-  "children_ids": [
-    "system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding",
-    "system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
-    "system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment",
-    "system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness",
-    "system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal",
-    "system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules",
-    "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision"
-  ],
+  "packet_id": "system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
+  "spec_folder": "system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
+  "parent_id": "system-speckit/054-decommission-debt-fixes",
+  "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -47,24 +39,26 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "scripts/spec/validate.sh",
+      "scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "scripts/dist/memory/generate-context.js",
+      "scripts/retrieval/lookup-trigger-index.mjs",
+      ".opencode/skills/system-spec-kit/package.json",
       "scripts/lib/dist-freshness.cjs",
-      ".opencode/agents/deep-review.md",
-      "shared/types.ts",
-      "runtime/data/trigger-index.json",
       ".claude/settings.json",
       ".codex/hooks.json",
-      ".cursor/hooks.json",
       ".devin/hooks.v1.json",
-      "runtime/scripts/tests/resource-map-extractor.vitest.ts",
-      "scripts/lib/completion-state.test.mjs",
-      "data/trigger-index.json"
+      ".cursor/hooks.json",
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh"
     ],
     "entities": [
       {
@@ -98,27 +92,39 @@
         "source": "derived"
       },
       {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": "scripts/dist/memory/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-trigger-index.mjs",
+        "kind": "file",
+        "path": "scripts/retrieval/lookup-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/package.json",
+        "source": "derived"
+      },
+      {
         "name": "dist-freshness.cjs",
         "kind": "file",
         "path": "scripts/lib/dist-freshness.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "shared/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-index.json",
-        "kind": "config",
-        "path": "runtime/data/trigger-index.json",
         "source": "derived"
       },
       {
@@ -140,15 +146,9 @@
         "source": "derived"
       },
       {
-        "name": "resource-map-extractor.vitest.ts",
-        "kind": "test",
-        "path": "runtime/scripts/tests/resource-map-extractor.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "completion-state.test.mjs",
-        "kind": "file",
-        "path": "scripts/lib/completion-state.test.mjs",
+        "name": "recommend-level.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh",
         "source": "derived"
       },
       {
@@ -158,31 +158,31 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Every",
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,21 +200,15 @@
         "source": "derived"
       },
       {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Five Sonnet",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The landing and rename packets closed with debt recorded rather than fixed: the scripts freshness table counted the trigger-index generator's fixtures as sources, the fan-out runner discarded lineage stderr, the review leaf could write iteration files at the cwd, a rollback runbook documented retired automation, a dead response type and a stale test name survived",
-    "created_at": "2026-09-05T03:23:43Z",
-    "last_save_at": "2026-09-05T06:48:14.745Z",
+    "causal_summary": "`.opencode/skills/system-spec-kit/` runs two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (the `@spec-kit/scripts` CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`)",
+    "created_at": "2026-09-05T06:13:04Z",
+    "last_save_at": "2026-09-05T06:29:15.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,15 +218,15 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b96a3abc49ac3146e17e275a60ff08232701d58661d35888d3537df6f0ce742e",
+    "source_fingerprint": "sha256:2acc866c4ee07f01d0b2d0721a92f50f92878b5bb59038c65fdb8281dba4839b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7cc532b49e641dc300ac62bed9982852d22a86e89d7a81faa14505f7eb5a9834",
-      "plan.md": "d3e8d36de30a64e86f8f63b19b6d7f449b7a4714199dc9620c5d0627ec230b48",
-      "tasks.md": "7defb4e8de61ee6583fd440816b83295aa8f22b7927a906f893720ae6cf61b89",
-      "implementation-summary.md": "81d5c97fc0495ab58064a11672a6164b3f6527b3e9622684322c3d90f4defc1c"
+      "spec.md": "d287eda127199fe20422af4ae936cbb2126f6f1a7b96fa34f8f9095b139c46cc",
+      "plan.md": "1d9b8f76670caf398d00e6d474a9d42704ddaff454eb229b74f453129c87a562",
+      "tasks.md": "7d2eadc4a7045d62e702559d88bc450c0ef82afd41c25e7f4cf216d814d594f8",
+      "implementation-summary.md": "840c1535432bfe125b23eedeac73d4c631e809da6c3d875b6cc87fafc3186733"
     },
-    "last_active_child_id": "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision",
+    "last_active_child_id": null,
     "last_active_at": null
   }
 }

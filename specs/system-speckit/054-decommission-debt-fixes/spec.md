@@ -195,3 +195,37 @@ REQUIREMENT_PLACEHOLDER
 **Given**
 **Given**
 -->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, verification, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-continuity-freshness-claim-binding/ | Bind a completion claim to one fingerprint, fix the silent skip-as-pass, extend tests | draft |
+| 2 | 002-scripts-into-runtime-nesting/ | Resolution-based reference inventory and target-layout decision for nesting scripts/ under runtime/ | draft |
+| 3 | 003-retrieval-coverage-alignment/ | Align the trigger-index and ripgrep exclusion/root policies, add a parity test | draft |
+| 4 | 004-save-and-resume-freshness/ | Save-time trigger-index staleness check; resume ladder trusts validated continuity over a newer unbound handover | draft |
+| 5 | 005-hook-fallback-failure-signal/ | Machine-detectable drift signal for Codex/Devin hook fallbacks; decide the Copilot wrapper fate | draft |
+| 6 | 006-orphaned-types-and-dead-modules/ | Delete or re-home seven orphaned types and two dead modules; fix two never-run tests and one empty catch | draft |
+| 7 | 007-memory-command-family-naming-decision/ | Decide keep-literal vs. rename-with-compatibility-window for the memory command family, before any rename | draft |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-continuity-freshness-claim-binding | 002-scripts-into-runtime-nesting | [Criteria TBD] | [Verification TBD] |
+| 002-scripts-into-runtime-nesting | 003-retrieval-coverage-alignment | [Criteria TBD] | [Verification TBD] |
+| 003-retrieval-coverage-alignment | 004-save-and-resume-freshness | [Criteria TBD] | [Verification TBD] |
+| 004-save-and-resume-freshness | 005-hook-fallback-failure-signal | [Criteria TBD] | [Verification TBD] |
+| 005-hook-fallback-failure-signal | 006-orphaned-types-and-dead-modules | [Criteria TBD] | [Verification TBD] |
+| 006-orphaned-types-and-dead-modules | 007-memory-command-family-naming-decision | [Criteria TBD] | [Verification TBD] |
+<!-- /ANCHOR:phase-map -->

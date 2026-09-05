@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Decommission debt fixes and runtime alignment"
+title: "Tasks: Phase 6: orphaned-types-and-dead-modules"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "task breakdown"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Decommission debt fixes and runtime alignment
+# Tasks: Phase 6: orphaned-types-and-dead-modules
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read the debt rows in packet 052's goal log and the review reports that raised them
-- [x] T002 Open this packet under the system-speckit track
-- [x] T003 [P] Inventory the code folders and README coverage of `runtime/` and `scripts/`
+- [ ] T001 Capture baseline typecheck output for `shared`, `scripts`, `runtime`
+- [ ] T002 [P] Capture baseline `check-markdown-links.cjs` output (counts and full broken list)
+- [ ] T003 [P] `rg` each of the seven `shared/types.ts` symbols and both runtime modules across the whole repository (source and `specs/`) to confirm zero non-declaration reference
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,13 +44,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Freshness: exclude the generator fixtures from the scripts sources; walker test (`1200c71f22`)
-- [x] T005 Fan-out: retain bounded lineage stderr and write `logs/fanout-lineage.err`; runner test (`1200c71f22`)
-- [x] T006 Review leaf: contract rule to resolve review paths against the dispatched artifact directory, all agent mirrors in sync (`c34ccfeb47`)
-- [x] T007 Delete the rollback runbook with its README, alias and manifest entries; drop the unused MCP response type; rename the stale test (`1200c71f22`, `c34ccfeb47`)
-- [x] T008 Move the trigger index to `runtime/data/`, remove the retired search-decisions file, rewrite every reference and the architecture topology (`1200c71f22`, `c34ccfeb47`)
-- [x] T009 Align `runtime/` and `scripts/` with `sk-code-opencode` and write or refresh every code README: five Sonnet agents on disjoint folder sets (`9e759d06cf`, `588be3fc00`, `923f4e966d`, `e5b414cbae`); 87 code READMEs, 0 validator issues, no code folder without one
-- [x] T009a Restore the eleven session-lifecycle hook registrations and mirror links the memory sweep dropped (`273767431d`); repair the two stale session-stop tests and the stdout scan exclusions (`6698bcc80b`)
+- [ ] T004 Delete or re-home (with a stated reason) the seven orphaned symbols in `shared/types.ts`, including any individual re-export in `shared/index.ts`
+- [ ] T005 Delete or re-home (with a stated reason) `runtime/lib/cognitive/rollout-policy.ts` and its dedicated test
+- [ ] T006 Delete or re-home (with a stated reason) `runtime/lib/description/repair.ts` and its dedicated tests
+- [ ] T007 Move or delete `scripts/lib/completion-state.test.mjs` so it either runs under a real vitest include glob or is gone
+- [ ] T008 Move or delete `runtime/scripts/tests/resource-map-extractor.vitest.ts` so it either runs under `runtime/vitest.config.ts`'s include globs or is gone
+- [ ] T009 Add a log line or a reason comment to `alignment-validator.ts:582-586`'s empty catch
+- [ ] T010 Deduplicate `check-markdown-links.cjs:24-26`'s `ROOTS` array
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,13 +58,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T010 Typecheck shared, scripts and runtime exit 0; touched suites unchanged or improved per agent report; 87 READMEs validated
-- [x] T011 Gates at `e0ae6d7063`: freshness stays green across two index runs without a re-stamp; sweep live 0; doctor routes 9; audits 14 of 14; routing guard fresh; validate strict PASSED on 052, 053 and this packet
-- [x] T014 Act on the Grok lineage: remove the code that still targeted the retired store (extractor storage half, transaction manager, shared row types, folder-detector session-learning lookup, three-arm parity harness, importer-less better-sqlite3 and sqlite-vec, tests bound to deleted modules, absent-playbook allowlist) at `159c036502` and `9141353b0d`; validate.sh fails closed when its freshness helper cannot run (`171465b256`); Devin fallback text and a retired doctor path fixed (`4333c4d7b4`)
-- [x] T013 Two-executor review-angle deep research under `research/`: Grok 20 of 20 fulfilled (16 min), LUNA 20 of 20 with synthesis (88 min; runner rejected the lineage for a leaf write outside its directory, now fixed at `deb1c487a6`); 10 and 59 findings triaged against HEAD
-- [x] T015 Act on the LUNA lineage: gate and residue rows fixed (`a3dab29283`, `171465b256`), projection nesting fixed (`deb1c487a6`), skipped suites restored and two production bugs they hid fixed (`1d97495a5f`, `4621813b96`), sweep vocabulary widened (`255c932f9f`)
-- [x] T016 Decompose the remaining findings into seven remediation phases (001 to 007) under this packet; all validate strict
-- [ ] T012 Close this packet and record the outcome in packet 052's goal log
+- [ ] T011 Re-run typecheck for `shared`, `scripts`, `runtime` and confirm no new error versus the T001 baseline
+- [ ] T012 Re-run `check-markdown-links.cjs` and confirm its counts reflect the deduplicated file set, and its `broken` list is unchanged in content from the T002 baseline
+- [ ] T013 Run `vitest run` and confirm the two previously-orphaned tests either appear in the executed-file list or are confirmed deleted, with no new failure
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -182,7 +178,7 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
+| P0 Items | 9 | 0/9 |
 | P1 Items | 12 | 0/12 |
 | P2 Items | 1 | 0/1 |
 
@@ -190,6 +186,3 @@ contextType: "general"
 <!-- /ANCHOR:summary -->
 
 ---
-
-
-

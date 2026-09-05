@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules",
+  "spec_folder": "system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules",
+  "parent_id": "system-speckit/054-decommission-debt-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "shared/types.ts",
+      "runtime/lib/cognitive/rollout-policy.ts",
+      "runtime/lib/description/repair.ts",
+      "scripts/spec-folder/alignment-validator.ts",
+      "scripts/check-markdown-links.cjs",
+      ".opencode/skills/system-spec-kit/shared/types.ts",
+      "shared/index.ts",
+      "runtime/tests/rollout-policy.vitest.ts",
+      "runtime/tests/description/repair.vitest.ts",
+      "scripts/lib/completion-state.test.mjs",
+      "runtime/scripts/tests/resource-map-extractor.vitest.ts",
+      "runtime/vitest.config.ts",
+      ".opencode/skills/system-spec-kit/runtime/lib/cognitive/rollout-policy.ts",
+      ".opencode/skills/system-spec-kit/runtime/lib/description/repair.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/completion-state.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rollout-policy.ts",
+        "kind": "code",
+        "path": "runtime/lib/cognitive/rollout-policy.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair.ts",
+        "kind": "code",
+        "path": "runtime/lib/description/repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-validator.ts",
+        "kind": "code",
+        "path": "scripts/spec-folder/alignment-validator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-markdown-links.cjs",
+        "kind": "file",
+        "path": "scripts/check-markdown-links.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "shared/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rollout-policy.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/rollout-policy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/description/repair.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "completion-state.test.mjs",
+        "kind": "file",
+        "path": "scripts/lib/completion-state.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map-extractor.vitest.ts",
+        "kind": "test",
+        "path": "runtime/scripts/tests/resource-map-extractor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/skills/system-spec-kit/shared/types.ts` still exports `IVectorStore` (line 246), `SearchOptions` (189), `SearchResult` (204), `StoreStats` (239), and the structural `Database` (171), `DatabaseExtended` (179), and `PreparedStatement` (157) interfaces; a repository-wide search finds no importer of any of these seven symbols outside `types.ts` itself and `shared/index.ts`'s barrel re-export - no implementer, no caller, no test",
+    "created_at": "2026-09-05T06:13:07Z",
+    "last_save_at": "2026-09-05T06:42:25.190Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:185628d5ff94c50e2329dc283a23efc4b82a2943150e9b9793ab4c8250adb8d7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5a4adc4d06590c4bdafeff83415ac3ce83360fe00144776ef3a3c3014bfcbf4e",
+      "plan.md": "bf1677f650f428c8ab517ec18856979d05f76e69085db6ae40766f7422efd901",
+      "tasks.md": "4c09d93f3c99f5664080b13c516c7475a22d15c63e49d1c6ab065be2d9ac05ed",
+      "implementation-summary.md": "69c607b7cf81dafcceb465c2e85b43f4a79ed8673c2914f559ba913a4805dc70"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

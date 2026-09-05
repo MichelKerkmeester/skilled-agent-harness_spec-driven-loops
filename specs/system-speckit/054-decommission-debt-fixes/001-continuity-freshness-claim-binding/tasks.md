@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Decommission debt fixes and runtime alignment"
+title: "Tasks: Phase 1: continuity-freshness-claim-binding"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "task breakdown"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Decommission debt fixes and runtime alignment
+# Tasks: Phase 1: continuity-freshness-claim-binding
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read the debt rows in packet 052's goal log and the review reports that raised them
-- [x] T002 Open this packet under the system-speckit track
-- [x] T003 [P] Inventory the code folders and README coverage of `runtime/` and `scripts/`
+- [ ] T001 Capture the baseline `validate.sh --strict` output for `052-memory-decommission-landing` and `053-spec-kit-runtime-rename` (no file change)
+- [ ] T002 Capture the baseline `continuity-freshness.vitest.ts` run (`scripts/tests/continuity-freshness.vitest.ts`)
+- [ ] T003 [P] Re-run the live reproduction (`SPECKIT_COMPLETION_FRESHNESS=1 node continuity-freshness.ts --folder specs/system-speckit/052-memory-decommission-landing --json`) and save its output alongside T001
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,13 +44,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Freshness: exclude the generator fixtures from the scripts sources; walker test (`1200c71f22`)
-- [x] T005 Fan-out: retain bounded lineage stderr and write `logs/fanout-lineage.err`; runner test (`1200c71f22`)
-- [x] T006 Review leaf: contract rule to resolve review paths against the dispatched artifact directory, all agent mirrors in sync (`c34ccfeb47`)
-- [x] T007 Delete the rollback runbook with its README, alias and manifest entries; drop the unused MCP response type; rename the stale test (`1200c71f22`, `c34ccfeb47`)
-- [x] T008 Move the trigger index to `runtime/data/`, remove the retired search-decisions file, rewrite every reference and the architecture topology (`1200c71f22`, `c34ccfeb47`)
-- [x] T009 Align `runtime/` and `scripts/` with `sk-code-opencode` and write or refresh every code README: five Sonnet agents on disjoint folder sets (`9e759d06cf`, `588be3fc00`, `923f4e966d`, `e5b414cbae`); 87 code READMEs, 0 validator issues, no code folder without one
-- [x] T009a Restore the eleven session-lifecycle hook registrations and mirror links the memory sweep dropped (`273767431d`); repair the two stale session-stop tests and the stdout scan exclusions (`6698bcc80b`)
+- [ ] T004 Reorder `validateContinuityFreshness` (`.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:376-382`) so a `pass`-status completion verdict returns directly instead of falling through to the timestamp-staleness branch
+- [ ] T005 Add the skip code family recognition to `printBridgeOutput`/the CLI JSON shape so `no_completion_claim`, `missing_fingerprint`, `zero_fingerprint`, `missing_frontmatter`, `missing_graph_metadata`, `missing_graph_timestamp`, `implementation_summary_missing` and `not_opted_in` are carried through distinguishably (`continuity-freshness.ts`)
+- [ ] T006 Update `parseShellRuleOutput`/`mapShellRuleStatus` (`.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts`) to preserve the skip signal in the `ValidationEntry` details/message without changing the top-level pass/warn/fail mapping for any existing code
+- [ ] T007 Add the fingerprint-stamp trigger to the continuity writer (`scripts/memory/generate-context.ts`, `scripts/core/memory-metadata.ts:185`) so a document carrying a completion claim is stamped with a real `session_dedup.fingerprint` via `buildContinuityFingerprint`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,13 +55,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T010 Typecheck shared, scripts and runtime exit 0; touched suites unchanged or improved per agent report; 87 READMEs validated
-- [x] T011 Gates at `e0ae6d7063`: freshness stays green across two index runs without a re-stamp; sweep live 0; doctor routes 9; audits 14 of 14; routing guard fresh; validate strict PASSED on 052, 053 and this packet
-- [x] T014 Act on the Grok lineage: remove the code that still targeted the retired store (extractor storage half, transaction manager, shared row types, folder-detector session-learning lookup, three-arm parity harness, importer-less better-sqlite3 and sqlite-vec, tests bound to deleted modules, absent-playbook allowlist) at `159c036502` and `9141353b0d`; validate.sh fails closed when its freshness helper cannot run (`171465b256`); Devin fallback text and a retired doctor path fixed (`4333c4d7b4`)
-- [x] T013 Two-executor review-angle deep research under `research/`: Grok 20 of 20 fulfilled (16 min), LUNA 20 of 20 with synthesis (88 min; runner rejected the lineage for a leaf write outside its directory, now fixed at `deb1c487a6`); 10 and 59 findings triaged against HEAD
-- [x] T015 Act on the LUNA lineage: gate and residue rows fixed (`a3dab29283`, `171465b256`), projection nesting fixed (`deb1c487a6`), skipped suites restored and two production bugs they hid fixed (`1d97495a5f`, `4621813b96`), sweep vocabulary widened (`255c932f9f`)
-- [x] T016 Decompose the remaining findings into seven remediation phases (001 to 007) under this packet; all validate strict
-- [ ] T012 Close this packet and record the outcome in packet 052's goal log
+- [ ] T008 Add the four new/extended cases to `continuity-freshness.vitest.ts`: claim-with-fingerprint (`fresh_completion`), claim-without-fingerprint (`missing_fingerprint`, distinguishable skip), zero-fingerprint placeholder (`zero_fingerprint`), CLI opt-out vs unguarded function (`not_opted_in`)
+- [ ] T009 Run `generate-context-cli-authority.vitest.ts` and `generate-context-save-lock.vitest.ts` and confirm the pass count is unchanged plus the new fingerprint-stamp assertion passes
+- [ ] T010 Re-run `validate.sh --strict` on `052-memory-decommission-landing` and `053-spec-kit-runtime-rename` and diff the exit code and summary counts against the T001 baseline - must match exactly
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -182,7 +175,7 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
+| P0 Items | 9 | 0/9 |
 | P1 Items | 12 | 0/12 |
 | P2 Items | 1 | 0/1 |
 
@@ -190,6 +183,3 @@ contextType: "general"
 <!-- /ANCHOR:summary -->
 
 ---
-
-
-

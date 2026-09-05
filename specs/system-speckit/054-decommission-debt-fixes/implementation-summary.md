@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-speckit/054-decommission-debt-fixes"
     last_updated_at: "2026-09-05T03:23:43Z"
     last_updated_by: "template-author"
-    recent_action: "Landed the alignment, restored the session hooks; research running"
-    next_safe_action: "Read the two research reports and fix what they confirm"
+    recent_action: "Acted on both research lineages; opened seven remediation phases"
+    next_safe_action: "Start phase 001 continuity freshness claim binding"
     blockers: []
     key_files: []
     session_dedup:
@@ -112,7 +112,7 @@ My lane landed as two commits (`1200c71f22` code, `c34ccfeb47` docs) after typec
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The review-angle research is in progress** under `research/`; its findings are acted on before closure.
+1. **Seven remediation phases remain open** under this packet (continuity freshness claim binding, scripts nesting under runtime, retrieval coverage alignment, save and resume freshness, hook fallback failure signal, orphaned types and dead modules, the memory command-family naming decision). Each has its own spec, plan, tasks and acceptance criteria; none has started.
 2. **Recorded, not fixed, by the alignment pass:** two tests outside every vitest include glob (`runtime/scripts/tests/resource-map-extractor.vitest.ts`, `scripts/lib/completion-state.test.mjs`); three runtime modules with no production caller (cognitive rollout policy, storage transaction manager, description repair); 17 scripts test files red at HEAD before and after; 18 import-policy reach-through violations; a swallowed error in the alignment validator; duplicated roots in the markdown link checker.
 3. **Nesting `scripts/` under `runtime/`** is the next packet.
 4. **Continuity freshness cannot verify a completion claim today** because the claim and the fingerprint live in different documents; the rule keeps reporting such claims as skipped until its owner redesigns where the fingerprint is read from.

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding",
+  "spec_folder": "system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding",
+  "parent_id": "system-speckit/054-decommission-debt-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
+      "scripts/memory/generate-context.ts",
+      "runtime/lib/continuity/thin-continuity-record.ts",
+      ".opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "scripts/tests/continuity-freshness.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/continuity-freshness.vitest.ts",
+      "scripts/core/memory-metadata.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "thin-continuity-record.ts",
+        "kind": "code",
+        "path": "runtime/lib/continuity/thin-continuity-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/continuity-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reorder",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Spec",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`evaluateCompletionFreshness` (`.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:292-349`) scans `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md` and `handover.md` for a completion claim (`completionpct === 100` or a status matching `complete|completed|done|shipped|implemented`, read from either frontmatter `status` or the metadata-table `Status` row)",
+    "created_at": "2026-09-05T06:13:03Z",
+    "last_save_at": "2026-09-05T06:25:57.230Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8fa251ccc3df3adcd71d3a4d46b9412fc93e9eb4268e01083d9e1573907abaaa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8ee70a2d8902676a28cfd8eb0ad08620b51c924a7fdaf1d85211b73465d7ae47",
+      "plan.md": "01ee63c4de5d7becb5f54a506732e628622a5f52b325f377a90a3a31cce9cbe7",
+      "tasks.md": "cda86229e84a74900798ef7fef34e9ed78f721ad049f8e1ab0361c97f51d8dc7",
+      "implementation-summary.md": "64656bae6ba2bd2bb6488ea0862d70361ffd01ea2f18299421785abb5cbc2b1e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

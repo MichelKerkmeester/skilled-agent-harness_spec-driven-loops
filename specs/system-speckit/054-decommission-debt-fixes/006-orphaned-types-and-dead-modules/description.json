@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules",
+  "description": "Phase 6: orphaned-types-and-dead-modules",
+  "keywords": [
+    "phase",
+    "orphaned-types-and-dead-modules"
+  ],
+  "lastUpdated": "2026-09-05T06:13:08.478Z",
+  "specId": "006",
+  "folderSlug": "orphaned-types-and-dead-modules",
+  "parentChain": [
+    "system-speckit",
+    "054-decommission-debt-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

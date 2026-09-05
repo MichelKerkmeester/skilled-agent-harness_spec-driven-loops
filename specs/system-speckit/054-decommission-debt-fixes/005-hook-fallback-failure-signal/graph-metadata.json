@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal",
+  "spec_folder": "system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal",
+  "parent_id": "system-speckit/054-decommission-debt-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".codex/hooks.json",
+      ".devin/hooks.v1.json",
+      ".github/hooks/scripts/session-start.sh",
+      ".github/hooks/scripts/user-prompt-submitted.sh",
+      "runtime/tests/hooks-reexport-parity.vitest.ts",
+      ".claude/settings.json",
+      ".cursor/hooks.json",
+      ".opencode/commands/doctor/assets/doctor-memory.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/session-start.sh",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submitted.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/user-prompt-submitted.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hooks-reexport-parity.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/hooks-reexport-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-memory.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-memory.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codex Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex Stop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Copilot",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.codex/hooks.json` wraps every registered adapter as `node <adapter> || printf %s '{\"hookSpecificOutput\":{...,\"additionalContext\":\"mk codex hook could not resolve; re-run the codex hooks installer with --check\"}}'` (for example lines 8, 13, 18, 27, 33, 40, 48, 56, 64, 72)",
+    "created_at": "2026-09-05T06:13:07Z",
+    "last_save_at": "2026-09-05T06:38:56.284Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:818eddc2c1ad161975186df7f0cb57a30c980f0589d27f0bef7f62d08f24d94e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b801b12aa013c8c3beaf32c80a11ba5d603446c6c3992c203401311e2b800846",
+      "plan.md": "22662d6aea92f1e932dbc6e1f441b756550130b53ba251023c1d6907a04631a3",
+      "tasks.md": "d18c9997a0bcd718575a8ad726daae6e50a3e5abfb919552f85cea280c7df539",
+      "implementation-summary.md": "53814784e6ef87d0ac45f7c1844397b5627b744e0e306427dfdfe1bfa8e92b00"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

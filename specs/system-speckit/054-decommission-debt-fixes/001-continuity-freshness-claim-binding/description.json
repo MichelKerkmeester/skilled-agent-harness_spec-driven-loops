@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding",
+  "description": "Phase 1: continuity-freshness-claim-binding",
+  "keywords": [
+    "phase",
+    "continuity-freshness-claim-binding"
+  ],
+  "lastUpdated": "2026-09-05T06:13:04.530Z",
+  "specId": "001",
+  "folderSlug": "continuity-freshness-claim-binding",
+  "parentChain": [
+    "system-speckit",
+    "054-decommission-debt-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision",
+  "description": "Phase 7: memory-command-family-naming-decision",
+  "keywords": [
+    "phase",
+    "memory-command-family-naming-decision"
+  ],
+  "lastUpdated": "2026-09-05T06:13:09.327Z",
+  "specId": "007",
+  "folderSlug": "memory-command-family-naming-decision",
+  "parentChain": [
+    "system-speckit",
+    "054-decommission-debt-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

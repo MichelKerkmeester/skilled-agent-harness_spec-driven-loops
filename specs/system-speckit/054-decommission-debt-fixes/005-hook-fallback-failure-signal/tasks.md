@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Decommission debt fixes and runtime alignment"
+title: "Tasks: Phase 5: hook-fallback-failure-signal"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "task breakdown"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Decommission debt fixes and runtime alignment
+# Tasks: Phase 5: hook-fallback-failure-signal
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read the debt rows in packet 052's goal log and the review reports that raised them
-- [x] T002 Open this packet under the system-speckit track
-- [x] T003 [P] Inventory the code folders and README coverage of `runtime/` and `scripts/`
+- [ ] T001 `rg -n '\|\| printf %s' .codex/hooks.json .devin/hooks.v1.json` and confirm the exact set of fallback chains against `spec.md`'s citations
+- [ ] T002 [P] Gather the Copilot decision evidence: confirm `runtime/hooks/copilot/` and `runtime/dist/hooks/copilot/` are still absent, and estimate the build effort versus the removal effort
+- [ ] T003 [P] Read one existing doctor asset (`.opencode/commands/doctor/assets/doctor-memory.yaml` or similar) to confirm the schema shape the new drift-marker surface must fit
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,13 +44,11 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Freshness: exclude the generator fixtures from the scripts sources; walker test (`1200c71f22`)
-- [x] T005 Fan-out: retain bounded lineage stderr and write `logs/fanout-lineage.err`; runner test (`1200c71f22`)
-- [x] T006 Review leaf: contract rule to resolve review paths against the dispatched artifact directory, all agent mirrors in sync (`c34ccfeb47`)
-- [x] T007 Delete the rollback runbook with its README, alias and manifest entries; drop the unused MCP response type; rename the stale test (`1200c71f22`, `c34ccfeb47`)
-- [x] T008 Move the trigger index to `runtime/data/`, remove the retired search-decisions file, rewrite every reference and the architecture topology (`1200c71f22`, `c34ccfeb47`)
-- [x] T009 Align `runtime/` and `scripts/` with `sk-code-opencode` and write or refresh every code README: five Sonnet agents on disjoint folder sets (`9e759d06cf`, `588be3fc00`, `923f4e966d`, `e5b414cbae`); 87 code READMEs, 0 validator issues, no code folder without one
-- [x] T009a Restore the eleven session-lifecycle hook registrations and mirror links the memory sweep dropped (`273767431d`); repair the two stale session-stop tests and the stdout scan exclusions (`6698bcc80b`)
+- [ ] T004 Add the drift marker and a structured stderr line to every `|| printf` fallback in `.codex/hooks.json`
+- [ ] T005 Restructure `.codex/hooks.json:140`'s Stop-cleanup chain so its diagnostic fallback is reachable on a genuine `session-cleanup.sh` failure, without changing the Stop hook's own success contract
+- [ ] T006 Add the drift marker and a structured stderr line to every `|| printf` fallback in `.devin/hooks.v1.json`
+- [ ] T007 Implement the Copilot decision from T002: build `runtime/hooks/copilot/{session-prime,user-prompt-submit}.ts` and wire them into the build, or remove `.github/hooks/scripts/*.sh` and their registration
+- [ ] T008 Route the drift marker into the doctor asset identified in T003
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,13 +56,10 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T010 Typecheck shared, scripts and runtime exit 0; touched suites unchanged or improved per agent report; 87 READMEs validated
-- [x] T011 Gates at `e0ae6d7063`: freshness stays green across two index runs without a re-stamp; sweep live 0; doctor routes 9; audits 14 of 14; routing guard fresh; validate strict PASSED on 052, 053 and this packet
-- [x] T014 Act on the Grok lineage: remove the code that still targeted the retired store (extractor storage half, transaction manager, shared row types, folder-detector session-learning lookup, three-arm parity harness, importer-less better-sqlite3 and sqlite-vec, tests bound to deleted modules, absent-playbook allowlist) at `159c036502` and `9141353b0d`; validate.sh fails closed when its freshness helper cannot run (`171465b256`); Devin fallback text and a retired doctor path fixed (`4333c4d7b4`)
-- [x] T013 Two-executor review-angle deep research under `research/`: Grok 20 of 20 fulfilled (16 min), LUNA 20 of 20 with synthesis (88 min; runner rejected the lineage for a leaf write outside its directory, now fixed at `deb1c487a6`); 10 and 59 findings triaged against HEAD
-- [x] T015 Act on the LUNA lineage: gate and residue rows fixed (`a3dab29283`, `171465b256`), projection nesting fixed (`deb1c487a6`), skipped suites restored and two production bugs they hid fixed (`1d97495a5f`, `4621813b96`), sweep vocabulary widened (`255c932f9f`)
-- [x] T016 Decompose the remaining findings into seven remediation phases (001 to 007) under this packet; all validate strict
-- [ ] T012 Close this packet and record the outcome in packet 052's goal log
+- [ ] T009 Run a synthetic adapter-failure test (temporarily rename a compiled hook file) against Codex and Devin and confirm the drift marker and stderr line both appear
+- [ ] T010 Run a synthetic `session-cleanup.sh` failure and confirm Codex's diagnostic fallback now fires while the Stop hook still reports success
+- [ ] T011 Write and run the hook-path-resolution parity test; confirm it fails against a deliberately broken path and passes on the current state
+- [ ] T012 Confirm the doctor route surfaces the T009 synthetic failure in its output
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -182,7 +177,7 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
+| P0 Items | 9 | 0/9 |
 | P1 Items | 12 | 0/12 |
 | P2 Items | 1 | 0/1 |
 
@@ -190,6 +185,3 @@ contextType: "general"
 <!-- /ANCHOR:summary -->
 
 ---
-
-
-
