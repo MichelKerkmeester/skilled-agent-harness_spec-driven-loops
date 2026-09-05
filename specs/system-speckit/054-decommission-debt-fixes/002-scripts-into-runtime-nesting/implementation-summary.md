@@ -302,7 +302,7 @@ The runner marked this lineage fatal because the leaf recorded no stop reason, a
 
 ### Fourth review pass
 
-Ten iterations were requested at `8b5b9dcfc9` on cursor's GPT-5.6 LUNA Max Fast; the cursor account ran out of usage after seven state records and the leaf then wrote to a mistyped track path, so the runner rejected the lineage with six iterations on disk and eleven open findings. Each was verified against the fixed tree.
+Ten iterations were requested at `8b5b9dcfc9` on cursor's GPT-5.6 LUNA Max Fast; the cursor account ran out of usage after seven state records and the leaf then wrote to a mistyped track path, so the runner rejected the lineage with six iterations on disk and eleven open findings. Each was verified against the fixed tree. The lineage directory itself was removed while the review worktree was reset for the next pass, before it had been copied into this packet; the findings survive in this table and in the goal log.
 
 | Finding | Severity | Verified | Fix | Commit |
 |---------|----------|----------|-----|--------|
@@ -316,7 +316,7 @@ Ten iterations were requested at `8b5b9dcfc9` on cursor's GPT-5.6 LUNA Max Fast;
 | Test documentation lists a suite that does not exist | P2 | Yes: `completion-state.test.mjs` | Entry removed from the lib README | `09aaac49e1` |
 | Dist-alignment regression test omits the CLI target | P2 | Yes | `runtime/cli` added to the expected subtrees | `09aaac49e1` |
 | Native-module rebuild resolves the wrong root | P1 | Yes: `../..` landed on `runtime/` | Resolves the skill root like its sibling check script | `09aaac49e1` |
-| Phase-parent classification diverges between CLI entrypoint and runtime | P1 | Yes: the CLI copy ignored the generator-hardening default | CLI mirrors the runtime rule and its opt-out spellings; fixture folders classify the same | `56e17a9d3a`, and the follow-up parity commit |
+| Phase-parent classification diverges between CLI entrypoint and runtime | P1 | Yes: the CLI copy ignored the generator-hardening default | CLI mirrors the runtime rule and its opt-out spellings; fixture folders classify the same | `56e17a9d3a`, `072da7777c` |
 <!-- /ANCHOR:verification -->
 
 ---
