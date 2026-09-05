@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/043-review-leaf-protocol",
+  "description": "Two review lineages were rejected because the leaf retyped its artifact directory's track segment, one because it reached the iteration cap without",
+  "keywords": [
+    "two",
+    "review",
+    "lineages",
+    "rejected",
+    "because",
+    "leaf",
+    "retyped",
+    "artifact",
+    "directory",
+    "track",
+    "segment",
+    "one",
+    "reached",
+    "iteration",
+    "cap",
+    "without"
+  ],
+  "lastUpdated": "2026-09-05T19:47:34.920Z",
+  "specId": "043",
+  "folderSlug": "review-leaf-protocol",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
