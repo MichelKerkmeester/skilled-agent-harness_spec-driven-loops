@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-04T17:48:43Z"
     last_updated_by: "claude-code"
     recent_action: "Closed the landing after the rename review passed clean"
-    next_safe_action: "Operator decision on deleting the 13.8 GB retired database"
+    next_safe_action: "Nothing pending; the packet is closed"
     blockers: []
     key_files:
       - "specs/system-speckit/052-memory-decommission-landing/goal.md"
@@ -131,7 +131,7 @@ The landing was merged from the branch side so the release branch only ever fast
 1. **Debt handed to owners, not fixed here.** The dist freshness table counts retrieval fixtures as scripts sources; the fan-out runner keeps no lineage stderr and its review leaf also writes iteration files at the cwd; the rollback runbook documents retired automation; each is recorded in the goal log with an owner.
 2. **Two P2s in the skill advisor are handed off, not fixed.** The doc-frontmatter fence parser and the shared-payload vocabulary are in the preserved set and below the blocking bar.
 3. **Three validator class defects are recorded, not fixed.** Playbook folder READMEs, compiled deep-loop contracts and the install-scripts README fail their class checks identically at the pre-landing commit.
-4. **The 13.8 GB retired database still sits on this machine.** Deleting it needs an explicit yes.
+4. **The retired database is gone from this machine.** Deleted on the operator's explicit yes after the closure; 26 GB including its backup copy, vectors and logs.
 <!-- /ANCHOR:limitations -->
 
 ---
