@@ -90,6 +90,24 @@ A target layout is chosen that avoids the `runtime/scripts/` name collision, eve
 | (execution phase, out of scope here) `.opencode/skills/system-spec-kit/scripts/**` | Move | `git mv` to the chosen target layout |
 | (execution phase) `.opencode/skills/system-spec-kit/package.json` | Modify | `workspaces` array |
 | (execution phase) `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs`, hook configs, CI workflows, CLAUDE.md | Modify | Every resolved path reference |
+
+### Review Scope
+
+The review reads a bounded list, never a tree. The change set is the nesting commit's diff `19d54e03b1..b4c2484696` outside `specs/`, with pure renames excluded: the 420 files whose content changed, listed one per line in `scratch/review-scope.txt`. The 864 files moved without a content change are verified by the commands below, not by reading anything.
+
+**Reading budget.** Read only files in the list and the modules they import directly. Never expand a directory with a wildcard, and never read `node_modules`, `dist`, `benchmark`, `changelog`, `z_archive`, `manual-testing-playbook`, `feature-catalog`, or `runtime/data/trigger-index.json`. Cover a different part of the list in each iteration so ten iterations cover it roughly once, then spend the rest on findings already raised. Angles: root resolution that assumed the old depth, imports that flipped direction, the runtime build and test configs excluding `cli/`, the workspace and lockfile, hook symlinks and registrations, the continuity writer's new path in every caller, and the freshness table.
+
+**Repository-wide claims come from commands, not reading:**
+
+```bash
+rg -l 'system-spec-kit/scripts/|scripts/dist/|scripts/memory|dist/memory' . -g '!**/node_modules/**' -g '!**/dist/**' -g '!**/z_archive/**' -g '!**/changelog/**' -g '!**/benchmark/**' -g '!specs/**'   # no output
+node .opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check-all
+node .opencode/bin/compiled-route-guard.cjs
+node .opencode/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs --json      # live must be 0
+NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-decommission-debt-fixes --strict --recursive
+```
+
+Out of the review's write scope: everything outside this phase's `review/` directory.
 <!-- /ANCHOR:scope -->
 
 ---
