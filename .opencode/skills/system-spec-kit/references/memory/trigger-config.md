@@ -23,7 +23,7 @@ Complete configuration guide for memory trigger phrases and the fast trigger mat
 **Core Principle:** Trigger detection must be fast (<50ms) and reliable, using optimized phrase matching to surface relevant spec-doc records without impacting conversation flow.
 
 The spec-doc record workflow supports manual activation mechanisms:
-1. **Command Trigger** - `/memory:save` command for explicit saves
+1. **Command Trigger** - `/speckit:save` command for explicit saves
 2. **Phrase Triggers** - User phrases that directly invoke memory operations
 
 > **OpenCode Note:** Automatic interval-based saves (e.g., "every 20 messages") are NOT supported in OpenCode because OpenCode lacks the hooks system required to count messages and trigger saves automatically. All context preservation must be manually triggered.
@@ -34,7 +34,7 @@ This reference covers trigger phrase configuration, the committed trigger index 
 
 | Component | Purpose | Performance Target |
 |-----------|---------|-------------------|
-| `/memory:save` Command | Primary save trigger | Immediate |
+| `/speckit:save` Command | Primary save trigger | Immediate |
 | Trigger Phrases | Explicit memory activation | <50ms detection |
 | `lookup-trigger-index.mjs` | Fast phrase matching over the committed index | <50ms response |
 | Custom Config | Project-specific triggers | Configurable |
@@ -182,7 +182,7 @@ Save-time trigger validation now applies sanitization rules to prevent low-quali
 ### Primary Method: Command
 
 ```
-/memory:save
+/speckit:save
 ```
 
 This is the most reliable way to save context in OpenCode.
@@ -207,7 +207,7 @@ Include any of these phrases in your message:
 
 ### Save Location
 
-- **Save path:** `/memory:save` targets the selected spec folder and routes continuity into canonical packet docs such as `implementation-summary.md`, `decision-record.md`, and `handover.md`.
+- **Save path:** `/speckit:save` targets the selected spec folder and routes continuity into canonical packet docs such as `implementation-summary.md`, `decision-record.md`, and `handover.md`.
 
 **Continuity home:** packet-local canonical docs plus `_memory.continuity`, not a standalone `{spec_folder}/memory/*.md` note.
 

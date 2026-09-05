@@ -28,7 +28,7 @@ Accepted answers:
 | Answer | Result |
 |--------|--------|
 | `1` | Abort `/doctor`; display `Switch to /doctor:update --migrate for upgrade migration. Exiting /doctor.` |
-| `2` | target = `memory` |
+| `2` | target = `speckit-retrieval` |
 | `3` | target = `embeddings` |
 | `6` | target = `deep-loop` |
 | `7` | target = `skill-advisor` |
@@ -73,7 +73,7 @@ Press 1-11, 0, or X.
 
 ```text
 Unknown target: [target]
-Valid targets: memory, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors
+Valid targets: speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors
 Try: /doctor list
 STATUS=FAIL ERROR="unknown_target"
 ```
@@ -91,7 +91,7 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 
 | Target | Workflow | Mutation Class | One-Line Purpose |
 |--------|----------|----------------|------------------|
-| `memory` | `doctor-memory.yaml` | add-only | Diagnose the generated trigger index and the ripgrep retrieval conventions; report staleness and recommend action |
+| `speckit-retrieval` | `doctor-speckit-retrieval.yaml` | add-only | Diagnose the generated trigger index and the ripgrep retrieval conventions; report staleness and recommend action |
 | `embeddings` | `doctor-embeddings.yaml` | read-only | Inspect provider selection and hf-local model-server status |
 | `deep-loop` | `doctor-deep-loop.yaml` | add-only | Diagnose deep-loop coverage graphs for research and review |
 | `skill-advisor` | `doctor-skill-advisor.yaml` | mutates | Audit and re-tune skill advisor scoring lanes |
@@ -107,7 +107,7 @@ Ask only prompts needed for unresolved setup variables. Do not split a required 
 
 ### Trigger-Index Regeneration Preference
 
-The `memory` target never regenerates the index itself; this answer only shapes the regeneration it recommends to `/doctor:update`.
+The `speckit-retrieval` target never regenerates the index itself; this answer only shapes the regeneration it recommends to `/doctor:update`.
 
 ```text
 If a regeneration is recommended, which mode?

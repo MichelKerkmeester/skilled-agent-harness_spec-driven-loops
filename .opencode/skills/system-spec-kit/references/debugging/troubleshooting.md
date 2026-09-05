@@ -386,7 +386,7 @@ ls -l specs/<track>/<NNN-feature>/handover.md specs/<track>/<NNN-feature>/implem
 git log -3 --format='%ad %s' -- specs/<track>/<NNN-feature>
 ```
 
-If the continuity documents are older than the last real work, refresh them with `/memory:save` before resuming.
+If the continuity documents are older than the last real work, refresh them with `/speckit:save` before resuming.
 
 ---
 

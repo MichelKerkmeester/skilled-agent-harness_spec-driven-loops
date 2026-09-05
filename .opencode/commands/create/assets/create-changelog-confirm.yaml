@@ -727,7 +727,7 @@ termination:
     - "Review the generated changelog at {output_path}"
     - "Create additional changelogs for secondary components if needed"
     - "Consider creating an umbrella release in the 00-- prefixed folder if applicable"
-    - "Run /memory:save to preserve context"
+    - "Run /speckit:save to preserve context"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES

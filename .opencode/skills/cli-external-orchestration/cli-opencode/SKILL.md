@@ -187,7 +187,7 @@ Core flags: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, continu
 
 > **Always pin the model with `-m <provider/model>`**: a run that inherits an out-of-quota default provider retries the `429` forever and prints nothing, which looks exactly like a deadlock or a snapshot-lock hang. This is the single most common cause of a "hung" `opencode run` — including command-driven deep-loop runs, where the orchestrator inherits the default even though `--executor`/`--model` were passed for the leaf. Diagnose with `--print-logs --log-level DEBUG` and look for `stream error … Error 429`; fix by pinning a provider/model with live quota.
 
-> **Registered command dispatch (`--command`)**: slash-command text inside a `run` message is NOT expanded — `opencode run "/memory:search query"` delivers the slash text as raw prose. Execute a registered command via `opencode run --command <family>/<name> [flags] "<args>"` (becomes `$ARGUMENTS`; e.g. `memory/search` for `/memory:search`). Full semantics: `references/cli-reference.md` §4.
+> **Registered command dispatch (`--command`)**: slash-command text inside a `run` message is NOT expanded — `opencode run "/speckit:search query"` delivers the slash text as raw prose. Execute a registered command via `opencode run --command <family>/<name> [flags] "<args>"` (becomes `$ARGUMENTS`; e.g. `speckit/search` for `/speckit:search`). Full semantics: `references/cli-reference.md` §4.
 
 ### Model Selection
 
@@ -356,7 +356,7 @@ This skill operates within the behavioral framework defined in [AGENTS.md](../..
 Key integrations:
 - **Gate 2**: Skill routing via the Skill Advisor Hook (or `skill_advisor.py` fallback)
 - **Tool Routing**: Per AGENTS.md Section 6 decision tree
-- **Continuity**: Context preserved by `/memory:save`, which writes through `generate-context.js`
+- **Continuity**: Context preserved by `/speckit:save`, which writes through `generate-context.js`
 - **Validation**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` for spec-folder workflows
 
 **Tool roles**: Bash dispatches the CLI; Read/Glob/Grep validate output and probe `~/.opencode/state/` for session locks.

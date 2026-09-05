@@ -381,7 +381,7 @@ File uploads, views, non-truncated page property items, and async-task polling e
 
 **Migration (packet 015):** this mode is the read-side inventory enabler for Notion→Obsidian migration (`references/migration-inventory.md`) — the same knowledge layer that operates a live workspace reads its structure to drive an Obsidian import; the write-side reconstruction method lives in `mcp-obsidian`'s `references/notion-migration.md`.
 
-**Memory:** save Notion workflow context (target data-source ids, integration name, backend) with `/memory:save` when switching sessions.
+**Memory:** save Notion workflow context (target data-source ids, integration name, backend) with `/speckit:save` when switching sessions.
 
 **Tool Usage:** Bash for direct API calls and `scripts/`; `mcp__code_mode__call_tool_chain` for MCP operations; Read to load references on demand.
 

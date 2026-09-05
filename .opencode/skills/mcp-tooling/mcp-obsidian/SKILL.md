@@ -745,7 +745,7 @@ const result = await call_tool_chain({
 
 **Code Mode MCP:** The cyanheads MCP tools are invoked via `mcp__code_mode__call_tool_chain`. Tool naming convention: `obsidian.obsidian_{tool_name}`. See `references/mcp-tools.md` for the full 14-tool catalog.
 
-**Memory:** Save Obsidian workflow context (default vault name, base URL, active plugin set) using `/memory:save` when switching sessions.
+**Memory:** Save Obsidian workflow context (default vault name, base URL, active plugin set) using `/speckit:save` when switching sessions.
 
 **Tool Usage:** Use Bash for `notesmd-cli` and the official `obsidian` CLI. Use `mcp__code_mode__call_tool_chain` for cyanheads MCP operations. Use Read to load references on demand.
 

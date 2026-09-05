@@ -563,7 +563,7 @@ The generated artifact lives at `.opencode/skills/system-spec-kit/runtime/data/t
 
 **Free-text retrieval** uses the literal ripgrep recipes in [`retrieval-conventions.md`](../skills/system-spec-kit/references/retrieval/retrieval-conventions.md), scoped by track and packet. Copy the flags rather than paraphrasing them: `--no-config` and the two exclusion globs each close a specific failure.
 
-**Continuity saves** are written by `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, invoked through `/memory:save`. The writer updates the packet's continuity surfaces in place; nothing is indexed afterwards.
+**Continuity saves** are written by `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, invoked through `/speckit:save`. The writer updates the packet's continuity surfaces in place; nothing is indexed afterwards.
 
 **What this does not do.** Semantic paraphrase matching, vector and BM25 fusion, decay scoring, access tracking, session dedup and causal traversal have no file-based equivalent, and this install does not provide them. A query that matches nothing returns nothing rather than degrading to an approximate answer.
 
@@ -1119,13 +1119,13 @@ You have completed the installation. Here is your roadmap for getting started.
 | 1    | Verify installation    | Run health check script from Section 14.5                        |
 | 2    | Customize AGENTS.md    | Edit `AGENTS.md` for your project type                           |
 | 3    | Test skill invocation  | `python .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "your task"`          |
-| 4    | Save first continuity record | Use `/memory:save` or "save context" in conversation       |
+| 4    | Save first continuity record | Use `/speckit:save` or "save context" in conversation       |
 
 ### 16.2 Common Workflows
 
 | Workflow                 | Tools/Commands                | Example                                                   |
 | ------------------------ | ----------------------------- | --------------------------------------------------------- |
-| **Context Preservation** | Continuity writer + trigger index | `/memory:save`, `lookup-trigger-index.mjs`            |
+| **Context Preservation** | Continuity writer + trigger index | `/speckit:save`, `lookup-trigger-index.mjs`            |
 | **Browser Debugging**    | Chrome DevTools CLI           | `bdg screenshot --url https://example.com`                |
 | **Documentation**        | sk-doc skill | Invoke skill for doc structure                            |
 | **Git Operations**       | sk-git skill           | Commit, PR creation workflows                             |
@@ -1136,7 +1136,7 @@ You have completed the installation. Here is your roadmap for getting started.
 | Category | Commands                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | Create   | `/create:agent`, `/create:changelog`, `/create:feature-catalog`, `/create:readme`, `/create:prompt`, `/create:skill`, `/create:manual-testing-playbook` |
-| Continuity | `/memory:search`, `/memory:save` |
+| Continuity | `/speckit:search`, `/speckit:save` |
 | SpecKit  | `/speckit:complete`, `/deep:research`, `/deep:review`, `/speckit:implement`, `/speckit:plan`, `/speckit:plan --intake-only`, `/speckit:resume` |
 | Utility  | `/agent_router` |
 

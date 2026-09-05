@@ -304,7 +304,7 @@ workflow:
           - session_state: "fresh | resume | completed-session | invalid-state"
         on_resume:
           # T-YML-DPR-01 / R50-001: Resume is a WRITE-PATH. Produces `iteration-NNN.md` + JSONL appends.
-          # Paired with T-DOC-03 Gate 3 trigger addition (resume, save context, save memory, /memory:save).
+          # Paired with T-DOC-03 Gate 3 trigger addition (resume, save context, save memory, /speckit:save).
           gate3_classification: write-path
           gate3_rationale: "resume produces iteration-NNN.md writes and JSONL state-log appends"
           log: "Auto-resume: state artifacts are complete and consistent. Continue the same lineage (sessionId unchanged, generation unchanged, no archive)."
@@ -2381,7 +2381,7 @@ workflow:
     next_steps:
       - "/speckit:plan [feature-description]"
       - "/deep:research [new-topic] (for related deep research)"
-      - "/memory:save {spec_folder} (refresh canonical continuity before the next session)"
+      - "/speckit:save {spec_folder} (refresh canonical continuity before the next session)"
 
 # ─────────────────────────────────────────────────────────────────
 # ERROR RECOVERY

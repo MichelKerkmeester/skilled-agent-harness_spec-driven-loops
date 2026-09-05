@@ -123,7 +123,7 @@ STATUS=FAIL ERROR="[message]"
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
 | Need runtime verification | Use the project-specific verification command | Confirm behavior |
-| Need continuity refresh | `/memory:save [spec-folder-path]` | Refresh canonical continuity |
+| Need continuity refresh | `/speckit:save [spec-folder-path]` | Refresh canonical continuity |
 | Repeated failures | User-dispatched debug pass | Fresh root-cause analysis |
 | Need crash recovery | `/speckit:resume` | Recover session state |
 

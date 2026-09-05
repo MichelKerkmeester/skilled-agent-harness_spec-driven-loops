@@ -684,7 +684,7 @@ readme_workflow:
         section: "Content sources and references"
         example_id: "RESEARCH-SOURCES-{spec#}"
       benefit: "93% token savings on anchor-based retrieval"
-      reference: "See /memory:save Step 3 for full anchor documentation"
+      reference: "See /speckit:save Step 3 for full anchor documentation"
 
     importance_tier:
       assign: normal
@@ -1229,7 +1229,7 @@ install_guide_workflow:
         section: "Common issues documented"
         example_id: "IMPLEMENTATION-TROUBLESHOOTING-{spec#}"
       benefit: "93% token savings on anchor-based retrieval"
-      reference: "See /memory:save Step 3 for full anchor documentation"
+      reference: "See /speckit:save Step 3 for full anchor documentation"
 
     importance_tier:
       assign: important
@@ -1733,4 +1733,4 @@ rules:
   - "Blend README and install-guide sections into one output file"
   - "Skip Phase 0 @markdown verification"
   - condition: "Want to save context"
-    action: "Run /memory:save"
+    action: "Run /speckit:save"

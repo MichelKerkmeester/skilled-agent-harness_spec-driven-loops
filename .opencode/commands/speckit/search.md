@@ -4,7 +4,7 @@ argument-hint: "<query> [--packet <specFolder>] [--triggers] [--paths] [--count]
 allowed-tools: Bash, Read, Grep, Glob
 ---
 
-# /memory:search
+# /speckit:search
 
 Thin router for lexical retrieval over spec docs and skill docs.
 
@@ -34,7 +34,7 @@ Guardrails:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation | `.opencode/commands/memory/assets/search-presentation.txt` |
+| Presentation | `.opencode/commands/speckit/assets/search-presentation.txt` |
 | Retrieval contract | `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` |
 
 This is a direct-dispatch command: it runs a local lookup script and `rg` directly, and owns no workflow YAML by design. Nothing it calls needs a background service.
@@ -48,7 +48,7 @@ Before asking startup questions or displaying results, read the presentation ass
 Execution order:
 
 1. Read the §1 ROUTER CONTRACT argument-resolution output: `ARGS_PRESENT` and `QUERY` are already computed for you.
-2. Read `.opencode/commands/memory/assets/search-presentation.txt` before rendering any response.
+2. Read `.opencode/commands/speckit/assets/search-presentation.txt` before rendering any response.
 3. **If `ARGS_PRESENT=true`:** route `QUERY` to the matching lane in §4 EXECUTION TARGETS. Execute now — do NOT ask the startup question.
 4. **ONLY IF `ARGS_PRESENT=false`:** follow startup routing (below) and ask the one open-ended question.
 5. Render the response from the presentation contract.
@@ -80,7 +80,7 @@ node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs
 1. Run the command with the resolved `QUERY`.
 2. Branch on the exit status: `0` = candidates, `1` = clean no-hit, `2` or higher = the index is missing or unreadable.
 3. Render candidates with the Section 2 contract in the presentation asset — score, match class and path, in the order the tool returned them.
-4. On exit `2` or higher, render the Section 7 error display with stderr attached and name `/doctor memory` as the diagnostic. Never report it as a no-hit.
+4. On exit `2` or higher, render the Section 7 error display with stderr attached and name `/doctor speckit-retrieval` as the diagnostic. Never report it as a no-hit.
 
 ### Free-text lane
 
@@ -123,7 +123,7 @@ Render the Section 6 unsupported notice from the presentation asset and stop. Do
 
 ## 5. PRESENTATION BOUNDARY
 
-The full presentation contract lives in `.opencode/commands/memory/assets/search-presentation.txt`. This router may only inline the lane-selection rules and recipe mechanics above.
+The full presentation contract lives in `.opencode/commands/speckit/assets/search-presentation.txt`. This router may only inline the lane-selection rules and recipe mechanics above.
 
 The following content must come from the presentation asset, not from router prose:
 
@@ -137,4 +137,4 @@ The following content must come from the presentation asset, not from router pro
 
 The router binds control flow to the deterministic `ARGS_PRESENT`/`QUERY` resolution: with arguments present it dispatches the trigger-index lane (the generated index read by `lookup-trigger-index.mjs`) or the free-text lane (one literal ripgrep recipe from `retrieval-conventions.md`, ordered by the caller-side ranking tuple); with no arguments it asks the one open-ended startup question. Retrieval is lexical and needs no background service: exit `1` is a clean no-hit rendered as an empty result, and exit `2` or higher is an error rendered with stderr attached. Capabilities that lived in the retired database — semantic matching, fusion, decay, access tracking, session dedup, causal traversal, epistemic baselines, ablations and dashboards — are declared unsupported rather than approximated. Every user-facing string renders through the presentation asset.
 
-Related commands: `/memory:save` (write conversation context into packet continuity surfaces); `/speckit:resume` (session recovery and continuation, which owns the continuity ladder).
+Related commands: `/speckit:save` (write conversation context into packet continuity surfaces); `/speckit:resume` (session recovery and continuation, which owns the continuity ladder).

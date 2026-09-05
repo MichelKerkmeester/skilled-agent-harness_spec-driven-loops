@@ -4,7 +4,7 @@ argument-hint: "<spec-folder>"
 allowed-tools: Read, Edit, Bash, Grep, Glob, Task
 ---
 
-# /memory:save
+# /speckit:save
 
 Thin router for canonical continuity saves.
 
@@ -31,7 +31,7 @@ Guardrails:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation | `.opencode/commands/memory/assets/save-presentation.txt` |
+| Presentation | `.opencode/commands/speckit/assets/save-presentation.txt` |
 
 This is a direct-dispatch command: it routes straight to the `generate-context.js` writer and owns no workflow YAML by design. Nothing it calls needs a background service.
 
@@ -75,7 +75,7 @@ The writer keeps atomic same-directory update and lock semantics and depends on 
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/memory/assets/save-presentation.txt`:
+The following content lives only in `.opencode/commands/speckit/assets/save-presentation.txt`:
 
 - Startup questions and active spec-folder resolution prompts.
 - Save plan, dashboard, approval, result-envelope, and error displays.
@@ -89,4 +89,4 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 The router resolves and validates the target spec folder, extracts the session context, chooses a route category, and either returns a non-mutating save plan (default) or runs the metadata/description/graph-metadata refresh via `generate-context.js` (explicit apply/full-auto). That writer is the whole write: it needs no daemon, and there is no indexing handoff after it. Canonical spec-doc content is authored in the packet documents themselves. Every user-facing string renders through the presentation asset. It is a direct-dispatch command with no workflow YAML by design.
 
-Related commands: `/memory:search` (lexical retrieval over spec docs and skill docs); `/speckit:resume` (session recovery and continuation).
+Related commands: `/speckit:search` (lexical retrieval over spec docs and skill docs); `/speckit:resume` (session recovery and continuation).

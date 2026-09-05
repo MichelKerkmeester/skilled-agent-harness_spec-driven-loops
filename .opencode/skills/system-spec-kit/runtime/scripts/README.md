@@ -32,9 +32,10 @@ scripts/
 +-- finalize-dist.mjs        # Post-build: freshness entries, stale dist pruning, JSON copying
 +-- run-tests.mjs            # Bounded default test runner (npm test)
 +-- run-tests-sharded.mjs    # Sharded runner for the full suite (npm run test:sharded)
-+-- tests/                   # Tests for the scripts in this folder
 `-- README.md
 ```
+
+This folder holds scripts only; its one test suite (`resource-map-extractor.vitest.ts`, which actually covered `../../scripts/resource-map/extract-from-evidence.cjs`, not a script in this folder) now lives at `../tests/resource-map-extractor.vitest.ts`, under a real `vitest.config.ts` include glob.
 
 ### File Inventory
 
@@ -67,6 +68,5 @@ npm run test:sharded   # full suite, sharded serially
 
 ## 5. RELATED
 
-- [`tests/README.md`](./tests/README.md)
 - [`../README.md`](../README.md)
 - [`../../scripts/README.md`](../../scripts/README.md)

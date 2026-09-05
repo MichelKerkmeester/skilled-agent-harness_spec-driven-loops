@@ -301,7 +301,7 @@ broken packet as green.
    fingerprint that no longer matches the documents it attests.
 
 #### MEMORY SAVE RULE [HARD] BLOCK
-Trigger: "save context", "save memory", `/memory:save`
+Trigger: "save context", "save memory", `/speckit:save`
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
 - **Compose the session JSON yourself** rather than letting the generator reconstruct one — you have strictly better information about your own session than any reconstruction does. Method selection, execution paths and validation checkpoints: `system-spec-kit/references/memory/save-workflow.md`.
@@ -327,7 +327,7 @@ Trigger: "save context", "save memory", `/memory:save`
 
 | Tool | Purpose |
 | ------| ---------|
-| **Trigger index + retrieval conventions** | Research, context recovery, saves. The trigger index lookup answers Gate 1, the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` answer free text and `/memory:save` writes continuity. Retrieval is lexical over spec docs and skill docs, not arbitrary code. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported, and a miss is a clean no-hit. |
+| **Trigger index + retrieval conventions** | Research, context recovery, saves. The trigger index lookup answers Gate 1, the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` answer free text and `/speckit:save` writes continuity. Retrieval is lexical over spec docs and skill docs, not arbitrary code. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported, and a miss is a clean no-hit. |
 | **Git (sk-git)** | Worktree setup, conventional commits, PR creation. Full details: `.opencode/skills/sk-git/`. Triggers: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes |
 
 ##### Git Workspace Safety
@@ -472,10 +472,10 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Deep AI Council** | `/deep:ai-council` | deliberate → critique → converge → artifacts → gate |
 | **Improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` | — |
 | **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
-| **Save context** | `/memory:save`, or compose JSON → `generate-context.js` | — |
-| **End session** | `/memory:save` | → `handover.md` update → continuation prompt |
+| **Save context** | `/speckit:save`, or compose JSON → `generate-context.js` | — |
+| **End session** | `/speckit:save` | → `handover.md` update → continuation prompt |
 | **Trigger index maintenance** | `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` | run after trigger phrases change; commit the regenerated index |
-| **Analysis / evaluation** | `/memory:search` | — |
+| **Analysis / evaluation** | `/speckit:search` | — |
 | **Doctor surface** | `/doctor <target>`; `/doctor:mcp install\|debug`; `/doctor:update` | — |
 
 #### Operational Mandates

@@ -21,7 +21,7 @@ Templates for creating slash commands with proper frontmatter, mandatory gates, 
 
 ### What Are OpenCode Commands?
 
-**OpenCode commands** are slash-triggered instructions (e.g., `/speckit:complete`, `/memory:save`) that automate workflows, enforce patterns, and extend AI agent capabilities. They're markdown files that define structured behavior for specific tasks.
+**OpenCode commands** are slash-triggered instructions (e.g., `/speckit:complete`, `/speckit:save`) that automate workflows, enforce patterns, and extend AI agent capabilities. They're markdown files that define structured behavior for specific tasks.
 
 **Core Purpose**:
 - **Workflow automation** - Multi-step processes become single invocations

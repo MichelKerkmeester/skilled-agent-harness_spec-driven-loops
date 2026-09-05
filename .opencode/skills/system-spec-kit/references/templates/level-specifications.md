@@ -730,7 +730,7 @@ Some templates are not level-specific but can be used at any documentation level
 
 | Template | Purpose | When to Use | Created By |
 |----------|---------|-------------|------------|
-| `handover.md` | Session context transfer | End of work session requiring handoff | Main-agent narrative with `/memory:save` handover_state routing |
+| `handover.md` | Session context transfer | End of work session requiring handoff | Main-agent narrative with `/speckit:save` handover_state routing |
 | `debug-delegation.md` | Debug task delegation | When stuck debugging (3+ failed attempts) | Task tool -> `@debug` |
 
 **Template Sources:**
@@ -761,12 +761,12 @@ Some templates are not level-specific but can be used at any documentation level
 
 | Surface | Purpose | Creation Method |
 |---------|---------|-----------------|
-| `_memory.continuity` in `implementation-summary.md` | Thin packet continuity state for resume and handoff recovery | `generate-context.js` runtime script via `/memory:save` |
+| `_memory.continuity` in `implementation-summary.md` | Thin packet continuity state for resume and handoff recovery | `generate-context.js` runtime script via `/speckit:save` |
 | `scratch/` | Temporary workspace (disposable) | Manual creation (no template needed) |
 
 **Important:**
 - Canonical continuity is script-managed and should NOT be authored manually
-- Use `/memory:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' specs/###-folder/`
+- Use `/speckit:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' specs/###-folder/`
 - Recovery should follow `handover.md -> _memory.continuity -> spec docs`
 - Scratch folder contents are temporary and should be cleaned up after work completes
 

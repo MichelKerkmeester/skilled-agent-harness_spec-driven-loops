@@ -582,7 +582,7 @@ workflow:
         section: "Validation results and quality checks"
         example_id: "GENERAL-VALIDATION-{spec#}"
       benefit: "Anchor-based retrieval keeps command decisions recoverable"
-      reference: "See /memory:save Step 3 for full anchor documentation"
+      reference: "See /speckit:save Step 3 for full anchor documentation"
 
     importance_tier:
       assign: important
@@ -709,7 +709,7 @@ termination:
     - condition: "Command needs refinement"
       action: "Iterate on prompts, routing, or allowed-tools based on testing"
     - condition: "Context should be saved"
-      action: "Run /memory:save"
+      action: "Run /speckit:save"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES

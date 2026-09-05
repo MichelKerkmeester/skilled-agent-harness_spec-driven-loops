@@ -276,7 +276,7 @@ PLAN ARCHITECTURE    → @ai-council (with --model claude-opus-4-6)
 RESEARCH A TOPIC     → @deep-research
 COORDINATE AGENTS    → @orchestrate (with --permission-mode plan)
 SPEC PACKET WORK     → Main agent + `/speckit:plan --intake-only` or `/speckit:plan`
-SAVE CONTINUITY      → `/memory:save`
+SAVE CONTINUITY      → `/speckit:save`
 ```
 
 ### Model + Agent Combinations

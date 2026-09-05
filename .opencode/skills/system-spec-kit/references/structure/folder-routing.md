@@ -240,7 +240,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js da
 
 ### AI Agent Workflow
 
-1. User says "save context" or `/memory:save`
+1. User says "save context" or `/speckit:save`
 2. AI agent determines spec folder from conversation context
 3. AI agent calls script with explicit path:
    ```bash

@@ -437,7 +437,7 @@ allowed-tools: Read, Write, Bash
 
 **Required Fields**: `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`
 
-Every doc under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` carries this full 5-field block (`README.md` files are exempt). The Skill Advisor harvests it as a flag-gated routing signal (`SPECKIT_ADVISOR_DOC_TRIGGERS`) with doc-level `matchedDocs` pointers. These fields exist for advisor routing: `/memory:search` reaches skill docs lexically with ripgrep and never reads this block.
+Every doc under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` carries this full 5-field block (`README.md` files are exempt). The Skill Advisor harvests it as a flag-gated routing signal (`SPECKIT_ADVISOR_DOC_TRIGGERS`) with doc-level `matchedDocs` pointers. These fields exist for advisor routing: `/speckit:search` reaches skill docs lexically with ripgrep and never reads this block.
 
 ```yaml
 ---

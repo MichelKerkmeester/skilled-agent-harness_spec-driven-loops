@@ -172,7 +172,7 @@ context_loading:
     anchor_command: "rg --no-config --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '<!-- ANCHOR:<id> -->' {spec_folder_path}"
     exit_status: "0 = matches, 1 = clean no-hit reported as an empty result, 2 or higher = error with stderr attached and never reported as no-hit"
     unsupported: "Lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available; an unmatched phrase is a no-hit, not a weaker guess."
-  command_reference: "/memory:search"
+  command_reference: "/speckit:search"
   when_to_skip: ["New spec folder (no prior context)", "User says 'skip context' or 'fresh start'"]
   behavior: { if_found: "Surface relevant decisions/state before proceeding", if_none: "Proceed to Step 1" }
   checkpoint:
@@ -784,18 +784,18 @@ workflow:
 
   step_7_handover_check:
     purpose: Final workflow closeout after planning
-    activities: [Confirm the planning pass is ready to end, Offer one last /memory:save refresh before pausing]
+    activities: [Confirm the planning pass is ready to end, Offer one last /speckit:save refresh before pausing]
     mandatory_check: true
     display_prompt: |
-      Planning complete. End the workflow now, or run /memory:save first if you want another continuity refresh before pausing.
-    user_response_handling: { accept: "Run /memory:save", decline: "Proceed to termination", default: "Wait for user response" }
+      Planning complete. End the workflow now, or run /speckit:save first if you want another continuity refresh before pausing.
+    user_response_handling: { accept: "Run /speckit:save", decline: "Proceed to termination", default: "Wait for user response" }
     outputs: ["workflow closeout confirmed"]
     validation: workflow_finish_confirmed
     checkpoint:
       question: "Step 7: Would you like to refresh continuity before ending the planning workflow?"
       use: present_options_to_user
       options:
-        - { label: "Run /memory:save", description: "Refresh canonical continuity before ending" }
+        - { label: "Run /speckit:save", description: "Refresh canonical continuity before ending" }
         - { label: "Skip", description: "Complete planning without another continuity refresh" }
 
 # ─────────────────────────────────────────────────────────────────

@@ -715,7 +715,7 @@ workflow:
         section: "Validation results and quality checks"
         example_id: "GENERAL-VALIDATION-{spec#}"
       benefit: "93% token savings on anchor-based retrieval"
-      reference: "See /memory:save Step 3 for full anchor documentation"
+      reference: "See /speckit:save Step 3 for full anchor documentation"
 
     importance_tier:
       assign: important
@@ -846,7 +846,7 @@ termination:
     - condition: "Agent needs refinement"
       action: "Iterate on behavioral rules based on testing"
     - condition: "Context should be saved"
-      action: "Run /memory:save"
+      action: "Run /speckit:save"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES

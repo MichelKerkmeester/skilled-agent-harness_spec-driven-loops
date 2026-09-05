@@ -30,12 +30,12 @@
 # ─────────────────────────────────────────────────────────────────
 schema_version: 1
 routes:
-  - target: memory
-    yaml: doctor-memory.yaml
+  - target: speckit-retrieval
+    yaml: doctor-speckit-retrieval.yaml
     setup_vars: [execution_mode, intent, incremental]
     allowed_flags: ["--incremental=true|false"]
     mutating: add-only
-    gate3_location: "<packet_scratch>/doctor-memory-report.<timestamp>.md + <packet_scratch>/doctor-memory-state.<timestamp>.json"
+    gate3_location: "<packet_scratch>/doctor-speckit-retrieval-report.<timestamp>.md + <packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     mcp_tools: []   # file-and-script diagnostic; no MCP calls and no background service
     script_invocations:
       - 'node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "resume work session context"  # index present AND lookup runs: exit 0 = hits, 1 = clean no-hit, 2+ = missing or unreadable index, reported with stderr and never as a no-hit'

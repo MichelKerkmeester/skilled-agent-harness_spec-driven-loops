@@ -6,8 +6,8 @@
     "confirm_auto_relationship": "The observed 'confirm == auto + checkpoints' relationship holds only for light single-pass mode-pair families (verified on design; inferred for create and speckit:plan). For autonomy-heavy commands (speckit:complete, all deep:*) the :auto workflow carries orchestration machinery the :confirm variant lacks, so the two are divergent siblings and must be modeled independently rather than derived. Downstream checks must not assume the invariant universally.",
     "granularity": "One entry per family; router_path is a directory glob for families whose per-operation routers share one uniform pattern (create, design, deep) and an explicit list for families whose routers differ (speckit, memory, doctor).",
     "coverage": "Covers the six router-shaped families only. The prompt and rewrite groups and the three root-level utilities (/agent-router, /goal-opencode, /vision) ship no family router and carry no entry here; a consumer that walks this file is walking 31 of the 39 shipped commands, not all of them.",
-    "asset_naming": "Owned assets are hyphen-joined: <family>-<command>-<kind> for create, speckit, doctor and deep. A family whose commands already read unambiguously drops the family prefix and names assets <command>-<kind> — memory (save-presentation.txt) and design (extract-auto.yaml) both do. The kind suffixes are -presentation.txt, -auto.yaml and -confirm.yaml. Underscores are not used; the shipped prompt group is the tree's lone underscore holdout and is out of scope here.",
-    "path_templates": "A per-command asset path carries exactly one <placeholder>, which expands to the router's command name. generate-command-routers.cjs special-cases the memory family when the placeholder opens the basename; a prefix-dropping family it does not special-case must therefore spell its assets literally rather than as a template, which is why design carries concrete filenames."
+    "asset_naming": "Owned assets are hyphen-joined: <family>-<command>-<kind> for create, speckit, doctor and deep. A family whose commands already read unambiguously drops the family prefix and names assets <command>-<kind> — the memory family (save.md/search.md, now hosted under the speckit command folder as /speckit:save and /speckit:search; save-presentation.txt) and design (extract-auto.yaml) both do. The kind suffixes are -presentation.txt, -auto.yaml and -confirm.yaml. Underscores are not used; the shipped prompt group is the tree's lone underscore holdout and is out of scope here.",
+    "path_templates": "A per-command asset path carries exactly one <placeholder>, which expands to the router's command name. generate-command-routers.cjs special-cases the memory family key (the internal contract identifier for the save/search direct-dispatch commands) when the placeholder opens the basename; a prefix-dropping family it does not special-case must therefore spell its assets literally rather than as a template, which is why design carries concrete filenames."
   },
   "families": {
     "create": {
@@ -143,8 +143,8 @@
     "memory": {
       "topology": "direct-dispatch",
       "router_path": [
-        ".opencode/commands/memory/save.md",
-        ".opencode/commands/memory/search.md"
+        ".opencode/commands/speckit/save.md",
+        ".opencode/commands/speckit/search.md"
       ],
       "input": {
         "required": false,
@@ -160,21 +160,21 @@
         "supported_modes": []
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/memory/assets/<command>-presentation.txt" },
+        { "purpose": "presentation", "path": ".opencode/commands/speckit/assets/<command>-presentation.txt" },
         { "purpose": "script", "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js (consumed; owned by system-spec-kit)" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
-        "memory/search runs an embedded bash pre-processing line before policy that emits ARGS_PRESENT and QUERY; the router binds control flow to that output rather than re-deriving argument presence",
+        "search runs an embedded bash pre-processing line before policy that emits ARGS_PRESENT and QUERY; the router binds control flow to that output rather than re-deriving argument presence",
         "Never query the database with raw sqlite3 or Bash",
-        "memory/learn is a deprecated tombstone: it owns a presentation asset carrying the deprecation wording but binds no execution target, so a mode or workflow check that applies to the live memory commands does not apply to it"
+        "memory/learn is a deprecated tombstone: it owns a presentation asset carrying the deprecation wording but binds no execution target, so a mode or workflow check that applies to the live save/search commands does not apply to it"
       ],
       "presentation": {
         "owner": "presentation-asset",
         "exceptions": [
           {
-            "command": "/memory:search",
-            "surface": "Inline five-core-slot MEMORY:SEARCH render block (search.md render-fidelity reminder)",
+            "command": "/speckit:search",
+            "surface": "Inline five-core-slot SPECKIT:SEARCH render block (search.md render-fidelity reminder)",
             "reason": "Sanctioned render-fidelity exception: the presentation asset stays the source of truth; the router inlines only the compressed retrieval shape as a hard render reminder"
           }
         ]
@@ -185,7 +185,7 @@
         "operations": []
       },
       "timeout_bounds": null,
-      "invocation_aliases": ["/memory:save", "/memory:search", "flags on search (e.g. /memory:search \"query\" --triggers, --paths, --count)"],
+      "invocation_aliases": ["/speckit:save", "/speckit:search", "flags on search (e.g. /speckit:search \"query\" --triggers, --paths, --count)"],
       "workflow_schema_ref": null
     },
     "doctor": {

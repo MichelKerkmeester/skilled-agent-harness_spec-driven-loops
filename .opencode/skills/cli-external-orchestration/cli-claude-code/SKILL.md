@@ -368,7 +368,7 @@ This skill operates within the behavioral framework defined in [AGENTS.md](../..
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
 - **Tool Routing**: Per AGENTS.md Section 6 decision tree
-- **Continuity**: Context preserved by `/memory:save`, which writes through `generate-context.js`
+- **Continuity**: Context preserved by `/speckit:save`, which writes through `generate-context.js`
 
 **Tool roles**: Bash dispatches the CLI; Read/Glob/Grep validate output.
 

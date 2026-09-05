@@ -552,7 +552,7 @@ These templates support session continuity, temporary workspaces, and context pr
 
 **Purpose:** Comprehensive session handover document for complex, multi-phase work
 
-**Created by:** Main-agent narrative plus `/memory:save` handover_state routing (initial file seeded from the template)
+**Created by:** Main-agent narrative plus `/speckit:save` handover_state routing (initial file seeded from the template)
 
 **Location:** Spec folder root
 

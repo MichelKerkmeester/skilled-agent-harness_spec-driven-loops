@@ -217,7 +217,7 @@ The `validate.sh` script runs 38 rules against a spec folder and reports what pa
 - **Exit 2** - Validation error. Must fix before claiming completion.
 - **Exit 3** - System error (file I/O failure, missing manifest or other environment problem).
 
-Run with `--verbose` to see details behind each rule or `--recursive` to validate a parent and all child phase folders. Strict validation of a Level 3 packet runs in ~108 ms via a single-orchestrator design. The default scaffold path skips post-create validation. Set `SPECKIT_POST_VALIDATE=1` to enable it for strict CI workflows. Path traversal inputs (e.g. `--path "../etc/passwd"`) are rejected before any filesystem write. Parallel `/memory:save` calls for the same packet are serialized by an advisory lock on `description.json` and `graph-metadata.json`.
+Run with `--verbose` to see details behind each rule or `--recursive` to validate a parent and all child phase folders. Strict validation of a Level 3 packet runs in ~108 ms via a single-orchestrator design. The default scaffold path skips post-create validation. Set `SPECKIT_POST_VALIDATE=1` to enable it for strict CI workflows. Path traversal inputs (e.g. `--path "../etc/passwd"`) are rejected before any filesystem write. Parallel `/speckit:save` calls for the same packet are serialized by an advisory lock on `description.json` and `graph-metadata.json`.
 
 &nbsp;
 #### Scripts and Validation
@@ -299,9 +299,9 @@ For the full spec folder workflow, Level contract template architecture, gate de
 
 Continuity and retrieval are packet-local and file-based. `generate-context.js` updates canonical packet continuity and may emit supporting generated context artifacts inside the spec folder. Canonical continuity lives in the spec packet itself: use `/speckit:resume` as the recovery surface, then rebuild context in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. Gate 1 matches a prompt against author-declared trigger phrases through the committed trigger index at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`, and free-text retrieval uses the ripgrep recipes in [retrieval-conventions.md](.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md). Both read committed files, so neither needs a running daemon. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
-`/memory:save` refreshes packet metadata on every invocation through the continuity writer `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`. Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup. Copilot and Claude share the same compact-cache provenance path.
+`/speckit:save` refreshes packet metadata on every invocation through the continuity writer `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`. Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup. Copilot and Claude share the same compact-cache provenance path.
 
-What the retired continuity server used to do is now split three ways. `/memory:search` runs the two lexical lanes. `/speckit:resume` walks the continuity ladder. `/doctor memory` checks that the index and the recipes are still healthy. Embeddings left with the shared model server for the skill advisor, reachable through `/doctor embeddings`.
+What the retired continuity server used to do is now split three ways. `/speckit:search` runs the two lexical lanes. `/speckit:resume` walks the continuity ladder. `/doctor speckit-retrieval` checks that the index and the recipes are still healthy. Embeddings left with the shared model server for the skill advisor, reachable through `/doctor embeddings`.
 
 ---
 
@@ -803,7 +803,7 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 - Argv-positional dispatch via `.opencode/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
 - Each target loads its own self-contained YAML workflow under `assets/doctor_<target>.yaml`
 - Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
-- Examples: `/doctor memory --dry-run`, `/doctor embeddings`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
+- Examples: `/doctor speckit-retrieval --dry-run`, `/doctor embeddings`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
 - `--target=<name>` is preserved as a compatibility alias for flag-only invocation
 
 **`/doctor:mcp install|debug`**
@@ -987,7 +987,7 @@ A: It works with OpenCode and Claude Code. OpenCode uses plugin surfaces; Claude
 &nbsp;
 **Q: What happens if I do not use a spec folder?**
 
-A: Gate 3 blocks file modifications until a spec folder answer is provided. You can skip it with option D, but skipped sessions are undocumented and will not be recoverable through `/speckit:resume` or `/memory:search`. For trivial changes under 5 characters in a single file, Gate 3 does not trigger.
+A: Gate 3 blocks file modifications until a spec folder answer is provided. You can skip it with option D, but skipped sessions are undocumented and will not be recoverable through `/speckit:resume` or `/speckit:search`. For trivial changes under 5 characters in a single file, Gate 3 does not trigger.
 &nbsp;
 **Q: How does retrieval know what is relevant to my current task?**
 
@@ -995,7 +995,7 @@ A: Packet continuity and any supporting generated context artifacts use structur
 &nbsp;
 **Q: Can I use this framework without the continuity features?**
 
-A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) works whether or not you ever run `/memory:save`. You lose cross-session recovery, but structured documentation, agent routing and skill loading all still work.
+A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) works whether or not you ever run `/speckit:save`. You lose cross-session recovery, but structured documentation, agent routing and skill loading all still work.
 &nbsp;
 **Q: How do I add a new skill to the framework?**
 

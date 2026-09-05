@@ -1,0 +1,266 @@
+{
+  "_comment": "Stage-2 consumption map for packet 054/002. Apply directory_move first (git mv), then string_replacements over the files it lists (never over dist/, node_modules/, specs/, or any changelog/ or benchmark/ directory), then hand-fix special_cases individually — none of them is a safe mechanical sed. See scratch/inventory.md for the evidence behind every row.",
+  "decision": "runtime/cli",
+  "directory_move": {
+    "old": ".opencode/skills/system-spec-kit/scripts",
+    "new": ".opencode/skills/system-spec-kit/runtime/cli",
+    "method": "git mv",
+    "collision_check": "runtime/cli does not exist yet (verified); runtime/scripts (build tooling: finalize-dist.mjs, run-tests.mjs, run-tests-sharded.mjs, tests/) is untouched by this move and must not be conflated with it"
+  },
+  "string_replacements": [
+    {
+      "pattern": ".opencode/skills/system-spec-kit/scripts/",
+      "replacement": ".opencode/skills/system-spec-kit/runtime/cli/",
+      "scope": "repo-wide text search, excluding: specs/**, any changelog/ or benchmark/ directory at any depth, node_modules/**, dist/**, z_archive/**, .worktrees/**, barter/**",
+      "applies_to_file_count": 447,
+      "notes": "The bulk mechanical rule. Covers CLAUDE.md, AGENTS.md, README.md, CONTRIBUTING.md, .gitignore, .github/workflows/*, .opencode/commands/**, .opencode/agents/*.md (canonical mirror sources), .opencode/bin/*, .opencode/hooks/**, .opencode/plugins/*, .opencode/install-guides/README.md, and every skill doc listed in inventory.md section 1's area table. Does NOT cover the resolution-only findings in inventory.md sections 3-5 (segmented path.join/resolve calls, bare 'scripts' literals, __dirname depth climbers, the runtime/-descend flip) -- those need the special_cases below."
+    },
+    {
+      "pattern": "scripts/dist/",
+      "replacement": "runtime/cli/dist/",
+      "scope": "same exclusions as above; only where NOT already covered by the system-spec-kit/scripts/ pattern above (i.e. bare 'scripts/dist' without the system-spec-kit/ prefix, such as .opencode/bin/worktree-session.sh:85 and cwd-relative CLI invocations)",
+      "applies_to_file_count": 142,
+      "notes": "Large overlap with the pattern above; run system-spec-kit/scripts/ first, then this one only catches the bare-relative remainder."
+    }
+  ],
+  "special_cases": [
+    {
+      "file": ".opencode/bin/skill-advisor.cjs",
+      "line": 24,
+      "old": "require(path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'))",
+      "new": "require(path.join(opencodeDir, 'skills', 'system-spec-kit', 'runtime', 'cli', 'lib', 'dist-freshness.cjs'))",
+      "reason": "segmented path.join, invisible to a literal string sed"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      "line": 248,
+      "old": "existsSync(path.join(currentDir, 'scripts'))",
+      "new": "existsSync(path.join(currentDir, 'runtime', 'cli'))",
+      "reason": "root-detection landmark inside shared/, which must stay neutral of runtime/scripts internals per ARCHITECTURE.md's GAP A; verify this coupling is even correct post-move, not just re-pathed"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+      "line": 966,
+      "old": "path.join(systemSpecKitRoot, 'scripts')",
+      "new": "path.join(systemSpecKitRoot, 'runtime', 'cli')",
+      "reason": "segmented path.join inside workspaceRoots[] used to resolve bare key_files paths"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "lines": [74, 75, 76, 77, 229],
+      "old_pattern": "path.join(SKILL_ROOT, 'scripts', ...) / path.resolve(SKILL_ROOT, 'scripts', scriptPath)",
+      "new_pattern": "path.join(SKILL_ROOT, 'runtime', 'cli', ...) / path.resolve(SKILL_ROOT, 'runtime', 'cli', scriptPath)",
+      "reason": "five segmented calls building validate.sh's own rule-loading core (VALIDATOR_REGISTRY_PATH, VALIDATOR_RULES_ROOT, VALIDATOR_DIST_VALIDATION_ROOT, VALIDATE_SCRIPT_DIR, dynamic script resolve) -- highest-risk file in this class"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/runtime/tests/env-reference-drift.vitest.ts",
+      "line": 125,
+      "old": "resolve(SYSTEM_SPEC_KIT_ROOT, 'scripts')",
+      "new": "resolve(SYSTEM_SPEC_KIT_ROOT, 'runtime', 'cli')",
+      "reason": "segmented resolve"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/runtime/tests/validation-orchestrator-bridge.vitest.ts",
+      "line": 100,
+      "old": "path.join(SKILL_ROOT, 'scripts', 'dist', 'validation', 'continuity-freshness.js')",
+      "new": "path.join(SKILL_ROOT, 'runtime', 'cli', 'dist', 'validation', 'continuity-freshness.js')",
+      "reason": "segmented path.join"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/scripts/evals/check-architecture-boundaries.ts",
+      "lines": [53, 154, 163],
+      "old": "'scripts' as bare literal in REQUIRED_ROOT_DIRS and isProhibitedForShared()'s two path.join(packageRoot,'scripts') calls",
+      "new": "REQUIRED_ROOT_DIRS entry and both path.join calls become 'runtime','cli' (as a joined segment pair, not a single string)",
+      "do_not_touch_line": 404,
+      "do_not_touch_reason": "line 404's wrappersDir = path.join(resolvedRoot,'runtime','scripts') references the OTHER scripts -- runtime's own build-tooling dir, which this move does not rename"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      "lines": [21, 33, 35, 41],
+      "changes": [
+        { "line": 21, "field": "WORKSPACE_ROOT", "old": "path.resolve(__dirname, '..','..','..','..','..')", "new": "path.resolve(__dirname, '..','..','..','..','..','..')", "reason": "fixed-depth repo-root climb, +1 level after the move" },
+        { "line": 33, "field": "DIST_PACKAGES[1].id", "old": "system-spec-kit/scripts", "new": "system-spec-kit/runtime/cli", "reason": "recommended rename to match sibling id convention; sole consumer scripts/tests/dist-freshness-walker.vitest.ts:35 moves with it" },
+        { "line": 35, "field": "DIST_PACKAGES[1].root", "old": ".opencode/skills/system-spec-kit/scripts", "new": ".opencode/skills/system-spec-kit/runtime/cli", "reason": "mechanical" },
+        { "line": 41, "field": "DIST_PACKAGES[1].rebuildCommand", "old": "cd .opencode/skills/system-spec-kit/scripts && npm run build", "new": "cd .opencode/skills/system-spec-kit/runtime/cli && npm run build", "reason": "mechanical" }
+      ]
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/scripts/tests/dist-freshness-walker.vitest.ts",
+      "line": 35,
+      "old": "DIST_PACKAGES.find((entry) => entry.id === 'system-spec-kit/scripts')",
+      "new": "DIST_PACKAGES.find((entry) => entry.id === 'system-spec-kit/runtime/cli')",
+      "reason": "must match the id rename above, in the same commit"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
+      "lines": [73, 74, 75, 76],
+      "changes": [
+        { "line": 73, "old": "resolve(HOOK_DIR, '../../../scripts/dist/memory/generate-context.js')", "new": "resolve(HOOK_DIR, '../../cli/dist/memory/generate-context.js')", "reason": "source-execution candidate: 3 ups reached system-spec-kit then descended scripts/; now 2 ups reaches runtime directly, descend cli/" },
+        { "line": 74, "old": "resolve(HOOK_DIR, '../../../../scripts/dist/memory/generate-context.js')", "new": "resolve(HOOK_DIR, '../../../cli/dist/memory/generate-context.js')", "reason": "dist-execution candidate: 4 ups reached system-spec-kit then descended scripts/; now 3 ups reaches runtime directly, descend cli/" },
+        { "line": 75, "old": "resolve(process.cwd(), '.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js')", "new": "resolve(process.cwd(), '.opencode/skills/system-spec-kit/runtime/cli/dist/memory/generate-context.js')", "reason": "mechanical" },
+        { "line": 76, "old": "resolve(process.cwd(), 'scripts/dist/memory/generate-context.js')", "new": "resolve(process.cwd(), 'runtime/cli/dist/memory/generate-context.js')", "reason": "mechanical, assumes cwd already inside system-spec-kit/" }
+      ]
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/package.json",
+      "field": "workspaces",
+      "old": ["shared", "runtime", "scripts"],
+      "new": ["shared", "runtime", "runtime/cli"],
+      "verify": "npm install && npm ci --dry-run at this workspace root must both succeed; nested-workspace-member placement has no in-repo precedent, prove it rather than assume it"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/package.json",
+      "field": "scripts",
+      "keys_needing_edit": ["typecheck:root", "test:root", "test:cli", "test:task-enrichment", "postinstall"],
+      "unaffected_keys": ["test", "test:runtime", "test:embeddings"],
+      "reason": "test:task-enrichment additionally needs --root scripts -> --root runtime/cli; flag its --config ../runtime/vitest.config.ts value for manual verification (see inventory.md section 6, cwd ambiguity may predate this move)"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/scripts/package.json",
+      "renamed_to": ".opencode/skills/system-spec-kit/runtime/cli/package.json",
+      "changes": [
+        { "field": "dependencies['@spec-kit/runtime']", "old": "file:../runtime", "new": "file:../.." },
+        { "field": "scripts.test", "old_fragment": "--config ../runtime/vitest.config.ts", "new_fragment": "--config ../vitest.config.ts" },
+        { "field": "scripts['test:task-enrichment']", "old_fragment": "--config ../runtime/vitest.config.ts", "new_fragment": "--config ../vitest.config.ts" }
+      ],
+      "keep_unchanged": ["name: @spec-kit/scripts (see inventory.md section 8)"]
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/tsconfig.json",
+      "field": "references",
+      "old": [{"path": "./shared"}, {"path": "./runtime"}, {"path": "./scripts"}],
+      "new": [{"path": "./shared"}, {"path": "./runtime"}, {"path": "./runtime/cli"}]
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/scripts/tsconfig.json",
+      "renamed_to": ".opencode/skills/system-spec-kit/runtime/cli/tsconfig.json",
+      "changes": [
+        { "field": "extends", "old": "../tsconfig.json", "new": "../../tsconfig.json", "reason": "+1 escape, does not pass through runtime" },
+        { "field": "references[1] (was ../runtime)", "old": {"path": "../runtime"}, "new": {"path": ".."}, "reason": "drop-the-segment rule, runtime is now the direct parent" },
+        { "field": "compilerOptions.paths['@spec-kit/runtime/*']", "old": ["../runtime/*"], "new": ["../*"], "reason": "drop-the-segment rule" },
+        { "field": "compilerOptions.paths['@spec-kit/runtime/api']", "old": ["../runtime/api/index.ts"], "new": ["../api/index.ts"], "reason": "drop-the-segment rule" }
+      ]
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/vitest.config.ts",
+      "field": "test.include",
+      "old_entry": "scripts/tests/**/*.vitest.ts",
+      "new_entry": "runtime/cli/tests/**/*.vitest.ts"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/runtime/vitest.config.ts",
+      "field": "test.include",
+      "old_entry": "scripts/tests/**/*.{vitest,test}.ts",
+      "new_entry": "cli/tests/**/*.{vitest,test}.ts",
+      "reason": "this file does not move; its root stays path.resolve(import.meta.dirname,'..') = system-spec-kit/; only the include glob's leaf segment changes since scripts becomes a child of runtime rather than a sibling"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/scripts/runtime",
+      "renamed_to": ".opencode/skills/system-spec-kit/runtime/cli/runtime",
+      "symlink_target_old": "../runtime/dist",
+      "symlink_target_new": "../dist",
+      "reason": "preserves the exact same real target (system-spec-kit/runtime/dist) from the new location; do not remove despite no import consumer found -- dist-freshness.cjs's symlink-skip logic documents it as an intentional freshness-walker boundary marker, and removing it is a behavior decision outside this rename-only phase's scope"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/package-lock.json",
+      "action": "regenerate, do not hand-edit",
+      "command": "cd .opencode/skills/system-spec-kit && npm install",
+      "reason": "npm v7+ lockfile keys workspace members by relative path (102 lines naming \"scripts in this lockfile); npm ci inside a workspace member with no lockfile of its own refuses with EUSAGE, so regeneration must run from this workspace root, not the repository root and not the moved package itself (packet 053 precedent)"
+    },
+    {
+      "file": ".gitignore",
+      "lines": [83, 84],
+      "old": [
+        ".opencode/skills/system-spec-kit/scripts/tests/*.vitest.d.ts.map",
+        ".opencode/skills/system-spec-kit/scripts/tests/*.vitest.js.map"
+      ],
+      "new": [
+        ".opencode/skills/system-spec-kit/runtime/cli/tests/*.vitest.d.ts.map",
+        ".opencode/skills/system-spec-kit/runtime/cli/tests/*.vitest.js.map"
+      ]
+    }
+  ],
+  "runtime_descend_class": {
+    "_comment": "36 lines across 21 files under scripts/** matching the literal substring '../../runtime' (or deeper). Rule: drop the 'runtime/' segment, keep the same '..' count, EXCEPT check-handler-cycles-ast.ts (multi-candidate resolver, each candidate needs its own depth-specific treatment) and import-policy-rules.vitest.ts (string literals are test data for a boundary-rule under test, not real resolved paths -- confirm intended post-move semantics before editing). See inventory.md section 4 for the full file list and the two confirmed-unaffected look-alikes (runtime/tests/dist-freshness.vitest.ts:134, runtime/tests/path-boundary.vitest.ts:86).",
+    "files": [
+      "scripts/validation/generated-metadata-drift.ts",
+      "scripts/validation/generated-metadata-integrity.ts",
+      "scripts/evals/check-handler-cycles-ast.ts",
+      "scripts/tests/backfill-research-metadata.vitest.ts",
+      "scripts/tests/continuity-freshness.vitest.ts",
+      "scripts/tests/gate-3-classifier.vitest.ts",
+      "scripts/tests/generated-metadata-drift.vitest.ts",
+      "scripts/tests/graph-key-file-declarations.vitest.ts",
+      "scripts/tests/graph-metadata-backfill.vitest.ts",
+      "scripts/tests/graph-metadata-refresh.vitest.ts",
+      "scripts/tests/import-policy-rules.vitest.ts",
+      "scripts/tests/level-contract-resolver.vitest.ts",
+      "scripts/tests/scaffold-golden-snapshots.vitest.ts",
+      "scripts/tests/scoped-backfill-boundary.vitest.ts",
+      "scripts/tests/test-bug-regressions.js",
+      "scripts/tests/test-export-contracts.js",
+      "scripts/tests/test-naming-migration.js",
+      "scripts/tests/test-utils.js",
+      "scripts/tests/validation-engine-coherence.vitest.ts",
+      "scripts/tests/workflow-canonical-save-metadata.vitest.ts"
+    ]
+  },
+  "dirname_climb_plus_one_class": {
+    "_comment": "Fixed-depth __dirname climbers needing exactly one more '..' after the move (target is outside both scripts/ and runtime/). See inventory.md section 5 for the exact before/after per file.",
+    "files_5_to_6_ups_reaching_repo_root": [
+      "scripts/runtime-mirrors/sync-runtime-mirrors.cjs",
+      "scripts/optimizer/replay-corpus.cjs",
+      "scripts/codex/sync-agents.cjs",
+      "scripts/codex/sync-prompts.cjs",
+      "scripts/pi/sync-agents-pi.cjs",
+      "scripts/pi/sync-prompts-pi.cjs",
+      "scripts/resource-map/extract-from-evidence.cjs",
+      "scripts/tests/repair-derived.vitest.ts",
+      "scripts/tests/validate-memory-quality-v8-overreach.vitest.ts",
+      "scripts/lib/dist-freshness.cjs",
+      "scripts/tests/test-phase-validation.js",
+      "scripts/tests/completion-state.vitest.ts",
+      "scripts/tests/test-phase-command-workflows.js",
+      "scripts/tests/test-phase-system.js",
+      "scripts/tests/test-folder-detector-functional.js"
+    ],
+    "files_2_to_3_ups_reaching_system_spec_kit_root": [
+      "scripts/setup/record-node-version.js",
+      "scripts/tests/workflow-invariance.vitest.ts",
+      "scripts/tests/scaffold-golden-snapshots.vitest.ts"
+    ]
+  },
+  "confirmed_unaffected_lookalikes": [
+    {
+      "file": ".opencode/skills/system-spec-kit/runtime/tests/dist-freshness.vitest.ts",
+      "line": 134,
+      "reason": "iterates runtime's OWN top-level dirs including its build-tooling 'scripts' subdir, not the moving CLI workspace"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/runtime/tests/path-boundary.vitest.ts",
+      "line": 86,
+      "reason": "arbitrary synthetic fixture path unrelated to the real workspace"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts",
+      "reason": "builds synthetic fixture trees mimicking runtime/scripts (the build-tooling dir), which this move does not touch"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
+      "reason": "same synthetic-fixture reasoning as architecture-boundary-enforcement.vitest.ts"
+    },
+    {
+      "file": ".opencode/skills/system-spec-kit/scripts/tests/test-naming-migration.js",
+      "reason": "the ~60 'runtime/lib/...' entries are a descriptive data table of files that live in runtime/ and never move; only its one path.resolve(__dirname,'../../runtime') call at line 31 is a real reference (covered in runtime_descend_class)"
+    }
+  ],
+  "excluded_historical": {
+    "specs_outside_this_packet": "5040 files (system-spec-kit/scripts) + 944 (scripts/dist), overlapping; never edited",
+    "changelog_dirs_any_depth": ".opencode/skills/system-spec-kit/changelog/ (20 files)",
+    "benchmark_dirs_any_depth": ".opencode/skills/{sk-code,cli-external-orchestration}/benchmark/reports/** (7 files)",
+    "out_of_scope_gitignored_copies": [
+      "barter/ai-speckit/coder/.opencode/install_guides/install_scripts/install-spec-kit-memory.sh (symlink, vendored subproject)",
+      ".worktrees/022-012-runtime-enablement-build/.opencode/install-guides/install-scripts/install-spec-kit-memory.sh (symlink, different branch checkout)"
+    ]
+  }
+}

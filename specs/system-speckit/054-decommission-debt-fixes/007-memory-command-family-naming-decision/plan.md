@@ -43,9 +43,9 @@ This phase is a decision gate, not an implementation. It lays out the two naming
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `decision-record.md` exists and names a choice
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All acceptance criteria met — AC-004 stays Unmet until the Stage B follow-on packet is opened under Gate 3
+- [x] `decision-record.md` exists and names a choice — ADR-001, Option B, hard cutover
+- [x] Docs updated (spec/plan/tasks) — spec.md carries a dated Scope Amendment, tasks.md records Stage A evidence and Stage B's open task, acceptance-criteria.md and implementation-summary.md reflect the in-progress state
 <!-- /ANCHOR:quality-gates -->
 
 ---

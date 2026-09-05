@@ -170,7 +170,7 @@ State log: .opencode/skills/system-skill-advisor/mcp-server/database/.doctor-upd
 
 | Command | When To Use |
 |---------|-------------|
-| `/doctor memory` | Isolated trigger-index and retrieval-conventions health diagnosis |
+| `/doctor speckit-retrieval` | Isolated trigger-index and retrieval-conventions health diagnosis |
 | `/doctor deep-loop` | Isolated research/review coverage graph diagnosis |
 | `/doctor skill-advisor` | Advisor and skill-graph optimization pass |
 | `/doctor skill-budget` | Advisor budget/status helper |

@@ -378,7 +378,7 @@ context_loading:
     anchor_command: "rg --no-config --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '<!-- ANCHOR:<id> -->' {spec_folder_path}"
     exit_status: "0 = matches, 1 = clean no-hit reported as an empty result, 2 or higher = error with stderr attached and never reported as no-hit"
     unsupported: "Lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available; an unmatched phrase is a no-hit, not a weaker guess."
-  command_reference: "/memory:search"
+  command_reference: "/speckit:search"
   when_to_skip: ["User says 'skip context' or 'fresh start'"]
   behavior:
     if_context_found: "Surface planning decisions before implementation"
@@ -629,13 +629,13 @@ workflow:
   step_9_session_handover_check:
     purpose: Final workflow closeout after implementation
     enforcement: MANDATORY_CHECK
-    activities: [Display closeout prompt, Wait for response, "If accepted: run /memory:save", "If declined: proceed to termination"]
+    activities: [Display closeout prompt, Wait for response, "If accepted: run /speckit:save", "If declined: proceed to termination"]
     handover_prompt:
-      display: "Implementation complete. Run /memory:save first if you want another continuity refresh before ending the workflow."
+      display: "Implementation complete. Run /speckit:save first if you want another continuity refresh before ending the workflow."
       options:
-        - { label: "Refresh Context", action: "Run /memory:save" }
+        - { label: "Refresh Context", action: "Run /speckit:save" }
         - { label: "Skip", action: "Proceed to termination" }
-    behavior: { user_accepts: "Execute /memory:save", user_declines: "Proceed to termination" }
+    behavior: { user_accepts: "Execute /speckit:save", user_declines: "Proceed to termination" }
     validation: workflow_finish_confirmed
 
 # ─────────────────────────────────────────────────────────────────

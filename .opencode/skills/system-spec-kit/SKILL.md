@@ -58,9 +58,9 @@ Status: ✅ This requirement applies immediately once file edits are requested.
 
 ### Distributed Governance Rule
 
-Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
+Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /speckit:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
 
-- `handover.md` stays in the canonical recovery ladder and is maintained through `/memory:save` handover_state routing using the handover template for initial creation.
+- `handover.md` stays in the canonical recovery ladder and is maintained through `/speckit:save` handover_state routing using the handover template for initial creation.
 - `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
 - `resource-map.md` is a peer cross-cutting template under `.opencode/skills/system-spec-kit/templates/`; it remains optional at any level and gives reviewers a lean file ledger alongside `implementation-summary.md`.
 
@@ -68,7 +68,7 @@ Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `
 
 | Template              | Trigger Keywords                                                                                                              | Action                    |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest `/memory:save` handover maintenance |
+| `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest `/speckit:save` handover maintenance |
 | `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest Task-tool debug delegation |
 
 **Rule:** When detected, proactively suggest the appropriate action.
@@ -248,14 +248,14 @@ COMMAND_BOOSTS = {
     "/speckit:complete": "COMPLETE",
     "/speckit:plan --intake-only": "INTAKE",
     "/speckit:plan :with-phases": "PHASE",
-    "/memory:search": "MEMORY",
-    "/memory:save": "MEMORY",
+    "/speckit:search": "MEMORY",
+    "/speckit:save": "MEMORY",
     "/speckit:resume": "MEMORY",
 }
 
 LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],
-    "ON_DEMAND_KEYWORDS": ["deep dive", "full validation", "full checklist", "full template", "save context", "/memory:save", "/speckit:resume", "implementation-summary", "tasks.md", "spec folder", "phase folder", "description metadata"],
+    "ON_DEMAND_KEYWORDS": ["deep dive", "full validation", "full checklist", "full template", "save context", "/speckit:save", "/speckit:resume", "implementation-summary", "tasks.md", "spec folder", "phase folder", "description metadata"],
     "ON_DEMAND": [
         "references/validation/phase-checklists.md",
         "references/templates/template-guide.md",
@@ -405,13 +405,13 @@ def route_speckit_resources(task):
 2. For new folders, estimate level from LOC, risk, affected systems, and verification needs; create from contract-backed templates.
 3. Keep phase parents lean: parent folders hold `spec.md`, `description.json`, and `graph-metadata.json`; child phases hold working docs.
 4. Use checklist priority as the completion gate: P0 cannot defer, P1 requires completion or approved deferral, and P2 is optional.
-5. Preserve continuity in `implementation-summary.md` or through canonical `/memory:save` with `generate-context.js`.
+5. Preserve continuity in `implementation-summary.md` or through canonical `/speckit:save` with `generate-context.js`.
 
 ### Retrieval and Continuity
 
 Retrieval is file-based and needs no running service. Gate 1 resolves a prompt against the committed trigger index with `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`, which exits `0` on candidates, `1` on a clean no-hit and `2` on a bad invocation or unreadable index. Free-text retrieval uses the literal ripgrep recipes in [`references/retrieval/retrieval-conventions.md`](references/retrieval/retrieval-conventions.md), scoped by track and packet through the trailing positional path. Those recipes are precise only because the corpus is regular: [`references/structure/grep-convention.md`](references/structure/grep-convention.md) holds the frontmatter, anchor, naming and body-preservation rules that `validate.sh` enforces on every spec document.
 
-Recovery walks the continuity ladder rather than inferring a session: `handover.md`, then the `_memory.continuity` frontmatter block, then packet-first spec docs, then the bounded context recipe. `/speckit:resume` owns that ladder. Saves go through `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, invoked by `/memory:save`; the writer updates the packet's continuity surfaces in place and there is no indexing hand-off afterwards.
+Recovery walks the continuity ladder rather than inferring a session: `handover.md`, then the `_memory.continuity` frontmatter block, then packet-first spec docs, then the bounded context recipe. `/speckit:resume` owns that ladder. Saves go through `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, invoked by `/speckit:save`; the writer updates the packet's continuity surfaces in place and there is no indexing hand-off afterwards.
 
 Regenerate the index with `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` after spec-doc frontmatter changes. The artifact at `runtime/data/trigger-index.json` is committed, so a fresh clone answers Gate 1 before anything is built.
 
@@ -456,7 +456,7 @@ The local `/goal` surface is `.opencode/plugins/opencode-goal.js` plus `.opencod
 11. **Suggest handover.md on session-end keywords** - "continue later", "next session"
 12. **Run validate.sh before completion** - Completion Verification requirement
 13. **Create implementation-summary.md at end of implementation phase (Level 1+)** - Document what was built
-14. **Suggest /memory:save when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
+14. **Suggest /speckit:save when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
 15. **Suggest Task-tool debug delegation after 3+ failed fix attempts on same error** - Do not continue without offering a fresh debugging pass
 16. **Apply the phased-packet preference without bypassing qualification** - Suggest `/speckit:plan :with-phases` only when phase complexity score >= 25 AND documentation level >= 3. If either condition fails, use a standard packet; if the work is new or unrelated, create a separate packet and evaluate that packet independently.
 17. **Route all code creation/updates through `sk-code`** - Full surface alignment is mandatory before claiming completion

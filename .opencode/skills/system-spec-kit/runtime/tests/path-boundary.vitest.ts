@@ -183,7 +183,11 @@ describe('path-boundary hardening', () => {
       workspacePath,
     });
 
-    expect(result.source).toBe('handover');
+    // The fixture handover carries no packet binding, so validated continuity
+    // is the primary source regardless of its timestamp; this test's own
+    // concern (absolute-to-relative specFolder mapping) is unaffected by
+    // which tier wins.
+    expect(result.source).toBe('continuity');
     expect(result.specFolder).toBe(specFolder);
     expect(result.resolution.kind).toBe('explicit');
   });

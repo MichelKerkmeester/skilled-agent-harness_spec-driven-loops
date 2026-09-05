@@ -352,7 +352,7 @@ For code review, see `deep-review` skill (`.opencode/skills/system-deep-loop/dee
 | Research complete, ready to plan | `/speckit:plan [feature]` | Use findings for spec/plan |
 | Need more investigation | `/deep:research [new-topic]` | Another deep research session |
 | Need code/spec audit | `/deep:review [target]` | Iterative code review |
-| Want to refresh search support | `/memory:save [spec-folder]` | Refresh the packet's generated metadata while canonical continuity stays in spec docs |
+| Want to refresh search support | `/speckit:save [spec-folder]` | Refresh the packet's generated metadata while canonical continuity stays in spec docs |
 
 ### Key Differences (vs. single-pass research)
 

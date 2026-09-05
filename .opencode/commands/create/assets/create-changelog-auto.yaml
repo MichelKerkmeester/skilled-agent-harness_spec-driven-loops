@@ -644,7 +644,7 @@ workflow:
       - |
         IF spec_path exists (from Setup Phase or spec_folder source):
           Note: "Context should be saved to spec folder"
-          Suggest: "/memory:save {spec_path}"
+          Suggest: "/speckit:save {spec_path}"
     outputs:
       - status: "OK or FAIL"
       - changelog_path: "Path to created file"
@@ -760,7 +760,7 @@ termination:
     - "Review the generated changelog at {output_path}"
     - "Create additional changelogs for secondary components if needed"
     - "Consider creating an umbrella release in the 00-- prefixed folder if applicable"
-    - "Run /memory:save to preserve context"
+    - "Run /speckit:save to preserve context"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES

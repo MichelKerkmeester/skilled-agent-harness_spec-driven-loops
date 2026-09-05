@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Re-run the blast-radius `rg` command from `spec.md`'s Success Criteria and confirm the 87-file count is still current
-- [ ] T002 [P] Re-read `specs/system-speckit/052-memory-decommission-landing/goal.md`'s D7 row to confirm the precedent this phase either extends or reopens is quoted accurately
+- [x] T001 Re-run the blast-radius `rg` command from `spec.md`'s Success Criteria and confirm the 87-file count is still current — re-run at decision time returned 84 (small drift from other phases touching adjacent files, allowed by SC-002); the full list is saved at `scratch/scripts-dist-memory-blast-radius.txt`
+- [x] T002 [P] Re-read `specs/system-speckit/052-memory-decommission-landing/goal.md`'s D7 row to confirm the precedent this phase either extends or reopens is quoted accurately — confirmed verbatim: "Command names, paths and frontmatter keys stay literal" (goal.md D7 row)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,9 +43,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Present both options and the current blast-radius evidence to the operator
-- [ ] T004 Once the operator decides, create `decision-record.md` in this folder naming the chosen option and the reasoning
-- [ ] T005 If Option B is chosen, open the follow-on execution packet under Gate 3, seeded with this phase's blast-radius table and `runtime/hooks/claude/session-stop.ts:73-76`'s explicit inclusion (REQ-004)
+- [x] T003 Present both options and the current blast-radius evidence to the operator — done via this phase's `spec.md`; the operator decided directly (2026-09-05) rather than through a live A/B prompt in this session
+- [x] T004 Once the operator decides, create `decision-record.md` in this folder naming the chosen option and the reasoning — `decision-record.md` ADR-001, Option B, hard cutover
+- [ ] T005 If Option B is chosen, open the follow-on execution packet under Gate 3, seeded with this phase's blast-radius table and `runtime/hooks/claude/session-stop.ts:73-76`'s explicit inclusion (REQ-004) — **not yet opened**. Deviation from the literal task: the operator instructed Stage A (every document-level reference) to execute inside this phase instead of waiting on a separately-opened packet; see `spec.md`'s Scope Amendment. `scratch/code-path-followups.md` is the seed a Stage B packet will consume when opened under Gate 3.
+- [x] T004a (added) Execute Stage A of Option B: move `.opencode/commands/memory/{save,search}.md` and their presentation assets into `.opencode/commands/speckit/`, merge `memory/README.txt` into `speckit/README.txt`, delete the `memory/` command folder — done; `.opencode/commands/memory/` no longer exists
+- [x] T004b (added) Rename the `/doctor memory` route to `/doctor speckit-retrieval` in `_routes.yaml`, `doctor-memory.yaml` (renamed `doctor-speckit-retrieval.yaml`), `speckit.md`, and `doctor-speckit-presentation.txt` — done; `route-validate.sh` passes 9/9 routes including self-test fixtures
+- [x] T004c (added) Update every live document-level reference to the old command names (CLAUDE.md/AGENTS.md, README.md, install-guides, agent files + `.codex`/`.pi`/`.claude` mirrors, every skill's `SKILL.md`/references, `command-contract.json`) outside `scripts/`, `runtime/`, `shared/` and `specs/` — done across 91 documents (see `decision-record.md` ADR-001's blast-radius table); code paths left untouched and inventoried in `scratch/code-path-followups.md`
+- [x] T004d (added) Regenerate runtime mirrors and re-validate: `sync-agents.cjs`, `sync-agents-pi.cjs`, `sync-prompts.cjs`, `sync-prompts-pi.cjs`, `sync-runtime-mirrors.cjs`, `check-agent-mirror-sync.cjs`, `generate-command-routers.cjs`, `route-validate.sh`, the trigger index (twice, identical `indexSha256`), `ci-skill-derived-freshness.cjs`, `ci-skill-root-metadata.cjs`, `compiled-route-guard.cjs` (2 hubs re-minted: `cli-external-orchestration`, `mcp-tooling`) — all green; evidence in `implementation-summary.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,8 +57,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Confirm `decision-record.md` exists and clearly names one of the two options
-- [ ] T007 Confirm no file outside this folder's own documents (and `decision-record.md`) was modified during this phase
+- [x] T006 Confirm `decision-record.md` exists and clearly names one of the two options — confirmed, Option B
+- [x] T007 (superseded, see `spec.md` Scope Amendment) Confirm no file outside this folder's own documents (and `decision-record.md`) was modified during this phase — the original claim no longer holds under the operator-directed amendment; verified instead that no file under `scripts/`, `runtime/`, or `shared/` (system-spec-kit) and no file under `specs/` outside this phase folder was modified during Stage A
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +66,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked `[x]` — T005 stays open until the Stage B follow-on packet is opened under Gate 3
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (Stage A gates; see `implementation-summary.md`)
 <!-- /ANCHOR:completion -->
 
 ---

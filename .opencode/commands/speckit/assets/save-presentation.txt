@@ -1,6 +1,6 @@
-# Memory Save Presentation Contract
+# SpecKit Save Presentation Contract
 
-Single source of truth for `/memory:save` startup questions, dashboards, and result displays.
+Single source of truth for `/speckit:save` startup questions, dashboards, and result displays.
 
 ## 1. Startup Question Policy
 
@@ -19,7 +19,7 @@ Do not show a long option menu unless there are multiple candidates.
 ## 2. Save Plan Display
 
 ```text
-MEMORY:SAVE PLAN
+SPECKIT:SAVE PLAN
 --------------------------------------------------
 Folder      <spec_folder>
 Mode        plan-only
@@ -38,7 +38,7 @@ STATUS=OK ACTION=plan TARGET=<spec_folder>
 ## 3. Apply Result Display
 
 ```text
-MEMORY:SAVE
+SPECKIT:SAVE
 --------------------------------------------------
 Folder      <spec_folder>
 Targets     <target_1>, <target_2>, <target_3>
@@ -56,7 +56,7 @@ STATUS=OK TARGETS=<count> ANCHORS=<count>
 ## 4. Trigger Edit Display
 
 ```text
-MEMORY:TRIGGERS
+SPECKIT:TRIGGERS
 --------------------------------------------------
 Record      #<id> "<spec_doc_title>"
 
@@ -72,7 +72,7 @@ STATUS=OK ID=<id> TRIGGERS=<count>
 ## 5. Error Display
 
 ```text
-MEMORY:SAVE
+SPECKIT:SAVE
 --------------------------------------------------
 FAIL        <short reason>
 Recovery    <next safe action>

@@ -367,7 +367,7 @@ The bug is in opencode v1.14.39. The fix would be: in the `run` subcommand entry
 
 ## 7. MEMORY HANDBACK
 
-cli-opencode dispatches that produce evidence for a `/memory:save` continuity write MUST include the Memory Epilogue at the end of the prompt. The dispatched session adds `MEMORY_HANDBACK_START` / `MEMORY_HANDBACK_END` delimiters around a structured JSON payload that the calling AI extracts and feeds to `generate-context.js`.
+cli-opencode dispatches that produce evidence for a `/speckit:save` continuity write MUST include the Memory Epilogue at the end of the prompt. The dispatched session adds `MEMORY_HANDBACK_START` / `MEMORY_HANDBACK_END` delimiters around a structured JSON payload that the calling AI extracts and feeds to `generate-context.js`.
 
 The full Memory Handback Protocol is shared with cli-claude-code and cli-opencode. See SKILL.md Section 4 (RULES) for the canonical 7-step procedure. The same JSON normalization (camelCase / snake_case aliases) and post-010 save gates apply.
 

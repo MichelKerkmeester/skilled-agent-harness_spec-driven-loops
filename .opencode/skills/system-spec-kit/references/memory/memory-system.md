@@ -164,7 +164,7 @@ There is no session inference at any step. Each rung is a file read, and a missi
 
 ### Write path
 
-`/memory:save` composes structured JSON and hands it to the writer:
+`/speckit:save` composes structured JSON and hands it to the writer:
 
 ```bash
 node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \

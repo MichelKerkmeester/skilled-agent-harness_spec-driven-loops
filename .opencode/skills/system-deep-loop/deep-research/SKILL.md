@@ -445,7 +445,7 @@ Before research: recover context via `/speckit:resume` (`handover.md -> _memory.
 | `/deep:research` | Primary invocation point |
 | `/speckit:resume` | Canonical recovery surface before resuming/extending a packet |
 | `/speckit:plan` | Next step after deep research completes |
-| `/memory:save` | Manual memory save (deep research auto-saves) |
+| `/speckit:save` | Manual memory save (deep research auto-saves) |
 
 ---
 

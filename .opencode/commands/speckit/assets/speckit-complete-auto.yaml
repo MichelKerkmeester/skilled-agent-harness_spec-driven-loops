@@ -531,7 +531,7 @@ context_loading:
     anchor_command: "rg --no-config --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '<!-- ANCHOR:<id> -->' {spec_folder_path}"
     exit_status: "0 = matches, 1 = clean no-hit reported as an empty result, 2 or higher = error with stderr attached and never reported as no-hit"
     unsupported: "Lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available; an unmatched phrase is a no-hit, not a weaker guess."
-  command_reference: "/memory:search"
+  command_reference: "/speckit:search"
   when_to_skip: ["New spec folder (no prior context)", "User says 'skip context' or 'fresh start'"]
   behavior: { if_context_found: "Surface relevant decisions and state", if_no_context: "Proceed to Step 1" }
 
@@ -1209,11 +1209,11 @@ workflow:
     purpose: Final workflow closeout before completion
     activities:
     - Confirm the workflow is ready to terminate cleanly
-    - Remind the operator to run /memory:save before pausing if another continuity refresh is needed
+    - Remind the operator to run /speckit:save before pausing if another continuity refresh is needed
     options:
-    - { label: "Refresh Context", action: "Run /memory:save" }
+    - { label: "Refresh Context", action: "Run /speckit:save" }
     - { label: "Skip", action: "Proceed to termination" }
-    note: "Use /memory:save when you want one more continuity refresh before ending the workflow."
+    note: "Use /speckit:save when you want one more continuity refresh before ending the workflow."
     validation: workflow_finish_confirmed
 
 # ─────────────────────────────────────────────────────────────────

@@ -38,7 +38,7 @@ AI conversations that modify files leave no reasoning trail. The session ends an
 
 ### What It Does
 
-System Spec Kit captures every file-modifying conversation in a templated spec folder at one of four documentation levels matched to task complexity. Those decisions stay findable across sessions because they are committed files: a generated trigger index matches a prompt against author-declared phrases, and ripgrep finds anything else. `/speckit:resume` rebuilds the active context from packet-local sources. `/memory:save` routes session updates into canonical documentation surfaces so the next session picks up where the last one stopped, on any model or tool.
+System Spec Kit captures every file-modifying conversation in a templated spec folder at one of four documentation levels matched to task complexity. Those decisions stay findable across sessions because they are committed files: a generated trigger index matches a prompt against author-declared phrases, and ripgrep finds anything else. `/speckit:resume` rebuilds the active context from packet-local sources. `/speckit:save` routes session updates into canonical documentation surfaces so the next session picks up where the last one stopped, on any model or tool.
 
 ### How This Compares
 
@@ -91,7 +91,7 @@ The script creates `specs/042-my-feature/` with the Level 1 starters, initialize
 - `tasks.md`: the step-by-step task breakdown
 - `implementation-summary.md`: written after implementation completes
 
-Continuity no longer writes to `[spec]/memory/*.md`. Use `/memory:save` to route updates into the canonical packet docs:
+Continuity no longer writes to `[spec]/memory/*.md`. Use `/speckit:save` to route updates into the canonical packet docs:
 
 - `implementation-summary.md`
 - `decision-record.md`
@@ -105,7 +105,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
   specs/042-my-feature/
 ```
 
-The command updates the canonical continuity surfaces for the target folder, refreshes `description.json.lastUpdated` and rewrites the derived fields in `graph-metadata.json`. The `/memory:save 042-my-feature` shorthand does the same. There is no second save lane: the continuity writer is the only path that touches those files, so a save either went through it or did not happen.
+The command updates the canonical continuity surfaces for the target folder, refreshes `description.json.lastUpdated` and rewrites the derived fields in `graph-metadata.json`. The `/speckit:save 042-my-feature` shorthand does the same. There is no second save lane: the continuity writer is the only path that touches those files, so a save either went through it or did not happen.
 
 **Step 3: Resume work from a previous session.**
 
@@ -118,7 +118,7 @@ The system resolves the requested folder first. For a phase parent it follows th
 **Step 4: Search for context.**
 
 ```text
-/memory:search "how did we decide on the auth architecture?"
+/speckit:search "how did we decide on the auth architecture?"
 ```
 
 The system reads the question, classifies the task intent and routes to the right search strategy automatically.
@@ -155,9 +155,9 @@ node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.m
 | New feature, needs QA | `create.sh NNN-name` at Level 2 | 100 to 499 LOC |
 | Architecture change | `create.sh NNN-name` at Level 3 | 500+ LOC, multiple systems |
 | Multi-phase work | `create.sh NNN-name --phase` | large features, multiple sessions |
-| Save session progress | `/memory:save [folder]` | before ending any session |
+| Save session progress | `/speckit:save [folder]` | before ending any session |
 | Recover after crash | `/speckit:resume` | session interrupted unexpectedly |
-| Check prior decisions | `/memory:search "query"` | starting a related task |
+| Check prior decisions | `/speckit:search "query"` | starting a related task |
 | Upgrade documentation level | `upgrade-level.sh [folder] [level]` | scope grew beyond the original level |
 | Validate before claiming done | `validate.sh [folder]` | before any completion claim |
 
@@ -279,7 +279,7 @@ Phase:    lean parent trio plus child phase folders
 
 Optional support documents such as `handover.md`, `debug-delegation.md`, `research.md` and `resource-map.md` render through the workflow that owns them. Templates use ANCHOR markers to mark logical sections. Validation checks required anchors, section ordering, template version alignment and cross-reference consistency. The `template-compliance-contract.md` reference defines which anchors are required at each level.
 
-`create.sh` rejects `--path` values that traverse outside the repository with a clear error before any write. Set `SPECKIT_POST_VALIDATE=1` when a strict workflow should run full validation immediately after scaffolding. A mkdir-based advisory lock protects `description.json` and `graph-metadata.json` writes during canonical save so two parallel `/memory:save` calls for the same packet do not race.
+`create.sh` rejects `--path` values that traverse outside the repository with a clear error before any write. Set `SPECKIT_POST_VALIDATE=1` when a strict workflow should run full validation immediately after scaffolding. A mkdir-based advisory lock protects `description.json` and `graph-metadata.json` writes during canonical save so two parallel `/speckit:save` calls for the same packet do not race.
 
 The memory MCP server that used to sit here is gone. It held the search pipeline, query
 intelligence, the memory lifecycle, save scoring, the causal graph, index self-maintenance and
@@ -306,10 +306,14 @@ clean no-hit.
 | `/speckit:implement` | 9 | execute pre-planned work, requires an existing `plan.md` |
 | `/speckit:complete` | 14 | full end-to-end workflow from spec through implementation, verification and closeout |
 | `/speckit:resume` | 4 | resume a previous session on an existing spec folder |
+| `/speckit:save` | none | update packet continuity surfaces through `generate-context.js`; no indexing hand-off |
+| `/speckit:search` | none | retrieval over spec docs using the ripgrep recipes, scoped by track and packet |
 | `/deep:research` | none | autonomous research loop with convergence detection |
 | `/deep:review` | none | autonomous review loop with convergence detection |
 
 When intake is still needed, `/speckit:plan` and `/speckit:complete` use the shared intake contract from `references/workflows/intake-contract.md`. Downstream callers consume the returned `start_state` as the canonical intake enum.
+
+The tool counts `/speckit:save` and `/speckit:search` used to carry were counts of memory MCP tools. They are gone, so the column is `none` for both rather than a count.
 
 ### Mode Suffixes
 
@@ -324,17 +328,6 @@ When intake is still needed, `/speckit:plan` and `/speckit:complete` use the sha
 Autopilot is distinct from `:auto`. It requires unattended task metadata during planning, preserves the branch on hard failure, skips merge unless verification is clean and limits terminal reasons to `no_eligible_tasks`, `retry_exhausted`, `verification_failed` and `uncertainty_blocked`.
 
 Command source files: `.opencode/commands/speckit/`.
-
-### Memory Commands
-
-| Command | Purpose |
-|---|---|
-| `/memory:save` | update packet continuity surfaces through `generate-context.js`; no indexing hand-off |
-| `/memory:search` | retrieval over spec docs using the ripgrep recipes, scoped by track and packet |
-
-The tool counts these commands used to carry were counts of memory MCP tools. They are gone, so the column is too.
-
-Command source files: `.opencode/commands/memory/`.
 
 ---
 
@@ -670,8 +663,7 @@ The manual testing playbook runs every scenario behind these checks.
 |---|---|
 | `AGENTS.md` (project root) | gate definitions, AI behavior framework and mandatory workflow rules |
 | `specs/` | all spec folders created by Spec Kit (`.opencode/specs` is a compat symlink to this same tree) |
-| `.opencode/commands/speckit/` | speckit command definitions |
-| `.opencode/commands/memory/` | continuity save and search command definitions |
+| `.opencode/commands/speckit/` | speckit command definitions, including the continuity save and search commands |
 
 ### External Resources
 

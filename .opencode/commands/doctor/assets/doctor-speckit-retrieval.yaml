@@ -18,7 +18,7 @@ operating_mode:
   intent: DIAGNOSE  # never APPLY in this YAML
 
 
-memory_doctor_invariant: |
+speckit_retrieval_doctor_invariant: |
   This doctor is read-only by contract and needs no background service. It treats the
   generated trigger index at .opencode/skills/system-spec-kit/runtime/data/trigger-index.json as
   the artifact it diagnoses but never regenerates. Regeneration is owned by the
@@ -38,7 +38,7 @@ upstream_assets:
     lookup_exit_class: "0 or 1 on the frozen prompt set; 2 or higher fails"  # the lookup contract, never a result count
     cold_lookup_p95_budget_ms: 200  # the budget the latency report was accepted under
     index_regenerates_byte_identical: true  # two generator runs must hash the same
-memory_doctor_philosophy:
+speckit_retrieval_doctor_philosophy:
   principle: "Detect index staleness before it breaks Gate 1 lookups; this command never mutates — regeneration runs through /doctor:update"
   approach: "Read the index and its manifest → run the lookup and a ripgrep recipe → classify staleness → emit recommendations"
   mandate: "This command is read-only by contract."
@@ -64,11 +64,11 @@ field_handling:
     false: "diagnostic input only; recommend a full regeneration when high-severity staleness is detected"
 mutation_boundaries:
   allowed_targets:
-    - "<packet_scratch>/doctor-memory-report.*.md"  # the diagnostic report only
-    - "<packet_scratch>/doctor-memory-state.*.json"  # the diagnostic state log only
+    - "<packet_scratch>/doctor-speckit-retrieval-report.*.md"  # the diagnostic report only
+    - "<packet_scratch>/doctor-speckit-retrieval-state.*.json"  # the diagnostic state log only
   forbidden_targets:
     - ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json"  # never regenerate from the doctor
-    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor memory
+    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor speckit-retrieval
     - "<active-spec-folder>/description.json"  # spec metadata belongs to the continuity writer
     - "<active-spec-folder>/graph-metadata.json"  # graph metadata is not a doctor target
     - ".opencode/skills/**/SKILL.md"  # never edit skill bodies
@@ -206,7 +206,7 @@ workflow:
     purpose: Emit packet-local report + state log
     activities:
       - "Compose report following the OUTPUT CONTRACT below"
-      - "Write to <packet_scratch>/doctor-memory-report.<timestamp>.md (mutation class: add-only per _routes.yaml; the trigger index itself stays read-only)"
+      - "Write to <packet_scratch>/doctor-speckit-retrieval-report.<timestamp>.md (mutation class: add-only per _routes.yaml; the trigger index itself stays read-only)"
       - "Print summary table to stdout"
     outputs:
       - report_path: string
@@ -226,9 +226,9 @@ output_contract:
   optional_sections:
     - sample_staleness_explanations
   state_log:
-    path: "<packet_scratch>/doctor-memory-state.<timestamp>.json"
+    path: "<packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     schema:
-      command: "/doctor memory"
+      command: "/doctor speckit-retrieval"
       mode: INTERACTIVE
       intent: DIAGNOSE
       timestamp: ISO_8601

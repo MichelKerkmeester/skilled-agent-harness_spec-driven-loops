@@ -79,7 +79,7 @@ Apply the restraint ladder before adding code: verify the code needs to exist, p
 
 This subsection applies only to the OpenCode surface. It is present in the shared workflow file because this file is symlinked into multiple surfaces; Webflow readers should ignore this OpenCode-specific implementation guidance.
 
-- Treat `generate-context.js` as the single writer for a packet's continuity metadata, invoked through `/memory:save`. It keeps atomic same-directory update and lock semantics, so do not hand-edit the generated metadata pair alongside it or run a second writer against the same packet. There is no index or embedding store behind it to mutate separately.
+- Treat `generate-context.js` as the single writer for a packet's continuity metadata, invoked through `/speckit:save`. It keeps atomic same-directory update and lock semantics, so do not hand-edit the generated metadata pair alongside it or run a second writer against the same packet. There is no index or embedding store behind it to mutate separately.
 - For git worktree isolation, defer to `sk-git`. This workflow may note that isolation is needed, but it must not duplicate `sk-git`'s worktree setup, branch, commit, or finish-work contract.
 - Preserve the verification handoff. Implementation should name the package boundary, rebuild requirement, baseline, likely test command, and any env knobs the verifier must pin; final evidence belongs to [Workflow Reference - Verification](./workflow-verify.md), not implementation.
 

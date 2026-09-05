@@ -1727,7 +1727,7 @@ workflow:
     next_steps:
       - "/speckit:plan [feature-description]"
       - "/deep:research [new-topic] (for related deep research)"
-      - "/memory:save {spec_folder} (refresh canonical continuity before the next session)"
+      - "/speckit:save {spec_folder} (refresh canonical continuity before the next session)"
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE-ONLY APPENDIX

@@ -116,8 +116,8 @@ If the runtime does not surface command menus clearly, use this compact command 
 - `/deep:agent-improvement` - run bounded evaluator-first agent improvement
 
 **Memory commands**
-- `/memory:save` - write the current session context into the packet's continuity documents
-- `/memory:search` - retrieve prior context, decisions, and analysis by ripgrep over spec and skill docs
+- `/speckit:save` - write the current session context into the packet's continuity documents
+- `/speckit:search` - retrieve prior context, decisions, and analysis by ripgrep over spec and skill docs
 
 **Nested changelog generator**
 - `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js <spec-folder> --write` - publish a packet-local changelog for a root spec or phase child
@@ -471,7 +471,7 @@ Before presenting documentation to user:
 ### Context Save
 
 **Manual triggers (OpenCode):**
-- Command: `/memory:save`
+- Command: `/speckit:save`
 - Keywords: "save context", "save conversation", "save this"
 
 **Note:** OpenCode does not support automatic interval-based saves (hooks are event-triggered via plugins, not time-interval).
@@ -505,7 +505,7 @@ The pointer is maintained automatically by the generator: parent-level saves wri
 
 ### Session Continuity Save
 
-**Command:** `/memory:save`
+**Command:** `/speckit:save`
 
 **Purpose:** Refresh packet continuity before a pause or handoff while keeping `handover.md`, `_memory.continuity`, and the packet docs aligned for the next `/speckit:resume` pass.
 
@@ -573,7 +573,7 @@ specs/###-parent/
 - **ALWAYS fill ALL placeholders** - No `<PLACEHOLDER>` marker in final docs
 - **ALWAYS respond to workflow prompts** - Ask user for A/B/C/D/E choice
 - **ALWAYS get user approval** - Explicit "yes" before file changes
-- **Use distributed governance for spec docs** — Any agent writing packet markdown must use the level templates, run `validate.sh --strict`, and route continuity refreshes through `/memory:save`. Preserve `@deep-research` ownership of `research/research.md` and `@debug` ownership of `debug-delegation.md`.
+- **Use distributed governance for spec docs** — Any agent writing packet markdown must use the level templates, run `validate.sh --strict`, and route continuity refreshes through `/speckit:save`. Preserve `@deep-research` ownership of `research/research.md` and `@debug` ownership of `debug-delegation.md`.
 
 ### Enforcement
 

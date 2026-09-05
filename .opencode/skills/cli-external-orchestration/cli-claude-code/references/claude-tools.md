@@ -219,7 +219,7 @@ claude -p "Full security audit of the entire src/ directory" \
 
 **Persistent structured context across sessions.** Claude Code carries project context, decisions, and implementation history in the repository's spec folders rather than in a service.
 
-**How it works:** `/memory:save` writes continuity into the packet's canonical spec docs, `/memory:search` retrieves it with the trigger index and the documented ripgrep recipes, and `/speckit:resume` walks `handover.md` -> `_memory.continuity` -> the spec docs. This enables Claude Code to recall prior decisions across sessions. The calling AI benefits because Claude Code can leverage historical project context that the calling AI doesn't have.
+**How it works:** `/speckit:save` writes continuity into the packet's canonical spec docs, `/speckit:search` retrieves it with the trigger index and the documented ripgrep recipes, and `/speckit:resume` walks `handover.md` -> `_memory.continuity` -> the spec docs. This enables Claude Code to recall prior decisions across sessions. The calling AI benefits because Claude Code can leverage historical project context that the calling AI doesn't have.
 
 ---
 
@@ -247,7 +247,7 @@ Every OpenCode-side claim below is sourced from a live `opencode run --help` cap
 | **Agent System** | 12 agents via `.claude/agents/*.md`, all directly invokable with `--agent <name>` | 12 agents via `.opencode/agents/*.md`, split into 3 classes: primary (`general`, `plan`, `orchestrate` — only `orchestrate` is a project file usable with top-level `--agent`), subagent (`context`, `markdown`, `review`, `debug`, `ai-council` — routed via `--agent orchestrate`, never direct), and command-owned (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver` — dispatched only by their parent `/deep:*` command) |
 | **Session Continuity** | `--continue`/`-c`, `--resume [id]`/`-r`, `--fork-session` | `--continue`/`-c`, `--session <id>`/`-s`, `--fork` (all flags on `opencode run`, not standalone subcommands) |
 | **File Attachment** | `--file <specs...>` (downloads named file resources at startup) | `-f`/`--file <files...>` (attaches files to the message) |
-| **Memory System** | Spec-folder continuity docs via `/memory:save` and `/memory:search` | The same spec-folder continuity docs — `cli-opencode` dispatches load the project's full plugin/skill/MCP runtime, which is the skill's own primary value proposition; this is NOT an area where Claude Code has an advantage |
+| **Memory System** | Spec-folder continuity docs via `/speckit:save` and `/speckit:search` | The same spec-folder continuity docs — `cli-opencode` dispatches load the project's full plugin/skill/MCP runtime, which is the skill's own primary value proposition; this is NOT an area where Claude Code has an advantage |
 | **Hooks** | Pre/post tool-call hooks (configured in settings) | Not documented in the current cli-opencode skill surface — unverified, do not assume absence without checking `opencode`'s own docs |
 | **Model Count** | 3 named tiers (opus, sonnet, haiku), each with dated release ids | Multiple providers, each with several models — `deepseek` (2), `minimax`/`minimax-coding-plan` (1), `xiaomi`/`xiaomi-token-plan-ams` (2), `kimi-for-coding` (1), `zai-coding-plan` (1), `openai` (12 across the base/Sol/Terra/Luna families × base/Fast/Pro tiers) |
 | **Auth Methods** | Claude subscription OAuth only — `claude auth login`, or `claude setup-token` (CI/CD); no API key | Per-provider `opencode providers login <provider>` / `opencode auth login` (OAuth-style) flows plus API keys |

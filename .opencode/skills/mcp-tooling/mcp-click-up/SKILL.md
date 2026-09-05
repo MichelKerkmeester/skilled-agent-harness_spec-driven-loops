@@ -406,7 +406,7 @@ const result = await call_tool_chain({
 
 **Code Mode MCP:** Official ClickUp MCP tools are invoked via `mcp__code_mode__call_tool_chain`. Tool naming convention: `clickup_official.clickup_official_{tool_name}`. See references/mcp-tools.md for the full tool catalog.
 
-**Memory:** Save ClickUp workflow context (current list, active tags, workspace ID) using `/memory:save` when switching sessions.
+**Memory:** Save ClickUp workflow context (current list, active tags, workspace ID) using `/speckit:save` when switching sessions.
 
 **Tool Usage:** Use Bash for cupt CLI commands. Use mcp__code_mode__call_tool_chain for official MCP operations. Use Read to load references on demand.
 

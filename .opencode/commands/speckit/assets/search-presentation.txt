@@ -1,6 +1,6 @@
-# Memory Search Presentation Contract
+# SpecKit Search Presentation Contract
 
-Single source of truth for `/memory:search` startup questions and result displays.
+Single source of truth for `/speckit:search` startup questions and result displays.
 
 Register (COSTAR): these contracts are written objective-first for an automated-pipeline audience — fixed response shapes, no preamble, no conversational framing inside the rendered block. This is the wording style of the contract itself, not a prompt framework imposed on callers.
 
@@ -8,8 +8,8 @@ Register (COSTAR): these contracts are written objective-first for an automated-
 
 Start with the matching render contract before drafting any response:
 
-- Trigger-index results: Section 2, `MEMORY:SEARCH TRIGGERS "<query>" ... STATUS=OK CANDIDATES=<count>`.
-- Free-text evidence results: Section 3, `MEMORY:SEARCH "<query>" ... STATUS=OK RESULTS=<count>`.
+- Trigger-index results: Section 2, `SPECKIT:SEARCH TRIGGERS "<query>" ... STATUS=OK CANDIDATES=<count>`.
+- Free-text evidence results: Section 3, `SPECKIT:SEARCH "<query>" ... STATUS=OK RESULTS=<count>`.
 - No-hit results: Section 4, the clean empty result.
 - Unsupported requests: Section 6.
 - Errors: Section 7.
@@ -39,7 +39,7 @@ Ask a targeted follow-up only when genuinely ambiguous:
 The keyed lane. Renders the output of `lookup-trigger-index.mjs` — a match against author-declared `trigger_phrases`, not a scan of prose.
 
 ```text
-MEMORY:SEARCH TRIGGERS "<query>"
+SPECKIT:SEARCH TRIGGERS "<query>"
 --------------------------------------------------
 index     <indexHash short>   manifest <manifestHash short>
 scope     <specFolder or (unscoped)>
@@ -71,7 +71,7 @@ Rules:
 The scan lane. Renders parsed ripgrep output, addressed by path and one-based line.
 
 ```text
-MEMORY:SEARCH "<query>"
+SPECKIT:SEARCH "<query>"
 --------------------------------------------------
 recipe    <section id from retrieval-conventions.md>
 roots     <positional search roots>
@@ -84,7 +84,7 @@ STATUS=OK RESULTS=<count> LANE=ripgrep
 Filled example:
 
 ```text
-MEMORY:SEARCH "trigger index generator"
+SPECKIT:SEARCH "trigger index generator"
 --------------------------------------------------
 recipe    2.2 path-only
 roots     specs/system-speckit/049-memory-decommission
@@ -117,7 +117,7 @@ Rules:
 Ripgrep exit `1` and a lookup with zero candidates are the same thing: a correct empty answer. Render it plainly and stop.
 
 ```text
-MEMORY:SEARCH "<query>"
+SPECKIT:SEARCH "<query>"
 --------------------------------------------------
 No match. The phrase does not appear in the searched roots.
 
@@ -149,7 +149,7 @@ Pre-render gate: scan the candidate output case-insensitively for these labels, 
 These capabilities lived in the retired continuity database. None has a replacement, and no recipe approximates one. Say so and stop.
 
 ```text
-MEMORY:SEARCH
+SPECKIT:SEARCH
 --------------------------------------------------
 UNSUPPORTED  <capability>
 Why          <one line: what the retired mechanism did that text matching cannot>
@@ -171,7 +171,7 @@ STATUS=OK ACTION=unsupported
 Reserved for a genuine execution failure: ripgrep exit `2` or higher, or a lookup exit `2`. Never used for a no-hit.
 
 ```text
-MEMORY:SEARCH
+SPECKIT:SEARCH
 --------------------------------------------------
 FAIL        <short reason>
 stderr      <the tool's stderr, verbatim>
@@ -182,4 +182,4 @@ STATUS=FAIL ERROR="<message>"
 
 Rules:
 - Always attach stderr. Exit `1` and exit `2` both produce empty stdout, so stdout alone cannot tell a clean miss from a broken invocation — the exit status is the only discriminator, and hiding stderr destroys the evidence.
-- A missing or unreadable trigger index is an error, not a no-hit. Say the index is absent and name `/doctor memory` as the diagnostic.
+- A missing or unreadable trigger index is an error, not a no-hit. Say the index is absent and name `/doctor speckit-retrieval` as the diagnostic.

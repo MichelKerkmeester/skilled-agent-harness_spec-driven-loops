@@ -598,7 +598,7 @@ rg --no-config --json --fixed-strings --ignore-case \
   -- 'branch strategy decisions' specs .opencode
 
 // After major commits or workflow completion
-// Save context with: /memory:save or "save context to [spec-folder]"
+// Save context with: /speckit:save or "save context to [spec-folder]"
 ```
 
 ---

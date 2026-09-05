@@ -306,7 +306,7 @@ workflow:
       report_to_dashboard: "Phase 4 dashboard adds row 'spec-metadata-backfill: created=N, failed=M' when this sub-action runs"
     legacy_memory_md_detection:
       precondition: "always run when Phase 8 is triggered"
-      rationale: "v3.3 used memory/*.md files inside spec folders for continuity. v3.4 moved continuity to _memory.continuity frontmatter blocks in implementation-summary.md. The migration is NOT fully automatable — content review required per migration-manifest M-3.3.0.0-001 fallback_operation. Phase 8 detects + reports, the user runs /memory:save manually after review."
+      rationale: "v3.3 used memory/*.md files inside spec folders for continuity. v3.4 moved continuity to _memory.continuity frontmatter blocks in implementation-summary.md. The migration is NOT fully automatable — content review required per migration-manifest M-3.3.0.0-001 fallback_operation. Phase 8 detects + reports, the user runs /speckit:save manually after review."
       detection: |
         find specs -mindepth 2 -maxdepth 6 -path '*/memory/*.md' \
           -not -path '*/scratch/*' -not -path '*/z_archive/*' 2>/dev/null \
@@ -323,7 +323,7 @@ workflow:
             echo "These are v3.3 continuity artifacts that were superseded by _memory.continuity frontmatter in v3.4."
             echo ""
             echo "RECOMMENDED MANUAL STEP: review the files listed in .doctor-update.legacy-memory-files.log,"
-            echo "then run \`/memory:save\` for each affected packet to migrate continuity into the v3.4 frontmatter format."
+            echo "then run \`/speckit:save\` for each affected packet to migrate continuity into the v3.4 frontmatter format."
             echo ""
           fi
 

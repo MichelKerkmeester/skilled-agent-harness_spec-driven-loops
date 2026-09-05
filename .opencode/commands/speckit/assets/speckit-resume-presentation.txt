@@ -139,7 +139,7 @@ STATUS=FAIL ERROR="no active session"
 | Planning incomplete | `/speckit:plan [feature-description]` | Complete planning phase |
 | Ready to implement | `/speckit:implement [spec-folder-path]` | Continue implementation |
 | Implementation in progress | Continue from last task | Resume where work stopped |
-| Need broader history | `/memory:search history [spec-folder]` | Inspect prior context |
-| Ending again | `/memory:save [spec-folder-path]` | Refresh continuity before pausing |
+| Need broader history | `/speckit:search history [spec-folder]` | Inspect prior context |
+| Ending again | `/speckit:save [spec-folder-path]` | Refresh continuity before pausing |
 
 End interactive presentations with: `What would you like to do next?`

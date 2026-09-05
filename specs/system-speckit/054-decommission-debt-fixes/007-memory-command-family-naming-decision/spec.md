@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-09-05 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -40,6 +40,8 @@ contextType: "general"
 This is **Phase 7** of the decommission debt fixes specification, and its final phase.
 
 **Scope Boundary**: The decision itself and its supporting blast-radius evidence. No file is renamed, no path is edited, and no code changes in this phase - it produces a decision record, not an implementation.
+
+**Scope Amendment (2026-09-05, operator-directed)**: The operator decided directly rather than through the A/B choice this phase was scaffolded to present, and instructed that Stage A of the chosen option (Option B) execute inside this same phase rather than waiting for a separately-opened follow-on packet: every document-level reference (commands, doctor route, root docs, agent mirrors, skill references) is renamed now, while every code path (`scripts/memory/`, `scripts/dist/memory/generate-context.js`, the session-stop hook fallback candidates, and the `command-contract.json` family key its consuming script hard-codes) stays untouched and is inventoried in `scratch/code-path-followups.md` for a Stage B packet. See `decision-record.md` ADR-001 for the full reasoning. This narrows, rather than reopens, the original "no rename in this phase" boundary: the boundary now sits between document-level and code-path references instead of between decision and execution.
 
 **Dependencies**:
 - None on the other six phases, though it should be the last to close since a rename decided here changes reference counts other phases' documentation (and the parent's own `Files to Change` table) currently cite.
@@ -76,7 +78,7 @@ The operator has, in one place, the full blast-radius comparison between staying
 - Require the operator's decision to be recorded in a `decision-record.md` in this folder before any rename work is scheduled - this is the acceptance criterion, not a suggestion.
 
 ### Out of Scope
-- Executing either option's file changes - this phase produces the decision record, not the rename or the documentation pass.
+- Executing either option's file changes - this phase produces the decision record, not the rename or the documentation pass. **Amended 2026-09-05**: the operator directed Stage A of Option B (document-level references only) to execute inside this phase; see the Scope Amendment note above. The code-path move (Stage B) stays out of scope for this phase.
 - Revisiting D7 itself as a completed decision for packet 052's scope - this phase asks whether it still holds for the larger 87-file surface today, not whether it was wrong then.
 - Any other retired-vocabulary naming question (e.g., `dist/memory` as a compatibility alias name, addressed narrowly in the LUNA-046 finding) beyond the command-family question this phase is scoped to.
 
@@ -84,8 +86,12 @@ The operator has, in one place, the full blast-radius comparison between staying
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `decision-record.md` (this folder) | Create | The operator's recorded choice between Option A and Option B, written when the decision is made |
-| (Option B only, future work) `.opencode/commands/memory/**`, `scripts/memory/**`, `scripts/package.json`, `CLAUDE.md`, hook adapters, doctor routes, agent mirrors | Modify | Not touched in this phase; listed here only because the decision this phase produces determines whether a follow-on packet must touch them |
+| `decision-record.md` (this folder) | Create | The operator's recorded choice between Option A and Option B |
+| `scratch/code-path-followups.md`, `scratch/scripts-dist-memory-blast-radius.txt` (this folder) | Create | Stage B starting inventory: every code-path site still naming `memory`, with file:line |
+| `.opencode/commands/memory/**` | Delete (moved) | Folder removed; `save.md`, `search.md` and their presentation assets moved into `.opencode/commands/speckit/` |
+| `.opencode/commands/speckit/**`, `.opencode/commands/README.txt`, `.opencode/commands/doctor/_routes.yaml`, `doctor-memory.yaml` (renamed `doctor-speckit-retrieval.yaml`), `speckit.md`, `doctor-speckit-presentation.txt` | Modify | Stage A document-level rename executed in this phase |
+| `CLAUDE.md`/`AGENTS.md` (symlink pair), `README.md`, install-guides, agent files + mirrors, every skill's `SKILL.md`/references naming the old commands, `command-contract.json` | Modify | Stage A document-level rename executed in this phase |
+| `scripts/memory/**`, `scripts/dist/memory/**`, `scripts/package.json`, `runtime/hooks/claude/session-stop.ts:73-76`, `generate-command-routers.cjs`'s `memory` family-key hardcode | Modify (Stage B, future work) | Not touched in this phase; inventoried in `scratch/code-path-followups.md` for the follow-on packet |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,7 +124,7 @@ The operator has, in one place, the full blast-radius comparison between staying
 
 - **SC-001**: `decision-record.md` exists in this folder and names one of the two options, with the operator's reasoning.
 - **SC-002**: The blast-radius counts in `spec.md` are reproducible: `rg -l "scripts/dist/memory" --glob '*.md' --glob '*.json' --glob '*.ts' --glob '*.sh' --glob '*.cjs' --glob '*.mjs' --glob '*.yaml' . | grep -v node_modules | grep -v '/dist/' | grep -v '^specs/' | grep -v z_archive | wc -l` returns 87 (or the actual count at the time the decision is made, if the surface has changed).
-- **SC-003**: No file outside this folder's own four documents and `decision-record.md` is modified during this phase.
+- **SC-003**: No file outside this folder's own four documents and `decision-record.md` is modified during this phase. **Amended 2026-09-05**: under the Scope Amendment above, this narrows to code paths only - no file under `scripts/`, `runtime/`, or `shared/` (of the `system-spec-kit` skill) is modified during Stage A of this phase; every such site is inventoried in `scratch/code-path-followups.md` instead.
 <!-- /ANCHOR:success-criteria -->
 
 ---

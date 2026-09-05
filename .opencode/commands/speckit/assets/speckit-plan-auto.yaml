@@ -172,7 +172,7 @@ context_loading:
     anchor_command: "rg --no-config --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '<!-- ANCHOR:<id> -->' {spec_folder_path}"
     exit_status: "0 = matches, 1 = clean no-hit reported as an empty result, 2 or higher = error with stderr attached and never reported as no-hit"
     unsupported: "Lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available; an unmatched phrase is a no-hit, not a weaker guess."
-  command_reference: "/memory:search"
+  command_reference: "/speckit:search"
   when_to_skip: ["New spec folder (no prior context)", "User says 'skip context' or 'fresh start'"]
   behavior: { if_found: "Surface relevant decisions/state before proceeding", if_none: "Proceed to Step 1" }
 
@@ -722,10 +722,10 @@ workflow:
 
   step_7_handover_check:
     purpose: Final workflow closeout after planning
-    activities: [Emit planning closeout status, Remind the operator to run /memory:save later if another continuity refresh is needed]
+    activities: [Emit planning closeout status, Remind the operator to run /speckit:save later if another continuity refresh is needed]
     mandatory_check: true
     display_status: |
-      Planning complete. Auto mode terminates without waiting; run /memory:save separately if you want another continuity refresh before pausing.
+      Planning complete. Auto mode terminates without waiting; run /speckit:save separately if you want another continuity refresh before pausing.
     user_response_handling: { default: "Proceed to termination" }
     outputs: ["workflow closeout emitted"]
     validation: workflow_finish_confirmed

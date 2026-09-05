@@ -146,7 +146,7 @@ specs/009-notification-system/
 |--------|----------|
 | Two-Phase | Separating plan and implement allows review |
 | Closure gate | Level 2 adds acceptance-criteria.md, which decides whether the packet may close |
-| Multi-Session | `/memory:save` routes continuity into packet docs for later recovery |
+| Multi-Session | `/speckit:save` routes continuity into packet docs for later recovery |
 | Priority Tags | P0/P1/P2 in the tasks.md verification region guide completion order |
 
 ---
@@ -281,7 +281,7 @@ AI: Loading context for specs/009-notification-system/
 
 | Aspect | Learning |
 |--------|----------|
-| Handover Files | Maintained through `/memory:save` and packet continuity refreshes before session end |
+| Handover Files | Maintained through `/speckit:save` and packet continuity refreshes before session end |
 | Progress Tracking | Checklist shows completion percentage |
 | Blocker Awareness | Resume surfaces any documented blockers |
 | Seamless Continuation | No need to re-explain context |
@@ -306,7 +306,7 @@ AI: Loading context for specs/009-notification-system/
 | `/speckit:plan` | Planning phase only |
 | `/speckit:implement` | Implementation with existing plan |
 | `/speckit:resume` | Continue from previous session |
-| `/memory:save` | Save context before ending session |
+| `/speckit:save` | Save context before ending session |
 
 ### Level Selection Guide
 

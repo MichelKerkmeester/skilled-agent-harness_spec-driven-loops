@@ -1,0 +1,376 @@
+# Reference inventory and target-layout resolution
+
+Taken read-only on `skilled/v4.0.0.0` in the main checkout, before any lane other
+than this one touches `scripts/`. `git grep` is the authority, not `rg` alone —
+packet 053 found a `.gitignore` rule that hides `package.json`/`package-lock.json`
+from `rg`; this repo's current `.gitignore` no longer carries that exact rule, but
+`git grep` was used throughout anyway so the result does not depend on that being
+true today.
+
+Excluded as historical evidence, matching packet 053's own exclusion class: `specs/**`,
+any directory literally named `changelog` or `benchmark` at any depth (both the
+repo has none at the root, but `.opencode/skills/system-spec-kit/changelog/` and two
+skills' `benchmark/reports/` trees exist and are the same kind of frozen record),
+`node_modules/**`, generated `dist/**`, `z_archive/**`, and two gitignored,
+out-of-tree copies (`barter/ai-speckit/...` — a vendored subproject — and
+`.worktrees/022-012-runtime-enablement-build/...` — a different branch's checkout).
+
+## 0. Target-layout decision (REQ-002)
+
+**Chosen: `runtime/cli/`** (spec.md's option (a)), confirmed by direct inspection:
+`runtime/scripts/` already holds `finalize-dist.mjs`, `run-tests.mjs`,
+`run-tests-sharded.mjs` and a `tests/` folder — real build-tooling content, not an
+empty placeholder — so a literal `git mv scripts runtime/scripts` collides on day
+one. `runtime/cli/` does not exist yet (confirmed: `ls` returns "No such file or
+directory"), so the incoming CLI workspace lands on a clean name. The rejected
+alternative (folding `runtime/scripts/`'s three files into the incoming tree first)
+would require touching every reference to those three build-tooling files instead
+of the handful this decision touches (see §7); this phase's plan.md already reached
+the same conclusion and this inventory found nothing that overturns it.
+
+**The collision is bounded, not eliminated by re-partitioning**: two directories will
+both be named `scripts` after the move — `runtime/scripts/` (build tooling, unmoved)
+and `runtime/cli/` (unaffected, it's the CLI workspace's new name). No name collision
+survives. The one thing that DOES still require care is `evals/check-architecture-boundaries.ts`,
+which references both `runtime/scripts` (the build-tooling dir, stays) and the outer
+`scripts` (the CLI workspace, moves) in the same file four lines apart — see §7.1.
+
+## 1. Counts
+
+| Group | Count | How it was taken |
+|-------|------:|-------------------|
+| Files (outside `specs/`, `changelog/`, `benchmark/`, `node_modules`, `dist`, `z_archive`) naming `system-spec-kit/scripts` or `scripts/dist` | 447 | `git grep -l -F "system-spec-kit/scripts"` ∪ `git grep -l -F "scripts/dist"`, filtered |
+| — of those, inside the `scripts/` tree itself (move wholesale via `git mv`, but internal content still needs text edits) | 157 | self-references |
+| — of those, outside the `scripts/` tree (need a real text edit at their current location) | 290 | see §4 |
+| Approx. total matching lines across the 447 files (both patterns; a line matching both is counted twice) | ~1,800 | summed per-file `git grep -c` |
+| `specs/**` files naming the same strings (historical corpus, excluded from the count above, not edited) | 5,040 (`system-spec-kit/scripts`) + 944 (`scripts/dist`), overlapping | `git grep -l` scoped to `specs/*` |
+| Skill-level `changelog/`/`benchmark/` files naming the same strings (historical, excluded) | 29 + 7 | `grep -c '/changelog/'` / `/benchmark/'` over the raw hit list |
+| Symlinks whose target resolves into `system-spec-kit/scripts` | 0 in-tree; 2 in gitignored, out-of-scope copies | `find . -type l -lname '*system-spec-kit/scripts*'` |
+| Tracked symlink inside the package's own tree | 1 | `scripts/runtime -> ../runtime/dist` |
+
+### Outside-the-tree files by area (290, non-self-reference)
+
+| Area | Files | Notes |
+|------|------:|-------|
+| `.opencode/skills/system-spec-kit` (non-`scripts/`: `manual-testing-playbook`, `references`, `feature-catalog`, `runtime`, `changelog`*, `templates`, `assets`, root docs) | 130 | *changelog subset (20) is historical, not counted as live below |
+| `.opencode/skills/system-deep-loop` | 48 | deep-review/deep-research/deep-ai-council SKILL docs quoting the trigger-index or validate.sh commands; 3 under `runtime/`, 1 `shared/`, 1 `benchmark/`* |
+| `.opencode/skills/sk-code` | 23 | 3 under `benchmark/reports/`* (historical), rest are manual-testing-playbook + reference docs |
+| `.opencode/skills/cli-external-orchestration` | 20 | 2 under `benchmark/reports/`* (historical); rest are per-CLI `SKILL.md` + prompt-template assets |
+| `.opencode/commands` | 41 | `create` (15), `speckit` (8), `deep` (8), `doctor` (7, see §5), `memory` (3) |
+| `.opencode/skills/sk-doc` | 10 | includes 2 test-fixture manifests that enumerate real paths (§3) |
+| `.claude`, `.codex`, `.pi` (agent mirrors + SYNC.md) | 8 each | generated by `sync-runtime-mirrors.cjs`; see §2 |
+| `.github/workflows` | 4 | all live CI steps, see §5 |
+| `.opencode/plugins` | 3 | live PostToolUse/session plugins, see §3 |
+| `.opencode/bin` | 3 | `README.md`, `speckit-completion.cjs` (relative `require`), `worktree-session.sh` |
+| `.opencode/agents` | 7 | canonical agent sources `sync-runtime-mirrors.cjs` reads |
+| `.opencode/hooks` | 2 | `dist-freshness/README.md`, `post-edit-quality/lib/post-edit-router.cjs` (relative config-string) |
+| `.opencode/install-guides` | 1 | `README.md`, 6 lines |
+| `.cursor`, `.devin` (`SYNC.md` only) | 1 each | |
+| `.opencode/skills/sk-git` | 2 | docs only |
+| `.opencode/skills/system-skill-advisor` | 1 | doc only |
+| `.opencode/skills/.state` | 1 | `smart-router-telemetry/README.md`, 5 lines |
+| repo root (`CLAUDE.md`, `AGENTS.md`, `README.md`, `CONTRIBUTING.md`, `.gitignore`) | 5 | see §6 |
+
+## 2. Runtime-mirror generation chain (grep-invisible unless traced)
+
+`.claude/agents/*.md`, `.codex/agents/*.toml`, `.pi/agents/*.md` are **not** hand-edited
+copies — `ls -la` shows them as regular files, and `.claude/SYNC.md:62,103,125` names the
+generator: `.opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs`,
+which reads the canonical `.opencode/agents/*.md` sources and writes the five mirrors
+(`.claude`, `.codex`, `.cursor`, `.devin`, `.pi`). Confirmed by direct grep:
+`.opencode/agents/ai-council.md:748` carries the same
+`node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` line
+that shows up verbatim in `.claude/agents/ai-council.md:734` and
+`.codex/agents/ai-council.toml:738`.
+
+**Consequence for the execution phase**: editing the seven canonical `.opencode/agents/*.md`
+files is necessary but not sufficient — the mirrors must be regenerated in the same
+commit (`node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`,
+post-move) and verified with its own `--check` flag (per `.claude/SYNC.md:103`), or the
+five per-runtime copies keep the stale path even though the canonical source is fixed.
+Separately, `.claude/hooks/`, `.codex/hooks/`, `.cursor/hooks/`, `.devin/hooks/`,
+`.pi/extensions/` are real symlink trees, but none of their 13 symlinks target
+`system-spec-kit/scripts/**` (they resolve into `sk-git/scripts/`, `sk-code/sk-code-quality/scripts/`,
+or `.opencode/scripts/session-cleanup.sh` — confirmed by `readlink` on all 13). No hook
+symlink needs repointing.
+
+## 3. References a path/name grep does not reach
+
+These carry the workspace's location without spelling the searched strings as one
+contiguous token, and each one breaks silently on the move if handled by text
+substitution alone.
+
+| File | Line | Shape | Why the grep misses it |
+|------|-----:|-------|--------------------------|
+| `.opencode/bin/skill-advisor.cjs` | 24 | `require(path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'))` | each path segment is a separate string argument to `path.join`, not one literal |
+| `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts` | 248 | `resolveSpecKitPackageRoot()` walks up directories checking `existsSync(path.join(currentDir,'runtime','database')) && existsSync(path.join(currentDir,'scripts')) && existsSync(path.join(currentDir,'shared'))` as its root-detection landmark | bare `'scripts'` segment used as a directory-existence marker, not a joined string; also sits in `shared/`, which the architecture rule says must stay neutral of `runtime`/`scripts` internals — this landmark check already couples it, and the coupling gets worse (the check would need `runtime/cli` instead of a plain sibling name) |
+| `.opencode/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts` | 966 | `workspaceRoots = [systemSpecKitRoot, path.join(systemSpecKitRoot,'runtime'), path.join(systemSpecKitRoot,'scripts')]`, used to resolve bare relative `key_files` paths against every workspace root | segmented `path.join`, and the array is built, not matched as a string |
+| `.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` | 74, 75, 76, 77, 229 | five separate `path.join(SKILL_ROOT, 'scripts', …)` calls building `VALIDATOR_REGISTRY_PATH`, `VALIDATOR_RULES_ROOT`, `VALIDATOR_DIST_VALIDATION_ROOT`, `VALIDATE_SCRIPT_DIR`, and a dynamic validator-script resolve — this is `validate.sh`'s own rule-loading core | segmented `path.join`; this is the single highest-risk file in this class since every `validate.sh` run depends on it |
+| `.opencode/skills/system-spec-kit/runtime/tests/env-reference-drift.vitest.ts` | 125 | `resolve(SYSTEM_SPEC_KIT_ROOT, 'scripts')`, then recursively walks it for env-flag token drift | segmented `resolve` |
+| `.opencode/skills/system-spec-kit/runtime/tests/validation-orchestrator-bridge.vitest.ts` | 100 | `path.join(SKILL_ROOT, 'scripts', 'dist', 'validation', 'continuity-freshness.js')` | segmented `path.join` |
+| `.opencode/skills/system-spec-kit/scripts/evals/check-architecture-boundaries.ts` | 53, 154, 163 | `REQUIRED_ROOT_DIRS = ['shared','runtime','scripts']`; `isProhibitedForShared()`'s two `path.join(packageRoot, 'scripts')` boundary checks | bare directory-name literals keying architecture-boundary logic — the exact same file and the exact same shape (`'mcp-server'` literals) packet 053 found at these same line numbers for its own rename |
+| `.opencode/skills/system-spec-kit/scripts/evals/check-architecture-boundaries.ts` | 404 | `wrappersDir = path.join(resolvedRoot, 'runtime', 'scripts')` | **do not touch** — this is the *other* `scripts`, the build-tooling dir inside `runtime/` that this move does not rename; it happens to sit four lines from three that must change, in the same file |
+| `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` | 33 (`id`), 35 (`root`), 41 (`rebuildCommand`) | `DIST_PACKAGES` table entry `{ id: 'system-spec-kit/scripts', root: '.opencode/skills/system-spec-kit/scripts', rebuildCommand: 'cd .../scripts && npm run build' }` | caught by the main sweep as text, listed here because the `id` field (not a filesystem path) has exactly one consumer: `scripts/tests/dist-freshness-walker.vitest.ts:35` looks it up by the literal string `'system-spec-kit/scripts'`. Renaming it to `'system-spec-kit/runtime/cli'` (recommended, to match the `root`/`runtime` sibling entries' convention) needs that one test line updated in the same commit — both files move together so this is low-risk, just easy to miss since it's an identifier, not a path |
+| `.opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json` | — | a data manifest enumerating real repository directories a checker compares against the working tree | a JSON data file, not code; if any listed entry names `system-spec-kit/scripts/...` as a durable directory, the checker will report a false drift the day the real directory moves — needs a value update, not import repair |
+
+## 4. Relative-import direction flips (`scripts/` ↔ `runtime/`)
+
+This is the single largest and easiest-to-miss class the task called out by name.
+Today `scripts/` and `runtime/` are siblings under `system-spec-kit/`, so code in
+`scripts/<subdir>/<file>.ts` reaches `runtime/` by climbing out of `scripts/` and
+back down: `'../../runtime/…'` (2 `..` from `scripts/<subdir>` lands on
+`system-spec-kit/`, then `runtime/…` descends into it). After the move, `runtime/`
+is the **parent** of the relocated `cli/`, so the same 2 `..` from
+`runtime/cli/<subdir>` already lands *on* `runtime/` — the trailing `runtime/`
+segment must be **dropped**, not have a `..` added:
+
+```
+OLD (from scripts/tests/x.ts):  '../../runtime/api'      -> up 2 = system-spec-kit, then descend runtime/api
+NEW (from runtime/cli/tests/x.ts): '../../api'            -> up 2 already IS runtime, descend api directly
+```
+
+The dot-count is unchanged; only the literal `runtime/` segment in the middle is
+removed. This is **not** covered by the generic "+1 `..`" rule in §7, which applies
+to the opposite case (an escape that does *not* pass through `runtime`).
+
+Verified count: **21 files, 36 matching lines** (`git grep -rE "['\"]\.\./\.\./runtime"` under
+`scripts/`, excluding `dist/`). Two are production source, not tests:
+
+- `scripts/validation/generated-metadata-drift.ts:14-15`
+- `scripts/validation/generated-metadata-integrity.ts:14,18`
+- `scripts/evals/check-handler-cycles-ast.ts:24,26,28-29` — a **multi-candidate resolver**
+  trying 1-, 2- and 3-level climbs plus a `process.cwd()`-relative fallback to find
+  `runtime/handlers` from an AST-visited module at an unknown depth; each candidate
+  needs the same drop-the-`runtime`-segment treatment at its own depth, not a uniform
+  rule — read the file before editing it.
+
+The remaining 18 are test files (`scripts/tests/backfill-research-metadata.vitest.ts`,
+`continuity-freshness.vitest.ts`, `gate-3-classifier.vitest.ts`,
+`generated-metadata-drift.vitest.ts`, `graph-key-file-declarations.vitest.ts`,
+`graph-metadata-backfill.vitest.ts`, `graph-metadata-refresh.vitest.ts`,
+`import-policy-rules.vitest.ts` — **caution**, its matches are string literals passed
+to `isProhibitedImportPath()` under test, i.e. test *data*, not real resolved paths;
+confirm whether the boundary rule's meaning should change post-move before editing
+its fixtures — `level-contract-resolver.vitest.ts`, `scaffold-golden-snapshots.vitest.ts`,
+`scoped-backfill-boundary.vitest.ts`, `test-bug-regressions.js`, `test-export-contracts.js`,
+`test-naming-migration.js` — **caution**, most of its ~60 `'runtime/lib/…'` entries are
+a descriptive data table of file-and-count pairs for files that live inside `runtime/`
+and never move, so they need **no change**; only its one real `path.resolve(__dirname,'../../runtime')`
+call at line 31 is a live reference — `validation-engine-coherence.vitest.ts`,
+`workflow-canonical-save-metadata.vitest.ts`).
+
+`tests/architecture-boundary-enforcement.vitest.ts` and
+`tests/check-source-dist-alignment-orphans.vitest.ts` also match `'runtime/scripts'` or
+`'runtime/lib'` etc. as literals, but on inspection these build **synthetic fixture
+trees** (`writeFixtureFile(root, 'runtime/scripts/too-long.ts', …)`) mimicking the
+`runtime/scripts` *build-tooling* dir that this move does not touch — confirmed
+**unaffected**, listed here so the execution phase does not re-flag them.
+
+Two identically-shaped test files are confirmed **unaffected** despite matching a
+bare `'scripts'` grep: `runtime/tests/dist-freshness.vitest.ts:134` iterates
+`['api','configs','core','handlers','hooks','scripts']` to build a fixture for
+`runtime/`'s *own* dist-freshness sourceCandidates (its `'scripts'` is `runtime/scripts`,
+the build-tooling dir, per the surrounding `packageRoot = …/runtime` line 126); and
+`runtime/tests/path-boundary.vitest.ts:86` builds an arbitrary synthetic fixture path
+(`createTempRoot('path-boundary-graph-')`) with no relation to the real workspace.
+
+## 5. Fixed-depth `__dirname` climbers (the "+1" rule)
+
+Every file under `scripts/` that computes an ancestor directory by counting a fixed
+number of `..` segments from `__dirname` needs **one more `..`** after the move,
+*unless* the target is inside `runtime/` (§4 applies instead) or inside `scripts/`
+itself (moves together, no change). Verified via
+`grep -rn "path\.resolve(__dirname, '\(\.\./\)\{3,\}"` (5-level, reaching repo root)
+and the 2-level pattern (reaching `system-spec-kit/` root):
+
+| File | Line | Current | Reaches (today) | Needs |
+|------|-----:|---------|------------------|-------|
+| `scripts/runtime-mirrors/sync-runtime-mirrors.cjs` | 32 | `'../../../../..'` (5) | repo root | 6 `..` |
+| `scripts/optimizer/replay-corpus.cjs` | 58 | `'../../../../..'` (5) | repo root | 6 `..` |
+| `scripts/codex/sync-agents.cjs` | 18 | `'../../../../..'` (5) | repo root | 6 `..` |
+| `scripts/codex/sync-prompts.cjs` | 19 | `'../../../../..'` (5) | repo root | 6 `..` |
+| `scripts/pi/sync-agents-pi.cjs` | 18 | `'../../../../..'` (5) | repo root | 6 `..` |
+| `scripts/pi/sync-prompts-pi.cjs` | 19 | `'../../../../..'` (5) | repo root | 6 `..` |
+| `scripts/resource-map/extract-from-evidence.cjs` | 11 | `'../../../../..'` (5) | repo root | 6 `..` |
+| `scripts/tests/repair-derived.vitest.ts` | 15 | `'../../../../..'` (5) | repo root | 6 `..` |
+| `scripts/tests/validate-memory-quality-v8-overreach.vitest.ts` | 195 | `'../../../../..'` (5) | repo root | 6 `..` |
+| `scripts/lib/dist-freshness.cjs` | 21 | `'..','..','..','..','..'` (5, chained args) | repo root (`WORKSPACE_ROOT`) | 6 `..` |
+| `scripts/tests/test-phase-validation.js` | 14 | `'..','..','..','..','..'` (5) | repo root | 6 `..` |
+| `scripts/tests/completion-state.vitest.ts` | 33 | `'..','..','..','..','..'` (5) | repo root | 6 `..` |
+| `scripts/tests/test-phase-command-workflows.js` | 18 | `'..','..','..','..','..'` (5) | repo root | 6 `..` |
+| `scripts/tests/test-phase-system.js` | 13 | `'..','..','..','..','..'` (5) | repo root | 6 `..` |
+| `scripts/tests/test-folder-detector-functional.js` | 25 | `'..','..','..','..','..'` (5) | repo root | 6 `..` |
+| `scripts/setup/record-node-version.js` | 19 | `'../..'` (2) | `system-spec-kit/` (`rootDir`) | 3 `..` |
+| `scripts/tests/workflow-invariance.vitest.ts` | 10 | `'../..'` (2) | `system-spec-kit/` (`SKILL_ROOT`) | 3 `..` |
+| `scripts/tests/scaffold-golden-snapshots.vitest.ts` | 13 | `'../..'` (2) | `system-spec-kit/` (`SKILL_ROOT`) | 3 `..`; **note**: same file's line 10 is a §4 case (`'../../runtime/lib/…'`), needing the opposite treatment |
+
+`scripts/tests/test-utils.js:17` (`path.join(__dirname,'..','..','runtime','database')`)
+is a hybrid of both rules: it currently climbs 2 (to `system-spec-kit/`) then descends
+`runtime/database` — after the move this becomes `path.join(__dirname,'..','..','database')`
+(§4's drop-the-segment rule, same 2 ups, since 2 ups from the new location already IS
+`runtime/`).
+
+`.opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:73-76`
+(`resolveGenerateContextScriptPath()`) is its own special case: a 4-candidate
+resolver trying `HOOK_DIR` at both its source depth (`runtime/hooks/claude/`, 3 `..`
+today) and its compiled-dist depth (`runtime/dist/hooks/claude/`, 4 `..` today),
+plus two `process.cwd()`-relative absolute/bare forms. Every candidate lands on
+`runtime`'s own path, one hop before old-`scripts`, so **all four collapse to
+climbing to `runtime` and descending directly into `cli/dist/…`** rather than any
+uniform `+1`:
+`resolve(HOOK_DIR, '../../cli/dist/memory/generate-context.js')` (was 3 `..` + `scripts/…`),
+`resolve(HOOK_DIR, '../../../cli/dist/memory/generate-context.js')` (was 4 `..` + `scripts/…`),
+`resolve(process.cwd(), '.opencode/skills/system-spec-kit/runtime/cli/dist/memory/generate-context.js')`,
+`resolve(process.cwd(), 'runtime/cli/dist/memory/generate-context.js')`.
+
+## 6. Workspace, package-manifest and build-config surfaces
+
+| Surface | Current | Change |
+|---------|---------|--------|
+| `system-spec-kit/package.json` `workspaces` | `["shared","runtime","scripts"]` | `["shared","runtime","runtime/cli"]` — nesting a workspace member's path inside another member's directory is unusual for npm workspaces but not prohibited; flagged as a risk to prove during the execution phase's `npm install` gate, not assumed safe |
+| `system-spec-kit/package.json` root scripts | `test:root`, `test:cli`, `postinstall` reference `scripts/dist/…`, `scripts/tests/…`, `scripts/setup/…` | straightforward `scripts/` → `runtime/cli/` string swap; `npm run test --workspace=@spec-kit/scripts` lines are **unaffected** (workspace flag uses the npm name, not the path) |
+| `system-spec-kit/package.json` `test:task-enrichment` | `"node runtime/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --root scripts --config ../runtime/vitest.config.ts"` | `--root scripts` → `--root runtime/cli`; the `--config ../runtime/vitest.config.ts` value's correctness relative to the invoking cwd (`system-spec-kit/` root) looks suspect **before** this move too (see below) — flagged for manual verification by running the script, not auto-rewritten |
+| `system-spec-kit/scripts/package.json` name/deps | `@spec-kit/scripts`; `"@spec-kit/runtime": "file:../runtime"` | **keep the npm name** `@spec-kit/scripts` (see §8); `file:../runtime` → `file:../..` (one hop, since `runtime` is now the parent, not a sibling) |
+| `system-spec-kit/scripts/package.json` `test`/`test:task-enrichment` scripts | `vitest run --config ../runtime/vitest.config.ts --root .` | `../runtime/vitest.config.ts` → `../vitest.config.ts` (§4's drop-the-segment rule: one `..` now reaches `runtime/` directly) |
+| `system-spec-kit/tsconfig.json` | `references: [{path:"./shared"},{path:"./runtime"},{path:"./scripts"}]` | `{path:"./runtime/cli"}` |
+| `system-spec-kit/scripts/tsconfig.json` | `extends: "../tsconfig.json"`; `references: [{path:"../shared"},{path:"../runtime"}]`; `paths: {"@spec-kit/runtime/*":["../runtime/*"], ...}` | `extends` → `"../../tsconfig.json"` (+1, escapes to system-spec-kit); `references` → `{path:"../../shared"}` (+1) and `{path:".."}` (§4 drop-segment: one `..` now IS runtime); `paths` → `"../*"` for `@spec-kit/runtime/*` (drop-segment) |
+| `system-spec-kit/vitest.config.ts` (root) | `include: ['tests/**','scripts/tests/**','runtime/tests/**']` | `'scripts/tests/**'` → `'runtime/cli/tests/**'` |
+| `system-spec-kit/runtime/vitest.config.ts` | `root: path.resolve(import.meta.dirname,'..')` (= `system-spec-kit/`, **unchanged** — this file does not move); `include: [...,'scripts/tests/**',...]` | the `root` computation is untouched since `runtime/vitest.config.ts` stays in place; only the include glob changes: `'scripts/tests/**'` → `'runtime/cli/tests/**'` |
+| `system-spec-kit/package-lock.json` | npm v7+ lockfile keys workspace members by relative path (`"scripts": {...}`, `"node_modules/@spec-kit/scripts": {"resolved":"scripts","link":true}`, 102 lines total naming `"scripts` per `git grep -c`) | **do not hand-edit** — regenerate via `npm install` at the `system-spec-kit/` workspace root (the workspace's own root, not the repository root; packet 053 did the same and documented why: `npm ci` inside a workspace member with no lockfile of its own refuses with `EUSAGE`) |
+| `.gitignore` | lines 83-84: `.opencode/skills/system-spec-kit/scripts/tests/*.vitest.d.ts.map`, `...vitest.js.map` | both → `.opencode/skills/system-spec-kit/runtime/cli/tests/...` |
+| `scripts/runtime` (tracked symlink) | `-> ../runtime/dist` | after the move this file lives at `runtime/cli/runtime`; to preserve the exact same real target (`system-spec-kit/runtime/dist`) it must repoint to `-> ../dist`. **Do not remove it** even though nothing was found to dereference it for imports (`grep` for `require('./runtime` / `from './runtime` inside `scripts/dist` returned 0 hits) — `dist-freshness.cjs`'s symlink-skip comment at line 233 documents it as an intentional freshness-walker boundary marker, and removing it would be a behavior change outside this phase's "path rename only" scope, not a path fix. Flag for the execution phase: confirm whether `DEFAULT_EXCLUDED_SEGMENTS = ['node_modules','dist']` already makes the marker redundant (it excludes any `dist`-named segment regardless of symlink status) — a real finding, but a removal decision, not a rename, so out of scope here |
+
+**On the `test:task-enrichment` cwd ambiguity**: the root `package.json` script invokes
+`node runtime/node_modules/vitest/vitest.mjs` with cwd at `system-spec-kit/` (npm sets
+cwd to the package declaring the script), and passes `--config ../runtime/vitest.config.ts`.
+If vitest resolves `--config` relative to cwd (the common case), that value already
+points one level *above* `system-spec-kit/`, which does not exist — a candidate
+pre-existing bug, unrelated to this move. Recorded here per the edge-case guidance
+("a reference that resolves ambiguously is flagged for manual resolution, not
+auto-resolved"); the execution phase should run this exact script before and after
+the move rather than assume its current or post-move correctness.
+
+## 7. CI, doctor, hooks and plugins (all confirmed live)
+
+| Surface | File | Lines | Live because |
+|---------|------|------:|---------------|
+| CI | `.github/workflows/changed-packet-validation.yml` | 37, 89, 122, 131, 144 | `npm ci` in scripts/, `validate.sh` invocations |
+| CI | `.github/workflows/command-tree-parity.yml` | 22 | `CHECKER=".../scripts/validate-command-tree-parity.sh"` |
+| CI | `.github/workflows/markdown-link-integrity.yml` | 29 | `GUARD=".../scripts/check-markdown-links.cjs"` |
+| CI | `.github/workflows/strict-pass-freshness-report.yml` | 45, 56-57, 94 | `npm ci`, `tsx` loader path, `repair-derived.cjs` |
+| Doctor | `.opencode/commands/doctor/_routes.yaml`, `assets/doctor-fable-mode.yaml`, `assets/doctor-memory.yaml`, `assets/doctor-runtime-mirrors.yaml`, `assets/doctor-update.yaml`, `scripts/fable-mode-check.cjs`, `scripts/doctor-runtime-bootstrap.sh` | — | routing YAML `command:` fields and doctor sub-scripts shelling into `system-spec-kit/scripts/**` |
+| Session plugin | `.opencode/plugins/session-cleanup.js` | 32 | `join(REPO_ROOT, '.opencode/skills/system-spec-kit/scripts/dist/ops/process-sweep.js')` |
+| Session plugin | `.opencode/plugins/system-dist-freshness-guard.js` | 27 | `require('../skills/system-spec-kit/scripts/lib/dist-freshness.cjs')` — runs on every `PostToolUse` |
+| Session plugin | `.opencode/plugins/system-speckit-completion.js` | 27 | `import core from '../skills/system-spec-kit/scripts/lib/completion-state.cjs'` |
+| Bin shim | `.opencode/bin/speckit-completion.cjs` | 20 | `require('../skills/system-spec-kit/scripts/lib/completion-state.cjs')` |
+| Bin script | `.opencode/bin/worktree-session.sh` | 85-86 | lists `scripts/dist`, `scripts/node_modules` (likely a worktree-copy exclude/ignore list) |
+| Hook router | `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs` | 39-40 | config-string map to `scripts/spec/check-placeholders.sh`, `scripts/rules/check-links.sh` |
+| Hook doc | `.opencode/hooks/dist-freshness/README.md` | 95, 122 | documents the same shared `dist-freshness.cjs` import path |
+
+These are exactly the class of surface the parent packet's own affected-surfaces
+table called out as "not changed in this phase; inventory only" — now inventoried
+with exact file:line evidence for the execution phase to act on directly.
+
+## 8. Package-name decision
+
+**Recommendation: keep `@spec-kit/scripts` as the npm package name.** The physical
+directory changes; the identity a `package.json` `name` field, a
+`--workspace=@spec-kit/scripts` flag, and a `"@spec-kit/scripts": "file:../scripts"`
+dependency declaration all reference does not have to move with it — npm resolves
+workspace members by their `workspaces` array path, not by matching the folder name
+to the package name (confirmed: the sibling `@spec-kit/runtime` package already
+lives at a directory that doesn't literally spell `runtime` anywhere unusual, and
+packet 053 renamed the *directory* `mcp-server → runtime` while also renaming the
+npm name in that case — but that case was renaming an inaccurate name to an accurate
+one; here `scripts` still accurately describes what the CLI workspace *is*, only
+*where* it lives changes). Renaming the npm name would additionally require touching
+every `--workspace=@spec-kit/scripts` invocation, the `dependencies` entries in
+`runtime/package.json` (if any) and `shared/package.json` that reference it by name,
+and would not by itself fix a single path reference in this inventory — pure
+downside for this phase's stated goal. `spec.md`'s own Out of Scope section already
+reaches this conclusion; this inventory found nothing to overturn it.
+
+Separately, the **internal `dist-freshness.cjs` `id` field** (`'system-spec-kit/scripts'`,
+§3) is not the npm name — it is a path-shaped identifier local to that one file's
+`DIST_PACKAGES` table, consistent with its sibling entries `'system-spec-kit/runtime'`
+and `'system-spec-kit/shared'`. Recommend renaming it to `'system-spec-kit/runtime/cli'`
+to keep that convention, since its only consumer (`dist-freshness-walker.vitest.ts:35`)
+moves in the same commit.
+
+## 9. Symlinks
+
+Zero live symlinks in the tracked tree resolve into `system-spec-kit/scripts/**`
+(`find . -type l -lname '*system-spec-kit/scripts*'` found only two matches, both
+inside gitignored, out-of-scope trees — a vendored `barter/` subproject and the
+`.worktrees/022-012-runtime-enablement-build` checkout on a different branch — and
+both are stale leftovers: the *current* tracked `install-scripts/` directory no
+longer contains the `install-spec-kit-memory.sh` script that made them). The one
+tracked symlink *inside* the moving tree is `scripts/runtime -> ../runtime/dist`,
+covered in §6. No hook-registration symlink (`.claude/.codex/.cursor/.devin/.pi`
+`hooks/**`, 13 total) targets `system-spec-kit/scripts/**` — confirmed by
+`readlink` on every one.
+
+## 10. Historical corpus (excluded, not edited)
+
+`specs/**` outside `specs/system-speckit/054-decommission-debt-fixes/` — 5,040 files
+naming `system-spec-kit/scripts` and 944 naming `scripts/dist` (overlapping; this is
+every historical packet's `spec.md`/`plan.md`/`acceptance-criteria.md` that quotes
+CLAUDE.md's own Completion Verification Rule text, which names `validate.sh`'s path
+directly). Also `.opencode/skills/system-spec-kit/changelog/*.md` (20 files quoting
+past validation runs as evidence, e.g. `v3.2.1.0.md`'s `bash .../scripts/spec/validate.sh
+... - PASS` lines) and `.opencode/skills/{sk-code,cli-external-orchestration}/benchmark/reports/**`
+(7 files, frozen benchmark-run JSON/MD snapshots). None of these are edited by the
+execution phase — they are frozen records of what was true when they were written,
+matching packet 053's own treatment of `specs/**`, `changelog/**` and `benchmark/**`
+as historical evidence outside the blast radius. `specs/system-speckit/054-decommission-debt-fixes/**`
+itself (this packet's own planning and research docs, ~90 files) is excluded from
+this bucket for the opposite reason: it is the live plan *for* this move, not a
+record of the past, and stays exactly as authored.
+
+## 11. Level re-score (REQ-003)
+
+`recommend-level.sh` scores by estimated LOC/files/risk factors, not by folder path,
+so it was run against this move's estimated execution-phase scope (~450 files touched
+across git-mv self-references + external text edits, ~900 LOC of diff, an
+architectural/workspace-topology change):
+
+```
+$ bash .../scripts/spec/recommend-level.sh --loc 900 --files 450 --architectural --json
+{
+  "recommended_level": 3, "level_name": "Full", "total_score": 73, "max_score": 100,
+  "confidence": 82, "recommended_phases": true, "phase_score": 40,
+  "phase_reason": "Architectural change + 450 files + 900 LOC + extreme scale",
+  "suggested_phase_count": 3
+}
+```
+
+**Level 3 confirmed**, matching this phase's own risk note and the packet-053
+precedent. The tool additionally recommends phase decomposition (3 suggested
+phases) given the scale — worth weighing against REQ-004's "one atomic commit"
+requirement when the execution packet is scoped: the *commit* should stay atomic
+per packet-053 precedent, but the *planning documents* could still be phased
+(e.g. tree move + internal fixes / external consumer updates / verification pass)
+without splitting the commit itself.
+
+## 12. Foreseen conflicts for the execution phase
+
+1. **`runtime/scripts/` vs the incoming `runtime/cli/`** — resolved by the layout
+   decision (§0); no actual name collision survives, but `check-architecture-boundaries.ts`
+   references both in four nearby lines (§3) and is the one file most likely to be
+   mis-edited by a blind find-and-replace.
+2. **`workspaces: [..., "runtime/cli"]`** — nesting a workspace member inside
+   another member's own directory tree is not something this inventory found
+   precedent for elsewhere in this repo's own workspace configs; npm does not
+   document this as prohibited, but it should be *proven*, not assumed, via a
+   clean `npm install` + `npm ci --dry-run` at the `system-spec-kit/` root before
+   the commit is considered complete (mirroring packet 053's own verification list).
+3. **Two false positives a naive sweep would wrongly touch**: `runtime/tests/dist-freshness.vitest.ts:134`
+   and `runtime/tests/path-boundary.vitest.ts:86` both contain a bare `'scripts'`
+   literal that is unrelated to the moving workspace (§4) — confirmed safe to leave
+   alone by reading surrounding context, not by pattern alone.
+4. **The `test:task-enrichment` root script's `--config` path** (§6) has a cwd
+   ambiguity that may predate this move; resolve by running it, not by assumption.
+5. **`scripts/runtime` symlink's continued necessity** (§6) is a real open question
+   (`DEFAULT_EXCLUDED_SEGMENTS` may already make it redundant) but resolving that
+   is a behavior decision outside a path-rename-only phase — repoint it, do not
+   remove it, unless the operator explicitly widens scope.

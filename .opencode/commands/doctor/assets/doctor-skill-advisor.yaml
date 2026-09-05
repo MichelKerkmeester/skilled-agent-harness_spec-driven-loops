@@ -178,7 +178,7 @@ approval_gates:
           Final actions:
             A) Done - keep changes
             B) Rollback (tests failed) - runs `bash {rollback_script_path}` and rebuilds dist
-            C) Save context with /memory:save before exit
+            C) Save context with /speckit:save before exit
         accepted_responses: ["A", "B", "C"]
       skipped_unverified:
         selected_when: "verification_status == skipped_unverified (operator chose pre_phase_4 'C')"
@@ -191,7 +191,7 @@ approval_gates:
           Final actions:
             A) Done - keep changes (unverified — at your own risk)
             B) Rollback - runs `bash {rollback_script_path}` and rebuilds dist
-            C) Save context with /memory:save before exit
+            C) Save context with /speckit:save before exit
         accepted_responses: ["A", "B", "C"]
     rollback_action: "bash {rollback_script_path}"
 

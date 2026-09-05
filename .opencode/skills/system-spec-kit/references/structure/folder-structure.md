@@ -165,7 +165,7 @@ Retired compatibility folder for older packets. Current save workflows skip lega
 - Reading or migrating historical packets that already contain legacy memory artifacts
 - Compatibility with old links that still point at `[spec]/memory/*.md`
 
-**Current save path:** do not create new `memory/` session files; use `/memory:save` so continuity routes into canonical packet docs and metadata.
+**Current save path:** do not create new `memory/` session files; use `/speckit:save` so continuity routes into canonical packet docs and metadata.
 
 **Legacy File Naming:** `DD-MM-YY_HH-MM__topic-name.md`
 

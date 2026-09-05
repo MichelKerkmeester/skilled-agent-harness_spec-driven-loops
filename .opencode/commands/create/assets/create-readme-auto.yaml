@@ -684,7 +684,7 @@ readme_workflow:
         section: "Content sources and references"
         example_id: "RESEARCH-SOURCES-{spec#}"
       benefit: "93% token savings on anchor-based retrieval"
-      reference: "See /memory:save Step 3 for full anchor documentation"
+      reference: "See /speckit:save Step 3 for full anchor documentation"
 
     importance_tier:
       assign: normal
@@ -1137,7 +1137,7 @@ install_guide_workflow:
         section: "Common issues documented"
         example_id: "IMPLEMENTATION-TROUBLESHOOTING-{spec#}"
       benefit: "93% token savings on anchor-based retrieval"
-      reference: "See /memory:save Step 3 for full anchor documentation"
+      reference: "See /speckit:save Step 3 for full anchor documentation"
 
     importance_tier:
       assign: important
@@ -1597,7 +1597,7 @@ termination:
     action: "Run /create:readme install [project-name]"
     operation: readme
   - condition: "Want to save context"
-    action: "Run /memory:save"
+    action: "Run /speckit:save"
     operation: both
   - condition: "Create another README"
     action: "Run /create:readme [path]"
@@ -1609,7 +1609,7 @@ termination:
     action: "Run /create:readme for project README"
     operation: install_guide
   - condition: "Context should be saved"
-    action: "Run /memory:save (if spec folder exists)"
+    action: "Run /speckit:save (if spec folder exists)"
     operation: install_guide
 
 # ─────────────────────────────────────────────────────────────────

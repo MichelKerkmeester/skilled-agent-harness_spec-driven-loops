@@ -63,7 +63,7 @@ opencode run \
   "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
 ```
 
-The dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/memory:save` continuity pipeline.
+The dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/speckit:save` continuity pipeline.
 
 ---
 

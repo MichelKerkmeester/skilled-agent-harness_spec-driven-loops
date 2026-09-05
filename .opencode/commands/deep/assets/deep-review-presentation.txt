@@ -456,4 +456,4 @@ Convergence thresholds and recovery settings used by this command are a governed
 | Review PASS, ready for release | `/create:changelog` | Generate changelog entry |
 | Need to fix specific findings | `/speckit:implement [spec-folder]` | Implement fixes from existing plan |
 | Need more investigation | `/deep:research [topic]` | Deep research session for unclear areas |
-| Want to refresh search support | `/memory:save [spec-folder]` | Refresh the packet's generated metadata while canonical continuity stays in spec docs |
+| Want to refresh search support | `/speckit:save [spec-folder]` | Refresh the packet's generated metadata while canonical continuity stays in spec docs |

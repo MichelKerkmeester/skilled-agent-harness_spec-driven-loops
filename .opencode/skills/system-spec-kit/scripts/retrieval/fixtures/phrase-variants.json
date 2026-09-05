@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9e1f09872986664cfbcf77825640eb33177f28b88bcf5bf717e989e98b02204b",
+  "manifestHash": "a31e50536d5d071463a8ab8da38814c03b6e6c75b93d83a697690d6aff9dd3ef",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -30002,6 +30002,9 @@
     "d5 structural connectivity hard gate": [
       "d5 structural connectivity hard gate"
     ],
+    "d7 supersession command names": [
+      "D7 supersession command names"
+    ],
     "dab": [
       "dab"
     ],
@@ -36703,9 +36706,6 @@
     "deterministic arg resolution header memory search": [
       "deterministic arg resolution header memory search"
     ],
-    "deterministic bucketing": [
-      "deterministic bucketing"
-    ],
     "deterministic checks": [
       "deterministic checks"
     ],
@@ -38900,6 +38900,9 @@
     ],
     "doctor memory command": [
       "doctor memory command"
+    ],
+    "doctor memory route rename": [
+      "doctor memory route rename"
     ],
     "doctor mirror opencode claude": [
       "doctor mirror .opencode .claude"
@@ -43872,9 +43875,6 @@
     "feature flag reference docs renumber": [
       "feature flag reference docs renumber",
       "feature-flag-reference-docs renumber"
-    ],
-    "feature flag rollout": [
-      "feature flag rollout"
     ],
     "feature flag table": [
       "feature-flag table"
@@ -59179,6 +59179,9 @@
     ],
     "memory coco scope gap": [
       "memory coco scope gap"
+    ],
+    "memory command family naming decision": [
+      "memory command family naming decision"
     ],
     "memory command namespace naming": [
       "memory command namespace naming"
@@ -80415,9 +80418,6 @@
     "rollout flip tooling delete": [
       "rollout flip tooling delete"
     ],
-    "rollout policy": [
-      "rollout policy"
-    ],
     "rollout readiness evidence": [
       "rollout readiness evidence"
     ],
@@ -93050,9 +93050,6 @@
     "speckit reviewer benchmarks": [
       "SPECKIT_REVIEWER_BENCHMARKS"
     ],
-    "speckit rollout percent": [
-      "SPECKIT_ROLLOUT_PERCENT"
-    ],
     "speckit router references": [
       "speckit router references"
     ],
@@ -93067,6 +93064,9 @@
     ],
     "speckit save planner mode full auto": [
       "SPECKIT_SAVE_PLANNER_MODE full-auto"
+    ],
+    "speckit save search rename": [
+      "speckit save search rename"
     ],
     "speckit semantic triggers flag": [
       "SPECKIT_SEMANTIC_TRIGGERS flag"

@@ -51,7 +51,7 @@ The continuity writer supports **2 independent execution paths**. Any method can
 │                                                                │
 │   Slash Command                    Direct Script               │
 │   ┌──────────┐                    ┌──────────┐                 │
-│   │ /memory: │                    │  node    │                 │
+│   │/speckit: │                    │  node    │                 │
 │   │  save    │                    │ script.ts│                 │
 │   └────┬─────┘                    └────┬─────┘                 │
 │        │                               │                       │
@@ -114,7 +114,7 @@ The continuity writer supports **2 independent execution paths**. Any method can
 │   SLASH   │ │  DIRECT   │
 │  COMMAND  │ │  SCRIPT   │
 │           │ │ (custom   │
-│ /memory:  │ │  JSON)    │
+│ /speckit: │ │  JSON)    │
 │   save    │ │           │
 └───────────┘ └───────────┘
 ```
@@ -135,13 +135,13 @@ The continuity writer supports **2 independent execution paths**. Any method can
 ## 3. SLASH COMMANDS
 
 **When to Use:** Manual save with AI-powered conversation analysis
-**Requirement:** Slash command files exist in `.opencode/commands/memory/`
+**Requirement:** Slash command files exist in `.opencode/commands/speckit/`
 
 ### Available Commands
 
 ```
-/memory:save       # Save current conversation context
-/memory:search  # Unified retrieval + analysis: search, epistemic baselines, causal graph, evaluation
+/speckit:save       # Save current conversation context
+/speckit:search  # Unified retrieval + analysis: search, epistemic baselines, causal graph, evaluation
 ```
 
 ### Execution Flow
@@ -156,7 +156,7 @@ The continuity writer supports **2 independent execution paths**. Any method can
 
 | Checkpoint       | Verification                   | Action on Failure         |
 | ---------------- | ------------------------------ | ------------------------- |
-| Command exists   | `ls .opencode/commands/memory/` | Create command file       |
+| Command exists   | `ls .opencode/commands/speckit/` | Create command file       |
 | AI agent active  | Check response support      | Use Direct Script instead |
 | Spec folder arg  | Passed via CLI argument        | Specify folder manually   |
 | Write permission | `test -w specs/###/`           | Check packet permissions  |
@@ -258,7 +258,7 @@ The Phase 018 save path is packet-first. Retired `[spec]/memory/*.md` writes are
 |---------|------|
 | `implementation-summary.md` | Primary continuity document carrying `_memory.continuity` in frontmatter |
 | Routed packet docs | Canonical narrative updates applied in-place to spec/plan/tasks/checklist/decision/summary surfaces as appropriate |
-| `handover.md` | First-class recovery surface refreshed by `/memory:save` when `handover_state` routing applies, using the packet template for initial creation |
+| `handover.md` | First-class recovery surface refreshed by `/speckit:save` when `handover_state` routing applies, using the packet template for initial creation |
 
 ### Continuity Writer Contract
 
@@ -294,7 +294,7 @@ _memory:
 specs/###-feature-name/
 ├── implementation-summary.md    # carries _memory.continuity
 ├── spec.md / plan.md / tasks.md # canonical packet docs
-└── handover.md                  # optional recovery surface refreshed through `/memory:save`
+└── handover.md                  # optional recovery surface refreshed through `/speckit:save`
 ```
 
 ### Phase Parent Save Routing

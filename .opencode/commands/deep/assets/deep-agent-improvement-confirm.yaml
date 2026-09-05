@@ -75,7 +75,7 @@ context_loading:
     recipe_contract: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
     exit_status: "0 is a hit set, 1 is a clean no-hit, 2 or higher is a failure that must be surfaced instead of reported as no-hit"
     ranking: "Ripgrep does not rank. Order the hits caller-side with the tuple in retrieval-conventions.md section 5."
-  command_reference: "/memory:search"
+  command_reference: "/speckit:search"
   when_to_skip: ["First-time evaluation of this agent", "User explicitly says 'skip context' or 'fresh start'", "No spec folder context exists"]
   behavior:
     if_context_found: "Surface prior improvement history, best-known scores, and dimensional trends before first iteration"

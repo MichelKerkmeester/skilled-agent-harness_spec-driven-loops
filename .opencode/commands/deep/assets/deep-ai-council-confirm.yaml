@@ -203,7 +203,7 @@ workflow:
           - stop_reason
 
   gate_save_approval:
-    ask: "Route the completed council session through memory:save?"
+    ask: "Route the completed council session through speckit:save?"
     options: [continue, skip, cancel]
     on_skip:
       log: "Memory save skipped by user; ai-council artifacts remain packet-local."

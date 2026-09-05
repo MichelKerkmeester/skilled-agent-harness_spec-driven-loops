@@ -413,7 +413,7 @@ TASK #2: Implement Notification System
 
 ### Rule 3: Context Preservation
 **Trigger:** Completion of major milestone or session end.
-**Action:** Mandate sub-agents to run `/memory:save` or `save context`.
+**Action:** Mandate sub-agents to run `/speckit:save` or `save context`.
 
 ### Rule 4: Route ALL Exploration Through @context
 **Trigger:** Any task requiring codebase exploration, file search, or pattern discovery.
@@ -422,7 +422,7 @@ TASK #2: Implement Notification System
 
 ### Rule 5: Spec Documentation Governance
 **Trigger:** Any task that creates or substantively writes spec folder template documents.
-**Action:** The main agent writes spec-folder docs directly using `Level template contract`, runs `validate.sh --strict` after each doc write, and routes continuity via `/memory:save`.
+**Action:** The main agent writes spec-folder docs directly using `Level template contract`, runs `validate.sh --strict` after each doc write, and routes continuity via `/speckit:save`.
 **Scope:** ALL documentation (*.md) written inside spec folders (`specs/[###-name]/`). This includes but is not limited to: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, and any other markdown documentation.
 **Exceptions:**
 - `scratch/` subdirectory → temporary workspace, any agent may write
@@ -431,7 +431,7 @@ TASK #2: Implement Notification System
 - `_memory.continuity` YAML block inside `implementation-summary.md` → may be edited directly by any implementing agent for lightweight session continuity updates
 - **Reading** spec docs is permitted by any agent
 - **Minor status updates** (e.g., checking task boxes) by implementing agents are acceptable
-**Logic:** Distributed governance keeps spec-doc quality anchored to template usage, strict validation, and `/memory:save` continuity routing without relying on a deprecated dedicated spec agent.
+**Logic:** Distributed governance keeps spec-doc quality anchored to template usage, strict validation, and `/speckit:save` continuity routing without relying on a deprecated dedicated spec agent.
 
 ### Rule 6: Routing Violation Detection
 
@@ -617,7 +617,7 @@ Isolate failures to prevent cascading issues. States: CLOSED (normal) → OPEN (
 
 **After repeated session degradation:**
 - Recommend starting a fresh session
-- Run `/memory:save` to refresh canonical continuity before ending the session
+- Run `/speckit:save` to refresh canonical continuity before ending the session
 
 ### Timeout Handling
 
@@ -654,7 +654,7 @@ I've enhanced the validation [implemented by @general-purpose] to include RFC 53
 ### Context Preservation & Session Save
 
 **Trigger:** 15+ tool calls, 5+ files modified, user says "stopping"/"continue later", or session approaching context limits.
-**Action:** Suggest `/memory:save` → mandate sub-agents save context → compile orchestration decisions summary → preserve task state, pending work, blockers.
+**Action:** Suggest `/speckit:save` → mandate sub-agents save context → compile orchestration decisions summary → preserve task state, pending work, blockers.
 
 After complex multi-agent workflows, save orchestration context via JSON mode: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/`
 
@@ -676,7 +676,7 @@ When ANY context pressure signal fires:
 1. **PAUSE** — do not dispatch another agent
 2. **ANNOUNCE** — tell the user: "Context pressure detected — recommend saving context before continuing"
 3. **WAIT** — for user confirmation before continuing
-4. If user does not save context: synthesize completed results and suggest `/memory:save`
+4. If user does not save context: synthesize completed results and suggest `/speckit:save`
 
 ### Command Suggestions
 
@@ -685,13 +685,13 @@ When ANY context pressure signal fires:
 | Condition                              | Suggest              | Reason                                 |
 | -------------------------------------- | -------------------- | -------------------------------------- |
 | Sub-agent stuck 3+ times on same error | Surface prompted offer; user dispatches `Task tool → @debug` | Fresh perspective debugging (user-invoked) |
-| Session ending or user says "stopping" | `/memory:save`       | Preserve canonical continuity          |
+| Session ending or user says "stopping" | `/speckit:save`       | Preserve canonical continuity          |
 | Need formal research before planning   | `/deep:research` | Autonomous iterative research loop  |
 | Claiming task completion               | `/speckit:complete` | Verification workflow with checklist   |
-| Need to save important context         | `/memory:save`       | Preserve decisions and findings        |
+| Need to save important context         | `/speckit:save`       | Preserve decisions and findings        |
 | Resuming prior work (known spec)       | `/speckit:resume`   | Recover via `handover.md` -> `_memory.continuity` -> spec docs |
 | Resuming interrupted work (unknown)    | `/speckit:resume`   | Auto-detect the packet, then follow the same canonical recovery order |
-| Need retrieval over spec or skill docs | `/memory:search`    | Lexical retrieval: trigger index plus ripgrep |
+| Need retrieval over spec or skill docs | `/speckit:search`    | Lexical retrieval: trigger index plus ripgrep |
 
 ---
 

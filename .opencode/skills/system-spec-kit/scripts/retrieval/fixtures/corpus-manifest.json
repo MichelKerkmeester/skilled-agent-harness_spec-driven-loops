@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f056e4447210001f2758dcf2c68142b0f3e1c2b1856da4218bbb5d1d2b4517db",
+  "corpusHash": "8939eb9bef282b3a1e790cfde7c89b357c7116ba192c8752a88e43b0f6957ffb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -7951,7 +7951,6 @@
     ".opencode/skills/system-spec-kit/runtime/hooks/pi/lib/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/MODULE-MAP.md",
     ".opencode/skills/system-spec-kit/runtime/lib/README.md",
-    ".opencode/skills/system-spec-kit/runtime/lib/cognitive/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/config/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/context/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/continuity/README.md",
@@ -28161,6 +28160,7 @@
     "specs/system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules/spec.md",
     "specs/system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules/tasks.md",
     "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/acceptance-criteria.md",
+    "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/decision-record.md",
     "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/implementation-summary.md",
     "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/plan.md",
     "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/spec.md",
@@ -28172,7 +28172,7 @@
     "specs/system-speckit/054-decommission-debt-fixes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9e1f09872986664cfbcf77825640eb33177f28b88bcf5bf717e989e98b02204b",
+  "manifestHash": "a31e50536d5d071463a8ab8da38814c03b6e6c75b93d83a697690d6aff9dd3ef",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

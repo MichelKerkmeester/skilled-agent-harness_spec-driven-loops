@@ -1,1 +1,0 @@
-../../../.opencode/commands/memory/search.md

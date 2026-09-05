@@ -111,7 +111,7 @@ Verification gate: confirm `git status --short` only includes the intended packe
 - [ ] validate.sh --strict exit 0
 - [ ] git status clean (only the new packet files)
 - [ ] git push origin main success
-- [ ] /memory:save via generate-context.js (optional but recommended)
+- [ ] /speckit:save via generate-context.js (optional but recommended)
 
 ---
 

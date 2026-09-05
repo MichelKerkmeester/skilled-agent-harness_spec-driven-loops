@@ -1,6 +1,6 @@
 ---
 title: "OpenCode Commands"
-description: "OpenCode slash commands: component creation, deep loops, prompts, memory, rewrites and spec kit workflows."
+description: "OpenCode slash commands: component creation, deep loops, prompts, continuity, rewrites and spec kit workflows."
 trigger_phrases:
   - "opencode commands"
   - "slash commands"
@@ -10,7 +10,7 @@ trigger_phrases:
 
 # OpenCode Commands
 
-> Slash commands that provide structured workflows for component creation, deep loops, prompt improvement, memory management, and spec kit operations.
+> Slash commands that provide structured workflows for component creation, deep loops, prompt improvement, packet continuity, and spec kit operations.
 
 ---
 
@@ -35,9 +35,9 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:review`, `/prompt:improve`, `/memory:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
+Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:review`, `/prompt:improve`, `/speckit:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
 
-Commands are organized into six groups plus root-level utilities:
+Commands are organized into five groups plus root-level utilities:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
@@ -45,10 +45,9 @@ Commands are organized into six groups plus root-level utilities:
 | **deep** | `commands/deep/` | 6 | Deep research, review, AI council and improvement loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **design** | `commands/design/` | 1 | Measured Style Reference DESIGN.md extraction |
-| **memory** | `commands/memory/` | 2 | Continuity write and lexical retrieval over spec docs and skill docs |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **rewrite** | `commands/rewrite/` | 3 | Re-express an existing reply or topic in plain English, or as a diagram |
-| **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
+| **speckit** | `commands/speckit/` | 6 | Spec folder workflows (plan, implement, resume, complete), continuity write (save) and lexical retrieval (search) |
 | **root** | `commands/` | 3 | Standalone `/agent-router`, `/goal-opencode` and `/vision` utilities |
 
 Standalone commands live at the root level: `agent-router.md` routes requests to AI systems, `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin, and `vision.md` reads your most recent image on-device. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
@@ -114,20 +113,18 @@ command/
 ├── design/                    # Design extraction commands
 │   ├── extract.md             # Extract a measured Style Reference DESIGN.md
 │   └── assets/                # Auto/confirm/presentation workflow assets
-├── memory/                   # Continuity write and retrieval commands
-│   ├── search.md             # Lexical retrieval: trigger-index lookup plus ripgrep recipes
-│   ├── save.md               # Save conversation context
-│   └── README.txt            # Memory command index
 ├── rewrite/                  # Plain-English and visual re-expression commands
 │   ├── explain-visually.md   # Explain the prior reply or a topic as the smallest useful diagram
 │   ├── response.md           # Rewrite the active AI's last reply in plain English
 │   └── response-by-external-agent.md   # Same, via an external CLI agent or local LLM
-└── speckit/                  # Spec folder workflow commands
+└── speckit/                  # Spec folder workflow, continuity write and retrieval commands
     ├── complete.md           # Full end-to-end workflow
     ├── implement.md          # Execute pre-planned work
     ├── plan.md               # Spec through plan only
     ├── resume.md             # Resume existing spec work
-    └── assets/               # YAML workflow definitions
+    ├── save.md               # Save conversation context into packet continuity
+    ├── search.md             # Lexical retrieval: trigger-index lookup plus ripgrep recipes
+    └── assets/               # YAML workflow definitions, plus save/search presentation contracts
 ```
 
 <!-- /ANCHOR:structure -->
@@ -164,7 +161,7 @@ Three command files cover the diagnostic surface. Backed by `_routes.yaml`, `mcp
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Doctor Router | `/doctor <target> [flags]` (backed by `doctor/speckit.md`) | Single entry point for 9 subsystems (`memory`, `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `fable-mode`, `runtime-mirrors`); argv-positional dispatch via `_routes.yaml` |
+| Doctor Router | `/doctor <target> [flags]` (backed by `doctor/speckit.md`) | Single entry point for 9 subsystems (`speckit-retrieval`, `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `fable-mode`, `runtime-mirrors`); argv-positional dispatch via `_routes.yaml` |
 | MCP Debug | `/doctor:mcp debug [--fix] [--server <name>]` | Diagnose and fix MCP connection issues across all runtimes |
 | MCP Install | `/doctor:mcp install [--server <name>] [--runtime <name>]` | Fresh install or reinstall all supported MCP servers from install guides |
 | Update | `/doctor:update [--migrate] [--force]` | Dependency-safe multi-subsystem rebuild orchestrator (trigger index, skill-graph, advisor, deep-loop) |
@@ -211,18 +208,9 @@ Re-express something that already exists — the active AI's last reply, or a na
 | Response by External Agent | `/rewrite:response-by-external-agent [cli-<skill>\|native\|local] [target-text]` | Same projection, run through an external CLI agent or a local LLM |
 | Explain Visually | `/rewrite:explain-visually [--depth=expert\|plain\|novice] [--artifact] [topic]` | Explain the prior reply or a topic as the smallest diagram that answers the question |
 
-### Memory Commands
-
-Write packet continuity across sessions and read it back with lexical retrieval over spec docs and skill docs.
-
-| Command | Invocation | Purpose |
-|---------|------------|---------|
-| Search | `/memory:search <query> [--packet <spec-folder>] [--triggers\|--paths\|--count]` | Lexical retrieval: trigger-index lookup plus ripgrep recipes over spec docs and skill docs |
-| Save | `/memory:save <spec-folder>` | Write conversation context into canonical spec-doc continuity surfaces |
-
 ### Spec Kit Commands
 
-Structured workflows for the spec folder development lifecycle.
+Structured workflows for the spec folder development lifecycle, plus packet continuity write and lexical retrieval.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
@@ -230,6 +218,8 @@ Structured workflows for the spec folder development lifecycle.
 | Implement | `/speckit:implement <spec-folder>` | Execute pre-planned work (requires plan.md) |
 | Plan | `/speckit:plan <description> [--intake-only] [:with-phases]` | Planning workflow (spec through plan only). `--intake-only` publishes just `spec.md`, `description.json` and `graph-metadata.json`. `:with-phases` adds phase decomposition |
 | Resume | `/speckit:resume [spec-folder]` | Resume work on existing spec folder |
+| Save | `/speckit:save <spec-folder>` | Write conversation context into canonical spec-doc continuity surfaces |
+| Search | `/speckit:search <query> [--packet <spec-folder>] [--triggers\|--paths\|--count]` | Lexical retrieval: trigger-index lookup plus ripgrep recipes over spec docs and skill docs |
 
 <!-- /ANCHOR:command-groups -->
 
@@ -238,7 +228,7 @@ Structured workflows for the spec folder development lifecycle.
 <!-- ANCHOR:instructions -->
 ## 5. INSTRUCTIONS
 
-1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `memory`, `prompt`, `rewrite`, or `speckit`.
+1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `prompt`, `rewrite`, or `speckit`.
 2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/agent-router` or `/goal-opencode`.
 3. Prefer the unified commands over historical split commands.
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.
@@ -259,7 +249,7 @@ Structured workflows for the spec folder development lifecycle.
 /create:skill my-new-skill full-create :auto
 /deep:agent-improvement .opencode/agents/review.md :confirm
 /prompt:improve $improve "Build a clearer CLI handoff prompt" :auto
-/memory:save specs/007-feature
+/speckit:save specs/007-feature
 /speckit:plan "Add user authentication" :auto
 ```
 
@@ -328,7 +318,7 @@ A: Use `/speckit:plan` when you want to produce a spec and plan document for rev
 
 **Q: How do I recover a session that was interrupted?**
 
-A: Run `/speckit:resume`. This is the canonical recovery surface for packet work. It rebuilds context from `handover.md`, then `_memory.continuity`, then the packet's canonical spec docs. When you still need to find something afterwards, `/memory:search` runs the lexical lanes over spec docs and skill docs.
+A: Run `/speckit:resume`. This is the canonical recovery surface for packet work. It rebuilds context from `handover.md`, then `_memory.continuity`, then the packet's canonical spec docs. When you still need to find something afterwards, `/speckit:search` runs the lexical lanes over spec docs and skill docs.
 
 <!-- /ANCHOR:faq -->
 
@@ -339,7 +329,7 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
-| Command not recognized | Wrong invocation format | Use `/<group>:<command>` format (e.g., `/memory:save`) |
+| Command not recognized | Wrong invocation format | Use `/<group>:<command>` format (e.g., `/speckit:save`) |
 | Agent router command not found | Used `/agents` or `/agents-router` alias | Use `/agent-router "<request>"` |
 | Missing arguments error | Required argument not provided | Check the `argument-hint` in the command's frontmatter |
 | YAML workflow not found | Missing asset file | Verify `assets/` folder contains the corresponding YAML |
@@ -362,7 +352,6 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 | [Prompt Command](prompt/improve.md) | Canonical prompt improvement command |
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Documentation standards and component creation |
 | [system-spec-kit SKILL.md](../skills/system-spec-kit/SKILL.md) | Spec folder workflow and packet continuity |
-| [Memory Commands](memory/README.txt) | Continuity save and lexical retrieval commands |
-| [Spec Kit Commands](speckit/README.txt) | SpecKit plan, implement, complete, and workflow commands |
+| [Spec Kit Commands](speckit/README.txt) | SpecKit plan, implement, complete, resume, save and search commands |
 
 <!-- /ANCHOR:related-documents -->

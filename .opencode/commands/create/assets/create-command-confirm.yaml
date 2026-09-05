@@ -658,7 +658,7 @@ termination:
     - condition: "Command needs refinement"
       action: "Iterate on prompts, routing, or allowed-tools based on testing"
     - condition: "Context should be saved"
-      action: "Run /memory:save"
+      action: "Run /speckit:save"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES

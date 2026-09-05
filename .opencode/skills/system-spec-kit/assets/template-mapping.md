@@ -269,7 +269,7 @@ Content that will be indexed...
 - `next-steps` - Planned next actions
 - `context` - Background context
 
-**Generation:** Use `/memory:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/` to update the packet's canonical continuity surfaces, primarily `_memory.continuity` inside `implementation-summary.md`.
+**Generation:** Use `/speckit:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/` to update the packet's canonical continuity surfaces, primarily `_memory.continuity` inside `implementation-summary.md`.
 
 ---
 

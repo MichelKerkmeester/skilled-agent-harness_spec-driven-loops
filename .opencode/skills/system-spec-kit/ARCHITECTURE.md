@@ -112,7 +112,7 @@ Spec-kit treats canonical spec documents as the durable continuity record. The g
 3. Fall back to `_memory.continuity` frontmatter blocks inside `implementation-summary.md`.
 4. Fall back to canonical spec docs in this order: `implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`.
 
-**Write path (`/memory:save`):**
+**Write path (`/speckit:save`):**
 
 1. AI composes structured JSON describing session context.
 2. `generate-context.js` routes content into the right canonical doc (`implementation-summary.md`, `decision-record.md`, `handover.md`) and refreshes `description.json` + `graph-metadata.json`.
@@ -156,7 +156,7 @@ disagrees with it is the thing to fix.
 | `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` | `shared/paths.ts` and `shared/embeddings/` for the skill advisor | The advisor's own embedding store location; nothing in this skill opens a database |
 | `.opencode/skills/system-skill-advisor/mcp-server/database/` | The skill advisor | Its routing graph and doctor state; the only MCP daemon this repository still runs |
 | `.opencode/skills/system-deep-loop/runtime/database/` | The deep-loop runtime | Coverage and council graphs for research, review and council loops |
-| `scripts/dist/memory/generate-context.js`, `/memory:save`, `/memory:search` | The scripts workspace | The continuity writer and the retrieval commands; "memory" here is the command family's literal name, not a store |
+| `scripts/dist/memory/generate-context.js`, `/speckit:save`, `/speckit:search` | The scripts workspace | The continuity writer and the retrieval commands; "memory" here is the command family's literal name, not a store |
 | `shared/ipc/`, `@modelcontextprotocol/sdk` in `shared/` | The skill advisor daemon through `shared/ipc` | The IPC seam the advisor's MCP transport is built on |
 
 ---
@@ -179,7 +179,7 @@ Spec-kit's quality gates run at three layers.
 
 **Spec folder validation.** `scripts/spec/validate.sh` enforces 20 rules across required files, anchor structure, frontmatter shape, template source markers, continuity freshness, and phase-parent detection. Strict mode treats warnings as failures.
 
-**Save gate.** Every `/memory:save` runs through 3 layers: intake validation (input schema + duplicate detection), content router (places content in the right canonical doc), and post-save quality review (DQI scoring + structural lint).
+**Save gate.** Every `/speckit:save` runs through 3 layers: intake validation (input schema + duplicate detection), content router (places content in the right canonical doc), and post-save quality review (DQI scoring + structural lint).
 
 **Test surfaces.** Default `npm test` runs the engine suites through the bounded runner in `runtime/scripts/run-tests.mjs` and, through `runtime/package.json` `test:spec-validation`, the tracked spec-validation shell suites. Stress suites are opt-in via `vitest run --config vitest.stress.config.ts`.
 
