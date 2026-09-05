@@ -200,11 +200,12 @@ export const PI_SUPPORTED_MODELS = [
   'deepseek/deepseek-v4-flash-vision-exp',
   'z-ai/glm-5.3-flash',
   'google/gemini-3.8-flash',
-  // opencode-go also fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
-  // composes opencode-go/glm-5.3-flash — a distinct literal from the OpenRouter `z-ai/` one
-  // above, so each routes to its own provider. GLM-5.3-Flash on Cline reuses the SAME
-  // `z-ai/glm-5.3-flash` literal as the OpenRouter route, and one literal maps to one
-  // provider, so the Cline route is direct-dispatch only and intentionally absent here.
+  // DevPass (LLM Gateway) fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
+  // composes the two-segment llmgateway/glm-5.3-flash selector that gateway requires — a
+  // distinct literal from the OpenRouter `z-ai/` one above, so each routes to its own provider.
+  // opencode-go and Cline front the same model, but one literal maps to one provider, so both
+  // of those routes are direct-dispatch only and intentionally absent here. The fan-out slot
+  // goes to DevPass because it bills a flat-price plan rather than per token.
   'glm-5.3-flash',
 ] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
@@ -233,8 +234,9 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  * provider-prefixed on cli-opencode
  * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the OpenRouter `-latest`
  * variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family and is pinned
- * too. GLM-5.3-Flash is matched on both its bare opencode-go literal (`glm-5.3-flash`) and
- * its OpenRouter vendor-prefixed literal (`z-ai/glm-5.3-flash`). Gemini 3.7 Flash tops out at
+ * too. GLM-5.3-Flash is matched on both its bare DevPass literal (`glm-5.3-flash`) and
+ * its OpenRouter vendor-prefixed literal (`z-ai/glm-5.3-flash`); DevPass offers `max`, so the
+ * pin lands on a tier that route actually has. Gemini 3.7 Flash tops out at
  * `high` (no `max` variant) and is intentionally NOT pinned here. The devin `-max` uid already
  * bakes the tier into the id and is intentionally not matched here.
  */

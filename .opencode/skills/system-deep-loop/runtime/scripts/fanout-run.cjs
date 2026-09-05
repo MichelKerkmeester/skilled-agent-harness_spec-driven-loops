@@ -1960,7 +1960,7 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // GLM-5.3-Flash are reasoning models whose top tier is `max`, pinned there by operator
 // policy — never dispatched below max. DeepSeek is bare on cli-pi, provider-prefixed on
 // cli-opencode, and its OpenRouter `-latest` variant is the same family and pinned too;
-// GLM-5.3-Flash matches its bare opencode-go literal and its OpenRouter `z-ai/` literal.
+// GLM-5.3-Flash matches its bare DevPass literal and its OpenRouter `z-ai/` literal.
 //
 // A top tier belongs to the ROUTE, not to the model name. GLM-5.3-Flash offers
 // low/high/max on both OpenRouter and opencode-go — the only two routes whose literals
@@ -2077,10 +2077,10 @@ const PI_ALLOWED_MODELS = new Set([
   'deepseek/deepseek-v4-flash-vision-exp',
   'z-ai/glm-5.3-flash',
   'google/gemini-3.8-flash',
-  // opencode-go also fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
-  // composes opencode-go/glm-5.3-flash — distinct from the OpenRouter `z-ai/` literal above.
-  // GLM-5.3-Flash on Cline reuses the SAME `z-ai/glm-5.3-flash` literal as OpenRouter, and one
-  // literal maps to one provider, so the Cline route is direct-dispatch only and absent here.
+  // DevPass fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}` composes
+  // llmgateway/glm-5.3-flash — distinct from the OpenRouter `z-ai/` literal above. Cline and
+  // opencode-go front the same model, but one literal maps to one provider, so both of those
+  // routes are direct-dispatch only and absent here.
   'glm-5.3-flash',
 ]);
 const PI_DEFAULT_MODEL = 'deepseek-v4-flash-vision-exp';
@@ -2282,9 +2282,14 @@ const PI_MODEL_PROVIDERS = new Map([
   ['deepseek/deepseek-v4-flash-vision-exp', 'openrouter'],
   ['z-ai/glm-5.3-flash', 'openrouter'],
   ['google/gemini-3.8-flash', 'openrouter'],
-  // opencode-go fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}` yields
-  // the opencode-go/glm-5.3-flash selector. Distinct from the OpenRouter `z-ai/` literal above.
-  ['glm-5.3-flash', 'opencode-go'],
+  // DevPass (LLM Gateway) fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
+  // yields the two-segment llmgateway/glm-5.3-flash selector the gateway requires: it 400s on a
+  // provider-prefixed id, which is the inverse of the cline-pass three-segment shape. Distinct
+  // from the OpenRouter `z-ai/` literal above. opencode-go also fronts this model under the same
+  // bare literal, and one literal maps to one provider, so the opencode-go GLM route is
+  // direct-dispatch only, exactly as the Cline route already is. DevPass wins the fan-out slot
+  // because it is a flat-price subscription and the other two routes bill per token.
+  ['glm-5.3-flash', 'llmgateway'],
 ]);
 // Map each shared reasoningEffort level to the name Pi's `--thinking` uses (from the
 // installed `pi --help`): the config's 'none' is Pi's 'off', and the config's 'ultra'

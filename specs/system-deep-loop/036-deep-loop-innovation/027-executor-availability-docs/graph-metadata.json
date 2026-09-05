@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Every `/deep:` presentation contract documented the executor field as `native | cli-opencode | cli-claude-code`",
     "created_at": "2026-08-31T08:33:25Z",
-    "last_save_at": "2026-09-05T08:39:27.072Z",
+    "last_save_at": "2026-09-05T09:54:55.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db7eae490cbaf4f08a58250a88c2d5775871a80372dfb368924cb254c3a2d88e",
+    "source_fingerprint": "sha256:e09fe1e8118a0c628716b852982ef06468411e4e898b8fa227344f37b4817060",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92752ca80b22532e9bb9893f55a95b7684fccf5be24b2eec3815e2244d60b317",
       "plan.md": "94800c27ce220122c25e527330851729d4ed7aae876c6a75fd0f3f82d5182d4b",
       "tasks.md": "0243f484d2c004c4033bfac182ff15d386f811ce242f20a05b4e90393d3e8ccb",
-      "implementation-summary.md": "0aa609bbf9eb98f172f58a6cdd93439675f0653fdd90ada2a8510599eb1bb879"
+      "implementation-summary.md": "f1a621d312effdf07584a94fc136c4107e3d90396f33b4f417df51c2dc92de18"
     },
     "last_active_child_id": null,
     "last_active_at": null

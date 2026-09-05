@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/041-cli-pi-devpass-glm-route",
+  "description": "The operator asked for a deep-research run on GLM-5.3-Flash at `max` through cli-pi, billed to DevPass, their flat-price LLM Gateway plan",
+  "keywords": [
+    "operator",
+    "asked",
+    "deep-research",
+    "run",
+    "glm-5",
+    "3-flash",
+    "max",
+    "cli-pi",
+    "billed",
+    "devpass",
+    "flat-price",
+    "llm",
+    "gateway",
+    "plan"
+  ],
+  "lastUpdated": "2026-09-05T11:45:54.407Z",
+  "specId": "041",
+  "folderSlug": "cli-pi-devpass-glm-route",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

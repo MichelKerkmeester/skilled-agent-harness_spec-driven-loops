@@ -497,7 +497,13 @@ function assertInside(baseDir, targetPath) {
   const targetParent = canonicalizeExistingPrefix(path.dirname(targetPath));
   const existingTargetParent = nearestExistingParent(targetPath);
   const canonicalTarget = path.resolve(targetParent, path.basename(targetPath));
-  if (!isContainedPath(canonicalBase, existingTargetParent) || !isContainedPath(canonicalBase, canonicalTarget)) {
+  // The nearest existing parent must sit inside the base, or be an ancestor of a
+  // base that does not exist yet: the first council write on a fresh packet has
+  // no council root to be inside of. Symlink safety holds either way because the
+  // existing prefix is realpath-resolved and the missing segments cannot be links.
+  const parentInsideOrBelowBase = isContainedPath(canonicalBase, existingTargetParent)
+    || isContainedPath(existingTargetParent, canonicalBase);
+  if (!parentInsideOrBelowBase || !isContainedPath(canonicalBase, canonicalTarget)) {
     const error = new Error(`OUT_OF_SCOPE_WRITE: Refusing to write outside ${baseDir}: ${targetPath}`);
     error.code = 'OUT_OF_SCOPE_WRITE';
     throw error;

@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard |
+| **Spec Folder** | 028-cli-lineage-nesting-and-containment-guard |
 | **Completed** | 2026-09-02 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

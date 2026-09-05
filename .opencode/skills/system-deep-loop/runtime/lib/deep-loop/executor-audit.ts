@@ -135,7 +135,14 @@ const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // cli-devin is deliberately absent from EXECUTOR_SESSION_ENV_BY_KIND rather
   // than carrying a guessed name.
   'cli-devin': ['DEVIN_'],
-  // Pi's provider environment prefixes are unconfirmed; do not pass them through by analogy.
+  // Pi authenticates most providers from ~/.pi/agent/auth.json, a file, so they need no env
+  // pass-through. The exceptions are the two config-only providers declared in .pi/models.json,
+  // which key on an env reference: llmgateway (DevPass) on ${LLMGATEWAY_API_KEY} and cline-pass
+  // on ${CLINE_API_KEY}. These two prefixes are confirmed by that config plus an observed
+  // failure, not inferred by analogy: with them filtered out, a fan-out dispatch reaches pi and
+  // dies on "No API key found for llmgateway" while the identical direct dispatch succeeds.
+  // Add a prefix here only with the same standard of evidence.
+  'cli-pi': ['LLMGATEWAY_', 'CLINE_'],
 };
 
 type RunAuditedExecutorCommandInput = {

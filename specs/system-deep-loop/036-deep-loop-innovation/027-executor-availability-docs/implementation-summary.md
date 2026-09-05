@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-deep-loop/036-deep-loop-innovation/027-executor-availability-docs |
+| **Spec Folder** | 027-executor-availability-docs |
 | **Completed** | 2026-08-31 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

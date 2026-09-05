@@ -1560,8 +1560,10 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'deepseek/deepseek-v4-flash-vision-exp': 'openrouter',
       'z-ai/glm-5.3-flash': 'openrouter',
       'google/gemini-3.8-flash': 'openrouter',
-      // opencode-go also routes GLM-5.3-Flash under its bare literal → opencode-go/glm-5.3-flash.
-      'glm-5.3-flash': 'opencode-go',
+      // DevPass routes GLM-5.3-Flash under its bare literal → llmgateway/glm-5.3-flash, the
+      // two-segment form that gateway requires. opencode-go fronts the same model, but one
+      // literal maps to one provider, so that route is direct-dispatch only.
+      'glm-5.3-flash': 'llmgateway',
     };
     for (const [model, provider] of Object.entries(providerByModel)) {
       const command = buildLineageCommand(

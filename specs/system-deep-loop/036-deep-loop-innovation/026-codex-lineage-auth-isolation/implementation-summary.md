@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-deep-loop/036-deep-loop-innovation/026-codex-lineage-auth-isolation |
+| **Spec Folder** | 026-codex-lineage-auth-isolation |
 | **Completed** | Not completed. Withdrawn 2026-08-30 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
