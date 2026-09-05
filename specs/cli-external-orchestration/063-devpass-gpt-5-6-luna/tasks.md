@@ -108,6 +108,17 @@ A second fresh Gemini 3.8 Flash agent reviewed the remediation itself, on the pr
 - [x] T027 **P2** — Luna's pi ladder was written `none`→`max` in opencode's vocabulary; pi's lowest tier is `off`, and `minimal` is unmapped, so the active range is `low`→`max`
 - [x] T028 **P2** — "The DeepSeek entries" was plural over a single-row table
 - [x] T029 Confirm no regression [evidence: zero exclusivity claims remain; both `.pi` files parse]
+
+### Provider discoverability
+
+A concurrent session reported that DevPass was not mentioned in cli-pi. The report was accurate and the diagnosis was not: everything was pushed and merged, but `cli-pi/SKILL.md` named **no** providers at all, so a grep for `llmgateway` failed there exactly as a grep for `cline-pass` would have.
+
+- [x] T030 Verify the claim against the pushed trees rather than the local checkout [evidence: `llmgateway` hits identical on HEAD, `origin/main` and `origin/skilled/v4.0.0.0` — cli-pi roster 8, cli-opencode roster 11, `.pi/models.json` 2, `.pi/custom-providers.md` 13; zero unpushed commits]
+- [x] T031 Survey which mode SKILL.md files name providers [evidence: cli-opencode named all of them **and their model ids**; cli-pi, cli-codex, cli-cursor and cli-devin named none]
+- [x] T032 Add a provider inventory to `cli-pi/SKILL.md` — providers named including DevPass, no model ids, roster file cited as the single source, and the two config-declared providers pointed at their setup doc
+- [x] T033 Replace the inline model enumeration in `cli-opencode/SKILL.md` with the same shape [evidence: model ids in that file drop to two, both legitimate — the default model and the V4 Pro name inside the destructive-scope incident record]
+- [x] T034 Keep the one cross-provider footgun in `cli-opencode/SKILL.md`: id shape differs per provider, and copying a form between them returns a 400
+- [x] T035 Re-mint the hub and prove it still routes [evidence: guard reports all hubs fresh; `cli-opencode` and `cli-pi` prompts both return `route`]
 <!-- /ANCHOR:phase-4 -->
 
 ---

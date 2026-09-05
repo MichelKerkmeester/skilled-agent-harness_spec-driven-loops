@@ -108,6 +108,7 @@ Then ten dispatches, not five. A pi dispatch is not evidence for an opencode cat
 | Review remediation | PASS — all four findings reproduced and fixed, plus one the review missed |
 | Second independent review | PASS — fresh agent on the remediation itself: 0 P0, 2 P1, 2 P2; first round confirmed to have held |
 | Second remediation | PASS — all four reproduced and fixed |
+| Provider discoverability | PASS — both SKILL.md files now name DevPass; cli-opencode's duplicate model list removed |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -121,5 +122,6 @@ Then ten dispatches, not five. A pi dispatch is not evidence for an opencode cat
 4. **Only one of the three GPT-5.6 personas is wired.** `gpt-5.6-sol` and `gpt-5.6-terra` are live on the gateway and absent from both rosters by choice.
 5. **The Ox Alpha staleness was pre-existing and went unnoticed through two of my own edits.** `.pi/custom-providers.md` had described a model retired well before this session, and I modified two of the very lines carrying it without noticing. An independent reviewer found it in one pass. The lesson is narrow and worth keeping: editing a line is not the same as reading the document it lives in.
 6. **Two review rounds were needed, and the second was not redundant.** It found four issues the first missed, two of them P1 — including a doc that instructed a dispatch the cli-pi closed roster forbids, and an exclusivity claim I invalidated myself by adding Luna to the same table an hour later. Both are the same failure as the Ox Alpha one: a sentence that was true when written and was never re-read after the thing it described changed.
-7. **`deepseek-v4-pro` is in a contradictory state that this packet documents rather than resolves.** Its object sits in the pi provider block while being absent from both `enabledModels` and the cli-pi closed roster, so pi accepts it and the skill forbids it. Retiring it is scoped to a different packet; leaving it undocumented was the worse option.
+7. **The inline model list in `cli-opencode/SKILL.md` was the real defect behind a "not mentioned in cli-pi" report.** cli-pi named no providers, so DevPass was invisible there; cli-opencode named every provider *and* every model id, which is the second copy that drifted twice under review. Both now name providers and cite the roster instead of restating it. The remaining four mode SKILL.md files still name no providers, which is consistent but leaves the same discoverability gap if anyone greps them.
+8. **`deepseek-v4-pro` is in a contradictory state that this packet documents rather than resolves.** Its object sits in the pi provider block while being absent from both `enabledModels` and the cli-pi closed roster, so pi accepts it and the skill forbids it. Retiring it is scoped to a different packet; leaving it undocumented was the worse option.
 <!-- /ANCHOR:limitations -->
