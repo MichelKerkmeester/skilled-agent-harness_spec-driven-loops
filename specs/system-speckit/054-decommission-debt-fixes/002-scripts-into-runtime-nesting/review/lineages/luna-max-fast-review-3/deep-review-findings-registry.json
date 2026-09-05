@@ -1,0 +1,539 @@
+{
+  "sessionId": "fanout-luna-max-fast-review-3-1788621363532-a1faj6",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Packet scope and completion evidence describe incompatible realities",
+      "file": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/spec.md",
+      "line": 47,
+      "description": "The packet and its completion documents disagree about whether the runtime/cli move is in scope and already shipped.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Direct comparison of spec, tasks, acceptance criteria and implementation summary.",
+      "affectedSurfaceHints": [
+        "packet scope",
+        "execution handoff",
+        "completion evidence",
+        "rollback and level"
+      ],
+      "contentHash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Moved CLI documentation still teaches retired source topology",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/validation/README.md",
+      "line": 16,
+      "description": "Multiple READMEs inside runtime/cli still identify their source roots as scripts/* and one points at the retired memory README.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct reads of five moved-tree READMEs and their relative links.",
+      "affectedSurfaceHints": [
+        "package-local README",
+        "source topology",
+        "continuity link"
+      ],
+      "contentHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Completed verification instructions invoke the removed pre-move level script",
+      "file": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/plan.md",
+      "line": 114,
+      "description": "The plan and T007 task retain the old scripts/spec/recommend-level.sh path after the workspace moved to runtime/cli.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct comparison of plan/tasks command text with the current runtime/cli/spec script path.",
+      "affectedSurfaceHints": [
+        "level recommendation",
+        "task verification",
+        "packet reproducibility"
+      ],
+      "contentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "CLI runbook resolves its Vitest config one directory too deep",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md",
+      "line": 62,
+      "description": "The runbook changes into runtime/cli and then uses ../runtime/vitest.config.ts, which resolves to runtime/runtime/vitest.config.ts.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct path arithmetic against the runbook working directory and the current runtime config path.",
+      "affectedSurfaceHints": [
+        "focused Vitest runbook",
+        "alias-retirement verification"
+      ],
+      "contentHash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Root Vitest documentation and the CLI TypeScript resolver disagree",
+      "file": ".opencode/skills/system-spec-kit/vitest.config.ts",
+      "line": 10,
+      "description": "The root project comment says the CLI tsconfig chain uses nodenext while runtime/cli/tsconfig.json explicitly uses node module resolution.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Direct comparison of the root Vitest comment, CLI tsconfig and runtime tsconfig.",
+      "affectedSurfaceHints": [
+        "Vitest project rationale",
+        "TypeScript resolver contract"
+      ],
+      "contentHash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Stress configuration retains a retired scripts/tests exclusion",
+      "file": ".opencode/skills/system-spec-kit/runtime/vitest.stress.config.ts",
+      "line": 16,
+      "description": "The stress config excludes scripts/tests after the CLI test tree moved to runtime/cli/tests.",
+      "findingClass": "retired-path-reference",
+      "deltaStatus": "active",
+      "scopeProof": "Direct comparison of stress config and current runtime/cli test boundary.",
+      "affectedSurfaceHints": [
+        "stress Vitest config",
+        "test ownership boundary"
+      ],
+      "contentHash": "6666666666666666666666666666666666666666666666666666666666666666",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P1",
+      "title": "Review-scope manifest contains three non-existent moved paths",
+      "file": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/scratch/review-scope.txt",
+      "line": 169,
+      "description": "The bounded manifest names two deleted scan helpers and a .js embeddings test while omitting the live .cjs test; 453 entries contain three missing paths.",
+      "findingClass": "coverage/traceability",
+      "deltaStatus": "active",
+      "scopeProof": "Direct filesystem existence check over all 453 manifest entries plus comparison with the current CLI tree and scripts registry.",
+      "affectedSurfaceHints": [
+        "review coverage manifest",
+        "changed-file audit",
+        "embeddings test coverage"
+      ],
+      "contentHash": "8888888888888888888888888888888888888888888888888888888888888888",
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "Execution path map preserves a retired package identity",
+      "file": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/scratch/path-map.json",
+      "line": 116,
+      "description": "The replay map says to keep @spec-kit/scripts, while runtime/cli/package.json and the implementation summary record the final @spec-kit/cli identity.",
+      "findingClass": "contract/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Direct comparison of path-map special-case instructions, the live package manifest and shipped decision evidence.",
+      "affectedSurfaceHints": [
+        "execution replay",
+        "workspace package identity"
+      ],
+      "contentHash": "9999999999999999999999999999999999999999999999999999999999999999",
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "title": "Script registry dependencies retain retired scripts paths",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/scripts-registry.json",
+      "line": 73,
+      "description": "Central registry dependency metadata still names scripts/lib/shell-common.sh and scripts/spec-folder/*.ts although the live files are under runtime/cli/lib and runtime/cli/spec-folder.",
+      "findingClass": "metadata/maintainability",
+      "deltaStatus": "active",
+      "scopeProof": "Direct comparison of registry dependency entries with live filesystem paths and registry-loader read-only behavior.",
+      "affectedSurfaceHints": [
+        "script registry",
+        "dependency metadata"
+      ],
+      "contentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F011",
+      "severity": "P1",
+      "title": "Test README commands resolve test paths from the wrong cwd",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/tests/README.md",
+      "line": 78,
+      "description": "The README says to run from repository root but uses npx --prefix without changing cwd, so tests/test-integration.vitest.ts is resolved outside runtime/cli/tests.",
+      "findingClass": "test-discovery/maintainability",
+      "deltaStatus": "active",
+      "scopeProof": "Direct comparison of documented cwd and command operands with the live runtime/cli/tests path.",
+      "affectedSurfaceHints": [
+        "test README",
+        "targeted Vitest command"
+      ],
+      "contentHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "dimension": "maintainability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F012",
+      "severity": "P1",
+      "title": "CLI Vitest runs before the build that supplies its imported dist",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/package.json",
+      "line": 18,
+      "description": "The CLI test script starts Vitest before test:legacy builds dist, while validation-engine-coherence.vitest.ts imports runtime/cli/dist/lib/validation/orchestrator.js directly.",
+      "findingClass": "build-test-boundary",
+      "deltaStatus": "active",
+      "scopeProof": "Direct comparison of package script order, generated-output import and the generated dist contract.",
+      "affectedSurfaceHints": [
+        "CLI test script",
+        "generated dist freshness",
+        "Vitest suite"
+      ],
+      "contentHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "dimension": "maintainability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F013",
+      "severity": "P1",
+      "title": "Source-dist alignment omits the moved CLI dist tree",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/evals/check-source-dist-alignment.ts",
+      "line": 150,
+      "description": "The checker resolves the skill root and scans runtime/dist and scripts/dist, but defines no runtime/cli/dist target even though the CLI package invokes the checker and emits its primary runtime output there.",
+      "findingClass": "generated-output/maintainability",
+      "deltaStatus": "active",
+      "scopeProof": "Direct comparison of package check/build scripts, compiler output, checker targets and runtime finalizer scope.",
+      "affectedSurfaceHints": [
+        "source-dist alignment",
+        "CLI generated output",
+        "orphaned artifacts"
+      ],
+      "contentHash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F014",
+      "severity": "P1",
+      "title": "Deployed Claude stop hook retains retired autosave candidates",
+      "file": ".opencode/hooks/session-lifecycle/claude/session-stop.js",
+      "line": 57,
+      "description": "The deployed hook probes scripts/dist/memory/generate-context.js while the adjacent TypeScript source probes runtime/cli/dist/continuity/generate-context.js.",
+      "findingClass": "consumer-resolution/generated-output",
+      "deltaStatus": "active",
+      "scopeProof": "Direct source-versus-deployed-artifact comparison and session-lifecycle README deployed-entrypoint contract.",
+      "affectedSurfaceHints": [
+        "Claude stop hook",
+        "continuity autosave",
+        "runtime dist"
+      ],
+      "contentHash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "dimension": "maintainability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F015",
+      "severity": "P1",
+      "title": "Speckit command workflow assets still instruct retired create paths",
+      "file": ".opencode/commands/speckit/assets/speckit-plan-auto.yaml",
+      "line": 535,
+      "description": "Four active plan and completion YAML assets instruct scripts/spec/create.sh although the executable moved to runtime/cli/spec/create.sh.",
+      "findingClass": "consumer-resolution/workflow",
+      "deltaStatus": "active",
+      "scopeProof": "Direct search across four active plan/complete assets and live executable path comparison.",
+      "affectedSurfaceHints": [
+        "plan workflow",
+        "complete workflow",
+        "create-spec entrypoint"
+      ],
+      "contentHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "dimension": "maintainability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 11,
+    "P2": 4
+  },
+  "openFindingsCount": 15,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.18,
+  "graphConvergenceScore": 0,
+  "graphDecision": "unavailable",
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "packet-contract-contradiction",
+      "retired-path-reference",
+      "stale-verification-command",
+      "runbook-config-resolution",
+      "resolver-contract-drift",
+      "stress-boundary-residue",
+      "path-containment",
+      "manifest-staleness",
+      "package-identity-drift",
+      "test-discovery",
+      "build-test-order",
+      "cli-dist-alignment",
+      "deployed-hook-drift",
+      "workflow-path-residue"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "packet-contract-contradiction",
+      "retired-path-reference",
+      "stale-verification-command",
+      "runbook-config-resolution",
+      "resolver-contract-drift",
+      "stress-boundary-residue",
+      "path-containment",
+      "manifest-staleness",
+      "package-identity-drift",
+      "test-discovery",
+      "build-test-order",
+      "cli-dist-alignment",
+      "deployed-hook-drift",
+      "workflow-path-residue"
+    ],
+    "covered": [
+      "packet-contract-contradiction",
+      "retired-path-reference",
+      "stale-verification-command",
+      "runbook-config-resolution",
+      "resolver-contract-drift",
+      "stress-boundary-residue",
+      "path-containment",
+      "manifest-staleness",
+      "package-identity-drift",
+      "test-discovery",
+      "build-test-order",
+      "cli-dist-alignment",
+      "deployed-hook-drift",
+      "workflow-path-residue"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [
+      "correctness"
+    ],
+    "completed": [
+      "correctness",
+      "security",
+      "traceability",
+      "maintainability"
+    ],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "synthesis"
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

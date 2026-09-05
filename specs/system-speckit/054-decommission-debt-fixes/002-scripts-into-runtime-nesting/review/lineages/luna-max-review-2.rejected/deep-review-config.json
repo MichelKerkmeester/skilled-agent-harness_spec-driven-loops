@@ -1,0 +1,105 @@
+{
+  "topic": "Review of scripts into runtime nesting",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "topicScope": "Bounded review of the target packet, its declared review manifest, and directly referenced implementation and verification surfaces. Target files are read-only.",
+  "sessionId": "fanout-luna-max-review-2-1788619675959-m55pwa",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "lineageModeBinding": "auto",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
+  "createdAt": "2026-09-05T15:00:00Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "llmgateway/gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "sandboxMode": "danger-full-access",
+    "permissionMode": "acceptEdits",
+    "inlineIterationExecution": true,
+    "nestedDispatch": false
+  },
+  "modeBinding": "review",
+  "qualityGateThreshold": true,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true,
+    "source": "absent-at-init"
+  },
+  "reviewScope": {
+    "manifest": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/scratch/review-scope.txt",
+    "fileCount": 453,
+    "scopeClass": "bounded",
+    "resourceMapGate": "skipped-absent-at-init",
+    "graphMode": "unavailable-write-surface-constrained"
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "resource-map.md": "mutable",
+    "iteration-*.md": "write-once",
+    "iter-*.jsonl": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "fullJSONLHistory",
+      "iterationFiles",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ],
+    "inlineExecution": true,
+    "externalReducerCommand": "not run: detached lineage write surface is authoritative"
+  }
+}
