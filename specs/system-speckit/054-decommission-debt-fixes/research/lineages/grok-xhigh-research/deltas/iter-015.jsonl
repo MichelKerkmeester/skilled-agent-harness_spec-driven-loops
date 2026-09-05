@@ -1,0 +1,5 @@
+{"id":"F-I15-001","severity":"P2","status":"confirmed","summary":"Three sk-doc validator class defects remain unabsorbed by 054","evidence":"goal.md:197-200; tasks.md:47-51"}
+{"id":"F-I15-002","severity":"P2","status":"inferred","summary":"onnxruntime-common fresh-install proof still not run","evidence":"goal.md:208"}
+{"id":"F-I15-003","severity":"P2","status":"confirmed-negative","summary":"T004 absorbed fixture-counted freshness","evidence":"tasks.md:47; goal.md:207"}
+{"id":"F-I15-004","severity":"P2","status":"confirmed-negative","summary":"T005/T006 absorbed fan-out stderr and review-leaf cwd writes","evidence":"tasks.md:48-49; goal.md:210-211"}
+{"id":"F-I15-005","severity":"P1","status":"confirmed","summary":"Unabsorbed residue set is larger than T004-T008","evidence":"goal.md:47 plus F-I10/F-I11/F-I14"}

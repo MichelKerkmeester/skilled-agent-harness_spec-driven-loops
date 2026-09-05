@@ -1,0 +1,71 @@
+{
+  "run_id": "1788581555646-udzw72",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-speckit/054-decommission-debt-fixes",
+  "base_artifact_dir": ".opencode/specs/system-speckit/054-decommission-debt-fixes/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "grok-xhigh-research",
+      "state_log": ".opencode/specs/system-speckit/054-decommission-debt-fixes/research/lineages/grok-xhigh-research/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-05T04:12:35.742Z",
+        "end_at_iso": "2026-09-05T04:28:47.572Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 19,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 22
+      },
+      "sample": [
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-09-05T04:36:00Z",
+          "deltaMs": 312428
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-09-05T04:48:00Z",
+          "deltaMs": 1032428
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-05T05:02:00Z",
+          "deltaMs": 1872428
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-09-05T05:10:00Z",
+          "deltaMs": 2352428
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-09-05T05:22:00Z",
+          "deltaMs": 3072428
+        }
+      ]
+    }
+  ]
+}

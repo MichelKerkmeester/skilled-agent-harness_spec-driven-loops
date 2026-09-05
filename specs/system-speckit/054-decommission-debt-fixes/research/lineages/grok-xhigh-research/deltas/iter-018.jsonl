@@ -1,0 +1,4 @@
+{"id":"F-I18-001","severity":"P1","status":"confirmed","summary":"extraction README describes deleted adapter/redaction/ontology and working-memory insert","evidence":"extraction/README.md:3,14,20-43,57-64; three key files ABSENT"}
+{"id":"F-I18-002","severity":"P1","status":"confirmed","summary":"storeEntities still inserts memory_entities and is tested","evidence":"entity-extractor.ts:282-308; entity-extractor.vitest.ts:338-512"}
+{"id":"F-I18-003","severity":"P1","status":"confirmed","summary":"resolveDatabasePaths defaults to DB_PATH basename; transaction-manager recovers against it","evidence":"config.ts:94-96; transaction-manager.ts:383"}
+{"id":"F-I18-004","severity":"P2","status":"confirmed-negative","summary":"transaction-manager is file+db recovery, not a memory MCP","evidence":"transaction-manager.ts:1-8"}

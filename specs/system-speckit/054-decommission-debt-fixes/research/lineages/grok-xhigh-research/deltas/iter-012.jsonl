@@ -1,0 +1,4 @@
+{"id":"F-I12-001","severity":"P1","status":"confirmed","summary":"Skill-root sqlite-vec.d.ts types a dependency with no skill-root package entry and no importer","evidence":"sqlite-vec.d.ts:1-8; scripts/package.json:26-29"}
+{"id":"F-I12-002","severity":"P2","status":"confirmed","summary":"scripts package.json still describes memory management","evidence":"scripts/package.json:3-6"}
+{"id":"F-I12-003","severity":"P2","status":"confirmed","summary":"Evals still named check-no-mcp-lib-imports after D8","evidence":"evals/README.md:37-38; package.json:18-19"}
+{"id":"F-I12-004","severity":"P2","status":"confirmed-negative","summary":"better-sqlite3 on scripts still has leftover readers; do not drop first","evidence":"scripts/package.json:24"}

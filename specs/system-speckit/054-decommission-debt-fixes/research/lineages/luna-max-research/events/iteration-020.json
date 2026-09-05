@@ -1,0 +1,41 @@
+{
+  "type": "iteration",
+  "run": 20,
+  "iteration": 20,
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "sessionId": "fanout-luna-max-research-1788581555646-udzw72",
+  "lineageId": "fanout-luna-max-research-1788581555646-udzw72",
+  "status": "complete",
+  "focus": "Final cross-angle audit",
+  "findingsCount": 0,
+  "newInfoRatio": 0.28,
+  "noveltyJustification": "The bounded final pass found no distinct new finding; remaining mcp-server references are owner-bound or already recorded, and zvec/system-plugins remain covered by the detector-coverage gap.",
+  "keyQuestions": ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7"],
+  "answeredQuestions": [],
+  "ruledOut": [
+    {
+      "approach": "Reclassify separate system-skill-advisor mcp-server ownership as retired system-spec-kit runtime residue",
+      "reason": "The Pi README and root README identify the advisor package as a separate owner.",
+      "evidence": ".pi/extensions/README.md:23-30,67-74; README.md:304-310"
+    },
+    {
+      "approach": "Treat the final max-iterations cross-check as a new zvec/system-plugins finding",
+      "reason": "No new active target appeared in the exact authority files sampled; LUNA-058 already records automated detector coverage limitations.",
+      "evidence": "bounded exact-file scan; LUNA-058"
+    }
+  ],
+  "focusTrack": "final-cross-angle-audit",
+  "edgeCase": "mcp-server is a shared package suffix and requires owner context",
+  "toolsUsed": ["Read", "Grep"],
+  "sourcesQueried": [
+    ".pi/extensions/README.md:23-30,67-74",
+    "README.md:304-310",
+    ".devin/hooks.v1.json:2-9,137-149",
+    ".opencode/specs/system-speckit/054-decommission-debt-fixes/research/lineages/luna-max-research/deep-research-config.json:3-9,18,37"
+  ],
+  "timestamp": "2026-09-05T06:55:00.000Z",
+  "graphEvents": []
+}

@@ -1,0 +1,4 @@
+{"id":"F-I17-001","severity":"P2","status":"confirmed","summary":"ARCHITECTURE.md still calls continuity generated memory artifacts","evidence":"ARCHITECTURE.md:28"}
+{"id":"F-I17-002","severity":"P2","status":"confirmed","summary":"Skill Advisor install guide still names a spec-memory packet","evidence":"MCP - Skill Advisor.md:386"}
+{"id":"F-I17-003","severity":"P2","status":"confirmed-negative","summary":"Install-guide /memory:* (2) matches live save+search","evidence":"install-guides/README.md:1350"}
+{"id":"F-I17-004","severity":"P2","status":"confirmed-negative","summary":"compact-inject attention labels are local heuristics, not deleted working-memory.ts","evidence":"F-I4-005 restated"}

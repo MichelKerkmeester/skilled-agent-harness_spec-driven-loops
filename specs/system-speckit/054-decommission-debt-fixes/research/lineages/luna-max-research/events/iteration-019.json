@@ -1,0 +1,34 @@
+{
+  "type": "iteration",
+  "run": 19,
+  "iteration": 19,
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "sessionId": "fanout-luna-max-research-1788581555646-udzw72",
+  "lineageId": "fanout-luna-max-research-1788581555646-udzw72",
+  "status": "complete",
+  "focus": "Residue-sweep coverage",
+  "findingsCount": 2,
+  "newInfoRatio": 0.90,
+  "noveltyJustification": "The live residue detector searches only the retired memory MCP vocabulary and launcher terms, omitting database/zvec/system-plugins/old identity; its lifecycle classifier also forces every JSONL hit historical, so counts.live and exit status can miss live state records.",
+  "keyQuestions": ["Q1", "Q6", "Q7"],
+  "answeredQuestions": ["Q1-expanded", "Q6-expanded", "Q7-expanded"],
+  "ruledOut": [
+    {
+      "approach": "Treat hidden-file handling, streaming, JSONL parsing, or allowlist validation as the new defect",
+      "reason": "Those hardening choices are explicit and tested; the new issues are vocabulary and lifecycle scope.",
+      "evidence": "sweep-memory-residue.mjs:8-24,203-212,301-326; sweep-memory-residue.vitest.ts:148-165,212-250"
+    }
+  ],
+  "focusTrack": "residue-detector-coverage",
+  "edgeCase": "historical JSONL evidence and live JSONL control records need path-aware classification",
+  "toolsUsed": ["Read", "Grep"],
+  "sourcesQueried": [
+    ".opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs:5-6,30-30,60-118,120-144,203-227,423-458,524-549",
+    ".opencode/skills/system-spec-kit/scripts/tests/sweep-memory-residue.vitest.ts:94-106,148-165,212-250"
+  ],
+  "timestamp": "2026-09-05T06:45:00.000Z",
+  "graphEvents": []
+}

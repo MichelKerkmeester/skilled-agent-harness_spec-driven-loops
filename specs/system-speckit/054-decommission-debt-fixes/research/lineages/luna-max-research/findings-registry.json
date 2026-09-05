@@ -1,0 +1,1809 @@
+{
+  "sessionId": "fanout-luna-max-research-1788581555646-udzw72",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-does-any-live-code-or-configuration-still-serve-or-describe-a-retired-memory-",
+      "inboxId": null,
+      "text": "Q1: Does any live code or configuration still serve or describe a retired memory database, memory MCP tool, spec-memory launcher, zvec lane, system-plugins surface, or old mcp-server identity?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-did-registrations-symlinks-hooks-ci-workflows-doctor-assets-or-mirrors-become",
+      "inboxId": null,
+      "text": "Q2: Did registrations, symlinks, hooks, CI workflows, doctor assets, or mirrors become dangling or disappear during the sweeps?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-are-system-spec-kit-dependencies-and-importers-balanced-across-shared-scripts",
+      "inboxId": null,
+      "text": "Q3: Are system-spec-kit dependencies and importers balanced across shared, scripts, and runtime?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-q4-do-tests-and-fixtures-still-validate-retired-behavior-or-do-they-pass-because",
+      "inboxId": null,
+      "text": "Q4: Do tests and fixtures still validate retired behavior, or do they pass because coverage was weakened or redirected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-do-documentation-and-runtime-mirrors-agree-with-the-successor-architecture",
+      "inboxId": null,
+      "text": "Q5: Do documentation and runtime mirrors agree with the successor architecture?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-q6-do-the-trigger-index-ripgrep-retrieval-lane-and-continuity-writer-cover-the-r",
+      "inboxId": null,
+      "text": "Q6: Do the trigger index, ripgrep retrieval lane, and continuity writer cover the retired memory surface's useful guarantees?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-7-q7-can-freshness-metadata-routing-or-validate-gates-report-success-while-the-dec",
+      "inboxId": null,
+      "text": "Q7: Can freshness, metadata, routing, or validate gates report success while the decommission remains incomplete?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-does-any-live-code-or-configuration-still-serve-or-describe-a-retired-memory-",
+      "inboxId": null,
+      "text": "Q1: Does any live code or configuration still serve or describe a retired memory database, memory MCP tool, spec-memory launcher, zvec lane, system-plugins surface, or old mcp-server identity?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-did-registrations-symlinks-hooks-ci-workflows-doctor-assets-or-mirrors-become",
+      "inboxId": null,
+      "text": "Q2: Did registrations, symlinks, hooks, CI workflows, doctor assets, or mirrors become dangling or disappear during the sweeps?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-are-system-spec-kit-dependencies-and-importers-balanced-across-shared-scripts",
+      "inboxId": null,
+      "text": "Q3: Are system-spec-kit dependencies and importers balanced across shared, scripts, and runtime?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-do-tests-and-fixtures-still-validate-retired-behavior-or-do-they-pass-because",
+      "inboxId": null,
+      "text": "Q4: Do tests and fixtures still validate retired behavior, or do they pass because coverage was weakened or redirected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-do-documentation-and-runtime-mirrors-agree-with-the-successor-architecture",
+      "inboxId": null,
+      "text": "Q5: Do documentation and runtime mirrors agree with the successor architecture?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-do-the-trigger-index-ripgrep-retrieval-lane-and-continuity-writer-cover-the-r",
+      "inboxId": null,
+      "text": "Q6: Do the trigger index, ripgrep retrieval lane, and continuity writer cover the retired memory surface's useful guarantees?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-q7-can-freshness-metadata-routing-or-validate-gates-report-success-while-the-dec",
+      "inboxId": null,
+      "text": "Q7: Can freshness, metadata, routing, or validate gates report success while the decommission remains incomplete?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q1-Q7 remain open; next is Q1 live retired-surface residue.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2-Q7 remain open. Next focus: registrations, symlinks, hooks, CI, doctor assets, and runtime mirrors.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 remains open at the package-wide level; live residue is confirmed, but preserved-owner boundaries need a complete registration sweep.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 and Q3-Q7 remain open. Next focus: dependency/importer balance across shared, scripts, and runtime.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 is partially answered: the four restored authorities and their links resolve, but mirror inventories and Copilot registration ownership drift.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1-Q2 and Q4-Q7 remain open. Next focus: tests and fixtures that may pass over retired or weakened surfaces.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 is partially answered: vector dependency residue is confirmed; runtime SQLite ownership and the Pi host boundary need an explicit decision.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 is partially answered: several decommission-sensitive contracts are disabled or can pass with all DB checks skipped; the active successor test boundary still needs mapping.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1-Q3 and Q5-Q7 remain open. Next focus: documentation and runtime mirror parity across `.opencode`, `.claude`, `.codex`, `.cursor`, `.devin`, and `.pi`.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1-Q4 and Q6-Q7 remain open. Next focus: the trigger index, ripgrep retrieval lane, and continuity writer as successors, including coverage gaps against the retired memory surface.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 is partially answered: docs contain a confirmed env-owner contradiction, a stale Pi path, and an inferred memory-name ownership gap; mirror count drift from iteration 3 remains a separate confirmed issue.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6 is partially answered: successor retrieval intentionally drops stateful semantic features, but its corpus omits the requested root/mirror docs and its save/index ownership boundary is incomplete.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1-Q5 and Q7 remain open. Next focus: freshness stamps, generated metadata, routing guards, and validate gates that may report success over these gaps.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1-Q6 remain open at the package/debt level. Next focus: deferred validator, doctor, local-database, and migration debt from the 052 landing log.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 is partially answered: the dist-freshness error exit, status/completion report mode, and continuity opt-in/skipped states can hide incomplete work; explicit route/dispatch fail-open behavior is outside the completion verdict.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 gains a separate doctor false-green path through advisory-mode zero exit.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3-Q6 remain open at the source/test/lineage level. Next focus: zvec, system-plugins, old runtime identities, and exact configuration/ignore residue outside the already-audited paths.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1/Q2 are partially answered: live doctor/update assets still expose retired context-index and memory migration vocabulary; deep-loop graph targets themselves are current, but policy residue remains.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 gains a confirmed active producer of the retired runtime database path, but actual production DB opening remains inferred.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 gains CI/ignore ownership drift; registration and symlink parity still need a narrower audit.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3-Q7 remain open for package dependency edges, disabled tests, mirror docs, successor coverage, and gate false-green cases.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 gains a hook-level false-green path for missing or failing runtime adapters and cleanup.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1/Q3-Q6 remain open for package dependency edges, test weakness, docs parity, successor coverage, and validator/continuity gates.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 gains confirmed fallback/status masking in active lifecycle registrations, beyond the earlier mirror-count drift.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 gains confirmed package identity/ownership drift; unused sqlite-vec remains the only confirmed importerless runtime dependency found so far.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 gains a production importer corroborating that the database path is not advisor-only.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 and Q4-Q7 remain open for registrations, test weakness, docs parity, successor coverage, and lying gates.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 gains expanded evidence that successor tests can pass while required checks remain skipped.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 gains expanded evidence that canonical-save gate coverage is not currently executable end to end.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1-Q3, Q5-Q6 remain open for the remaining live surfaces, documentation, registrations, and successor retrieval/gate boundaries.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 gains further evidence that database-state behavior was removed from source but not all documentation.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2-Q4 and Q6-Q7 remain open for registrations, dependency/test edges, successor coverage, and gate integrity.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 gains a confirmed phantom runtime API and unrunnable validation recipe.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1-Q5 remain open for live paths, registrations, dependencies, tests, and broader documentation.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 gains a deterministic reproducibility risk at the retrieval interface, but no index artifact was read.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6 gains a confirmed successor corpus-boundary mismatch and needs a policy decision: shared exclusion or explicitly different lanes.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2-Q5 remain open for registrations, dependencies, tests, and documentation drift.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 and Q6 remain open for additional live retired-surface residue and successor coverage.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 gains a confirmed disagreement between freshness validation and resume source selection.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 gains a confirmed strict validation bridge false-green path.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 and Q6 remain open for live residue and successor coverage.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 gains a confirmed lineage state/projection mismatch that can conceal accepted events.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 and Q6 remain open for additional live residue and successor coverage.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 gains a supplementary false-negative path through lifecycle classification.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6 gains a confirmed detector contract that is narrower than the successor/decommission coverage question.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 gains a confirmed automated-detector coverage gap for database/zvec/system-plugins/old-identity residue.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1-Q7 remain partially answered rather than closed: the loop found live residue, test/doc/gate debt, successor gaps, and path-contract failures, while several intentional non-goals and owner boundaries were ruled out.",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Synthesis must preserve confirmed versus inferred labels and the smallest fixes for LUNA-001 through LUNA-059.",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: Does any live code or configuration still serve or describe a retired memory database, memory MCP tool, spec-memory launcher, zvec lane, system-plugins surface, or old mcp-server identity?",
+    "Q2: Did registrations, symlinks, hooks, CI workflows, doctor assets, or mirrors become dangling or disappear during the sweeps?",
+    "Q3: Are system-spec-kit dependencies and importers balanced across shared, scripts, and runtime?",
+    "Q4: Do tests and fixtures still validate retired behavior, or do they pass because coverage was weakened or redirected?",
+    "Q5: Do documentation and runtime mirrors agree with the successor architecture?",
+    "Q6: Do the trigger index, ripgrep retrieval lane, and continuity writer cover the retired memory surface's useful guarantees?",
+    "Q7: Can freshness, metadata, routing, or validate gates report success while the decommission remains incomplete?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-luna-001-054-is-not-yet-closeable-p1-confirmed-the-packet-makes-the-six-052-debt",
+      "text": "**LUNA-001 — 054 is not yet closeable. P1. CONFIRMED.** The packet makes the six 052 debt rows, the trigger-index move, retired rollback-runbook deletion, and standards alignment in scope, while T009 (alignment/readmes) and T010-T012 (verification and closure) remain unchecked. All seven acceptance criteria are still `Unmet`. Smallest fix: complete or explicitly defer each open task with evidence before claiming packet closure. [SOURCE: specs/system-speckit/054-decommission-debt-fixes/spec.md:47-57] [SOURCE: specs/system-speckit/054-decommission-debt-fixes/tasks.md:47-62] [SOURCE: specs/system-speckit/054-decommission-debt-fixes/acceptance-criteria.md:55-63]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:50-212]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:170-226]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/spec.md:44-104]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/tasks.md:44-73]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/acceptance-criteria.md:50-80]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/review-report.md:55-124]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/review-report.md:68-103]"
+      ]
+    },
+    {
+      "id": "finding-1-2-luna-002-the-052-log-contains-d6-debt-outside-054-s-six-row-scope-p1-confirmed-t",
+      "text": "**LUNA-002 — The 052 LOG contains D6 debt outside 054's six-row scope. P1. CONFIRMED.** The landing log separately records validator class defects, machine-local sqlite dependence in command-reference checks, pre-existing deleted hook mirrors, and an unproved clean-install dependency placement. D6 defines skipped gates and docs/hooks that describe or serve retired surfaces as debt. Smallest fix: carry each row into a named follow-up packet or an approved 054 extension; do not let 054 closure imply that the whole programme debt inventory is clear. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:60-62] [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:116-122] [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:197-208]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:50-212]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:170-226]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/spec.md:44-104]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/tasks.md:44-73]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/acceptance-criteria.md:50-80]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/review-report.md:55-124]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/review-report.md:68-103]"
+      ]
+    },
+    {
+      "id": "finding-1-3-luna-003-the-last-053-pass-report-is-stale-for-its-two-active-p2s-p2-confirmed-t",
+      "text": "**LUNA-003 — The last 053 PASS report is stale for its two active P2s. P2. CONFIRMED.** The report lists an MCP-server label in `README.md` and `.opencode/bin/README.md`, plus dependency-count arithmetic drift. The live 052 LOG records those items as fixed at `85d9791eb3`, and the current 053 summary says the runtime declares three dependencies and nine were removed. Smallest fix: mark those report rows superseded by the fixing commit or regenerate the report against the final tree. [SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/review-report.md:73-118] [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:124-127] [SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:54-57]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:50-212]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:170-226]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/spec.md:44-104]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/tasks.md:44-73]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/acceptance-criteria.md:50-80]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/review-report.md:55-124]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/review-report.md:68-103]"
+      ]
+    },
+    {
+      "id": "finding-1-4-luna-004-053-s-implementation-summary-contradicts-its-own-review-status-p2-confi",
+      "text": "**LUNA-004 — 053's implementation summary contradicts its own review status. P2. CONFIRMED.** Its verification table says the ten-iteration rename review passed, while Known Limitation 5 says the review has not run and AC-010 remains open. The 052 LOG records a later PASS lineage. Smallest fix: reconcile the limitation and acceptance status with the authoritative final review artifact, preserving the earlier limitation only as historical chronology if needed. [SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:180-181] [SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:205-211] [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:124-127]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:50-212]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:170-226]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/spec.md:44-104]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/tasks.md:44-73]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/acceptance-criteria.md:50-80]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/review-report.md:55-124]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/review-report.md:68-103]"
+      ]
+    },
+    {
+      "id": "finding-1-5-luna-005-053-explicitly-carried-unfinished-tests-and-stale-references-into-later",
+      "text": "**LUNA-005 — 053 explicitly carried unfinished tests and stale references into later work. P2. CONFIRMED.** The summary reports an inconclusive runtime suite with 669 passing and 24 failing, and names an allowlisted nonexistent playbook path plus fixtures referring to a never-existent `shared/mcp-server/database` path. Those are outside 054's six debt rows. Smallest fix: add isolated reproduction and ownership rows to the debt inventory before using 053 as a clean baseline. [SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:177-179] [SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:197-203] [SOURCE: specs/system-spec-kit/053-spec-kit-runtime-rename/implementation-summary.md:222-226]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:50-212]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:170-226]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/spec.md:44-104]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/tasks.md:44-73]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/acceptance-criteria.md:50-80]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/review-report.md:55-124]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/review-report.md:68-103]"
+      ]
+    },
+    {
+      "id": "finding-1-6-luna-006-the-052-log-names-a-stalled-review-lineage-whose-report-is-not-establis",
+      "text": "**LUNA-006 — The 052 LOG names a stalled review lineage whose report is not established by the mandated report set. P2. INFERRED.** The LOG says attempt 1 was kept at `review/lineages/luna-max-pass3.attempt-1-stalled`, but the available reports read for this iteration are the final PASS and conditional attempt-3 report. The absence of the named attempt-1 report was not independently resolved here. Smallest fix: verify the exact `specs/` and `.opencode/specs/` paths and either preserve the report or correct the LOG pointer. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:124-126] [SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/review-report.md:58-71] [INFERENCE: the named attempt-1 artifact may be absent, relocated, or represented only by the LOG]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:50-212]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:170-226]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/spec.md:44-104]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/tasks.md:44-73]",
+        "[SOURCE: specs/system-speckit/054-decommission-debt-fixes/acceptance-criteria.md:50-80]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/review-report.md:55-124]",
+        "[SOURCE: specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/review-report.md:68-103]"
+      ]
+    },
+    {
+      "id": "finding-2-1-luna-007-the-live-spec-folder-detector-still-opens-the-retired-database-p0-confi",
+      "text": "**LUNA-007 — The live spec-folder detector still opens the retired database. P0. CONFIRMED.** `scripts/spec-folder/folder-detector.ts` imports `DB_PATH` and constructs a readonly SQLite connection to query the `session_learning` table. `spec-folder/index.ts` exports that detector, and the main workflow calls `detectSpecFolder()` during its normal save path. `@spec-kit/shared/paths` derives the default DB path from the runtime database location and still honors `MEMORY_DB_PATH`. This is a real producer-consumer path, not a historical fixture. Smallest fix: remove the database fallback and its dependency if filesystem/continuity signals are authoritative, or explicitly re-home the lookup under a documented successor owner and amend D8/D7 evidence. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-20] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:1341-1351] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/index.ts:9-35] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:21-23] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:783-787] [SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-20,1341-1402]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/index.ts:9-35]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:21-32,80-101,783-810,1288-1302,1390-1409]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-9,364-430]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-45]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-27]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:1-8,68-98]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:69-78]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:14-18,114-130,246-252,360-374]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/api/graph-refresh.ts:9-17]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/memory-index-discovery.ts:41-52,133-143]"
+      ]
+    },
+    {
+      "id": "finding-2-2-luna-008-the-renamed-runtime-package-still-ships-a-database-configuration-and-re",
+      "text": "**LUNA-008 — The renamed runtime package still ships a database configuration and recovery subsystem. P1. CONFIRMED.** `runtime/core/config.ts` resolves `SPEC_KIT_DB_DIR`, `SPECKIT_DB_DIR`, and `MEMORY_DB_PATH`, computes a database filename, and initializes those paths at module load. `runtime/lib/storage/transaction-manager.ts` imports that resolver and uses it to decide whether pending files have committed database rows. The runtime `tsconfig.json` includes both `core/**/*.ts` and `lib/**/*.ts`, so these files are part of the package source/build surface even though the bounded non-test search found no public runtime caller for the storage module. Smallest fix: delete the orphaned legacy DB/recovery modules from the runtime package or document and test a specific surviving owner; do not leave a compiled retired surface reachable by deep import. [SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-9] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:364-389] [SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-45] [INFERENCE: absence of a non-test importer lowers confidence that this path is exercised in normal operation, but compilation keeps it shipped]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-20,1341-1402]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/index.ts:9-35]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:21-32,80-101,783-810,1288-1302,1390-1409]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-9,364-430]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-45]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-27]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:1-8,68-98]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:69-78]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:14-18,114-130,246-252,360-374]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/api/graph-refresh.ts:9-17]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/memory-index-discovery.ts:41-52,133-143]"
+      ]
+    },
+    {
+      "id": "finding-2-3-luna-009-the-public-scripts-package-and-hook-path-still-present-the-successor-as",
+      "text": "**LUNA-009 — The public scripts package and hook path still present the successor as a memory workflow. P1. CONFIRMED.** `scripts/package.json` describes “memory management” and names `dist/memory/generate-context.js` as its main entry. The source CLI says it runs the “memory workflow”, exposes `--session-id` for “saved memory metadata”, and is the target of the live Claude session-stop hook. The implementation may now write packet-local continuity, but its public package identity and launcher path still describe the retired surface. Smallest fix: rename the package/entry terminology only after tracing every hook and install consumer, then update the mirrors and package metadata in one bounded change; preserve the actual continuity behavior. [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-6] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:1-8] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:68-98] [SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:69-78]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-20,1341-1402]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/index.ts:9-35]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:21-32,80-101,783-810,1288-1302,1390-1409]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-9,364-430]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-45]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-27]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:1-8,68-98]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:69-78]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:14-18,114-130,246-252,360-374]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/api/graph-refresh.ts:9-17]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/memory-index-discovery.ts:41-52,133-143]"
+      ]
+    },
+    {
+      "id": "finding-2-4-luna-010-the-live-workflow-still-owns-memory-named-predecessor-and-quality-paths",
+      "text": "**LUNA-010 — The live workflow still owns memory-named predecessor and quality paths. P1. CONFIRMED.** `scripts/core/workflow.ts` imports memory metadata, memory quality gates, and the memory backfill module; during JSON saves it dynamically imports `find-predecessor-memory` and uses `memoryTitle`/`memoryDescription` to link a prior record. The workflow is the caller behind the public `generate-context` CLI. This is stronger than a label-only hit: the retired memory model still affects save behavior. Smallest fix: map predecessor and quality behavior to explicit packet-continuity concepts or formally retain it as an owned successor feature with docs/tests that prove no retired DB/MCP dependency. [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:80-101] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1288-1302] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1390-1409] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:26-31]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-20,1341-1402]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/index.ts:9-35]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:21-32,80-101,783-810,1288-1302,1390-1409]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-9,364-430]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-45]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-27]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:1-8,68-98]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:69-78]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:14-18,114-130,246-252,360-374]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/api/graph-refresh.ts:9-17]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/memory-index-discovery.ts:41-52,133-143]"
+      ]
+    },
+    {
+      "id": "finding-2-5-luna-011-runtime-documentation-contradicts-itself-about-the-database-owner-p1-co",
+      "text": "**LUNA-011 — Runtime documentation contradicts itself about the database owner. P1. CONFIRMED.** The runtime ENV reference says the memory engine and database are gone, then says the package still reads the `MEMORY_DB_PATH` family through `core/config.ts` and documents `MEMORY_DB_PATH` as a live database override. It also points operators to a removed spec-memory launcher while describing the advisor as the only spawner. Smallest fix: make the document's ownership table match the actual importer graph; if the runtime DB consumer is removed, delete these rows and the stale launcher narrative, otherwise state the surviving owner and its supported boundary explicitly. [SOURCE: .opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:14-18] [SOURCE: .opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:114-130] [SOURCE: .opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:246-252] [SOURCE: .opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:360-374]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-20,1341-1402]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/index.ts:9-35]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:21-32,80-101,783-810,1288-1302,1390-1409]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-9,364-430]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-45]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-27]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:1-8,68-98]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:69-78]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:14-18,114-130,246-252,360-374]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/api/graph-refresh.ts:9-17]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/memory-index-discovery.ts:41-52,133-143]"
+      ]
+    },
+    {
+      "id": "finding-2-6-luna-012-a-production-api-path-is-still-named-memory-index-discovery-p2-confirme",
+      "text": "**LUNA-012 — A production API path is still named `memory-index-discovery`. P2. CONFIRMED.** `runtime/api/graph-refresh.ts` imports the handler by its memory-prefixed filename, and the handler emits `[memory-index-discovery]` warnings while its README and module map advertise the same name. The implementation discovers spec documents rather than querying a memory index, so the behavioral risk is low, but the live runtime identity violates the programme's no-memory framing and can cause operators to infer a retired index. Smallest fix: rename the module, warning prefix, READMEs, and import seam together, with a compatibility alias only if a real consumer is proven. [SOURCE: .opencode/skills/system-spec-kit/runtime/api/graph-refresh.ts:9-17] [SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/memory-index-discovery.ts:41-52] [SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/memory-index-discovery.ts:133-143] [SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/README.md:18-23]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-20,1341-1402]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/index.ts:9-35]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:21-32,80-101,783-810,1288-1302,1390-1409]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-9,364-430]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-45]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-27]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:1-8,68-98]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:69-78]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:14-18,114-130,246-252,360-374]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/api/graph-refresh.ts:9-17]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/memory-index-discovery.ts:41-52,133-143]"
+      ]
+    },
+    {
+      "id": "finding-3-1-luna-013-discovery-mirror-inventories-are-stale-after-lifecycle-registration-res",
+      "text": "**LUNA-013 — Discovery-mirror inventories are stale after lifecycle registration restoration. P2. CONFIRMED.** The four mirror READMEs state 19 Claude symlinks, 16 Codex symlinks, 15 Cursor symlinks, and 13 Devin symlinks, while direct `lstat` inventory found 21, 18, 17, and 19 symlinks respectively; all enumerated links resolved, so this is inventory drift rather than dangling links. The active authorities contain the restored lifecycle registrations, including Claude SessionStart/Stop/PreCompact, Codex SessionStart/Stop/PreCompact, Cursor sessionStart/sessionEnd/preCompact, and Devin SessionStart/Stop. Smallest fix: regenerate the four README counts and inventory tables from the same source used by the mirror checks, then add a parity assertion so a future restoration cannot leave false counts. [SOURCE: .claude/hooks/README.md:9-13] [SOURCE: .claude/hooks/README.md:29-37] [SOURCE: .codex/hooks/README.md:9-13] [SOURCE: .codex/hooks/README.md:27-35] [SOURCE: .cursor/hooks/README.md:9-13] [SOURCE: .cursor/hooks/README.md:29-38] [SOURCE: .devin/hooks/README.md:9-13] [SOURCE: .devin/hooks/README.md:17-25] [SOURCE: .claude/settings.json:96-134] [SOURCE: .codex/hooks.json:3-41] [SOURCE: .cursor/hooks.json:4-39] [SOURCE: .devin/hooks.v1.json:2-32] [INFERENCE: direct lstat inventory of the four mirror directories found 21/18/17/19 resolved symlinks]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: .claude/settings.json:96-203]",
+        "[SOURCE: .codex/hooks.json:3-155]",
+        "[SOURCE: .cursor/hooks.json:4-105]",
+        "[SOURCE: .devin/hooks.v1.json:2-177]",
+        "[SOURCE: .claude/hooks/README.md:9-45]",
+        "[SOURCE: .codex/hooks/README.md:9-42]",
+        "[SOURCE: .cursor/hooks/README.md:9-42]",
+        "[SOURCE: .devin/hooks/README.md:9-61]",
+        "[SOURCE: .github/hooks/scripts/session-start.sh:1-19]",
+        "[SOURCE: .github/hooks/scripts/user-prompt-submitted.sh:1-24]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/README.md:16-100]"
+      ]
+    },
+    {
+      "id": "finding-3-2-luna-014-copilot-hook-registrations-point-at-targets-with-no-current-source-or-b",
+      "text": "**LUNA-014 — Copilot hook registrations point at targets with no current source or built artifact. P1. CONFIRMED.** Both repository Copilot wrapper scripts test and then invoke `runtime/dist/hooks/copilot/session-prime.js` or `user-prompt-submit.js`, but both target paths are absent and the runtime hook source tree has no `copilot/` directory. The wrappers therefore take their fallback branch instead of executing a successor hook; the prompt fallback also creates or overwrites `.github/copilot-instructions.md` when the target is absent. Smallest fix: either remove these registrations and document the fallback as the supported Copilot contract, or add a real source/build owner and test the target existence; do not leave a nominal registration whose primary target cannot resolve. [SOURCE: .github/hooks/scripts/session-start.sh:10-18] [SOURCE: .github/hooks/scripts/user-prompt-submitted.sh:10-23] [SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/README.md:18-25] [SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/README.md:58-70] [INFERENCE: direct target checks reported both Copilot dist paths missing and the bounded runtime source inventory had no copilot directory]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: .claude/settings.json:96-203]",
+        "[SOURCE: .codex/hooks.json:3-155]",
+        "[SOURCE: .cursor/hooks.json:4-105]",
+        "[SOURCE: .devin/hooks.v1.json:2-177]",
+        "[SOURCE: .claude/hooks/README.md:9-45]",
+        "[SOURCE: .codex/hooks/README.md:9-42]",
+        "[SOURCE: .cursor/hooks/README.md:9-42]",
+        "[SOURCE: .devin/hooks/README.md:9-61]",
+        "[SOURCE: .github/hooks/scripts/session-start.sh:1-19]",
+        "[SOURCE: .github/hooks/scripts/user-prompt-submitted.sh:1-24]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/README.md:16-100]"
+      ]
+    },
+    {
+      "id": "finding-3-3-luna-015-copilot-fallback-mutates-a-repository-document-without-a-declared-owner",
+      "text": "**LUNA-015 — Copilot fallback mutates a repository document without a declared ownership or freshness guard. P1. CONFIRMED.** When the missing prompt hook target is encountered, `.github/hooks/scripts/user-prompt-submitted.sh` runs `mkdir -p` and writes a fixed context block to `.github/copilot-instructions.md`; the session-start wrapper only prints a degraded snapshot. This makes the absence of a built hook an externally visible write path, and it can overwrite operator content at the configured default path. Smallest fix: make the fallback stdout-only or write only through an explicitly owned generated-file contract with a safe marker/atomic policy; pair it with a check that distinguishes an intentional fallback from a missing registration. [SOURCE: .github/hooks/scripts/user-prompt-submitted.sh:10-23] [SOURCE: .github/hooks/scripts/session-start.sh:10-18] [INFERENCE: the target-missing branch is reachable in the current checkout because the referenced Copilot dist file is absent]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: .claude/settings.json:96-203]",
+        "[SOURCE: .codex/hooks.json:3-155]",
+        "[SOURCE: .cursor/hooks.json:4-105]",
+        "[SOURCE: .devin/hooks.v1.json:2-177]",
+        "[SOURCE: .claude/hooks/README.md:9-45]",
+        "[SOURCE: .codex/hooks/README.md:9-42]",
+        "[SOURCE: .cursor/hooks/README.md:9-42]",
+        "[SOURCE: .devin/hooks/README.md:9-61]",
+        "[SOURCE: .github/hooks/scripts/session-start.sh:1-19]",
+        "[SOURCE: .github/hooks/scripts/user-prompt-submitted.sh:1-24]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/README.md:16-100]"
+      ]
+    },
+    {
+      "id": "finding-3-4-luna-016-devin-s-live-failure-guidance-still-instructs-operators-to-build-the-re",
+      "text": "**LUNA-016 — Devin’s live failure guidance still instructs operators to build the retired `mcp-server` package. P2. CONFIRMED.** The active SessionStart and Stop commands target `runtime/dist/hooks/devin/*.js`, but their fallback messages tell operators to run `npm run build in mcp-server`; the corresponding UserPromptSubmit fallback already names the spec-kit runtime package. This split can send a repair attempt to a retired path after a real hook failure. Smallest fix: replace both stale fallback messages with the same runtime build command and add a literal-string scan to the hook configuration check. [SOURCE: .devin/hooks.v1.json:2-10] [SOURCE: .devin/hooks.v1.json:137-145] [SOURCE: .devin/hooks.v1.json:34-46]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: .claude/settings.json:96-203]",
+        "[SOURCE: .codex/hooks.json:3-155]",
+        "[SOURCE: .cursor/hooks.json:4-105]",
+        "[SOURCE: .devin/hooks.v1.json:2-177]",
+        "[SOURCE: .claude/hooks/README.md:9-45]",
+        "[SOURCE: .codex/hooks/README.md:9-42]",
+        "[SOURCE: .cursor/hooks/README.md:9-42]",
+        "[SOURCE: .devin/hooks/README.md:9-61]",
+        "[SOURCE: .github/hooks/scripts/session-start.sh:1-19]",
+        "[SOURCE: .github/hooks/scripts/user-prompt-submitted.sh:1-24]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/README.md:16-100]"
+      ]
+    },
+    {
+      "id": "finding-4-1-luna-017-the-scripts-workspace-declares-the-retired-vector-extension-with-no-cur",
+      "text": "**LUNA-017 — The scripts workspace declares the retired vector extension with no current non-test source importer. P1. CONFIRMED.** `@spec-kit/scripts` declares both `sqlite-vec` and the Darwin-specific `sqlite-vec-darwin-arm64` optional package. The active parity harness imports the legacy lane and `better-sqlite3`, while its database code opens the existing index directly; a bounded search of scripts production directories found no `sqlite-vec`, `sqlite_vec`, `vec0`, or `loadExtension` importer outside manifests and excluded tests/fixtures. This leaves a native package install path with no production consumer and preserves the vector-era dependency contract after the successor is the committed trigger-index/ripgrep path. Smallest fix: remove both declarations after the parity harness is explicitly confirmed database-only, or move them to a separately owned compatibility package with an executable importer and test. [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:21-30] [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs:44-62] [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs:950-965] [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/legacy-lane.mjs:195-207] [INFERENCE: bounded non-test/non-fixture source search returned no vector-extension importer]",
+      "addedAtIteration": 4,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/package.json:1-25]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/package.json:1-27]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-34]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/package.json:1-53]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:1-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/extraction/entity-extractor.ts:1-15]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:1-10,364-389]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/legacy-lane.mjs:18-23,195-207]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs:44-62,950-965]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:14-15]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/ipc/README.md:12-28]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts:1-6]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-53]",
+        "[SOURCE: .pi/extensions/README.md:18-29]",
+        "[SOURCE: .pi/extensions/deep-pi/package.json:28-50]"
+      ]
+    },
+    {
+      "id": "finding-4-2-luna-018-runtime-retains-a-native-sqlite-dependency-although-its-bounded-product",
+      "text": "**LUNA-018 — Runtime retains a native SQLite dependency although its bounded production imports are type-only. P1. CONFIRMED with reachability caveat.** `@spec-kit/runtime` declares `better-sqlite3`, but the production files found in the runtime database subsystem use `import type` in `entity-extractor.ts` and `transaction-manager.ts`; `runtime/core/config.ts` resolves a path and marker rather than constructing a database. The transaction manager still calls that resolver for a legacy pending-file recovery branch, so this is not merely an unused manifest row: the package ships a database-shaped subsystem whose native runtime dependency is not value-imported by the bounded source graph. Smallest fix: remove the legacy subsystem and dependency together, or give it a documented successor owner with a value importer and an end-to-end recovery test; do not drop only the package row while leaving deep-importable code. [SOURCE: .opencode/skills/system-spec-kit/runtime/package.json:41-44] [SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:5-9] [SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/extraction/entity-extractor.ts:6-15] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-10] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:364-389] [INFERENCE: no value import or public runtime caller was found in the bounded production search; type-only references and recovery code remain]",
+      "addedAtIteration": 4,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/package.json:1-25]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/package.json:1-27]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-34]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/package.json:1-53]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:1-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/extraction/entity-extractor.ts:1-15]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:1-10,364-389]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/legacy-lane.mjs:18-23,195-207]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs:44-62,950-965]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:14-15]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/ipc/README.md:12-28]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts:1-6]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-53]",
+        "[SOURCE: .pi/extensions/README.md:18-29]",
+        "[SOURCE: .pi/extensions/deep-pi/package.json:28-50]"
+      ]
+    },
+    {
+      "id": "finding-4-3-luna-019-dependency-ownership-is-deliberately-split-for-pi-hooks-but-the-split-i",
+      "text": "**LUNA-019 — Dependency ownership is deliberately split for Pi hooks, but the split is undocumented at the system-spec-kit package boundary. P2. INFERRED.** The runtime Pi hook sources import the Pi host API as a type and are explicitly excluded from the runtime TypeScript build; `.pi/extensions/README.md` says those same files are symlinked and loaded as Pi extensions, while the checked Pi extension packages declare the host API as a peer dependency. This is probably a valid host-owned dependency, not a missing runtime dependency, but the system-spec-kit workspace has no manifest at the `.pi/extensions` aggregate root to state that boundary. Smallest fix: document the host-provided peer contract at the symlink owner or add a package-local typecheck boundary; do not add the Pi host package to `@spec-kit/runtime` merely to silence the import. [SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts:1-6] [SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-53] [SOURCE: .pi/extensions/README.md:18-29] [SOURCE: .pi/extensions/deep-pi/package.json:28-50] [INFERENCE: the runtime build excludes hooks/pi and Pi package manifests own the host peer, so importer ownership is environmental rather than a runtime-package omission]",
+      "addedAtIteration": 4,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/package.json:1-25]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/package.json:1-27]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-34]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/package.json:1-53]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:1-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/extraction/entity-extractor.ts:1-15]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:1-10,364-389]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/legacy-lane.mjs:18-23,195-207]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs:44-62,950-965]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:14-15]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/ipc/README.md:12-28]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts:1-6]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-53]",
+        "[SOURCE: .pi/extensions/README.md:18-29]",
+        "[SOURCE: .pi/extensions/deep-pi/package.json:28-50]"
+      ]
+    },
+    {
+      "id": "finding-5-1-luna-020-the-complete-auto-detection-fixes-suite-is-disabled-including-live-work",
+      "text": "**LUNA-020 — The complete auto-detection fixes suite is disabled, including live workflow and folder-promotion paths. P1. CONFIRMED.** A TODO immediately precedes `describe.skip.sequential`, and the skipped block contains the end-to-end `runWorkflow` case plus parent-activity and child-activity detector cases. The suite therefore cannot catch a regression in the detector's current wrapper/metadata contract; the comment also says its assertions still target old packet-shape sections. Smallest fix: port the fixtures and assertions to the current successor packet shape, then remove the suite-level skip; retain a narrow compatibility test only if the old shape is intentionally supported. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:244-245] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:350-415]",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:244-245,350-415]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts:6-23,267-281]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:81-95,162-175,789-840,1279-1346]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/local-llm-features/profile-db-filename.vitest.ts:23-24,46-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:25-59]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts:14-58]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:162-175]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-naming-migration.js:27-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:15-28]"
+      ]
+    },
+    {
+      "id": "finding-5-2-luna-021-canonical-save-integration-is-represented-by-an-empty-skipped-test-so-a",
+      "text": "**LUNA-021 — Canonical-save integration is represented by an empty skipped test, so active tests do not prove `runWorkflow` writes the required metadata. P1. CONFIRMED.** The file describes a full-workflow harness as skip-pending, places the entire suite under `describe.skip`, and its only test body is intentionally empty. Unit tests above it can pass while the actual plan-only/full-auto save path stops updating `description.json` or graph metadata. Smallest fix: land the compact-wrapper fixture and assert both modes end-to-end, or remove the placeholder from the active suite and replace it with a current, executable integration contract. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts:6-23] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts:267-281]",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:244-245,350-415]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts:6-23,267-281]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:81-95,162-175,789-840,1279-1346]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/local-llm-features/profile-db-filename.vitest.ts:23-24,46-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:25-59]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts:14-58]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:162-175]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-naming-migration.js:27-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:15-28]"
+      ]
+    },
+    {
+      "id": "finding-5-3-luna-022-folder-detector-functional-checks-can-report-green-when-the-database-de",
+      "text": "**LUNA-022 — Folder-detector functional checks can report green when the database dependency or real database is unavailable. P1. CONFIRMED.** The runner increments a skipped counter without incrementing failures when `better-sqlite3` cannot load, temporary DB setup fails, or the real DB file is absent. Its main function runs those checks and exits nonzero only when `results.failed > 0`; a run in which every DB-backed check is skipped can therefore exit zero without testing the retired database fallback or its failure behavior. Smallest fix: make required DB checks fail closed in CI, or replace them with explicit successor-path tests and publish skipped counts as a gate failure when the database contract is no longer supported. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:81-95] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:162-175] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:789-840] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:1279-1346]",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:244-245,350-415]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts:6-23,267-281]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:81-95,162-175,789-840,1279-1346]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/local-llm-features/profile-db-filename.vitest.ts:23-24,46-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:25-59]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts:14-58]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:162-175]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-naming-migration.js:27-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:15-28]"
+      ]
+    },
+    {
+      "id": "finding-5-4-luna-023-profile-keyed-database-filename-coverage-is-entirely-skipped-while-the-",
+      "text": "**LUNA-023 — Profile-keyed database filename coverage is entirely skipped while the resolver still collapses to the legacy singleton. P1. CONFIRMED.** The profile test file states that the resolver collapses to `context-index.sqlite` and marks the whole suite skipped, although the skipped assertions define provider/model/dimension/dtype-specific filenames and explicitly reject the singleton. The shared Vitest setup independently confirms that this legacy default remains the resolver's derived path and must be isolated from production state. Smallest fix: decide whether profile-keyed DBs are a supported successor; then either activate and satisfy this contract or delete the abandoned contract and its legacy resolver/test setup together. [SOURCE: .opencode/skills/system-spec-kit/runtime/tests/local-llm-features/profile-db-filename.vitest.ts:23-24] [SOURCE: .opencode/skills/system-spec-kit/runtime/tests/local-llm-features/profile-db-filename.vitest.ts:46-84] [SOURCE: .opencode/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:25-59]",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:244-245,350-415]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts:6-23,267-281]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:81-95,162-175,789-840,1279-1346]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/local-llm-features/profile-db-filename.vitest.ts:23-24,46-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:25-59]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts:14-58]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:162-175]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-naming-migration.js:27-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:15-28]"
+      ]
+    },
+    {
+      "id": "finding-5-5-luna-024-memory-learn-documentation-parity-is-a-known-failure-skip-pair-rather-t",
+      "text": "**LUNA-024 — `/memory:learn` documentation parity is a known-failure/skip pair rather than an enforced migration check. P2. CONFIRMED.** The first parity assertion uses `it.fails.skip`, which deliberately ignores an expected contradiction, and the second workspace-wide alignment assertion is also skipped. A green test run therefore provides no evidence that the command docs, README files, and successor wording agree. Smallest fix: update the assertions to the intended successor wording and make both checks active; if `/memory:learn` is intentionally retired, assert its removal/redirect instead of preserving a skipped legacy contract. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts:14-26] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts:27-58]",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:244-245,350-415]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts:6-23,267-281]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:81-95,162-175,789-840,1279-1346]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/local-llm-features/profile-db-filename.vitest.ts:23-24,46-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:25-59]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts:14-58]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:162-175]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-naming-migration.js:27-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:15-28]"
+      ]
+    },
+    {
+      "id": "finding-5-6-luna-025-export-and-naming-tests-encode-memory-handler-files-as-required-contrac",
+      "text": "**LUNA-025 — Export and naming tests encode `memory-*` handler files as required contracts, which can preserve retired surface names during a rename. P2. INFERRED.** The export-contract test's required handler list includes `memory-context.ts`, `memory-crud.ts`, `memory-index.ts`, `memory-save.ts`, and `memory-search.ts`; the naming-migration test also grants a large cross-reference mismatch budget to memory handlers and `memory-parser.ts`. These files may still be intentionally supported, but the tests do not show a successor mapping or a retirement boundary, so deleting or renaming the surface is treated as a regression rather than a completed migration. Smallest fix: replace the list/budget with the successor API contract, or mark each retained memory handler as an explicit compatibility owner with an expiry test. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:162-175] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-naming-migration.js:27-84]",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:244-245,350-415]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts:6-23,267-281]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:81-95,162-175,789-840,1279-1346]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/local-llm-features/profile-db-filename.vitest.ts:23-24,46-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:25-59]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts:14-58]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:162-175]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-naming-migration.js:27-84]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:15-28]"
+      ]
+    },
+    {
+      "id": "finding-6-1-luna-026-the-skill-documentation-scopes-memory-db-path-to-the-advisor-while-the-",
+      "text": "**LUNA-026 — The skill documentation scopes `MEMORY_DB_PATH` to the advisor, while the live spec-kit detector still consumes it for session-folder discovery. P1. CONFIRMED.** The environment table says `MEMORY_DB_PATH` overrides the one SQLite store owned by the skill advisor and the note tells users to use it only for that advisor. The spec-folder detector imports the shared DB path and opens `session_learning` rows during its active Priority 2.5 path, and the runtime resolver explicitly treats `MEMORY_DB_PATH` as a system-spec-kit database-path input. A user following the documented ownership boundary can therefore change the detector's database selection without realizing it, or believe the retired system path is gone when it is not. Smallest fix: remove the detector's legacy DB branch, or document separate variable ownership and rename/scope the override so advisor and spec-kit consumers cannot silently share it. [SOURCE: .opencode/skills/system-spec-kit/README.md:354-370] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-22,1341-1354] [SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-75]",
+      "addedAtIteration": 6,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/README.md:284-294,328-337,354-374]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-22,1341-1354]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-75]",
+        "[SOURCE: .opencode/install-guides/README.md:544-568,904-934,987-998]",
+        "[SOURCE: README.md:304-310,953-955]",
+        "[SOURCE: .pi/extensions/README.md:23-30,59-74]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:1-17]",
+        "[SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:130-140]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/README.md:28-37]",
+        "[SOURCE: .claude/hooks/README.md:5-13]",
+        "[SOURCE: .codex/hooks/README.md:5-13]",
+        "[SOURCE: .cursor/hooks/README.md:5-13]",
+        "[SOURCE: .devin/hooks/README.md:5-13]"
+      ]
+    },
+    {
+      "id": "finding-6-2-luna-027-install-recovery-instructions-contradict-the-successor-s-explicit-no-da",
+      "text": "**LUNA-027 — Install recovery instructions contradict the successor's explicit no-database retrieval contract and still prescribe system-spec-kit database backup/rebuild behavior. P1. CONFIRMED.** The install guide says spec-folder retrieval has no server and no database to create, while its disaster-recovery section backs up and restores `.opencode/skills/system-spec-kit/runtime/database`, labels database corruption as a recovery case, and presents deletion/rebuild guidance in the same guide. The guide does not identify that database as a separately owned advisor store, so the old runtime database remains an actionable operational surface after the decommission narrative says it is absent. Smallest fix: delete the retired system-spec-kit database backup/recovery commands, or relabel them with the exact surviving owner/path and a testable recovery procedure. [SOURCE: .opencode/install-guides/README.md:544-568] [SOURCE: .opencode/install-guides/README.md:904-917,921-934] [SOURCE: .opencode/install-guides/README.md:987-998] [SOURCE: README.md:953-955]",
+      "addedAtIteration": 6,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/README.md:284-294,328-337,354-374]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-22,1341-1354]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-75]",
+        "[SOURCE: .opencode/install-guides/README.md:544-568,904-934,987-998]",
+        "[SOURCE: README.md:304-310,953-955]",
+        "[SOURCE: .pi/extensions/README.md:23-30,59-74]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:1-17]",
+        "[SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:130-140]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/README.md:28-37]",
+        "[SOURCE: .claude/hooks/README.md:5-13]",
+        "[SOURCE: .codex/hooks/README.md:5-13]",
+        "[SOURCE: .cursor/hooks/README.md:5-13]",
+        "[SOURCE: .devin/hooks/README.md:5-13]"
+      ]
+    },
+    {
+      "id": "finding-6-3-luna-028-the-pi-mirror-documents-a-nonexistent-bare-mcp-server-path-for-the-post",
+      "text": "**LUNA-028 — The Pi mirror documents a nonexistent bare `mcp-server` path for the post-compaction adapter. P2. CONFIRMED.** The Pi README says paths without a leading `.opencode/` are relative to `.opencode/skills/`, then identifies the session-compact delegate as `mcp-server/hooks/devin/post-compaction.cjs`. Under that documented resolution the path would be `.opencode/skills/mcp-server/...`; the current adapter is at `.opencode/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs`, and its source describes a current bespoke Devin adapter. This leaves a stale runtime-rename identity in a live mirror reference. Smallest fix: change the table to the full `system-spec-kit/runtime/hooks/devin/post-compaction.cjs` path and state that it is the current Devin adapter, not a port from an unnamed `mcp-server` package. [SOURCE: .pi/extensions/README.md:59-74] [SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:1-17] [INFERENCE: relative-path resolution from the Pi README makes the documented bare path resolve outside the owning package]",
+      "addedAtIteration": 6,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/README.md:284-294,328-337,354-374]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-22,1341-1354]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-75]",
+        "[SOURCE: .opencode/install-guides/README.md:544-568,904-934,987-998]",
+        "[SOURCE: README.md:304-310,953-955]",
+        "[SOURCE: .pi/extensions/README.md:23-30,59-74]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:1-17]",
+        "[SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:130-140]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/README.md:28-37]",
+        "[SOURCE: .claude/hooks/README.md:5-13]",
+        "[SOURCE: .codex/hooks/README.md:5-13]",
+        "[SOURCE: .cursor/hooks/README.md:5-13]",
+        "[SOURCE: .devin/hooks/README.md:5-13]"
+      ]
+    },
+    {
+      "id": "finding-6-4-luna-029-the-central-docs-leave-memory-named-successor-and-retired-code-boundari",
+      "text": "**LUNA-029 — The central docs leave memory-named successor and retired code boundaries ambiguous. P2. INFERRED.** The skill README says the old memory MCP server is gone and that its lifecycle, scoring, graph, and evaluation behavior did not return, but the same public documentation continues to expose `/memory:save`, `/memory:search`, `scripts/dist/memory/generate-context.js`, and memory environment variables. The architecture document additionally names `handlers/memory-index-discovery.ts` as the discovery implementation, while the runtime README lists `scripts/memory/generate-context.ts` as a live caller. The continuity names are partly intentional, but the docs do not mark which memory-named paths are successor continuity surfaces, compatibility code, or debt slated for removal; this makes a decommission audit and operator troubleshooting non-deterministic. Smallest fix: add an ownership table mapping every retained memory-named command/module/env var to its successor contract, or rename/remove the entries that are not supported. [SOURCE: .opencode/skills/system-spec-kit/README.md:284-294,328-337,354-374] [SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:130-140] [SOURCE: .opencode/skills/system-spec-kit/runtime/README.md:28-37]",
+      "addedAtIteration": 6,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/README.md:284-294,328-337,354-374]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-22,1341-1354]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-75]",
+        "[SOURCE: .opencode/install-guides/README.md:544-568,904-934,987-998]",
+        "[SOURCE: README.md:304-310,953-955]",
+        "[SOURCE: .pi/extensions/README.md:23-30,59-74]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:1-17]",
+        "[SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:130-140]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/README.md:28-37]",
+        "[SOURCE: .claude/hooks/README.md:5-13]",
+        "[SOURCE: .codex/hooks/README.md:5-13]",
+        "[SOURCE: .cursor/hooks/README.md:5-13]",
+        "[SOURCE: .devin/hooks/README.md:5-13]"
+      ]
+    },
+    {
+      "id": "finding-7-1-luna-030-the-successor-retrieval-corpus-omits-root-runtime-mirror-and-install-gu",
+      "text": "**LUNA-030 — The successor retrieval corpus omits root, runtime-mirror, and install-guide documentation. P2. CONFIRMED.** The trigger-index walker hard-codes only `specs` and `.opencode/skills` as corpus roots. The prescribed ripgrep “everything” scope is `specs .opencode`, which adds install guides but still omits root `README.md`, `AGENTS.md`, and the `.claude`, `.codex`, `.cursor`, `.devin`, and `.pi` mirrors. Those files exist and are part of the decommission review surface, so a prompt or exact term found only there produces no Gate-1 candidate and no result from the documented all-corpus grep. Smallest fix: add explicit, deduplicated documentation roots to both successor lanes, or state and enforce a separate mirror/root retrieval path so the omission is not mistaken for a clean no-hit. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:19-30,118-145] [SOURCE: .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:138-147] [INFERENCE: the listed root README, AGENTS.md, install guide, and runtime-mirror README files are outside the two declared root sets]",
+      "addedAtIteration": 7,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:19-31,53-70,118-145]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs:11-15,363-380]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs:72-85,150-178]",
+        "[SOURCE: .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:17-65,138-147,234-255]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:90-105,920-950]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1319-1331,1580-1588]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/README.md:16-23,55-73]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/api/index.ts:30-40,43-56]",
+        "[SOURCE: README.md:300-304,953-955]",
+        "[SOURCE: AGENTS.md:330-334,453-464]",
+        "[SOURCE: .opencode/install-guides/README.md:544-568]",
+        "[SOURCE: .claude/hooks/README.md:5-13]",
+        "[SOURCE: .codex/hooks/README.md:5-13]",
+        "[SOURCE: .cursor/hooks/README.md:5-13]",
+        "[SOURCE: .devin/hooks/README.md:5-13]",
+        "[SOURCE: .pi/extensions/README.md:10-29]"
+      ]
+    },
+    {
+      "id": "finding-7-2-luna-031-the-workflow-claims-canonical-saves-belong-to-a-missing-handlers-memory",
+      "text": "**LUNA-031 — The workflow claims canonical saves belong to a missing `handlers/memory-save.ts` content router. P1. CONFIRMED reference gap, with behavior impact inferred.** The workflow explicitly says the retired memory artifact no longer exists and that canonical-document saves are owned by `handlers/memory-save.ts`. The runtime handlers README lists only `memory-index-discovery.ts` and `save/spec-folder-mutex.ts`, the public API exports metadata/discovery helpers but no content-router entry, and the named `runtime/handlers/memory-save.ts` source is absent. The writer invokes `runWorkflow()` and then only performs metadata/graph follow-ups, so the documented owner is not a verifiable successor boundary; this also explains why the canonical-save integration remains a skipped placeholder from iteration 5. Smallest fix: point the workflow and docs at the actual canonical content writer, or restore a narrow content-router entry with an active end-to-end save test; do not leave a missing handler as the ownership claim. [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1319-1331] [SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/README.md:16-23,55-73] [SOURCE: .opencode/skills/system-spec-kit/runtime/api/index.ts:30-40,43-56] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:920-950] [INFERENCE: bounded source inventory found no runtime/handlers/memory-save.ts and no content-router import]",
+      "addedAtIteration": 7,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:19-31,53-70,118-145]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs:11-15,363-380]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs:72-85,150-178]",
+        "[SOURCE: .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:17-65,138-147,234-255]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:90-105,920-950]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1319-1331,1580-1588]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/README.md:16-23,55-73]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/api/index.ts:30-40,43-56]",
+        "[SOURCE: README.md:300-304,953-955]",
+        "[SOURCE: AGENTS.md:330-334,453-464]",
+        "[SOURCE: .opencode/install-guides/README.md:544-568]",
+        "[SOURCE: .claude/hooks/README.md:5-13]",
+        "[SOURCE: .codex/hooks/README.md:5-13]",
+        "[SOURCE: .cursor/hooks/README.md:5-13]",
+        "[SOURCE: .devin/hooks/README.md:5-13]",
+        "[SOURCE: .pi/extensions/README.md:10-29]"
+      ]
+    },
+    {
+      "id": "finding-7-3-luna-032-a-canonical-save-can-leave-the-committed-trigger-index-representing-an-",
+      "text": "**LUNA-032 — A canonical save can leave the committed trigger index representing an earlier corpus. P2. CONFIRMED boundary, with stale-result risk inferred.** The continuity writer says a save has no indexing handoff and instructs callers to run the trigger-index generator separately when trigger phrases change; the workflow repeats that it is only pointing at the generator. The generator publishes a new artifact but no save-time step or lookup-time freshness comparison ties a successful canonical save to a current index. This is an intentional separation, but it is a successor coverage gap if a save changes an indexed Markdown document and the caller does not perform the extra command: Gate 1 can return a valid, shape-checked result for the prior corpus. Smallest fix: invoke or enqueue a deterministic index refresh after relevant frontmatter changes, or add a manifest/freshness gate that turns a stale index into an explicit diagnostic rather than a normal lookup. [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:90-96] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1580-1588] [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs:13-15,363-380] [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs:72-85,150-178] [INFERENCE: the writer and lookup have no shared post-save refresh or current-corpus comparison]",
+      "addedAtIteration": 7,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:19-31,53-70,118-145]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs:11-15,363-380]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs:72-85,150-178]",
+        "[SOURCE: .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:17-65,138-147,234-255]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:90-105,920-950]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1319-1331,1580-1588]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/handlers/README.md:16-23,55-73]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/api/index.ts:30-40,43-56]",
+        "[SOURCE: README.md:300-304,953-955]",
+        "[SOURCE: AGENTS.md:330-334,453-464]",
+        "[SOURCE: .opencode/install-guides/README.md:544-568]",
+        "[SOURCE: .claude/hooks/README.md:5-13]",
+        "[SOURCE: .codex/hooks/README.md:5-13]",
+        "[SOURCE: .cursor/hooks/README.md:5-13]",
+        "[SOURCE: .devin/hooks/README.md:5-13]",
+        "[SOURCE: .pi/extensions/README.md:10-29]"
+      ]
+    },
+    {
+      "id": "finding-8-1-luna-033-dist-freshness-checker-errors-can-be-silently-treated-as-success-by-val",
+      "text": "**LUNA-033 — Dist-freshness checker errors can be silently treated as success by `validate.sh`. P1. CONFIRMED error-path defect; practical false-green impact inferred.** `validate.sh` treats exit 69 as stale and any other nonzero freshness exit as a warning before invoking the compiled orchestrator. The freshness checker has a distinct `status: 'error'` result for missing watched source paths, no watched sources, and checker failures, but its CLI exits 69 only when `result.stale` is true and otherwise exits 0. Therefore a freshness error can produce exit 0, no warning in `validate.sh`, and allow the compiled validator to report a normal result. The exact stale-versus-error runtime sequence requires a provisioned checkout and a matching failure condition, so the policy defect is confirmed while the false-green consequence is inferred. Smallest fix: make the freshness CLI return a dedicated nonzero code for `status: 'error'`, and make `validate.sh` stop with a system-error result rather than continue on that code. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:275-299] [SOURCE: .opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:614-626,675-689,894-946] [INFERENCE: an error result that exits 0 is invisible to the caller and can leave a stale-but-runnable compiled gate as the apparent authority]",
+      "addedAtIteration": 8,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:17-22,114-115,275-299]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:614-626,675-689,894-946]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/config/capability-flags.ts:62-115,176-201]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/generated-metadata-integrity.ts:202-264,308-405]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:917-933]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:88-93,296-316,350-409,537-555]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:438-451]",
+        "[SOURCE: .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:219-273]",
+        "[SOURCE: .opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs:119-161]"
+      ]
+    },
+    {
+      "id": "finding-8-2-luna-034-generated-status-complete-can-pass-strict-validation-while-completion-e",
+      "text": "**LUNA-034 — Generated `status: complete` can pass strict validation while completion evidence disagrees. P1. CONFIRMED.** The status/completion consistency capability defaults to report mode because of a known backlog; the integrity resolver keeps `STATUS_COMPLETE_EVIDENCE_MISMATCH` nonblocking unless `SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE` is explicitly enabled. The orchestrator's final verdict counts only `error` entries, so an `info` mismatch does not change `passed: true`, including under `--strict`. A generated packet can consequently claim complete while its `implementation-summary.md` is below 100% or `tasks.md` has unchecked items. Smallest fix: enforce the consistency rule for decommission packets (or graduate the default globally) and require an explicit waiver for known legacy folders. [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/config/capability-flags.ts:176-201] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/generated-metadata-integrity.ts:202-264,377-394] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:917-933]",
+      "addedAtIteration": 8,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:17-22,114-115,275-299]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:614-626,675-689,894-946]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/config/capability-flags.ts:62-115,176-201]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/generated-metadata-integrity.ts:202-264,308-405]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:917-933]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:88-93,296-316,350-409,537-555]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:438-451]",
+        "[SOURCE: .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:219-273]",
+        "[SOURCE: .opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs:119-161]"
+      ]
+    },
+    {
+      "id": "finding-8-3-luna-035-continuity-freshness-is-opt-in-and-treats-absent-evidence-as-a-passing-",
+      "text": "**LUNA-035 — Continuity freshness is opt-in and treats absent evidence as a passing skip. P1. CONFIRMED.** The CLI runs the continuity rule only when `SPECKIT_COMPLETION_FRESHNESS` is truthy. Even when opted in, no completion claim, a missing fingerprint, or a zero placeholder returns `status: pass` with a “skipped” code, and missing implementation-summary/frontmatter/graph timestamps also return pass-style skip results. Strict mode only escalates `warn`; it cannot distinguish these skips from a fresh pass. Thus completion orchestration can have no continuity freshness proof while receiving a successful status. Smallest fix: represent not-applicable/skipped as a distinct non-success outcome and make completion claims require a usable fingerprint plus the relevant packet timestamps, or explicitly record a bounded legacy waiver. [SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:88-93,296-316,350-409,537-555]",
+      "addedAtIteration": 8,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:17-22,114-115,275-299]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:614-626,675-689,894-946]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/config/capability-flags.ts:62-115,176-201]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/generated-metadata-integrity.ts:202-264,308-405]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:917-933]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:88-93,296-316,350-409,537-555]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:438-451]",
+        "[SOURCE: .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:219-273]",
+        "[SOURCE: .opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs:119-161]"
+      ]
+    },
+    {
+      "id": "finding-8-4-luna-036-explicit-validation-bypasses-and-missing-completion-sections-return-zer",
+      "text": "**LUNA-036 — Explicit validation bypasses and missing completion sections return zero, indistinguishable from a validated pass to exit-code callers. P2. CONFIRMED operator-contract risk.** `validate.sh` exits 0 when `SPECKIT_SKIP_VALIDATION` is set and also exits 0 for `SPECKIT_VALIDATION=false`. Separately, `check-completion.sh` exits 0 when `tasks.md` lacks the verification anchor, explaining that the folder may be Level 1. These are legitimate opt-out/Level-1 cases when intentionally selected, but a wrapper that checks only process success cannot tell “validated and complete” from “validation skipped/not applicable.” Smallest fix: emit a machine-readable skipped status and require callers that assert completion to reject it unless an explicit, recorded policy waiver is present. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:17-22,114-115] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:438-451]",
+      "addedAtIteration": 8,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:17-22,114-115,275-299]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:614-626,675-689,894-946]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/config/capability-flags.ts:62-115,176-201]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/generated-metadata-integrity.ts:202-264,308-405]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:917-933]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:88-93,296-316,350-409,537-555]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:438-451]",
+        "[SOURCE: .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:219-273]",
+        "[SOURCE: .opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs:119-161]"
+      ]
+    },
+    {
+      "id": "finding-9-1-luna-037-doctor-update-still-exposes-a-live-retired-context-index-memory-migrati",
+      "text": "**LUNA-037 — `/doctor:update` still exposes a live retired context-index/memory migration workflow. P1. CONFIRMED.** The active `/doctor:update` router loads `doctor-update.yaml`, whose purpose is still to rebuild “runtime databases” and whose dependency order starts with `context-index`. The YAML retains `mcp-server/database` snapshot and state paths, a `migration-manifest.json` phase, a legacy `memory/*.md` detector that recommends `/memory:save`, and a dependency execution step named `context-index`, while the current `/doctor memory` successor explicitly diagnoses a trigger index with no database or daemon. The old workflow is therefore still reachable configuration, not merely a historical note; it can present or execute obsolete migration/cleanup semantics alongside the successor route. Smallest fix: remove/deprecate `/doctor:update`'s retired context-index and memory phases, then define one current update workflow for trigger-index, advisor, and deep-loop owners with paths validated against the renamed runtime. [SOURCE: .opencode/commands/doctor/update.md:1-8,25-36,69] [SOURCE: .opencode/commands/doctor/assets/doctor-update.yaml:1-22,87-130,240-328,354-369] [SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:21-35,43-55] [INFERENCE: the router's live asset load makes the obsolete phases reachable whenever an operator invokes /doctor:update]",
+      "addedAtIteration": 9,
+      "sources": [
+        "[SOURCE: .opencode/commands/doctor/update.md:1-8,25-36,69]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-update.yaml:1-22,87-130,240-328,330-386]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:1-35,43-73,231-233]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-deep-loop.yaml:80-108]",
+        "[SOURCE: .opencode/commands/doctor/_routes.yaml:35-47]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-speckit-presentation.txt:70-96]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/doctor.sh:5-17,40-72]",
+        "[SOURCE: .opencode/commands/scripts/validate-command-references.cjs:1-23,31-65,230-288]",
+        "[SOURCE: .opencode/skills/system-spec-kit/README.md:585-615]",
+        "[SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:198-205]"
+      ]
+    },
+    {
+      "id": "finding-9-2-luna-038-deep-loop-doctor-policy-keeps-unqualified-retired-database-patterns-in-",
+      "text": "**LUNA-038 — Deep-loop doctor policy keeps unqualified retired database patterns in its forbidden-target contract. P2. CONFIRMED stale policy residue.** The deep-loop doctor has current allowed targets under `.opencode/skills/system-deep-loop/runtime/database`, but its forbidden-target list still names bare `mcp-server/database/*context-index*`, `*voyage*`, `*skill*`, `*eval*`, `*causal*`, and `*coco*` patterns. These patterns are not rooted at the current package and preserve the pre-rename database vocabulary inside a live doctor asset; because the YAML is itself an input to the doctor contract, this can keep old paths in audits and confuse path-validation ownership even if no file currently matches. Smallest fix: delete obsolete patterns or replace them with explicit, repository-rooted retired-path assertions tied to the decommission checklist. [SOURCE: .opencode/commands/doctor/assets/doctor-deep-loop.yaml:80-108] [INFERENCE: a forbidden-target pattern is policy data rather than proof of an existing file or write, so the current finding is residue/ownership drift, not confirmed database mutation]",
+      "addedAtIteration": 9,
+      "sources": [
+        "[SOURCE: .opencode/commands/doctor/update.md:1-8,25-36,69]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-update.yaml:1-22,87-130,240-328,330-386]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:1-35,43-73,231-233]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-deep-loop.yaml:80-108]",
+        "[SOURCE: .opencode/commands/doctor/_routes.yaml:35-47]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-speckit-presentation.txt:70-96]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/doctor.sh:5-17,40-72]",
+        "[SOURCE: .opencode/commands/scripts/validate-command-references.cjs:1-23,31-65,230-288]",
+        "[SOURCE: .opencode/skills/system-spec-kit/README.md:585-615]",
+        "[SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:198-205]"
+      ]
+    },
+    {
+      "id": "finding-9-3-luna-039-the-system-spec-kit-doctor-returns-zero-in-advisory-mode-after-runtime-",
+      "text": "**LUNA-039 — The system-spec-kit doctor returns zero in advisory mode after runtime imports fail. P1. CONFIRMED.** `doctor.sh` describes exit 0 as “health checks passed (or advisory mode complete).” If `better-sqlite3` or `zod` cannot be imported, it logs a failure and continues unless `--strict` was supplied; only strict mode exits 26. A caller that invokes the documented default doctor or checks only process success can therefore accept a runtime whose first-use imports are broken. This matters to the decommission successor because the doctor is the installation health boundary for the renamed runtime, even though the retained SQLite dependency itself needs a separate ownership decision. Smallest fix: make dependency failures nonzero by default, or emit an explicit machine-readable advisory/failure status that every completion or install caller must reject unless it requests advisory mode. [SOURCE: .opencode/skills/system-spec-kit/scripts/doctor.sh:5-17,40-72]",
+      "addedAtIteration": 9,
+      "sources": [
+        "[SOURCE: .opencode/commands/doctor/update.md:1-8,25-36,69]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-update.yaml:1-22,87-130,240-328,330-386]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:1-35,43-73,231-233]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-deep-loop.yaml:80-108]",
+        "[SOURCE: .opencode/commands/doctor/_routes.yaml:35-47]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-speckit-presentation.txt:70-96]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/doctor.sh:5-17,40-72]",
+        "[SOURCE: .opencode/commands/scripts/validate-command-references.cjs:1-23,31-65,230-288]",
+        "[SOURCE: .opencode/skills/system-spec-kit/README.md:585-615]",
+        "[SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:198-205]"
+      ]
+    },
+    {
+      "id": "finding-9-4-luna-040-the-successor-trigger-index-doctor-remains-branded-as-doctor-memory-wit",
+      "text": "**LUNA-040 — The successor trigger-index doctor remains branded as `/doctor memory` without an explicit compatibility boundary. P2. CONFIRMED naming/ownership drift.** The route manifest and presentation expose target `memory` and `doctor-memory.yaml`, while that YAML now diagnoses `runtime/data/trigger-index.json`, a lexical lookup, and ripgrep conventions and explicitly says the database and daemon are retired. The name is thus not evidence of a remaining database, but it keeps a retired surface name in the active route, workflow identifiers, report/state filenames, and acceptance path. Smallest fix: rename the active target and asset to `retrieval` or `trigger-index`, or document `/doctor memory` as a time-bounded compatibility alias whose output and ownership are unambiguously successor-only. [SOURCE: .opencode/commands/doctor/_routes.yaml:35-47] [SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:1-35,69-73,231-233] [SOURCE: .opencode/commands/doctor/assets/doctor-speckit-presentation.txt:70-96]",
+      "addedAtIteration": 9,
+      "sources": [
+        "[SOURCE: .opencode/commands/doctor/update.md:1-8,25-36,69]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-update.yaml:1-22,87-130,240-328,330-386]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:1-35,43-73,231-233]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-deep-loop.yaml:80-108]",
+        "[SOURCE: .opencode/commands/doctor/_routes.yaml:35-47]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-speckit-presentation.txt:70-96]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/doctor.sh:5-17,40-72]",
+        "[SOURCE: .opencode/commands/scripts/validate-command-references.cjs:1-23,31-65,230-288]",
+        "[SOURCE: .opencode/skills/system-spec-kit/README.md:585-615]",
+        "[SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:198-205]"
+      ]
+    },
+    {
+      "id": "finding-10-1-luna-041-the-worktree-launcher-still-exports-a-live-system-spec-kit-database-dir",
+      "text": "**LUNA-041 — The worktree launcher still exports a live system-spec-kit database directory into every top-level runtime session. P1. CONFIRMED path wiring; runtime file use is INFERRED.** `worktree-session.sh` assigns each worktree `WT_DB_DIR` to `.opencode/skills/system-spec-kit/runtime/database`, prints it as `SPEC_KIT_DB_DIR`, and exports that variable before launching the runtime. The renamed runtime consumes `SPEC_KIT_DB_DIR` before the legacy `SPECKIT_DB_DIR` and `MEMORY_DB_PATH` variables, derives `DATABASE_DIR`/`DATABASE_PATH`, and its shared fallback `DB_PATH` also resolves under `runtime/database`. The successor doctor, in contrast, defines `runtime/data/trigger-index.json` as the diagnosed artifact and says there is no database or daemon. The confirmed defect is the active producer/consumer path contract: a normal worktree launch still advertises and routes a retired database location. Whether a production caller actually opens or creates a file there is inferred, because the bounded runtime source search found only type-only `better-sqlite3` imports and no constructor. Smallest fix: remove the system-spec-kit `SPEC_KIT_DB_DIR` export and database isolation from the launcher after the remaining database consumer is removed, or explicitly re-home a surviving owner under a current, named data contract and update the doctor/ignore rules together. [SOURCE: .opencode/bin/worktree-session.sh:224-244,324-326] [SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113] [SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171] [SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:18-35]",
+      "addedAtIteration": 10,
+      "sources": [
+        "[SOURCE: .opencode/bin/worktree-session.sh:224-244,324-326]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:18-35,43-55]",
+        "[SOURCE: .gitignore:302-307]",
+        "[SOURCE: .github/workflows/changed-packet-validation.yml:24-37]",
+        "[SOURCE: .github/workflows/strict-pass-freshness-report.yml:32-45]",
+        "[SOURCE: opencode.json:11-25]",
+        "[SOURCE: .mcp.json:1-25]",
+        "[SOURCE: .opencode/plugins/system-skill-advisor.js:169-189]"
+      ]
+    },
+    {
+      "id": "finding-10-2-luna-042-the-ignore-contract-still-describes-runtime-database-as-the-retrieval-i",
+      "text": "**LUNA-042 — The ignore contract still describes `runtime/database` as the retrieval index and backup location even though the successor artifact is the trigger index under `runtime/data`. P2. CONFIRMED documentation/configuration drift.** The root ignore file labels `.opencode/skills/system-spec-kit/runtime/database/` as “the spec-kit retrieval index and its backups,” while the live successor doctor identifies `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` as the generated retrieval artifact and explicitly says the workflow has no database. The ignore rule may be useful for preventing runtime debris from being committed, but its current description preserves the retired database as if it were the canonical retrieval surface. Smallest fix: remove the obsolete `runtime/database` rule if no owner remains, or relabel it as compatibility/legacy cleanup and add an explicit rule for the current generated data boundary. [SOURCE: .gitignore:302-307] [SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:18-35,43-55]",
+      "addedAtIteration": 10,
+      "sources": [
+        "[SOURCE: .opencode/bin/worktree-session.sh:224-244,324-326]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:18-35,43-55]",
+        "[SOURCE: .gitignore:302-307]",
+        "[SOURCE: .github/workflows/changed-packet-validation.yml:24-37]",
+        "[SOURCE: .github/workflows/strict-pass-freshness-report.yml:32-45]",
+        "[SOURCE: opencode.json:11-25]",
+        "[SOURCE: .mcp.json:1-25]",
+        "[SOURCE: .opencode/plugins/system-skill-advisor.js:169-189]"
+      ]
+    },
+    {
+      "id": "finding-10-3-luna-043-active-ci-workflows-still-describe-the-renamed-workspace-as-an-mcp-serv",
+      "text": "**LUNA-043 — Active CI workflows still describe the renamed workspace as an `mcp-server`/server package. P2. CONFIRMED documentation drift.** The changed-packet and strict-freshness workflows say validator rules import across the “mcp-server package” and describe “server, shared project and scripts” workspaces, but their actual commands build `shared`, run `runtime`, and install `scripts`; no current system-spec-kit `mcp-server` step appears in those blocks. This can mislead maintainers toward the retired package when repairing CI or deciding which workspace is authoritative, even though the commands themselves currently target the renamed runtime. Smallest fix: update the comments to name `runtime`, `shared`, and `scripts` and state the actual package-root lockfile relationship. [SOURCE: .github/workflows/changed-packet-validation.yml:24-37] [SOURCE: .github/workflows/strict-pass-freshness-report.yml:32-45]",
+      "addedAtIteration": 10,
+      "sources": [
+        "[SOURCE: .opencode/bin/worktree-session.sh:224-244,324-326]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/paths.ts:143-171]",
+        "[SOURCE: .opencode/commands/doctor/assets/doctor-memory.yaml:18-35,43-55]",
+        "[SOURCE: .gitignore:302-307]",
+        "[SOURCE: .github/workflows/changed-packet-validation.yml:24-37]",
+        "[SOURCE: .github/workflows/strict-pass-freshness-report.yml:32-45]",
+        "[SOURCE: opencode.json:11-25]",
+        "[SOURCE: .mcp.json:1-25]",
+        "[SOURCE: .opencode/plugins/system-skill-advisor.js:169-189]"
+      ]
+    },
+    {
+      "id": "finding-11-1-luna-044-codex-and-devin-runtime-hook-registrations-convert-missing-adapter-fail",
+      "text": "**LUNA-044 — Codex and Devin runtime-hook registrations convert missing adapter failures into successful shell commands. P1. CONFIRMED shell semantics; host-level false-green impact is INFERRED.** The Codex `SessionStart`, `UserPromptSubmit`, and `Stop` registrations run compiled `system-spec-kit/runtime/dist/hooks/...` adapters followed by `|| printf` of a warning envelope. The Devin `SessionStart` and `Stop` registrations use the same `node ... || printf` shape. In POSIX shell, if the `node` process cannot resolve a renamed/dropped adapter or exits nonzero, the `printf` branch runs and becomes the command's final status, normally zero. The warning text is only additional context; it is not a nonzero health result. Thus the confirmed registration contract masks adapter failure at the shell boundary, while the inference is that the host treats the hook as successful and continues without the lifecycle/prompt/stop behavior. Smallest fix: keep an explicit fail-open user message if desired, but return a machine-detectable nonzero status or emit a structured failure signal that the hook host and install/check tooling reject; keep the build path in the current `runtime` package. [SOURCE: .codex/hooks.json:3-9,43-59,122-132] [SOURCE: .devin/hooks.v1.json:2-9,137-149]",
+      "addedAtIteration": 11,
+      "sources": [
+        "[SOURCE: .codex/hooks.json:3-9,43-59,122-142]",
+        "[SOURCE: .devin/hooks.v1.json:2-9,137-177]",
+        "[SOURCE: .claude/settings.json:157-164]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-65]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/README.md:15-25,55-65]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/codex/README.md:16-34]"
+      ]
+    },
+    {
+      "id": "finding-11-2-luna-045-codex-stop-cleanup-has-an-unreachable-diagnostic-fallback-and-therefore",
+      "text": "**LUNA-045 — Codex Stop cleanup has an unreachable diagnostic fallback and therefore hides cleanup failure. P2. CONFIRMED shell semantics.** The Codex Stop registration runs `.opencode/scripts/session-cleanup.sh >/dev/null 2>&1 || true || printf ...`. Because `true` always succeeds after any cleanup failure, the second `|| printf` branch can never execute; the hook command always exits zero and emits no warning. Claude's corresponding SessionEnd registration also explicitly suppresses cleanup failure with `|| true`, while Devin invokes cleanup without a diagnostic fallback. This is a live lifecycle observability gap: a dropped or broken cleanup path can survive registration checks as a successful event, leaving stale session state undetected. Smallest fix: use one intentional best-effort wrapper that logs/returns a structured warning, or preserve failure status when cleanup is part of the health contract; do not chain a diagnostic branch after unconditional `true`. [SOURCE: .codex/hooks.json:122-142] [SOURCE: .claude/settings.json:157-164] [SOURCE: .devin/hooks.v1.json:168-177]",
+      "addedAtIteration": 11,
+      "sources": [
+        "[SOURCE: .codex/hooks.json:3-9,43-59,122-142]",
+        "[SOURCE: .devin/hooks.v1.json:2-9,137-177]",
+        "[SOURCE: .claude/settings.json:157-164]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-65]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/README.md:15-25,55-65]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/codex/README.md:16-34]"
+      ]
+    },
+    {
+      "id": "finding-12-1-luna-046-the-scripts-workspace-still-exposes-memory-management-and-dist-memory-a",
+      "text": "**LUNA-046 — The scripts workspace still exposes “memory management” and `dist/memory` as its package identity and primary test contract. P2. CONFIRMED metadata drift.** `@spec-kit/scripts` describes itself as CLI tools for “spec-kit context generation and memory management” and sets its package `main` to `dist/memory/generate-context.js`. The parent workspace's `test:root` and `test:cli` scripts also invoke that `dist/memory` entry directly. The source writer is a surviving continuity mechanism, so the path is not proof that the old memory database is still required; the defect is that the package boundary does not state that this is a successor continuity writer and leaves the retired memory namespace looking canonical. Smallest fix: rename/re-home the public entrypoint if compatibility permits, or mark the `dist/memory` path as a successor-only compatibility alias and update the package description and root test labels. [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-6,10-19] [SOURCE: .opencode/skills/system-spec-kit/package.json:14-24] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:90-105,920-950]",
+      "addedAtIteration": 12,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-6,10-19,21-33]",
+        "[SOURCE: .opencode/skills/system-spec-kit/package.json:14-24]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/README.md:339-344]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:90-105,920-950]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-20,1341-1351]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-10,364-389]",
+        "[SOURCE: .opencode/skills/system-spec-kit/README.md:374-378]"
+      ]
+    },
+    {
+      "id": "finding-12-2-luna-047-the-shared-readme-claims-the-skill-advisor-is-the-only-database-consume",
+      "text": "**LUNA-047 — The shared README claims the skill-advisor is the only database consumer while system-spec-kit production code still opens the shared `DB_PATH`. P2. CONFIRMED ownership-documentation contradiction.** The shared package documentation says `shared/` owns no store and that “the skill advisor, the one consumer today” writes the SQLite graph. In the same repository, the spec-folder detector imports `DB_PATH` and constructs a read-only `better-sqlite3` handle against it; the renamed runtime also re-exports database-path resolution to its storage layer. This is not merely a type-only dependency: the detector's constructor is a production importer. Smallest fix: either remove/re-home the detector's database fallback as part of decommission, or correct the shared/runtime ownership map to name the remaining detector/transaction consumers and their retirement boundary. [SOURCE: .opencode/skills/system-spec-kit/shared/README.md:339-344] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-20,1341-1351] [SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-10,364-389]",
+      "addedAtIteration": 12,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:1-6,10-19,21-33]",
+        "[SOURCE: .opencode/skills/system-spec-kit/package.json:14-24]",
+        "[SOURCE: .opencode/skills/system-spec-kit/shared/README.md:339-344]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:90-105,920-950]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:15-20,1341-1351]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-10,364-389]",
+        "[SOURCE: .opencode/skills/system-spec-kit/README.md:374-378]"
+      ]
+    },
+    {
+      "id": "finding-13-1-luna-048-task-enrichment-successor-save-assertions-are-disabled-behind-fixture-t",
+      "text": "**LUNA-048 — Task-enrichment successor save assertions are disabled behind fixture TODOs. P1. CONFIRMED.** The task-enrichment suite leaves assertions for legacy-context filename absence, contamination auditing, provenance, stateless saves, and state-leak behavior disabled while compact-wrapper fixtures are unfinished. The file therefore does not provide active proof that the successor save path preserves those boundaries. Smallest fix: restore the compact-wrapper fixtures and re-enable the assertions, or replace each with an explicitly enforced successor equivalent. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:929-977] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1026-1089,1395-1458]",
+      "addedAtIteration": 13,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:929-977,1026-1089,1395-1458]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/canonical-save-validation.vitest.ts:125-215]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:18-26]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/README.md:14-25,80-89]"
+      ]
+    },
+    {
+      "id": "finding-13-2-luna-049-the-canonical-save-validator-s-negative-and-drift-contract-is-entirely-",
+      "text": "**LUNA-049 — The canonical-save validator's negative and drift contract is entirely `fails.skip`. P1. CONFIRMED.** The validator skips the principal checks for runtime regressions, missing root spec/source-doc inputs, lineage cutoffs, identity drift, freshness skew, and the full rule pack. A green test run can therefore omit the exact successor contract that would catch decommission drift. Smallest fix: repair the underlying runtime seams and re-enable the tests, or move them into a separately enforced blocking regression suite. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/canonical-save-validation.vitest.ts:125-215]",
+      "addedAtIteration": 13,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:929-977,1026-1089,1395-1458]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/canonical-save-validation.vitest.ts:125-215]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:18-26]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/README.md:14-25,80-89]"
+      ]
+    },
+    {
+      "id": "finding-13-3-luna-050-vitest-excludes-a-nonexistent-runtime-tests-memory-save-vitest-ts-path-",
+      "text": "**LUNA-050 — Vitest excludes a nonexistent `runtime/tests/memory-save.vitest.ts` path. P2. CONFIRMED.** The runtime Vitest configuration retains an exclusion for a path that is absent from the bounded source inventory. The exclusion can hide a deleted or renamed test without causing configuration failure, and it gives no evidence that a current replacement covers the same behavior. Smallest fix: remove the dead exclusion or point it at the current replacement test and assert that special exclusions resolve. [SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:18-26] [INFERENCE: direct source-path inspection found no file at the excluded runtime/tests path]",
+      "addedAtIteration": 13,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:929-977,1026-1089,1395-1458]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/canonical-save-validation.vitest.ts:125-215]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:18-26]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/tests/README.md:14-25,80-89]"
+      ]
+    },
+    {
+      "id": "finding-14-1-luna-051-runtime-core-readme-md-documents-a-removed-db-state-core-index-subsyste",
+      "text": "**LUNA-051 — `runtime/core/README.md` documents a removed `db-state`/`core/index` subsystem and database rebinding API as if it were live. P1. CONFIRMED stale documentation and path references.** The README's architecture, directory tree, key-file table, boundaries, flow, and entrypoint table all name `db-state.ts`, `core/index.ts`, `init()`, `reinitializeDatabase()`, `registerDatabaseRebindListener()`, and index-scan lease functions. A direct source inventory of `runtime/core/` found only `config.ts` and the README; no `db-state.ts` or `core/index.ts` exists. The active import-policy tests still use `core/db-state` as a string fixture, which reinforces the retired API vocabulary without proving an importer. The result is a live maintainer-facing contract that describes database-backed vector-index behavior the current source tree no longer provides. Smallest fix: delete or rewrite the phantom subsystem sections to describe the actual `config.ts` boundary, then replace stale policy fixtures with current internal-path cases. [SOURCE: .opencode/skills/system-spec-kit/runtime/core/README.md:14-23,34-48,53-82,84-124] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:6-20] [INFERENCE: source inventory showed only `config.ts` and `README.md` under runtime/core, so the documented API has no current implementation file]",
+      "addedAtIteration": 14,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/README.md:14-23,34-48,53-82,84-124,128-136]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:6-20]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/README.md:136-152]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/data/README.md:11-35]",
+        "[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:15-35]"
+      ]
+    },
+    {
+      "id": "finding-14-2-luna-052-the-same-runtime-core-readme-prescribes-two-missing-test-files-making-i",
+      "text": "**LUNA-052 — The same runtime core README prescribes two missing test files, making its validation recipe partially unrunnable. P2. CONFIRMED documentation drift.** The README instructs maintainers to run `tests/unit-path-security.vitest.ts`, `tests/symlink-realpath-hardening.vitest.ts`, and `tests/handler-memory-index.vitest.ts`. The first file exists, but direct path checks found the latter two absent from `runtime/tests/`; the current test inventory instead contains differently named path/memory suites. A maintainer following the package-owned validation recipe receives file-not-found failures or may assume coverage exists when it does not. Smallest fix: replace the recipe with the current test paths and add a source-to-README check for every explicitly named validation file. [SOURCE: .opencode/skills/system-spec-kit/runtime/core/README.md:128-136] [INFERENCE: direct checks found `runtime/tests/symlink-realpath-hardening.vitest.ts` and `runtime/tests/handler-memory-index.vitest.ts` missing while `unit-path-security.vitest.ts` exists]",
+      "addedAtIteration": 14,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/core/README.md:14-23,34-48,53-82,84-124,128-136]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:6-20]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/README.md:136-152]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/data/README.md:11-35]",
+        "[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:15-35]"
+      ]
+    },
+    {
+      "id": "finding-15-1-luna-053-the-trigger-index-and-ripgrep-successors-use-different-exclusion-bounda",
+      "text": "**LUNA-053 — The trigger-index and ripgrep successors use different exclusion boundaries, so “retrieval” is not one reproducible corpus. P1. CONFIRMED parity drift; query-result impact is CONFIRMED for matching files and INFERRED for operator decisions.** `corpus.mjs` declares and enforces exclusions for `scratch`, `research/lineages`, `tests/fixtures`, fixture-like directories outside `specs`, `node_modules`, `z_archive`, and `.git`. The documented structured, context, and path-only ripgrep recipes pass `specs .opencode` with only `z_archive`, `node_modules`, and `.git` negative globs. Therefore the free-text lane can return lines from scratch/lineage/test-fixture Markdown that the trigger index deliberately omits, while the index lane can appear clean for a phrase polluted by those artifacts. The confirmed mismatch is at the recipe/code boundary; the inference is that callers comparing the lanes or using broad free-text retrieval can act on different candidate sets. Smallest fix: centralize the exclusion policy in a shared wrapper/constant and make both lanes emit and consume the same corpus manifest, then add a parity fixture containing one excluded and one included document. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:19-31,50-70,97-112,126-145,193-205] [SOURCE: .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:104-107,114-128,140-147,152-159,221-230]",
+      "addedAtIteration": 15,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:19-31,50-70,97-112,126-145,169-205]",
+        "[SOURCE: .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:104-107,114-128,140-159,221-230]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs:13-17,301-345]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs:72-105,127-204]"
+      ]
+    },
+    {
+      "id": "finding-16-1-luna-054-resume-freshness-ranks-an-unbound-handover-document-over-validated-cont",
+      "text": "**LUNA-054 — Resume freshness-ranks an unbound handover document over validated continuity. P1. CONFIRMED source-contract gap; cross-packet or stale-resume impact is INFERRED.** The handover parser accepts summary/action text and chooses a timestamp from several aliases or the file mtime, but it does not parse a packet pointer or compare a stored fingerprint to the current packet. When both sources exist, the resume ladder selects whichever timestamp is newer and returns it as `freshnessWinner`; the result carries the handover document fingerprint only as descriptive metadata. The freshness validator, meanwhile, reads the continuity timestamp from `implementation-summary.md` and compares it with `graph-metadata.json`; it does not validate a handover timestamp against the graph. A newer handover can therefore outrank a valid continuity record without passing the same packet/freshness checks. Smallest fix: require handover packet identity plus a content fingerprint, validate both against the resolved packet and graph metadata, and freshness-rank only validated signals. [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts:577-619] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts:1000-1063] [SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:350-365,389-435] [INFERENCE: a newer unbound or stale handover could steer resume actions away from the current continuity state; no adversarial handover was created]",
+      "addedAtIteration": 16,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts:577-619,622-669,1000-1063]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:291-347,350-485]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:977-1026]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/graph/access-telemetry.ts:4-9,28-69]"
+      ]
+    },
+    {
+      "id": "finding-16-2-luna-055-resume-consumes-malformed-thin-continuity-through-a-permissive-fallback",
+      "text": "**LUNA-055 — Resume consumes malformed thin continuity through a permissive fallback. P2. CONFIRMED validation/resume inconsistency; unsafe-context impact is INFERRED.** `readThinContinuityRecord` returns `ok: false` for any normalized-field error and for a continuity block that still exceeds the 2048-byte budget after compaction. `parseContinuitySignal` then ignores that failure and manually extracts only five required fields from the raw continuity block; if those fields exist, it returns a usable continuity signal anyway. Thus the writer/validator can reject an oversized or otherwise malformed successor record while resume still treats it as authoritative context. Smallest fix: make the fallback explicit legacy-only behavior (with a legacy marker and warning), or return no continuity signal whenever strict validation fails. [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:977-1005,1008-1026] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts:622-669] [INFERENCE: a rejected record with intact required fields can still influence resumed work; this pass did not synthesize a malformed packet]",
+      "addedAtIteration": 16,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts:577-619,622-669,1000-1063]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:291-347,350-485]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:977-1026]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/graph/access-telemetry.ts:4-9,28-69]"
+      ]
+    },
+    {
+      "id": "finding-17-1-luna-056-the-validation-orchestrator-discards-a-node-rule-s-nonzero-exit-code-so",
+      "text": "**LUNA-056 — The validation orchestrator discards a node rule's nonzero exit code, so strict continuity freshness can produce an overall pass. P1. CONFIRMED false-green path; CI/completion impact is INFERRED from consumers of the aggregate report.** The registry marks `CONTINUITY_FRESHNESS` as a strict-only error rule. Its CLI emits a `status\\twarn` record for stale continuity when enforcement is not enabled, then exits 1 when invoked with `--strict`. The orchestrator's `runRegistryNodeRule` checks only `result.error` and whether stdout is empty; it parses the stdout status and never checks `result.status`. A strict stale result is therefore mapped to an ordinary warning entry, and the aggregate `passed` field is computed from `summary.errors === 0`, allowing the report to say passed even though the node rule exited nonzero. Smallest fix: treat a nonzero node-rule exit as an error unless the emitted status is an explicitly allowed nonblocking result, or map strict `warn` to `error` before computing `passed`. [SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:356-363] [SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:536-558] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:286-314] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:917-933] [INFERENCE: a caller relying on the aggregate `passed` field can accept stale continuity during strict validation; no validation command was run]",
+      "addedAtIteration": 17,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:356-363]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:291-347,536-558]",
+        "[SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:286-314,316-348,917-933]",
+        "[SOURCE: .github/workflows/strict-pass-freshness-report.yml:3-11,62-101]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts:301-329]"
+      ]
+    },
+    {
+      "id": "finding-18-1-luna-057-the-deep-research-gateway-projects-to-a-nested-state-log-while-the-work",
+      "text": "**LUNA-057 — The deep-research gateway projects to a nested state log while the workflow and reducer expect the lineage root. P1. CONFIRMED path-contract mismatch, directly observed in this lineage; downstream stale-state impact is CONFIRMED for the reducer path and INFERRED for other consumers.** The workflow declares `state_paths.state_log` as `{artifact_dir}/deep-research-state.jsonl` and says a successful gateway call refreshes that state log from the ledger. The deep-research projection contract's default `relativePath` is instead `research/deep-research-state.jsonl`; the gateway constructs its shadow projection with `runDirectory` equal to the artifact directory, so the projection lands under `{artifact_dir}/research/`. In this run, gateway receipts succeeded and the nested projection advanced through iteration 18, while the root state file remained the two phase-init records. The reducer therefore could not read the gateway's appended iteration events from its declared state path without an explicit in-process adapter. Smallest fix: make the deep-research contract's lineage default `relativePath` equal to `deep-research-state.jsonl`, or change every workflow/reducer state-path consumer to the nested path, then add an assertion that one successful append advances the exact configured state log. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:130-156] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts:41-64] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts:288-304,495-505] [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2920-2934] [INFERENCE: the root state remained at two valid lines after the gateway receipt while the nested projection contained the iteration summaries; this is the observed detached-lineage state split]",
+      "addedAtIteration": 18,
+      "sources": [
+        "[SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:104-156]",
+        "[SOURCE: .opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts:41-64]",
+        "[SOURCE: .opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts:288-304,495-560]",
+        "[SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2918-2934]"
+      ]
+    },
+    {
+      "id": "finding-19-1-luna-058-the-residue-sweep-cannot-detect-several-retired-surfaces-named-by-the-d",
+      "text": "**LUNA-058 — The residue sweep cannot detect several retired surfaces named by the decommission review. P1. CONFIRMED detector-coverage gap; clean-gate interpretation is INFERRED.** The sweep documents its question as live consumers of the retired memory MCP surface and its complete literal/tool vocabulary contains only the memory MCP tool names plus `.system-spec-memory-launcher`, `mcp__system_spec_memory__`, `spec-memory.cjs`, and `system-spec-memory`. It has no search terms for database paths or filenames, `zvec`, `system-plugins`, or the old `mcp-server` identity. Its exit code is based only on live records produced from that term set. A clean result therefore means “none of this narrower vocabulary was live,” not “the decommissioned surface is absent.” Smallest fix: publish a versioned retired-surface manifest covering each named surface and make the sweep consume it, or add separate detectors with independent exit/report fields for database paths, zvec, system-plugins, and package identity. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs:5-6,30-30,60-118] [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs:203-212,423-458] [INFERENCE: a live omitted term can survive while this sweep exits clean; complementary manual scans in this lineage found the detector's scope was narrower than the review topic]",
+      "addedAtIteration": 19,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs:5-6,30-30,60-118,120-144,203-227,423-458,524-549]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/sweep-memory-residue.vitest.ts:94-106,148-165,212-250]"
+      ]
+    },
+    {
+      "id": "finding-19-2-luna-059-any-matching-jsonl-path-is-forced-into-the-historical-bucket-even-outsi",
+      "text": "**LUNA-059 — Any matching JSONL path is forced into the historical bucket, even outside a historical directory. P2. CONFIRMED classification rule and test contract; live-state masking impact is INFERRED.** `classifyLifecycle` returns `historical` immediately whenever a matched relative path ends in `.jsonl`, before it checks whether the path is under a declared historical segment. The focused test explicitly requires `.opencode/state/session.jsonl` to be historical “wherever it sits.” Because only `counts.live` drives the sweep's nonzero exit, a retired tool name in a live JSONL state, registration, or execution record would not count as a live hit. Smallest fix: classify by declared path roots first and treat the extension as historical only for known evidence/state locations, with a fixture proving that a live JSONL control file is not silently downgraded. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs:120-144,220-227,437-458,524-549] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/sweep-memory-residue.vitest.ts:94-106] [INFERENCE: the current rule can hide a live JSONL control record from the exit gate; no such control file was synthesized]",
+      "addedAtIteration": 19,
+      "sources": [
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs:5-6,30-30,60-118,120-144,203-227,423-458,524-549]",
+        "[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/sweep-memory-residue.vitest.ts:94-106,148-165,212-250]"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-418d1303af53",
+      "text": "No live-code search was attempted in this baseline iteration; that is deferred to the next focus so historical evidence is not conflated with executable residue.",
+      "contentHash": "418d1303af53",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-15bf3e586bde",
+      "text": "Treating every finding in the final 053 PASS report as a current live defect was ruled out after the 052 LOG and current implementation summary recorded the two P2 fixes.",
+      "contentHash": "15bf3e586bde",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-3fb751fdfb5b",
+      "text": "Exact old package path searches alone were insufficient: no old `system-spec-kit/mcp-server` path was needed to expose the database and memory workflow that still exists under the renamed runtime/scripts paths.",
+      "contentHash": "3fb751fdfb5b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c968c5106374",
+      "text": "Treating every `MEMORY_DB_PATH` occurrence in the preserved skill-advisor/shared embedding code as system-spec-kit runtime residue was ruled out; the live caller comments explicitly assign that variable to the advisor-owned database. The scripts detector and runtime config have separate callers and remain in scope.",
+      "contentHash": "c968c5106374",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-a83a6f19682f",
+      "text": "Counting only files whose names contain `session` missed the added compact, cleanup, gate, and quality links; direct symlink metadata and the README inventory were required to expose the count mismatch. [SOURCE: .claude/hooks/README.md:29-37] [SOURCE: .devin/hooks/README.md:17-25]",
+      "contentHash": "a83a6f19682f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3a851369e9c7",
+      "text": "No dangling symlink was found in the direct `.claude/hooks`, `.codex/hooks`, `.cursor/hooks`, or `.devin/hooks` inventories; each link resolved to an existing target. [INFERENCE: direct lstat/stat inventory]",
+      "contentHash": "3a851369e9c7",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a81892db1b67",
+      "text": "The restored non-Copilot lifecycle registrations are present in their active authorities; the defect is mirror count drift and Copilot ownership, not wholesale loss of the four named runtime registrations. [SOURCE: .claude/settings.json:96-134] [SOURCE: .codex/hooks.json:3-41] [SOURCE: .cursor/hooks.json:4-39] [SOURCE: .devin/hooks.v1.json:2-32]",
+      "contentHash": "a81892db1b67",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3a5a0293fdeb",
+      "text": "`@modelcontextprotocol/sdk` in shared is not orphaned: `shared/ipc/socket-server.ts` imports `StdioServerTransport`, and its README assigns the bridge to the code-index and skill-advisor daemon owners. [SOURCE: .opencode/skills/system-spec-kit/shared/package.json:24-27] [SOURCE: .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:14-15] [SOURCE: .opencode/skills/system-spec-kit/shared/ipc/README.md:12-28]",
+      "contentHash": "3a5a0293fdeb",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-5779e099d8c5",
+      "text": "`js-yaml` in scripts and `zod` in runtime each have bounded production importers; no claim of global dependency failure is made from the two database/vector findings. [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:21-26] [SOURCE: .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:6-10] [SOURCE: .opencode/skills/system-spec-kit/runtime/package.json:41-44] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/graph/graph-metadata-schema.ts:1-6]",
+      "contentHash": "5779e099d8c5",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-baff0578661f",
+      "text": "Searching only for `sqlite-vec` missed the optional Darwin package and the older `vec0` naming; the manifest plus all three spellings were checked. [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:21-30]",
+      "contentHash": "baff0578661f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a21ec115af28",
+      "text": "Filename-only matching of `memory` is not sufficient to classify a test as obsolete: the profile resolver and folder detector expose concrete database behavior, while some memory handlers remain active until an explicit successor owner is established. The finding threshold was therefore disabled behavior or an unbounded old contract, not a name alone. [SOURCE: .opencode/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:25-59] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:165-175]",
+      "contentHash": "a21ec115af28",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-36f31b42b6d2",
+      "text": "The active runtime Vitest configuration includes the runtime and scripts test trees; this pass therefore attributes the coverage gaps to the explicit skips and excluded suites, not to an unverified claim that no tests are discovered. [SOURCE: .opencode/skills/system-spec-kit/runtime/vitest.config.ts:15-28]",
+      "contentHash": "36f31b42b6d2",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-04423aff2e85",
+      "text": "The runtime test setup is not itself an unsafe production write: it creates a scratch DB when no override is present and refuses explicit production paths. It is evidence that the legacy default still exists, not proof that the setup leaks writes. [SOURCE: .opencode/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:41-59]",
+      "contentHash": "04423aff2e85",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-17f096424c35",
+      "text": "A literal search for `mcp-server` alone is insufficient: the advisor's package intentionally uses that segment, while the bare Pi reference is wrong because the surrounding README establishes a relative `.opencode/skills/` base. Ownership and path resolution were required before classifying the term. [SOURCE: .pi/extensions/README.md:70-74] [SOURCE: README.md:304-310]",
+      "contentHash": "17f096424c35",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f8ddbeade5b7",
+      "text": "The `.pi` README's references to `system-skill-advisor/mcp-server` are not classified as retired system-spec-kit residue: the root README identifies that as the standalone advisor package and its own database owner. [SOURCE: README.md:304-310] [SOURCE: .pi/extensions/README.md:23-25,29-30,67-71]",
+      "contentHash": "f8ddbeade5b7",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-a816b8e07f70",
+      "text": "The four hook mirror READMEs correctly state that they are discovery mirrors and that runtime wiring lives in the corresponding JSON authority; this pass does not claim that every mirror reference is executable wiring. [SOURCE: .claude/hooks/README.md:5-13] [SOURCE: .codex/hooks/README.md:5-13] [SOURCE: .cursor/hooks/README.md:5-13] [SOURCE: .devin/hooks/README.md:5-13]",
+      "contentHash": "a816b8e07f70",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f12d1e542974",
+      "text": "The generator's fail-closed publication behavior is deliberate and explicit: malformed trigger declarations refuse publication rather than silently replacing the index with a partial build. The remaining finding concerns stale-but-valid publication after a later save, not malformed-input handling. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs:11-15,363-380]",
+      "contentHash": "f12d1e542974",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-847cd171feb1",
+      "text": "The loss of semantic paraphrase, vector/BM25 fusion, decay, access tracking, and session dedup is explicitly declared in the successor retrieval contract; this iteration does not relabel those documented non-goals as missed implementation. [SOURCE: .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:52-65]",
+      "contentHash": "847cd171feb1",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-d2ce43c0a4a0",
+      "text": "Treating the trigger index's exclusion of `research/lineages`, tests, fixtures, and vendored directories as accidental was ruled out; the corpus walker documents those exclusions as protection against noisy or untrusted content. The uncovered roots are the ordinary root/mirror/install docs outside the declared corpus. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:22-31,53-70]",
+      "contentHash": "d2ce43c0a4a0",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-4920d1c5de2c",
+      "text": "Dispatch hard-rule evaluation skips unknown checks and treats thrown checks as passed, but it protects command dispatch rather than producing the spec packet's completion verdict. This pass does not promote that separate fail-open contract into a decommission finding. [SOURCE: .opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs:119-161]",
+      "contentHash": "4920d1c5de2c",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-3e5eba24ca94",
+      "text": "Generated metadata integrity and synopsis drift are not globally grandfathered by default: the capability flags document enforcement as the default for the integrity and drift gates; the finding is limited to the separately default-off status/completion consistency rule and opt-in continuity rule. [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/config/capability-flags.ts:62-115]",
+      "contentHash": "3e5eba24ca94",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-ad5c6c51ebd3",
+      "text": "No validator, freshness CLI, completion script, or writeback command was executed. The user-bound lineage forbids those writes; all claims here are derived from source contracts and control flow.",
+      "contentHash": "ad5c6c51ebd3",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-736615d327d2",
+      "text": "The mcp-route guard is not treated as a completion gate: its documented contract has only `allow` and `warn`, and its manifest/read errors fail open by design. That is a routing-safety limitation, not evidence that the spec validator claims decommission completion. [SOURCE: .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:219-273]",
+      "contentHash": "736615d327d2",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-d99f0592fc14",
+      "text": "`doctor-deep-loop.yaml`'s graph database paths are current and explicitly rooted under `system-deep-loop/runtime/database`; the stale bare patterns are classified separately as forbidden-policy residue. [SOURCE: .opencode/commands/doctor/assets/doctor-deep-loop.yaml:80-108]",
+      "contentHash": "d99f0592fc14",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-a5165b0a7ada",
+      "text": "The advisor's `mcp-server/database` paths are not classified as retired system-spec-kit memory storage: the route and current YAML identify the standalone skill-advisor graph as their owner. The finding is limited to the update workflow's mixed context-index/legacy-memory contract. [SOURCE: .opencode/commands/doctor/assets/doctor-update.yaml:100-114] [SOURCE: .opencode/commands/doctor/assets/doctor-skill-graph-freshness.yaml:40-47]",
+      "contentHash": "a5165b0a7ada",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1f31f4f4e9bd",
+      "text": "The current `validate-command-references.cjs` does not depend on machine-local databases: it resolves concrete command and mirror paths from disk and its self-test uses temporary fixtures. The 052 log row is historical debt evidence, not a current claim about this checker. [SOURCE: .opencode/commands/scripts/validate-command-references.cjs:1-23,31-65,230-288]",
+      "contentHash": "1f31f4f4e9bd",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-0b37b291d795",
+      "text": "The requested reading budget excludes running doctor or validator commands because they can write caches, state logs, or generated artifacts outside this lineage. No such command was run.",
+      "contentHash": "0b37b291d795",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-72a20f398cfe",
+      "text": "No zvec or system-plugins residue was promoted from filename-only or preserved-owner matches without an active consumer/configuration path.",
+      "contentHash": "72a20f398cfe",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-38cca49f6f25",
+      "text": "The bounded active config/CI scan found no current `system-spec-kit/mcp-server`, `system-plugins`, `zvec`, `spec-memory`, or `context-server` identity in the inspected root configs and workflow surface. Preserved `mcp-server` paths belong to the separately owned skill-advisor graph, code-mode launchers, or third-party MCP names, so they were not counted as system-spec-kit decommission findings. [SOURCE: opencode.json:11-25] [SOURCE: .mcp.json:1-25] [SOURCE: .opencode/plugins/system-skill-advisor.js:169-189]",
+      "contentHash": "38cca49f6f25",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-0799083fc87d",
+      "text": "The runtime search did not confirm a production database constructor in the inspected `core`, `lib`, `api`, or `hooks` trees; only configuration/path exports and type-only `better-sqlite3` imports were found. This limits LUNA-041 to confirmed environment/path wiring with inferred file creation/use. [SOURCE: .opencode/skills/system-spec-kit/runtime/core/config.ts:61-113] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts:6-10,258-261] [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/extraction/entity-extractor.ts:6-15,287-289]",
+      "contentHash": "0799083fc87d",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-1aaf2041c6cc",
+      "text": "No new dangling mirror link was promoted: the four mirror inventories were already measured in iteration 3, and the current source-side link scan produced no missing link target.",
+      "contentHash": "1aaf2041c6cc",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-9fdd47bd6ce8",
+      "text": "The direct `.mjs` spec-gate registrations were not classified as false-green here; this iteration is limited to the explicit shell fallback/status expressions around lifecycle and cleanup adapters. [SOURCE: .codex/hooks.json:43-59] [SOURCE: .devin/hooks.v1.json:52-80]",
+      "contentHash": "9fdd47bd6ce8",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-c65a689ad0f1",
+      "text": "The source hook tree contains the expected Claude, Codex, Cursor, Devin, and Pi source adapters, and runtime `tsconfig.json` includes lifecycle `hooks/**/*.ts` while intentionally excluding `hooks/pi/**`. The Pi source boundary is documented as a separate extension model, so it was not treated as a dropped system-spec-kit registration. [SOURCE: .opencode/skills/system-spec-kit/runtime/tsconfig.json:34-65] [SOURCE: .opencode/skills/system-spec-kit/runtime/hooks/README.md:15-25,55-65]",
+      "contentHash": "c65a689ad0f1",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-2d5138438a08",
+      "text": "`@spec-kit/runtime`, `@spec-kit/shared`, `better-sqlite3`, and `js-yaml` all have source importers in the bounded production or validation trees, so they were not labeled unused solely from manifest inspection. [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:21-33] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:16-20] [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-grep-convention-helper.mjs:15] [SOURCE: .opencode/skills/system-spec-kit/runtime/package.json:41-53]",
+      "contentHash": "2d5138438a08",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-97f574d75aa7",
+      "text": "Rechecking `sqlite-vec` yielded the same no-importer result already recorded as LUNA-017, so no duplicate finding was added.",
+      "contentHash": "97f574d75aa7",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-7615cf4c0bd4",
+      "text": "The `generate-context` writer is not classified as the retired database server: its current source invokes the workflow/continuity path and the root README describes it as the canonical continuity writer. The finding is limited to package naming and missing successor boundary. [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:90-105,920-950] [SOURCE: .opencode/skills/system-spec-kit/README.md:374-378]",
+      "contentHash": "7615cf4c0bd4",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-7d0f87696005",
+      "text": "The prior functional folder-detector skip-accounting issue was not duplicated; this pass targets separate Vitest skip and exclusion mechanisms. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:81-95,1279-1346]",
+      "contentHash": "7d0f87696005",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-a0075dcb22f7",
+      "text": "`runtime/data/README.md` is aligned with the trigger-index successor: it names `runtime/data/trigger-index.json`, its generator/lookup, and explicitly forbids databases/logs there. It was used as a contrast, not as a finding. [SOURCE: .opencode/skills/system-spec-kit/runtime/data/README.md:11-35]",
+      "contentHash": "a0075dcb22f7",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-e7c23f7fc531",
+      "text": "`runtime/README.md`'s `handlers/memory-index-discovery.ts` reference resolves to the current handler file and was not promoted as a phantom path. Its name is tracked as terminology drift elsewhere. [SOURCE: .opencode/skills/system-spec-kit/runtime/README.md:136-152]",
+      "contentHash": "e7c23f7fc531",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-517cdf610fb2",
+      "text": "No other explicitly named source file in the sampled runtime/package READMEs was missing after excluding `dist` and archived/reference-only trees.",
+      "contentHash": "517cdf610fb2",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-970a6997a47b",
+      "text": "The active `references/memory/memory-system.md` is a successor retrieval/continuity reference that explicitly says there is no server or database in its retrieval table; its filename alone is not evidence of a retired implementation. [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:15-35]",
+      "contentHash": "970a6997a47b",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-82c08e1df7dc",
+      "text": "No additional lookup normalization or path-scope defect was promoted from the bounded loader/lookup source; shape validation and folder-prefix matching are explicit. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs:72-105,127-204]",
+      "contentHash": "82c08e1df7dc",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-64714b1f8262",
+      "text": "Symlink handling inside the generator is explicit: broken links are reported as skipped and symlinked directories are not walked; this was not treated as a new dangling-link defect. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:169-188]",
+      "contentHash": "64714b1f8262",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-a3ed06105421",
+      "text": "The generator's own fail-closed malformed-frontmatter publication behavior is aligned with its comments and was not reclassified as a gate failure. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs:13-17,301-345]",
+      "contentHash": "a3ed06105421",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-532d17a4bbc5",
+      "text": "The omission of root-level README/AGENTS/install/mirror documents from the trigger-index corpus remains the separate LUNA-030 finding. This iteration is limited to disagreement between the two successor lanes over directories that both otherwise claim to search. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:19-31] [SOURCE: .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:140-147]",
+      "contentHash": "532d17a4bbc5",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-528ee0bfaf56",
+      "text": "No new package/dependency finding was promoted from this angle; the inspected paths use existing runtime/shared imports and the issue is contract validation.",
+      "contentHash": "528ee0bfaf56",
+      "addedAtIteration": 16
+    },
+    {
+      "id": "ruled-out-bf10f3a0fcf9",
+      "text": "The 2048-byte limit itself is intentional and enforced during normalized serialization; the finding is that the resume fallback bypasses that enforcement, not that the limit should be removed. [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:977-996]",
+      "contentHash": "bf10f3a0fcf9",
+      "addedAtIteration": 16
+    },
+    {
+      "id": "ruled-out-104bb3bf4da6",
+      "text": "The access-telemetry store is not classified as a reintroduced memory database: its source describes a JSON file next to the runtime database, uses atomic temp-file replacement, and fails closed on write errors. The finding frontier is the resume/freshness contract, not the existence of this successor store. [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/graph/access-telemetry.ts:4-9,28-44,59-69]",
+      "contentHash": "104bb3bf4da6",
+      "addedAtIteration": 16
+    },
+    {
+      "id": "ruled-out-26349f52d594",
+      "text": "No new metadata schema or generated-file finding was promoted; the same node bridge contract is the relevant seam for those rules, but this finding is grounded in the continuity freshness exit path.",
+      "contentHash": "26349f52d594",
+      "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-89a8ff4d3eec",
+      "text": "The shell-rule bridge already rejects a nonzero shell child status before parsing its output; this finding is specific to the node-rule bridge. [SOURCE: .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:316-348]",
+      "contentHash": "89a8ff4d3eec",
+      "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-edfed7220248",
+      "text": "The strict-pass-freshness scheduled workflow is explicitly documented as report-only and its own process exits nonzero for regressions/new failures/errors. It was not promoted as an active merge-gate failure in this iteration. [SOURCE: .github/workflows/strict-pass-freshness-report.yml:3-11,62-69,87-101] [SOURCE: .opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts:301-329]",
+      "contentHash": "edfed7220248",
+      "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-1d60e0bedb42",
+      "text": "No second ledger or state writer was promoted. The mismatch is between one gateway projection target and the single declared reducer/workflow path.",
+      "contentHash": "1d60e0bedb42",
+      "addedAtIteration": 18
+    },
+    {
+      "id": "ruled-out-f5b33bb4e3b2",
+      "text": "The gateway did not silently reject the iteration event: its receipt reported a committed ledger sequence and `projectionRefreshed:true`; the defect is where the projection is written, not authorization or event admission. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts:529-560] [INFERENCE: gateway receipt observed for iteration 18]",
+      "contentHash": "f5b33bb4e3b2",
+      "addedAtIteration": 18
+    },
+    {
+      "id": "ruled-out-3f410c129b1a",
+      "text": "The reducer's path is not an independent alternate by design: it resolves the research artifact root and appends `deep-research-state.jsonl`, matching the YAML but not the projection contract. [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2918-2934]",
+      "contentHash": "3f410c129b1a",
+      "addedAtIteration": 18
+    },
+    {
+      "id": "ruled-out-0a81102649ce",
+      "text": "Historical directory classification itself was not promoted as a defect; the issue is the unconditional `.jsonl` shortcut and the detector's named-surface coverage. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs:130-144,220-227]",
+      "contentHash": "0a81102649ce",
+      "addedAtIteration": 19
+    },
+    {
+      "id": "ruled-out-ac6c4d02cea3",
+      "text": "No claim was made that every file mentioning `memory` is live residue. The detector's own allowlist and the previous iterations' owner-boundary checks remain necessary to separate successor code, tests, and historical evidence.",
+      "contentHash": "ac6c4d02cea3",
+      "addedAtIteration": 19
+    },
+    {
+      "id": "ruled-out-db4c462701c2",
+      "text": "The sweep's use of hidden files, global-ignore bypass, JSONL parsing, streaming, and explicit allowlist validation is deliberate and tested; these hardening choices do not compensate for the omitted term vocabulary. [SOURCE: .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs:8-24,203-212,301-326] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/sweep-memory-residue.vitest.ts:148-165,212-250]",
+      "contentHash": "db4c462701c2",
+      "addedAtIteration": 19
+    },
+    {
+      "id": "ruled-out-af6600b960c8",
+      "text": "No new active zvec or system-plugins target was found in the exact authority files sampled for this final pass. [INFERENCE: bounded exact-file scan of active authority paths]",
+      "contentHash": "af6600b960c8",
+      "addedAtIteration": 20
+    },
+    {
+      "id": "ruled-out-38b4a9808e94",
+      "text": "Reclassifying the explicit convergence threshold as a stop condition would contradict the frozen `max-iterations` policy; the loop is complete only after iteration 20.",
+      "contentHash": "38b4a9808e94",
+      "addedAtIteration": 20
+    },
+    {
+      "id": "ruled-out-16c6d44f6ac4",
+      "text": "Recounting LUNA-058 as a new live hit would duplicate the detector's term-set coverage gap; this iteration keeps it as a synthesis input.",
+      "contentHash": "16c6d44f6ac4",
+      "addedAtIteration": 20
+    },
+    {
+      "id": "ruled-out-9f79d932f5b3",
+      "text": "The Pi extension's `system-skill-advisor/mcp-server` reference is explicitly an in-process advisor owner, and the root README identifies the advisor as a separate standalone package; it is not the retired system-spec-kit runtime identity. [SOURCE: .pi/extensions/README.md:23-30,67-74] [SOURCE: README.md:304-310]",
+      "contentHash": "9f79d932f5b3",
+      "addedAtIteration": 20
+    },
+    {
+      "id": "ruled-out-3b9027b7cae9",
+      "text": "The remaining Devin `mcp-server` text is the already-recorded failure guidance attached to the runtime adapter, not a newly discovered registration target. [SOURCE: .devin/hooks.v1.json:2-9,137-149]",
+      "contentHash": "3b9027b7cae9",
+      "addedAtIteration": 20
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 7,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 48,
+    "keyFindings": 59,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.28,
+    "coverageBySources": {
+      "code": 300
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/044-zvec-grep-integration/.opencode/specs/system-speckit/054-decommission-debt-fixes/research/lineages/luna-max-research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

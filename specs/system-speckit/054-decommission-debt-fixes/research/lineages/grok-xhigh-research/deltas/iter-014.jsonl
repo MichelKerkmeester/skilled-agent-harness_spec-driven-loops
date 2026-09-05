@@ -1,0 +1,4 @@
+{"id":"F-I14-001","severity":"P1","status":"confirmed","summary":"doctor-update still VACUUM-snapshots mcp-server/database/*.sqlite","evidence":"doctor-update.yaml:331-347,383-386"}
+{"id":"F-I14-002","severity":"P2","status":"confirmed","summary":"Doctor step still named context-index; action is generate-trigger-index.mjs","evidence":"doctor-update.yaml:165-166,369-370"}
+{"id":"F-I14-003","severity":"P1","status":"confirmed","summary":"Doctor assets still list ignored D5 sqlite files; command-references fails on a fresh worktree","evidence":"doctor-update.yaml:104-107; validate-command-references.cjs:117-130"}
+{"id":"F-I14-004","severity":"P2","status":"confirmed","summary":"doctor-deep-loop.yaml still ignore-lists mcp-server/database/*context-index*","evidence":"doctor-deep-loop.yaml:99-104"}

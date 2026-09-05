@@ -1,0 +1,175 @@
+{
+  "openQuestions": [
+    {
+      "id": "q-onnxruntime-common",
+      "text": "Does a clean-worktree npm install produce onnxruntime-common for the HF provider?",
+      "origin": "iteration-15",
+      "injectedAtIteration": 15
+    },
+    {
+      "id": "q-t011-untracked-sweep",
+      "text": "Does T011 residue sweep include untracked leftover package directories?",
+      "origin": "iteration-13",
+      "injectedAtIteration": 13
+    },
+    {
+      "id": "q-attempt-1-report",
+      "text": "Where is the 052-named attempt-1 stalled review report?",
+      "origin": "iteration-1",
+      "injectedAtIteration": 1
+    },
+    {
+      "id": "q-leftover-owner",
+      "text": "Should leftover sqlite writers and mcp-server dir be extra 054 tasks or a new packet?",
+      "origin": "iteration-13",
+      "injectedAtIteration": 13
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1-retired-surfaces",
+      "text": "What live code or config still serves or describes a retired surface?",
+      "origin": "analyst-strategy",
+      "resolvedAtIteration": 20,
+      "answer": "Leftover writers (memory_index/storeEntities), default context-index.sqlite, leftover untracked mcp-server tree. No live MCP/plugin/zvec."
+    },
+    {
+      "id": "q2-registrations",
+      "text": "Which registrations, symlinks, hook configs, CI workflows and doctor assets were dropped or left dangling?",
+      "origin": "analyst-strategy",
+      "resolvedAtIteration": 20,
+      "answer": "Eleven hook registrations still live. Doctor-update still snapshots mcp-server/database. Devin fallback still says mcp-server. Claude/Pi skills are symlinks."
+    },
+    {
+      "id": "q3-deps",
+      "text": "Which dependencies lack an importer, and which importers lack a declared dependency?",
+      "origin": "analyst-strategy",
+      "resolvedAtIteration": 20,
+      "answer": "sqlite-vec + sqlite-vec.d.ts have no importer. SDK stays for advisor IPC. better-sqlite3 still has leftover readers."
+    },
+    {
+      "id": "q4-tests",
+      "text": "Which tests pass only because they test a surface that no longer exists?",
+      "origin": "analyst-strategy",
+      "resolvedAtIteration": 20,
+      "answer": "integration, retry-manager, naming-migration, entity-extractor rebuild, workflow-invariance allowlist, parity-check legacy arm."
+    },
+    {
+      "id": "q5-docs",
+      "text": "Which documentation claims a behavior the code no longer has?",
+      "origin": "analyst-strategy",
+      "resolvedAtIteration": 20,
+      "answer": "extraction README ghost pipeline; session-prime README; ARCHITECTURE memory artifacts; doctor/CI mcp-server comments. Root README/AGENTS.md match the two-lane story."
+    },
+    {
+      "id": "q6-successors",
+      "text": "What did the retired memory surface cover that successors do not?",
+      "origin": "analyst-strategy",
+      "resolvedAtIteration": 20,
+      "answer": "Startup priming and session_learning writer have no successor. Loss table is honest; leftover harness still writes/grades sqlite. Continuity fingerprint remains."
+    },
+    {
+      "id": "q7-lying-gates",
+      "text": "Which gates can pass while lying after these changes?",
+      "origin": "analyst-strategy",
+      "resolvedAtIteration": 20,
+      "answer": "CONTINUITY_FRESHNESS skip-as-pass; validate.sh helper-continue; --strict does not fail warnings; T012 can write a lying zero-debt 052 log row."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F-I10-001",
+      "severity": "P1",
+      "summary": "Untracked leftover system-spec-kit/mcp-server/ tree still on disk"
+    },
+    {
+      "id": "F-I11-001",
+      "severity": "P1",
+      "summary": "rebuildAutoEntities / storeEntities still mutate memory_index"
+    },
+    {
+      "id": "F-I2-001",
+      "severity": "P1",
+      "summary": "Default DB_PATH is still context-index.sqlite"
+    },
+    {
+      "id": "F-I5-001",
+      "severity": "P1",
+      "summary": "sqlite-vec declared with no source importer"
+    },
+    {
+      "id": "F-I6-001",
+      "severity": "P1",
+      "summary": "Tests still require deleted cognitive / hybrid-search dist modules"
+    },
+    {
+      "id": "F-I14-001",
+      "severity": "P1",
+      "summary": "doctor-update still VACUUM-snapshots mcp-server/database/*.sqlite"
+    },
+    {
+      "id": "F-I18-001",
+      "severity": "P1",
+      "summary": "extraction README describes deleted adapter/redaction/ontology pipeline"
+    },
+    {
+      "id": "F-I9-001",
+      "severity": "P1",
+      "summary": "CONTINUITY_FRESHNESS is off by default and treats skip as pass"
+    },
+    {
+      "id": "F-I8-001",
+      "severity": "P1",
+      "summary": "Startup priming has no successor"
+    },
+    {
+      "id": "F-I19-004",
+      "severity": "P1",
+      "summary": "T012 can write a lying zero-debt row into the 052 log"
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Treat last 053 review report as a live defect list",
+      "iterations": [1]
+    },
+    {
+      "approach": "Treat advisor MCP / runtime/database as a still-running memory MCP",
+      "iterations": [2, 19]
+    },
+    {
+      "approach": "Claim the eleven session-lifecycle registrations were dropped again",
+      "iterations": [4]
+    },
+    {
+      "approach": "Drop @modelcontextprotocol/sdk from shared as D8 residue",
+      "iterations": [5]
+    },
+    {
+      "approach": "Treat /doctor memory or /memory:save+/memory:search as dangling retired commands",
+      "iterations": [7, 16]
+    },
+    {
+      "approach": "Escalate leftover set to a hidden live memory MCP (P0)",
+      "iterations": [20]
+    }
+  ],
+  "coverageBySources": {
+    "charter-docs": 3,
+    "runtime-scripts-shared": 12,
+    "doctor-assets": 2,
+    "commands": 2,
+    "install-guides": 1,
+    "hooks-mirrors": 2
+  },
+  "convergenceScore": 0.42,
+  "blockedStopHistory": [],
+  "graphConvergenceScore": null,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {},
+  "suppressedCandidates": [],
+  "promotedIdeas": [],
+  "lastUpdated": "2026-09-05T06:30:00Z"
+}

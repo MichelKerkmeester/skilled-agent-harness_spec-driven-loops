@@ -115,6 +115,13 @@ export const LITERAL_TERMS = Object.freeze([
   'mcp__system_spec_memory__',
   'spec-memory.cjs',
   'system-spec-memory',
+  // Retired alongside the store: the engine's old package path and npm name,
+  // and the zvec lane with its vendored plugin home. The database filename is
+  // not listed because the skill advisor's embedding profile still derives it.
+  'system-spec-kit/mcp-server',
+  '@spec-kit/mcp-server',
+  'system-plugins/',
+  'zvec-grep',
 ]);
 
 /** Trees that carry no live instruction. The surviving package is swept like any other tree. */

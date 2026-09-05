@@ -1,0 +1,4 @@
+{"id":"F-I10-001","severity":"P1","status":"confirmed","summary":"Untracked leftover system-spec-kit/mcp-server/ tree still on disk after D8 rename","evidence":"test -e mcp-server true; git ls-files no match; goal.md:122"}
+{"id":"F-I10-002","severity":"P1","status":"confirmed","summary":"Leftover mcp-server/node_modules is a broken symlink and fails fleet greps","evidence":"symlink target missing; .gitignore:43-44"}
+{"id":"F-I10-003","severity":"P2","status":"confirmed-negative","summary":"Claude/Pi skill trees are symlinks; Codex/Cursor/Devin have no skill copies","evidence":"test -L .claude/skills; .codex/.cursor/.devin skill paths absent"}
+{"id":"F-I10-004","severity":"P2","status":"confirmed-negative","summary":"No system-spec-memory plugin in .opencode/plugins","evidence":"plugin file absent; mcp-route-guard.js:1-11"}

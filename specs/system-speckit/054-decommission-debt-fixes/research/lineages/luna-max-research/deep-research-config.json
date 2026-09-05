@@ -1,0 +1,92 @@
+{
+  "topic": "Review-angle research over the memory-database decommission programme in this repository: what did it miss?",
+  "maxIterations": 20,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "divergent": {},
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-speckit/054-decommission-debt-fixes",
+  "artifactDir": ".opencode/specs/system-speckit/054-decommission-debt-fixes/research/lineages/luna-max-research",
+  "fanoutLineageArtifactDir": ".opencode/specs/system-speckit/054-decommission-debt-fixes/research/lineages/luna-max-research",
+  "createdAt": "2026-09-05T04:20:01.300Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true,
+    "reason": "resource-map.md absent at phase_init; emit lineage-local map during synthesis"
+  },
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "webSearch": "inherit",
+    "timeoutSeconds": 900,
+    "inline": true,
+    "nestedDispatch": false
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-max-research-1788581555646-udzw72",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "label": "luna-max-research"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "capabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".opencode/specs/system-speckit/054-decommission-debt-fixes/research/lineages/luna-max-research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "routeProof": {
+    "resolvedRoute": "Resolved route: mode=research target_agent=deep-research",
+    "executor": "cli-codex model=gpt-5.6-luna",
+    "execution": "inline",
+    "nestedDispatch": false
+  },
+  "continuity": {
+    "phaseSave": "skipped",
+    "reason": "User-bound lineage forbids generate-context.js and all writes outside artifactDir."
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

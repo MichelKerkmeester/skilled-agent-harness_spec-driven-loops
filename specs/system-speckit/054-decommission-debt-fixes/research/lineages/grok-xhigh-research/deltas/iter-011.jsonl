@@ -1,0 +1,4 @@
+{"id":"F-I11-001","severity":"P1","status":"confirmed","summary":"rebuildAutoEntities still mutates memory_index and memory_entities","evidence":"entity-extractor.ts:516-582"}
+{"id":"F-I11-002","severity":"P1","status":"confirmed","summary":"Only production importer uses extractEntities; sqlite writers have no live caller","evidence":"graph-metadata-parser.ts:11"}
+{"id":"F-I11-003","severity":"P1","status":"confirmed","summary":"entity-extractor.vitest.ts still certifies the retired sqlite rebuild path","evidence":"entity-extractor.vitest.ts:518-616"}
+{"id":"F-I11-004","severity":"P2","status":"confirmed","summary":"ExtractedEntity comment still says memory content","evidence":"entity-extractor.ts:37-40"}

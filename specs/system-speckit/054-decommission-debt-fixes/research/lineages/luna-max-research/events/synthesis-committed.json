@@ -1,0 +1,23 @@
+{
+  "stem": "deep_research.synthesis_committed",
+  "scope": {
+    "runId": "fanout-luna-max-research-1788581555646-udzw72",
+    "lineageId": "fanout-luna-max-research-1788581555646-udzw72"
+  },
+  "data": {
+    "admittedLedgerRevision": "ledger-revision-20",
+    "selectedClaimVersionSetDigest": "875e05fd507eeeee0ceb956c1d05f463a7f5a545672e56516d962aaf520e67ed",
+    "synthesisPolicyDigest": "533ebd005962537af0e306dc657c3b900992b3b8e99636c9c10d0b50e346b9a9",
+    "reportRevision": "luna-max-research-20",
+    "unresolvedClaimIds": ["LUNA-001", "LUNA-007", "LUNA-020", "LUNA-031", "LUNA-054", "LUNA-057", "LUNA-058"],
+    "contestedClaimIds": [],
+    "reportDigest": "c07dfb4fba48f065fdb89292d681d33e903d9927884d6d5a74a9fc8033406277",
+    "citationEventIds": ["iteration-001", "iteration-020"],
+    "synthesisReceiptRef": "synthesis-receipt-luna-20"
+  },
+  "producer": {
+    "name": "inline-deep-research-synthesis",
+    "version": "1.0.0"
+  },
+  "occurredAt": "2026-09-05T07:00:01.000Z"
+}

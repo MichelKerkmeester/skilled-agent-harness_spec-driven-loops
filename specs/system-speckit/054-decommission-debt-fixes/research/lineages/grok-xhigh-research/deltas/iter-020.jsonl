@@ -1,0 +1,4 @@
+{"id":"F-I20-001","severity":"P1","status":"confirmed","summary":"Declared-loss table is honest but leftover writers and doctor snapshots still serve the store","evidence":"memory-system.md:207-218 plus F-I11 F-I14-001 F-I5-006"}
+{"id":"F-I20-002","severity":"P2","status":"confirmed","summary":"Session-dedup loss row overstates; continuity fingerprint remains","evidence":"memory-system.md:217; F-I8-004"}
+{"id":"F-I20-003","severity":"P2","status":"confirmed-negative","summary":"No live memory MCP/launcher/zvec; leftover set is P1/P2 not P0","evidence":"F-I2-005 F-I3-001 F-I10-004 F-I16-002"}
+{"id":"F-I20-004","severity":"P2","status":"confirmed","summary":"Twenty iterations complete; onnxruntime-common and T011 untracked sweep remain UNKNOWN","evidence":"F-I15-002 F-I1-006"}

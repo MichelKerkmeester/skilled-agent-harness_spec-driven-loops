@@ -1,0 +1,5 @@
+# Iteration 5 prompt: tests, fixtures, skips, and weakened coverage
+
+Continue the detached inline research loop for the memory-database decommission review. Read the current lineage config, state, and strategy before researching. Inspect only explicit, non-excluded source/test files; do not read node_modules, dist, benchmark, changelog, z_archive, manual-testing-playbook, feature-catalog, package-lock.json, or trigger-index.json. Do not modify anything outside this lineage.
+
+Focus angle 4: identify tests that still validate a retired memory/database surface, are disabled by `describe.skip`/`it.skip`/`it.fails.skip`, silently skip required database checks, or codify old handler names instead of the successor. Distinguish confirmed behavior from inference. Record each finding as P0/P1/P2 with file:line evidence and the smallest fix. Check the auto-detection suite, canonical-save integration, folder-detector functional runner, profile DB filename tests, memory-learn docs parity, and export/naming contract tests. Carry forward ruled-out directions and choose the next angle rather than converging early.
