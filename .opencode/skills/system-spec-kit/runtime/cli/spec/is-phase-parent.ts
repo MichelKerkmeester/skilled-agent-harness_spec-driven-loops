@@ -37,6 +37,20 @@ export interface PhaseParentHealth {
 /**
  * Return true when a folder has at least one direct phase child with spec metadata.
  */
+// The canonical classifier in the runtime reads the same child enumeration the
+// graph-metadata writer maps when generator hardening is on (its default), so a
+// populated bare-number or underscore child counts there. This entrypoint keeps
+// no runtime import, so it mirrors that rule: under hardening, membership is the
+// writer's leaf-segment shape; with the flag explicitly off, the strict slug.
+const GENERATOR_HARDENING_ENV = 'SPECKIT_GENERATOR_HARDENING';
+const FALSY_OPT_OUT = new Set(['0', 'false', 'off', 'no']);
+
+function isGeneratorHardeningEnabled(): boolean {
+  const value = process.env[GENERATOR_HARDENING_ENV]?.trim().toLowerCase();
+  if (value === undefined || value === '') return true;
+  return !FALSY_OPT_OUT.has(value);
+}
+
 export function isPhaseParent(specFolderAbsPath: string): boolean {
   let entries: string[];
 
@@ -46,7 +60,8 @@ export function isPhaseParent(specFolderAbsPath: string): boolean {
     return false;
   }
 
-  const phaseChildren = entries.filter((name) => PHASE_CHILD_REGEX.test(name));
+  const membership = isGeneratorHardeningEnabled() ? DERIVED_CHILD_REGEX : PHASE_CHILD_REGEX;
+  const phaseChildren = entries.filter((name) => membership.test(name));
 
   if (phaseChildren.length === 0) return false;
 
