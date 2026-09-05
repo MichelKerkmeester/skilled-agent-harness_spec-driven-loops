@@ -5,7 +5,7 @@ allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 3.7.1.0
 ---
 
-<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers, trigger-phrases -->
+<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers -->
 
 # Spec Kit - Mandatory Conversation Documentation
 

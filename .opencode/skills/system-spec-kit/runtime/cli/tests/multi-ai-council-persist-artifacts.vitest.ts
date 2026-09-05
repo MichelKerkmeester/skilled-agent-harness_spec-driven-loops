@@ -74,7 +74,7 @@ describe('ai-council persist-artifacts helper', () => {
       'ai-council/ai-council-state.jsonl',
       'ai-council/seats/round-001/seat-001-cli-opencode.md',
       'ai-council/seats/round-001/seat-002-cli-claude-code.md',
-      'ai-council/seats/round-001/seat-003-native.md',
+      'ai-council/seats/round-001/seat-003-cli-opencode.md',
       'ai-council/deliberations/round-001.md',
       'ai-council/council-report.md',
     ];
@@ -152,7 +152,8 @@ describe('ai-council persist-artifacts helper', () => {
 
   it('writes generate-context compatible payload when payload flag is present', () => {
     const packet = makeTempPacket();
-    const payloadPath = join(packet, 'payload.json');
+    // The helper confines every write, the payload included, to the packet's council root.
+    const payloadPath = join(packet, 'ai-council', 'payload.json');
     const input = join(FIXTURE_DIR, 'council-output-full.md');
 
     const stdout = execFileSync('node', [
@@ -181,7 +182,8 @@ describe('ai-council persist-artifacts helper', () => {
 
   it('does not write a memory payload when payload flag is absent', () => {
     const packet = makeTempPacket();
-    const payloadPath = join(packet, 'payload.json');
+    // The helper confines every write, the payload included, to the packet's council root.
+    const payloadPath = join(packet, 'ai-council', 'payload.json');
     const input = join(FIXTURE_DIR, 'council-output-full.md');
 
     execFileSync('node', [HELPER_PATH, packet, '--input-file', input], { encoding: 'utf8', stdio: 'pipe' });

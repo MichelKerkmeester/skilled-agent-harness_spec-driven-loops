@@ -2,15 +2,27 @@
 // MODULE: Python TS Parity Tests
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { existsSync, mkdtempSync, readFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
 import { describe, expect, it } from 'vitest';
-import { runLaneAblation } from '../../lib/scorer/ablation.js';
-import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
+
+// Pinned force-local regime, set before the scorer import because the scorer
+// reads the database directory at module load. This is the regime CI runs in:
+// no skill-graph.sqlite, built-in semantic off. Without it the in-process
+// scorer and the spawned Python reference both read whatever locally built
+// graph exists, and the pinned counts below move with a daemon rebuild instead
+// of with a diff.
+process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'python-ts-parity-'));
+process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
+process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
+
+const { runLaneAblation } = await import('../../lib/scorer/ablation.js');
+const { scoreAdvisorPrompt } = await import('../../lib/scorer/fusion.js');
 
 interface CorpusRow {
   readonly id: string;
@@ -27,11 +39,19 @@ interface PythonRow {
 // aligned with the legacy corpus-parity ledger. What remains is cross-lane /
 // labeling-edge loss that explicit-lane calibration cannot resolve. Entries are
 // pruned as targeted work resolves them, which is the only reason this list ever
-// shrinks — rr-iter3-093, rr-iter3-145 and rr-iter3-146 each left it that way.
+// shrinks — rr-iter3-093 and rr-iter3-145 each left it that way.
+//
+// rr-iter2-020 and rr-iter3-146 are sk-code gold that the native scorer loses
+// to sk-doc by under 0.04 in the pinned regime. rr-iter3-146 only ever left
+// this list under a graph-boosted run: with a live skill graph the daemon
+// still ranks it sk-code, by 0.007. Both are vocabulary bleed between the two
+// hubs and stay here until that is resolved, not hidden by a local graph.
 const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
+  'rr-iter2-020',
   'rr-iter3-092',
   'rr-iter3-097',
   'rr-iter3-099',
+  'rr-iter3-146',
   'rr-hub6-204',
   'rr-hub6-207',
 ];
@@ -171,20 +191,23 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     };
     console.log(`advisor-parity-report ${JSON.stringify(report)}`);
 
-    // On the current 195-row corpus (built-in semantic disabled for determinism)
-    // the Python reference makes 112 gold-correct top-1 calls; the native scorer
-    // preserves 107 of them and diverges only on the reviewed current-state rows
-    // enumerated above, while improving 45 rows the Python reference gets wrong.
+    // On the current 195-row corpus, in the pinned no-graph regime above, the
+    // Python reference makes 109 gold-correct top-1 calls; the native scorer
+    // preserves 102 of them and diverges only on the reviewed current-state rows
+    // enumerated above, while improving 52 rows the Python reference gets wrong.
     //
     // Both numbers measure the reference, not a target, so they move whenever the
-    // labeled corpus, the Python scoring tables, or the compiled skill graph does
-    // — and the graph is a locally built artifact, so a rebuild alone can shift
-    // them with no diff to show for it. Re-baseline only after checking the move
-    // is an improvement: pythonCorrect rising with tsAlsoCorrect rising and the
-    // regression list a subset of the one above is the shape of a good move. A
-    // pythonCorrect drop, or a new id in regressionIds, is a regression to fix.
-    expect(pythonCorrect).toBe(112);
-    expect(tsAlsoCorrect).toBe(107);
+    // labeled corpus, the Python scoring tables, or any skill root's metadata
+    // does: the reference reads graph-metadata.json, SKILL.md and mode-registry
+    // files live. They no longer move with a local skill-graph rebuild, because
+    // the regime pinned at the top hides that database from both scorers. The
+    // earlier pin of 112 and 107 was captured with a live graph loaded and was
+    // unreachable from any committed state. Re-baseline only after checking the
+    // move is an improvement: pythonCorrect rising with tsAlsoCorrect rising and
+    // the regression list a subset of the one above is the shape of a good move.
+    // A pythonCorrect drop, or a new id in regressionIds, is a regression to fix.
+    expect(pythonCorrect).toBe(109);
+    expect(tsAlsoCorrect).toBe(102);
     expect(regressions).toBe(ACCEPTED_PARITY_REGRESSION_IDS.length);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);

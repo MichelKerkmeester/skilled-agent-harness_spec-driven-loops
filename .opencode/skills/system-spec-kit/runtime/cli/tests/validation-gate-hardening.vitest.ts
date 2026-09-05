@@ -12,7 +12,7 @@ const repoRoot = path.resolve(scriptsRoot, '..', '..', '..', '..', '..');
 const validateScript = path.join(scriptsRoot, 'spec', 'validate.sh');
 const statusClassifier = path.join(scriptsRoot, 'lib', 'status-classifier.sh');
 const sweepScript = path.join(scriptsRoot, 'sweep', 'strict-pass-freshness.ts');
-const tsxLoader = path.join(scriptsRoot, 'node_modules', 'tsx', 'dist', 'loader.mjs');
+const tsxLoader = path.join(scriptsRoot, '..', '..', 'node_modules', 'tsx', 'dist', 'loader.mjs');
 const createdRoots = new Set<string>();
 
 function makeWorkspace(): string {

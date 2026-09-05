@@ -113,18 +113,9 @@ export const SPEC_ROOT_RESOLVERS = [
     consumerOrEffect: 'Graph metadata backfill defaults directly to the canonical root.',
     precedence: 'canonical-only',
   },
-  {
-    file: 'runtime/startup-checks.ts:261-292',
-    symbol: 'resolveWorkspaceSpecPath / resolveMovedFolder',
-    consumerOrEffect: 'Startup drift-marker containment accepts only paths under the canonical root.',
-    precedence: 'canonical-only',
-  },
-  {
-    file: 'runtime/context-server.ts:1602-1627',
-    symbol: 'getPendingRecoveryLocations',
-    consumerOrEffect: 'Startup pending-recovery scans the legacy root before the canonical root.',
-    precedence: 'legacy-first',
-  },
+  // The memory engine's startup drift-marker containment and pending-recovery
+  // scan left the package when that engine was deleted, and no successor
+  // resolves spec roots for them, so the registry no longer lists them.
   {
     file: 'runtime/lib/search/folder-discovery.ts:1363-1379',
     symbol: 'getSpecsBasePaths',

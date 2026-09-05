@@ -42,7 +42,7 @@ describe('deep-review auto restart command contract', () => {
     expect(presentation).toContain('calls the `deep/review` command with the internal `--fanout-lineage-artifact-dir` override');
     expect(autoWorkflow).toContain('--convergence-threshold {convergence_threshold}');
     expect(autoWorkflow).toContain('--stop-policy {stop_policy}');
-    expect(autoWorkflow).toContain('config.stopPolicy: {stop_policy}');
+    expect(autoWorkflow).toContain('stopPolicy: "{stop_policy}"');
     expect(autoWorkflow).toContain('config.fanout_lineage_artifact_dir: "[optional internal path]');
     expect(autoWorkflow).toContain('treat convergence signals as telemetry');
     expect(autoWorkflow).toContain('the explicit restart flag is operator');
@@ -56,8 +56,8 @@ describe('deep-review auto restart command contract', () => {
     expect(fanoutRun).toContain('buildNativeCommandInput');
     expect(fanoutRun).toContain('--fanout-lineage-artifact-dir=');
     expect(fanoutRun).toContain("'--command'");
-    expect(fanoutRun).toContain('deep/review command surface');
-    expect(fanoutRun).toContain("if (kind === 'native')");
+    expect(fanoutRun).toContain("explicit native fan-out adapter running through the command host's OpenCode CLI surface");
+    expect(fanoutRun).toContain("lineage.kind === 'native'");
     expect(fanoutRun).toContain('const cliLineages = allLineages');
     expect(fanoutRun).toContain('config.convergenceThreshold');
     expect(fanoutRun).toContain('config.stopPolicy');

@@ -2,7 +2,7 @@
 //
 // Covers:
 //  - Test 1: malformed JSONL triggers corruptionWarnings + non-zero exit unless --lenient
-//  - Test 2: missing machine-owned anchor throws a descriptive error
+//  - Test 2: missing machine-owned anchor surfaces a descriptive warning without withholding output
 //  - Test 3: --lenient escape hatch preserves fail-open legacy behavior for corrupted JSONL
 //
 // Fixtures are written to a macOS-safe temp root (realpathSync wraps mkdtempSync
@@ -26,6 +26,7 @@ const reducer = require('../../../../system-deep-loop/runtime/scripts/reduce-sta
     registry: Record<string, unknown>;
     strategy: string;
     dashboard: string;
+    strategyWarning: string | null;
   };
   parseJsonlDetailed: (content: string) => {
     records: Array<Record<string, unknown>>;
@@ -127,7 +128,7 @@ describe('deep-review reducer — fail-closed behavior', () => {
     );
   });
 
-  it('throws a descriptive error when a machine-owned strategy anchor is missing', () => {
+  it('surfaces a descriptive warning when a machine-owned strategy anchor is missing and still returns the computed registry', () => {
     const specFolder = makeTempSpecFolder('missing-anchor');
     writeConfig(specFolder);
     writeIterationStub(specFolder);
@@ -161,8 +162,11 @@ describe('deep-review reducer — fail-closed behavior', () => {
       'utf8',
     );
 
-    expect(() => reducer.reduceReviewState(specFolder, { write: false }))
-      .toThrow(/Missing machine-owned anchor .*completed-dimensions|running-findings|exhausted-approaches|next-focus/);
+    // A missing anchor is an input problem in the strategy file, not a reason to
+    // withhold the registry the reducer already computed; the gap is surfaced.
+    const result = reducer.reduceReviewState(specFolder, { write: false });
+    expect(result.strategyWarning).toMatch(/Missing machine-owned anchor/);
+    expect(result.registry.sessionId).toBe('rvw-fail-closed');
   });
 
   it('with --lenient / createMissingAnchors the reducer still records corruption but does not block', () => {

@@ -96,7 +96,7 @@ describe('inline gate renderer', () => {
       process.execPath,
       [
         '--import',
-        path.resolve(__dirname, '../node_modules/tsx/dist/loader.mjs'),
+        path.resolve(__dirname, '../../../node_modules/tsx/dist/loader.mjs'),
         path.resolve(__dirname, '../templates/inline-gate-renderer.ts'),
         '--level',
         '3',

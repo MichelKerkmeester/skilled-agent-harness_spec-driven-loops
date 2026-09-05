@@ -243,12 +243,21 @@ if _runtime_module is None:
 # Compiled skill graph for relationship-aware routing
 SKILL_GRAPH_PATH = os.path.join(SCRIPT_DIR, "skill-graph.json")
 SKILL_GRAPH_COMPILER_PATH = os.path.join(SCRIPT_DIR, "skill_graph_compiler.py")
-SKILL_GRAPH_SQLITE_PATH = os.path.normpath(os.path.join(
-    os.path.dirname(__file__),
-    '..',
-    'database',
-    'skill-graph.sqlite',
-))
+# The native scorer resolves the skill-graph database through the same
+# directory override, so a harness that isolates one scorer from a locally
+# built graph isolates both; without this the Python reference kept reading the
+# daemon's live database and its numbers moved with every rebuild.
+_SKILL_GRAPH_DB_DIR_OVERRIDE = os.environ.get("SYSTEM_SKILL_ADVISOR_DB_DIR")
+SKILL_GRAPH_SQLITE_PATH = (
+    os.path.join(os.path.abspath(_SKILL_GRAPH_DB_DIR_OVERRIDE), 'skill-graph.sqlite')
+    if _SKILL_GRAPH_DB_DIR_OVERRIDE
+    else os.path.normpath(os.path.join(
+        os.path.dirname(__file__),
+        '..',
+        'database',
+        'skill-graph.sqlite',
+    ))
+)
 GRAPH_ADJACENCY_EDGE_TYPES = ("depends_on", "enhances", "siblings", "prerequisite_for")
 GRAPH_ONLY_SKILL_IDS = {"system-skill-advisor"}
 GRAPHLESS_INLINE_SKILL_IDS = {

@@ -8,7 +8,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 const testDir = path.dirname(fileURLToPath(import.meta.url));
 const generatorPath = path.resolve(testDir, '..', 'spec-folder', 'generate-description.ts');
-const tsxLoader = path.resolve(testDir, '..', 'node_modules', 'tsx', 'dist', 'loader.mjs');
+const tsxLoader = path.resolve(testDir, '..', '..', '..', 'node_modules', 'tsx', 'dist', 'loader.mjs');
 const createdRoots = new Set<string>();
 
 function runGenerator(identitySafety: string): Record<string, unknown> {

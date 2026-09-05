@@ -1619,7 +1619,15 @@ export function mergeGraphMetadata(
       ...refreshed.derived,
       created_at: existing?.derived.created_at ?? refreshed.derived.created_at,
       last_accessed_at: existing?.derived.last_accessed_at ?? refreshed.derived.last_accessed_at,
-      last_active_child_id: existing?.derived.last_active_child_id ?? refreshed.derived.last_active_child_id ?? null,
+      // A stored chronology pointer — including an explicit null — is authoritative.
+      // The canonical save path owns setting it, so a re-derive carries it forward
+      // verbatim instead of backfilling one from child metadata; backfilling here
+      // made any later re-derive of a phase parent rewrite the pointer (and the
+      // file) even when nothing else changed, so a prune prediction could never
+      // agree with what apply actually writes.
+      last_active_child_id: existing
+        ? existing.derived.last_active_child_id
+        : refreshed.derived.last_active_child_id ?? null,
       last_active_at: existing?.derived.last_active_at ?? refreshed.derived.last_active_at ?? null,
     },
   };

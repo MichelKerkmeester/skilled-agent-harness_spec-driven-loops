@@ -646,11 +646,17 @@ function buildNestedChangelogData(specFolderPath: string, options: Pick<CliOptio
   const implementationSummary = readOptionalFile(path.join(specFolder, 'implementation-summary.md'));
   const tasksMarkdown = readOptionalFile(path.join(specFolder, 'tasks.md'));
   const tasksItems = parseChecklistItems(tasksMarkdown);
+  // The changelog contract reads the packet's checklist beside tasks and the
+  // summary: checked items carry completed work into the change buckets, and
+  // unchecked items are open follow-ups. Skipping the checklist dropped every
+  // entry recorded only there from the rendered history.
+  const checklistItems = parseChecklistItems(readOptionalFile(path.join(specFolder, 'checklist.md')));
+  const workItems = [...tasksItems, ...checklistItems];
   const summary = extractSummary(implementationSummary, specMarkdown);
-  const changeBullets = extractChangeBullets(tasksItems, summary);
+  const changeBullets = extractChangeBullets(workItems, summary);
   const filesChanged = extractFilesChanged(implementationSummary, specMarkdown, tasksItems);
   const verification = extractVerificationItems(implementationSummary, tasksItems);
-  const followUps = extractFollowUps(implementationSummary, tasksItems);
+  const followUps = extractFollowUps(implementationSummary, workItems);
   const outputPath = buildOutputPath(rootSpecFolder, specFolder, mode, options.outputPath);
   const humanTitle = cleanInlineMarkdown(
     extractMarkdownTitle(specMarkdown)

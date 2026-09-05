@@ -37,8 +37,14 @@ function run(args: string[]): { status: number; stdout: string } {
 
 // Fixtures live inside the packet tree because the tool refuses anything
 // outside it, which is the containment behaviour a separate test asserts.
+// They nest under a staging folder rather than sitting directly in the specs
+// root: the validator classifies a direct child of the root that lacks the
+// packet naming convention as a track drawer and applies no packet rules to
+// it, which would leave the tool nothing derivable to report or repair.
 function fixture(name: string, files: Record<string, string>): string {
-  const dir = fs.mkdtempSync(path.join(SPECS, `.repair-fixture-${name}-`));
+  const staging = fs.mkdtempSync(path.join(SPECS, '.repair-fixture-'));
+  created.push(staging);
+  const dir = fs.mkdtempSync(path.join(staging, `${name}-`));
   created.push(dir);
   for (const [file, body] of Object.entries(files)) {
     fs.writeFileSync(path.join(dir, file), body);
