@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ea8a3c16f3738bc6adce23f3dc205e4a442efbf6f1694d4a4c24227ef24926ca",
+  "corpusHash": "4ce31597ddaa51b8a90b11e4250594dc6acbc81051d004cb2b03d6797cb5d4ad",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -16,7 +16,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28112,
+  "includedPathCount": 28117,
   "includedPaths": [
     ".opencode/skills/.state/advisor/README.md",
     ".opencode/skills/.state/authority/README.md",
@@ -7942,8 +7942,11 @@
     ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
     ".opencode/skills/system-spec-kit/runtime/hooks/cursor/README.md",
     ".opencode/skills/system-spec-kit/runtime/hooks/devin/README.md",
+    ".opencode/skills/system-spec-kit/runtime/hooks/lib/README.md",
     ".opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
+    ".opencode/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md",
     ".opencode/skills/system-spec-kit/runtime/hooks/pi/README.md",
+    ".opencode/skills/system-spec-kit/runtime/hooks/pi/lib/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/MODULE-MAP.md",
     ".opencode/skills/system-spec-kit/runtime/lib/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/cognitive/README.md",
@@ -8003,6 +8006,8 @@
     ".opencode/skills/system-spec-kit/scripts/references/spec-root-alias-retirement-runbook.md",
     ".opencode/skills/system-spec-kit/scripts/renderers/README.md",
     ".opencode/skills/system-spec-kit/scripts/resource-map/README.md",
+    ".opencode/skills/system-spec-kit/scripts/retrieval/README.md",
+    ".opencode/skills/system-spec-kit/scripts/retrieval/lib/README.md",
     ".opencode/skills/system-spec-kit/scripts/rules/README.md",
     ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/README.md",
     ".opencode/skills/system-spec-kit/scripts/setup/README.md",
@@ -28132,7 +28137,7 @@
     "specs/system-speckit/054-decommission-debt-fixes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2259b0f461ef4a0e5bd0d03dde3bcb9c91492b8a47869659927b3f1f7848fcba",
+  "manifestHash": "203578137aa6d3c26e76054d4b77e1860ca8c777435c745e7c5d774172f26bf3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

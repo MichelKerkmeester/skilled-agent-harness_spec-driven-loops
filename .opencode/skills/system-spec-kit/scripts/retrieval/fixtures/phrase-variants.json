@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2259b0f461ef4a0e5bd0d03dde3bcb9c91492b8a47869659927b3f1f7848fcba",
+  "manifestHash": "203578137aa6d3c26e76054d4b77e1860ca8c777435c745e7c5d774172f26bf3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11702,9 +11702,6 @@
     "anchor comment removal summary": [
       "anchor comment removal summary"
     ],
-    "anchor format": [
-      "anchor format"
-    ],
     "anchor generator": [
       "anchor generator"
     ],
@@ -12942,6 +12939,9 @@
     "assert embedding coverage ablation": [
       "assert embedding coverage ablation"
     ],
+    "assertnever": [
+      "assertNever"
+    ],
     "assertrollbackhashguard fix": [
       "assertRollbackHashGuard fix"
     ],
@@ -13364,6 +13364,9 @@
     ],
     "authored closure unresolved hubs": [
       "authored closure unresolved hubs"
+    ],
+    "authored continuity snapshot": [
+      "authored continuity snapshot"
     ],
     "authored design artifact": [
       "authored design artifact"
@@ -15665,6 +15668,9 @@
     ],
     "buildpilineagecommand tasks": [
       "buildPiLineageCommand tasks"
+    ],
+    "buildresumeladder": [
+      "buildResumeLadder"
     ],
     "buildsidecarenv testables split": [
       "buildSidecarEnv testables split"
@@ -30707,9 +30713,6 @@
     "db shard migration": [
       "db-shard-migration"
     ],
-    "db state": [
-      "db state"
-    ],
     "db state circular import crash fix": [
       "db-state circular import crash fix"
     ],
@@ -41206,6 +41209,9 @@
     "entity cardinality penalty": [
       "entity cardinality penalty"
     ],
+    "entity catalog": [
+      "entity catalog"
+    ],
     "entity co occurrence not causal truth invariant": [
       "entity co-occurrence not causal truth invariant"
     ],
@@ -41247,6 +41253,12 @@
     ],
     "entity density routing plan": [
       "entity density routing plan"
+    ],
+    "entity denylist": [
+      "entity denylist"
+    ],
+    "entity extraction": [
+      "entity extraction"
     ],
     "entity linker noise": [
       "entity linker noise"
@@ -42401,14 +42413,8 @@
     "extraction": [
       "extraction"
     ],
-    "extraction adapter": [
-      "extraction adapter"
-    ],
     "extraction parent phase inventory": [
       "extraction parent phase inventory"
-    ],
-    "extraction pipeline": [
-      "extraction pipeline"
     ],
     "extraction workflow importance tier enum": [
       "extraction-workflow importance_tier enum"
@@ -44632,6 +44638,9 @@
     "findings triage summary": [
       "findings triage summary"
     ],
+    "findreporoot": [
+      "findRepoRoot"
+    ],
     "findspecdocuments": [
       "findSpecDocuments"
     ],
@@ -45600,9 +45609,6 @@
     ],
     "format guide frontmatter complete": [
       "format guide frontmatter complete"
-    ],
-    "format helpers": [
-      "format helpers"
     ],
     "format inconsistency": [
       "format inconsistency"
@@ -46976,6 +46982,9 @@
     ],
     "generated metadata drift gate": [
       "generated metadata drift gate"
+    ],
+    "generated metadata integrity": [
+      "generated metadata integrity"
     ],
     "generated metadata integrity failure": [
       "generated metadata integrity failure"
@@ -48620,6 +48629,9 @@
     "grep convention for spec docs": [
       "grep convention for spec docs"
     ],
+    "grep convention primitives": [
+      "grep convention primitives"
+    ],
     "grep convention research": [
       "grep convention research"
     ],
@@ -48778,9 +48790,6 @@
     ],
     "half auto upgrades file ledger": [
       "half auto upgrades file ledger"
-    ],
-    "half life configuration": [
-      "half-life configuration"
     ],
     "half precision qwen": [
       "half precision qwen"
@@ -49780,6 +49789,9 @@
     ],
     "hooks hub full index": [
       "hooks hub full index"
+    ],
+    "hooks lib": [
+      "hooks lib"
     ],
     "hooks manual testing playbook run": [
       "hooks manual testing playbook run"
@@ -51398,6 +51410,9 @@
     "index scan coalescing stress tasks": [
       "index scan coalescing stress tasks"
     ],
+    "index scope": [
+      "index scope"
+    ],
     "index scope adr": [
       "index scope adr"
     ],
@@ -51625,6 +51640,9 @@
     ],
     "input kind document query cache": [
       "input kind document query cache"
+    ],
+    "input limits": [
+      "input limits"
     ],
     "input output safety checks": [
       "input output safety checks"
@@ -52348,6 +52366,9 @@
     ],
     "irreversible task deletion": [
       "irreversible task deletion"
+    ],
+    "is phase parent": [
+      "is phase parent"
     ],
     "is phase parent helper": [
       "is_phase_parent helper"
@@ -55556,9 +55577,6 @@
     ],
     "log time manually": [
       "log time manually"
-    ],
-    "logger": [
-      "logger"
     ],
     "logic errors dimension": [
       "logic errors dimension"
@@ -59811,9 +59829,6 @@
     "memory namespace naming tasks": [
       "memory namespace naming tasks"
     ],
-    "memory parser": [
-      "memory parser"
-    ],
     "memory parser allow list": [
       "memory parser allow list"
     ],
@@ -60291,9 +60306,6 @@
     "memory trust badges": [
       "memory trust badges"
     ],
-    "memory types": [
-      "memory types"
-    ],
     "memory workflow": [
       "memory workflow"
     ],
@@ -60545,6 +60557,9 @@
     ],
     "mid run interruption recovery graph vs baseline": [
       "mid-run interruption recovery graph vs baseline"
+    ],
+    "migrate generated json": [
+      "migrate generated json"
     ],
     "migrate generated json apply run": [
       "migrate-generated-json apply run"
@@ -63614,6 +63629,9 @@
     ],
     "normalization headroom": [
       "normalization headroom"
+    ],
+    "normalize content for embedding": [
+      "normalize content for embedding"
     ],
     "normalized axis scoring": [
       "normalized axis scoring"
@@ -67931,9 +67949,6 @@
     "path scoped validation rules": [
       "path-scoped validation rules"
     ],
-    "path security": [
-      "path security"
-    ],
     "path security helper": [
       "path security helper"
     ],
@@ -70236,6 +70251,9 @@
     "pi claude app style remote": [
       "pi claude app style remote"
     ],
+    "pi claude hook adapter": [
+      "pi claude hook adapter"
+    ],
     "pi clay accent token": [
       "pi-clay accent token"
     ],
@@ -70677,6 +70695,9 @@
     ],
     "pi lifecycle events": [
       "pi lifecycle events"
+    ],
+    "pi lifecycle proxy": [
+      "pi lifecycle proxy"
     ],
     "pi lineage orphan requeue": [
       "pi lineage orphan requeue"
@@ -72624,9 +72645,6 @@
     ],
     "prefixed environment variables": [
       "prefixed environment variables"
-    ],
-    "preflight": [
-      "preflight"
     ],
     "preflight extract write prompt validate": [
       "preflight extract write prompt validate"
@@ -75395,6 +75413,9 @@
     "rebuild all databases": [
       "rebuild all databases"
     ],
+    "rebuild auto entities": [
+      "rebuild auto entities"
+    ],
     "rebuild council graph from artifacts": [
       "rebuild council graph from artifacts"
     ],
@@ -75754,9 +75775,6 @@
     ],
     "redaction canary scanning": [
       "redaction canary scanning"
-    ],
-    "redaction gate": [
-      "redaction gate"
     ],
     "reddit audit plan": [
       "reddit audit plan"
@@ -77678,6 +77696,9 @@
     "repo readme cleanup phase": [
       "repo README cleanup phase"
     ],
+    "repo root sentinel": [
+      "repo root sentinel"
+    ],
     "repo rule": [
       "repo rule"
     ],
@@ -77849,6 +77870,9 @@
     ],
     "report validator": [
       "report validator"
+    ],
+    "repository root resolution": [
+      "repository root resolution"
     ],
     "req 001 req 004 req 016 intent stability": [
       "REQ-001 REQ-004 REQ-016 intent stability"
@@ -78873,6 +78897,9 @@
     "resource map emission": [
       "resource map emission"
     ],
+    "resource map extractor test": [
+      "resource map extractor test"
+    ],
     "resource map grouping": [
       "resource map grouping"
     ],
@@ -79416,6 +79443,9 @@
     "retrieval hardening arc": [
       "retrieval hardening arc"
     ],
+    "retrieval lib primitives": [
+      "retrieval lib primitives"
+    ],
     "retrieval manifest generator": [
       "retrieval manifest generator"
     ],
@@ -79469,6 +79499,9 @@
     ],
     "retrieval scope tasks": [
       "retrieval scope tasks"
+    ],
+    "retrieval scripts": [
+      "retrieval scripts"
     ],
     "retrieval substrate decisions": [
       "retrieval substrate decisions"
@@ -80187,8 +80220,14 @@
     "ripgrep recipe contract": [
       "ripgrep recipe contract"
     ],
+    "ripgrep recipe wrapper": [
+      "ripgrep recipe wrapper"
+    ],
     "ripgrep retrieval conventions": [
       "ripgrep retrieval conventions"
+    ],
+    "ripgrep retrieval lane": [
+      "ripgrep retrieval lane"
     ],
     "ripgrep retrieval research": [
       "ripgrep retrieval research"
@@ -81666,9 +81705,6 @@
     "runtime feature catalog": [
       "runtime/ feature catalog"
     ],
-    "runtime flags": [
-      "runtime flags"
-    ],
     "runtime fork drift guard gap": [
       "runtime fork drift guard gap"
     ],
@@ -81794,6 +81830,9 @@
     ],
     "runtime neutral goal": [
       "runtime neutral goal"
+    ],
+    "runtime neutral hook helpers": [
+      "runtime neutral hook helpers"
     ],
     "runtime packet setup": [
       "runtime packet setup"
@@ -82304,9 +82343,6 @@
     ],
     "save mutex liveness causal generation bump": [
       "save mutex liveness causal generation bump"
-    ],
-    "save quality gate": [
-      "save quality gate"
     ],
     "save reconsolidation merge precision": [
       "save reconsolidation merge precision"
@@ -83086,6 +83122,9 @@
     "scripts tasks": [
       "scripts tasks"
     ],
+    "scripts tests": [
+      "scripts tests"
+    ],
     "scripts tests requirement": [
       "scripts tests requirement"
     ],
@@ -83259,9 +83298,6 @@
     ],
     "search fixes phase parent": [
       "search fixes phase parent"
-    ],
-    "search flags": [
-      "search flags"
     ],
     "search flows refero": [
       "search flows refero"
@@ -84678,6 +84714,9 @@
     ],
     "shared hf embed server url socket": [
       "shared HF_EMBED_SERVER_URL socket"
+    ],
+    "shared hook adapter code": [
+      "shared hook adapter code"
     ],
     "shared hub state": [
       "shared hub state"
@@ -90843,6 +90882,9 @@
     "skill label hygiene": [
       "skill label hygiene"
     ],
+    "skill label sanitizer": [
+      "skill label sanitizer"
+    ],
     "skill library documentation sweep": [
       "skill library documentation sweep"
     ],
@@ -91990,6 +92032,9 @@
     "spec document naming tasks": [
       "spec document naming tasks"
     ],
+    "spec document paths": [
+      "spec document paths"
+    ],
     "spec document validation": [
       "spec document validation"
     ],
@@ -92034,6 +92079,9 @@
     ],
     "spec folder diagnosis": [
       "spec folder diagnosis"
+    ],
+    "spec folder identity": [
+      "spec folder identity"
     ],
     "spec folder identity canonicalizer": [
       "spec folder identity canonicalizer"
@@ -92136,9 +92184,6 @@
     ],
     "spec graph metadata": [
       "spec graph metadata"
-    ],
-    "spec helpers": [
-      "spec helpers"
     ],
     "spec id in code comment": [
       "spec id in code comment"
@@ -92402,9 +92447,6 @@
     "spec kit version migration": [
       "spec kit version migration",
       "spec-kit version migration"
-    ],
-    "spec level": [
-      "spec level"
     ],
     "spec lifecycle automation": [
       "spec lifecycle automation"
@@ -94520,6 +94562,9 @@
     "strip toc from templates": [
       "strip toc from templates"
     ],
+    "strip yaml frontmatter": [
+      "strip yaml frontmatter"
+    ],
     "stripe design md example": [
       "Stripe DESIGN.md example"
     ],
@@ -96487,9 +96532,6 @@
     ],
     "system spec kit router rollout": [
       "system spec kit router rollout"
-    ],
-    "system spec kit runtime scripts tests": [
-      "system-spec-kit runtime/scripts/tests"
     ],
     "system spec kit runtime tests archive": [
       "system-spec-kit runtime/tests/archive"
@@ -98579,9 +98621,6 @@
     "trigger index tasks": [
       "trigger index tasks"
     ],
-    "trigger matcher": [
-      "trigger matcher"
-    ],
     "trigger matcher guard decision": [
       "trigger matcher guard decision"
     ],
@@ -98656,6 +98695,9 @@
     ],
     "trigger table optimisation": [
       "trigger table optimisation"
+    ],
+    "trigger text normalization": [
+      "trigger text normalization"
     ],
     "trigger uri actions": [
       "Trigger URI actions"
@@ -98950,9 +98992,6 @@
     ],
     "type definitions": [
       "type definitions"
-    ],
-    "type inference": [
-      "type inference"
     ],
     "type ramp per size": [
       "type ramp per size"
@@ -99713,9 +99752,6 @@
     "utcp wiring already registered": [
       "utcp wiring already registered"
     ],
-    "utility functions": [
-      "utility functions"
-    ],
     "utils sh rename": [
       "_utils.sh rename"
     ],
@@ -100089,9 +100125,6 @@
     "validateprojectioncandidate": [
       "validateProjectionCandidate"
     ],
-    "validation": [
-      "validation"
-    ],
     "validation and closeout": [
       "validation and closeout"
     ],
@@ -100205,6 +100238,9 @@
     ],
     "validation reduction": [
       "validation reduction"
+    ],
+    "validation report": [
+      "validation report"
     ],
     "validation rule deletion": [
       "validation rule deletion"
