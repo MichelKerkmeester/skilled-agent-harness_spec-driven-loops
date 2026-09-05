@@ -137,6 +137,7 @@ specs/NNN-name/
 - `scratch/`
 - `memory/` - Retired compatibility folder for older packets only; current save workflows skip new `[spec]/memory/*.md` writes
 - `research/` / `review/` local-owner folders — see §4 `research/` and `review/` (local owner folders). Root specs keep them at the root packet; child phases and sub-phases keep them under the owning phase folder.
+- `improvement/` local-owner folder — see §4 `improvement/` (improvement artifact family). Written by the deep-loop improvement runtimes at the target spec folder.
 
 ---
 
@@ -228,6 +229,38 @@ Deep-research and deep-review artifacts (iterations, deltas, prompts, state logs
 **Forbidden:** creating or continuing child-phase research/review packets under an ancestor/root spec's `research/` or `review/` folder.
 
 **See also:** `system-deep-loop/deep-research/references/protocol/loop-protocol.md`, `system-deep-loop/deep-review/references/protocol/loop-protocol.md`, and the `step_resolve_artifact_root` block in `.opencode/commands/deep/assets/deep-research-auto.yaml`.
+
+### improvement/ (improvement artifact family)
+
+Artifacts from the deep-loop improvement runtimes — `/deep:agent-improvement` and `/deep:model-benchmark` — live under the **target spec folder's local** `improvement/` folder. Root specs, child phases, and sub-phases all write it flat at `{spec_folder}/improvement/` for the run's owner, mirroring the flat-first convention of `research/` and `review/`.
+
+**Why:** the owning packet keeps its own improvement/benchmark evidence local, so candidate promotion state, score histories and benchmark outputs stay bound to the agent or benchmark run that produced them and never spill into ancestor roots.
+
+**Who writes it:** the `deep-improvement` runtime behind `/deep:agent-improvement` and `/deep:model-benchmark`. Nothing in the validation tooling regenerates these files; they are written once per run and then read.
+
+**What lives inside (real example):**
+
+```text
+improvement/
+├── agent-improvement-config.json       <- run configuration written at start
+├── agent-improvement-state.jsonl       <- append-only state log
+├── agent-improvement-strategy.md       <- improvement strategy notes
+├── agent-improvement-dashboard.md      <- generated run dashboard
+├── agent-improvement-charter.md        <- run charter
+├── dynamic-profile.json                <- resolved dynamic target profile
+├── experiment-registry.json            <- generated experiment registry
+├── improvement-journal.jsonl           <- append-only lifecycle journal
+├── integration-report.json             <- final integration report
+├── score-iter1.json ... score-iterN.json  <- per-iteration score records
+├── session.json / target-manifest.jsonc   <- run identity and target manifest
+├── candidates/                         <- one write-once folder per candidate
+├── benchmark-outputs/                  <- benchmark evidence
+└── pre-promote-backup/                 <- pre-promotion backup of the target
+```
+
+**Naming:** the config file is named for the owning runtime (`agent-improvement-config.json`); benchmark-only runs add `benchmark-run-pointer.json` beside it. No `pt-NN` packet subfolders are in use for this family today.
+
+**Validation:** `IMPROVEMENT_ARTIFACTS` (see the validator registry) checks that every `*-config.json` directly inside `improvement/` parses as JSON and carries the top-level fields every generated config carries.
 
 ---
 

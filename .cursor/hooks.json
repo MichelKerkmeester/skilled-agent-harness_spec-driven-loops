@@ -3,67 +3,67 @@
   "hooks": {
     "sessionStart": [
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-start.js",
+        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-start.js || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionStart adapter=session-start.js\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionStart adapter=spec-gate-prebind.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "bash .opencode/bin/worktree-guard.sh",
+        "command": "bash .opencode/bin/worktree-guard.sh || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionStart adapter=worktree-guard.sh\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "bash .opencode/bin/check-git-hooks.sh",
+        "command": "bash .opencode/bin/check-git-hooks.sh || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionStart adapter=check-git-hooks.sh\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all",
+        "command": "python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionStart adapter=check-dist-staleness.sh\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "node .opencode/bin/install-codex-hooks.mjs --check",
+        "command": "node .opencode/bin/install-codex-hooks.mjs --check || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionStart adapter=install-codex-hooks.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "node .opencode/hooks/goal/cursor/goal-inject.mjs",
+        "command": "node .opencode/hooks/goal/cursor/goal-inject.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionStart adapter=goal-inject.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       }
     ],
     "sessionEnd": [
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-end.js",
+        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-end.js || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionEnd adapter=session-end.js\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "bash .opencode/scripts/session-cleanup.sh",
+        "command": "bash .opencode/scripts/session-cleanup.sh || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionEnd adapter=session-cleanup.sh\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       }
     ],
     "preToolUse": [
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=preToolUse adapter=spec-gate-enforce.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "node .opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs",
+        "command": "node .opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=preToolUse adapter=task-dispatch-guard.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "matcher": "Task",
         "timeout": 10
       },
       {
-        "command": "node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        "command": "node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=preToolUse adapter=git-preflight-advisory.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "matcher": "Shell",
         "timeout": 10
@@ -71,33 +71,33 @@
     ],
     "postToolUse": [
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs",
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=postToolUse adapter=post-tool-use.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       }
     ],
     "beforeSubmitPrompt": [
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=beforeSubmitPrompt adapter=spec-gate-classify.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js",
+        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=beforeSubmitPrompt adapter=user-prompt-submit.js\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       }
     ],
     "beforeMCPExecution": [
       {
-        "command": "node .opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
+        "command": "node .opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=beforeMCPExecution adapter=mcp-route-guard.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       }
     ],
     "preCompact": [
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/precompact.js",
+        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/precompact.js || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=preCompact adapter=precompact.js\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
       }

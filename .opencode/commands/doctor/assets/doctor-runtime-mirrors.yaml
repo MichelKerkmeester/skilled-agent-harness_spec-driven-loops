@@ -2,7 +2,7 @@
 # DOCTOR: RUNTIME MIRROR PARITY (READ-ONLY DIAGNOSTIC)
 # ─────────────────────────────────────────────────────────────────
 role: Diagnostic Operator reporting whether every runtime config dir still mirrors its canonical source
-purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor and .devin derive from .opencode, plus adapter-path resolution drift in the Codex and Devin hook fallback chains
+purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor and .devin derive from .opencode, plus adapter-path resolution drift in the Claude, Codex, Cursor and Devin hook fallback chains
 action: Run the five mirror checkers plus the hook-adapter fallback health check -> aggregate their verdicts -> report per-surface drift
 skill_owner: ".opencode/skills/system-spec-kit/runtime/cli/"
 
@@ -43,12 +43,52 @@ upstream_assets:
 # HOOK-ADAPTER FALLBACK HEALTH CHECKS
 # ─────────────────────────────────────────────────────────────────
 # Every entry below is the primary adapter behind a `|| { <stderr>; <fallback JSON> }`
-# chain in .codex/hooks.json or .devin/hooks.v1.json (the chains that carry the
-# "mkHookDrift" marker). A missing path here is exactly the state a synthetic
+# chain in .codex/hooks.json, .devin/hooks.v1.json, .claude/settings.json or
+# .cursor/hooks.json (the chains that carry the "mkHookDrift" marker). The one
+# exception is each fire-and-forget backgrounded reconcile command, which no
+# host reads stdout from and which deliberately runs without a fallback branch.
+# A missing path here is exactly the state a synthetic
 # adapter failure produces (e.g. temporarily renaming the compiled file), so a
 # `file_exists` failure on any row below is reported as a degraded hook adapter,
 # not a mirror-structure drift.
 hook_adapter_fallback_health_checks:
+  - { host: claude, event: PreToolUse, path: ".opencode/hooks/dispatch/claude/dispatch-preflight-lint.mjs", type: file_exists }
+  - { host: claude, event: PreToolUse, path: ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs", type: file_exists }
+  - { host: claude, event: PreToolUse, path: ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs", type: file_exists }
+  - { host: claude, event: PreToolUse, path: ".opencode/hooks/task-dispatch/claude/task-dispatch-guard.cjs", type: file_exists }
+  - { host: claude, event: PreToolUse, path: ".opencode/hooks/task-dispatch/claude/fable-subagent-guard.mjs", type: file_exists }
+  - { host: claude, event: PreToolUse, path: ".opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs", type: file_exists }
+  - { host: claude, event: UserPromptSubmit, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js", type: file_exists }
+  - { host: claude, event: UserPromptSubmit, path: ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs", type: file_exists }
+  - { host: claude, event: SessionStart, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js", type: file_exists }
+  - { host: claude, event: SessionStart, path: ".opencode/bin/worktree-guard.sh", type: file_exists }
+  - { host: claude, event: SessionStart, path: ".opencode/bin/check-git-hooks.sh", type: file_exists }
+  - { host: claude, event: SessionStart, path: ".opencode/bin/git-live-follow.sh", type: file_exists }
+  - { host: claude, event: SessionStart, path: ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh", type: file_exists }
+  - { host: claude, event: SessionStart, path: ".opencode/bin/install-codex-hooks.mjs", type: file_exists }
+  - { host: claude, event: Stop, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js", type: file_exists }
+  - { host: claude, event: Stop, path: ".opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs", type: file_exists }
+  - { host: claude, event: SessionEnd, path: ".opencode/scripts/session-cleanup.sh", type: file_exists }
+  - { host: claude, event: PostToolUse, path: ".opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs", type: file_exists }
+  - { host: claude, event: PostToolUse, path: ".opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs", type: file_exists }
+  - { host: claude, event: PreCompact, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js", type: file_exists }
+  - { host: cursor, event: sessionStart, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-start.js", type: file_exists }
+  - { host: cursor, event: sessionStart, path: ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs", type: file_exists }
+  - { host: cursor, event: sessionStart, path: ".opencode/bin/worktree-guard.sh", type: file_exists }
+  - { host: cursor, event: sessionStart, path: ".opencode/bin/check-git-hooks.sh", type: file_exists }
+  - { host: cursor, event: sessionStart, path: ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh", type: file_exists }
+  - { host: cursor, event: sessionStart, path: ".opencode/bin/install-codex-hooks.mjs", type: file_exists }
+  - { host: cursor, event: sessionStart, path: ".opencode/hooks/goal/cursor/goal-inject.mjs", type: file_exists }
+  - { host: cursor, event: sessionEnd, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-end.js", type: file_exists }
+  - { host: cursor, event: sessionEnd, path: ".opencode/scripts/session-cleanup.sh", type: file_exists }
+  - { host: cursor, event: preToolUse, path: ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs", type: file_exists }
+  - { host: cursor, event: preToolUse, path: ".opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs", type: file_exists }
+  - { host: cursor, event: preToolUse, path: ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs", type: file_exists }
+  - { host: cursor, event: postToolUse, path: ".opencode/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs", type: file_exists }
+  - { host: cursor, event: beforeSubmitPrompt, path: ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs", type: file_exists }
+  - { host: cursor, event: beforeSubmitPrompt, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js", type: file_exists }
+  - { host: cursor, event: beforeMCPExecution, path: ".opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs", type: file_exists }
+  - { host: cursor, event: preCompact, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/precompact.js", type: file_exists }
   - { host: codex, event: SessionStart, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js", type: file_exists }
   - { host: codex, event: SessionStart, path: ".opencode/bin/worktree-guard.sh", type: file_exists }
   - { host: codex, event: SessionStart, path: ".opencode/bin/check-git-hooks.sh", type: file_exists }

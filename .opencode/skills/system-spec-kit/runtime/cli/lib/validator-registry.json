@@ -395,5 +395,16 @@
     "category": "structural",
     "strict_only": true,
     "description": "Re-derives a folder and reports drift between the stored description/causal_summary and the current docs, read-only, error under strict only when the drift-gate flag is on and otherwise grandfather report mode."
+  },
+  {
+    "rule_id": "IMPROVEMENT_ARTIFACTS",
+    "aliases": [
+      "IMPROVEMENT_CONFIG",
+      "IMPROVEMENT_ARTIFACT_SHAPE"
+    ],
+    "script_path": "rules/check-improvement-artifacts.sh",
+    "severity": "warn",
+    "category": "operational_runtime",
+    "description": "When a packet contains improvement/, checks that every *-config.json inside parses as JSON and carries the top-level fields the generated improvement configs carry."
   }
 ]

@@ -153,6 +153,45 @@ function resolveAgainstRepo(registration: Registration): string {
   return isAbsolute(registration.path) ? registration.path : resolve(repoRoot, registration.path);
 }
 
+interface CommandRegistration {
+  runtime: string;
+  event: string;
+  command: string;
+}
+
+function claudeCommands(): CommandRegistration[] {
+  const doc = readJson('.claude/settings.json') as { hooks?: Record<string, unknown> };
+  const out: CommandRegistration[] = [];
+  for (const [event, groups] of Object.entries(doc.hooks ?? {})) {
+    if (!Array.isArray(groups)) continue;
+    for (const group of groups as Array<{ hooks?: Array<{ command?: unknown }> }>) {
+      for (const hook of group.hooks ?? []) {
+        if (typeof hook.command === 'string') out.push({ runtime: 'claude', event, command: hook.command });
+      }
+    }
+  }
+  return out;
+}
+
+function cursorCommands(): CommandRegistration[] {
+  const doc = readJson('.cursor/hooks.json') as { hooks?: Record<string, unknown> };
+  const out: CommandRegistration[] = [];
+  for (const [event, entries] of Object.entries(doc.hooks ?? {})) {
+    if (!Array.isArray(entries)) continue;
+    for (const entry of entries as Array<{ command?: unknown }>) {
+      if (typeof entry.command === 'string') out.push({ runtime: 'cursor', event, command: entry.command });
+    }
+  }
+  return out;
+}
+
+// Fire-and-forget background task: no host reads its stdout, so it runs without
+// a fallback branch on purpose -- the same deliberate exception the codex
+// config carries for its own backgrounded reconcile command.
+function isBackgroundedReconcile(command: string): boolean {
+  return command.includes('git-primary-reconcile.sh') && command.includes('&');
+}
+
 const allRegistrations: Registration[] = [
   ...claudeRegistrations(),
   ...codexRegistrations(),
@@ -183,5 +222,24 @@ describe('hook adapter path parity', () => {
       path: '.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js.deliberately-missing',
     };
     expect(existsSync(resolveAgainstRepo(broken))).toBe(false);
+  });
+
+  it('wraps every claude adapter invocation in the drift-marker fallback', () => {
+    const commands = claudeCommands();
+    expect(commands.length).toBeGreaterThan(0);
+    for (const { runtime, event, command } of commands) {
+      if (isBackgroundedReconcile(command)) continue;
+      expect(command, `${runtime}:${event}`).toContain('mkHookDrift');
+      expect(command, `${runtime}:${event}`).toContain(`mk-hook-drift host=${runtime} event=${event} `);
+    }
+  });
+
+  it('wraps every cursor adapter invocation in the drift-marker fallback', () => {
+    const commands = cursorCommands();
+    expect(commands.length).toBeGreaterThan(0);
+    for (const { runtime, event, command } of commands) {
+      expect(command, `${runtime}:${event}`).toContain('mkHookDrift');
+      expect(command, `${runtime}:${event}`).toContain(`mk-hook-drift host=${runtime} event=${event} `);
+    }
   });
 });

@@ -1,6 +1,9 @@
 ---
 title: "Cursor Hooks: Lifecycle Adapters"
 description: "Cursor CLI hook adapters that normalize Cursor lifecycle payloads and delegate to the existing Claude hook implementations."
+
+> **Fallback contract.** Every registration in `.cursor/hooks.json` wraps its adapter as `node <adapter> || { <stderr line>; <fallback JSON>; }`, so the hook always answers its host. On a primary-adapter failure the fallback prints `mk-hook-drift host=cursor event=<event> adapter=<name>` to stderr and returns the host's expected JSON with `"mkHookDrift": true`, which the runtime-mirrors doctor asset reads as a degraded-adapter signal.
+
 ---
 
 # Cursor Hooks: Lifecycle Adapters

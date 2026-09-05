@@ -1,6 +1,9 @@
 # Claude Code Hook Scripts
 
 
+
+> **Fallback contract.** Every registration in `.claude/settings.json` wraps its adapter as `node <adapter> || { <stderr line>; <fallback JSON>; }`, so the hook always answers its host. On a primary-adapter failure the fallback prints `mk-hook-drift host=claude event=<event> adapter=<name>` to stderr and returns the host's expected JSON with `"mkHookDrift": true`, which the runtime-mirrors doctor asset reads as a degraded-adapter signal.
+
 ---
 
 ## 1. OVERVIEW
