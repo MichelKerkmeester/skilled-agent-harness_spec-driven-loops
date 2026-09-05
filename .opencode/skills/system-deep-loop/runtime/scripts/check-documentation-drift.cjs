@@ -4,7 +4,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const SKILL_ROOT = path.resolve(__dirname, '..');
+const SKILL_ROOT = path.resolve(__dirname, '..', '..');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..');
 const REGISTRY_PATH = path.join(SKILL_ROOT, 'mode-registry.json');
 const HUB_README = path.join(SKILL_ROOT, 'README.md');
