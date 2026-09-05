@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/056-integration-research-remediation/002-metadata-drift-and-rules",
+  "description": "A renamed packet kept the children of its old identity in graph metadata because the writer only unioned, and track roots were never validated.",
+  "keywords": [
+    "renamed",
+    "packet",
+    "kept",
+    "children",
+    "old",
+    "identity",
+    "graph",
+    "metadata",
+    "because",
+    "writer",
+    "only",
+    "unioned",
+    "track",
+    "roots",
+    "never",
+    "validated"
+  ],
+  "lastUpdated": "2026-09-05T22:09:48.801Z",
+  "specId": "002",
+  "folderSlug": "metadata-drift-and-rules",
+  "parentChain": [
+    "system-speckit",
+    "056-integration-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
