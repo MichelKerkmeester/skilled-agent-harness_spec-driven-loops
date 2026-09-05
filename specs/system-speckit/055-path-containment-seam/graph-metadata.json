@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/055-path-containment-seam",
+  "spec_folder": "system-speckit/055-path-containment-seam",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "path containment seam",
+      "write boundary helper",
+      "assertPathInsideRoot",
+      "symlinked parent escape",
+      "implementation plan",
+      "technical approach",
+      "task breakdown",
+      "implementation tasks",
+      "implementation summary",
+      "what shipped"
+    ],
+    "key_topics": [
+      "path",
+      "containment",
+      "seam",
+      "write",
+      "boundary",
+      "helper",
+      "assertpathinsideroot",
+      "symlinked",
+      "parent",
+      "escape",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "runtime/cli/utils/path-utils.ts",
+      "runtime/cli/spec-folder/nested-changelog.ts",
+      "runtime/cli/spec-folder/generate-description.ts",
+      "runtime/cli/tests/path-containment.vitest.ts",
+      "runtime/cli/tests/nested-changelog.vitest.ts",
+      "tests/path-containment.vitest.ts",
+      "tests/nested-changelog.vitest.ts",
+      "tests/generate-description-identity-safety.vitest.ts",
+      "utils/path-utils.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "path-utils.ts",
+        "kind": "code",
+        "path": "runtime/cli/utils/path-utils.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.ts",
+        "kind": "code",
+        "path": "runtime/cli/spec-folder/nested-changelog.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": "runtime/cli/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "path-containment.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/path-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/nested-changelog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description-identity-safety.vitest.ts",
+        "kind": "test",
+        "path": "tests/generate-description-identity-safety.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "three",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Caller",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The CLI checked write boundaries three different ways: lexically in the changelog generator, realpath-only in the description generator, and canonically in the shared utilities. One helper now owns the check so every boundary rejects the same escapes.",
+    "created_at": "2026-09-05T19:16:53Z",
+    "last_save_at": "2026-09-05T19:36:52.185Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b3d8d9798a7a5210519e00de4a0c45b4ffce34f25c86c4f9962f15ea4ec5a9f1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1d9f5e253c9e89943148f5bcda2cae292d161746fd9b09f32516c26011988005",
+      "plan.md": "7c558c53519b07f1939445020f228b4b21f0735a822ca135968c882daaff2560",
+      "tasks.md": "f7be594e3bce51cb34d3a00060412e5eb1cd4d9a3aadc29d179b9b359c1641c5",
+      "implementation-summary.md": "d615755cdbe9cc38087f83674a43c73d8e03f4218ca6e58c4c06a4dd46f18a9d"
+    },
+    "last_active_at": null
+  }
+}

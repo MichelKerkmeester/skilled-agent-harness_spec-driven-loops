@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/055-path-containment-seam",
+  "description": "The CLI checked write boundaries three different ways: lexically in the changelog generator, realpath-only in the description generator, and",
+  "keywords": [
+    "cli",
+    "checked",
+    "write",
+    "boundaries",
+    "three",
+    "different",
+    "ways",
+    "lexically",
+    "changelog",
+    "generator",
+    "realpath-only",
+    "description"
+  ],
+  "lastUpdated": "2026-09-05T19:36:52.025Z",
+  "specId": "055",
+  "folderSlug": "path-containment-seam",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
