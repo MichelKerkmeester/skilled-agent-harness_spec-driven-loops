@@ -1,0 +1,5 @@
+All 10 iterations, deltas, state records, and the final `research.md` synthesis are written entirely inside the lineage directory. Git status confirms the only changes are the new `research/lineages/sonnet5-high-research/` directory (untracked) and the pre-existing `observability-events.jsonl` modification that predates this session — no writes landed outside scope.
+
+Top finding: a critical, root-caused bug in the trigger-index generator (`DEFAULT_REPO_ROOT` off-by-one) that silently drops all skill-doc and install-guide coverage from Gate 1's lookup surface, masked by a symlink. Full ranked list of 11 actionable findings plus 10 verified-clean results is in `research.md`.
+
+FANOUT_LINEAGE_COMPLETE:sonnet5-high-research

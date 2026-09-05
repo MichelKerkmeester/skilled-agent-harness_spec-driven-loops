@@ -1,0 +1,1 @@
+{"type":"synthesis","iteration":10,"summary":"Ranked, deduplicated 11-item list consolidating findings from iterations 1-9, plus a preserved verified-clean/ruled-out list","rankedCount":11,"verifiedCleanCount":10,"topFinding":"F6-1: trigger-index generator off-by-one root-resolution bug (critical)"}

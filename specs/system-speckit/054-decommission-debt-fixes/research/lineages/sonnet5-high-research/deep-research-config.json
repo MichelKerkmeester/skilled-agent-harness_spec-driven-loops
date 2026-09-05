@@ -1,0 +1,66 @@
+{
+  "topic": "Repository-wide audit of what still needs fixing, aligning, or better integrating with system-spec-kit, the spec-folder workflow and continuity runtime at .opencode/skills/system-spec-kit",
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-speckit/054-decommission-debt-fixes",
+  "createdAt": "2026-09-05T20:26:22Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-claude-code",
+    "model": "claude-sonnet-5",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-sonnet5-high-research-1788639893758-75i4wx",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resource_map_present": false,
+  "pauseSentinelPath": ".deep-research-pause",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iterations/iteration-*.md": "write-once",
+    "deltas/iter-*.jsonl": "write-once",
+    "research.md": "mutable"
+  },
+  "notes": "Fan-out lineage executed inline by the cli-claude-code executor process itself, no nested subprocess dispatch. artifact_dir bound directly to config.fanout_lineage_artifact_dir override; all state files are flat at lineage root (no research/ subfolder)."
+}
