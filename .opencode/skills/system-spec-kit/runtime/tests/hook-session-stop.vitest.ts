@@ -193,6 +193,8 @@ describe.sequential('Claude session-stop autosave outcomes', () => {
       {
         session_id: 'autosave-failed',
         stop_hook_active: true,
+        // Autosave persists only a summary this Stop invocation extracted.
+        last_assistant_message: 'Persist this summary',
       },
       { autosaveMode: 'enabled' },
     );
@@ -200,7 +202,8 @@ describe.sequential('Claude session-stop autosave outcomes', () => {
     expect(result.autosaveMode).toBe('enabled');
     expect(result.autosaveOutcome).toBe('failed');
     expect(result.retargetReason).toBeNull();
-    expect(result.touchedPaths).toEqual([]);
+    // The extracted summary is persisted once before the save is attempted.
+    expect(result.touchedPaths).toHaveLength(1);
     expect(result.producerMetadataWritten).toBe(false);
   });
 
@@ -596,19 +599,19 @@ describe.sequential('Claude session-stop autosave outcomes', () => {
     // Seed pre-handler state pointing at the older packet.
     updateState('retarget-refresh-session', { lastSpecFolder: stalePacket });
 
-    // Race-simulation via a parseTranscript spy. Transcript parsing is
-    // the async work between handler-entry loadState (capturing
-    // stateBeforeStop) and the detection refresh loadState. Advancing
-    // on-disk state during parse simulates a concurrent writer. The
-    // refresh path must then pick up the writer-advanced value instead
-    // of the stale snapshot taken at handler entry.
+    // Race-simulation via an estimateCost spy. The hook prices the parsed
+    // transcript usage after parsing and before the detection refresh
+    // loadState, so that call sits in the window between the handler-entry
+    // loadState (capturing stateBeforeStop) and the refresh. Advancing
+    // on-disk state there simulates a concurrent writer; the refresh path
+    // must then pick up the writer-advanced value instead of the stale
+    // entry snapshot.
     const transcriptModule = await import('../hooks/claude/claude-transcript.js');
-    const originalParseTranscript = transcriptModule.parseTranscript.bind(transcriptModule);
-    const parseSpy = vi.spyOn(transcriptModule, 'parseTranscript').mockImplementation(async (filePath, startOffset) => {
-      const result = await originalParseTranscript(filePath, startOffset);
+    const originalEstimateCost = transcriptModule.estimateCost.bind(transcriptModule);
+    const parseSpy = vi.spyOn(transcriptModule, 'estimateCost').mockImplementation((...args) => {
       // Concurrent writer advances packet target mid-parse.
       updateState('retarget-refresh-session', { lastSpecFolder: advancedPacket });
-      return result;
+      return originalEstimateCost(...args);
     });
 
     try {

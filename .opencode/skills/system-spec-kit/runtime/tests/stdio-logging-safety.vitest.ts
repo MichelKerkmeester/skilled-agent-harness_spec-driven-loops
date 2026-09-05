@@ -13,8 +13,13 @@ const EXCLUDED_PATH_SNIPPETS = [
   `${path.sep}lib${path.sep}deep-loop${path.sep}executor-audit.ts`,
   `${path.sep}lib${path.sep}validation${path.sep}orchestrator.ts`,
   `${path.sep}matrix_runners${path.sep}run-matrix.ts`,
+  // Every hook adapter answers its host on stdout; that write is the hook
+  // protocol, not logging, so each runtime's adapter folder is excluded alike.
   `${path.sep}hooks${path.sep}claude${path.sep}`,
+  `${path.sep}hooks${path.sep}codex${path.sep}`,
   `${path.sep}hooks${path.sep}copilot${path.sep}`,
+  `${path.sep}hooks${path.sep}cursor${path.sep}`,
+  `${path.sep}hooks${path.sep}devin${path.sep}`,
   `${path.sep}hooks${path.sep}opencode${path.sep}`,
   `${path.sep}skill-advisor${path.sep}bench${path.sep}`,
   `${path.sep}skill_advisor${path.sep}bench${path.sep}`,
