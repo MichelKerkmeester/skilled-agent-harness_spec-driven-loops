@@ -143,6 +143,22 @@ The engine is composed of focused subsystems that share a public barrel and a fi
 
 **Stress tests.** `stress-test/` carries opt-in load and contention suites, excluded from the default test config and run through `vitest.stress.config.ts`.
 
+### Ownership of the surfaces the memory store used to touch
+
+The retired store left names behind that now mean different things. This table is the
+single answer to "who owns this now"; a producer, test, doctor route or gate that
+disagrees with it is the thing to fix.
+
+| Surface | Owner today | What it is |
+|---------|-------------|------------|
+| `runtime/data/trigger-index.json` | `scripts/retrieval/generate-trigger-index.mjs` (writer), `lookup-trigger-index.mjs` (reader) | The committed Gate 1 retrieval index over author-declared trigger phrases |
+| `runtime/database/` | The HF model server in `.opencode/bin` | Its sockets, leases and logs; no index, no database of ours |
+| `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` | `shared/paths.ts` and `shared/embeddings/` for the skill advisor | The advisor's own embedding store location; nothing in this skill opens a database |
+| `.opencode/skills/system-skill-advisor/mcp-server/database/` | The skill advisor | Its routing graph and doctor state; the only MCP daemon this repository still runs |
+| `.opencode/skills/system-deep-loop/runtime/database/` | The deep-loop runtime | Coverage and council graphs for research, review and council loops |
+| `scripts/dist/memory/generate-context.js`, `/memory:save`, `/memory:search` | The scripts workspace | The continuity writer and the retrieval commands; "memory" here is the command family's literal name, not a store |
+| `shared/ipc/`, `@modelcontextprotocol/sdk` in `shared/` | The skill advisor daemon through `shared/ipc` | The IPC seam the advisor's MCP transport is built on |
+
 ---
 
 ## 5. HOOK AND PLUGIN INTEGRATION

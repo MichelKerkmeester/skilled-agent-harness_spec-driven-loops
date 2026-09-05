@@ -119,6 +119,23 @@ describe('registry node rule execution', () => {
     expect(Array.isArray(result.details)).toBe(true);
   });
 
+  it('reports an error when a rule prints a passing verdict but exits non-zero', () => {
+    const folder = createLevelOneFolder('# Tasks\n\n- [ ] Pending task\n');
+    const stubDir = fs.mkdtempSync(path.join(os.tmpdir(), 'validation-orchestrator-stub-'));
+    tempDirs.push(stubDir);
+    const stubPath = path.join(stubDir, 'optimistic-rule.cjs');
+    fs.writeFileSync(
+      stubPath,
+      "process.stdout.write('rule\\tCONTINUITY_FRESHNESS\\nstatus\\tpass\\nmessage\\tlooks fine\\n'); process.exit(1);\n",
+      'utf8',
+    );
+
+    const result = __testables.runRegistryNodeRule(folder, NODE_RULE, stubPath, true);
+
+    expect(result.status).toBe('error');
+    expect(result.message).toContain('exited 1');
+  });
+
   it('carries a changed message back from the rule rather than a cached one', () => {
     const folder = createLevelOneFolder('# Tasks\n\n- [ ] Pending task\n');
     const scriptPath = __testables.resolveRegistryRuleScript(NODE_RULE.script_path);

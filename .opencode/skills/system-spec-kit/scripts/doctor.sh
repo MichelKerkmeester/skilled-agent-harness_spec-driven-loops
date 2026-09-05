@@ -48,8 +48,7 @@ log_pass "Runtime dist present"
 NODE_BIN="$(command -v node || true)"
 if [[ -z "$NODE_BIN" ]]; then
     log_warn "node not on PATH"
-    [[ "$STRICT_MODE" == true ]] && exit 26
-    exit 0
+    exit 26
 fi
 log_pass "Node interpreter: $NODE_BIN"
 
@@ -65,9 +64,9 @@ if [[ ${#DEP_CHECK_MISSING[@]} -eq 0 ]]; then
 else
     log_warn "Runtime imports FAILED — missing modules: ${DEP_CHECK_MISSING[*]}"
     echo "  Fix via: ( cd $SKILL_DIR && npm install )"
-    if [[ "$STRICT_MODE" == true ]]; then
-        exit 26
-    fi
+    # A health check that reports a broken install and exits 0 is a check the
+    # caller cannot act on, so missing imports fail regardless of --strict.
+    exit 26
 fi
 
 echo ""

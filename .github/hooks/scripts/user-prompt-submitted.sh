@@ -11,14 +11,8 @@ cd "$REPO_ROOT"
 if [ -f ".opencode/skills/system-spec-kit/runtime/dist/hooks/copilot/user-prompt-submit.js" ]; then
   node .opencode/skills/system-spec-kit/runtime/dist/hooks/copilot/user-prompt-submit.js < "$INPUT_FILE"
 else
-  INSTRUCTIONS_PATH="${SPECKIT_COPILOT_INSTRUCTIONS_PATH:-$REPO_ROOT/.github/copilot-instructions.md}"
-  mkdir -p "$(dirname "$INSTRUCTIONS_PATH")"
-  cat > "$INSTRUCTIONS_PATH" <<'EOF'
-<!-- SPEC-KIT-COPILOT-CONTEXT:START -->
-# Spec Kit Auto-Generated Context
-
-Active Advisor Brief: Copilot wrapper fallback active. Run `/speckit:resume` for fresh context when needed.
-<!-- SPEC-KIT-COPILOT-CONTEXT:END -->
-EOF
+  # No compiled handler: answer the host with an empty hook response and touch
+  # nothing in the repository. A hook fallback that rewrites a tracked document
+  # would put unreviewed content into the working tree on every prompt.
   printf '{}\n'
 fi

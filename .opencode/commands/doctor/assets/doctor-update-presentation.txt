@@ -118,7 +118,7 @@ Cross-Subsystem Health Dashboard
 
 | Subsystem     | Status | Age | Coverage | Recommended Action |
 |---------------|--------|-----|----------|--------------------|
-| context-index | [OK|STALE|MISSING|REGRESSED] | [age] | [metric] | [index-scan|skip|rollback] |
+| trigger-index | [OK|STALE|MISSING|REGRESSED] | [age] | [metric] | [regenerate|skip|rollback] |
 | skill-graph   | [OK|STALE|MISSING] | [age] | [n/a|metric] | [scan|skip] |
 | advisor       | [OK|INVALID|STALE] | [age] | [n/a|metric] | [rebuild|validate] |
 | deep-loop     | [OK|EMPTY|STALE] | [age] | [n/a|metric] | [upsert|skip] |

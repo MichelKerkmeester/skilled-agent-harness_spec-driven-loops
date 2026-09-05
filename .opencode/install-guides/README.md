@@ -912,7 +912,6 @@ Emergency procedures for backup, recovery and clean uninstallation of OpenCode c
 | **Want to start fresh**    | Clean Uninstall  | [14.2](#142-uninstall-commands) |
 | **Installation failed**    | Rollback         | [14.3](#143-rollback)        |
 | **MCP server stuck**       | Kill processes   | [14.4](#144-emergency-recovery-commands) |
-| **Database corrupted**     | Rebuild database | [14.4](#144-emergency-recovery-commands) |
 | **Not sure what's broken** | Run health check | [14.5](#145-health-check)    |
 | **About to make changes**  | Backup first     | [14.1](#141-backup--restore) |
 
@@ -924,7 +923,7 @@ Emergency procedures for backup, recovery and clean uninstallation of OpenCode c
 
 ```bash
 # Backup
-BACKUP="$HOME/.opencode-backup-$(date +%Y%m%d-%H%M%S)" && mkdir -p "$BACKUP" && cp opencode.json .utcp_config.json "$BACKUP/" 2>/dev/null && cp -r .opencode/skills/system-spec-kit/runtime/database "$BACKUP/" 2>/dev/null && echo "✅ Backed up to $BACKUP"
+BACKUP="$HOME/.opencode-backup-$(date +%Y%m%d-%H%M%S)" && mkdir -p "$BACKUP" && cp opencode.json .utcp_config.json "$BACKUP/" 2>/dev/null && echo "✅ Backed up to $BACKUP"
 
 # List backups
 ls -lhd ~/.opencode-backup-* 2>/dev/null || echo "No backups found"
@@ -990,8 +989,6 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 | ----------------------------- | ------------------- | ------------------------------- |
 | `Error: ENOENT opencode.json` | Config missing      | Restore from backup or recreate |
 | `MCP server timeout`          | Process stuck       | Kill processes (14.4)           |
-| `Database locked`             | Multiple processes  | Kill processes, restart         |
-| `SQLITE_CORRUPT`              | Database corruption | Delete and rebuild (14.4)       |
 | `JSON parse error`            | Invalid config      | Validate with `jq`, fix syntax  |
 | `Port already in use`         | Port conflict       | Kill conflicting process        |
 | `Permission denied`           | File permissions    | Check ownership, run `chmod`    |

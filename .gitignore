@@ -299,9 +299,7 @@ specs/**/lineages/*/.codex-home/
 # owner that no longer exists.
 .canonical-save.lock/
 
-# The spec-kit retrieval index and its backups. These are rebuilt from the spec
-# tree on demand and reach tens of gigabytes, so they are machine state rather
-# than history: committing one would bloat every clone forever to describe an
-# index that is stale the moment a spec doc changes.
+# The HF model server's default state directory under the spec-kit runtime. It
+# holds sockets, leases and logs for a machine-local process, so it is state
+# rather than history.
 .opencode/skills/system-spec-kit/runtime/database/
-.opencode/skills/system-spec-kit/runtime/data/search-decisions.jsonl

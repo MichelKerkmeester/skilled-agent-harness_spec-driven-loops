@@ -1326,9 +1326,8 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   // Content cleaning — strip leaked HTML tags from rendered content
   // Preserves HTML inside fenced code blocks (```...```) which is legitimate code.
   // Earlier steps here validated, scored, and gated a rendered memory artifact that
-  // no longer exists (removed in the v3.4.1.0 cutover). Quality + sufficiency +
-  // template-contract checks for canonical-doc saves are owned by the
-  // content-router (handlers/memory-save.ts).
+  // no longer exists. Quality, sufficiency and template-contract checks for
+  // canonical-doc saves now run in the post-save review and in validate.sh.
 
   const sessionObservations = Array.isArray(sessionData.OBSERVATIONS) ? sessionData.OBSERVATIONS : [];
   const sessionFiles = Array.isArray(sessionData.FILES) ? sessionData.FILES : [];

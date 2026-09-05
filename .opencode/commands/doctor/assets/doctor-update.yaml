@@ -162,7 +162,7 @@ interactive_prompts:
 # DEPENDENCY ORDER
 # ─────────────────────────────────────────────────────────────────
 dependency:
-  order: ["context-index", "skill-graph", "advisor", "deep-loop-graph"]
+  order: ["trigger-index", "skill-graph", "advisor", "deep-loop-graph"]
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -350,14 +350,14 @@ workflow:
     council_line: 4
     approval: "prompt after rendering dashboard and before selecting actions"
     cross_subsystem_dashboard:
-      rows: ["context-index", "skill-graph", "advisor", "deep-loop"]
+      rows: ["trigger-index", "skill-graph", "advisor", "deep-loop"]
       columns: ["status", "age", "coverage", "recommended action"]
       coverage_column_rationale: "rows show n/a unless their tool surfaces a coverage metric; the trigger-index generator reports none, so its row is n/a"
 
   phase_5_dependency_order_execute:
     council_line: 4
     approval: "prompt before each dependency step"
-    dependency.order: ["context-index", "skill-graph", "advisor", "deep-loop-graph"]
+    dependency.order: ["trigger-index", "skill-graph", "advisor", "deep-loop-graph"]
     test_failure_injection:
       env_var: "SPECKIT_FAIL_STEP"
       scope: "disposable workspace tests only"
@@ -365,7 +365,7 @@ workflow:
       example: "SPECKIT_FAIL_STEP=skill-graph"
       state_log_requirement: "Record injected_failure=true, failed_step=<step>, and final_status=rolled_back when rollback is selected."
     execute:
-      context-index:
+      trigger-index:
         action: "node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs  # full regeneration; the generator reads frontmatter and writes the index file, with no daemon and no incremental mode"
       skill-graph: "system_skill_advisor.skill_graph_scan({})"
       advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"

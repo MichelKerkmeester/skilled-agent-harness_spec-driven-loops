@@ -30,7 +30,7 @@ jobs:
           node-version: '22'
 
       # The validator loads TypeScript rule modules that import across the
-      # mcp-server package, so installing only the scripts workspace leaves every
+      # runtime package, so installing only the scripts workspace leaves every
       # one of those rules erroring — which reads as thousands of failing packets
       # rather than as a missing toolchain.
       - name: Install spec-kit dependencies

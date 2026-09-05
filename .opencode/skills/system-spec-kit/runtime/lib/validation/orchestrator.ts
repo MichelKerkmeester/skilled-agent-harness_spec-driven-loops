@@ -316,6 +316,17 @@ function runRegistryNodeRule(
     return entry(rule.rule_id, 'error', 'Registry node rule returned no parseable output', [stdout]);
   }
 
+  // A rule that printed a passing verdict but exited non-zero did not finish
+  // the way it claims; the exit code wins over the optimistic stdout.
+  if (typeof result.status === 'number' && result.status !== 0 && parsed.status === 'pass') {
+    return entry(
+      rule.rule_id,
+      'error',
+      `Registry node rule ${rule.rule_id} reported pass but exited ${result.status}`,
+      registryExecutionErrorDetails(result),
+    );
+  }
+
   return entry(rule.rule_id, mapShellRuleStatus(parsed.status, rule.severity), parsed.message, parsed.details);
 }
 

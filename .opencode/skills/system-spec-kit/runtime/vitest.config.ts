@@ -19,7 +19,6 @@ export default defineConfig({
       'scripts/tests/**/*.{vitest,test}.ts',
     ],
     exclude: [
-      'runtime/tests/memory-save.vitest.ts',
       'runtime/tests/archive/**',
     ],
     setupFiles: [
