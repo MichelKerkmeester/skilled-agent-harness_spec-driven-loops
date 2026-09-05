@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level-2/implementation-summary.md]"
+title: "Implementation Summary: Phase 7: memory-command-family-naming-decision"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation summary"
