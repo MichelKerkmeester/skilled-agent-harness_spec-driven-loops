@@ -11,7 +11,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/extractors/` converts normalized session input into structured conversation, decision, file, implementation, git, and spec-folder data used by template rendering and indexing workflows. `collect-session-data.ts` orchestrates the other extractors into one `SessionData` payload; the focused extractors each own a single signal type.
+`runtime/cli/extractors/` converts normalized session input into structured conversation, decision, file, implementation, git, and spec-folder data used by template rendering and indexing workflows. `collect-session-data.ts` orchestrates the other extractors into one `SessionData` payload; the focused extractors each own a single signal type.
 
 ---
 
@@ -45,7 +45,7 @@ Run extractor validation from the repository root:
 npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 ```
 
-The sibling Vitest suite lives in `../tests/`. Targeted runs from `scripts/`:
+The sibling Vitest suite lives in `../tests/`. Targeted runs from `runtime/cli/`:
 
 ```bash
 npm test

@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/lib/` contains shared helpers for the script package. TypeScript modules compile to `runtime/cli/dist/lib/`, while shell helpers and standalone CommonJS modules are sourced or required directly, with no build step.
+`runtime/cli/lib/` contains shared helpers for the script package. TypeScript modules compile to `runtime/cli/dist/lib/`, while shell helpers and standalone CommonJS modules are sourced or required directly, with no build step.
 
 Current state:
 
@@ -56,7 +56,7 @@ Dependency direction: callers ───▶ lib source ───▶ shared packag
 ## 3. PACKAGE TOPOLOGY
 
 ```text
-scripts/lib/
+runtime/cli/lib/
 +-- anchor-generator.ts                    # Stable markdown anchor generation
 +-- ascii-boxes.ts                         # Box drawing helpers for terminal output
 +-- cli-capture-shared.ts                  # CLI capture payload helpers
@@ -139,7 +139,7 @@ Disallowed direction:
 | `wave-segment-planner.cjs` | Deterministic file and research-domain segmentation, including hotspot inventory, for wave-mode activation. |
 | `wave-coordination-board.cjs` | Reducer-owned `board.json` execution ledger, status transitions and finding-merge state. |
 | `shell-common.sh` | Provides common shell functions for spec and rule scripts. |
-| `status-classifier.sh` | Shares pass/fail/regression classification vocabulary with `scripts/sweep/strict-pass-freshness.ts`. |
+| `status-classifier.sh` | Shares pass/fail/regression classification vocabulary with `runtime/cli/sweep/strict-pass-freshness.ts`. |
 | `parse-bool-flag.sh` | Parses boolean CLI flags for shell entrypoints. |
 | `template-utils.sh` | Provides shell helpers for template-based writes. |
 

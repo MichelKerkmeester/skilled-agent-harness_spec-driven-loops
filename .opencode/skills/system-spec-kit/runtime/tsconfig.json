@@ -37,7 +37,6 @@
     "hooks/**/*.ts",
     "lib/**/*.ts",
     "schemas/**/*.ts",
-    "scripts/**/*.ts",
     "utils/**/*.ts"
   ],
   "exclude": [
@@ -48,7 +47,6 @@
     "cli/**",
     "hooks/pi/**",
     "lib/test-helpers/**",
-    "scripts/tests/**",
     "tests/fixtures/**/*.ts",
     "tests/**",
     "tests/**/*.vitest.ts",

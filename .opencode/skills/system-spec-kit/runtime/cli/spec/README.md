@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/spec/` owns shell entrypoints for spec folder lifecycle work. It creates packet folders, upgrades documentation levels, validates structure, checks completion state and archives finished or stale folders.
+`runtime/cli/spec/` owns shell entrypoints for spec folder lifecycle work. It creates packet folders, upgrades documentation levels, validates structure, checks completion state and archives finished or stale folders.
 
 Current state:
 
@@ -55,7 +55,7 @@ Dependency direction: spec/*.sh ───▶ rules/*.sh ───▶ lib/*.sh
 ## 3. PACKAGE TOPOLOGY
 
 ```text
-scripts/spec/
+runtime/cli/spec/
 +-- create.sh                    # Scaffold spec folders from templates
 +-- upgrade-level.sh             # Add level-owned docs and sections
 +-- check-placeholders.sh        # Detect unresolved template placeholders
@@ -102,7 +102,7 @@ Disallowed direction:
 | `scaffold-debug-delegation.sh` | Generates `debug-delegation.md` handoff scaffolds from failure-trail input. |
 | `progressive-validate.sh` | Runs a staged validation pass for detect, fix, suggest and report flows. |
 | `check-smart-router.sh` | Validates `SKILL.md` smart-router resource paths and reports load bloat warnings. |
-| `test-validation.sh` | Legacy wrapper forwarding to `scripts/tests/test-validation.sh`. |
+| `test-validation.sh` | Legacy wrapper forwarding to `runtime/cli/tests/test-validation.sh`. |
 | `archive.sh` | Moves completed or stale spec folders into the archive area. |
 | `is-phase-parent.ts` | Detects whether a folder is a phase parent and reports child-count manifest health. |
 | `sync-phase-map-status.ts` | Corrects a phase parent's map table rows and descendant completion percentages. |

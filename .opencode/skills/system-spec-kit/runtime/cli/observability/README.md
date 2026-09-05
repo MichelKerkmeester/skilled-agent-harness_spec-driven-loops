@@ -11,7 +11,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/observability/` contains observe-only helpers for measuring skill smart-router behavior. The scripts predict expected resource reads, record live wrapper observations, and turn JSONL telemetry into reports.
+`runtime/cli/observability/` contains observe-only helpers for measuring skill smart-router behavior. The scripts predict expected resource reads, record live wrapper observations, and turn JSONL telemetry into reports.
 
 Current state:
 
@@ -54,7 +54,7 @@ These helpers are observe-only. Runtime wrappers and measurement scripts may cal
 
 ## 5. VALIDATION
 
-Run the smart-router vitest suites from `scripts/`'s skill root (`.opencode/skills/system-spec-kit`):
+Run the smart-router vitest suites from `runtime/cli/`'s skill root (`.opencode/skills/system-spec-kit`):
 
 ```bash
 npx --prefix scripts vitest run --config runtime/vitest.config.ts \
@@ -63,7 +63,7 @@ npx --prefix scripts vitest run --config runtime/vitest.config.ts \
   runtime/tests/smart-router-measurement.vitest.ts
 ```
 
-For type coverage after edits, run `npx tsc --noEmit -p tsconfig.json` from `scripts/`.
+For type coverage after edits, run `npx tsc --noEmit -p tsconfig.json` from `runtime/cli/`.
 
 ---
 

@@ -13,9 +13,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/renderers/` owns the small template engine used by script flows that turn collected context into markdown output. It reads source templates, expands Mustache-like sections and variables, and removes template-only comments before files are written.
+`runtime/cli/renderers/` owns the small template engine used by script flows that turn collected context into markdown output. It reads source templates, expands Mustache-like sections and variables, and removes template-only comments before files are written.
 
-Runtime code imports the compiled output from `runtime/cli/dist/renderers/`. Source edits belong in `scripts/renderers/*.ts`.
+Runtime code imports the compiled output from `runtime/cli/dist/renderers/`. Source edits belong in `runtime/cli/renderers/*.ts`.
 
 Use this folder when a script needs template expansion that is shared across spec generation, context saving, or report output. Keep template selection and file-write policy in the caller.
 

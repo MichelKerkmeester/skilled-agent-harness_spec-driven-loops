@@ -11,7 +11,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/templates/` owns the inline gate renderer used to produce Level-specific markdown from shared templates. It evaluates `<!-- IF ... -->` blocks and emits only the content that applies to the requested Level.
+`runtime/cli/templates/` owns the inline gate renderer used to produce Level-specific markdown from shared templates. It evaluates `<!-- IF ... -->` blocks and emits only the content that applies to the requested Level.
 
 Current responsibilities:
 
@@ -64,6 +64,6 @@ Expected result: the README validation exits `0`.
 
 ## 6. RELATED
 
-- [`scripts/`](../README.md)
+- [`runtime/cli/`](../README.md)
 - [`inline-gate-renderer.ts`](./inline-gate-renderer.ts)
 - [`inline-gate-renderer.sh`](./inline-gate-renderer.sh)

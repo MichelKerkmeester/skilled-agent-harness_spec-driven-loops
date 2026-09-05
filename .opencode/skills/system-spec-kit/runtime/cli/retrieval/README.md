@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/retrieval/` owns the trigger-index generator and lookup that back Gate 1 trigger lookup, the ripgrep recipe lane documented in `references/retrieval/retrieval-conventions.md`, and the tooling that keeps both honest: a grep-convention retrofit pipeline and a memory-MCP residue sweep. `lib/` holds the shared, filesystem-free primitives every script here imports.
+`runtime/cli/retrieval/` owns the trigger-index generator and lookup that back Gate 1 trigger lookup, the ripgrep recipe lane documented in `references/retrieval/retrieval-conventions.md`, and the tooling that keeps both honest: a grep-convention retrofit pipeline and a memory-MCP residue sweep. `lib/` holds the shared, filesystem-free primitives every script here imports.
 
 Current state:
 

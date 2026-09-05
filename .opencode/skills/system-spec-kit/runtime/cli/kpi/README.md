@@ -16,7 +16,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/kpi/` reports defect rates for generated continuity support
+`runtime/cli/kpi/` reports defect rates for generated continuity support
 artifacts. It scans markdown under spec `memory/` directories and emits JSON
 metrics plus a concise stderr summary.
 
@@ -32,7 +32,7 @@ Boundary:
 ## 2. PACKAGE TOPOLOGY
 
 ```text
-scripts/kpi/
+runtime/cli/kpi/
 +-- quality-kpi.sh  # Shell wrapper with inline Node.js scanner
 `-- README.md
 ```

@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/tests/` validates script behavior across shell workflows, JavaScript
+`runtime/cli/tests/` validates script behavior across shell workflows, JavaScript
 smoke tests, Python checks and Vitest regression suites. It covers validation
 orchestration, memory pipeline seams, phase workflows, import policy, template
 rendering and utility contracts.
@@ -29,7 +29,7 @@ remain supporting fixtures or outputs.
 ## 2. PACKAGE TOPOLOGY
 
 ```text
-scripts/tests/
+runtime/cli/tests/
 +-- test-*.js                 # Node smoke and integration tests
 +-- test-*.sh                 # Shell validation and phase workflow tests
 +-- test_dual_threshold.py    # Python threshold check
@@ -68,7 +68,7 @@ Not owned here:
 
 ## 4. ENTRYPOINTS
 
-Run from the repository root unless a command changes into `scripts/` explicitly:
+Run from the repository root unless a command changes into `runtime/cli/` explicitly:
 
 ```bash
 npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build

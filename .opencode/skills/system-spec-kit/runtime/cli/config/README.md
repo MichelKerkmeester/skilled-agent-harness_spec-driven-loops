@@ -11,7 +11,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/config/` exposes config and specs-directory utilities to script modules without requiring those modules to import from `scripts/core` directly.
+`runtime/cli/config/` exposes config and specs-directory utilities to script modules without requiring those modules to import from `runtime/cli/core` directly.
 
 Current state:
 
@@ -40,7 +40,7 @@ config/
 
 ## 4. BOUNDARIES
 
-Non-core scripts should import config through this folder. The canonical config implementation remains in `scripts/core/config.ts`.
+Non-core scripts should import config through this folder. The canonical config implementation remains in `runtime/cli/core/config.ts`.
 
 Allowed direction:
 

@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/types/` contains shared TypeScript types used by extractors, renderers, simulation helpers and context-generation modules. The folder keeps data contracts and one small ambient module declaration in a few source files so script modules can share session payload shapes without redefining them.
+`runtime/cli/types/` contains shared TypeScript types used by extractors, renderers, simulation helpers and context-generation modules. The folder keeps data contracts and one small ambient module declaration in a few source files so script modules can share session payload shapes without redefining them.
 
 Current state:
 
@@ -30,7 +30,7 @@ Current state:
 ## 2. PACKAGE TOPOLOGY
 
 ```text
-scripts/types/
+runtime/cli/types/
 +-- session-types.ts      # Shared session, decision, conversation and diagram interfaces
 +-- save-mode.ts          # SaveMode enum and resolveSaveMode() input resolution
 +-- js-yaml.d.ts          # Ambient module declaration for js-yaml
@@ -52,7 +52,7 @@ runtime/cli/dist/types/
 
 Allowed direction:
 
-- Script source modules may import from `scripts/types/session-types.ts` and `scripts/types/save-mode.ts`.
+- Script source modules may import from `runtime/cli/types/session-types.ts` and `runtime/cli/types/save-mode.ts`.
 - Extractors may provide imported field types used by `SessionData`.
 - Build output may be inspected by runtime smoke tests.
 

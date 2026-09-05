@@ -13,14 +13,14 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/rules/` owns the shell modules used by `scripts/spec/validate.sh`. Each rule reports through the shared `run_check()` interface and sets `RULE_*` variables that the validator reads.
+`runtime/cli/rules/` owns the shell modules used by `runtime/cli/spec/validate.sh`. Each rule reports through the shared `run_check()` interface and sets `RULE_*` variables that the validator reads.
 
 Current state:
 
-- Rule metadata and dispatch order come from `scripts/lib/validator-registry.json`.
+- Rule metadata and dispatch order come from `runtime/cli/lib/validator-registry.json`.
 - Authored rules validate packet files, template markers, anchors, sections and metadata.
 - Runtime rules validate generated artifacts, save contracts, link scans and continuity support files.
-- Shell modules stay small and defer shared logic to `scripts/lib/` when possible.
+- Shell modules stay small and defer shared logic to `runtime/cli/lib/` when possible.
 
 ---
 
@@ -89,9 +89,9 @@ helpers each `.sh` rule shells out to for logic bash cannot express directly:
 
 | Boundary | Rule |
 |---|---|
-| Imports | Source shared shell helpers from `scripts/lib/`. |
-| Registry | Add or change public rule metadata in `scripts/lib/validator-registry.json`. |
-| Ownership | Keep rule-specific checks in `check-*.sh`. Keep orchestration in `scripts/spec/validate.sh`. |
+| Imports | Source shared shell helpers from `runtime/cli/lib/`. |
+| Registry | Add or change public rule metadata in `runtime/cli/lib/validator-registry.json`. |
+| Ownership | Keep rule-specific checks in `check-*.sh`. Keep orchestration in `runtime/cli/spec/validate.sh`. |
 | Output | Set `RULE_NAME`, `RULE_STATUS`, `RULE_MESSAGE`, `RULE_DETAILS` and `RULE_REMEDIATION`. |
 
 Main flow:
@@ -128,9 +128,9 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `scripts/spec/validate.sh` | Shell command | Runs registered rule checks for a spec folder. |
+| `runtime/cli/spec/validate.sh` | Shell command | Runs registered rule checks for a spec folder. |
 | `run_check()` | Shell function | Executes one rule module against a target packet. |
-| `scripts/lib/validator-registry.json` | Registry | Defines rule aliases, severity and dispatch metadata. |
+| `runtime/cli/lib/validator-registry.json` | Registry | Defines rule aliases, severity and dispatch metadata. |
 
 ---
 

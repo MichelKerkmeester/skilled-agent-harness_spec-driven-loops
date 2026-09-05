@@ -6,7 +6,7 @@
 
 ## 1. OVERVIEW
 
-`scripts/resource-map/` owns the CommonJS helper that turns deep review or deep research evidence into a `resource-map.md` ledger.
+`runtime/cli/resource-map/` owns the CommonJS helper that turns deep review or deep research evidence into a `resource-map.md` ledger.
 
 Current state:
 
@@ -25,7 +25,7 @@ This directory belongs to the System Spec Kit script layer. Keep it usable from 
 ## 3. TREE AND KEY FILES
 
 ```text
-scripts/resource-map/
+runtime/cli/resource-map/
 +-- README.md
 `-- extract-from-evidence.cjs
 ```

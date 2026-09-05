@@ -16,11 +16,11 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/core/` contains the TypeScript workflow modules used by `runtime/cli/dist/continuity/generate-context.js`. The folder owns context-save orchestration, quality scoring, metadata extraction, file writing and spec-folder path handling.
+`runtime/cli/core/` contains the TypeScript workflow modules used by `runtime/cli/dist/continuity/generate-context.js`. The folder owns context-save orchestration, quality scoring, metadata extraction, file writing and spec-folder path handling.
 
 Current state:
 
-- Source of truth is `scripts/core/*.ts`.
+- Source of truth is `runtime/cli/core/*.ts`.
 - Compiled runtime output is `runtime/cli/dist/core/*.js`.
 - `workflow.ts` composes the save flow and imports focused helpers from this folder.
 - `daemon-detect.ts` probes process liveness for the save lock's stale-owner check.
@@ -63,7 +63,7 @@ index.ts -> public exports only
 ## 3. PACKAGE TOPOLOGY
 
 ```text
-scripts/core/
+runtime/cli/core/
 +-- index.ts                  # Public barrel for core modules
 +-- workflow.ts               # Main context-save orchestration
 +-- workflow-accessors.ts     # Typed accessors for workflow objects
@@ -99,7 +99,7 @@ runtime callers -> private helper assumptions not exported by index.ts
 ## 4. DIRECTORY TREE
 
 ```text
-scripts/core/
+runtime/cli/core/
 +-- alignment-validator.ts       # Spec-folder alignment and thinning targets
 +-- config.ts                    # Config loading, path wiring, canonical-first specs-dir discovery
 +-- content-cleaner.ts           # HTML stripping and literal-anchor escaping
@@ -158,7 +158,7 @@ scripts/core/
 |---|---|
 | Imports | Source modules import local TypeScript helpers and script libraries, not compiled `dist/` output. `daemon-detect.ts` is stdlib-only. |
 | Exports | `index.ts` is the public barrel for this folder. Keep one-off helpers private unless another script imports them. |
-| Ownership | This folder owns context-save orchestration helpers. Runtime engine modules, database code and spec templates belong outside `scripts/core/`. |
+| Ownership | This folder owns context-save orchestration helpers. Runtime engine modules, database code and spec templates belong outside `runtime/cli/core/`. |
 
 Save-lock ownership check:
 
@@ -205,7 +205,7 @@ npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 
 Expected result: TypeScript compiles and updates `runtime/cli/dist/`.
 
-The sibling Vitest suite lives in `../tests/`. Targeted runs for this folder, from `scripts/`:
+The sibling Vitest suite lives in `../tests/`. Targeted runs for this folder, from `runtime/cli/`:
 
 ```bash
 npm test

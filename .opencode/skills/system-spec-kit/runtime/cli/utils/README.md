@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/utils/` contains reusable helpers for the system-spec-kit script
+`runtime/cli/utils/` contains reusable helpers for the system-spec-kit script
 package. TypeScript sources compile to `runtime/cli/dist/utils/`; the source-only
 JavaScript helper is loaded directly where needed.
 
@@ -32,7 +32,7 @@ Current responsibilities:
 ## 2. PACKAGE TOPOLOGY
 
 ```text
-scripts/utils/
+runtime/cli/utils/
 +-- data-validator.ts          # Input shape validation and flag mappings
 +-- fact-coercion.ts           # Extracted fact normalization
 +-- file-helpers.ts            # Safe file I/O helpers

@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/optimizer/` contains the offline loop optimizer for deep research and deep review replay data. It builds replay corpora from recorded JSONL traces, replays them deterministically under candidate configs, scores each run against a quality rubric, searches a manifest-bounded config space and produces advisory promotion reports.
+`runtime/cli/optimizer/` contains the offline loop optimizer for deep research and deep review replay data. It builds replay corpora from recorded JSONL traces, replays them deterministically under candidate configs, scores each run against a quality rubric, searches a manifest-bounded config space and produces advisory promotion reports.
 
 Current state:
 
@@ -159,7 +159,7 @@ Expected result: the README validator exits with code `0`.
 
 ## 8. RELATED
 
-- [`scripts/`](../README.md)
+- [`runtime/cli/`](../README.md)
 - [`optimizer-manifest.json`](./optimizer-manifest.json)
 - [`replay-corpus.cjs`](./replay-corpus.cjs)
 - [`replay-runner.cjs`](./replay-runner.cjs)

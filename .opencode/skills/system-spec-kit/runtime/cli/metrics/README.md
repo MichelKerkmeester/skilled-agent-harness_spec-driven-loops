@@ -9,7 +9,7 @@ description: "Runtime-agnostic reader for deep-loop behavioral signals (opener r
 
 ## 1. OVERVIEW
 
-`scripts/metrics/` reads deep-loop state (the per-lineage opencode JSON event stream and iteration markdown) to score fable-5 behavioral efficiency. It exists because the only prior behavioral metric only reads Claude Code project logs, so it could not see OpenCode or Codex runs. It is read-only by default. It writes only when `--baseline` is passed and even then only to the named snapshot file.
+`runtime/cli/metrics/` reads deep-loop state (the per-lineage opencode JSON event stream and iteration markdown) to score fable-5 behavioral efficiency. It exists because the only prior behavioral metric only reads Claude Code project logs, so it could not see OpenCode or Codex runs. It is read-only by default. It writes only when `--baseline` is passed and even then only to the named snapshot file.
 
 ---
 

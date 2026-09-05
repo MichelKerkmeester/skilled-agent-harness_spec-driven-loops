@@ -11,7 +11,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/loaders/` is the script-side ingestion layer for context generation. It loads explicit structured JSON input, validates that usable session data exists and returns a consistent object for extractors and renderers.
+`runtime/cli/loaders/` is the script-side ingestion layer for context generation. It loads explicit structured JSON input, validates that usable session data exists and returns a consistent object for extractors and renderers.
 
 ---
 

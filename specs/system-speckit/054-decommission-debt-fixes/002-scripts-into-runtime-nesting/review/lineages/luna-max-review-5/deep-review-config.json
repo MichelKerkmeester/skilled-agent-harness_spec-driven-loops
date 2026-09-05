@@ -1,0 +1,61 @@
+{
+  "topic": "Review of scripts-into-runtime-nesting after the runtime/cli relocation",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "resource_map": {"emit": true},
+  "sessionId": "fanout-luna-max-review-5-1788624802460-meehmn",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "antiConvergence": {"convergenceMode": "default", "stopPolicy": "max-iterations"},
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
+  "artifactDir": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5",
+  "createdAt": "2026-09-05T16:19:06.300Z",
+  "status": "complete",
+  "releaseReadinessState": "release-blocking",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "llmgateway/gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900
+  },
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    "review-report.md": "mutable",
+    "resource-map.md": "mutable",
+    "iteration-*.md": "write-once",
+    "deltas/iter-*.jsonl": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  }
+}

@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/test-fixtures/` contains positive and negative spec folder examples
+`runtime/cli/test-fixtures/` contains positive and negative spec folder examples
 used by validation tests. Each numbered fixture isolates one behavior so
 validation regressions can be traced to a specific rule family.
 
@@ -48,7 +48,7 @@ As of this revision, the tree contains 68 numbered fixture directories and
 the highest-numbered fixture is `069-review-record-missing-report`.
 
 ```text
-scripts/test-fixtures/
+runtime/cli/test-fixtures/
 +-- 001-empty-folder/              # Invalid empty packet
 +-- 002-valid-level1/              # Level 1 baseline
 +-- 003-valid-level2/              # Level 2 baseline

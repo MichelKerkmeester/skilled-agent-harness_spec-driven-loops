@@ -59,7 +59,7 @@ This is **Phase 2** of the decommission debt fixes specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`.opencode/skills/system-spec-kit/` runs two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (the `@spec-kit/scripts` CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`). The operator wants `scripts/` nested inside `runtime/`. The skill's own `package.json:7-11` already declares `runtime` and `scripts` as sibling workspace members alongside `shared`, and `runtime/` already has its own `runtime/scripts/` directory (`finalize-dist.mjs`, `run-tests.mjs`, `run-tests-sharded.mjs`, `tests/`) - a literal `git mv scripts runtime/scripts` collides with content that already exists at that path. This mirrors the earlier `mcp-server` → `runtime` rename (packet 053, commit `aef7852400`, 708 files) in shape but not in size: every hook config, CI workflow, doctor asset, agent mirror, README, and the paths CLAUDE.md names directly (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `scripts/dist/memory/generate-context.js`, `scripts/retrieval/lookup-trigger-index.mjs`) would change.
+When this phase opened, `.opencode/skills/system-spec-kit/` ran two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (then `@spec-kit/scripts`, now `runtime/cli/` as `@spec-kit/cli`; the CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`). The operator wants `scripts/` nested inside `runtime/`. The skill's own `package.json:7-11` already declares `runtime` and `scripts` as sibling workspace members alongside `shared`, and `runtime/` already has its own `runtime/scripts/` directory (`finalize-dist.mjs`, `run-tests.mjs`, `run-tests-sharded.mjs`, `tests/`) - a literal `git mv scripts runtime/scripts` collides with content that already exists at that path. This mirrors the earlier `mcp-server` → `runtime` rename (packet 053, commit `aef7852400`, 708 files) in shape but not in size: every hook config, CI workflow, doctor asset, agent mirror, README, and the paths CLAUDE.md names directly (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `scripts/dist/memory/generate-context.js`, `scripts/retrieval/lookup-trigger-index.mjs`) would change.
 
 ### Purpose
 A target layout is chosen that avoids the `runtime/scripts/` name collision, every reference to the old `scripts/` path is inventoried by resolution (import graphs, config file parsing, CI job execution) rather than text search alone, and the move is planned as one atomic commit with a rollback ref - but not executed in this phase, since the scope alone qualifies for Level 3 (see Risks).
@@ -78,9 +78,9 @@ A target layout is chosen that avoids the `runtime/scripts/` name collision, eve
 - Plan the ten-iteration review pass that packet 053 ran after its own rename, scoped to this move.
 
 ### Out of Scope
-- Executing the `git mv` itself - this phase produces the resolution-based inventory and the target-layout decision; the move is a Level 3 packet that this phase's `spec.md` recommends creating, not this folder re-purposed mid-flight.
+- Executing the `git mv` itself was out of scope as planned; the operator then directed the move to run in this folder, and it did (see `implementation-summary.md`). The planning text above is kept as the record of the original bounded mid-flight.
 - Any behavior change inside either package - this is a path rename only.
-- Renaming `@spec-kit/scripts` or `@spec-kit/runtime` as npm package names - only the on-disk directory relationship changes unless the execution phase's inventory shows the package name must move too.
+- Renaming `@spec-kit/scripts` or `@spec-kit/runtime` as npm package names was out of scope as planned; the review remediation later renamed the CLI package to `@spec-kit/cli` because the nested workspace could not keep the old name honestly (see the summary's disposition tables). Original bound: - only the on-disk directory relationship changes unless the execution phase's inventory shows the package name must move too.
 
 ### Files to Change
 
@@ -221,17 +221,3 @@ Out of the review's write scope: everything outside this phase's `review/` direc
 
 
 
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

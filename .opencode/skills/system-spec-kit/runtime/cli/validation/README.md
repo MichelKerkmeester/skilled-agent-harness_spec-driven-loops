@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/validation/` contains focused validators used by the Spec Kit validation flow, the pre-commit gate and the write-time comment-hygiene hook. The scripts produce structured pass / warn / fail output that shell wrappers and strict validation gates consume.
+`runtime/cli/validation/` contains focused validators used by the Spec Kit validation flow, the pre-commit gate and the write-time comment-hygiene hook. The scripts produce structured pass / warn / fail output that shell wrappers and strict validation gates consume.
 
 Current responsibilities:
 
@@ -102,7 +102,7 @@ Expected result: the audit exits `0` over a clean tree and the README validation
 
 ## 7. RELATED
 
-- [`scripts/`](../README.md)
+- [`runtime/cli/`](../README.md)
 - [`ephemeral-pointer-audit.mjs`](./ephemeral-pointer-audit.mjs)
 - [`continuity-freshness.ts`](./continuity-freshness.ts)
 - [`evidence-marker-audit.ts`](./evidence-marker-audit.ts)

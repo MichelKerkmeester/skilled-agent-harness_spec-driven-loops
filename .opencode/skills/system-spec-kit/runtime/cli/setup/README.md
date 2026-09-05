@@ -15,20 +15,20 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/setup/` contains preflight utilities for Spec Kit workflows. These scripts check whether a target spec folder has the required documents, whether native Node.js modules are loadable, and whether the recorded Node.js runtime has changed.
+`runtime/cli/setup/` contains preflight utilities for Spec Kit workflows. These scripts check whether a target spec folder has the required documents, whether native Node.js modules are loadable, and whether the recorded Node.js runtime has changed.
 
 Current state:
 
 - Shell entrypoints are run directly from source.
 - Node.js helpers run from the scripts workspace.
-- Full spec-folder validation delegates to `scripts/spec/validate.sh` when requested.
+- Full spec-folder validation delegates to `runtime/cli/spec/validate.sh` when requested.
 
 ---
 
 ## 2. PACKAGE TOPOLOGY
 
 ```text
-scripts/setup/
+runtime/cli/setup/
 +-- _utils.sh                   # Shared installer and setup helpers
 +-- check-prerequisites.sh       # Spec-folder readiness checks
 +-- check-native-modules.sh      # Native module availability checks
@@ -39,7 +39,7 @@ scripts/setup/
 
 Allowed direction:
 
-- Setup scripts may call `scripts/spec/validate.sh` for strict spec-folder validation.
+- Setup scripts may call `runtime/cli/spec/validate.sh` for strict spec-folder validation.
 - Native-module scripts may inspect package-local dependencies.
 - Callers may parse `--json` or `--paths-only` output from `check-prerequisites.sh`.
 

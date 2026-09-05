@@ -2940,7 +2940,9 @@ async function testWrapAllTemplatesShippedPath() {
 
   try {
     if (!fs.existsSync(DIST_WRAP)) {
-      skip('T233-WR-LOAD: wrap-all-templates compiled module exists', 'dist not built');
+      // The legacy lane builds before it runs, so a missing compiled module is a
+      // broken build, not an unprovisioned environment, and must not pass silently.
+      fail('T233-WR-LOAD: wrap-all-templates compiled module exists', `missing ${DIST_WRAP}`);
       return;
     }
 

@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/ops/` contains deterministic shell runbooks for known spec-kit operational failure classes. `runbook.sh` still lists and dispatches to both registered failure classes, but neither `heal-*.sh` script currently completes a detect/repair/verify cycle: `heal-session-ambiguity.sh` is a deprecated stub that logs a deprecation notice and exits before running any step, and `heal-telemetry-drift.sh` parses and validates its options but always reports that its verifier was removed and exits with an error. Both wait on a replacement remediation path.
+`runtime/cli/ops/` contains deterministic shell runbooks for known spec-kit operational failure classes. `runbook.sh` still lists and dispatches to both registered failure classes, but neither `heal-*.sh` script currently completes a detect/repair/verify cycle: `heal-session-ambiguity.sh` is a deprecated stub that logs a deprecation notice and exits before running any step, and `heal-telemetry-drift.sh` parses and validates its options but always reports that its verifier was removed and exits with an error. Both wait on a replacement remediation path.
 
 ---
 
@@ -71,7 +71,7 @@ Arc 009 lifecycle helper map:
 | --- | --- |
 | Deep loop runtime | `runtime//lib/deep-loop/loop-lock.ts`, `jsonl-repair.ts`, `atomic-state.ts` |
 | Spec Kit runtime | `runtime/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `runtime/lib/runtime/timer-registry.ts`, `shutdown-hooks.ts` |
-| Ops | `scripts/ops/process-memory-harness.ts`, `scripts/ops/process-sweep.ts` |
+| Ops | `runtime/cli/ops/process-memory-harness.ts`, `runtime/cli/ops/process-sweep.ts` |
 
 ---
 

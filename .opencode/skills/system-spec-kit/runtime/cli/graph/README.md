@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/graph/` contains the CLI entrypoints that refresh and migrate `graph-metadata.json` and `description.json` files for spec folders. It discovers packet folders, derives current metadata, and reports low-confidence fields or drift that may need review.
+`runtime/cli/graph/` contains the CLI entrypoints that refresh and migrate `graph-metadata.json` and `description.json` files for spec folders. It discovers packet folders, derives current metadata, and reports low-confidence fields or drift that may need review.
 
 Current state:
 

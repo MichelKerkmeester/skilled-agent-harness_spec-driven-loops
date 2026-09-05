@@ -16,7 +16,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/evals/` contains policy checks and calibration helpers for the Spec Kit engine. The tools cover import boundaries, handler cycles, source-to-dist alignment, redaction calibration and closure metrics.
+`runtime/cli/evals/` contains policy checks and calibration helpers for the Spec Kit engine. The tools cover import boundaries, handler cycles, source-to-dist alignment, redaction calibration and closure metrics.
 
 Current state:
 
@@ -30,7 +30,7 @@ Current state:
 ## 2. PACKAGE TOPOLOGY
 
 ```text
-scripts/evals/
+runtime/cli/evals/
 +-- check-allowlist-expiry.ts                 # Import exception expiry checks
 +-- check-architecture-boundaries.ts          # Architecture boundary checks
 +-- check-handler-cycles-ast.ts               # Handler cycle detection

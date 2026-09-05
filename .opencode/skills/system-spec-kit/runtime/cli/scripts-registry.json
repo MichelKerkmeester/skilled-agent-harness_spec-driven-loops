@@ -16,8 +16,8 @@
         "mode1": "JSON data file path (e.g., /tmp/save-context-data-<session-id>.json)",
         "mode2": "Spec folder path (e.g., 007-feature/)"
       },
-      "outputs": ["memory/*.md", "metadata.json"],
-      "gate": "Memory Save Rule",
+      "outputs": ["Refreshed generated metadata pair", "continuity frontmatter"],
+      "gate": "Continuity save",
       "version": "2.0.0",
       "dependencies": ["lib/embeddings.js", "lib/anchor-generator.js", "lib/content-filter.js"]
     },

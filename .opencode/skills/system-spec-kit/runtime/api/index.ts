@@ -1,10 +1,10 @@
 // ────────────────────────────────────────────────────────────────
 // MODULE: Index, Public API surface
 // ────────────────────────────────────────────────────────────────
-// @public, Only export what external consumers (scripts/, other packages) need.
+// @public, Only export what external consumers (runtime/cli/, other packages) need.
 // Internal runtime code should import from lib/ directly, not through this barrel.
 // Consumer scripts import from '@spec-kit/runtime/api' instead of lib/.
-// Every export below has a named caller in the scripts workspace; adding one
+// Every export below has a named caller in the CLI workspace; adding one
 // without a caller re-widens the surface that made this package hard to shrink.
 
 export { refreshGraphMetadata } from './graph-refresh.js';
