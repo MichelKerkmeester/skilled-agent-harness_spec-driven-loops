@@ -157,6 +157,30 @@ describe('registry node rule execution', () => {
 
     expect(before.message).not.toBe(after.message);
   });
+
+  it('carries the rule code through as a distinguishable detail line', () => {
+    const folder = createLevelOneFolder('# Tasks\n\n- [ ] Pending task\n');
+    const scriptPath = __testables.resolveRegistryRuleScript(NODE_RULE.script_path);
+    if (!scriptPath) throw new Error('Expected continuity freshness script to resolve');
+
+    const previous = process.env.SPECKIT_COMPLETION_FRESHNESS;
+    process.env.SPECKIT_COMPLETION_FRESHNESS = 'true';
+    let result: ValidationEntry;
+    try {
+      // No implementation-summary.md in this fixture, so the rule resolves
+      // to its `implementation_summary_missing` skip code.
+      result = __testables.runRegistryNodeRule(folder, NODE_RULE, scriptPath, true);
+    } finally {
+      if (previous === undefined) delete process.env.SPECKIT_COMPLETION_FRESHNESS;
+      else process.env.SPECKIT_COMPLETION_FRESHNESS = previous;
+    }
+
+    // The rule's own code survives the pass/warn/fail collapse as a detail
+    // line, so an unverifiable skip stays distinguishable from a genuinely
+    // verified pass in the aggregate report without changing that status.
+    expect(result.status).toBe('pass');
+    expect(result.details).toContain('code:implementation_summary_missing');
+  });
 });
 
 describe('started-work file exemption', () => {

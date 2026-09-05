@@ -114,6 +114,12 @@ interface ShellRuleOutput {
   status: string;
   message: string;
   details: string[];
+  // Present only for rules that emit a `code\t...` bridge line (currently
+  // CONTINUITY_FRESHNESS). Carries the rule's own result code alongside its
+  // mapped pass/warn/fail status so an attestation-gap skip stays
+  // distinguishable from a genuinely verified pass in the report, without
+  // changing that mapped status.
+  code?: string;
 }
 
 const REGISTRY_SHELL_RULE_WRAPPER = String.raw`set -euo pipefail
@@ -266,10 +272,20 @@ function parseShellRuleOutput(ruleId: string, output: string): ShellRuleOutput {
     const value = line.slice(separatorIndex + 1);
     if (kind === 'rule') parsed.rule = value || parsed.rule;
     else if (kind === 'status') parsed.status = value || parsed.status;
+    else if (kind === 'code') parsed.code = value || undefined;
     else if (kind === 'message') parsed.message = value;
     else if (kind === 'detail') parsed.details.push(value);
   }
   return parsed;
+}
+
+// A rule's own result code (e.g. CONTINUITY_FRESHNESS's `zero_fingerprint`)
+// survives mapShellRuleStatus's pass/warn/fail/info collapse as a detail line
+// instead of being dropped, so an attestation-gap skip stays distinguishable
+// from a genuinely verified pass in the aggregate report. Appending it here
+// never changes the mapped status computed alongside it.
+function withParsedCodeDetail(details: string[], code: string | undefined): string[] {
+  return code ? [...details, `code:${code}`] : details;
 }
 
 function mapShellRuleStatus(status: string, severity: RegistrySeverity): ValidationEntry['status'] {
@@ -327,7 +343,12 @@ function runRegistryNodeRule(
     );
   }
 
-  return entry(rule.rule_id, mapShellRuleStatus(parsed.status, rule.severity), parsed.message, parsed.details);
+  return entry(
+    rule.rule_id,
+    mapShellRuleStatus(parsed.status, rule.severity),
+    parsed.message,
+    withParsedCodeDetail(parsed.details, parsed.code),
+  );
 }
 
 function runRegistryShellRule(
@@ -362,7 +383,12 @@ function runRegistryShellRule(
     return entry(rule.rule_id, 'error', 'Registry shell rule returned no parseable output', [result.stdout ?? '']);
   }
 
-  return entry(parsed.rule, mapShellRuleStatus(parsed.status, rule.severity), parsed.message, parsed.details);
+  return entry(
+    parsed.rule,
+    mapShellRuleStatus(parsed.status, rule.severity),
+    parsed.message,
+    withParsedCodeDetail(parsed.details, parsed.code),
+  );
 }
 
 function runRegistryShellRules(

@@ -215,14 +215,18 @@ describe('completion continuity freshness', () => {
     expect(result.details.some((detail) => detail.includes('recomputed=sha256:'))).toBe(true);
   });
 
-  it('returns early when no completion claim is present', () => {
+  it('falls through to the classic timestamp check when no completion claim is present', () => {
     const root = makeTempDir('speckit-freshness-no-claim-');
     const folder = createPacketWithoutCompletionClaim(root);
 
     const result = validateContinuityFreshness(folder);
 
-    expect(result.status).toBe('pass');
-    expect(result.code).toBe('no_completion_claim');
+    // A missing completion claim exempts a packet from the completion-
+    // fingerprint check only, not from the classic last_updated_at-vs-
+    // graph-metadata check: this fixture's 1-hour gap exceeds the 10-minute
+    // budget, so it still resolves to `stale` rather than short-circuiting.
+    expect(result.status).toBe('warn');
+    expect(result.code).toBe('stale');
   });
 
   it('detects completion claims from metadata-table status and accepted evidence markers', () => {
@@ -230,11 +234,29 @@ describe('completion continuity freshness', () => {
     const folder = createPacketWithoutCompletionClaim(root);
     const specPath = path.join(folder, 'spec.md');
     const checklistPath = path.join(folder, 'checklist.md');
+    const summaryPath = path.join(folder, 'implementation-summary.md');
     fs.writeFileSync(
       path.join(folder, 'graph-metadata.json'),
       JSON.stringify({ derived: { last_save_at: '2026-06-10T12:00:00Z' } }, null, 2),
       'utf8',
     );
+    // The claim can be raised by any COMPLETION_DOCS member (spec.md's
+    // metadata table here), but it is only ever verified against
+    // implementation-summary.md's own fingerprint -- the attestation
+    // binding continuity-freshness.ts documents. Without this stamp the
+    // claim would correctly resolve to `missing_fingerprint`, not this
+    // test's `fresh_completion`.
+    writeWithFreshFingerprint(summaryPath, [
+      '---',
+      'title: "Implementation Summary"',
+      '_memory:',
+      '  continuity:',
+      '    last_updated_at: "2026-06-10T12:00:00Z"',
+      '    session_dedup:',
+      '      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"',
+      '---',
+      '# Implementation Summary',
+    ].join('\n'));
     fs.writeFileSync(specPath, [
       '---',
       'title: "Spec"',

@@ -27,6 +27,7 @@ import {
 import { resolveSpecFolderCanonical } from '../core/spec-root-canonical-resolver.js';
 import { assertSpecWriteAllowed } from '../core/spec-root-write-guard.js';
 import { runWorkflow, releaseFilesystemLock } from '../core/workflow.js';
+import { stampCompletionFingerprintIfNeeded } from '../core/memory-metadata.js';
 import { loadCollectedData } from '../loaders/index.js';
 import { collectSessionData } from '../extractors/collect-session-data.js';
 import { isMainModule } from '../lib/esm-entry.js';
@@ -950,6 +951,10 @@ async function main(
       const savedSpecFolder = resolveExistingSpecFolderPath(CONFIG.SPEC_FOLDER_ARG);
       if (savedSpecFolder) {
         updatePhaseParentPointersAfterSave(savedSpecFolder);
+        // Binds a completion claim to a real fingerprint at the moment it is
+        // saved, so CONTINUITY_FRESHNESS does not default a freshly closed
+        // packet into its missing/zero-fingerprint skip codes.
+        stampCompletionFingerprintIfNeeded(savedSpecFolder);
       }
     } finally {
       releaseCanonicalSaveLock(canonicalSaveLock);

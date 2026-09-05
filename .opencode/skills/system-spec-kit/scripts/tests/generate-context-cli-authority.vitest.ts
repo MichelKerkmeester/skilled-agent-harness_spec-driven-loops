@@ -6,6 +6,7 @@ import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { buildSessionScopedSaveContextPath } from '../core/save-context-path';
+import { ZERO_CONTINUITY_FINGERPRINT } from '../../runtime/api';
 
 const harness = vi.hoisted(() => ({
   runWorkflow: vi.fn(async () => undefined),
@@ -66,6 +67,54 @@ function createTempWorkspace(): string {
   // The save path treats a track folder holding NNN- children as a phase parent
   // and rewrites its pointers, so the throwaway track needs the same metadata
   // file a real one carries.
+  const trackDir = path.dirname(packetDir);
+  fs.writeFileSync(
+    path.join(trackDir, 'graph-metadata.json'),
+    `${JSON.stringify(trackGraphMetadata(path.basename(trackDir)), null, 2)}\n`,
+    'utf8',
+  );
+  return root;
+}
+
+// A completion claim in spec.md's metadata table with implementation-summary.md
+// left at the zero-fingerprint placeholder, mirroring how a real closed
+// packet looks before the post-save stamp has ever run.
+function createCompletionClaimWorkspace(): string {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'generate-context-cli-authority-completion-'));
+  const packetDir = path.join(root, FIXTURE_PACKET);
+  fs.mkdirSync(packetDir, { recursive: true });
+  fs.writeFileSync(path.join(packetDir, 'spec.md'), [
+    '# Fixture packet',
+    '',
+    '| Field | Value |',
+    '|-------|-------|',
+    '| **Status** | Complete |',
+    '',
+  ].join('\n'), 'utf8');
+  fs.writeFileSync(path.join(packetDir, 'implementation-summary.md'), [
+    '---',
+    'title: "Implementation Summary"',
+    '_memory:',
+    '  continuity:',
+    '    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion"',
+    '    last_updated_at: "2026-04-17T12:00:00Z"',
+    '    last_updated_by: "tester"',
+    '    recent_action: "Closed the fixture packet"',
+    '    next_safe_action: "None"',
+    '    blockers: []',
+    '    key_files: []',
+    '    session_dedup:',
+    `      fingerprint: "${ZERO_CONTINUITY_FINGERPRINT}"`,
+    '      session_id: "test-session"',
+    '      parent_session_id: null',
+    '    completion_pct: 100',
+    '    open_questions: []',
+    '    answered_questions: []',
+    '---',
+    '',
+    '# Implementation Summary',
+    '',
+  ].join('\n'), 'utf8');
   const trackDir = path.dirname(packetDir);
   fs.writeFileSync(
     path.join(trackDir, 'graph-metadata.json'),
@@ -352,5 +401,24 @@ describe('generate-context CLI authority', () => {
 
     expect(process.listeners('SIGINT')).toHaveLength(baselineSigintListeners.length);
     expect(process.listeners('SIGTERM')).toHaveLength(baselineSigtermListeners.length);
+  });
+
+  it('stamps a real fingerprint into implementation-summary.md when the saved packet carries a completion claim', async () => {
+    const explicitSpecFolder = FIXTURE_PACKET;
+    const completionRoot = createCompletionClaimWorkspace();
+
+    try {
+      const { main } = await import('../memory/generate-context');
+      await main(['--json', '{}', explicitSpecFolder], undefined, completionRoot);
+
+      const summaryPath = path.join(completionRoot, explicitSpecFolder, 'implementation-summary.md');
+      const stampedContent = fs.readFileSync(summaryPath, 'utf8');
+      const fingerprintMatch = stampedContent.match(/fingerprint:\s*"?(sha256:[a-f0-9]{64})"?/);
+
+      expect(fingerprintMatch?.[1]).toBeDefined();
+      expect(fingerprintMatch?.[1]).not.toBe(ZERO_CONTINUITY_FINGERPRINT);
+    } finally {
+      fs.rmSync(completionRoot, { recursive: true, force: true });
+    }
   });
 });

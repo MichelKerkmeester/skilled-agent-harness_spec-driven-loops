@@ -55,6 +55,30 @@ export interface ContinuityFreshnessResult {
   readonly deltaMs?: number;
 }
 
+// Attestation binding: a completion claim in any of the six COMPLETION_DOCS
+// above binds to exactly one attestation point -- implementation-summary.md's
+// `_memory.continuity.session_dedup.fingerprint` -- because that is the only
+// document the continuity writer ever stamps with a real fingerprint. A claim
+// elsewhere in the packet with no usable fingerprint there is unverifiable,
+// not verified, and resolves to one of the codes below rather than a false
+// pass or fail.
+//
+// Each code keeps the 'pass' status it already had before this binding was
+// made explicit, so an already-closed packet that predates fingerprint
+// tracking is never newly flagged; the `code` value -- not the status -- is
+// what makes an unverifiable skip distinguishable from a genuinely verified
+// 'fresh'/'fresh_completion' pass.
+export const CONTINUITY_FRESHNESS_SKIP_CODES: readonly ContinuityFreshnessResult['code'][] = [
+  'no_completion_claim',
+  'missing_fingerprint',
+  'zero_fingerprint',
+  'missing_frontmatter',
+  'missing_graph_metadata',
+  'missing_graph_timestamp',
+  'implementation_summary_missing',
+  'not_opted_in',
+];
+
 interface CliOptions {
   folder: string;
   json: boolean;
@@ -255,6 +279,17 @@ function collectCompletionCandidates(specFolderPath: string): CompletionCandidat
   return candidates;
 }
 
+/**
+ * True when any of the six COMPLETION_DOCS in this spec folder carries a
+ * completion claim. Exported so the continuity writer (generate-context.ts,
+ * via memory-metadata.ts) can decide whether a freshly saved packet needs the
+ * fingerprint stamp this rule's attestation binding expects, without
+ * duplicating the claim-detection logic above.
+ */
+export function hasAnyCompletionClaim(specFolderPath: string): boolean {
+  return collectCompletionCandidates(specFolderPath).some((candidate) => candidate.hasCompletionClaim);
+}
+
 function findGitRoot(folderPath: string): string | null {
   try {
     return execFileSync('git', ['-C', folderPath, 'rev-parse', '--show-toplevel'], {
@@ -290,8 +325,8 @@ function listPacketDirtyPaths(specFolderPath: string): string[] {
 }
 
 function evaluateCompletionFreshness(specFolderPath: string): ContinuityFreshnessResult | null {
-  const completionClaims = collectCompletionCandidates(specFolderPath)
-    .filter((candidate) => candidate.hasCompletionClaim);
+  const candidates = collectCompletionCandidates(specFolderPath);
+  const completionClaims = candidates.filter((candidate) => candidate.hasCompletionClaim);
 
   if (completionClaims.length === 0) {
     return buildPass(
@@ -300,39 +335,41 @@ function evaluateCompletionFreshness(specFolderPath: string): ContinuityFreshnes
     );
   }
 
-  const candidatesWithFingerprint = completionClaims
-    .filter((candidate) => candidate.fingerprint && /^sha256:[a-f0-9]{64}$/.test(candidate.fingerprint));
+  // A claim raised by any of the six COMPLETION_DOCS is verified against
+  // implementation-summary.md's own fingerprint (the attestation binding
+  // documented above), not the claiming document's -- most claims live in
+  // spec.md's metadata table, which never carries a session_dedup block.
+  const attestationCandidate = candidates.find((candidate) => candidate.basename === 'implementation-summary.md');
+  const attestationFingerprint = attestationCandidate?.fingerprint ?? null;
 
-  if (candidatesWithFingerprint.length === 0) {
+  if (!attestationFingerprint || !/^sha256:[a-f0-9]{64}$/.test(attestationFingerprint)) {
     return buildPass(
       'missing_fingerprint',
       'Continuity freshness skipped: completion claim has no stored session_dedup fingerprint',
     );
   }
 
-  const usableCandidates = candidatesWithFingerprint
-    .filter((candidate) => candidate.fingerprint !== ZERO_CONTINUITY_FINGERPRINT);
-
-  if (usableCandidates.length === 0) {
+  if (attestationFingerprint === ZERO_CONTINUITY_FINGERPRINT) {
     return buildPass(
       'zero_fingerprint',
       'Continuity freshness skipped: completion claim has only the zero fingerprint placeholder',
     );
   }
 
-  const staleCandidates = usableCandidates
-    .filter((candidate) => candidate.fingerprint !== candidate.recomputedFingerprint);
+  const isContentStale = attestationFingerprint !== attestationCandidate!.recomputedFingerprint;
   const dirtyPaths = listPacketDirtyPaths(specFolderPath);
 
-  if (staleCandidates.length > 0 || dirtyPaths.length > 0) {
+  if (isContentStale || dirtyPaths.length > 0) {
     const details = [
-      ...staleCandidates.map((candidate) => `${candidate.basename}: stored=${candidate.fingerprint} recomputed=${candidate.recomputedFingerprint}`),
+      ...(isContentStale
+        ? [`${attestationCandidate!.basename}: stored=${attestationFingerprint} recomputed=${attestationCandidate!.recomputedFingerprint}`]
+        : []),
       ...dirtyPaths.slice(0, 10).map((dirtyPath) => `dirty=${dirtyPath}`),
       'How to Fix: rerun verification, refresh session_dedup.fingerprint, and ensure packet paths are clean.',
       'fix: rerun the completion workflow after updating the packet continuity fingerprint.',
     ];
-    const code = staleCandidates.length > 0 ? 'content_stale' : 'dirty_tree';
-    const message = staleCandidates.length > 0
+    const code = isContentStale ? 'content_stale' : 'dirty_tree';
+    const message = isContentStale
       ? 'Completion freshness is stale: stored continuity fingerprint does not match current content'
       : 'Completion freshness is stale: packet paths have uncommitted changes';
 
@@ -344,7 +381,7 @@ function evaluateCompletionFreshness(specFolderPath: string): ContinuityFreshnes
   return buildPass(
     'fresh_completion',
     'Completion freshness passed: completion claim fingerprint matches current content and packet paths are clean',
-    usableCandidates.map((candidate) => `${candidate.basename}: recomputed=${candidate.recomputedFingerprint}`),
+    [`${attestationCandidate!.basename}: recomputed=${attestationCandidate!.recomputedFingerprint}`],
   );
 }
 
@@ -373,11 +410,14 @@ export function validateContinuityFreshness(
     );
   }
 
+  // The completion-freshness verdict is authoritative once it has one: only a
+  // missing claim (`no_completion_claim`) falls through to the unrelated
+  // last_updated_at-vs-graph-metadata staleness check below. Every other
+  // code -- verified fresh, an attestation-gap skip, or a genuine
+  // content/dirty-tree staleness -- returns directly so the timestamp check
+  // can never silently replace it with an unrelated verdict.
   const completionFreshness = evaluateCompletionFreshness(specFolderPath);
-  if (completionFreshness && completionFreshness.status !== 'pass') {
-    return completionFreshness;
-  }
-  if (completionFreshness?.code === 'no_completion_claim') {
+  if (completionFreshness && completionFreshness.code !== 'no_completion_claim') {
     return completionFreshness;
   }
 
@@ -468,13 +508,13 @@ export function validateContinuityFreshness(
     );
   }
 
+  // Reaching here means completionFreshness was null or `no_completion_claim`
+  // -- every other code returned above -- so the timestamp comparison is the
+  // only freshness signal left to report.
   return buildPass(
-    completionFreshness?.code === 'fresh_completion' ? 'fresh_completion' : 'fresh',
-    completionFreshness?.code === 'fresh_completion'
-      ? 'Completion freshness passed: fingerprint, packet paths, and continuity timestamps are fresh'
-      : 'Continuity last_updated_at is within the 10-minute heuristic policy budget',
+    'fresh',
+    'Continuity last_updated_at is within the 10-minute heuristic policy budget',
     [
-      ...(completionFreshness?.details ?? []),
       `deltaMs=${deltaMs}`,
       `continuity=${continuityTimestamp}`,
       `graph=${graphMetadataTimestamp}`,
@@ -529,6 +569,10 @@ function parseArgs(argv: string[]): CliOptions {
 function printBridgeOutput(result: ContinuityFreshnessResult): void {
   process.stdout.write(`rule\t${result.rule}\n`);
   process.stdout.write(`status\t${result.status}\n`);
+  // Carried separately from `status` so a consumer (the orchestrator's
+  // shell-rule bridge) can tell an attestation-gap skip apart from a
+  // genuinely verified pass without parsing the message string.
+  process.stdout.write(`code\t${result.code}\n`);
   process.stdout.write(`message\t${result.message}\n`);
   for (const detail of result.details) {
     process.stdout.write(`detail\t${detail}\n`);

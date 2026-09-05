@@ -6,13 +6,14 @@ import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { refreshGraphMetadataForSpecFolder } from '../../runtime/api';
+import { buildContinuityFingerprint, refreshGraphMetadataForSpecFolder, ZERO_CONTINUITY_FINGERPRINT } from '../../runtime/api';
 import { validateContinuityFreshness } from '../validation/continuity-freshness.js';
 
 const createdRoots = new Set<string>();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SKILL_ROOT = path.resolve(__dirname, '..', '..');
 const VALIDATE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'validate.sh');
+const RULE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'dist', 'validation', 'continuity-freshness.js');
 
 function makeWorkspace(): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'continuity-freshness-'));
@@ -20,6 +21,9 @@ function makeWorkspace(): string {
   return root;
 }
 
+// No completion claim by default -- exercises the last_updated_at-vs-
+// graph-metadata staleness path. Tests that need a completion claim use
+// createSpecFolderWithCompletionClaim instead.
 function createSpecFolder(workspaceRoot: string, name: string): string {
   const specFolder = path.join(workspaceRoot, '.opencode', 'specs', 'system-spec-kit', name);
   fs.mkdirSync(specFolder, { recursive: true });
@@ -29,7 +33,7 @@ function createSpecFolder(workspaceRoot: string, name: string): string {
     'description: "Fixture for continuity freshness validation."',
     'trigger_phrases: ["continuity freshness"]',
     'importance_tier: "important"',
-    'status: "completed"',
+    'status: "planned"',
     '---',
     '',
     '# Fixture',
@@ -39,7 +43,32 @@ function createSpecFolder(workspaceRoot: string, name: string): string {
   return specFolder;
 }
 
-function writeImplementationSummary(specFolder: string, continuityTimestamp?: string): void {
+// Claims completion the way a real packet does: spec.md's metadata table,
+// not its frontmatter -- implementation-summary.md carries no status of its
+// own, as real closed packets do, so the claim binds to its fingerprint alone.
+function createSpecFolderWithCompletionClaim(workspaceRoot: string, name: string): string {
+  const specFolder = path.join(workspaceRoot, '.opencode', 'specs', 'system-spec-kit', name);
+  fs.mkdirSync(specFolder, { recursive: true });
+  fs.writeFileSync(path.join(specFolder, 'spec.md'), [
+    '---',
+    'title: "Continuity Freshness Completion Fixture"',
+    'description: "Fixture for completion-claim continuity freshness validation."',
+    'trigger_phrases: ["continuity freshness"]',
+    'importance_tier: "important"',
+    '---',
+    '',
+    '# Fixture',
+    '',
+    '| Field | Value |',
+    '|-------|-------|',
+    '| **Status** | Complete |',
+  ].join('\n'), 'utf-8');
+  fs.writeFileSync(path.join(specFolder, 'plan.md'), '# Plan\n', 'utf-8');
+  fs.writeFileSync(path.join(specFolder, 'tasks.md'), '# Tasks\n', 'utf-8');
+  return specFolder;
+}
+
+function writeImplementationSummary(specFolder: string, continuityTimestamp?: string, fingerprint?: string): void {
   const frontmatterLines = [
     '---',
     'title: "Implementation Summary"',
@@ -55,12 +84,28 @@ function writeImplementationSummary(specFolder: string, continuityTimestamp?: st
     frontmatterLines.push('    next_safe_action: "Keep timestamps aligned"');
     frontmatterLines.push('    blockers: []');
     frontmatterLines.push('    key_files: []');
+    if (fingerprint) {
+      frontmatterLines.push('    session_dedup:');
+      frontmatterLines.push(`      fingerprint: "${fingerprint}"`);
+      frontmatterLines.push('      session_id: "test-session"');
+      frontmatterLines.push('      parent_session_id: null');
+    }
     frontmatterLines.push('    completion_pct: 0');
     frontmatterLines.push('    open_questions: []');
     frontmatterLines.push('    answered_questions: []');
   }
   frontmatterLines.push('---', '', '| File Path | Change Type | Description |', '|-----------|-------------|-------------|', '| `implementation-summary.md` | Modify | Freshness fixture |');
   fs.writeFileSync(path.join(specFolder, 'implementation-summary.md'), frontmatterLines.join('\n'), 'utf-8');
+}
+
+// Stamps a fingerprint that will actually match on read-back: write the
+// placeholder first, then recompute over that exact content (the field is
+// normalized to the zero placeholder before hashing either way) and patch it in.
+function stampRealFingerprint(specFolder: string): void {
+  const summaryPath = path.join(specFolder, 'implementation-summary.md');
+  const content = fs.readFileSync(summaryPath, 'utf-8');
+  const recomputed = buildContinuityFingerprint(content);
+  fs.writeFileSync(summaryPath, content.replace(ZERO_CONTINUITY_FINGERPRINT, recomputed), 'utf-8');
 }
 
 function runValidateStrict(specFolder: string): { exitCode: number; stdout: string; stderr: string } {
@@ -173,5 +218,65 @@ describe('continuity-freshness', () => {
     expect(result.exitCode).toBe(2);
     expect(result.stdout).toContain('CONTINUITY_FRESHNESS');
     expect(result.stdout).toContain('lags graph-metadata');
+  });
+
+  it('passes as fresh_completion when a completion claim carries a matching fingerprint', () => {
+    const root = makeWorkspace();
+    const specFolder = createSpecFolderWithCompletionClaim(root, '926-continuity-fresh-completion');
+    writeImplementationSummary(specFolder, '2026-04-17T12:00:00Z', ZERO_CONTINUITY_FINGERPRINT);
+    stampRealFingerprint(specFolder);
+
+    const result = validateContinuityFreshness(specFolder);
+
+    expect(result.status).toBe('pass');
+    expect(result.code).toBe('fresh_completion');
+  });
+
+  it('reports missing_fingerprint as a distinguishable skip, not the timestamp verdict', () => {
+    const root = makeWorkspace();
+    const specFolder = createSpecFolderWithCompletionClaim(root, '927-continuity-missing-fingerprint');
+    // No fingerprint anywhere; graph-metadata is set far enough past the
+    // budget that the old fall-through bug would have reported 'stale'.
+    writeImplementationSummary(specFolder, '2026-04-17T12:00:00Z');
+    refreshGraphMetadataForSpecFolder(specFolder, { now: '2026-04-17T12:10:01Z' });
+
+    const result = validateContinuityFreshness(specFolder);
+
+    expect(result.status).toBe('pass');
+    expect(result.code).toBe('missing_fingerprint');
+  });
+
+  it('reports zero_fingerprint directly instead of the timestamp verdict (the closed-packet regression)', () => {
+    const root = makeWorkspace();
+    const specFolder = createSpecFolderWithCompletionClaim(root, '928-continuity-zero-fingerprint');
+    writeImplementationSummary(specFolder, '2026-04-17T12:00:00Z', ZERO_CONTINUITY_FINGERPRINT);
+    refreshGraphMetadataForSpecFolder(specFolder, { now: '2026-04-17T12:10:01Z' });
+
+    const result = validateContinuityFreshness(specFolder);
+
+    expect(result.status).toBe('pass');
+    expect(result.code).toBe('zero_fingerprint');
+  });
+
+  it('gates the CLI on SPECKIT_COMPLETION_FRESHNESS while the exported function stays unguarded', () => {
+    const root = makeWorkspace();
+    const specFolder = createSpecFolder(root, '929-continuity-not-opted-in');
+    writeImplementationSummary(specFolder, '2026-04-17T12:00:00Z');
+    refreshGraphMetadataForSpecFolder(specFolder, { now: '2026-04-17T12:09:59Z' });
+
+    const { SPECKIT_COMPLETION_FRESHNESS: _omitted, ...envWithoutOptIn } = process.env;
+    const cliRun = spawnSync('node', [RULE_SCRIPT, '--folder', specFolder, '--json'], {
+      encoding: 'utf-8',
+      env: envWithoutOptIn,
+    });
+    const cliResult = JSON.parse(cliRun.stdout) as { status: string; code: string };
+
+    expect(cliResult.status).toBe('pass');
+    expect(cliResult.code).toBe('not_opted_in');
+
+    // Calling the exported function directly performs no such gate: it
+    // always evaluates the real verdict, regardless of the env var.
+    const directResult = validateContinuityFreshness(specFolder);
+    expect(directResult.code).toBe('fresh');
   });
 });
