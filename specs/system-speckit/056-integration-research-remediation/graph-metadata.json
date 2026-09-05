@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/056-integration-research-remediation",
+  "spec_folder": "system-speckit/056-integration-research-remediation",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/056-integration-research-remediation/001-index-root-and-docs",
+    "system-speckit/056-integration-research-remediation/002-metadata-drift-and-rules",
+    "system-speckit/056-integration-research-remediation/003-hook-markers-and-improvement-family",
+    "system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "integration research remediation",
+      "spec kit alignment findings",
+      "phase parent"
+    ],
+    "key_topics": [
+      "integration",
+      "research",
+      "remediation",
+      "spec",
+      "kit",
+      "alignment",
+      "findings",
+      "phase",
+      "parent",
+      "ten-iteration",
+      "sonnet",
+      "pass"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "specs/system-speckit/054-decommission-debt-fixes/research/lineages/sonnet5-high-research/research.md",
+      "runtime/cli/retrieval/generate-trigger-index.mjs",
+      "runtime/data/trigger-index.json",
+      "runtime/lib/graph/graph-metadata-parser.ts",
+      "runtime/cli/spec/sweep-track-roots.mjs",
+      ".claude/settings.json",
+      ".cursor/hooks.json",
+      "references/structure/folder-structure.md",
+      "runtime/cli/rules/check-improvement-artifacts.sh",
+      "shared/utils/path-containment.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "runtime/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/sweep-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": "references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-improvement-artifacts.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-improvement-artifacts.sh",
+        "source": "derived"
+      },
+      {
+        "name": "path-containment.ts",
+        "kind": "code",
+        "path": "shared/utils/path-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A ten-iteration Sonnet 5 research pass over the repository ranked eleven things that still needed fixing or aligning with system-spec-kit: a critical trigger-index regression that dropped every skill document, systemic phantom children after packet renames, four hand-found defects with no validator rule, a README rule count off by nine, a deferred hook drift marker for two hosts, an undocumented artifact family, track roots invisible to validation, and duplicated frontmatter and containment helpers across four skill families with no shared home",
+    "created_at": "2026-09-05T21:16:55Z",
+    "last_save_at": "2026-09-05T23:03:41.175Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:413e61644ce0d5b24b823347251b2e0c51f6e0eaab0a76082033c88460f3ce89",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b255997c5c692523e39146872703dfed39d55a6b1602e3df4bf486632bc7f7a3"
+    },
+    "last_active_at": null
+  }
+}

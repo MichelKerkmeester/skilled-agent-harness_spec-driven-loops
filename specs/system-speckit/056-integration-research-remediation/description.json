@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/056-integration-research-remediation",
+  "description": "A ten-iteration Sonnet 5 research pass over the repository ranked eleven things that still needed fixing or aligning with system-spec-kit: a critical",
+  "keywords": [
+    "ten-iteration",
+    "sonnet",
+    "research",
+    "pass",
+    "repository",
+    "ranked",
+    "eleven",
+    "things",
+    "still",
+    "needed",
+    "aligning",
+    "system-spec-kit",
+    "critical"
+  ],
+  "lastUpdated": "2026-09-05T23:03:40.997Z",
+  "specId": "056",
+  "folderSlug": "integration-research-remediation",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

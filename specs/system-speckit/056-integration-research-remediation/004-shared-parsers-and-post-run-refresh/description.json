@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh",
+  "description": "One frontmatter parser and one write-boundary primitive now live in the spec-kit shared package and are used by the spec-kit CLI, the runtime",
+  "keywords": [
+    "one",
+    "frontmatter",
+    "parser",
+    "write-boundary",
+    "primitive",
+    "now",
+    "live",
+    "spec-kit",
+    "shared",
+    "package",
+    "cli",
+    "runtime"
+  ],
+  "lastUpdated": "2026-09-05T23:03:11.586Z",
+  "specId": "004",
+  "folderSlug": "shared-parsers-and-post-run-refresh",
+  "parentChain": [
+    "system-speckit",
+    "056-integration-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
