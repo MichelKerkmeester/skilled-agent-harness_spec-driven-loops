@@ -9,6 +9,8 @@
 import { readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { parseFrontmatter as parseFrontmatterBlock } from '@spec-kit/shared/frontmatter/parse-frontmatter';
+
 export interface ParsedDocFrontmatter {
   readonly title: string;
   readonly description: string;
@@ -91,10 +93,9 @@ function splitInlineList(inner: string): string[] {
  * no doc-level routing signal and are skipped, not errored.
  */
 export function parseDocFrontmatter(raw: string): ParsedDocFrontmatter | null {
-  if (!raw.startsWith('---\n') && !raw.startsWith('---\r\n')) return null;
-  const end = raw.indexOf('\n---', 3);
-  if (end <= 3) return null;
-  const block = raw.slice(raw.indexOf('\n') + 1, end);
+  const parsed = parseFrontmatterBlock(raw);
+  if (parsed.raw === null) return null;
+  const block = parsed.raw.split(/\r?\n/).slice(1, -1).join('\n');
 
   const scalars: Record<string, string> = {};
   const phrases: string[] = [];

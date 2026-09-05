@@ -3628,3 +3628,62 @@ describe('fanout-run.cjs — cli-claude-code configDir env', () => {
     expect(stdout).not.toContain('.claude-account2');
   });
 });
+
+describe('fanout-run.cjs — post-run packet metadata refresh', () => {
+  const { metadataRefreshRequested, buildMetadataRefreshCommands } = requireCjs(fanoutRunScript) as {
+    metadataRefreshRequested: (args: Record<string, unknown>) => boolean;
+    buildMetadataRefreshCommands: (
+      specFolder: string,
+      repoRoot: string,
+      cliDistDirOverride?: string,
+    ) => { commands: Array<{ file: string; args: string[] }> | null; missing: string[] };
+  };
+
+  it('defaults on and is disabled only by --no-metadata-refresh', () => {
+    expect(metadataRefreshRequested({})).toBe(true);
+    expect(metadataRefreshRequested({ specFolder: 'specs/x' })).toBe(true);
+    expect(metadataRefreshRequested({ noMetadataRefresh: true })).toBe(false);
+  });
+
+  it('builds the refresh command list for the run\'s spec folder against the repo root', () => {
+    const distDir = makeTempDir('fanout-metadata-dist-');
+    mkdirSync(join(distDir, 'spec-folder'), { recursive: true });
+    mkdirSync(join(distDir, 'graph'), { recursive: true });
+    writeFileSync(join(distDir, 'spec-folder', 'generate-description.js'), '// stub\n');
+    writeFileSync(join(distDir, 'graph', 'backfill-graph-metadata.js'), '// stub\n');
+
+    const repoRoot = makeTempDir('fanout-metadata-repo-');
+    const specFolder = 'specs/system-speckit/056-fixture';
+    const plan = buildMetadataRefreshCommands(specFolder, repoRoot, distDir);
+
+    expect(plan.commands).toHaveLength(2);
+    const [description, backfill] = plan.commands ?? [];
+    expect(description.file).toBe(join(distDir, 'spec-folder', 'generate-description.js'));
+    expect(description.args).toEqual([specFolder, repoRoot]);
+    expect(backfill.file).toBe(join(distDir, 'graph', 'backfill-graph-metadata.js'));
+    expect(backfill.args).toEqual([specFolder]);
+  });
+
+  it('resolves the generator dist paths from the repo root when no override is given', () => {
+    const repoRoot = makeTempDir('fanout-metadata-repo2-');
+    const distDir = join(repoRoot, '.opencode', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist');
+    mkdirSync(join(distDir, 'spec-folder'), { recursive: true });
+    mkdirSync(join(distDir, 'graph'), { recursive: true });
+    writeFileSync(join(distDir, 'spec-folder', 'generate-description.js'), '// stub\n');
+    writeFileSync(join(distDir, 'graph', 'backfill-graph-metadata.js'), '// stub\n');
+
+    const plan = buildMetadataRefreshCommands('specs/pkg', repoRoot);
+    expect(plan.commands).not.toBeNull();
+    expect(plan.commands?.[0]?.file).toBe(join(distDir, 'spec-folder', 'generate-description.js'));
+  });
+
+  it('reports the missing dist files instead of building commands when the CLI is unbuilt', () => {
+    const emptyDist = makeTempDir('fanout-metadata-missing-');
+    const plan = buildMetadataRefreshCommands('specs/pkg', makeTempDir('fanout-metadata-repo3-'), emptyDist);
+    expect(plan.commands).toBeNull();
+    expect(plan.missing).toEqual([
+      join(emptyDist, 'spec-folder', 'generate-description.js'),
+      join(emptyDist, 'graph', 'backfill-graph-metadata.js'),
+    ]);
+  });
+});

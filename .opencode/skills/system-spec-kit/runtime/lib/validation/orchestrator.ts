@@ -7,6 +7,8 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
+
 import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
 import { isPhaseParent } from '../spec/is-phase-parent.js';
 import { runSpecDocStructureRule, FREEFORM_WORKFLOW_DOCS, type RuleResult, type SpecDocRuleName } from './spec-doc-structure.js';
@@ -865,7 +867,10 @@ function validateFrontmatterBasics(folder: string, level: SpecKitLevel): Validat
   const empty: string[] = [];
   const frontmatterOf = (docName: string): string | null => {
     const content = readIfExists(path.join(folder, docName));
-    return content === null ? null : content.match(/^---\n([\s\S]*?)\n---/u)?.[1] ?? null;
+    if (content === null) return null;
+    const parsed = parseFrontmatter(content);
+    if (parsed.raw === null) return null;
+    return parsed.raw.split(/\r?\n/).slice(1, -1).join('\n');
   };
 
   // The continuity block is only required on the doc that carries it. A doc

@@ -4,6 +4,7 @@
 
 import * as path from 'node:path';
 import { open, readdir } from 'node:fs/promises';
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
 
 const HEADER_READ_BYTES = 2048;
 const GENERIC_TITLE_SIGNAL_WORDS = new Set([
@@ -199,16 +200,14 @@ async function readMemoryHeader(filePath: string, filename: string): Promise<Par
     }
 
     const headerText = buffer.subarray(0, bytesRead).toString('utf8');
-    if (!headerText.startsWith('---')) {
+    const parsed = parseFrontmatter(headerText);
+    // The header read is a fixed-size window, so keys are sniffed line-by-line
+    // from the raw block instead of the parsed object: a window that truncates
+    // the YAML must still yield the scalar keys written near the top.
+    if (parsed.raw === null) {
       return null;
     }
-
-    const frontmatterMatch = headerText.match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
-    if (!frontmatterMatch) {
-      return null;
-    }
-
-    const frontmatter = frontmatterMatch[1];
+    const frontmatter = parsed.raw.split(/\r?\n/).slice(1, -1).join('\n');
     const sessionId = parseFrontmatterValue(frontmatter, 'session_id');
     const title = parseFrontmatterValue(frontmatter, 'title');
     if (sessionId.length === 0 || title.length === 0) {

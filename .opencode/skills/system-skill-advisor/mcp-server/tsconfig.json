@@ -9,7 +9,7 @@
       "../../system-spec-kit/runtime/node_modules/@types"
     ],
     "paths": {
-      "better-sqlite3": ["../../system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts"],
+      "better-sqlite3": ["./types/better-sqlite3.d.ts"],
       "chokidar": ["../../system-spec-kit/runtime/node_modules/chokidar/index.d.ts"],
       "vitest/config": ["../../system-spec-kit/runtime/node_modules/vitest/config.d.ts"]
     }

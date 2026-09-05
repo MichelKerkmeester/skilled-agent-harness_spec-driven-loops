@@ -16,6 +16,7 @@ import path from 'path';
 
 import { load as loadYaml } from 'js-yaml';
 
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
 import { structuredLog } from '../utils/logger.js';
 import { getSourceCapabilities, type KnownDataSource } from '../utils/source-capabilities.js';
 
@@ -296,9 +297,9 @@ function validateFrontMatterSyntax(raw: string): string | null {
 }
 
 function extractFrontMatter(content: string): string {
-  const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
-  if (frontMatterMatch) {
-    return frontMatterMatch[1];
+  const parsed = parseFrontmatter(content);
+  if (parsed.raw !== null) {
+    return parsed.raw.split(/\r?\n/).slice(1, -1).join('\n');
   }
 
   const fencedYamlMatch = content.match(/```yaml\n([\s\S]*?)\n```/i);

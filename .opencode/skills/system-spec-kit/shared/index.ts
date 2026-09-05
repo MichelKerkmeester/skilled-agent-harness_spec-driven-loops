@@ -221,10 +221,24 @@ export {
   escapeRegex,
 } from './utils/path-security.js';
 
+// Write-boundary path containment
+export {
+  canonicalizeExistingPrefix,
+  isPathInsideRoot,
+  assertPathInsideRoot,
+} from './utils/path-containment.js';
+
 // JSONC utilities
 export {
   stripJsoncComments,
 } from './utils/jsonc-strip.js';
+
+// Markdown frontmatter parsing
+export {
+  parseFrontmatter,
+  stringifyFrontmatter,
+  type ParsedFrontmatter,
+} from './frontmatter/parse-frontmatter.js';
 
 // Retry utilities
 export {

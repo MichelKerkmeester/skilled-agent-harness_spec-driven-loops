@@ -11,6 +11,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
 import type { CollectedDataSubset } from '../types/session-types.js';
 
 const SPEC_ID_REGEX = /\b\d{3}-[a-z0-9][a-z0-9-]*\b/g;
@@ -189,12 +190,12 @@ function parseFrontmatterValue(content: string | null, keyName: string): string[
     return [];
   }
 
-  const blockMatch = content.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
-  if (!blockMatch) {
+  const parsed = parseFrontmatter(content);
+  if (parsed.raw === null) {
     return [];
   }
 
-  const lines = blockMatch[1].split('\n');
+  const lines = parsed.raw.split(/\r?\n/).slice(1, -1);
   const values: string[] = [];
   let collectingList = false;
 

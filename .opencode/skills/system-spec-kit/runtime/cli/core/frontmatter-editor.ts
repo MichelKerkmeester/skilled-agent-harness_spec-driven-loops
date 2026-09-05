@@ -6,6 +6,8 @@
 
 import * as path from 'node:path';
 
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
+
 import { sanitizeTriggerPhrases } from '../lib/trigger-phrase-sanitizer.js';
 
 import type { SpecDocHealthResult } from '@spec-kit/shared/parsing/spec-doc-health';
@@ -29,13 +31,13 @@ const FOLDER_STOPWORDS = new Set([
 
 export function injectQualityMetadata(content: string, qualityScore: number, qualityFlags: string[]): string {
   // Require `---` at string start for strict frontmatter detection.
-  const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!frontmatterMatch || frontmatterMatch.index === undefined) {
+  const parsed = parseFrontmatter(content);
+  if (parsed.raw === null) {
     return content;
   }
 
   const newline = content.includes('\r\n') ? '\r\n' : '\n';
-  const frontmatterLines = frontmatterMatch[1].split(/\r?\n/);
+  const frontmatterLines = parsed.raw.split(/\r?\n/).slice(1, -1);
   const strippedLines: string[] = [];
   let skippingQualityFlags = false;
 
@@ -72,18 +74,16 @@ export function injectQualityMetadata(content: string, qualityScore: number, qua
     ...qualityLines,
     '---',
   ].join(newline);
-  const prefix = content.slice(0, frontmatterMatch.index);
-  const suffix = content.slice(frontmatterMatch.index + frontmatterMatch[0].length).replace(/^\r?\n/, '');
-  return `${updatedFrontmatter}${newline}${prefix}${suffix}`;
+  return `${updatedFrontmatter}${newline}${parsed.body}`;
 }
 
 /** Insert or replace the spec_folder_health frontmatter line with the given health result. */
 export function injectSpecDocHealthMetadata(content: string, health: SpecDocHealthResult): string {
-  const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!frontmatterMatch || frontmatterMatch.index === undefined) return content;
+  const parsed = parseFrontmatter(content);
+  if (parsed.raw === null) return content;
 
   const newline = content.includes('\r\n') ? '\r\n' : '\n';
-  const lines = frontmatterMatch[1].split(/\r?\n/);
+  const lines = parsed.raw.split(/\r?\n/).slice(1, -1);
 
   // Remove existing spec_folder_health lines
   const filtered = lines.filter(l => !l.trimStart().startsWith('spec_folder_health'));
@@ -91,9 +91,7 @@ export function injectSpecDocHealthMetadata(content: string, health: SpecDocHeal
   filtered.push(healthLine);
 
   const updated = ['---', ...filtered, '---'].join(newline);
-  const prefix = content.slice(0, frontmatterMatch.index);
-  const suffix = content.slice(frontmatterMatch.index + frontmatterMatch[0].length).replace(/^\r?\n/, '');
-  return `${updated}${newline}${prefix}${suffix}`;
+  return `${updated}${newline}${parsed.body}`;
 }
 
 /** Render a trigger_phrases array as a YAML block, escaping quotes and backslashes. */

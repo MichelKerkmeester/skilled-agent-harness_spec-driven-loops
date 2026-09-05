@@ -2433,7 +2433,105 @@ function isPiBinaryAvailable(env = process.env) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. CORE LOGIC
+// 4. POST-RUN PACKET METADATA REFRESH
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A run's artifacts only become retrievable once the owning packet's generated
+// metadata (description.json, graph-metadata.json) is refreshed; leaving that
+// to a manual backfill meant every autonomous run ended with stale retrieval
+// data. The refresh runs the spec-kit generators against the run's spec folder
+// after all lineages settle, and is strictly non-fatal: it never changes the
+// run's exit code, it only reports through the ledger and stderr.
+
+const SPEC_KIT_CLI_DIST_REL = path.join('.opencode', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist');
+
+/** Metadata refresh defaults on; `--no-metadata-refresh` is the only opt-out. */
+function metadataRefreshRequested(args) {
+  return args.noMetadataRefresh !== true;
+}
+
+/**
+ * The node invocations that refresh one packet's generated metadata, resolved
+ * against `repoRoot`, or `commands: null` with the missing dist files listed
+ * when the spec-kit CLI has not been built on this checkout.
+ */
+function buildMetadataRefreshCommands(specFolder, repoRoot, cliDistDirOverride) {
+  const distDir = cliDistDirOverride || path.join(repoRoot, SPEC_KIT_CLI_DIST_REL);
+  const planned = [
+    { file: path.join(distDir, 'spec-folder', 'generate-description.js'), args: [specFolder, repoRoot] },
+    { file: path.join(distDir, 'graph', 'backfill-graph-metadata.js'), args: [specFolder] },
+  ];
+  const missing = planned
+    .filter((generator) => !fs.existsSync(generator.file))
+    .map((generator) => generator.file);
+  return { commands: missing.length === 0 ? planned : null, missing };
+}
+
+function appendMetadataRefreshLedgerEvent(ledgerPath, entry) {
+  try {
+    appendFanoutStatusLedger(ledgerPath, entry);
+  } catch {
+    // Ledger availability must never make the refresh fatal.
+  }
+}
+
+function runPacketMetadataRefresh(input) {
+  const { specFolder, repoRoot, ledgerPath } = input;
+  const { commands, missing } = buildMetadataRefreshCommands(specFolder, repoRoot);
+
+  if (!commands) {
+    process.stderr.write(
+      `[fanout-run] metadata refresh skipped for ${specFolder}: spec-kit CLI dist missing (${missing.join(', ')}); run the spec-kit build to restore it\n`,
+    );
+    appendMetadataRefreshLedgerEvent(ledgerPath, {
+      event: 'metadata_refresh_skipped',
+      status: 'warning',
+      spec_folder: specFolder,
+      at: new Date().toISOString(),
+      missing,
+    });
+    return { skipped: true, reason: 'missing_dist', missing };
+  }
+
+  const outcomes = [];
+  for (const generator of commands) {
+    const at = new Date().toISOString();
+    let result = null;
+    let spawnError = null;
+    try {
+      result = spawnSync(process.execPath, [generator.file, ...generator.args], {
+        cwd: repoRoot,
+        encoding: 'utf8',
+      });
+    } catch (error) {
+      spawnError = error;
+    }
+    const generatorName = path.basename(generator.file);
+    const failed = spawnError !== null || !result || result.status !== 0;
+    const stderrLines = result && typeof result.stderr === 'string'
+      ? result.stderr.split('\n').map((line) => line.trim()).filter(Boolean)
+      : [];
+    appendMetadataRefreshLedgerEvent(ledgerPath, {
+      event: failed ? 'metadata_refresh_failed' : 'metadata_refresh_ok',
+      status: failed ? 'warning' : 'ok',
+      spec_folder: specFolder,
+      at,
+      generator: generatorName,
+      ...(failed
+        ? {
+            exit_code: result ? result.status : null,
+            spawn_error: spawnError ? String(spawnError.message || spawnError) : undefined,
+            stderr_tail: stderrLines.slice(-3).join(' | '),
+          }
+        : {}),
+    });
+    outcomes.push({ generator: generatorName, ok: !failed });
+  }
+  return { skipped: false, outcomes };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -3132,6 +3230,18 @@ async function main() {
     ...finalSummary,
   });
 
+  // Every lineage has settled, so the owning packet's generated metadata can
+  // be refreshed against the artifacts this run just wrote. Default on; the
+  // only opt-out is --no-metadata-refresh. Strictly non-fatal: the outcome is
+  // reported through the status ledger and never changes the exit code.
+  if (metadataRefreshRequested(args)) {
+    runPacketMetadataRefresh({
+      specFolder,
+      repoRoot: containmentRepoRoot,
+      ledgerPath,
+    });
+  }
+
   const exitCode = finalSummary.all_failed ? 3 : finalSummary.failed > 0 ? 2 : 0;
   jsonOut({ status: exitCode === 0 ? 'ok' : 'partial', run_id: runId, results, summary: finalSummary });
   process.exit(exitCode);
@@ -3193,4 +3303,6 @@ module.exports = {
   statusForLedgerEvent,
   updateLineageSnapshot,
   applyFlatPoolAssignmentGuard,
+  metadataRefreshRequested,
+  buildMetadataRefreshCommands,
 };

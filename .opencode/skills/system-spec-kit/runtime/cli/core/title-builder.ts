@@ -6,6 +6,7 @@
 
 import * as path from 'node:path';
 import * as fsSync from 'node:fs';
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
 import { pickBestContentName } from '../utils/slug-utils.js';
 import { normalizeSpecTitleForMemory } from '../utils/task-enrichment.js';
 
@@ -80,9 +81,12 @@ export function extractSpecTitle(specFolderPath: string): string {
     throw new Error(`extractSpecTitle: failed to read ${specPath}: ${message}`);
   }
 
-  const fmMatch = content.match(/^---\s*\n([\s\S]*?)\n---/);
-  if (!fmMatch) return '';
-  const titleMatch = fmMatch[1].match(/^title:\s*["']?(.+?)["']?\s*$/m);
+  const parsed = parseFrontmatter(content);
+  if (parsed.raw === null) return '';
+  // The title key is sniffed line-by-line rather than taken from the parsed
+  // object so an unparseable frontmatter block still yields a title.
+  const frontmatterLines = parsed.raw.split(/\r?\n/).slice(1, -1).join('\n');
+  const titleMatch = frontmatterLines.match(/^title:\s*["']?(.+?)["']?\s*$/m);
   if (!titleMatch || !titleMatch[1]) return '';
   return normalizeSpecTitleForMemory(titleMatch[1]);
 }

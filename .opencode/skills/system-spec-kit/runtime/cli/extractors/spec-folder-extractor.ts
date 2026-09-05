@@ -10,6 +10,8 @@
 import fs from 'fs';
 import path from 'path';
 
+import { parseFrontmatter as parseFrontmatterBlock } from '@spec-kit/shared/frontmatter/parse-frontmatter';
+
 import { CONFIG } from '../config/index.js';
 import { toCanonicalRelativePath } from '../utils/file-helpers.js';
 
@@ -57,11 +59,11 @@ function readDoc(specFolderPath: string, fileName: string): string | null {
 
 function parseFrontmatter(content: string | null): { data: Frontmatter; body: string } {
   if (!content) return { data: {}, body: '' };
-  const match = content.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
-  if (!match) return { data: {}, body: content };
+  const parsed = parseFrontmatterBlock(content);
+  if (parsed.raw === null) return { data: {}, body: content };
   const data: Frontmatter = {};
   let currentKey = '';
-  for (const rawLine of match[1].split('\n')) {
+  for (const rawLine of parsed.raw.split(/\r?\n/).slice(1, -1)) {
     const line = rawLine.trimEnd();
     const kv = line.match(/^([A-Za-z0-9_]+):\s*(.*)$/);
     if (kv) {
@@ -78,7 +80,7 @@ function parseFrontmatter(content: string | null): { data: Frontmatter; body: st
       data[currentKey] = existing;
     }
   }
-  return { data, body: content.slice(match[0].length) };
+  return { data, body: parsed.body.replace(/^\s+/, '') };
 }
 
 function extractFrontmatterListItems(content: string | null, keyName: string): string[] {

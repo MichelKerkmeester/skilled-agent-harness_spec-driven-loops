@@ -60,6 +60,7 @@ import {
 import { validateMemoryTemplateContract } from '@spec-kit/shared/parsing/memory-template-contract';
 import { evaluateSpecDocHealth } from '@spec-kit/shared/parsing/spec-doc-health';
 import { scrubSecretsDetailed } from '@spec-kit/shared/parsing/secret-scrubber';
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
 import * as simFactory from '../lib/simulation-factory.js';
 import { loadCollectedData as loadCollectedDataFromLoader } from '../loaders/data-loader.js';
 import { applyTreeThinning } from './tree-thinning.js';
@@ -181,17 +182,13 @@ function filterTriggerPhrases(
  * If no frontmatter is found, prepends the content (original behavior).
  */
 function insertAfterFrontmatter(content: string, insertion: string): string {
-  if (!content.startsWith('---')) {
+  const parsed = parseFrontmatter(content);
+  if (parsed.raw === null) {
     return insertion + content;
   }
-  // Find the closing --- (skip the opening ---)
-  const closingIdx = content.indexOf('\n---', 3);
-  if (closingIdx === -1) {
-    return insertion + content;
-  }
-  // Find the end of the closing --- line
-  const afterClosing = content.indexOf('\n', closingIdx + 4);
-  const insertionPoint = afterClosing === -1 ? content.length : afterClosing + 1;
+  // The body starts right after the closing fence line, so the insertion
+  // point is exactly bodyStart — one shared definition of "end of frontmatter".
+  const insertionPoint = content.length - parsed.body.length;
   return content.slice(0, insertionPoint) + insertion + content.slice(insertionPoint);
 }
 
