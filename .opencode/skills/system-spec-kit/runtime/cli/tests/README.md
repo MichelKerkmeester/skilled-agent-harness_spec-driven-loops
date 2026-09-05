@@ -75,8 +75,8 @@ npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 node .opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
 bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
 bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
-npx --prefix .opencode/skills/system-spec-kit/runtime/cli vitest run \
-  tests/test-integration.vitest.ts
+(cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run \
+  --config ../../vitest.config.ts --project cli tests/test-integration.vitest.ts)
 python3 .opencode/skills/system-spec-kit/runtime/cli/tests/test_dual_threshold.py
 ```
 
@@ -91,8 +91,8 @@ npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 node .opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
 bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
 bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
-npx --prefix .opencode/skills/system-spec-kit/runtime/cli vitest run \
-  tests/test-integration.vitest.ts
+(cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run \
+  --config ../../vitest.config.ts --project cli tests/test-integration.vitest.ts)
 ```
 
 Use narrower Vitest files for focused changes, then run the shell validation

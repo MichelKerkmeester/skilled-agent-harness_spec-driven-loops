@@ -29,7 +29,7 @@ contextType: "general"
 | **Testing** | `recommend-level.sh` (level scoring), manual resolution checks (no automated test in this planning phase) |
 
 ### Overview
-This phase does not move any file. It builds a resolution-based inventory of every current consumer of `.opencode/skills/system-spec-kit/scripts/`, picks `runtime/cli/` as the target layout to avoid the `runtime/scripts/` collision, and hands off a Level 3 execution packet recommendation with the atomic-commit plan packet 053 already proved out.
+This phase was planned as inventory-only and then, by operator instruction, executed the move in this same folder (see `implementation-summary.md`). As planned it builds a resolution-based inventory of every current consumer of `.opencode/skills/system-spec-kit/scripts/`, picks `runtime/cli/` as the target layout to avoid the `runtime/scripts/` collision, and hands off a Level 3 execution packet recommendation with the atomic-commit plan packet 053 already proved out.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -112,7 +112,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` | Internal | Green - exists and is executable | Cannot confirm the Level 3 re-scoring; execution phase would start under-scoped |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` (pre-move path `scripts/spec/`) | Internal | Green - exists and is executable | Cannot confirm the Level 3 re-scoring; execution phase would start under-scoped |
 | Packet 053's review-loop precedent and lineage artifacts | Internal | Green - `specs/system-speckit/053-spec-kit-runtime-rename/` exists and is readable | The execution phase would have to reinvent the review-pass shape instead of reusing a proven one |
 <!-- /ANCHOR:dependencies -->
 
@@ -141,7 +141,7 @@ Setup (rg pass + resolution filter) ──► Core (target-layout decision + lev
 |-------|------------|--------|
 | Setup | None | Core |
 | Core | Setup | Verify |
-| Verify | Core | The future Level 3 execution packet |
+| Verify | Core | This folder's execution stage |
 <!-- /ANCHOR:phase-deps -->
 
 ---

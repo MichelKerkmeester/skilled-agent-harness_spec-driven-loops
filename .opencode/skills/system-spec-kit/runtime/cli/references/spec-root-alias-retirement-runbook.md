@@ -62,8 +62,8 @@ Run the targeted spec-root suites with the alias absent, then repeat the filesys
 (
   cd .opencode/skills/system-spec-kit/runtime/cli
   npm exec -- vitest run tests/spec-root-*.vitest.ts \
-    --config ../runtime/vitest.config.ts \
-    --root .
+    --config ../../vitest.config.ts \
+    --project cli
 )
 
 node -e "const fs=require('node:fs');try{fs.lstatSync('specs');throw new Error('specs was re-materialized')}catch(error){if(error.code!=='ENOENT')throw error}"

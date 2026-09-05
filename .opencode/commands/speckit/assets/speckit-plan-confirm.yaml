@@ -570,7 +570,7 @@ workflow:
         agents: [{ name: spec_explorer, focus: "Existing specs and patterns" }, { name: requirement_analyzer, focus: "Similar features and requirements" }]
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
       fallback: "Proceed with activities if dispatch fails or user chooses direct"
-    activities: [Run create.sh (scripts/spec/create.sh), "Estimate complexity and select doc level (L1:<100 LOC, L2:100-499, L3:>=500)", Load and fill spec.md, Generate functional requirements, Define success criteria]
+    activities: [Run create.sh (runtime/cli/spec/create.sh), "Estimate complexity and select doc level (L1:<100 LOC, L2:100-499, L3:>=500)", Load and fill spec.md, Generate functional requirements, Define success criteria]
     outputs: [spec.md]
     template: level_contract_spec.md
     template_prompt_contract:

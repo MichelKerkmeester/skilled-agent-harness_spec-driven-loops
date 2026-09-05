@@ -673,7 +673,7 @@ workflow:
         - { name: "requirement_analyzer", focus: "Similar features and requirements" }
       fallback: "Proceed with activities below"
     activities:
-    - Run create.sh script (scripts/spec/create.sh)
+    - Run create.sh script (runtime/cli/spec/create.sh)
     - Estimate complexity and select documentation level using progressive enhancement:
       - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
       - "Level 2 (Verification): 100-499 LOC - core trio; checklist.md optional"

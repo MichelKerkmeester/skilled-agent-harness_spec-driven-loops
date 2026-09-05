@@ -698,7 +698,7 @@ workflow:
       fallback: "Proceed with activities below"
     activities:
     - Find highest feature number across all sources
-    - Run create.sh script (scripts/spec/create.sh) with calculated number
+    - Run create.sh script (runtime/cli/spec/create.sh) with calculated number
     - Estimate complexity and select documentation level using progressive enhancement:
       - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
       - "Level 2 (Verification): 100-499 LOC - core trio; checklist.md optional"

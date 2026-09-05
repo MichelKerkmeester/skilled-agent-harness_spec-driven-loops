@@ -70,7 +70,7 @@
       "outputs": ["Upgraded spec docs", "Backup directory", "JSON result with --json"],
       "gate": "Documentation Level Upgrade",
       "version": "1.0.0",
-      "dependencies": ["scripts/lib/shell-common.sh", "templates/"]
+      "dependencies": ["runtime/cli/lib/shell-common.sh", "templates/"]
     },
     {
       "name": "check-prerequisites",
@@ -153,7 +153,7 @@
       "outputs": ["Rendered markdown", "Nested changelog payload", "packet-local changelog file (with --write)"],
       "gate": "Completion workflow",
       "version": "1.0.0",
-      "dependencies": ["scripts/spec-folder/*.ts", "templates/changelog/"]
+      "dependencies": ["runtime/cli/spec-folder/*.ts", "templates/changelog/"]
     },
     {
       "name": "recommend-level",

@@ -166,9 +166,7 @@
 .opencode/skills/system-spec-kit/runtime/README.md
 .opencode/skills/system-spec-kit/runtime/api/README.md
 .opencode/skills/system-spec-kit/runtime/api/index.ts
-.opencode/skills/system-spec-kit/runtime/cli/.scan-one-fast.sh
 .opencode/skills/system-spec-kit/runtime/cli/.scan-one.sh
-.opencode/skills/system-spec-kit/runtime/cli/.scan-validate-all.py
 .opencode/skills/system-spec-kit/runtime/cli/.scan-validate-all.sh
 .opencode/skills/system-spec-kit/runtime/cli/.scan-validate-all.txt
 .opencode/skills/system-spec-kit/runtime/cli/README.md
@@ -369,7 +367,6 @@
 .opencode/skills/system-spec-kit/runtime/cli/tests/test-bug-regressions.js
 .opencode/skills/system-spec-kit/runtime/cli/tests/test-dist-freshness.sh
 .opencode/skills/system-spec-kit/runtime/cli/tests/test-embeddings-behavioral.js
-.opencode/skills/system-spec-kit/runtime/cli/tests/test-embeddings-factory.js
 .opencode/skills/system-spec-kit/runtime/cli/tests/test-export-contracts.js
 .opencode/skills/system-spec-kit/runtime/cli/tests/test-five-checks.js
 .opencode/skills/system-spec-kit/runtime/cli/tests/test-folder-detector-functional.js

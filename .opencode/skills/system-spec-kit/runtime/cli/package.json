@@ -15,6 +15,7 @@
     "rebuild": "npm run clean && npm run build",
     "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
     "lint": "tsc --noEmit",
+    "pretest": "npm run build",
     "test": "vitest run --config ../../vitest.config.ts --project cli && npm run test:legacy && npm run test:validation",
     "test:task-enrichment": "vitest run tests/task-enrichment.vitest.ts --config ../vitest.config.ts --root .",
     "test:legacy": "npm run build && node tests/test-scripts-modules.js && node tests/test-extractors-loaders.js",

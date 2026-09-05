@@ -47,7 +47,7 @@ contextType: "general"
 - [x] T004 Classify every T001 hit as live consumer (import/exec/config-string that resolves) or prose (changelog, comment, historical mention); drop prose hits from the blast-radius count
 - [x] T005 Group the live-consumer hits by class: hook config, CI workflow, doctor asset, agent mirror, README, CLAUDE.md, workspace config; record a count per class
 - [x] T006 Record the target-layout decision (`runtime/cli/` recommended) and its collision-avoidance rationale in `spec.md`
-- [x] T007 Run `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` against this folder and record its numeric score and recommended level
+- [x] T007 Run `recommend-level.sh` (then at `scripts/spec/`, now at `runtime/cli/spec/`) against this folder and record its numeric score and recommended level
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -57,7 +57,7 @@ contextType: "general"
 
 - [x] T008 Confirm the live/prose classification on a 10% random sample of T001 hits by manual inspection; record any misclassification found
 - [x] T009 Confirm this phase's `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` cite the packet-053 precedent and do not themselves attempt any `git mv`
-- [x] T010 Hand off: create the Level 3 execution packet (Gate 3 Option D, this parent) seeded with the T004-T007 outputs, once `recommend-level.sh` confirms Level 3
+- [x] T010 Hand off: create the Level 3 execution packet (Gate 3 Option D, this parent) seeded with the T004-T007 outputs, once `recommend-level.sh` confirms Level 3 — superseded: the operator directed execution in this folder and no child packet was created
 <!-- /ANCHOR:phase-3 -->
 
 ---

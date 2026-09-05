@@ -47,7 +47,7 @@ This is **Phase 2** of the decommission debt fixes specification.
 **Deliverables**:
 - A chosen target layout that resolves the `runtime/scripts/` collision.
 - A resolution-based (not grep-only) inventory of every path reference.
-- A re-leveled Level 3 execution packet, planned but not started here.
+- The executed move. Planned here as a hand-off to a re-leveled Level 3 packet; the operator then directed execution in this same folder, so the inventory, the decision and the move all live here.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in `../changelog/` using the parent packet number plus this phase folder name.
@@ -93,7 +93,7 @@ A target layout is chosen that avoids the `runtime/scripts/` name collision, eve
 
 ### Review Scope
 
-The review reads a bounded list, never a tree. The change set is the nesting commit's diff `19d54e03b1..b4c2484696` outside `specs/`, with pure renames excluded, plus every file under the spec-kit skill, the CI workflows and the doctor scripts whose content changed in the review-remediation commits that followed: 453 files, listed one per line in `scratch/review-scope.txt` (420 in the first pass). The 864 files moved without a content change are verified by the commands below, not by reading anything.
+The review reads a bounded list, never a tree. The change set is the nesting commit's diff `19d54e03b1..b4c2484696` outside `specs/`, with pure renames excluded, plus every file under the spec-kit skill, the CI workflows and the doctor scripts whose content changed in the review-remediation commits that followed: 450 files, listed one per line in `scratch/review-scope.txt` (420 in the first pass; three paths removed in remediation dropped out). The 864 files moved without a content change are verified by the commands below, not by reading anything.
 
 **Reading budget.** Read only files in the list and the modules they import directly. Never expand a directory with a wildcard, and never read `node_modules`, `dist`, `benchmark`, `changelog`, `z_archive`, `manual-testing-playbook`, `feature-catalog`, or `runtime/data/trigger-index.json`. Cover a different part of the list in each iteration so ten iterations cover it roughly once, then spend the rest on findings already raised. Angles: root resolution that assumed the old depth, imports that flipped direction, the runtime build and test configs excluding `cli/`, the workspace and lockfile, hook symlinks and registrations, the continuity writer's new path in every caller, and the freshness table.
 
@@ -127,7 +127,7 @@ Out of the review's write scope: everything outside this phase's `review/` direc
 | ID | Requirement |
 |----|-------------|
 | REQ-003 | `recommend-level.sh` is run against this folder and its score is recorded; if it returns Level 3 (expected, given the packet-053 precedent's own scale), a new Level 3 execution packet is the recommended next step rather than continuing in this Level 2 folder |
-| REQ-004 | The execution plan (drafted here, run later) specifies one atomic commit via `git mv`, followed immediately by `dist-freshness.cjs`, hook-symlink, workspace-membership, and CLAUDE.md updates in the same commit, plus the full gate set and a ten-iteration review pass, mirroring packet 053's own closeout |
+| REQ-004 | The execution plan (drafted here, then run here by operator instruction) specifies one atomic commit via `git mv`, followed immediately by `dist-freshness.cjs`, hook-symlink, workspace-membership, and CLAUDE.md updates in the same commit, plus the full gate set and a ten-iteration review pass, mirroring packet 053's own closeout |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -204,8 +204,8 @@ Out of the review's write scope: everything outside this phase's `review/` direc
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 8/25 | This phase only produces an inventory and a decision; the move itself is out of scope and belongs to a future Level 3 packet |
-| Risk | 6/25 | Planning-only; the real risk (a missed reference breaking a live hook) is deferred to the execution phase's own gate |
+| Scope | 8/25 | Scored at planning time, when this phase only produced an inventory and a decision; the move then ran here by operator instruction, see the Level row |
+| Risk | 6/25 | Scored at planning time; the execution risk was carried by this folder's own gate set and review passes |
 | Research | 4/20 | The precedent (packet 053) and the collision (`runtime/scripts/` already populated) are both already confirmed by direct inspection |
 | **Total** | **18/70** | **Level 2 for this planning phase; the execution phase must be scored independently and is expected to land at Level 3** |
 <!-- /ANCHOR:complexity -->

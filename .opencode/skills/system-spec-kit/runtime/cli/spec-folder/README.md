@@ -15,11 +15,11 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/spec-folder/` contains source modules used by continuity save and spec-maintenance workflows. The utilities detect active spec folders, validate content-to-folder alignment, create required packet directories, generate `description.json`, and build nested changelog data for root specs or phase children.
+`runtime/cli/spec-folder/` contains source modules used by continuity save and spec-maintenance workflows. The utilities detect active spec folders, validate content-to-folder alignment, create required packet directories, generate `description.json`, and build nested changelog data for root specs or phase children.
 
 Current state:
 
-- Source of truth is `scripts/spec-folder/*.ts`.
+- Source of truth is `runtime/cli/spec-folder/*.ts`.
 - Compiled runtime output is `runtime/cli/dist/spec-folder/*.js`.
 - Explicit CLI targets are authoritative when save workflows pass a spec-folder argument.
 
@@ -28,7 +28,7 @@ Current state:
 ## 2. PACKAGE TOPOLOGY
 
 ```text
-scripts/spec-folder/
+runtime/cli/spec-folder/
 +-- index.ts                 # Public barrel for spec-folder utilities
 +-- folder-detector.ts       # Spec-folder detection logic
 +-- alignment-validator.ts   # Topic and folder alignment scoring
@@ -52,7 +52,7 @@ runtime/cli/dist/spec-folder/
 
 Allowed direction:
 
-- Continuity save workflows may import through `scripts/spec-folder/index.ts`.
+- Continuity save workflows may import through `runtime/cli/spec-folder/index.ts`.
 - CLI wrappers may run compiled output from `runtime/cli/dist/spec-folder/` after build.
 - Metadata generation may write `description.json` for a selected packet.
 
@@ -133,7 +133,7 @@ Expected result: build passes and the compiled public barrel exports module memb
 
 ## 7. RELATED
 
-- [`../memory/README.md`](../memory/README.md)
+- [`../continuity/README.md`](../continuity/README.md)
 - [`../core/README.md`](../core/README.md)
 - [`../spec/README.md`](../spec/README.md)
 - [`../../README.md`](../../README.md)
