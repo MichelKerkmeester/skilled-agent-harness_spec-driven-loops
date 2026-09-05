@@ -771,7 +771,7 @@ describe('checkpoint and restart parity', () => {
         return;
       }
       const vitestBin = fileURLToPath(new URL(
-        '../../../../system-spec-kit/runtime/node_modules/.bin/vitest',
+        '../../node_modules/.bin/vitest',
         import.meta.url,
       ));
       const configPath = fileURLToPath(new URL('../../vitest.config.ts', import.meta.url));

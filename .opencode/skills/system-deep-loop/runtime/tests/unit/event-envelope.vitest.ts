@@ -304,7 +304,7 @@ describe('deterministic type and version registry', () => {
       }
 
       const vitestBin = fileURLToPath(new URL(
-        '../../../../system-spec-kit/runtime/node_modules/.bin/vitest',
+        '../../node_modules/.bin/vitest',
         import.meta.url,
       ));
       const child = spawnSync(vitestBin, [
