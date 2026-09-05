@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/054-decommission-debt-fixes",
+  "description": "The landing and rename packets closed with debt recorded rather than fixed: the scripts freshness table counted the trigger-index generator's fixtures",
+  "keywords": [
+    "landing",
+    "rename",
+    "packets",
+    "closed",
+    "debt",
+    "recorded",
+    "rather",
+    "scripts",
+    "freshness",
+    "table",
+    "counted",
+    "trigger-index",
+    "generator",
+    "fixtures"
+  ],
+  "lastUpdated": "2026-09-05T03:37:36.603Z",
+  "specId": "054",
+  "folderSlug": "decommission-debt-fixes",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
