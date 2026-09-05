@@ -1,12 +1,12 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Check No Mcp Lib Imports
-// ---------------------------------------------------------------
-
-// ───────────────────────────────────────────────────────────────
-// 1. CHECK NO MCP LIB IMPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Scans scripts/ for prohibited internal runtime imports.
 // Violations not in the allowlist cause a non-zero exit.
+
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -15,6 +15,10 @@ import { isProhibitedImportPath } from './import-policy-rules.js';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
+
+// ───────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────
 
 interface AllowlistException {
   file: string;
@@ -54,6 +58,10 @@ interface ScanFileResult {
   violations: Violation[];
   localImports: LocalImport[];
 }
+
+// ───────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 // When running from dist/evals/, moduleDir resolves to dist/ which is wrong.
 // Detect compiled mode and go up one additional level to reach the source scripts/ root.
@@ -333,6 +341,10 @@ function findTsFiles(dir: string): string[] {
   walk(dir);
   return files;
 }
+
+// ───────────────────────────────────────────────────────────────
+// 4. MAIN LOGIC
+// ───────────────────────────────────────────────────────────────
 
 function main(): void {
   const allowlist = loadAllowlist();

@@ -1,7 +1,7 @@
 #!/usr/bin/env npx tsx
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Smart Router Measurement
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Static corpus harness for predicted smart-router loads. This measures
 // advisor top-1 accuracy and predicted resource routes. It does not observe
 // live AI file reads.
@@ -239,7 +239,7 @@ async function loadDefaultBuildBrief(): Promise<BuildSkillAdvisorBrief> {
         throw new Error(`Missing buildSkillAdvisorBrief export from ${modulePath}`);
       }
       return mod.buildSkillAdvisorBrief;
-    } catch (error) {
+    } catch (error: unknown) {
       lastError = error;
     }
   }

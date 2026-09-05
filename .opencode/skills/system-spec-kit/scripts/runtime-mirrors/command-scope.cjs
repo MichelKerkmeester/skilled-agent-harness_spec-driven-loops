@@ -1,9 +1,9 @@
-'use strict';
-
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ Runtime-Exclusive Command Scope                                          ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
-//
+
+'use strict';
+
 // A few commands must live in exactly one runtime instead of being mirrored to
 // all of them. Goal and vision are per-runtime because each host reaches the
 // feature differently: OpenCode uses a plugin hook, Cursor and Devin use an MCP

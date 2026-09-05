@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Generate Command Routers                                                 ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
 
 /*
@@ -30,8 +34,16 @@
  *                      and asset-path cells in place; leave label/mode prose.
  */
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
+
+// ───────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────
 
 const REPO_ROOT = findRepoRoot(__dirname);
 const CONTRACT_PATH = path.join(
@@ -42,6 +54,10 @@ const COMMANDS_DIR = path.join(REPO_ROOT, '.opencode/commands');
 
 // A router asset path, always repo-relative and backtick-wrapped in the tables.
 const ASSET_PATH_RE = /\.opencode\/commands\/[A-Za-z0-9._/-]+\.(?:txt|ya?ml)/g;
+
+// ───────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function findRepoRoot(start) {
   let dir = start;
@@ -252,6 +268,10 @@ function analyzeRouter(family, familyContract, routerAbs) {
   };
 }
 
+// ───────────────────────────────────────────────────────────────
+// 4. CHECK MODE
+// ───────────────────────────────────────────────────────────────
+
 function runCheck(families) {
   const rows = [];
   for (const [family, fc] of Object.entries(families)) {
@@ -287,6 +307,10 @@ function runCheck(families) {
   console.log(`\nrouters=${rows.length} clean=${clean} path-drift=${drift} shape-drift=${shape}`);
   return drift + shape === 0 ? 0 : 1;
 }
+
+// ───────────────────────────────────────────────────────────────
+// 5. WRITE MODE
+// ───────────────────────────────────────────────────────────────
 
 function splitRow(line) {
   return line
@@ -383,6 +407,10 @@ function runWrite(families) {
   for (const f of changed) console.log(`  wrote ${f}`);
   return 0;
 }
+
+// ───────────────────────────────────────────────────────────────
+// 6. ENTRY POINT
+// ───────────────────────────────────────────────────────────────
 
 function main() {
   const args = process.argv.slice(2);

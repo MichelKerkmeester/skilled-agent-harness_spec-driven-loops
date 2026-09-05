@@ -101,5 +101,7 @@ main() {
 main "$@"
 
 # Exit codes:
-#   0 - Success
-#   2 - ERROR: Unknown option: $1
+#   0 - --help/-h only
+#   1 - Deprecated telemetry drift runner was removed (every valid invocation
+#       reaches this on the main path; no replacement verifier is wired yet)
+#   2 - ERROR: Unknown option, missing option value, or invalid --scenario

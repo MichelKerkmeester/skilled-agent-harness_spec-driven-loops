@@ -1,7 +1,7 @@
 #!/usr/bin/env npx tsx
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Smart Router Live Session Wrapper
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Observe-only helper for runtime wrappers. It records Read tool calls
 // against .opencode/skills/* resources and never throws or blocks.
 

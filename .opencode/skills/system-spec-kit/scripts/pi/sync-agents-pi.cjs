@@ -4,8 +4,16 @@
 
 'use strict';
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const path = require('node:path');
+
+// ───────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────
 
 const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 const SOURCE_DIR = path.join(REPO_ROOT, '.opencode', 'agents');
@@ -26,6 +34,10 @@ const PERMISSION_TOOL_MAP = Object.freeze({
   glob: 'find',
   list: 'ls',
 });
+
+// ───────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function parseArguments(argv) {
   if (argv.length === 0) {
@@ -157,6 +169,10 @@ function buildExpectedOutputs() {
   return outputs;
 }
 
+// ───────────────────────────────────────────────────────────────
+// 4. SYNC EXECUTION
+// ───────────────────────────────────────────────────────────────
+
 function checkOutputs(expectedOutputs) {
   const actualFiles = new Set(listOutputFiles());
   const drift = [];
@@ -224,6 +240,10 @@ function writeOutputs(expectedOutputs) {
     `[pi-agent-sync] Wrote ${changed} of ${expectedOutputs.size} generated agents.`,
   );
 }
+
+// ───────────────────────────────────────────────────────────────
+// 5. ENTRY POINT
+// ───────────────────────────────────────────────────────────────
 
 function main() {
   const options = parseArguments(process.argv.slice(2));

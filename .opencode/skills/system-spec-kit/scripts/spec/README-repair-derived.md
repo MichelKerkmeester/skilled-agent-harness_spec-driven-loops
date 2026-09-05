@@ -17,7 +17,17 @@ machine's work.
 
 ---
 
-## 1. THE BOUNDARY
+## 1. OVERVIEW
+
+`repair-derived.cjs` repairs the packet facts that are derivable from disk —
+recorded folder names, packet pointers, declared levels, and generated-metadata
+fingerprints — and leaves authored facts (evidence, verification results,
+decisions) alone. It runs by default in report-only mode against one packet or
+a subtree, and only writes when called with `--apply`.
+
+---
+
+## 2. THE BOUNDARY
 
 **Derived** failures are facts the repository already knows and the document
 records wrongly. Where a packet sits after it is renumbered or moved. What level
@@ -42,7 +52,7 @@ until someone who knows the answer writes it down.
 
 ---
 
-## 2. USAGE
+## 3. USAGE
 
 ```bash
 # report what could be repaired, changing nothing
@@ -72,7 +82,7 @@ some of them.
 
 ---
 
-## 3. WHAT IT REPAIRS
+## 4. WHAT IT REPAIRS
 
 | Failure | Recomputed from |
 |---------|-----------------|
@@ -95,7 +105,7 @@ own record, and rewriting it corrupts the passage that explains it.
 
 ---
 
-## 4. WHAT IT REFUSES
+## 5. WHAT IT REFUSES
 
 Repairable rules are an explicit allow-list. Any rule absent from it is counted,
 reported, and left alone — refused by construction rather than by remembering
@@ -107,7 +117,7 @@ of the remaining debt is authored rather than mechanical.
 
 ---
 
-## 5. LIMITS
+## 6. LIMITS
 
 - It shells out to the validator once per packet, and that call is the whole
   cost: about 1.9 seconds, of which the shell wrapper is 0.15 and module
@@ -125,7 +135,7 @@ of the remaining debt is authored rather than mechanical.
 
 ---
 
-## 6. REFERENCES AND RELATED RESOURCES
+## 7. REFERENCES AND RELATED RESOURCES
 
 - `spec/validate.sh` — the rules this repairs against
 - `graph/backfill-graph-metadata.ts` — the re-derivation entry point

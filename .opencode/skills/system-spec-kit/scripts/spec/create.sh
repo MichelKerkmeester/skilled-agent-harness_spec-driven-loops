@@ -461,7 +461,8 @@ create_versioned_subfolder() {
     done
     
     local next_version=$((max_version + 1))
-    local version_str=$(printf "%03d" $next_version)
+    local version_str
+    version_str=$(printf "%03d" "$next_version")
     local subfolder_name="${version_str}-${topic}"
     local subfolder_path="$base_folder/$subfolder_name"
     

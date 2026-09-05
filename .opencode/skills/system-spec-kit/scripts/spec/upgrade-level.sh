@@ -465,7 +465,8 @@ restore_from_backup() {
     # Restore subdirectory .md files, mirroring original structure
     while IFS= read -r -d '' md_file; do
         local rel_path="${md_file#"$BACKUP_DIR"/}"
-        local target_dir="$SPEC_FOLDER/$(dirname "$rel_path")"
+        local target_dir
+        target_dir="$SPEC_FOLDER/$(dirname "$rel_path")"
         if ! mkdir -p "$target_dir"; then
             warn "Failed to create restore directory: $target_dir"
             restore_failed=1

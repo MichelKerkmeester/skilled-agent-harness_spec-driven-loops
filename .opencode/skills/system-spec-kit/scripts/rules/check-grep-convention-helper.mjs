@@ -71,7 +71,7 @@ const VARIANT_PRECEDENCE = [
 ];
 
 // ───────────────────────────────────────────────────────────────
-// 3. DIAGNOSTICS
+// 2. DIAGNOSTICS
 // ───────────────────────────────────────────────────────────────
 
 const diagnostics = [];
@@ -97,7 +97,7 @@ function addDiagnostic({ file, line, category, reason, rawKey }) {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 4. FRONTMATTER DETECTION
+// 3. FRONTMATTER DETECTION
 // ───────────────────────────────────────────────────────────────
 
 // Mirrors the migration module's reader so the validator and the retrofit
@@ -146,7 +146,7 @@ function detectFrontmatter(lines) {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 5. LINE ADDRESSING INSIDE THE BLOCK
+// 4. LINE ADDRESSING INSIDE THE BLOCK
 // ───────────────────────────────────────────────────────────────
 
 function findKeyLine(block, offset, key) {
@@ -173,7 +173,7 @@ function findMemberLines(block, offset, key) {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 6. TRIGGER PHRASE JUDGEMENT
+// 5. TRIGGER PHRASE JUDGEMENT
 // ───────────────────────────────────────────────────────────────
 
 // Delegated to the retrofit's shared judge so the two enforcers reject the same
@@ -185,7 +185,7 @@ function genericTriggerReason(raw, folderTokens) {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 7. PER-DOCUMENT CLASSIFICATION
+// 6. PER-DOCUMENT CLASSIFICATION
 // ───────────────────────────────────────────────────────────────
 
 function classifyDocument(file, text, folderTokens) {
@@ -350,7 +350,7 @@ function classifyDocument(file, text, folderTokens) {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 8. ANCHOR GRAMMAR
+// 7. ANCHOR GRAMMAR
 // ───────────────────────────────────────────────────────────────
 
 function checkAnchors(file, lines) {
@@ -421,7 +421,7 @@ function checkAnchors(file, lines) {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 9. NAMING RULES
+// 8. NAMING RULES
 // ───────────────────────────────────────────────────────────────
 
 function checkFolderNaming(folder) {
@@ -452,7 +452,7 @@ function checkDocumentNaming(file) {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 10. RULE ENTRY
+// 9. RULE ENTRY
 // ───────────────────────────────────────────────────────────────
 
 function emit(status, message, details) {

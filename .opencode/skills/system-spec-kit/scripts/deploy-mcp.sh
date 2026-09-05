@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Deploy MCP
+# ───────────────────────────────────────────────────────────────
 # Rebuild every daemon-backed package dist after a source change and flag
 # launcher changes a running process cannot pick up.
 #
@@ -24,7 +27,7 @@ FAIL=0
 build_pkg() {
   # $1 = human label, $2 = dir to run `npm run build` in
   local label="$1" dir="$2"
-  if [ ! -d "$dir" ]; then echo "  $label: dir missing ($dir) — skipped"; return; fi
+  if [[ ! -d "$dir" ]]; then echo "  $label: dir missing ($dir) — skipped"; return; fi
   # Read package.json via fs (a bare relative path passed to require() resolves
   # as a module name, not a file, and would silently report "no build script").
   if ! node -e "const p=JSON.parse(require('node:fs').readFileSync('$dir/package.json','utf8'));process.exit(p.scripts&&p.scripts.build?0:1)" 2>/dev/null; then
@@ -43,7 +46,7 @@ build_pkg "spec-kit" ".opencode/skills/system-spec-kit/runtime"
 # system-skill-advisor MCP daemon: build if it ships a build script.
 build_pkg "advisor" ".opencode/skills/system-skill-advisor/mcp-server"
 
-if [ "$FAIL" -ne 0 ]; then
+if [[ "$FAIL" -ne 0 ]]; then
   echo "!! One or more builds failed. Fix builds first." >&2
   exit 1
 fi
@@ -56,7 +59,7 @@ CJS_CHANGED="$(
     git diff --name-only HEAD~1 HEAD -- '.opencode/bin/*.cjs' '.opencode/bin/lib/*.cjs' 2>/dev/null
   } | sort -u || true
 )"
-if [ -n "$CJS_CHANGED" ]; then
+if [[ -n "$CJS_CHANGED" ]]; then
   echo "  WARNING: launcher .cjs changed — recycle CANNOT activate these."
   echo "  Start a FRESH session (new launcher process) to load them:"
   echo "$CJS_CHANGED" | sed 's/^/    - /'

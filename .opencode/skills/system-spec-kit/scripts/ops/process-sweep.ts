@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Process Sweep
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 import { isMainModule } from '../lib/esm-entry.js';
 import {
   collectInventory,
@@ -14,6 +14,7 @@ import {
   type PidLockState,
 } from './process-memory-harness.js';
 
+/** One process (or stale PID lock) row in a sweep plan, with its termination verdict. */
 export interface SweepPlanRow {
   pid: number;
   ppid: number;
@@ -23,6 +24,7 @@ export interface SweepPlanRow {
   rationale: string;
 }
 
+/** A full sweep plan: every evaluated row plus a classification/rationale summary. */
 export interface SweepPlan {
   inventoryStatus: Inventory['status'];
   inventoryError?: string;
@@ -34,10 +36,12 @@ interface PlanSweepOptions {
   selfPid: number;
 }
 
+/** Options for {@link applySweep}. */
 export interface ApplySweepOptions {
   selfPid: number;
 }
 
+/** Result of an apply-mode sweep; always dry-run today (see {@link applySweep}). */
 export interface SweepApplyResult extends SweepPlan {
   mode: 'apply';
   dryRun: false;
@@ -53,11 +57,20 @@ type CliPayload = (SweepPlan & {
   note: string;
 }) | SweepApplyResult;
 
-// A process is signalled only through a registered terminable class, and a class carries the
-// ownership evidence — owner file, start time, socket peer — that proves the process is this
-// repository's to kill. No such class is registered, so apply reports the plan and signals
-// nothing. Restoring termination means registering a class together with its evidence probe,
-// never re-enabling a kill path that decides on classification alone.
+/**
+ * Report the sweep plan in apply shape without signalling any process.
+ *
+ * @remarks
+ * A process is signalled only through a registered terminable class, and a class carries the
+ * ownership evidence — owner file, start time, socket peer — that proves the process is this
+ * repository's to kill. No such class is registered, so apply reports the plan and signals
+ * nothing. Restoring termination means registering a class together with its evidence probe,
+ * never re-enabling a kill path that decides on classification alone.
+ *
+ * @param inventory - Live or fixture process inventory to evaluate
+ * @param opts - Apply options, currently just the caller's own PID
+ * @returns An apply-shaped result; `appliedPids`/`signals` are always empty today
+ */
 export function applySweep(inventory: Inventory, opts: ApplySweepOptions): SweepApplyResult {
   const plan = planSweep(inventory, { selfPid: opts.selfPid });
   return {
@@ -134,6 +147,14 @@ function evaluateEligibility(
   return { eligibleForTermination: false, rationale: 'default-preserve' };
 }
 
+/**
+ * Build a dry-run sweep plan: classify every process and stale PID lock and
+ * decide whether each would be eligible for termination.
+ *
+ * @param inventory - Live or fixture process inventory to evaluate
+ * @param opts - Plan options, currently just the caller's own PID
+ * @returns The sweep plan, or an empty plan when the inventory is unavailable
+ */
 export function planSweep(inventory: Inventory, opts: PlanSweepOptions): SweepPlan {
   if (inventory.status !== 'ok') {
     return {

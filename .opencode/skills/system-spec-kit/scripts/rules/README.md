@@ -57,14 +57,19 @@ rules/
 +-- check-files.sh              # Required file checks by level
 +-- check-template-source.sh    # Template source marker checks
 +-- check-canonical-save.sh     # Save-time contract checks
-+-- check-canonical-save-helper.cjs
++-- check-canonical-save-helper.cjs             # Node helper for canonical-save rules
 +-- check-graph-metadata.sh     # Graph metadata checks
++-- check-metadata-disk-consistency-helper.cjs  # Node helper for metadata/disk-path checks
++-- check-grep-convention-helper.mjs            # Node helper for the grep-convention rule
 +-- check-links.sh              # Optional cross-skill link scan
 +-- check-*.sh                  # Additional focused rule modules
 `-- README.md
 ```
 
-The full rule list is the set of `check-*.sh` files in this directory plus `check-canonical-save-helper.cjs` for canonical-save support.
+The full rule list is the set of `check-*.sh` files in this directory plus three Node
+helpers each `.sh` rule shells out to for logic bash cannot express directly:
+`check-canonical-save-helper.cjs`, `check-metadata-disk-consistency-helper.cjs` and
+`check-grep-convention-helper.mjs`.
 
 ---
 

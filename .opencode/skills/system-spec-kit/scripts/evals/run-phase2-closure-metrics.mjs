@@ -3,11 +3,23 @@
 // SCRIPT: Closure Metrics
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 import fs from 'fs';
 import path from 'path';
 
+// ───────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────
+
 const SESSION_COUNT = 50;
 const EVENTS_PER_SESSION = 8;
+
+// ───────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function parseArgs() {
   const [, , specFolderArg] = process.argv;
@@ -233,6 +245,10 @@ function writeMarkdownReports(scratchDir, extraction, manualSave, mrr) {
   };
   fs.writeFileSync(path.join(scratchDir, 'phase2-closure-metrics.json'), `${JSON.stringify(jsonReport, null, 2)}\n`, 'utf8');
 }
+
+// ───────────────────────────────────────────────────────────────
+// 4. MAIN LOGIC
+// ───────────────────────────────────────────────────────────────
 
 function main() {
   const { specFolder } = parseArgs();

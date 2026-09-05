@@ -73,6 +73,17 @@ scripts/
 +-- evals/                 # Evaluation scripts and policy checks
 +-- setup/                 # Environment checks and setup helpers
 +-- ops/                   # Healing and runbook helpers
++-- retrieval/             # Trigger-index generator/lookup, ripgrep lane, parity and grep-convention retrofit
++-- observability/         # Smart-router telemetry recording and measurement
++-- codex/                 # Codex CLI agent/prompt mirror generators and drift checks
++-- pi/                    # Pi CLI agent/prompt mirror generators and drift checks
++-- runtime-mirrors/       # Cross-runtime command/agent/hook mirror policy and synchronizer
++-- kpi/                   # Defect-rate reporting for generated continuity support
++-- metrics/               # Deep-loop behavioral efficiency scoring from opencode event logs
++-- optimizer/             # Offline loop optimizer for deep research/review replay data
++-- resource-map/          # Deep review/research evidence to resource-map.md ledger
++-- sweep/                 # Strict-pass freshness sweep CI gate over every spec folder
++-- references/            # Reference docs (e.g. retrieval conventions, runbooks)
 +-- tests/                 # JS, shell, Python and Vitest coverage
 +-- test-fixtures/         # Validation fixtures
 +-- templates/             # Inline renderer sources
@@ -81,6 +92,7 @@ scripts/
 +-- check-markdown-links.cjs # Markdown-link (](path)) integrity guard over skills/commands/agents
 +-- deploy-mcp.sh          # Rebuild every daemon-backed package dist
 +-- validate-command-tree-parity.sh # Policy-aware runtime mirror gate; explicit arbitrary trees use byte parity
++-- test-council-matrix.sh # AI Council vitest + sk-doc + strict parent-spec validation in one pass
 +-- package.json           # ESM package manifest
 +-- scripts-registry.json  # Script inventory
 `-- README.md
@@ -112,11 +124,16 @@ Disallowed direction:
 | `runtime-mirrors/` | Keeps runtime mirror exclusions and native command exceptions aligned with generated mirror trees. |
 | `validation/` | Contains active validators used by validation flow, pre-commit checks and write-time comment hygiene. |
 | `lib/` | Shares TypeScript helpers and sourced shell utilities. |
+| `retrieval/` | Generates and looks up the committed trigger index, runs the ripgrep recipe lane, checks retrieval parity, retrofits the grep convention and sweeps for retired-memory-MCP residue. See `retrieval/README.md`. |
+| `observability/` | Records and measures smart-router resource-routing telemetry (live wrapper plus static corpus harness). See `observability/README.md`. |
+| `codex/` | Generates `.codex/agents` and `.codex/prompts` from their `.opencode/` canonical sources and checks command-router drift. See `codex/README.md`. |
+| `pi/` | Generates `.pi/agents` and `.pi/prompts` from their `.opencode/` canonical sources. See `pi/README.md`. |
 | `check-markdown-links.cjs` | Repo-wide markdown-link integrity guard over skills/commands/agents; CI-wired via `.github/workflows/markdown-link-integrity.yml`. Strips fenced + inline code before extraction. Complements the wikilink checker. `--self-test` asserts the inline-code handling. |
 | `check-links.sh` | Wikilink (`[[...]]`) validator; delegates to `rules/check-links.sh` (opt-in via `SPECKIT_VALIDATE_LINKS`). |
 | `spec/repair-derived.cjs` | Repairs the packet facts that are recomputable from disk — recorded location, declared level, generated-metadata fingerprint — and refuses everything else, reporting it by rule. Reporting is the default; `--apply` writes. Skips archived, scratch and pre-rename snapshot trees. See `spec/README-repair-derived.md` for the derived-versus-authored boundary. |
 | `deploy-mcp.sh` | Rebuilds every daemon-backed package `dist/` (the spec-kit runtime engine plus `@spec-kit/shared` via TS project references, and the skill advisor daemon) after a source change, then warns about launcher `.cjs` changes that only a fresh session can load. `dist/` is gitignored, so this is the canonical rebuild step after pulling source changes. |
 | `validate-command-tree-parity.sh` | Policy-aware runtime mirror gate wired into `spec/validate.sh` as the `COMMAND_TREE_PARITY` rule. Its default mode delegates to the generated mirror checker so runtime-exclusive commands stay excluded; explicit `--left`/`--right` trees retain byte-parity comparison and `--self-test` coverage. |
+| `test-council-matrix.sh` | Runs the AI Council runtime vitest suite, sk-doc validation for the deep-ai-council skill, and strict spec validation for the parent council skill package in one pass. |
 | `scripts-registry.json` | Lists package scripts and known entrypoints. |
 | `package.json` | Defines ESM runtime settings and build scripts. |
 
@@ -230,3 +247,8 @@ Run targeted shell or Vitest checks when editing one script zone. Use the parent
 - [`evals/README.md`](evals/README.md)
 - [`setup/README.md`](setup/README.md)
 - [`ops/README.md`](ops/README.md)
+- [`retrieval/README.md`](retrieval/README.md)
+- [`observability/README.md`](observability/README.md)
+- [`codex/README.md`](codex/README.md)
+- [`pi/README.md`](pi/README.md)
+- [`runtime-mirrors/README.md`](runtime-mirrors/README.md)

@@ -17,9 +17,17 @@
 
 'use strict';
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const path = require('node:path');
 const { isCanonicalMirrorExcluded, isRuntimeNativeCommand } = require('./command-scope.cjs');
+
+// ───────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────
 
 const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 const EXCLUDED_COMMAND_DIRS = new Set(['assets', 'scripts', 'fixtures']);
@@ -37,6 +45,10 @@ const HOOK_CONFIGS = [
   { runtime: 'cursor', config: '.cursor/hooks.json', mirror: '.cursor/hooks' },
   { runtime: 'devin', config: '.devin/hooks.v1.json', mirror: '.devin/hooks' },
 ];
+
+// ───────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function parseArguments(argv) {
   if (argv.length === 0) {
@@ -211,6 +223,10 @@ function findOrphans(expectedLinks) {
   return orphans.sort();
 }
 
+// ───────────────────────────────────────────────────────────────
+// 4. SYNC EXECUTION
+// ───────────────────────────────────────────────────────────────
+
 function checkMirrors(expectedLinks) {
   const drift = [];
   const claudeCommandsRoot = path.join(REPO_ROOT, CLAUDE_COMMANDS);
@@ -280,6 +296,10 @@ function writeMirrors(expectedLinks) {
 
   console.log(`[runtime-mirror-sync] Linked ${changed}, removed ${removed}, of ${expectedLinks.length} expected mirrors.`);
 }
+
+// ───────────────────────────────────────────────────────────────
+// 5. ENTRY POINT
+// ───────────────────────────────────────────────────────────────
 
 function main() {
   const options = parseArguments(process.argv.slice(2));

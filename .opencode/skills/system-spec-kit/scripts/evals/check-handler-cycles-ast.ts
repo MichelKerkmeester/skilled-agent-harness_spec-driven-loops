@@ -1,11 +1,11 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Check Handler Cycles Ast
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
+// Detects circular import/re-export dependencies in runtime/handlers.
 
 // ───────────────────────────────────────────────────────────────
-// 1. CHECK HANDLER CYCLES AST
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────
-// Detects circular import/re-export dependencies in runtime/handlers.
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -13,6 +13,10 @@ import ts from 'typescript';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
+
+// ───────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function resolveHandlersRoot(): string {
   const candidates = [
@@ -191,6 +195,10 @@ function detectCycles(graph: Map<string, Set<string>>): CycleRecord[] {
 
   return cycles;
 }
+
+// ───────────────────────────────────────────────────────────────
+// 3. MAIN LOGIC
+// ───────────────────────────────────────────────────────────────
 
 function main(): void {
   if (!fs.existsSync(HANDLERS_ROOT)) {

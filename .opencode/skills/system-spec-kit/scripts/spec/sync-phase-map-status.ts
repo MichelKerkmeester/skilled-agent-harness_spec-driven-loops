@@ -12,11 +12,13 @@ const EXCLUDED_DESCENDANT_DIRS = new Set(['.git', 'node_modules', 'research']);
 
 type StatusSource = 'spec' | 'implementation-summary' | 'missing';
 
+/** Resolved options for one {@link runSyncPhaseMapStatus} invocation. */
 export interface SyncOptions {
   readonly phaseParentPath: string;
   readonly dryRun: boolean;
 }
 
+/** One phase-map row status correction, tracing which child folder and source drove it. */
 export interface PhaseMapChange {
   readonly filePath: string;
   readonly childFolder: string;
@@ -25,6 +27,7 @@ export interface PhaseMapChange {
   readonly source: StatusSource;
 }
 
+/** One completion-percentage field correction on a phase-parent document. */
 export interface CompletionPctChange {
   readonly filePath: string;
   readonly from: number;
@@ -32,6 +35,7 @@ export interface CompletionPctChange {
   readonly reason: string;
 }
 
+/** Full result of a sync run: counts, every change made (or that would be made), and warnings. */
 export interface SyncSummary {
   readonly dryRun: boolean;
   readonly phaseParentPath: string;
@@ -44,6 +48,7 @@ export interface SyncSummary {
   readonly warnings: string[];
 }
 
+/** Result of parsing CLI arguments: either resolved {@link SyncOptions} or a usage error. */
 export type SyncPlan =
   | { readonly ok: true; readonly options: SyncOptions }
   | { readonly ok: false; readonly error: string };

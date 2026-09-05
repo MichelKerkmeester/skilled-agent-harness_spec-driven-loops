@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Setup Utilities
+# ───────────────────────────────────────────────────────────────
 # Shared helpers for Spec Kit setup installers.
 
 set -euo pipefail

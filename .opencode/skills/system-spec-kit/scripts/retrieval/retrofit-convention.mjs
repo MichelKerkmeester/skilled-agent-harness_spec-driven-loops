@@ -363,7 +363,7 @@ export function enumerate(options) {
   }
 
   const manifest = {
-    contentHash: sha256(manifestEntries.map((entry) => `${entry.path} ${entry.sha256}`).join('\n')),
+    contentHash: sha256(manifestEntries.map((entry) => `${entry.path}\0${entry.sha256}`).join('\n')),
     count: manifestEntries.length,
     files: manifestEntries,
     schemaVersion: SCHEMA_VERSION,

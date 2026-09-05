@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Test Council Matrix
+# ───────────────────────────────────────────────────────────────
+# Runs the AI Council runtime vitest suite, sk-doc validation for the
+# deep-ai-council skill, and strict spec validation for the parent council
+# skill package in one pass.
+
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

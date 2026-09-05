@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# RULE: CHECK-AC-COVERAGE
+# ───────────────────────────────────────────────────────────────
 
+# Sourced by validate.sh and compatible with strict mode.
 set -euo pipefail
 
 _ac_lower() {

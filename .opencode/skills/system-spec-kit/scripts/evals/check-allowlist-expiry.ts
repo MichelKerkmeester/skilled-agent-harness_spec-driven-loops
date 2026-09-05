@@ -2,17 +2,22 @@
 // MODULE: Check Allowlist Expiry
 // ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
-// 1. CHECK ALLOWLIST EXPIRY
-// ───────────────────────────────────────────────────────────────
 // Warns when allowlist exceptions are within 30 days of expiry.
 // Fails when allowlist exceptions are already expired.
+
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
 
 import * as fs from 'fs';
 import * as path from 'path';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
+
+// ───────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────
 
 interface AllowlistException {
   file: string;
@@ -42,6 +47,10 @@ interface InvalidExpiry {
   importPath: string;
   expiresAt: string;
 }
+
+// ───────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function resolveAllowlistPath(): string | null {
   const candidates = [
@@ -126,6 +135,10 @@ function calculateDaysUntil(expiryDate: Date, now: Date): number {
   const expiryDay = toUtcStartOfDay(expiryDate);
   return Math.floor((expiryDay - nowDay) / MS_PER_DAY);
 }
+
+// ───────────────────────────────────────────────────────────────
+// 4. MAIN LOGIC
+// ───────────────────────────────────────────────────────────────
 
 function main(): void {
   const allowlist = loadAllowlist();

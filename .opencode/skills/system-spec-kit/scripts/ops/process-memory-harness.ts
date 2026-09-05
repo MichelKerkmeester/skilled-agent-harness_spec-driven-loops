@@ -1,12 +1,14 @@
 #!/usr/bin/env node
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Process Memory Harness
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 import { execFileSync } from 'node:child_process';
 import { isMainModule } from '../lib/esm-entry.js';
 
+/** Coarse ownership bucket a process falls into before fine-grained classification. */
 export type ProcessRole = 'current-session' | 'project-daemon' | 'expected-daemon' | 'external-tool' | 'zombie' | 'unknown';
 
+/** Fine-grained classification driving a process row's termination eligibility. */
 export type ProcessClassification =
   | 'current-session'
   | 'project-daemon'
@@ -19,6 +21,7 @@ export type ProcessClassification =
   | 'eperm-alive-unowned'
   | 'unknown-owner';
 
+/** One row parsed from `ps` output, before classification. */
 export interface ProcessRow {
   pid: number;
   ppid: number;
@@ -28,6 +31,7 @@ export interface ProcessRow {
   eperm?: boolean;
 }
 
+/** A registered pattern that maps a matching command line to a role and reason. */
 export interface ProcessRule {
   id: string;
   pattern: RegExp;
@@ -36,6 +40,7 @@ export interface ProcessRule {
   reason: string;
 }
 
+/** A {@link ProcessRow} enriched with its classification and ancestry relative to the caller. */
 export interface ClassifiedProcess extends ProcessRow {
   role: ProcessRole;
   classification: ProcessClassification;
@@ -48,6 +53,7 @@ export interface ClassifiedProcess extends ProcessRow {
   reason: string;
 }
 
+/** The parsed state of one on-disk PID lock file. */
 export interface PidLockState {
   path: string;
   raw: string;
@@ -56,6 +62,7 @@ export interface PidLockState {
   reason: string;
 }
 
+/** Host-level memory evidence parsed from `vm_stat` and `sysctl`. */
 export interface HostMemorySnapshot {
   pageSizeBytes: number | null;
   totalMemoryBytes: number | null;
@@ -64,8 +71,10 @@ export interface HostMemorySnapshot {
   warnings: string[];
 }
 
+/** Whether process inventory collection succeeded, failed, or returned no rows. */
 export type ProcessInventoryStatus = 'ok' | 'ps-error' | 'empty';
 
+/** A full point-in-time snapshot of process inventory and host memory evidence. */
 export interface HarnessSnapshot {
   status: ProcessInventoryStatus;
   error?: string;
@@ -83,6 +92,7 @@ export interface HarnessSnapshot {
   pidLocks: PidLockState[];
 }
 
+/** Alias kept for {@link process-sweep.ts} consumers that read a snapshot as inventory. */
 export type Inventory = HarnessSnapshot;
 
 // No project daemon is registered here. A rule earns a row only once a daemon
@@ -108,10 +118,7 @@ const KNOWN_PROJECT_OWNER_MARKERS = [
   'ownerToken=',
 ];
 
-function hasOwnerToken(command: string): boolean {
-  return /(?:^|\s)(?:--owner-token|--ownerToken|owner_token=|ownerToken=|SPECKIT_OWNER_TOKEN=)/.test(command);
-}
-
+/** Mask API keys, tokens, secrets, and owner-token values in a command line before logging it. */
 export function redactSensitiveCommand(command: string): string {
   return command
     .replace(
@@ -122,6 +129,7 @@ export function redactSensitiveCommand(command: string): string {
     .replace(/(^|\s)(--owner-token|--ownerToken)\s+([^\s]+)/g, '$1$2 <redacted>');
 }
 
+/** True when a command line carries one of the markers that prove this repository owns the process. */
 export function hasKnownProjectOwnerMarker(command: string): boolean {
   return KNOWN_PROJECT_OWNER_MARKERS.some((marker) => command.includes(marker));
 }
@@ -146,6 +154,7 @@ function bytesForPages(pageCount: number, pageSizeBytes: number | null): number 
   return pageCount * pageSizeBytes;
 }
 
+/** Parse `ps -axo pid,ppid,stat,rss,command` output into process rows, redacting secrets. */
 export function parsePsOutput(output: string): ProcessRow[] {
   const rows: ProcessRow[] = [];
   for (const line of output.split(/\r?\n/)) {
@@ -188,6 +197,7 @@ function resolveInventoryStatus(input: {
   return { status: 'ok' };
 }
 
+/** Parse `vm_stat` (and optional `sysctl hw.memsize`) output into a host memory snapshot. */
 export function parseVmStat(output: string, sysctlOutput = ''): HostMemorySnapshot {
   const warnings: string[] = [];
   const pageSizeMatch = /page size of\s+(\d+)\s+bytes/.exec(output);
@@ -229,6 +239,7 @@ function processMap(rows: ProcessRow[]): Map<number, ProcessRow> {
   return new Map(rows.map((row) => [row.pid, row]));
 }
 
+/** Walk `ppid` links from `pid` up to the root, returning ancestor PIDs nearest-first. */
 export function getAncestorPids(pid: number, rows: ProcessRow[]): number[] {
   const byPid = processMap(rows);
   const ancestors: number[] = [];
@@ -244,10 +255,12 @@ export function getAncestorPids(pid: number, rows: ProcessRow[]): number[] {
   return ancestors;
 }
 
+/** Alias for {@link getAncestorPids}, named for callers reasoning about ancestry rather than PIDs. */
 export function getProcessAncestry(pid: number, rows: ProcessRow[]): number[] {
   return getAncestorPids(pid, rows);
 }
 
+/** Breadth-first collect every descendant PID of `pid` from the parent/child graph in `rows`. */
 export function getDescendantPids(pid: number, rows: ProcessRow[]): number[] {
   const children = new Map<number, number[]>();
   for (const row of rows) {
@@ -269,6 +282,7 @@ export function getDescendantPids(pid: number, rows: ProcessRow[]): number[] {
   return descendants;
 }
 
+/** Classify one PID lock file's contents against the live process rows: empty, invalid, live, stale, or zombie. */
 export function classifyPidLock(path: string, raw: string, rows: ProcessRow[]): PidLockState {
   const trimmed = raw.trim();
   if (!trimmed) {
@@ -289,6 +303,14 @@ export function classifyPidLock(path: string, raw: string, rows: ProcessRow[]): 
   return { path, raw, pid, state: 'live', reason: 'PID lock points to a live process' };
 }
 
+/**
+ * Classify every process row against the current session, registered rules, and known
+ * external-process heuristics (MCP stdio, browser sessions, zombies).
+ *
+ * @param rows - Process rows to classify
+ * @param options - Optional caller PID override and rule set
+ * @returns Every row enriched with role, classification, and termination eligibility signals
+ */
 export function classifyProcesses(
   rows: ProcessRow[],
   options: {
@@ -411,6 +433,7 @@ export function classifyProcesses(
   });
 }
 
+/** Classify a single row by delegating to {@link classifyProcesses} over the full row set. */
 export function classifyProcess(
   row: ProcessRow,
   rows: ProcessRow[],
@@ -422,6 +445,7 @@ export function classifyProcess(
   return classifyProcesses(rows, options).find((candidate) => candidate.pid === row.pid) ?? classifyProcesses([row], options)[0];
 }
 
+/** Assemble a full {@link HarnessSnapshot} from raw `ps`/`vm_stat`/`sysctl` output and PID lock contents. */
 export function buildHarnessSnapshot(input: {
   psOutput: string;
   psError?: string;
@@ -460,6 +484,7 @@ export function buildHarnessSnapshot(input: {
   };
 }
 
+/** Deterministic synthetic snapshot (current/child/grandchild, a warm daemon, a stale lock, a zombie) for tests and dry runs. */
 export function syntheticFixtureSnapshot(): HarnessSnapshot {
   const psOutput = `  PID  PPID STAT    RSS COMMAND
  1000     1 S     5000 opencode
@@ -519,6 +544,7 @@ function runSnapshot(): HarnessSnapshot {
   });
 }
 
+/** Collect a live {@link HarnessSnapshot} from the current host's `ps`/`vm_stat`/`sysctl` output. */
 export function collectInventory(): Inventory {
   return runSnapshot();
 }

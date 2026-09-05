@@ -1,13 +1,17 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Import Policy Rules
-// ---------------------------------------------------------------
-
-// ───────────────────────────────────────────────────────────────
-// 1. IMPORT POLICY RULES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Shared detection rules for prohibited scripts -> internal runtime imports.
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 import * as path from 'path';
+
+// ───────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────
 
 const PROHIBITED_PACKAGE_IMPORTS = [
   '@spec-kit/runtime/lib',
@@ -17,6 +21,10 @@ const PROHIBITED_PACKAGE_IMPORTS = [
 
 const RELATIVE_INTERNAL_RUNTIME_IMPORT_RE =
   /^\.\.(?:\/\.\.)*\/(?:runtime\/(?:lib|core|handlers)|shared)(?:$|\/)/;
+
+// ───────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function normalizeRelativeImportPath(importPath: string): string {
   if (!importPath.startsWith('.')) {
@@ -57,6 +65,10 @@ function normalizePackageImportPath(importPath: string): string {
   }
   return resolved.join('/');
 }
+
+// ───────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────
 
 /** Returns whether the import path violates the evaluation policy rules. */
 export function isProhibitedImportPath(importPath: string): boolean {

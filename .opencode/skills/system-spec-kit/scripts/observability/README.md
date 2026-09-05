@@ -28,6 +28,7 @@ observability/
 +-- live-session-wrapper.ts              # Read-tool observation wrapper
 +-- smart-router-analyze.ts              # JSONL analyzer and report writer
 +-- smart-router-measurement.ts          # Static corpus measurement harness
++-- smart-router-measurement-report.md   # Generated: latest markdown summary from smart-router-measurement.ts
 +-- smart-router-measurement-results.jsonl
 `-- smart-router-telemetry.ts            # Compliance record types and JSONL writer
 ```
@@ -53,13 +54,16 @@ These helpers are observe-only. Runtime wrappers and measurement scripts may cal
 
 ## 5. VALIDATION
 
-Run targeted checks from the repository root:
+Run the smart-router vitest suites from `scripts/`'s skill root (`.opencode/skills/system-spec-kit`):
 
 ```bash
-npm test -- --run smart-router
+npx --prefix scripts vitest run --config runtime/vitest.config.ts \
+  runtime/tests/smart-router-analyze.vitest.ts \
+  runtime/tests/smart-router-telemetry.vitest.ts \
+  runtime/tests/smart-router-measurement.vitest.ts
 ```
 
-For syntax coverage after edits, run the package TypeScript or test command used by the active system-spec-kit workflow.
+For type coverage after edits, run `npx tsc --noEmit -p tsconfig.json` from `scripts/`.
 
 ---
 

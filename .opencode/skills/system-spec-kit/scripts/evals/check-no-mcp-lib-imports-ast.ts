@@ -1,12 +1,12 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Check No Mcp Lib Imports Ast
-// ---------------------------------------------------------------
-
-// ───────────────────────────────────────────────────────────────
-// 1. CHECK NO MCP LIB IMPORTS AST
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // AST-based enforcement for prohibited internal runtime imports.
 // Includes deep transitive re-export traversal for local barrel files.
+
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -16,6 +16,10 @@ import { isProhibitedImportPath } from './import-policy-rules.js';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
+
+// ───────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────
 
 interface AllowlistException {
   file: string;
@@ -63,6 +67,10 @@ interface ReExportTrace {
   viaFile: string;
   importPath: string;
 }
+
+// ───────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 const SCRIPTS_ROOT = path.resolve(moduleDir, '..');
 
@@ -356,6 +364,10 @@ function dedupeViolations(violations: Violation[]): Violation[] {
   }
   return [...deduped.values()];
 }
+
+// ───────────────────────────────────────────────────────────────
+// 4. MAIN LOGIC
+// ───────────────────────────────────────────────────────────────
 
 function main(): void {
   const allowlist = loadAllowlist();

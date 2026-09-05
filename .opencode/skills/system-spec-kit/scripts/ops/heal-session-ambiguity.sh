@@ -114,5 +114,5 @@ main() {
 main "$@"
 
 # Exit codes:
-#   0 - Success
-#   2 - ERROR: Unknown option: $1
+#   0 - Always: the deprecation notice above runs unconditionally, before the
+#       retained implementation below it is ever reached.

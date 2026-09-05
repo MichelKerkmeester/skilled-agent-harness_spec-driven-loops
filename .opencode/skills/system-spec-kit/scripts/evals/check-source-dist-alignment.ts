@@ -1,10 +1,8 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Check Source / Dist Alignment
-// ---------------------------------------------------------------
-
-// ───────────────────────────────────────────────────────────────
-// 1. INVESTIGATION NOTE
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+//
+// Investigation history:
 // Investigated on 2026-03-19:
 // - runtime/dist/lib/utils/retry.js traced to deleted source
 //   runtime/lib/utils/retry.ts, removed in commit 5e49e272 on
@@ -28,11 +26,19 @@
 //   packet; the broadened scan ensures the same drift surfaces a
 //   violation rather than going silent.
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 import * as fs from 'fs';
 import * as path from 'path';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
+
+// ───────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────
 
 interface AllowlistException {
   file: string;
@@ -52,6 +58,10 @@ interface DistTarget {
   distRoot: string;
   sourceRoot: string;
 }
+
+// ───────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────
 
 const REQUIRED_ROOT_DIRS = ['runtime', 'scripts'] as const;
 // Time-bounded allowlist for known stragglers surfaced by the
@@ -80,6 +90,10 @@ const ALLOWLIST_EXCEPTIONS: AllowlistException[] = [
     date: '2026-04-30',
   },
 ];
+
+// ───────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function resolvePackageRoot(startDir: string): string {
   let cursor = path.resolve(startDir);
@@ -242,6 +256,10 @@ function mapDistFileToSource(packageRoot: string, target: DistTarget, distFile: 
 function findAllowlistEntry(distFile: string): AllowlistException | undefined {
   return ALLOWLIST_EXCEPTIONS.find((entry) => entry.file === distFile);
 }
+
+// ───────────────────────────────────────────────────────────────
+// 5. MAIN LOGIC
+// ───────────────────────────────────────────────────────────────
 
 function main(): void {
   const packageRoot = resolvePackageRoot(moduleDir);

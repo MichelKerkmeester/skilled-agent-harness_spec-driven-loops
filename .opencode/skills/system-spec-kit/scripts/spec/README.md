@@ -70,6 +70,10 @@ scripts/spec/
 +-- check-smart-router.sh        # Validate SKILL.md smart-router references
 +-- quality-audit.sh             # Batch quality audit helper
 +-- test-validation.sh           # Legacy wrapper for scripts/tests/test-validation.sh
++-- is-phase-parent.ts           # Phase-parent detection and manifest health check
++-- sync-phase-map-status.ts     # Sync a phase parent's map table and completion percentages
++-- repair-derived.cjs           # Repair packet facts derivable from disk; refuses authored facts
++-- README-repair-derived.md     # Derived-vs-authored repair boundary reference
 `-- README.md
 ```
 
@@ -100,6 +104,9 @@ Disallowed direction:
 | `check-smart-router.sh` | Validates `SKILL.md` smart-router resource paths and reports load bloat warnings. |
 | `test-validation.sh` | Legacy wrapper forwarding to `scripts/tests/test-validation.sh`. |
 | `archive.sh` | Moves completed or stale spec folders into the archive area. |
+| `is-phase-parent.ts` | Detects whether a folder is a phase parent and reports child-count manifest health. |
+| `sync-phase-map-status.ts` | Corrects a phase parent's map table rows and descendant completion percentages. |
+| `repair-derived.cjs` | Repairs derivable packet facts (folder name, packet pointer, level, metadata fingerprint) and refuses authored ones; see `README-repair-derived.md`. |
 
 ---
 
@@ -161,6 +168,7 @@ Use `--recursive` with `validate.sh` when the target is a phase parent with chil
 
 ## 8. RELATED
 
+- [`README-repair-derived.md`](./README-repair-derived.md)
 - [`../README.md`](../README.md)
 - [`../lib/README.md`](../lib/README.md)
 - [`../rules/README.md`](../rules/README.md)

@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# RULE: CHECK-NORMALIZER-LINT
+# ───────────────────────────────────────────────────────────────
+
+# Sourced by validate.sh and compatible with strict mode.
 set -euo pipefail
 
 run_check() {

@@ -35,7 +35,7 @@ VERSION="1.0.0"
 source "${SCRIPT_DIR}/../lib/shell-common.sh"
 
 # ───────────────────────────────────────────────────────────────
-# STATE
+# 1. STATE
 # Boolean flags are stored as "true"/"false" strings.
 # Use [[ "$FLAG" == "true" ]] for comparisons — NEVER use $FLAG
 # Directly in boolean context with set -e (runs false command).
@@ -58,7 +58,7 @@ SUGGESTION_LOG=""     # newline-separated suggestion entries
 VALIDATE_EXIT=0
 
 # ───────────────────────────────────────────────────────────────
-# COLORS (disabled for non-TTY)
+# 2. COLORS (disabled for non-TTY)
 # ───────────────────────────────────────────────────────────────
 if [[ -t 1 ]]; then
     RED='\033[0;31m'
@@ -74,7 +74,7 @@ else
 fi
 
 # ───────────────────────────────────────────────────────────────
-# HELP
+# 3. HELP
 # ───────────────────────────────────────────────────────────────
 show_help() {
     cat << 'EOF'
@@ -111,7 +111,7 @@ EOF
 }
 
 # ───────────────────────────────────────────────────────────────
-# ARGUMENT PARSING
+# 4. ARGUMENT PARSING
 # ───────────────────────────────────────────────────────────────
 parse_args() {
     while [[ $# -gt 0 ]]; do
@@ -146,7 +146,7 @@ parse_args() {
 }
 
 # ───────────────────────────────────────────────────────────────
-# OUTPUT HELPERS
+# 5. OUTPUT HELPERS
 # ───────────────────────────────────────────────────────────────
 log_section() {
     [[ "$JSON_MODE" == "true" ]] && return 0
@@ -184,7 +184,7 @@ log_verbose() {
 }
 
 # ───────────────────────────────────────────────────────────────
-# DIFF HELPER
+# 6. DIFF HELPER
 # Produces a unified diff between old_content and new_content.
 # ───────────────────────────────────────────────────────────────
 compute_diff() {
@@ -247,7 +247,7 @@ ${entry}"
 }
 
 # ───────────────────────────────────────────────────────────────
-# LEVEL 1: DETECT
+# 7. LEVEL 1: DETECT
 # Delegates entirely to validate.sh, capturing its exit code.
 # ───────────────────────────────────────────────────────────────
 run_level1_detect() {
@@ -290,7 +290,7 @@ run_level1_detect() {
 }
 
 # ───────────────────────────────────────────────────────────────
-# LEVEL 2: AUTO-FIX HELPERS
+# 8. LEVEL 2: AUTO-FIX HELPERS
 # ───────────────────────────────────────────────────────────────
 
 # AUTO-FIX 2a: Insert missing dates into spec documents.
@@ -444,7 +444,7 @@ sys.stdout.write(result)
 }
 
 # ───────────────────────────────────────────────────────────────
-# LEVEL 2: AUTO-FIX ORCHESTRATOR
+# 9. LEVEL 2: AUTO-FIX ORCHESTRATOR
 # ───────────────────────────────────────────────────────────────
 run_level2_autofix() {
     if [[ "$DRY_RUN" == "true" ]]; then
@@ -471,7 +471,7 @@ run_level2_autofix() {
 }
 
 # ───────────────────────────────────────────────────────────────
-# LEVEL 3: SUGGEST
+# 10. LEVEL 3: SUGGEST
 # Analyzes issues that cannot be auto-fixed and presents guided options.
 # ───────────────────────────────────────────────────────────────
 run_level3_suggest() {
@@ -570,7 +570,7 @@ get_suggestion_for_rule() {
 }
 
 # ───────────────────────────────────────────────────────────────
-# LEVEL 4: REPORT
+# 11. LEVEL 4: REPORT
 # Produces structured output combining all pipeline results.
 # ───────────────────────────────────────────────────────────────
 run_level4_report() {
@@ -680,7 +680,7 @@ EOF
 }
 
 # ───────────────────────────────────────────────────────────────
-# MAIN
+# 12. MAIN
 # ───────────────────────────────────────────────────────────────
 main() {
     parse_args "$@"

@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Validate Command Tree Parity
+# ───────────────────────────────────────────────────────────────
+# Checks generated runtime command/agent mirrors against their authored
+# command-scope policy, or compares two arbitrary command trees byte-for-byte.
+
 set -euo pipefail
 
 QUIET=false

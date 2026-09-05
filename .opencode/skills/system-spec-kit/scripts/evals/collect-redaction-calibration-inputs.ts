@@ -1,19 +1,28 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Collect Redaction Calibration Inputs
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
-// 1. COLLECT REDACTION CALIBRATION INPUTS
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────
+
 import fs from 'fs';
 import path from 'path';
 import { spawnSync } from 'child_process';
+
+// ───────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────
 
 interface CommandSpec {
   command: string;
   args: string[];
   cwd?: string;
 }
+
+// ───────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function parseArgs(): { specFolder: string } {
   const [, , specFolder] = process.argv;
@@ -62,6 +71,10 @@ function buildCommandMatrix(workspaceRoot: string, specFolder: string): CommandS
   }
   return outputs.slice(0, 50);
 }
+
+// ───────────────────────────────────────────────────────────────
+// 4. MAIN LOGIC
+// ───────────────────────────────────────────────────────────────
 
 function main(): void {
   const { specFolder } = parseArgs();
