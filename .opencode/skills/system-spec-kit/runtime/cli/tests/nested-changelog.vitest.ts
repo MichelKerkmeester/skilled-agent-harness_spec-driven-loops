@@ -137,6 +137,12 @@ The generator can now resolve phase folders and derive packet-local changelog pa
     expect(() => buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: '../escape.md' }))
       .toThrow(/inside the project root/);
 
+    const escapeTarget = fs.mkdtempSync(path.join(os.tmpdir(), 'nested-changelog-link-target-'));
+    fs.symlinkSync(escapeTarget, path.join(rootSpec, 'linked'));
+    expect(() => buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: 'linked/changelog.md' }))
+      .toThrow(/inside the project root/);
+    fs.rmSync(escapeTarget, { recursive: true, force: true });
+
     const inside = buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: 'notes/changelog.md' });
     expect(inside.outputPath).toBe('notes/changelog.md');
     expect(writeNestedChangelog(inside)).toBe(path.join(CONFIG.PROJECT_ROOT, 'notes', 'changelog.md'));

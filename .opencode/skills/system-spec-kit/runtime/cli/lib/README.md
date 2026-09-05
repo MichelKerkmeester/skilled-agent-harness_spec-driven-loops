@@ -85,7 +85,6 @@ scripts/lib/
 +-- frontmatter-grandfather-allowlist.json # Cutoff date and path allowlist for legacy frontmatter
 +-- dist-freshness.cjs                     # Standalone (not compiled) source-vs-dist staleness checker, 7 watched packages
 +-- completion-state.cjs                   # Standalone merge of level, checklist and placeholder completion state
-+-- completion-state.test.mjs              # Vitest coverage for completion-state.cjs, currently outside the project's vitest include globs
 +-- coverage-graph-core.cjs                # Coverage-graph node/edge model, adapted from the deep-loop runtime
 +-- coverage-graph-signals.cjs             # Degree, depth and cluster-metric signals over a coverage graph
 +-- coverage-graph-contradictions.cjs      # Same-session contradiction detection over a coverage graph

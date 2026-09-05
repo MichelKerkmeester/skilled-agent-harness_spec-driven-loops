@@ -100,6 +100,7 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
   it('expands DIST_TARGETS beyond the original two roots (lib + scripts)', () => {
     const checkerSource = fs.readFileSync(CHECKER_PATH, 'utf8');
     const expectedSubtrees = [
+      'runtime/cli',
       'runtime/lib',
       'system-skill-advisor/mcp-server',
       'runtime/handlers',

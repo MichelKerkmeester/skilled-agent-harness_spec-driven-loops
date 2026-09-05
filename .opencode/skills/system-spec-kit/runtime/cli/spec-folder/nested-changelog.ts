@@ -621,13 +621,30 @@ function detectMode(specFolder: string, explicitMode: CliOptions['mode']): Neste
   return 'root';
 }
 
+/**
+ * Resolve the longest existing prefix of a path through the filesystem so a
+ * symlinked parent inside the root cannot point a write outside it; segments
+ * that do not exist yet are appended lexically since they cannot be links.
+ */
+function canonicalizeExistingPrefix(inputPath: string): string {
+  const missing: string[] = [];
+  let current = path.resolve(inputPath);
+  while (!fs.existsSync(current)) {
+    const parent = path.dirname(current);
+    if (parent === current) break;
+    missing.unshift(path.basename(current));
+    current = parent;
+  }
+  return path.resolve(fs.realpathSync(current), ...missing);
+}
+
 function buildOutputPath(rootSpecFolder: string, specFolder: string, mode: NestedChangelogMode, overridePath: string | null): string {
   if (overridePath) {
     // An explicit output path is still a write on the caller's behalf, so it is
     // held to the same boundary as the default path: nothing leaves the project
     // root, whether the override is given relative or absolute.
     const resolved = path.resolve(CONFIG.PROJECT_ROOT, overridePath);
-    const relative = path.relative(CONFIG.PROJECT_ROOT, resolved);
+    const relative = path.relative(canonicalizeExistingPrefix(CONFIG.PROJECT_ROOT), canonicalizeExistingPrefix(resolved));
     if (relative === '' || relative.startsWith('..') || path.isAbsolute(relative)) {
       throw new Error(`--output must resolve inside the project root: ${overridePath}`);
     }

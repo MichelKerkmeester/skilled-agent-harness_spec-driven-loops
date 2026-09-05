@@ -17,6 +17,7 @@
     "typecheck:root": "tsc -p shared/tsconfig.json && tsc --noEmit --composite false -p runtime/tsconfig.json && tsc --noEmit --composite false -p runtime/cli/tsconfig.json",
     "build:watch": "tsc --build --watch",
     "test": "npm run --workspaces=false test:root",
+    "pretest:root": "npm run build --workspace=@spec-kit/shared --workspace=@spec-kit/runtime --workspace=@spec-kit/cli",
     "test:root": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed' && node runtime/cli/tests/test-embeddings-factory.cjs && npm run test --workspace=@spec-kit/runtime && npm run test --workspace=@spec-kit/cli",
     "test:runtime": "npm run test --workspace=@spec-kit/runtime",
     "test:cli": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed'",

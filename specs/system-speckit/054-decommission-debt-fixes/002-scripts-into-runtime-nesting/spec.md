@@ -107,7 +107,7 @@ node .opencode/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue
 NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-decommission-debt-fixes --strict --recursive
 ```
 
-Out of the review's write scope: everything outside this phase's `review/` directory.
+Out of the review's write scope: everything outside this phase's `review/` directory. This packet lives under `specs/system-speckit/` (no hyphen inside `speckit`); a path under `specs/system-spec-kit/`, or one beginning with a space, is outside the repository's tracked tree and is reverted by the runner's containment check.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -150,7 +150,7 @@ Out of the review's write scope: everything outside this phase's `review/` direc
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | This phase is scoped and documented as Level 2 by the parent's scaffold, but the move itself is Level-3-scale work (708-file precedent at packet 053) | High if execution starts without re-leveling | This spec explicitly states: `recommend-level.sh` MUST be run and the execution packet MUST be created at Level 3 before any `git mv`; this folder does not execute the move |
+| Risk | This phase is scoped and documented as Level 2 by the parent's scaffold, but the move itself is Level-3-scale work (708-file precedent at packet 053) | High if execution starts without re-leveling | This spec explicitly states: `recommend-level.sh` MUST be run and the execution packet MUST be created at Level 3 before any `git mv`; this was the plan; the operator then directed execution in this folder after the score was recorded, and the review passes stood in for the separate packet |
 | Risk | A grep-only inventory misses a reference resolved only at runtime (e.g., a path built from a template string, or a symlink target) | High - a missed reference silently breaks a hook or CI job | Resolution-based inventory (import graphs, `spawnSync` targets, YAML `command:` fields) per REQ-001, not grep alone |
 | Dependency | Packet 053's own review-loop precedent and its lineage artifacts, for the review-pass shape this phase's plan reuses | Low - precedent already exists and is readable | Cite `specs/system-speckit/053-spec-kit-runtime-rename/` directly in the execution plan |
 <!-- /ANCHOR:risks -->
@@ -214,7 +214,7 @@ Out of the review's write scope: everything outside this phase's `review/` direc
 
 ## 10. OPEN QUESTIONS
 
-- None open for this planning phase. The execution phase's own `recommend-level.sh` run is not a question - it is REQ-003, a required action before that phase starts.
+- None open. The `recommend-level.sh` run REQ-003 required was made and recorded before execution started in this folder.
 <!-- /ANCHOR:questions -->
 
 ---
