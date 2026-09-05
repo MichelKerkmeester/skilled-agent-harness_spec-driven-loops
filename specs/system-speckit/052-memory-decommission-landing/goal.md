@@ -196,6 +196,7 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
+| Executor deviation, forced: the nesting re-review runs GPT-5.6 LUNA at max reasoning through DevPass (`llmgateway/gpt-5.6-luna`, cli-opencode) | The plan names LUNA max fast via cli-codex. Codex reported its usage limit exhausted until 2026-09-07 05:47, and the openai OAuth provider on OpenCode shares that account and hung with no output; the opencode-go LUNA route also hung. DevPass answered a probe at max reasoning, so the pass keeps the model and effort and gives up the fast tier and the plan-named transport. Recorded 2026-09-05 |
 | D5 deviation, deliberate: the model server was edited | The review found a real security defect in the preserved set (F003). Leaving it would keep a P1 open against the goal's own criterion, so the smallest fail-closed fix was made with tests and a live probe, and the change is confined to the request boundary and the client header. The operator can revert `63d0fd99d0` alone if D5 is meant literally |
 | D2 stash not exercised | The operator committed the main checkout's edits on v4 (`625c021c6c`..`5d222c0032`) before the landing, so nothing was stashed; those commits were merged instead |
 | Validator class defect: playbook folder index READMEs | `validate_document.py` classifies every `manual-testing-playbook/<folder>/README.md` as a scenario (`playbook_feature`) and demands scenario sections a folder index cannot have. Four of four such READMEs fail, three of them untouched by this work. Owner: sk-doc. Not fixed here |

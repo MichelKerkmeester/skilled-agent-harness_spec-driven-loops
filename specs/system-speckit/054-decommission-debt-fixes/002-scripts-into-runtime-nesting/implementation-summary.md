@@ -228,7 +228,7 @@ staleness.
 | `route-validate.sh` (doctor) | PASS — 9 routes validated, 2 pre-existing informational warnings unrelated to this move |
 | `install-codex-hooks.mjs` then `--check` | PASS — exit 0 both |
 | `rg`/`git grep` for `system-spec-kit/scripts/`, `scripts/dist/`, `scripts/memory`, `dist/memory` | PASS — 0 hits outside the historical corpus (`specs/**`, skill-level `changelog/`, `benchmark/`) |
-| `npx vitest run` (cli package, full suite) | PARTIAL — 118/146 files and 1497/1580 tests pass; 63 failures remain, see Known Limitations |
+| `npx vitest run --project cli` (skill-root projects config, full CLI suite) | 1568 of 1589 tests pass, 142 of 146 files; one red file remains, `recursive-child-manifest.vitest.ts`, which asserts a goal-file manifest inside the operator's in-flight 036 packet and is left to that packet |
 
 ### Debt-fix follow-up pass
 
@@ -268,7 +268,7 @@ The install strategy that made the nested workspace uninstallable was switched t
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **63 of 1580 CLI test assertions still fail** after extensive investigation
+1. **Historical note: 63 of 1580 CLI test assertions failed at the end of the move.** The follow-up passes recorded above brought the suite to one red file. The original triage, kept for the record, ran after extensive investigation
    and fixing (the suite started this phase's execution at ~128 failures out
    of a much smaller passing baseline; every fix above was driven by an
    actual failing assertion, not by inspection alone). Of the failures traced

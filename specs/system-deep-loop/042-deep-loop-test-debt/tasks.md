@@ -34,7 +34,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [ ] T001 Baseline: run the deep-loop runtime vitest suite and `tsc --noEmit`; record every failing file and error count (`.opencode/skills/system-deep-loop/runtime`)
-- [ ] T002 Baseline: run the four named spec-kit CLI tests under the projects config and capture the failure text (`.opencode/skills/system-spec-kit/runtime/cli/tests`)
+- [x] T002 Baseline: run the four named spec-kit CLI tests under the projects config and capture the failure text (`.opencode/skills/system-spec-kit/runtime/cli/tests`) — council: `seat-003-native.md` expected while the fixture's seat 003 is `cli-opencode`, and `OUT_OF_SCOPE_WRITE` for a payload inside a not-yet-created council root; reducer: expected a throw the 016 audit had deliberately replaced with a warning; restart contract: missing invocation literals in the command doc plus assertions on runner identifiers a committed refactor removed
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,9 +42,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Fix the council persist-artifacts containment check and fixture vantage at the producer (`.opencode/skills/system-deep-loop/runtime/lib/ai-council/`)
-- [ ] T004 [P] Make the review reducer throw a descriptive error when a machine-owned strategy anchor is missing (`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/`)
-- [ ] T005 [P] Expose restart as a first-class auto setup input in the deep-review command contract, or report the contract conflict (`.opencode/commands/deep/review.md`)
+- [x] T003 Fix the council persist-artifacts containment check and fixture vantage at the producer (`.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`) — the guard now accepts a nearest existing parent that is an ancestor of a not-yet-created council root, symlink safety unchanged; the test's seat filename follows the fixture's real executor and its payload path sits inside the council root. Council's own suite 28 of 28
+- [x] T004 [P] Review reducer on a missing machine-owned strategy anchor — the committed contract (016 audit remediation, `ce22b194c8`) is warn-and-keep-output, not throw; the CLI-tree test encoded the superseded contract and now asserts the warning plus the computed registry. Producer unchanged
+- [x] T005 [P] Expose restart as a first-class auto setup input in the deep-review command contract (`.opencode/commands/deep/review.md`) — the invocation literals `--restart|--lineage-mode=restart` and `--stop-policy=convergence|max-iterations` are named in prose, the compiled contract regenerated with `compile-command-contracts.cjs --write`, and the test's runner assertions follow the committed identifiers; mirrors in sync (169 of 169, agents 12 of 12)
 - [ ] T006 Clear the runtime typecheck errors without changing runtime behavior (`.opencode/skills/system-deep-loop/runtime`)
 - [ ] T007 Fix the remaining red files from the T001 baseline at their producers
 <!-- /ANCHOR:phase-2 -->
