@@ -299,6 +299,24 @@ Ten iterations of GPT-5.6 LUNA Max Fast (cli-cursor) over the widened scope at `
 | F015 | P1 | Yes: four workflow assets instructed `scripts/spec/create.sh` | Repointed to `runtime/cli/spec/create.sh`; mirrors in sync | `3a7e457c02` |
 
 The runner marked this lineage fatal because the leaf recorded no stop reason, although all ten iterations, state records and the report landed. That is deep-loop leaf-protocol debt and is recorded in packet 042.
+
+### Fourth review pass
+
+Ten iterations were requested at `8b5b9dcfc9` on cursor's GPT-5.6 LUNA Max Fast; the cursor account ran out of usage after seven state records and the leaf then wrote to a mistyped track path, so the runner rejected the lineage with six iterations on disk and eleven open findings. Each was verified against the fixed tree.
+
+| Finding | Severity | Verified | Fix | Commit |
+|---------|----------|----------|-----|--------|
+| Packet scope and completion evidence disagree | P1 | Yes: a risk row and the open-questions note still said this folder would not execute the move | Both reconciled to the execution that ran here | `09aaac49e1` |
+| Moved CLI READMEs still name `scripts/*` roots | P1 | No: no README under `runtime/cli` names a `scripts/` source root after the third-pass fixes | None | — |
+| Verification instructions invoke the pre-move level script | P1 | No: the plan cites the current path; the task line records the historical path as history | None | — |
+| Root Vitest comment misdescribes the CLI tsconfig | P2 | Yes: the comment claimed `nodenext`; the CLI resolves under `node` | Comment describes the actual reason for the projects split | `09aaac49e1` |
+| Changelog `--output` can escape through a symlinked parent | P1 | Yes: the check was lexical | Existing prefix canonicalized through the filesystem before containment; test plants an escaping link at the project root | `09aaac49e1`, `56e17a9d3a` |
+| Execution path map keeps the retired package identity | P2 | Yes, as recorded history under `scratch/` | Kept as written | — |
+| Root smoke test runs the CLI dist before any build | P1 | Yes | `pretest:root` builds shared, runtime and cli first | `09aaac49e1` |
+| Test documentation lists a suite that does not exist | P2 | Yes: `completion-state.test.mjs` | Entry removed from the lib README | `09aaac49e1` |
+| Dist-alignment regression test omits the CLI target | P2 | Yes | `runtime/cli` added to the expected subtrees | `09aaac49e1` |
+| Native-module rebuild resolves the wrong root | P1 | Yes: `../..` landed on `runtime/` | Resolves the skill root like its sibling check script | `09aaac49e1` |
+| Phase-parent classification diverges between CLI entrypoint and runtime | P1 | Yes: the CLI copy ignored the generator-hardening default | CLI mirrors the runtime rule and its opt-out spellings; fixture folders classify the same | `56e17a9d3a`, and the follow-up parity commit |
 <!-- /ANCHOR:verification -->
 
 ---
