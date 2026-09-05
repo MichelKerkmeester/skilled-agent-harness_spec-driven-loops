@@ -42,9 +42,9 @@ Each red test names a producer in the deep-loop runtime. The fix goes into that 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All named tests pass
-- [ ] Deep-loop runtime typecheck exits 0
-- [ ] Implementation summary records each root cause and fix
+- [x] All named tests pass
+- [x] Deep-loop runtime typecheck exits 0
+- [x] Implementation summary records each root cause and fix
 <!-- /ANCHOR:quality-gates -->
 
 ---

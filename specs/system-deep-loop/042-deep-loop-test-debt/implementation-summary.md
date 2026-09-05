@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The deep-loop-owned red tests in the spec-kit CLI suite are green because the producers were fixed or the stale assertions were aligned to committed contracts; the runtime typecheck fix is in progress."
+description: "The deep-loop-owned red tests in the spec-kit CLI suite are green, the runtime typecheck reports zero errors without a loosened compiler option, and the compiled command contracts match their sources again."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -13,19 +13,19 @@ _memory:
     packet_pointer: "system-deep-loop/042-deep-loop-test-debt"
     last_updated_at: "2026-09-05T15:10:00Z"
     last_updated_by: "implementer"
-    recent_action: "Fixed council guard, aligned stale tests"
-    next_safe_action: "Land the runtime typecheck fixes and record the final suite and tsc totals"
+    recent_action: "Typecheck clean, contracts regenerated"
+    next_safe_action: "None; packet complete. Environment-dependent suites listed under Known Limitations"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs"
       - ".opencode/commands/deep/review.md"
       - ".opencode/skills/system-spec-kit/runtime/cli/tests/review-reducer-fail-closed.vitest.ts"
-      - ".opencode/skills/system-deep-loop/runtime/tsconfig.json"
+      - ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-types.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-05-042-deep-loop-test-debt"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Should the reducer throw on a missing machine-owned anchor? No - the 016 audit remediation deliberately made it warn and keep the computed output; the CLI-tree test encoded the older contract."
@@ -43,7 +43,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 042-deep-loop-test-debt |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -74,6 +74,9 @@ Four deep-loop-owned tests that live in the spec-kit CLI suite were red before t
 | `runtime/cli/tests/review-reducer-fail-closed.vitest.ts` | Modify | Assert the audited warn-and-keep-output contract |
 | `runtime/cli/tests/multi-ai-council-persist-artifacts.vitest.ts` | Modify | Follow the fixture's seat executor and the containment root |
 | `runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts` | Modify | Assert the committed runner identifiers |
+| `runtime/lib/legacy-projections/*.ts`, `runtime/lib/authorized-ledger/authorized-ledger-types.ts` | Modify | Type-level fixes so the runtime typechecks |
+| `runtime/lib/coverage-graph/better-sqlite3.d.ts` | Add | Ambient declaration for the sqlite binding's used surface |
+| `.opencode/commands/deep/assets/compiled/*.contract.md` | Regenerate | Compiled from their current sources |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -81,7 +84,7 @@ Four deep-loop-owned tests that live in the spec-kit CLI suite were red before t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-A GLM lane took the first pass and reversed two committed decisions to make tests pass; those runtime edits were reverted here and the tests were aligned to the committed contracts instead. The guard fix was made by hand after reading the containment helpers. The runtime typecheck errors are being fixed by a separate lane and will be recorded below when they land.
+A GLM lane took the first pass and reversed two committed decisions to make tests pass; those runtime edits were reverted here and the tests were aligned to the committed contracts instead. The guard fix was made by hand after reading the containment helpers. The runtime typecheck errors were fixed by a Sonnet lane at the type level: a readonly-array JSON carrier for the legacy projection states, the reason code the gateway's allow result may carry, and a minimal ambient declaration for the sqlite binding.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -106,7 +109,8 @@ A GLM lane took the first pass and reversed two committed decisions to make test
 | The three CLI-tree tests (`--project cli`) | 13 of 13 pass |
 | Full CLI project | 1568 of 1589 pass; the one red file targets the operator's in-flight 036 packet |
 | Runtime mirrors, agent mirrors | 169 of 169 and 12 of 12 in sync |
-| Deep-loop runtime typecheck | Pending: 53 errors surfaced once the node10 deprecation stopped masking them (34 assignability, 15 index-signature, 2 missing sqlite types, 2 missing gateway field) |
+| Deep-loop runtime typecheck | 0 errors at `75fc0c7713` (was 53: 34 assignability, 15 index-signature, 2 missing sqlite types, 2 missing gateway field), no compiler option changed |
+| Deep-loop runtime suite | Baseline and post-fix totals identical: 9 files red out of 154, all environment-dependent or contract-drift; contracts regenerated at `26c6746225`, drift check OK for 3 commands |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -115,5 +119,6 @@ A GLM lane took the first pass and reversed two committed decisions to make test
 ## Known Limitations
 
 - `recursive-child-manifest.vitest.ts` asserts a goal-file manifest inside the operator's in-flight 036 packet and stays red until that packet settles.
-- The `deep/research` compiled contract reports a stale source digest that predates this packet; it is not regenerated here.
+- Nine deep-loop suite files stay red on this host: locale and collation child-process tests that depend on the machine's environment. They failed identically before and after every change here.
+- The fan-out runner rejects a lineage whose leaf records no `stopReason` even when all iterations and the report landed; the third nesting review pass hit this. Leaf-protocol debt for the deep-review agent contract.
 <!-- /ANCHOR:limitations -->

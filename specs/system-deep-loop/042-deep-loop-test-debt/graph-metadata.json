@@ -39,7 +39,7 @@
       "restart"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -120,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -145,6 +139,12 @@
       },
       {
         "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Fix the pre-existing red tests and typecheck errors that the spec-kit nesting triage attributed to system-deep-loop: council persist-artifacts containment and fixture vantage, the reducer's fail-closed strategy anchors, the deep-review restart contract wording, and the runtime typecheck errors.",
     "created_at": "2026-09-05T11:40:23Z",
-    "last_save_at": "2026-09-05T14:51:46.461Z",
+    "last_save_at": "2026-09-05T15:48:28.236Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a54cb6d51af021d2ccede0dd7d5039c62e1306da2fe701ed84382585f3026ab",
+    "source_fingerprint": "sha256:b5759cb9e51f9391ab23da622bc931cf6df0e7f1f7d248011229b8a4282b14e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "935b68ee0434d22946fa5d2ebec3210556f93c424926c361bbb2cba59de46897",
-      "plan.md": "f0e2292f7c972128c144bbde6a6d5fda2047ec18e3f7fce5304830f8d3a3076b",
-      "tasks.md": "906f9ba379fa253b9ad077e25b9d4847f1b85ce2813c2bfcebb59c7064f571a0",
-      "implementation-summary.md": "730a43d37322204634cddeed5391f130abb722b3b0e5e804186759d6c2a61b95"
+      "spec.md": "2ea8fb78460abb0701155cb11b8cfb31a9a31915b5700d80b30ff945e8e5f4ba",
+      "plan.md": "8a087849743eebc7b2c6cc488bff771a03493ecf09806390bfaca55a040df8ff",
+      "tasks.md": "7c3804c8da7a71645707e963ec78033680665f498236663de4e925c36d98257a",
+      "implementation-summary.md": "d120b6b81e21eeffa13f2afce9c9c5a1ce489942d2b60947790614fd853e4cd0"
     },
     "last_active_child_id": null,
     "last_active_at": null
