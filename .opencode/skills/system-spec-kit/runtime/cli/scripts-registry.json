@@ -2,6 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "version": "1.0.0",
   "description": "Spec Kit Script Registry - Centralized catalog of all scripts for dynamic discovery",
+  "resolutionRoot": ".opencode/skills/system-spec-kit",
+  "pathSemantics": "Every path is relative to resolutionRoot. Entries under a dist/ segment are build outputs that exist only after npm run build in that workspace; the source lives beside them under the same folder name without dist/.",
   "lastUpdated": "2025-12-31",
   "scripts": [
     {

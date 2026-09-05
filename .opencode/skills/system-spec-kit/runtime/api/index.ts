@@ -9,7 +9,7 @@
 
 export { refreshGraphMetadata } from './graph-refresh.js';
 
-// --- Spec folder identity and validation (used by scripts/spec-folder, scripts/graph) ---
+// --- Spec folder identity and validation (used by runtime/cli/spec-folder, runtime/cli/graph) ---
 export {
   canClassifyAsGraphMetadataPath,
   resolveSpecFolderIdentity,
@@ -27,7 +27,7 @@ export {
   ZERO_CONTINUITY_FINGERPRINT,
 } from '../lib/validation/spec-doc-structure.js';
 
-// --- Folder discovery (used by scripts/spec-folder, scripts/core, runtime/cli/continuity) ---
+// --- Folder discovery (used by runtime/cli/spec-folder, runtime/cli/core, runtime/cli/continuity) ---
 export {
   generatePerFolderDescription,
   savePerFolderDescription,
@@ -40,7 +40,7 @@ export {
 } from '../lib/search/folder-discovery.js';
 export type { PerFolderDescription, LoadResult } from '../lib/search/folder-discovery.js';
 
-// --- Graph metadata (used by scripts/core, scripts/graph, runtime/cli/continuity) ---
+// --- Graph metadata (used by runtime/cli/core, runtime/cli/graph, runtime/cli/continuity) ---
 export {
   GRAPH_METADATA_DOCUMENT_TYPE,
   GRAPH_METADATA_FILENAME,

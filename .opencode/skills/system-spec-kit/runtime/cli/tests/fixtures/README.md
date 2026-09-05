@@ -1,6 +1,6 @@
 ---
-title: "Fixtures: static test data for scripts/tests"
-description: "Fixed input files and generator helpers consumed by the vitest and node --test suites in scripts/tests/."
+title: "Fixtures: static test data for runtime/cli/tests"
+description: "Fixed input files and generator helpers consumed by the vitest and node --test suites in runtime/cli/tests/. Fixture folders that carry pre-move `scripts/` vocabulary are recorded data and are not renamed."
 ---
 
 # Fixtures

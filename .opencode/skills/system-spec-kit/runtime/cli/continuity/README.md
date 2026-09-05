@@ -50,7 +50,7 @@ Current state:
 └──────────────────────────────────────────────────────────────────┘
 
 Dependency direction:
-runtime/cli/continuity/*.ts ───▶ scripts/core, extractors, loaders, renderers and lib helpers
+runtime/cli/continuity/*.ts ───▶ runtime/cli/core, extractors, loaders, renderers and lib helpers
 compiled CLIs ───▶ runtime/cli/dist/continuity/*.js
 runtime hooks and slash commands invoke the compiled CLIs directly
 ```
@@ -75,9 +75,9 @@ runtime/cli/continuity/
 Allowed dependency direction:
 
 ```text
-runtime/cli/continuity/ → scripts/core/
-runtime/cli/continuity/ → scripts/extractors/
-runtime/cli/continuity/ → scripts/loaders/
+runtime/cli/continuity/ → runtime/cli/core/
+runtime/cli/continuity/ → runtime/cli/extractors/
+runtime/cli/continuity/ → runtime/cli/loaders/
 runtime/cli/continuity/ → scripts/renderers/
 runtime/cli/continuity/ → scripts/lib/ and shared packages
 ```

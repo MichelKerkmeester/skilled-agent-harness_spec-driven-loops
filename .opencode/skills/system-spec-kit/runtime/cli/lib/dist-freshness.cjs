@@ -68,6 +68,8 @@ const DIST_PACKAGES = Object.freeze([
       'handlers',
       'hooks',
       'lib',
+      // runtime/scripts is the engine's own build tooling (finalize-dist, test
+      // runners), not the CLI workspace, which lives at runtime/cli.
       'scripts',
     ],
     entrySourceCandidates: {
