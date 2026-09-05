@@ -63,8 +63,39 @@ export const DEFAULT_MANIFEST_PATH = path.join(SCRIPT_DIR, 'fixtures', 'corpus-m
 export const DEFAULT_DIAGNOSTICS_PATH = path.join(SCRIPT_DIR, 'fixtures', 'generation-diagnostics.json');
 export const DEFAULT_VARIANTS_PATH = path.join(SCRIPT_DIR, 'fixtures', 'phrase-variants.json');
 
-/** Repository root, five levels above this script's package. */
-export const DEFAULT_REPO_ROOT = path.resolve(SCRIPT_DIR, '..', '..', '..', '..', '..');
+/**
+ * Resolves the repository root by walking up from `start` until a directory
+ * holding the documentation corpus appears — one that contains both `.opencode`
+ * and `specs` — or the git root is reached, whichever comes first. A fixed hop
+ * count from this file's location breaks the moment a directory level is added
+ * or removed, and the break is silent: a root resolved one level off still
+ * produces a well-formed index, just over a narrowed corpus, and the missing
+ * documents are invisible unless someone counts them. The walk keeps that drift
+ * impossible. The historical hop count survives only as a fallback for trees
+ * where neither marker appears above the script.
+ *
+ * @param {string} [start] Directory to walk up from; defaults to this script's directory.
+ * @returns {string} Absolute repository root.
+ */
+export function findRepoRoot(start = SCRIPT_DIR) {
+  const origin = path.resolve(start);
+  let directory = origin;
+  for (;;) {
+    const holdsCorpus = fs.existsSync(path.join(directory, '.opencode'))
+      && fs.existsSync(path.join(directory, 'specs'));
+    if (holdsCorpus || fs.existsSync(path.join(directory, '.git'))) {
+      return directory;
+    }
+    const parent = path.dirname(directory);
+    if (parent === directory) {
+      return path.resolve(origin, '..', '..', '..', '..', '..');
+    }
+    directory = parent;
+  }
+}
+
+/** Repository root the corpus roots resolve against. */
+export const DEFAULT_REPO_ROOT = findRepoRoot();
 
 /** Field separators folded into the corpus hash, per CORPUS_HASH_RECIPE. */
 const NUL = Buffer.from([0x00]);

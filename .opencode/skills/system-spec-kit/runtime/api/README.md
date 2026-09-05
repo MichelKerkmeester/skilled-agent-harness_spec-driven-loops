@@ -15,6 +15,8 @@ trigger_phrases:
 
 Internal package code should import from its owning `lib/`, `handlers/`, or `core/` module instead of routing through this barrel.
 
+`@spec-kit/runtime/api` is the internal boundary between `runtime/` and `runtime/cli/`, not a repo-wide shared library. Its exports exist for the CLI's scripts workspace and for package consumers of this runtime; other skills are outside its audience. Similar helpers appearing in more than one skill are deliberate copies owned where they are used, not missed imports to be redirected here.
+
 ---
 
 ## 2. SURFACE
