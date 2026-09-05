@@ -202,7 +202,7 @@
         "source": "derived"
       },
       {
-        "name": "Handoff Criteria",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The corpus check passed on every one of these",
     "created_at": "2026-09-04T07:19:37.295Z",
-    "last_save_at": "2026-09-05T08:28:32.102Z",
+    "last_save_at": "2026-09-05T10:58:10.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f7dc47bd1b547d0d4a42a5c3d0940da64e9ad2d97dff693f4d80286abf7fe56",
+    "source_fingerprint": "sha256:f90160f7ea64712ac6e663203368b453d7df65063d21f1c3b9361b35d05b71b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fcda23b7286dd26d91f9ee4ead05c1bf1f079dde7dbcbecb5dc680cc608ef190",
+      "spec.md": "d30e0ae2902ba8bf181094b44c494822a379a5493efc5617ce1cd0a694fb5f1f",
       "plan.md": "53b1b50fa0f009540c9a3c0b83d3e59bc8b21853697089ac44b5da800c32b534",
       "tasks.md": "d027d22cca0ae1e8a68689ebdec3c937831c013630c2202cfc270c4418614307",
       "implementation-summary.md": "ff1cbb5d54eb4035e8b58b05802008b6719f560a4ffd4e63d3f279510e277500"

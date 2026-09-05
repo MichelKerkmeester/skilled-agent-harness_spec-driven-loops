@@ -43,7 +43,7 @@
       "durable"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -178,17 +178,17 @@
     ],
     "causal_summary": "The operator does not like how `sk-create-chart` looks",
     "created_at": "2026-09-03T08:03:14.282Z",
-    "last_save_at": "2026-09-05T08:28:37.914Z",
+    "last_save_at": "2026-09-05T10:58:10.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:51feecbd98c79278562b266571124d112cc518aadf81ce1c2b99be0e5b9cff93",
+    "source_fingerprint": "sha256:5fe89586aa9e783ef8da834b0ba30db12094f0122e2e0e74fea50ff55cb077f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65f5ed9096ccfba37f0ea210251f650ca5cdfbf170038600549a186d2d910478"
+      "spec.md": "d9692c1b9b1593149fa9c8d741e38620b2a0f44ac6466d3a2273d5862c6fb7f9"
     },
     "last_active_child_id": "sk-doc/051-sk-create-chart/009-chart-visual-overhaul/003-motion-layer",
     "last_active_at": null

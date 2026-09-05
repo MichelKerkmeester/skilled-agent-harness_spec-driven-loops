@@ -184,6 +184,18 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-doc` routes fifteen workflow packets, and fourteen of them have their own slash command",
     "created_at": "2026-09-04T08:51:34Z",
-    "last_save_at": "2026-09-05T08:28:38.649Z",
+    "last_save_at": "2026-09-05T10:58:11.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9be88cc9367205b1e336bd560bee18e238d57978485179ffb7e917db95ac8f15",
+    "source_fingerprint": "sha256:2534e6217d3cd5044639ac20d24299e04df8fe51a024a8cefced4e76fb324603",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7111092f8807862b369a7c10ec059e5dabd9962d14fc5ff89826da7d69d84e8",
+      "spec.md": "4618edc81c0d819c2411d5be111ada6239bbe1255571f534590632b8177a9dc6",
       "plan.md": "a39256d335a37952e1ce917d56bbf91f3090962438a1320477e6ee2b0c7c160c",
       "tasks.md": "56dcf283346cb23a85bf35a1b8ad91fab171208dbfada833ec923063bff90db1",
       "implementation-summary.md": "5f698f1d83140a613443ebb85be5a338c8977bc2a67def29badf5230c465109d"
