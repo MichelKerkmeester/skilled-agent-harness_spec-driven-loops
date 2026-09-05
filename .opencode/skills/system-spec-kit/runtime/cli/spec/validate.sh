@@ -25,7 +25,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly VALIDATOR_REGISTRY_JSON="$SCRIPT_DIR/../lib/validator-registry.json"
 readonly ORCHESTRATOR_JS="$SCRIPT_DIR/../../dist/lib/validation/orchestrator.js"
 readonly ORCHESTRATOR_TS="$SCRIPT_DIR/../../lib/validation/orchestrator.ts"
-readonly TSX_LOADER="$SCRIPT_DIR/../node_modules/tsx/dist/loader.mjs"
+readonly TSX_LOADER="$SCRIPT_DIR/../../../node_modules/tsx/dist/loader.mjs"
 readonly DIST_FRESHNESS_CJS="$SCRIPT_DIR/../lib/dist-freshness.cjs"
 readonly VERSION="3.0.0"
 

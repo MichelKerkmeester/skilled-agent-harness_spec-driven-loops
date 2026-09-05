@@ -20,7 +20,7 @@ contextType: "general"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 3 (re-scored per REQ-003: `recommend-level.sh --loc 900 --files 450 --architectural` → `total_score: 73`, confidence 82%; execution ran in this same folder by explicit operator instruction rather than a separately Gate-3'd child) |
+| **Level** | 2 (document set: spec, plan, tasks, acceptance criteria, summary). `recommend-level.sh --loc 900 --files 450 --architectural` scored 73, a Level 3 signal; the operator chose to execute in this folder at the Level 2 document set, and the ten-iteration review pass stands in for the Level 3 checklist |
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-09-05 |

@@ -1675,7 +1675,7 @@ fi
 # its own deriver fails validation the moment it exists, which teaches an author
 # that the gate is broken before they have written a line.
 _BACKFILL_TS="${SCRIPT_DIR}/../graph/backfill-graph-metadata.ts"
-_TSX_LOADER="${SCRIPT_DIR}/../node_modules/tsx/dist/loader.mjs"
+_TSX_LOADER="${SCRIPT_DIR}/../../../node_modules/tsx/dist/loader.mjs"
 if [[ -f "$_BACKFILL_TS" && -f "$_TSX_LOADER" ]]; then
   node --import "$_TSX_LOADER" "$_BACKFILL_TS" "$FEATURE_DIR" >/dev/null 2>&1 \
     || echo "  Warning: graph metadata derivation skipped" >&2

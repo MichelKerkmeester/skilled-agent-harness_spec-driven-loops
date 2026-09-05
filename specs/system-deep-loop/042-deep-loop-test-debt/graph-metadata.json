@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/042-deep-loop-test-debt",
+  "spec_folder": "system-deep-loop/042-deep-loop-test-debt",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop test debt",
+      "council persist artifacts",
+      "review reducer fail closed",
+      "deep review restart contract",
+      "deep loop typecheck errors",
+      "implementation plan",
+      "technical approach",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "test",
+      "debt",
+      "council",
+      "persist",
+      "artifacts",
+      "review",
+      "reducer",
+      "fail",
+      "closed",
+      "restart"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/commands/deep/review.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Producer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Failing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fix the pre-existing red tests and typecheck errors that the spec-kit nesting triage attributed to system-deep-loop: council persist-artifacts containment and fixture vantage, the reducer's fail-closed strategy anchors, the deep-review restart contract wording, and the runtime typecheck errors.",
+    "created_at": "2026-09-05T11:40:23Z",
+    "last_save_at": "2026-09-05T13:30:44.614Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:7d774f3366440518affe2a6b36e6c7d78bc46d2d49d94bab9e112f67279d32a7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "935b68ee0434d22946fa5d2ebec3210556f93c424926c361bbb2cba59de46897",
+      "plan.md": "f0e2292f7c972128c144bbde6a6d5fda2047ec18e3f7fce5304830f8d3a3076b",
+      "tasks.md": "1747ec5a1863f5cb38638a2a359065b4a6f13e3c0553c8aee023c1f9cc4f2508"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

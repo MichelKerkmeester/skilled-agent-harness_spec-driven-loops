@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 002-scripts-into-runtime-nesting |
 | **Completed** | 2026-09-05 |
-| **Level** | 3 |
+| **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -243,6 +243,24 @@ staleness.
 | 7. Docs and fixtures | 31 files matching `system-spec-kit/scripts` outside `specs/`, `changelog/`, `benchmark/reports/`, corrected | PASS — final `rg` for `system-spec-kit/scripts` over live surfaces returns only the deliberately-kept recorded-output lines (a coverage doc's captured transcript, 4 lines; this same doc's own Evidence captions, 3 lines); `validate_document.py` before/after comparison shows identical issue counts (0 new blocking errors, 0 new warnings) across all 29 changed `.md` files; `durable-directory-manifest.json`'s stale entry replaced and `test_readme_manifest.py` re-run (gap count dropped from 100 to 99 — the one entry this task owns is fixed; 99 pre-existing, unrelated gaps remain) |
 | 8. Evals path | `check-handler-cycles-ast.ts`'s source-layout candidate | PASS — `../../runtime/handlers` (doubled the segment, resolved to `runtime/runtime/handlers`) corrected to `../../handlers`; compiled-layout candidate left untouched per instruction; `npx tsx evals/check-handler-cycles-ast.ts` passes, "no circular dependencies across 2 handler files" |
 | 9. Handoff doc | `scratch/execute-plan.md`'s `dist/memory/generate-context.js` reference | PASS — corrected to `dist/continuity/generate-context.js` (this document's own Verification table already used the correct path) |
+
+### Review findings disposition
+
+The ten-iteration nesting review (`review/lineages/luna-max-review/review-report.md`) returned CONDITIONAL with one P0 and eight P1 findings. Each is closed below with the commit that carries the fix.
+
+| Finding | Severity | What was wrong | Fix | Commit |
+|---------|----------|----------------|-----|--------|
+| F001 | P0 | `runtime/cli/package.json` absent from the tree; root scripts and lockfile still named `@spec-kit/scripts` | Force-tracked the manifest past the `.opencode/.gitignore` rule that swallowed it; renamed the package to `@spec-kit/cli`; regenerated the lockfile | `6166bbc6df`, `e354f144b5` |
+| F002 | P1 | Execution handoff pointed at the retired `dist/memory/generate-context.js` | Handoff corrected to `dist/continuity/generate-context.js` | `e354f144b5` |
+| F003 | P1 | Root Vitest discovery omitted `runtime/cli/tests` | Skill-root config rewritten as `test.projects` with a `runtime/cli`-rooted project | `e354f144b5` |
+| F004 | P1 | Level, status, and execution state disagreed across spec, acceptance criteria, plan, and summary | Level reconciled to the authored Level 2 document set with the recommend-level score recorded as a note; status rows reconciled | this commit |
+| F005 | P1 | Moved-package READMEs kept the `scripts/` and `memory/` topology and invalid `npm --prefix` commands | 31 live documents corrected; recorded-output lines deliberately kept | `e354f144b5` |
+| F006 | P1 | Script registry advertised twelve absent `scripts/...` paths | `scripts-registry.json` repointed; every path verified on disk | `e354f144b5` |
+| F007 | P1 | Two CI workflows ran `npm ci` from the deleted scripts workspace | Dead install step removed; root `npm ci` provisions all three workspaces | `e354f144b5` |
+| F008 | P1 | Spec-root resolver registry kept twelve retired entries; its test checked shape only | Entries repointed; existence assertion added to the test | `e354f144b5` |
+| F009 | P1 | Moved test harnesses kept retired roots and a doubled generated-output segment | Three harness path bugs fixed | `e354f144b5` |
+
+The install strategy that made the nested workspace uninstallable was switched to hoisted in `57ef5fe600`. Two spec-root registry entries that predate this move and never existed under their recorded paths are handed to the spec-kit red-test lane in the parent packet.
 <!-- /ANCHOR:verification -->
 
 ---

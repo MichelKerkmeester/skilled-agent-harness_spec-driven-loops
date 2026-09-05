@@ -7,7 +7,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SKILL_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+SKILL_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 LOADER="$SKILL_ROOT/node_modules/tsx/dist/loader.mjs"
 RENDERER="$SCRIPT_DIR/inline-gate-renderer.ts"
 
