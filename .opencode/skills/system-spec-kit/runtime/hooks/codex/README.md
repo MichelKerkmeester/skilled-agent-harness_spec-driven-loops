@@ -30,6 +30,7 @@ description: "Codex CLI hook adapters that normalize Codex lifecycle payloads an
 
 - `.codex/hooks.json` registers the compiled `dist/hooks/codex/*.js` outputs of `session-start.ts`, `user-prompt-submit.ts`, `session-stop.ts` and `compact-inject.ts` against the matching Codex lifecycle events.
 - `completion-evidence-stop.cjs` is a plain, directly runnable `.cjs` file with no build step and is registered the same way for the Codex `Stop` event.
+- Every registered command wraps its adapter as `node <adapter> || { <stderr line>; <fallback JSON>; }`, so a Codex hook always answers its host. On a primary-adapter failure the fallback JSON's `hookSpecificOutput` carries `"mkHookDrift": true` alongside the existing free-text `additionalContext`, and the wrapper prints a `mk-hook-drift host=codex event=<event> adapter=<name>` line to stderr, so an adapter crash is machine-detectable without parsing prose. The Stop event's `session-cleanup.sh` invocation uses the same `|| { ... }` fallback shape rather than an unconditional `|| true`, so a genuine cleanup failure reaches its diagnostic branch while the Stop hook itself still reports success.
 
 ---
 

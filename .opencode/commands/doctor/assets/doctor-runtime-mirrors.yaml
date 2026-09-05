@@ -2,8 +2,8 @@
 # DOCTOR: RUNTIME MIRROR PARITY (READ-ONLY DIAGNOSTIC)
 # ─────────────────────────────────────────────────────────────────
 role: Diagnostic Operator reporting whether every runtime config dir still mirrors its canonical source
-purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor and .devin derive from .opencode
-action: Run the five mirror checkers -> aggregate their verdicts -> report per-surface drift
+purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor and .devin derive from .opencode, plus adapter-path resolution drift in the Codex and Devin hook fallback chains
+action: Run the five mirror checkers plus the hook-adapter fallback health check -> aggregate their verdicts -> report per-surface drift
 skill_owner: ".opencode/skills/system-spec-kit/scripts/"
 
 # ─────────────────────────────────────────────────────────────────
@@ -40,6 +40,38 @@ upstream_assets:
   pi_prompts: ".opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs"
 
 # ─────────────────────────────────────────────────────────────────
+# HOOK-ADAPTER FALLBACK HEALTH CHECKS
+# ─────────────────────────────────────────────────────────────────
+# Every entry below is the primary adapter behind a `|| { <stderr>; <fallback JSON> }`
+# chain in .codex/hooks.json or .devin/hooks.v1.json (the chains that carry the
+# "mkHookDrift" marker). A missing path here is exactly the state a synthetic
+# adapter failure produces (e.g. temporarily renaming the compiled file), so a
+# `file_exists` failure on any row below is reported as a degraded hook adapter,
+# not a mirror-structure drift.
+hook_adapter_fallback_health_checks:
+  - { host: codex, event: SessionStart, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js", type: file_exists }
+  - { host: codex, event: SessionStart, path: ".opencode/bin/worktree-guard.sh", type: file_exists }
+  - { host: codex, event: SessionStart, path: ".opencode/bin/check-git-hooks.sh", type: file_exists }
+  - { host: codex, event: SessionStart, path: ".opencode/bin/git-live-follow.sh", type: file_exists }
+  - { host: codex, event: SessionStart, path: ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh", type: file_exists }
+  - { host: codex, event: UserPromptSubmit, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js", type: file_exists }
+  - { host: codex, event: UserPromptSubmit, path: ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs", type: file_exists }
+  - { host: codex, event: PreToolUse, path: ".opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs", type: file_exists }
+  - { host: codex, event: PreToolUse, path: ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs", type: file_exists }
+  - { host: codex, event: PreToolUse, path: ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs", type: file_exists }
+  - { host: codex, event: PreToolUse, path: ".opencode/hooks/mcp-route-guard/codex/mcp-route-guard.cjs", type: file_exists }
+  - { host: codex, event: PostToolUse, path: ".opencode/hooks/post-edit-quality/codex/post-edit-quality.cjs", type: file_exists }
+  - { host: codex, event: PostToolUse, path: ".opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs", type: file_exists }
+  - { host: codex, event: Stop, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-stop.js", type: file_exists }
+  - { host: codex, event: Stop, path: ".opencode/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs", type: file_exists }
+  - { host: codex, event: Stop, path: ".opencode/scripts/session-cleanup.sh", type: file_exists }
+  - { host: codex, event: PreCompact, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/compact-inject.js", type: file_exists }
+  - { host: devin, event: SessionStart, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/session-start.js", type: file_exists }
+  - { host: devin, event: UserPromptSubmit, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/user-prompt-submit.js", type: file_exists }
+  - { host: devin, event: PreToolUse, path: ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs", type: file_exists }
+  - { host: devin, event: Stop, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/session-stop.js", type: file_exists }
+
+# ─────────────────────────────────────────────────────────────────
 # INPUTS
 # ─────────────────────────────────────────────────────────────────
 inputs:
@@ -57,6 +89,7 @@ execution:
     - "Run upstream_assets.codex_hooks_installer with --check. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json, including orphaned entries whose .opencode adapter no longer exists on disk. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.pi_agents with --check. Covers the generated .pi/agents/*.md. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.pi_prompts with --check. Covers the generated .pi/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
+    - "For each row in hook_adapter_fallback_health_checks, run its file_exists check (a plain path-existence read, no execution of the adapter or the shell command that wraps it). Collect every row whose path does not resolve as a degraded hook adapter, keyed by host:event:path."
     - "Aggregate: report each surface with its own verdict rather than a single pass/fail, so the operator learns which mirror moved."
 
 # ─────────────────────────────────────────────────────────────────
@@ -73,5 +106,13 @@ output: |
     pi prompts       -> node .opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs
   The agent roster check has no generator; its drift is repaired by the runtime-mirrors generator or by hand
   for the authored surfaces (.opencode/agents, .codex/agents).
-  Hook CONFIG files are deliberately out of scope: the four runtimes use incompatible event vocabularies and
-  entry shapes, so those files are hand-authored per runtime and cannot be mirror-checked.
+  Hook CONFIG STRUCTURE is deliberately out of scope for mirroring: the four runtimes use incompatible event
+  vocabularies and entry shapes, so those files are hand-authored per runtime and cannot be mirror-checked
+  against each other.
+  Separately, "N hook adapters degraded to fallback" reports the count of hook_adapter_fallback_health_checks
+  rows whose path does not resolve, each listed as host:event:path. This is the same drift a live adapter
+  failure produces (its fallback JSON would carry "mkHookDrift": true and its stderr a matching
+  "mk-hook-drift host=<host> event=<event> adapter=<name>" line) surfaced without needing to fire the hook or
+  read raw JSON. Repair is adapter-specific: rebuild the runtime (npm --prefix
+  .opencode/skills/system-spec-kit/runtime run build) for a dist/hooks/* path, or restore/recreate the named
+  script for a .opencode/bin or .opencode/hooks path.

@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,12 +48,17 @@
       "implementation-summary.md",
       ".codex/hooks.json",
       ".devin/hooks.v1.json",
-      ".github/hooks/scripts/session-start.sh",
-      ".github/hooks/scripts/user-prompt-submitted.sh",
+      ".opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
+      "runtime/hooks/devin/README.md",
+      ".opencode/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts",
+      ".opencode/bin/install-codex-hooks.mjs",
+      "runtime/tests/copilot-user-prompt-submit-hook.vitest.ts",
       "runtime/tests/hooks-reexport-parity.vitest.ts",
       ".claude/settings.json",
       ".cursor/hooks.json",
-      ".opencode/commands/doctor/assets/doctor-memory.yaml"
+      "runtime/tests/hook-adapter-path-parity.vitest.ts",
+      "runtime/hooks/codex/README.md"
     ],
     "entities": [
       {
@@ -99,15 +104,33 @@
         "source": "derived"
       },
       {
-        "name": "session-start.sh",
-        "kind": "script",
-        "path": ".github/hooks/scripts/session-start.sh",
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml",
         "source": "derived"
       },
       {
-        "name": "user-prompt-submitted.sh",
-        "kind": "script",
-        "path": ".github/hooks/scripts/user-prompt-submitted.sh",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-path-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".opencode/bin/install-codex-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "copilot-user-prompt-submit-hook.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/copilot-user-prompt-submit-hook.vitest.ts",
         "source": "derived"
       },
       {
@@ -120,12 +143,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-memory.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor-memory.yaml",
         "source": "derived"
       },
       {
@@ -187,23 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "The Copilot",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Additive",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.codex/hooks.json` wraps every registered adapter as `node <adapter> || printf %s '{\"hookSpecificOutput\":{...,\"additionalContext\":\"mk codex hook could not resolve; re-run the codex hooks installer with --check\"}}'` (for example lines 8, 13, 18, 27, 33, 40, 48, 56, 64, 72)",
     "created_at": "2026-09-05T06:13:07Z",
-    "last_save_at": "2026-09-05T06:38:56.284Z",
+    "last_save_at": "2026-09-05T07:21:13.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:818eddc2c1ad161975186df7f0cb57a30c980f0589d27f0bef7f62d08f24d94e",
+    "source_fingerprint": "sha256:beb85070a54f1787a5bef6c7a93fa68e306cd22393ed01db0a4113f851a24116",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b801b12aa013c8c3beaf32c80a11ba5d603446c6c3992c203401311e2b800846",
-      "plan.md": "22662d6aea92f1e932dbc6e1f441b756550130b53ba251023c1d6907a04631a3",
-      "tasks.md": "d18c9997a0bcd718575a8ad726daae6e50a3e5abfb919552f85cea280c7df539",
-      "implementation-summary.md": "53814784e6ef87d0ac45f7c1844397b5627b744e0e306427dfdfe1bfa8e92b00"
+      "spec.md": "69b03047aa40a306ad550d78451ff68cf5aacc17610dedcb4cb8ec90b238e5c5",
+      "plan.md": "98ff97b531900d104a9c6e6ab4b3a89a29f9196012be924e1a585d92b9993253",
+      "tasks.md": "8ff127004338536e01905bf677ec1c3abbb693a5c1c171be65c22acae758c2a6",
+      "implementation-summary.md": "189b9e9f194558ba2c5182f505d5c0fcf6683ebfb90f3dccf592edf1b4a5d550"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -46,6 +46,7 @@ These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, dire
 ## 4. CONSUMERS
 
 - The project's `.devin/hooks.v1.json` registers compiled `dist/hooks/devin/*.js` outputs against `SessionStart`, `UserPromptSubmit` and `Stop`, plus plain `.mjs`/`.cjs` files against `PreToolUse`, `PermissionRequest`, `Stop` and `PostCompaction`. The `.ts` adapters require a build before the `.js` outputs exist.
+- The four registered commands that carry a `|| printf` fallback (`session-start.js`, `user-prompt-submit.js`, `session-stop.js`, and the `git-preflight-advisory.mjs` entry under `PreToolUse`) wrap their adapter as `node <adapter> || { <stderr line>; <fallback JSON>; }`. On a primary-adapter failure the fallback JSON's `hookSpecificOutput` carries `"mkHookDrift": true` alongside the existing free-text `additionalContext`, and the wrapper prints a `mk-hook-drift host=devin event=<event> adapter=<name>` line to stderr, so an adapter crash is machine-detectable without parsing prose. Every other Devin entry runs its adapter directly with no fallback branch.
 
 ---
 

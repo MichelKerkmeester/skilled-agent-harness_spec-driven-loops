@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-05 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -204,7 +204,7 @@ An adapter failure on Codex or Devin produces a machine-detectable drift signal 
 
 ## 10. OPEN QUESTIONS
 
-- Build the Copilot adapters or remove the wrappers? This spec does not pre-decide it; REQ-004 requires the decision be made and implemented, with the blast-radius comparison from Risks informing the choice.
+- Build the Copilot adapters or remove the wrappers? **Resolved: removed.** No `.copilot` runtime host directory exists anywhere in the repository (unlike Claude/Codex/Cursor/Devin/Pi), no compiled or source adapter was ever built, and no CI workflow or registration manifest references the wrappers. `.github/hooks/scripts/{session-start.sh,user-prompt-submitted.sh,README.md}` were removed.
 <!-- /ANCHOR:questions -->
 
 ---
