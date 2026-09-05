@@ -23,7 +23,7 @@
     },
     {
       "name": "validate-spec",
-      "path": "scripts/spec/validate.sh",
+      "path": "runtime/cli/spec/validate.sh",
       "type": "bash",
       "description": "Validate spec folder contents against documentation level requirements",
       "trigger": ["validate spec", "check spec"],
@@ -40,7 +40,7 @@
     },
     {
       "name": "check-completion",
-      "path": "scripts/spec/check-completion.sh",
+      "path": "runtime/cli/spec/check-completion.sh",
       "type": "bash",
       "description": "Completion Verification Rule enforcement - verify checklist items are complete before claiming done",
       "trigger": ["check completion", "verify complete", "claiming done"],
@@ -57,7 +57,7 @@
     },
     {
       "name": "upgrade-level",
-      "path": "scripts/spec/upgrade-level.sh",
+      "path": "runtime/cli/spec/upgrade-level.sh",
       "type": "bash",
       "description": "Upgrade existing spec folders to higher documentation levels with backup and rollback. Post-upgrade: AI must auto-populate injected placeholder content from existing spec context",
       "trigger": ["upgrade level", "level upgrade", "promote spec level"],
@@ -74,7 +74,7 @@
     },
     {
       "name": "check-prerequisites",
-      "path": "scripts/setup/check-prerequisites.sh",
+      "path": "runtime/cli/setup/check-prerequisites.sh",
       "type": "bash",
       "description": "Validate spec folder exists and contains required files for its level",
       "trigger": ["check prerequisites", "verify files"],
@@ -90,7 +90,7 @@
     },
     {
       "name": "calculate-completeness",
-      "path": "scripts/spec/calculate-completeness.sh",
+      "path": "runtime/cli/spec/calculate-completeness.sh",
       "type": "bash",
       "description": "Calculate percentage of template placeholders replaced with real content",
       "trigger": ["calculate progress", "completeness"],
@@ -107,7 +107,7 @@
     },
     {
       "name": "test-validation",
-      "path": "scripts/tests/test-validation.sh",
+      "path": "runtime/cli/tests/test-validation.sh",
       "type": "bash",
       "description": "Test runner for validate-spec.sh against fixture spec folders",
       "trigger": ["test validation", "run tests"],
@@ -123,7 +123,7 @@
     },
     {
       "name": "create-spec-folder",
-      "path": "scripts/spec/create.sh",
+      "path": "runtime/cli/spec/create.sh",
       "type": "bash",
       "description": "Create new spec folders with appropriate templates based on documentation level",
       "trigger": ["create spec", "new spec folder", "Option B"],
@@ -157,7 +157,7 @@
     },
     {
       "name": "recommend-level",
-      "path": "scripts/spec/recommend-level.sh",
+      "path": "runtime/cli/spec/recommend-level.sh",
       "type": "bash",
       "description": "Recommend documentation level based on task complexity factors",
       "trigger": ["recommend level", "what level"],
@@ -173,7 +173,7 @@
     },
     {
       "name": "archive-spec",
-      "path": "scripts/spec/archive.sh",
+      "path": "runtime/cli/spec/archive.sh",
       "type": "bash",
       "description": "Move completed spec folders to archive, keeping specs/ directory clean",
       "trigger": ["archive spec", "move to archive"],
@@ -190,7 +190,7 @@
     },
     {
       "name": "common",
-      "path": "scripts/common.sh",
+      "path": "runtime/cli/common.sh",
       "type": "bash",
       "description": "Repository and branch utilities - get_repo_root(), get_current_branch()",
       "trigger": [],
@@ -205,7 +205,7 @@
     },
     {
       "name": "test-embeddings-factory",
-      "path": "scripts/tests/test-embeddings-factory.js",
+      "path": "runtime/cli/tests/test-embeddings-factory.js",
       "type": "node",
       "description": "Test and verify embedding provider configuration",
       "trigger": ["test embeddings", "verify provider"],
@@ -219,7 +219,7 @@
     },
     {
       "name": "check-markdown-links",
-      "path": "scripts/check-markdown-links.cjs",
+      "path": "runtime/cli/check-markdown-links.cjs",
       "type": "node",
       "description": "Repo-wide markdown-link integrity guard over skills/commands/agents; strips fenced + inline code; complements the wikilink checker; exit 1 on any broken link",
       "trigger": ["check markdown links", "link integrity", "broken links"],
@@ -235,7 +235,7 @@
   "rules": [
     {
       "name": "check-files",
-      "path": "scripts/rules/check-files.sh",
+      "path": "runtime/cli/rules/check-files.sh",
       "type": "bash",
       "description": "FILE_EXISTS rule - validates required files exist for documentation level",
       "severity": "error",
@@ -244,7 +244,7 @@
     },
     {
       "name": "check-folder-naming",
-      "path": "scripts/rules/check-folder-naming.sh",
+      "path": "runtime/cli/rules/check-folder-naming.sh",
       "type": "bash",
       "description": "FOLDER_NAMING rule - validates ###-short-name convention",
       "severity": "error",
@@ -253,7 +253,7 @@
     },
     {
       "name": "check-frontmatter",
-      "path": "scripts/rules/check-frontmatter.sh",
+      "path": "runtime/cli/rules/check-frontmatter.sh",
       "type": "bash",
       "description": "FRONTMATTER_VALID rule - validates YAML frontmatter structure",
       "severity": "warning",
@@ -262,7 +262,7 @@
     },
     {
       "name": "check-placeholders",
-      "path": "scripts/rules/check-placeholders.sh",
+      "path": "runtime/cli/rules/check-placeholders.sh",
       "type": "bash",
       "description": "PLACEHOLDER_FILLED rule - detects unfilled [TODO:], [TBD], {{mustache}} placeholders",
       "severity": "warning",
@@ -271,7 +271,7 @@
     },
     {
       "name": "check-level",
-      "path": "scripts/rules/check-level.sh",
+      "path": "runtime/cli/rules/check-level.sh",
       "type": "bash",
       "description": "LEVEL_DECLARED rule - checks if documentation level was explicitly declared",
       "severity": "info",
@@ -280,7 +280,7 @@
     },
     {
       "name": "check-complexity",
-      "path": "scripts/rules/check-complexity.sh",
+      "path": "runtime/cli/rules/check-complexity.sh",
       "type": "bash",
       "description": "COMPLEXITY_MATCH rule - validates declared complexity matches actual content metrics",
       "severity": "warning",
@@ -289,7 +289,7 @@
     },
     {
       "name": "check-ai-protocols",
-      "path": "scripts/rules/check-ai-protocols.sh",
+      "path": "runtime/cli/rules/check-ai-protocols.sh",
       "type": "bash",
       "description": "AI_PROTOCOL rule - validates AI execution protocols present for Level 3+",
       "severity": "warning",
@@ -298,7 +298,7 @@
     },
     {
       "name": "check-level-match",
-      "path": "scripts/rules/check-level-match.sh",
+      "path": "runtime/cli/rules/check-level-match.sh",
       "type": "bash",
       "description": "LEVEL_MATCH rule - validates level consistency across all spec folder files",
       "severity": "error",
@@ -307,7 +307,7 @@
     },
     {
       "name": "check-toc-policy",
-      "path": "scripts/rules/check-toc-policy.sh",
+      "path": "runtime/cli/rules/check-toc-policy.sh",
       "type": "bash",
       "description": "TOC_POLICY rule - allows ToC only in research/research.md and rejects ToC in standard spec artifacts",
       "severity": "error",
@@ -319,17 +319,17 @@
     "shell": [
       {
         "name": "shell-common",
-        "path": "scripts/lib/shell-common.sh",
+        "path": "runtime/cli/lib/shell-common.sh",
         "description": "Shared shell utilities (colors, logging, result tracking)"
       },
       {
         "name": "git-branch",
-        "path": "scripts/lib/git-branch.sh",
+        "path": "runtime/cli/lib/git-branch.sh",
         "description": "Git branch utilities"
       },
       {
         "name": "template-utils",
-        "path": "scripts/lib/template-utils.sh",
+        "path": "runtime/cli/lib/template-utils.sh",
         "description": "Template processing helpers"
       }
     ],

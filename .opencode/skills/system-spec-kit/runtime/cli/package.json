@@ -1,5 +1,5 @@
 {
-  "name": "@spec-kit/scripts",
+  "name": "@spec-kit/cli",
   "version": "1.7.2",
   "description": "CLI tools for spec-kit context generation and continuity management",
   "type": "module",
@@ -8,7 +8,11 @@
     "node": ">=20.11.0"
   },
   "scripts": {
-    "build": "tsc --build",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "prepare-build": "node lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime/cli --entry is-phase-parent",
+    "build": "npm run prepare-build && tsc --build && npm run record-build",
+    "record-build": "node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry is-phase-parent",
+    "rebuild": "npm run clean && npm run build",
     "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
     "lint": "tsc --noEmit",
     "test": "vitest run --config ../vitest.config.ts --root . && npm run test:legacy && npm run test:validation",
@@ -25,6 +29,6 @@
   },
   "devDependencies": {
     "tsx": "4.22.4",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.11"
   }
 }

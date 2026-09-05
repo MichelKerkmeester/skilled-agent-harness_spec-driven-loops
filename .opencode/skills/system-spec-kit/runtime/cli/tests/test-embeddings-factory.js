@@ -11,7 +11,7 @@ const path = require('path');
 */
 
 // Configure relative paths - embeddings consolidated to shared/ on 2024-12-31
-const libPath = path.join(__dirname, '../../shared/dist');
+const libPath = path.join(__dirname, '../../../shared/dist');
 
 /* ─────────────────────────────────────────────────────────────
    2. TEST FUNCTION

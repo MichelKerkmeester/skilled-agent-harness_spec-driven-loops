@@ -190,7 +190,7 @@ This package owns local automation. Long-lived product behavior belongs in the s
 ## 6. ENTRYPOINTS
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/scripts run build
+npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
 node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<inline-json>' specs/<name>
 # Or use --stdin, or a session-scoped temp file (e.g. /tmp/save-context-data-<session-id>.json).
@@ -229,8 +229,8 @@ Before apply, preserve the affected `graph-metadata.json` files in version contr
 Use repository-root commands:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/scripts run build
-npm --prefix .opencode/skills/system-spec-kit/scripts test
+npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+npm --prefix .opencode/skills/system-spec-kit/runtime/cli test
 bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
 ```
 

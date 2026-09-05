@@ -71,11 +71,11 @@ Not owned here:
 Run from the repository root unless a command changes into `scripts/` explicitly:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/scripts run build
+npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 node .opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
 bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
 bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
-npx --prefix .opencode/skills/system-spec-kit/scripts vitest run \
+npx --prefix .opencode/skills/system-spec-kit/runtime/cli vitest run \
   tests/test-integration.vitest.ts
 python3 .opencode/skills/system-spec-kit/runtime/cli/tests/test_dual_threshold.py
 ```
@@ -87,11 +87,11 @@ python3 .opencode/skills/system-spec-kit/runtime/cli/tests/test_dual_threshold.p
 Recommended targeted order after script changes:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/scripts run build
+npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 node .opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
 bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
 bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
-npx --prefix .opencode/skills/system-spec-kit/scripts vitest run \
+npx --prefix .opencode/skills/system-spec-kit/runtime/cli vitest run \
   tests/test-integration.vitest.ts
 ```
 

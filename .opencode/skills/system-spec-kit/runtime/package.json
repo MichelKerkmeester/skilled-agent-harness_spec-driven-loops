@@ -23,7 +23,7 @@
     "test:core": "vitest run",
     "test:council": "vitest run tests/multi-ai-council-runtime-parity.vitest.ts tests/multi-ai-council-permission-scope.vitest.ts tests/multi-ai-council-audit-trail.vitest.ts tests/multi-ai-council-rollback.vitest.ts ../../system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts ../../system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts tests/council-playbook-anchor-integrity.vitest.ts tests/council-helpers-smoke.vitest.ts cli/tests/multi-ai-council-persist-artifacts.vitest.ts",
     "test:council:full": "bash cli/test-council-matrix.sh",
-    "test:task-enrichment": "echo 'Task-enrichment tests run in @spec-kit/scripts workspace'",
+    "test:task-enrichment": "npx vitest run cli/tests/task-enrichment.vitest.ts --config ../vitest.config.ts",
     "test:watch": "vitest",
     "typecheck:tests": "tsc --noEmit --composite false -p tsconfig.tests.json",
     "test:sharded": "node scripts/run-tests-sharded.mjs"

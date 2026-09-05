@@ -184,7 +184,7 @@ if [[ "$need_build" == true ]]; then
         printf '[doctor-bootstrap] WARNING: npm audit found high-severity issues. Continuing bootstrap; investigate at next opportunity.\n' >&2
       }
       npm run build --workspace=@spec-kit/runtime
-      npm run build --workspace=@spec-kit/scripts
+      npm run build --workspace=@spec-kit/cli
     ) >&2
   else
     (
@@ -198,11 +198,11 @@ if [[ "$need_build" == true ]]; then
         printf '[doctor-bootstrap] WARNING: npm audit found high-severity issues. Continuing bootstrap; investigate at next opportunity.\n' >&2
       }
       npm run build --workspace=@spec-kit/runtime
-      npm run build --workspace=@spec-kit/scripts
+      npm run build --workspace=@spec-kit/cli
     )
   fi
   restart_required=true
-  record_action "installed dependencies and built @spec-kit/runtime plus @spec-kit/scripts"
+  record_action "installed dependencies and built @spec-kit/runtime plus @spec-kit/cli"
 fi
 
 [[ -f "$GRAPH_BACKFILL_DIST" ]] || fail "runtime/cli/dist/graph/backfill-graph-metadata.js is still missing after bootstrap"

@@ -85,7 +85,7 @@ Comment-hygiene smoke check over the spec-kit script tree:
 
 ```bash
 node .opencode/skills/system-spec-kit/runtime/cli/validation/ephemeral-pointer-audit.mjs \
-  .opencode/skills/system-spec-kit/scripts
+  .opencode/skills/system-spec-kit/runtime/cli
 echo $?   # 0 = clean, 1 = violations, 2 = bad invocation
 ```
 

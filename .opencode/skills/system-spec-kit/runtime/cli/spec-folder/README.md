@@ -82,7 +82,7 @@ Disallowed direction:
 Run from the repository root unless noted.
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/scripts run build
+npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 ```
 
 Expected result: TypeScript compiles and emits `runtime/cli/dist/spec-folder/` files.
@@ -123,7 +123,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/sk
 Run build and a compiled-module smoke check after changing source files:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/scripts run build
+npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/index.js').then(m => console.log(Object.keys(m).length))"
 ```
 

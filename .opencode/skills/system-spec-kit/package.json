@@ -17,10 +17,10 @@
     "typecheck:root": "tsc -p shared/tsconfig.json && tsc --noEmit --composite false -p runtime/tsconfig.json && tsc --noEmit --composite false -p runtime/cli/tsconfig.json",
     "build:watch": "tsc --build --watch",
     "test": "npm run --workspaces=false test:root",
-    "test:root": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed' && node runtime/cli/tests/test-embeddings-factory.js && npm run test --workspace=@spec-kit/runtime && npm run test --workspace=@spec-kit/scripts",
+    "test:root": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed' && node runtime/cli/tests/test-embeddings-factory.js && npm run test --workspace=@spec-kit/runtime && npm run test --workspace=@spec-kit/cli",
     "test:runtime": "npm run test --workspace=@spec-kit/runtime",
     "test:cli": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed'",
-    "test:task-enrichment": "node runtime/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --root runtime/cli --config ../runtime/vitest.config.ts",
+    "test:task-enrichment": "npx vitest run runtime/cli/tests/task-enrichment.vitest.ts --config vitest.config.ts",
     "test:embeddings": "node runtime/cli/tests/test-embeddings-factory.js",
     "postinstall": "node runtime/cli/setup/record-node-version.js"
   },

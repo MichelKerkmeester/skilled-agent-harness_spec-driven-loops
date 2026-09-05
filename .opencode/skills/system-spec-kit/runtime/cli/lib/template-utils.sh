@@ -247,7 +247,7 @@ resolve_level_contract() {
     script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     local skill_root
     skill_root="$(cd "$script_dir/../../.." && pwd)"
-    local loader="$skill_root/runtime/cli/node_modules/tsx/dist/loader.mjs"
+    local loader="$skill_root/node_modules/tsx/dist/loader.mjs"
     local resolver="$skill_root/runtime/lib/templates/level-contract-resolver.ts"
 
     if [[ ! -f "$loader" || ! -f "$resolver" ]]; then

@@ -51,7 +51,7 @@ Scaffold one packet for each supported Level, validate each packet with strict m
 9. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-3-plus" --strict`
 10. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level phase-parent --path "$TMPDIR/test-phase-parent" --name "test-phase-parent"`
 11. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-phase-parent" --strict`
-12. `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/workflow-invariance.vitest.ts`
+12. `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/workflow-invariance.vitest.ts`
 13. `rm -rf "$TMPDIR"`
 
 ### Expected
@@ -250,7 +250,7 @@ Summary: Errors: 2  Warnings: 0
 RESULT: FAILED
 ```
 
-12. `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/workflow-invariance.vitest.ts`
+12. `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/workflow-invariance.vitest.ts`
 
 ```text
 Not re-run in the original transcript; the documented command now uses the npm workspace path for the scripts package.

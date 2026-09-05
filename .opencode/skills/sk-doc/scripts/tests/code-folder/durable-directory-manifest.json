@@ -821,7 +821,7 @@
     ".opencode/skills/system-spec-kit/runtime/tests/validation",
     ".opencode/skills/system-spec-kit/runtime/tools",
     ".opencode/skills/system-spec-kit/runtime/utils",
-    ".opencode/skills/system-spec-kit/scripts",
+    ".opencode/skills/system-spec-kit/runtime/cli",
     ".opencode/skills/system-spec-kit/runtime/cli/codex",
     ".opencode/skills/system-spec-kit/runtime/cli/config",
     ".opencode/skills/system-spec-kit/runtime/cli/core",

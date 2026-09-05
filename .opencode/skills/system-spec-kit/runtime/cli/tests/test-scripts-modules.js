@@ -2936,7 +2936,7 @@ async function testMemoryRankMemories() {
 async function testWrapAllTemplatesShippedPath() {
   log('\n\uD83D\uDD2C T233: wrap-all-templates shipped path');
 
-  const DIST_WRAP = path.join(SCRIPTS_DIR, 'dist', 'wrap-all-templates.js');
+  const DIST_WRAP = path.join(SCRIPTS_DIR, 'lib', 'anchor-generator.js');
 
   try {
     if (!fs.existsSync(DIST_WRAP)) {

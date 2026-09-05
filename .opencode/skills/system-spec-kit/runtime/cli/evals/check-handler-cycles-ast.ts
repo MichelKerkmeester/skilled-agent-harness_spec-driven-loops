@@ -20,8 +20,8 @@ const moduleDir = dirnameFromImportMeta(import.meta.url);
 
 function resolveHandlersRoot(): string {
   const candidates = [
-    // Source layout (tsx): scripts/evals/check-handler-cycles-ast.ts
-    path.resolve(moduleDir, '../../runtime/handlers'),
+    // Source layout (tsx): runtime/cli/evals/check-handler-cycles-ast.ts
+    path.resolve(moduleDir, '../../handlers'),
     // Compiled layout (node): runtime/cli/dist/evals/check-handler-cycles-ast.js
     path.resolve(moduleDir, '../../../runtime/handlers'),
     // CWD fallbacks

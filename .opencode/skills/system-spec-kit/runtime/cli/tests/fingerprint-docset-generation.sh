@@ -51,7 +51,7 @@ cp "$PACKET/spec.md" "$WORK/spec.md"
 # Start from a freshly derived digest. Any edit to a hashed document since the
 # last derive would otherwise read as a failure of the generation logic rather
 # than as the stale digest it actually is.
-node --import "$REPO/.opencode/skills/system-spec-kit/runtime/cli/node_modules/tsx/dist/loader.mjs" \
+node --import "$REPO/.opencode/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs" \
      "$REPO/.opencode/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts" \
      --spec-folder "$PACKET" >/dev/null 2>&1
 cp "$PACKET/graph-metadata.json" "$WORK/gm.json"

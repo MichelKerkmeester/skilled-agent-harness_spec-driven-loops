@@ -77,20 +77,20 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
     - `grep -n 'WORKFLOW_HTML_COMMENT_RE\|stripWorkflowHtmlOutsideCodeFences' .opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts`
     - `grep -n 'SYSTEM_SPEC_KIT_CAPTURE_SOURCE\|trigger_phrases' .opencode/skills/system-spec-kit/runtime/cli/loaders/data-loader.ts .opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts`
   - Targeted automated closure suite:
-    - `cd .opencode/skills/system-spec-kit/scripts && npm run check`
-    - `cd .opencode/skills/system-spec-kit/scripts && npm run build`
-    - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/spec-affinity.vitest.ts tests/claude-code-capture.vitest.ts tests/opencode-cli-capture.vitest.ts tests/copilot-cli-capture.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/runtime-memory-inputs.vitest.ts tests/session-enrichment.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
+    - `cd .opencode/skills/system-spec-kit/runtime/cli && npm run check`
+    - `cd .opencode/skills/system-spec-kit/runtime/cli && npm run build`
+    - `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/spec-affinity.vitest.ts tests/claude-code-capture.vitest.ts tests/opencode-cli-capture.vitest.ts tests/copilot-cli-capture.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/runtime-memory-inputs.vitest.ts tests/session-enrichment.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
   - JS verification suites:
-    - `cd .opencode/skills/system-spec-kit/scripts && npm run test:legacy`
-    - `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
+    - `cd .opencode/skills/system-spec-kit/runtime/cli && npm run test:legacy`
+    - `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
     - `cd .opencode/skills/system-spec-kit/runtime/cli/tests && node test-memory-quality-lane.js`
-    - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
+    - `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
   - Standards checks:
     - `cd .opencode/skills/system-spec-kit/runtime && npm run lint`
     - `cd .opencode/skills/system-spec-kit/runtime && npm run build`
     - `cd .opencode/skills/system-spec-kit/runtime && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
     - `cd .opencode/skills/system-spec-kit/runtime && npm run test`
-    - `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts`
+    - `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/runtime/cli`
     - `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder>`
   - Manual/e2e scenarios:
     - `M-007a` Rich JSON-mode save: run `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js <json-data-file> 009-perfect-session-capturing` with a populated synthetic or sandbox JSON file and verify `qualityValidation.valid === true`, indexing succeeds, and a spec-doc record ID is returned.

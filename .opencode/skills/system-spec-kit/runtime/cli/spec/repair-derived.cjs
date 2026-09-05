@@ -38,7 +38,7 @@ const run = promisify(execFile);
 const REPO = process.cwd();
 const VALIDATE = '.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh';
 const BACKFILL = '.opencode/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts';
-const TSX_LOADER = './.opencode/skills/system-spec-kit/runtime/cli/node_modules/tsx/dist/loader.mjs';
+const TSX_LOADER = './.opencode/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs';
 
 // Each packet is validated by its own process and nothing is shared between
 // them, so the wall-clock cost is a scheduling problem rather than a real one.

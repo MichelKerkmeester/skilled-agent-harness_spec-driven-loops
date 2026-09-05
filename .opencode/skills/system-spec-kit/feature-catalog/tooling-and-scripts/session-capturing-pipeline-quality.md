@@ -226,18 +226,18 @@ The closure feature consists of these distinct shipped behaviors:
 - Manual playbook cross-reference: `M-007`
 ### VERIFICATION SOURCES
 
-- `cd .opencode/skills/system-spec-kit/scripts && npm run check`
-- `cd .opencode/skills/system-spec-kit/scripts && npm run build`
-- `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/spec-affinity.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npm run check`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npm run build`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/spec-affinity.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/runtime/cli/tests && node test-extractors-loaders.js`
-- `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/runtime/cli/tests && node test-memory-quality-lane.js`
-- `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/runtime && npm run lint`
 - `cd .opencode/skills/system-spec-kit/runtime && npm run build`
 - `cd .opencode/skills/system-spec-kit/runtime && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/runtime && npm run test`
-- `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts`
+- `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/runtime/cli`
 
 ### Latest verification snapshot
 

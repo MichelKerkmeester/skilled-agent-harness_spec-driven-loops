@@ -148,7 +148,7 @@ Run every one from the repository root; read output and exit status, don't infer
 | Parent + sibling phases, recursive | `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-decommission-debt-fixes --strict --recursive` |
 | Typecheck: shared, runtime, cli | `cd .opencode/skills/system-spec-kit && npm run typecheck` |
 | `npm test` at the workspace root | `cd .opencode/skills/system-spec-kit && npm test` |
-| `generate-context.js --help` | `node .opencode/skills/system-spec-kit/runtime/cli/dist/memory/generate-context.js --help` |
+| `generate-context.js --help` | `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --help` |
 | Trigger-index lookup | `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder question"` |
 | Registered hook adapters, empty payload each | run every entry in `.claude/settings.json`, `.codex/hooks.json`, `.devin/hooks.v1.json`, `.cursor/hooks.json` once |
 | `git grep` for the old path, repo-wide | `git grep -n "system-spec-kit/scripts" -- . ':!specs/*' ':!*/changelog/*' ':!*/benchmark/*' ':!*/node_modules/*' ':!*/dist/*'` — expect 0 hits outside the historical corpus |

@@ -31,7 +31,7 @@ const DIST_PACKAGES = Object.freeze([
   },
   {
     id: 'system-spec-kit/runtime/cli',
-    name: '@spec-kit/scripts',
+    name: '@spec-kit/cli',
     root: '.opencode/skills/system-spec-kit/runtime/cli',
     distEntries: {
       default: 'dist/tsconfig.tsbuildinfo',

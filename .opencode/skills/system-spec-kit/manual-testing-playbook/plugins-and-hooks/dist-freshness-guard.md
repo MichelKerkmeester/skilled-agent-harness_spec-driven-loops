@@ -25,7 +25,7 @@ expected_leaf_resources: []
 silently trusts an out-of-date build. It reuses the shared `checkAllFreshness()` /
 `checkPackageFreshness()` helpers from `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`
 against a fixed registry of seven watched packages (`system-spec-kit/shared`,
-`system-spec-kit/scripts`, `system-spec-kit/runtime`, `mcp-code-mode/mcp-server`,
+`system-spec-kit/runtime/cli`, `system-spec-kit/runtime`, `mcp-code-mode/mcp-server`,
 `sk-design/sk-design-md-generator/backend`).
 
 The guard fires diagnostics on three triggers: OpenCode's `session.created` event (once per

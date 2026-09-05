@@ -88,8 +88,8 @@ The shipped posture enforces the following behavior:
 
 ### VERIFICATION SOURCES
 
-- `cd .opencode/skills/system-spec-kit/scripts && npm run check`
-- `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npm run check`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`
 
 Related references:
 - [json-mode-hybrid-enrichment.md](../../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md) — JSON mode structured summary hardening

@@ -6,6 +6,14 @@ import { describe, expect, it } from 'vitest';
 
 import { CORPUS_ROOTS, EXCLUDED_DIR_NAMES, FIXTURE_DIR_PATTERN, isExcludedDirectory } from '../retrieval/lib/corpus.mjs';
 import { DEFAULT_ROOTS, GLOBS } from '../retrieval/lib/rg-lane.mjs';
+import {
+  EXCLUDED_DIR_NAMES as RETROFIT_EXCLUDED_DIR_NAMES,
+  NOT_PRUNED_DELTA as RETROFIT_NOT_PRUNED_DELTA,
+} from '../retrieval/retrofit-convention.mjs';
+import {
+  EXCLUDE_GLOBS as SWEEP_EXCLUDE_GLOBS,
+  GLOB_DELTA as SWEEP_GLOB_DELTA,
+} from '../retrieval/sweep-memory-residue.mjs';
 
 // ───────────────────────────────────────────────────────────────
 // The two-lane divergence table
@@ -191,5 +199,78 @@ describe('retrieval-conventions.md glob parity', () => {
       expect(docGlobs, `documented recipe #${blockIndex + 1} must copy the code's glob list verbatim`)
         .toEqual(codeGlobs);
     }
+  });
+});
+
+// ───────────────────────────────────────────────────────────────
+// Two more consumers of the shared corpus policy: the grep-convention
+// retrofit pipeline and the memory-residue sweep. Each imports the real
+// EXCLUDED_DIR_NAMES set rather than keeping its own hand-copied list, and
+// declares every place its effective exclusions differ from that set as a
+// named, reasoned delta. These tests read the real deltas off each module
+// (not a hand-copied guess) and rebuild the expected effective set from
+// nothing but the shared table plus the declared deltas, so an undeclared
+// drift on either side fails here instead of surfacing as a silent behavior
+// change in the pipeline or the sweep.
+// ───────────────────────────────────────────────────────────────
+
+describe('retrofit-convention.mjs exclusion parity', () => {
+  it('derives its effective exclusion set from the shared table minus its declared delta, and nothing else', () => {
+    const expected = [...EXCLUDED_DIR_NAMES]
+      .filter((name) => !RETROFIT_NOT_PRUNED_DELTA.some((entry) => entry.name === name))
+      .sort();
+    expect([...RETROFIT_EXCLUDED_DIR_NAMES].sort()).toEqual(expected);
+  });
+
+  it('carries a reason for every delta entry, and only subtracts names the shared table actually has', () => {
+    for (const entry of RETROFIT_NOT_PRUNED_DELTA) {
+      expect(entry.reason.length, `delta entry "${entry.name}" must carry a reason`).toBeGreaterThan(0);
+      expect(EXCLUDED_DIR_NAMES.has(entry.name), `delta entry "${entry.name}" is not in the shared table it claims to subtract from`).toBe(true);
+    }
+  });
+
+  it('still does not exclude a research/lineages directory, the corpus compound rule this pipeline never adopted', () => {
+    // Not a flat name, so it cannot appear in NOT_PRUNED_DELTA - the pipeline
+    // simply never calls the corpus's compound name+parent check at all.
+    expect(RETROFIT_EXCLUDED_DIR_NAMES.has('lineages')).toBe(false);
+    expect(isExcludedDirectory('lineages', 'research', 'specs/track/research/lineages')).toBe(true);
+  });
+});
+
+describe('sweep-memory-residue.mjs exclusion parity', () => {
+  it('derives its "anywhere" globs from the shared table minus the names its delta re-scopes, and nothing else', () => {
+    const deltaGlobs = SWEEP_GLOB_DELTA.map((entry) => entry.glob);
+    const rescopedNames = SWEEP_GLOB_DELTA
+      .map((entry) => /^!(?:\*\*\/)?([^/]+)\/\*\*$/.exec(entry.glob)?.[1])
+      .filter((name): name is string => Boolean(name) && EXCLUDED_DIR_NAMES.has(name as string));
+    const expectedAnywhere = [...EXCLUDED_DIR_NAMES]
+      .filter((name) => !rescopedNames.includes(name))
+      .sort()
+      .map((name) => `!**/${name}/**`);
+
+    expect([...SWEEP_EXCLUDE_GLOBS].sort()).toEqual([...expectedAnywhere, ...deltaGlobs].sort());
+  });
+
+  it('carries a reason for every delta entry', () => {
+    for (const entry of SWEEP_GLOB_DELTA) {
+      expect(entry.reason.length, `delta entry "${entry.glob}" must carry a reason`).toBeGreaterThan(0);
+    }
+  });
+
+  it('re-scopes .git to root-only rather than dropping it, and adds .worktrees with no counterpart in the shared table', () => {
+    const globs = SWEEP_GLOB_DELTA.map((entry) => entry.glob);
+    expect(globs).toContain('!.git/**');
+    expect(globs).not.toContain('!**/.git/**');
+    expect(globs).toContain('!.worktrees/**');
+    expect(EXCLUDED_DIR_NAMES.has('.worktrees')).toBe(false);
+  });
+
+  it('still excludes research/lineages, converging with the corpus for the same reason', () => {
+    expect(SWEEP_EXCLUDE_GLOBS).toContain('!**/research/lineages/**');
+  });
+
+  it('does not adopt the corpus fixture-directory exclusion - residue must still be reachable inside a fixture tree', () => {
+    expect(SWEEP_EXCLUDE_GLOBS.some((glob) => /fixture/i.test(glob))).toBe(false);
+    expect(FIXTURE_DIR_PATTERN.test('fixtures')).toBe(true);
   });
 });

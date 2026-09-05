@@ -26,7 +26,7 @@ The codebase has clear boundaries between its major sections, and this tool auto
 
 Two architecture rules in `ARCHITECTURE.md` were previously documentation-only with no automated enforcement: (1) `shared/` must not import from `runtime/` or `runtime/cli/`, and (2) `runtime/scripts/` must contain only thin compatibility wrappers delegating to canonical `runtime/cli/dist/` implementations.
 
-`check-architecture-boundaries.ts` enforces both rules as part of `npm run check`. GAP A walks all `.ts` files in `shared/`, extracts module specifiers (skipping block and line comments), and flags any import matching relative paths to `runtime/` or `runtime/cli/` at any depth, or package-form `@spec-kit/runtime/` or `@spec-kit/scripts/`. This is an absolute prohibition with no allowlist.
+`check-architecture-boundaries.ts` enforces both rules as part of `npm run check`. GAP A walks all `.ts` files in `shared/`, extracts module specifiers (skipping block and line comments), and flags any import matching relative paths to `runtime/` or `runtime/cli/` at any depth, or package-form `@spec-kit/runtime/` or `@spec-kit/cli/`. This is an absolute prohibition with no allowlist.
 
 GAP B scans top-level `.ts` files in `runtime/scripts/` (non-recursive) and verifies each passes three conditions: at most 50 substantive lines (non-blank, non-comment), contains a `child_process` import and references `runtime/cli/dist/` somewhere in its content. Failure on any condition flags the file as not a valid wrapper.
 

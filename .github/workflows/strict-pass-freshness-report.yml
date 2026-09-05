@@ -30,19 +30,19 @@ jobs:
           node-version: '22'
 
       # The validator loads TypeScript rule modules that import across the
-      # runtime package, so installing only the scripts workspace leaves every
+      # runtime package, so installing only the cli workspace leaves every
       # one of those rules erroring — which reads as thousands of failing packets
       # rather than as a missing toolchain.
       - name: Install spec-kit dependencies
-        # Only the package root carries a lockfile; the server, shared project and
-        # scripts are workspaces of it, so the root install is what provisions all
-        # three. Installing a workspace directly fails for want of its own lockfile.
+        # Only the package root carries a lockfile; shared, runtime and
+        # runtime/cli are workspaces of it, so the root install is what
+        # provisions all three in one pass. Installing a workspace directly
+        # fails for want of its own lockfile.
         run: |
           set -euo pipefail
           npm --prefix .opencode/skills/system-spec-kit ci
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
           npm --prefix .opencode/skills/system-spec-kit/runtime run build
-          ( cd .opencode/skills/system-spec-kit/scripts && npm ci )
 
       - name: Sweep the corpus
         shell: bash
@@ -53,7 +53,7 @@ jobs:
           # The leading ./ is load-bearing: node --import reads a bare path as a
           # package name, so without it the loader never resolves and the sweep
           # dies before it reads a single packet.
-          node --import ./.opencode/skills/system-spec-kit/runtime/cli/node_modules/tsx/dist/loader.mjs \
+          node --import ./.opencode/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs \
             .opencode/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts \
             --roots specs \
             --format json > .strict-pass-freshness/report.json

@@ -80,7 +80,7 @@ Restricted import surfaces:
 
 ## 4. COMMANDS
 
-Run from `.opencode/skills/system-spec-kit/scripts` unless a command uses a repository-root path.
+Run from `.opencode/skills/system-spec-kit/runtime/cli` unless a command uses a repository-root path.
 
 ```bash
 npx tsx evals/check-no-mcp-lib-imports-ast.ts
@@ -130,7 +130,7 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 Run policy checks after changing eval scripts:
 
 ```bash
-cd .opencode/skills/system-spec-kit/scripts
+cd .opencode/skills/system-spec-kit/runtime/cli
 npx tsx evals/check-no-mcp-lib-imports-ast.ts
 npx tsx evals/check-allowlist-expiry.ts
 ```

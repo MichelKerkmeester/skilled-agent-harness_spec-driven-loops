@@ -31,7 +31,7 @@ The package has no server process and no transport of its own. Its build artifac
 
 Two consumers, and no third.
 
-- **The scripts workspace** (`@spec-kit/scripts`) declares `"@spec-kit/runtime": "file:../runtime"` and imports the barrel as `@spec-kit/runtime/api`. Live callers include `cli/spec-folder/generate-description.ts`, `cli/core/workflow.ts`, `cli/continuity/generate-context.ts`, and `cli/continuity/backfill-research-metadata.ts`. Imports that reach past the barrel into `lib/`, `core/`, or `handlers/` are rejected by the import-policy checks in `cli/evals/` unless they carry a governed allowlist entry.
+- **The cli workspace** (`@spec-kit/cli`) declares `"@spec-kit/runtime": "file:../runtime"` and imports the barrel as `@spec-kit/runtime/api`. Live callers include `cli/spec-folder/generate-description.ts`, `cli/core/workflow.ts`, `cli/continuity/generate-context.ts`, and `cli/continuity/backfill-research-metadata.ts`. Imports that reach past the barrel into `lib/`, `core/`, or `handlers/` are rejected by the import-policy checks in `cli/evals/` unless they carry a governed allowlist entry.
 - **The runtime hook configs** name files under `hooks/` directly. `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json`, and `.devin/hooks.v1.json` register a mix of compiled `dist/hooks/<runtime>/*.js` outputs and directly-runnable `.mjs`/`.cjs` adapters. Pi discovers `hooks/pi/*` through relative symlinks in `.pi/extensions/`.
 
 `cli/spec/validate.sh` is a third consumer in practice but not an import one: it resolves `dist/lib/validation/orchestrator.js`, guards it with the `validation-orchestrator` freshness entry in `cli/lib/dist-freshness.cjs`, and refuses to run against a stale build.

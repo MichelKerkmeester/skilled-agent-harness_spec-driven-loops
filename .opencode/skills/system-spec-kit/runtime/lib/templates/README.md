@@ -49,7 +49,7 @@ templates/
 
 ## 6. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/scripts`:
+Run from `.opencode/skills/system-spec-kit/runtime/cli`:
 
 ```bash
 npx vitest run tests/level-contract-resolver.vitest.ts tests/scaffold-golden-snapshots.vitest.ts

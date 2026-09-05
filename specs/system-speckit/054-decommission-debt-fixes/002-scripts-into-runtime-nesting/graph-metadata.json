@@ -55,12 +55,12 @@
       "shared/embeddings/factory.ts",
       "runtime/lib/graph/graph-metadata-parser.ts",
       "runtime/lib/validation/orchestrator.ts",
+      "evals/check-no-mcp-lib-imports.ts",
+      "evals/check-no-mcp-lib-imports-ast.ts",
+      "evals/check-allowlist-expiry.ts",
+      "evals/import-policy-rules.ts",
       "core/config.ts",
-      ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      "cli/dist/continuity/generate-context.js",
-      "runtime/cli/package.json",
-      "runtime/cli/tsconfig.json",
-      "runtime/tsconfig.json"
+      "core/workflow.ts"
     ],
     "entities": [
       {
@@ -148,27 +148,39 @@
         "source": "derived"
       },
       {
+        "name": "check-no-mcp-lib-imports.ts",
+        "kind": "code",
+        "path": "evals/check-no-mcp-lib-imports.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-mcp-lib-imports-ast.ts",
+        "kind": "code",
+        "path": "evals/check-no-mcp-lib-imports-ast.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-allowlist-expiry.ts",
+        "kind": "code",
+        "path": "evals/check-allowlist-expiry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "import-policy-rules.ts",
+        "kind": "code",
+        "path": "evals/import-policy-rules.ts",
+        "source": "derived"
+      },
+      {
         "name": "config.ts",
         "kind": "code",
         "path": "core/config.ts",
         "source": "derived"
       },
       {
-        "name": "command-contract.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "runtime/cli/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "tsconfig.json",
-        "kind": "config",
-        "path": "runtime/cli/tsconfig.json",
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "core/workflow.ts",
         "source": "derived"
       },
       {
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/` runs two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (the `@spec-kit/scripts` CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`)",
     "created_at": "2026-09-05T06:13:04Z",
-    "last_save_at": "2026-09-05T09:17:50.283Z",
+    "last_save_at": "2026-09-05T11:42:48.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e814a8047d452cf64f8421ff95d1d4c663769245221a4064d590450de225c0df",
+    "source_fingerprint": "sha256:3e15dff46118cf6c096936773ff621c1f04e8818de2c6871f76ca8d5f676435b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6417d34f9fb4fb8e7991c9dd0e56cd0f7a2506371dd6fee630d3f54d8a74f31",
       "plan.md": "1d9b8f76670caf398d00e6d474a9d42704ddaff454eb229b74f453129c87a562",
       "tasks.md": "142193e0c0c7531428eb9b997d3e4de62cf9ae1c418c0d9a407a38cdd04f9883",
-      "implementation-summary.md": "41b98ae789775c9cba59af98ceb2a756b348a26e97a91f34917e68f68dbb66f6"
+      "implementation-summary.md": "678a26be4f648d4afda023b6c1239203ec00e70fdf49ad2d8da0bd86d25930eb"
     },
     "last_active_child_id": null,
     "last_active_at": null

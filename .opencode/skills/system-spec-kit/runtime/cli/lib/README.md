@@ -212,7 +212,7 @@ node -e "console.log(typeof require('./.opencode/skills/system-spec-kit/runtime/
 Use repository-root commands:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/scripts run build
+npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/lib/anchor-generator.js').then(m => console.log(typeof m.generateAnchorId))"
 ```
 

@@ -58,7 +58,7 @@ Validate canonical-first spec-root resolution in an operating-system temporary w
 2. Run the branch implementation against only that temporary playground. The script intentionally leaves the playground available for evidence inspection; it performs no checkout cleanup and has no path to the live spec roots.
 
    ```bash
-   cd .opencode/skills/system-spec-kit/scripts
+   cd .opencode/skills/system-spec-kit/runtime/cli
    npx tsx <<'TS'
    import * as fs from 'node:fs';
    import * as path from 'node:path';

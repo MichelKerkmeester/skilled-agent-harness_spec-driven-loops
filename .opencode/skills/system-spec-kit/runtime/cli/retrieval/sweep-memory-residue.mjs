@@ -38,6 +38,7 @@ import readline from 'node:readline';
 import { fileURLToPath } from 'node:url';
 
 import { publishJson, stableStringify } from './lib/artifact.mjs';
+import { EXCLUDED_DIR_NAMES as CORPUS_EXCLUDED_DIR_NAMES } from './lib/corpus.mjs';
 import { compareCodeUnits } from './lib/normalize.mjs';
 import { formatCommand, parseJsonLines, resolveRipgrep, ripgrepVersion } from './lib/rg-lane.mjs';
 
@@ -124,15 +125,60 @@ export const LITERAL_TERMS = Object.freeze([
   'zvec-grep',
 ]);
 
-/** Trees that carry no live instruction. The surviving package is swept like any other tree. */
-export const EXCLUDE_GLOBS = Object.freeze([
-  '!.git/**',
-  '!**/node_modules/**',
-  '!**/z_archive/**',
-  '!**/research/lineages/**',
-  '!**/scratch/**',
-  '!.worktrees/**',
+/**
+ * Flat names the shared corpus policy prunes at any depth, taken directly
+ * from it rather than retyped as a second hand-written list. `.git` is
+ * excluded from this "anywhere" set on purpose — see GLOB_DELTA below — so a
+ * future addition to the shared policy still needs a delta decision here
+ * rather than silently widening what this sweep skips.
+ */
+const SHARED_ANYWHERE_GLOBS = Object.freeze(
+  [...CORPUS_EXCLUDED_DIR_NAMES].filter((name) => name !== '.git').sort(compareCodeUnits).map((name) => `!**/${name}/**`),
+);
+
+/**
+ * Every place this sweep's exclusion set diverges from the shared corpus
+ * policy, recorded once with the reason so a change to either side has
+ * exactly one place to update instead of two lists drifting apart silently.
+ *
+ * - `.git` is pruned at root scope only, narrower than the corpus's anywhere
+ *   match: this sweep walks the whole repository rather than corpus.mjs's
+ *   scoped documentation roots, and the vendored/cloned repositories nested
+ *   under this tree (e.g. `barter/*`, `.pi/git/*`) carry their own `.git`
+ *   directories, which belong to a different repository, not this one.
+ * - `.worktrees` has no counterpart in the shared policy at all: a worktree
+ *   is a full checkout of this same repository on another branch, so
+ *   scanning it would re-report every hit the primary tree already found,
+ *   once per worktree.
+ * - `research/lineages` mirrors the corpus's own compound rule (a `lineages`
+ *   directory directly under a `research` parent) for the same reason the
+ *   corpus applies it — recorded transcript volume with no live instruction
+ *   inside it — at a shape the flat name set above cannot express.
+ *
+ * The corpus's other exclusion, its fixture-directory pattern, is
+ * deliberately NOT added here: residue can hide inside a fixture-named
+ * directory the corpus skips because a fixture tree is real content, and
+ * this sweep exists to find every live reference, not to curate an index.
+ *
+ * @type {ReadonlyArray<{ glob: string, reason: string }>}
+ */
+export const GLOB_DELTA = Object.freeze([
+  Object.freeze({
+    glob: '!.git/**',
+    reason: 'root-scoped only; nested .git directories under this tree belong to other checked-out repositories',
+  }),
+  Object.freeze({
+    glob: '!.worktrees/**',
+    reason: 'a worktree is a full checkout of this repository; scanning it would re-report hits the primary tree already found',
+  }),
+  Object.freeze({
+    glob: '!**/research/lineages/**',
+    reason: "mirrors the corpus's own compound research/lineages rule; recorded transcripts carry no live instruction",
+  }),
 ]);
+
+/** Trees that carry no live instruction. The surviving package is swept like any other tree. */
+export const EXCLUDE_GLOBS = Object.freeze([...SHARED_ANYWHERE_GLOBS, ...GLOB_DELTA.map((entry) => entry.glob)]);
 
 /**
  * Directory names whose contents are recorded evidence rather than live

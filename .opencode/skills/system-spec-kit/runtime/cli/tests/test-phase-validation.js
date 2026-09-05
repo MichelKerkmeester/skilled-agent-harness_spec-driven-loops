@@ -12,12 +12,12 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
-const SKILL_ROOT = path.join(REPO_ROOT, '.opencode', 'skill', 'system-spec-kit');
-const CREATE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'create.sh');
-const RECOMMEND_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'recommend-level.sh');
-const VALIDATE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'validate.sh');
-const ARCHIVE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'archive.sh');
-const FIXTURE_ROOT = path.join(SKILL_ROOT, 'scripts', 'tests', 'fixtures');
+const SKILL_ROOT = path.join(REPO_ROOT, '.opencode', 'skills', 'system-spec-kit');
+const CREATE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'create.sh');
+const RECOMMEND_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'recommend-level.sh');
+const VALIDATE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'validate.sh');
+const ARCHIVE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'archive.sh');
+const FIXTURE_ROOT = path.join(SKILL_ROOT, 'runtime', 'cli', 'tests', 'fixtures');
 const ALLOWED_SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
 
 let passed = 0;

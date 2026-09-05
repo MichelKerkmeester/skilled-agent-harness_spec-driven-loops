@@ -53,7 +53,7 @@ interface WrapperSignals {
 const REQUIRED_ROOT_DIRS = ['shared', 'runtime', 'runtime/cli'] as const;
 
 // Absolute prohibition — shared/ must remain neutral (no allowlist)
-const SHARED_PROHIBITED_PACKAGE_PREFIXES = ['@spec-kit/runtime', '@spec-kit/scripts'];
+const SHARED_PROHIBITED_PACKAGE_PREFIXES = ['@spec-kit/runtime', '@spec-kit/cli'];
 
 // 50 lines is generous for a spawn+exit wrapper; anything larger
 // Indicates logic that belongs in cli/ instead
@@ -131,12 +131,12 @@ function isChildProcessModuleSpecifier(moduleSpecifier: string): boolean {
 
 function isScriptsDistReference(importPath: string): boolean {
   const normalized = normalizeImportPath(importPath);
-  return normalized.includes('cli/dist/') || normalized.endsWith('cli/dist') || normalized.startsWith('@spec-kit/scripts/dist');
+  return normalized.includes('cli/dist/') || normalized.endsWith('cli/dist') || normalized.startsWith('@spec-kit/cli/dist');
 }
 
 function isScriptsSourceReference(importPath: string): boolean {
   const normalized = normalizeImportPath(importPath);
-  if (normalized.startsWith('@spec-kit/scripts')) return true;
+  if (normalized.startsWith('@spec-kit/cli')) return true;
   return normalized.includes('/cli/') || normalized.startsWith('cli/');
 }
 

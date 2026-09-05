@@ -130,7 +130,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/sk
 Run the script build after changing type definitions:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/scripts run build
+npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 ```
 
 Expected result: TypeScript compiles and emits declarations for `session-types.ts` and `save-mode.ts`.

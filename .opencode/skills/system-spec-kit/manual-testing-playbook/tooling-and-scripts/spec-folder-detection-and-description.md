@@ -19,8 +19,8 @@ This scenario validates spec-folder detection and description metadata for `242`
 
 
 - Objective: Confirm folder detection, alignment safety, subfolder resolution, and description generation.
-- Real user request: `Please validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js and tell me whether the expected signals are present: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors.`
-- Prompt: `Validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.`
+- Real user request: `Please validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and tell me whether the expected signals are present: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors.`
+- Prompt: `Validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -33,14 +33,14 @@ This scenario validates spec-folder detection and description metadata for `242`
 ### Prompt
 
 ```
-Validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.
+Validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js`
-2. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-alignment-validator.js`
-3. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-subfolder-resolution.js`
+1. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js`
+2. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-alignment-validator.js`
+3. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-subfolder-resolution.js`
 4. `npx tsx .opencode/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"`
 
 ### Expected

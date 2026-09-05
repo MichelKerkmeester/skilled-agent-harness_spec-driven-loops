@@ -65,7 +65,7 @@ Internal package code should import from its owning `lib/`, `handlers/`, or `cor
 Run from the repository root:
 
 ```bash
-(cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/import-policy-rules.vitest.ts)
+(cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/import-policy-rules.vitest.ts)
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/api/README.md
 ```
 

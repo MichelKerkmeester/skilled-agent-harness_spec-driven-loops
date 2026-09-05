@@ -95,7 +95,7 @@ Use this folder when a script needs template expansion that is shared across spe
 Run from the repository root:
 
 ```bash
-cd .opencode/skills/system-spec-kit/scripts && npm run build
+cd .opencode/skills/system-spec-kit/runtime/cli && npm run build
 python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/cli/renderers/README.md
 ```
 

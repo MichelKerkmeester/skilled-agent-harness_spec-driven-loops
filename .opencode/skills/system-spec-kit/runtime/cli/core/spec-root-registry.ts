@@ -29,20 +29,20 @@ export interface SpecRootResolverEntry {
 /** Complete maintained inventory of known spec-root resolution call sites. */
 export const SPEC_ROOT_RESOLVERS = [
   {
-    file: 'scripts/core/config.ts:321-360',
+    file: 'runtime/cli/core/config.ts:321-360',
     symbol: 'getSpecsDirectories / findActiveSpecsDir / getAllExistingSpecsDirs',
     consumerOrEffect:
       'Active root selection and existing-root enumeration; aliases retain their first spelling.',
     precedence: 'canonical-first',
   },
   {
-    file: 'scripts/core/subfolder-utils.ts:39-58,129-149',
+    file: 'runtime/cli/core/subfolder-utils.ts:39-58,129-149',
     symbol: 'findChildFolderSync / findChildFolderAsync',
     consumerOrEffect: 'Synchronous and asynchronous recursive packet lookup with realpath deduplication.',
     precedence: 'legacy-first',
   },
   {
-    file: 'scripts/spec-folder/folder-detector.ts:181-186,1121-1139',
+    file: 'runtime/cli/spec-folder/folder-detector.ts:181-186,1121-1139',
     symbol: 'isUnderApprovedSpecsRoots / detectSpecFolder',
     consumerOrEffect: 'Containment accepts both roots; explicit roots are preserved before bare-name lookup.',
     precedence: 'direct-path-first',
@@ -57,26 +57,26 @@ export const SPEC_ROOT_RESOLVERS = [
     precedence: 'direct-path-first',
   },
   {
-    file: 'scripts/extractors/collect-session-data.ts:1063-1093,1193-1220,1437-1469',
+    file: 'runtime/cli/extractors/collect-session-data.ts:1063-1093,1193-1220,1437-1469',
     symbol: 'resolveProvidedSpecFolder / resolveSpecFolderRelative / collectSessionData',
     consumerOrEffect: 'Session packet and related-document resolution retain a matched explicit root.',
     precedence: 'direct-path-first',
   },
   {
-    file: 'scripts/core/workflow.ts:1016-1043,1663-1687',
+    file: 'runtime/cli/core/workflow.ts:1016-1043,1663-1687',
     symbol: 'runWorkflow',
     consumerOrEffect: 'Root-relative identity and description regeneration retain the detected absolute target.',
     precedence: 'direct-path-first',
   },
   {
-    file: 'scripts/spec-folder/directory-setup.ts:22-80',
+    file: 'runtime/cli/spec-folder/directory-setup.ts:22-80',
     symbol: 'ensureSpecFolderExists',
     consumerOrEffect:
       'Write-boundary validation accepts either approved root; active-root order affects diagnostics only.',
     precedence: 'membership-only',
   },
   {
-    file: 'scripts/spec-folder/nested-changelog.ts:589',
+    file: 'runtime/cli/spec-folder/nested-changelog.ts:589',
     symbol: 'ensureApprovedSpecFolder',
     consumerOrEffect:
       'Changelog write-boundary validation accepts either approved root without selecting a target.',
@@ -96,19 +96,19 @@ export const SPEC_ROOT_RESOLVERS = [
     precedence: 'canonical-first',
   },
   {
-    file: 'scripts/spec/create.sh:811-819',
+    file: 'runtime/cli/spec/create.sh:811-819',
     symbol: 'SPECS_DIR selection',
     consumerOrEffect: 'Packet creation uses the requested tracked or untracked destination directly.',
     precedence: 'direct-path-first',
   },
   {
-    file: 'scripts/graph/migrate-generated-json.ts:149-170,590-598',
+    file: 'runtime/cli/graph/migrate-generated-json.ts:149-170,590-598',
     symbol: 'resolveRepoRoot / parseArgs',
     consumerOrEffect: 'Graph metadata migration defaults directly to the canonical root.',
     precedence: 'canonical-only',
   },
   {
-    file: 'scripts/graph/backfill-graph-metadata.ts:238-259,278-319',
+    file: 'runtime/cli/graph/backfill-graph-metadata.ts:238-259,278-319',
     symbol: 'resolveRepoRoot / resolveScopedTarget / planBackfill',
     consumerOrEffect: 'Graph metadata backfill defaults directly to the canonical root.',
     precedence: 'canonical-only',
@@ -153,14 +153,14 @@ export const SPEC_ROOT_RESOLVERS = [
     precedence: 'direct-path-first',
   },
   {
-    file: 'scripts/utils/spec-affinity.ts:153-174',
+    file: 'runtime/cli/utils/spec-affinity.ts:153-174',
     symbol: 'resolveSpecFolderPathCandidates',
     consumerOrEffect:
       'Spec-affinity candidates preserve direct forms before legacy and canonical root candidates.',
     precedence: 'direct-path-first',
   },
   {
-    file: 'scripts/lib/validate-memory-quality.ts:619-651',
+    file: 'runtime/cli/lib/validate-memory-quality.ts:619-651',
     symbol: 'resolveSpecFolderPath',
     consumerOrEffect:
       'Memory-quality resolution checks a direct candidate before legacy and canonical at each ancestor.',

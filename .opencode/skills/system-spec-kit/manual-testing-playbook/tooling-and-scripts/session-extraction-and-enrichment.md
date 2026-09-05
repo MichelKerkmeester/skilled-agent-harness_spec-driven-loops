@@ -19,8 +19,8 @@ This scenario validates session extraction and enrichment for `241`. It focuses 
 
 
 - Objective: Confirm extractor loading, enrichment behavior, and phase classification stability.
-- Real user request: `Please validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js and tell me whether the expected signals are present: extractor loader script passes; targeted Vitest suites pass; enrichment-specific assertions remain green.`
-- Prompt: `Validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js and report cited pass/fail evidence.`
+- Real user request: `Please validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-extractors-loaders.js and tell me whether the expected signals are present: extractor loader script passes; targeted Vitest suites pass; enrichment-specific assertions remain green.`
+- Prompt: `Validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-extractors-loaders.js and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: extractor loader script passes; targeted Vitest suites pass; enrichment-specific assertions remain green
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -33,13 +33,13 @@ This scenario validates session extraction and enrichment for `241`. It focuses 
 ### Prompt
 
 ```
-Validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js and report cited pass/fail evidence.
+Validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-extractors-loaders.js and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js`
-2. `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/session-enrichment.vitest.ts tests/phase-classification.vitest.ts tests/description-enrichment.vitest.ts`
+1. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-extractors-loaders.js`
+2. `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/session-enrichment.vitest.ts tests/phase-classification.vitest.ts tests/description-enrichment.vitest.ts`
 
 ### Expected
 

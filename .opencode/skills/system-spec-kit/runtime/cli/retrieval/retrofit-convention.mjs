@@ -56,7 +56,7 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
 import { publishJson, sha256, stableStringify } from './lib/artifact.mjs';
-import { canonicalRelativePath } from './lib/corpus.mjs';
+import { EXCLUDED_DIR_NAMES as CORPUS_EXCLUDED_DIR_NAMES, canonicalRelativePath } from './lib/corpus.mjs';
 import {
   ALIAS_KEY,
   CANONICAL_TRIGGER_KEY,
@@ -95,8 +95,34 @@ export const STAGES = Object.freeze(['enumerate', 'dry-run', 'process', 'rescan'
 /** Corpus root. The convention governs spec documents; other trees keep their own contracts. */
 export const SCOPE_ROOT = 'specs';
 
+/**
+ * Names the shared corpus policy prunes at any depth that this pipeline
+ * deliberately does not prune, kept as a declared subtraction from that
+ * policy rather than a second hand-written exclusion list. The corpus's other
+ * exclusion — a `lineages` directory directly under a `research` parent — is
+ * a compound name+parent rule with no counterpart in the flat set below, so
+ * it needs no subtraction entry: this pipeline was never built to apply it,
+ * for the same reason `scratch` is named here.
+ *
+ * @type {ReadonlyArray<{ name: string, reason: string }>}
+ */
+export const NOT_PRUNED_DELTA = Object.freeze([
+  Object.freeze({
+    name: 'scratch',
+    reason: 'this pipeline retrofits every document under specs/, scratch drafts included, so a draft already '
+      + 'carries the convention by the time it is promoted out of scratch',
+  }),
+  Object.freeze({
+    name: '.git',
+    reason: 'already unreachable through the hidden-directory rule in walkScope below, which prunes every '
+      + 'dot-prefixed directory by default; repeating it here would prune nothing the walk does not already prune',
+  }),
+]);
+
 /** Directory names pruned wherever they appear, matching the recipes' negative globs. */
-const EXCLUDED_DIR_NAMES = Object.freeze(new Set(['z_archive', 'node_modules']));
+export const EXCLUDED_DIR_NAMES = Object.freeze(
+  new Set([...CORPUS_EXCLUDED_DIR_NAMES].filter((name) => !NOT_PRUNED_DELTA.some((entry) => entry.name === name))),
+);
 
 /** Artifact directory used when `--out` is absent. */
 const DEFAULT_OUT_DIR = 'specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/scratch';

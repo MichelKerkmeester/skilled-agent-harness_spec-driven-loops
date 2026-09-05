@@ -38,7 +38,7 @@ trigger_phrases:
 Run loader validation from the repository root:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/scripts run build
+npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 node -e "const loaders=require('./.opencode/skills/system-spec-kit/runtime/cli/dist/loaders'); console.log(Object.keys(loaders).sort())"
 python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/runtime/cli/loaders
 ```
