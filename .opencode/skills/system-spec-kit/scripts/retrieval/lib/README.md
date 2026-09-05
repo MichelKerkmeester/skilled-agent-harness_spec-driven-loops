@@ -29,7 +29,7 @@ Current state:
 | File | Responsibility |
 |---|---|
 | `artifact.mjs` | Deterministic JSON serialization (`stableStringify`), `sha256`, atomic `publishJson` writes and the trigger-index shape assertion. |
-| `corpus.mjs` | Sorted, deduped, real-path-aware markdown discovery over `specs/` and `.opencode/skills/`. |
+| `corpus.mjs` | Sorted, deduped, real-path-aware markdown discovery over `specs/`, `.opencode/skills/` and `.opencode/install-guides/`. |
 | `frontmatter.mjs` | Strict single-key YAML frontmatter reader scoped to `trigger_phrases`, with a closed set of malformed-document categories. |
 | `grep-convention.mjs` | Pure primitives for the greppable-corpus convention: anchor grammar, frontmatter block extents, variant classification, the trigger allowlist judge, naming grammar and the diff classifier used by dry-run and rescan. |
 | `normalize.mjs` | Trigger-text normalization, tokenization and match-class scoring, mirroring the substring trigger lane so the generated index and the live lane score phrases identically. |

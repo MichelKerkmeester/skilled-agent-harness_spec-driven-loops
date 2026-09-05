@@ -9,6 +9,8 @@ trigger_phrases:
   - "trigger index lookup path"
   - "concept versus exact retrieval"
   - "lane merge rule"
+  - "coverage and exclusion policy"
+  - "root coverage table"
 importance_tier: important
 contextType: implementation
 version: 1.0.0.0
@@ -68,11 +70,12 @@ Nothing in this document may be read as a claim that the two index lanes plus gr
 
 ## 2. THE RECIPES
 
-Every recipe below is literal. Copy the flags rather than paraphrasing them, because `--no-config`, the two exclusion globs and the `--` separator each close a specific failure.
+Every recipe below is literal. Copy the flags rather than paraphrasing them, because `--no-config`, the exclusion globs and the `--` separator each close a specific failure.
 
 - `--no-config` is mandatory. Without it `RIPGREP_CONFIG_PATH` can inject arguments the caller never wrote.
 - `--hidden` is mandatory. The `.opencode` root holds dotted directories with live documentation, and without the flag ripgrep skips them without a word, so a miss there reads as a clean no-match. The `.git` exclusion glob keeps the flag from reaching repository internals.
 - `--glob '!**/z_archive/**'`, `--glob '!**/node_modules/**'` and `--glob '!**/.git/**'` keep archived packets, vendored trees and repository internals out of the result set; the last one exists because `--hidden` would otherwise let ripgrep into `.git`.
+- `--glob '!**/scratch/**'` keeps ephemeral working files out of the result set. The trigger-index corpus walker already excludes `scratch/` unconditionally, and this repository's own convention treats every `scratch/` tree as temporary output cleaned before completion, never canonical content — see Section 9 for the full coverage decision.
 - `-- 'phrase'` separates the pattern from the flags, so a phrase beginning with a hyphen is a pattern and not a parse error.
 - `--fixed-strings` treats the phrase literally. `--ignore-case` applies Unicode simple case folding.
 
@@ -82,7 +85,7 @@ Line-addressable evidence, one JSON object per line.
 
 ```text
 rg --no-config --hidden --json --fixed-strings --ignore-case \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
   -- 'phrase' specs .opencode
 ```
 
@@ -93,7 +96,7 @@ One path per matching file, at most one match read per file.
 ```text
 rg --no-config --hidden --fixed-strings --ignore-case \
   --files-with-matches --max-count 1 \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
   -- 'phrase' specs .opencode
 ```
 
@@ -103,7 +106,7 @@ A separate recipe, because counting is its own output mode.
 
 ```text
 rg --no-config --hidden --fixed-strings --ignore-case --count \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
   -- 'phrase' specs .opencode
 ```
 
@@ -113,7 +116,7 @@ The structured recipe from Section 2.1 plus a bounded context option. Keep the b
 
 ```text
 rg --no-config --hidden --json --fixed-strings --ignore-case -C 2 \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
   -- 'phrase' specs .opencode
 ```
 
@@ -121,7 +124,7 @@ Label every returned line as anchor evidence or body evidence. Anchor evidence i
 
 ```text
 rg --no-config --hidden --fixed-strings --ignore-case \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
   -- '<!-- ANCHOR:summary -->' specs
 ```
 
@@ -227,7 +230,7 @@ Ripgrep reads state the caller did not pass on the command line. For a reproduci
 | `.ignore` | Same, ripgrep-and-friends specific | Same |
 | `.rgignore` | Same, ripgrep specific | Same |
 
-**Glob order matters.** Later globs override earlier ones. `--glob '*.md'` selects Markdown, and the three exclusion globs that follow it remove `z_archive`, `node_modules` and `.git` from that selection. Reversing the order re-admits what the exclusions were there to remove. When a recipe is edited, keep the positive glob first and the exclusions last, and document any override a caller adds.
+**Glob order matters.** Later globs override earlier ones. `--glob '*.md'` selects Markdown, and the exclusion globs that follow it remove `z_archive`, `node_modules`, `.git` and `scratch` from that selection. Reversing the order re-admits what the exclusions were there to remove. When a recipe is edited, keep the positive glob first and the exclusions last, and document any override a caller adds.
 
 ---
 
@@ -256,7 +259,35 @@ Use one canonical spelling in emitted frontmatter. A reader may recognize the `t
 
 ---
 
-## 9. RELATED RESOURCES
+## 9. COVERAGE AND EXCLUSION POLICY
+
+The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep recipes (mirrored in code by `lib/rg-lane.mjs` and `rg-wrapper.mjs`) are two independent lanes over overlapping but not identical corpora. `scripts/tests/retrieval-coverage-parity.vitest.ts` enforces this table: a divergence not named below fails that test rather than drifting in silently.
+
+### Root coverage
+
+| Root | Trigger index | Ripgrep | Reason |
+|------|:---:|:---:|--------|
+| `specs` | Yes | Yes | Shared |
+| `.opencode/skills` | Yes | Yes (subset of `.opencode`) | Shared |
+| `.opencode/install-guides` | Yes | Yes (subset of `.opencode`) | Converged in the retrieval-coverage-alignment phase — it already carries `trigger_phrases` frontmatter and ripgrep already reached it; the trigger index missing it was a pure asymmetry |
+| Rest of `.opencode` (`commands`, `agents`, `bin`, `rules`, …) | No | Yes | Deliberate divergence. Every trigger-index root becomes part of a committed, size-tracked, fail-closed-on-malformed generated artifact that every Gate 1 lookup parses cold; the ripgrep lane carries no such artifact, so widening its reach costs nothing. The trigger index stays scoped to the `trigger_phrases`-governed corpus |
+| Repository-root `README.md` | No | No | Decided against for both lanes. It is public-facing project marketing content with no `trigger_phrases` convention, not spec or skill documentation |
+| The five runtime mirrors (`.claude`, `.codex`, `.cursor`, `.devin`, `.pi`) | No | No | Decided against for both lanes. Most of their content is symlinks onto documents already indexed under `.opencode`; the handful of unique files (`SYNC.md`, `AGENTS.md`, `PLUGINS.md`) document CLI-specific sync mechanics rather than retrieval content, and walking the mirrors would mostly add duplicate-skip noise |
+
+### Exclusion coverage
+
+| Excluded tree | Trigger index | Ripgrep | Reason |
+|------|:---:|:---:|--------|
+| `z_archive` | Yes | Yes | Shared |
+| `node_modules` | Yes | Yes | Shared |
+| `.git` | Yes (never walked) | Yes (`--glob '!**/.git/**'`) | Shared |
+| `scratch` | Yes | Yes | Converged in the retrieval-coverage-alignment phase. Unconditional in both: this repository's convention treats every `scratch/` tree as temporary output cleaned before completion, and the sibling `sweep-memory-residue.mjs` tool already excluded it for the same reason |
+| `research/lineages` (directly under a `research` parent) | Yes | No | Deliberate divergence. The trigger index excludes lineage transcripts to protect the curated phrase index from unauthored, transcript-derived noise (Section 8). Ripgrep is a raw evidence lane with no ranking to protect, and the corpus holds thousands of lineage documents a researcher may legitimately need to grep for a specific fact; converging would be a real coverage loss for a noise concern that does not apply to a scan |
+| `fixtures` / `__fixtures__` / `test-fixtures` / `*-fixtures` directories outside `specs/` | Yes | No | Deliberate divergence. The trigger index's exemption is scoped to outside `specs/` because hundreds of real specification documents live under packet directories named or containing `fixtures` (for example `002-contracts-and-fixtures`); replicating that exact scoping in ripgrep's flat, later-glob-wins engine risks a subtly wrong pattern that silently drops real spec content, which is a worse failure than the test-fixture noise it would remove |
+
+---
+
+## 10. RELATED RESOURCES
 
 ### Research
 

@@ -16,8 +16,17 @@ import { compareCodeUnits } from './normalize.mjs';
 // 1. CONTRACT
 // ───────────────────────────────────────────────────────────────
 
-/** Walk roots, in the order they are visited. */
-export const CORPUS_ROOTS = Object.freeze(['specs', '.opencode/skills']);
+/**
+ * Walk roots, in the order they are visited. `.opencode/install-guides`
+ * carries well-formed `trigger_phrases` frontmatter and is already reachable
+ * by the ripgrep lane's broader `.opencode` root, so leaving it out here would
+ * be a pure asymmetry rather than a deliberate scope choice. Root `README.md`
+ * and the five runtime mirrors (`.claude`, `.codex`, `.cursor`, `.devin`,
+ * `.pi`) are deliberately excluded from both lanes; see
+ * `references/retrieval/retrieval-conventions.md` for the full coverage table
+ * and the reason for every root decision.
+ */
+export const CORPUS_ROOTS = Object.freeze(['specs', '.opencode/skills', '.opencode/install-guides']);
 
 /** Human-readable exclusion list recorded in the manifest. */
 export const EXCLUSIONS = Object.freeze([
@@ -47,17 +56,23 @@ export const IGNORED_PATHS = Object.freeze([
   }),
 ]);
 
-/** Directory names pruned wherever they appear. */
-const EXCLUDED_DIR_NAMES = Object.freeze(new Set(['z_archive', 'node_modules', 'scratch', '.git']));
+/**
+ * Directory names pruned wherever they appear. Exported so the retrieval
+ * parity harness can walk the real policy instead of a hand-copied guess —
+ * an exclusion added here without a matching divergence-table entry is
+ * exactly what that test exists to catch.
+ */
+export const EXCLUDED_DIR_NAMES = Object.freeze(new Set(['z_archive', 'node_modules', 'scratch', '.git']));
 
 /**
  * Test-fixture directory names. A fixture tree holds documents written to be
  * wrong on purpose, so indexing one is harmful twice over: the deliberately
  * unparseable frontmatter fails publication closed for the whole corpus, and
  * the parseable fixtures inject test phrases into real postings, where a
- * lookup cannot tell them from an author's.
+ * lookup cannot tell them from an author's. Exported for the same reason as
+ * EXCLUDED_DIR_NAMES above.
  */
-const FIXTURE_DIR_PATTERN = /^(?:fixtures|__fixtures__|test-fixtures|[a-z][a-z0-9]*(?:-[a-z0-9]+)*-fixtures)$/;
+export const FIXTURE_DIR_PATTERN = /^(?:fixtures|__fixtures__|test-fixtures|[a-z][a-z0-9]*(?:-[a-z0-9]+)*-fixtures)$/;
 
 /**
  * The root under which a directory is a document rather than tooling. Inside a

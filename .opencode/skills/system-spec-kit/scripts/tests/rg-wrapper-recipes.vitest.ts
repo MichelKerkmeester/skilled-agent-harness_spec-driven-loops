@@ -46,6 +46,7 @@ function makeCorpus(): string {
   ]);
   write(dir, 'specs/track/001-packet/z_archive/old.md', ['archived only phrase', '']);
   write(dir, 'specs/track/001-packet/node_modules/vendor.md', ['vendored only phrase', '']);
+  write(dir, 'specs/track/001-packet/scratch/draft.md', ['scratch only phrase', '']);
   return dir;
 }
 
@@ -63,7 +64,7 @@ describe('recipe builders', () => {
   it('spells the structured recipe exactly as the convention writes it', () => {
     expect(structuredRecipe('phrase', ['specs', '.opencode'])).toEqual([
       '--no-config', '--hidden', '--json', '--fixed-strings', '--ignore-case',
-      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**',
+      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**', '--glob', '!**/scratch/**',
       '--', 'phrase', 'specs', '.opencode',
     ]);
   });
@@ -72,7 +73,7 @@ describe('recipe builders', () => {
     expect(pathRecipe('phrase', ['specs', '.opencode'])).toEqual([
       '--no-config', '--hidden', '--fixed-strings', '--ignore-case',
       '--files-with-matches', '--max-count', '1',
-      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**',
+      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**', '--glob', '!**/scratch/**',
       '--', 'phrase', 'specs', '.opencode',
     ]);
   });
@@ -80,7 +81,7 @@ describe('recipe builders', () => {
   it('spells the count recipe exactly as the convention writes it', () => {
     expect(countRecipe('phrase', ['specs', '.opencode'])).toEqual([
       '--no-config', '--hidden', '--fixed-strings', '--ignore-case', '--count',
-      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**',
+      '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**', '--glob', '!**/scratch/**',
       '--', 'phrase', 'specs', '.opencode',
     ]);
   });
@@ -178,9 +179,9 @@ describe('caller-side ranking', () => {
     expect(record.results[0].line).toBeGreaterThan(0);
   });
 
-  it('excludes archived and vendored trees from every recipe', () => {
+  it('excludes archived, vendored and scratch trees from every recipe', () => {
     const cwd = makeCorpus();
-    for (const phrase of ['archived only phrase', 'vendored only phrase']) {
+    for (const phrase of ['archived only phrase', 'vendored only phrase', 'scratch only phrase']) {
       const record = search('path', phrase, { cwd, roots: ['specs'] });
       expect(record.exitCode, phrase).toBe(EXIT_NO_MATCH);
     }

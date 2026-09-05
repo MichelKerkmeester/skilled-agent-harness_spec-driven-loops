@@ -3,10 +3,10 @@
     "duplicate-phrase": 63,
     "missing-frontmatter": 6844,
     "non-yaml-frontmatter": 1,
-    "ok": 13260,
+    "ok": 13296,
     "valid-empty-list": 7948
   },
-  "documentsScanned": 28116,
+  "documentsScanned": 28152,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "7ab7061f19a876dcf952fa2b66fa688881be798d16fdd37affa1510aa878b8ce",
+  "manifestHash": "9e1f09872986664cfbcf77825640eb33177f28b88bcf5bf717e989e98b02204b",
   "parserVersion": "1.0.0",
   "rows": [
     {
@@ -97170,6 +97170,18 @@
   ],
   "skippedPaths": [
     {
+      "path": ".opencode/install-guides/MCP - Chrome Dev Tools.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".opencode/install-guides/MCP - Code Mode.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".opencode/install-guides/MCP - Skill Advisor.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
       "path": ".opencode/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
     },
@@ -100619,6 +100631,38 @@
     },
     {
       "path": "specs/system-speckit/053-spec-kit-runtime-rename/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/research/lineages",
       "reason": "excluded directory"
     },
     {

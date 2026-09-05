@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7ab7061f19a876dcf952fa2b66fa688881be798d16fdd37affa1510aa878b8ce",
+  "manifestHash": "9e1f09872986664cfbcf77825640eb33177f28b88bcf5bf717e989e98b02204b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -25517,6 +25517,9 @@
     "component header codemod": [
       "component header codemod"
     ],
+    "component install scripts": [
+      "component install scripts"
+    ],
     "component migration fan out": [
       "component migration fan-out"
     ],
@@ -25816,6 +25819,9 @@
     ],
     "config testing integration": [
       "config testing integration"
+    ],
+    "configuration": [
+      "configuration"
     ],
     "configuration style prompt template": [
       "configuration-style prompt template"
@@ -27465,6 +27471,9 @@
     ],
     "coupling cohesion review prompts": [
       "coupling cohesion review prompts"
+    ],
+    "coverage and exclusion policy": [
+      "coverage and exclusion policy"
     ],
     "coverage audit workflow plan": [
       "coverage audit workflow plan"
@@ -47151,6 +47160,9 @@
     "getrerankerfallback helper": [
       "getRerankerFallback helper"
     ],
+    "getting started": [
+      "getting started"
+    ],
     "getunresolveddisagreements": [
       "getUnresolvedDisagreements"
     ],
@@ -51653,6 +51665,9 @@
     "inspectdispatch classification": [
       "inspectDispatch classification"
     ],
+    "install all sh": [
+      "install-all.sh"
+    ],
     "install and doctor shipped": [
       "install and doctor shipped"
     ],
@@ -51767,6 +51782,9 @@
     "install guide uppercase hyphen": [
       "install guide uppercase hyphen"
     ],
+    "install guides": [
+      "install guides"
+    ],
     "install make md plugin": [
       "install make.md plugin"
     ],
@@ -51817,6 +51835,9 @@
     ],
     "install transition tasks": [
       "install-transition tasks"
+    ],
+    "installation": [
+      "installation"
     ],
     "installation guide structure": [
       "installation guide structure"
@@ -57689,6 +57710,9 @@
     "mcp install guide template": [
       "mcp install guide template"
     ],
+    "mcp installer scripts": [
+      "MCP installer scripts"
+    ],
     "mcp json absolute node path": [
       "mcp.json absolute node path"
     ],
@@ -58473,6 +58497,9 @@
     ],
     "mcp server inner directory decisions": [
       "mcp-server inner-directory decisions"
+    ],
+    "mcp server install": [
+      "mcp server install"
     ],
     "mcp server kebab case": [
       "mcp_server kebab-case"
@@ -65943,6 +65970,9 @@
     ],
     "opencode senses fork": [
       "opencode senses fork"
+    ],
+    "opencode setup": [
+      "opencode setup"
     ],
     "opencode shell checklist": [
       "opencode shell checklist"
@@ -78882,9 +78912,6 @@
     "resource map emission": [
       "resource map emission"
     ],
-    "resource map extractor test": [
-      "resource map extractor test"
-    ],
     "resource map grouping": [
       "resource map grouping"
     ],
@@ -80450,6 +80477,9 @@
     ],
     "root coordination": [
       "root coordination"
+    ],
+    "root coverage table": [
+      "root coverage table"
     ],
     "root gate closeout": [
       "root gate closeout"
@@ -83107,9 +83137,6 @@
     "scripts tasks": [
       "scripts tasks"
     ],
-    "scripts tests": [
-      "scripts tests"
-    ],
     "scripts tests requirement": [
       "scripts tests requirement"
     ],
@@ -84294,6 +84321,9 @@
     ],
     "settings local json schema mismatch": [
       "settings.local.json schema mismatch"
+    ],
+    "setup": [
+      "setup"
     ],
     "setup a handover": [
       "Setup A handover"

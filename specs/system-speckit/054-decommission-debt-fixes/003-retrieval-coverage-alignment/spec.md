@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-05 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -64,6 +64,26 @@ The trigger-index corpus walker (`.opencode/skills/system-spec-kit/scripts/retri
 
 ### Purpose
 One exclusion and root policy governs both retrieval lanes - either literally shared, or documented with a stated reason for every difference - a parity test catches future drift, the install-guides/root-README/mirror coverage decision is made explicitly rather than by omission, and two trigger-index regenerations over an unchanged corpus hash identically.
+
+### Resolution
+
+**Coverage decision (REQ-002).** `.opencode/install-guides` joins the trigger-index corpus (`CORPUS_ROOTS` now `['specs', '.opencode/skills', '.opencode/install-guides']`): both its documents already carry well-formed `trigger_phrases` frontmatter and ripgrep already reached them, so the trigger index missing them was a pure asymmetry, not a deliberate scope choice. Root `README.md` and the five runtime mirrors (`.claude`, `.codex`, `.cursor`, `.devin`, `.pi`) join **neither** lane: `README.md` is public-facing project marketing content with no `trigger_phrases` convention, and the mirrors are mostly symlinks onto documents already indexed under `.opencode` plus a handful of hand-authored sync-manifest docs (`SYNC.md`, `AGENTS.md`, `PLUGINS.md`) that describe CLI-specific sync mechanics rather than retrieval content.
+
+**Divergence table (REQ-001, SC-001).** The full table with reasons lives in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` Section 9 (`COVERAGE AND EXCLUSION POLICY`), enforced going forward by `scripts/tests/retrieval-coverage-parity.vitest.ts`. Summary:
+
+| Axis | Trigger index | Ripgrep | Status |
+|------|:---:|:---:|--------|
+| Roots `specs`, `.opencode/skills` | Yes | Yes (subset of `.opencode`) | Same |
+| Root `.opencode/install-guides` | Yes | Yes (subset of `.opencode`) | **Converged this phase** |
+| Rest of `.opencode` | No | Yes | Documented divergence - the trigger index is a committed, size-tracked, fail-closed generated artifact; ripgrep carries no such artifact |
+| Root `README.md` | No | No | Decided against for both lanes |
+| Five runtime mirrors | No | No | Decided against for both lanes |
+| `z_archive`, `node_modules`, `.git` | Excluded | Excluded | Same |
+| `scratch` | Excluded | Excluded | **Converged this phase** - ripgrep's lane now excludes it too (`GLOBS` in `lib/rg-lane.mjs` and `rg-wrapper.mjs`, plus the documented recipes), matching the trigger index, the repository's own scratch convention, and the existing precedent in `sweep-memory-residue.mjs` |
+| `research/lineages` (under a `research` parent) | Excluded | Reachable | Documented divergence - ripgrep is a raw evidence lane that must still reach the corpus's thousands of lineage transcripts; converging would be a real coverage loss for a curated-index noise concern that does not apply to a scan |
+| Fixture-named directories outside `specs/` | Excluded | Reachable | Documented divergence - the trigger index's exemption is scoped to outside `specs/` because hundreds of real specification documents live under packet directories named for fixtures; replicating that exact scoping in ripgrep's glob engine risks silently dropping that real content |
+
+**Result (REQ-004, SC-002).** Two consecutive `generate-trigger-index.mjs` runs after this change produced identical `indexSha256` (`959b3263cecdae12c1b23bc99141b29f302b1c7d20bcffcaaadbb30def535790`) and `manifestHash`. Isolating the root change alone (same tree, `walkCorpus` called with the old and the new root list) shows exactly two documents added - `.opencode/install-guides/README.md` and `.opencode/install-guides/install-scripts/README.md` - both parsing as the `ok` diagnostic category, zero new `malformedDocuments`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -72,11 +92,11 @@ One exclusion and root policy governs both retrieval lanes - either literally sh
 ## 3. SCOPE
 
 ### In Scope
-- Produce a single table comparing `corpus.mjs`'s `CORPUS_ROOTS`/`EXCLUSIONS`/`isExcludedDirectory` against `retrieval-conventions.md`'s documented roots (`specs .opencode`) and glob exclusions (`z_archive`, `node_modules`, `.git`), naming every divergence.
-- Decide, for each of root `README.md`, the five runtime mirrors, and `.opencode/install-guides`: join the trigger-index corpus, join neither lane, or stay ripgrep-only (already the de facto state for `.opencode/install-guides`, since ripgrep's `.opencode` root already reaches it while the trigger index's `.opencode/skills` root does not).
-- Either converge the two lanes onto one exclusion manifest both read (a shared JSON or JS module), or update `retrieval-conventions.md`'s documented recipe to add the missing `scratch`/`research/lineages`/`tests/fixtures`/packet-fixture exclusions explicitly, whichever the decision favors - record which was chosen and why.
-- Add a parity test (vitest or a script under `scripts/retrieval/`) that walks both lists and fails when they diverge without a matching entry in the divergence table.
-- Regenerate the trigger index twice consecutively and confirm `corpusHash` and `indexSha256` match between runs.
+- Produce a single table comparing `corpus.mjs`'s `CORPUS_ROOTS`/`EXCLUSIONS`/`isExcludedDirectory` against `retrieval-conventions.md`'s documented roots (`specs .opencode`) and glob exclusions (`z_archive`, `node_modules`, `.git`), naming every divergence. **Done** - see the Resolution subsection under Problem & Purpose and Section 9 of `retrieval-conventions.md`.
+- Decide, for each of root `README.md`, the five runtime mirrors, and `.opencode/install-guides`: join the trigger-index corpus, join neither lane, or stay ripgrep-only. **Decided**: `.opencode/install-guides` joins the trigger-index corpus; `README.md` and the five mirrors join neither lane.
+- Either converge the two lanes onto one exclusion manifest both read (a shared JSON or JS module), or update `retrieval-conventions.md`'s documented recipe to add the missing `scratch`/`research/lineages`/`tests/fixtures`/packet-fixture exclusions explicitly, whichever the decision favors - record which was chosen and why. **Decided**: converge `scratch` into the ripgrep lane's code and docs; document `research/lineages` and the fixture-directory pattern as permanent, reasoned divergences rather than converging them, since both hold real content ripgrep must keep reaching.
+- Add a parity test (vitest or a script under `scripts/retrieval/`) that walks both lists and fails when they diverge without a matching entry in the divergence table. **Done** - `scripts/tests/retrieval-coverage-parity.vitest.ts`.
+- Regenerate the trigger index twice consecutively and confirm `corpusHash` and `indexSha256` match between runs. **Done**.
 
 ### Out of Scope
 - Changing the ripgrep recipe's flags or output-mode contract (`--json`, `--files-with-matches`, etc.) - only the roots and exclusions are in scope.
@@ -87,10 +107,14 @@ One exclusion and root policy governs both retrieval lanes - either literally sh
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs` | Modify | Align `CORPUS_ROOTS`/`EXCLUSIONS` with the decided policy, if the trigger index's coverage changes |
-| `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Modify | Align the documented ripgrep exclusion globs (section 2) with the decided policy |
-| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/corpus-manifest.json` | Regenerate | Reflects the new exclusion/root policy after two-run hash confirmation |
-| `.opencode/skills/system-spec-kit/scripts/tests/` (new or existing retrieval suite) | Create/Modify | Parity test comparing both lanes' exclusion/root lists |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs` | Modify | Widened `CORPUS_ROOTS` to add `.opencode/install-guides`; exported `EXCLUDED_DIR_NAMES`/`FIXTURE_DIR_PATTERN` for the parity test |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/lib/rg-lane.mjs` | Modify | Added the converged `scratch` exclusion glob to `GLOBS` |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs` | Modify | Mirrored the same `scratch` exclusion glob, keeping `assertRecipeParity` true |
+| `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Modify | Added the `scratch` exclusion to every Section 2 recipe; added Section 9 (coverage and exclusion policy) |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/fixtures/corpus-manifest.json`, `generation-diagnostics.json`, `phrase-variants.json`, `../../runtime/data/trigger-index.json` | Regenerate | Reflects the widened root and converged exclusion after two-run hash confirmation |
+| `.opencode/skills/system-spec-kit/scripts/tests/retrieval-coverage-parity.vitest.ts` | Create | New parity test walking both lanes' root and exclusion lists against the divergence table |
+| `.opencode/skills/system-spec-kit/scripts/tests/rg-wrapper-recipes.vitest.ts` | Modify | Updated the three hardcoded glob-list expectations and the corpus fixture for the converged `scratch` exclusion |
+| `.opencode/skills/system-spec-kit/scripts/tests/trigger-index.vitest.ts` | Modify | Added coverage for the new `.opencode/install-guides` root |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -196,7 +220,7 @@ One exclusion and root policy governs both retrieval lanes - either literally sh
 
 ## 10. OPEN QUESTIONS
 
-- Should `.opencode/install-guides` and the five runtime mirrors join the trigger-index corpus (making retrieval symmetric with what ripgrep can already reach), or should the ripgrep documentation instead be narrowed to match the trigger index's current scope? This spec does not pre-decide it; the divergence table in Scope names both options for the operator to choose during planning.
+- None open. Resolved: `.opencode/install-guides` joins the trigger-index corpus; root `README.md` and the five runtime mirrors join neither lane. See the Resolution subsection under Problem & Purpose.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,12 +47,20 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/lib/rg-lane.mjs",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs",
       ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
-      "data/trigger-index.json",
-      "runtime/data/trigger-index.json",
+      ".opencode/skills/system-spec-kit/scripts/retrieval/README.md",
+      "lib/README.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/retrieval-coverage-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/rg-wrapper-recipes.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/trigger-index.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/corpus-manifest.json",
-      "scripts/retrieval/fixtures/corpus-manifest.json",
-      ".opencode/skills/system-spec-kit/scripts/retrieval/lib/normalize.mjs"
+      "runtime/data/trigger-index.json",
+      ".opencode/install-guides/README.md",
+      "scripts/tests/retrieval-coverage-parity.vitest.ts",
+      ".opencode/install-guides/install-scripts/README.md",
+      "data/trigger-index.json"
     ],
     "entities": [
       {
@@ -92,15 +100,45 @@
         "source": "derived"
       },
       {
+        "name": "rg-lane.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/lib/rg-lane.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rg-wrapper.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs",
+        "source": "derived"
+      },
+      {
         "name": "retrieval-conventions.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
         "source": "derived"
       },
       {
-        "name": "trigger-index.json",
-        "kind": "config",
-        "path": "data/trigger-index.json",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-coverage-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/retrieval-coverage-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rg-wrapper-recipes.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/rg-wrapper-recipes.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/trigger-index.vitest.ts",
         "source": "derived"
       },
       {
@@ -110,9 +148,9 @@
         "source": "derived"
       },
       {
-        "name": "normalize.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/lib/normalize.mjs",
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
         "source": "derived"
       },
       {
@@ -168,41 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Compare",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The trigger-index corpus walker (`.opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:20-31`) sets `CORPUSROOTS = ['specs', '.opencode/skills']` and excludes `zarchive`, `nodemodules`, `scratch`, `research/lineages` (pruned only directly under a `research` parent), `tests/fixtures`, and any `fixtures`/`fixtures`/`test-fixtures`/`-fixtures` directory name outside `specs/`",
     "created_at": "2026-09-05T06:13:05Z",
-    "last_save_at": "2026-09-05T06:32:23.098Z",
+    "last_save_at": "2026-09-05T07:21:44.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44865e791518aa1a653fb94d65103d43d7b4a3a24056c8c15c0b1c313d40221c",
+    "source_fingerprint": "sha256:d11613948e3988680220b78d25359c7ee2a30b792ec3cb01e29efbe731ea54fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e6c8e4a839dcffcec0a3ff036444d0aa1c7b7053c31a99ce00c356100c46fefa",
-      "plan.md": "0536f5e80fe919f4fa49774019f684df52205e3bbcfe5319e09d9f7596c9df89",
-      "tasks.md": "be47f74aa12c866278054f023dd3ef32bda4d5dfd9fd16d09bc24c559cc96342",
-      "implementation-summary.md": "a7adcb9f6669cb3ce4992809d988cb4ae539d325d043e8eed8ee6110ae85c181"
+      "spec.md": "5156c45df0eab282dbc639230abd9a505750b311d8852ceea18ee3f7376f414e",
+      "plan.md": "858fc318e378ba9cc11c3ebb67c5ef523821769912faf317b3d9fae145962429",
+      "tasks.md": "24f46ca337def74487d86b3861b0256edc4f4a9a7f49483afedcd09d27142ad0",
+      "implementation-summary.md": "80ab238b1bacc202fe244287bc9206bd74d039186833c6e5ef45af1e9514c33a"
     },
     "last_active_child_id": null,
     "last_active_at": null

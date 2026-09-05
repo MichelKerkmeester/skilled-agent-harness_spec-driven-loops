@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7d94f12d36eba8fca0ee784fc3fedd5cb092cb1f992b40829dc03fd8c8e04340",
+  "corpusHash": "f056e4447210001f2758dcf2c68142b0f3e1c2b1856da4218bbb5d1d2b4517db",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -16,8 +16,10 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28116,
+  "includedPathCount": 28152,
   "includedPaths": [
+    ".opencode/install-guides/README.md",
+    ".opencode/install-guides/install-scripts/README.md",
     ".opencode/skills/.state/advisor/README.md",
     ".opencode/skills/.state/authority/README.md",
     ".opencode/skills/.state/completion-sentinel/README.md",
@@ -7967,7 +7969,6 @@
     ".opencode/skills/system-spec-kit/runtime/lib/utils/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/validation/README.md",
     ".opencode/skills/system-spec-kit/runtime/scripts/README.md",
-    ".opencode/skills/system-spec-kit/runtime/scripts/tests/README.md",
     ".opencode/skills/system-spec-kit/runtime/stress-test/README.md",
     ".opencode/skills/system-spec-kit/runtime/stress-test/substrate/README.md",
     ".opencode/skills/system-spec-kit/runtime/tests/README.md",
@@ -28129,6 +28130,41 @@
     "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/review-report.md",
     "specs/system-speckit/053-spec-kit-runtime-rename/spec.md",
     "specs/system-speckit/053-spec-kit-runtime-rename/tasks.md",
+    "specs/system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding/acceptance-criteria.md",
+    "specs/system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding/implementation-summary.md",
+    "specs/system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding/plan.md",
+    "specs/system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding/spec.md",
+    "specs/system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding/tasks.md",
+    "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/acceptance-criteria.md",
+    "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/implementation-summary.md",
+    "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/plan.md",
+    "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/spec.md",
+    "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/tasks.md",
+    "specs/system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment/acceptance-criteria.md",
+    "specs/system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment/implementation-summary.md",
+    "specs/system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment/plan.md",
+    "specs/system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment/spec.md",
+    "specs/system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment/tasks.md",
+    "specs/system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness/acceptance-criteria.md",
+    "specs/system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness/implementation-summary.md",
+    "specs/system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness/plan.md",
+    "specs/system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness/spec.md",
+    "specs/system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness/tasks.md",
+    "specs/system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal/acceptance-criteria.md",
+    "specs/system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal/implementation-summary.md",
+    "specs/system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal/plan.md",
+    "specs/system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal/spec.md",
+    "specs/system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal/tasks.md",
+    "specs/system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules/acceptance-criteria.md",
+    "specs/system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules/implementation-summary.md",
+    "specs/system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules/plan.md",
+    "specs/system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules/spec.md",
+    "specs/system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules/tasks.md",
+    "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/acceptance-criteria.md",
+    "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/implementation-summary.md",
+    "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/plan.md",
+    "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/spec.md",
+    "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/tasks.md",
     "specs/system-speckit/054-decommission-debt-fixes/acceptance-criteria.md",
     "specs/system-speckit/054-decommission-debt-fixes/implementation-summary.md",
     "specs/system-speckit/054-decommission-debt-fixes/plan.md",
@@ -28136,14 +28172,27 @@
     "specs/system-speckit/054-decommission-debt-fixes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7ab7061f19a876dcf952fa2b66fa688881be798d16fdd37affa1510aa878b8ce",
+  "manifestHash": "9e1f09872986664cfbcf77825640eb33177f28b88bcf5bf717e989e98b02204b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
     "specs",
-    ".opencode/skills"
+    ".opencode/skills",
+    ".opencode/install-guides"
   ],
   "skippedPaths": [
+    {
+      "path": ".opencode/install-guides/MCP - Chrome Dev Tools.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".opencode/install-guides/MCP - Code Mode.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".opencode/install-guides/MCP - Skill Advisor.md",
+      "reason": "duplicate of an already-indexed document"
+    },
     {
       "path": ".opencode/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
@@ -31594,6 +31643,38 @@
     },
     {
       "path": "specs/system-speckit/053-spec-kit-runtime-rename/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/research/lineages",
       "reason": "excluded directory"
     },
     {

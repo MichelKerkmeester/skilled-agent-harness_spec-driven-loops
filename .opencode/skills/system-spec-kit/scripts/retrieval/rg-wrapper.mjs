@@ -74,6 +74,7 @@ const GLOBS = Object.freeze([
   '--glob', '!**/z_archive/**',
   '--glob', '!**/node_modules/**',
   '--glob', '!**/.git/**',
+  '--glob', '!**/scratch/**',
 ]);
 
 /**

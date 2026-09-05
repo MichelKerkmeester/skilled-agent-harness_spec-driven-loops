@@ -38,12 +38,23 @@ export const BASE_FLAGS = Object.freeze([
   '--ignore-case',
 ]);
 
-/** Glob set, positive first so the exclusions that follow it win. */
+/**
+ * Glob set, positive first so the exclusions that follow it win. `scratch` is
+ * excluded here for the same reason the trigger index excludes it
+ * unconditionally: this repository's own convention treats every `scratch/`
+ * tree as ephemeral working files cleaned before completion, and a sibling
+ * tool in this package (`sweep-memory-residue.mjs`) already excludes it for
+ * the same reason. `research/lineages` and fixture-named directories stay
+ * reachable here on purpose — see
+ * `references/retrieval/retrieval-conventions.md` for the full coverage table
+ * and why converging those two would cost real coverage.
+ */
 export const GLOBS = Object.freeze([
   '--glob', '*.md',
   '--glob', '!**/z_archive/**',
   '--glob', '!**/node_modules/**',
   '--glob', '!**/.git/**',
+  '--glob', '!**/scratch/**',
 ]);
 
 /** Default search roots. */

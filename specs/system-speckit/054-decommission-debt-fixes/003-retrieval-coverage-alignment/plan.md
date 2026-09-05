@@ -43,9 +43,9 @@ Build the divergence table between `corpus.mjs` and `retrieval-conventions.md`, 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Parity test passing
-- [ ] Docs updated (spec/plan/tasks, `retrieval-conventions.md` if the recipe changes)
+- [x] All acceptance criteria met
+- [x] Parity test passing
+- [x] Docs updated (spec/plan/tasks, `retrieval-conventions.md` if the recipe changes)
 <!-- /ANCHOR:quality-gates -->
 
 ---
