@@ -126,7 +126,6 @@ mutation_boundaries:
     - ".opencode/agents/**/*.md"
     - ".opencode/commands/doctor/*.md"
     - ".opencode/commands/doctor/assets/doctor_*.yaml"
-    - "mcp-server/database/migration-manifest.json"
     - "**/migration-manifest.json"
     - "direct SQL outside VACUUM INTO snapshot and snapshot restore"
   validator:
