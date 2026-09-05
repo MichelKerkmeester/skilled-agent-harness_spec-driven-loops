@@ -93,7 +93,7 @@ A target layout is chosen that avoids the `runtime/scripts/` name collision, eve
 
 ### Review Scope
 
-The review reads a bounded list, never a tree. The change set is the nesting commit's diff `19d54e03b1..b4c2484696` outside `specs/`, with pure renames excluded: the 420 files whose content changed, listed one per line in `scratch/review-scope.txt`. The 864 files moved without a content change are verified by the commands below, not by reading anything.
+The review reads a bounded list, never a tree. The change set is the nesting commit's diff `19d54e03b1..b4c2484696` outside `specs/`, with pure renames excluded, plus every file under the spec-kit skill, the CI workflows and the doctor scripts whose content changed in the review-remediation commits that followed: 453 files, listed one per line in `scratch/review-scope.txt` (420 in the first pass). The 864 files moved without a content change are verified by the commands below, not by reading anything.
 
 **Reading budget.** Read only files in the list and the modules they import directly. Never expand a directory with a wildcard, and never read `node_modules`, `dist`, `benchmark`, `changelog`, `z_archive`, `manual-testing-playbook`, `feature-catalog`, or `runtime/data/trigger-index.json`. Cover a different part of the list in each iteration so ten iterations cover it roughly once, then spend the rest on findings already raised. Angles: root resolution that assumed the old depth, imports that flipped direction, the runtime build and test configs excluding `cli/`, the workspace and lockfile, hook symlinks and registrations, the continuity writer's new path in every caller, and the freshness table.
 
