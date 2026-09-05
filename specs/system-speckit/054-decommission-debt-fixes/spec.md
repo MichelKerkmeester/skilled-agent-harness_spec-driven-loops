@@ -203,13 +203,13 @@ REQUIREMENT_PLACEHOLDER
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-continuity-freshness-claim-binding/ | Bind a completion claim to one fingerprint, fix the silent skip-as-pass, extend tests | draft |
-| 2 | 002-scripts-into-runtime-nesting/ | Resolution-based reference inventory, target-layout decision, and the executed scripts/ -> runtime/cli/ move (carrying packet 007's Stage B rename) | Complete |
-| 3 | 003-retrieval-coverage-alignment/ | Align the trigger-index and ripgrep exclusion/root policies, add a parity test | draft |
-| 4 | 004-save-and-resume-freshness/ | Save-time trigger-index staleness check; resume ladder trusts validated continuity over a newer unbound handover | draft |
-| 5 | 005-hook-fallback-failure-signal/ | Machine-detectable drift signal for Codex/Devin hook fallbacks; decide the Copilot wrapper fate | draft |
-| 6 | 006-orphaned-types-and-dead-modules/ | Delete or re-home seven orphaned types and two dead modules; fix two never-run tests and one empty catch | draft |
-| 7 | 007-memory-command-family-naming-decision/ | Decide keep-literal vs. rename-with-compatibility-window for the memory command family; Stage A (docs/commands) plus Stage B (code paths, executed inside phase 002) both done | Complete |
+| 1 | 001-continuity-freshness-claim-binding/ | Bind a completion claim to one fingerprint, fix the silent skip-as-pass, extend tests | complete |
+| 2 | 002-scripts-into-runtime-nesting/ | Resolution-based inventory and the executed scripts/ to runtime/cli/ move carrying phase 007 stage B; its ten-iteration review pass is running | review |
+| 3 | 003-retrieval-coverage-alignment/ | Align the trigger-index and ripgrep exclusion/root policies, add a parity test | complete |
+| 4 | 004-save-and-resume-freshness/ | Save-time trigger-index staleness check; resume ladder trusts validated continuity over a newer unbound handover | complete |
+| 5 | 005-hook-fallback-failure-signal/ | Machine-detectable drift signal for Codex/Devin hook fallbacks; decide the Copilot wrapper fate | complete |
+| 6 | 006-orphaned-types-and-dead-modules/ | Delete or re-home seven orphaned types and two dead modules; fix two never-run tests and one empty catch | complete |
+| 7 | 007-memory-command-family-naming-decision/ | Rename the memory command family into /speckit:save, /speckit:search and /doctor speckit-retrieval, hard cutover; code paths moved with phase 002 | complete |
 
 ### Phase Transition Rules
 

@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -172,12 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,6 +196,12 @@
         "source": "derived"
       },
       {
+        "name": "Scope Amendment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The surviving continuity writer and retrieval commands still carry the word \"memory\" throughout their names, paths, and package metadata: the `/memory:save` and `/memory:search` commands (`.opencode/commands/memory/save.md`, `.opencode/commands/memory/search.md`); the writer itself, `scripts/memory/generate-context.ts`, compiled to `scripts/dist/memory/generate-context.js`; the `@spec-kit/scripts` package description, `\"CLI tools for spec-kit context generation and memory management\"` (`scripts/package.json:4`); the `/doctor memory` route (`.opencode/commands/doctor/routes.yaml:33-38`, target",
     "created_at": "2026-09-05T06:13:08Z",
-    "last_save_at": "2026-09-05T09:13:01.599Z",
+    "last_save_at": "2026-09-05T09:20:08.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d7341e2191cbad360a63cf8a589e618fbd1331e549c67839d63b5fe042aa25f",
+    "source_fingerprint": "sha256:c2f2d6eeea824a77b69760afecb47d0b5b5c990ad7e4f2a00d25f1ec19ff8382",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "257f35116be3069dcfc82e2b197f5331215074a3b7a64a2671bd32808c038488",
+      "spec.md": "266d5828bf149ca513630de5b0585b3a005b7bbc706b84bba0dd181a5bc7dc97",
       "plan.md": "d95feb4d8cc7a86c9c89148177baa98530b05b471e51eb970c50113773ebdd70",
       "tasks.md": "56ec9fe02a46ed96d598eb67442f02d6dce1050faade42a992029ea67acf99a1",
       "decision-record.md": "5ee0231696f2277a4531dde242a0d8c25824ab769ff653f42610e79fc1cac2dd",

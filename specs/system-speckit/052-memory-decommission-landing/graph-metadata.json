@@ -53,13 +53,10 @@
       ".opencode/skills/system-spec-kit/graph-metadata.json",
       "data/trigger-index.json",
       "specs/system-speckit/049-memory-decommission/goal.md",
-      "scripts/doctor.sh",
       ".claude/mcp.json",
       ".codex/config.toml",
       ".pi/mcp.json",
       ".cursor/mcp.json",
-      "references/workflows/rollback-runbook.md",
-      "scripts/tests/coverage-graph-integration.vitest.ts",
       "shared/types.ts"
     ],
     "entities": [
@@ -130,12 +127,6 @@
         "source": "derived"
       },
       {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
-        "source": "derived"
-      },
-      {
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
@@ -145,18 +136,6 @@
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "rollback-runbook.md",
-        "kind": "doc",
-        "path": "references/workflows/rollback-runbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-integration.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/coverage-graph-integration.vitest.ts",
         "source": "derived"
       },
       {
@@ -206,11 +185,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Branch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-05T03:05:38.028Z",
+    "last_save_at": "2026-09-05T09:20:09.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +218,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1b2c608d6225d0316f8e7027673967c15c1a4ee9a65f5b07939cd4917e104cd",
+    "source_fingerprint": "sha256:88578dc5b388477053f316cf5764f20ec622fe3ad418b5923022fe0f3112801f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "888936604bd95b147d0ef42390180d292fb43021ce98824bc693c3a1793c419c",
