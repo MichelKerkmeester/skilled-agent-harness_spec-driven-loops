@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/052-memory-decommission-landing
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-04
 <!-- /ANCHOR:metadata -->
 
@@ -54,10 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the landed tree on both branches, When the runtime configs, hooks, plugins, launchers and commands are inspected and the sweep runs, Then no memory surface exists and live is 0 | grep count 0 in five config roots; five surfaces absent; sweep live 0 | Unmet | - |
-| AC-002 | REQ-002 | Given the landed tree, When validate.sh --strict runs on 049 recursively, 050 and 051, Then every folder reports PASSED | validate.sh output | Unmet | - |
-| AC-003 | REQ-003 | Given the changed-document list since 5220257bf7, When each is validated by class, Then every one passes or is a recorded validator class defect with an owner | validation sweep record in goal.md | Unmet | - |
-| AC-004 | REQ-004 | Given the landed tree, When /deep:review runs ten iterations with gpt-5.6-luna, Then the final report has zero P0 and zero P1 and earlier findings name their fix commits | review-report.md under this packet | Unmet | - |
+| AC-001 | REQ-001 | Given the landed tree on both branches, When the runtime configs, hooks, plugins, launchers and commands are inspected and the sweep runs, Then no memory surface exists and live is 0 | grep count 0 in five config roots; five surfaces absent; sweep live 0 | Met | - |
+| AC-002 | REQ-002 | Given the landed tree, When validate.sh --strict runs on 049 recursively, 050 and 051, Then every folder reports PASSED | validate.sh output | Met | - |
+| AC-003 | REQ-003 | Given the changed-document list since 5220257bf7, When each is validated by class, Then every one passes or is a recorded validator class defect with an owner | validation sweep record in goal.md | Met | - |
+| AC-004 | REQ-004 | Given the landed tree, When /deep:review runs ten iterations with gpt-5.6-luna, Then the final report has zero P0 and zero P1 and earlier findings name their fix commits | review-report.md under this packet | Met | - |
 
 ### Status values
 

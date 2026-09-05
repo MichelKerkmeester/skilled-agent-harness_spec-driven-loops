@@ -172,12 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement Packets",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,6 +196,12 @@
         "source": "derived"
       },
       {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-04T23:35:02.001Z",
+    "last_save_at": "2026-09-05T00:15:04.844Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff251857c592ec307b48b0654dc775185249910b7a33a3114dc955c74ccd6790",
+    "source_fingerprint": "sha256:3bc3abd9f4025ec2fd0f41e69724df37f46ccab6bc1e575b4cbe1c33a9e51647",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5c8abcc1bc1fe62a13b5a481b883d3e66f8bca135998f7381a1db5a60f78480a",
+      "spec.md": "888936604bd95b147d0ef42390180d292fb43021ce98824bc693c3a1793c419c",
       "plan.md": "ff3471f9cbd346847a94f8fa39c356df112925cf83929786c249ef3b97436992",
-      "tasks.md": "48058bae5e987d3caf60ee3616fe6abf16be32400e3ecf62952236940b7f2423",
-      "implementation-summary.md": "b1b4ffe16f5fcf454e0fb90749b1a839e8b3ba462080af71c4f0a96995321a93"
+      "tasks.md": "4260d46bca200bb529fcec22a929cbd69229b0d7b1d3ab2eddfd3d83a8241599",
+      "implementation-summary.md": "9f21509fca4c71baf076971a3c7d57a822e261ed836602373b0d5a125e65ed1e"
     },
     "last_active_child_id": null,
     "last_active_at": null

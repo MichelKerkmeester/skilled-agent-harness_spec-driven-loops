@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** 053-spec-kit-runtime-rename
 **Level:** 3
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-04
 <!-- /ANCHOR:metadata -->
 
@@ -59,11 +59,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-002 | Given the new path, When the continuity writer is invoked, Then it runs from `scripts/dist/` without a resolution error | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --help` -> exit 0 | Met | - |
 | AC-004 | REQ-002 | Given the moved adapters, When each registered hook is executed once with an empty payload, Then none reports a missing module | 19 adapters across `.claude`, `.codex`, `.cursor`, `.devin` -> every exit 0, zero `MODULE_NOT_FOUND` | Met | - |
 | AC-005 | REQ-002 | Given the moved root, When the dist-freshness guard runs, Then it records a build for both watched entries | `cd runtime && npm run rebuild` -> exit 0, `dist build preparation recorded` twice | Met | - |
-| AC-006 | REQ-003 | Given the manifest, When each dependency is traced, Then every remaining entry names a live consumer and every removed one has none | `scratch/inventory.md` §4; manifest drops 8 of 12 entries | Met | - |
+| AC-006 | REQ-003 | Given the manifest, When each dependency is traced, Then every remaining entry names a live consumer and every removed one has none | `scratch/inventory.md` §4; manifest drops 9 of 12 entries, `chokidar` last after the review pass found its advisor fallback shadowed | Met | - |
 | AC-007 | REQ-003 | Given the pruned manifest, When the lockfile is regenerated, Then a fresh install resolves without drift | `npm install` at the workspace root -> removed 126 packages; `npm ci --dry-run` -> exit 0 | Met | - |
 | AC-008 | REQ-004 | Given the whole repository, When the old path and npm name are searched over live surfaces, Then nothing outside historical evidence names them | `rg` -> 0 hits; `git grep` -> 0 hits; no symlink targets the old path | Met | - |
 | AC-009 | REQ-004 | Given the moved tree, When the repository gates run, Then the residue sweep, doctor routes, command references, skill-root audit, derived freshness and routing guard all pass | six gates, each exit 0; `counts.live` 0; guard green after the `cli-external-orchestration` re-mint | Met | - |
-| AC-010 | REQ-005 | Given the moved tree, When a ten-iteration review runs, Then it reports no P0 and no P1 | not yet run; this packet's implementation is the review's input | Unmet | - |
+| AC-010 | REQ-005 | Given the moved tree, When a ten-iteration review runs, Then it reports no P0 and no P1 | lineage `review/lineages/luna-max-pass3`: ten iterations, verdict PASS, 0 P0, 0 P1, 2 P2 fixed at `85d9791eb3`; the three earlier attempts and their fixes sit beside it | Met | - |
 
 ### Status values
 
@@ -88,10 +88,9 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Nine of ten criteria are met: the package moved, the manifest now names only
-dependencies a resolution trace reaches, and every gate that ran on the old path
-runs on the new one. AC-010 stays open because the ten-iteration review takes this
-implementation as its input and has not run yet.
+All ten criteria are met: the package moved, the manifest names only dependencies
+a resolution trace reaches, every gate that ran on the old path runs on the new one,
+and the ten-iteration review on the moved tree reports no P0 and no P1.
 <!-- /ANCHOR:closure -->

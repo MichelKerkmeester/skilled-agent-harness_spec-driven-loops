@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-speckit/053-spec-kit-runtime-rename"
     last_updated_at: "2026-09-04T19:16:06Z"
     last_updated_by: "code-agent"
-    recent_action: "Committed the move as aef7852400 and launched the rename review"
-    next_safe_action: "Read the pass 3 review report and fix every P0 and P1 at source"
+    recent_action: "Closed the packet after the rename review passed with no P0 or P1"
+    next_safe_action: "Nothing pending; reopen only if a consumer of the old path surfaces"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/runtime/package.json"
@@ -163,7 +163,7 @@ Verification ran from the repository root against the new paths only.
 |-------|--------|
 | `validate.sh specs/.../053-spec-kit-runtime-rename --strict` | PASS - exit 0, Errors 0, `RESULT: PASSED` |
 | `validate.sh specs/.../049-memory-decommission --strict --recursive` | PASS - exit 0, Errors 0 across the tree |
-| `validate.sh specs/.../052-memory-decommission-landing --strict` | FAIL - exit 2, one stale source fingerprint, pre-existing and outside this packet |
+| `validate.sh specs/.../052-memory-decommission-landing --strict` | PASS after `repair-derived.cjs` regenerated its fingerprint |
 | `cd runtime && npm run rebuild` | PASS - exit 0, both freshness entries recorded |
 | `npm install` at the workspace root | PASS - 126 packages removed, 2 added |
 | `npm ci --dry-run` at the workspace root | PASS - exit 0, lockfile matches the pruned manifests |
@@ -178,6 +178,8 @@ Verification ran from the repository root against the new paths only.
 | `cd runtime && npx vitest run tests` | INCONCLUSIVE - stopped past the 20-minute cap at 98 files, 669 passing and 24 failing; every failure attributed below |
 | HF model server boot from the new path | PASS - `defaultDbDir()` resolves to `runtime/database`, the socket listens, `importTransformers()` returns, and it closes cleanly |
 | `rg` and `git grep` for the old path and npm name over live surfaces | PASS - 0 hits each; no symlink targets the old path |
+| Ten-iteration review on the moved tree, gpt-5.6-luna max fast | PASS - lineage `luna-max-pass3`, 0 P0, 0 P1, 2 P2 fixed; the earlier CONDITIONAL attempt's 2 P1 and 2 P2 fixed at `c2898fbad8` and `ad541ce059` |
+| `scripts/doctor.sh --strict` | PASS after it stopped probing the removed MCP SDK and sqlite-vec |
 <!-- /ANCHOR:verification -->
 
 ---

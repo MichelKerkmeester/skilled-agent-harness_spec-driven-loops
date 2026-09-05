@@ -56,7 +56,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T008 053 and 049 recursive pass; residue sweep `counts.live` 0; doctor routes, command references, skill-root audit and derived freshness pass; routing guard green after the `cli-external-orchestration` re-mint. 052 fails on a fingerprint staled by commit `b960584085`, which is not this packet's change
-- [ ] T009 Ten-iteration review on the moved tree under this packet; fix every P0 and P1 at source; rerun until clean
+- [x] T009 Four attempts: stalled launch, Codex usage limit, CONDITIONAL (2 P1, 2 P2 fixed at `c2898fbad8` and `ad541ce059`), then PASS with 0 P0, 0 P1 and 2 P2 fixed at `85d9791eb3`
 - [x] T010 `implementation-summary.md` and `acceptance-criteria.md` carry the move, the audit table and the gate results
 <!-- /ANCHOR:phase-3 -->
 
@@ -65,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

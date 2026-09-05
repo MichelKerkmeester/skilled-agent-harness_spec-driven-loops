@@ -46,8 +46,8 @@ contextType: "general"
 
 - [x] T004 Validate the 187 changed reference and README documents by class; fix the two real failures (`f651137d3c`)
 - [x] T005 Fast-forward `skilled/v4.0.0.0` in the main checkout and `main` to it
-- [ ] T006 Run `/deep:review`, ten iterations, gpt-5.6-luna max fast, stop policy max-iterations, under this packet
-- [ ] T007 Fix every P0 and P1 at source, re-verify, rerun the loop until a pass reports none
+- [x] T006 Two passes under this packet (lineages `luna-max`, `luna-max-pass2`), then the rename phase's own pass under 053
+- [x] T007 Eleven P1s fixed at source across the passes; the final pass reports 0 P0 and 0 P1
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +55,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Residue sweep, trigger index twice, doctor routes, skill-root audit on the landed tree
-- [ ] T009 Confirm no zg, model-server or codex process survives
-- [ ] T010 Close the goal log and the implementation summary
+- [x] T008 Sweep live 0; trigger index identical across two runs; doctor routes 9; skill-root audit 14 of 14; derived freshness 14 of 14; routing guard fresh
+- [x] T009 None running after the last review attempt
+- [x] T010 Goal log, summary, acceptance rows and status reconciled together
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
