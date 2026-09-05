@@ -72,7 +72,7 @@ utils, config and parsing do not import domain modules
 | Continuity | `continuity/`, `resume/`, `context/` | Own continuity records, the resume ladder and the shared payload envelope. |
 | Discovery | `discovery/`, `config/` | Locate spec documents and name the canonical spec-document set. |
 | Content | `parsing/`, `extraction/` | Normalize markdown and extract entities from it. |
-| Support | `utils/`, `cognitive/`, `storage/`, `hooks/`, `test-helpers/` | Shared plumbing: path identity, rollout gates, atomic writes, hook policy, test helpers. |
+| Support | `utils/`, `cognitive/`, `hooks/`, `test-helpers/` | Shared plumbing: path identity, rollout gates, hook policy, test helpers. |
 
 ---
 
@@ -93,7 +93,6 @@ lib/
 ├── resume/          # Resume ladder construction
 ├── search/          # Per-folder description discovery and search flags
 ├── spec/            # Phase-parent detection
-├── storage/         # Atomic writes and drift-marker helpers
 ├── templates/       # Level contract resolution
 ├── test-helpers/    # Environment snapshot helper for tests
 ├── utils/           # Canonical paths, index scope, sanitizers, exhaustiveness

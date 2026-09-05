@@ -27,7 +27,7 @@ This document is the orientation view. [`runtime/ENV-REFERENCE.md`](../../runtim
 
 ## 2. PATH RESOLUTION
 
-`runtime/core/config.ts` resolves the package's working directories. `resolveDatabasePaths()` is still imported by `lib/storage/transaction-manager.ts` and re-exported from `api/index.ts`, so the directory-override family below stays live.
+`runtime/core/config.ts` resolves the package's working directories. `resolveDatabasePaths()` still runs on module load and is exercised directly by tests, so the directory-override family below stays live.
 
 | Variable | Default | Purpose |
 |----------|---------|---------|

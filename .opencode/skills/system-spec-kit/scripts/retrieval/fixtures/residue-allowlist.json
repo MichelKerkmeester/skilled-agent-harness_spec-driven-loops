@@ -118,10 +118,6 @@
       "reason": "Spec packet documents are historical narrative of the work they record, and spec-doc content changes belong to the retrofit phase; a live tool grant never lives in a packet."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/retrieval/parity-check.mjs",
-      "reason": "The daemon-off proof probes for the retired server process by name so it can record that none is running."
-    },
-    {
       "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
       "reason": "Its retired-tool to successor mapping table names the tools it maps, so a reader can find the replacement."
     },

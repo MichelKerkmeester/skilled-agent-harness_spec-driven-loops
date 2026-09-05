@@ -113,8 +113,8 @@ Directive-capsule lifecycle dedup has runtime-specific output cadence. Model-con
 
 **Ownership.** Every row here is either read by surviving package source or owned outside the
 package. *Read by this package:* the `SPECKIT_DB_DIR`/`SPEC_KIT_DB_DIR`/`MEMORY_DB_PATH`/
-`MEMORY_BASE_PATH` family in `core/config.ts`, whose `resolveDatabasePaths()` is still imported by
-`lib/storage/transaction-manager.ts` and re-exported from `api/index.ts`; plus `SPECKIT_SPECS_DIR`
+`MEMORY_BASE_PATH` family in `core/config.ts`, whose `resolveDatabasePaths()` is still called by
+its own module-load side effect and by tests that exercise it directly; plus `SPECKIT_SPECS_DIR`
 and `SPECKIT_ROLLOUT_PERCENT`. *Shared, owned by the HF model server and the skill
 advisor:* `SPECKIT_IPC_SOCKET_DIR`, `SPECKIT_MAX_SECONDARY_CLIENTS`,
 `SPECKIT_LAUNCHER_BRIDGE_DISABLED`, `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`, the `SPECKIT_LEASE_PROBE_*`
@@ -279,7 +279,7 @@ When the cascade selects `hf-local`, embeddings are served by a **launcher-super
 
 ## 7. SHARED RANKING ALGORITHMS
 
-Not this package's: `.opencode/skills/system-spec-kit/shared/algorithms/` still ships the RRF fusion and adaptive-fusion primitives, and `scripts/retrieval/lib/legacy-lane.mjs` still runs a legacy retrieval lane. The memory pipeline that called them is gone, but these modules and their env reads survive for other consumers.
+Not this package's: `.opencode/skills/system-spec-kit/shared/algorithms/` still ships the RRF fusion and adaptive-fusion primitives. The memory pipeline that called them is gone, but these modules and their env reads survive for other consumers.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
@@ -289,7 +289,6 @@ Not this package's: `.opencode/skills/system-spec-kit/shared/algorithms/` still 
 | `SPECKIT_CALIBRATED_OVERLAP_BONUS` | `true` | boolean | Multi-channel overlap bonus. Read directly off `process.env` in the fusion module, lower-cased and trimmed, rather than through a flag registry. | `shared/algorithms/rrf-fusion.ts` |
 | `SPECKIT_ADAPTIVE_FUSION` | `true` | boolean | Feature-flag name registered by `adaptive-fusion.ts` for intent-aware fusion with document-type weight shifting. | `shared/algorithms/adaptive-fusion.ts` |
 | `SPECKIT_DOC_TYPE_WEIGHT_FACTOR` | `1.2` | number | Proportional weight-shift factor per document type in adaptive fusion, parsed with `parseFloat` and falling back to `1.2` on an unparseable or zero value. | `shared/algorithms/adaptive-fusion.ts` |
-| `SPECKIT_INCLUDE_ARCHIVED_DEFAULT` | `true` | boolean | Admits cold and archived rows to the legacy retrieval lane. The lane ORs this with its own `includeArchived` argument, so an explicit request-level `true` wins regardless. | `scripts/retrieval/lib/legacy-lane.mjs` |
 
 ---
 

@@ -69,7 +69,6 @@ Version match:   [OK]
 
 -- Module Probes --
 
-better-sqlite3:    [OK] loads
 sharp:             [SKIP] not installed
 
 -- Summary --

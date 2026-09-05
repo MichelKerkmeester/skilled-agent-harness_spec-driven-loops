@@ -212,7 +212,6 @@ The closure feature consists of these distinct shipped behaviors:
 | `scripts/tests/generate-context-cli-authority.vitest.ts` | Automated test | Explicit CLI root-spec authority coverage plus `--stdin`, `--json`, and positional JSON file-input structured-path behavior |
 | `scripts/tests/semantic-signal-golden.vitest.ts` | Automated test | Trigger-phrase quality regression coverage for the canonical continuity output-quality fixes |
 | `scripts/tests/test-extractors-loaders.js` | Automated test | Dist/export regression suite for extractors and loader |
-| `scripts/tests/test-bug-fixes.js` | Automated test | Bug-fix verification stack |
 | `scripts/tests/test-integration.vitest.ts` | Automated test | End-to-end script workflows; legacy `test-integration.js` test file removed |
 | `scripts/tests/workflow-e2e.vitest.ts` | Automated test | Real save-pipeline E2E coverage with temp-repo factory and the failed-embedding harness regression |
 | `scripts/tests/test-memory-quality-lane.js` | Automated test | **[LEGACY]** v2 diagnostic quality and insufficiency regression suite (kept for regression coverage only) |
@@ -231,7 +230,6 @@ The closure feature consists of these distinct shipped behaviors:
 - `cd .opencode/skills/system-spec-kit/scripts && npm run build`
 - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/spec-affinity.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/scripts/tests && node test-extractors-loaders.js`
-- `cd .opencode/skills/system-spec-kit/scripts/tests && node test-bug-fixes.js`
 - `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/scripts/tests && node test-memory-quality-lane.js`
 - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`

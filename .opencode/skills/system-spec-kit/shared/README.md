@@ -122,7 +122,7 @@ import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 ls .opencode/skills/system-spec-kit/shared/
 
 # Expected source files:
-# index.ts, types.ts, normalization.ts, config.ts, paths.ts
+# index.ts, types.ts, config.ts, paths.ts
 # embeddings.ts, chunking.ts, trigger-extractor.ts
 # budget-allocator.ts, compact-merger.ts, code-graph-contracts.ts
 # context-types.ts, gate-3-classifier.ts, unicode-normalization.ts
@@ -156,7 +156,6 @@ shared/
 ├── budget-allocator.ts         # Prompt/token budget allocation helpers
 ├── types.ts                    # Shared type definitions
 ├── context-types.ts            # Shared context envelope type helpers
-├── normalization.ts            # DB row <-> app object normalization
 ├── unicode-normalization.ts    # Unicode normalization helpers
 ├── config.ts                   # Shared DB directory resolution and update markers
 ├── paths.ts                    # Shared DB path resolution
@@ -224,7 +223,6 @@ shared/
 | ----------------------- | --------------------------------------------------- |
 | `embeddings.ts` | Unified API for multi-provider embedding generation |
 | `trigger-extractor.ts` | Trigger phrase extraction for memory indexing |
-| `normalization.ts` | Canonical DB row <-> app object conversion |
 | `config.ts` | Shared DB directory resolution and update marker paths |
 | `paths.ts` | Provider-keyed database path resolution (encodes provider, model, dim and dtype in the filename) |
 | `budget-allocator.ts` | Prompt/token budget allocation helpers |

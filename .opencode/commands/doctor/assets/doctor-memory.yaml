@@ -33,13 +33,11 @@ upstream_assets:
   generator_command: "node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs"
   files:
     acceptance: "specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/acceptance-criteria.md"  # the bar the index and lookup were accepted against
-    parity_baseline: ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/parity-baseline.json"  # frozen three-arm parity verdict
     latency_report: ".opencode/skills/system-spec-kit/scripts/retrieval/fixtures/latency-report.json"  # cold-lookup budget evidence
   pass_policy:
     lookup_exit_class: "0 or 1 on the frozen prompt set; 2 or higher fails"  # the lookup contract, never a result count
     cold_lookup_p95_budget_ms: 200  # the budget the latency report was accepted under
     index_regenerates_byte_identical: true  # two generator runs must hash the same
-    parity_unexplained_differences: 0  # every legacy-versus-index difference names a mechanism
 memory_doctor_philosophy:
   principle: "Detect index staleness before it breaks Gate 1 lookups; this command never mutates — regeneration runs through /doctor:update"
   approach: "Read the index and its manifest → run the lookup and a ripgrep recipe → classify staleness → emit recommendations"

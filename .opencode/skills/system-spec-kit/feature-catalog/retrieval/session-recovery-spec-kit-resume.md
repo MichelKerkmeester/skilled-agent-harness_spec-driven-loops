@@ -79,7 +79,6 @@ There is no session inference, no semantic paraphrase and no candidate ranking b
 
 | File | Type | Role |
 |---|---|---|
-| `scripts/retrieval/parity-check.mjs` | Automated check | Trigger-index parity against the declared `trigger_phrases` corpus |
 | `scripts/retrieval/measure-cold-lookup.mjs` | Automated check | Cold-lookup cost of the trigger-index lane |
 | `scripts/tests/manual-playbook-runner.vitest.ts` | Automated test | Scenario runner contract for the resume playbook entry |
 

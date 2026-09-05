@@ -91,7 +91,7 @@ For README-only edits, `validate_document.py` is the required file-level check.
 | Document | Purpose |
 | -------- | ------- |
 | [shared/README.md](../README.md) | Parent shared library overview |
-| [shared/types.ts](../types.ts) | `ArchivePattern`, `FolderScore`, `Memory`, `ScoreWeights` and `TierWeights` |
+| [shared/types.ts](../types.ts) | `ArchivePattern`, `FolderScore`, `ScoreWeights` and `TierWeights` |
 | [shared/algorithms/README.md](../algorithms/README.md) | Retrieval ranking algorithms separate from folder scoring |
 
 ---

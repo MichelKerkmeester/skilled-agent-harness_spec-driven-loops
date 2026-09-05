@@ -1,5 +1,5 @@
 {
-  "manifestHash": "203578137aa6d3c26e76054d4b77e1860ca8c777435c745e7c5d774172f26bf3",
+  "manifestHash": "7ab7061f19a876dcf952fa2b66fa688881be798d16fdd37affa1510aa878b8ce",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13134,9 +13134,6 @@
     "atomic save recovery test": [
       "atomic save recovery test"
     ],
-    "atomic save transaction": [
-      "atomic save transaction"
-    ],
     "atomic state": [
       "atomic state"
     ],
@@ -13175,9 +13172,6 @@
     ],
     "atomic symlink tasks": [
       "atomic symlink tasks"
-    ],
-    "atomic write": [
-      "atomic write"
     ],
     "attach file to task": [
       "attach file to task"
@@ -41209,9 +41203,6 @@
     "entity cardinality penalty": [
       "entity cardinality penalty"
     ],
-    "entity catalog": [
-      "entity catalog"
-    ],
     "entity co occurrence not causal truth invariant": [
       "entity co-occurrence not causal truth invariant"
     ],
@@ -68099,9 +68090,6 @@
     "peer adapter registration": [
       "peer adapter registration"
     ],
-    "pending file recovery": [
-      "pending file recovery"
-    ],
     "pending temporal candidates status": [
       "pending temporal candidates status"
     ],
@@ -75412,9 +75400,6 @@
     ],
     "rebuild all databases": [
       "rebuild all databases"
-    ],
-    "rebuild auto entities": [
-      "rebuild auto entities"
     ],
     "rebuild council graph from artifacts": [
       "rebuild council graph from artifacts"
@@ -94201,9 +94186,6 @@
     ],
     "storage drift guard": [
       "storage drift guard"
-    ],
-    "storage layer": [
-      "storage layer"
     ],
     "storage tier layout": [
       "storage tier layout"

@@ -60,7 +60,7 @@ Current responsibilities:
 Run from `.opencode/skills/system-spec-kit/runtime`:
 
 ```bash
-npx vitest run tests/unit-path-security.vitest.ts tests/production-db-isolation.vitest.ts tests/transaction-manager-recovery.vitest.ts tests/memory-roadmap-flags.vitest.ts
+npx vitest run tests/unit-path-security.vitest.ts tests/production-db-isolation.vitest.ts tests/memory-roadmap-flags.vitest.ts
 ```
 
 Expected result: path-boundary, production-isolation, and database-path-consuming suites pass.

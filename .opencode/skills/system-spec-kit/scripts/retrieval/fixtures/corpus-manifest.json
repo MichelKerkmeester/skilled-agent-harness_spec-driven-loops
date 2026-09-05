@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4ce31597ddaa51b8a90b11e4250594dc6acbc81051d004cb2b03d6797cb5d4ad",
+  "corpusHash": "7d94f12d36eba8fca0ee784fc3fedd5cb092cb1f992b40829dc03fd8c8e04340",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -16,7 +16,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28117,
+  "includedPathCount": 28116,
   "includedPaths": [
     ".opencode/skills/.state/advisor/README.md",
     ".opencode/skills/.state/authority/README.md",
@@ -7962,7 +7962,6 @@
     ".opencode/skills/system-spec-kit/runtime/lib/resume/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/search/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/spec/README.md",
-    ".opencode/skills/system-spec-kit/runtime/lib/storage/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/templates/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/test-helpers/README.md",
     ".opencode/skills/system-spec-kit/runtime/lib/utils/README.md",
@@ -28137,7 +28136,7 @@
     "specs/system-speckit/054-decommission-debt-fixes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "203578137aa6d3c26e76054d4b77e1860ca8c777435c745e7c5d774172f26bf3",
+  "manifestHash": "7ab7061f19a876dcf952fa2b66fa688881be798d16fdd37affa1510aa878b8ce",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

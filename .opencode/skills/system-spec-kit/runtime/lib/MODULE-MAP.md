@@ -159,14 +159,6 @@ The inventory is derived from the files in each folder and from the import edges
   - `lib/graph/graph-metadata-parser.ts`
   - `lib/resume/resume-ladder.ts`
 
-### `storage/`
-
-- Purpose: Owns the persistence helper the package still needs: atomic file writes with pending-file recovery.
-- Key files:
-  - `transaction-manager.ts` — atomic write and pending-file helpers.
-- Primary consumers:
-  - None in production `api/`, `core/`, `handlers/`, or `lib/` code today; only `tests/transaction-manager*.vitest.ts` exercise it directly. Kept as the shared atomic-write primitive for a future filesystem-writing caller.
-
 ### `templates/`
 
 - Purpose: Owns resolution of the per-level document contract that the validation rules check a folder against.
@@ -290,21 +282,18 @@ Target rule by module:
 
 Support modules:
 
-- `storage`
 - `hooks`
 
 Target rule:
 
-- `storage` exposes atomic-write and marker helpers and imports `core/config` only.
 - `hooks` is runtime-neutral policy. It must stay transport-free: no stdout, no stderr, no test or build execution.
-- Neither may import a domain module.
+- Must not import a domain module.
 
 ### 3.5 Forbidden Global Directions
 
 - `lib/* → api/*`
 - `lib/* → handlers/*` outside the `discovery/` seam
 - root modules importing domain modules
-- `storage → validation` or `storage → graph`
 - `hooks → any domain module`
 
 ---
