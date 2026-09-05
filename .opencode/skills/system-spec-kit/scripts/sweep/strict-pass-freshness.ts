@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Strict Pass Freshness Sweep
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -331,7 +331,7 @@ function main(): void {
 
 try {
   main();
-} catch (error) {
+} catch (error: unknown) {
   console.error(error instanceof Error ? error.message : String(error));
   process.exit(2);
 }

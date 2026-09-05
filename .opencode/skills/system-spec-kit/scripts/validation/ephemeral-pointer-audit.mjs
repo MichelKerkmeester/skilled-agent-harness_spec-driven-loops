@@ -33,9 +33,9 @@
 import fs from "node:fs";
 import path from "node:path";
 
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 // File selection
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 
 // Extensions whose comment syntax we understand.
 const SCANNED_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".py"]);
@@ -57,9 +57,9 @@ const SKIP_DIRS = new Set([
 const SHEBANG_NODE = /^#!.*\b(node|deno|bun)\b/;
 const SHEBANG_PY = /^#!.*\bpython[0-9.]*\b/;
 
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 // Forbidden ephemeral-id patterns (matched ONLY inside comment text)
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 //
 // Each entry documents WHAT it catches so the allow-list reasoning stays legible.
 // `name` is reported with the finding; `re` runs against a single comment's text.
@@ -141,11 +141,11 @@ const FORBIDDEN = [
 // CU-8abc) is better caught by an opt-in project-specific prefix list than by a
 // broad shape that produces a flood of false positives. See notes/wiring.
 
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 // Allowed exclusions — when ANY of these matches a comment, the listed
 // forbidden rule(s) are suppressed for that comment. These encode the
 // "durable / structural" carve-outs from the style guide §4.
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 const ALLOW = {
   // Format-illustration / example / JSDoc-shape context: suppress the spec-shaped
   // rules. These show input SHAPE, not a live traceability pointer.
@@ -205,9 +205,9 @@ const ALLOW_SUPPRESSES = {
   safeguardEnum: new Set(["github-issue-ref"]),
 };
 
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 // Comment extraction
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 //
 // Returns an array of { line, text } for each comment region. Line numbers are
 // 1-based and point at the physical line where the comment text sits. String
@@ -337,9 +337,9 @@ function stripBlockStar(text) {
   return text.replace(/^\s*\*\s?/, "");
 }
 
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 // Rule application
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 
 function activeSuppressions(commentText) {
   const suppressed = new Set();
@@ -362,9 +362,9 @@ function findInComment(commentText) {
   return hits;
 }
 
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 // Filesystem walk
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 
 function shouldScanFile(filePath) {
   // The guard documents the very patterns it hunts; never flag itself.
@@ -411,9 +411,9 @@ function* walk(target) {
   }
 }
 
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 // Main
-// ---------------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────────────
 
 function auditPaths(targets) {
   const findings = [];

@@ -27,7 +27,7 @@ type TemplateDataItem = Record<string, unknown> | string | number | boolean;
 // ───────────────────────────────────────────────────────────────
 // 4. OPTIONAL PLACEHOLDERS
 // ───────────────────────────────────────────────────────────────
-// 084-fix: V2.2 placeholders that are spec'd but not yet implemented
+// V2.2 placeholders that are spec'd but not yet implemented.
 // Suppress warnings for these to reduce noise until features are built
 const OPTIONAL_PLACEHOLDERS: Set<string> = new Set([
   // @planned(V2.2) — These placeholders suppress warnings for template sections not yet populated.
@@ -138,7 +138,7 @@ function renderTemplate(template: string, data: TemplateContext, parentData: Tem
     const value: unknown = mergedData[key];
 
     if (value === undefined || value === null) {
-      // 084-fix: Only warn for non-optional placeholders
+      // Only warn for non-optional placeholders
       if (!OPTIONAL_PLACEHOLDERS.has(key)) {
         structuredLog('warn', `Missing template data for: {{${key}}}`);
       }

@@ -269,7 +269,7 @@ async function extractDecisions(
           decisionText = `Decision ${index + 1}`;
         }
 
-        // Fix 1: Split string-form decisions at first separator to extract title vs rationale
+        // Split string-form decisions at first separator to extract title vs rationale
         const titleMatch = decisionText.match(/^(?:Decision\s*(?:\d+\s*)?:\s*)?(.+?)(?:\s+(?:--|[\u2013\u2014])\s+(.+))?$/i);
         const title: string = titleMatch?.[1]?.trim() || `Decision ${index + 1}`;
         const fallbackRationale: string = titleMatch?.[2]?.trim() || '';
@@ -386,7 +386,7 @@ async function extractDecisions(
           explicitConfidence,
         });
 
-        // Fix 1: CONTEXT = brief "why this decision mattered", not the full rationale
+        // CONTEXT = brief "why this decision mattered", not the full rationale
         const contextText: string = rationaleFromInput
           ? `${title} — ${truncateOnWordBoundary(rationaleFromInput, 120)}`
           : title;

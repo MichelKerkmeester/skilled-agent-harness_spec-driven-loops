@@ -2,15 +2,15 @@
 // MODULE: Inline Gate Renderer
 // ───────────────────────────────────────────────────────────────────
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. TYPES
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 export type RenderLevel = '1' | '2' | '3' | '3+' | 'phase';
 
@@ -25,9 +25,9 @@ interface ParserState {
   level: RenderLevel;
 }
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. EXPRESSION PARSER
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 const VALID_LEVELS = new Set<RenderLevel>(['1', '2', '3', '3+', 'phase']);
 const GATE_OPEN = /^\s*<!--\s*IF\s+(.+?)\s*-->\s*$/u;
@@ -163,6 +163,7 @@ function parseOr(state: ParserState): boolean {
   return value;
 }
 
+/** Parse and evaluate a level: gate expression (AND/OR/NOT, parentheses) against a render level. */
 export function evaluateGateExpression(expression: string, level: RenderLevel): boolean {
   if (!VALID_LEVELS.has(level)) {
     throw new Error(`Unsupported render level: ${level}`);
@@ -175,9 +176,9 @@ export function evaluateGateExpression(expression: string, level: RenderLevel): 
   return value;
 }
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 4. RENDERER
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 export function renderInlineGates(template: string, level: RenderLevel): string {
   const lines = template.split(/(?<=\n)/u);
@@ -238,9 +239,9 @@ export function renderInlineGates(template: string, level: RenderLevel): string 
   return output.join('');
 }
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 5. CLI
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 function parseCliArgs(args: string[]): { level: RenderLevel; outDir?: string; filePaths: string[] } | null {
   const levelIndex = args.indexOf('--level');
@@ -284,6 +285,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     fs.mkdirSync(parsed.outDir, { recursive: true });
     for (const filePath of parsed.filePaths) {
       const rendered = renderInlineGates(fs.readFileSync(filePath, 'utf8'), parsed.level);
+      // String.split() always returns at least one element, so pop() cannot be undefined
       const outputName = filePath.endsWith('.tmpl')
         ? filePath.split('/').pop()!.replace(/\.tmpl$/u, '')
         : filePath.split('/').pop()!;

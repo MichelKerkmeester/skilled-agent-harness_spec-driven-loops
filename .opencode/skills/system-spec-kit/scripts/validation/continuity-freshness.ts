@@ -26,6 +26,7 @@ const COMPLETION_DOCS = [
 
 type ResultStatus = 'pass' | 'warn' | 'fail';
 
+/** Result of the CONTINUITY_FRESHNESS rule: pass/warn/fail status, a code, and supporting evidence. */
 export interface ContinuityFreshnessResult {
   readonly rule: 'CONTINUITY_FRESHNESS';
   readonly status: ResultStatus;
@@ -347,6 +348,7 @@ function evaluateCompletionFreshness(specFolderPath: string): ContinuityFreshnes
   );
 }
 
+/** Compare a spec folder's continuity timestamp against its graph-metadata save time and report freshness. */
 export function validateContinuityFreshness(
   folderPath: string,
 ): ContinuityFreshnessResult {

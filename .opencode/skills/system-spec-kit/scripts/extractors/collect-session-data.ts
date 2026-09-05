@@ -453,13 +453,13 @@ function determineSessionStatus(
     return 'COMPLETED';
   }
 
-  // CG-03: Detect completion from explicit JSON-mode data
-  // O5-3: Access fields directly via CollectedDataBase instead of Record casts
+  // Detect completion from explicit JSON-mode data
+  // Access fields directly via CollectedDataBase instead of Record casts
   if (collectedData) {
     const hasSessionSummary = !!collectedData.sessionSummary;
     const hasKeyDecisions = Array.isArray(collectedData.keyDecisions) &&
       collectedData.keyDecisions.length > 0;
-    // Fix 2: Also check observations for "Next Steps" title (normalizer may consume the field)
+    // Also check observations for "Next Steps" title (normalizer may consume the field)
     const hasNextSteps = !!collectedData.nextSteps
       || hasObservationNextSteps;
     const saveMode = resolveSaveMode(collectedData);
@@ -559,8 +559,8 @@ function estimateCompletionPercent(
   if (sessionStatus === 'COMPLETED') return 100;
   if (sessionStatus === 'BLOCKED') return Math.min(90, messageCount * 5);
 
-  // CG-03: JSON-mode explicit data with sessionSummary → high completion
-  // O5-3: Access fields directly via CollectedDataBase instead of Record casts
+  // JSON-mode explicit data with sessionSummary → high completion
+  // Access fields directly via CollectedDataBase instead of Record casts
   if (collectedData) {
     const hasSessionSummary = !!collectedData.sessionSummary;
     const saveMode = resolveSaveMode(collectedData);
@@ -1345,7 +1345,7 @@ async function collectSessionData(
   const isErrorContent = /\bAPI\s+Error:\s*\d{3}\b/i.test(rawLearning)
     || /\{"?\s*(?:type|error)"?\s*:\s*"?(?:error|api_error|overloaded_error)/i.test(rawLearning)
     || /internal server error/i.test(rawLearning);
-  // P3-7: Check if rawLearning is topically related to the spec folder before using it as SUMMARY.
+  // Check if rawLearning is topically related to the spec folder before using it as SUMMARY.
   // Prevents a random last exchange from becoming the memory's entire description.
   const learningIsTopical = (() => {
     if (!folderName || rawLearning.length === 0) return rawLearning.length > 0;
@@ -1360,7 +1360,7 @@ async function collectSessionData(
     .filter(Boolean);
   const observationFallback = nonFollowupObservationTitles.join('; ')
     || observations.slice(0, 3).map((o) => o.title).filter(Boolean).join('; ');
-  // Rec 3: Prefer explicit sessionSummary from JSON over transcript-derived learning
+  // Prefer explicit sessionSummary from JSON over transcript-derived learning
   const SUMMARY: string = (typeof data.sessionSummary === 'string' && data.sessionSummary.length > 20)
     ? renderOverviewSummary(data.sessionSummary, truncateOnWordBoundary(data.sessionSummary, 500))
     : (!isErrorContent && learningIsTopical && rawLearning.length > 0)
@@ -1371,11 +1371,11 @@ async function collectSessionData(
   const explicitImportanceTier = typeof data.importanceTier === 'string'
     ? data.importanceTier
     : (typeof data.importance_tier === 'string' ? data.importance_tier : null);
-  // RC5: Extract explicit contextType from JSON payload
+  // Extract explicit contextType from JSON payload
   const explicitContextType = typeof data.contextType === 'string'
     ? data.contextType
     : (typeof data.context_type === 'string' ? data.context_type : null);
-  // RC5-ext: Extract explicit projectPhase from JSON payload
+  // Extract explicit projectPhase from JSON payload
   let explicitProjectPhase = typeof data.projectPhase === 'string'
     ? data.projectPhase
     : (typeof data.project_phase === 'string'
@@ -1391,7 +1391,7 @@ async function collectSessionData(
       explicitImportanceTier,
       explicitContextType
     );
-  // RC5-ext: When no explicit projectPhase and tool counts are 0 (JSON mode),
+  // When no explicit projectPhase and tool counts are 0 (JSON mode),
   // infer phase from contextType to avoid RESEARCH default.
   if (!explicitProjectPhase && contextType !== 'general') {
     const CONTEXT_TO_PHASE: Record<string, string> = {
@@ -1548,7 +1548,7 @@ async function collectSessionData(
   });
 
   return {
-    // Rec 3: Derive title from sessionSummary when available (up to 80 chars, sentence boundary)
+    // Derive title from sessionSummary when available (up to 80 chars, sentence boundary)
     TITLE: (() => {
       const summary = typeof data.sessionSummary === 'string' ? data.sessionSummary : '';
       if (summary.length > 10) {
@@ -1574,7 +1574,7 @@ async function collectSessionData(
     TOOL_COUNT,
     MESSAGE_COUNT: messageCount,
     QUICK_SUMMARY: quickSummary,
-    // RC1: Pass through raw sessionSummary from JSON payload for title candidate
+    // Pass through raw sessionSummary from JSON payload for title candidate
     _JSON_SESSION_SUMMARY: typeof data.sessionSummary === 'string' ? data.sessionSummary : null,
     SKILL_VERSION: CONFIG.SKILL_VERSION,
     OBSERVATIONS: OBSERVATIONS_DETAILED,

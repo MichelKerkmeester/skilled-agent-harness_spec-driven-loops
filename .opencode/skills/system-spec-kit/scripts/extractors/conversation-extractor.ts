@@ -49,7 +49,7 @@ type PendingExchangeInput = Parameters<typeof classifyConversationExchanges>[0][
 ------------------------------------------------------------------*/
 
 /**
- * Rec 2: Build conversation messages from structured JSON payload when no transcript-based
+ * Build conversation messages from structured JSON payload when no transcript-based
  * userPrompts are available. Creates User+Assistant exchange pairs from sessionSummary,
  * keyDecisions, and observations. Messages use plain User/Assistant roles without _synthetic
  * flag, avoiding downstream penalization while keeping the implementation simple (no unused
@@ -130,7 +130,7 @@ function extractFromJsonPayload(
 async function extractConversations(
   collectedData: CollectedDataSubset<'userPrompts' | 'observations' | 'sessionSummary' | 'keyDecisions' | 'nextSteps'> | null
 ): Promise<ConversationData> {
-  // O5-9: Return empty data instead of simulation fallback
+  // Return empty data instead of simulation fallback
   if (!collectedData) {
     return {
       MESSAGES: [],
@@ -165,7 +165,7 @@ async function extractConversations(
 
   const MESSAGES: ConversationMessage[] = [];
 
-  // Rec 2: When userPrompts are empty but JSON has sessionSummary, build messages from structured data
+  // When userPrompts are empty but JSON has sessionSummary, build messages from structured data
   let jsonModeHandled = false;
   if (userPrompts.length === 0 && collectedData.sessionSummary) {
     const jsonMessages = extractFromJsonPayload(collectedData);
@@ -323,8 +323,8 @@ async function extractConversations(
     MESSAGES.push(entry.message);
   });
 
-  // O5-14: Fix 8 synthesis moved AFTER prompt-processing loop so messages sort correctly
-  // O5-2: Access fields directly via CollectedDataBase instead of double-cast
+  // Synthesis moved after the prompt-processing loop so messages sort correctly
+  // Access fields directly via CollectedDataBase instead of double-cast
   if (!jsonModeHandled && userPrompts.length <= 1 && collectedData.sessionSummary) {
     const timestamp = formatTimestamp(undefined, 'readable');
     MESSAGES.push({

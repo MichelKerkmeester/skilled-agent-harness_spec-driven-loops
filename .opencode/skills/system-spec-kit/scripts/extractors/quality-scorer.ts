@@ -38,7 +38,7 @@ interface QualityInputs {
 
 const QUALITY_RULE_IDS: QualityRuleId[] = ['V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14'];
 
-// O2-9: Weight penalties by V-rule severity instead of flat rate
+// Weight penalties by V-rule severity instead of a flat rate
 // Recalibrated: five simultaneous MEDIUM failures → ~0.85 (meaningfully below 0.90).
 // HIGH rules (V1, V3, V8, V9, V11, V13) block writes upstream so rarely reach the scorer;
 // they carry a larger penalty to reflect their critical nature when they do.
@@ -111,7 +111,7 @@ function scoreMemoryQuality(inputs: QualityInputs): QualityScoreResult {
   let sufficiencyCap: number | null = null;
 
   const failedRules = validatorSignals.filter((signal) => !signal.passed);
-  // O2-9: Sum severity-weighted penalties instead of flat rate
+  // Sum severity-weighted penalties instead of a flat rate
   const totalPenalty = failedRules.reduce((sum, failed) => {
     const metadata = VALIDATION_RULE_METADATA[failed.ruleId as keyof typeof VALIDATION_RULE_METADATA];
     const severity: ValidationRuleSeverity = metadata?.severity ?? 'medium';
@@ -147,7 +147,7 @@ function scoreMemoryQuality(inputs: QualityInputs): QualityScoreResult {
     if (failed.ruleId === 'V11') {
       qualityFlags.add('has_error_content');
     }
-    // O2-2: Add V3 and V12 flag mappings
+    // V3 and V12 flag mappings
     if (failed.ruleId === 'V3') {
       qualityFlags.add('has_malformed_spec_folder');
     }
@@ -181,12 +181,12 @@ function scoreMemoryQuality(inputs: QualityInputs): QualityScoreResult {
 
   if (insufficientContext) {
     qualityFlags.add('has_insufficient_context');
-    // O2-7: Use Math.min to preserve any stricter existing cap (e.g. contamination 0.6)
+    // Use Math.min to preserve any stricter existing cap (e.g. contamination 0.6)
     sufficiencyCap = Math.min(sufficiencyCap ?? 1, normalizedSufficiencyScore !== null ? normalizedSufficiencyScore * 0.6 : 0.35);
     qualityScore = Math.min(qualityScore, sufficiencyCap);
   }
 
-  // P3-4: minimum_message_ratio — flag sessions with disproportionately low message count
+  // minimum_message_ratio — flag sessions with disproportionately low message count
   if (toolCount > 10 && messageCount > 0 && (messageCount / toolCount) < 0.05) {
     qualityFlags.add('insufficient_capture');
     qualityScore -= 0.15;
@@ -196,7 +196,7 @@ function scoreMemoryQuality(inputs: QualityInputs): QualityScoreResult {
   // Prior bonuses (+0.05 messages, +0.05 tools, +0.10 decisions) masked up to 5 simultaneous
   // soft failures, making quality_score effectively binary. Removed to restore discriminative power.
 
-  // O2-3: Contamination penalty uses cap only (not cap + subtraction)
+  // Contamination penalty uses cap only (not cap + subtraction)
   // The cap at the contamination block above is sufficient; double-counting removed
 
   if (sufficiencyCap !== null) {

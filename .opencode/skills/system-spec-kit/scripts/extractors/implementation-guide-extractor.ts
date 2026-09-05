@@ -10,7 +10,7 @@
 import { createHash } from 'node:crypto';
 import { detectObservationType } from './file-extractor.js';
 import { slugify } from '../utils/slug-utils.js';
-// O3-2: Use canonical types from session-types (no local duplicates)
+// Use canonical types from session-types (no local duplicates)
 import type {
   Observation,
   ImplementationStep,
@@ -36,7 +36,7 @@ export interface ImplementationGuideData {
   PATTERNS: CodePattern[];
 }
 
-// O3-2: ObservationInput replaced by canonical Observation type
+// ObservationInput replaced by canonical Observation type
 type ObservationInput = Observation;
 
 /** File input used by the implementation guide extractor. */
@@ -202,6 +202,7 @@ function extractKeyFilesWithRoles(files: FileInput[], observations: ObservationI
     }
 
     if (!role && fileContextMap.has(filePath)) {
+      // Guaranteed present by the has() check on the line above
       const context = fileContextMap.get(filePath)!;
       const phrase = context.match(/\b(?:for|handles?|provides?|implements?|contains?)\s+([^.]+)/i);
       if (phrase) {
@@ -299,8 +300,8 @@ function extractCodePatterns(observations: ObservationInput[], files: FileInput[
   const patterns: CodePattern[] = [];
   const seen = new Set<string>();
 
-  // Fix 4: Removed ultra-generic matchers ("Module Pattern", "Functional Transforms")
-  // that match virtually all TypeScript code. Require >=2 keyword matches per pattern.
+  // Ultra-generic matchers ("Module Pattern", "Functional Transforms") were removed
+  // because they match virtually all TypeScript code. Require >=2 keyword matches per pattern.
   const patternMatchers: PatternMatcher[] = [
     { keywords: ['helper', 'util', 'utility'], name: 'Helper Functions', usage: 'Encapsulate reusable logic in dedicated utility functions' },
     { keywords: ['validation', 'validate', 'validator'], name: 'Validation', usage: 'Input validation before processing' },
@@ -312,7 +313,7 @@ function extractCodePatterns(observations: ObservationInput[], files: FileInput[
     { keywords: ['async', 'await', 'promise'], name: 'Async/Await', usage: 'Handle asynchronous operations cleanly' },
   ];
 
-  // Fix 4: Only match against observation text (not file names) to avoid false positives
+  // Only match against observation text (not file names) to avoid false positives
   const allText = observations
     .map((o) => `${o.title || ''} ${o.narrative || ''}`)
     .join(' ')
@@ -321,7 +322,7 @@ function extractCodePatterns(observations: ObservationInput[], files: FileInput[
   for (const matcher of patternMatchers) {
     if (seen.has(matcher.name)) continue;
 
-    // Fix 4: Require at least 2 keyword matches from the same matcher for specificity.
+    // Require at least 2 keyword matches from the same matcher for specificity.
     // Use word-boundary regex to prevent "caching" counting as both "cache" and "caching".
     const matchCount = matcher.keywords.filter((kw) =>
       new RegExp(`\\b${kw}\\b`).test(allText)

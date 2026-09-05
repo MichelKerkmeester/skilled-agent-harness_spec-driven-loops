@@ -55,7 +55,7 @@ templates/
 Run from the repository root:
 
 ```bash
-python .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/scripts/templates/README.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/system-spec-kit/scripts/templates/README.md
 ```
 
 Expected result: the README validation exits `0`.

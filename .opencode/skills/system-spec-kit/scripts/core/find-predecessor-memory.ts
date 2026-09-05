@@ -77,6 +77,7 @@ function hasExistingSupersedes(currentSession: CurrentSession): boolean {
     || readSupersedes(currentSession.causalLinks).length > 0;
 }
 
+/** Match a text sample against known continuation-signal patterns, returning the matched label or null. */
 export function detectContinuationPattern(value: string): string | null {
   const text = value.trim();
   if (text.length === 0) {

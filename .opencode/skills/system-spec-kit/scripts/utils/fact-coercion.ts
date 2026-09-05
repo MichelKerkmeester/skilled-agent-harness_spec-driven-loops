@@ -14,12 +14,14 @@ export type FactDropReason =
   | 'nullish'
   | 'unserializable-object';
 
+/** A fact value coerced to displayable text, with its source shape and drop reason if any. */
 export interface CoercedFact {
   text: string;
   dropReason?: FactDropReason;
   sourceType: 'string' | 'text-object' | 'object' | 'primitive' | 'nullish';
 }
 
+/** Context logged alongside a dropped fact, identifying the component, field and session. */
 export interface FactDropLogContext {
   component: string;
   fieldPath: string;

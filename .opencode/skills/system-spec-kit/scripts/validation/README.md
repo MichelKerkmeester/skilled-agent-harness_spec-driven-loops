@@ -20,7 +20,8 @@ Current responsibilities:
 - Flag code comments that embed ephemeral tracking-artifact pointers (spec numbers, task / checklist / requirement / ADR / review-finding ids).
 - Check whether continuity timestamps lag graph-metadata timestamps.
 - Audit `[EVIDENCE: ...]` markers across spec-packet markdown.
-- Provide a strict-mode evidence-marker lint bridge for validation scripts.
+- Bridge the runtime's generated-metadata drift and integrity checks into the `validate.sh` protocol.
+- Surface recorded failures (governance FAILs, loop-flagged contradictions, drift notes) that were written down but never routed to a remediation.
 
 ---
 
@@ -28,9 +29,12 @@ Current responsibilities:
 
 ```text
 validation/
-+-- ephemeral-pointer-audit.mjs  # Comment-hygiene guard (sk-code §4 enforcement)
-+-- continuity-freshness.ts      # Continuity timestamp freshness validator
-+-- evidence-marker-audit.ts     # Evidence-marker parser, report and optional rewrap tool
++-- ephemeral-pointer-audit.mjs             # Comment-hygiene guard (sk-code §4 enforcement)
++-- continuity-freshness.ts                 # Continuity timestamp freshness validator
++-- evidence-marker-audit.ts                # Evidence-marker parser, report and optional rewrap tool
++-- generated-metadata-drift.ts             # validate.sh bridge for the generated-metadata drift gate
++-- generated-metadata-integrity.ts         # validate.sh bridge for the generated-metadata integrity check
++-- unactioned-recorded-failure-audit.mjs   # Finds recorded failures with no nearby remediation link
 `-- README.md
 ```
 
@@ -43,6 +47,9 @@ validation/
 | `ephemeral-pointer-audit.mjs` | Standalone, dependency-free Node ESM guard that scans code comments only and flags pointers to ephemeral artifacts. Durable WHY comments and external standards (SHA-256, UTF-16, CWE, RFC) are explicitly allowed; the perishable traceability id is what it forbids. |
 | `continuity-freshness.ts` | Compares `_memory.continuity.last_updated_at` against the `graph-metadata.json` save time and reports lag. |
 | `evidence-marker-audit.ts` | Parses evidence markers while ignoring fenced and inline code; read-only unless `--rewrap` is supplied. |
+| `generated-metadata-drift.ts` | Re-derives a spec folder and compares stored `description.json` / `causal_summary` against a fresh derivation, ignoring volatile timestamps; report-only until the drift gate graduates to a hard failure. |
+| `generated-metadata-integrity.ts` | Validates `description.json` and `graph-metadata.json` against the shared schemas plus path-prefix and status-enum invariants; report-only until the migration graduates the rule to a hard error. |
+| `unactioned-recorded-failure-audit.mjs` | Scans markdown for recorded-failure language (FAIL, contradiction, drift, unactioned) with no nearby remediation link, biased toward over-flagging. |
 
 ---
 
@@ -85,7 +92,7 @@ echo $?   # 0 = clean, 1 = violations, 2 = bad invocation
 README structure check:
 
 ```bash
-python .opencode/skills/sk-doc/scripts/validate_document.py \
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py \
   .opencode/skills/system-spec-kit/scripts/validation/README.md
 ```
 
@@ -99,3 +106,6 @@ Expected result: the audit exits `0` over a clean tree and the README validation
 - [`ephemeral-pointer-audit.mjs`](./ephemeral-pointer-audit.mjs)
 - [`continuity-freshness.ts`](./continuity-freshness.ts)
 - [`evidence-marker-audit.ts`](./evidence-marker-audit.ts)
+- [`generated-metadata-drift.ts`](./generated-metadata-drift.ts)
+- [`generated-metadata-integrity.ts`](./generated-metadata-integrity.ts)
+- [`unactioned-recorded-failure-audit.mjs`](./unactioned-recorded-failure-audit.mjs)

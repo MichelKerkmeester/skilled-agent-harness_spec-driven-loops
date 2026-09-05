@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Post-Save Quality Review
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. POST-SAVE QUALITY REVIEW
@@ -56,6 +56,7 @@ export type ReviewCheckId =
   | 'DUP6'
   | 'DUP7';
 
+/** One post-save review result: its severity, the field it concerns and the suggested remedy. */
 export interface ReviewIssue {
   checkId?: ReviewCheckId;
   severity: IssueSeverity;
@@ -64,6 +65,7 @@ export interface ReviewIssue {
   fix: string;
 }
 
+/** Outcome of a post-save frontmatter/content review, including issues and severity counts. */
 export interface PostSaveReviewResult {
   status: ReviewStatus;
   issues: ReviewIssue[];
@@ -78,6 +80,7 @@ export interface PostSaveReviewResult {
   inputCompletenessScore?: number | null;
 }
 
+/** Input to the post-save review: the saved file, its content, and the collected data it came from. */
 export interface PostSaveReviewInput {
   savedFilePath: string;
   content?: string;
@@ -1074,6 +1077,7 @@ const REVIEW_SEVERITY_PENALTIES: Record<IssueSeverity, number> = {
   LOW: -0.02,
 };
 
+/** Sum per-severity penalties across review issues, capped at -0.30. */
 export function computeReviewScorePenalty(issues: ReviewIssue[]): number {
   let penalty = 0;
   for (const issue of issues) {

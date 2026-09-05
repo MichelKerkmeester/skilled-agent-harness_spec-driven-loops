@@ -5,11 +5,13 @@
 // Extracted from workflow.ts to reduce module size.
 
 import * as path from 'node:path';
-import type { SpecDocHealthResult } from '@spec-kit/shared/parsing/spec-doc-health';
+
 import { sanitizeTriggerPhrases } from '../lib/trigger-phrase-sanitizer.js';
+
+import type { SpecDocHealthResult } from '@spec-kit/shared/parsing/spec-doc-health';
 import type { FileChange } from '../types/session-types.js';
 
-// CG-04: Domain-specific stopwords — duplicated from workflow.ts to avoid circular imports
+// Domain-specific stopwords — duplicated from workflow.ts to avoid circular imports
 const FOLDER_STOPWORDS = new Set([
   'system', 'spec', 'kit', 'hybrid', 'rag', 'fusion', 'agents', 'alignment',
   'opencode', 'config', 'setup', 'init', 'core', 'main', 'base', 'common',
@@ -75,6 +77,7 @@ export function injectQualityMetadata(content: string, qualityScore: number, qua
   return `${updatedFrontmatter}${newline}${prefix}${suffix}`;
 }
 
+/** Insert or replace the spec_folder_health frontmatter line with the given health result. */
 export function injectSpecDocHealthMetadata(content: string, health: SpecDocHealthResult): string {
   const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!frontmatterMatch || frontmatterMatch.index === undefined) return content;
@@ -93,6 +96,7 @@ export function injectSpecDocHealthMetadata(content: string, health: SpecDocHeal
   return `${updated}${newline}${prefix}${suffix}`;
 }
 
+/** Render a trigger_phrases array as a YAML block, escaping quotes and backslashes. */
 export function renderTriggerPhrasesYaml(triggerPhrases: string[]): string {
   if (!Array.isArray(triggerPhrases) || triggerPhrases.length === 0) {
     return 'trigger_phrases: []';
@@ -138,6 +142,7 @@ function buildLeafFolderAnchor(specFolderName: string): string {
   return parentLead ? `${leafSegment} ${parentLead}` : leafSegment;
 }
 
+/** Top up a trigger-phrase list to at least 2 entries using folder-derived fallbacks. */
 export function ensureMinTriggerPhrases(existing: string[], specFolderName: string): string[] {
   if (existing.length >= 2) {
     return existing;
@@ -166,6 +171,7 @@ export function ensureMinTriggerPhrases(existing: string[], specFolderName: stri
   return ['session', 'context'];
 }
 
+/** Top up a semantic-topics list to at least 1 entry using folder and changed-file tokens. */
 export function ensureMinSemanticTopics(existing: string[], enhancedFiles: FileChange[], specFolderName: string): string[] {
   if (existing.length >= 1) {
     return existing;

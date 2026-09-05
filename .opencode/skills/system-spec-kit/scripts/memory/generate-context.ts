@@ -585,6 +585,7 @@ function getPacketIdFromGraphMetadata(specFolderPath: string): string {
   return path.basename(specFolderPath);
 }
 
+/** Update a phase parent's graph-metadata derived block (active child, timestamps, children_ids) atomically. */
 export function updatePhaseParentPointer(
   phaseParentPath: string,
   activeChildId: string | null,
@@ -623,6 +624,7 @@ export function updatePhaseParentPointer(
   atomicWriteJson(graphFile, updated);
 }
 
+/** After a save, update the phase-parent pointer for the saved folder itself or its phase-parent ancestor. */
 export function updatePhaseParentPointersAfterSave(
   specFolderPath: string,
   timestamp: string = new Date().toISOString(),

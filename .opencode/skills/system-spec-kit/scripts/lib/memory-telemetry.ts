@@ -1,9 +1,10 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Memory Telemetry
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 import { structuredLog } from '../utils/logger.js';
 
+/** Named memory-save metric ids (M1-M9), one per observable outcome the save pipeline tracks. */
 export const METRIC_M1_MEMORY_SAVE_OVERVIEW_LENGTH_HISTOGRAM = 'memory_save_overview_length_histogram';
 export const METRIC_M2_MEMORY_SAVE_DECISION_FALLBACK_USED_TOTAL = 'memory_save_decision_fallback_used_total';
 export const METRIC_M3_MEMORY_SAVE_TRIGGER_PHRASE_REJECTED_TOTAL = 'memory_save_trigger_phrase_rejected_total';
@@ -22,6 +23,7 @@ function normalizeLabels(labels: Record<string, string>): Record<string, string>
   );
 }
 
+/** Emit a memory-save metric as a structured log line, dropping empty labels. */
 export function emitMemoryMetric(name: string, value: number, labels: Record<string, string>): void {
   structuredLog('info', 'memory_metric', {
     metric_name: name,

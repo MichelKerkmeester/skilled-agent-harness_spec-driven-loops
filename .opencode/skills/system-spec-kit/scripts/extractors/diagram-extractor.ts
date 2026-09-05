@@ -86,6 +86,7 @@ function extractPhasesFromData(collectedData: CollectedDataSubset<'observations'
       phaseMap.set(phase, { count: 0, duration: 0, activities: [] });
     }
 
+    // Guaranteed present: set() above initializes this key when absent
     const phaseData = phaseMap.get(phase)!;
     phaseData.count++;
 
@@ -123,7 +124,7 @@ function extractPhasesFromData(collectedData: CollectedDataSubset<'observations'
 async function extractDiagrams(
   collectedData: CollectedDataSubset<'observations' | 'userPrompts'> | null
 ): Promise<DiagramData> {
-  // O5-9: Return empty data instead of simulation fallback
+  // Return empty data instead of simulation fallback
   if (!collectedData) {
     return {
       DIAGRAMS: [],
@@ -183,7 +184,7 @@ async function extractDiagrams(
     userPrompts[0]?.prompt || 'User request'
   );
 
-  // CG-01: Always return empty AUTO_DECISION_TREES to prevent duplication.
+  // Always return empty AUTO_DECISION_TREES to prevent duplication.
   // The {{#DECISIONS}} template loop already renders per-decision DECISION_TREE
   // fields via {{#HAS_DECISION_TREE}}. AUTO_DECISION_TREES would duplicate them.
   const AUTO_DECISION_TREES: AutoDecisionTree[] = [];

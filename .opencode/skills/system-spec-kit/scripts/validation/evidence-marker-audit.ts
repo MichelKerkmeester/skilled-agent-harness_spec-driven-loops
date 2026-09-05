@@ -55,6 +55,7 @@ import { isMainModule } from '../lib/esm-entry.js';
 /** Terminal state for one parsed evidence marker. */
 export type MarkerStatus = 'ok' | 'malformed' | 'unclosed';
 
+/** One parsed [EVIDENCE: ...] marker occurrence, with its location and status. */
 export interface Marker {
   /** Absolute path of the file containing the marker. */
   file: string;

@@ -180,7 +180,7 @@ function sanitizeItemText(value: string): string {
 function readOptionalFile(filePath: string): string {
   try {
     return fs.readFileSync(filePath, 'utf8');
-  } catch (_error) {
+  } catch (_error: unknown) {
     return '';
   }
 }
@@ -755,7 +755,7 @@ function main(): void {
 if (isMainModule(import.meta.url)) {
   try {
     main();
-  } catch (error) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     process.stderr.write(`${message}\n`);
     process.exit(1);

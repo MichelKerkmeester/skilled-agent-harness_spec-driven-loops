@@ -13,8 +13,9 @@ import * as path from 'path';
 
 // Internal modules
 import { promptUserChoice } from '../utils/prompt-utils.js';
-import type { CollectedDataSubset } from '../types/session-types.js';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
+
+import type { CollectedDataSubset } from '../types/session-types.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
@@ -476,7 +477,7 @@ function calculateAlignmentScore(conversationTopics: string[], specFolderName: s
 
   let matches = 0;
   for (const specTopic of specTopics) {
-    // O4-7: Use word-boundary matching instead of substring inclusion
+    // Use word-boundary matching instead of substring inclusion to avoid false positives
     const topicRegex = new RegExp(`\\b${escapeRegExp(specTopic)}\\b`, 'i');
     if (conversationTopics.some((ct) =>
       topicRegex.test(ct) || new RegExp(`\\b${escapeRegExp(ct)}\\b`, 'i').test(specTopic)
@@ -567,7 +568,7 @@ async function validateContentAlignment(
           console.log(`   ALIGNMENT_HARD_BLOCK: Non-interactive mode with 0% alignment and infrastructure mismatch — refusing to proceed with "${specFolderName}".`);
           return { proceed: false, useAlternative: false };
         }
-        // O4-8: Block in non-interactive mode when alignment is critically low
+        // Block in non-interactive mode when alignment is critically low
         if (finalScore < 20) {
           console.log(`   ALIGNMENT_HARD_BLOCK: ${finalScore}% alignment is below minimum non-interactive threshold (20%)`);
           return { proceed: false, useAlternative: false };
@@ -608,7 +609,7 @@ async function validateContentAlignment(
     console.log(`   ALIGNMENT_HARD_BLOCK: 0% alignment with infrastructure mismatch and no alternatives — refusing to proceed with "${specFolderName}".`);
     return { proceed: false, useAlternative: false };
   }
-  // O4-8: Block in non-interactive mode when alignment is critically low
+  // Block in non-interactive mode when alignment is critically low
   if (finalScore < 20 && (!process.stdout.isTTY || !process.stdin.isTTY)) {
     console.log(`   ALIGNMENT_HARD_BLOCK: ${finalScore}% alignment is below minimum non-interactive threshold (20%)`);
     return { proceed: false, useAlternative: false };

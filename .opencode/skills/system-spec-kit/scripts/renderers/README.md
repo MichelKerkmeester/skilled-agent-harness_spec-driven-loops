@@ -96,7 +96,7 @@ Run from the repository root:
 
 ```bash
 cd .opencode/skills/system-spec-kit/scripts && npm run build
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/scripts/renderers/README.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/system-spec-kit/scripts/renderers/README.md
 ```
 
 Expected result: TypeScript builds and README validation exits `0` with no HVR issues.

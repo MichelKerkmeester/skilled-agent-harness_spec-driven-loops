@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Input Normalizer
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. INPUT NORMALIZER
@@ -32,7 +32,7 @@ export type DataSource =
 
 export type CaptureDataSource = Exclude<DataSource, 'file' | 'simulation'>;
 
-// O3-1: Re-export canonical Observation from session-types
+// Re-export canonical Observation from session-types
 export type { Observation };
 
 /** Observation with required fields as produced by the normalizer pipeline */
@@ -49,7 +49,7 @@ export interface NormalizedUserPrompt {
   timestamp: string;
 }
 
-// O3-7: Use canonical RecentContextEntry and create required-field alias
+// Use canonical RecentContextEntry and create a required-field alias
 export type RecentContext = Required<Pick<RecentContextEntry, 'request' | 'learning'>>;
 
 /** A file entry in the FILES array (normalizer-specific shape, not session-types FileEntry) */
@@ -146,7 +146,7 @@ export interface NormalizedData {
   sessionStatus?: string;
   completionPercent?: number;
   saveMode?: SaveMode;
-  // TODO(O3-12): Remove index signature once all dynamic fields are explicitly declared
+  // TODO: Remove index signature once all dynamic fields are explicitly declared
   [key: string]: unknown;
 }
 
@@ -580,7 +580,7 @@ function safeString(value: unknown, fallback: string): string {
 const VALID_MAGNITUDES = new Set(['trivial', 'small', 'medium', 'large', 'unknown']);
 
 function normalizeFileEntryLike(file: NormalizedFileEntry | Record<string, unknown>): NormalizedFileEntry {
-  // BUG-003: Trim and capitalize ACTION
+  // Trim and capitalize ACTION
   const rawActionValue = 'ACTION' in file
     ? file.ACTION
     : ('action' in file ? file.action : undefined);
@@ -592,7 +592,7 @@ function normalizeFileEntryLike(file: NormalizedFileEntry | Record<string, unkno
     ? rawProvenance
     : undefined;
 
-  // BUG-003: Default invalid MAGNITUDE to 'unknown' only when a value was provided but invalid
+  // Default invalid MAGNITUDE to 'unknown' only when a value was provided but invalid
   const rawMagnitude = 'MODIFICATION_MAGNITUDE' in file ? file.MODIFICATION_MAGNITUDE : undefined;
   const modificationMagnitude: NormalizedFileEntry['MODIFICATION_MAGNITUDE'] =
     (typeof rawMagnitude === 'string' && VALID_MAGNITUDES.has(rawMagnitude))
@@ -604,7 +604,7 @@ function normalizeFileEntryLike(file: NormalizedFileEntry | Record<string, unkno
     ? rawSynthetic
     : undefined;
 
-  // BUG-001: Safe coercion via safeString — rejects objects/arrays, coerces primitives
+  // Safe coercion via safeString — rejects objects/arrays, coerces primitives
   const rawFilePath = ('FILE_PATH' in file ? file.FILE_PATH : undefined)
     ?? ('path' in file ? file.path : undefined);
   const rawDescription = ('DESCRIPTION' in file ? file.DESCRIPTION : undefined)
@@ -708,7 +708,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
         }
       }
     }
-    // Rec 1: Map filesChanged to FILES on fast-path when no filesModified present
+    // Map filesChanged to FILES on fast-path when no filesModified present
     if (!cloned.FILES || (Array.isArray(cloned.FILES) && cloned.FILES.length === 0)) {
       const fcFast = Array.isArray(data.filesChanged)
         ? data.filesChanged
@@ -756,12 +756,12 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     if (data.technicalContext && typeof data.technicalContext === 'object' && !cloned.TECHNICAL_CONTEXT) {
       cloned.TECHNICAL_CONTEXT = mapTechnicalContext(data.technicalContext);
     }
-    // BUG-006: Propagate importanceTier through fast-path
+    // Propagate importanceTier through fast-path
     const fastPathTier = data.importanceTier || data.importance_tier;
     if (typeof fastPathTier === 'string' && fastPathTier.length > 0) {
       cloned.importanceTier = fastPathTier;
     }
-    // RC5: Propagate contextType through fast-path (mirrors importanceTier pattern)
+    // Propagate contextType through fast-path (mirrors importanceTier pattern)
     const fastPathContextType = data.contextType || data.context_type;
     if (typeof fastPathContextType === 'string' && fastPathContextType.length > 0) {
       cloned.contextType = fastPathContextType;
@@ -793,7 +793,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
       (cloned as Record<string, unknown>).completionPercent = fastPathCompletionPercent;
     }
     cloned.saveMode = resolveSaveMode(cloned as RawInputData);
-    // RC3: Propagate keyDecisions through fast-path
+    // Propagate keyDecisions through fast-path
     const keyDecisions = Array.isArray(data.keyDecisions)
       ? data.keyDecisions
       : Array.isArray(data.key_decisions)
@@ -864,7 +864,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
       let filePath: string;
       let changesSummary: string;
       if (typeof entry === 'string') {
-        // Fix 6: Parse "path <separator> description" compound format
+        // Parse "path <separator> description" compound format
         // Support: " - ", " — " (em dash), " – " (en dash), " : "
         const sepMatch = entry.match(/^(.+?)\s+(?:[-\u2013\u2014]|:)\s+(.+)$/);
         if (sepMatch && (sepMatch[1].includes('.') || sepMatch[1].includes('/'))) {
@@ -878,7 +878,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
         filePath = entry.path || '';
         changesSummary = entry.changes_summary || '';
       }
-      // CG-06: Generate description from changes_summary or filename instead of "description pending"
+      // Generate description from changes_summary or filename instead of "description pending"
       let description = changesSummary;
       if (!description) {
         const basename = filePath.replace(/\\/g, '/').split('/').pop()?.replace(/\.[^.]+$/, '') || '';
@@ -890,7 +890,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     });
   }
 
-  // Rec 1: Map filesChanged to FILES when filesModified not provided
+  // Map filesChanged to FILES when filesModified not provided
   if ((!normalized.FILES || normalized.FILES.length === 0) && !filesModified.length) {
     const filesChanged = Array.isArray(data.filesChanged)
       ? data.filesChanged
@@ -980,12 +980,12 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     normalized._manualDecisions = keyDecisions.map((decision) => cloneInputData(decision));
   }
 
-  // BUG-006: Propagate importanceTier through slow-path
+  // Propagate importanceTier through slow-path
   const slowPathTier = data.importanceTier || data.importance_tier;
   if (typeof slowPathTier === 'string' && slowPathTier.length > 0) {
     normalized.importanceTier = slowPathTier;
   }
-  // RC5: Propagate contextType through slow-path (mirrors importanceTier pattern)
+  // Propagate contextType through slow-path (mirrors importanceTier pattern)
   const slowPathContextType = data.contextType || data.context_type;
   if (typeof slowPathContextType === 'string' && slowPathContextType.length > 0) {
     normalized.contextType = slowPathContextType;
@@ -1290,7 +1290,7 @@ function buildToolObservationTitle(tool: CaptureToolCall): string {
   }
 }
 
-// P3-1: Stopword list for spec relevance keywords.
+// Stopword list for spec relevance keywords.
 // RELEVANCE_PATH_STOPWORDS (permissive) — for spec-path-derived keywords; only blocks truly generic words.
 // Words like 'testing', 'playbook', 'memory', 'session' are meaningful when from a path and should NOT be stopped.
 const RELEVANCE_PATH_STOPWORDS = new Set([
@@ -1359,7 +1359,7 @@ function isSafeSpecFallback(
       return false;
     }
   }
-  // P3-3: Require at least one topical anchor when a spec hint exists.
+  // Require at least one topical anchor when a spec hint exists.
   if (!specFolderHint) return true;
   const specSegments = specFolderHint
     .split('/')

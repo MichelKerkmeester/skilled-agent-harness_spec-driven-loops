@@ -118,7 +118,7 @@ function getChannel(): string {
  * @returns One of `'planning'`, `'research'`, `'implementation'`, or `'general'`.
  */
 function detectContextType(toolCounts: ToolCounts, decisionCount: number): string {
-  // RC5: Check decision count BEFORE total===0 early return.
+  // Check decision count BEFORE total===0 early return.
   // In JSON mode tool counts are always 0, so decisions were never checked.
   if (decisionCount > 0) return 'planning';
 
@@ -337,7 +337,7 @@ function extractNextAction(
  * @returns A trimmed blocker sentence (max 100 chars), or `'None'` if no blockers found.
  */
 function extractBlockers(observations: Observation[]): string {
-  // Fix 3: Require blocker-specific sentence structure, not just keyword presence.
+  // Require blocker-specific sentence structure, not just keyword presence.
   // Broad keywords like "error", "problem", "failed" match normal technical discussion
   // (e.g., "error handling", "the problem was X", "this test failed").
   const blockerPatterns = [
@@ -598,7 +598,7 @@ function detectSessionCharacteristics(
   const decisionCount = observations.filter((obs) =>
     obs.type === 'decision' || obs.title?.toLowerCase().includes('decision')
   ).length;
-  // RC5: Honor explicit contextType from JSON payload when valid
+  // Honor explicit contextType from JSON payload when valid
   const contextType = (
     typeof explicitContextType === 'string' &&
     VALID_CONTEXT_TYPES.has(explicitContextType.trim().toLowerCase())

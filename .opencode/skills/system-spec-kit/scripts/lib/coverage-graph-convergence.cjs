@@ -1,14 +1,14 @@
 'use strict';
 // sourceDiversity is an adapter replicating the deep-loop runtime's canonical algorithm. Do not diverge. See .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Coverage Graph Convergence
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // Graph-aware convergence helpers that combine graph-structural
 // signals with stop-trace convergence scoring. Provides
 // STOP-BLOCKING guards (sourceDiversity, evidenceDepth) that must
 // pass before a deep-research or deep-review loop can terminate.
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 const { computeClusterMetrics } = require('./coverage-graph-signals.cjs');
 
@@ -121,7 +121,7 @@ function buildCitedSourcesByFinding(edges) {
   return citedSources;
 }
 
-/* ---------------------------------------------------------------
+/* ───────────────────────────────────────────────────────────────
    1. THRESHOLDS
 ----------------------------------------------------------------*/
 
@@ -139,7 +139,7 @@ const SOURCE_DIVERSITY_THRESHOLD = 1.5;
  */
 const EVIDENCE_DEPTH_THRESHOLD = 1.5;
 
-/* ---------------------------------------------------------------
+/* ───────────────────────────────────────────────────────────────
    2. SOURCE DIVERSITY
 ----------------------------------------------------------------*/
 
@@ -188,7 +188,7 @@ function computeSourceDiversity(graph) {
   return totalDiversity / questionIds.length;
 }
 
-/* ---------------------------------------------------------------
+/* ───────────────────────────────────────────────────────────────
    3. EVIDENCE DEPTH
 ----------------------------------------------------------------*/
 
@@ -223,7 +223,7 @@ function computeEvidenceDepth(graph) {
   return pathCount > 0 ? totalDepth / pathCount : 0;
 }
 
-/* ---------------------------------------------------------------
+/* ───────────────────────────────────────────────────────────────
    4. QUESTION COVERAGE
 ----------------------------------------------------------------*/
 
@@ -273,7 +273,7 @@ function computeContradictionDensity(graph) {
   return contradictionCount / normalized.edges.length;
 }
 
-/* ---------------------------------------------------------------
+/* ───────────────────────────────────────────────────────────────
    5. GRAPH CONVERGENCE
 ----------------------------------------------------------------*/
 
@@ -351,7 +351,7 @@ function computeGraphConvergence(graph, signals) {
   };
 }
 
-/* ---------------------------------------------------------------
+/* ───────────────────────────────────────────────────────────────
    6. STOP GATES
 ----------------------------------------------------------------*/
 
@@ -396,7 +396,7 @@ function evaluateGraphGates(graph) {
   };
 }
 
-/* ---------------------------------------------------------------
+/* ───────────────────────────────────────────────────────────────
    7. EXPORTS
 ----------------------------------------------------------------*/
 

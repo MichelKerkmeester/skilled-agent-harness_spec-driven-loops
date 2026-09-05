@@ -542,7 +542,7 @@ export function migrateAllJson(options: MigrateOptions): MigrationSummary {
           prune,
           pruneReport: false,
         });
-      } catch (error) {
+      } catch (error: unknown) {
         // One corrupt folder reports failed, the run continues over the rest.
         outcome = {
           specFolder: relativeSpecFolder(folderAbs, specsRoot),
@@ -697,7 +697,7 @@ function run(): void {
     if (summary.failed > 0 || (summary.verify && !summary.verify.clean)) {
       process.exitCode = 1;
     }
-  } catch (error) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     process.stderr.write(`migrate-generated-json: ${message}\n`);
     process.exitCode = 1;

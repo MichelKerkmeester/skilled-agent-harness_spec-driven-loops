@@ -77,7 +77,7 @@ async function loadCollectedData(options?: LoadOptions): Promise<LoadedData> {
       );
     }
 
-    // SEC-001: Path traversal mitigation (CWE-22)
+    // SEC: Path traversal mitigation (CWE-22)
     // Use os.tmpdir() for cross-platform temp directory support
     // Also include /tmp for macOS where /tmp symlinks to /private/tmp
     const tmpDir: string = os.tmpdir();

@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Memory Frontmatter
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // Shared helpers for memory-specific frontmatter quality.
 
 import { extractTriggerPhrases } from './trigger-extractor.js';
@@ -56,6 +56,7 @@ function buildSpecTokens(specFolder: string): string[] {
     .filter((token) => token.length >= 3);
 }
 
+/** Check whether the full trigger-phrase list is exactly the legacy generic placeholder set. */
 export function hasLegacyGenericTriggerPhrases(triggerPhrases: string[]): boolean {
   if (triggerPhrases.length !== LEGACY_GENERIC_MEMORY_TRIGGER_PHRASES.length) {
     return false;
@@ -68,6 +69,7 @@ export function hasLegacyGenericTriggerPhrases(triggerPhrases: string[]): boolea
   return generic.every((phrase, index) => normalized[index] === phrase);
 }
 
+/** Check whether any single trigger phrase matches a legacy generic placeholder. */
 export function containsLegacyGenericTriggerPhrase(triggerPhrases: string[]): boolean {
   const normalized = triggerPhrases
     .map((phrase) => normalizeForComparison(phrase))
@@ -76,6 +78,7 @@ export function containsLegacyGenericTriggerPhrase(triggerPhrases: string[]): bo
   return normalized.some((phrase) => LEGACY_GENERIC_MEMORY_TRIGGER_PHRASES.includes(phrase));
 }
 
+/** Check whether a description matches the generic placeholder memory description. */
 export function hasGenericMemoryDescription(description?: string | null): boolean {
   if (!description) {
     return false;
@@ -84,6 +87,7 @@ export function hasGenericMemoryDescription(description?: string | null): boolea
   return normalizeForComparison(description) === GENERIC_MEMORY_DESCRIPTION_NORMALIZED;
 }
 
+/** Strip markdown noise and trailing punctuation from a memory frontmatter title. */
 export function sanitizeMemoryFrontmatterTitle(title?: string | null): string {
   if (!title) {
     return '';
@@ -94,6 +98,7 @@ export function sanitizeMemoryFrontmatterTitle(title?: string | null): string {
     .trim();
 }
 
+/** Pick the first non-generic, sanitized candidate (summary, heading, then title) as the memory description. */
 export function deriveMemoryDescription(options: {
   summary?: string | null;
   heading?: string | null;
@@ -121,6 +126,7 @@ export function deriveMemoryDescription(options: {
   return 'Session context preserved for future continuation.';
 }
 
+/** Derive a memory's trigger phrases from existing entries plus title, description and spec-folder tokens. */
 export function deriveMemoryTriggerPhrases(options: {
   title?: string | null;
   description?: string | null;

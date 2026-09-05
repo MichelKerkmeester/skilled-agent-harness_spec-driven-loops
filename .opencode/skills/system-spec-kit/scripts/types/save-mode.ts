@@ -7,12 +7,14 @@
 // ───────────────────────────────────────────────────────────────
 // Explicit save intent used for control flow. `_source` remains provenance.
 
+/** Explicit save intent for a captured session, used to select the write path. */
 export enum SaveMode {
   Json = 'json',
   Capture = 'capture',
   ManualFile = 'manual-file',
 }
 
+/** Raw fields a caller may supply to signal save intent, including legacy aliases. */
 export interface SaveModeInput {
   saveMode?: SaveMode | string;
   save_mode?: SaveMode | string;
@@ -39,6 +41,13 @@ function normalizeExplicitSaveMode(value: string | undefined): SaveMode | null {
   }
 }
 
+/**
+ * Resolve the effective save mode from explicit fields, input mode hints, or
+ * legacy source markers, in that priority order.
+ *
+ * @param input - Raw save-intent fields from the caller, or null/undefined
+ * @returns The resolved {@link SaveMode}
+ */
 export function resolveSaveMode(input: SaveModeInput | null | undefined): SaveMode {
   const explicitMode = typeof input?.saveMode === 'string'
     ? input.saveMode

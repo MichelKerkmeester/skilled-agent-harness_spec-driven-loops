@@ -24,17 +24,20 @@ const ITERATION_PARENT_RE = /^\d{3}(?:[-_].+)?$/;
 const DESCRIPTION_FILENAME = 'description.json';
 const GRAPH_METADATA_FILENAME = 'graph-metadata.json';
 
+/** Options for backfilling research iteration-directory metadata under a spec folder. */
 export interface ResearchMetadataBackfillOptions {
   readonly specFolderPath: string;
   readonly dryRun?: boolean;
   readonly now?: string;
 }
 
+/** A single iteration directory that failed during the research metadata backfill. */
 export interface ResearchMetadataBackfillFailure {
   readonly directory: string;
   readonly error: string;
 }
 
+/** Aggregate outcome of a research metadata backfill run across all iteration directories. */
 export interface ResearchMetadataBackfillSummary {
   readonly specFolderPath: string;
   readonly dryRun: boolean;

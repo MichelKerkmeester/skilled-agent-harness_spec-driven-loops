@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Validate Memory Quality (re-export shim)
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // Canonical implementation lives in ../lib/validate-memory-quality.ts.
 // This file re-exports everything for backward compatibility and
 // serves as the CLI entry point (node validate-memory-quality.js).

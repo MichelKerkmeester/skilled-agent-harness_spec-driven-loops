@@ -6,11 +6,13 @@
 // without any whitespace. Used by summary rendering and dashboard
 // snippets to keep ellipsized output readable across scripts.
 
+/** Options controlling the ellipsis string and the minimum kept boundary length. */
 export interface TruncateOptions {
   ellipsis?: string;
   minBoundary?: number;
 }
 
+/** Truncate text to limit chars at the nearest word boundary, falling back to a code-point-safe cut. */
 export function truncateOnWordBoundary(text: string, limit: number, opts?: TruncateOptions): string {
   if (typeof text !== 'string' || text.length === 0) {
     return '';

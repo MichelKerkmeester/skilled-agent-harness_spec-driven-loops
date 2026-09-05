@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Memory Indexer
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // Legacy workflow-side indexing wrappers have been retired. Script workflows
 // now rely on canonical spec-doc indexing instead of writing/indexing

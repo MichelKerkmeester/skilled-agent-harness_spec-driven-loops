@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Session Types
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import type { SaveMode } from './save-mode.js';
 
@@ -8,7 +8,7 @@ import type { SaveMode } from './save-mode.js';
 // 1. SESSION TYPES
 // ───────────────────────────────────────────────────────────────
 // Canonical type definitions shared between simulation-factory and extractors.
-// Eliminates parallel type hierarchies (TECH-DEBT P6-05).
+// Eliminates parallel type hierarchies that previously drifted out of sync.
 
 export type DescriptionProvenance = 'git' | 'spec-folder' | 'tool';
 
@@ -147,7 +147,7 @@ export interface CollectedDataBase {
   toolCalls?: ToolCallSummary[];
   /** JSON-mode exchange summaries (AI-composed conversation highlights) */
   exchanges?: ExchangeSummary[];
-  // Explicitly declared fields previously accessed via index signature (O3-6)
+  // Explicitly declared fields previously accessed via an index signature
   sessionSummary?: string;
   keyDecisions?: Array<Record<string, unknown>>;
   nextSteps?: Array<Record<string, unknown>>;
@@ -164,7 +164,7 @@ export interface CollectedDataBase {
   repositoryState?: string | null;
   isDetachedHead?: boolean | null;
   TECHNICAL_CONTEXT?: Array<{ KEY: string; VALUE: string }>;
-  // Fields surfaced during O3-6 index signature removal (captured-session enrichment + capture pipeline)
+  // Fields surfaced after index signature removal (captured-session enrichment + capture pipeline)
   /** Snake-case variant for raw JSON compatibility. Prefer importanceTier (camelCase) in new code. */
   importance_tier?: string;
   _toolCallCount?: number;
@@ -187,7 +187,7 @@ export interface CollectedDataBase {
   /** Snake-case variant for raw JSON compatibility. Prefer causalLinks (camelCase) in new code. */
   causal_links?: Record<string, unknown>;
   causalLinks?: Record<string, unknown>;
-  // RC5: Explicit contextType from JSON payload (mirrors importanceTier pattern)
+  // Explicit contextType from JSON payload (mirrors importanceTier pattern)
   contextType?: string;
   /** Snake-case variant for raw JSON compatibility. Prefer contextType (camelCase) in new code. */
   context_type?: string;
@@ -317,6 +317,7 @@ export type QualityFlag =
   | 'has_malformed_spec_folder'
   | 'has_topical_mismatch';
 
+/** A single scored quality dimension, on both the 0-1 and 0-100 scales. */
 export interface QualityDimensionScore {
   id: string;
   score01: number;
@@ -325,6 +326,7 @@ export interface QualityDimensionScore {
   passed?: boolean;
 }
 
+/** Whether the memory's content sufficiency check passed, its score, and the reasons if it failed. */
 export interface QualityInsufficiencySummary {
   pass: boolean;
   score01: number | null;
@@ -444,6 +446,7 @@ export type ConversationPhaseLabel =
   | 'Verification'
   | 'Discussion';
 
+/** Per-phase confidence scores for a topic cluster, one entry per conversation phase label. */
 export interface PhaseScoreMap {
   Research: number;
   Planning: number;
@@ -453,6 +456,7 @@ export interface PhaseScoreMap {
   Discussion: number;
 }
 
+/** A cluster of related messages/observations with its dominant terms and inferred conversation phase. */
 export interface TopicCluster {
   id: string;
   label: string;
@@ -570,7 +574,7 @@ export interface SessionData {
   TOOL_COUNT: number;
   MESSAGE_COUNT: number;
   QUICK_SUMMARY: string;
-  /** RC1: Raw sessionSummary from JSON payload, used as preferred title candidate */
+  /** Raw sessionSummary from JSON payload, used as preferred title candidate */
   _JSON_SESSION_SUMMARY?: string | null;
   SKILL_VERSION: string;
   OBSERVATIONS: ObservationDetailed[];

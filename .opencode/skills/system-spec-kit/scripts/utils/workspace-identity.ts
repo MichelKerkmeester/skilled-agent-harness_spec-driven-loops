@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Workspace Identity
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. WORKSPACE IDENTITY
@@ -12,6 +12,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
+/** Canonical workspace paths and every raw/realpath variant that should match it. */
 export interface WorkspaceIdentity {
   canonicalOpencodePath: string;
   workspaceRoot: string;
@@ -134,6 +135,7 @@ function uniquePaths(paths: Array<string | null | undefined>): string[] {
   return ordered;
 }
 
+/** Resolve a workspace path to its canonical .opencode anchor plus every path variant that should match it. */
 export function buildWorkspaceIdentity(workspacePath: string): WorkspaceIdentity {
   const requestedPath = normalizeRequestedPath(workspacePath);
   const inputPath = normalizeAbsolutePath(workspacePath);
@@ -161,10 +163,12 @@ export function buildWorkspaceIdentity(workspacePath: string): WorkspaceIdentity
   };
 }
 
+/** Return every path variant that should match the given workspace path. */
 export function getWorkspacePathVariants(workspacePath: string): string[] {
   return buildWorkspaceIdentity(workspacePath).matchPaths;
 }
 
+/** Check whether a candidate path resolves to the same workspace identity as workspacePath. */
 export function isSameWorkspacePath(workspacePath: string, candidatePath: string | null | undefined): boolean {
   if (typeof candidatePath !== 'string' || candidatePath.trim().length === 0) {
     return false;
@@ -182,6 +186,7 @@ export function isSameWorkspacePath(workspacePath: string, candidatePath: string
   return candidateIdentity !== null && normalizeAbsolutePath(candidateIdentity) === identity.canonicalOpencodePath;
 }
 
+/** Make a file path relative to the workspace root when it falls under any known workspace path variant. */
 export function toWorkspaceRelativePath(workspacePath: string, maybeFilePath: string): string {
   if (!maybeFilePath) {
     return '';

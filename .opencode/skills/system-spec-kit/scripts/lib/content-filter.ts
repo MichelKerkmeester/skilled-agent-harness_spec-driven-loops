@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Content Filter
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. CONTENT FILTER
@@ -20,11 +20,13 @@ const moduleDir = dirnameFromImportMeta(import.meta.url);
 /** Content type classification labels */
 export type ContentType = 'noise' | 'empty' | 'duplicate' | 'lowQuality' | 'valid';
 
+/** A single configurable noise-detection regex pattern and its flags. */
 export interface NoisePatternConfig {
   pattern: string;
   flags?: string;
 }
 
+/** Audit record for one contamination check at a given pipeline stage, with checked and matched patterns. */
 export interface ContaminationAuditRecord extends Record<string, unknown> {
   stage: 'extractor-scrub' | 'content-filter' | 'post-render';
   timestamp: string;
@@ -313,8 +315,8 @@ const STRIP_PATTERNS: readonly StripPattern[] = [
 // ───────────────────────────────────────────────────────────────
 // 5. FILTERING PIPELINE
 // ───────────────────────────────────────────────────────────────
-// P3-20: Factory function to create a fresh stats object per invocation
-// (no longer a module-level mutable singleton)
+// Factory function to create a fresh stats object per invocation
+// (avoids a module-level mutable singleton shared across callers)
 function createFilterStats(): FilterStats {
   return {
     totalProcessed: 0,
@@ -500,7 +502,7 @@ function createFilterPipeline(customConfig: Partial<FilterConfig> = {}): FilterP
       },
     },
   };
-  // P3-20: Each pipeline gets its own stats (no shared mutable singleton)
+  // Each pipeline gets its own stats (no shared mutable singleton)
   const filterStats = createFilterStats();
 
   return {
@@ -540,7 +542,7 @@ function createFilterPipeline(customConfig: Partial<FilterConfig> = {}): FilterP
       const matchCounts = new Map<string, number>();
       let strippedWrapperCount = 0;
 
-      // P3-21: Return new array with new objects — never mutate input
+      // Return new array with new objects — never mutate input
       const filtered = prompts
         .map((p: PromptItem) => ({ ...p }))
         .filter((p: PromptItem) => {
@@ -559,7 +561,7 @@ function createFilterPipeline(customConfig: Partial<FilterConfig> = {}): FilterP
           const cleaned: string = stripNoiseWrappers(content);
           if (cleaned !== content) {
             strippedWrapperCount++;
-            // P3-21: Modify the cloned object, not the original
+            // Modify the cloned object, not the original
             p.prompt = cleaned;
             p.content = cleaned;
           }
@@ -651,6 +653,7 @@ function createFilterPipeline(customConfig: Partial<FilterConfig> = {}): FilterP
   };
 }
 
+/** Run the default filtering pipeline over prompts and return the filtered array. */
 export function filterContent(prompts: PromptItem[], options: Partial<FilterConfig> = {}): PromptItem[] {
   const pipeline: FilterPipeline = createFilterPipeline(options);
   return pipeline.filter(prompts);

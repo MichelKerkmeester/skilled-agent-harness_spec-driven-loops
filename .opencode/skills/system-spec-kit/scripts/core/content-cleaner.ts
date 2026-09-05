@@ -52,6 +52,7 @@ export function stripWorkflowHtmlOutsideCodeFences(rawContent: string): string {
   }).join('');
 }
 
+/** HTML-escape literal ANCHOR comment examples so they render as text instead of markers. */
 export function escapeLiteralAnchorExamples(input: string): string {
   return input.replace(/<!--\s*(\/?ANCHOR:[^>]+?)\s*-->/g, (_match: string, anchor: string) => (
     `&lt;!-- ${anchor.trim()} --&gt;`

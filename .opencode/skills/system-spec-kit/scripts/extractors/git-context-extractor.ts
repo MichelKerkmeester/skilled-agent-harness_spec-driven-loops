@@ -44,6 +44,7 @@ type SpecScope = {
   fileTargets: string[];
   allowSpecDirectoryFallback: boolean;
 };
+/** Git-derived context enrichment: synthetic observations plus the current HEAD/commit/repo state. */
 export interface GitContextExtraction {
   observations: Array<{
     type: string;
@@ -196,6 +197,7 @@ interface ModificationMagnitudeInput {
   commitTouches?: number;
 }
 
+/** Classify a file change's modification magnitude from its change score, action, and commit touch count. */
 export function deriveModificationMagnitude({
   changeScore,
   action,
@@ -356,6 +358,7 @@ function getDiffOutput(projectRoot: string, revCount: number, format: '--name-st
   }
   return '';
 }
+/** Extract git context (status, HEAD/commit refs, synthetic observations) for a project, scoped to a spec folder when given. */
 export async function extractGitContext(projectRoot: string, specFolderHint?: string): Promise<GitContextExtraction> {
   try {
     if (runGitCommand(projectRoot, ['rev-parse', '--is-inside-work-tree']) !== 'true') return emptyResult();

@@ -7,6 +7,7 @@ import type { DataSource } from './input-normalizer.js';
 export type SourceInputMode = 'structured' | 'captured';
 export type KnownDataSource = DataSource;
 
+/** Static capability metadata for a data source: its input mode and structured-save preferences. */
 export interface SourceCapabilities {
   source: DataSource;
   inputMode: SourceInputMode;
@@ -43,7 +44,7 @@ const SOURCE_CAPABILITIES: Record<DataSource, SourceCapabilities> = {
     source: 'copilot-cli-capture',
     inputMode: 'captured',
     toolTitleWithPathExpected: true,
-    prefersStructuredSave: true, // NOTE: aspirational — most sources still rely on runtime capture. See O4-12.
+    prefersStructuredSave: true, // NOTE: aspirational — most sources still rely on runtime capture.
   },
   simulation: {
     source: 'simulation',

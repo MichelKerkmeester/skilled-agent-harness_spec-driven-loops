@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Save Context Path
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. SAVE CONTEXT PATH HELPERS
@@ -26,6 +26,7 @@ function sanitizeSessionId(sessionId: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+/** Build the session-scoped temp-dir path for a save-context JSON file. */
 export function buildSessionScopedSaveContextPath(sessionId: string): string {
   const sanitizedSessionId = sanitizeSessionId(sessionId);
   if (!sanitizedSessionId) {
@@ -35,10 +36,12 @@ export function buildSessionScopedSaveContextPath(sessionId: string): string {
   return path.join(os.tmpdir(), `${SAVE_CONTEXT_FILE_STEM}-${sanitizedSessionId}${SAVE_CONTEXT_FILE_SUFFIX}`);
 }
 
+/** Return an example session-scoped save-context path for error messages and help text. */
 export function getSessionScopedSaveContextExample(): string {
   return path.join(os.tmpdir(), `${SAVE_CONTEXT_FILE_STEM}-<session-id>${SAVE_CONTEXT_FILE_SUFFIX}`);
 }
 
+/** Check whether a path is the legacy shared (non-session-scoped) save-context file. */
 export function isLegacySharedSaveContextPath(filePath: string): boolean {
   const normalizedPath = normalizeFilesystemPath(filePath);
   const basename = path.posix.basename(normalizedPath);

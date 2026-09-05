@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────
+// MODULE: Unactioned Recorded Failure Audit
+// ───────────────────────────────────────────────────────────────
 // Surfaces recorded failures — governance-scenario FAILs, loop-flagged contradictions,
 // validator drift notes — that were WRITTEN DOWN but never routed to a remediation.
 // A recorded failure with no nearby remediation link is the deceptive "detector fired,

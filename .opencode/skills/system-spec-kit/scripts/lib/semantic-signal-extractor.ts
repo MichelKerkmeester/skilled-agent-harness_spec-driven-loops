@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Semantic Signal Extractor
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. SEMANTIC SIGNAL EXTRACTOR
@@ -36,6 +36,7 @@ export type SemanticSignalMode = 'topics' | 'triggers' | 'summary' | 'all';
 export type StopwordProfile = 'balanced' | 'aggressive';
 export type NgramDepth = 1 | 2 | 3 | 4;
 
+/** Input options for a semantic-signal extraction pass over text. */
 export interface SemanticSignalExtractOptions {
   text: string;
   mode: SemanticSignalMode;
@@ -45,6 +46,7 @@ export interface SemanticSignalExtractOptions {
   minPhraseCount?: number;
 }
 
+/** Result of a semantic-signal extraction pass, including cleaned text, tokens and filtered output. */
 export interface SemanticSignalResult {
   mode: SemanticSignalMode;
   stopwordProfile: StopwordProfile;

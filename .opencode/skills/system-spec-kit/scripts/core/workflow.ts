@@ -542,7 +542,7 @@ async function enrichCapturedSessionData(
       }),
     ]);
 
-    // O1-11: Track which enrichment sources were available
+    // Track which enrichment sources were available
     enriched._specContextLoaded = specContext !== null;
     enriched._gitContextLoaded = gitContext !== null;
 
@@ -693,7 +693,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
 
     let collectedData: CollectedDataFull | null;
     if (preloadedData) {
-      // Rec 1: Normalize JSON-derived preloaded data so sessionSummary → userPrompts,
+      // Normalize JSON-derived preloaded data so sessionSummary → userPrompts,
       // keyDecisions → _manualDecisions, filesChanged → FILES, etc.
       const normalized = normalizeInputData(preloadedData as unknown as RawInputData);
       // Explicit field projection instead of unsafe spread merge.
@@ -953,7 +953,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       if (hadContamination && contaminationMaxSeverity === 'low' && extractorRemovedPhraseCount >= 10) {
         contaminationMaxSeverity = 'medium';
       }
-      // O4-6: Escalate medium to high for pervasive contamination
+      // Escalate medium to high for pervasive contamination
       if (hadContamination && contaminationMaxSeverity === 'medium' && extractorRemovedPhraseCount >= 20) {
         contaminationMaxSeverity = 'high';
       }
@@ -1006,7 +1006,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       }
       log();
     }
-    // PR-4 PROVENANCE BLOCK START
+    // PROVENANCE BLOCK START
     if (collectedData.saveMode !== SaveMode.Capture) {
       const gitContext = await extractGitContext(CONFIG.PROJECT_ROOT, specFolder).catch(() => null);
       collectedData.headRef = gitContext?.headRef ?? null;
@@ -1014,7 +1014,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       collectedData.repositoryState = gitContext?.repositoryState ?? 'unavailable';
       collectedData.isDetachedHead = gitContext?.isDetachedHead ?? false;
     }
-    // PR-4 PROVENANCE BLOCK END
+    // PROVENANCE BLOCK END
 
     // Clean FILE descriptions that may contain contamination from git commit subjects
     if (collectedData.FILES && Array.isArray(collectedData.FILES)) {
@@ -1062,7 +1062,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     }
 
     const rawUserPrompts = Array.isArray(collectedData?.userPrompts) ? collectedData.userPrompts : [];
-    // F06-002: Type assertion with documented contract — CollectedDataFull is the canonical shape
+    // Type assertion with documented contract — CollectedDataFull is the canonical shape
     const collectedDataWithNarrative = collectedData as CollectedDataFull & {
       _narrativeObservations?: CollectedDataFull['observations'];
     };
@@ -1228,7 +1228,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     specTitle,
     folderBase,
     [
-      sessionData._JSON_SESSION_SUMMARY || '',  // RC1: raw JSON sessionSummary as first candidate
+      sessionData._JSON_SESSION_SUMMARY || '',  // Raw JSON sessionSummary as first candidate
       sessionData.QUICK_SUMMARY || '',
       sessionData.TITLE || '',
       sessionData.SUMMARY || '',
@@ -1323,12 +1323,12 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   const isSimulation: boolean = !collectedData || !!collectedData._isSimulation || simFactory.requiresSimulation(collectedData);
   log(`   Template populated (quality: ${filterStats.qualityScore}/100)\n`);
 
-  // Step 8.5: Content cleaning — strip leaked HTML tags from rendered content
+  // Content cleaning — strip leaked HTML tags from rendered content
   // Preserves HTML inside fenced code blocks (```...```) which is legitimate code.
-  // Steps 8.5/8.6/8.5b/CG-07/CG-07b removed in v3.4.1.0 cutover (Path A r2 P1-fix F003/F010).
-  // These steps validated, scored, and gated the rendered [spec]/memory/*.md artifact that
-  // No longer exists. Quality + sufficiency + template-contract checks for canonical-doc
-  // Saves are owned by the content-router (handlers/memory-save.ts).
+  // Earlier steps here validated, scored, and gated a rendered memory artifact that
+  // no longer exists (removed in the v3.4.1.0 cutover). Quality + sufficiency +
+  // template-contract checks for canonical-doc saves are owned by the
+  // content-router (handlers/memory-save.ts).
 
   const sessionObservations = Array.isArray(sessionData.OBSERVATIONS) ? sessionData.OBSERVATIONS : [];
   const sessionFiles = Array.isArray(sessionData.FILES) ? sessionData.FILES : [];

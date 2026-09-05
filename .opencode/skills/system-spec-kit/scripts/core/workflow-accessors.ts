@@ -28,6 +28,7 @@ export function readNamedObject(source: object | null | undefined, ...keys: stri
   return null;
 }
 
+/** Read the first key whose value is an array, returning trimmed non-empty strings. */
 export function readStringArray(source: object | null | undefined, ...keys: string[]): string[] {
   if (!source) {
     return [];
@@ -46,6 +47,7 @@ export function readStringArray(source: object | null | undefined, ...keys: stri
   return [];
 }
 
+/** Read the first key whose value is a finite number, otherwise return the fallback. */
 export function readNumber(source: object | null | undefined, fallback: number, ...keys: string[]): number {
   if (!source) {
     return fallback;
@@ -62,6 +64,7 @@ export function readNumber(source: object | null | undefined, fallback: number, 
   return fallback;
 }
 
+/** Read the first key whose value is a non-empty trimmed string, otherwise return the fallback. */
 export function readString(source: object | null | undefined, fallback: string, ...keys: string[]): string {
   if (!source) {
     return fallback;
@@ -78,6 +81,7 @@ export function readString(source: object | null | undefined, fallback: string, 
   return fallback;
 }
 
+/** Truncate a string to maxLength, appending "..." when it was cut. */
 export function capText(value: string, maxLength: number): string {
   if (value.length <= maxLength) {
     return value;
@@ -87,6 +91,7 @@ export function capText(value: string, maxLength: number): string {
   return `${truncated}...`;
 }
 
+/** Format a label-to-count map as "label xN" strings for audit summaries. */
 export function summarizeAuditCounts(counts: Map<string, number>): string[] {
   return [...counts.entries()].map(([label, count]) => `${label} x${count}`);
 }

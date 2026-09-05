@@ -103,6 +103,7 @@ export async function resolveAlignmentTargets(specFolderPath: string): Promise<A
   };
 }
 
+/** Check whether a file path matches any file or keyword alignment target. */
 export function matchesAlignmentTarget(filePath: string, alignmentTargets: AlignmentTargets): boolean {
   const normalizedPath = normalizeFilePath(filePath).toLowerCase();
 
@@ -117,6 +118,7 @@ export function matchesAlignmentTarget(filePath: string, alignmentTargets: Align
   return alignmentTargets.keywordTargets.some((keyword) => normalizedPath.includes(keyword));
 }
 
+/** Pick the file index that should carry a merged entry, preferring known parent filenames. */
 export function pickCarrierIndex(indices: number[], files: FileChange[]): number {
   for (const idx of indices) {
     const filename = path.basename(files[idx].FILE_PATH).toLowerCase();
@@ -127,6 +129,7 @@ export function pickCarrierIndex(indices: number[], files: FileChange[]): number
   return indices[0];
 }
 
+/** Collapse a merged-content block's markers and whitespace into a single readable line. */
 export function compactMergedContent(value: string): string {
   return value
     .replace(/<!--\s*merged from:\s*([^>]+)\s*-->/gi, 'Merged from $1:')

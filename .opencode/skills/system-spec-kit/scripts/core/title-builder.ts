@@ -20,6 +20,7 @@ export function normalizeMemoryTitleCandidate(raw: string): string {
     .replace(/[\s\-:;,]+$/, '');
 }
 
+/** Truncate a memory title to maxLength at a word boundary, appending "...". */
 export function truncateMemoryTitle(title: string, maxLength: number = 110): string {
   if (title.length <= maxLength) {
     return title;
@@ -32,6 +33,7 @@ export function truncateMemoryTitle(title: string, maxLength: number = 110): str
   return `${wordBoundary}...`;
 }
 
+/** Convert a hyphenated slug into a readable Title Case string, preserving digit-digit hyphens. */
 export function slugToTitle(slug: string): string {
   return slug
     .replace(/(?<=\d)-(?=\d)/g, '\x00')   // protect digit-digit hyphens (dates like 2026-03-13)
@@ -41,6 +43,7 @@ export function slugToTitle(slug: string): string {
     .replace(/\b\w/g, (ch) => ch.toUpperCase());
 }
 
+/** Build a memory title from a content slug, falling back to the implementation task or spec-folder name. */
 export function buildMemoryTitle(_implementationTask: string, _specFolderName: string, _date: string, contentSlug?: string): string {
   if (contentSlug && contentSlug.length > 0) {
     return truncateMemoryTitle(slugToTitle(contentSlug));
@@ -58,12 +61,14 @@ export function buildMemoryTitle(_implementationTask: string, _specFolderName: s
   return truncateMemoryTitle(fallback);
 }
 
+/** Return the trimmed memory title for dashboard display. */
 export function buildMemoryDashboardTitle(memoryTitle: string, specFolderName: string, legacyFilename: string): string {
   void specFolderName;
   void legacyFilename;
   return memoryTitle.trim();
 }
 
+/** Read spec.md's frontmatter title, normalized for memory use, or '' when absent. Throws if the file cannot be read. */
 export function extractSpecTitle(specFolderPath: string): string {
   const specPath = path.join(specFolderPath, 'spec.md');
 

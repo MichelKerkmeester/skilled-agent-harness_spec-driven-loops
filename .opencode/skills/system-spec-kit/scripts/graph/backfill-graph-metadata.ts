@@ -71,6 +71,7 @@ export interface PruneReportReceipt {
   contentHash: string;
 }
 
+/** Aggregate outcome of a graph-metadata backfill run across every scanned spec folder. */
 export interface BackfillSummary {
   dryRun: boolean;
   scope: BackfillScope;
@@ -91,6 +92,7 @@ export interface BackfillSummary {
   pruneReportArtifact?: PruneReportReceipt;
 }
 
+/** CLI-parsed options controlling scope, dry-run, and prune behavior for the graph-metadata backfill. */
 export interface BackfillOptions {
   dryRun: boolean;
   root: string;
@@ -285,7 +287,7 @@ function resolveScopedTarget(target: string): { ok: true; specFolder: string } |
   }
   try {
     resolveSpecFolderIdentity(absTarget);
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof SpecFolderIdentityError) {
       return { ok: false, error: `target resolves outside a supported specs root: ${absTarget}` };
     }
@@ -640,7 +642,7 @@ export function runBackfillCore({
           fields: driftReport.driftedFields.map((field) => field.field),
         });
       }
-    } catch (error) {
+    } catch (error: unknown) {
       summary.failed.push({
         specFolder: specFolderPath,
         error: error instanceof Error ? error.message : String(error),

@@ -117,7 +117,7 @@ Expected result: continuity save workflow uses the explicit spec-folder target a
 Run the README validator after editing this file:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/scripts/spec-folder/README.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/system-spec-kit/scripts/spec-folder/README.md
 ```
 
 Run build and a compiled-module smoke check after changing source files:

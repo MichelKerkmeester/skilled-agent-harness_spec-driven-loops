@@ -194,8 +194,8 @@ Run compiled commands from the repository root after the TypeScript build has pr
 Run from the repository root.
 
 ```bash
-node .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/scripts/memory/README.md
-node .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/scripts/memory/README.md
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/skills/system-spec-kit/scripts/memory/README.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/system-spec-kit/scripts/memory/README.md
 ```
 
 Expected result: the structure extractor reports README type with no critical issues, and document validation exits `0`.

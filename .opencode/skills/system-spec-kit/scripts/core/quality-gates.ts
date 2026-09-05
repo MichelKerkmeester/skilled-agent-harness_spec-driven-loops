@@ -4,11 +4,12 @@
 // Memory indexing decision logic and sufficiency abort formatting.
 // Extracted from workflow.ts to reduce module size.
 
-import type { ValidationDispositionResult } from '../lib/validate-memory-quality.js';
 import {
   MEMORY_SUFFICIENCY_REJECTION_CODE,
   type MemorySufficiencyResult,
 } from '@spec-kit/shared/parsing/memory-sufficiency';
+
+import type { ValidationDispositionResult } from '../lib/validate-memory-quality.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. FUNCTIONS
@@ -67,6 +68,7 @@ export function shouldIndexMemory(options: {
   return { shouldIndex: true };
 }
 
+/** Format a human-readable abort message from an insufficient-evidence sufficiency result. */
 export function formatSufficiencyAbort(result: MemorySufficiencyResult): string {
   return `${MEMORY_SUFFICIENCY_REJECTION_CODE}: Not enough context for a proper memory. `
     + `${result.reasons.join(' ')} `

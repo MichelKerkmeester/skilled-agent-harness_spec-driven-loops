@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Spec Affinity
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. SPEC AFFINITY
@@ -68,6 +68,7 @@ const KEYWORD_STOPWORDS = new Set([
   'workflows',
 ]);
 
+/** Derived affinity targets (phrases, keywords, file targets) for a candidate spec folder. */
 export interface SpecAffinityTargets {
   specFolderHint: string;
   resolvedSpecFolderPath: string | null;
@@ -77,6 +78,7 @@ export interface SpecAffinityTargets {
   fileTargets: string[];
 }
 
+/** Result of evaluating text or a file path against a set of spec affinity targets. */
 export interface SpecAffinityEvaluation {
   hasAnchor: boolean;
   matchedFileTargets: string[];
@@ -288,7 +290,7 @@ function readSpecMetadata(specFolderHint: string): {
 }
 
 function buildSlugCandidates(specFolderHint: string): string[] {
-  // O4-11: Extract slug candidates from ALL path segments, not just the last one
+  // Extract slug candidates from ALL path segments, not just the last one
   const segments = specFolderHint
     .replace(/\\/g, '/')
     .split('/')
@@ -327,6 +329,7 @@ function buildStrongKeywordTokens(values: string[]): string[] {
   return Array.from(tokens);
 }
 
+/** Build spec affinity targets (id, phrases, keywords, files) from a spec-folder hint. */
 export function buildSpecAffinityTargets(specFolderHint?: string | null): SpecAffinityTargets {
   const safeHint = typeof specFolderHint === 'string' ? specFolderHint.trim() : '';
   const specId = safeHint ? extractSpecIds(safeHint).at(-1) || null : null;
@@ -376,6 +379,7 @@ export function buildSpecAffinityTargets(specFolderHint?: string | null): SpecAf
   };
 }
 
+/** Check whether a file path matches any of the target's file targets. */
 export function matchesSpecAffinityFilePath(filePath: string, targets: SpecAffinityTargets): boolean {
   const normalizedPath = normalizePathLike(filePath);
   if (!normalizedPath) {
@@ -393,6 +397,7 @@ function countKeywordMatches(normalizedText: string, strongKeywordTokens: string
   return strongKeywordTokens.filter((token) => containsWordBoundary(normalizedText, token));
 }
 
+/** Evaluate text against spec affinity targets, returning matched files, phrases, keywords and foreign spec ids. */
 export function evaluateSpecAffinityText(text: string, targets: SpecAffinityTargets): {
   matchedFileTargets: string[];
   matchedPhrases: string[];
@@ -423,6 +428,7 @@ export function evaluateSpecAffinityText(text: string, targets: SpecAffinityTarg
   };
 }
 
+/** Check whether text shows any spec affinity signal (file match, phrase, spec id, or 3+ keyword tokens). */
 export function matchesSpecAffinityText(text: string, targets: SpecAffinityTargets): boolean {
   const evaluation = evaluateSpecAffinityText(text, targets);
   return (
@@ -506,6 +512,7 @@ function gatherCollectedDataPaths(data: SpecAffinityCollectedData): string[] {
   return paths;
 }
 
+/** Evaluate a collected-data payload's prompts, observations, files and paths against spec affinity targets. */
 export function evaluateCollectedDataSpecAffinity(
   data: SpecAffinityCollectedData,
   targetsOrHint: SpecAffinityTargets | string,

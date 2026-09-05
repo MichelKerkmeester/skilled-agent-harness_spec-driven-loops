@@ -40,7 +40,7 @@ function resolveSpecFolderForDescription(folderPath: string, legacyValue: string
   if (isIdentityMergeSafetyEnabled()) {
     try {
       return resolveSpecFolderIdentity(folderPath).specFolder;
-    } catch (error) {
+    } catch (error: unknown) {
       if (!(error instanceof SpecFolderIdentityError)) {
         throw error;
       }

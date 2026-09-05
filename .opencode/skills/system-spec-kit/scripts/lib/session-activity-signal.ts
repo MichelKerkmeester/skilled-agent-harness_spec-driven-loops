@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Session Activity Signal
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. SESSION ACTIVITY SIGNAL
@@ -296,7 +296,7 @@ function buildSessionActivitySignal(
     }
   }
 
-  // O4-15: Cap confidence boost to prevent unbounded accumulation
+  // Cap confidence boost to prevent unbounded accumulation
   confidenceBoost = Math.min(confidenceBoost, 1.0);
 
   return {

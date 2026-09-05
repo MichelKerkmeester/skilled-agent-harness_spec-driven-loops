@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Trigger Phrase Sanitizer
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // Keep the blocklist and allowlist narrow, shape-based, and aligned to the
 // empirical corpus guidance the module's design was validated against.
 
@@ -18,11 +18,13 @@ export type TriggerPhraseSanitizeReason =
 
 export type TriggerPhraseSource = 'manual' | 'extracted';
 
+/** Outcome of sanitizing one trigger phrase: whether to keep it and, if not, why. */
 export interface TriggerPhraseSanitizeResult {
   keep: boolean;
   reason?: TriggerPhraseSanitizeReason;
 }
 
+/** Options for trigger-phrase sanitization, including the phrase's originating source. */
 export interface TriggerPhraseSanitizeOptions {
   source?: TriggerPhraseSource;
 }
@@ -118,10 +120,12 @@ function normalizeComparisonKey(phrase: string): string {
   return normalizePhrase(phrase).replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+/** Check whether a phrase, once normalized, is on the short-product-name allowlist. */
 export function isAllowlistedShortProductName(phrase: string): boolean {
   return SHORT_PRODUCT_ALLOWLIST.has(normalizePhrase(phrase));
 }
 
+/** Decide whether to keep one trigger phrase, checking length, control characters, contamination, path fragments and source-specific blocklists. */
 export function sanitizeTriggerPhrase(
   phrase: string,
   options: TriggerPhraseSanitizeOptions = {},
@@ -181,6 +185,7 @@ export function sanitizeTriggerPhrase(
   return { keep: true };
 }
 
+/** Sanitize a list of trigger phrases, keeping only those sanitizeTriggerPhrase() accepts. */
 export function sanitizeTriggerPhrases(
   phrases: string[],
   options: TriggerPhraseSanitizeOptions = {},

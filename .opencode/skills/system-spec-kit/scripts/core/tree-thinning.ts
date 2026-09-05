@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Tree Thinning
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. TREE THINNING
@@ -31,7 +31,7 @@ export interface ThinningConfig {
 export const DEFAULT_THINNING_CONFIG: ThinningConfig = {
   mergeThreshold: 200,
   contentAsTextThreshold: 500,
-  memoryThinThreshold: 150,    // Fix 7: was 300 — too aggressive, merged substantial files
+  memoryThinThreshold: 150,    // Lower than 300 to avoid merging substantial files
   memoryTextThreshold: 100,
 };
 
@@ -120,7 +120,7 @@ function groupByParent(files: ThinFileInput[]): Map<string, ThinFileInput[]> {
 
 /**
  * Generate a brief description from merged child file entries.
- * CG-06: Replace "description pending" with actual file-based descriptions.
+ * Replaces "description pending" with actual file-based descriptions.
  */
 export function generateMergedDescription(children: ThinFileInput[]): string {
   const count = children.length;
@@ -238,7 +238,7 @@ export function applyTreeThinning(
   }
 
   // Pass 2: build merged entries grouped by parent (bottom-up)
-  // Fix 7: Cap at 3 children per parent — keep subsequent files separate
+  // Cap at 3 children per parent — keep subsequent files separate
   const merged: MergedFileEntry[] = [];
   const byParent = groupByParent(toMerge);
 

@@ -20,6 +20,7 @@ import { toCanonicalRelativePath } from '../utils/file-helpers.js';
 const SYNTHETIC_TIMESTAMP = new Date(0).toISOString();
 const MAX_SPEC_OBSERVATIONS = 15;
 
+/** Synthetic observations derived by reading a spec folder's own documents. */
 export interface SpecFolderExtraction {
   observations: Array<{
     type: string;

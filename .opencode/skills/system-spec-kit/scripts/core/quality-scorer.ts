@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Quality Scorer
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. QUALITY SCORER
@@ -123,7 +123,7 @@ function hasMeaningfulObservationTitle(title?: string): boolean {
  * Prefer `scoreMemoryQuality` from `extractors/quality-scorer.ts` which accepts
  * a single `QualityInputs` object and uses validation-rule-based scoring (V1-V12).
  */
-// Rec 6 floor thresholds — minimum dimension scores for JSON quality floor activation
+// Floor thresholds — minimum dimension scores for JSON quality floor activation
 const JSON_FLOOR_THRESHOLDS = {
   triggerPhrases: 10,    // >= 4 trigger phrases extracted
   keyTopics: 5,          // >= 1 key topic present
@@ -136,6 +136,7 @@ const JSON_FLOOR_MIN_DIMENSIONS = 4;  // At least 4/6 must pass
 const JSON_FLOOR_DAMPING = 0.85;      // Damping factor for the JSON floor
 const JSON_FLOOR_CAP = 0.70;          // Hard maximum
 
+/** Legacy heuristic memory quality scorer. Prefer `scoreMemoryQuality` in extractors/quality-scorer.ts for new callers. */
 export function scoreMemoryQuality(
   content: string,
   triggerPhrases: string[],
@@ -269,7 +270,7 @@ export function scoreMemoryQuality(
 
   let score01 = clamp01(Object.values(breakdown).reduce((sum, v) => sum + v, 0) / 100);
 
-  // Rec 6: JSON-mode quality floor — when all scoring dimensions contribute something,
+  // JSON-mode quality floor — when all scoring dimensions contribute something,
   // the input likely has substantive content. Apply a floor to prevent thin-but-valid
   // JSON saves from scoring artificially low due to transcript-optimized heuristics.
   const allDimensionsContribute = Object.values(breakdown).every((v) => v > 0);
@@ -294,7 +295,7 @@ export function scoreMemoryQuality(
   let scoreCap: number | null = null;
   const effectiveSeverity: ContaminationSeverity = contaminationSeverity || 'medium';
 
-  // O2-4: Contamination penalties aligned with extractors scorer
+  // Contamination penalties aligned with the extractors scorer
   if (hadContamination) {
     qualityFlags.add('has_contamination');
     const severity = effectiveSeverity;
@@ -354,6 +355,7 @@ export function scoreMemoryQuality(
   };
 }
 
+/** Project a quality score result into the rounded render_quality_score/flags fields written to output. */
 export function buildRenderQualityScoreFields(result: Pick<QualityScoreResult, 'score01' | 'qualityFlags'>): {
   render_quality_score: number;
   render_quality_flags: QualityFlag[];

@@ -22,16 +22,19 @@ export function normalizeFilePath(rawPath: string): string {
     .replace(/\/$/, '');
 }
 
+/** Return the parent directory of a normalized file path, or '' when it has none. */
 export function getParentDirectory(filePath: string): string {
   const normalized = normalizeFilePath(filePath);
   const idx = normalized.lastIndexOf('/');
   return idx >= 0 ? normalized.slice(0, idx) : '';
 }
 
+/** Check whether a candidate path resolves inside the given parent directory. */
 export function isWithinDirectory(parentDir: string, candidatePath: string): boolean {
   return validateFilePath(candidatePath, [parentDir]) !== null;
 }
 
+/** Read up to 500 chars of a changed file's content for tree-thinning merges, falling back to its description. */
 export function resolveTreeThinningContent(file: FileChange, specFolderPath: string): string {
   const rawPath = typeof file.FILE_PATH === 'string' ? file.FILE_PATH.trim() : '';
   if (rawPath.length === 0) {
@@ -58,9 +61,10 @@ export function resolveTreeThinningContent(file: FileChange, specFolderPath: str
   }
 }
 
+/** Enumerate up to 20 markdown/JSON files under a spec folder as key-file candidates. */
 export function listSpecFolderKeyFiles(specFolderPath: string): Array<{ FILE_PATH: string }> {
   const collected: string[] = [];
-  // Rec 4: Exclude iteration directories that inflate key_files without adding retrieval value
+  // Exclude iteration directories that inflate key_files without adding retrieval value
   const ignoredDirs = new Set(['memory', 'scratch', '.git', 'node_modules', 'iterations']);
 
   const visit = (currentDir: string, relativeDir: string): void => {
@@ -92,7 +96,7 @@ export function listSpecFolderKeyFiles(specFolderPath: string): Array<{ FILE_PAT
     return [];
   }
 
-  // Rec 4: Cap filesystem enumeration at 20 files sorted by name
+  // Cap filesystem enumeration at 20 files sorted by name
   return collected
     .filter((f) => !f.includes('research/iterations/') && !f.includes('review/iterations/'))
     .sort((a, b) => a.localeCompare(b))
@@ -100,6 +104,7 @@ export function listSpecFolderKeyFiles(specFolderPath: string): Array<{ FILE_PAT
     .map((filePath) => ({ FILE_PATH: filePath }));
 }
 
+/** Build the key-files list from explicit changed files, or fall back to scanning the spec folder. */
 export function buildKeyFiles(effectiveFiles: FileChange[], specFolderPath: string): Array<{ FILE_PATH: string }> {
   const explicitKeyFiles = effectiveFiles
     .filter((file) => !file.FILE_PATH.includes('(merged-small-files)'))
@@ -112,6 +117,7 @@ export function buildKeyFiles(effectiveFiles: FileChange[], specFolderPath: stri
   return listSpecFolderKeyFiles(specFolderPath);
 }
 
+/** Derive alignment keywords from a spec folder's path segments, excluding common stopwords. */
 export function buildAlignmentKeywords(specFolderPath: string): string[] {
   const ALIGNMENT_STOPWORDS = new Set(['ops', 'app', 'api', 'cli', 'lib', 'src', 'dev', 'hub', 'log', 'run']);
   const keywords = new Set<string>();

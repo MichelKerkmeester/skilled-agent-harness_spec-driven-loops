@@ -327,6 +327,7 @@ function enhanceFilesWithSemanticDescriptions(
 
     // Priority 1: Exact full path match
     if (semanticFileChanges.has(filePath)) {
+      // Guaranteed present by the has() check on the line above
       const info = semanticFileChanges.get(filePath)!;
       // Only overwrite ACTION when existing is missing or generic 'Modified'.
       const preserveAction = file.ACTION && file.ACTION !== 'Modified';

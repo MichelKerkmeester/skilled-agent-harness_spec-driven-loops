@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Trigger Phrase Residual Migration
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // One-time corpus migration. This utility re-sanitizes
 // historical memory trigger_phrases using the live sanitizer plus bounded
 // canonicalization rules for stale residual cleanup.
@@ -26,6 +26,7 @@ const moduleDir = dirnameFromImportMeta(import.meta.url);
 type MigrationMode = 'dry-run' | 'apply';
 type RemovalReason = 'empty_or_invalid' | 'sanitizer' | 'canonical_duplicate' | 'title_overlap';
 
+/** Parsed CLI options for the trigger-phrase residual migration. */
 export interface MigrationCliOptions {
   mode: MigrationMode;
   scanRoots: string[];
@@ -40,6 +41,7 @@ interface TriggerPhraseRemoval {
   matchedTitlePhrase?: string;
 }
 
+/** Per-file result of the trigger-phrase residual migration, including removed and preserved phrases. */
 export interface TriggerPhraseFileReport {
   filePath: string;
   title: string;
@@ -57,6 +59,7 @@ export interface TriggerPhraseFileReport {
   };
 }
 
+/** Aggregate report across all scanned files for one migration run. */
 export interface TriggerPhraseMigrationReport {
   generatedAt: string;
   mode: MigrationMode;
@@ -509,6 +512,7 @@ function writeReport(reportPath: string, report: TriggerPhraseMigrationReport): 
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 }
 
+/** Scan candidate files under the given roots and sanitize/report residual trigger phrases. */
 export async function runTriggerPhraseResidualMigration(options: MigrationCliOptions): Promise<TriggerPhraseMigrationReport> {
   const candidateFiles = listCandidateFiles(options.scanRoots);
   const reportFiles: TriggerPhraseFileReport[] = [];

@@ -1,9 +1,9 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Validate Memory Quality
-// ---------------------------------------------------------------
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────
 // 1. VALIDATE MEMORY QUALITY
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // Post-render quality gate for generated memory files
 //
 // Canonical location: lib/validate-memory-quality.ts
@@ -13,11 +13,14 @@
 
 import fs from 'fs';
 import path from 'path';
+
 import { load as loadYaml } from 'js-yaml';
+
 import { structuredLog } from '../utils/logger.js';
+import { getSourceCapabilities, type KnownDataSource } from '../utils/source-capabilities.js';
+
 import type { ContaminationAuditRecord } from './content-filter.js';
 import type { DataSource } from '../utils/input-normalizer.js';
-import { getSourceCapabilities, type KnownDataSource } from '../utils/source-capabilities.js';
 
 type QualityRuleId = 'V1' | 'V2' | 'V3' | 'V4' | 'V5' | 'V6' | 'V7' | 'V8' | 'V9' | 'V10' | 'V11' | 'V12' | 'V13' | 'V14';
 
@@ -542,6 +545,7 @@ function isValidSpecIdCandidate(candidate: string, content?: string, index?: num
   return true;
 }
 
+/** Extract spec-id-shaped substrings from content, filtered to valid candidates only. */
 export function extractSpecIdCandidates(content: string): string[] {
   return Array.from(content.matchAll(SPEC_ID_REGEX))
     .filter((match) => isValidSpecIdCandidate(match[0], content, match.index))

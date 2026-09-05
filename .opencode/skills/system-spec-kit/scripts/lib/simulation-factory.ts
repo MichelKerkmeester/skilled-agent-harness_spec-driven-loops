@@ -1,13 +1,13 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Simulation Factory
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. SIMULATION FACTORY
 // ───────────────────────────────────────────────────────────────
 import crypto from 'crypto';
 
-// Canonical shared types — single source of truth (resolves TECH-DEBT P6-05)
+// Canonical shared types — single source of truth, avoids parallel type hierarchies
 import type {
   CollectedDataBase,
   DecisionOption,

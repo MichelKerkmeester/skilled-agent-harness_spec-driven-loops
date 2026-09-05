@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Trigger Extractor
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. TRIGGER EXTRACTOR
@@ -8,16 +8,18 @@
 // Script-side compatibility wrapper over the unified semantic signal extractor.
 
 import { SemanticSignalExtractor } from './semantic-signal-extractor.js';
-import type { ExtractionResult } from '@spec-kit/shared/types';
 import {
   CONFIG as TRIGGER_CONFIG,
   STOP_WORDS_ENGLISH,
 } from '@spec-kit/shared/trigger-extractor';
 
+import type { ExtractionResult } from '@spec-kit/shared/types';
+
 function normalizeTextInput(text: string | null | undefined): string {
   return typeof text === 'string' ? text : '';
 }
 
+/** Extract trigger phrases from text, or [] when the input is too short to be meaningful. */
 export function extractTriggerPhrases(text: string | null | undefined): string[] {
   const normalizedText = normalizeTextInput(text);
   if (normalizedText.trim().length < 3) {
@@ -26,6 +28,7 @@ export function extractTriggerPhrases(text: string | null | undefined): string[]
   return SemanticSignalExtractor.extractTriggerPhrases(normalizedText);
 }
 
+/** Extract trigger phrases from text along with extraction stats (input length and related metadata). */
 export function extractTriggerPhrasesWithStats(text: string | null | undefined): ExtractionResult {
   const normalizedText = normalizeTextInput(text);
   if (normalizedText.trim().length < 3) {

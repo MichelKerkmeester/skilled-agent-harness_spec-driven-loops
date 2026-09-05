@@ -7,10 +7,12 @@
 import * as crypto from 'node:crypto';
 import * as fsSync from 'node:fs';
 import * as path from 'node:path';
+
+import { readNamedObject, readStringArray, readNumber, readString } from './workflow-accessors.js';
+
 import type { CollectedDataFull } from '../extractors/collect-session-data.js';
 import type { MemoryEvidenceSnapshot } from '@spec-kit/shared/parsing/memory-sufficiency';
 import type { FileChange } from '../types/session-types.js';
-import { readNamedObject, readStringArray, readNumber, readString } from './workflow-accessors.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -80,6 +82,7 @@ export function inferMemoryType(contextType: string, importanceTier: string): st
   return 'episodic';
 }
 
+/** Default decay half-life in days for a memory type. */
 export function defaultHalfLifeDays(memoryType: string): number {
   switch (memoryType) {
     case 'constitutional':
@@ -94,6 +97,7 @@ export function defaultHalfLifeDays(memoryType: string): number {
   }
 }
 
+/** Derive a per-period decay rate from a half-life in days (0 when the half-life is non-positive). */
 export function baseDecayRateFromHalfLife(halfLifeDays: number): number {
   if (halfLifeDays <= 0) {
     return 0;
@@ -102,6 +106,7 @@ export function baseDecayRateFromHalfLife(halfLifeDays: number): number {
   return Number(Math.pow(0.5, 1 / halfLifeDays).toFixed(4));
 }
 
+/** Decay-rate multiplier for an importance tier. */
 export function importanceMultiplier(importanceTier: string): number {
   switch (importanceTier) {
     case 'constitutional':
@@ -120,6 +125,7 @@ export function importanceMultiplier(importanceTier: string): number {
   }
 }
 
+/** Build the memory-classification template context (type, half-life, decay factors) from collected data. */
 export function buildMemoryClassificationContext(
   collectedData: CollectedDataFull,
   sessionData: { CONTEXT_TYPE: string; IMPORTANCE_TIER: string },
@@ -170,6 +176,7 @@ export function buildMemoryClassificationContext(
   };
 }
 
+/** Build the session-dedup template context, including similar memories and a fallback content fingerprint. */
 export function buildSessionDedupContext(
   collectedData: CollectedDataFull,
   sessionData: { SESSION_ID: string; SUMMARY: string },
@@ -226,6 +233,7 @@ export function buildSessionDedupContext(
   };
 }
 
+/** Merge snake_case and camelCase causal-link fields into one deduplicated CausalLinksContext. */
 export function buildCausalLinksContext(collectedData: CollectedDataFull): CausalLinksContext {
   const snakeCaseLinks = readNamedObject(collectedData, 'causal_links');
   const camelCaseLinks = readNamedObject(collectedData, 'causalLinks');
@@ -254,6 +262,7 @@ export function buildCausalLinksContext(collectedData: CollectedDataFull): Causa
   };
 }
 
+/** Read an explicit title/description pair from collected data, omitting empty fields. */
 export function readExplicitMemoryText(collectedData: CollectedDataFull): {
   title?: string;
   description?: string;
@@ -267,6 +276,7 @@ export function readExplicitMemoryText(collectedData: CollectedDataFull): {
   };
 }
 
+/** Return the parent spec-folder's relative name when a sibling spec.md exists one level up, else ''. */
 export function resolveParentSpec(specFolderPath: string, specFolderName: string): string {
   const parentPath = path.dirname(specFolderPath);
   const parentSpecPath = path.join(parentPath, 'spec.md');
@@ -295,6 +305,7 @@ function normalizeEvidenceLine(value: unknown): string {
   return '';
 }
 
+/** Build a compact evidence snapshot (title, content, trigger phrases, files) for memory sufficiency checks. */
 export function buildWorkflowMemoryEvidenceSnapshot(params: {
   title: string;
   content: string;
