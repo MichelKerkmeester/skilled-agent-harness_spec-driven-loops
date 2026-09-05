@@ -19,12 +19,9 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 const SKILL_ROOT = path.resolve(__dirname, '..', '..', '..');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..');
 const CHECKER_PATH = path.resolve(
-  REPO_ROOT,
-  '.opencode',
-  // drift: 026 release
-  'skills',
-  'system-spec-kit',
-  'scripts',
+  SKILL_ROOT,
+  'runtime',
+  'cli',
   'evals',
   'check-source-dist-alignment.ts',
 );

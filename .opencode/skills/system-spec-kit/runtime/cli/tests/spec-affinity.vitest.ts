@@ -74,7 +74,7 @@ describe('spec affinity evaluation', () => {
         '',
         '| File Path | Change Type | Description |',
         '|-----------|-------------|-------------|',
-        '| `scripts/core/workflow.ts` | Modify | Tighten alignment guards |',
+        '| `runtime/cli/core/workflow.ts` | Modify | Tighten alignment guards |',
       ].join('\n'),
       'utf-8',
     );

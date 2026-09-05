@@ -22,7 +22,7 @@ import path from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-const REPO_ROOT = path.resolve(import.meta.dirname, '..', '..', '..', '..', '..');
+const REPO_ROOT = path.resolve(import.meta.dirname, '..', '..', '..', '..', '..', '..');
 // drift: 026 release
 const ASSETS_ROOT = path.join(REPO_ROOT, '.opencode', 'commands', 'speckit', 'assets');
 

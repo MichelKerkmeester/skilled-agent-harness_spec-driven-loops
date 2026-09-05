@@ -11,7 +11,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const scriptsRoot = path.resolve(__dirname, '..');
-const repoRoot = path.resolve(scriptsRoot, '..', '..', '..', '..');
+const repoRoot = path.resolve(scriptsRoot, '..', '..', '..', '..', '..');
 const sweepScript = path.join(scriptsRoot, 'sweep', 'strict-pass-freshness.ts');
 const tsxLoader = path.join(scriptsRoot, 'node_modules', 'tsx', 'dist', 'loader.mjs');
 const createdRoots = new Set<string>();

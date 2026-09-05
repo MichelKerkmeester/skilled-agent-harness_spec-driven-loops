@@ -13,15 +13,15 @@ const repoRoot = path.resolve(scriptsRoot, '..', '..', '..', '..', '..');
 const validateScript = path.join(scriptsRoot, 'spec', 'validate.sh');
 const manifestCheck = path.resolve(
   repoRoot,
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/check-goal-file-manifest.sh',
+  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh',
 );
 const manifestPath = path.resolve(
   repoRoot,
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/goal-file-manifest.txt',
+  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt',
 );
 const sourcePacket = path.resolve(
   repoRoot,
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research',
+  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research',
 );
 const temporaryRoots = new Set<string>();
 

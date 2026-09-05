@@ -71,10 +71,10 @@ function findSkillRoot(startDir: string): string {
 const SKILL_ROOT = findSkillRoot(MODULE_DIR);
 const TEMPLATE_ROOT = path.join(SKILL_ROOT, 'templates');
 const TEMPLATE_SUBDIRECTORIES = ['core', 'addons', 'packet-types'] as const;
-const VALIDATOR_REGISTRY_PATH = path.join(SKILL_ROOT, 'scripts', 'lib', 'validator-registry.json');
-const VALIDATOR_RULES_ROOT = path.join(SKILL_ROOT, 'scripts', 'rules');
-const VALIDATOR_DIST_VALIDATION_ROOT = path.join(SKILL_ROOT, 'scripts', 'dist', 'validation');
-const VALIDATE_SCRIPT_DIR = path.join(SKILL_ROOT, 'scripts', 'spec');
+const VALIDATOR_REGISTRY_PATH = path.join(SKILL_ROOT, 'runtime', 'cli', 'lib', 'validator-registry.json');
+const VALIDATOR_RULES_ROOT = path.join(SKILL_ROOT, 'runtime', 'cli', 'rules');
+const VALIDATOR_DIST_VALIDATION_ROOT = path.join(SKILL_ROOT, 'runtime', 'cli', 'dist', 'validation');
+const VALIDATE_SCRIPT_DIR = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec');
 const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review', 'research']);
 const CANONICAL_CONTINUITY_DOC = 'implementation-summary.md';
 const OPTIONAL_CONTINUITY_DOCS = new Set([
@@ -232,7 +232,7 @@ function readValidatorRegistry(): ValidatorRegistryEntry[] {
 
 function resolveRegistryRuleScript(scriptPath: string): string | null {
   if (scriptPath.startsWith('rules/') && scriptPath.endsWith('.sh')) {
-    const resolved = path.resolve(SKILL_ROOT, 'scripts', scriptPath);
+    const resolved = path.resolve(SKILL_ROOT, 'runtime', 'cli', scriptPath);
     const rulesRoot = path.resolve(VALIDATOR_RULES_ROOT);
     if (resolved !== rulesRoot && !resolved.startsWith(`${rulesRoot}${path.sep}`)) return null;
     return fs.existsSync(resolved) && fs.statSync(resolved).isFile() ? resolved : null;

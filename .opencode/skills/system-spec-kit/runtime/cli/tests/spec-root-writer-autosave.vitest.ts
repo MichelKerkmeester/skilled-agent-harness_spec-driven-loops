@@ -41,7 +41,7 @@ vi.mock('../spec/is-phase-parent', () => ({
 const FREEZE_DIR_ENV = 'SPEC_KIT_WRITER_FREEZE_DIR';
 const PACKET_ID = '123-bare-save';
 const SCRIPTS_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SKILL_ROOT = path.resolve(SCRIPTS_DIR, '..');
+const SKILL_ROOT = path.resolve(SCRIPTS_DIR, '..', '..');
 
 let tempRoot: string;
 
@@ -87,7 +87,8 @@ describe('spec-root autosave writer', () => {
       '.opencode',
       'skills',
       'system-spec-kit',
-      'scripts',
+      'runtime',
+      'cli',
     );
     fs.mkdirSync(path.join(workspacePath, '.specify'), { recursive: true });
     fs.mkdirSync(path.join(fixtureScripts, 'spec'), { recursive: true });

@@ -197,6 +197,6 @@ describe('authoritative z_* exclusion helper', () => {
     expect(isGeneratedMetadataZExclusionEnabled()).toBe(false);
     const cache = generateFolderDescriptions([specsRoot]);
     const folders = cache.folders.map((folder) => folder.specFolder);
-    expect(folders.some((folder) => folder.includes('z_future'))).toBe(true);
+    expect(folders.some((folder) => folder.includes('z-future'))).toBe(true);
   });
 });

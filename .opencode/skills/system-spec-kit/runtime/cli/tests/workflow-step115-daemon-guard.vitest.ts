@@ -54,7 +54,7 @@ describe('canonical save follow-ups', () => {
   });
 
   it('points at the trigger-index generator instead of running it', () => {
-    expect(workflowSource).toContain('scripts/retrieval/generate-trigger-index.mjs');
+    expect(workflowSource).toContain('runtime/cli/retrieval/generate-trigger-index.mjs');
   });
 
   it('exports no auto-index step', async () => {

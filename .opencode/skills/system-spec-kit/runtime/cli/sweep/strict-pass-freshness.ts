@@ -49,12 +49,12 @@ interface Baseline {
 const SKIPPED_TREES = new Set(['node_modules', '.git', 'z_archive', 'scratch']);
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
-const skillRoot = path.resolve(scriptDir, '..', '..');
+const skillRoot = path.resolve(scriptDir, '..', '..', '..');
 const repoRoot = path.resolve(skillRoot, '..', '..', '..');
 const realRepoRoot = fs.realpathSync(repoRoot);
 const validateScript = process.env.SPECKIT_VALIDATE_SCRIPT
   ? path.resolve(process.env.SPECKIT_VALIDATE_SCRIPT)
-  : path.join(skillRoot, 'scripts', 'spec', 'validate.sh');
+  : path.join(skillRoot, 'runtime', 'cli', 'spec', 'validate.sh');
 
 function parseArgs(argv: string[]): Options {
   const options: Options = { roots: [], baseline: null, format: 'json' };

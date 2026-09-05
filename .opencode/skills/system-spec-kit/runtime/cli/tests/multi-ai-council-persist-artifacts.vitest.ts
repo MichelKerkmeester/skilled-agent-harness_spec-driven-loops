@@ -14,6 +14,13 @@ const HELPER_PATH = join(
   WORKSPACE_ROOT,
   '.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs',
 );
+
+// This mirrors the CLI's own tmpdir fixtures against the helper's real spec-root
+// authorization gate. deep-ai-council's own vitest config grants its native tests
+// the same allowance for the same helper; this suite runs under a different
+// config and needs the grant repeated here rather than inherited.
+process.env.DEEP_AI_COUNCIL_AUTHORIZED_SPEC_ROOTS = tmpdir();
+
 const require = createRequire(import.meta.url);
 
 const helper = require(HELPER_PATH) as {

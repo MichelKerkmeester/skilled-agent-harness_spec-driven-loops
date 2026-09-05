@@ -12,7 +12,13 @@ import { collectSpecFolders, runBackfill } from '../graph/backfill-graph-metadat
 
 const createdRoots = new Set<string>();
 
-function writePacket(specFolder: string, title: string, summary: string, implementationFile: string): void {
+function writePacket(
+  specFolder: string,
+  title: string,
+  summary: string,
+  implementationFile: string,
+  completionPct?: number,
+): void {
   fs.mkdirSync(specFolder, { recursive: true });
   fs.writeFileSync(path.join(specFolder, 'spec.md'), [
     '---',
@@ -35,6 +41,7 @@ function writePacket(specFolder: string, title: string, summary: string, impleme
     '---',
     'title: "Implementation Summary"',
     'status: "complete"',
+    ...(completionPct === undefined ? [] : [`completion_pct: ${completionPct}`]),
     '---',
     '',
     '| File Path | Change Type | Description |',
@@ -97,6 +104,7 @@ function writePhaseChild(
     name,
     'Exercise phase-parent graph metadata rollup.',
     'runtime/lib/graph/graph-metadata-parser.ts',
+    complete ? 100 : 40,
   );
   fs.writeFileSync(
     path.join(child, 'checklist.md'),

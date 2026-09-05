@@ -43,9 +43,9 @@ afterEach(() => {
 describe('template structure helper', () => {
   it('resolves live template paths by level and basename', () => {
     expect(normalizeLevel('3+')).toBe('3+');
-    expect(resolveTemplatePath('2', 'plan.md')).toMatch(/templates\/manifest\/plan\.md\.tmpl$/);
-    expect(resolveTemplatePath('3+', 'decision-record.md')).toMatch(/templates\/manifest\/decision-record\.md\.tmpl$/);
-    expect(resolveTemplatePath('phase', 'spec.md')).toMatch(/templates\/manifest\/phase-parent\.spec\.md\.tmpl$/);
+    expect(resolveTemplatePath('2', 'plan.md')).toMatch(/templates\/core\/plan\.md\.tmpl$/);
+    expect(resolveTemplatePath('3+', 'decision-record.md')).toMatch(/templates\/addons\/decision-record\.md\.tmpl$/);
+    expect(resolveTemplatePath('phase', 'spec.md')).toMatch(/templates\/packet-types\/phase-parent\.spec\.md\.tmpl$/);
   });
 
   it('rejects missing or invalid CLI levels', () => {

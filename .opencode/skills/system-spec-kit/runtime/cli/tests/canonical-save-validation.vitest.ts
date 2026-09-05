@@ -194,6 +194,10 @@ describe('canonical-save validator rollout', () => {
     expect(result.stdout).toContain('freshness skew detected');
   });
 
+  // Runs the real validator recursively over a full live tree via a blocking
+  // spawnSync, so it easily clears vitest's 5s default; the suite's own
+  // configured testTimeout does not reach a test invoked this way, so this
+  // one carries an explicit budget instead.
   it('passes the canonical-save rule pack on the full 026 tree with the grandfathering window', () => {
     const result = runValidate(
       ROOT_026,
@@ -211,5 +215,5 @@ describe('canonical-save validator rollout', () => {
     expect(result.exitCode).toBe(0);
     expect(result.stdout).toContain('CANONICAL_SAVE_ROOT_SPEC_REQUIRED');
     expect(result.stdout).toContain('CANONICAL_SAVE_LINEAGE_REQUIRED');
-  });
+  }, 60_000);
 });

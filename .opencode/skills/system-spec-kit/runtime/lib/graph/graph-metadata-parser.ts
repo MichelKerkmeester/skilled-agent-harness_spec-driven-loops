@@ -963,6 +963,7 @@ function buildKeyFileLookupPaths(
     const workspaceRoots = [
       systemSpecKitRoot,
       path.join(systemSpecKitRoot, 'runtime'),
+      path.join(systemSpecKitRoot, 'runtime', 'cli'),
       path.join(systemSpecKitRoot, 'scripts'),
     ];
     for (const root of workspaceRoots) {

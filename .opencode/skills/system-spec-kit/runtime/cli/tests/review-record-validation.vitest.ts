@@ -39,7 +39,7 @@ describe('review-record packet type', () => {
 
   it('routes the review spec.md to the lean review template', () => {
     expect(resolveTemplatePath('review', 'spec.md')).toMatch(
-      /templates\/manifest\/review\.spec\.md\.tmpl$/,
+      /templates\/packet-types\/review\.spec\.md\.tmpl$/,
     );
     // The review report is freeform: it has no backing template.
     expect(resolveTemplatePath('review', 'review/review-report.md')).toBeNull();

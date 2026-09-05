@@ -70,8 +70,11 @@ function createPacket(workspace: string, packetId: string, options: {
     'title: "Implementation Summary"',
     '_memory:',
     '  continuity:',
-    `    packet_pointer: "${metadataId}"`,
-    options.scaffoldMarker ? '    last_updated_by: "template-author"' : '    last_updated_by: "test-author"',
+    // SCAFFOLD_NEVER_TOUCHED reads packet_pointer's own scaffold/ prefix as its
+    // durable signal, not last_updated_by, which is a value the scaffold's own
+    // author could edit away without doing the real work.
+    options.scaffoldMarker ? `    packet_pointer: "scaffold/${metadataId}"` : `    packet_pointer: "${metadataId}"`,
+    '    last_updated_by: "test-author"',
     '    completion_pct: 100',
     '---',
     '# Implementation Summary',

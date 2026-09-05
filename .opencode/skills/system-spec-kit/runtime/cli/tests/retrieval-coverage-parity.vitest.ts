@@ -20,6 +20,7 @@ const CONVENTIONS_PATH = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
   '..',
   '..',
+  '..',
   'references',
   'retrieval',
   'retrieval-conventions.md',

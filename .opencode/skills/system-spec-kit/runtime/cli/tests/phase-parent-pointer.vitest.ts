@@ -144,16 +144,27 @@ describe('phase-parent pointer writes after canonical save', () => {
   });
 
   it('leaves non-phase-parent saves without direct phase-parent ancestry untouched', () => {
-    const standalone = path.join(tempRoot, '101-standalone');
-    fs.mkdirSync(standalone);
-    fs.writeFileSync(path.join(standalone, 'spec.md'), '# Standalone\n', 'utf8');
-    writeGraphMetadata(standalone, 'specs/101-standalone');
+    // A dedicated root, not the shared tempRoot: tempRoot already carries this
+    // suite's own 100-parent fixture, and a sibling numbered folder there would
+    // make tempRoot itself look like a phase parent to the very check this case
+    // means to exercise. The folder itself is also named off the numbered-child
+    // pattern (isPhaseParent qualifies a parent from a single matching child),
+    // so the isolated root it sits in cannot accidentally qualify either.
+    const isolatedRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'phase-parent-pointer-standalone-'));
+    try {
+      const standalone = path.join(isolatedRoot, 'standalone-no-phase-parent');
+      fs.mkdirSync(standalone);
+      fs.writeFileSync(path.join(standalone, 'spec.md'), '# Standalone\n', 'utf8');
+      writeGraphMetadata(standalone, 'specs/101-standalone');
 
-    updatePhaseParentPointersAfterSave(standalone, '2026-04-27T12:02:00.000Z');
+      updatePhaseParentPointersAfterSave(standalone, '2026-04-27T12:02:00.000Z');
 
-    const derived = readGraphMetadata(standalone).derived as Record<string, unknown>;
-    expect(derived.last_active_child_id).toBe('stale-child');
-    expect(derived.last_active_at).toBe('2020-01-01T00:00:00.000Z');
+      const derived = readGraphMetadata(standalone).derived as Record<string, unknown>;
+      expect(derived.last_active_child_id).toBe('stale-child');
+      expect(derived.last_active_at).toBe('2020-01-01T00:00:00.000Z');
+    } finally {
+      fs.rmSync(isolatedRoot, { recursive: true, force: true });
+    }
   });
 
   describe('schema validation on load — invalid graph-metadata is rejected before mutation', () => {

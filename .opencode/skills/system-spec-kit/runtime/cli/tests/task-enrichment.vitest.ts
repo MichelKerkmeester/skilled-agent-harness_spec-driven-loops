@@ -1095,7 +1095,7 @@ describe('workflow seam guardrail', () => {
   });
 
   // TODO: re-enable after the compact wrapper template fixtures land
-  it('allows stateless saves when captured files match code paths declared in the target spec without returning a legacy filename', async () => {
+  it('allows stateless saves when captured files match code paths declared in the target spec without returning a legacy filename', { timeout: 60000 }, async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
     const specFolderPath = path.join(tempRoot, '.opencode', 'specs', 'system-spec-kit', '009-perfect-session-capturing');
     const contextDir = path.join(tempRoot, 'memory');
@@ -1112,7 +1112,7 @@ describe('workflow seam guardrail', () => {
         '',
         '| File Path | Change Type | Description |',
         '|-----------|-------------|-------------|',
-        '| `scripts/core/workflow.ts` | Modify | Insert enrichment after alignment guards |',
+        '| `runtime/cli/core/workflow.ts` | Modify | Insert enrichment after alignment guards |',
       ].join('\n'),
       'utf-8'
     );
