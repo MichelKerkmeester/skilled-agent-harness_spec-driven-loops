@@ -49,7 +49,8 @@ contextType: "general"
 - [x] T006 Review leaf: contract rule to resolve review paths against the dispatched artifact directory, all agent mirrors in sync (`c34ccfeb47`)
 - [x] T007 Delete the rollback runbook with its README, alias and manifest entries; drop the unused MCP response type; rename the stale test (`1200c71f22`, `c34ccfeb47`)
 - [x] T008 Move the trigger index to `runtime/data/`, remove the retired search-decisions file, rewrite every reference and the architecture topology (`1200c71f22`, `c34ccfeb47`)
-- [ ] T009 Align `runtime/` and `scripts/` code with `sk-code-opencode` standards and write or refresh every code README (five Sonnet agents on disjoint folder sets)
+- [x] T009 Align `runtime/` and `scripts/` with `sk-code-opencode` and write or refresh every code README: five Sonnet agents on disjoint folder sets (`9e759d06cf`, `588be3fc00`, `923f4e966d`, `e5b414cbae`); 87 code READMEs, 0 validator issues, no code folder without one
+- [x] T009a Restore the eleven session-lifecycle hook registrations and mirror links the memory sweep dropped (`273767431d`); repair the two stale session-stop tests and the stdout scan exclusions (`6698bcc80b`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -57,8 +58,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Typecheck shared, scripts and runtime; run the touched suites; validate every code README
-- [ ] T011 Gates on the final tree: dist freshness across two index runs, sweep, doctor routes, both skill-root audits, routing guard, validate strict on 052, 053 and this packet
+- [x] T010 Typecheck shared, scripts and runtime exit 0; touched suites unchanged or improved per agent report; 87 READMEs validated
+- [x] T011 Gates at `e0ae6d7063`: freshness stays green across two index runs without a re-stamp; sweep live 0; doctor routes 9; audits 14 of 14; routing guard fresh; validate strict PASSED on 052, 053 and this packet
+- [ ] T013 Two-executor review-angle deep research (gpt-5.6-luna max fast via Codex, grok-4.6 xhigh fast via Cursor, 20 iterations each) under `research/`; act on its findings
 - [ ] T012 Close this packet and record the outcome in packet 052's goal log
 <!-- /ANCHOR:phase-3 -->
 

@@ -54,13 +54,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given two trigger-index runs, When `dist-freshness.cjs check-all` runs, Then the scripts package is fresh without a re-stamp | `check-all` output after two generator runs | Unmet | - |
-| AC-002 | REQ-001 | Given a lineage child that writes to stderr and exits 1, When the runner returns, Then the stderr text is in the result and in `logs/fanout-lineage.err` | `fanout-lineage-stderr.test.ts` 2 of 2 | Unmet | - |
-| AC-003 | REQ-001 | Given the deep-review agent contract, When its write-scope rules are read, Then they say review paths resolve against the dispatched artifact directory and the four mirrors match | `check-agent-mirror-sync.cjs` OK | Unmet | - |
-| AC-004 | REQ-001 | Given the tree, When the runbook, the MCP response type and the stale test name are searched, Then none exists outside historical evidence | `git grep` 0 live hits | Unmet | - |
-| AC-005 | REQ-002 | Given the skill root, When its folders are listed, Then only `runtime/data/` holds data and every reader resolves the index there | `ls`; lookup exit 0; retrieval suites pass | Unmet | - |
-| AC-006 | REQ-003 | Given every code folder in `runtime/` and `scripts/`, When `validate_document.py` runs on its README, Then each reports 0 issues | validator sweep output | Unmet | - |
-| AC-007 | REQ-004 | Given the aligned tree, When shared, scripts and runtime typecheck and the touched suites run, Then all exit 0 and the packet gates pass | command outputs | Unmet | - |
+| AC-001 | REQ-001 | Given two trigger-index runs, When `dist-freshness.cjs check-all` runs, Then the scripts package is fresh without a re-stamp | `check-all` fresh after two generator runs at `e0ae6d7063` with no re-stamp | Met | - |
+| AC-002 | REQ-001 | Given a lineage child that writes to stderr and exits 1, When the runner returns, Then the stderr text is in the result and in `logs/fanout-lineage.err` | `fanout-lineage-stderr.test.ts` 2 of 2 at `1200c71f22` | Met | - |
+| AC-003 | REQ-001 | Given the deep-review agent contract, When its write-scope rules are read, Then they say review paths resolve against the dispatched artifact directory and the four mirrors match | `check-agent-mirror-sync.cjs` OK for deep-review at `c34ccfeb47` | Met | - |
+| AC-004 | REQ-001 | Given the tree, When the runbook, the MCP response type and the stale test name are searched, Then none exists outside historical evidence | `git grep` 0 live hits after `c34ccfeb47` and `1200c71f22` | Met | - |
+| AC-005 | REQ-002 | Given the skill root, When its folders are listed, Then only `runtime/data/` holds data and every reader resolves the index there | skill root lists no `data/`; lookup exit 0 with 20 hits; retrieval suites 8 files, 135 tests | Met | - |
+| AC-006 | REQ-003 | Given every code folder in `runtime/` and `scripts/`, When `validate_document.py` runs on its README, Then each reports 0 issues | 87 READMEs under `runtime/` and `scripts/`: 86 report 0 issues, 1 template-excluded; no code folder lacks one | Met | - |
+| AC-007 | REQ-004 | Given the aligned tree, When shared, scripts and runtime typecheck and the touched suites run, Then all exit 0 and the packet gates pass | tsc exit 0 for shared, scripts, runtime; agents' suites unchanged or improved; validate strict PASSED on 052, 053, 054 | Met | - |
 
 ### Status values
 

@@ -50,6 +50,12 @@
       ".opencode/agents/deep-review.md",
       "shared/types.ts",
       "runtime/data/trigger-index.json",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      "runtime/scripts/tests/resource-map-extractor.vitest.ts",
+      "scripts/lib/completion-state.test.mjs",
       "data/trigger-index.json"
     ],
     "entities": [
@@ -105,6 +111,36 @@
         "name": "trigger-index.json",
         "kind": "config",
         "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map-extractor.vitest.ts",
+        "kind": "test",
+        "path": "runtime/scripts/tests/resource-map-extractor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "completion-state.test.mjs",
+        "kind": "file",
+        "path": "scripts/lib/completion-state.test.mjs",
         "source": "derived"
       },
       {
@@ -166,41 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The landing and rename packets closed with debt recorded rather than fixed: the scripts freshness table counted the trigger-index generator's fixtures as sources, the fan-out runner discarded lineage stderr, the review leaf could write iteration files at the cwd, a rollback runbook documented retired automation, a dead response type and a stale test name survived",
     "created_at": "2026-09-05T03:23:43Z",
-    "last_save_at": "2026-09-05T03:37:38.110Z",
+    "last_save_at": "2026-09-05T04:36:43.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4907f49c1c2c3f496f9634f978c876b1762c1a76cd7f3bf605ba5db753c00661",
+    "source_fingerprint": "sha256:ab40963241589e89c065b8b0be5c52596d7919b5a341cb2128419f8d9deaa371",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c3104ca194416343c87c6e79c490c9f924c692a0d0df9dcccae85aafa7973c2",
       "plan.md": "d3e8d36de30a64e86f8f63b19b6d7f449b7a4714199dc9620c5d0627ec230b48",
-      "tasks.md": "b3a70497620cb8cd1d8795fa122791cd49ff081ab3981c3e8dec99f00a169bf5",
-      "implementation-summary.md": "7e86f80f6e71579170ed7b50e915e379c9c79869a6c101ad2b7cb729e6088dbf"
+      "tasks.md": "b0f60870a209477bed8eddd2757cff76f862db73715e71c5a0ba2fbebf45fd3b",
+      "implementation-summary.md": "e47a871a26e7e3136d26bd6f6fbc4e970fb46ba02e54ce25c681deebaa579b6f"
     },
     "last_active_child_id": null,
     "last_active_at": null

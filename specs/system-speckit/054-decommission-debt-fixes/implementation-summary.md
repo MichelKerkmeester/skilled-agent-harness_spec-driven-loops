@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-speckit/054-decommission-debt-fixes"
     last_updated_at: "2026-09-05T03:23:43Z"
     last_updated_by: "template-author"
-    recent_action: "Landed the debt fixes and the index move; alignment agents running"
-    next_safe_action: "Review the five agent reports, run the gates, commit the alignment"
+    recent_action: "Landed the alignment, restored the session hooks; research running"
+    next_safe_action: "Read the two research reports and fix what they confirm"
     blockers: []
     key_files: []
     session_dedup:
@@ -64,7 +64,8 @@ The freshness walker ignores the generator's fixtures and dangling links, so a t
 | `references/workflows/rollback-runbook.md` | Deleted | Retired automation |
 | `shared/types.ts` | Modified | Unused response type removed |
 | `runtime/data/trigger-index.json` | Moved | From the skill-root data folder, with all references |
-| `runtime/**`, `scripts/**` | Modified | Standards alignment and code READMEs, in progress |
+| `runtime/**`, `scripts/**` | Modified | Standards alignment across 239 files and 87 code READMEs, no behavior change |
+| `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json`, `.devin/hooks.v1.json` and mirror links | Modified | Eleven session-lifecycle registrations restored |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -99,7 +100,9 @@ My lane landed as two commits (`1200c71f22` code, `c34ccfeb47` docs) after typec
 | Retrieval suites after the index move | PASS - 8 files, 135 tests |
 | Trigger index two runs | identical hashes |
 | Agent mirror sync | OK, 3 agents |
-| Alignment lane | pending agent reports |
+| Alignment lane | PASS - five agents, four commits, typecheck exit 0 each, suites unchanged or improved, 87 READMEs at 0 issues |
+| Session hooks | PASS - eleven adapters run clean from dist; runtime hook suites 16 of 16 and 1 of 1 after the test repairs |
+| Gates at `e0ae6d7063` | PASS - freshness, sweep, doctor, audits, routing guard, validate strict on three packets |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -107,7 +110,9 @@ My lane landed as two commits (`1200c71f22` code, `c34ccfeb47` docs) after typec
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The alignment lane is in progress.** Its results, validator sweep and gates are recorded here when the agents report.
+1. **The review-angle research is in progress** under `research/`; its findings are acted on before closure.
+2. **Recorded, not fixed, by the alignment pass:** two tests outside every vitest include glob (`runtime/scripts/tests/resource-map-extractor.vitest.ts`, `scripts/lib/completion-state.test.mjs`); three runtime modules with no production caller (cognitive rollout policy, storage transaction manager, description repair); 17 scripts test files red at HEAD before and after; 18 import-policy reach-through violations; a swallowed error in the alignment validator; duplicated roots in the markdown link checker.
+3. **Nesting `scripts/` under `runtime/`** is the next packet.
 <!-- /ANCHOR:limitations -->
 
 ---
