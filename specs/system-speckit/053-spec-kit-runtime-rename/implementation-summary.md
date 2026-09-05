@@ -53,7 +53,7 @@ _memory:
 
 The spec-kit engine no longer claims to be a server. It lives at
 `.opencode/skills/system-spec-kit/runtime/`, is published to its workspace as
-`@spec-kit/runtime`, and declares four dependencies instead of twelve. The name a
+`@spec-kit/runtime`, and declares three dependencies instead of twelve. The name a
 reader meets now matches what the package does: validate spec folders, refresh
 generated metadata, write continuity, and host the per-runtime hook adapters.
 
@@ -74,7 +74,7 @@ manifest, doctor assets, plugins, install guides and the skill's own references.
 
 ### Dependencies decided by resolution, not by grep
 
-Eight of twelve entries went. The two interesting rows are the ones an import grep
+Nine of twelve entries went, the ninth after the review pass. The two interesting rows are the ones an import grep
 would have got wrong in both directions. `@huggingface/transformers` looks live
 because the HF model server imports it, but that server resolves through
 `createRequire(system-spec-kit/package.json)` and lands in the skill-root
@@ -106,7 +106,7 @@ the preserved set and keeps the entry, which now simply never resolves.
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/mcp-server/**` -> `runtime/**` | Moved | 324 tracked files, history preserved |
-| `runtime/package.json` | Modified | Renamed `@spec-kit/runtime`; twelve dependencies cut to four |
+| `runtime/package.json` | Modified | Renamed `@spec-kit/runtime`; twelve dependencies cut to three |
 | `system-spec-kit/package.json`, `package-lock.json` | Modified | Workspace member renamed; lockfile regenerated, 126 packages removed |
 | `scripts/package.json`, `scripts/tsconfig.json`, `tsconfig.json`, `vitest.config.ts` | Modified | Project references, path mappings and the vitest root |
 | `scripts/lib/dist-freshness.cjs` | Modified | Package id, name, root and rebuild command; dropped a watched path that never existed |

@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 2,
+  "sessionId": "fanout-luna-max-pass3-1788556809353-mcpewh",
+  "generation": 1,
+  "lineageMode": "new",
+  "requestedLineageMode": "auto",
+  "status": "open",
+  "open": [
+    {
+      "id": "DR-001",
+      "severity": "P1",
+      "category": "correctness",
+      "title": "Scripts freshness scan follows the moved runtime dist symlink",
+      "status": "open",
+      "active": true,
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 5,
+      "occurrences": 2,
+      "contentHash": "7afed0e035e8c8f8801e7f69b2989ea7746871f52cbb6c0fc5f7e2aaf0104712",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:33-50",
+        ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:217-220",
+        ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:356-363",
+        ".opencode/skills/system-spec-kit/runtime/package.json:12-16",
+        ".opencode/skills/system-spec-kit/scripts/runtime:1"
+      ],
+      "impact": "The scripts freshness gate fails in the observed unbuilt state because it follows a missing generated runtime distribution symlink.",
+      "remediation": "Exclude the generated runtime link from scripts source walking or model the dependency boundary explicitly; add a clean build-order test.",
+      "claimAdjudication": {
+        "claimClass": "class-of-bug",
+        "status": "confirmed",
+        "confidence": "high",
+        "producerInventory": [
+          ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:33-50",
+          ".opencode/skills/system-spec-kit/scripts/runtime:1"
+        ],
+        "consumerInventory": [
+          ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:356-363",
+          ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:275-288",
+          ".opencode/skills/system-spec-kit/scripts/package.json:10-19"
+        ],
+        "adversarialChecks": [
+          "runtime/dist absent reproduced missing watched-source condition",
+          "runtime/dist present requires a build and was not run"
+        ],
+        "evidenceRefs": [
+          ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:217-220",
+          ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:356-363"
+        ]
+      }
+    },
+    {
+      "id": "DR-002",
+      "severity": "P2",
+      "category": "security",
+      "title": "Hook target override is not constrained to a regular in-tree file",
+      "status": "open",
+      "active": true,
+      "firstSeenIteration": 2,
+      "lastSeenIteration": 2,
+      "occurrences": 1,
+      "contentHash": "16814504dad519776be57248de6dc2ca2387477c15fa24e2a186b932094caf9f",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:37-47",
+        ".opencode/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:78-93",
+        ".opencode/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:30-37"
+      ],
+      "impact": "An ambient override can redirect a hook child to any existing path; normal fixed-target operation remains bounded and fail-open.",
+      "remediation": "Require a regular file and explicit test mode or approved root for target overrides; add outside-root and directory cases."
+    },
+    {
+      "id": "DR-003",
+      "severity": "P1",
+      "category": "traceability",
+      "title": "Live operational docs retain the retired MCP-server identity",
+      "status": "open",
+      "active": true,
+      "firstSeenIteration": 3,
+      "lastSeenIteration": 3,
+      "occurrences": 1,
+      "contentHash": "17d932f45455c959081329e2cd88e4d7e731280024902b9ea96b51710f9325f6",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/runtime/README.md:1-14,41-46",
+        ".opencode/skills/system-spec-kit/runtime/lib/README.md:1-17,28-33,190-198",
+        ".opencode/skills/system-spec-kit/runtime/data/README.md:1-13",
+        ".opencode/skills/system-spec-kit/scripts/spec/README.md:84-101",
+        ".opencode/skills/system-spec-kit/runtime/tests/_support/README.md:11-46",
+        ".opencode/skills/system-spec-kit/runtime/api/index.ts:4-8"
+      ],
+      "impact": "Operators and maintainers are directed toward a retired server identity and path, contradicting the runtime rename contract.",
+      "remediation": "Rename live headings, descriptions, diagrams, links, and run commands to runtime; retain MCP only for explicitly retired or preserved advisor surfaces.",
+      "claimAdjudication": {
+        "claimClass": "class-of-bug",
+        "status": "confirmed",
+        "confidence": "high",
+        "producerInventory": [
+          ".opencode/skills/system-spec-kit/runtime/README.md:1-14,41-46",
+          ".opencode/skills/system-spec-kit/runtime/lib/README.md:1-17,28-33,190-198",
+          ".opencode/skills/system-spec-kit/runtime/data/README.md:1-13",
+          ".opencode/skills/system-spec-kit/scripts/spec/README.md:84-101",
+          ".opencode/skills/system-spec-kit/runtime/tests/_support/README.md:11-46",
+          ".opencode/skills/system-spec-kit/runtime/api/index.ts:4-8"
+        ],
+        "consumerInventory": [
+          ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:274-301",
+          ".opencode/specs/system-speckit/053-spec-kit-runtime-rename/spec.md:50,88-94,130-131",
+          "operators and maintainers reading live package documentation"
+        ],
+        "adversarialChecks": [
+          "preserved advisor references excluded by explicit preserved-set rule",
+          "historical evidence excluded by review boundary",
+          "runtime manifest has new identity, proving documentation drift"
+        ],
+        "evidenceRefs": [
+          ".opencode/skills/system-spec-kit/runtime/README.md:1-14",
+          ".opencode/skills/system-spec-kit/runtime/lib/README.md:1-17",
+          ".opencode/skills/system-spec-kit/scripts/spec/README.md:96",
+          ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:280"
+        ]
+      }
+    },
+    {
+      "id": "DR-004",
+      "severity": "P2",
+      "category": "maintainability",
+      "title": "Stale internal mcp_server vocabulary remains after the move",
+      "status": "open",
+      "active": true,
+      "firstSeenIteration": 4,
+      "lastSeenIteration": 4,
+      "occurrences": 1,
+      "contentHash": "54428ac423d17ec3eff48a0f75cf57f696cd7ab54c14378dbc5bd57621bf1cfa",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/scripts/core/workflow.ts:251-262,1431-1435,1517-1523",
+        ".opencode/skills/system-spec-kit/runtime/tests/env-reference-drift.vitest.ts:4-20",
+        ".opencode/skills/system-spec-kit/runtime/tests/council-playbook-anchor-integrity.vitest.ts:7-30",
+        ".opencode/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:25-44",
+        ".opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs:11-20"
+      ],
+      "impact": "Current symbols and instructions obscure the runtime owner and make search-driven future edits less reliable.",
+      "remediation": "Rename current helper/test vocabulary to runtime; document any retained historical compatibility patterns explicitly."
+    },
+    {
+      "id": "DR-005",
+      "severity": "P2",
+      "category": "correctness",
+      "title": "Freshness test cleanup uses the old cache identity",
+      "status": "open",
+      "active": true,
+      "firstSeenIteration": 5,
+      "lastSeenIteration": 5,
+      "occurrences": 1,
+      "contentHash": "acc58220d350a9821580646ba8aadce72d84278bb7a252b5aea4a203b05a177e",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh:10-18,32-44,76-79",
+        ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:259-263,356-375"
+      ],
+      "impact": "The freshness test can leak generated cache state and fail to start from a clean cache.",
+      "remediation": "Derive cleanup from the current package id or update the glob to system-spec-kit-runtime; assert cache absence after exit."
+    }
+  ],
+  "activeFindingIds": ["DR-001", "DR-002", "DR-003", "DR-004", "DR-005"],
+  "resolved": [],
+  "repeated": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 3
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.14,
+  "lastIteration": 5,
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "workspace_path_resolution",
+      "retired_identity_residue",
+      "hook_target_resolution",
+      "dependency_manifest_alignment",
+      "verification_evidence_alignment"
+    ],
+    "coveredBugClasses": [
+      "workspace_path_resolution",
+      "dependency_manifest_alignment",
+      "dist_freshness_boundary",
+      "hook_target_resolution",
+      "path_traversal",
+      "bounded_process_input",
+      "dependency_ownership",
+      "retired_identity_residue",
+      "verification_evidence_alignment",
+      "preserved-set-boundary",
+      "cache_identity_alignment",
+      "build_order_recheck",
+      "workspace_link_resolution",
+      "test_isolation"
+    ],
+    "deferredBugClasses": [
+      "maintainability_residue",
+      "runtime_test_nomenclature",
+      "external_gate_execution",
+      "consumer_matrix_recheck",
+      "clean-install-execution"
+    ],
+    "blockedBugClasses": [],
+    "graphCoverageMode": "graphless-fallback"
+  }
+}

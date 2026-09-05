@@ -180,7 +180,7 @@ The same shared module tracks 7 dist-producing packages total (the 3 CLI shims' 
 
 **Trust (skill-advisor only).** `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances` require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. everything else is sent untrusted by default. The daemon-side gate fails closed when transport `_meta` is absent, see the skill-advisor server docs.
 
-Full env-var detail lives in the MCP server's [`ENV-REFERENCE.md`](../skills/system-spec-kit/runtime/ENV-REFERENCE.md).
+Full env-var detail lives in the spec-kit runtime's [`ENV-REFERENCE.md`](../skills/system-spec-kit/runtime/ENV-REFERENCE.md).
 
 ### Worktree session isolation
 

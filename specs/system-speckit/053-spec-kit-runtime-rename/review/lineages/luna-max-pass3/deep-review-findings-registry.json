@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 2,
+  "sessionId": "fanout-luna-max-pass3-1788565027234-d7pbnn",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-speckit/053-spec-kit-runtime-rename",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "activeFindings": [
+    {
+      "id": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "title": "Live operator documentation retains an MCP identity label for the runtime package",
+      "status": "open",
+      "disposition": "active",
+      "dimension": "maintainability",
+      "file": "README.md:771",
+      "evidence": "The root operator README links to runtime/stress-test while labeling the package root mcp-server; .opencode/bin/README.md:183 likewise calls the runtime ENV-REFERENCE.md an MCP server document.",
+      "recommendation": "Rename the live labels to runtime/package language while retaining MCP wording only where it describes the separate skill-advisor integration.",
+      "findingClass": "documentation-drift",
+      "scopeProof": "Both labels are in live operator documentation and point into the renamed runtime package; the runtime package README identifies the artifact as a library, not a service.",
+      "affectedSurfaceHints": [
+        "root README",
+        "operator README"
+      ],
+      "content_hash": "sha256:d2b8192d2d4b337c0a04be8a5c150d95ffc8ab8ddbb3c2f2d470f3ce8e4735ec",
+      "contentHash": "sha256:d2b8192d2d4b337c0a04be8a5c150d95ffc8ab8ddbb3c2f2d470f3ce8e4735ec"
+    },
+    {
+      "id": "F002",
+      "severity": "P2",
+      "category": "traceability",
+      "title": "Dependency audit arithmetic disagrees with the current runtime manifest",
+      "status": "open",
+      "disposition": "active",
+      "dimension": "traceability",
+      "file": ".opencode/specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:56",
+      "evidence": "The implementation summary says four dependencies remain and eight of twelve entries were removed, while runtime/package.json and package-lock.json show three runtime dependencies and nine removed entries in the decision table.",
+      "recommendation": "Reconcile the packet prose and file-action table with the current manifest and lockfile, or document the counting convention explicitly.",
+      "findingClass": "evidence-mismatch",
+      "scopeProof": "The mismatch is directly observable between the packet summary, its dependency table, runtime/package.json, and the lockfile runtime entry.",
+      "affectedSurfaceHints": [
+        "dependency audit",
+        "lockfile evidence",
+        "implementation summary"
+      ],
+      "content_hash": "sha256:85e9843f7ba6d30ccc2918bfb3d2c4ea8f5e89dd1b2e977065af1ab7c2fc194b",
+      "contentHash": "sha256:85e9843f7ba6d30ccc2918bfb3d2c4ea8f5e89dd1b2e977065af1ab7c2fc194b"
+    }
+  ],
+  "activeFindingIds": ["F001", "F002"],
+  "resolved": [],
+  "repeated": [],
+  "severityChanged": [],
+  "blockedStopHistory": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.02,
+  "graphConvergenceScore": null,
+  "lastIteration": 10,
+  "stopReason": "maxIterationsReached",
+  "stopPolicy": "max-iterations",
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "workspace_path_resolution",
+      "dependency_manifest_alignment",
+      "dist_freshness_boundary",
+      "hook_target_resolution",
+      "retired_identity_residue",
+      "verification_evidence_alignment",
+      "maintainability_residue",
+      "test_isolation"
+    ],
+    "coveredBugClasses": [
+      "workspace_path_resolution",
+      "dependency_manifest_alignment",
+      "dist_freshness_boundary",
+      "hook_target_resolution",
+      "retired_identity_residue",
+      "verification_evidence_alignment",
+      "maintainability_residue",
+      "test_isolation"
+    ],
+    "deferredBugClasses": [
+      "external_gate_execution",
+      "clean_install_execution",
+      "continuity_save"
+    ],
+    "blockedBugClasses": [],
+    "graphCoverageMode": "graphless_fallback",
+    "searchDebt": []
+  },
+  "candidateCoverage": {
+    "covered": [
+      "workspace manifests",
+      "runtime API and exports",
+      "scripts consumer and project references",
+      "freshness traversal and symlink boundary",
+      "hook target resolution and path containment",
+      "permission and model-server fail-closed boundaries",
+      "live old-identity residue search",
+      "documentation and packet evidence alignment"
+    ],
+    "missing": [],
+    "deferred": [
+      "external_gate_execution",
+      "clean_install_execution",
+      "continuity_save"
+    ],
+    "searchDebt": []
+  },
+  "ruledOutCandidates": [
+    {
+      "id": "R001",
+      "candidate": "dist freshness traversal",
+      "basis": "Current walker and focused tests skip generated directory symlinks and dangling symlinks."
+    },
+    {
+      "id": "R002",
+      "candidate": "hook target resolution and path traversal",
+      "basis": "Absolute regular-file override checks, normal-walk anchoring, realpath containment, and symlink-escape tests cover the boundary."
+    },
+    {
+      "id": "R003",
+      "candidate": "permission and network/model-server boundary bypass",
+      "basis": "Malformed, unknown, and failure permission paths fail closed; socket symlink and reclaim cases are covered."
+    },
+    {
+      "id": "R004",
+      "candidate": "tracked live old runtime identity residue",
+      "basis": "Exact old path and old npm-name search over live in-scope surfaces returned no matching tracked references; dependency, generated, historical, and review trees were excluded."
+    }
+  ],
+  "corruptionWarnings": [],
+  "resourceMap": {
+    "present": false,
+    "emit": false
+  },
+  "continuity": {
+    "phaseSave": "skipped",
+    "reason": "User-bound lineage forbids writes outside artifact_dir."
+  },
+  "status": "complete",
+  "verdict": "PASS",
+  "releaseReadinessState": "in-progress",
+  "totalIterations": 10,
+  "claimAdjudication": {
+    "required": false,
+    "reason": "No active P0 or P1 findings were raised.",
+    "passedEvents": 10
+  }
+}

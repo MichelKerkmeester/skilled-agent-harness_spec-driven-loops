@@ -768,7 +768,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - Generates scenario files with test steps, expected results and verification evidence fields
 - Validates against established playbook format
 
-The package also ships a dedicated [stress-test/](.opencode/skills/system-spec-kit/runtime/stress-test/) suite for load, contention and capacity checks. It sits outside the default test run and uses its own `vitest.stress.config.ts` at the [mcp-server/](.opencode/skills/system-spec-kit/runtime/) package root, so an operator runs it on purpose rather than on every commit.
+The package also ships a dedicated [stress-test/](.opencode/skills/system-spec-kit/runtime/stress-test/) suite for load, contention and capacity checks. It sits outside the default test run and uses its own `vitest.stress.config.ts` at the [runtime/](.opencode/skills/system-spec-kit/runtime/) package root, so an operator runs it on purpose rather than on every commit.
 
 &nbsp;
 #### DEEP

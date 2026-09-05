@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 2,
+  "sessionId": "fanout-luna-max-pass3-1788562574615-h6l4fh",
+  "generation": 1,
+  "lineageMode": "new",
+  "requestedLineageMode": "auto",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "open": [
+    {
+      "id": "DR-001",
+      "severity": "P1",
+      "category": "correctness",
+      "title": "Scripts freshness scan follows a missing moved-runtime distribution link",
+      "status": "open",
+      "active": true,
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 9,
+      "occurrences": 3,
+      "contentHash": "7afed0e035e8c8f8801e7f69b2989ea7746871f52cbb6c0fc5f7e2aaf0104712",
+      "content_hash": "7afed0e035e8c8f8801e7f69b2989ea7746871f52cbb6c0fc5f7e2aaf0104712",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:217-235",
+        ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:795-800",
+        ".opencode/skills/system-spec-kit/runtime/package.json:12-16",
+        ".opencode/skills/system-spec-kit/scripts/runtime:symlink-to-../runtime/dist"
+      ],
+      "impact": "The scripts freshness gate fails in the observed unbuilt state because it follows a missing generated runtime distribution symlink and throws ENOENT before producing a classified missing-candidate result.",
+      "remediation": "Exclude generated cross-package links from the scripts source walk or model the dependency boundary explicitly; add a clean build-order test.",
+      "findingClass": "class-of-bug",
+      "scopeProof": "The shared source walker reaches the generated runtime link and its freshness consumer converts the traversal exception into a gate error.",
+      "affectedSurfaceHints": [
+        "scripts freshness walker",
+        "runtime dist provisioning",
+        "validate.sh freshness gate"
+      ],
+      "claimAdjudication": {
+        "claimClass": "class-of-bug",
+        "status": "confirmed",
+        "confidence": "high",
+        "producerInventory": [
+          ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:217-235",
+          ".opencode/skills/system-spec-kit/scripts/runtime:symlink-to-../runtime/dist"
+        ],
+        "consumerInventory": [
+          ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:614-669",
+          ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:795-800",
+          ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:275-301"
+        ],
+        "adversarialChecks": [
+          "runtime/dist absent reproduced ENOENT during scripts source traversal",
+          "runtime/dist present was not created because the user forbids repository builds and generated writes"
+        ],
+        "evidenceRefs": [
+          ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:217-235",
+          ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs:795-800"
+        ]
+      }
+    },
+    {
+      "id": "DR-004",
+      "severity": "P1",
+      "category": "correctness",
+      "title": "Runtime manifest keeps chokidar on an advisor-only consumer claim",
+      "status": "open",
+      "active": true,
+      "firstSeenIteration": 3,
+      "lastSeenIteration": 9,
+      "occurrences": 3,
+      "contentHash": "c2e8aa0be7cdd4f8c14ffab7cf38e80e2bb4ad4afcfbe17d36a27d71b0e10950",
+      "content_hash": "c2e8aa0be7cdd4f8c14ffab7cf38e80e2bb4ad4afcfbe17d36a27d71b0e10950",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/runtime/package.json:41-45",
+        ".opencode/skills/system-spec-kit/runtime/tsconfig.json:17-23",
+        ".opencode/specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:88-100",
+        ".opencode/skills/system-spec-kit/package-lock.json:1176-1185,2051-2065"
+      ],
+      "impact": "The runtime dependency audit is not supported by a live runtime consumer. The cited advisor consumer belongs to the explicitly preserved system-skill-advisor package.",
+      "remediation": "Remove chokidar and its path mapping if the source inventory is authoritative, or add the real runtime consumer and regenerate the lockfile.",
+      "findingClass": "class-of-bug",
+      "scopeProof": "The bounded production source inventory found no chokidar import in runtime or scripts; the cited keep consumer is a separate preserved advisor package.",
+      "affectedSurfaceHints": [
+        "runtime/package.json",
+        "runtime/tsconfig.json",
+        "package-lock.json",
+        "dependency audit"
+      ],
+      "claimAdjudication": {
+        "claimClass": "class-of-bug",
+        "status": "confirmed",
+        "confidence": "high",
+        "producerInventory": [
+          ".opencode/skills/system-spec-kit/runtime/package.json:41-45",
+          ".opencode/skills/system-spec-kit/runtime/tsconfig.json:17-23"
+        ],
+        "consumerInventory": [
+          ".opencode/skills/system-spec-kit/runtime: bounded production source search with no chokidar import",
+          ".opencode/skills/system-spec-kit/scripts: bounded production source search with no chokidar import",
+          ".opencode/skills/system-spec-kit/package-lock.json:1176-1185,2051-2065",
+          ".opencode/specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:88-100"
+        ],
+        "adversarialChecks": [
+          "searched import, require, and dynamic-import spellings while excluding tests, fixtures, generated output, and historical data",
+          "lockfile presence was not treated as a source consumer",
+          "the cited advisor consumer is under the explicitly preserved system-skill-advisor package"
+        ],
+        "evidenceRefs": [
+          ".opencode/skills/system-spec-kit/runtime/package.json:41-45",
+          ".opencode/skills/system-spec-kit/runtime/tsconfig.json:17-23",
+          ".opencode/specs/system-speckit/053-spec-kit-runtime-rename/spec.md:122-124"
+        ]
+      }
+    },
+    {
+      "id": "DR-002",
+      "severity": "P2",
+      "category": "security",
+      "title": "Hook target overrides accept any regular absolute file",
+      "status": "open",
+      "active": true,
+      "firstSeenIteration": 2,
+      "lastSeenIteration": 10,
+      "occurrences": 3,
+      "contentHash": "16814504dad519776be57248de6dc2ca2387477c15fa24e2a186b932094caf9f",
+      "content_hash": "16814504dad519776be57248de6dc2ca2387477c15fa24e2a186b932094caf9f",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:37-55",
+        ".opencode/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:30-45",
+        ".opencode/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:91-105"
+      ],
+      "impact": "An explicit ambient override can redirect a hook child to any existing regular file. Normal fixed-target operation remains bounded, install-anchored, and fail-open.",
+      "remediation": "Document the override as trusted operator or test-only input, or constrain it to an approved root.",
+      "findingClass": "instance-only",
+      "scopeProof": "The finding applies only to the two explicit override variables. The normal install-anchored walk is bounded.",
+      "affectedSurfaceHints": [
+        "Claude lifecycle shims",
+        "installer environment",
+        "hook hardening tests"
+      ]
+    },
+    {
+      "id": "DR-003",
+      "severity": "P2",
+      "category": "traceability",
+      "title": "Current runtime guidance retains retired server vocabulary",
+      "status": "open",
+      "active": true,
+      "firstSeenIteration": 3,
+      "lastSeenIteration": 8,
+      "occurrences": 4,
+      "contentHash": "17d932f45455c959081329e2cd88e4d7e731280024902b9ea96b51710f9325f6",
+      "content_hash": "17d932f45455c959081329e2cd88e4d7e731280024902b9ea96b51710f9325f6",
+      "evidence": [
+        ".opencode/bin/README.md:183",
+        "README.md:771",
+        ".opencode/skills/system-spec-kit/runtime/tests/fixtures/README.md:3,13,38",
+        ".opencode/skills/system-spec-kit/runtime/tests/fixtures/hooks/README.md:33",
+        ".devin/hooks.v1.json:35"
+      ],
+      "impact": "Current maintainer and operator guidance can misidentify the runtime package as an MCP server even when the linked path is the library runtime.",
+      "remediation": "Rename current runtime labels to runtime or engine and retain MCP wording only where the advisor package or historical evidence is the subject.",
+      "findingClass": "matrix/evidence",
+      "scopeProof": "Runtime consumer ownership, preserved advisor ownership, and current generic labels were checked as separate sets.",
+      "affectedSurfaceHints": [
+        "operator README",
+        "root stress-test link label",
+        "runtime fixture guidance",
+        "Devin fallback"
+      ]
+    }
+  ],
+  "activeFindingIds": [
+    "DR-001",
+    "DR-004",
+    "DR-002",
+    "DR-003"
+  ],
+  "resolved": [],
+  "repeated": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 2
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.04,
+  "lastIteration": 10,
+  "stopReason": "maxIterationsReached",
+  "stopPolicy": "max-iterations",
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "workspace_path_resolution",
+      "dependency_manifest_alignment",
+      "dist_freshness_boundary",
+      "hook_target_resolution",
+      "retired_identity_residue",
+      "verification_evidence_alignment",
+      "maintainability_residue",
+      "test_isolation"
+    ],
+    "coveredBugClasses": [
+      "workspace_path_resolution",
+      "dependency_manifest_alignment",
+      "dist_freshness_boundary",
+      "hook_target_resolution",
+      "retired_identity_residue",
+      "verification_evidence_alignment",
+      "maintainability_residue",
+      "test_isolation",
+      "api_contract",
+      "dependency_contract",
+      "freshness_traversal",
+      "build_order",
+      "integration_boundary",
+      "hook_override_scope",
+      "path_traversal_classification",
+      "permission_fail_closed",
+      "network_bind_auth",
+      "preserved_set_boundary",
+      "documentation_drift",
+      "consumer_matrix_gap"
+    ],
+    "deferredBugClasses": [
+      "external_gate_execution",
+      "clean_install_execution",
+      "continuity_save"
+    ],
+    "blockedBugClasses": [],
+    "graphCoverageMode": "graphless-fallback",
+    "searchDebt": []
+  },
+  "candidateCoverage": {
+    "covered": [
+      "workspace_path_resolution",
+      "dependency_manifest_alignment",
+      "dist_freshness_boundary",
+      "hook_target_resolution",
+      "retired_identity_residue",
+      "verification_evidence_alignment",
+      "maintainability_residue",
+      "test_isolation",
+      "api_contract",
+      "dependency_contract",
+      "freshness_traversal",
+      "build_order",
+      "integration_boundary",
+      "hook_override_scope",
+      "path_traversal_classification",
+      "permission_fail_closed",
+      "network_bind_auth",
+      "preserved_set_boundary",
+      "documentation_drift",
+      "consumer_matrix_gap"
+    ],
+    "missing": [],
+    "graphStatus": "unavailable",
+    "mode": "graphless_fallback"
+  },
+  "qualityGates": {
+    "configValidity": "pass",
+    "strategyInitialization": "pass",
+    "stateConsistency": "pass",
+    "iterationCompleteness": "pass",
+    "severityFieldCoverage": "pass",
+    "adversarialP0Replay": "notApplicable",
+    "dimensionAndProtocolCoverage": "pass",
+    "acceptanceCoverage": "partial",
+    "securitySensitiveOverride": "notApplicable",
+    "repositoryGateExecution": "deferredByUserBoundary"
+  }
+}
