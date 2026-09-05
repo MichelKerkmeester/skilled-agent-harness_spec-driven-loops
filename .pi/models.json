@@ -63,21 +63,6 @@
           }
         },
         {
-          "id": "deepseek-v4-flash-vision-exp",
-          "name": "DeepSeek V4 Flash Vision Exp",
-          "reasoning": true,
-          "contextWindow": 1050000,
-          "maxTokens": 384000,
-          "thinkingLevelMap": {
-            "minimal": null,
-            "low": "low",
-            "medium": null,
-            "high": "high",
-            "max": "max",
-            "xhigh": null
-          }
-        },
-        {
           "id": "glm-5.3-flash",
           "name": "GLM-5.3-Flash",
           "reasoning": true,

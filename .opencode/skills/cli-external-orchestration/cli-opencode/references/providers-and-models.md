@@ -107,12 +107,11 @@ DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-
 
 > **DevPass is flat-price**, so these bill the subscription rather than per token. LLM Gateway classifies a model **Premium** at $15+/1M output or $5+/1M input and caps Premium use at 12%/15%/18% of monthly credits per week (Lite/Pro/Max). Every model below is **Standard** — the most expensive is Gemini 3.8 Flash at $3.75/1M output — so **no weekly cap applies to this roster**.
 
-> **`llmgateway` fronts 183 models; exactly the five below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
+> **`llmgateway` fronts 183 models; exactly the four below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `llmgateway/deepseek-v4-flash` | — | DeepSeek V4 Flash via DevPass; reasoning, full ladder `none`→**`max`**; pinned `--variant max` by flash-family policy; context 1.05M, output 384K. No `-latest` alias exists here — this bare id **is** the current pointer. Dispatch-tested 2026-09-04 |
-| `llmgateway/deepseek-v4-flash-vision-exp` | — | DeepSeek V4 Flash Vision; **accepts image input** (`attachment: true`), as do `gpt-5.6-luna` and `gemini-3.8-flash` below — three of the five DevPass entries take images. Sparse ladder: only `none`/`low`/`high`/**`max`**; pinned `--variant max`; context 1.05M, output 384K. Dispatch-tested 2026-09-04. **Its image reads are unreliable:** on three probes with solid-colour images it answered correctly once (green), and wrong twice (a magenta image read as white, a green one as black). The image does reach it — one correct read proves that — but do not trust a single response from this entry on a visual question |
 | `llmgateway/glm-5.3-flash` | — | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route carrying both, so `--variant max`. Context 1.05M, output 131K. Dispatch-tested 2026-09-04 |
 | `llmgateway/gpt-5.6-luna` | — | GPT-5.6 Luna via DevPass; reasoning **and vision** (image round-trip verified 2026-09-04, correct colour identified); ladder `none`→**`max`** so `--variant max`; context 1.05M (input cap 922K), output 128K. **`temperature` is not supported** on this entry — do not pass one. Dispatch-tested 2026-09-04. Distinct from the `openai` provider's `gpt-5.6-luna` slugs above: same model family, different route and different billing |
 | `llmgateway/gemini-3.8-flash` | — | Gemini 3.8 Flash via DevPass; reasoning and vision (image round-trip verified 2026-09-04, correct colour identified); ladder tops at **`high`** — no `xhigh`, no `max`, so `--variant high`. Context 1.05M, output 1.05M. Dispatch-tested 2026-09-04 |
@@ -153,7 +152,7 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 | `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
 | `openai` GPT-5.6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
 | `cline-pass` (deepseek-v4-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
-| `llmgateway` (DevPass) | per-model, not per-provider — the five entries have four different ladders. `deepseek-v4-flash`, `glm-5.3-flash` and `gpt-5.6-luna` reach **`max`**; `deepseek-v4-flash-vision-exp` reaches `max` through a sparse ladder (no `minimal`/`medium`/`xhigh`); `gemini-3.8-flash` tops at **`high`**. Always pass `--variant` explicitly here |
+| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4-flash`, `glm-5.3-flash` and `gpt-5.6-luna` reach **`max`**; `gemini-3.8-flash` tops at **`high`**. Always pass `--variant` explicitly here |
 
 ---
 

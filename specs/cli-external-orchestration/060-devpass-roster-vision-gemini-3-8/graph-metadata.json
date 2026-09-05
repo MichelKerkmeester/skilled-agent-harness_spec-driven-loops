@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Three distinct truth gaps sit in the CLI hub at once, and each one makes a document lie about what a dispatch will do",
     "created_at": "2026-09-04T11:49:59.788Z",
-    "last_save_at": "2026-09-04T19:03:15.687Z",
+    "last_save_at": "2026-09-05T07:05:31.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f78c618520ca19412da5acacb9deb8da0becf484b08bf8bbf7070521637fd087",
+    "source_fingerprint": "sha256:19e957f6b9d1244becf0a38e1a026450bec4e09db9b93854954af76776744c00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4be612ea4462853b0552aedd52b2a2a57cc6e40cfdbfd1e7ccfeef9a3aebae6a",
       "plan.md": "5c3cd5198f8b0bcec8d8147e0cd09efc45ec082e0f6dd5299f46d6057508ec79",
-      "tasks.md": "3b36a38119a9cc3b23a4eb270ff8e9e5a5756b57c09ad395fd5e36cdb3b1432b",
-      "implementation-summary.md": "a8538c17d4b6fe0641faaaaca71c3d0a9bb94e406a4dde99a6f270ec3afd4ab8"
+      "tasks.md": "6dbfede4657b48a1d1fdb27aa78fe9beb09bdaa60f58bea66042ae031fe5d62a",
+      "implementation-summary.md": "f9f64f7ca736bc1bbee902a964bb201ce7614af07dd3d51328546595a4065409"
     },
     "last_active_child_id": null,
     "last_active_at": null

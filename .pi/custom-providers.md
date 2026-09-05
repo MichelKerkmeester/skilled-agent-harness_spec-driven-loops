@@ -58,12 +58,12 @@ The model `id` MUST be the exact `modelType/model` Cline expects — never bare.
 
 ## 3. LLMGATEWAY (DEVPASS)
 
-Routes five models through the operator's **DevPass** subscription at LLM Gateway (`https://api.llmgateway.io/v1`, OpenAI-compatible), the same account and key opencode already uses. LLM Gateway is not a pi builtin, so without this block pi's picker and `--list-models` never show it. DevPass is a flat-price plan, so these five cost the subscription rather than per-token metering.
+Routes four models through the operator's **DevPass** subscription at LLM Gateway (`https://api.llmgateway.io/v1`, OpenAI-compatible), the same account and key opencode already uses. LLM Gateway is not a pi builtin, so without this block pi's picker and `--list-models` never show it. DevPass is a flat-price plan, so these four cost the subscription rather than per-token metering.
 
 ### Where It Lives
 
-- Provider block: `.pi/models.json` under `providers["llmgateway"]`, with five models
-- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4-flash"`, `"llmgateway/deepseek-v4-flash-vision-exp"`, `"llmgateway/glm-5.3-flash"`, `"llmgateway/gpt-5.6-luna"`, `"llmgateway/gemini-3.8-flash"`
+- Provider block: `.pi/models.json` under `providers["llmgateway"]`, with four models
+- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4-flash"`, `"llmgateway/glm-5.3-flash"`, `"llmgateway/gpt-5.6-luna"`, `"llmgateway/gemini-3.8-flash"`
 - Not a default: `defaultProvider` stays `cline-pass`
 
 **Model ids are BARE, and the pi reference is two-segment** — `llmgateway/<id>`, e.g. `llmgateway/deepseek-v4-flash`. This is the opposite of cline-pass above, and copying that block's slashed form is the easy mistake: see the gotcha below.
@@ -74,21 +74,20 @@ Routes five models through the operator's **DevPass** subscription at LLM Gatewa
 pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4-flash --thinking max
 ```
 
-Swap the id for `deepseek-v4-flash-vision-exp`, `glm-5.3-flash`, `gpt-5.6-luna` or `gemini-3.8-flash`.
+Swap the id for `glm-5.3-flash`, `gpt-5.6-luna` or `gemini-3.8-flash`.
 
 ### Thinking And Effort
 
-All five are reasoning models, and their ladders differ, so each carries its own `thinkingLevelMap`:
+All four are reasoning models, and their ladders differ, so each carries its own `thinkingLevelMap`:
 
 | Model | Ceiling | Notes |
 |-------|---------|-------|
 | `deepseek-v4-flash` | `max` | Full ladder `minimal`→`max` |
-| `deepseek-v4-flash-vision-exp` | `max` | Sparse ladder — only `low`, `high`, `max`. Accepts image input, but reads it **unreliably**: 1 of 3 solid-colour probes answered correctly |
 | `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh`, and unlike Cline, which tops out at `xhigh` with no `max` |
 | `gpt-5.6-luna` | `max` | Full ladder minus `minimal`, so the active range here is `low`→`max`. **Image-capable, verified** by a real image round-trip on 2026-09-04. The provider catalog reports **no `temperature` support**, so do not pass one — pi's own entry declares no temperature key either way |
 | `gemini-3.8-flash` | `high` | No `xhigh`, no `max` — requesting either sends a tier the model does not have |
 
-The global `defaultThinkingLevel` is `xhigh`, which only three of these five accept. Pass `--thinking` explicitly rather than relying on the default.
+The global `defaultThinkingLevel` is `xhigh`, which only three of these four accept. Pass `--thinking` explicitly rather than relying on the default.
 
 No provider-level `compat.thinkingFormat` is set. The block spans four model families whose thinking formats differ, and a provider-wide hint would apply the wrong one to two of them; pi's default OpenAI-compatible parsing handles all four, confirmed by real dispatches.
 
@@ -140,7 +139,7 @@ pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4-flash --th
 pi -p "reply OK" --provider llmgateway --model llmgateway/gemini-3.8-flash --thinking high --mode text
 ```
 
-Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash` and `…/z-ai/glm-5.3-flash` rows plus the five `llmgateway` rows, and each dispatch returns a model reply rather than a `400 invalid model format`, a `400 Provider llmgateway does not support model …`, or a `401 Unauthorized`.
+Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash` and `…/z-ai/glm-5.3-flash` rows plus the four `llmgateway` rows, and each dispatch returns a model reply rather than a `400 invalid model format`, a `400 Provider llmgateway does not support model …`, or a `401 Unauthorized`.
 
 `pi auth check` is **not** a credential test here. It never sends a completion, so it reports `{"status":"ready"}` whenever the provider block carries any non-empty `apiKey` value — including an unresolved placeholder that Cline will reject. Only the round-trip lines prove the credential. Its one honest signal is the opposite direction: `{"status":"invalid","reason":"invalid_state"}` means the provider block itself did not load.
 
@@ -148,6 +147,6 @@ Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash` and `…
 
 ## 6. REMOVE
 
-To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its five `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. Nothing else references it — it is not a default and not in the deep-loop fan-out roster.
+To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its four `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. Nothing else references it — it is not a default and not in the deep-loop fan-out roster.
 
 Delete the `providers["cline-pass"]` block from `.pi/models.json` and the `"cline-pass/cline-pass/deepseek-v4-flash"` and `"cline-pass/z-ai/glm-5.3-flash"` lines from `.pi/settings.json` `enabledModels`. To drop a single model, remove its object from the provider block and its `enabledModels` line if it has one. If `defaultProvider` still points at `cline-pass`, reset it to another authenticated provider so an unqualified dispatch still resolves. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.

@@ -52,7 +52,9 @@ Six workstreams that all reduce to one thing: every model fact the CLI hub state
 
 **DevPass reaches both CLIs.** Five models on a provider that was authenticated in opencode but catalogued nowhere, so a paid subscription was unusable from either skill. The rule that could not be copied from the neighbouring Cline block is the model id — LLM Gateway takes a bare id and rejects a prefixed one, the exact inverse — and it was settled by negative control against the live API before any config was written.
 
-**Vision is documented from measurement, not from a flag.** Three of the five DevPass entries accept images. A generated solid-colour PNG was put through each: Luna and Gemini 3.8 named the colour correctly; DeepSeek V4 Flash Vision got it right once in three tries. That last result is the one worth having — `attachment: true` was never evidence that a model reads what it is sent, and the catalogs now carry the measured behaviour instead of the capability bit.
+**Vision is documented from measurement, not from a flag, and the measurement removed a model.** A generated solid-colour PNG was put through every image-capable entry: Luna and Gemini 3.8 named the colour correctly, DeepSeek V4 Flash Vision got it right once in three tries. `attachment: true` was never evidence that a model reads what it is sent.
+
+That third result ended the entry. The vision variant was withdrawn from the roster on 2026-09-05, leaving plain `deepseek-v4-flash`; two image-capable models remain, both of which passed. The probe was built to confirm a capability and instead retired one, which is the only reason it was worth running.
 
 **Gemini moved 3.7 to 3.8 across four CLI modes and three enforced rosters**, with both the cursor and devin ids dispatch-tested rather than list-verified.
 

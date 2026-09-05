@@ -22,7 +22,6 @@
     "openrouter/z-ai/glm-5.3-flash",
     "openrouter/google/gemini-3.8-flash",
     "llmgateway/deepseek-v4-flash",
-    "llmgateway/deepseek-v4-flash-vision-exp",
     "llmgateway/glm-5.3-flash",
     "llmgateway/gemini-3.8-flash",
     "llmgateway/gpt-5.6-luna",

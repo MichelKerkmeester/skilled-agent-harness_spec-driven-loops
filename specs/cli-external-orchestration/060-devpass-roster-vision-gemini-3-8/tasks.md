@@ -135,6 +135,21 @@ _memory:
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Vision variant withdrawn
+
+The vision rollout this packet shipped is partly reversed by the same evidence that justified proving it. `deepseek-v4-flash-vision-exp` was removed from the roster on 2026-09-05 at the operator's direction, keeping plain `deepseek-v4-flash`.
+
+The reason is the measurement, not a policy change: on three solid-colour probes it answered correctly once. The image reaches it, so the route was never broken — but a model that misreads an unambiguous image two times in three earns no roster slot, and documenting the unreliability was a weaker answer than removing the entry.
+
+- [x] T028 Remove the model object and its picker entry (`.pi/models.json`, `.pi/settings.json`) [evidence: llmgateway block now holds four models; both files parse; operator formatting preserved]
+- [x] T029 Drop the row from both CLI catalogs and the pi operator doc
+- [x] T030 Correct every count the removal invalidates [evidence: zero remaining "five" claims across the roster docs; the image-capable statement now names the two entries that passed their round-trip]
+- [x] T031 Confirm no residue [evidence: zero `vision-exp` or `Flash Vision` references on any live surface; four rows in each catalog]
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 

@@ -110,20 +110,19 @@ Policy: the DeepSeek V4 Flash and GLM-5.3-Flash entries here are reasoning model
 
 ### llmgateway
 
-DevPass (LLM Gateway) account, base `https://api.llmgateway.io/v1`, OpenAI-compatible, added to Pi **by config** — a `providers.llmgateway` block in `.pi/models.json` (`api: openai-completions`, env-keyed `${LLMGATEWAY_API_KEY}`) plus five `enabledModels` entries in `.pi/settings.json`. Not a Pi builtin; full setup, verification and removal live in [.pi/custom-providers.md](../../../../../.pi/custom-providers.md) §3. DevPass is a flat-price subscription, so these five bill the plan rather than per token.
+DevPass (LLM Gateway) account, base `https://api.llmgateway.io/v1`, OpenAI-compatible, added to Pi **by config** — a `providers.llmgateway` block in `.pi/models.json` (`api: openai-completions`, env-keyed `${LLMGATEWAY_API_KEY}`) plus four `enabledModels` entries in `.pi/settings.json`. Not a Pi builtin; full setup, verification and removal live in [.pi/custom-providers.md](../../../../../.pi/custom-providers.md) §3. DevPass is a flat-price subscription, so these four bill the plan rather than per token.
 
 Model-id gotcha, and it is the **inverse of cline-pass above**: LLM Gateway takes the **bare** id, so every reference here is **two-segment** (`llmgateway/<id>`). Confirmed against the live API — `"model": "deepseek-v4-flash"` returns `200`, `"model": "llmgateway/deepseek-v4-flash"` returns `400 "Provider llmgateway does not support model deepseek-v4-flash"`. Do not carry the cline-pass slashed form across. The gateway also rewrites ids upstream in its response (`gonka24/deepseek-v4-flash`, `zai/glm-5.3-flash`, `google-vertex/gemini-3.8-flash`); those names are informational and must never be sent.
 
 Credential: same `${VAR}` rule as cline-pass — `${LLMGATEWAY_API_KEY}`, never opencode's `{env:...}`. Export it in `~/.zshenv` so dispatched shells inherit it. pi does not read opencode's auth store, even though both hold a key for this same account.
 
-Effort policy: the five ladders differ, so there is no single tier for this provider — pass `--thinking` explicitly. Pi's global `defaultThinkingLevel` is `xhigh`, which only three of these five accept, so relying on the default is wrong here.
+Effort policy: the ladders differ, so there is no single tier for this provider — pass `--thinking` explicitly. Pi's global `defaultThinkingLevel` is `xhigh`, which only three of these four accept, so relying on the default is wrong here.
 
 **Direct-dispatch route only.** The bare literals `deepseek-v4-flash`, `glm-5.3-flash` and `gpt-5.6-luna` already belong to opencode-go or openai-codex in `PI_MODEL_PROVIDERS`, and one literal maps to one provider, so these entries are intentionally absent from `PI_SUPPORTED_MODELS` and unreachable from the deep-loop fan-out — the same constraint that keeps the Cline GLM route direct-only.
 
 | Model id | Notes |
 |----------|-------|
 | `llmgateway/deepseek-v4-flash` | DeepSeek V4 Flash via DevPass; reasoning, full ladder `minimal`→**`max`**; context 1.05M, output 384K. Dispatch-verified 2026-09-04 (real pi turn at `--thinking max`) |
-| `llmgateway/deepseek-v4-flash-vision-exp` | DeepSeek V4 Flash Vision; image-capable, as are `gpt-5.6-luna` and `gemini-3.8-flash` below. Sparse ladder — **only `low`, `high`, `max`**; context 1.05M, output 384K. Dispatch-verified 2026-09-04 at `--thinking max`. **Image reads are unreliable** — 1 correct out of 3 solid-colour probes; the image arrives, the answer cannot be trusted from one sample |
 | `llmgateway/glm-5.3-flash` | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route that has both. Context 1.05M, output 131K. Dispatch-verified 2026-09-04 at `--thinking max` |
 | `llmgateway/gpt-5.6-luna` | GPT-5.6 Luna via DevPass; reasoning **and vision** (image round-trip verified 2026-09-04); `minimal` is unmapped here so its pi ladder runs `low`→**`max`** (pi's lowest tier is `off`, not `none`). Context 1.05M (input cap 922K), output 128K. **`temperature` unsupported** on this entry. Dispatch-verified 2026-09-04 at `--thinking max`. Same model family as the `openai-codex` Luna slugs, different route and different billing — pick deliberately |
 | `llmgateway/gemini-3.8-flash` | Gemini 3.8 Flash via DevPass; reasoning and vision (image round-trip verified 2026-09-04); ladder tops at **`high`** — no `xhigh`, no `max`. Context 1.05M, output 1.05M. Dispatch-verified 2026-09-04 at `--thinking high` |
