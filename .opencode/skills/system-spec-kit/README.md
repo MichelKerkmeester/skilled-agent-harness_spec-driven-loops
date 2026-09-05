@@ -443,8 +443,8 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 | [`SKILL.md`](./SKILL.md) | AI agent instructions: routing rules, gates, validation procedures, template application |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `runtime/cli/` and `runtime/` |
 | [`runtime/README.md`](./runtime/README.md) | engine architecture, the public API surface, build and validation commands |
-| [`runtime/cli/spec/create.sh`](./scripts/spec/create.sh) | create spec folders with level-appropriate template files |
-| [`runtime/cli/spec/validate.sh`](./scripts/spec/validate.sh) | run the validation set from the 46-rule registry on any spec folder |
+| [`runtime/cli/spec/create.sh`](./runtime/cli/spec/create.sh) | create spec folders with level-appropriate template files |
+| [`runtime/cli/spec/validate.sh`](./runtime/cli/spec/validate.sh) | run the validation set from the 46-rule registry on any spec folder |
 | `runtime/cli/dist/continuity/generate-context.js` | update packet continuity state from structured JSON |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | complete catalog of implemented features |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | manual scenarios that validate the catalog |

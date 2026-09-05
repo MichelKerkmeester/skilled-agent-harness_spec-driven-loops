@@ -88,7 +88,7 @@ Generation flow:
 Run from the repository root after template edits:
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
+bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
 ```
 
 Generated changelogs should reference available packet docs and avoid claiming task completion beyond those docs.

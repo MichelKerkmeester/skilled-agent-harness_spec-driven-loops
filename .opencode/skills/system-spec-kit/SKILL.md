@@ -100,7 +100,7 @@ This skill uses simple intent/domain routing, not keyed runtime resource routing
 - Template usage and composition rules: [template-guide.md](./references/templates/template-guide.md)
 - Use the Level contract for operational templates; `create.sh` and the Level contract resolver share the same template index.
 - Use `templates/changelog/` for packet-local nested changelog generation at completion time.
-- Script architecture, build outputs, and runtime entrypoints: [runtime/cli/README.md](./scripts/README.md)
+- Script architecture, build outputs, and runtime entrypoints: [runtime/cli/README.md](./runtime/cli/README.md)
 - Memory save JSON schema and workflow contracts: [save-workflow.md](./references/memory/save-workflow.md)
 - Nested packet changelog workflow: [nested-changelog.md](./references/workflows/nested-changelog.md)
 
@@ -507,7 +507,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Command | Usage |
 | --- | --- |
 | Canonical intake | `/speckit:plan --intake-only "Description"` |
-| Create spec folder | `./scripts/spec/create.sh "Description" --short-name name --level 2` |
+| Create spec folder | `./runtime/cli/spec/create.sh "Description" --short-name name --level 2` |
 | Validate | `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/` |
 | Verify code alignment drift | `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` |
 | Save context | `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/` |

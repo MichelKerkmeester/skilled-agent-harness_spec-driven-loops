@@ -44,7 +44,7 @@ _memory:
 
 **Packet:** system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-09-05
 <!-- /ANCHOR:metadata -->
 

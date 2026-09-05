@@ -243,9 +243,11 @@ function buildProviderConfigFingerprint(provider: string): string {
 function resolveSpecKitPackageRoot(): string | null {
   let currentDir = path.dirname(fileURLToPath(import.meta.url));
   while (currentDir !== path.dirname(currentDir)) {
+    // The package root is the directory that holds both workspaces. The database
+    // directory is what this root is used to derive, so its absence cannot be a
+    // reason to fail the lookup.
     if (
-      existsSync(path.join(currentDir, 'runtime', 'database'))
-      && existsSync(path.join(currentDir, 'scripts'))
+      existsSync(path.join(currentDir, 'runtime', 'cli'))
       && existsSync(path.join(currentDir, 'shared'))
     ) {
       return currentDir;

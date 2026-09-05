@@ -43,9 +43,9 @@ This phase does not move any file. It builds a resolution-based inventory of eve
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `recommend-level.sh` run and its result recorded
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met — AC-001 to AC-004 Met in `acceptance-criteria.md`
+- [x] `recommend-level.sh` run and its result recorded — score 73 noted in `spec.md` metadata; executed at the Level 2 document set by operator instruction
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -163,9 +163,9 @@ Setup (rg pass + resolution filter) ──► Core (target-layout decision + lev
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes) - not applicable, no data changes in this phase
-- [ ] Feature flag configured - not applicable
-- [ ] Monitoring alerts set - not applicable
+- [x] Backup created (if data changes) - not applicable, no data changes in this phase
+- [x] Feature flag configured - not applicable
+- [x] Monitoring alerts set - not applicable
 
 ### Rollback Procedure
 1. Not applicable - this phase makes no filesystem change outside its own four documents.
