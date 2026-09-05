@@ -3,6 +3,11 @@
   "hooks": {
     "sessionStart": [
       {
+        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-start.js",
+        "type": "command",
+        "timeout": 10
+      },
+      {
         "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
         "type": "command",
         "timeout": 10
@@ -34,6 +39,11 @@
       }
     ],
     "sessionEnd": [
+      {
+        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-end.js",
+        "type": "command",
+        "timeout": 10
+      },
       {
         "command": "bash .opencode/scripts/session-cleanup.sh",
         "type": "command",
@@ -81,6 +91,13 @@
     "beforeMCPExecution": [
       {
         "command": "node .opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
+        "type": "command",
+        "timeout": 10
+      }
+    ],
+    "preCompact": [
+      {
+        "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/precompact.js",
         "type": "command",
         "timeout": 10
       }

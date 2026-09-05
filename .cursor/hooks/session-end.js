@@ -1,0 +1,1 @@
+../../.opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-end.js

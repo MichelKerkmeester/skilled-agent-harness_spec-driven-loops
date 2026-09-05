@@ -99,6 +99,11 @@
         "hooks": [
           {
             "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js'",
+            "timeout": 3
+          },
+          {
+            "type": "command",
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
             "timeout": 3
           },
@@ -134,6 +139,12 @@
       {
         "matcher": "",
         "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js'",
+            "timeout": 10,
+            "async": true
+          },
           {
             "type": "command",
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs'",
@@ -173,6 +184,18 @@
             "type": "command",
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs'",
             "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js'",
+            "timeout": 3
           }
         ]
       }

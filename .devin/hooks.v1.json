@@ -5,6 +5,11 @@
       "hooks": [
         {
           "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/dist/hooks/devin/session-start.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in mcp-server\\\"}}\"'",
+          "timeout": 10
+        },
+        {
+          "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
           "timeout": 3
         },
@@ -133,6 +138,11 @@
     {
       "matcher": "",
       "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/dist/hooks/devin/session-stop.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in mcp-server\\\"}}\"'",
+          "timeout": 10
+        },
         {
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs'",

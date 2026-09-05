@@ -1,0 +1,1 @@
+../../.opencode/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js
