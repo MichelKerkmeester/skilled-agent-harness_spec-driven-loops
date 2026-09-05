@@ -315,6 +315,11 @@ export interface GatewayAllowResult {
   readonly verdict: 'allow';
   readonly decision: AuthorizationDecisionRecord;
   readonly proof: GatewayAllowProof;
+  // The gateway never populates this on an allow path — it exists so a
+  // caller defensively logging the deny reason after checking both the
+  // verdict and the proof together can read the field on either member
+  // of the result union without narrowing first.
+  readonly reasonCode?: AuthorizationReasonCode;
 }
 
 export interface GatewayDenyResult {

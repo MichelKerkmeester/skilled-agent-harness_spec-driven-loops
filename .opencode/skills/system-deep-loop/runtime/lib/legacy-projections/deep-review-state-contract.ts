@@ -17,6 +17,7 @@ import type {
 } from '../event-envelope/index.js';
 import type {
   LegacyProjectionContract,
+  LegacyProjectionJsonObject,
 } from './legacy-projection-types.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -30,7 +31,7 @@ import type {
 // only by the negative-control run to prove the test can go red.
 const EMIT_ITERATION_ROWS = true;
 
-export interface DeepReviewProjectionState extends JsonObject {
+export interface DeepReviewProjectionState extends LegacyProjectionJsonObject {
   readonly rows: readonly JsonObject[];
 }
 

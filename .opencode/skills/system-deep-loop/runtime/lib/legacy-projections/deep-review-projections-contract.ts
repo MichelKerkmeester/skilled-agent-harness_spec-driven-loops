@@ -17,6 +17,7 @@ import type {
 } from '../event-envelope/index.js';
 import type {
   LegacyProjectionContract,
+  LegacyProjectionJsonObject,
   LegacyProjectionSurfaceContract,
 } from './legacy-projection-types.js';
 
@@ -51,10 +52,10 @@ import type {
 // the negative-control run to prove the findings assertion can go red.
 const EMIT_FINDINGS = true;
 
-export interface DeepReviewProjectionsProjectionState extends JsonObject {
-  readonly findings: readonly JsonObject[];
+export interface DeepReviewProjectionsProjectionState extends LegacyProjectionJsonObject {
+  readonly findings: readonly LegacyProjectionJsonObject[];
   readonly evidence: readonly JsonObject[];
-  readonly adjudications: readonly JsonObject[];
+  readonly adjudications: readonly LegacyProjectionJsonObject[];
   readonly lineage: readonly JsonObject[];
 }
 
@@ -102,7 +103,7 @@ function buildFindingRecord(
   scope: Record<string, unknown>,
   data: Record<string, unknown>,
   occurredAt: string,
-): JsonObject {
+): LegacyProjectionJsonObject {
   return Object.freeze({
     candidateId: asString(scope.candidateId),
     dimensionId: asString(scope.dimensionId),
@@ -161,7 +162,7 @@ function buildAdjudicationRecord(
   scope: Record<string, unknown>,
   data: Record<string, unknown>,
   occurredAt: string,
-): JsonObject {
+): LegacyProjectionJsonObject {
   return Object.freeze({
     findingId: asString(scope.findingId),
     candidateId: asString(scope.candidateId),

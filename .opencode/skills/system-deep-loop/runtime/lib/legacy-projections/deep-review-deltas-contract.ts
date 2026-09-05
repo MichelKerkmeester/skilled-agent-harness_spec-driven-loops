@@ -17,6 +17,7 @@ import type {
 } from '../event-envelope/index.js';
 import type {
   LegacyProjectionContract,
+  LegacyProjectionJsonObject,
   LegacyProjectionSurfaceContract,
 } from './legacy-projection-types.js';
 
@@ -31,7 +32,7 @@ import type {
 // prove the fan-out assertion can go red.
 const PARTITION_BY_ITERATION = true;
 
-export interface DeepReviewDeltasProjectionState extends JsonObject {
+export interface DeepReviewDeltasProjectionState extends LegacyProjectionJsonObject {
   readonly rows: readonly JsonObject[];
 }
 

@@ -9,6 +9,7 @@ import type {
 import type {
   EventReadResult,
   JsonObject,
+  JsonPrimitive,
 } from '../event-envelope/index.js';
 import type { DerivedReplayFingerprint } from '../replay-fingerprint/index.js';
 import type {
@@ -25,8 +26,31 @@ export type LegacyProjectionFormat = 'json' | 'jsonl' | 'md';
 /** Existing writer boundary at which a shadow artifact becomes eligible to refresh. */
 export type LegacyProjectionRefreshBoundary = 'event' | 'lifecycle';
 
+// Every fold below builds its state with Object.freeze end to end, so the
+// row and array-valued fields are declared `readonly` to keep that
+// immutability visible in the type. JsonObject's index signature only
+// accepts a mutable JsonValue[], so a state shape carrying a genuinely
+// frozen `readonly X[]` field cannot satisfy JsonObject directly without
+// either dropping the freeze or dropping the readonly annotation — both
+// would misdescribe what the fold actually returns. This pair mirrors
+// JsonValue/JsonObject's own recursive shape with the array arm widened
+// to readonly, so a frozen projection state can satisfy one index
+// signature without losing its readonly element type or its
+// Object.freeze call. A plain JsonObject is still assignable here since
+// every one of its arms (primitives, nested JsonObject, mutable arrays)
+// is a narrower case of the arms below.
+export type LegacyProjectionJsonValue =
+  | JsonPrimitive
+  | LegacyProjectionJsonObject
+  | readonly LegacyProjectionJsonValue[];
+
+/** JSON object shape identical to JsonObject except each property may also hold a readonly array. */
+export interface LegacyProjectionJsonObject {
+  [key: string]: LegacyProjectionJsonValue;
+}
+
 /** Immutable starting point for a projection fold. */
-export interface LegacyProjectionBase<TState extends JsonObject> {
+export interface LegacyProjectionBase<TState extends LegacyProjectionJsonObject> {
   readonly baseSha: string;
   readonly baseDigest: string;
   readonly bytes: Uint8Array;
@@ -35,7 +59,7 @@ export interface LegacyProjectionBase<TState extends JsonObject> {
 }
 
 /** Versioned pure fold plus the exact legacy serializer for one artifact. */
-export interface LegacyProjectionContract<TState extends JsonObject> {
+export interface LegacyProjectionContract<TState extends LegacyProjectionJsonObject> {
   readonly artifactId: string;
   readonly censusSurfaceId: string;
   readonly ledgerId: string;

@@ -17,13 +17,14 @@ import type {
 } from '../event-envelope/index.js';
 import type {
   LegacyProjectionContract,
+  LegacyProjectionJsonObject,
 } from './legacy-projection-types.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────────
 
-export interface DeepResearchProjectionState extends JsonObject {
+export interface DeepResearchProjectionState extends LegacyProjectionJsonObject {
   readonly rows: readonly JsonObject[];
 }
 

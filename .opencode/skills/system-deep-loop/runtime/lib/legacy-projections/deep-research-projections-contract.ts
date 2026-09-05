@@ -17,6 +17,7 @@ import type {
 } from '../event-envelope/index.js';
 import type {
   LegacyProjectionContract,
+  LegacyProjectionJsonObject,
   LegacyProjectionSurfaceContract,
 } from './legacy-projection-types.js';
 
@@ -52,11 +53,11 @@ import type {
 // red.
 const EMIT_CLAIMS = true;
 
-export interface DeepResearchProjectionsProjectionState extends JsonObject {
+export interface DeepResearchProjectionsProjectionState extends LegacyProjectionJsonObject {
   readonly sources: readonly JsonObject[];
-  readonly evidence: readonly JsonObject[];
-  readonly claims: readonly JsonObject[];
-  readonly supersessions: readonly JsonObject[];
+  readonly evidence: readonly LegacyProjectionJsonObject[];
+  readonly claims: readonly LegacyProjectionJsonObject[];
+  readonly supersessions: readonly LegacyProjectionJsonObject[];
 }
 
 export interface CreateDeepResearchProjectionsProjectionContractOptions {
@@ -132,7 +133,7 @@ function buildEvidenceRecord(
   scope: Record<string, unknown>,
   data: Record<string, unknown>,
   occurredAt: string,
-): JsonObject {
+): LegacyProjectionJsonObject {
   return Object.freeze({
     iteration: iterationFrom(scope),
     sourceVersionId: asString(scope.sourceVersionId),
@@ -152,7 +153,7 @@ function buildClaimRecord(
   scope: Record<string, unknown>,
   data: Record<string, unknown>,
   occurredAt: string,
-): JsonObject {
+): LegacyProjectionJsonObject {
   // claim_asserted carries no relatedClaimVersionId and asserts the
   // 'asserts' relation; claim_relation_recorded carries an explicit
   // relatedClaimVersionId and relation. Both populate the same registry
@@ -182,7 +183,7 @@ function buildSupersessionRecord(
   scope: Record<string, unknown>,
   data: Record<string, unknown>,
   occurredAt: string,
-): JsonObject {
+): LegacyProjectionJsonObject {
   return Object.freeze({
     iteration: iterationFrom(scope),
     priorClaimVersionId: asString(data.priorClaimVersionId),

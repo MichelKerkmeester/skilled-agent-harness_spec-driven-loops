@@ -17,6 +17,7 @@ import type {
 } from '../event-envelope/index.js';
 import type {
   LegacyProjectionContract,
+  LegacyProjectionJsonObject,
   LegacyProjectionSurfaceContract,
 } from './legacy-projection-types.js';
 
@@ -32,7 +33,7 @@ import type {
 // negative-control run to prove the test can go red.
 const EMIT_SCORED_STATE_ROWS = true;
 
-export interface DeepImprovementLedgersProjectionState extends JsonObject {
+export interface DeepImprovementLedgersProjectionState extends LegacyProjectionJsonObject {
   readonly rows: readonly JsonObject[];
 }
 

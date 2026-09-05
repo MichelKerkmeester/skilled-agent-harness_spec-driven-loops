@@ -17,6 +17,7 @@ import type {
 } from '../event-envelope/index.js';
 import type {
   LegacyProjectionContract,
+  LegacyProjectionJsonObject,
   LegacyProjectionSurfaceContract,
 } from './legacy-projection-types.js';
 
@@ -50,11 +51,11 @@ import type {
 // run to prove the test can go red.
 const EMIT_COUNCIL_COMPLETE_ROW = true;
 
-export interface CouncilStateProjectionState extends JsonObject {
+export interface CouncilStateProjectionState extends LegacyProjectionJsonObject {
   readonly rows: readonly JsonObject[];
 }
 
-export interface CouncilSessionStateProjectionState extends JsonObject {
+export interface CouncilSessionStateProjectionState extends LegacyProjectionJsonObject {
   readonly rows: readonly JsonObject[];
 }
 
