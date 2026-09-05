@@ -45,7 +45,7 @@ npm install
 node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder question"
 
 # Test embedding providers
-node .opencode/skills/system-spec-kit/runtime/cli/test-embeddings-factory.js
+node .opencode/skills/system-spec-kit/runtime/cli/tests/test-embeddings-factory.cjs
 ```
 
 ---
@@ -125,7 +125,7 @@ This PR adds a Voyage AI embedding provider to the shared embedding stack.
 ## Testing
 
 1. Set `VOYAGE_API_KEY` environment variable
-2. Run `node test-embeddings-factory.js`
+2. Run `node tests/test-embeddings-factory.cjs`
 3. Verify Voyage is selected as provider
 ```
 

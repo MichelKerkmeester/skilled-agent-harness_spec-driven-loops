@@ -205,7 +205,7 @@
     },
     {
       "name": "test-embeddings-factory",
-      "path": "runtime/cli/tests/test-embeddings-factory.js",
+      "path": "runtime/cli/tests/test-embeddings-factory.cjs",
       "type": "node",
       "description": "Test and verify embedding provider configuration",
       "trigger": ["test embeddings", "verify provider"],
