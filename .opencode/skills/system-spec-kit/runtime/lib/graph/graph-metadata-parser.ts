@@ -1531,6 +1531,20 @@ function unionChildrenIds(existing: string[], refreshed: string[]): string[] {
   return union;
 }
 
+/**
+ * Keep only the persisted children that still hang off this packet's current identity.
+ *
+ * A children_ids entry is addressed as `<packet identity>/<child>`, so an entry whose
+ * leading segments name a different identity is residue from an earlier name or
+ * location of this packet: the packet moved on disk, the entry did not move with it.
+ * The union below can only ever add, so without this filter one stale entry survives
+ * every refresh forever and drifts the declared child set away from the real one.
+ */
+function ownIdentityChildrenIds(existingChildren: string[], packetIdentity: string): string[] {
+  const identityPrefix = `${packetIdentity}/`;
+  return existingChildren.filter((childId) => childId.startsWith(identityPrefix));
+}
+
 function specsRootForMetadata(canonicalSpecFolderPath: string, specFolder: string): string {
   return specFolder
     .split('/')
@@ -1578,9 +1592,12 @@ function preserveExistingChildrenOnDisk(
   existing: GraphMetadata | null,
   refreshed: GraphMetadata,
 ): GraphMetadata {
+  // Identity filter matches the default merge so a prune prediction and a plain
+  // refresh agree: stale-identity entries are residue either way and never return.
   const stillExisting = collectChildrenPruneCandidates(specFolderPath, existing, refreshed)
     .filter((candidate) => candidate.existsOnDisk)
-    .map((candidate) => candidate.childId);
+    .map((candidate) => candidate.childId)
+    .filter((childId) => childId.startsWith(`${refreshed.spec_folder}/`));
   if (stillExisting.length === 0) {
     return refreshed;
   }
@@ -1651,7 +1668,10 @@ export function mergeGraphMetadata(
     ...base,
     parent_id: refreshed.parent_id ?? existing.parent_id ?? null,
     parent_id_review_required: preservedNonNullParent ? true : undefined,
-    children_ids: unionChildrenIds(existing.children_ids, refreshed.children_ids),
+    children_ids: unionChildrenIds(
+      ownIdentityChildrenIds(existing.children_ids, refreshed.spec_folder),
+      refreshed.children_ids,
+    ),
   });
 }
 

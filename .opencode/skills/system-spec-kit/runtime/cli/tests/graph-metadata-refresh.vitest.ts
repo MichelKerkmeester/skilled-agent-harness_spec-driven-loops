@@ -194,4 +194,77 @@ describe('graph metadata refresh path', () => {
     expect(before?.derived.trigger_phrases).not.toContain('renamed packet');
     expect(updated.metadata.derived.trigger_phrases).toContain('renamed packet');
   });
+
+  it('drops persisted children whose leading identity is not the packet\'s own on refresh', () => {
+    // Simulates a packet that was renamed on disk after its children were persisted:
+    // the stored metadata still names the old identity, so its children_ids carry
+    // old-identity entries alongside current-identity ones. A refresh must drop the
+    // foreign-identity residue while keeping the union of current-identity children —
+    // including a current-identity entry with no on-disk folder, which only an
+    // explicit prune may remove.
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-rename-'));
+    createdRoots.add(root);
+    const specFolder = path.join(root, '.opencode', 'specs', 'system-spec-kit', '904-rename-parent');
+    for (const child of ['001-child', '002-child']) {
+      const childFolder = path.join(specFolder, child);
+      fs.mkdirSync(childFolder, { recursive: true });
+      fs.writeFileSync(path.join(childFolder, 'spec.md'), '# Child\n', 'utf-8');
+    }
+    fs.writeFileSync(path.join(specFolder, 'spec.md'), [
+      '---',
+      'title: "Rename Parent"',
+      'description: "Phase parent renamed after its children were persisted."',
+      '---',
+      '',
+      '# Rename Parent',
+      '',
+      '### Overview',
+      '',
+      'Phase-parent root with stale-identity children to prune.',
+    ].join('\n'), 'utf-8');
+
+    const staleIdentity = 'system-spec-kit/904-rename-parent-old';
+    const currentIdentity = 'system-spec-kit/904-rename-parent';
+    fs.writeFileSync(path.join(specFolder, 'graph-metadata.json'), `${JSON.stringify({
+      schema_version: 1,
+      packet_id: staleIdentity,
+      spec_folder: staleIdentity,
+      parent_id: null,
+      children_ids: [
+        `${staleIdentity}/001-child`,
+        `${staleIdentity}/002-child`,
+        `${currentIdentity}/001-child`,
+        `${currentIdentity}/002-child`,
+        `${currentIdentity}/003-archived-child`,
+      ],
+      manual: { depends_on: [], supersedes: [], related_to: [] },
+      derived: {
+        trigger_phrases: [],
+        key_topics: [],
+        importance_tier: 'normal',
+        status: 'in_progress',
+        key_files: [],
+        entities: [],
+        causal_summary: 'Phase-parent root with stale-identity children to prune.',
+        created_at: '2026-08-01T00:00:00.000Z',
+        last_save_at: '2026-08-01T00:00:00.000Z',
+        save_lineage: 'graph_only',
+        last_accessed_at: null,
+        source_docs: ['spec.md'],
+        last_active_child_id: null,
+        last_active_at: null,
+      },
+    }, null, 2)}\n`, 'utf-8');
+
+    refreshGraphMetadata(specFolder);
+    const saved = loadGraphMetadata(path.join(specFolder, 'graph-metadata.json'));
+
+    expect(saved?.packet_id).toBe(currentIdentity);
+    expect(saved?.children_ids).toEqual([
+      `${currentIdentity}/001-child`,
+      `${currentIdentity}/002-child`,
+      `${currentIdentity}/003-archived-child`,
+    ]);
+    expect(saved?.children_ids.some((childId) => childId.startsWith(`${staleIdentity}/`))).toBe(false);
+  });
 });

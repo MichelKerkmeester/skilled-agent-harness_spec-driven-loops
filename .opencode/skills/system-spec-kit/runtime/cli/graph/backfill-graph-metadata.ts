@@ -522,9 +522,12 @@ function preserveExistingChildrenForPrediction(
   existing: GraphMetadata | null,
   derived: GraphMetadata,
 ): GraphMetadata {
+  // Identity filter mirrors the merge's default path so the prediction a caller
+  // reviews equals what apply writes: stale-identity entries are never retained.
   const retainedChildren = collectChildrenPruneCandidates(specFolderPath, existing, derived)
     .filter((candidate) => candidate.existsOnDisk)
-    .map((candidate) => candidate.childId);
+    .map((candidate) => candidate.childId)
+    .filter((childId) => childId.startsWith(`${derived.spec_folder}/`));
   if (retainedChildren.length === 0) {
     return derived;
   }

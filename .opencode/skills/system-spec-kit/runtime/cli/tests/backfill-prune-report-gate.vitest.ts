@@ -70,7 +70,13 @@ afterEach(() => {
 describe('backfill prune report gate', () => {
   it('predicts the same retained on-disk children as prune apply', () => {
     const { specsRoot, parent } = createParentTree();
-    const retained = path.join(specsRoot, 'system-spec-kit', '931-retained-child');
+    // A retainable child hangs off the parent's own identity and exists on disk but
+    // is not spec-leaf-named, so the derive never lists it and only the prune-path
+    // retention can keep it. A child under a DIFFERENT identity is not retainable
+    // at all: the writer drops entries whose leading identity is not the packet's
+    // own (stale rename residue), so such an entry would break prediction/apply
+    // parity by construction.
+    const retained = path.join(parent, '942keeper');
     writePacket(retained, 'Retained Child');
     runBackfill({ dryRun: false, root: specsRoot });
 
@@ -78,7 +84,7 @@ describe('backfill prune report gate', () => {
     const graph = JSON.parse(fs.readFileSync(graphPath, 'utf-8')) as {
       children_ids: string[];
     };
-    graph.children_ids.unshift('system-spec-kit/931-retained-child');
+    graph.children_ids.unshift('system-spec-kit/930-parent/942keeper');
     fs.writeFileSync(graphPath, `${JSON.stringify(graph, null, 2)}\n`, 'utf-8');
 
     const prediction = runBackfillCore({
@@ -99,7 +105,41 @@ describe('backfill prune report gate', () => {
     const refreshed = JSON.parse(fs.readFileSync(graphPath, 'utf-8')) as {
       children_ids: string[];
     };
-    expect(refreshed.children_ids).toContain('system-spec-kit/931-retained-child');
+    expect(refreshed.children_ids).toContain('system-spec-kit/930-parent/942keeper');
+  });
+
+  it('drops a foreign-identity child on prune exactly as the prediction said', () => {
+    const { specsRoot, parent } = createParentTree();
+    runBackfill({ dryRun: false, root: specsRoot });
+
+    // A stale-identity entry: the packet moved, the entry kept the old leading
+    // identity. Neither the default refresh nor the prune path may retain it.
+    const graphPath = path.join(parent, 'graph-metadata.json');
+    const graph = JSON.parse(fs.readFileSync(graphPath, 'utf-8')) as {
+      children_ids: string[];
+    };
+    graph.children_ids.unshift('system-spec-kit/999-old-identity/001-child-phase');
+    fs.writeFileSync(graphPath, `${JSON.stringify(graph, null, 2)}\n`, 'utf-8');
+
+    const prediction = runBackfillCore({
+      dryRun: true,
+      root: specsRoot,
+      specFolder: parent,
+      prune: true,
+    });
+    const applied = runBackfillCore({
+      dryRun: false,
+      root: specsRoot,
+      specFolder: parent,
+      prune: true,
+    });
+    expect(prediction.changed).toBe(applied.changed);
+    expect(prediction.changed).toBe(1);
+    const refreshed = JSON.parse(fs.readFileSync(graphPath, 'utf-8')) as {
+      children_ids: string[];
+    };
+    expect(refreshed.children_ids).not.toContain('system-spec-kit/999-old-identity/001-child-phase');
+    expect(refreshed.children_ids).toContain('system-spec-kit/930-parent/001-child-phase');
   });
 
   it('refuses direct prune without a prior report and writes nothing', () => {

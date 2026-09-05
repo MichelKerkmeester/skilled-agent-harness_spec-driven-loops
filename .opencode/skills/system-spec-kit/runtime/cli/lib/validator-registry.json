@@ -252,6 +252,17 @@
     "description": "Flags graph-metadata.json children_ids missing on-disk phase children the writer would add (advisory unless SPECKIT_CHILD_DRIFT_ENFORCE=true)."
   },
   {
+    "rule_id": "GRAPH_METADATA_CHILD_IDENTITY",
+    "aliases": [
+      "CHILD_IDENTITY",
+      "GRAPH_CHILD_IDENTITY"
+    ],
+    "script_path": "rules/check-graph-metadata-child-identity.sh",
+    "severity": "error",
+    "category": "structural",
+    "description": "Flags graph-metadata.json children_ids entries whose leading path identity is not the packet's own current identity (stale rename residue the refresh writer now prunes)."
+  },
+  {
     "rule_id": "GRAPH_METADATA_SHAPE",
     "aliases": [
       "GRAPH_SHAPE",
