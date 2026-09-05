@@ -12,6 +12,7 @@
 // Otherwise reads spec.md via generatePerFolderDescription().
 
 import * as path from 'node:path';
+import { assertPathInsideRoot } from '../utils/path-utils.js';
 import * as fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import {
@@ -87,20 +88,13 @@ function main(): void {
   const folderPath = path.resolve(args[0]);
   const basePath = path.resolve(args[1]);
 
-  // Path containment check — prevent directory traversal attacks.
-  // Try/catch guards against crash on broken symlinks (realpathSync throws ENOENT).
-  // Path.sep boundary prevents prefix bypass (e.g. /specs-evil passing for /specs).
-  let realFolder: string;
-  let realBase: string;
+  // The folder must sit inside the base it is generated against; the shared
+  // boundary check canonicalizes both sides so a symlink cannot smuggle a
+  // folder in or out of the base.
   try {
-    realFolder = fs.realpathSync(folderPath);
-    realBase = fs.realpathSync(basePath);
+    assertPathInsideRoot(basePath, folderPath, 'folder path');
   } catch (err: unknown) {
-    console.error(`Error: cannot resolve real path — ${(err as NodeJS.ErrnoException).message}`);
-    process.exit(1);
-  }
-  if (!(realFolder === realBase || realFolder.startsWith(realBase + path.sep))) {
-    console.error(`Error: folder path escapes base path (${realFolder} not under ${realBase})`);
+    console.error(`Error: ${(err as Error).message}`);
     process.exit(1);
   }
 

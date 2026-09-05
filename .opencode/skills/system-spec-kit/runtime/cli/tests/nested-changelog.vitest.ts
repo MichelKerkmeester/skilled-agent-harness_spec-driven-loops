@@ -133,15 +133,15 @@ The generator can now resolve phase folders and derive packet-local changelog pa
 
     const outside = path.join(os.tmpdir(), `nested-changelog-escape-${process.pid}.md`);
     expect(() => buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: outside }))
-      .toThrow(/inside the project root/);
+      .toThrow(/must resolve inside/);
     expect(() => buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: '../escape.md' }))
-      .toThrow(/inside the project root/);
+      .toThrow(/must resolve inside/);
 
     const escapeTarget = fs.mkdtempSync(path.join(os.tmpdir(), 'nested-changelog-link-target-'));
     // The override resolves against the project root, so the escaping link lives there.
     fs.symlinkSync(escapeTarget, path.join(CONFIG.PROJECT_ROOT, 'linked'));
     expect(() => buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: 'linked/changelog.md' }))
-      .toThrow(/inside the project root/);
+      .toThrow(/must resolve inside/);
     fs.rmSync(escapeTarget, { recursive: true, force: true });
 
     const inside = buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: 'notes/changelog.md' });
