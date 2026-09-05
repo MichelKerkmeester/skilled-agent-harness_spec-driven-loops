@@ -147,20 +147,24 @@ Main flow:
 
 ## 7. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime` unless noted.
+Run from `.opencode/skills/system-spec-kit/runtime` unless noted. `npx vitest run hooks` only matches filenames containing the literal substring `hooks` (2 files); the glob set below is what actually exercises this tree's adapters and shared helpers.
 
 ```bash
-npx vitest run hooks
+npx vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-submit-shim.vitest.ts tests/directive-lifecycle-*.vitest.ts
 node --test hooks/lib/spec-gate/spec-gate-core.test.mjs
+node --test hooks/claude/spec-gate-claude.test.mjs
+node --test hooks/codex/spec-gate-codex.test.mjs
 ```
 
-Expected result: hook helper and runtime hook tests exit with Vitest success, and the co-located spec-gate core tests pass under `node --test`.
+Expected result: every listed Vitest file passes, and each `node --test` spec-gate suite passes. Cursor and Devin carry their own spec-gate suites; see their READMEs.
 
 ---
 
 ## 8. RELATED
 
+- [`lib/README.md`](./lib/README.md)
 - [`lib/spec-gate/README.md`](./lib/spec-gate/README.md)
+- [`lib/workspace/README.md`](./lib/workspace/README.md)
 - [`../handlers/README.md`](../handlers/README.md)
 - [`../core/README.md`](../core/README.md)
 - [`skill-advisor-hook.md`](../../../system-skill-advisor/hooks/skill-advisor-hook.md)

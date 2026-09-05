@@ -35,7 +35,9 @@ const require = createRequire(import.meta.url);
 
 function sessionLifecycleHookEnabled(): boolean {
   try {
-    const { isHookEnabled } = require(fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)));
+    const { isHookEnabled } = require(
+      fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)),
+    );
     return typeof isHookEnabled !== 'function' || isHookEnabled('session-lifecycle') !== false;
   } catch {
     return true;
@@ -145,7 +147,11 @@ function extractAttentionSignals(lines: string[]): string[] {
   // PascalCase class/interface names: e.g. MergeInput, OutputSection
   const classRe = /\b([A-Z][a-zA-Z0-9]{2,})\b/g;
   // Common noise words to skip
-  const noise = new Set(['Error', 'String', 'Object', 'Array', 'Promise', 'Buffer', 'Date', 'Map', 'Set', 'Number', 'Boolean', 'Function', 'RegExp', 'JSON', 'Math', 'console', 'process', 'undefined', 'null']);
+  const noise = new Set([
+    'Error', 'String', 'Object', 'Array', 'Promise', 'Buffer', 'Date', 'Map',
+    'Set', 'Number', 'Boolean', 'Function', 'RegExp', 'JSON', 'Math',
+    'console', 'process', 'undefined', 'null',
+  ]);
   for (const line of lines) {
     let m: RegExpExecArray | null;
     funcRe.lastIndex = 0;
@@ -465,7 +471,12 @@ function runAuthoredSnapshot(
       reason?: string;
     };
     if (snapshotResult.status === 'updated') {
-      hookLog('info', 'compact-inject', `Authored continuity snapshot refreshed ${snapshotResult.docsUpdated?.length ?? 0} doc(s); memory records=${snapshotResult.createdMemoryRecords ?? 0}; index mutations=${snapshotResult.indexMutations ?? 0}`);
+      hookLog(
+        'info',
+        'compact-inject',
+        `Authored continuity snapshot refreshed ${snapshotResult.docsUpdated?.length ?? 0} doc(s); `
+          + `memory records=${snapshotResult.createdMemoryRecords ?? 0}; index mutations=${snapshotResult.indexMutations ?? 0}`,
+      );
     } else if (snapshotResult.status === 'skipped') {
       hookLog('warn', 'compact-inject', `Authored continuity snapshot skipped: ${snapshotResult.reason ?? 'unknown'}`);
     }

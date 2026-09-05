@@ -26,7 +26,9 @@ const require = createRequire(import.meta.url);
 
 function sessionLifecycleHookEnabled(): boolean {
   try {
-    const { isHookEnabled } = require(fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)));
+    const { isHookEnabled } = require(
+      fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)),
+    );
     return typeof isHookEnabled !== 'function' || isHookEnabled('session-lifecycle') !== false;
   } catch {
     return true;

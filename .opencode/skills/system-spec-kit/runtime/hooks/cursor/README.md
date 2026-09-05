@@ -47,7 +47,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `session-start.ts` | `sessionStart` adapter. Delegates to `session-prime.js` and returns its context as `agent_message`. |
 | `session-end.ts` | `sessionEnd` adapter (NOT `stop` — see the delivery table above). Delegates to `session-stop.js`. |
 | `post-tool-use.mjs` | Normalizes Cursor tool payloads for post-edit, graph-freshness, and dispatch-audit hooks. |
-| `precompact.ts` | `preCompact` adapter. Registered, but no CLI-reachable compaction trigger exists to confirm delivery. |
+| `precompact.ts` | `preCompact` adapter. Registered, but no CLI-reachable compaction trigger exists to confirm delivery in any case. |
 | `user-prompt-submit.ts` | Prompt-submit adapter, registered for parity against the undelivered `beforeSubmitPrompt` event. |
 | `completion-evidence-response.mjs` | Advisory completion-evidence check. Delegates policy to `../../lib/hooks/completion-evidence-sentinel.cjs` and never blocks. |
 

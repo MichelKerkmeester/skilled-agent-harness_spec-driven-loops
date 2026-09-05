@@ -35,5 +35,6 @@ Exact injected strings and per-runtime visibility: [`injection-contract.md`](../
 
 ## 3. RELATED
 
+- [`lib/README.md`](lib/README.md): the Claude-adapter proxy the session bridges call into.
 - [`../lib/spec-gate/README.md`](../lib/spec-gate/README.md): the shared Gate-3 policy core these bridges call.
 - [`../../../../../../.pi/extensions/README.md`](../../../../../../.pi/extensions/README.md): the discovery mirror and symlink map.

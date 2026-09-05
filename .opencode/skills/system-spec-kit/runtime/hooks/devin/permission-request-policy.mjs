@@ -22,8 +22,16 @@ import { createRequire } from 'node:module';
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { evaluate, readHardRules } from '../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
 
-const __req = createRequire(import.meta.url);
-function __permPolicyEnabled(){ try { const { isHookEnabled } = __req(fileURLToPath(new URL('../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url))); return typeof isHookEnabled !== 'function' || isHookEnabled('permission-policy') !== false; } catch { return true; } }
+const require = createRequire(import.meta.url);
+
+function permissionPolicyEnabled() {
+  try {
+    const { isHookEnabled } = require(fileURLToPath(new URL('../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)));
+    return typeof isHookEnabled !== 'function' || isHookEnabled('permission-policy') !== false;
+  } catch {
+    return true;
+  }
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -153,7 +161,7 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  if (__permPolicyEnabled() === false) {
+  if (permissionPolicyEnabled() === false) {
     return emitDecision('allow', 'Permission approved: permission policy is disabled.');
   }
 

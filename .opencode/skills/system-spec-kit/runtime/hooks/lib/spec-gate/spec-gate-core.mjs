@@ -83,6 +83,7 @@ export const GATE_3_DELIVERY_SHADOW_ID = 'shadow.gate3-delivery-suppression.v1';
  */
 export const CHILD_SESSION_ENV = 'AI_SESSION_CHILD';
 
+/** True only when CHILD_SESSION_ENV is exactly '1'; every other value is interactive. */
 export function isChildSession(env) {
   const environment = env && typeof env === 'object' ? env : {};
   return environment[CHILD_SESSION_ENV] === '1';
@@ -125,7 +126,8 @@ export const MUTATING_TOOLS = new Set(['write', 'edit', 'patch', 'multiedit', 'a
 export const DENY_CAPABLE_TOOLS = new Set(['write', 'edit']);
 
 // A small, fixed string -- the guard never echoes the classifier's matched-token
-// arrays into the TUI or injected context (see NFR-S01).
+// arrays into the TUI or injected context, so the relayed question stays bounded
+// and predictable regardless of what a prompt happened to match.
 export const GATE_3_QUESTION = [
   'SPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit, pick one:',
   'A) Use an existing spec folder (reply with its path, e.g. specs/<track>/<NNN-name>)',
@@ -507,6 +509,14 @@ export function resetGate3DeliveryShadow() {
 // 3. HELPERS -- session-scoped state (atomic file persistence)
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Hex-encode a session id into a filesystem-safe state-file key. Falls back
+ * to the canonical unknown-session token so every caller with a missing id
+ * still lands on one shared state file instead of scattering per-call keys.
+ *
+ * @param {string} [sessionID]
+ * @returns {string}
+ */
 export function sessionStateKey(sessionID) {
   return Buffer.from(String(sessionID ?? UNKNOWN_SESSION_ID), 'utf8').toString('hex');
 }
@@ -553,6 +563,13 @@ export function sanitizePromptForClassify(text) {
   return prompt;
 }
 
+/**
+ * Resolve the state directory a runtime adapter must read and write gate
+ * state under, anchored to the repository root rather than the caller's cwd.
+ *
+ * @param {string} [projectDir]
+ * @returns {{ stateDir: string }}
+ */
 export function resolveGuardPaths(projectDir) {
   // Anchor here rather than at each call site: gate state must land at the
   // repository root even when the plugin host hands us a nested working
@@ -565,6 +582,15 @@ function gateStatePath(stateDir, sessionID) {
   return join(stateDir, `${sessionStateKey(sessionID)}.json`);
 }
 
+/**
+ * Read a session's persisted gate state. Fails open to an empty object on a
+ * missing, corrupt, or unreadable file, which every caller treats the same
+ * as "gate never opened."
+ *
+ * @param {string} stateDir
+ * @param {string} sessionID
+ * @returns {Record<string, unknown>}
+ */
 export function readGateState(stateDir, sessionID) {
   try {
     const raw = readFileSync(gateStatePath(stateDir, sessionID), 'utf8');
@@ -576,6 +602,15 @@ export function readGateState(stateDir, sessionID) {
   }
 }
 
+/**
+ * Persist a session's gate state via write-then-rename so a reader never
+ * observes a partially written file.
+ *
+ * @param {string} stateDir
+ * @param {string} sessionID
+ * @param {Record<string, unknown>} state
+ * @returns {boolean} Whether the write landed on disk.
+ */
 export function writeGateStateAtomic(stateDir, sessionID, state) {
   try {
     mkdirSync(stateDir, { recursive: true });
@@ -595,6 +630,13 @@ export function writeGateStateAtomic(stateDir, sessionID, state) {
   }
 }
 
+/**
+ * Remove a session's persisted gate state file, if any.
+ *
+ * @param {string} stateDir
+ * @param {string} sessionID
+ * @returns {boolean} Whether a file was removed.
+ */
 export function evictGateState(stateDir, sessionID) {
   try {
     unlinkSync(gateStatePath(stateDir, sessionID));

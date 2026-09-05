@@ -78,7 +78,20 @@ This folder also holds the Claude Code side of the Gate-3 spec-folder discipline
 
 ---
 
-## 6. DESIGN PRINCIPLE
+## 6. VALIDATION
+
+Run from `.opencode/skills/system-spec-kit/runtime`.
+
+```bash
+npx vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-submit-shim.vitest.ts tests/directive-lifecycle-*.vitest.ts
+node --test hooks/claude/spec-gate-claude.test.mjs
+```
+
+Expected result: every listed Vitest file passes (session-prime, compact-inject, session-stop, hook-state, claude-transcript, the completion-evidence sentinel, the shared provenance helpers and the directive-lifecycle boundary), and the co-located spec-gate suite passes under `node --test`.
+
+---
+
+## 7. DESIGN PRINCIPLE
 
 Hooks are transport reliability, not separate business logic. An adapter normalizes a payload, calls a shared implementation, and formats the runtime's envelope; it owns no policy of its own.
 For packet work, the operator-facing recovery surface remains `/speckit:resume`, with continuity rebuilt from `handover.md -> _memory.continuity -> spec docs`.

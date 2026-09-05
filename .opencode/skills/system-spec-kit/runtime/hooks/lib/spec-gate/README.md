@@ -25,7 +25,7 @@ The core exposes two main entrypoints plus state-management helpers:
 
 **`evaluateMutation({ tool, filePath, sessionID, projectDir, env })`** — reads the cached gate state for a Write/Edit/Bash call. Returns `allow` (gate closed or target exempt), `advise` (gate open, mutation not yet scoped — warn only), or `deny` (gate open, mutation not scoped, `SYSTEM_SPEC_GATE_ENFORCE=1`). The `wouldDeny` flag distinguishes "would deny under enforcement" from "actually denied", so the warning log records both even when enforcement is off. A dispatched child short-circuits to `allow`.
 
-**State & telemetry helpers:** `resolveGuardPaths(projectDir)`, `readGateState`/`writeGateState`/`evictGateState`, `appendWarningLog(stateDir, detail)`, `formatSpecGateEvent({...})`, `sweepStaleGateStates(stateDir, runtimeState)` (throttled), `isChildSession(env)`.
+**State & telemetry helpers:** `resolveGuardPaths(projectDir)`, `readGateState`/`writeGateStateAtomic`/`evictGateState`, `appendWarningLog(stateDir, detail)`, `formatSpecGateEvent({...})`, `sweepStaleGateStates(stateDir, runtimeState)` (throttled), `isChildSession(env)`.
 
 **Shadow-delivery observation:** `observeGate3QuestionDelivery(request)` records that the Gate-3 question was actually emitted (called strictly post-emission by each runtime adapter); `shouldSuppressGate3Delivery(request)` decides whether a repeated question may be suppressed. A question is confirmable only by an observed receipt whose `lifecycleEpoch >= 1` matches the question hash — epoch 0 (no lifecycle boundary yet) never confirms. Suppression is default-off, opt-in via `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION`; unknown or unobserved state always emits (fail-open). Receipt/epoch helpers: `buildGate3ObservedReceipt`, `currentGate3LifecycleEpoch`, `advanceGate3LifecycleEpoch`, `clearGate3SessionDelivery`.
 
@@ -149,6 +149,7 @@ Expected result: no syntax errors (repeat for the codex/cursor/devin siblings).
 
 ## 9. RELATED
 
+- [`../README.md`](../README.md): the owning `lib/` folder, including `hook-adapter-shared.mjs` and `workspace/`.
 - [`../../claude/README.md`](../../claude/README.md), [`../../codex/README.md`](../../codex/README.md), [`../../cursor/README.md`](../../cursor/README.md), [`../../devin/README.md`](../../devin/README.md): per-runtime hook folders that wire these adapters.
 - [`../../../../shared/gate-3-classifier.ts`](../../../../shared/gate-3-classifier.ts): the compiled classifier this core imports from `shared/dist/`.
 - [`../../../README.md`](../../../README.md): the owning skill's hook contract.

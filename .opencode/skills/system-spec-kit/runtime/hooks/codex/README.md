@@ -33,9 +33,16 @@ description: "Codex CLI hook adapters that normalize Codex lifecycle payloads an
 
 ---
 
-## 4. TESTS
+## 4. VALIDATION
 
-- `tests/hook-completion-evidence-stop.vitest.ts` covers the sentinel path shared with `completion-evidence-stop.cjs`.
+Run from `.opencode/skills/system-spec-kit/runtime`.
+
+```bash
+npx vitest run tests/directive-lifecycle-adapter-parity.vitest.ts tests/hook-completion-evidence-stop.vitest.ts
+node --test hooks/codex/spec-gate-codex.test.mjs
+```
+
+Expected result: `directive-lifecycle-adapter-parity.vitest.ts` passes for the `codex` case (process-level, spawning the compiled adapter and confirming lifecycle-boundary delivery), `hook-completion-evidence-stop.vitest.ts` covers the sentinel path shared with `completion-evidence-stop.cjs`, and the co-located spec-gate suite passes under `node --test`. `session-start.ts`, `session-stop.ts`, `compact-inject.ts`, `user-prompt-submit.ts` and `shared.ts` have no dedicated Vitest file of their own. They are exercised indirectly through the Claude adapters they delegate to.
 
 ---
 

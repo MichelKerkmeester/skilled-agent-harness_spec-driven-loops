@@ -22,17 +22,15 @@ const MAX_STDIO_BYTES = 1024 * 1024;
 const CHILD_TIMEOUT_MS = 2500;
 const READ_CHUNK_BYTES = 64 * 1024;
 const MAX_ROOT_WALK_DEPTH = 14;
-// Per-turn code-graph refresh runs on the hot prompt path, so it is warm-only,
-// tightly bounded, and debounced across the separate per-prompt processes via a
-// short filesystem cache (mirrors the OpenCode plugin's 5s transport TTL).
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TARGET RESOLUTION & SHIM DISPATCH
+// ───────────────────────────────────────────────────────────────────
 
 // Resolve the advisor target from this module's own location by walking up to
 // the ancestor that owns `.opencode`. Claude may invoke the hook from any
 // working directory, so a CWD-relative path would silently miss the target and
 // fail open to `{}`; an install-anchored absolute path stays correct off-root.
-// ───────────────────────────────────────────────────────────────────
-// 2. TARGET RESOLUTION & SHIM DISPATCH
-// ───────────────────────────────────────────────────────────────────
 
 // An override names one executable module. It must be absolute, so a relative
 // path cannot be resolved against whatever cwd Claude happened to spawn the hook
@@ -135,33 +133,7 @@ function runShim(): string {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 3. CODE GRAPH WARM CACHE
-// ───────────────────────────────────────────────────────────────────
-
-// ───────────────────────────────────────────────────────────────────
-// 4. OUTPUT MERGING
-// ───────────────────────────────────────────────────────────────────
-
-function mergeAdditionalContext(advisorJson: string, section: string): string {
-  try {
-    const parsed = JSON.parse(advisorJson) as Record<string, unknown>;
-    const hsoRaw = parsed.hookSpecificOutput;
-    const hso = (typeof hsoRaw === 'object' && hsoRaw !== null) ? hsoRaw as Record<string, unknown> : {};
-    const existing = typeof hso.additionalContext === 'string' ? hso.additionalContext : '';
-    parsed.hookSpecificOutput = {
-      ...hso,
-      hookEventName: 'UserPromptSubmit',
-      additionalContext: existing ? `${existing}\n\n${section}` : section,
-    };
-    return JSON.stringify(parsed);
-  } catch {
-    // Advisor output stays authoritative; never emit something worse than it.
-    return advisorJson;
-  }
-}
-
-// ───────────────────────────────────────────────────────────────────
-// 5. ENTRYPOINT
+// 3. ENTRYPOINT
 // ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {

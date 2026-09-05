@@ -9,7 +9,7 @@ description: "Devin CLI lifecycle adapters that normalize payloads, delegate to 
 
 ## 1. OVERVIEW
 
-`hooks/devin/` adapts Devin CLI's `SessionStart` and `UserPromptSubmit` lifecycle events onto the existing Claude hook implementations in `../claude/`. Each adapter reads and validates its own Devin payload, spawns the matching compiled Claude adapter with a normalized input, and translates the result back into Devin's documented `hookSpecificOutput` response envelope (the same shape Codex uses -- confirmed by phase 001's citation that Devin's event-name set closely mirrors Claude Code's own hook contract). No lifecycle logic is duplicated: state and transcript semantics stay owned by the Claude adapters.
+`hooks/devin/` adapts Devin CLI's `SessionStart` and `UserPromptSubmit` lifecycle events onto the existing Claude hook implementations in `../claude/`. Each adapter reads and validates its own Devin payload, spawns the matching compiled Claude adapter with a normalized input, and translates the result back into Devin's documented `hookSpecificOutput` response envelope (the same shape Codex uses -- Devin's event-name set closely mirrors Claude Code's own hook contract). No lifecycle logic is duplicated: state and transcript semantics stay owned by the Claude adapters.
 
 ---
 
@@ -37,15 +37,15 @@ These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, dire
 | `shared.ts` | Reads and validates a bounded Devin hook payload, spawns the matching `../claude/*.js` adapter, and emits Devin's `hookSpecificOutput` response envelope. |
 | `session-start.ts` | `SessionStart` adapter. Delegates to `session-prime.js` and emits the returned context. |
 | `user-prompt-submit.ts` | `UserPromptSubmit` adapter. Delegates to `user-prompt-submit.js` and normalizes its JSON response into the Devin envelope. |
-| `session-stop.ts` | `Stop` adapter (phase 008). Delegates to the compiled `../claude/session-stop.js` via the same `shared.ts` pattern above -- no core change needed, `DevinHookEvent` already included `'Stop'`. |
-| `completion-evidence-stop.cjs` | `Stop` adapter (phase 008), plain directly-runnable `.cjs` (no build step). Reads the Stop payload, resolves the active packet from the shared `lastSpecFolder` state file, and delegates policy to `../../lib/hooks/completion-evidence-sentinel.cjs`. Advisory only -- never emits a block/continue decision. |
-| `post-compaction.cjs` | `PostCompaction` adapter (phase 008) -- **bespoke, not a port**. Devin fires `PostCompaction` *after* compaction with only `session_id` + a possibly-null `summary`, unlike Claude's before-compaction `PreCompact`. Implements a 4-step recovery chain: retain `summary` first, rehydrate spec-folder continuity from the shared `lastSpecFolder` state, provenance/length sanitization (4096-byte cap + control-char strip), then emits `additionalContext` directly. |
+| `session-stop.ts` | `Stop` adapter. Delegates to the compiled `../claude/session-stop.js` via the same `shared.ts` pattern above -- no core change needed, `DevinHookEvent` already included `'Stop'`. |
+| `completion-evidence-stop.cjs` | `Stop` adapter, plain directly-runnable `.cjs` (no build step). Reads the Stop payload, resolves the active packet from the shared `lastSpecFolder` state file, and delegates policy to `../../lib/hooks/completion-evidence-sentinel.cjs`. Advisory only -- never emits a block/continue decision. |
+| `post-compaction.cjs` | `PostCompaction` adapter -- **bespoke, not a port**. Devin fires `PostCompaction` *after* compaction with only `session_id` + a possibly-null `summary`, unlike Claude's before-compaction `PreCompact`. Implements a 4-step recovery chain: retain `summary` first, rehydrate spec-folder continuity from the shared `lastSpecFolder` state, provenance/length sanitization (4096-byte cap + control-char strip), then emits `additionalContext` directly. |
 
 ---
 
 ## 4. CONSUMERS
 
-- The project's `.devin/hooks.v1.json` registers compiled `dist/hooks/devin/*.js` outputs against `SessionStart`, `UserPromptSubmit` and `Stop`, plus plain `.cjs` files against `Stop` and `PostCompaction`. The `.ts` adapters require `npm run build` in `runtime/` before their `dist/` paths resolve.
+- The project's `.devin/hooks.v1.json` registers compiled `dist/hooks/devin/*.js` outputs against `SessionStart`, `UserPromptSubmit` and `Stop`, plus plain `.mjs`/`.cjs` files against `PreToolUse`, `PermissionRequest`, `Stop` and `PostCompaction`. The `.ts` adapters require a build before the `.js` outputs exist.
 
 ---
 

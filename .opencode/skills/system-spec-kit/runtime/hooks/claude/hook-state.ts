@@ -3,27 +3,28 @@
 // ───────────────────────────────────────────────────────────────
 // Per-session state at ${os.tmpdir()}/speckit-claude-hooks/<project-hash>/<session-hash>.json
 import * as crypto from 'node:crypto';
-import fs from 'node:fs';
-import { tmpdir } from 'node:os';
-import { basename, join } from 'node:path';
-import {
+import fs, {
   mkdirSync,
   readFileSync,
   readdirSync,
   statSync,
   unlinkSync,
 } from 'node:fs';
-import { z } from 'zod';
+import { tmpdir } from 'node:os';
+import { basename, join } from 'node:path';
 
-import { hookLog } from './shared.js';
-import { assertNever } from '../../lib/utils/exhaustiveness.js';
-import type { SharedPayloadEnvelope } from '../../lib/context/shared-payload.js';
+import { z } from 'zod';
 import {
   CANONICAL_FOLD_VERSION,
   canonicalFold,
   type UnicodeRuntimeFingerprint,
 } from '@spec-kit/shared/unicode-normalization';
+
+import { hookLog } from './shared.js';
+import { assertNever } from '../../lib/utils/exhaustiveness.js';
 import { RECOVERED_TRANSCRIPT_STRIP_PATTERNS } from '../shared-provenance.js';
+
+import type { SharedPayloadEnvelope } from '../../lib/context/shared-payload.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS

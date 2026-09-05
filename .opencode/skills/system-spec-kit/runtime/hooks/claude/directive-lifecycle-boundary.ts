@@ -12,7 +12,17 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
 const __dlRequire = createRequire(import.meta.url);
-function directiveLifecycleEnabled(): boolean { try { const { isHookEnabled } = __dlRequire(fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url))) as { isHookEnabled?: (c: string) => boolean }; return typeof isHookEnabled !== 'function' || isHookEnabled('directive-lifecycle') !== false; } catch { return true; } }
+
+function directiveLifecycleEnabled(): boolean {
+  try {
+    const { isHookEnabled } = __dlRequire(
+      fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)),
+    ) as { isHookEnabled?: (c: string) => boolean };
+    return typeof isHookEnabled !== 'function' || isHookEnabled('directive-lifecycle') !== false;
+  } catch {
+    return true;
+  }
+}
 
 const TARGET_REL = 'skills/system-skill-advisor/mcp-server/dist/hooks/claude/directive-lifecycle-boundary.js';
 const MAX_ROOT_WALK_DEPTH = 14;

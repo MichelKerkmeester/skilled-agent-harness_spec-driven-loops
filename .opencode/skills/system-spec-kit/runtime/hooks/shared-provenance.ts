@@ -88,10 +88,20 @@ export function wrapRecoveredCompactPayload(
   const sanitizedPayload = sanitizeRecoveredPayload(payload);
   const provenance = metadata ? buildRecoveredCompactMetadata(metadata) : null;
   const fingerprint = provenance?.runtimeFingerprint
-    ? `node=${escapeProvenanceField(provenance.runtimeFingerprint.node, 'unknown')},icu=${escapeProvenanceField(provenance.runtimeFingerprint.icu, 'unknown')},unicode=${escapeProvenanceField(provenance.runtimeFingerprint.unicode, 'unknown')}`
+    ? [
+        `node=${escapeProvenanceField(provenance.runtimeFingerprint.node, 'unknown')}`,
+        `icu=${escapeProvenanceField(provenance.runtimeFingerprint.icu, 'unknown')}`,
+        `unicode=${escapeProvenanceField(provenance.runtimeFingerprint.unicode, 'unknown')}`,
+      ].join(',')
     : null;
   const provenanceLine = provenance
-    ? `[PROVENANCE: producer=${escapeProvenanceField(provenance.producer, 'hook-cache')}; trustState=${escapeProvenanceField(provenance.trustState, 'cached')}; sourceSurface=${escapeProvenanceField(provenance.sourceSurface, 'compact')}; sanitizerVersion=${escapeProvenanceField(provenance.sanitizerVersion, CANONICAL_FOLD_VERSION)}; runtimeFingerprint=${escapeProvenanceField(fingerprint, 'unknown')}]`
+    ? `[PROVENANCE: ${[
+        `producer=${escapeProvenanceField(provenance.producer, 'hook-cache')}`,
+        `trustState=${escapeProvenanceField(provenance.trustState, 'cached')}`,
+        `sourceSurface=${escapeProvenanceField(provenance.sourceSurface, 'compact')}`,
+        `sanitizerVersion=${escapeProvenanceField(provenance.sanitizerVersion, CANONICAL_FOLD_VERSION)}`,
+        `runtimeFingerprint=${escapeProvenanceField(fingerprint, 'unknown')}`,
+      ].join('; ')}]`
     : null;
   return [
     `[SOURCE: hook-cache, cachedAt: ${cachedAt}]`,
