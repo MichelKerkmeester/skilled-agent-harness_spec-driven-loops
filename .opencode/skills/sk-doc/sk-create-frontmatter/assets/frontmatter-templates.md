@@ -9,7 +9,7 @@ trigger_phrases:
   - "five field frontmatter block"
 importance_tier: important
 contextType: general
-version: 1.0.0.28
+version: 1.0.0.36
 ---
 
 # YAML Frontmatter Templates - Document Type Reference
@@ -76,7 +76,7 @@ File loaded by OpenCode
          ├─► Check line 1 for opening `---`
          │   └─► Not found? → No frontmatter (may be error for SKILL/Command)
          │
-         ├─► Find closing `---` (within first 20 lines)
+         ├─► Find the next line that is exactly `---` (no line limit, no validator caps block length)
          │   └─► Not found? → Malformed frontmatter error
          │
          ├─► Parse YAML between delimiters
@@ -468,7 +468,7 @@ version: 1.7.0.0
 ---
 ```
 
-Verify with `check-skill-doc-frontmatter.sh` (system-skill-advisor `mcp-server/scripts/`), which enforces this contract in coverage mode.
+Verify with `.opencode/skills/system-skill-advisor/mcp-server/scripts/check-skill-doc-frontmatter.sh`. Two things about that checker decide what a green run means. Its default `--shape` mode fails only a document that carries a partial block, so a file with `title` and `description` alone, or with no block at all, passes. Pass `--coverage` to require the full block. And it walks `references/` and `assets/` directly under each top-level skill folder only, so the docs of a nested mode packet are never read by it. For those, `package_skill.py --check --strict` on the packet is the gate that reaches the block.
 
 ### Skill README Frontmatter Template
 
@@ -503,7 +503,7 @@ version: 1.0.0.10
 
 - `importance_tier` and `contextType` are optional here. A minority of skill READMEs carry them. No validator asks for them.
 - READMEs deeper in a skill tree are a different class. Most carry no block at all. `sk-create-readme`'s own template treats frontmatter as optional for a normal project README, so add a block to one of those only when the document should be discoverable.
-- Nothing enforces the field set. `check-skill-doc-frontmatter.sh` exempts `README.md`, so the version gate is the only automated check a README block faces.
+- Nothing enforces the field set. The advisor's `check-skill-doc-frontmatter.sh`, under `system-skill-advisor/mcp-server/scripts/`, exempts `README.md`, so the version gate is the only automated check a README block faces.
 - `trigger_phrases` lengths across skill READMEs run from 2 items to 13. The 3 to 8 range in Section 3 is the reference and asset rule, not a README rule.
 
 ### Feature Catalog Frontmatter Template
@@ -656,8 +656,9 @@ Content...
 **Rule**: Spec-folder documents carry YAML frontmatter, and this contract does not define it.
 
 `system-spec-kit` owns the block. Its `templates/core/spec.md.tmpl` emits one at every level, and
-`validate.sh --strict` reports `SPECDOC_FRONTMATTER_001` and `RESULT: FAILED` on a `spec.md` whose
-block is missing. The keys are that skill's, including the `_memory.continuity` mapping no other
+`validate.sh --strict` prints `RESULT: FAILED` on a `spec.md` whose block is missing or malformed. A
+missing block trips the frontmatter-basics check, which reports the absent `_memory.continuity` keys,
+and a malformed one trips `SPECDOC_FRONTMATTER_001`. The keys are that skill's, including the `_memory.continuity` mapping no other
 class carries, so read them there rather than composing a block from this section.
 
 ```yaml
@@ -703,8 +704,10 @@ validation_rules:
         pattern: "^[a-z][a-z0-9-]*$"
         description: "lowercase-with-hyphens"
       description:
-        min_length: 10
-        max_length: 200
+        type: "single-line"
+        soft_target: 130
+        hard_cap: 1536
+        enforced_by: "quick_validate.py warns above the soft target and fails at the cap, see section 3"
       allowed-tools:
         type: "comma-separated-list"
 
@@ -720,14 +723,17 @@ validation_rules:
       - version
     field_formats:
       description:
-        min_length: 10
-        max_length: 100
+        type: "single-line"
+        soft_target: 110
+        hard_cap: 1536
+        enforced_by: "quick_validate.py, same rule as skills with the command target"
       argument-hint:
         pattern: "contains < or ["
 
   SkillReferenceAsset:
     # .opencode/skills/*/references/ and assets/ docs, README.md exempt
     frontmatter_required: true
+    enforced_by: "check-skill-doc-frontmatter.sh --coverage for top-level skill folders, and package_skill.py --check --strict for nested mode packets. The checker's default --shape mode passes a file carrying no detailed field"
     required_fields:
       - title
       - description
@@ -756,8 +762,10 @@ validation_rules:
     action_if_present: "remove"
 
   Spec:
-    frontmatter_required: false
-    action_if_present: "suggest_removal"
+    # spec-folder documents, owned by system-spec-kit
+    frontmatter_required: true
+    owner: "system-spec-kit"
+    enforced_by: "validate.sh --strict fails the run. A missing block trips the frontmatter-basics check (absent _memory.continuity keys), a malformed block trips SPECDOC_FRONTMATTER_001"
 
   README:
     # a README.md sitting beside a SKILL.md. Every other README is optional
@@ -780,7 +788,7 @@ validation_rules:
 
 **Structural Checks**:
 - [ ] File starts with `---` on line 1
-- [ ] Closing `---` found within first 20 lines
+- [ ] Closing `---` present on its own line. No validator caps the block length, and blocks over 20 lines exist and pass
 - [ ] Valid YAML syntax between delimiters
 
 **Field Presence (SKILL.md)**:
@@ -795,7 +803,7 @@ validation_rules:
 
 **Field Format**:
 - [ ] `name` is lowercase-with-hyphens
-- [ ] `description` is single line, 10-200 chars
+- [ ] `description` is single line, inside the soft target for its class (130 skill, 110 command) and under the 1,536 hard cap
 - [ ] `allowed-tools` is comma-separated list
 - [ ] `argument-hint` uses `<required>` and `[optional]` syntax
 

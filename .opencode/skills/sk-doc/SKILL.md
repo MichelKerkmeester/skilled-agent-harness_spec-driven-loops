@@ -1,6 +1,6 @@
 ---
 name: sk-doc
-description: "Documentation & OpenCode-component authoring parent hub: routes to fifteen workflow packets that create skills, parent hubs, READMEs/install-guides, agents, commands, feature catalogs, manual-testing playbooks, MCP benchmark folders, HTML/SVG diagrams and ASCII flowcharts, standalone HTML data charts, changelogs, repo rules, frontmatter contracts, and local before/after document reviews, plus a sk-create-with-human-voice mode that applies the Human Voice Rules to prose and a sk-create-quality-control mode that validates/scores/optimizes existing docs. Holds no per-packet logic; dispatches by workflowMode through mode-registry.json."
+description: "Documentation & OpenCode-component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, frontmatter."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 2.1.0.0
 metadata:

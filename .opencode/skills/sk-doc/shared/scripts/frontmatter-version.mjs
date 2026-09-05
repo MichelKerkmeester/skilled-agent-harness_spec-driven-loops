@@ -377,8 +377,8 @@ function parseArgs(argv) {
 }
 
 function helpText() {
-  return `frontmatter-version.mjs — 4-part version compute/apply/verify
-Modes: compute (dry-run), apply, verify
+  return `frontmatter-version.mjs — 4-part version compute/apply/verify/gate
+Modes: compute (dry-run), apply, verify, gate (git-free format check over every in-scope doc; the mode the post-edit hook runs)
 Options: --skill <name>  --paths <file-list>  --manifest-out <base>  --update
 Standard: .opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md`;
 }

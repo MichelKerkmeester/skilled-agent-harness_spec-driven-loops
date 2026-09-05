@@ -33,7 +33,7 @@ This mode is where you find out what the validators are checking for and why.
 - Someone asks what `trigger_phrases`, `importance_tier` or `contextType` are for.
 - A document class is being added and needs a frontmatter rule of its own.
 
-Keyword triggers: `yaml frontmatter`, `frontmatter block`, `frontmatter template`, `frontmatter field`, `frontmatter fields`, `trigger_phrases`, `importance_tier`, `contextType`, `description budget`, `4-part version`, `X.Y.Z.W`, `frontmatter versioning`, `frontmatter version`, `version field`, `frontmatter validation`, `missing frontmatter`, `frontmatter contract`.
+Keyword triggers: `yaml frontmatter`, `frontmatter block`, `frontmatter template`, `frontmatter field`, `frontmatter fields`, `trigger_phrases`, `trigger phrases`, `importance_tier`, `contextType`, `description budget`, `4-part version`, `X.Y.Z.W`, `frontmatter versioning`, `frontmatter version`, `version field`, `frontmatter validation`, `missing frontmatter`, `frontmatter contract`.
 
 ### When NOT to Use
 
@@ -221,3 +221,24 @@ answer often while the gap itself stays small.
 
 Routed by `references/README.md`. The field reference in `assets/` loads on every path. The versioning standard is
 conditional on the question being about `version`.
+
+---
+
+## 7. INTEGRATION POINTS
+
+- **sk-doc parent hub.** This packet is registered in `../mode-registry.json` and `../hub-router.json`. The advisor scores the hub on `../graph-metadata.json`, so every keyword trigger above is also a stage-one entry there. A trigger present in one of the three and absent from another routes on one stage only.
+- **Shared-tier enforcement.** `../shared/scripts/quick_validate.py` reads the description budget from `../shared/assets/skill-contract.json`, `../shared/scripts/frontmatter-version.mjs` implements the versioning standard, and `../shared/scripts/check-frontmatter-versions.sh` wraps its `gate` mode. This mode owns what they check, and never edits how.
+- **Post-edit hook.** `.opencode/hooks/post-edit-quality/` resolves the corpus gate by literal path on every qualifying edit. That path is why the scripts stay in the shared tier.
+- **Templates that cite this contract.** `sk-create-skill`'s manifest, reference and asset templates, the feature-catalog and playbook templates, and the `/create:skill` and `/create:agent` workflow assets all point at `assets/frontmatter-templates.md`. A rule changed here changes what they emit.
+- **Doctor budget audit.** `/doctor skill-budget` and `.opencode/commands/doctor/scripts/audit_descriptions.py` measure the project against the budget this contract documents.
+
+---
+
+## 8. RELATED RESOURCES
+
+- `README.md`: what the mode owns, the silent-budget and numstat-gate concepts, troubleshooting and the verification table.
+- `references/README.md`: the reference router. One conditional reference, the versioning standard.
+- `assets/frontmatter-templates.md`: the field reference and per-class templates, loaded on every path.
+- `assets/fixtures/`: the two fixed inputs the description-budget scenarios read.
+- `manual-testing-playbook/manual-testing-playbook.md`: eleven operator scenarios across field resolution, budget and version derivation.
+- `changelog/`: the mode's shipped versions, one file per release.

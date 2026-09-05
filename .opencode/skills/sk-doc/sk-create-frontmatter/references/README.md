@@ -7,14 +7,16 @@ trigger_phrases:
   - "frontmatter versioning reference"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.3
+version: 1.0.0.4
 ---
 
 # sk-create-frontmatter References
 
-| Load | When |
-|------|------|
-| [`frontmatter-versioning.md`](frontmatter-versioning.md) | The question is about `version`: its format, its derivation from a changelog anchor, the numstat gate, or the corpus enforcement |
+Router for the `sk-create-frontmatter` reference set. The packet contract at [../SKILL.md](../SKILL.md) is authoritative for when each resource loads.
+
+---
+
+## 1. OVERVIEW
 
 The field reference is the mode's always-loaded resource and lives in `assets/` rather
 than here, because it is a set of copy-paste templates rather than a standard to reason
@@ -25,3 +27,11 @@ The enforcement scripts stay in the hub's shared tier: `frontmatter-version.mjs`
 corpus-gate wrapper, and the fast validator four command workflows call. A post-edit hook
 outside this hub resolves one of them by literal path, so moving them would break a live
 hook. This mode owns the contract, and the shared tier keeps the enforcement.
+
+---
+
+## 2. REFERENCE MAP
+
+| Load | When |
+|------|------|
+| [`frontmatter-versioning.md`](frontmatter-versioning.md) | The question is about `version`: its format, its derivation from a changelog anchor, the numstat gate, or the corpus enforcement |
