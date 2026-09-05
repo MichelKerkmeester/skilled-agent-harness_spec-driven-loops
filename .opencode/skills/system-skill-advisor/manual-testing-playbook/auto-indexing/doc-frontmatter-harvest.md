@@ -33,7 +33,7 @@ Validate that with `SPECKIT_ADVISOR_DOC_TRIGGERS=true` the scan harvests referen
 
 - MCP server built; daemon spawned by a launcher whose environment carries the flag (the launcher forwards only `CHILD_ENV_ALLOWLIST` keys — a daemon predating the flag flip must be respawned via a fresh session, never SIGTERM-recycled).
 - Trusted caller for the scan (`--trusted` on the CLI or a trusted MCP env block).
-- Generated trigger index present at `.opencode/skills/system-spec-kit/data/trigger-index.json` for the negative boundary check.
+- Generated trigger index present at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` for the negative boundary check.
 
 ---
 

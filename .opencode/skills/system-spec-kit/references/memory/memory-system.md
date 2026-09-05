@@ -26,7 +26,7 @@ Two mechanisms, and they answer different questions. A keyed lookup matches a pr
 
 | Component | Location | Purpose |
 |-----------|----------|---------|
-| Trigger index | `data/trigger-index.json` | Committed index over author-declared `trigger_phrases`; the Gate 1 lookup surface |
+| Trigger index | `runtime/data/trigger-index.json` | Committed index over author-declared `trigger_phrases`; the Gate 1 lookup surface |
 | Index generator | `scripts/retrieval/generate-trigger-index.mjs` | Rebuilds the index from spec-doc and skill-doc frontmatter |
 | Index lookup | `scripts/retrieval/lookup-trigger-index.mjs` | Resolves a prompt from a cold Node process; exit `0` hit, `1` miss, `2` broken |
 | Free-text lane | `rg`, per `../retrieval/retrieval-conventions.md` | Finds a phrase anywhere, with no index at all |

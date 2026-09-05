@@ -59,7 +59,7 @@ Issue Detected
 |-------|---------|----------|
 | Missing spec folder | `Folder not found` | Create the packet folder with canonical docs, then run `generate-context.js` to refresh metadata |
 | Lookup returns nothing | Exit `1` from the lookup script | A clean miss. The phrase is not in any document's `trigger_phrases`; fall back to the ripgrep lane |
-| Lookup refuses to run | Exit `2` from the lookup script | Bad invocation or unreadable index. Check the flags, then `ls -l data/trigger-index.json` |
+| Lookup refuses to run | Exit `2` from the lookup script | Bad invocation or unreadable index. Check the flags, then `ls -l runtime/data/trigger-index.json` |
 | Index stale after edits | New `trigger_phrases` not matched | Rerun `scripts/retrieval/generate-trigger-index.mjs` |
 | Wrong script path | `File not found` | Use `.opencode/skills/system-spec-kit/` |
 | Arg format error | Invalid scope | Use the full packet path: `specs/<track>/122-skill-standardization` |
@@ -103,7 +103,7 @@ rg --no-config --json --fixed-strings --ignore-case \
 | Error | Root Cause | Resolution |
 |-------|------------|------------|
 | Exit `1`, empty output | No document declares a matching phrase | Expected behavior for a miss. Use the ripgrep lane, or add the phrase to the owning document's `trigger_phrases` |
-| Exit `2`, `unreadable index` | `data/trigger-index.json` missing or truncated | Regenerate with `scripts/retrieval/generate-trigger-index.mjs` |
+| Exit `2`, `unreadable index` | `runtime/data/trigger-index.json` missing or truncated | Regenerate with `scripts/retrieval/generate-trigger-index.mjs` |
 | Exit `2`, usage error | Flags in the wrong order, or a pattern parsed as a flag | Keep the `--` separator before the prompt |
 | Match set feels arbitrary | Generic phrases in the corpus | Author phrases per `../retrieval/retrieval-conventions.md` §8; generic workflow words pollute every query |
 
@@ -189,7 +189,7 @@ echo "Current: $current_count | Legacy: $((total_count - current_count))"
 **Step 1: Gather Information**
 ```bash
 # Does the index exist, and how old is it?
-ls -l .opencode/skills/system-spec-kit/data/trigger-index.json
+ls -l .opencode/skills/system-spec-kit/runtime/data/trigger-index.json
 
 # Does the phrase resolve at all? Read the exit status, not just the output
 node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "recent work"; echo "exit=$?"
@@ -316,7 +316,7 @@ Phase-folder targets are valid explicit save destinations. If a save lands in th
 
 If the trigger index is missing or corrupted:
 
-1. **Confirm the damage**: `ls -l .opencode/skills/system-spec-kit/data/trigger-index.json`
+1. **Confirm the damage**: `ls -l .opencode/skills/system-spec-kit/runtime/data/trigger-index.json`
 2. **Regenerate**: `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs`
 3. **Verify recovery**: a known phrase resolves with exit `0`
 

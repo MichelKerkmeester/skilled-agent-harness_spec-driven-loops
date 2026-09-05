@@ -387,7 +387,6 @@ The engine resolves feature flags at call time rather than at import, so a long-
 | Embedding and API | startup provider resolution, fail-fast dimension checks, structured fallback metadata |
 | Hooks and Completion | completion-evidence stop hook, directive-lifecycle cadence, spec-gate enforcement |
 
-For the full flag reference and rollback procedures, see `references/workflows/rollback-runbook.md`.
 
 ---
 
@@ -477,7 +476,7 @@ The Gate 1 lookup exits `2`. That is a bad invocation or an unreadable index, ne
 
 ```bash
 node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
-ls -l .opencode/skills/system-spec-kit/data/trigger-index.json
+ls -l .opencode/skills/system-spec-kit/runtime/data/trigger-index.json
 ```
 
 Exit `0` means candidates were found and `1` means none were. If the index file is missing or truncated, regenerate it with `scripts/retrieval/generate-trigger-index.mjs`.
@@ -529,7 +528,7 @@ There is no paraphrase matching to fall back to. Retrieval is lexical.
 | Placeholder check fails | run `check-placeholders.sh` and replace all `[PLACEHOLDER]` values |
 | Stale results after save | rerun `scripts/retrieval/generate-trigger-index.mjs` |
 | Too many near-duplicate results | check that the interference penalty is active in feature flags |
-| Trigger index absent in a fresh clone | it is committed at `data/trigger-index.json`; a missing file means a bad checkout, not a build step |
+| Trigger index absent in a fresh clone | it is committed at `runtime/data/trigger-index.json`; a missing file means a bad checkout, not a build step |
 
 ### Diagnostic Commands
 
@@ -590,7 +589,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[proje
 | Human Voice Rules | the em dash, semicolon and Oxford comma greps return zero prose hits |
 | Link resolution | the link guard reports no failures in this README |
 | Spec folder validation | `validate.sh` on a spec folder exits 0 |
-| Retrieval health | the trigger lookup exits `0` for a known phrase, and `data/trigger-index.json` parses |
+| Retrieval health | the trigger lookup exits `0` for a known phrase, and `runtime/data/trigger-index.json` parses |
 
 ### Scripts That Manage Spec Folders
 
@@ -649,7 +648,6 @@ The manual testing playbook runs every scenario behind these checks.
 | [`references/workflows/rename-pattern.md`](./references/workflows/rename-pattern.md) | mechanical rename workflow and live-vs-historical surface discipline |
 | [`references/workflows/spec-folder-write-recipe.md`](./references/workflows/spec-folder-write-recipe.md) | step-by-step recipe for a spec folder that passes strict validation on the first try |
 | [`references/workflows/spec-folder-authoring-checklist.md`](./references/workflows/spec-folder-authoring-checklist.md) | companion checklist for the Level contract, continuity frontmatter and metadata files |
-| [`references/workflows/rollback-runbook.md`](./references/workflows/rollback-runbook.md) | feature-flag rollback and smoke-test procedures |
 | [`references/validation/validation-rules.md`](./references/validation/validation-rules.md) | validation rule reference, the 46-rule registry is authoritative |
 | [`references/templates/template-guide.md`](./references/templates/template-guide.md) | template usage and composition rules |
 | [`references/config/environment-variables.md`](./references/config/environment-variables.md) | full environment variable reference |

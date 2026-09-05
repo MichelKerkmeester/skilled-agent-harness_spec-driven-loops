@@ -45,7 +45,7 @@ The consumer that used the aggregate to short-circuit a vector query was the
 memory server, and it is gone. What survives is the producer: `description.json`
 is generated per folder and read directly by the tools that need a packet's
 identity, and by the trigger-index generator, which folds each packet's declared
-`trigger_phrases` into `data/trigger-index.json`. Prompt-to-packet routing now
+`trigger_phrases` into `runtime/data/trigger-index.json`. Prompt-to-packet routing now
 runs through that index rather than through description-based query routing.
 
 ### Quality Gates & Validation

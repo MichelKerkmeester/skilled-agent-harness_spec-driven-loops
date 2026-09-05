@@ -63,7 +63,7 @@ Command transcript; the ripgrep invocations and the trigger-index lookup output 
 
 ### Failure Triage
 
-Verify `/speckit:resume` command routing against `.opencode/commands/speckit/resume.md`; confirm the anchor names the workflow reads match the packet templates; re-run the ripgrep recipe by hand to see whether the miss is the recipe or the corpus; check `data/trigger-index.json` is present and current when the trigger lane returns nothing
+Verify `/speckit:resume` command routing against `.opencode/commands/speckit/resume.md`; confirm the anchor names the workflow reads match the packet templates; re-run the ripgrep recipe by hand to see whether the miss is the recipe or the corpus; check `runtime/data/trigger-index.json` is present and current when the trigger lane returns nothing
 
 ---
 

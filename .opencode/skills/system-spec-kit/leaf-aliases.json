@@ -211,11 +211,6 @@
   },
   {
     "workflowMode": "system-spec-kit",
-    "leafResourceId": "references/workflows/rollback-runbook.md",
-    "diskPath": "references/workflows/rollback-runbook.md"
-  },
-  {
-    "workflowMode": "system-spec-kit",
     "leafResourceId": "references/workflows/spec-folder-authoring-checklist.md",
     "diskPath": "references/workflows/spec-folder-authoring-checklist.md"
   },

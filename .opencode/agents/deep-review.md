@@ -418,6 +418,7 @@ Do not trust a dispatch-provided iteration number until it matches the JSONL-der
 - Strategy: use Edit tool to modify specific sections; never use Write to replace the whole file.
 - Iteration file: create a new file; it must not already exist.
 - Review target files are READ-ONLY.
+- Resolve every `review/...` path against the artifact directory the dispatch names (the spec folder's `review/`, or the lineage directory under `review/lineages/<label>/` when dispatched by the fan-out runner), never against the process working directory: a file written at a cwd-relative `iterations/` is outside the write scope and is reverted by containment.
 - Only write to `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, and the write-once `review/deltas/iter-NNN.jsonl`; the `review/deep-review-state.jsonl` projection is refreshed by the gateway, never written directly.
 - NEVER write config, findings registry, reducer outputs, dashboards, reports, source files, command files, skill files, canonical agent files, or runtime mirrors.
 - Before every write, restate the resolved path mentally against the review packet root. If it is outside the packet, stop.

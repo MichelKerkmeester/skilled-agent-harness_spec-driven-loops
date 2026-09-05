@@ -81,14 +81,13 @@ system-spec-kit/
 │   ├── lib/                # Validation, graph metadata, description, continuity, resume
 │   ├── hooks/              # Per-runtime hook adapters and the shared spec-gate core
 │   ├── core/               # Runtime path and config resolution
-│   ├── configs/            # Environment-validated config and weight data
+│   ├── data/               # Committed trigger index the Gate 1 lookup reads
 │   ├── scripts/            # Build finalizer, metadata repair, test runners
 │   ├── tests/              # Vitest coverage
 │   └── stress-test/        # Opt-in load and contention suites
 ├── shared/                 # Neutral modules importable by scripts + engine
 ├── templates/              # Level contract and document templates
 ├── references/             # Workflow contracts and playbooks
-├── data/                   # Generated trigger index
 └── feature-catalog/        # Capability inventory
 ```
 
@@ -118,7 +117,7 @@ Spec-kit treats canonical spec documents as the durable continuity record. The g
 1. AI composes structured JSON describing session context.
 2. `generate-context.js` routes content into the right canonical doc (`implementation-summary.md`, `decision-record.md`, `handover.md`) and refreshes `description.json` + `graph-metadata.json`.
 3. There is no second write lane. `generate-context.js` is the only writer of `_memory.continuity`, and it keeps the atomic same-directory update and lock semantics that made a separate indexing call unnecessary.
-4. Regenerate `data/trigger-index.json` when a document's `trigger_phrases` changed; nothing else is indexed.
+4. Regenerate `runtime/data/trigger-index.json` when a document's `trigger_phrases` changed; nothing else is indexed.
 
 **Key modules:**
 

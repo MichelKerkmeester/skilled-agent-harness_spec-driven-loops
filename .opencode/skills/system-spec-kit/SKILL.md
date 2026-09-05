@@ -413,7 +413,7 @@ Retrieval is file-based and needs no running service. Gate 1 resolves a prompt a
 
 Recovery walks the continuity ladder rather than inferring a session: `handover.md`, then the `_memory.continuity` frontmatter block, then packet-first spec docs, then the bounded context recipe. `/speckit:resume` owns that ladder. Saves go through `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, invoked by `/memory:save`; the writer updates the packet's continuity surfaces in place and there is no indexing hand-off afterwards.
 
-Regenerate the index with `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` after spec-doc frontmatter changes. The artifact at `data/trigger-index.json` is committed, so a fresh clone answers Gate 1 before anything is built.
+Regenerate the index with `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` after spec-doc frontmatter changes. The artifact at `runtime/data/trigger-index.json` is committed, so a fresh clone answers Gate 1 before anything is built.
 
 **Declared loss.** Semantic paraphrase matching, vector and BM25 fusion, decay scoring, access tracking, session dedup and causal traversal are gone and have no file-based successor. A lookup that matches nothing returns nothing; callers must say so plainly rather than degrading to a guess. What `trigger_phrases` never declared, the index cannot find — see `references/retrieval/retrieval-conventions.md` §8 for what belongs in that field.
 

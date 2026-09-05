@@ -58,11 +58,11 @@ This agent is LEAF-only and read-only. Nested sub-agent dispatch and file mutati
 | `List` | Codebase | Directory listing | Inspect known directories without guessing file names |
 | `Glob` | Codebase | File discovery by pattern | Find files by name, extension, or scoped path pattern |
 | `Grep` | Codebase | Exact text/code pattern search | Find symbols, literals, function calls, imports, or known strings |
-| `Read` on `.opencode/skills/system-spec-kit/data/trigger-index.json` | Retrieval | Trigger phrase matching | Surface packets whose authors declared a phrase matching the request |
+| `Read` on `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` | Retrieval | Trigger phrase matching | Surface packets whose authors declared a phrase matching the request |
 | `Grep` with the recipes in `retrieval-conventions.md` | Retrieval | Free-text evidence over spec docs and skill docs | Find a phrase anywhere in the corpus when continuity leaves gaps |
 | `Glob` on `specs/<track>/<packet>/` | Retrieval | Packet inventory | List the documents a relevant spec folder actually holds |
 
-**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Bash is denied for this agent, so run the ripgrep recipes from `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` through the Grep tool and read `.opencode/skills/system-spec-kit/data/trigger-index.json` directly. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Bash is denied for this agent, so run the ripgrep recipes from `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` through the Grep tool and read `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` directly. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Denied Capability Guard
 
@@ -154,7 +154,7 @@ Every exploration uses the layers needed for a complete answer within scope. If 
 - Inspect `handover.md` when present; it is the first continuity input for interrupted work.
 - Read `_memory.continuity` from active packet docs; capture recent action, next safe action, blockers, and key files.
 - Read relevant packet docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) for canonical state.
-- Read `.opencode/skills/system-spec-kit/data/trigger-index.json` and match the request against its declared trigger phrases to surface prior work.
+- Read `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` and match the request against its declared trigger phrases to surface prior work.
 - Run a ripgrep recipe from `retrieval-conventions.md` through the Grep tool only when packet-local continuity leaves gaps or broader history is needed.
 
 **Output**: Packet-local continuity summary plus matching packets with titles, trigger matches, and brief findings.

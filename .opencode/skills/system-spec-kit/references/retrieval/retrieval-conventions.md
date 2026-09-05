@@ -32,7 +32,7 @@ Retrieval splits into a keyed lane, a free-text lane and a concept lane, and no 
 
 | Lane | Mechanism | Used for |
 |------|-----------|----------|
-| **Gate 1 trigger lookup** | The generated index at `.opencode/skills/system-spec-kit/data/trigger-index.json`, read by `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs "<prompt>"` | Matching a prompt against author-declared `trigger_phrases` |
+| **Gate 1 trigger lookup** | The generated index at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`, read by `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs "<prompt>"` | Matching a prompt against author-declared `trigger_phrases` |
 | **Free-text evidence** | The ripgrep recipes in Section 2 | Finding a phrase anywhere in the corpus, with no index at all |
 
 The three answer different questions. Prompt-to-declared-phrase matching is a keyed lookup over an author-controlled field. Grepping prose is a scan. Concept search is a ranked retrieval over an embedded index, and it returns a passage that no literal query would have reached.

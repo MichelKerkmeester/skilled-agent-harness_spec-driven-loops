@@ -115,10 +115,10 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 | `Grep` | Pattern search | Finding relevant code patterns |
 | `Glob` | File discovery | Locating files for context |
 | `WebFetch` | External resources | Fetching documentation and references when current context is insufficient |
-| `Read` on `.opencode/skills/system-spec-kit/data/trigger-index.json` | Trigger index lookup | Supplemental context surfacing after packet continuity is checked |
+| `Read` on `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` | Trigger index lookup | Supplemental context surfacing after packet continuity is checked |
 | `Grep` with the ripgrep recipes in `retrieval-conventions.md` | Free-text corpus evidence | Finding older decisions and patterns after canonical packet sources are exhausted |
 
-**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Bash is denied for this agent, so run the ripgrep recipes from `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` through the Grep tool and read `.opencode/skills/system-spec-kit/data/trigger-index.json` directly. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Bash is denied for this agent, so run the ripgrep recipes from `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` through the Grep tool and read `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` directly. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 > **Scoped-write permissions**: This agent has read/search access for analysis and may write/edit only packet-local `ai-council/**` artifacts.
 > Bash and Patch remain denied. Any write outside `ai-council/**` is an `OUT_OF_SCOPE_WRITE` violation.

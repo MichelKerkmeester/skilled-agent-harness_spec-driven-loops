@@ -254,7 +254,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 **Disk breakdown:**
 - MCP servers: ~500MB
 - HF Local fallback model (nomic-embed-text-v1.5, ONNX q8): ~140MB (downloaded only if the HF Local fallback is used)
-- Trigger index (`.opencode/skills/system-spec-kit/data/trigger-index.json`): ~4MB, regenerated from spec-doc frontmatter
+- Trigger index (`.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`): ~4MB, regenerated from spec-doc frontmatter
 
 **Quick Verification:**
 ```bash
@@ -559,7 +559,7 @@ Exit `0` means candidates were found, `1` means none were, and `2` means a bad i
 node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
 ```
 
-The generated artifact lives at `.opencode/skills/system-spec-kit/data/trigger-index.json` and is committed, so a fresh clone answers Gate 1 before anything is built.
+The generated artifact lives at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` and is committed, so a fresh clone answers Gate 1 before anything is built.
 
 **Free-text retrieval** uses the literal ripgrep recipes in [`retrieval-conventions.md`](../skills/system-spec-kit/references/retrieval/retrieval-conventions.md), scoped by track and packet. Copy the flags rather than paraphrasing them: `--no-config` and the two exclusion globs each close a specific failure.
 
@@ -569,13 +569,13 @@ The generated artifact lives at `.opencode/skills/system-spec-kit/data/trigger-i
 
 ### Validation: `spec_retrieval_check`
 
-- [ ] Trigger index exists at `.opencode/skills/system-spec-kit/data/trigger-index.json`
+- [ ] Trigger index exists at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`
 - [ ] The lookup script exits `0` for a known trigger phrase
 - [ ] `rg --version` reports ripgrep 14 or newer
 
 **Quick Verification:**
 ```bash
-test -f .opencode/skills/system-spec-kit/data/trigger-index.json && \
+test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json && \
   node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
     --json -- "spec folder" >/dev/null && echo "✅ PASS" || echo "❌ FAIL"
 ```
@@ -677,14 +677,14 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 
 - [ ] Code Mode: npx utcp-mcp --version responds
 - [ ] Skill Advisor (`system_skill_advisor`): configured in opencode.json
-- [ ] Trigger index present at `.opencode/skills/system-spec-kit/data/trigger-index.json`
+- [ ] Trigger index present at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`
 - [ ] (Optional) Chrome DevTools: bdg --version responds
 
 **Quick Verification:**
 ```bash
 grep -q '"code_mode"' opencode.json && \
   grep -q '"system_skill_advisor"' opencode.json && \
-  test -f .opencode/skills/system-spec-kit/data/trigger-index.json && \
+  test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json && \
   echo "✅ PASS" || echo "❌ FAIL"
 ```
 
@@ -941,7 +941,7 @@ BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$
 | ------------------------ | ------------------------------------------------------ | ---------------------------------------------------- |
 | **Code Mode**            | `npm uninstall -g utcp-mcp`                            | Remove from opencode.json + delete .utcp_config.json |
 | **Chrome DevTools CLI**  | `npm uninstall -g browser-debugger-cli`                |                                                      |
-| **Trigger index**        | `rm .opencode/skills/system-spec-kit/data/trigger-index.json`      | Regenerate with `generate-trigger-index.mjs` |
+| **Trigger index**        | `rm .opencode/skills/system-spec-kit/runtime/data/trigger-index.json`      | Regenerate with `generate-trigger-index.mjs` |
 | **Skills**               | `rm -rf .opencode/skills/<skill-name>/`                 | Remove specific skill folder                         |
 | **All Skills**           | `rm -rf .opencode/skills/`                              | Removes all skills                                   |
 
@@ -1194,7 +1194,7 @@ npx utcp-mcp
 ```bash
 # Regenerate it; the artifact is committed, so this is also how you repair a bad merge
 node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
-ls -l .opencode/skills/system-spec-kit/data/trigger-index.json
+ls -l .opencode/skills/system-spec-kit/runtime/data/trigger-index.json
 ```
 
 ### Embeddings not working
