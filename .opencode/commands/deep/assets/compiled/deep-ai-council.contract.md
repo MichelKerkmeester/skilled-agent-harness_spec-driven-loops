@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
-      "sha256": "3d2b44f9720ca94bd73ff7a59fe8a8bd7f6ff99f2a7fc57f34dd6384a2fbb453",
+      "sha256": "52fe1c7a86dc032cd009d7b9daef7c0b45631f9654b38cda6b3b3d7f6ee085e1",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-auto.yaml",
-      "sha256": "ef8f1ae6dec7d2679abd1f88a0c5afe40b1f5d49feb9a929a033ff61cd2dc7f6",
+      "sha256": "614ec1afcea27214179473ab69db01c8da2da3b420251672eac530aa69ba6e63",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
-      "sha256": "e24d211c46f4f16d06857e41ef7be39852676048b53374248cd8cae94c1dced8",
+      "sha256": "0d153a90f63732d741f097a250406af992b083b107f2607ec8ea4e44059ee7b9",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "d57a5c5d592a4ed545d4752745b207f8addd23677f0e344a184bf08be7990c91",
+      "sha256": "ffc358364228fe77865e4bdea999d2f597bba456d08c594ebb2c3766311a705d",
       "section": "full"
     },
     {
@@ -112,7 +112,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
-      "sha256": "f56c22bba055e9daaa4b3f5d76aa461ba52efb5abe20e2352a75662d45cbb666",
+      "sha256": "88800794f9b9b053ae067bfcb42201b095d693c3f218765064f57c92735c669b",
       "section": "full"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "path": ".opencode/agents/ai-council.md",
-      "sha256": "6e1a0e9a7d5a4b425c853586b90f486c8cee9f77c9478685920a32cc9c3b6df7",
+      "sha256": "70789a46a1026a3d33d34e9ac20723daf185e80da2580319fe87cecb19b37a20",
       "section": "full"
     },
     {

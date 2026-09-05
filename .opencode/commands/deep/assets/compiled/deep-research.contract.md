@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "bd549eb4257c8e7b50297746784669dc9ce1cc3df648a55e2d04996b0129da57",
+      "sha256": "8fd04bcd8513cd713873443ad6032df413fac0583bf167574ca524c0e02d2a27",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "e9f4469b2fbfe5fa3a76d8999011d93e4f227b87457e1782b948d2714d844991",
+      "sha256": "300c04a3cf08f5730c04f9e8eebfefd0c94a89de4d0bbde45e56183a2f7eb8bc",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "5a1813ad041c1555a67f3556df02c7b6f5d898154c87a395ff9ba14d435e9b3b",
+      "sha256": "b64bed55c835234371af3acf10417e249a723d7d4aa6e3aa95f74380b60d0b5c",
       "section": "full"
     },
     {
@@ -42,12 +42,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "e22fd3cecc356aa598a39da19f4737f7e8ffe773e1934ca267e0a8676ede7af9",
+      "sha256": "3c977ba60820655b8aacc0e8001a1777118c7b930735a352d2d278f9afbeb972",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "c513808d642da55b828b03af285b34f187cbda44ddc19b2a9c9c06839769fc64",
+      "sha256": "d518420314ff5899544843bf9528f8ebb7f1a8f375e2f7e223c3495354e1ff00",
       "section": "full"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
-      "sha256": "364d3ad811d3f352ab9c149d12d73aeb9c70e5174e8a0edbdb6fa312d2206fa4",
+      "sha256": "5b22fdc84bc64ca6bd3ddab185f9d62bfd5e402057adb064d40eba3c4a455b6c",
       "section": "full"
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "path": ".opencode/agents/deep-research.md",
-      "sha256": "cf1d76fc324e5872af951f3789ee8f4f531fade952d31b5adc5b12b2960112bf",
+      "sha256": "c3bf110fda4c5ddde30dfd796c13a1ca81005b6ec5f635ecad730bbc74a43b1f",
       "section": "full"
     },
     {
