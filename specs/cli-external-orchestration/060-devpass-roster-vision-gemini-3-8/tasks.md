@@ -146,6 +146,12 @@ The reason is the measurement, not a policy change: on three solid-colour probes
 - [x] T029 Drop the row from both CLI catalogs and the pi operator doc
 - [x] T030 Correct every count the removal invalidates [evidence: zero remaining "five" claims across the roster docs; the image-capable statement now names the two entries that passed their round-trip]
 - [x] T031 Confirm no residue [evidence: zero `vision-exp` or `Flash Vision` references on any live surface; four rows in each catalog]
+- [x] T032 Reinstated on price evidence: opencode-go charges the same for both ($0.22 in / $0.66 out either way) and DevPass is flat-price, so the image capability costs nothing. Vision now replaces plain flash as the catalogued entry AND the default on cli-opencode and the pi fan-out
+- [x] T033 Extend the max-pin regex to `deepseek-v4-flash(-latest|-vision-exp)?` [evidence: without this the vision id silently stopped being pinned — the identical failure class the GLM packet fixed; the id now matches while `-max` and Gemini stay excluded]
+- [x] T034 Swap both roster pairs, both defaults, and the provider map [evidence: `PI_DEFAULT_MODEL` in the TS source AND its separate copy in the CJS mirror, which the mirror-parity test caught]
+- [x] T035 Update the guard suites in the same step [evidence: 208/208, including the test's own pin predicate, which had a second copy of the regex]
+- [x] T036 Keep `cline-pass` on plain flash [evidence: `opencode models cline-pass` lists no vision id, so the swap is impossible there and the exception is documented]
+- [x] T037 Verify what could be verified [evidence: `VIS-PI-OK` live through pi; the OpenRouter vision id accepted by the live API. opencode-go could NOT be dispatch-tested — the account is out of monthly quota, so its row says list-verified]
 <!-- /ANCHOR:phase-4 -->
 
 ---

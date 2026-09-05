@@ -1971,7 +1971,7 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // `-max` uid bakes the tier into the id and is not matched. Duplicated as a plain function
 // so the pin lands inside the synchronous command builders below.
 function isFlashMaxPinnedModel(model) {
-  return /(^|\/)(deepseek-v4-flash(-latest)?|glm-5\.3-flash)$/.test(model);
+  return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|glm-5\.3-flash)$/.test(model);
 }
 
 // Effective reasoning effort after the Flash top-tier pin.
@@ -2064,7 +2064,7 @@ const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 // command construction fail-closed without importing the TypeScript module.
 const PI_ALLOWED_MODELS = new Set([
   // Bare DeepSeek V4 Flash literal is opencode-go-fronted on pi (direct DeepSeek API retired).
-  'deepseek-v4-flash',
+  'deepseek-v4-flash-vision-exp',
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
@@ -2074,7 +2074,7 @@ const PI_ALLOWED_MODELS = new Set([
   // OpenRouter carries DeepSeek V4 Flash, GLM-5.3-Flash, and Gemini 3.7 Flash; each id keeps
   // its upstream provider path so `${provider}/${model}` composes the full
   // openrouter/<upstream>/<model> selector. No other model routes through OpenRouter.
-  'deepseek/deepseek-v4-flash-latest',
+  'deepseek/deepseek-v4-flash-vision-exp',
   'z-ai/glm-5.3-flash',
   'google/gemini-3.8-flash',
   // opencode-go also fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
@@ -2083,7 +2083,7 @@ const PI_ALLOWED_MODELS = new Set([
   // literal maps to one provider, so the Cline route is direct-dispatch only and absent here.
   'glm-5.3-flash',
 ]);
-const PI_DEFAULT_MODEL = 'deepseek-v4-flash';
+const PI_DEFAULT_MODEL = 'deepseek-v4-flash-vision-exp';
 
 function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isCursorBinaryAvailable(options.env || process.env)) {
@@ -2269,7 +2269,7 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 // model. Hand-duplicated as a plain literal so command construction stays
 // synchronous and unit-testable, matching this file's per-kind convention.
 const PI_MODEL_PROVIDERS = new Map([
-  ['deepseek-v4-flash', 'opencode-go'],
+  ['deepseek-v4-flash-vision-exp', 'opencode-go'],
   ['minimax-m3', 'minimax'],
   ['gpt-5.6-luna', 'openai-codex'],
   ['gpt-5.6-sol', 'openai-codex'],
@@ -2279,7 +2279,7 @@ const PI_MODEL_PROVIDERS = new Map([
   // OpenRouter fronts DeepSeek V4 Flash `-latest`, GLM-5.3-Flash, and Gemini 3.7 Flash. Each
   // model id already carries its upstream provider path, so `${provider}/${model}` yields
   // the 3-segment openrouter/<upstream>/<model> selector Pi's OpenRouter roster expects.
-  ['deepseek/deepseek-v4-flash-latest', 'openrouter'],
+  ['deepseek/deepseek-v4-flash-vision-exp', 'openrouter'],
   ['z-ai/glm-5.3-flash', 'openrouter'],
   ['google/gemini-3.8-flash', 'openrouter'],
   // opencode-go fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}` yields

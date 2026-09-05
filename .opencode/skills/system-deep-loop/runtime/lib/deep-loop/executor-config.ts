@@ -182,8 +182,10 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
 export const PI_SUPPORTED_MODELS = [
   // Bare DeepSeek V4 Flash literal is opencode-go-fronted on pi (the direct DeepSeek
   // API provider was retired from the roster); `PI_MODEL_PROVIDERS` in fanout-run.cjs
-  // holds the provider mapping for it.
-  'deepseek-v4-flash',
+  // holds the provider mapping for it. The vision variant carries the same price as
+  // plain flash on this route and additionally accepts images, so it is the one
+  // catalogued; nothing is lost by preferring it.
+  'deepseek-v4-flash-vision-exp',
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
@@ -192,10 +194,10 @@ export const PI_SUPPORTED_MODELS = [
   'qwen3.8-max',
   // OpenRouter carries three models here, each keeping its upstream provider path so
   // `${provider}/${model}` composes the full three-segment OpenRouter selector:
-  // DeepSeek V4 Flash (openrouter/deepseek/deepseek-v4-flash-latest), GLM-5.3-Flash
+  // DeepSeek V4 Flash Vision (openrouter/deepseek/deepseek-v4-flash-vision-exp), GLM-5.3-Flash
   // (openrouter/z-ai/glm-5.3-flash), and Gemini 3.8 Flash (openrouter/google/gemini-3.8-flash).
   // No other model routes through OpenRouter.
-  'deepseek/deepseek-v4-flash-latest',
+  'deepseek/deepseek-v4-flash-vision-exp',
   'z-ai/glm-5.3-flash',
   'google/gemini-3.8-flash',
   // opencode-go also fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
@@ -208,7 +210,7 @@ export const PI_SUPPORTED_MODELS = [
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 
 /** Stable rotation default; mirrors the cli-opencode default (`opencode-go/deepseek-v4-flash`) as the bare opencode-go-fronted literal. */
-export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4-flash';
+export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4-flash-vision-exp';
 
 /** True when `model` is in the enforced cli-pi allowlist. */
 export function isPiModelAllowed(model: string): model is PiSupportedModel {
@@ -237,7 +239,7 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  * bakes the tier into the id and is intentionally not matched here.
  */
 export function isFlashMaxPinnedModel(model: string): boolean {
-  return /(^|\/)(deepseek-v4-flash(-latest)?|glm-5\.3-flash)$/.test(model);
+  return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|glm-5\.3-flash)$/.test(model);
 }
 
 /** Effective reasoning effort after the Flash top-tier pin. */

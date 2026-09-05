@@ -63,7 +63,7 @@ Routes four models through the operator's **DevPass** subscription at LLM Gatewa
 ### Where It Lives
 
 - Provider block: `.pi/models.json` under `providers["llmgateway"]`, with four models
-- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4-flash"`, `"llmgateway/glm-5.3-flash"`, `"llmgateway/gpt-5.6-luna"`, `"llmgateway/gemini-3.8-flash"`
+- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4-flash-vision-exp"`, `"llmgateway/glm-5.3-flash"`, `"llmgateway/gpt-5.6-luna"`, `"llmgateway/gemini-3.8-flash"`
 - Not a default: `defaultProvider` stays `cline-pass`
 
 **Model ids are BARE, and the pi reference is two-segment** — `llmgateway/<id>`, e.g. `llmgateway/deepseek-v4-flash`. This is the opposite of cline-pass above, and copying that block's slashed form is the easy mistake: see the gotcha below.
@@ -71,7 +71,7 @@ Routes four models through the operator's **DevPass** subscription at LLM Gatewa
 ### Dispatch
 
 ```bash
-pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4-flash --thinking max
+pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4-flash-vision-exp --thinking max
 ```
 
 Swap the id for `glm-5.3-flash`, `gpt-5.6-luna` or `gemini-3.8-flash`.
@@ -82,7 +82,7 @@ All four are reasoning models, and their ladders differ, so each carries its own
 
 | Model | Ceiling | Notes |
 |-------|---------|-------|
-| `deepseek-v4-flash` | `max` | Full ladder `minimal`→`max` |
+| `deepseek-v4-flash-vision-exp` | `max` | Sparse ladder — only `low`, `high`, `max`. **Image-capable**, and the same effective cost as plain flash under a flat-price plan. Reads images unreliably: 1 correct of 3 probes |
 | `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh`, and unlike Cline, which tops out at `xhigh` with no `max` |
 | `gpt-5.6-luna` | `max` | Full ladder minus `minimal`, so the active range here is `low`→`max`. **Image-capable, verified** by a real image round-trip on 2026-09-04. The provider catalog reports **no `temperature` support**, so do not pass one — pi's own entry declares no temperature key either way |
 | `gemini-3.8-flash` | `high` | No `xhigh`, no `max` — requesting either sends a tier the model does not have |
@@ -93,9 +93,9 @@ No provider-level `compat.thinkingFormat` is set. The block spans four model fam
 
 ### The Gotcha: Bare Ids, Not Slashed
 
-The LLM Gateway API takes the **bare** model id and rejects a provider-prefixed one. Confirmed against the live API: `"model": "deepseek-v4-flash"` returns `200`, while `"model": "llmgateway/deepseek-v4-flash"` returns `400 "Provider llmgateway does not support model deepseek-v4-flash"`. That is the exact inverse of the cline-pass rule directly above, so the two blocks must not be copied into each other. As with Cline, the failure hides from `--list-models` and `pi auth check` and appears only on a real dispatch.
+The LLM Gateway API takes the **bare** model id and rejects a provider-prefixed one. Confirmed against the live API: `"model": "deepseek-v4-flash-vision-exp"` returns `200`, while `"model": "llmgateway/deepseek-v4-flash-vision-exp"` returns `400`. That is the exact inverse of the cline-pass rule directly above, so the two blocks must not be copied into each other. As with Cline, the failure hides from `--list-models` and `pi auth check` and appears only on a real dispatch.
 
-The gateway rewrites the id upstream — a `deepseek-v4-flash` request comes back reporting `gonka24/deepseek-v4-flash`, GLM as `zai/glm-5.3-flash`, Gemini as `google-vertex/gemini-3.8-flash`. That upstream name is informational; never send it.
+The gateway rewrites the id upstream — a `deepseek-v4-flash-vision-exp` request comes back reporting `deepseek/deepseek-v4-flash-vision-exp`, GLM as `zai/glm-5.3-flash`, Gemini as `google-vertex/gemini-3.8-flash`. That upstream name is informational; never send it.
 
 ---
 
@@ -135,7 +135,7 @@ For llmgateway:
 ```bash
 pi --list-models | grep llmgateway
 # real round-trip (needs a key) — proves each bare id is accepted:
-pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4-flash --thinking max --mode text
+pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4-flash-vision-exp --thinking max --mode text
 pi -p "reply OK" --provider llmgateway --model llmgateway/gemini-3.8-flash --thinking high --mode text
 ```
 

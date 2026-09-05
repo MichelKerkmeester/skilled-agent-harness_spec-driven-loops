@@ -171,9 +171,9 @@ The one-shot pre-flight bash, the per-provider decision trees, the user-facing p
 
 ### Default Invocation (Skill Default)
 
-**Default model + variant + format + dir**: `opencode-go/deepseek-v4-flash` · `--variant max` · `--format json` · `--dir <repo-root>` (pinned to avoid CWD ambiguity). The Go gateway fronts the flash model at its max thinking tier — subsidized 2x-usage reasoning for routine dispatches (the direct DeepSeek API provider was retired).
+**Default model + variant + format + dir**: `opencode-go/deepseek-v4-flash-vision-exp` · `--variant max` · `--format json` · `--dir <repo-root>` (pinned to avoid CWD ambiguity). The Go gateway fronts the flash model at its max thinking tier — subsidized 2x-usage reasoning for routine dispatches (the direct DeepSeek API provider was retired).
 
-Use `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root> "<prompt>"`.
+Use `opencode run --model opencode-go/deepseek-v4-flash-vision-exp --variant max --format json --dir <repo-root> "<prompt>"`.
 
 > **The `--agent` flag (read this):** Do NOT pass `--agent` on a top-level `opencode run` — current opencode treats named agents like `general` as **subagents** and rejects them at the top level, so `--agent general` fails outright. The default agent runs when `--agent` is omitted, which is correct for almost every dispatch. **To target a specific agent profile, describe the role in the prompt body instead** (e.g. open with "Act as a code-review agent: …"); only pass `--agent <name>` after confirming acceptance via `opencode run --help` on the installed version.
 
@@ -191,7 +191,7 @@ Core flags: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, continu
 
 ### Model Selection
 
-Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default: `opencode-go/deepseek-v4-flash --variant max` (Go gateway; flash is max-tier-pinned).
+Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default: `opencode-go/deepseek-v4-flash-vision-exp --variant max` (Go gateway; flash is max-tier-pinned).
 
 **Seven providers are reachable:** `opencode-go` (default), `openai` (the GPT-5.6 sol/luna grid), `openrouter`, `cline-pass` (Cline Pass), `llmgateway` (**DevPass**, the operator's flat-price LLM Gateway plan), `minimax` and `xiaomi`. Which models each one carries, their thinking ceilings, and their per-provider caveats live in [references/providers-and-models.md](references/providers-and-models.md) — that file is the roster, and this one deliberately does not restate it, because two copies of a model list is how the two disagree.
 
@@ -237,7 +237,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 
 1. Verify OpenCode CLI is installed before first invocation; confirm version baseline against v1.3.17 (drift handling per `references/cli-reference.md` §9).
 2. **Run the self-invocation guard before dispatch** (ADR-001): Layer 1 env-var lookup for any `OPENCODE_*`, Layer 2 process-ancestry probe for `opencode` parent, Layer 3 `~/.opencode/state/<id>/lock` probe. Trip on ANY positive — refuse unless prompt has explicit parallel-session keywords.
-3. Pin model + variant + format + dir explicitly — **no `--agent`** (see the Default Invocation note: current opencode rejects a top-level `--agent general`; put any agent-profile request in the prompt body). Default: `--model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root>`. Honor user overrides verbatim, checking the id against the roster in [references/providers-and-models.md](references/providers-and-models.md) rather than against memory — each provider allows a specific set and a specific id shape, and both are recorded there.
+3. Pin model + variant + format + dir explicitly — **no `--agent`** (see the Default Invocation note: current opencode rejects a top-level `--agent general`; put any agent-profile request in the prompt body). Default: `--model opencode-go/deepseek-v4-flash-vision-exp --variant max --format json --dir <repo-root>`. Honor user overrides verbatim, checking the id against the roster in [references/providers-and-models.md](references/providers-and-models.md) rather than against memory — each provider allows a specific set and a specific id shape, and both are recorded there.
 4. Pass `--format json` unless the calling AI explicitly wants formatted output — JSON event stream is what external runtimes parse incrementally.
 5. **Append `</dev/null` to every non-interactive `opencode run` invocation** that redirects stdout and/or stderr to files OR runs inside `while read` loops. opencode v1.14.39 reads stdin at startup before session creation; without explicit closed stdin, automation hangs forever at 0% CPU after the `+60s service=snapshot prune=7.days cleanup` log line. Position: AFTER the prompt positional argument, BEFORE the `> stdout 2> stderr` redirects. Foreground `| tail` happens to provide closed stdin (pipe stage upstream is empty) and accidentally bypasses the bug, but `> stdout.log 2> stderr.log` does not. The 9-character `</dev/null` redirect provides immediate EOF on stdin, unblocking the dispatch. **DO NOT auto-kill external operator-owned opencode sessions** when sweeping orphans between dispatches; exclude `opencode run` from pkill (per 2026-05-23 operator directive captured in memory `feedback_proactive_orphan_cleanup.md`). See `references/integration-patterns.md` §6 + memory `feedback_opencode_run_requires_dev_null_stdin.md` + CHANGELOG-2026-05-08-tool-name-regex-fix.md §Fix 4.
 6. **Pass the spec folder to the dispatched session** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the dispatched session cannot answer Gate 3 interactively in non-interactive `run` mode.
@@ -282,7 +282,7 @@ OpenCode-specific Memory Epilogue template: see [assets/prompt-templates.md](./a
 
 Example invocation:
 ```bash
-printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin [spec-folder]
+printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin [spec-folder]
 ```
 
 ---
@@ -357,6 +357,6 @@ Key integrations:
 - **Gate 2**: Skill routing via the Skill Advisor Hook (or `skill_advisor.py` fallback)
 - **Tool Routing**: Per AGENTS.md Section 6 decision tree
 - **Continuity**: Context preserved by `/speckit:save`, which writes through `generate-context.js`
-- **Validation**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` for spec-folder workflows
+- **Validation**: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` for spec-folder workflows
 
 **Tool roles**: Bash dispatches the CLI; Read/Glob/Grep validate output and probe `~/.opencode/state/` for session locks.

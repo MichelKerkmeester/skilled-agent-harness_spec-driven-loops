@@ -48,18 +48,18 @@
       "apiKey": "${LLMGATEWAY_API_KEY}",
       "models": [
         {
-          "id": "deepseek-v4-flash",
-          "name": "DeepSeek V4 Flash",
+          "id": "deepseek-v4-flash-vision-exp",
+          "name": "DeepSeek V4 Flash Vision",
           "reasoning": true,
           "contextWindow": 1050000,
           "maxTokens": 384000,
           "thinkingLevelMap": {
-            "minimal": "minimal",
+            "minimal": null,
             "low": "low",
-            "medium": "medium",
+            "medium": null,
             "high": "high",
             "max": "max",
-            "xhigh": "xhigh"
+            "xhigh": null
           }
         },
         {

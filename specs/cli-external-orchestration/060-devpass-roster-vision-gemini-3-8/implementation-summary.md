@@ -54,7 +54,11 @@ Six workstreams that all reduce to one thing: every model fact the CLI hub state
 
 **Vision is documented from measurement, not from a flag, and the measurement removed a model.** A generated solid-colour PNG was put through every image-capable entry: Luna and Gemini 3.8 named the colour correctly, DeepSeek V4 Flash Vision got it right once in three tries. `attachment: true` was never evidence that a model reads what it is sent.
 
-That third result ended the entry. The vision variant was withdrawn from the roster on 2026-09-05, leaving plain `deepseek-v4-flash`; two image-capable models remain, both of which passed. The probe was built to confirm a capability and instead retired one, which is the only reason it was worth running.
+That third result first retired the entry, and a price check then reinstated it. opencode-go charges identically for plain flash and the vision variant ($0.22 in / $0.66 out either way), and DevPass is flat-price, so the image capability is free on both routes. A model that reads images unreliably is still strictly better than one that cannot accept them at all when neither costs more, so vision replaced plain flash as the catalogued entry and the hub default, with the unreliability recorded on the row rather than hidden.
+
+`cline-pass` is the one route that keeps plain flash, because Cline publishes no vision id at all.
+
+The swap exposed two copies of the same fact, which is the recurring shape of every defect this packet found: `PI_DEFAULT_MODEL` exists in the TypeScript source *and* separately in the CJS mirror, and the max-pin regex exists in both runtime files *and* a third time inside the test's own predicate. The mirror-parity test caught the first; the second only surfaced because the pin quietly stopped applying to an id that no longer matched.
 
 **Gemini moved 3.7 to 3.8 across four CLI modes and three enforced rosters**, with both the cursor and devin ids dispatch-tested rather than list-verified.
 
