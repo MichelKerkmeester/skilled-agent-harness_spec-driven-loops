@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3aa72faa0675d4763c6811c856f7babf338e61a6d319c81ba09269996409d090",
+  "manifestHash": "2259b0f461ef4a0e5bd0d03dde3bcb9c91492b8a47869659927b3f1f7848fcba",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -26652,9 +26652,6 @@
     "control knobs fail closed": [
       "control knobs fail-closed"
     ],
-    "controlled re enable sequence": [
-      "controlled re-enable sequence"
-    ],
     "convention": [
       "convention"
     ],
@@ -38037,9 +38034,6 @@
     ],
     "dirty worktree stuck": [
       "dirty worktree stuck"
-    ],
-    "disable feature flags": [
-      "disable feature flags"
     ],
     "disable github ruleset admin push": [
       "disable github ruleset admin push"
@@ -80346,9 +80340,6 @@
     "rollback runbook": [
       "rollback runbook"
     ],
-    "rollback smoke tests": [
-      "rollback smoke tests"
-    ],
     "rollback state event": [
       "rollback state event"
     ],
@@ -83262,9 +83253,6 @@
     ],
     "search decision envelope test": [
       "search decision envelope test"
-    ],
-    "search decisions data": [
-      "search decisions data"
     ],
     "search determinism wall clock": [
       "search determinism wall-clock"
@@ -98567,6 +98555,9 @@
     "trigger index generator": [
       "trigger index generator"
     ],
+    "trigger index location": [
+      "trigger index location"
+    ],
     "trigger index lookup fails": [
       "trigger index lookup fails"
     ],
@@ -102305,9 +102296,6 @@
     ],
     "workflowmode runtimelooptype backendkind": [
       "workflowMode runtimeLoopType backendKind"
-    ],
-    "working memory rollback": [
-      "working memory rollback"
     ],
     "workspace audit trail": [
       "workspace audit trail"

@@ -479,7 +479,7 @@ describe('coverage-graph-integration: CJS ↔ TS contract alignment', () => {
   // ── Fallback authority chain ──────────────────────────────────
 
   describe('fallback authority chain contract', () => {
-    it('CJS layer works standalone without MCP/SQLite dependency', () => {
+    it('CJS layer works standalone without a SQLite dependency', () => {
       // The CJS modules are pure in-memory and do not require better-sqlite3
       const graph = coreModule.createGraph();
       const edgeId = coreModule.insertEdge(graph, 'a', 'b', 'ANSWERS');

@@ -11,7 +11,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const { collectSourceFiles } = require(path.resolve(__dirname, '..', 'lib', 'dist-freshness.cjs'));
+const { DIST_PACKAGES, collectSourceFiles } = require(path.resolve(__dirname, '..', 'lib', 'dist-freshness.cjs'));
 
 const createdRoots: string[] = [];
 
@@ -28,6 +28,16 @@ const pkg = { id: 'test/pkg', sourceCandidates: ['.'] };
 
 afterEach(() => {
   for (const root of createdRoots.splice(0)) fs.rmSync(root, { recursive: true, force: true });
+});
+
+describe('scripts package sources', () => {
+  it('does not count the retrieval generator fixtures as sources', () => {
+    const scriptsPkg = DIST_PACKAGES.find((entry: { id: string }) => entry.id === 'system-spec-kit/scripts');
+    const scriptsRoot = path.resolve(__dirname, '..');
+    const { files } = collectSourceFiles(scriptsPkg, scriptsRoot, 'default');
+    expect(files.some((f: string) => f.includes(`${path.sep}retrieval${path.sep}fixtures${path.sep}`))).toBe(false);
+    expect(files.some((f: string) => f.endsWith(`${path.sep}core${path.sep}workflow.ts`))).toBe(true);
+  });
 });
 
 describe('collectSourceFiles and symlinks', () => {

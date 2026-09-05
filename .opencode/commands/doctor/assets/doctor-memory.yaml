@@ -20,14 +20,14 @@ operating_mode:
 
 memory_doctor_invariant: |
   This doctor is read-only by contract and needs no background service. It treats the
-  generated trigger index at .opencode/skills/system-spec-kit/data/trigger-index.json as
+  generated trigger index at .opencode/skills/system-spec-kit/runtime/data/trigger-index.json as
   the artifact it diagnoses but never regenerates. Regeneration is owned by the
   /doctor:update orchestrator, which runs the generator over the whole corpus in one pass.
 
 upstream_assets:
   contract: "local command design contract"
   conventions: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
-  index_path: ".opencode/skills/system-spec-kit/data/trigger-index.json"
+  index_path: ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json"
   lookup_command: 'node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"'
   lookup_policy: "The lookup reads a file and exits. There is no socket to probe and no daemon to start. Exit 0 = at least one candidate, exit 1 = clean no-hit reported as an empty result, exit 2 or higher = an execution error reported with stderr attached and never as a no-hit."
   generator_command: "node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs"
@@ -69,7 +69,7 @@ mutation_boundaries:
     - "<packet_scratch>/doctor-memory-report.*.md"  # the diagnostic report only
     - "<packet_scratch>/doctor-memory-state.*.json"  # the diagnostic state log only
   forbidden_targets:
-    - ".opencode/skills/system-spec-kit/data/trigger-index.json"  # never regenerate from the doctor
+    - ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json"  # never regenerate from the doctor
     - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor memory
     - "<active-spec-folder>/description.json"  # spec metadata belongs to the continuity writer
     - "<active-spec-folder>/graph-metadata.json"  # graph metadata is not a doctor target
@@ -147,8 +147,8 @@ workflow:
   phase_0_discovery:
     purpose: Confirm the index exists, the lookup runs and a ripgrep recipe resolves; capture baseline
     activities:
-      - "Bash: test -f .opencode/skills/system-spec-kit/data/trigger-index.json (index present)"
-      - "Bash: stat -f '%m %z' .opencode/skills/system-spec-kit/data/trigger-index.json (mtime + size)"
+      - "Bash: test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json (index present)"
+      - "Bash: stat -f '%m %z' .opencode/skills/system-spec-kit/runtime/data/trigger-index.json (mtime + size)"
       - "Run upstream_assets.lookup_command with a known probe prompt; record exit status, indexHash, manifestHash and candidatePhraseCount"
       - "Run the path-only recipe from retrieval-conventions.md section 2.2 for a known phrase; record exit status and path count"
       - "Re-run that recipe with the roots set to a path that does not exist; confirm exit 2 with stderr, proving the wrapper can tell a broken invocation from a clean miss"

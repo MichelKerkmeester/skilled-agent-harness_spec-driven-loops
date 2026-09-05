@@ -72,7 +72,7 @@ const FIXTURE_DIR = path.join(SCRIPT_DIR, 'fixtures');
 
 const DEFAULT_PROMPT_SET = path.join(FIXTURE_DIR, 'prompt-set.json');
 const DEFAULT_MANIFEST = path.join(FIXTURE_DIR, 'corpus-manifest.json');
-const DEFAULT_INDEX = path.join(SKILL_DIR, 'data', 'trigger-index.json');
+const DEFAULT_INDEX = path.join(SKILL_DIR, 'runtime', 'data', 'trigger-index.json');
 const LOOKUP_CLI = path.join(SCRIPT_DIR, 'lookup-trigger-index.mjs');
 
 const TRIGGER_GOLDENS = path.join(SKILL_DIR, 'runtime', 'tests', 'fixtures', 'trigger-goldens.json');

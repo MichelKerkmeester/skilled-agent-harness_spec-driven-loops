@@ -58,7 +58,7 @@ export const CORPUS_HASH_RECIPE =
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const SKILL_ROOT = path.resolve(SCRIPT_DIR, '..', '..');
 
-export const DEFAULT_INDEX_PATH = path.join(SKILL_ROOT, 'data', 'trigger-index.json');
+export const DEFAULT_INDEX_PATH = path.join(SKILL_ROOT, 'runtime', 'data', 'trigger-index.json');
 export const DEFAULT_MANIFEST_PATH = path.join(SCRIPT_DIR, 'fixtures', 'corpus-manifest.json');
 export const DEFAULT_DIAGNOSTICS_PATH = path.join(SCRIPT_DIR, 'fixtures', 'generation-diagnostics.json');
 export const DEFAULT_VARIANTS_PATH = path.join(SCRIPT_DIR, 'fixtures', 'phrase-variants.json');

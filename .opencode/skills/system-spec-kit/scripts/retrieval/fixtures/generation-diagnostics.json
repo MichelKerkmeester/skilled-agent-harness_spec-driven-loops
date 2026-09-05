@@ -3,10 +3,10 @@
     "duplicate-phrase": 63,
     "missing-frontmatter": 6844,
     "non-yaml-frontmatter": 1,
-    "ok": 13252,
+    "ok": 13256,
     "valid-empty-list": 7948
   },
-  "documentsScanned": 28108,
+  "documentsScanned": 28112,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "3aa72faa0675d4763c6811c856f7babf338e61a6d319c81ba09269996409d090",
+  "manifestHash": "2259b0f461ef4a0e5bd0d03dde3bcb9c91492b8a47869659927b3f1f7848fcba",
   "parserVersion": "1.0.0",
   "rows": [
     {
@@ -100619,6 +100619,10 @@
     },
     {
       "path": "specs/system-speckit/053-spec-kit-runtime-rename/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-decommission-debt-fixes/scratch",
       "reason": "excluded directory"
     },
     {

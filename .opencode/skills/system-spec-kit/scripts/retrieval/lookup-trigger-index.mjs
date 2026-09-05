@@ -43,7 +43,7 @@ import {
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 
-export const DEFAULT_INDEX_PATH = path.resolve(SCRIPT_DIR, '..', '..', 'data', 'trigger-index.json');
+export const DEFAULT_INDEX_PATH = path.resolve(SCRIPT_DIR, '..', '..', 'runtime', 'data', 'trigger-index.json');
 
 /** Mirrors the trigger lane's result cap. */
 export const DEFAULT_LIMIT = 20;

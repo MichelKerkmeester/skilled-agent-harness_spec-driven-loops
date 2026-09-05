@@ -1647,6 +1647,8 @@ function startLineageArtifactProgressPoller({ lineageDir, cadenceMs, onArtifactP
  * @param {Object} opts - { cwd, env, timeoutMs, maxBuffer, input? }.
  * @returns {Promise<{status:number|null, signal:string|null, stdout:string, error?:Error}>}
  */
+const LINEAGE_STDERR_CAP_BYTES = 256 * 1024;
+
 function runLineageProcess(command, cmdArgs, opts) {
   const { cwd, env, timeoutMs, maxBuffer } = opts;
   const hasInput = typeof opts.input === 'string';
@@ -1671,6 +1673,8 @@ function runLineageProcess(command, cmdArgs, opts) {
 
     let stdout = '';
     let stdoutBytes = 0;
+    let stderr = '';
+    let stderrBytes = 0;
     let truncated = false;
     let timedOut = false;
     let settled = false;
@@ -1705,8 +1709,16 @@ function runLineageProcess(command, cmdArgs, opts) {
       }
       stdout += chunk;
     });
-    // Drain stderr so the child never blocks on a full pipe; we do not capture it.
-    child.stderr?.resume();
+    // Keep a bounded copy of stderr: an executor refusal (usage limit, auth,
+    // sandbox) is reported there and nowhere else, and without it a failed
+    // lineage shows only an exit code. Past the cap the pipe is still drained
+    // so the child never blocks.
+    child.stderr?.setEncoding('utf8');
+    child.stderr?.on('data', (chunk) => {
+      if (stderrBytes >= LINEAGE_STDERR_CAP_BYTES) return;
+      stderrBytes += Buffer.byteLength(chunk, 'utf8');
+      stderr += chunk;
+    });
 
     child.on('error', (error) => {
       spawnError = error;
@@ -1726,6 +1738,7 @@ function runLineageProcess(command, cmdArgs, opts) {
         status: timedOut ? null : code,
         signal: effectiveSignal,
         stdout,
+        stderr,
         ...(spawnError ? { error: spawnError } : {}),
       });
     });
@@ -2898,6 +2911,8 @@ async function main() {
       fs.mkdirSync(logsDir, { recursive: true });
       const savedStdout = typeof result.stdout === 'string' ? result.stdout : '';
       fs.writeFileSync(path.join(logsDir, 'fanout-lineage.out'), savedStdout, 'utf8');
+      const savedStderr = typeof result.stderr === 'string' ? result.stderr : '';
+      fs.writeFileSync(path.join(logsDir, 'fanout-lineage.err'), savedStderr, 'utf8');
 
       // Recover missing iteration files from captured stdout when possible. Runs
       // BEFORE the failure throw below so iteration recovery is never lost.
@@ -3127,6 +3142,7 @@ if (require.main === module && isTsxLoaded) {
 }
 
 module.exports = {
+  runLineageProcess,
   forcedDepthIterationViolation,
   iterationNumbersOnDisk,
   DEVIN_ALLOWED_MODELS,

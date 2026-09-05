@@ -460,35 +460,14 @@ export interface ExtractionResult {
 }
 
 // ---------------------------------------------------------------
-// 7. MCP RESPONSE TYPES
-// ---------------------------------------------------------------
-
-/**
- * Canonical MCP tool response envelope — single source of truth.
- *
- * Previously duplicated across:
- *   - lib/response/envelope.ts (strict: literal 'text', required isError)
- *   - handlers/types.ts (loose: string type, optional isError)
- *   - tools/types.ts (loose + autoSurfacedContext)
- *   - tests/memory-context.test.ts (local, missing isError)
- *
- * Consolidated to a single canonical definition.
- */
-export interface MCPResponse {
-  content: Array<{ type: 'text'; text: string }>;
-  isError?: boolean;
-  structuredContent?: unknown;
-}
-
-// ---------------------------------------------------------------
-// 8. PATH SECURITY TYPES
+// 7. PATH SECURITY TYPES
 // ---------------------------------------------------------------
 
 // Path security functions use primitive types (string, string[], null).
 // No custom types needed beyond the function signatures themselves.
 
 // ---------------------------------------------------------------
-// 9. PROFILE SLUG TYPES
+// 8. PROFILE SLUG TYPES
 // ---------------------------------------------------------------
 
 /** Parsed profile slug components */
@@ -510,7 +489,7 @@ export interface ProfileJson {
 }
 
 // ---------------------------------------------------------------
-// 10. TASK PREFIX TYPES
+// 9. TASK PREFIX TYPES
 // ---------------------------------------------------------------
 
 /** Task prefix constants for embedding task types */

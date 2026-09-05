@@ -47,7 +47,9 @@ const DIST_PACKAGES = Object.freeze([
     entrySourceCandidates: {
       'is-phase-parent': ['package.json', 'tsconfig.json', 'spec/is-phase-parent.ts'],
     },
-    excludedSegments: ['tests', 'test-fixtures'],
+    // retrieval/fixtures is rewritten by every trigger-index run; it is generator
+    // output that happens to live beside the generator, not a build input.
+    excludedSegments: ['tests', 'test-fixtures', 'fixtures'],
   },
   {
     id: 'system-spec-kit/runtime',
