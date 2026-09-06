@@ -1,6 +1,6 @@
 ---
 title: "Doctor commands"
-description: "Category covering the spec-kit /doctor argv-positional router and its subsystem routes (memory, causal-graph, deep-loop, code_graph), plus the /doctor:update cross-subsystem aligner, /doctor:mcp infra surface, and version-migration flows."
+description: "Category covering the spec-kit /doctor argv-positional router and its nine subsystem routes, plus the /doctor:update cross-subsystem aligner, /doctor:mcp infra surface, and version-migration flows."
 trigger_phrases:
   - "doctor commands"
   - "/doctor"
@@ -16,7 +16,7 @@ version: 3.6.0.6
 
 ## 1. OVERVIEW
 
-Category covering the spec-kit `/doctor` argv-positional router and its subsystem routes (memory, causal-graph, deep-loop, code_graph), plus the `/doctor:update` cross-subsystem aligner, `/doctor:mcp` infra surface, and version-migration flows.
+Category covering the spec-kit `/doctor` argv-positional router and its nine subsystem routes, plus the `/doctor:update` cross-subsystem aligner, `/doctor:mcp` infra surface, and version-migration flows.
 
 This category documents the consolidated `/doctor <target>` command surface that diagnoses and repairs spec-kit subsystems. It replaced the legacy `/doctor:<name>` colon-form commands after the 013 Phase 5 hard cutover, and it now exposes one route manifest, one CI assertion, and one harness layout that exercises every route end-to-end through the manual testing playbook.
 

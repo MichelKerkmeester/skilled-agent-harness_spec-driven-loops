@@ -26,7 +26,7 @@ silently trusts an out-of-date build. It reuses the shared `checkAllFreshness()`
 `checkPackageFreshness()` helpers from `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`
 against a fixed registry of six watched packages (`system-spec-kit/shared`,
 `system-spec-kit/runtime/cli`, `system-spec-kit/runtime`, `mcp-code-mode/mcp-server`,
-`system-skill-advisor/mcp-server`, `sk-design/sk-design-md-generator/backend`).
+`system-skill-advisor/mcp-server`, `sk-design-md-generator/backend`).
 
 The guard fires diagnostics on three triggers: OpenCode's `session.created` event (once per
 session, deduplicated by session ID up to `MAX_SESSION_IDS = 1000`), a risky Bash command

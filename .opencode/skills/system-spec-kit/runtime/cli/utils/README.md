@@ -39,7 +39,6 @@ runtime/cli/utils/
 +-- index.ts                   # Utility export surface
 +-- input-normalizer.ts        # Runtime payload normalization
 +-- logger.ts                  # Structured logging helpers
-+-- memory-frontmatter.ts      # Memory frontmatter helpers
 +-- message-utils.ts           # User-facing message formatting
 +-- path-utils.ts              # Path containment and sanitization
 +-- phase-classifier.ts        # Workflow phase classification

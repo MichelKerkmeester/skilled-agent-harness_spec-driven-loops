@@ -686,12 +686,12 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --pat
 | Variable             | Default | Description                       |
 | -------------------- | ------- | --------------------------------- |
 | `SPECKIT_VALIDATION` | true    | Set to `false` to skip validation |
-| `SPECKIT_STRICT`     | false   | Set to `true` to fail on warnings |
+| `SPECKIT_STRICT`     | false   | Set to `true` to run the strict-only rules |
 | `SPECKIT_JSON`       | false   | Set to `true` for JSON output     |
 | `SPECKIT_VERBOSE`    | false   | Set to `true` for verbose output  |
 | `SPECKIT_POST_VALIDATE` | unset | Set to `1` during scaffolding to run `validate.sh --quiet` after `create.sh` writes files |
 
-`validate.sh` delegates to the Node validation orchestrator by default. The strict path is designed for fast packet checks; packet 004 measured a fresh Level 3 strict validation at about 108ms on the local harness.
+`validate.sh` delegates to the Node validation orchestrator by default. In a linked worktree whose `dist` directories are symlinks, run it with `NODE_OPTIONS=\"--preserve-symlinks --preserve-symlinks-main\"`; `NODE_PRESERVE_SYMLINKS=1` alone does not cover the main module and the orchestrator then exits 0 with no output. The strict path is designed for fast packet checks; packet 004 measured a fresh Level 3 strict validation at about 108ms on the local harness.
 
 ### Usage Examples
 
@@ -700,7 +700,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --pat
 bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
 ```
 
-**Run in strict mode (fail on warnings):**
+**Run in strict mode (strict-only rules enabled; warnings stay advice):**
 ```bash
 SPECKIT_STRICT=true bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
 ```

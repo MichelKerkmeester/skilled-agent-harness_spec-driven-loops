@@ -414,9 +414,9 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 │   ├── spec/                   # Spec folder management scripts
 │   ├── continuity/             # Continuity scripts
 │   ├── templates/              # Inline gate renderer
-│   ├── core/                   # Core library (29 modules)
-│   ├── extractors/             # Session data extractors (13 extractors)
-│   ├── utils/                  # Utility modules (19 utilities)
+│   ├── core/                   # Core library (28 modules)
+│   ├── extractors/             # Session data extractors (12 extractors)
+│   ├── utils/                  # Utility modules (18 utilities)
 │   └── dist/                   # Compiled JavaScript output
 ├── runtime/                 # Spec Kit engine (TypeScript), consumed as a library
 │   ├── api/                    # Public barrel imported by the scripts workspace

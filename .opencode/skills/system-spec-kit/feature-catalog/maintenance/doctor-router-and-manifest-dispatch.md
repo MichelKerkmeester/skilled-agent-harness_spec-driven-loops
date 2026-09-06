@@ -34,7 +34,7 @@ Manual. The router is operator-driven; no automation triggers it. `/doctor:updat
 
 ### Routing Contract
 
-The router parses the FIRST positional argument as the target name, then runs a per-target flag parser using only that target's `allowed_flags` from the manifest. Cross-target flag injection (e.g. `--confidence-threshold` outside of `causal-graph`) raises a clear error pointing at the correct command. The `--target=<name>` flag is preserved as a compatibility alias; argv-positional is the documented primary form. The route manifest is the single source of truth for target metadata: YAML asset, setup variables, allowed flags, mutation class, MCP tools, and Skill Advisor trigger phrases.
+The router parses the FIRST positional argument as the target name, then runs a per-target flag parser using only that target's `allowed_flags` from the manifest. Cross-target flag injection (e.g. a target-specific flag passed to another target) raises a clear error pointing at the correct command. The `--target=<name>` flag is preserved as a compatibility alias; argv-positional is the documented primary form. The route manifest is the single source of truth for target metadata: YAML asset, setup variables, allowed flags, mutation class, MCP tools, and Skill Advisor trigger phrases.
 
 ### CI Assertion
 
@@ -42,7 +42,7 @@ The router parses the FIRST positional argument as the target name, then runs a 
 
 ### Mutation Boundaries
 
-The router itself never mutates anything. Each YAML workflow declares its own mutation class in `_routes.yaml`: read-only (skill-budget), add-only (causal-graph), or mutates (memory, code-graph, deep-loop, code_graph, skill-advisor). The combined GATE 3 STATUS table in `doctor.md` cites each target's specific mutation location.
+The router itself never mutates anything. Each YAML workflow declares its own mutation class in `_routes.yaml`: read-only (embeddings, skill-budget), add-only (speckit-retrieval, deep-loop), or mutates (skill-advisor); see `mutating:` per target in the manifest. The combined GATE 3 STATUS table in `doctor.md` cites each target's specific mutation location.
 
 ---
 

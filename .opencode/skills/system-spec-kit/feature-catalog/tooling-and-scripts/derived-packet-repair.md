@@ -61,7 +61,7 @@ erase the drift it exists to surface.
 | `runtime/cli/tests/repair-derived.vitest.ts` | Fixture tests covering repair, refusal, containment and idempotence |
 | `runtime/cli/spec/validate.sh` | Supplies the diagnosis and the detected level |
 | `runtime/cli/graph/backfill-graph-metadata.ts` | The re-derivation entry point |
-| `.github/workflows/strict-pass-freshness-sweep.yml` | Runs it in reporting mode |
+| `.github/workflows/strict-pass-freshness-report.yml` | Runs it in reporting mode |
 
 ## 4. SOURCE METADATA
 

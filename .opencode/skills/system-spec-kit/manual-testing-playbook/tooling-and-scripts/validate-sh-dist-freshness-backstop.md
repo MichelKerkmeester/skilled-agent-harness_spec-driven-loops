@@ -45,7 +45,7 @@ Make the compiled spec-validation orchestrator stale relative to its TypeScript 
 SOURCE=.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
 DIST=.opencode/skills/system-spec-kit/runtime/dist/lib/validation/orchestrator.js
 FOLDER=<any real spec folder path, e.g. .opencode/specs/<track>/<###-name>>
-CACHE_GLOB=.opencode/skills/system-spec-kit/runtime/dist/lib/validation/.dist-freshness-system-spec-kit-mcp_server-*.json
+CACHE_GLOB=.opencode/skills/system-spec-kit/runtime/dist/lib/validation/.dist-freshness-system-spec-kit-runtime-*.json
 
 # snapshot exact mtimes so both files can be restored without a rebuild
 SRC_MTIME=$(python3 -c "import os,sys; print(os.stat(sys.argv[1]).st_mtime_ns)" "$SOURCE")
@@ -73,8 +73,7 @@ Operators without a specific spec folder in mind can use the repo's own validato
 - `stale_exit=3` with stderr containing:
   ```text
   ERROR: validate.sh compiled validation orchestrator is stale.
-  @spec-kit/runtime dist is stale. Run: cd .opencode/skills/system-spec-kit/runtime && npm run build
-  Run: cd .opencode/skills/system-spec-kit/runtime && npm run build
+  @spec-kit/runtime dist is stale. Rebuild with: cd .opencode/skills/system-spec-kit/runtime && npm run build
   ```
 - `restored_exit` is a normal validation result code (0 pass, 1 warnings, or 2 rule errors) — never 3, and stdout contains no `compiled validation orchestrator is stale` line.
 

@@ -20,7 +20,7 @@ Current hook registration, runtime vocabulary, lifecycle behavior, and fallback 
 
 ## 1. OVERVIEW
 
-The maintained native hook source set is `system-spec-kit/runtime/hooks/{claude,codex,cursor,devin}/`, with compiled twins under `system-spec-kit/runtime/dist/hooks/{claude,codex,cursor,devin}/`. OpenCode prompt-time advisor delivery is the plugin bridge, not a source-hook tree.
+The maintained native hook source set is `system-spec-kit/runtime/hooks/{claude,codex,cursor,devin,pi}/` plus the OpenCode spec-gate adapter `runtime/hooks/opencode/system-spec-gate.js`, with compiled twins under `system-spec-kit/runtime/dist/hooks/` for the TypeScript adapters. OpenCode prompt-time advisor delivery is the plugin bridge, not a source-hook tree.
 
 Prompt delivery, startup wiring, compaction, and shutdown handling differ by runtime, but all adapters use the same retrieval primitives and fail-open recovery path.
 
@@ -43,7 +43,7 @@ Claude Code registers the maintained compiled adapter in `.claude/settings.json`
 
 The other native registrations are `.codex/hooks.json`, `.cursor/hooks.json`, and `.devin/hooks.v1.json`. Each points at the maintained runtime directory under `system-spec-kit/runtime/`; the Codex prompt adapter is registered and present at `.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js`.
 
-OpenCode prompt-time advisor delivery is registered through `.opencode/plugins/system-skill-advisor.js`, which calls `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`. There is no checked-in `.opencode/settings.json` hook template and no native OpenCode source-hook adapter in this tree.
+OpenCode prompt-time advisor delivery is registered through `.opencode/plugins/system-skill-advisor.js`, which calls `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`. There is no checked-in `.opencode/settings.json` hook template; the one native OpenCode source adapter in this tree is the spec gate at `runtime/hooks/opencode/system-spec-gate.js`, and the Pi adapters live under `runtime/hooks/pi/`.
 
 ---
 

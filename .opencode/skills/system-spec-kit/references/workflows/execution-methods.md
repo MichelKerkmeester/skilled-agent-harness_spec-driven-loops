@@ -214,7 +214,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer
 
 ---
 
-## 8. MEMORY WORKFLOW (12 STEPS)
+## 8. MEMORY WORKFLOW (10 STEPS)
 
 The `generate-context.js` script orchestrates a 12-step workflow via `workflow.ts`:
 

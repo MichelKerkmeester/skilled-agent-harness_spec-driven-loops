@@ -111,7 +111,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 # JSON output for tooling
 .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/ --json
 
-# Strict mode (warnings become errors)
+# Strict mode (strict-only rules run; warnings stay advice)
 .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/ --strict
 ```
 
@@ -148,7 +148,7 @@ The Completion Verification Rule requires running validation before claiming com
 .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder>
 ```
 
-### /spec_kit:complete Step 11
+### /speckit:complete Step 11
 
 Step 11 (Completion) runs validation as the first action.
 

@@ -157,7 +157,7 @@ Capture, for every step in the Commands sequence above:
 - Plugin regression test: `.opencode/plugins/tests/system-speckit-completion.test.cjs`
 - Claude/Bash CLI shim: `.opencode/bin/speckit-completion.cjs`
 - Shared runtime-neutral core: `.opencode/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs`
-- Core's own vitest suite (currently outside project `include` globs, see Evidence): `.opencode/skills/system-spec-kit/runtime/cli/lib/completion-state.test.mjs`
+- Core module under test: `.opencode/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs` (no colocated suite; the plugin test exercises it)
 - Shelled scripts merged by the core: `.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`, `.opencode/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh`
 - Plugin entrypoint registry (confirms adapter role and kill-switch env): `.opencode/plugins/README.md` §3
 - Related-but-distinct sibling consumer (out of scope here, sharing infrastructure only): `.opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`, `.opencode/plugins/system-completion-sentinel.js`, `.opencode/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`

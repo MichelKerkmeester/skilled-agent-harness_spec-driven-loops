@@ -136,7 +136,7 @@ def route_<PROVIDER>_resources(task):
     return result
 ```
 
-Replace `<PROVIDER>` with the provider slug (`claude_code`, `opencode`, `opencode`).
+Replace `<PROVIDER>` with the provider slug (`claude_code`, `codex`, `cursor`, `devin`, `opencode`, `pi`).
 
 ---
 

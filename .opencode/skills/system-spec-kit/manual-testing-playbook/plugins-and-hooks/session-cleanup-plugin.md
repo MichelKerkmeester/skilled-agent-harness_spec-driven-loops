@@ -48,10 +48,10 @@ targets the same underlying cleanup script the plugin's `dispose()` calls.
 ## 2. SCENARIO CONTRACT
 
 - Preconditions:
-  - Plugin file exists at `.opencode/plugins/session-cleanup.js` (198 lines).
-  - Test file exists at `.opencode/plugins/tests/session-cleanup.test.cjs` (388 lines, `node:test`).
-  - Shared shell scripts exist: `.opencode/scripts/session-cleanup.sh` (186 lines),
-    `.opencode/bin/worktree-guard.sh` (41 lines), `.opencode/bin/check-git-hooks.sh` (97 lines).
+  - Plugin file exists at `.opencode/plugins/session-cleanup.js` (270 lines).
+  - Test file exists at `.opencode/plugins/tests/session-cleanup.test.cjs` (391 lines, `node:test`).
+  - Shared shell scripts exist: `.opencode/scripts/session-cleanup.sh` (191 lines),
+    `.opencode/bin/worktree-guard.sh` (50 lines), `.opencode/bin/check-git-hooks.sh` (142 lines).
   - Node supports the built-in `node:test` runner (verified on Node v22.23.1 in this run).
 - Real user-facing trigger: OpenCode fires the `session.created` event when a new session starts
   and calls the plugin's returned `dispose()` hook when the session/server instance tears down;
@@ -189,7 +189,7 @@ invariant still holds either way.
 grep -n "session-cleanup.sh" .claude/settings.json
 ```
 
-Expected: the `SessionEnd` hook command is `bash .opencode/scripts/session-cleanup.sh || true`,
+Expected: the `SessionEnd` hook command is a `bash -c` wrapper that changes to the project directory and runs `bash .opencode/scripts/session-cleanup.sh`, falling back to a hook-drift notice,
 matching `CLEANUP_SCRIPT` in the plugin source (`join(REPO_ROOT, '.opencode/scripts/session-cleanup.sh')`).
 
 ### Env-Flip Checks (kill switches and overrides)

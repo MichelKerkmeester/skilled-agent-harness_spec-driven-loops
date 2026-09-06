@@ -94,7 +94,7 @@ Source of truth: `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts
 }
 ```
 
-One candidate is registered today: `nomic-embed-text-v1.5` (`ollama` backend, 768d). A swap rejects any other name with `UNKNOWN_EMBEDDER`. Additional models can be added by appending manifests to `shared/embeddings/registry.ts`.
+One candidate is registered today: `nomic-embed-text-v1.5` (`ollama` backend, 768d). `getManifest()` returns `undefined` for any other name, and the caller refuses the swap. Additional models can be added by appending manifests to `shared/embeddings/registry.ts`.
 
 Adding a new candidate is a single registry row plus, if the backend is new, a single adapter file under `.opencode/skills/system-spec-kit/shared/embeddings/adapters/`. No call sites change. The adapter contract is small (see §2: EmbedderAdapter interface).
 
@@ -199,7 +199,7 @@ Rollback is a same-shape set call that re-points active back to the prior embedd
 
 ## 4. OUT-OF-BOX SUPPORT MATRIX
 
-The table below lists the embedder that works without code changes because the registry already includes the candidate. Only one manifest is registered today (`MANIFESTS` in `shared/embeddings/registry.ts`); a swap throws `UNKNOWN_EMBEDDER` for any name not in this list.
+The table below lists the embedder that works without code changes because the registry already includes the candidate. Only one manifest is registered today (`MANIFESTS` in `shared/embeddings/registry.ts`); `getManifest()` returns `undefined` for any name not in this list.
 
 | Embedder | Backend | Dim | Approx RAM | Notes |
 |---|---|---:|---:|---|
@@ -217,7 +217,7 @@ The consumers of this stack index prose: spec docs, decision records, meeting no
 
 ### Size vs quality
 
-Larger embedders trade RAM and disk for stronger recall on long-tail queries. Use the registry's `ram_mb` / `disk_mb` fields as your starting filter:
+Larger embedders trade RAM and disk for stronger recall on long-tail queries. The registry manifest records the name, backend and dimension only; use the published model sizes as your starting filter:
 
 - **Small** (≤500 MB): `bge-small-en-v1.5` (384d). Fast indexing; weaker paraphrase capacity. Use only when you are RAM-bound.
 - **Mid** (500 MB–1 GB): all current defaults plus most registered alternatives. Best general trade-off.

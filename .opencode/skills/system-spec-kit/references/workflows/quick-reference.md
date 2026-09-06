@@ -412,7 +412,7 @@ Then verify placeholders are fully resolved:
 
 ---
 
-## 13. SKIP OPTION (OPTION D) USAGE
+## 13. SKIP OPTION (OPTION E) USAGE
 
 ### When Appropriate ✅
 
