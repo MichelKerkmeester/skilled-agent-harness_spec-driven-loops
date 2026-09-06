@@ -122,7 +122,7 @@ function collectFeatureRuntimeTokens(): Set<string> {
       if (match[1]) tokens.add(match[1]);
     }
   }
-  const scriptsRoot = resolve(SYSTEM_SPEC_KIT_ROOT, 'scripts');
+  const scriptsRoot = resolve(SYSTEM_SPEC_KIT_ROOT, 'runtime', 'cli');
   const entries = readdirSync(scriptsRoot, { recursive: true, withFileTypes: true });
 
   for (const entry of entries) {

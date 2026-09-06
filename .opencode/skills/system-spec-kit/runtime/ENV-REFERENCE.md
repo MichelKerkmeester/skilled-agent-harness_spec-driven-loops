@@ -293,8 +293,6 @@ Not this package's: `.opencode/skills/system-spec-kit/shared/algorithms/` still 
 | `SPECKIT_RRF_K` | `40` | number | RRF smoothing constant `k`. Lower is more top-heavy, higher is flatter; must be greater than 0. | `shared/algorithms/rrf-fusion.ts` |
 | `SPECKIT_SCORE_NORMALIZATION` | `true` | boolean | Composite score normalization, read as `!== 'false'`. | `shared/algorithms/rrf-fusion.ts` |
 | `SPECKIT_CALIBRATED_OVERLAP_BONUS` | `true` | boolean | Multi-channel overlap bonus. Read directly off `process.env` in the fusion module, lower-cased and trimmed, rather than through a flag registry. | `shared/algorithms/rrf-fusion.ts` |
-| `SPECKIT_ADAPTIVE_FUSION` | `true` | boolean | Feature-flag name registered by `adaptive-fusion.ts` for intent-aware fusion with document-type weight shifting. | `shared/algorithms/adaptive-fusion.ts` |
-| `SPECKIT_DOC_TYPE_WEIGHT_FACTOR` | `1.2` | number | Proportional weight-shift factor per document type in adaptive fusion, parsed with `parseFloat` and falling back to `1.2` on an unparseable or zero value. | `shared/algorithms/adaptive-fusion.ts` |
 
 ---
 

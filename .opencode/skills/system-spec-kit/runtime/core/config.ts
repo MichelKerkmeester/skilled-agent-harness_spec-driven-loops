@@ -114,22 +114,13 @@ export function resolveDatabasePaths(): DatabasePaths {
 resolveDatabasePaths();
 
 // ───────────────────────────────────────────────────────────────────
-// 3. BATCH PROCESSING CONFIGURATION
-// ───────────────────────────────────────────────────────────────────
-
-const parsedBatchSize = parseInt(process.env.SPEC_KIT_BATCH_SIZE || '5', 10);
-export const BATCH_SIZE: number = Number.isFinite(parsedBatchSize) && parsedBatchSize > 0 ? parsedBatchSize : 5;
-const parsedBatchDelayMs = parseInt(process.env.SPEC_KIT_BATCH_DELAY_MS || '100', 10);
-export const BATCH_DELAY_MS: number = Number.isFinite(parsedBatchDelayMs) && parsedBatchDelayMs > 0 ? parsedBatchDelayMs : 100;
-
-// ───────────────────────────────────────────────────────────────────
-// 4. RATE LIMITING CONFIGURATION
+// 3. RATE LIMITING CONFIGURATION
 // ───────────────────────────────────────────────────────────────────
 
 export const INDEX_SCAN_COOLDOWN: number = 30000;
 
 // ───────────────────────────────────────────────────────────────────
-// 5. QUERY VALIDATION LIMITS
+// 4. QUERY VALIDATION LIMITS
 // ───────────────────────────────────────────────────────────────────
 
 export const MAX_QUERY_LENGTH: number = 10000;
@@ -145,7 +136,7 @@ export const INPUT_LIMITS: Readonly<InputLimitsConfig> = {
 } as const;
 
 // ───────────────────────────────────────────────────────────────────
-// 6. PATH VALIDATION
+// 5. PATH VALIDATION
 // ───────────────────────────────────────────────────────────────────
 
 export const DEFAULT_BASE_PATH: string = process.env.MEMORY_BASE_PATH || process.cwd();

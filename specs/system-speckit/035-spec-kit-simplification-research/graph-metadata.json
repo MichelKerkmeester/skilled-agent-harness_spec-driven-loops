@@ -10,7 +10,8 @@
     "system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
     "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
     "system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation",
-    "system-speckit/035-spec-kit-simplification-research/007-cli-package-residue-removal"
+    "system-speckit/035-spec-kit-simplification-research/007-cli-package-residue-removal",
+    "system-speckit/035-spec-kit-simplification-research/008-env-example-dead-flags"
   ],
   "manual": {
     "depends_on": [],
@@ -45,6 +46,7 @@
     "key_files": [
       "spec.md",
       "goal.md",
+      "008-env-example-dead-flags/implementation-summary.md",
       "001-ripgrep-search-system/goal.md",
       "002-cli-runtime-utilization/goal.md",
       "003-shared-package-utilization/goal.md",
@@ -52,6 +54,7 @@
       "005-overengineering-simplification/goal.md",
       "006-retrieval-drift-remediation/goal.md",
       "007-cli-package-residue-removal/goal.md",
+      "008-env-example-dead-flags/goal.md",
       "001-ripgrep-search-system/research/confirmed-findings.md",
       "002-cli-runtime-utilization/research/confirmed-findings.md",
       "resource-map/extract-from-evidence.cjs"
@@ -156,17 +159,17 @@
     ],
     "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
     "created_at": "2026-09-06T14:29:29Z",
-    "last_save_at": "2026-09-06T18:20:14.882Z",
+    "last_save_at": "2026-09-06T20:48:37.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:0092c514258f9acda03fd5a88cbc142b5a8d061732ec7b5d7a115cae95f8b6c4",
+    "source_fingerprint": "sha256:6415f668ad773141e497731284f30669dcb66657a9d4c08b3a2c46e9bf883458",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ddeed056705ba3454256ce79f2fde33e7a26b6f9a6d5edd2083430f6e1969c11"
+      "spec.md": "3490af65ac95ab15f1ee02f2baadc4ae81c590aae690a4ba2e2aed7e26326387"
     },
     "last_active_at": null
   }

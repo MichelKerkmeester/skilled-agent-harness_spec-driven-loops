@@ -108,6 +108,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | 7 | 007-cli-package-residue-removal/ | removal of every confirmed dead file from lane 002 and a CI runner for the CLI gates | complete |
 
+| 8 | 008-env-example-dead-flags/ | removal of every env template variable nothing reads, on the operator's observation | complete |
+
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -121,6 +123,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 |------|-----|----------|--------------|
 | 001-ripgrep-search-system | 006-retrieval-drift-remediation | research.md synthesized and every P1 row reproduced or dropped in `research/confirmed-findings.md` | `validate.sh 001-ripgrep-search-system --strict` prints RESULT: PASSED and the confirmed table names 006 |
 | 002-cli-runtime-utilization | 007-cli-package-residue-removal | research.md synthesized and every removal, merge and fix row censused in `research/confirmed-findings.md` | `validate.sh 002-cli-runtime-utilization --strict` prints RESULT: PASSED and the confirmed table names 007 |
+| 007-cli-package-residue-removal | 008-env-example-dead-flags | operator observation that the env template still carried memory-database flags | census over the real tree recorded in `008-env-example-dead-flags/implementation-summary.md` |
 <!-- /ANCHOR:phase-map -->
 
 ---

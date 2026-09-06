@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/008-env-example-dead-flags",
+  "description": "The root env template documented 216 variables",
+  "keywords": [
+    "root",
+    "env",
+    "template",
+    "documented",
+    "variables"
+  ],
+  "lastUpdated": "2026-09-06T20:48:37.247Z",
+  "specId": "008",
+  "folderSlug": "env-example-dead-flags",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/035-spec-kit-simplification-research/008-env-example-dead-flags",
+  "spec_folder": "system-speckit/035-spec-kit-simplification-research/008-env-example-dead-flags",
+  "parent_id": "system-speckit/035-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "env example dead flags",
+      "deprecated spec kit feature flags",
+      "environment variable census",
+      "stale env template",
+      "env template census plan",
+      "dead flag removal plan",
+      "env reference pruning",
+      "batch config removal",
+      "env dead flags tasks",
+      "env census tasks",
+      "template cleanup tasks",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "env",
+      "example",
+      "dead",
+      "flags",
+      "deprecated",
+      "spec",
+      "kit",
+      "feature",
+      "environment",
+      "variable",
+      "census",
+      "stale"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/core/config.ts",
+      ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".opencode/skills/system-spec-kit/runtime/core/config.ts",
+      ".opencode/skills/system-spec-kit/runtime/tests/env-reference-drift.vitest.ts",
+      "shared/algorithms/adaptive-fusion.ts",
+      "shared/ranking/learned-combiner.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "runtime/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "env-reference-drift.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/runtime/tests/env-reference-drift.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adaptive-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/adaptive-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "learned-combiner.ts",
+        "kind": "code",
+        "path": "shared/ranking/learned-combiner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Census",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root env template documented 216 variables",
+    "created_at": "2026-09-06T20:44:28Z",
+    "last_save_at": "2026-09-06T20:48:37.396Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ba5777afc0fb3e19f74c1cb9123dd46d3c1dfbbe4e2faf9f5f7f767f68d8ac99",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "da539a43116d76ac7b88c01b2cc082c03dcdde6c187613b8a21fe5ec00a243be",
+      "plan.md": "8060baf63b6cdb73fbb8cee83ec2973182eb6b4acedb3e328bd0a08caf995bda",
+      "tasks.md": "079fc95b37124af0af9bac5bf534fa420f3d97fd936a0f10e06e3ac6222c9a99",
+      "implementation-summary.md": "3103169ba9d4964242d15c13ae25f87edd888a52f42027f8b937b7e248712131"
+    },
+    "last_active_at": null
+  }
+}
