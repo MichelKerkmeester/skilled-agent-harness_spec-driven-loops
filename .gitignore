@@ -136,6 +136,7 @@ dist/
 # Daemon ownership/lease files
 # ───────────────────────────────────────────
 .opencode/skills/*/mcp-server/database/.*-owner.json
+.opencode/skills/*/mcp-server/database/.*-launcher.lockdir/
 **/database/.crash-probe-receipt
 
 # ═══════════════════════════════════════════════════════════════════════════════

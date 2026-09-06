@@ -140,7 +140,7 @@ See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full c
 
 ### 📋 Spec Kit Framework
 
-The Spec Kit enforces structured spec folders for every file-modifying conversation. Gate 3 requires a spec folder answer before any file modification begins (only typo/whitespace fixes under 5 characters are exempt).
+The Spec Kit enforces structured spec folders for every file-modifying conversation. Gate 3 requires a spec folder answer before any file modification begins (only a trivial fix of a few characters in one file is exempt).
 
 #### Documentation Levels
 
@@ -149,25 +149,24 @@ Documentation depth scales with task complexity.
 | Level  | LOC Guidance   | Required Files                                                          | When to Use                                                              |
 | ------ | -------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **1**  | < 100          | spec.md, plan.md, tasks.md, implementation-summary.md                   | Small features, bug fixes, single-file changes                           |
-| **2**  | 100 - 499      | Level 1 + acceptance-criteria.md (checklist.md optional)                | Features needing QA verification, multi-file changes                     |
-| **3**  | 500+           | Level 2 + decision-record.md                                            | Architecture changes, complex refactors                                  |
+| **2**  | 100 - 499      | Level 1 + acceptance-criteria.md (optional, warns if absent)            | Features needing QA verification, multi-file changes                     |
+| **3**  | 500+           | Level 2 + decision-record.md (optional, created on request)             | Architecture changes, complex refactors                                  |
 | **3+** | Complexity 80+ | Level 3 + approval workflow, compliance checkpoints, stakeholder matrix | High-complexity work needing review tracking and workstream coordination |
 
 The LOC ranges are guidance, not hard rules. Risk, complexity and the number of affected files can push a task to a higher level. When in doubt, choose the higher level.
 
-**Implementation-summary.md** is required at all levels but created **after** implementation completes, not at spec folder creation time.
+Only `spec.md`, `plan.md` and `tasks.md` are hard requirements at every level. `implementation-summary.md` is required too, but created **after** implementation completes rather than at spec folder creation time. `acceptance-criteria.md` and `decision-record.md` are optional add-ons: a missing `acceptance-criteria.md` warns, a missing `decision-record.md` is skipped silently. The machine contract is `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json`.
 
 &nbsp;
 #### Spec Folder Structure
 
 ```text
-specs/<###-feature-name>/
+specs/<track>/<###-feature-name>/
 ├── description.json             # Spec identity and continuity metadata
 ├── spec.md                      # What the feature is and why it exists
 ├── plan.md                      # How to implement it
 ├── tasks.md                     # Step-by-step task breakdown
 ├── acceptance-criteria.md       # Criteria that gate packet closure (Level 2+)
-├── checklist.md                 # QA validation gates (Level 2+)
 ├── decision-record.md           # Architecture decisions (Level 3+)
 ├── implementation-summary.md    # Post-implementation summary (all levels)
 ├── resource-map.md              # Optional path ledger of resources the packet touched
@@ -175,16 +174,32 @@ specs/<###-feature-name>/
 └── scratch/                     # Temporary workspace files
 ```
 
-`resource-map.md` is optional at any level. Render it from `.opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl` when a packet wants a lean, central listing of the files, scripts and external resources it interacts with. Deep-research and deep-review loops emit it automatically next to `review-report.md`.
+`resource-map.md` is optional at any level. Render it from `.opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl` when a packet wants a lean, central listing of the files, scripts and external resources it interacts with. Deep-research and deep-review loops emit it automatically next to `review-report.md`.
 
 &nbsp;
-#### Checklist Priority System
+#### Available Templates
 
-Checklists use a priority system so reviewers know what blocks shipping and what can wait:
+Seventeen templates ship under `.opencode/skills/system-spec-kit/templates/`. Which ones a packet gets depends on how each document is triggered, not on its level alone.
+
+| Trigger | Templates | Where |
+| ------- | --------- | ----- |
+| `scaffold` - written when the packet is created | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `acceptance-criteria.md` | `core/`, `addons/` |
+| `explicit-option` - written when you ask for it | `decision-record.md`, `resource-map.md`, `context-index.md`, `before-after.md`, `timeline.md`, `roadmap.md`, `goal.md` | `addons/`, `packet-types/` |
+| Command or agent owned | `handover.md` (memory save), `debug-delegation.md` (`@debug`), `research.md` (`/deep:research`) | `addons/` |
+| Packet type, not a level | `phase-parent.spec.md`, `review.spec.md` | `packet-types/` |
+
+Beyond the four numbered levels, the contract also defines three packet types with their own required documents: `phase` (a phase parent, needs only `spec.md`), `review` (needs `spec.md` plus `review/review-report.md`) and `research` (needs `spec.md` plus `research/research.md`).
+
+&nbsp;
+#### Task Priority System
+
+Checklist items in `tasks.md` carry a priority so reviewers know what blocks shipping and what can wait:
 
 - **P0** - Hard blocker. Cannot ship without this. Cannot defer.
 - **P1** - Required. Must complete or get explicit user approval to defer.
 - **P2** - Optional. Nice to have. Can defer without approval.
+
+`check-completion.sh` reads these items from the verification section of `tasks.md` and requires every one to carry a P0, P1 or P2 tag. That section is Level 2+, so a Level 1 packet without it exits the check unenforced. `acceptance-criteria.md` does not use priorities: each of its rows is `Met`, `Unmet`, `Waived` or `Superseded`, and a `Waived` or `Superseded` row must name an ADR that exists in `decision-record.md`.
 
 &nbsp;
 #### Phase Decomposition
@@ -279,7 +294,7 @@ TypeScript sources compile to `.opencode/skills/system-spec-kit/runtime/cli/dist
   ┌─────────────────────────────────────────────┐
   │  Post-Rules                                 │
   │  Continuity Save ─ generate-context.js only │
-  │  Completion ─ verify checklist.md items     │
+  │  Completion ─ verify tasks.md items         │
   └─────────────────────────────────────────────┘
 ```
 
@@ -931,11 +946,11 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
 **What "adapting `sk-code`" looks like**:
-- Replace `references/webflow/`, `references/opencode/`, `references/motion_dev/` with your stack's references (e.g., `references/nextjs/`, `references/postgres/`).
-- Replace `assets/webflow/`, `assets/opencode/`, `assets/motion_dev/` with your stack's assets (checklists, recipes, snippets).
-- Update `SKILL.md` §2 Smart Routing, `STACK_FOLDERS` dict + the bash detection block, to match your stack's marker files and CWD signals.
-- Update the `RESOURCE_MAP` intent → file paths to point at your renamed references/assets.
-- Bump `sk-code` version + ship a changelog. Use the `assets/opencode/checklists/skill-authoring.md` checklist as your guide.
+- Replace the surface packets (`sk-code-webflow/`, `sk-code-opencode/`, `sk-code-mobile-cli/`, `sk-code-obsidian/`) with packets for your stack. Each one owns its own `references/` and `assets/`.
+- Register your packets in `mode-registry.json` and `hub-router.json`, and update the mode table in `SKILL.md` §1.
+- Update `shared/references/stack-detection.md` to match your stack's marker files and CWD signals.
+- Update the `RESOURCE_MAP` in `ROUTER.md` §11 so each intent key points at your renamed packet resources.
+- Bump `sk-code` version + ship a changelog. Use `sk-code-opencode/assets/checklists/skill-authoring.md` as your guide.
 
 The other shipped skills will continue working unchanged: `sk-doc` will still validate your markdown, `sk-git` will still manage your branches, `system-spec-kit` will still spec your work. `sk-code`'s `code-review` mode auto-adapts to your customized surfaces at review time.
 
@@ -987,7 +1002,7 @@ A: It works with OpenCode and Claude Code. OpenCode uses plugin surfaces; Claude
 &nbsp;
 **Q: What happens if I do not use a spec folder?**
 
-A: Gate 3 blocks file modifications until a spec folder answer is provided. You can skip it with option D, but skipped sessions are undocumented and will not be recoverable through `/speckit:resume` or `/speckit:search`. For trivial changes under 5 characters in a single file, Gate 3 does not trigger.
+A: Gate 3 blocks file modifications until a spec folder answer is provided. You can skip it with option E, but skipped sessions are undocumented and will not be recoverable through `/speckit:resume` or `/speckit:search`. For a trivial fix of a few characters in one file, Gate 3 does not trigger.
 &nbsp;
 **Q: How does retrieval know what is relevant to my current task?**
 
