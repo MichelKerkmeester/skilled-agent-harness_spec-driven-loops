@@ -97,6 +97,8 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
   (no output)
   ```
 - `cd .opencode/skills/system-spec-kit/scripts && npm run check` failed:
+  Recorded before the CLI nesting; the `@spec-kit/scripts` workspace and two of the listed test files no longer exist, the boundary script is repaired, and `npm run check` passes with the listed test imports governed by the allowlist.
+
   ```text
   > @spec-kit/scripts@1.7.2 check
   > npm run lint && npx tsx evals/check-no-mcp-lib-imports.ts && bash check-api-boundary.sh && npx tsx evals/check-architecture-boundaries.ts && npx tsx evals/check-allowlist-expiry.ts && npx tsx evals/check-source-dist-alignment.ts && npx tsx evals/check-no-mcp-lib-imports-ast.ts && npx tsx evals/check-handler-cycles-ast.ts

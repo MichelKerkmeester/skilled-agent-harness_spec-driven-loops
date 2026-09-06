@@ -37,27 +37,31 @@ Use when writing, reviewing, or resolving style questions for JavaScript files.
 
 ## 2. FILE HEADER FORMAT
 
-All JavaScript files MUST begin with a boxed header identifying the module.
-For `.mjs` files and OpenCode plugin loader paths, keep the same header style
-but follow ESM module syntax instead of CommonJS.
+All JavaScript files MUST begin with a module header identifying the module,
+in the same divider form the TypeScript style guide uses, so a mixed tree reads
+as one convention. For `.mjs` files and OpenCode plugin loader paths, keep the
+same header but follow ESM module syntax instead of CommonJS.
 
 ### Template
 
 ```javascript
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ [Module Name]                                                             ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: [Module Name]
+// ───────────────────────────────────────────────────────────────────
 ```
 
 ### Requirements
 
-- Box width: 78 characters total
-- Module name: Centered or left-aligned within box
+- Divider width: 67 box-drawing characters after `// `
+- Module name: after `MODULE:` on the middle line
+- A shebang line may precede the header in an executable script
 - Immediately followed by `'use strict';` directive for `.js/.cjs` files
 - `.mjs` and plugin ESM files do not require `'use strict'`
+- The older 78-character `╔═╗` box is accepted where it already exists; do not
+  introduce it in new files
 
-**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/utils/logger.ts:1-3`,
-`.opencode/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts:1-3`
+**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:1-4`,
+`.opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:1-4`
 
 ---
 
