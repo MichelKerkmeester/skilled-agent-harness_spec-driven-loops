@@ -1,0 +1,16 @@
+create a chart                           sk-design=0.8461, sk-doc=0.82, system-spec-kit=0.82
+chart template                           sk-design=0.82
+sk-create-chart                          sk-design=0.82, system-spec-kit=0.82, sk-doc=0.82
+make a diagram                           sk-design=0.82
+flowchart                                sk-design=0.82
+make a chart of orders by month          sk-design=0.8277
+plot this as a heatmap                   sk-design=0.8461
+redraw this drawio diagram               sk-design=0.8252
+ascii flowchart of the approval loop     sk-design=0.821
+what padding should this have            sk-design=0.82
+contrast ratio failure on this button    sk-design=0.95
+extract design tokens from stripe.com    sk-design=0.9026
+validate this design.md                  sk-design=0.82
+write a readme for this package          sk-doc=0.95, system-spec-kit=0.82, sk-code=0.82
+build a feature catalog                  sk-doc=0.82, sk-code=0.82, sk-prompt=0.82
+create a repo rule file                  sk-doc=0.9405, system-spec-kit=0.82, sk-git=0.82

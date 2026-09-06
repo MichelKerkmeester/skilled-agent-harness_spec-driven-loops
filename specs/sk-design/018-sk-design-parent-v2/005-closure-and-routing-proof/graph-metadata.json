@@ -38,15 +38,24 @@
       "technical",
       "approach"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "important",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/mcp-tooling/graph-metadata.json",
+      ".opencode/skills/sk-communication/graph-metadata.json",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+      ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      "specs/sk-design/016-deprecate-sk-design-interface/spec.md",
+      "specs/sk-design/018-sk-design-parent-v2/scratch/routing-after-005.txt"
     ],
     "entities": [
       {
@@ -80,9 +89,39 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-after-005.txt",
+        "kind": "file",
+        "path": "specs/sk-design/018-sk-design-parent-v2/scratch/routing-after-005.txt",
         "source": "derived"
       },
       {
@@ -128,13 +167,19 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Technical Context Four",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Rebuild",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measurement",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -152,51 +197,15 @@
         "source": "derived"
       },
       {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Every phase in this packet closed against evidence it gathered itself, at the moment it ran",
     "created_at": "2026-09-06T13:52:17Z",
-    "last_save_at": "2026-09-06T15:26:02.926Z",
+    "last_save_at": "2026-09-06T15:52:26.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,15 +214,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8aa8b6633e8fef1a053be164d5bfcdd7d8f0efa2a210ef53d6327de338f2f5cc",
+    "source_fingerprint": "sha256:63636b280ba7c6b6dc5e2cc05cb8d06bd0c3439ecf427aec930d7ba3b14d738d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b98978b9d9b08f8d33b2b81910ab1076e0ffbafcc9c7b5d11815280de6bbefd",
-      "plan.md": "9c616cda7cb24847d5437ce45082de285b376361064d9b89c251a7d27966f428",
-      "tasks.md": "3c5556d40ebdd78995b6428a60039aea2a98b2a582f8c0af32d4fe9a655a95b1",
-      "implementation-summary.md": "2fae60051002c6eee97deaec0621b2e4c9b4d35e11f1a8f78ead15cce2aea2b4"
+      "spec.md": "597d1bad239438c2664f902b464a5e3b5dc78d2cf06828c6b13676bdf85f6c93",
+      "plan.md": "cf3854e25b1540a77ce22644c629f135532108155ed760e1836dfa5b38ef2692",
+      "tasks.md": "b19f190d8417c0da0db619e58b78f1a03223e19e1e1932b3fafafc0cf8919718",
+      "decision-record.md": "41c2332e2e3cb4de68de83fa06afa6b1cd094ed599af42a580b1354dfb3cf626",
+      "implementation-summary.md": "f53a36c965d261c1fc7a9491cae57852979486d3c4c52636e6666697fad7d2a5"
     },
     "last_active_at": null
   }

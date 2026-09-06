@@ -54,14 +54,18 @@ tree the previous one left green.
 | 2 | `003-md-generator-as-mode` | **Done** | The generator's own identity files must go, or the root reports a nested identity; `/design:extract` and the design agent hold dead paths until rewritten | Both hub gates; `skill_graph_validate` clean; the generator's own tests from the new path; the regression 002 introduced closed |
 | 3 | `004-chart-and-diagram-cutover` | **Done** | A router signal whose packet is not on disk fails whichever hub is wrong, so both hubs are edited in one commit | Both parent-skill checks; chart phrases naming sk-design and sk-doc no longer claiming them; the chart corpus checker from its new location |
 | 4 | `001-sk-create-chart` | **Done** | 219 files carry the old pointer until repaired; the trigger index is stale until regenerated | `validate.sh --strict` on the moved packet; pointer sweep clean |
-| 5 | `005-closure-and-routing-proof` | **Now** | Nothing | The sixteen-phrase baseline replayed from the final state, and a daemon generation that moved |
+| 5 | `005-closure-and-routing-proof` | **Done** | Nothing | Sixteen-phrase replay at generation 638: zero phrases reach nobody, against four at the baseline |
 
-**Now.** Step 5 only. Everything it needs is on disk and green.
+**Now.** Nothing. All five steps are done.
 
-**Next.** Nothing in this packet. Closure ends it.
+**Next.** One item leaves this packet unfinished elsewhere: `sk-doc`'s typed-gold playbook gate is red
+because four of its fixtures assert `sk-doc` owns FLOWCHART, which step 3 made false. The corpus is
+keyed to benchmark reports from 2026-07-21 and belongs to whoever owns that benchmark. Recorded in
+`005-closure-and-routing-proof/decision-record.md` with every option weighed.
 
-**Later.** The inherited `sk-doc` vocabulary weakness below is its own packet and is deliberately not
-scheduled here.
+**Later.** Vocabulary in `description.json` moves no advisor score. If that is why long phrases miss
+elsewhere in the fleet, it is worth checking before anyone writes a packet to tune scorer thresholds.
+Its own packet, deliberately not scheduled here.
 <!-- /ANCHOR:now-next-later -->
 
 <!-- ANCHOR:milestones-targets -->
@@ -72,7 +76,7 @@ scheduled here.
 | Hub class contract satisfied | `description.json`, `mode-registry.json`, `hub-router.json` present; `leaf-manifest.config.json` absent | Met in step 1 |
 | Four modes routable | `sk-design-fundamentals`, `sk-design-md-generator`, `sk-create-chart`, `sk-create-diagram` under the hub | Met in steps 1–3 |
 | Chart packet relocated | 1,528 renames, `validate.sh --strict` green across all 35 spec folders | Met in step 4 |
-| Sixteen phrases replayed | Every phrase reaching a skill at baseline still reaches one, proven by replay not by configuration | Open, step 5 |
+| Sixteen phrases replayed | Every phrase reaching a skill at baseline still reaches one, proven by replay not by configuration | Met in step 5, at generation 638 |
 
 ### Two things carried forward, not resolved
 

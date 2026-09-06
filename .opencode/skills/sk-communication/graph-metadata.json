@@ -14,9 +14,9 @@
         "context": "sk-code builds and verifies integration code against the communication-projection package"
       },
       {
-        "target": "sk-design-md-generator",
-        "weight": 0.3,
-        "context": "sk-design-md-generator extracts a measured Style Reference from a live source"
+        "target": "sk-design",
+        "weight": 0.4,
+        "context": "sk-design's EXTRACT mode measures a live source into a Style Reference"
       },
       {
         "target": "sk-doc",

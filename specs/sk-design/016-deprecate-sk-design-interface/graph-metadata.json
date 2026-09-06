@@ -43,8 +43,6 @@
     "key_files": [
       "spec.md",
       ".opencode/skills/README.txt",
-      ".opencode/skills/sk-design-md-generator/graph-metadata.json",
-      ".opencode/skills/sk-design-md-generator/backend/tests/corpus-baseline-v3.test.ts",
       ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md"
     ],
@@ -59,18 +57,6 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/skills/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design-md-generator/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "corpus-baseline-v3.test.ts",
-        "kind": "test",
-        "path": ".opencode/skills/sk-design-md-generator/backend/tests/corpus-baseline-v3.test.ts",
         "source": "derived"
       },
       {
@@ -124,16 +110,16 @@
     ],
     "causal_summary": "The `sk-design` parent hub currently routes exactly two workflow modes through `mode-registry.json`: `sk-design-interface` (invents new visual direction — palette, type, layout, motion, anti-slop critique; the design taste authority) and `sk-design-md-generator` (extracts a live website's real CSS into a v3 Style Reference `DESIGN.md`; the extraction fidelity engine)",
     "created_at": "2026-08-19T04:18:51.559Z",
-    "last_save_at": "2026-08-30T15:39:13.473Z",
+    "last_save_at": "2026-09-06T15:46:09.697Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9260b9b9d266237e2616749bd29e44196af3de4fb4929463b40485b880e42712",
+    "source_fingerprint": "sha256:b8c4cac3532ff64bed81b33559655b38b1d251587c1f2380b06fcfb8c0901743",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b4e6d62649e2535f269f376dfeb54e0da1038933b3d23596afea0ee71b2ed691"
+      "spec.md": "fc677d6e2404ddfbabec4d20adea65f557210f739c23bcff45d2e5e6e8933b8e"
     },
     "last_active_child_id": "sk-design/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile",
     "last_active_at": "2026-08-19T07:14:54.600Z"

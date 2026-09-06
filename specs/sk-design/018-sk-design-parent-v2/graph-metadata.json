@@ -128,13 +128,13 @@
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
+        "name": "one",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Read first, do not re-derive",
+        "name": "1. DURABLE DIRECTIVE",
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
@@ -142,19 +142,19 @@
     ],
     "causal_summary": "`sk-design` is a hub of four coherent modes, every request that reached a mode before still reaches",
     "created_at": "2026-09-06T13:52:15Z",
-    "last_save_at": "2026-09-06T15:15:31.902Z",
+    "last_save_at": "2026-09-06T15:52:57.365Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:85689050c3accb9fc95ea5fcb3cd3fbb873e4dc1aa82714ed4383f0f4fb20b66",
+    "source_fingerprint": "sha256:09e557c13caec9180ae4da828874fc887084527ec8c52afb9b7f124f6c840401",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4af4988be8023ef7df169b0c29e2b939ff68ac97de726a77d97ad2c81343f454"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-09-06T14:50:24.209Z"
+    "last_active_at": "2026-09-06T15:29:55.408Z"
   }
 }

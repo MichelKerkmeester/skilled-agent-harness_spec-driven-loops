@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Closure and routing proof"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Every phase in this packet reported success against its own gate. Nothing had yet checked those claims against the fleet from the final state, and three of them turned out to be false."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -19,11 +19,17 @@ contextType: "general"
 
 ## EXECUTIVE SUMMARY
 
-[2-3 sentence high-level overview for stakeholders who need quick context]
+Four phases moved skills, merged an advisor identity and rewrote routing metadata, each closing
+against its own gate. This phase measures the result from the final state instead, and it found
+three claims that were true when made and false afterwards: four dangling graph edges the build was
+silently dropping, two stale derived blocks, and a hub gate failing because a mode moved out from
+under its fixtures.
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: measure from the closing state rather than trust per-phase evidence; treat a
+validator that reads a built artefact as unable to see a defect the build repairs.
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: every other phase in this packet, and an advisor daemon rebuilt
+explicitly rather than assumed fresh.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -32,8 +38,8 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -73,10 +79,13 @@ This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart,
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Every phase in this packet closed against evidence it gathered itself, at the moment it ran. That is
+the weakest position from which to claim a fleet is correct: a later phase can invalidate an earlier
+one's evidence without either noticing, and no gate in the packet compares the closing state against
+the baseline taken before any of it started.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Every claim this packet makes matches what the fleet does, measured from the closing state.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -85,19 +94,33 @@ This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart,
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- An explicit advisor rebuild with its generation number observed to move
+- The sixteen-phrase replay taken from the closing state and diffed against `routing-baseline.txt`
+- Every gate re-run and its output read, not its exit code trusted
+- Repair of anything those measurements prove wrong, where the repair is in this packet's blast radius
+- Reconciliation of documents that describe the old fleet shape
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Re-baselining `sk-doc`'s routing benchmark corpus - four of its fixtures assert `sk-doc` owns
+  FLOWCHART and now block the typed-gold gate, but the corpus is keyed to benchmark reports from
+  2026-07-21 and belongs to whoever owns that benchmark
+- `SD-CR-001`, a compiled-routing scenario with no pass/fail criteria - it was already failing on
+  2026-09-02, before this packet's first commit, and has nothing to do with design routing
+- The fleet-wide `description.json` versus `graph-metadata.json` vocabulary finding - it is real and
+  it is its own packet
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/sk-design/graph-metadata.json` | Modify | Remove a dangling sibling edge and a self-loop left by the identity merge |
+| `.opencode/skills/mcp-tooling/graph-metadata.json` | Modify | Retarget a sibling edge from the dead standalone name to the hub |
+| `.opencode/skills/sk-communication/graph-metadata.json` | Modify | Same retarget; the rewritten row also comes into the recommended weight band |
+| `.opencode/skills/sk-doc/graph-metadata.json` | Modify | Regenerate the derived block that still pointed at a moved mode |
+| `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` | Modify | The fleet class table named the old shape |
+| `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` | Modify | The extension matrix said the hub was decommissioned |
+| `specs/sk-design/016-deprecate-sk-design-interface/spec.md` | Modify | Record its own partial supersession |
+| `specs/sk-design/018-sk-design-parent-v2/scratch/routing-after-005.txt` | Create | The closing replay |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -109,13 +132,17 @@ This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart,
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | The advisor daemon is rebuilt explicitly and its generation number observed to move before any routing claim is made. |
+| REQ-002 | All sixteen baseline phrases are replayed from the closing state. No phrase reaches nobody, chart and diagram name `sk-design`, and the three `sk-doc` controls are unchanged. |
+| REQ-003 | Every gate is re-run and its **output** read. An exit code alone is not evidence, and at least one gate in this fleet reports `verdict=FAIL` while exiting 0. |
+| REQ-004 | Anything those measurements prove wrong is repaired where it lies inside this packet's blast radius, or named with its cause and its owner where it does not. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-005 | No document still describes `sk-design` as standalone, or `sk-doc` as the home of chart and diagram. |
+| REQ-006 | `016`'s spec records its own partial supersession from its own side, without rewriting the reasoning it recorded. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -126,8 +153,11 @@ This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart,
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The replay in `scratch/routing-after-005.txt` shows zero phrases reaching nobody, against four at the baseline.
+- **SC-002**: The advisor rebuild reports `rejectedEdges: 0`, against 4 before this phase.
+- **SC-003**: The fleet metadata audit reports 13 of 13 passing, `sk-design` and `sk-doc` both class H.
+- **SC-004**: `ci-skill-derived-freshness` reports 13 fresh, 0 stale, exit 0.
+- **SC-005**: `validate.sh --strict` prints `RESULT: PASSED` for the parent, all five children, and `016`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -137,8 +167,11 @@ This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart,
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | The advisor daemon | A replay against a stale generation proves nothing | Rebuild explicitly and read the generation back before measuring |
+| Dependency | `scratch/routing-baseline.txt` | Without it there is nothing to diff against, and it cannot be recaptured | It was committed in phase 002, before anything moved |
+| Risk | A gate reports success in its exit code and failure in its output | High | Read every gate's output; use `--strict` where a gate offers it |
+| Risk | A validator reads the built artefact and cannot see a defect the build repairs | High | Read the build's own warning stream, not only the validator's verdict |
+| Risk | Repairing something outside this packet's scope | Medium | Name the finding, its cause and its owner, and stop |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -148,25 +181,25 @@ This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart,
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P01**: No runtime performance target. The only measured quantity is advisor confidence per phrase, recorded in `acceptance-criteria.md`.
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S01**: No credential, token or network call is added. Every command is local and read-mostly.
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R01**: Every measurement is reproducible from a named daemon generation, so a later reader can re-take it rather than trust it.
 
 ---
 
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
+- A phrase that reaches nobody: recorded as `NOTHING`, never as a low score, so a silent miss cannot read as a weak pass.
+- A phrase whose owner changed: reported as an owner change, never as a score delta, because the two numbers describe different identities.
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
+- A gate that prints nothing: treated as failed, not passed. A validator with no output has not run.
+- A gate that exits 0 with `verdict=FAIL`: the output wins. `--strict` is used wherever a gate offers it.
 
 ---
 
@@ -174,11 +207,11 @@ This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart,
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
+| Scope | 12/25 | Files: 8 changed, 3 skill graphs, 3 canon documents; no code path |
+| Risk | 14/25 | Auth: N, API: N, Breaking: routing metadata, which is why every change is re-measured |
+| Research | 8/20 | No investigation; the measurements are the work |
+| Multi-Agent | 2/15 | Single workstream, serial by nature |
+| Coordination | 12/15 | Depends on all four preceding phases being complete and green |
 | **Total** | **[/100]** | **Level 3** |
 
 ---
@@ -187,13 +220,15 @@ This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart,
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | A per-phase claim is true when made and false at the close | H | H | This phase exists for exactly that; measure from the closing state |
+| R-002 | A silently-repaired defect never surfaces | M | H | Read the build's warning stream, not only the validator verdict |
+| R-003 | A found defect lies outside this packet's scope | H | M | Name cause and owner; repair nothing outside the blast radius |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: [Title] (Priority: P0)
+### US-001: A later reader trusts the packet's claims (Priority: P0)
 
 **As a** [user type], **I want** [needed behavior], **so that** [benefit].
 
@@ -201,7 +236,7 @@ This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart,
 
 ---
 
-### US-002: [Title] (Priority: P1)
+### US-002: The next packet inherits an accurate fleet description (Priority: P1)
 
 **As a** [user type], **I want** [needed behavior], **so that** [benefit].
 
@@ -211,8 +246,11 @@ This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart,
 
 ## 12. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- How `sk-doc`'s four blocked FLOWCHART fixtures should be resolved: moved to a `sk-design` hub
+  playbook that does not exist yet, retired, or re-baselined with the benchmark corpus they belong
+  to. Recorded for the owner of that corpus rather than decided here.
+- Whether the `description.json` versus `graph-metadata.json` vocabulary finding holds across the
+  rest of the fleet. Worth checking before anyone writes a packet to tune scorer thresholds.
 <!-- /ANCHOR:questions -->
 
 ---

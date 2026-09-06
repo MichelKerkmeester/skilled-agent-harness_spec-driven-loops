@@ -55,8 +55,9 @@ Vocabulary that must move the advisor goes in `graph-metadata.json` `intent_sign
 
 ### Operator copy
 
-Four modes under one hub, and a replay proving nothing stopped arriving. Steps 1 to 4 are done;
-step 5 is the replay.
+Four modes under one hub, and a replay proving nothing stopped arriving. All five steps are done.
+One item leaves the packet: `sk-doc`'s playbook gate is red because four of its fixtures assert
+`sk-doc` owns FLOWCHART, and fixing it belongs to the owner of that benchmark corpus.
 <!-- /ANCHOR:directive -->
 
 <!-- ANCHOR:binding -->
@@ -131,7 +132,7 @@ step does.
 | 2 | `003-md-generator-as-mode` | Done |
 | 3 | `004-chart-and-diagram-cutover` | Done |
 | 4 | `001-sk-create-chart` | Done: 1,528 renames, 35 spec folders green |
-| 5 | `005-closure-and-routing-proof` | Open |
+| 5 | `005-closure-and-routing-proof` | Done: generation 638, zero phrases reach nobody |
 
 ### Deviations and findings
 
@@ -143,4 +144,14 @@ step does.
   renamed to `relocation-note.md` and `relocation-goal.md`.
 - **Constraint 7 was added after a violation, not before.** Seven run artifacts were rewritten during
   step 4 and reverted from `HEAD` once caught.
+- **A validator that reads a built artefact cannot see a defect the build repairs.** Step 5 found four
+  dangling graph edges the builder had been dropping on every run while `skill_graph_validate`
+  reported clean. They were not inert: repairing them raised two phrase scores. Read the rebuild's own
+  warning stream, not only the validator verdict.
+- **Two gates lie about their own result.** `validate-playbook-topology` prints `verdict=FAIL` and
+  exits 0 without `--strict`; `regenerate-skill-derived` defaults to a dry run that reports the
+  changes it did not make. Run every gate strictly and confirm a write by re-running the check.
+- **The packet closes with one red gate, named.** `sk-doc`'s typed-gold playbook gate fails on four
+  fixtures this packet's step 3 invalidated. Every path to green deletes tracked coverage, fabricates
+  a scenario under a published id, or splits a benchmarked corpus. Recorded rather than forced.
 <!-- /ANCHOR:log -->

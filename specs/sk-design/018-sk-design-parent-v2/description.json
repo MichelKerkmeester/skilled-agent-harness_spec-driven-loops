@@ -21,8 +21,9 @@
   "parentChain": [
     "sk-design"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "06-09-26_15-50__phase-004-committed-as-e34e225517-both-hubs-class.md"
+    "06-09-26_15-50__phase-004-committed-as-e34e225517-both-hubs-class.md",
+    "06-09-26_16-29__phase-001-is-closed-and-the-packet-repair-it.md"
   ]
 }

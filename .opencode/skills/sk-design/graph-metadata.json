@@ -20,16 +20,6 @@
     ],
     "siblings": [
       {
-        "target": "sk-design-md-generator",
-        "weight": 0.7,
-        "context": "The writing half of a pair: md-generator measures an existing surface into a Style Reference, this skill decides values for a surface that does not exist yet. A measured reference outranks these defaults"
-      },
-      {
-        "target": "sk-design",
-        "weight": 0.7,
-        "context": "The reading half of a pair: this skill measures a surface that already exists, sk-design decides values for one that does not. A measured Style Reference outranks sk-design's defaults for the surface it covers"
-      },
-      {
         "target": "mcp-tooling",
         "weight": 0.45,
         "context": "The mcp-figma / mcp-refero / mcp-mobbin design transports move design data; this skill produces the authoritative measured reference they pair with"
@@ -286,10 +276,7 @@
       "design review findings"
     ],
     "key_files": [
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-design/references/diagnosis-table.md",
-      ".opencode/skills/sk-design/references/hierarchy.md",
-      ".opencode/skills/sk-design/references/review-checklist.md"
+      ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
       {
@@ -300,11 +287,10 @@
       }
     ],
     "source_docs": [
-      "SKILL.md",
-      "leaf-manifest.config.json"
+      "SKILL.md"
     ],
     "causal_summary": "sk-design is a standalone design skill that decides UI values and behavior when a surface is being built, improved, or reviewed. It carries fixed spacing, type, weight, color, elevation, radius, opacity and duration scales so values are chosen from a list rather than invented ad hoc; a seven-step build procedure; the hierarchy method that emphasizes by de-emphasizing; a palette construction method in HSL with contrast escape hatches; an interaction layer covering inputs, touch, focus, keyboard and performance; a motion model built on the twelve animation principles with enforceable timing, easing, physics and staging rules; the UX laws that decide target size, choice count, chunking and response budgets; and a severity-tiered WCAG review pass over UI code. It is the authoring counterpart to sk-design-md-generator, which measures an existing surface; a measured Style Reference outranks these defaults, and both skills state that precedence. The sk-design name previously belonged to a retired parent hub and carries nothing from it. Knowledge is distilled from four public sources: Refactoring UI, Rauno Freiberg's Web Interface Guidelines, Raphael Salaja's userinterface-wiki, and the Rams design-review skill.",
     "created_at": "2026-08-28T03:53:58.666360+00:00",
-    "last_updated_at": "2026-08-28T05:00:00.000000+00:00"
+    "last_updated_at": "2026-09-06T00:00:00Z"
   }
 }

@@ -44,15 +44,26 @@ _memory:
 | **Level** | 2 |
 | **Structure** | Phase Parent lean trio (program umbrella over six numbered children) |
 | **Priority** | P1 |
-| **Status** | Complete — all 7 children shipped; scoped commit operator-gated |
+| **Status** | Complete — all 7 children shipped; scoped commit operator-gated. **Superseded in part** by `sk-design/018-sk-design-parent-v2` |
 | **Created** | 2026-08-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None; root packet under the design track |
 | **Parent Packet** | `sk-design` |
 | **Predecessor** | `sk-design/015-deprecate-open-design` (retired the mcp-open-design mode; this packet retires the last non-md-generator mode and the hub itself) |
-| **Successor** | None |
+| **Successor** | `sk-design/018-sk-design-parent-v2` (reverses the hub decision below; keeps every scope decision) |
 | **Handoff Criteria** | The standalone `sk-design-md-generator` skill validates under `validate.sh --strict`; the `016` packet validates under `validate.sh --recursive --strict`; no dangling `sk-design`/`interface:` references remain in live surfaces |
 <!-- /ANCHOR:metadata -->
+
+> **Superseded in part, 2026-09-06.** `sk-design/018-sk-design-parent-v2` reinstated the
+> `sk-design` parent hub. The reasoning recorded below was sound for the shape it described — a hub
+> routing exactly two unevenly-coupled modes — and the successor packet reinstates it for a
+> different shape: four modes with one subject, after chart and diagram arrived from the
+> documentation hub. `sk-design-md-generator` is no longer a standalone root; it is the hub's
+> EXTRACT mode.
+>
+> What this packet retired stays retired: the interface mode, the `commands/interface/` surface, and
+> the design-taste layer. Only the hub decision is reversed. This document is left as written,
+> because it is the record of a decision that was correct when it was taken.
 
 ---
 

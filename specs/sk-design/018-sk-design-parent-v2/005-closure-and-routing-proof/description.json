@@ -1,18 +1,20 @@
 {
   "level": "3",
   "specFolder": "sk-design/018-sk-design-parent-v2/005-closure-and-routing-proof",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "Every phase in this packet closed against evidence it gathered itself, at the moment it ran",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "every",
+    "phase",
+    "packet",
+    "closed",
+    "against",
+    "evidence",
+    "gathered",
+    "itself",
+    "moment",
+    "ran"
   ],
-  "lastUpdated": "2026-09-06T15:25:53.696Z",
+  "lastUpdated": "2026-09-06T15:52:25.962Z",
   "specId": "005",
   "folderSlug": "closure-and-routing-proof",
   "parentChain": [

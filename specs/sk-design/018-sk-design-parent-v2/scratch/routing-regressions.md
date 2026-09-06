@@ -75,3 +75,55 @@ Adding eleven signals there moved all four dead phrases above the bar:
 So the corpus-wide long-phrase weakness is probably not a scorer threshold problem at all. It is
 vocabulary sitting in a file the scorer does not read. That is worth checking across the fleet
 before anyone writes a packet to tune thresholds.
+
+
+## The final replay, taken from the closing state
+
+Measured at daemon generation 638, after an explicit rebuild that moved the generation from 632.
+`routing-after-005.txt` beside this file is the full sixteen-phrase result.
+
+**No phrase reaches nobody.** Four that reached nobody at the baseline now route, and the three
+`sk-doc` controls are byte-identical to the baseline: `write a readme for this package` at 0.95,
+`build a feature catalog` at 0.82, `create a repo rule file` at 0.9405.
+
+Four phrases score numerically lower than their baseline, and every one of them changed owner:
+
+| Phrase | Baseline | Final | What changed |
+|--------|----------|-------|--------------|
+| `create a chart` | `sk-doc=0.918` | `sk-design=0.8461` | owner moved with the mode |
+| `sk-create-chart` | `sk-doc=0.8744` | `sk-design=0.82` | owner moved with the mode |
+| `extract design tokens from stripe.com` | `sk-design-md-generator=0.9157` | `sk-design=0.9026` | standalone identity merged into the hub |
+| `validate this design.md` | `sk-design-md-generator=0.8451` | `sk-design=0.82` | standalone identity merged into the hub |
+
+Comparing those pairs compares two different identities, which is the same correction phase 003
+recorded. The substantive test is whether the phrase reaches the skill that owns the work, and in
+all four it does.
+
+## Two dangling graph edges were changing scores, silently
+
+The closing rebuild reported `rejectedEdges: 4`, which no earlier step had read. Phase 003 folded the
+md generator's sibling edges into the hub by concatenation, without retargeting or deduplication, so
+four edges named a skill that no longer exists:
+
+- `mcp-tooling` → `sk-design-md-generator`
+- `sk-communication` → `sk-design-md-generator`
+- `sk-design` → `sk-design-md-generator`
+- `sk-design` → `sk-design`, a self-loop created when the generator's own edge to the hub was folded
+  into the hub itself
+
+`skill_graph_validate` reported `isValid: true` throughout, because the builder drops a dangling edge
+at build time. The graph was clean; the sources were not. **A validator that reads the built artefact
+cannot see a defect the build silently repairs**, so phase 003's criterion "no dangling edges" was
+true of the graph and false of the metadata that produces it.
+
+Retargeting the two external edges to `sk-design` and removing the hub's two self-referential ones
+took `rejectedEdges` to 0 and raised the indexed edge count from 50 to 52. It also moved two scores:
+
+| Phrase | After phase 004 | After the edge repair |
+|--------|-----------------|----------------------|
+| `extract design tokens from stripe.com` | `sk-design=0.896` | `sk-design=0.9026` |
+| `redraw this drawio diagram` | `sk-design=0.82` | `sk-design=0.8252` |
+
+So the rejected edges were not inert. They were costing score on exactly the phrases the merge was
+supposed to help, and nothing in the packet would have caught it: the routing replay passed, the
+graph validator passed, and only the rebuild's own warning stream named the problem.
