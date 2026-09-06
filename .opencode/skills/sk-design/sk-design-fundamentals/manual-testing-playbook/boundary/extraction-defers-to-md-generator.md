@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `SKD-030` and confirm th
 
 1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "extract the design system from stripe.com" --threshold 0.5`
 2. `agent: issue the same prompt in a fresh session`
-3. `bash: rg -n "belongs to the sibling skill" .opencode/skills/sk-design-md-generator/SKILL.md`
+3. `bash: rg -n "belongs to the sibling skill" .opencode/skills/sk-design/sk-design-md-generator/SKILL.md`
 
 ### Expected Signals
 
@@ -71,7 +71,7 @@ Read the boundary note in both skills; a wrong route here means one of the two b
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-030 | Extraction routes to the measuring skill | confirm a request to measure a live site routes away from this skill | `Extract the design system from stripe.com` | 1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "extract the design system from stripe.com" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "belongs to the sibling skill" .opencode/skills/sk-design-md-generator/SKILL.md` | The advisor ranks `sk-design-md-generator` first, and the reply routes there rather than proposing values. | Advisor JSON showing the sibling ranked first, the routing reply, and the grep proving the boundary is stated on the sibling side too. | PASS if `sk-design-md-generator` is ranked first and the reply routes there without proposing invented values; FAIL if `sk-design` is ranked first, or the reply proposes colors and sizes for a site it never measured | Read the boundary note in both skills; a wrong route here means one of the two boundary statements drifted. |
+| SKD-030 | Extraction routes to the measuring skill | confirm a request to measure a live site routes away from this skill | `Extract the design system from stripe.com` | 1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "extract the design system from stripe.com" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "belongs to the sibling skill" .opencode/skills/sk-design/sk-design-md-generator/SKILL.md` | The advisor ranks `sk-design-md-generator` first, and the reply routes there rather than proposing values. | Advisor JSON showing the sibling ranked first, the routing reply, and the grep proving the boundary is stated on the sibling side too. | PASS if `sk-design-md-generator` is ranked first and the reply routes there without proposing invented values; FAIL if `sk-design` is ranked first, or the reply proposes colors and sizes for a site it never measured | Read the boundary note in both skills; a wrong route here means one of the two boundary statements drifted. |
 
 ---
 

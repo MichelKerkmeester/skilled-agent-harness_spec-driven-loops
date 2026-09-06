@@ -5,6 +5,7 @@
     "defaultMode": "sk-design-fundamentals",
     "ambiguityDelta": 1,
     "tieBreak": [
+      "sk-design-md-generator",
       "sk-design-fundamentals"
     ],
     "outcomes": {
@@ -22,6 +23,15 @@
       ],
       "resources": [
         "sk-design-fundamentals/SKILL.md"
+      ]
+    },
+    "sk-design-md-generator": {
+      "weight": 4,
+      "classes": [
+        "surface-extraction"
+      ],
+      "resources": [
+        "sk-design-md-generator/SKILL.md"
       ]
     }
   },
@@ -49,6 +59,20 @@
         "critique",
         "visual audit",
         "accessibility contrast"
+      ]
+    },
+    "surface-extraction": {
+      "keywords": [
+        "extract",
+        "design.md",
+        "style reference",
+        "design tokens",
+        "measure",
+        "from a url",
+        "from a site",
+        "css extraction",
+        "validate design.md",
+        "style guide"
       ]
     }
   }

@@ -36,9 +36,11 @@ which picks the resources a mode actually loads.
 | Mode | Owns | Reach it by asking about |
 |------|------|--------------------------|
 | `sk-design-fundamentals` | The values a surface is built from, and reviewing a surface against them | spacing, padding, type scale, colour, contrast, hierarchy, design review |
+| `sk-design-md-generator` | Measuring an existing surface into a Style Reference, and validating one | extract, design.md, design tokens, style reference, from a url |
 
-One mode today. The hub exists because more are arriving, and because a hub is the only shape that
-lets several design modes share one advisor identity.
+The two are complements rather than alternatives: one decides values, the other reads values back
+off something that already exists. A request that names an existing surface belongs to the
+generator; a request that asks what a value should be belongs to fundamentals.
 
 ### How a request reaches a mode
 
@@ -57,7 +59,9 @@ request rather than by reading a row.
 | `mode-registry.json` | What modes exist, and what each may touch |
 | `hub-router.json` | Signals, vocabulary classes, tie-break |
 | `ROUTER.md` | Stage two: which resources a chosen mode loads |
-| `sk-design-fundamentals/` | The one mode, and everything it owns |
+| `sk-design-fundamentals/` | The values mode, and everything it owns |
+| `sk-design-md-generator/` | The extraction mode, its engine and its style corpus |
+| `command-metadata.json` | The commands this hub owns, and which mode owns each |
 
 ---
 

@@ -11,6 +11,11 @@
         "target": "sk-code",
         "weight": 0.6,
         "context": "Supplies the concrete values and behavior contracts (scales, states, durations, contrast minimums) that sk-code implements, instead of leaving the implementer to invent them"
+      },
+      {
+        "target": "sk-code",
+        "weight": 0.6,
+        "context": "A measured Style Reference DESIGN.md (named tokens, type scale, components, Quick Start CSS/Tailwind) feeds sk-code implementation without hallucinating colors, fonts, spacing, or shadows"
       }
     ],
     "siblings": [
@@ -18,6 +23,16 @@
         "target": "sk-design-md-generator",
         "weight": 0.7,
         "context": "The writing half of a pair: md-generator measures an existing surface into a Style Reference, this skill decides values for a surface that does not exist yet. A measured reference outranks these defaults"
+      },
+      {
+        "target": "sk-design",
+        "weight": 0.7,
+        "context": "The reading half of a pair: this skill measures a surface that already exists, sk-design decides values for one that does not. A measured Style Reference outranks sk-design's defaults for the surface it covers"
+      },
+      {
+        "target": "mcp-tooling",
+        "weight": 0.45,
+        "context": "The mcp-figma / mcp-refero / mcp-mobbin design transports move design data; this skill produces the authoritative measured reference they pair with"
       }
     ],
     "conflicts_with": [],
@@ -42,7 +57,12 @@
     "ui-design",
     "ux-laws",
     "visual-design",
-    "wcag"
+    "wcag",
+    "css-extraction",
+    "extract",
+    "style-reference",
+    "design-knowledge",
+    "anti-slop"
   ],
   "intent_signals": [
     "ui looks off",
@@ -116,7 +136,25 @@
     "drop shadow",
     "draws the eye",
     "no visual hierarchy",
-    "everything looks the same"
+    "everything looks the same",
+    "extract design system",
+    "generate design.md",
+    "capture website css",
+    "design tokens from url",
+    "create design reference",
+    "style reference",
+    "validate design.md",
+    "design-to-markdown",
+    "extract design tokens",
+    "hex accuracy",
+    "section completeness",
+    "tokens.json fidelity",
+    "anti-hallucination design doc",
+    "design token vocabulary",
+    "design principles",
+    "anti-slop ui",
+    "structural fingerprint",
+    "brand versus product register"
   ],
   "derived": {
     "trigger_phrases": [

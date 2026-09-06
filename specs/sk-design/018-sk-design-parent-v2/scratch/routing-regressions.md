@@ -30,3 +30,21 @@ moves in, the vocabulary needs tuning rather than waiting.
 
 Deliberately not fixed here by trimming keywords, because that tuning would be undone by the very
 next step.
+
+
+## Resolution, measured after the generator became a mode
+
+`validate this design.md` returns `sk-design=0.82`. The regression is closed: it routes again, to
+the skill that now owns the generator.
+
+Two scores moved down and neither is a fault. `validate this design.md` went 0.8451 to 0.82 and
+`extract design tokens from stripe.com` went 0.9157 to 0.896, because the answering identity changed
+from a standalone skill to a hub speaking for two modes. Comparing the two numbers compares
+different things. Both clear the 0.8 bar and both reach the owner.
+
+Adding extraction vocabulary to the hub description did not move either score, which says the
+residual is a property of the scorer rather than a gap in the vocabulary. Recorded rather than
+chased.
+
+Measured at daemon generation 618, rebuilt explicitly after the move, because a replay against a
+stale generation proves nothing.

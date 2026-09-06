@@ -36,11 +36,29 @@ is a separate packet and doing it here would bury the move.
 
 The move commit must record renames. Verify before committing, not after.
 
-## Paths that break until rewritten
+## Paths that break until rewritten, measured rather than estimated
 
-Roughly 24 references inside the tree and 16 outside it, including a runtime path in the spec-kit
-freshness check, two cli design-standards contracts, the `/design:extract` command and its assets,
-and the design agent's load path in four runtime mirrors.
+74 files carry the path `skills/sk-design-md-generator`, and they split three ways:
+
+| Group | Count | Action |
+|-------|-------|--------|
+| Inside the skill itself | 24 | Rewrite |
+| Historical records under `specs/`, 30 of them in `016` | 30 | **Leave alone** |
+| Live references elsewhere | 20 | Rewrite |
+
+Leaving the historical records is deliberate. Thirty of them are `016`'s own account of graduating
+this skill to standalone; rewriting them would make the record of the decision this packet
+supersedes describe something that never happened.
+
+The 20 live ones: the design agent in four runtime mirrors (`.claude`, `.codex`, `.opencode`,
+`.pi`), the `/design:extract` command and its three assets, three cli-orchestration contracts, a
+command contract and a playbook allowlist under `sk-doc`, a durable-directory manifest, two
+retrieval fixtures, the lexical `trigger-index.json`, one genuine runtime code path in
+`dist-freshness.cjs`, and one boundary playbook inside `sk-design-fundamentals`.
+
+That last one needs reading rather than rewriting: `extraction-defers-to-md-generator.md` asserts
+where fundamentals stops and extraction begins, and that boundary changes meaning once both are
+modes of one hub.
 
 ## Done
 

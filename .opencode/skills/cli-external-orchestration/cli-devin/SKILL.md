@@ -277,7 +277,7 @@ The installed Devin CLI discovers repository skills and rules that are already p
   /sk-code [user,model] (./.opencode/skills/sk-code)
   /system-deep-loop [user,model] (./.opencode/skills/system-deep-loop)
   /sk-prompt [user,model] (./.opencode/skills/sk-prompt)
-  /sk-design-md-generator [user,model] (./.opencode/skills/sk-design-md-generator)
+  /sk-design-md-generator [user,model] (./.opencode/skills/sk-design/sk-design-md-generator)
 ```
 
 The phase's live context records Devin as discovering 13 top-level skill packets. The rerun in this checkout printed the 12 concrete `./.opencode/skills/*` paths above, plus the external `devin-cli` packet and the empty-path `declarative-repo-setup` entry; the output is preserved here rather than inventing a filesystem path for the thirteenth local packet.

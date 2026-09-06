@@ -67,7 +67,7 @@
         { "purpose": "presentation", "path": ".opencode/commands/design/assets/extract-presentation.txt" },
         { "purpose": "auto_workflow", "path": ".opencode/commands/design/assets/extract-auto.yaml" },
         { "purpose": "confirm_workflow", "path": ".opencode/commands/design/assets/extract-confirm.yaml" },
-        { "purpose": "other", "path": ".opencode/skills/sk-design-md-generator/references/creation-contract.md (shared lifecycle contract; consumed, owned by sk-design-md-generator)" }
+        { "purpose": "other", "path": ".opencode/skills/sk-design/sk-design-md-generator/references/creation-contract.md (shared lifecycle contract; consumed, owned by sk-design-md-generator)" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",

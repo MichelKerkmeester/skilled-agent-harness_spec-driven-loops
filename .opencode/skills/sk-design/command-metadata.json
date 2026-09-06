@@ -1,0 +1,42 @@
+[
+  {
+    "command": "/design:extract",
+    "ownerMode": "sk-design-md-generator",
+    "description": "Measure an existing surface into a Style Reference and validate the result. :auto/:confirm.",
+    "argumentHint": "<url-or-path> [:auto|:confirm]",
+    "userIntent": {
+      "job": "I want a specification of what an existing surface already looks like, not a new design.",
+      "ownedSignals": [
+        "extract design tokens",
+        "build a design.md",
+        "style reference from a site",
+        "validate this design.md",
+        "measure this surface"
+      ],
+      "notOwned": [
+        "deciding what a value should be, which belongs to sk-design-fundamentals"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-design",
+        "resource": ".opencode/skills/sk-design/SKILL.md",
+        "action": "load the sk-design parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "sk-design-md-generator",
+        "resource": ".opencode/skills/sk-design/sk-design-md-generator/SKILL.md",
+        "action": "load the extraction mode contract, then apply its workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "sk-design-md-generator",
+        "resource": ".opencode/commands/design/assets/extract-presentation.txt",
+        "action": "load the presentation contract before showing any setup question or result"
+      }
+    ],
+    "discriminator": "Owns reading values off a surface that already exists. Deciding what a value should be belongs to sk-design-fundamentals."
+  }
+]

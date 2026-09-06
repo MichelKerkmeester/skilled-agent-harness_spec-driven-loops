@@ -594,11 +594,11 @@ Style Reference Manifest:
 - Task type: <build | redesign against a live source>
 - Live source to measure: <URL whose real CSS is the ground truth>
 - Exact files to read:
-  - .opencode/skills/sk-design-md-generator/SKILL.md
-  - .opencode/skills/sk-design-md-generator/references/extraction-workflow.md
-  - .opencode/skills/sk-design-md-generator/references/design-md-format.md
-  - .opencode/skills/sk-design-md-generator/references/quality-checklist.md
-  - .opencode/skills/sk-design-md-generator/references/sk-code-handoff.md
+  - .opencode/skills/sk-design/sk-design-md-generator/SKILL.md
+  - .opencode/skills/sk-design/sk-design-md-generator/references/extraction-workflow.md
+  - .opencode/skills/sk-design/sk-design-md-generator/references/design-md-format.md
+  - .opencode/skills/sk-design/sk-design-md-generator/references/quality-checklist.md
+  - .opencode/skills/sk-design/sk-design-md-generator/references/sk-code-handoff.md
 
 Instructions:
 1. Load `sk-design-md-generator` and read the exact files before any build decision. If a listed file is missing, report that path as missing and do not substitute memory.

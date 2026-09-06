@@ -157,12 +157,12 @@ quality_standards:
   anti_default_critique: required
   evidence_typing: "Typed evidence levels with an explicit ceiling; no-fit is a valid outcome"
   contract_references:
-    creation_contract: ".opencode/skills/sk-design-md-generator/references/creation-contract.md"
-    handoff_contract: ".opencode/skills/sk-design-md-generator/references/sk-code-handoff.md"
+    creation_contract: ".opencode/skills/sk-design/sk-design-md-generator/references/creation-contract.md"
+    handoff_contract: ".opencode/skills/sk-design/sk-design-md-generator/references/sk-code-handoff.md"
 
 backend_boundary:
   mutation: "Only the owned extract-write-validate pipeline may write artifacts"
-  pipeline: ".opencode/skills/sk-design-md-generator/backend/scripts/guided-run.ts"
+  pipeline: ".opencode/skills/sk-design/sk-design-md-generator/backend/scripts/guided-run.ts"
 
 workflow:
   step_0_show_prompt:
@@ -171,11 +171,11 @@ workflow:
     output: confirmed_inputs
   step_1_load_skill:
     purpose: Load the standalone extraction skill
-    action: "Read .opencode/skills/sk-design-md-generator/SKILL.md"
+    action: "Read .opencode/skills/sk-design/sk-design-md-generator/SKILL.md"
     output: skill_context
   step_2_load_creation_contract:
     purpose: Establish the shared lifecycle, source trust, and evidence vocabulary
-    action: "Read .opencode/skills/sk-design-md-generator/references/creation-contract.md"
+    action: "Read .opencode/skills/sk-design/sk-design-md-generator/references/creation-contract.md"
     output: creation_contract
   step_3_route_proof:
     purpose: Prove the canonical extraction route and output policy
@@ -195,7 +195,7 @@ workflow:
     output: grounding_record
   step_7_load_mode:
     purpose: Load the stable md-generator mode and owned backend
-    action: "Read .opencode/skills/sk-design-md-generator/SKILL.md, then references/ and assets as required"
+    action: "Read .opencode/skills/sk-design/sk-design-md-generator/SKILL.md, then references/ and assets as required"
     output: mode_context
   step_8_select_procedure_card:
     purpose: Select the extraction procedure card
@@ -215,7 +215,7 @@ workflow:
     output: evidence_ledger
   step_12_prepare_handoff:
     purpose: Prepare implementation handoff only when accepted design output moves to code
-    action: "Read .opencode/skills/sk-design-md-generator/references/sk-code-handoff.md and preserve source provenance and inferred-field labels"
+    action: "Read .opencode/skills/sk-design/sk-design-md-generator/references/sk-code-handoff.md and preserve source provenance and inferred-field labels"
     output: next_action_handoff
 
 deliverable:
@@ -250,7 +250,7 @@ termination:
   after_step: step_12_prepare_handoff
   message: "Style reference extraction workflow complete."
   next_steps:
-  - action: "Hand to sk-code via .opencode/skills/sk-design-md-generator/references/sk-code-handoff.md after artifact acceptance"
+  - action: "Hand to sk-code via .opencode/skills/sk-design/sk-design-md-generator/references/sk-code-handoff.md after artifact acceptance"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES
@@ -274,4 +274,4 @@ pipeline:
   accepts_from: []
   hands_to_next: []
   recommend_only: true
-  hands_to_build: "sk-code, via .opencode/skills/sk-design-md-generator/references/sk-code-handoff.md, only after artifact acceptance"
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/sk-design-md-generator/references/sk-code-handoff.md, only after artifact acceptance"

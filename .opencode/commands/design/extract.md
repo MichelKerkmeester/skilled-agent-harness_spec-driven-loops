@@ -6,10 +6,10 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 
 # /design:extract
 
-Creation-template router for stable `workflowMode=sk-design-md-generator`. Read `.opencode/skills/sk-design-md-generator/references/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the md-generator pipeline to `$ARGUMENTS`.
+Creation-template router for stable `workflowMode=sk-design-md-generator`. Read `.opencode/skills/sk-design/sk-design-md-generator/references/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the md-generator pipeline to `$ARGUMENTS`.
 
 <!-- Shared lifecycle contract, expanded once: -->
-@.opencode/skills/sk-design-md-generator/references/creation-contract.md
+@.opencode/skills/sk-design/sk-design-md-generator/references/creation-contract.md
 
 ### MANDATORY INPUT GATE
 
@@ -57,7 +57,7 @@ Use the shared nine-stage contract for source-faithful extraction. The canonical
 
 | Purpose | Asset |
 |---|---|
-| Shared lifecycle | `.opencode/skills/sk-design-md-generator/references/creation-contract.md` |
+| Shared lifecycle | `.opencode/skills/sk-design/sk-design-md-generator/references/creation-contract.md` |
 | Presentation source of truth | `.opencode/commands/design/assets/extract-presentation.txt` |
 | Auto workflow | `.opencode/commands/design/assets/extract-auto.yaml` |
 | Confirm workflow | `.opencode/commands/design/assets/extract-confirm.yaml` |

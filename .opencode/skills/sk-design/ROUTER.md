@@ -29,13 +29,15 @@ An intent that matches nothing here is a gap to report, not a reason to load eve
 
 ## 2. INTENT MODEL
 
-Two intents today, both owned by `sk-design-fundamentals`. The split is real rather than
-decorative: deciding a value and judging an existing surface load different things.
+Three intents across two modes. The split is real rather than decorative: deciding a value, judging
+a surface against values, and reading values back off a surface that already exists all load
+different things.
 
 ```python
 INTENT_SIGNALS = {
     "VALUES": {"weight": 4, "keywords": ["padding", "spacing", "margin", "gutter", "type scale", "typography", "font size", "colour", "color", "contrast", "contrast ratio", "radius", "corner radius", "elevation", "shadow", "hierarchy", "visual hierarchy", "what should this look like"]},
     "REVIEW": {"weight": 4, "keywords": ["design review", "does this look right", "critique this", "visual audit", "ux laws", "accessibility contrast", "review this screen", "why does this look wrong"]},
+    "EXTRACT": {"weight": 4, "keywords": ["extract", "design.md", "style reference", "design tokens", "measure this surface", "from a url", "from a site", "css extraction", "validate design.md", "style guide from"]},
 }
 
 RESOURCE_MAP = {
@@ -48,6 +50,11 @@ RESOURCE_MAP = {
         "sk-design-fundamentals/references/review-checklist.md",
         "sk-design-fundamentals/references/ux-laws.md",
         "sk-design-fundamentals/references/diagnosis-table.md",
+    ],
+    "EXTRACT": [
+        "sk-design-md-generator/references/extraction-workflow.md",
+        "sk-design-md-generator/references/design-md-format.md",
+        "sk-design-md-generator/references/quality-checklist.md",
     ],
 }
 ```

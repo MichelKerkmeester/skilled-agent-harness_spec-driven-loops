@@ -37,7 +37,7 @@
 .opencode/skills/sk-code/sk-code-review/manual-testing-playbook
 .opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook
 .opencode/skills/sk-communication/manual-testing-playbook
-.opencode/skills/sk-design-md-generator/manual-testing-playbook
+.opencode/skills/sk-design/sk-design-md-generator/manual-testing-playbook
 .opencode/skills/sk-design/manual-testing-playbook
 .opencode/skills/sk-doc/manual-testing-playbook
 .opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook

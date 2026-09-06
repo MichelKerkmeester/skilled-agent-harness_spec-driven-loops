@@ -95,7 +95,7 @@ Both skills state this boundary in their own words. If the dispatch prompt appea
 
 ### Step 2b: The measure path (`sk-design-md-generator`)
 
-1. **Load the skill.** Read `.opencode/skills/sk-design-md-generator/SKILL.md` — the pipeline phases, the `references/` including the condensed `design-knowledge/` layer, and the owned assets.
+1. **Load the skill.** Read `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md` — the pipeline phases, the `references/` including the condensed `design-knowledge/` layer, and the owned assets.
 2. **Detect the phase.** EXTRACT_WRITE (crawl a live URL into `DESIGN.md`), VALIDATE (check an existing `DESIGN.md` against its `tokens.json`), REPORT (render visual artifacts), or STUDY (example reference). Honor a `/design:extract` invocation.
 3. **Check readiness.** Confirm the backend is installed (`backend/node_modules` plus Playwright Chromium) before an EXTRACT run.
 4. **Run the pipeline.** Execute the owned extract-write-validate scripts from the repo root with a spec-folder `--output`; capture provenance and label inferred-versus-measured values.
@@ -122,7 +122,7 @@ Both skills state this boundary in their own words. If the dispatch prompt appea
 | Timing, easing, springs, staging | `sk-design/references/motion-principles.md` | Any animation decision |
 | Target size, choice count, response budget | `sk-design/references/ux-laws.md` | Structure and cognitive load |
 | Contrast-verified starter tokens | `sk-design/assets/tokens.css` | A project with no token layer |
-| Extract-write-validate pipeline | `.opencode/skills/sk-design-md-generator/SKILL.md` | Every measure request |
+| Extract-write-validate pipeline | `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md` | Every measure request |
 | Extraction entry point | `/design:extract` | Operator-triggered measurement |
 
 Companion agents: `code` implements the values this agent decides. This agent never dispatches it.
@@ -226,7 +226,7 @@ A failed check is reported as remaining work, never rounded up to complete.
 - `.opencode/skills/sk-design/SKILL.md` — the authoring skill: value scales, hierarchy, router, hard rules.
 - `.opencode/skills/sk-design/references/` — the nine routed references named in the capability scan.
 - `.opencode/skills/sk-design/assets/tokens.css` — contrast-verified starter tokens.
-- `.opencode/skills/sk-design-md-generator/SKILL.md` — the measuring skill and its three-phase pipeline.
-- `.opencode/skills/sk-design-md-generator/references/design-knowledge/numeric-design-laws.md` — reading targets, with the direction caveat.
+- `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md` — the measuring skill and its three-phase pipeline.
+- `.opencode/skills/sk-design/sk-design-md-generator/references/design-knowledge/numeric-design-laws.md` — reading targets, with the direction caveat.
 - `.opencode/commands/design/extract.md` — the `/design:extract` entry point for the measure path.
 - `.opencode/agents/code.md` — the implementer this agent hands values to.

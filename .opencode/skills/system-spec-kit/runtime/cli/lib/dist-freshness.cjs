@@ -135,9 +135,9 @@ const DIST_PACKAGES = Object.freeze([
   {
     id: 'sk-design-md-generator/backend',
     name: 'design-system-extractor',
-    root: '.opencode/skills/sk-design-md-generator/backend',
+    root: '.opencode/skills/sk-design/sk-design-md-generator/backend',
     distEntries: { default: 'dist/cli.js' },
-    rebuildCommand: 'cd .opencode/skills/sk-design-md-generator/backend && npm run build',
+    rebuildCommand: 'cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build',
     sourceCandidates: ['package.json', 'tsconfig.json', 'tsconfig.build.json', 'scripts'],
     excludedSegments: ['tests', 'output'],
   },

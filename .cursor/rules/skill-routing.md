@@ -8,7 +8,7 @@ Use the repository's top-level skill packet before acting; these are routing poi
 
 - Code changes, debugging, or implementation review: `.opencode/skills/sk-code/SKILL.md`. Let it select the surface-specific packet and verification commands.
 - Deciding UI values and behavior (spacing, type, color, shadow, motion, accessibility review) for a surface being built or fixed: `.opencode/skills/sk-design/SKILL.md`.
-- Design-reference extraction (measure a live site's real CSS into a Style Reference DESIGN.md): `.opencode/skills/sk-design-md-generator/SKILL.md`.
+- Design-reference extraction (measure a live site's real CSS into a Style Reference DESIGN.md): `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md`.
 - Documentation, specs, or artifact authoring: `.opencode/skills/sk-doc/SKILL.md`; use `.opencode/skills/system-spec-kit/SKILL.md` for spec packets, continuity, and validation.
 - Git, worktrees, commits, or pull requests: `.opencode/skills/sk-git/SKILL.md`.
 - Prompt construction or model selection: `.opencode/skills/sk-prompt/SKILL.md`.
