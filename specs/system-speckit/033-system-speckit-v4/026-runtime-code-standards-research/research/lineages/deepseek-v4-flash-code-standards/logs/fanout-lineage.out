@@ -1,0 +1,14 @@
+The deep-research lineage is complete.
+
+**Executed inline** (no nested CLI/agent dispatch): phase_init → phase_main_loop (10 iterations) → phase_synthesis, writing everything inside the lineage directory `specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/research/lineages/deepseek-v4-flash-code-standards`.
+
+**Produced:**
+- State: `deep-research-config.json` (status complete), `deep-research-state.jsonl` (16 records), `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`
+- Trail: `iterations/iteration-001..010.md`, `deltas/iter-001..010.jsonl`
+- Synthesis: `research.md` (17-section + convergence report), `resource-map.md`, `synthesis-v1.md`
+
+**Result:** 18 citations (7 P1, 11 P2) across all 8 angles, plus 4 confirmed conforming baselines. Headline findings: shell header-tag divergence (`# RULE:`, 27/78 scripts) and hardcoded absolute paths in `.scan-validate-all.sh` (P1); parallel frontmatter parser and a 4× `findRepoRoot` duplication (P1); swallowed `main().catch` and off-contract exit codes 20/26/64; unimported `shared/ipc/socket-server.ts` (P1); zero-test `quality-audit.sh`/`calculate-completeness.sh` (P1). No dead-code edits, no sk-code audit, no out-of-scope write.
+
+**Stop reason:** `maxIterationsReached`, recorded in the `synthesis_complete` and terminal state records.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-v4-flash-code-standards

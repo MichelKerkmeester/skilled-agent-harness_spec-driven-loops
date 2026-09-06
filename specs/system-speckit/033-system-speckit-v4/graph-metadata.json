@@ -29,7 +29,9 @@
     "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
     "system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser",
     "system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research",
-    "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research"
+    "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research",
+    "system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes",
+    "system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -109,16 +111,16 @@
     ],
     "causal_summary": "Twenty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-06 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-06T07:58:24.155Z",
+    "last_save_at": "2026-09-06T08:29:57.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:82b5b4a757c6183ac4605f54b09f51518e6484459d5f19afce02bd4989ed2cd8",
+    "source_fingerprint": "sha256:eb94d07ab5857c6587f1e950308f82770dba26386148d8fb1d019c2745a541cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ffededd5ed065e1fd21b96641f6cbfaf6c6db6120288cd8245c57e8cdfc02624"
+      "spec.md": "0b4a6177f12c802fb21ef5cd7bb394706b1bc0cdcca9ca49da13cd326cff6b20"
     },
     "last_active_at": null
   }

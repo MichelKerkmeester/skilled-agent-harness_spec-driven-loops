@@ -22,7 +22,7 @@ contextType: "general"
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Subject:** system-spec-kit v4, children 001 to 024 of this parent
+**Subject:** system-spec-kit v4, children 001 to 028 of this parent
 **Status:** Complete
 **Started:** 2026-08-15
 **Last updated:** 2026-09-06
@@ -84,6 +84,14 @@ Each entry is a packet's first commit. The outcome names what the packet left be
 
 **2026-09-06:** `024-metadata-regeneration-and-shared-parser` (was `057-metadata-regeneration-and-parser-edges`) started; 5 commits over 0 nested phases. Outcome: Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the spec-kit shared package, and adopt the shared frontmatt. Status Complete; last commit 2026-09-06.
 
+**2026-09-06:** `025-docs-reality-alignment-research` started; 1 commit over 0 nested phases. Outcome: A ten-iteration DeepSeek V4 Flash lane on the pi CLI checked the playbook, catalog and references against the runtime; seventeen mismatches reported, fourteen reproduced. Status Complete; last commit 2026-09-06.
+
+**2026-09-06:** `026-runtime-code-standards-research` started; 1 commit over 0 nested phases. Outcome: A parallel ten-iteration lane audited the shared package and runtime against the sk-code standards; eighteen deviations reported, twelve confirmed, four dropped with evidence. Status Complete; last commit 2026-09-06.
+
+**2026-09-06:** `027-doc-path-strict-mode-and-retired-capability-fixes` started; 1 commit over 0 nested phases. Outcome: The fourteen confirmed doc mismatches fixed at their cited lines plus three same-class sites; strict mode, moved paths, phantom rules and retired capabilities now match the runtime. Status Complete; last commit 2026-09-06.
+
+**2026-09-06:** `028-header-tags-hook-catch-and-script-test-fixes` started; 1 commit over 0 nested phases. Outcome: Header tags normalized across 38 files, a silent hook catch made to report, a dead barrel removed, two scripts given tests, and an errexit bug in the completeness clamp fixed. Status Complete; last commit 2026-09-06.
+
 ### Chronology table
 
 | # | Slot | Old id | First | Last | Commits | Nested | Status |
@@ -112,6 +120,10 @@ Each entry is a packet's first commit. The outcome names what the packet left be
 | 22 | `022-shared-containment-helper` | `055-path-containment-seam` | 2026-09-05 | 2026-09-05 | 4 | 0 | Complete |
 | 23 | `023-trigger-index-root-and-drift-fixes` | `056-integration-research-remediation` | 2026-09-06 | 2026-09-06 | 7 | 4 | Complete |
 | 24 | `024-metadata-regeneration-and-shared-parser` | `057-metadata-regeneration-and-parser-edges` | 2026-09-06 | 2026-09-06 | 5 | 0 | Complete |
+| 25 | `025-docs-reality-alignment-research` | none | 2026-09-06 | 2026-09-06 | 1 | 0 | Complete |
+| 26 | `026-runtime-code-standards-research` | none | 2026-09-06 | 2026-09-06 | 1 | 0 | Complete |
+| 27 | `027-doc-path-strict-mode-and-retired-capability-fixes` | none | 2026-09-06 | 2026-09-06 | 1 | 0 | Complete |
+| 28 | `028-header-tags-hook-catch-and-script-test-fixes` | none | 2026-09-06 | 2026-09-06 | 1 | 0 | Complete |
 
 ### Gantt
 
@@ -168,6 +180,14 @@ gantt
     trigger-index-root-and-drift-fixes :2026-09-06, 2026-09-06
     section 024
     metadata-regeneration-and-shared-parser :2026-09-06, 2026-09-06
+    section 025
+    docs-reality-alignment-research :2026-09-06, 2026-09-06
+    section 026
+    runtime-code-standards-research :2026-09-06, 2026-09-06
+    section 027
+    doc-path-strict-mode-and-retired-capability-fixes :2026-09-06, 2026-09-06
+    section 028
+    header-tags-hook-catch-and-script-test-fixes :2026-09-06, 2026-09-06
 ```
 
 ### Key commits
@@ -346,6 +366,22 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 - `7afeebfdb7` 2026-09-06 docs(specs): open and close the metadata regeneration and parser edges packet
 - `95eb7848a5` 2026-09-06 docs(specs): extend and close the parser-edges packet with the second adoption lane
 
+**25. 025-docs-reality-alignment-research**
+
+- `520b63b21b` 2026-09-06 docs(specs): open the two reality-alignment research lanes under the v4 parent
+
+**26. 026-runtime-code-standards-research**
+
+- `520b63b21b` 2026-09-06 docs(specs): open the two reality-alignment research lanes under the v4 parent
+
+**27. 027-doc-path-strict-mode-and-retired-capability-fixes**
+
+- `fc71f4d121` 2026-09-06 docs(spec-kit): fix the fourteen confirmed mismatches between the skill docs and the runtime
+
+**28. 028-header-tags-hook-catch-and-script-test-fixes**
+
+- `ee8a17b5b1` 2026-09-06 fix(spec-kit): align runtime headers, hooks and script tests with the sk-code standards
+
 <!-- /ANCHOR:timeline -->
 
 ---
@@ -366,4 +402,6 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 **Integration research remediated, metadata regenerated, shared parser adopted:** 2026-09-06, `023` and `024`. Status: Done. Evidence: their summaries.
 
 **Consolidation into this parent:** 2026-09-06. Status: Done. Evidence: `spec.md` phase map and the commits that moved, repointed and regenerated the tree.
+
+**Docs and code checked against reality and remediated:** 2026-09-06, `025` to `028`. Status: Done. Evidence: the two `confirmed-findings.md` tables and the summaries of `027` and `028`.
 <!-- /ANCHOR:milestones -->

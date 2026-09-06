@@ -1,0 +1,1 @@
+{"timestamp":"2026-09-06T08:03:40.350Z","runtime":"claude","status":"fail_open","freshness":"unavailable","durationMs":2525,"cacheHit":false,"errorCode":"NONZERO_EXIT","errorDetails":"CLI_RETRYABLE_UNAVAILABLE exit 75: socket_absent"}

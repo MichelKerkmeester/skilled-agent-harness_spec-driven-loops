@@ -39,12 +39,14 @@
       "duplicate"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/confirmed-findings.md"
     ],
     "entities": [
       {
@@ -72,13 +74,19 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "confirmed-findings.md",
+        "kind": "doc",
+        "path": "research/confirmed-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -103,6 +111,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -178,37 +192,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Verification",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-opencode and sk-code-quality standards kept evolving",
     "created_at": "2026-09-06T07:54:25Z",
-    "last_save_at": "2026-09-06T07:58:22.593Z",
+    "last_save_at": "2026-09-06T08:31:27.044Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d601bb5baf7e606da205b05e9534b0225235b19fbf06eacfa4c2bb8f050050e3",
+    "source_fingerprint": "sha256:06ca1a42dd1131ad5cdcbb7aaf2d63594e77957092b489054a9594775ae40a19",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8741927ab6460a6cf816e2c5639508137e06036397dd4227f5555ec008747836",
-      "plan.md": "f49dfba3cc774df822e28eb07b465a47d36188537e0032d9d72d7175a2db1256",
-      "tasks.md": "8083d027abec62a9ef248736130bfdb0bb532d5207e5e61f19d1125a4990225e"
+      "spec.md": "8cc1dd3bf61849efd32a5c20824311ab6f94dcfb8669a7c65d29a82b5c50535a",
+      "plan.md": "5425cf3aa28dd94e6246bc8998de2ceb3c2cda2122edfeccd4888573ea89e3f3",
+      "tasks.md": "5e0316169744d5872287d30f28807877e359e516d043d35e1f5ea64c37c6dea2",
+      "implementation-summary.md": "2cd7d34ebafdceb0ba93685562753f31995956ff0bff1a48c49cb2ace4a0d154"
     },
     "last_active_at": null
   }

@@ -1,0 +1,104 @@
+---
+title: "Implementation Summary: Runtime code standards research"
+description: "A ten-iteration DeepSeek V4 Flash lane audited the spec-kit shared package and runtime against the sk-code-opencode and sk-code-quality standards and reported eighteen deviations across eight angles."
+trigger_phrases:
+  - "code standards research outcome"
+  - "eighteen code deviations found"
+  - "twelve confirmed code findings"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research"
+    last_updated_at: "2026-09-06T10:40:00Z"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Closed the packet with its verification evidence"
+    next_safe_action: "None; the packet is complete"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:fe9138a299d70c2eeb548688b82b78397cde2792a9cfb6e5a87df5ed9a400ee1"
+      session_id: "2026-09-06-v4-reality-research"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 026-runtime-code-standards-research |
+| **Completed** | 2026-09-06 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A ten-iteration DeepSeek V4 Flash lane audited the spec-kit shared package and runtime against the sk-code-opencode and sk-code-quality standards and reported eighteen deviations across eight angles. Twelve reproduced; four were dropped after checking consumers, importers and shellcheck; the rest were conventions the standards do not forbid.
+
+### The research lane
+
+One cli-pi lineage rotated the eight charted angles, reading the standard clause before the code, and labeled each fix mechanical or judgment. The reproduction pass split the confirmed rows into a mechanical table, a judgment table with decisions, and a dropped table with reasons.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| research/lineages/deepseek-v4-flash-code-standards/** | Created | Ten iteration files, state ledger, strategy, dashboard and the synthesized research.md |
+| research/confirmed-findings.md | Created | Mechanical, judgment and dropped tables, consumed by phase 028 |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Same launch shape as phase 025, in parallel. Each cited line was opened here; ripgrep found the consumers the lane missed for the socket server and the embeddings barrel, and shellcheck showed the cd rows are suppressed under set -e.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Drop findings with a live consumer | The shared socket server is imported through the package export; the embeddings barrel is imported by workflow.ts |
+| Defer the repo-root consolidation | Four resolvers with different stop conditions; unifying them changes behavior in a security-adjacent primitive without tests |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Iteration count | 10 files under iterations/, 10 iteration events |
+| Angle coverage | All eight angles appear in the focus lines |
+| Reproduction | 12 of 18 rows confirmed, 4 dropped with evidence, 2 recorded as no-change |
+| Strict validation | `validate.sh <child> --strict` printed RESULT: PASSED |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Repo-root resolvers** Still four implementations; a follow-up needs a crafted-tree test before consolidating
+<!-- /ANCHOR:limitations -->
+
+---

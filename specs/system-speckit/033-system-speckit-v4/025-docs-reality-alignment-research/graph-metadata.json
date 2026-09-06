@@ -39,12 +39,14 @@
       "entries"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/confirmed-findings.md"
     ],
     "entities": [
       {
@@ -72,13 +74,19 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "confirmed-findings.md",
+        "kind": "doc",
+        "path": "research/confirmed-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -103,6 +111,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -178,37 +192,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Verification",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit documentation grew through the memory-database era and the CLI move from `scripts/` to `runtime/cli/`",
     "created_at": "2026-09-06T07:54:24Z",
-    "last_save_at": "2026-09-06T07:58:19.724Z",
+    "last_save_at": "2026-09-06T08:31:24.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38b9304386a44184e29d044698599e84d4e0bab0c08a5dedc2755d478095b4c6",
+    "source_fingerprint": "sha256:f197d409e2f3186dd8b9d2b915e007d1983eaf8bb9e2a54ac108ba910195f560",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fcdc93ac519073de959e776ec76d005f486ad4a52597297c63815f2d3cb60e59",
-      "plan.md": "585f106110b49a9929d34faf90f49658a303bd2a99d67bdd3a002dfcb4443619",
-      "tasks.md": "0d157c9c225733dd05a4819d163714b273c24258bfb6117cb6b61c2cd59f403f"
+      "spec.md": "bd407c0b3d8a515e85cb6c9755aab65e57b08552bf113f44d895c81ac03118ba",
+      "plan.md": "d8e778ff6a9cae73304b4b0b4dc995200c3648468ad47a37bc2b4da64d4fd552",
+      "tasks.md": "3e65e6d3ab463a46e378453c67db3d1cfa1215bf6070d844da37f74f1beec4f1",
+      "implementation-summary.md": "f3bc3e3b243e8462fff391a4c042b6b5d66662e44f321388d812f325dde9bf38"
     },
     "last_active_at": null
   }

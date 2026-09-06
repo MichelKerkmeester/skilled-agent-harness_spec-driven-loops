@@ -1,0 +1,56 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
+  "keyFindings": [
+    {"id": "F1.1", "iteration": 1, "angle": "header", "severity": "P1", "code": "runtime/cli/rules/*.sh (check-files.sh:3)", "clause": "shell/style-guide/overview-structure-and-naming.md §2 File Header", "summary": "Shell header uses `# RULE:` tag instead of documented `# COMPONENT:`/`# SPECKIT:` (27/78 scripts)"},
+    {"id": "F1.2", "iteration": 1, "angle": "header", "severity": "P2", "code": "runtime/cli/spec/recommend-level.sh:3", "clause": "shell/style-guide/overview-structure-and-naming.md §2", "summary": "`# SPEC-KIT:` hyphen variant vs documented `# SPECKIT:`"},
+    {"id": "F2.1", "iteration": 2, "angle": "dup", "severity": "P1", "code": "runtime/cli/lib/frontmatter-migration.ts:386,473,606", "clause": "shared/code-organization/imports-and-exports.md §1", "summary": "Parallel frontmatter parser (detectFrontmatter/parseFrontmatterSections/parseSectionValue) not reusing @spec-kit/shared"},
+    {"id": "F2.2", "iteration": 2, "angle": "dup", "severity": "P2", "code": "runtime/cli/utils/memory-frontmatter.ts", "clause": "imports-and-exports.md §3", "summary": "Redundant barrel re-exporting ../lib/memory-frontmatter.js"},
+    {"id": "F3.1", "iteration": 3, "angle": "errors", "severity": "P1", "code": "runtime/hooks/cursor/completion-evidence-response.mjs:65", "clause": "universal/code-quality-standards.md §3 P0#4", "summary": "`main().catch(() => {})` swallows top-level rejection"},
+    {"id": "F3.2", "iteration": 3, "angle": "errors", "severity": "P2", "code": "runtime/cli/doctor.sh:43,51,69; validate-command-tree-parity.sh:34", "clause": "shell/quality-standards/validation-security-and-shellcheck.md §3", "summary": "Exit codes 20/26/64 outside documented 0/1/2/3 contract"},
+    {"id": "F4.3", "iteration": 4, "angle": "boundary", "severity": "P2", "code": "runtime/api/index.ts; runtime/lib/MODULE-MAP.md", "clause": "imports-and-exports.md §3", "summary": "Boundary is a test/prose guard, not a tool-enforced package boundary"},
+    {"id": "F5.1", "iteration": 5, "angle": "dead", "severity": "P1", "code": "shared/ipc/socket-server.ts:525,530-531", "clause": "universal/code-quality-standards.md §7 rung 1 (YAGNI)", "summary": "Unimported IPC socket-server module within the audited package"},
+    {"id": "F5.2", "iteration": 5, "angle": "dead", "severity": "P2", "code": "runtime/cli/lib/embeddings.ts:9", "clause": "imports-and-exports.md §3", "summary": "Dead embeddings re-export barrel with no in-package consumer"},
+    {"id": "F5.3", "iteration": 5, "angle": "comment", "severity": "P2", "code": "shared/embeddings.ts:3", "clause": "universal/code-quality-standards.md §3 P0#7", "summary": "Feature-catalog pointer in comment, only allowed via // hygiene-ok"},
+    {"id": "F6.1", "iteration": 6, "angle": "naming", "severity": "P2", "code": "runtime/cli/lib/frontmatter-migration.ts:1303-1314", "clause": "typescript/style-guide/overview-strict-and-naming.md §5", "summary": "Mixed snake_case/camelCase keys in one frontmatter builder object"},
+    {"id": "F6.2", "iteration": 6, "angle": "naming", "severity": "P2", "code": "runtime/cli/tests/test-*.js/.cjs/.mjs (~20 files)", "clause": "shared/code-organization/directory-and-test-conventions.md §3", "summary": "`test-*.js` prefix naming absent from documented test conventions table"},
+    {"id": "F7.1", "iteration": 7, "angle": "coverage", "severity": "P1", "code": "runtime/cli/spec/quality-audit.sh", "clause": "universal/code-quality-standards.md §4 P1#2", "summary": "Public CLI entry point with no happy-path/edge test reference"},
+    {"id": "F7.2", "iteration": 7, "angle": "coverage", "severity": "P1", "code": "runtime/cli/spec/calculate-completeness.sh", "clause": "universal/code-quality-standards.md §4 P1#2", "summary": "Public completeness calculator with no focused test"},
+    {"id": "F8.1", "iteration": 8, "angle": "shell", "severity": "P2", "code": "runtime/cli/setup/check-prerequisites.sh:74", "clause": "shell/quality-standards/validation-security-and-shellcheck.md §5", "summary": "`eval \"$(get_feature_paths)\"` of command substitution"},
+    {"id": "F8.2", "iteration": 8, "angle": "shell", "severity": "P2", "code": "runtime/cli/spec/archive.sh:299; spec/create.sh:894; setup/rebuild-native-modules.sh:23", "clause": "shell/quality-standards/validation-security-and-shellcheck.md §7 (SC2164)", "summary": "`cd` without `|| exit` (safe under set -e)"},
+    {"id": "F9.1", "iteration": 9, "angle": "header", "severity": "P1", "code": "runtime/cli/.scan-validate-all.sh:5-6", "clause": "shell/quality-standards/validation-security-and-shellcheck.md §5", "summary": "Hardcoded absolute developer-machine paths (specs root + validate.sh)"},
+    {"id": "F9.2", "iteration": 9, "angle": "header", "severity": "P2", "code": "runtime/cli/retrieval/generate-trigger-index.mjs:3 + siblings", "clause": "typescript/style-guide §2 / shell §2 (no documented # SCRIPT: tag)", "summary": "Cross-language header-tag vocabulary not uniform (`# SCRIPT:` not documented)"},
+    {"id": "F10.1", "iteration": 10, "angle": "dup", "severity": "P1", "code": "runtime/cli/retrieval/generate-trigger-index.mjs:80; retrofit-convention.mjs:1055; hooks/lib/workspace/repo-root.mjs; codex/generate-command-routers.cjs", "clause": "universal/code-quality-standards.md §7 rung 4", "summary": "Four distinct findRepoRoot implementations coexist"},
+    {"id": "F10.3", "iteration": 10, "angle": "dup", "severity": "P2", "code": "runtime/cli/retrieval/rg-wrapper.mjs:194,328", "clause": "universal/code-quality-standards.md §7", "summary": "Root selection is caller/flag-specific, compounding F10.1"}
+  ],
+  "ruledOutDirections": [
+    "Shell `# RULE:` header tag is a style deviation, not P0 (iter 1)",
+    "path-containment re-export in path-utils.ts is correct reuse, not a violation (iter 2)",
+    "try/catch feature-flag guards in completion-evidence-stop.cjs are deliberate default-off, not P0 (iter 3)",
+    "Embedding/model-server subsystem is live, not retired residue (iter 5)",
+    ".vitest.ts/.test.ts mix is conforming (both live vitest conventions) (iter 6)",
+    "Three `cd` sites are style-only under set -e, not P0 (iter 8)"
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 8,
+    "keyFindings": 18,
+    "convergenceScore": 0,
+    "sourceFindings": 18,
+    "reconstructionGaps": 0,
+    "coverageBySources": {"source": 18, "standardClauses": 10}
+  },
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "divergence": {
+    "completed": [],
+    "failures": [],
+    "overrides": [],
+    "saturatedDirections": ["header/banner census (TS)", "module-boundary scan", "strict-mode and quoting baseline"],
+    "remainingFrontier": "repo-root resolver behavioral divergence; ShellCheck ground truth; socket-server cross-package consumer"
+  }
+}

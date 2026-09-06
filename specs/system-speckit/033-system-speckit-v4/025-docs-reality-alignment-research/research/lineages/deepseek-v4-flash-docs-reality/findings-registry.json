@@ -1,0 +1,182 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "F1 playbook commands/flags/paths/env-vars that changed or no longer exist",
+    "F2 catalog entries describing retired capabilities as live",
+    "F3 references contradicting runtime behavior (exit codes, rule names, layout, defaults)",
+    "F4 playbook scenarios that cannot run verbatim today",
+    "F5 shipped features with no catalog/playbook entry",
+    "F6 contradictions between the docs themselves",
+    "F7 README/index files listing files or sections that do not exist",
+    "Broaden: references/templates, references/structure, references/workflows, references/debugging (iterations 8-10)"
+  ],
+  "keyFindings": [
+    {
+      "id": "F1-01",
+      "title": "Ghost path runtime/cli/finalize-dist.mjs",
+      "severity": "P1",
+      "doc": "manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md:196",
+      "actual": "runtime/scripts/finalize-dist.mjs (runtime/cli/finalize-dist.mjs does not exist)",
+      "fix": "tsc --build && node runtime/scripts/finalize-dist.mjs"
+    },
+    {
+      "id": "F2-01",
+      "title": "Description discovery claims live vector search that is gone; self-contradiction",
+      "severity": "P1",
+      "doc": "feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md:19 (contradicts :44-45)",
+      "actual": "generate-description.ts has no vector/embed/similarity code; vector search is a declared loss",
+      "fix": "rewrite :19-21 as per-folder identity card consumed by trigger-index generator"
+    },
+    {
+      "id": "F2-02",
+      "title": "runtime-config-contract documents decay scoring as a current section",
+      "severity": "P2",
+      "doc": "feature-catalog/feature-flag-reference/runtime-config-contract.md:52-59",
+      "actual": "memoryDecay/decay have no live retrieval consumer; a declared loss",
+      "fix": "collapse memoryDecay/importanceTiers.*.decay into a retired docs-only note"
+    },
+    {
+      "id": "F3-01",
+      "title": "--strict does not turn warnings into validation errors",
+      "severity": "P1",
+      "doc": "references/validation/validation-rules.md:44 (and severity table :38-42)",
+      "actual": "orchestrator.ts:984-989 passed=summary.errors===0; strict selects rules, does not promote warnings",
+      "fix": "rewrite :44 to state warnings stay advice under --strict; also correct validate.sh help line"
+    },
+    {
+      "id": "F3-02",
+      "title": "CONTINUITY_FRESHNESS stale warn does not pre-block --strict",
+      "severity": "P1",
+      "doc": "references/validation/validation-rules.md:122,127",
+      "actual": "registry description: reports warn by default, escalates to fail under ENFORCE",
+      "fix": "rewrite Completion-blocking note: warn does not block; ENFORCE escalates to error"
+    },
+    {
+      "id": "F4-01",
+      "title": "Feature-catalog /doctor docs list decommissioned subsystem routes as shipped",
+      "severity": "P1",
+      "doc": "feature-catalog/doctor-commands/category-overview.md:27; feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md:19",
+      "actual": "_routes.yaml has no memory/causal-graph/code-graph targets; README.md:22 confirms removal",
+      "fix": "replace route lists with real targets; drop memory/causal-graph/code-graph; fix count"
+    },
+    {
+      "id": "F5-01",
+      "title": "Rule-engine catalog file table lists non-registered rule and omits registered ones",
+      "severity": "P2",
+      "doc": "feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md:79",
+      "actual": "check-links.sh not in validator-registry (39); table omits many registered rule scripts",
+      "fix": "drop check-links.sh row; add missing registered rules or point at validator-registry.json"
+    },
+    {
+      "id": "F6-01",
+      "title": "Memory Handback mis-enumerates the cli-* family",
+      "severity": "P2",
+      "doc": "references/cli/memory-handback.md:3,16,22",
+      "actual": "cli-opencode listed twice; family is six modes not three",
+      "fix": "correct enumeration; change three to actual count"
+    },
+    {
+      "id": "F6-02",
+      "title": "/doctor route count and contents disagree across three docs",
+      "severity": "P2",
+      "doc": "category-overview.md:27 vs dispatch.md:19 vs README.md:22",
+      "actual": "5 vs 7 vs removed list disagree; manifest has neither",
+      "fix": "one canonical list from the manifest; make all docs agree"
+    },
+    {
+      "id": "F6-03",
+      "title": "environment-variables describes MEMORY_BASE_PATH as active while its authority says inert",
+      "severity": "P2",
+      "doc": "references/config/environment-variables.md:37",
+      "actual": "ENV-REFERENCE.md:138 says no effect on running behavior",
+      "fix": "annotate row as exported but inert, matching its cited authority"
+    },
+    {
+      "id": "F7-01",
+      "title": "README tree lists phantom memory/ and constitutional/ dirs",
+      "severity": "P1",
+      "doc": "README.md:413,434",
+      "actual": "runtime/cli/memory does not exist (continuity is runtime/cli/continuity/); constitutional retired",
+      "fix": "replace memory/ with continuity/; remove constitutional/ line"
+    },
+    {
+      "id": "F7-02",
+      "title": "README tree carries stale module/file counts",
+      "severity": "P2",
+      "doc": "README.md:415,416,417,432",
+      "actual": "core 29, extractors 13, utils 19, references 41 .md on disk",
+      "fix": "refresh counts or drop parentheticals"
+    },
+    {
+      "id": "F8-01",
+      "title": "phase-definitions.md uses a stale pre-rename validate.sh path",
+      "severity": "P1",
+      "doc": "references/structure/phase-definitions.md:236",
+      "actual": "scripts/spec/validate.sh missing; actual is runtime/cli/spec/validate.sh",
+      "fix": "change to runtime/cli/spec/validate.sh"
+    },
+    {
+      "id": "F8-02",
+      "title": "level-selection-guide.md references a phantom rule script",
+      "severity": "P1",
+      "doc": "references/templates/level-selection-guide.md:191",
+      "actual": "check-section-counts.sh does not exist",
+      "fix": "drop or replace with actual section-count rule"
+    },
+    {
+      "id": "F8-03",
+      "title": "level-specifications.md names a phantom completion script",
+      "severity": "P2",
+      "doc": "references/templates/level-specifications.md:78",
+      "actual": "check-completion.sh does not exist; gate is validate.sh --strict / AC_CLOSURE",
+      "fix": "replace check-completion.sh with validate.sh --strict"
+    },
+    {
+      "id": "F9-01",
+      "title": "execution-methods.md lists live workflow steps that re-index into a retired vector database",
+      "severity": "P1",
+      "doc": "references/workflows/execution-methods.md:231,234,237",
+      "actual": "runtime/database/ empty, no vector store; vector+BM25 fusion gone",
+      "fix": "drop or re-scope steps 11/12 to the lexical/packet-docs save flow"
+    },
+    {
+      "id": "F10-01",
+      "title": "Docs reference four validator shell scripts that do not exist",
+      "severity": "P1",
+      "doc": "phase-definitions.md:119; template-compliance-contract.md:236; template-composition-system.md:51; template-compliance-contract-enforcement-blocks-non-compliant.md:153,161; level-selection-guide.md:167,191",
+      "actual": "check-anchors.sh, check-section-counts.sh, check-sections.sh, check-template-headers.sh missing; ANCHORS_VALID is native:orchestrator",
+      "fix": "replace phantom names with actual enforcement (native node rules / registry)"
+    }
+  ],
+  "ruledOutDirections": [
+    {"approach": "doctor-deep-loop-convergence query.cjs examples", "reason": "Query types and target spec folder still exist", "evidence": "runtime/scripts/query.cjs:208-217"},
+    {"approach": "epistemic-vectors.md retirement claim", "reason": "Conceptual tuning framework, no contradicting runtime path", "evidence": "references/memory/epistemic-vectors.md"},
+    {"approach": "CANONICAL_SAVE_CUTOFF phantom rule id", "reason": "Prose reference to a real SPECKIT_CANONICAL_SAVE_CUTOFF env var", "evidence": "references/validation/validation-rules.md:75"},
+    {"approach": "rule-name drift in validation docs", "reason": "Rule summary table is explicitly partial; no phantom rule ids found", "evidence": "references/validation/validation-rules.md:44"},
+    {"approach": "playbook memory-server install step", "reason": "References already removed; no live install step remains", "evidence": "manual-testing-playbook/manual-testing-playbook.md:45"},
+    {"approach": "deploy-mcp.sh in playbook", "reason": "No doc references it as a live playbook step", "evidence": "grep over manual-testing-playbook/feature-catalog"},
+    {"approach": "major cli subcommand with zero docs", "reason": "Every retrieval/rule script is referenced somewhere", "evidence": "grep over manual-testing-playbook/feature-catalog/references"},
+    {"approach": "embedder-pluggability scope note vs consumers", "reason": "Two distinct consumer paths; reconcilable", "evidence": "references/memory/embedder-pluggability.md:21,41"},
+    {"approach": "broken relative .md links in top indexes", "reason": "Link checker clean across the top index docs", "evidence": "feature-catalog.md, manual-testing-playbook.md, README.md, ARCHITECTURE.md"},
+    {"approach": "retired memory/*.md framing in templates/structure", "reason": "Framing already correct and consistent", "evidence": "references/structure/folder-structure.md:161-167"},
+    {"approach": "rename-pattern.md:75 cross-skill path", "reason": "skill_graph_compiler.py EXISTS (verified from repo root)", "evidence": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py"},
+    {"approach": "semantic-summarizer/semantic-signal-extractor vestigial", "reason": "Still-present code with a live skill-advisor consumer", "evidence": "runtime/cli/lib/semantic-summarizer.js"},
+    {"approach": "references/cli and references/config retired-capability framing", "reason": "Groups already decommission-aware; daemon-cli-reference correctly scopes live skill-advisor daemon", "evidence": "references/cli/daemon-cli-reference.md:39"}
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 8,
+    "keyFindings": 17,
+    "convergenceScore": 0,
+    "coverageBySources": {
+      "manual-testing-playbook": 1,
+      "feature-catalog": 5,
+      "references": 7,
+      "commands-doctor": 2,
+      "cli-external-orchestration": 1,
+      "README.md": 2,
+      "runtime": 6
+    }
+  }
+}

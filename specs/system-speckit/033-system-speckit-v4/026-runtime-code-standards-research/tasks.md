@@ -34,9 +34,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Scaffold this child under the v4 parent and fill the planning documents (spec.md, plan.md, tasks.md, acceptance-criteria.md)
-- [ ] T002 Improve the research charter through sk-prompt and store it beside the launch script (scratchpad lanes/v4r/topic-026.txt)
-- [ ] T003 [P] Verify the pi CLI and the OpenRouter DeepSeek route respond to a one-line probe before launch
+- [x] T001 Scaffold this child under the v4 parent and fill the planning documents (spec.md, plan.md, tasks.md, acceptance-criteria.md)
+- [x] T002 Improve the research charter through sk-prompt and store it beside the launch script (scratchpad lanes/v4r/topic-026.txt)
+- [x] T003 [P] Verify the pi CLI and the OpenRouter DeepSeek route respond to a one-line probe before launch
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +44,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Launch the lane detached through fanout-run.cjs with executor cli-pi, ten iterations, stop policy max-iterations (research/)
-- [ ] T005 Monitor log growth and iteration files every three minutes; resume a lane silent for fifteen minutes (research/lineages/*/iterations)
-- [ ] T006 Confirm ten iteration files and ten state events exist and that research.md was synthesized (research/lineages/*/research.md)
-- [ ] T007 Reproduce every P0 and P1 finding in this session; split confirmed ones into mechanical and judgment tables (research/confirmed-findings.md)
+- [x] T004 Launch the lane detached through fanout-run.cjs with executor cli-pi, ten iterations, stop policy max-iterations (research/)
+- [x] T005 Monitor log growth and iteration files every three minutes; resume a lane silent for fifteen minutes (research/lineages/*/iterations)
+- [x] T006 Confirm ten iteration files and ten state events exist and that research.md was synthesized (research/lineages/*/research.md)
+- [x] T007 Reproduce every P0 and P1 finding in this session; split confirmed ones into mechanical and judgment tables (research/confirmed-findings.md)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +55,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run strict validation on this child and the parent
-- [ ] T009 Hand the confirmed tables to the remediation child and record the pointer in implementation-summary.md
-- [ ] T010 Regenerate description and graph metadata, stamp completion, close the parent map row
+- [x] T008 Run strict validation on this child and the parent
+- [x] T009 Hand the confirmed tables to the remediation child and record the pointer in implementation-summary.md
+- [x] T010 Regenerate description and graph metadata, stamp completion, close the parent map row
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -98,9 +98,9 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Dependencies identified and available
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -108,9 +108,9 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Ten iterations and ten events confirmed by listing
-- [ ] CHK-022 [P1] Every P0 and P1 finding reproduced or dropped with a note
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Ten iterations and ten events confirmed by listing
+- [x] CHK-022 [P1] Every P0 and P1 finding reproduced or dropped with a note
 <!-- /ANCHOR:testing -->
 
 ---
@@ -118,9 +118,9 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Confirmed findings table handed to the remediation child
-- [ ] CHK-042 [P2] Parent map row and timeline entry updated
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] Confirmed findings table handed to the remediation child
+- [x] CHK-042 [P2] Parent map row and timeline entry updated
 <!-- /ANCHOR:docs -->
 
 ---
@@ -128,8 +128,8 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -139,9 +139,9 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 4 | 0/4 |
-| P1 Items | 6 | 0/6 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 4 | 4/4 |
+| P1 Items | 6 | 6/6 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-09-06
 <!-- /ANCHOR:summary -->

@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research"
     last_updated_at: "2026-09-06T08:10:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Authored the acceptance criteria for this packet"
+    recent_action: "Verified every criterion from the final state"
     next_safe_action: "Meet the open criteria as the lane runs"
     blockers: []
     key_files: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** 026-runtime-code-standards-research
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-06
 <!-- /ANCHOR:metadata -->
 
@@ -54,11 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the lane launched with stop policy max-iterations, When it exits, Then ten iteration files and ten state events exist | `ls research/lineages/*/iterations | wc -l` and JSONL line count | Unmet | - |
-| AC-002 | REQ-002 | Given research.md, When a finding is read, Then it cites a code path:line and a standard path:line | Reproduction pass notes in research/confirmed-findings.md | Unmet | - |
-| AC-003 | REQ-003 | Given a finding, When it is ranked, Then it has a severity, a one-line fix and a mechanical-or-judgment label | research.md findings table | Unmet | - |
-| AC-004 | REQ-004 | Given the iteration files, When their focus lines are listed, Then each of the eight angles appears at least once | `rg -n '^focus' research/lineages/*/iterations` | Unmet | - |
-| AC-005 | REQ-005 | Given the confirmed tables, When each row is opened, Then the cited lines show the deviation | Session log in implementation-summary.md | Unmet | - |
+| AC-001 | REQ-001 | Given the lane launched with stop policy max-iterations, When it exits, Then ten iteration files and ten state events exist | count of files under `research/lineages/*/iterations` and of iteration events in the JSONL ledger | Met | - |
+| AC-002 | REQ-002 | Given research.md, When a finding is read, Then it cites a code path:line and a standard path:line | Reproduction pass notes in research/confirmed-findings.md | Met | - |
+| AC-003 | REQ-003 | Given a finding, When it is ranked, Then it has a severity, a one-line fix and a mechanical-or-judgment label | research.md findings table | Met | - |
+| AC-004 | REQ-004 | Given the iteration files, When their focus lines are listed, Then each of the eight angles appears at least once | `rg -n '^focus' research/lineages/*/iterations` | Met | - |
+| AC-005 | REQ-005 | Given the confirmed tables, When each row is opened, Then the cited lines show the deviation | Session log in implementation-summary.md | Met | - |
 
 ### Status values
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Written when the packet is closed, not before.
+Every criterion was verified from the final state on 2026-09-06; the evidence is named in implementation-summary.md. Nothing was waived.
 <!-- /ANCHOR:closure -->

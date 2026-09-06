@@ -1,5 +1,5 @@
 {
-  "manifestHash": "84ca4ad76fe4071b84e24a0d3298fcf89ecbdc7789cc2e2506c50ee5b6cd8d39",
+  "manifestHash": "950e964245e8e5c1046e6b1fda4b53e7310f08c1e3e4df48f6bc204a581654fd",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13528,6 +13528,26 @@
     "specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser/plan.md",
     "specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser/spec.md",
     "specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
@@ -22876,7 +22896,11 @@
       13497,
       13502,
       13507,
-      13513
+      13513,
+      13518,
+      13523,
+      13528,
+      13533
     ],
     "ac traceability table": [
       11550,
@@ -23031,7 +23055,11 @@
       13497,
       13502,
       13507,
-      13513
+      13513,
+      13518,
+      13523,
+      13528,
+      13533
     ],
     "acceptance criteria closure gate": [
       13264
@@ -30848,6 +30876,9 @@
     "caching build gate closed": [
       2644
     ],
+    "calculate completeness script test": [
+      13536
+    ],
     "calibrated auto route certificate corpus": [
       4810
     ],
@@ -35969,6 +36000,9 @@
     "cli shell completion generation": [
       11902
     ],
+    "cli sibling enumeration fix": [
+      13531
+    ],
     "cli skill doc contract": [
       11474
     ],
@@ -36652,7 +36686,11 @@
       13497,
       13502,
       13507,
-      13513
+      13513,
+      13518,
+      13523,
+      13528,
+      13533
     ],
     "closure gate blocks evidence": [
       13204
@@ -38617,6 +38655,9 @@
     ],
     "code standards alignment": [
       1667
+    ],
+    "code standards research outcome": [
+      13524
     ],
     "code standards summary": [
       574
@@ -41023,6 +41064,9 @@
     "complete with note": [
       191
     ],
+    "completeness clamp errexit bug": [
+      13534
+    ],
     "completeness measurement": [
       1691
     ],
@@ -41558,6 +41602,10 @@
     ],
     "confirm no do not edit fence changed": [
       549
+    ],
+    "confirmed row application": [
+      13532,
+      13537
     ],
     "conflict guard implementation": [
       10324
@@ -45674,6 +45722,9 @@
     "cursor hook mirror": [
       2049
     ],
+    "cursor hook stderr report": [
+      13534
+    ],
     "cursor hook symlink gotcha": [
       2132
     ],
@@ -46935,6 +46986,9 @@
     ],
     "dead man switch ioc scan": [
       8453
+    ],
+    "dead memory frontmatter barrel": [
+      13536
     ],
     "dead path row drain": [
       12499
@@ -51258,6 +51312,12 @@
     "deepseek prefix cache research": [
       2642
     ],
+    "deepseek research lane spec kit code": [
+      13526
+    ],
+    "deepseek research lane spec kit docs": [
+      13521
+    ],
     "deepseek v4 flash": [
       2246
     ],
@@ -55136,6 +55196,9 @@
     "doc improvement modes": [
       1040
     ],
+    "doc mismatch fixes shipped": [
+      13529
+    ],
     "doc optimization patterns": [
       1036
     ],
@@ -55302,6 +55365,15 @@
     ],
     "docs quality audit research": [
       10835
+    ],
+    "docs reality alignment research": [
+      13518,
+      13520,
+      13521,
+      13522
+    ],
+    "docs reality research outcome": [
+      13519
     ],
     "docs rollup plan": [
       8925
@@ -55616,6 +55688,9 @@
     ],
     "doctor route implementation status": [
       12617
+    ],
+    "doctor route list correction": [
+      13531
     ],
     "doctor route manifest decision": [
       5696
@@ -57004,6 +57079,9 @@
     ],
     "eight rule validation": [
       6296
+    ],
+    "eighteen code deviations found": [
+      13524
     ],
     "eighteen item no go list plan": [
       12685
@@ -58754,6 +58832,10 @@
     "exact sha gate tasks": [
       7772
     ],
+    "exact string replacement gate": [
+      13530,
+      13535
+    ],
     "exacttriggersearch parity": [
       13393
     ],
@@ -60503,6 +60585,10 @@
     "fanout run cjs": [
       1416
     ],
+    "fanout run cli pi lineage": [
+      13520,
+      13525
+    ],
     "fanout run devin adapter": [
       7925
     ],
@@ -60929,6 +61015,9 @@
     "feature catalog source traceability": [
       11436,
       12012
+    ],
+    "feature catalog stale entries": [
+      13521
     ],
     "feature catalog standards": [
       4509,
@@ -61752,6 +61841,9 @@
     "finalize dist mjs postbuild": [
       10958
     ],
+    "finalize dist path fix": [
+      13531
+    ],
     "find 3 remaining sidecar p2": [
       10118
     ],
@@ -61805,6 +61897,10 @@
     ],
     "finding remediation tasks": [
       4401
+    ],
+    "finding reproduction tasks": [
+      13522,
+      13527
     ],
     "finding set stability": [
       1368
@@ -63176,6 +63272,9 @@
     ],
     "four uncertainty factors": [
       1713
+    ],
+    "fourteen confirmed doc findings": [
+      13519
     ],
     "fourteen fix map": [
       4724
@@ -66941,6 +67040,9 @@
     ],
     "header sweep tasks": [
       3394
+    ],
+    "header tag fixes shipped": [
+      13534
     ],
     "heading anchor requirements": [
       1732
@@ -72146,6 +72248,10 @@
       7817,
       7818,
       7819
+    ],
+    "lane launch and monitoring": [
+      13522,
+      13527
     ],
     "lane lists shadow pipeline plumbing": [
       12861
@@ -78512,7 +78618,7 @@
       13440
     ],
     "memory decommission history": [
-      13518
+      13538
     ],
     "memory decommission inventory": [
       13423
@@ -78536,7 +78642,7 @@
       13418
     ],
     "memory decommission timeline": [
-      13519
+      13539
     ],
     "memory delete causal cleanup": [
       11579
@@ -89505,6 +89611,13 @@
     "phantom gap convention": [
       1274
     ],
+    "phantom rule scripts removed from docs": [
+      13529
+    ],
+    "phantom validator rule scripts": [
+      13530,
+      13531
+    ],
     "phase": [
       3633,
       4512,
@@ -91926,7 +92039,7 @@
       9472,
       10409,
       11554,
-      13518
+      13538
     ],
     "phase parent 049": [
       8919
@@ -94158,6 +94271,9 @@
     ],
     "playbook validator ownership decision": [
       5825
+    ],
+    "playbook versus runtime mismatch": [
+      13521
     ],
     "playbook violation burndown": [
       6184
@@ -96786,6 +96902,9 @@
     ],
     "quality assessment framework": [
       884
+    ],
+    "quality audit script test": [
+      13536
     ],
     "quality auto fix default on": [
       11160
@@ -100055,6 +100174,10 @@
     "remediation dispatch harness": [
       4380
     ],
+    "remediation execution plan": [
+      13530,
+      13535
+    ],
     "remediation fixes verification report": [
       12239
     ],
@@ -100152,7 +100275,9 @@
       9158
     ],
     "remediation tasks": [
-      9169
+      9169,
+      13532,
+      13537
     ],
     "remediation taxonomy": [
       1233
@@ -100961,6 +101086,10 @@
     "reproduce write escape": [
       13345
     ],
+    "reproduction pass before remediation": [
+      13520,
+      13525
+    ],
     "req 001 req 004 req 016 intent stability": [
       8749
     ],
@@ -101600,6 +101729,14 @@
     ],
     "research known context capture": [
       1339
+    ],
+    "research lane execution plan": [
+      13520,
+      13525
+    ],
+    "research lane tasks": [
+      13522,
+      13527
     ],
     "research legal stop gates": [
       1336
@@ -102576,11 +102713,18 @@
     "retired benchmark handling": [
       907
     ],
+    "retired capability still documented": [
+      13521
+    ],
     "retired compiled routing paths catalog": [
       5818
     ],
     "retired prefix criterion restated": [
       13427
+    ],
+    "retired vector search docs cleanup": [
+      13531,
+      13532
     ],
     "retirement audit to planner first": [
       9167
@@ -104837,6 +104981,10 @@
     "rule scaffold": [
       1053
     ],
+    "rule script component header": [
+      13535,
+      13536
+    ],
     "rule scripts": [
       1692
     ],
@@ -105180,6 +105328,9 @@
     "runtime cli move target": [
       13455
     ],
+    "runtime cli shell script standards": [
+      13526
+    ],
     "runtime cli target layout": [
       13453
     ],
@@ -105200,6 +105351,12 @@
     ],
     "runtime code review tasks": [
       7932
+    ],
+    "runtime code standards research": [
+      13523,
+      13525,
+      13526,
+      13527
     ],
     "runtime codex dispatch helper": [
       7230
@@ -108269,6 +108426,9 @@
     "seven state directories relocated": [
       13237
     ],
+    "seventeen doc mismatches found": [
+      13519
+    ],
     "seventeen stage rollout sequence plan": [
       12685
     ],
@@ -108722,6 +108882,9 @@
     "shared package dependency edge": [
       13516
     ],
+    "shared package duplicate helpers": [
+      13526
+    ],
     "shared parsers post run refresh": [
       13510
     ],
@@ -108857,6 +109020,12 @@
     ],
     "shell conditionals reference": [
       664
+    ],
+    "shell header tag normalization": [
+      13533,
+      13535,
+      13536,
+      13537
     ],
     "shell output formatting": [
       666
@@ -109312,6 +109481,10 @@
     ],
     "silent failure harness repair implementation": [
       7840
+    ],
+    "silent hook catch stderr": [
+      13536,
+      13537
     ],
     "silent skip false green test": [
       3397
@@ -110155,6 +110328,9 @@
     ],
     "sk code opencode audit file ledger": [
       8667
+    ],
+    "sk code opencode conformance spec kit": [
+      13526
     ],
     "sk code opencode esm exemption": [
       10838
@@ -116784,6 +116960,9 @@
     "spec kit code graph decoupling": [
       10891
     ],
+    "spec kit code standards audit": [
+      13526
+    ],
     "spec kit command audit": [
       9111,
       10825,
@@ -116924,6 +117103,9 @@
     "spec kit refactor plan": [
       9084
     ],
+    "spec kit references drift audit": [
+      13521
+    ],
     "spec kit relocation": [
       3269
     ],
@@ -117035,10 +117217,10 @@
       1772
     ],
     "spec kit v4 chronology": [
-      13519
+      13539
     ],
     "spec kit v4 timeline": [
-      13518
+      13538
     ],
     "spec kit version migration": [
       10373,
@@ -119410,11 +119592,20 @@
     "strict mode directive placement": [
       5216
     ],
+    "strict mode doc corrected": [
+      13529
+    ],
     "strict mode warning promotion": [
       13298
     ],
     "strict mode warning promotion claim": [
       13296
+    ],
+    "strict mode warning semantics doc fix": [
+      13528,
+      13530,
+      13531,
+      13532
     ],
     "strict package validator plan": [
       4927
@@ -121764,10 +121955,10 @@
       12948
     ],
     "system speckit v4": [
-      13518
+      13538
     ],
     "system speckit v4 timeline": [
-      13519
+      13539
     ],
     "system to embedder mapping": [
       9866,
@@ -123203,7 +123394,7 @@
       13175
     ],
     "template reduction history": [
-      13518
+      13538
     ],
     "template reduction requirements": [
       13155
@@ -125033,6 +125224,9 @@
     "tv 005 sr 002 sr 003": [
       3783
     ],
+    "twelve confirmed code findings": [
+      13524
+    ],
     "twelve foreign children gone": [
       13498
     ],
@@ -126184,7 +126378,7 @@
       9288
     ],
     "v4 packet order": [
-      13519
+      13539
     ],
     "v4 pro retirement status": [
       2439
@@ -128641,7 +128835,7 @@
       4619
     ],
     "which spec was worked on first": [
-      13519
+      13539
     ],
     "which system uses cocoindex or mk spec memory": [
       11079

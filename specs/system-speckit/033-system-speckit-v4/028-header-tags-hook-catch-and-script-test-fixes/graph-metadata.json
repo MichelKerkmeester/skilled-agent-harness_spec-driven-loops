@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes",
+  "spec_folder": "system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shell header tag normalization",
+      "rule script component header",
+      "silent hook catch stderr",
+      "dead memory frontmatter barrel",
+      "quality audit script test",
+      "calculate completeness script test",
+      "remediation execution plan",
+      "exact string replacement gate",
+      "remediation tasks",
+      "confirmed row application",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "shell",
+      "header",
+      "tag",
+      "normalization",
+      "rule",
+      "script",
+      "component",
+      "silent",
+      "hook",
+      "catch",
+      "stderr",
+      "dead"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "shared/embeddings.ts",
+      "runtime/cli/kpi/quality-kpi.sh",
+      "runtime/cli/evals/run-phase2-closure-metrics.mjs",
+      "runtime/hooks/cursor/completion-evidence-response.mjs",
+      "runtime/cli/lib/frontmatter-migration.ts",
+      "runtime/cli/tests/quality-audit-script.vitest.ts",
+      "runtime/cli/tests/calculate-completeness-script.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": "shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "quality-kpi.sh",
+        "kind": "script",
+        "path": "runtime/cli/kpi/quality-kpi.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run-phase2-closure-metrics.mjs",
+        "kind": "file",
+        "path": "runtime/cli/evals/run-phase2-closure-metrics.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-response.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/cursor/completion-evidence-response.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.ts",
+        "kind": "code",
+        "path": "runtime/cli/lib/frontmatter-migration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "quality-audit-script.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/quality-audit-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "calculate-completeness-script.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/calculate-completeness-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Asserted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Confirmed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The runtime research confirmed 31 shell scripts and 7 module scripts with header tags the sk-code standards do not document, one hook that swallows every failure, one barrel nobody imports, one comment kept alive by a hygiene marker, and two public CLI scripts with no test at all",
+    "created_at": "2026-09-06T08:18:05Z",
+    "last_save_at": "2026-09-06T08:31:31.322Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2ee4d51a4aedfb23e29f50586a1e11500bdacda4a4847110944c7ca9163ce1f3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aee66c37a105f4170cee156fa7fe05a6b4290b05d6ece7cc8735ca7e4d391166",
+      "plan.md": "1d8d14b37bf28e4551bc84030c14adeaa5123acacfb66cde472e70cc699d3885",
+      "tasks.md": "f6c2f8aad5d94a8d96616c53e2ec2931c1a87428c57d1edd07272a8965e2deaf",
+      "implementation-summary.md": "660ce01b90f815038b50991bd12b78ffe998e4ff93ee9ca2b95ba3a662c5c3c1"
+    },
+    "last_active_at": null
+  }
+}

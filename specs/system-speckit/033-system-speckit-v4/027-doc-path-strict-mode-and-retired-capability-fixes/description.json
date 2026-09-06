@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes",
+  "description": "Fourteen confirmed mismatches in the system-spec-kit playbook, catalog and references send readers to paths that moved, describe warnings as",
+  "keywords": [
+    "fourteen",
+    "confirmed",
+    "mismatches",
+    "system-spec-kit",
+    "playbook",
+    "catalog",
+    "references",
+    "send",
+    "readers",
+    "paths",
+    "moved",
+    "describe",
+    "warnings"
+  ],
+  "lastUpdated": "2026-09-06T08:29:56.825Z",
+  "specId": "027",
+  "folderSlug": "doc-path-strict-mode-and-retired-capability-fixes",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

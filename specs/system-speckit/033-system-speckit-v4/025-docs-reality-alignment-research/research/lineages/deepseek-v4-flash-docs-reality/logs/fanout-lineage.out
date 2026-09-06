@@ -1,0 +1,18 @@
+All completion-contract checks pass. The lineage is complete.
+
+**FANOUT_LINEAGE_COMPLETE:deepseek-v4-flash-docs-reality**
+
+## Summary
+
+Executed the deep-research documentation-fidelity audit as the detached executor, performing every iteration inline in this session (no nested dispatch). All work is confined to the lineage dir.
+
+**phases run:** `phase_init` → `phase_main_loop` (10/10 iterations) → `phase_synthesis`.
+
+**Result: 17 confirmed doc-vs-code mismatches** in `.opencode/skills/system-spec-kit/` docs vs its runtime — 9×P1, 8×P2, every finding citing both a doc location and a code location. Root causes:
+
+1. **`scripts/` → `runtime/cli/` rename + retired memory system left stale/phantom paths:** F1-01 (`finalize-dist.mjs` ghost), F7-01 (phantom `memory/`, `constitutional/` in README tree), F8-01 (stale `./scripts/spec/validate.sh`), F10-01 (4 phantom rule scripts across 5 docs), F9-01 (save-flow re-indexes a retired vector DB), F2-01/F2-02 (vector-search/decay described as live).
+2. **Validation semantics drift:** F3-01/F3-02 — two docs claim `--strict` promotes `warn`→exit 2; the orchestrator does not (`passed: summary.errors === 0`).
+
+**Artifacts written (all inside the lineage dir):** `deep-research-config.json`, `deep-research-state.jsonl` (config + 10 iteration records + `synthesis_complete`/`maxIterationsReached`), `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, `iterations/iteration-001..010.md`, `deltas/iter-001..010.jsonl`, and `research.md` (the canonical synthesis/editing backlog).
+
+**Validated:** JSON integrity OK; 10 iteration files + 10 iteration records (1..10); `research.md` non-empty; synthesis `stopReason=maxIterationsReached`. No file written outside the lineage (transient `/tmp` scratch removed).

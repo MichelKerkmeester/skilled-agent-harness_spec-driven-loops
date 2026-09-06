@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes",
+  "description": "The runtime research confirmed 31 shell scripts and 7 module scripts with header tags the sk-code standards do not document, one hook that swallows",
+  "keywords": [
+    "runtime",
+    "research",
+    "confirmed",
+    "shell",
+    "scripts",
+    "module",
+    "header",
+    "tags",
+    "sk-code",
+    "standards",
+    "document",
+    "one",
+    "hook",
+    "swallows"
+  ],
+  "lastUpdated": "2026-09-06T08:29:57.079Z",
+  "specId": "028",
+  "folderSlug": "header-tags-hook-catch-and-script-test-fixes",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
