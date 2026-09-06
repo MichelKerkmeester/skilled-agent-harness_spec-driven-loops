@@ -106,7 +106,7 @@ The doctor tooling stops treating a decommissioned server as installable, and `s
 - **SC-001**: `rg -n "server-sequential-thinking" .opencode/commands/doctor/` returns no matches.
 - **SC-002**: `bash mcp-doctor.sh --json` reports zero `sequential_thinking` checks, and its warning count drops from 3 to 1.
 - **SC-003**: `route-validate.sh`, its `--self-test` suite, `check-mcp-mutation-class.sh` and both `bash -n` syntax checks all exit 0.
-- **SC-004**: `validate.sh specs/system-speckit/048-decommissioned-server-residue --strict` returns `RESULT: PASSED`.
+- **SC-004**: `validate.sh specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal --strict` returns `RESULT: PASSED`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

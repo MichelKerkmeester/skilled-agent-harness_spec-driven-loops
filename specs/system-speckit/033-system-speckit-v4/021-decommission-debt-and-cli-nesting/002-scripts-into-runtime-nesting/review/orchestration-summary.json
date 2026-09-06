@@ -1,8 +1,8 @@
 {
   "run_id": "1788599924929-d9wrhj",
   "loop_type": "review",
-  "spec_folder": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
-  "base_artifact_dir": ".opencode/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review",
+  "spec_folder": ".opencode/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting",
+  "base_artifact_dir": ".opencode/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

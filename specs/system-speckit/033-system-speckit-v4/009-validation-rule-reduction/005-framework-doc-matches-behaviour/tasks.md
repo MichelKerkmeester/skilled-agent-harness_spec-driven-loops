@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-validation-reduction/005-framework-doc-matches-behaviour"
+    packet_pointer: "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/005-framework-doc-matches-behaviour"
     last_updated_at: "2026-08-29T21:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Corrected the framework doc's validation claims to match the gate"

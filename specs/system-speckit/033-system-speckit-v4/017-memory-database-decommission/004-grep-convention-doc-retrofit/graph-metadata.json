@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
-  "spec_folder": "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
-  "parent_id": "system-speckit/049-memory-decommission",
+  "packet_id": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
+  "spec_folder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
+  "parent_id": "system-speckit/033-system-speckit-v4/017-memory-database-decommission",
   "children_ids": [],
   "manual": {
     "depends_on": [],

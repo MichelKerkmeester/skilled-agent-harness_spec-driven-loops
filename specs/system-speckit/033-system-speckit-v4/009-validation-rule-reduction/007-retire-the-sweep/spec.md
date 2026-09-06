@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-validation-reduction/009-retire-the-sweep"
+    packet_pointer: "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/007-retire-the-sweep"
     last_updated_at: "2026-08-30T08:40:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Added a changed-packet pull-request gate and deleted the weekly sweep workflow"

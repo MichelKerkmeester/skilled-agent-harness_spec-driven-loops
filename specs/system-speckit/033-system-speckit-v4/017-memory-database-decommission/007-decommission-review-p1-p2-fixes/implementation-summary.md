@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-memory-decommission/007-deep-review-remediation"
+    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes"
     last_updated_at: "2026-09-04T07:21:40Z"
     last_updated_by: "claude-code"
     recent_action: "Remediated the six review findings"

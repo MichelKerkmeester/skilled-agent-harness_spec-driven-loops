@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-decisions-memory-redesign/005-advisor-integration"
+    packet_pointer: "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/005-advisor-integration"
     last_updated_at: "2026-08-26T05:34:14Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

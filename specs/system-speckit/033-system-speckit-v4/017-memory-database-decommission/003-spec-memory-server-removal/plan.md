@@ -36,7 +36,7 @@ playbooks. Each stage is preceded by a seam check that proves the retained owner
 still resolves, with the advisor embedder over the shared socket as the standing gate. The phase
 closes on a residue sweep and a clean session boot in every runtime, not on the diff looking right.
 
-Inventory source: `specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md`.
+Inventory source: `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md`.
 <!-- /ANCHOR:summary -->
 
 ---

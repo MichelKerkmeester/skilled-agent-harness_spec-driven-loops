@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/042-nested-goal-template-addon/003-runtime-neutral-goal-dispatch",
+  "specFolder": "system-speckit/033-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch",
   "description": "The speckit commands already offer to set a session goal, and the offer calls one runtime's tool by name",
   "keywords": [
     "speckit",

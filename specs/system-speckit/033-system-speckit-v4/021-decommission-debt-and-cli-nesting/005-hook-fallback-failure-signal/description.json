@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal",
+  "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal",
   "description": "`.codex/hooks.json` wraps every registered adapter as `node <adapter> || printf %s '{\"hookSpecificOutput\":{...,\"additionalContext\":\"mk codex hook",
   "keywords": [
     "codex",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/041-validation-reduction/009-retire-the-sweep",
-  "spec_folder": "system-speckit/041-validation-reduction/009-retire-the-sweep",
-  "parent_id": "system-speckit/041-validation-reduction",
+  "packet_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/007-retire-the-sweep",
+  "spec_folder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/007-retire-the-sweep",
+  "parent_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction",
   "children_ids": [],
   "manual": {
     "depends_on": [],

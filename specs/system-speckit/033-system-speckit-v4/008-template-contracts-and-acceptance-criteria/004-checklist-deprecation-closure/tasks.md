@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure"
+    packet_pointer: "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure"
     last_updated_at: "2026-08-30T04:17:55Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped the canonical evidence read, the source precedence and the unit suite"
@@ -54,7 +54,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read where the total is counted from and where the evidence was read from - `scripts/rules/check-ac-coverage.sh:125` counts canonical rows while the evidence read scanned a separate table
-- [x] T002 Read the merge that deprecated the standalone checklist and what it claimed to ship - `specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/implementation-summary.md` says the merged document is preferred
+- [x] T002 Read the merge that deprecated the standalone checklist and what it claimed to ship - `specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/implementation-summary.md` says the merged document is preferred
 - [x] T003 Capture the reported ratio before the change as the negative control - four packet-042 phases each reported `0/5 ACs have evidence; floor 5/5`
 <!-- /ANCHOR:phase-1 -->
 

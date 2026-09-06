@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-single-segment-packet-pointer"
+    packet_pointer: "system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer"
     last_updated_at: "2026-09-02T19:33:00Z"
     last_updated_by: "code-agent"
     recent_action: "Verified single-segment packet_pointer widening; ticked criteria"
@@ -69,7 +69,7 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Implemented by an external cli-devin dispatch (deepseek-v4-flash-max); verified in a fresh runtime independent of that dispatch. Verification: (1) full `git diff` read confirming the change is exactly the `+`→`*` segment-group edit plus the comment, nothing else; (2) `vitest run tests/spec-doc-structure.vitest.ts` — 20/20 passed; (3) `mcp-server`'s full `npm test` suite and `npm run build` (build exit 0, confirmed independently of the harness's own claim); (4) a negative control: `git stash` on the source file only (test file kept, so the new positive case still ran) reproduced the exact RED devin quoted — `AssertionError: expected 'fail' to be 'pass'` at `spec-doc-structure.vitest.ts:335`, 1 failed | 19 passed — then `git stash pop` and rebuild restored GREEN 20/20; (5) `validate.sh --strict` on the real flattened packet `specs/obsidian/005-component-surface-system` (`RESULT: PASSED`, zero `SPECDOC_FRONTMATTER_004` lines) and on an unaffected two-segment packet `specs/system-speckit/049-memory-decommission` (`RESULT: PASSED`, 0 errors, unchanged); (6) `validate.sh --strict` on this packet itself.
+Implemented by an external cli-devin dispatch (deepseek-v4-flash-max); verified in a fresh runtime independent of that dispatch. Verification: (1) full `git diff` read confirming the change is exactly the `+`→`*` segment-group edit plus the comment, nothing else; (2) `vitest run tests/spec-doc-structure.vitest.ts` — 20/20 passed; (3) `mcp-server`'s full `npm test` suite and `npm run build` (build exit 0, confirmed independently of the harness's own claim); (4) a negative control: `git stash` on the source file only (test file kept, so the new positive case still ran) reproduced the exact RED devin quoted — `AssertionError: expected 'fail' to be 'pass'` at `spec-doc-structure.vitest.ts:335`, 1 failed | 19 passed — then `git stash pop` and rebuild restored GREEN 20/20; (5) `validate.sh --strict` on the real flattened packet `specs/obsidian/005-component-surface-system` (`RESULT: PASSED`, zero `SPECDOC_FRONTMATTER_004` lines) and on an unaffected two-segment packet `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission` (`RESULT: PASSED`, 0 errors, unchanged); (6) `validate.sh --strict` on this packet itself.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -97,8 +97,8 @@ Implemented by an external cli-devin dispatch (deepseek-v4-flash-max); verified 
 | Negative control (RED): `git stash` source file only, rebuild, run single-segment test | FAIL as expected — `AssertionError: expected 'fail' to be 'pass'` at `spec-doc-structure.vitest.ts:335`, 1 failed \| 19 passed |
 | Positive control (GREEN): `git stash pop`, rebuild, re-run | PASS — Test Files 1 passed, Tests 20 passed (20) |
 | `validate.sh --strict specs/obsidian/005-component-surface-system` | PASS — first `RESULT:` line `RESULT: PASSED`, `SPECDOC_FRONTMATTER_004` count 0 |
-| `validate.sh --strict specs/system-speckit/049-memory-decommission` (two-segment control) | PASS — `RESULT: PASSED`, Errors: 0, unchanged by this widening |
-| `validate.sh --strict specs/system-speckit/050-single-segment-packet-pointer` (this packet) | See close-out note below — run after this write, evidence in RETURN |
+| `validate.sh --strict specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission` (two-segment control) | PASS — `RESULT: PASSED`, Errors: 0, unchanged by this widening |
+| `validate.sh --strict specs/system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer` (this packet) | See close-out note below — run after this write, evidence in RETURN |
 <!-- /ANCHOR:verification -->
 
 ---

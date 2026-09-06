@@ -154,7 +154,7 @@ Worked example, the packet scope:
 ```text
 rg --no-config --hidden --fixed-strings --ignore-case \
   --files-with-matches --max-count 1 --glob '*.md' \
-  -- 'trigger index generator' specs/system-speckit/049-memory-decommission/001-trigger-index-replacement
+  -- 'trigger index generator' specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement
 ```
 
 Packet directories are `NNN-short-descriptive-name`, lowercase and hyphen-separated, which is what makes them usable as deterministic path inputs. Keep the document basename as a separate document-type field rather than folding it into the path scope.
@@ -291,7 +291,7 @@ The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep r
 
 ### Research
 
-- [research.md](../../../../../specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md) - Evidence and source citations behind every rule in this document
+- [research.md](../../../../../specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md) - Evidence and source citations behind every rule in this document
 
 ### Reference Files
 

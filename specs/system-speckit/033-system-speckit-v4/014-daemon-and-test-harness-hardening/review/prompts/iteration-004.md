@@ -30,7 +30,7 @@ Provisional Verdict: CONDITIONAL hasAdvisories=false
 Review Iteration: 4 of 4
 Mode: review
 Dimension: Final adversarial adjudication. Iteration 4 of 4 — stop_policy=max-iterations — this is the last pass. Do not re-enter saturated process-sweep or runner-safety directions unless contradictory evidence appears. Five P1s remain open in the registry (P1-001, P1-002, P1-003, P1-004, P1-005); the operator asserts P1-004/P1-005 are now fixed with evidence recorded in the phase goal LOG sections — VERIFY rather than trust. For each still-open P1: state whether it holds, what the smallest correct fix is, and whether it is worth fixing at all (a finding that survives four passes but is not worth fixing should say so). P2-001 through P2-008 are advisory carry-forwards and may be confirmed-as-deferred rather than re-opened.
-Review Target: specs/system-speckit/045-daemon-and-test-harness-hardening
+Review Target: specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening
 Review Scope Files: - .opencode/skills/system-spec-kit/shared/paths.ts
 - .opencode/skills/system-spec-kit/vitest.config.ts
 - .opencode/skills/system-spec-kit/mcp-server/tests/production-db-isolation.vitest.ts
@@ -53,13 +53,13 @@ Review Scope Files: - .opencode/skills/system-spec-kit/shared/paths.ts
 - .opencode/skills/cli-external-orchestration/cli-devin/SKILL.md
 - .opencode/skills/cli-external-orchestration/cli-devin/references/cli-reference.md
 - .opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/
-- specs/system-speckit/045-daemon-and-test-harness-hardening/goal.md
-- specs/system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation/goal.md
-- specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/goal.md
-- specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md
-- specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md
-- specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/implementation-summary.md
-- specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/implementation-summary.md
+- specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/goal.md
+- specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation/goal.md
+- specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/goal.md
+- specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md
+- specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md
+- specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/implementation-summary.md
+- specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/implementation-summary.md
 Prior Findings: P0=0 P1=5 P2=8
 
 ## PIVOT LINEAGE
@@ -94,7 +94,7 @@ evidence, scope, coverage
 
 ### Iteration Final-Line Contract (MANDATORY)
 
-`specs/system-speckit/045-daemon-and-test-harness-hardening/review/iterations/iteration-004.md` MUST end with exactly one of these plain-text lines as the **absolute final line** (no trailing whitespace, no variation), and every iteration MUST emit exactly one parseable verdict:
+`specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/iterations/iteration-004.md` MUST end with exactly one of these plain-text lines as the **absolute final line** (no trailing whitespace, no variation), and every iteration MUST emit exactly one parseable verdict:
 
 ```
 Review verdict: PASS
@@ -118,12 +118,12 @@ Every new P0/P1 must include: claim, evidenceRefs, counterevidenceSought, altern
 
 All paths are relative to the repo root.
 
-- Config: specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-config.json
-- State Log: specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-state.jsonl
-- Findings Registry: specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-findings-registry.json
-- Strategy: specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-strategy.md
-- Write iteration narrative to: specs/system-speckit/045-daemon-and-test-harness-hardening/review/iterations/iteration-004.md
-- Write per-iteration delta file to: specs/system-speckit/045-daemon-and-test-harness-hardening/review/deltas/iter-004.jsonl
+- Config: specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-config.json
+- State Log: specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-state.jsonl
+- Findings Registry: specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-findings-registry.json
+- Strategy: specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-strategy.md
+- Write iteration narrative to: specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/iterations/iteration-004.md
+- Write per-iteration delta file to: specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deltas/iter-004.jsonl
 
 ## CONSTRAINTS
 
@@ -134,13 +134,13 @@ All paths are relative to the repo root.
 - Do not re-enter or restate any direction listed as swept or saturated above. The pivot-selected focus is a new read-only review direction, never permission to change the target.
 - Do not implement fixes during review. Report findings only; implementation is a separate follow-up step.
 - **ALLOWED WRITE PATHS (the ONLY paths you may create, modify, or append to)**:
-  - `specs/system-speckit/045-daemon-and-test-harness-hardening/review/iterations/iteration-004.md`, this iteration's narrative markdown
-  - `specs/system-speckit/045-daemon-and-test-harness-hardening/review/deltas/iter-004.jsonl`, this iteration's delta JSONL
-  - `specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-strategy.md`, strategy.md (in-place updates only)
-  - the append gateway's own writes into the run directory when you invoke it (see OUTPUT CONTRACT item 2) — `specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-state.jsonl` itself is a read-only projection and is NEVER a path you write directly
+  - `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/iterations/iteration-004.md`, this iteration's narrative markdown
+  - `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deltas/iter-004.jsonl`, this iteration's delta JSONL
+  - `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-strategy.md`, strategy.md (in-place updates only)
+  - the append gateway's own writes into the run directory when you invoke it (see OUTPUT CONTRACT item 2) — `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-state.jsonl` itself is a read-only projection and is NEVER a path you write directly
 - **BANNED OPERATIONS (NEVER execute against any path)**: `rm`, `rm -rf`, `git rm`, `mv`, `sed -i` (including `sed -i ''`), `rmdir`, `find ... -delete`, shell output-redirect truncate `>` against any file not in the allowed-write list, and any tool call whose effect is to delete, rename, or replace a file outside the allowed-write list. Reading is unrestricted; **writing, renaming, and deleting are scoped**.
-- **SCOPE VIOLATION PROTOCOL**: if your plan would require modifying any path NOT in the allowed-write list, you MUST STOP that action and emit a finding instead. Record the would-be mutation as a `scope_violation` entry in the iteration narrative (under a `## SCOPE VIOLATIONS` heading) and continue the review. NEVER execute the out-of-scope mutation. The review packet (`specs/system-speckit/045-daemon-and-test-harness-hardening/review/iterations/iteration-004.md` directory and parents) is the only zone for your writes; the reviewed target spec/code is off-limits.
-- **GATEWAY CALLS ARE REQUIRED AND IN-SCOPE — NEVER A CONTAINMENT VIOLATION**: running `append-mode-event.cjs` against your own run directory is REQUIRED every iteration, not optional. Its writes land inside the run directory, which is your own write authority — that is never the "out-of-scope write" any containment warning means. "Don't run the repo's tooling" guidance targets builds, tests, and repo-wide scripts (e.g. `generate-context.js`, `validate.sh --recursive`, git writes); it does NOT exempt this state-recording gateway. Skipping the gateway call, or writing `specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-state.jsonl` directly instead, fails the iteration.
+- **SCOPE VIOLATION PROTOCOL**: if your plan would require modifying any path NOT in the allowed-write list, you MUST STOP that action and emit a finding instead. Record the would-be mutation as a `scope_violation` entry in the iteration narrative (under a `## SCOPE VIOLATIONS` heading) and continue the review. NEVER execute the out-of-scope mutation. The review packet (`specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/iterations/iteration-004.md` directory and parents) is the only zone for your writes; the reviewed target spec/code is off-limits.
+- **GATEWAY CALLS ARE REQUIRED AND IN-SCOPE — NEVER A CONTAINMENT VIOLATION**: running `append-mode-event.cjs` against your own run directory is REQUIRED every iteration, not optional. Its writes land inside the run directory, which is your own write authority — that is never the "out-of-scope write" any containment warning means. "Don't run the repo's tooling" guidance targets builds, tests, and repo-wide scripts (e.g. `generate-context.js`, `validate.sh --recursive`, git writes); it does NOT exempt this state-recording gateway. Skipping the gateway call, or writing `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-state.jsonl` directly instead, fails the iteration.
 - Append JSONL record with dimensions, filesReviewed, findingsSummary, findingsNew, traceabilityChecks, newFindingsRatio, and optional graphEvents.
 - When emitting the iteration JSONL record, include an optional `graphEvents` array representing coverage graph nodes and edges discovered this iteration. Omit the field when no graph events are produced. Each event MUST use one of these two EXACT shapes. The reducer discriminates node vs edge by `type`, then validates each node's `kind` against the node vocabulary and each edge's `relation` against the relation vocabulary — any event outside these vocabularies is silently dropped, and if every event is dropped the convergence graph stays empty (nodeCount 0, empty signals):
   - Node: `{"type":"node","id":"<stable-id>","kind":"<SLICE|DIMENSION|FILE|FINDING|EVIDENCE|REMEDIATION|BUG_CLASS|INVARIANT|PRODUCER|CONSUMER|TEST>","label":"<short human name>"}` — the semantic kind goes in the dedicated `kind` field (uppercase, one of those listed); `label` is a free-text display name ONLY, never the kind.
@@ -150,9 +150,9 @@ All paths are relative to the repo root.
 
 You MUST produce THREE artifacts per iteration. The YAML-owned post_dispatch_validate step emits a `schema_mismatch` conflict event if any is missing or malformed.
 
-1. **Iteration narrative markdown** at `specs/system-speckit/045-daemon-and-test-harness-hardening/review/iterations/iteration-004.md` (path pre-substituted for the current iteration number). Structure: headings for Dimension, Files Reviewed, Findings by Severity (P0/P1/P2), Traceability Checks, Verdict, Next Dimension.
+1. **Iteration narrative markdown** at `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/iterations/iteration-004.md` (path pre-substituted for the current iteration number). Structure: headings for Dimension, Files Reviewed, Findings by Severity (P0/P1/P2), Traceability Checks, Verdict, Next Dimension.
 
-2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-state.jsonl` directly, which is now a read-only projection the gateway refreshes from the ledger. The record MUST use `"type":"iteration"` EXACTLY, NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored. Required schema:
+2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-state.jsonl` directly, which is now a read-only projection the gateway refreshes from the ledger. The record MUST use `"type":"iteration"` EXACTLY, NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored. Required schema:
 
 ```json
 {"type":"iteration","iteration":<n>,"mode":"review","target_agent":"deep-review","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=review target_agent=deep-review","run":"<run-id>","status":"complete","focus":"<dimension-or-focus>","dimensions":["..."],"filesReviewed":["path:line"],"findingsCount":<n>,"findingsSummary":{"P0":<n>,"P1":<n>,"P2":<n>},"findingsNew":[],"findingDetails":[],"traceabilityChecks":{},"newFindingsRatio":<0..1>,"sessionId":"<session-id>","generation":<n>,"lineageMode":"new","timestamp":"<ISO-8601>","durationMs":<n>,"graphEvents":[/* optional */]}
@@ -178,18 +178,18 @@ Compact v2 example:
 
 Legacy unversioned records remain valid during rollout. Phase D validator behavior should warn on legacy shallow records and strictly enforce this shape only for explicit v2 records.
 
-Record this single JSON object through the append gateway — do NOT `echo`/`>>` it into `specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-state.jsonl` (a read-only projection the gateway refreshes from the ledger). Write the one-line record to a temp file, then run:
+Record this single JSON object through the append gateway — do NOT `echo`/`>>` it into `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-state.jsonl` (a read-only projection the gateway refreshes from the ledger). Write the one-line record to a temp file, then run:
 
 ```bash
 node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
   --mode review \
-  --run-directory "$(dirname 'specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-state.jsonl')" \
+  --run-directory "$(dirname 'specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-state.jsonl')" \
   --event-json <that temp file>
 ```
 
-`--event-json` must name the SINGLE-record file (the gateway `JSON.parse`s it whole), never the multi-line `specs/system-speckit/045-daemon-and-test-harness-hardening/review/deltas/iter-004.jsonl`. Exit `0` = the record is durable in the ledger and the projection is refreshed; exit `2` = refused → STOP and name the failed check. Never fall back to a direct write.
+`--event-json` must name the SINGLE-record file (the gateway `JSON.parse`s it whole), never the multi-line `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deltas/iter-004.jsonl`. Exit `0` = the record is durable in the ledger and the projection is refreshed; exit `2` = refused → STOP and name the failed check. Never fall back to a direct write.
 
-3. **Per-iteration delta file** at `specs/system-speckit/045-daemon-and-test-harness-hardening/review/deltas/iter-004.jsonl` (path pre-substituted, e.g. `deltas/iter-001.jsonl`). This file holds the structured delta stream for this iteration: one `{"type":"iteration",...}` record (same as the state-log append) plus per-event structured records (one per graphEvent, finding, classification, traceability-check, ruled_out direction). Each record on its own JSON line.
+3. **Per-iteration delta file** at `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deltas/iter-004.jsonl` (path pre-substituted, e.g. `deltas/iter-001.jsonl`). This file holds the structured delta stream for this iteration: one `{"type":"iteration",...}` record (same as the state-log append) plus per-event structured records (one per graphEvent, finding, classification, traceability-check, ruled_out direction). Each record on its own JSON line.
 
 Example delta file contents (one review iteration):
 ```json

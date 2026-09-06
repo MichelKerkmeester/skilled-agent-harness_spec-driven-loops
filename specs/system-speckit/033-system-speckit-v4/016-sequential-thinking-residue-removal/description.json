@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/048-decommissioned-server-residue",
+  "specFolder": "system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal",
   "description": "Commit `7673da6bc24` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered",
   "keywords": [
     "commit",

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-validation-reduction/002-tracks-are-not-packets"
+    packet_pointer: "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets"
     last_updated_at: "2026-08-29T19:10:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Exempted track directories from packet rules"

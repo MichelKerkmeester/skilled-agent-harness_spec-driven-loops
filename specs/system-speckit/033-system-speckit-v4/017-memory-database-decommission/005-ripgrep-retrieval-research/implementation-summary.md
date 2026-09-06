@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-memory-decommission/005-ripgrep-retrieval-research"
+    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research"
     last_updated_at: "2026-09-02T19:47:00Z"
     last_updated_by: "claude-code"
     recent_action: "Documented the completed research run and its synthesis"

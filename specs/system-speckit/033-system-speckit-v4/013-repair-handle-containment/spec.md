@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/046-path-containment-followups"
+    packet_pointer: "system-speckit/033-system-speckit-v4/013-repair-handle-containment"
     last_updated_at: "2026-08-30T15:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored from two findings reproduced against the live tree after a fresh-model review"

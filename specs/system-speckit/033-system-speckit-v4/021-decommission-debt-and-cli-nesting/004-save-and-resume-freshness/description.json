@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness",
+  "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/004-save-and-resume-freshness",
   "description": "Problem A - save completes without proving index freshness",
   "keywords": [
     "problem",

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/053-spec-kit-runtime-rename",
+  "specFolder": "system-speckit/033-system-speckit-v4/020-runtime-package-rename",
   "description": "The memory decommission deleted the MCP server, its tools and its database, but kept the package that held them because the validation orchestrator,",
   "keywords": [
     "memory",

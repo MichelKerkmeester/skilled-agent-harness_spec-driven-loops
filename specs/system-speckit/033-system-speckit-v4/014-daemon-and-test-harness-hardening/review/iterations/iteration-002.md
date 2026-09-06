@@ -7,7 +7,7 @@ trigger_phrases: []
 **Session:** 2026-08-31-auto-deep-review-045 · **Generation:** 1 · **Lineage:** new
 **Iteration:** 2 of 4 (convergenceThreshold 0.10, stopPolicy convergence)
 **Focus:** D1 Correctness + D2 Security + D3 Traceability (residual surface — deferred files + packet 058 cross-reference)
-**Mode:** review · **Target:** `specs/system-speckit/045-daemon-and-test-harness-hardening`
+**Mode:** review · **Target:** `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening`
 **Budget profile:** scan (target ≤ 12 tool calls).
 
 ---
@@ -15,8 +15,8 @@ trigger_phrases: []
 ## Dispatcher
 
 - Dispatched by `/deep:review:auto` iteration 2 of 4 on packet 045.
-- Spec folder: `specs/system-speckit/045-daemon-and-test-harness-hardening`
-- Artifact directory: `specs/system-speckit/045-daemon-and-test-harness-hardening/review`
+- Spec folder: `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening`
+- Artifact directory: `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review`
 - Adjacent in scope: `specs/cli-external-orchestration/058-flag-enum-authority` (level 1, status Complete)
 - Carry-forward mandate: confirm or refute P1-001 (library kill-switch bypass) and P1-002 (plan-time parent-pid gate) using the deferred file reads.
 

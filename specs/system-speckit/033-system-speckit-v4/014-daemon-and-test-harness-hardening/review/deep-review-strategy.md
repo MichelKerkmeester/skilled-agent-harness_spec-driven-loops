@@ -28,7 +28,7 @@ Reviews packet 045 (phase parent: Daemon Lifecycle and Test-Harness Hardening, f
 
 ## 2. TOPIC
 
-**Review target:** `specs/system-speckit/045-daemon-and-test-harness-hardening` (spec-folder)
+**Review target:** `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening` (spec-folder)
 **Branch:** `skilled/v4.0.0.0`
 **Adjacent in scope:** `specs/cli-external-orchestration/058-flag-enum-authority`
 

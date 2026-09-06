@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit"
+    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit"
     last_updated_at: "2026-09-04T02:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed all sixteen acceptance rows after the fourteen-track retrofit"
@@ -136,7 +136,7 @@ the `triggerPhrases` spelling as a key, so the normalizer never fired on the cor
 | `specs/**/*.md` (10,210 documents across 14 tracks) | Modified | Frontmatter normalized; bodies untouched by preimage |
 | 55 canonical documents across the corpus | Modified | Withdrawn to their prior content after the partial block failed their packets |
 | 212 packets' `description.json` and `graph-metadata.json` | Modified | Generated metadata refreshed for every packet whose canonical documents changed |
-| `specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/scratch/**` | Created | Baselines, inventories, dry-run and residue reports, preimage verification and per-track diagnostics |
+| `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit/scratch/**` | Created | Baselines, inventories, dry-run and residue reports, preimage verification and per-track diagnostics |
 <!-- /ANCHOR:what-built -->
 
 ---

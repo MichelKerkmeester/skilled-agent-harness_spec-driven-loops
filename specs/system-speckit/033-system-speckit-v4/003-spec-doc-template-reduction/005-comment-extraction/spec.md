@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction/005-comment-extraction"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction"
     last_updated_at: "2026-08-26T07:10:00Z"
     last_updated_by: "design-author"
     recent_action: "Authored comment-extraction design from 001-analysis research (R2 + R6)"

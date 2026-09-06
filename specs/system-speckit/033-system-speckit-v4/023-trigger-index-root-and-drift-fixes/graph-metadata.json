@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/056-integration-research-remediation",
-  "spec_folder": "system-speckit/056-integration-research-remediation",
+  "packet_id": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
+  "spec_folder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/056-integration-research-remediation/001-index-root-and-docs",
-    "system-speckit/056-integration-research-remediation/002-metadata-drift-and-rules",
-    "system-speckit/056-integration-research-remediation/003-hook-markers-and-improvement-family",
-    "system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh"
+    "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/001-index-root-and-docs",
+    "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules",
+    "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/003-hook-markers-and-improvement-family",
+    "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/004-shared-parsers-and-post-run-refresh"
   ],
   "manual": {
     "depends_on": [],
@@ -38,7 +38,7 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "specs/system-speckit/054-decommission-debt-fixes/research/lineages/sonnet5-high-research/research.md",
+      "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/research/lineages/sonnet5-high-research/research.md",
       "runtime/cli/retrieval/generate-trigger-index.mjs",
       "runtime/data/trigger-index.json",
       "runtime/lib/graph/graph-metadata-parser.ts",

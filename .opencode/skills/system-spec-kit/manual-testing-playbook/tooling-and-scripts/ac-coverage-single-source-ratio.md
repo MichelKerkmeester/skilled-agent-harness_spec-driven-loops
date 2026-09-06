@@ -46,7 +46,7 @@ One contract detail matters when reading a result: a criterion whose Status is `
 2. Read the advisory from a live packet whose criteria carry citations:
    ```bash
    bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
-     specs/system-speckit/042-nested-goal-template-addon/002-durable-slice-validator --strict \
+     specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator --strict \
      | grep AC_COVERAGE
    ```
 3. Build the shifted-column control — a criteria table with a column BEFORE `AC-ID`, one cited row and one prose row — and read the ratio:
@@ -88,7 +88,7 @@ Output (tail):
 Command:
 ```bash
 bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
-  specs/system-speckit/042-nested-goal-template-addon/002-durable-slice-validator --strict | grep AC_COVERAGE
+  specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator --strict | grep AC_COVERAGE
 ```
 
 Output:

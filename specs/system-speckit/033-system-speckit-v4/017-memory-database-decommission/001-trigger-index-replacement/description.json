@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/049-memory-decommission/001-trigger-index-replacement",
+  "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement",
   "description": "`AGENTS.md` Gate 1 mandates `memorymatchtriggers(prompt)` on every user message, and that tool is",
   "keywords": [
     "agents",

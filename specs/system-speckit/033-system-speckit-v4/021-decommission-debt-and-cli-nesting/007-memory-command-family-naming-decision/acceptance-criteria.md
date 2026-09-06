@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision"
     last_updated_at: "2026-09-05T11:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "Executed Stage B inside 002-scripts-into-runtime-nesting"
@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision
+**Packet:** system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-05
@@ -59,7 +59,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given the two naming options, When `spec.md` is read, Then each option's blast radius is grouped by consumer class with a reproducible `rg` command | `spec.md:74-88` (Scope, Files to Change); `decision-record.md:44-52` (ADR-001 consumer-class table) | Met | - |
 | AC-002 | REQ-002 | Given the operator's decision, When it is made, Then `decision-record.md` exists in this folder and names the chosen option before any rename work is scheduled | `decision-record.md:60` names Option B, hard cutover | Met | - |
 | AC-003 | REQ-003 | Given Option A is chosen, When the decision record is written, Then it also names the follow-on documentation task (README/ARCHITECTURE/`memory-system.md` clarification) rather than leaving it implicit | `decision-record.md:60` — not applicable, Option B was chosen | Superseded | ADR-001 |
-| AC-004 | REQ-004 | Given Option B is chosen, When the follow-on execution packet is opened, Then its scope explicitly names `runtime/hooks/claude/session-stop.ts:73-76` | Stage B executed inside `specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/` per an operator-approved scope amendment (shared blast radius with the scripts -> runtime/cli move); that packet's `implementation-summary.md` records all four `session-stop.ts` fallback candidates rewritten and verified | Met | - |
+| AC-004 | REQ-004 | Given Option B is chosen, When the follow-on execution packet is opened, Then its scope explicitly names `runtime/hooks/claude/session-stop.ts:73-76` | Stage B executed inside `specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/` per an operator-approved scope amendment (shared blast radius with the scripts -> runtime/cli move); that packet's `implementation-summary.md` records all four `session-stop.ts` fallback candidates rewritten and verified | Met | - |
 
 ### Status values
 

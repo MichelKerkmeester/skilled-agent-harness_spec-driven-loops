@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/046-path-containment-followups"
+    packet_pointer: "system-speckit/033-system-speckit-v4/013-repair-handle-containment"
     last_updated_at: "2026-08-30T14:17:45Z"
     last_updated_by: "template-author"
     recent_action: "Closed the scan-to-write gap and removed the guard branch that decided nothing"

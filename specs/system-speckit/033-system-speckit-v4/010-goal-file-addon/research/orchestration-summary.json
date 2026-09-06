@@ -1,8 +1,8 @@
 {
   "run_id": "1788025387577-mq8fbn",
   "loop_type": "research",
-  "spec_folder": "specs/system-speckit/042-nested-goal-template-addon",
-  "base_artifact_dir": "specs/system-speckit/042-nested-goal-template-addon/research",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/research",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

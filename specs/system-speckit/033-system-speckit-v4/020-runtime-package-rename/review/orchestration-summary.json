@@ -1,8 +1,8 @@
 {
   "run_id": "1788565027234-d7pbnn",
   "loop_type": "review",
-  "spec_folder": ".opencode/specs/system-speckit/053-spec-kit-runtime-rename",
-  "base_artifact_dir": ".opencode/specs/system-speckit/053-spec-kit-runtime-rename/review",
+  "spec_folder": ".opencode/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename",
+  "base_artifact_dir": ".opencode/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

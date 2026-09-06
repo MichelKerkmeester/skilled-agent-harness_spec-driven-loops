@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/036-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
   "description": "The marker skips comparison on an absent value, and the field is optional, so almost nothing is",
   "keywords": [
     "marker",

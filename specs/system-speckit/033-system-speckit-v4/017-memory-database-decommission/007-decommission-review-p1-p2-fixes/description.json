@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/049-memory-decommission/007-deep-review-remediation",
+  "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes",
   "description": "The packet closed with every phase Complete, but a read-only deep review over ten forced iterations found contradictions between what the documents",
   "keywords": [
     "packet",

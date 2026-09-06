@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/047-review-remediation",
+  "specFolder": "system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes",
   "description": "A four-iteration deep review of the daemon-hardening packet, run across three independent models, closed at CONDITIONAL with three P1 findings that",
   "keywords": [
     "four-iteration",

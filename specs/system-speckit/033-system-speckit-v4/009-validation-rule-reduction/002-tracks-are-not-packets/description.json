@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/041-validation-reduction/002-tracks-are-not-packets",
+  "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
   "description": "A track directory stops being graded as though it were a packet.",
   "keywords": [
     "track",

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/049-memory-decommission/002-memory-consumer-rewire",
+  "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire",
   "description": "427 files reference the memory MCP surface",
   "keywords": [
     "files",

@@ -5,7 +5,7 @@ trigger_phrases: []
 # Constitutional-Memory DEPRECATION-COMPLETENESS Audit — Final Research Synthesis
 
 **Lineage:** `deepseek-flash-audit` (cli-devin, deepseek-v4-flash-max) · session `fanout-deepseek-flash-audit-1787763040724-qklgls`
-**Spec target:** `specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content`
+**Spec target:** `specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content`
 **Loop:** 10 iterations, max-iterations stop policy (convergence treated as telemetry; angles broadened each round)
 **Status:** COMPLETE — inventory, checklist, retarget set, assertions, consumers, dist/daemon note all produced.
 

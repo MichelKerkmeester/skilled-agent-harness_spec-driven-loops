@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/054-decommission-debt-fixes",
-  "spec_folder": "system-speckit/054-decommission-debt-fixes",
+  "packet_id": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting",
+  "spec_folder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding",
-    "system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting",
-    "system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment",
-    "system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness",
-    "system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal",
-    "system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules",
-    "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision"
+    "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/001-continuity-freshness-claim-binding",
+    "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting",
+    "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/003-retrieval-coverage-alignment",
+    "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/004-save-and-resume-freshness",
+    "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal",
+    "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/006-orphaned-types-and-dead-modules",
+    "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision"
   ],
   "manual": {
     "depends_on": [],
@@ -229,7 +229,7 @@
       "tasks.md": "c196b1ade5967c0ffabd7e5594115af3515b928bb52dadb5815b6f9fdb5bff6a",
       "implementation-summary.md": "b6d55641f882395b1ca279fe557a9d089a6718a3af22789269ee30075ac1912a"
     },
-    "last_active_child_id": "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision",
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision",
     "last_active_at": null
   }
 }

@@ -128,7 +128,7 @@ summary.
 | Tracked files | 1,481 | 20,273,034 | 453,964 |
 | Worktree regular files | 3,203 | 32,456,976 | 618,794 |
 
-Source: `specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md`.
+Source: `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md`.
 The row-level artifact it cites, `inventory.external.json`, is 69 MB and is referenced by path only.
 
 ### Tools Removed

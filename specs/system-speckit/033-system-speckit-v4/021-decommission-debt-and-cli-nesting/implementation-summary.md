@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting"
     last_updated_at: "2026-09-05T03:23:43Z"
     last_updated_by: "template-author"
     recent_action: "Acted on both research lineages; opened seven remediation phases"

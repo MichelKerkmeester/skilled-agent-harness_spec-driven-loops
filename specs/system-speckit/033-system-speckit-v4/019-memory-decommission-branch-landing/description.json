@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/052-memory-decommission-landing",
+  "specFolder": "system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing",
   "description": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine,",
   "keywords": [
     "packets",

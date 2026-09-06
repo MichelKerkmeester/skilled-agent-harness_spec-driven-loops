@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/043-workspace-path-containment
+**Packet:** system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-08-30

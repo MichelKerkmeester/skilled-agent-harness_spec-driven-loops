@@ -1,8 +1,8 @@
 {
   "run_id": "1788039066008-zwm1sm",
   "loop_type": "review",
-  "spec_folder": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure",
-  "base_artifact_dir": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,
@@ -22,7 +22,7 @@
   "timestamp_anomalies": [
     {
       "label": "grok46-xhigh",
-      "state_log": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/deep-review-state.jsonl",
+      "state_log": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/deep-review-state.jsonl",
       "window": {
         "start_at_iso": "2026-08-29T21:31:06.012Z",
         "end_at_iso": "2026-08-29T21:53:25.736Z",

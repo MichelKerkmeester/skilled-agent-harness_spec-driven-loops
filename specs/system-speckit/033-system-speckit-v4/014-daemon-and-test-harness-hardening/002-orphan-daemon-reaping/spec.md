@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping"
+    packet_pointer: "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping"
     last_updated_at: "2026-08-30T09:56:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored phase spec from an observed 2d14h orphan and the unwired sweep"

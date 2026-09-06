@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/040-validation-gate-coherence",
+  "specFolder": "system-speckit/033-system-speckit-v4/007-completion-gate-coherence",
   "description": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet",
   "keywords": [
     "completion",

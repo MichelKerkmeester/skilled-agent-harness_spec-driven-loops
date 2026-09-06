@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting"
     last_updated_at: "2026-09-05T11:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Executed the move and Stage B rename; ran the full gate set"

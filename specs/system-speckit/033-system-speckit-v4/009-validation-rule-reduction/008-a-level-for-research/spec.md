@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-validation-reduction/010-a-level-for-research"
+    packet_pointer: "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/008-a-level-for-research"
     last_updated_at: "2026-08-30T12:40:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Added a research level and taught every level enumeration about it"

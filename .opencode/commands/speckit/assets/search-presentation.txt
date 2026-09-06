@@ -87,9 +87,9 @@ Filled example:
 SPECKIT:SEARCH "trigger index generator"
 --------------------------------------------------
 recipe    2.2 path-only
-roots     specs/system-speckit/049-memory-decommission
-specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:14  trigger_phrases  exact
-specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34  body  containment
+roots     specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/spec.md:14  trigger_phrases  exact
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/tasks.md:34  body  containment
 
 STATUS=OK RESULTS=2 LANE=ripgrep
 ```

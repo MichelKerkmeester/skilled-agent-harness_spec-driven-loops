@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/045-daemon-and-test-harness-hardening"
+    packet_pointer: "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening"
     last_updated_at: "2026-08-30T10:24:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the durable directive and bound the four phase children"

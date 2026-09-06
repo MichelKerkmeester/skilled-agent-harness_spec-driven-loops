@@ -60,8 +60,8 @@ Both branches carry the decommission with no memory surface left, every changed 
 |-----------|-------------|-------------|
 | `.opencode/commands/**` frontmatter | Modify | v4's contract-shaped hints with memory tools removed from allow lists |
 | `system-spec-kit/references/cli/daemon-cli-reference.md` | Modify | Overview sections the templates require |
-| `specs/system-speckit/049-memory-decommission/**/{description,graph-metadata}.json` | Modify | Regenerated after the merge |
-| `specs/system-speckit/052-memory-decommission-landing/review/**` | Create | Review loop lineage and report |
+| `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/**/{description,graph-metadata}.json` | Modify | Regenerated after the merge |
+| `specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/**` | Create | Review loop lineage and report |
 
 ### Review Scope
 
@@ -83,7 +83,7 @@ The review reads a bounded list, never a tree. The change set is the diff `52202
 ```bash
 node .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs --json          # live must be 0
 node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs                 # run twice; hashes must match
-NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-speckit/049-memory-decommission --strict --recursive
+NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission --strict --recursive
 bash .opencode/commands/doctor/scripts/route-validate.sh
 node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
 grep -c "system_spec_memory\|spec-memory" .claude/mcp.json opencode.json .codex/config.toml .pi/mcp.json .cursor/mcp.json   # all 0

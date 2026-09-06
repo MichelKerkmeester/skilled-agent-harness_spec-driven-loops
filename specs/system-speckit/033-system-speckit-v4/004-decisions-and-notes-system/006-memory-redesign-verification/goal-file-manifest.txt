@@ -41,9 +41,9 @@
 .opencode/skills/system-spec-kit/constitutional/README.md
 .opencode/skills/system-spec-kit/constitutional/memory-system-spec-kit-only.md
 .opencode/skills/system-spec-kit/SKILL.md
-specs/system-speckit/037-decisions-memory-redesign/002-active-decisions-design/spec.md
-specs/system-speckit/037-decisions-memory-redesign/003-deprecation-mechanics/spec.md
-specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content/spec.md
-specs/system-speckit/037-decisions-memory-redesign/005-advisor-integration/spec.md
-specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/spec.md
-specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content/research/research.md
+specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/002-active-decisions-design/spec.md
+specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/003-deprecation-mechanics/spec.md
+specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content/spec.md
+specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/005-advisor-integration/spec.md
+specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/spec.md
+specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content/research/research.md

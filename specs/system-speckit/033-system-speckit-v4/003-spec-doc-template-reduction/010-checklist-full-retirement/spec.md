@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement"
     last_updated_at: "2026-08-30T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Retired the document across producers, contract, read-paths, templates and packets"
@@ -60,7 +60,7 @@ This retires it completely: the producer, every contract entry, every read-path,
 | **Created** | 2026-08-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/036-spec-doc-template-reduction |
+| **Parent Packet** | system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction |
 | **Predecessor** | 009-template-folder-restructure |
 | **Successor** | None |
 <!-- /ANCHOR:metadata -->

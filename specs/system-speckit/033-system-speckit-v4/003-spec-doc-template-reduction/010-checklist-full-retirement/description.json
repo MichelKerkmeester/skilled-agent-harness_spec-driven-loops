@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement",
   "description": "The merge that unified tasks and checklist recorded `Delete/retire` against `templates/addons/checklist.md.tmpl` and then kept it, along with its",
   "keywords": [
     "merge",

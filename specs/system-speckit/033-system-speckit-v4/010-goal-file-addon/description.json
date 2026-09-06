@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/042-nested-goal-template-addon",
+  "specFolder": "system-speckit/033-system-speckit-v4/010-goal-file-addon",
   "description": "An operator sets one session objective, and whatever they set is frozen at that moment",
   "keywords": [
     "operator",

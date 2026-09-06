@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping"
+    packet_pointer: "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping"
     last_updated_at: "2026-08-30T09:55:28Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

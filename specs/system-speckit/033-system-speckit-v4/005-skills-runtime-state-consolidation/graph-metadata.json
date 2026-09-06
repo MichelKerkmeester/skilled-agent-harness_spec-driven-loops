@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/038-skills-state-consolidation",
-  "spec_folder": "system-speckit/038-skills-state-consolidation",
+  "packet_id": "system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
+  "spec_folder": "system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
   "parent_id": null,
   "children_ids": [],
   "manual": {

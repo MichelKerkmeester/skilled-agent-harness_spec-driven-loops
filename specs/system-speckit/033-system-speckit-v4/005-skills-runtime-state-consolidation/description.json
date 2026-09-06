@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/038-skills-state-consolidation",
+  "specFolder": "system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
   "description": "Seven hidden state directories sit directly under `.opencode/skills/`: advisor, authority, completion-sentinel, goal, loop-guard,",
   "keywords": [
     "seven",

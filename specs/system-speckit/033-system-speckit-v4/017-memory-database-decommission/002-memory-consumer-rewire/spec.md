@@ -32,7 +32,7 @@ exists, so any gap surfaces as a behavioral difference rather than a hard failur
 
 **Critical Dependencies**: Phase 001 must have shipped a proven index and a written ripgrep contract.
 
-**Source inventory**: specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md, with the exhaustive row artifact at specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/inventory.external.json (69 MB, cite by path, do not open it whole).
+**Source inventory**: specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md, with the exhaustive row artifact at specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/inventory.external.json (69 MB, cite by path, do not open it whole).
 
 ---
 <!-- ANCHOR:metadata -->

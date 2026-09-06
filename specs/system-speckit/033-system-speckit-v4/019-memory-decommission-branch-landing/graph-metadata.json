@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/052-memory-decommission-landing",
-  "spec_folder": "system-speckit/052-memory-decommission-landing",
+  "packet_id": "system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing",
+  "spec_folder": "system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -52,7 +52,7 @@
       "shared/embeddings/providers/hf-local.ts",
       ".opencode/skills/system-spec-kit/graph-metadata.json",
       "data/trigger-index.json",
-      "specs/system-speckit/049-memory-decommission/goal.md",
+      "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md",
       ".claude/mcp.json",
       ".codex/config.toml",
       ".pi/mcp.json",

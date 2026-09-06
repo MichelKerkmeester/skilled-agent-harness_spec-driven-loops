@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/036-spec-doc-template-reduction/001-analysis",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
   "description": "The 13 spec-kit manifest templates contain measured duplication and context waste",
   "keywords": [
     "spec-kit",

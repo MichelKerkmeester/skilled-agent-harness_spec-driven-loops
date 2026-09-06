@@ -95485,2189 +95485,2189 @@
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/changelog.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/changelog.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/research/context/Reducer Engineering.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/research/context/Reducer Engineering.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/research/context/The $1.2M Agent Engineering skill is now open source. Here it is..md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/research/context/The $1.2M Agent Engineering skill is now open source. Here it is..md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/research/context/The $1.2M Agent Engineering skill.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/research/context/The $1.2M Agent Engineering skill.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/research/research.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/deep-review-dashboard.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/deep-review-strategy.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/deep-review-strategy.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/iterations/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/iterations/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/iterations/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/iterations/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/iterations/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/iterations/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/iterations/iteration-005.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/iterations/iteration-005.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/logs/workflow-bindings.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/logs/workflow-bindings.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/prompts/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/prompts/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/prompts/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/prompts/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/prompts/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/prompts/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/prompts/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/prompts/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/prompts/iteration-005.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/prompts/iteration-005.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/resource-map.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/resource-map.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/grok46-review/review-report.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/grok46-review/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/deep-review-dashboard.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 6,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/deep-review-strategy.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/deep-review-strategy.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-005.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-005.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-006.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-006.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-007.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-007.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-008.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-008.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-009.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-009.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-010.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/iterations/iteration-010.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/review/lineages/pi-flash-review/review-report.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/review/lineages/pi-flash-review/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/deep-review-dashboard.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/deep-review-strategy.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/deep-review-strategy.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/iterations/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/iterations/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/iterations/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/iterations/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/iterations/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/iterations/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/logs/workflow-bindings.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/logs/workflow-bindings.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/prompts/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/prompts/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/prompts/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/prompts/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/prompts/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/prompts/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/prompts/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/prompts/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/resource-map.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/resource-map.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/review-report.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 23,
-      "path": "specs/system-speckit/034-plan-preflight-nested-packet-resolution/implementation-summary.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets/implementation-summary.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 25,
-      "path": "specs/system-speckit/035-process-reaper-classification-fix/implementation-summary.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification/implementation-summary.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 23,
-      "path": "specs/system-speckit/035-process-reaper-classification-fix/tasks.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/research/research.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 4,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/deep-review-dashboard.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/deep-review-strategy.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/iterations/iteration-001.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/iterations/iteration-002.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/iterations/iteration-003.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/prompts/iteration-1.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/prompts/iteration-2.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/prompts/iteration-3.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/resource-map.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/deep-review-strategy.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/review-report.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/iterations/iteration-001.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/iterations/iteration-002.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/iterations/iteration-003.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/prompts/iteration-1.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/prompts/iteration-2.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/prompts/iteration-3.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/deep-review-dashboard.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/resource-map.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/deep-review-strategy.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/iterations/iteration-001.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/iterations/iteration-002.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/iterations/iteration-003.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/iterations/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/grok46-xhigh/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/resource-map.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 4,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/deep-review-dashboard.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/deep-review-strategy.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/deep-review-strategy.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/iterations/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/iterations/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/iterations/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/iterations/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/iterations/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/resource-map.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/resource-map.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/deep-review-dashboard.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/deep-review-strategy.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-001.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-002.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-003.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-004.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-005.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-006.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-007.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-008.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-009.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-010.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-001.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-002.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-003.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-004.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-005.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-006.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-007.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-008.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-009.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-010.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/codex-review/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/deep-review-dashboard.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/deep-review-strategy.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-001.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-002.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-003.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-004.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-005.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-006.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-007.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-008.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-009.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-010.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/001-analysis/research/research.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content/research/research.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/deep-review-dashboard.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/deep-review-strategy.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/iterations/iteration-001.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/iterations/iteration-002.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/iterations/iteration-003.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/iterations/iteration-004.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/iterations/iteration-005.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/iterations/iteration-006.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/iterations/iteration-007.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/iterations/iteration-008.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/iterations/iteration-009.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/iterations/iteration-010.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review/lineages/deepseek-flash/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/042-nested-goal-template-addon/research/research.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/042-nested-goal-template-addon/resource-map.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh-r2/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-dashboard.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/review/iterations/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/deep-review-strategy.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/review/iterations/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/review/iterations/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/review/iterations/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/iterations/iteration-003.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 4,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/resource-map.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/review/prompts/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review/lineages/luna-xhigh/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/review/prompts/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/review/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-007.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/iterations/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-007.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/prompts/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/049-memory-decommission/review/lineages/luna-max/review-report.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/deep-review-dashboard.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/iterations/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/deep-review-strategy.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/iterations/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/iterations/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/iterations/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/iterations/iteration-005.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/iterations/iteration-006.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-005.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/iterations/iteration-007.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-006.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/iterations/iteration-008.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-007.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/iterations/iteration-009.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-008.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/iterations/iteration-010.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/prompts/iteration-001.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/prompts/iteration-002.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/prompts/iteration-003.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/prompts/iteration-004.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/prompts/iteration-005.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/prompts/iteration-006.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/prompts/iteration-007.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/prompts/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/prompts/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/prompts/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/resource-map.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max-pass2/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/deep-review-dashboard.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/deep-review-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/iterations/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-009.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/iterations/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/iterations/iteration-010.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/iterations/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/iterations/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/iterations/iteration-005.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/iterations/iteration-006.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/iterations/iteration-007.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-005.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/iterations/iteration-008.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-006.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/iterations/iteration-009.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-007.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/iterations/iteration-010.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-008.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/prompts/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-009.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/prompts/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/prompts/iteration-010.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/prompts/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/codex-review/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/prompts/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/deep-review-dashboard.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/deep-review-strategy.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-001.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-002.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-003.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-004.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-005.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-006.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-007.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-008.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-009.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/iterations/iteration-010.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/review/lineages/deepseek-flash/review-report.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/research/research.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content/research/research.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/deep-review-dashboard.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/deep-review-strategy.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/iterations/iteration-001.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/iterations/iteration-002.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/iterations/iteration-003.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/iterations/iteration-004.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/iterations/iteration-005.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/iterations/iteration-006.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/iterations/iteration-007.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/iterations/iteration-008.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/iterations/iteration-009.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/iterations/iteration-010.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review/lineages/deepseek-flash/review-report.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/research/research.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/resource-map.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 4,
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-dashboard.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/iterations/iteration-001.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/iterations/iteration-002.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/iterations/iteration-003.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/iterations/iteration-004.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/prompts/iteration-003.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/prompts/iteration-004.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/prompts/iteration-005.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/prompts/iteration-006.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/prompts/iteration-007.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/prompts/iteration-008.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/prompts/iteration-009.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/prompts/iteration-010.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/review-report.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/deep-review-strategy.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/deep-review-dashboard.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/iterations/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/iterations/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/iterations/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/iterations/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/iterations/iteration-005.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/prompts/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/iterations/iteration-006.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/prompts/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/iterations/iteration-007.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/prompts/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/iterations/iteration-008.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/prompts/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/iterations/iteration-009.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-1-stalled/prompts/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/iterations/iteration-010.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/prompts/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/prompts/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/prompts/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-005.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/prompts/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-006.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/prompts/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-007.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/prompts/iteration-006.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-008.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/prompts/iteration-007.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-009.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/prompts/iteration-008.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-007.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3.attempt-3-conditional/review-report.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/prompts/iteration-009.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/iterations/iteration-001.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/iterations/iteration-002.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/iterations/iteration-003.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/iterations/iteration-004.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/iterations/iteration-005.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/iterations/iteration-006.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/iterations/iteration-007.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/iterations/iteration-008.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/iterations/iteration-009.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/iterations/iteration-010.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/review/lineages/luna-max/review-report.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/prompts/iteration-1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/prompts/iteration-10.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/prompts/iteration-2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/prompts/iteration-3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/prompts/iteration-4.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/prompts/iteration-5.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/prompts/iteration-6.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/prompts/iteration-7.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/prompts/iteration-8.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/prompts/iteration-9.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/deep-review-dashboard.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/review/lineages/luna-max-pass3/review-report.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/deep-review-strategy.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/deep-review-dashboard.md",
-      "reason": "no opening frontmatter delimiter"
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/iterations/iteration-001.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/iterations/iteration-002.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/iterations/iteration-003.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/iterations/iteration-004.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/iterations/iteration-005.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/iterations/iteration-006.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/iterations/iteration-007.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/iterations/iteration-008.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/iterations/iteration-009.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/iterations/iteration-010.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-001.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-002.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-003.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-004.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-007.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/resource-map.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/deep-review-dashboard.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/prompts/iteration-001.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/resource-map.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/deep-review-dashboard.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/prompts/iteration-002.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-007.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/resource-map.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/deep-review-dashboard.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-007.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-007.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/resource-map.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/deep-review-dashboard.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/prompts/iteration-003.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/deep-review-strategy.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/prompts/iteration-004.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/prompts/iteration-005.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/prompts/iteration-006.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/prompts/iteration-007.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-001.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/prompts/iteration-008.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-002.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/prompts/iteration-009.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-003.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/prompts/iteration-010.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-004.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/resource-map.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-005.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max-pass2/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-006.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/deep-review-dashboard.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-007.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/deep-review-strategy.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/iterations/iteration-001.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/iterations/iteration-002.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/iterations/iteration-003.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/iterations/iteration-004.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/iterations/iteration-005.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/iterations/iteration-006.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/iterations/iteration-007.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/iterations/iteration-008.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/iterations/iteration-009.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/iterations/iteration-010.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/prompts/iteration-001.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/prompts/iteration-002.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/prompts/iteration-003.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/prompts/iteration-004.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/prompts/iteration-005.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/prompts/iteration-006.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/prompts/iteration-007.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/prompts/iteration-008.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/prompts/iteration-009.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/prompts/iteration-010.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-010.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/deep-review-dashboard.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/resource-map.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/deep-review-strategy.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/review-report.md",
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/prompts/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/prompts/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/prompts/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/prompts/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-1-stalled/prompts/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/prompts/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3.attempt-3-conditional/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/iterations/iteration-001.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/iterations/iteration-002.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/iterations/iteration-003.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/iterations/iteration-004.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/iterations/iteration-005.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/iterations/iteration-006.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/iterations/iteration-007.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/iterations/iteration-008.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/iterations/iteration-009.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/iterations/iteration-010.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/prompts/iteration-10.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/prompts/iteration-7.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/prompts/iteration-8.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/prompts/iteration-9.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/review/lineages/luna-max-pass3/review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/deep-review-dashboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-001.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-002.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-003.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-004.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/resource-map.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-fast-review-3/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-2.rejected/resource-map.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/resource-map.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-5/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/deep-review-dashboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/prompts/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/resource-map.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review-6/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/review-report.md",
       "reason": "no opening frontmatter delimiter"
     }
   ],
@@ -101021,259 +101021,259 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/003-restore-level-upgrade-and-vocabulary-invariance/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/003-template-dedup/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/004-continuity-single-source/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/005-comment-extraction/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/006-verify-rollout/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/012-fingerprint-docset-enforcement/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-spec-doc-template-reduction/013-retirement-read-path-closure/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-decisions-memory-redesign/001-analysis/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-decisions-memory-redesign/001-analysis/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-decisions-memory-redesign/002-active-decisions-design/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/002-active-decisions-design/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-decisions-memory-redesign/003-deprecation-mechanics/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/003-deprecation-mechanics/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-decisions-memory-redesign/005-advisor-integration/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/005-advisor-integration/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/038-skills-state-consolidation/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/042-nested-goal-template-addon/001-manifest-and-goal-template/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/042-nested-goal-template-addon/002-durable-slice-validator/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/042-nested-goal-template-addon/003-runtime-neutral-goal-dispatch/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/042-nested-goal-template-addon/004-parent-set-string-playbook/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/042-nested-goal-template-addon/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/042-nested-goal-template-addon/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/043-workspace-path-containment/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/044-repair-write-symlink-refusal/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/046-path-containment-followups/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/013-repair-handle-containment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/047-review-remediation/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/048-decommissioned-server-residue/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/049-memory-decommission/002-memory-consumer-rewire/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/049-memory-decommission/003-spec-memory-server-removal/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/049-memory-decommission/007-deep-review-remediation/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/050-single-segment-packet-pointer/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/052-memory-decommission-landing/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/053-spec-kit-runtime-rename/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/001-continuity-freshness-claim-binding/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/003-retrieval-coverage-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/004-save-and-resume-freshness/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/006-orphaned-types-and-dead-modules/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/054-decommission-debt-fixes/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/054-decommission-debt-fixes/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/055-path-containment-seam/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/022-shared-containment-helper/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/056-integration-research-remediation/001-index-root-and-docs/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/001-index-root-and-docs/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/056-integration-research-remediation/002-metadata-drift-and-rules/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/056-integration-research-remediation/003-hook-markers-and-improvement-family/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/003-hook-markers-and-improvement-family/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/004-shared-parsers-and-post-run-refresh/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/057-metadata-regeneration-and-parser-edges/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser/scratch",
       "reason": "excluded directory"
     },
     {

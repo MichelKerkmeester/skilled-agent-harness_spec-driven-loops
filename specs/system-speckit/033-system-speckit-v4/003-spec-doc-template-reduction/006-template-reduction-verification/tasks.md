@@ -35,7 +35,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [ ] T001 [REQ-001, REQ-002, REQ-005] Capture the before baseline for snapshots, derived status, and rendered bytes (`.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap`, `.opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts`); done when the comparison inputs and representative shipped L2+ fleet are recorded.
-- [ ] T002 [REQ-003] Confirm predecessor outputs and validation targets (`specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/`, `003-template-dedup/`, `004-continuity-single-source/`, `005-comment-extraction/`); done when phases 002 through 005 are landed and fresh L1/L2/L3/L3+ plus legacy targets are selected.
+- [ ] T002 [REQ-003] Confirm predecessor outputs and validation targets (`specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/`, `003-template-dedup/`, `004-continuity-single-source/`, `005-comment-extraction/`); done when phases 002 through 005 are landed and fresh L1/L2/L3/L3+ plus legacy targets are selected.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -55,10 +55,10 @@ contextType: "general"
 
 - [ ] T006 [REQ-002] Compare `deriveStatus` before and after for the representative fleet (`.opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts`); done when every derived status is identical and the fleet delta is zero.
 - [ ] T007 [REQ-003] Run strict validation on fresh levels and the shipped legacy packet (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`); done when every target exits 0 with rebuilt distributions.
-- [ ] T008 [REQ-003, REQ-004] Run the parent recursive strict gate (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `specs/system-speckit/036-spec-doc-template-reduction/`); done when recursive validation is clean, no unrelated file changed, and no stray output remains.
+- [ ] T008 [REQ-003, REQ-004] Run the parent recursive strict gate (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/`); done when recursive validation is clean, no unrelated file changed, and no stray output remains.
 - [ ] T009 [REQ-005] Measure and report rendered-byte reduction (`.opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts`); done when before/after byte totals and the achieved reduction are recorded against the phase baseline.
-- [ ] T010 [REQ-004] Inspect completion claims before rollout (`specs/system-speckit/036-spec-doc-template-reduction/`); done when no phase or packet document claims completion without verification evidence, and the phase implementation summary remains deferred until the gates pass.
-- [ ] T011 [REQ-001, REQ-002, REQ-003, REQ-004, REQ-005] Write the rollout changelog and acceptance evidence (`specs/system-speckit/036-spec-doc-template-reduction/changelog/`, `006-verify-rollout/spec.md`); done when all five requirements have evidence, the changelog reflects the verified result, and no false-completion artifact remains.
+- [ ] T010 [REQ-004] Inspect completion claims before rollout (`specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/`); done when no phase or packet document claims completion without verification evidence, and the phase implementation summary remains deferred until the gates pass.
+- [ ] T011 [REQ-001, REQ-002, REQ-003, REQ-004, REQ-005] Write the rollout changelog and acceptance evidence (`specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/changelog/`, `006-verify-rollout/spec.md`); done when all five requirements have evidence, the changelog reflects the verified result, and no false-completion artifact remains.
 <!-- /ANCHOR:phase-3 -->
 
 ---

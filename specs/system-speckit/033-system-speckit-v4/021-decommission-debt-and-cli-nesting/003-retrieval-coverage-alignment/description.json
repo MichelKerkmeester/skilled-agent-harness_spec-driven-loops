@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment",
+  "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/003-retrieval-coverage-alignment",
   "description": "The trigger-index corpus walker (`.opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:20-31`) sets `CORPUSROOTS = ['specs',",
   "keywords": [
     "trigger-index",

@@ -16,7 +16,7 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: specs/system-speckit/045-daemon-and-test-harness-hardening (spec-folder)
+- Review Target: specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening (spec-folder)
 - Started: 2026-08-31T00:00:00Z
 - Status: INITIALIZED
 - Iteration: 4 of 4
@@ -106,15 +106,15 @@ No corrupt JSONL lines detected.
 - candidateCoverage: covered=5, ruledOut=5, deferred=1, blocked=0
 
 ### Search Debt
-- iteration 4 advisory_carry_forward (deferred): P2 carry-forward policy.; evidence=specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-strategy.md
+- iteration 4 advisory_carry_forward (deferred): P2 carry-forward policy.; evidence=specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-strategy.md
 
 ### Ruled-Out Candidates
-- iteration 4 completion_evidence_gap (ruled_out): Goal-log measurements are present and consistent with source behavior.; evidence=specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84
-- iteration 4 completion_evidence_gap (ruled_out): Goal-log measurements are present and consistent with source behavior.; evidence=specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84
+- iteration 4 completion_evidence_gap (ruled_out): Goal-log measurements are present and consistent with source behavior.; evidence=specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84
+- iteration 4 completion_evidence_gap (ruled_out): Goal-log measurements are present and consistent with source behavior.; evidence=specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84
 
 ### Clean Search Proof
-- iteration 4 completion_evidence_gap (ruled_out): Goal-log measurements are present and consistent with source behavior.; evidence=specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84
-- iteration 4 completion_evidence_gap (ruled_out): Goal-log measurements are present and consistent with source behavior.; evidence=specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84
+- iteration 4 completion_evidence_gap (ruled_out): Goal-log measurements are present and consistent with source behavior.; evidence=specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84
+- iteration 4 completion_evidence_gap (ruled_out): Goal-log measurements are present and consistent with source behavior.; evidence=specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->

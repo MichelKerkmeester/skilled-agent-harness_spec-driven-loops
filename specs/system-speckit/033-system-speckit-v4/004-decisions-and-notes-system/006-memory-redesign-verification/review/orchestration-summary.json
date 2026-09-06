@@ -1,8 +1,8 @@
 {
   "run_id": "1787807016319-a8sfw4",
   "loop_type": "review",
-  "spec_folder": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout",
-  "base_artifact_dir": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/review",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/041-validation-reduction/005-framework-doc-matches-behaviour",
+  "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/005-framework-doc-matches-behaviour",
   "description": "Two validation claims in the always-loaded framework document are corrected to match measured behaviour.",
   "keywords": [
     "two",

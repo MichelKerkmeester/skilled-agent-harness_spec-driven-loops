@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal"
     last_updated_at: "2026-09-05T06:13:07Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/054-decommission-debt-fixes/005-hook-fallback-failure-signal
+**Packet:** system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-05

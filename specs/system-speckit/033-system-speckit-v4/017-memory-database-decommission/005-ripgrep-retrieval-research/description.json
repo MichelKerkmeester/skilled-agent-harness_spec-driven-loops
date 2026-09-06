@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/049-memory-decommission/005-ripgrep-retrieval-research",
+  "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research",
   "description": "Phases 001 and 004 were specified before anyone had studied what the replacement actually has to match",
   "keywords": [
     "phases",

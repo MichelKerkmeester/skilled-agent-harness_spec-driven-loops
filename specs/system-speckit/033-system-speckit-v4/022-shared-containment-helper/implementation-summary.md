@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/055-path-containment-seam"
+    packet_pointer: "system-speckit/033-system-speckit-v4/022-shared-containment-helper"
     last_updated_at: "2026-09-05T21:30:00Z"
     last_updated_by: "implementer"
     recent_action: "Centralized containment helper"

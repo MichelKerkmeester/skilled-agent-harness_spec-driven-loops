@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/045-daemon-and-test-harness-hardening",
-  "spec_folder": "system-speckit/045-daemon-and-test-harness-hardening",
+  "packet_id": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
+  "spec_folder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation",
-    "system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
-    "system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment",
-    "system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene"
+    "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation",
+    "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
+    "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment",
+    "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene"
   ],
   "manual": {
     "depends_on": [],

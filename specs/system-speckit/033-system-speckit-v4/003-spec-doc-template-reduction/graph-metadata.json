@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/036-spec-doc-template-reduction",
-  "spec_folder": "system-speckit/036-spec-doc-template-reduction",
+  "packet_id": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction",
+  "spec_folder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/036-spec-doc-template-reduction/001-analysis",
-    "system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge",
-    "system-speckit/036-spec-doc-template-reduction/003-template-dedup",
-    "system-speckit/036-spec-doc-template-reduction/004-continuity-single-source",
-    "system-speckit/036-spec-doc-template-reduction/005-comment-extraction",
-    "system-speckit/036-spec-doc-template-reduction/006-verify-rollout",
-    "system-speckit/036-spec-doc-template-reduction/007-lazy-addon-docs",
-    "system-speckit/036-spec-doc-template-reduction/008-plan-and-contract-optimization",
-    "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
-    "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
-    "system-speckit/036-spec-doc-template-reduction/011-fingerprint-docset-enforcement",
-    "system-speckit/036-spec-doc-template-reduction/012-retirement-read-path-closure",
-    "system-speckit/036-spec-doc-template-reduction/011-checklist-reference-cleanup",
-    "system-speckit/036-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
-    "system-speckit/036-spec-doc-template-reduction/013-retirement-read-path-closure"
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/011-fingerprint-docset-enforcement",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/012-retirement-read-path-closure",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/011-checklist-reference-cleanup",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure"
   ],
   "manual": {
     "depends_on": [],
@@ -106,7 +106,7 @@
     "source_doc_hashes": {
       "spec.md": "2f512e5ea36a22c3d1d9c32cd2b37eb259e3385e5dfad54a5726f7632e23fd67"
     },
-    "last_active_child_id": "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
     "last_active_at": "2026-08-27T20:21:06.358Z"
   }
 }

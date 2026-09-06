@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/037-decisions-memory-redesign/006-verify-rollout",
+  "specFolder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification",
   "description": "The deprecation touches search plumbing, tier config, learned-triggers, a command, root docs, and the advisor — a wide blast radius",
   "keywords": [
     "deprecation",

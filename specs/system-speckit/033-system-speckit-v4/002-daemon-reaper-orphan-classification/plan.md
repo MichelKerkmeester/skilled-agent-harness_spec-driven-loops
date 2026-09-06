@@ -8,14 +8,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/035-process-reaper-classification-fix"
+    packet_pointer: "system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification"
     last_updated_at: "2026-08-22T19:31:50Z"
     last_updated_by: "claude-code"
     recent_action: "Reconciled plan to shipped fix state"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
-      - "specs/system-speckit/035-process-reaper-classification-fix/spec.md"
+      - "specs/system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-22-process-reaper-classification-fix"

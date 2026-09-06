@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-validation-reduction/006-delete-taste-rules"
+    packet_pointer: "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/006-delete-taste-rules"
     last_updated_at: "2026-08-30T08:15:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Deleted nine advisory rules and every reference to them"

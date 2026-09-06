@@ -108,7 +108,7 @@ describe('scope walk', () => {
   });
 
   it('reads the track off a repo-relative path', () => {
-    expect(trackOf('specs/system-speckit/049-memory-decommission/spec.md')).toBe('specs/system-speckit');
+    expect(trackOf('specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/spec.md')).toBe('specs/system-speckit');
   });
 });
 

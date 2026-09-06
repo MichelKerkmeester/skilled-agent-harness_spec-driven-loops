@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction/013-retirement-read-path-closure"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure"
     last_updated_at: "2026-08-30T14:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/036-spec-doc-template-reduction/013-retirement-read-path-closure
+**Packet:** system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-08-30

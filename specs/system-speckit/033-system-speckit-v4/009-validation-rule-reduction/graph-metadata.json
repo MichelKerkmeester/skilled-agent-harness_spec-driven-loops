@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/041-validation-reduction",
-  "spec_folder": "system-speckit/041-validation-reduction",
+  "packet_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction",
+  "spec_folder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/041-validation-reduction/001-warnings-stop-blocking",
-    "system-speckit/041-validation-reduction/002-tracks-are-not-packets",
-    "system-speckit/041-validation-reduction/003-scaffold-parity",
-    "system-speckit/041-validation-reduction/004-stop-grading-prose-shape",
-    "system-speckit/041-validation-reduction/005-framework-doc-matches-behaviour",
-    "system-speckit/041-validation-reduction/006-delete-taste-rules",
-    "system-speckit/041-validation-reduction/009-retire-the-sweep",
-    "system-speckit/041-validation-reduction/010-a-level-for-research"
+    "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/001-warnings-stop-blocking",
+    "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
+    "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/003-scaffold-parity",
+    "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/004-stop-grading-prose-shape",
+    "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/005-framework-doc-matches-behaviour",
+    "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/006-delete-taste-rules",
+    "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/007-retire-the-sweep",
+    "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/008-a-level-for-research"
   ],
   "manual": {
     "depends_on": [],
@@ -124,7 +124,7 @@
     "source_doc_hashes": {
       "spec.md": "44b3838b4e02c805de1514a5341ae00e72513fc9c52dbd43bba12b76a28a281e"
     },
-    "last_active_child_id": "system-speckit/041-validation-reduction/002-tracks-are-not-packets",
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
     "last_active_at": null
   }
 }

@@ -473,7 +473,7 @@ describe('trigger allowlist filter', () => {
 
 describe('naming grammar', () => {
   it('passes a conforming packet path', () => {
-    expect(classifyNaming('specs/system-speckit/049-memory-decommission/spec.md')).toEqual([]);
+    expect(classifyNaming('specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/spec.md')).toEqual([]);
   });
 
   it('reports a directory that claims to be a packet but breaks the grammar', () => {

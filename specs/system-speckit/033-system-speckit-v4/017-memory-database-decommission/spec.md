@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-memory-decommission"
+    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission"
     last_updated_at: "2026-09-02T00:00:00Z"
     last_updated_by: "planner"
     recent_action: "Authored phase-parent spec and four child scope boundaries"
@@ -61,7 +61,7 @@ _memory:
 | **Created** | 2026-09-02 |
 | **Branch** | `claude/speckit-memory-db-review-3gheky` |
 | **Parent Spec** | None (top-level packet) |
-| **Parent Packet** | system-speckit/049-memory-decommission |
+| **Parent Packet** | system-speckit/033-system-speckit-v4/017-memory-database-decommission |
 | **Predecessor** | 028-memory-search-intelligence |
 | **Successor** | None |
 | **Handoff Criteria** | Each child validates independently under `validate.sh --strict` |

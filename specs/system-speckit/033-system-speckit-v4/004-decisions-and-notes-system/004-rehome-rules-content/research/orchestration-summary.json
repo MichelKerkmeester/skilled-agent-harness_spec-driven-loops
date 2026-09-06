@@ -1,8 +1,8 @@
 {
   "run_id": "1787763040724-qklgls",
   "loop_type": "research",
-  "spec_folder": "specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content",
-  "base_artifact_dir": "specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content/research",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content/research",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,
@@ -22,7 +22,7 @@
   "timestamp_anomalies": [
     {
       "label": "deepseek-flash-audit",
-      "state_log": "specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content/research/lineages/deepseek-flash-audit/deep-research-state.jsonl",
+      "state_log": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content/research/lineages/deepseek-flash-audit/deep-research-state.jsonl",
       "window": {
         "start_at_iso": "2026-08-26T16:50:40.728Z",
         "end_at_iso": "2026-08-26T17:08:49.126Z",

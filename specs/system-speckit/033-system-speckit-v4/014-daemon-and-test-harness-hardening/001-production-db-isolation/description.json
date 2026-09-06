@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation",
+  "specFolder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation",
   "description": "`mcp-server/vitest.config.ts` loads `tests/support/vitest-setup.ts`, whose `isolateProductionDatabase()` exists to stop a test opening the live memory",
   "keywords": [
     "mcp-server",

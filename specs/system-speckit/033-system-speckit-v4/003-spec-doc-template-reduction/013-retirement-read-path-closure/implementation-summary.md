@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction/013-retirement-read-path-closure"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure"
     last_updated_at: "2026-08-30T13:58:22Z"
     last_updated_by: "template-author"
     recent_action: "Closed all five read-paths and recorded the evidence-rule decision"

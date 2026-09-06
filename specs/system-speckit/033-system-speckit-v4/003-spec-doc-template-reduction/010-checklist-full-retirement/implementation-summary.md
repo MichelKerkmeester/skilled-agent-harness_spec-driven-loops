@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement"
     last_updated_at: "2026-08-30T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Retired the document across every surface and closed the two defects the removal exposed"

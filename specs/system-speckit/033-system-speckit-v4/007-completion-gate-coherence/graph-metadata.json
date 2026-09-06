@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/040-validation-gate-coherence",
-  "spec_folder": "system-speckit/040-validation-gate-coherence",
+  "packet_id": "system-speckit/033-system-speckit-v4/007-completion-gate-coherence",
+  "spec_folder": "system-speckit/033-system-speckit-v4/007-completion-gate-coherence",
   "parent_id": null,
   "children_ids": [],
   "manual": {

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/055-path-containment-seam",
+  "specFolder": "system-speckit/033-system-speckit-v4/022-shared-containment-helper",
   "description": "The CLI checked write boundaries three different ways: lexically in the changelog generator, realpath-only in the description generator, and",
   "keywords": [
     "cli",

@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/037-decisions-memory-redesign",
-  "spec_folder": "system-speckit/037-decisions-memory-redesign",
+  "packet_id": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system",
+  "spec_folder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/037-decisions-memory-redesign/006-verify-rollout",
-    "system-speckit/037-decisions-memory-redesign/001-analysis",
-    "system-speckit/037-decisions-memory-redesign/002-active-decisions-design",
-    "system-speckit/037-decisions-memory-redesign/003-deprecation-mechanics",
-    "system-speckit/037-decisions-memory-redesign/004-rehome-rules-content",
-    "system-speckit/037-decisions-memory-redesign/005-advisor-integration"
+    "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification",
+    "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis",
+    "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/002-active-decisions-design",
+    "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/003-deprecation-mechanics",
+    "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content",
+    "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/005-advisor-integration"
   ],
   "manual": {
     "depends_on": [],
@@ -97,7 +97,7 @@
     "source_doc_hashes": {
       "spec.md": "cd43212526e4a37510fc1401dc116a83b33fb398fc2b7150d5d7c08b00dfdd22"
     },
-    "last_active_child_id": "system-speckit/037-decisions-memory-redesign/006-verify-rollout",
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification",
     "last_active_at": "2026-08-27T20:23:46.107Z"
   }
 }

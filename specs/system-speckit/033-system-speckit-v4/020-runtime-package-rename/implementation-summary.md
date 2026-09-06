@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-spec-kit-runtime-rename"
+    packet_pointer: "system-speckit/033-system-speckit-v4/020-runtime-package-rename"
     last_updated_at: "2026-09-04T19:16:06Z"
     last_updated_by: "code-agent"
     recent_action: "Closed the packet after the rename review passed with no P0 or P1"

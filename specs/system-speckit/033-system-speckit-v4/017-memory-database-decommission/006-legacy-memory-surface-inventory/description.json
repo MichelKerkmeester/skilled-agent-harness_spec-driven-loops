@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory",
+  "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory",
   "description": "Phases 002 and 003 were scoped against a parent estimate of roughly 167 logical consumers, a figure derived by judgment rather than by scanning",
   "keywords": [
     "phases",

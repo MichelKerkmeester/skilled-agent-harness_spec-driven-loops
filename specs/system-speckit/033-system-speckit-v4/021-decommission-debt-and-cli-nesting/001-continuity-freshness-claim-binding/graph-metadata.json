@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding",
-  "spec_folder": "system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding",
-  "parent_id": "system-speckit/054-decommission-debt-fixes",
+  "packet_id": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/001-continuity-freshness-claim-binding",
+  "spec_folder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/001-continuity-freshness-claim-binding",
+  "parent_id": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting",
   "children_ids": [],
   "manual": {
     "depends_on": [],

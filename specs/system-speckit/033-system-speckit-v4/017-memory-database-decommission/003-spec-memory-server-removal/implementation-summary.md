@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-memory-decommission/003-spec-memory-server-removal"
+    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal"
     last_updated_at: "2026-09-03T21:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed all fourteen acceptance rows after the six pruning waves"

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/041-validation-reduction/009-retire-the-sweep",
+  "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/007-retire-the-sweep",
   "description": "Make the gate block the thing it can fairly block: the packets a change",
   "keywords": [
     "gate",

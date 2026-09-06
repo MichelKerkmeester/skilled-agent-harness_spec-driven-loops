@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/037-decisions-memory-redesign/004-rehome-rules-content",
+  "specFolder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content",
   "description": "Deleting the constitutional folder naively breaks dangling `See …md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its",
   "keywords": [
     "deleting",

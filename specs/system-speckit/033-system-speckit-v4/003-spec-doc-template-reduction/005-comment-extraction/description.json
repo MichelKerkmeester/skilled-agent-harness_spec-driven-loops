@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/036-spec-doc-template-reduction/005-comment-extraction",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction",
   "description": "The inline-gate renderer strips only IF gates, not plain HTML comments, so SELF-CHECK blocks, per-field voice guides, and footer size notes survive",
   "keywords": [
     "inline-gate",

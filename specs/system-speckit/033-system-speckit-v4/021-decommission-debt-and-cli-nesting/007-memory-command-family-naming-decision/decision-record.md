@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision"
     last_updated_at: "2026-09-05T09:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded Option B and executed the stage A doc/command rename"
@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Packet 052's D7 decision (`specs/system-speckit/052-memory-decommission-landing/goal.md:61`) chose, for that packet's scope: "Command names, paths and frontmatter keys stay literal." This phase's `spec.md` found that precedent no longer holding at scale: `/memory:save`, `/memory:search`, `.opencode/commands/memory/`, and the `/doctor memory` route carried the retired word "memory" through the command surface, the doctor route manifest, every `speckit`/`deep`/`create` command asset that documents the save workflow, agent mirrors, and the skill's own reference docs. A repository-wide search for the literal string `scripts/dist/memory` (the compiled writer's code path, distinct from the command names) returns 84 live matches at decision time — close to the 87 the spec recorded, the small drift expected since other phases in this packet touch adjacent files (SC-002 already allows for this).
+Packet 052's D7 decision (`specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md:61`) chose, for that packet's scope: "Command names, paths and frontmatter keys stay literal." This phase's `spec.md` found that precedent no longer holding at scale: `/memory:save`, `/memory:search`, `.opencode/commands/memory/`, and the `/doctor memory` route carried the retired word "memory" through the command surface, the doctor route manifest, every `speckit`/`deep`/`create` command asset that documents the save workflow, agent mirrors, and the skill's own reference docs. A repository-wide search for the literal string `scripts/dist/memory` (the compiled writer's code path, distinct from the command names) returns 84 live matches at decision time — close to the 87 the spec recorded, the small drift expected since other phases in this packet touch adjacent files (SC-002 already allows for this).
 
 The command-name blast radius measured before this phase's edits, by consumer class:
 

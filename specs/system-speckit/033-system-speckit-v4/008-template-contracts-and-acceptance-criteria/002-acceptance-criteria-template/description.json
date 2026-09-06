@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
+  "specFolder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
   "description": "Acceptance criteria are split across two documents and owned by neither",
   "keywords": [
     "acceptance",

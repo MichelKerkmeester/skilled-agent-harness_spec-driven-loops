@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/041-validation-reduction/004-stop-grading-prose-shape",
+  "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/004-stop-grading-prose-shape",
   "description": "Documents stop being diffed against templates that change weekly; anchors are checked for what actually reads them.",
   "keywords": [
     "documents",

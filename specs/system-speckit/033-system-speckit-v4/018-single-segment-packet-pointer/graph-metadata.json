@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/050-single-segment-packet-pointer",
-  "spec_folder": "system-speckit/050-single-segment-packet-pointer",
+  "packet_id": "system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer",
+  "spec_folder": "system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer",
   "parent_id": null,
   "children_ids": [],
   "manual": {

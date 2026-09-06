@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/052-memory-decommission-landing"
+    packet_pointer: "system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing"
     last_updated_at: "2026-09-04T17:48:43Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/052-memory-decommission-landing
+**Packet:** system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-04

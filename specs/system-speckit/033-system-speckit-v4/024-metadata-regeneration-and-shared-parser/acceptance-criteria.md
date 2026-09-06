@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/057-metadata-regeneration-and-parser-edges
+**Packet:** system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-05

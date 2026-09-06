@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-speckit/036-spec-doc-template-reduction/007-lazy-addon-docs",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs",
   "description": "Spec Kit currently lacks manifest-registered templates for structured before-and-after comparisons, chronological timelines, and forward-looking",
   "keywords": [
     "spec",

@@ -1,8 +1,8 @@
 {
   "run_id": "1788076902384-48eibe",
   "loop_type": "review",
-  "spec_folder": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
-  "base_artifact_dir": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/review",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

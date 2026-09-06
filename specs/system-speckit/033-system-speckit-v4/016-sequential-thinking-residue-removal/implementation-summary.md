@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-decommissioned-server-residue"
+    packet_pointer: "system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal"
     last_updated_at: "2026-08-31T13:40:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Removed the retired server from four doctor files and deleted the empty 039 dir"

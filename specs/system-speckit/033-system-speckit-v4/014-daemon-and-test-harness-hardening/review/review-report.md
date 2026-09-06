@@ -6,7 +6,7 @@ trigger_phrases: []
 
 Session: `2026-08-31-auto-deep-review-045` · Generation 1 · lineageMode `resume` · stopPolicy `max-iterations` · maxIterations 4
 Reviewer: `cli-codex` (gpt-5.6-luna, reasoning xhigh, service tier fast)
-Spec folder: `specs/system-speckit/045-daemon-and-test-harness-hardening`
+Spec folder: `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening`
 
 ## 1. Executive Summary
 
@@ -124,7 +124,7 @@ None.
 
 #### P1-004 — Phase 3 completion evidence gap → RESOLVED
 
-- **File:** `specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84`; `implementation-summary.md:81-83`; `tasks.md:53-65`
+- **File:** `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84`; `implementation-summary.md:81-83`; `tasks.md:53-65`
 - **Class:** matrix/evidence
 - **Adjudication:** Goal criteria 61-64 are checked; LOG section records 1200ms bound → exit 124 "terminating process group", reporter named `Timeout`, generous-bound healthy run (9 passed, margin 178907ms), and baseline duration. Runner implements the bound and process-group termination at `run-tests.mjs:11-49, 71-97`; reporter at `mcp-server/vitest.config.ts:35`.
 - **Residual limitation:** no replayable fixture/transcript is checked in. That is a proportional P2 traceability follow-up, not a P1.
@@ -132,7 +132,7 @@ None.
 
 #### P1-005 — Phase 4 completion evidence gap → RESOLVED
 
-- **File:** `specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84`; `implementation-summary.md:83-87`; `tasks.md:53-65`
+- **File:** `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84`; `implementation-summary.md:83-87`; `tasks.md:53-65`
 - **Class:** matrix/evidence
 - **Adjudication:** Goal criteria 61-64 are checked; LOG section records held-divergence deduplication (4 → 1), re-entry producing a second entry, cap rotation with `.log.1` retained, and pid-lock preservation. Implementation matches at `git-live-follow.sh:89-121, 198-238`.
 - **Residual limitation:** no replayable synthetic-repository harness is checked in. That is a proportional P2 traceability follow-up, not a P1.
@@ -204,7 +204,7 @@ Resource Map Coverage Gate: `resource-map.md` is absent at the spec folder; the 
 
 - `searchCoverage.graphCoverageMode`: `graphless_fallback`
 - `candidateCoverage`: covered = [`kill_switch_bypass`, `stale_parent_classification`, `permission_enum_drift`, `completion_evidence_gap`, `log_state_transition_regression`], ruledOut = 5 (completion_evidence_gap ×2 + the four iter-1 rule-outs), deferred = [`advisory_carry_forward` ×1], blocked = []
-- `searchDebt`: 1 item — `iteration 4 advisory_carry_forward (deferred): P2 carry-forward policy.; evidence=specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-strategy.md`
+- `searchDebt`: 1 item — `iteration 4 advisory_carry_forward (deferred): P2 carry-forward policy.; evidence=specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-strategy.md`
 - `ruledOutCandidates`: completion_evidence_gap ×2, plus iter-1 rule-outs
 - `cleanSearchProof`: completion_evidence_gap ×2
 
@@ -215,7 +215,7 @@ Resource Map Coverage Gate: `resource-map.md` is absent at the spec folder; the 
 - Convergence summary: 4 iterations completed; iteration 4 reached max_iterations under stopPolicy=max-iterations; convergence signals treated as telemetry.
 - Coverage summary: 4 of 4 review dimensions covered (correctness, security, traceability, maintainability). Search coverage mode: graphless_fallback.
 - Ruled-out claims: completion_evidence_gap (Phases 3 and 4) ruled out as required bug classes after adversarial verification; iter-1 ancestor/self/unknown-owner process termination, bind-mount/symlink identity defeat, fast-forward merge/reset clobbering, and packet 058 core authority drift ruled out.
-- Sources reviewed: implementation files in `.opencode/skills/system-spec-kit/{shared,scripts/ops,vitest.config.ts}`, `.opencode/bin/{system-spec-memory-launcher.cjs,lib/model-server-supervision.cjs,git-live-follow.sh}`, `.opencode/plugins/session-cleanup.js`, `.opencode/skills/system-spec-kit/mcp-server/{scripts/run-tests.mjs,vitest.config.ts,tests/*.vitest.ts}`, `specs/system-speckit/045-daemon-and-test-harness-hardening/{goal.md,001-004/*}`, `specs/cli-external-orchestration/058-flag-enum-authority/{spec.md,plan.md,tasks.md,implementation-summary.md}`, and `.opencode/skills/cli-external-orchestration/{SKILL.md,cli-devin/SKILL.md,cli-devin/references/cli-reference.md,cli-devin/manual-testing-playbook/}`.
+- Sources reviewed: implementation files in `.opencode/skills/system-spec-kit/{shared,scripts/ops,vitest.config.ts}`, `.opencode/bin/{system-spec-memory-launcher.cjs,lib/model-server-supervision.cjs,git-live-follow.sh}`, `.opencode/plugins/session-cleanup.js`, `.opencode/skills/system-spec-kit/mcp-server/{scripts/run-tests.mjs,vitest.config.ts,tests/*.vitest.ts}`, `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/{goal.md,001-004/*}`, `specs/cli-external-orchestration/058-flag-enum-authority/{spec.md,plan.md,tasks.md,implementation-summary.md}`, and `.opencode/skills/cli-external-orchestration/{SKILL.md,cli-devin/SKILL.md,cli-devin/references/cli-reference.md,cli-devin/manual-testing-playbook/}`.
 
 ### Core Protocols
 

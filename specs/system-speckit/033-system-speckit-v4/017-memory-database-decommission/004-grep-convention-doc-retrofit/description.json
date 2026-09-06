@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
+  "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
   "description": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
   "keywords": [
     "retrieval",

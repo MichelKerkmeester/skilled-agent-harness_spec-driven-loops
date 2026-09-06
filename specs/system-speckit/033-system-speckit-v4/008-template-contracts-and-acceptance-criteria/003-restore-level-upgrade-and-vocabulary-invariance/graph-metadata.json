@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-spec-kit-template-optimization/003-restore-level-upgrade-and-vocabulary-invariance",
-  "spec_folder": "system-speckit/033-spec-kit-template-optimization/003-restore-level-upgrade-and-vocabulary-invariance",
-  "parent_id": "system-speckit/033-spec-kit-template-optimization",
+  "packet_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance",
+  "spec_folder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance",
+  "parent_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
   "children_ids": [],
   "manual": {
     "depends_on": [],

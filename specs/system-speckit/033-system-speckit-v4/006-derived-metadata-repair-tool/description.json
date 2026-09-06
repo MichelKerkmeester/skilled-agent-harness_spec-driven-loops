@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/039-derived-repair-automation",
+  "specFolder": "system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool",
   "description": "Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did.",
   "keywords": [
     "repair",

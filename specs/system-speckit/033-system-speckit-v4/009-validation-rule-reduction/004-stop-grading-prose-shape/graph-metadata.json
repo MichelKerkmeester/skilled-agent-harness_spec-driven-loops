@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/041-validation-reduction/004-stop-grading-prose-shape",
-  "spec_folder": "system-speckit/041-validation-reduction/004-stop-grading-prose-shape",
-  "parent_id": "system-speckit/041-validation-reduction",
+  "packet_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/004-stop-grading-prose-shape",
+  "spec_folder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/004-stop-grading-prose-shape",
+  "parent_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction",
   "children_ids": [],
   "manual": {
     "depends_on": [],

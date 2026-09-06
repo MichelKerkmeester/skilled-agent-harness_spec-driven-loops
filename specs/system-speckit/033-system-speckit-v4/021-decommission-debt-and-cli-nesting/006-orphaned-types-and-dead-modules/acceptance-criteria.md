@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/006-orphaned-types-and-dead-modules"
     last_updated_at: "2026-09-05T09:30:00Z"
     last_updated_by: "claude"
     recent_action: "Deleted 6 orphans, fixed 2 tests and 1 catch, deduped ROOTS"
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules
+**Packet:** system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/006-orphaned-types-and-dead-modules
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-05

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure",
+  "specFolder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure",
   "description": "Phase 2 moved acceptance criteria into `acceptance-criteria.md` and repointed the advisory's total at that document",
   "keywords": [
     "phase",

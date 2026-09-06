@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision"
     last_updated_at: "2026-09-05T09:40:00Z"
     last_updated_by: "claude-code"
     recent_action: "Executed Stage B inside 002-scripts-into-runtime-nesting"

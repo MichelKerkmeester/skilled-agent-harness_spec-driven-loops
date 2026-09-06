@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/046-path-containment-followups"
+    packet_pointer: "system-speckit/033-system-speckit-v4/013-repair-handle-containment"
     last_updated_at: "2026-08-30T16:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded why the symlinked-track criterion is vacuous for this walk"

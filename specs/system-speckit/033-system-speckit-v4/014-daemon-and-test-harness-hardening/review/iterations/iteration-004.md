@@ -21,8 +21,8 @@ All four dimensions were revisited only for final adjudication: correctness, sec
 - .opencode/skills/system-spec-kit/mcp-server/scripts/run-tests.mjs:9-120
 - .opencode/skills/system-spec-kit/mcp-server/vitest.config.ts:15-42
 - .opencode/bin/git-live-follow.sh:38-121,183-255
-- specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/{goal.md,plan.md,tasks.md,implementation-summary.md,spec.md}
-- specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/{goal.md,plan.md,tasks.md,implementation-summary.md,spec.md}
+- specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/{goal.md,plan.md,tasks.md,implementation-summary.md,spec.md}
+- specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/{goal.md,plan.md,tasks.md,implementation-summary.md,spec.md}
 - .opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/manual-testing-playbook.md:36-99,136-141
 - .opencode/skills/cli-external-orchestration/cli-devin/references/cli-reference.md:106-134,599-605
 - .opencode/skills/cli-external-orchestration/SKILL.md:158-180

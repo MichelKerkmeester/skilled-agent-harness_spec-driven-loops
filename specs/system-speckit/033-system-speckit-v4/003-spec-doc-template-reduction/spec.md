@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction"
     last_updated_at: "2026-08-27T10:22:45Z"
     last_updated_by: "codex"
     recent_action: "Executed and verified all nine template phases"
@@ -50,7 +50,7 @@ _memory:
 | **Created** | 2026-08-26 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/036-spec-doc-template-reduction |
+| **Parent Packet** | system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Validator + template + generator changes ship so parent validates under tolerant policy |

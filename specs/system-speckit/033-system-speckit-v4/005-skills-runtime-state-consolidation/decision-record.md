@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/038-skills-state-consolidation"
+    packet_pointer: "system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation"
     last_updated_at: "2026-08-28T09:06:37Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored four ADRs"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh"
+    packet_pointer: "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/004-shared-parsers-and-post-run-refresh"
     last_updated_at: "2026-09-05T21:16:57Z"
     last_updated_by: "template-author"
     recent_action: "Shared helpers adopted, refresh added"

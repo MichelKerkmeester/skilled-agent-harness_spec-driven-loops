@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene"
+    packet_pointer: "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene"
     last_updated_at: "2026-08-30T09:56:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored phase spec from an observed 12 MB follower log"

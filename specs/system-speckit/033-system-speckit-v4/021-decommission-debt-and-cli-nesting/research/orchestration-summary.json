@@ -1,8 +1,8 @@
 {
   "run_id": "1788581555646-udzw72",
   "loop_type": "research",
-  "spec_folder": ".opencode/specs/system-speckit/054-decommission-debt-fixes",
-  "base_artifact_dir": ".opencode/specs/system-speckit/054-decommission-debt-fixes/research",
+  "spec_folder": ".opencode/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting",
+  "base_artifact_dir": ".opencode/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/research",
   "total_cli_lineages": 2,
   "orphaned_lineages": [],
   "total": 2,
@@ -22,7 +22,7 @@
   "timestamp_anomalies": [
     {
       "label": "grok-xhigh-research",
-      "state_log": ".opencode/specs/system-speckit/054-decommission-debt-fixes/research/lineages/grok-xhigh-research/deep-research-state.jsonl",
+      "state_log": ".opencode/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/research/lineages/grok-xhigh-research/deep-research-state.jsonl",
       "window": {
         "start_at_iso": "2026-09-05T04:12:35.742Z",
         "end_at_iso": "2026-09-05T04:28:47.572Z",

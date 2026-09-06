@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/041-validation-reduction",
+  "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction",
   "description": "The completion gate fails roughly two thirds of the live corpus, and the",
   "keywords": [
     "completion",

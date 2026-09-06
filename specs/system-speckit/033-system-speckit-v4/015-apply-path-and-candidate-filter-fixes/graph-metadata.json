@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/047-review-remediation",
-  "spec_folder": "system-speckit/047-review-remediation",
+  "packet_id": "system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes",
+  "spec_folder": "system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes",
   "parent_id": null,
   "children_ids": [],
   "manual": {

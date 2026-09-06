@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/047-review-remediation"
+    packet_pointer: "system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes"
     last_updated_at: "2026-08-31T04:50:04Z"
     last_updated_by: "claude-code"
     recent_action: "Closed the P1 set and made termination opt-in at the operator layer"

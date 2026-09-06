@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/042-nested-goal-template-addon",
-  "spec_folder": "system-speckit/042-nested-goal-template-addon",
+  "packet_id": "system-speckit/033-system-speckit-v4/010-goal-file-addon",
+  "spec_folder": "system-speckit/033-system-speckit-v4/010-goal-file-addon",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/042-nested-goal-template-addon/001-manifest-and-goal-template",
-    "system-speckit/042-nested-goal-template-addon/002-durable-slice-validator",
-    "system-speckit/042-nested-goal-template-addon/003-runtime-neutral-goal-dispatch",
-    "system-speckit/042-nested-goal-template-addon/004-parent-set-string-playbook"
+    "system-speckit/033-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template",
+    "system-speckit/033-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator",
+    "system-speckit/033-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch",
+    "system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook"
   ],
   "manual": {
     "depends_on": [],
@@ -227,7 +227,7 @@
       "research/research.md": "ace2291925f302fc0732524cecd51440e501cc389863663222f1b0f658afb081",
       "resource-map.md": "2ce377a03c562fc3e106677d0839f1dae5d3d3fe279daa1588cfca2f3aef75cc"
     },
-    "last_active_child_id": "system-speckit/042-nested-goal-template-addon/004-parent-set-string-playbook",
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
     "last_active_at": null
   }
 }

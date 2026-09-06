@@ -68,7 +68,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-012 | REQ-012, REQ-013 | Given the deep-loop reducer suites, When they run after the rewrite, Then persistence is lineage-local, the locks, projections and ledger state are unchanged and no old assertion was deleted before its replacement existed | Deep-loop persistence tests rewritten: 101 passed across five files, replacement assertions added before old ones were removed; check-contract-drift and render-command-contract pass | Met | - |
 
 Source inventory for the counts and seam citations above:
-specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md
 
 ### Status values
 

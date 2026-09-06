@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/039-derived-repair-automation",
-  "spec_folder": "system-speckit/039-derived-repair-automation",
+  "packet_id": "system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool",
+  "spec_folder": "system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool",
   "parent_id": null,
   "children_ids": [],
   "manual": {

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/048-decommissioned-server-residue",
-  "spec_folder": "system-speckit/048-decommissioned-server-residue",
+  "packet_id": "system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal",
+  "spec_folder": "system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal",
   "parent_id": null,
   "children_ids": [],
   "manual": {

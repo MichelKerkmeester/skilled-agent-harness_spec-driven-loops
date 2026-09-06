@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/003-retrieval-coverage-alignment"
     last_updated_at: "2026-09-05T06:13:06Z"
     last_updated_by: "claude-code"
     recent_action: "Converged scratch exclusion, widened trigger-index roots, added parity test"

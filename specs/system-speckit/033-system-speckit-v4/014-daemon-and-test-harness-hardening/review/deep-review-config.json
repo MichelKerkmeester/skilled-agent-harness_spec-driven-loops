@@ -1,5 +1,5 @@
 {
-  "topic": "Review: specs/system-speckit/045-daemon-and-test-harness-hardening",
+  "topic": "Review: specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
   "sessionId": "2026-08-31-auto-deep-review-045",
   "parentSessionId": null,
   "lineageMode": "resume",
@@ -18,7 +18,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
-  "specFolder": "specs/system-speckit/045-daemon-and-test-harness-hardening",
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
   "createdAt": "2026-08-31T00:00:00Z",
   "status": "complete",
   "releaseReadinessState": "conditional",
@@ -33,7 +33,7 @@
     "configDir": null
   },
   "mode": "review",
-  "reviewTarget": "specs/system-speckit/045-daemon-and-test-harness-hardening",
+  "reviewTarget": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
   "reviewTargetType": "spec-folder",
   "reviewDimensions": [
     "correctness",

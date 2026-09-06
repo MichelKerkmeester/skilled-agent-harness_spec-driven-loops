@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/035-process-reaper-classification-fix",
-  "spec_folder": "system-speckit/035-process-reaper-classification-fix",
+  "packet_id": "system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification",
+  "spec_folder": "system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification",
   "parent_id": null,
   "children_ids": [],
   "manual": {

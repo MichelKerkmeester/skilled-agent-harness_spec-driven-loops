@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/041-validation-reduction/005-framework-doc-matches-behaviour",
-  "spec_folder": "system-speckit/041-validation-reduction/005-framework-doc-matches-behaviour",
-  "parent_id": "system-speckit/041-validation-reduction",
+  "packet_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/005-framework-doc-matches-behaviour",
+  "spec_folder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/005-framework-doc-matches-behaviour",
+  "parent_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction",
   "children_ids": [],
   "manual": {
     "depends_on": [],

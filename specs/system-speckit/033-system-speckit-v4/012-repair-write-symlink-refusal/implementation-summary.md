@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/044-repair-write-symlink-refusal"
+    packet_pointer: "system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal"
     last_updated_at: "2026-08-30T09:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Made the repair write refuse symlink traversal"

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit"
+    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit"
     last_updated_at: "2026-09-04T02:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed all sixteen acceptance rows after the fourteen-track retrofit"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit
+**Packet:** system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-04
@@ -112,5 +112,5 @@ are still reported as `missing` by design, because a partial block would fail th
 authored block is the only conforming fix; the 664 naming exceptions are reported and unrenamed,
 because renaming during a 10,000-file frontmatter pass makes the diff unreviewable. The criteria
 above derive from
-specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md
 <!-- /ANCHOR:closure -->

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/004-save-and-resume-freshness"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/004-save-and-resume-freshness"
     last_updated_at: "2026-09-05T09:30:00Z"
     last_updated_by: "claude-sonnet"
     recent_action: "Shipped save-time trigger-index freshness and resume-ladder trust ranking"

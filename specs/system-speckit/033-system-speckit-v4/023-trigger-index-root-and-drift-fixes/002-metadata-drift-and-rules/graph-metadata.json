@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/056-integration-research-remediation/002-metadata-drift-and-rules",
-  "spec_folder": "system-speckit/056-integration-research-remediation/002-metadata-drift-and-rules",
-  "parent_id": "system-speckit/056-integration-research-remediation",
+  "packet_id": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules",
+  "spec_folder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules",
+  "parent_id": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
   "children_ids": [],
   "manual": {
     "depends_on": [],

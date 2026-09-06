@@ -36,7 +36,7 @@ contextType: "general"
 
 - [x] T001 Capture the baseline `validate.sh --strict` output for `052-memory-decommission-landing` and `053-spec-kit-runtime-rename` (no file change) — Evidence: both `RESULT: PASSED`, exit 0, `CONTINUITY_FRESHNESS` warn `stale` (052 deltaMs=33415028, 053 deltaMs=17941671)
 - [x] T002 Capture the baseline `continuity-freshness.vitest.ts` run (`scripts/tests/continuity-freshness.vitest.ts`) — Evidence: 6 passed, 1 skipped (7 total)
-- [x] T003 [P] Re-run the live reproduction (`SPECKIT_COMPLETION_FRESHNESS=1 node continuity-freshness.ts --folder specs/system-speckit/052-memory-decommission-landing --json`) and save its output alongside T001 — Evidence: `{"code":"stale", ...}` confirmed the fall-through bug before any fix
+- [x] T003 [P] Re-run the live reproduction (`SPECKIT_COMPLETION_FRESHNESS=1 node continuity-freshness.ts --folder specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing --json`) and save its output alongside T001 — Evidence: `{"code":"stale", ...}` confirmed the fall-through bug before any fix
 <!-- /ANCHOR:phase-1 -->
 
 ---

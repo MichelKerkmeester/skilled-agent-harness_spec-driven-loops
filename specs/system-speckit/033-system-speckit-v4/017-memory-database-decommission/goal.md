@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-memory-decommission"
+    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission"
     last_updated_at: "2026-09-02T12:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the durable directive and its phase binding"

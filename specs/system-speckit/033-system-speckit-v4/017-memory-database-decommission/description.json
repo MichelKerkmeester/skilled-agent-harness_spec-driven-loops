@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/049-memory-decommission",
+  "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission",
   "description": "The `system-spec-memory` MCP subsystem is a derived search index over `specs//.md` that",
   "keywords": [
     "system-spec-memory",

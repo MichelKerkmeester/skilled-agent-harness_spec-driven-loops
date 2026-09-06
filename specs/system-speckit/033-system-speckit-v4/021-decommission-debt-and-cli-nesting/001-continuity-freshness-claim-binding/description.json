@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding",
+  "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/001-continuity-freshness-claim-binding",
   "description": "`evaluateCompletionFreshness` (`.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:292-349`) scans `spec.md`, `plan.md`,",
   "keywords": [
     "evaluatecompletionfreshness",

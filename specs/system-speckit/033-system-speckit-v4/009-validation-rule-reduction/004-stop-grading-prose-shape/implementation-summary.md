@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-validation-reduction/004-stop-grading-prose-shape"
+    packet_pointer: "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/004-stop-grading-prose-shape"
     last_updated_at: "2026-08-29T20:20:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Replaced template-shape grading with anchor integrity"

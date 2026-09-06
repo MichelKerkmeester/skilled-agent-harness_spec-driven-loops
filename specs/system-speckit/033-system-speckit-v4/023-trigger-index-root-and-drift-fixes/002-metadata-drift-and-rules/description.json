@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/056-integration-research-remediation/002-metadata-drift-and-rules",
+  "specFolder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules",
   "description": "A renamed packet kept the children of its old identity in graph metadata because the writer only unioned, and track roots were never validated.",
   "keywords": [
     "renamed",

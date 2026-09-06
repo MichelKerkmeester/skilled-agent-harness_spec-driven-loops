@@ -21,7 +21,7 @@ contextType: "general"
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Subject:** specs/system-speckit/049-memory-decommission
+**Subject:** specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission
 **Status:** Active
 **Horizon:** research complete 2026-09-02; all four build phases done 2026-09-04; closeout and landing remain
 **Owner:** operator, executed by the orchestrate agent

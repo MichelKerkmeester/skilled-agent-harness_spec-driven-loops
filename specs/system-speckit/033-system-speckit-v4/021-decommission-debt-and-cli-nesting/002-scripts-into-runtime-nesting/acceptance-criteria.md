@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting"
     last_updated_at: "2026-09-05T11:10:00Z"
     last_updated_by: "claude-code"
     recent_action: "Executed the scripts -> runtime/cli move"
@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting
+**Packet:** system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-05
@@ -60,7 +60,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given the T001 `rg` hit list, When each hit is classified live-consumer or prose, Then every live hit names its resolving mechanism (import, exec, config-string) and every count is grouped by consumer class | `scratch/inventory.md` §1-§8: counts by class, the grep-invisible section (`.opencode/bin/skill-advisor.cjs:24`, `shared/embeddings/factory.ts:248`, `runtime/lib/graph/graph-metadata-parser.ts:966`, `runtime/lib/validation/orchestrator.ts:74-77,229`, and more), the relative-import-direction-flip class (21 files, 36 lines), and the dirname-climb `+1` class | Met | - |
 | AC-002 | REQ-002 | Given the `runtime/scripts/` collision, When the target-layout decision is recorded, Then `spec.md` names the chosen layout (`runtime/cli/`) and states why it was chosen over folding `runtime/scripts/`'s three files into the incoming tree | `spec.md` Scope section, In Scope bullet 2; the move executed at `runtime/cli/` with `runtime/scripts/` (build tooling) untouched, confirmed by `evals/check-architecture-boundaries.ts`'s `wrappersDir` still pointing at `runtime/scripts` while `REQUIRED_ROOT_DIRS` now reads `runtime/cli` | Met | - |
 | AC-003 | REQ-003 | Given this folder, When `recommend-level.sh` runs against it, Then its numeric score and recommended level are recorded here | `bash .../scripts/spec/recommend-level.sh --loc 900 --files 450 --architectural --json` (pre-move path; replayed 2026-09-05 from `runtime/cli/spec/recommend-level.sh` with the same result: `recommended_level: 3, total_score: 73, confidence: 82`) → `recommended_level: 3, total_score: 73, confidence: 82` (`scratch/inventory.md` §11); the execution ran directly under this phase folder by explicit operator instruction once the other lanes landed, rather than through a separately Gate-3'd child folder | Met | - |
-| AC-004 | REQ-004 | Given the execution-phase handoff, When it is created, Then its `spec.md` opens with the atomic-commit plan (one `git mv` plus freshness/hook/workspace/CLAUDE.md updates in the same commit) and cites packet 053's review-loop precedent by folder path | `scratch/execute-plan.md` (the atomic-commit plan, executed) cites `specs/system-speckit/053-spec-kit-runtime-rename/` throughout; `implementation-summary.md` Verification table records the executed gate set mirroring 053's own closeout list | Met | - |
+| AC-004 | REQ-004 | Given the execution-phase handoff, When it is created, Then its `spec.md` opens with the atomic-commit plan (one `git mv` plus freshness/hook/workspace/CLAUDE.md updates in the same commit) and cites packet 053's review-loop precedent by folder path | `scratch/execute-plan.md` (the atomic-commit plan, executed) cites `specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/` throughout; `implementation-summary.md` Verification table records the executed gate set mirroring 053's own closeout list | Met | - |
 
 ### Status values
 

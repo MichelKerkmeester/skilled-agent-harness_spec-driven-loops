@@ -21,7 +21,7 @@
 set -uo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../.." && pwd)"
 VALIDATE="$REPO/.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh"
-PACKET="$REPO/specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement"
+PACKET="$REPO/specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement"
 PASS=0; FAIL=0
 
 if [[ ! -f "$PACKET/graph-metadata.json" ]]; then

@@ -9,14 +9,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization"
+    packet_pointer: "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization"
     last_updated_at: "2026-08-13T04:18:38Z"
     last_updated_by: "claude-code"
     recent_action: "Added ADRs from two deep-reviews (advisory, mirror, fingerprint)"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/research/research.md"
+      - "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/research/research.md"
     session_dedup:
       fingerprint: "sha256:df6ba8beef3e6dcc1a1a76ab8f683c4ee76e706db3ff0c4d347543c6099cb8a9"
       session_id: "2026-08-12-system-speckit-034-optimizations"

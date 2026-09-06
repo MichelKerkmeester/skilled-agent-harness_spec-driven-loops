@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-spec-kit-runtime-rename"
+    packet_pointer: "system-speckit/033-system-speckit-v4/020-runtime-package-rename"
     last_updated_at: "2026-09-04T19:16:06Z"
     last_updated_by: "code-agent"
     recent_action: "Recorded the move, the dependency audit and the gate evidence against each criterion"
@@ -55,7 +55,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the engine package, When the tree is inspected, Then it exists only at `.opencode/skills/system-spec-kit/runtime/`, is named `@spec-kit/runtime`, and carries `lib/`, `scripts/`, `hooks/` and `tests/` at its root | `runtime/package.json:2`; `ls .opencode/skills/system-spec-kit/runtime`; `grep -n mcp runtime/package.json` returns nothing | Met | - |
-| AC-002 | REQ-002 | Given the new path, When `validate.sh --strict` runs on this packet, Then it prints `RESULT: PASSED` | `validate.sh specs/system-speckit/053-spec-kit-runtime-rename --strict` -> exit 0, Errors 0, `RESULT: PASSED` | Met | - |
+| AC-002 | REQ-002 | Given the new path, When `validate.sh --strict` runs on this packet, Then it prints `RESULT: PASSED` | `validate.sh specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename --strict` -> exit 0, Errors 0, `RESULT: PASSED` | Met | - |
 | AC-003 | REQ-002 | Given the new path, When the continuity writer is invoked, Then it runs from `scripts/dist/` without a resolution error | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --help` -> exit 0 | Met | - |
 | AC-004 | REQ-002 | Given the moved adapters, When each registered hook is executed once with an empty payload, Then none reports a missing module | 19 adapters across `.claude`, `.codex`, `.cursor`, `.devin` -> every exit 0, zero `MODULE_NOT_FOUND` | Met | - |
 | AC-005 | REQ-002 | Given the moved root, When the dist-freshness guard runs, Then it records a build for both watched entries | `cd runtime && npm run rebuild` -> exit 0, `dist build preparation recorded` twice | Met | - |

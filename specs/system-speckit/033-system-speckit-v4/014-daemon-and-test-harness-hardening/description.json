@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/045-daemon-and-test-harness-hardening",
+  "specFolder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
   "description": "A live process sweep on 2026-08-30 found 13 leaked processes attributable to this repository's system skills: three wedged vitest trees holding",
   "keywords": [
     "live",

@@ -61,7 +61,7 @@ Evidence-first close-out gate. Capture real baselines, run the complete verifica
 - **Status derivation**: `.opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts` supplies the `deriveStatus` before/after comparison.
 - **Scaffold and validation commands**: `.opencode/skills/system-spec-kit/scripts/spec/create.sh` and `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` cover fresh output, recursive packet validation, and strict validation.
 - **Runtime distributions**: `.opencode/skills/system-spec-kit/scripts/dist/` and `.opencode/skills/system-spec-kit/mcp-server/dist/` must be rebuilt before validation.
-- **Rollout record**: `specs/system-speckit/036-spec-doc-template-reduction/changelog/` receives the packet rollout entry after verification; `006-verify-rollout/implementation-summary.md` remains a later artifact.
+- **Rollout record**: `specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/changelog/` receives the packet rollout entry after verification; `006-verify-rollout/implementation-summary.md` remains a later artifact.
 
 ### Data Flow
 Record snapshot and status baselines, run the whole snapshot suite, rebuild both distributions, scaffold every required level, and validate the fresh and legacy packets recursively and strictly. Compare statuses and rendered bytes, scan the scoped result for residue and false completion, then write the rollout changelog only when every requirement passes.

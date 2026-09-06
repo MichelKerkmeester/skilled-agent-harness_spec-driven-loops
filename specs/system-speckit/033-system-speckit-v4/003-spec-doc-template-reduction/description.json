@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/036-spec-doc-template-reduction",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction",
   "description": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and",
   "keywords": [
     "phased",

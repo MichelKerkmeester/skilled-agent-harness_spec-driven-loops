@@ -1,8 +1,8 @@
 {
   "run_id": "1788366600409-l2538s",
   "loop_type": "research",
-  "spec_folder": ".opencode/specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory",
-  "base_artifact_dir": ".opencode/specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research",
+  "spec_folder": ".opencode/specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory",
+  "base_artifact_dir": ".opencode/specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

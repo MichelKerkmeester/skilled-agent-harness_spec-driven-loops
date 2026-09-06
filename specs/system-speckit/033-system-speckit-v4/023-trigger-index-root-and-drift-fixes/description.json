@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/056-integration-research-remediation",
+  "specFolder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
   "description": "A ten-iteration Sonnet 5 research pass over the repository ranked eleven things that still needed fixing or aligning with system-spec-kit: a critical",
   "keywords": [
     "ten-iteration",

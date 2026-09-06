@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/001-continuity-freshness-claim-binding"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/001-continuity-freshness-claim-binding"
     last_updated_at: "2026-09-05T09:31:00Z"
     last_updated_by: "code-agent"
     recent_action: "Bound completion claims to one fingerprint; fixed the CONTINUITY_FRESHNESS fall-through"
@@ -103,7 +103,7 @@ made visible.
 
 Read the rule, the orchestrator bridge, and the writer end-to-end first, then reproduced
 the exact 052 bug live (`SPECKIT_COMPLETION_FRESHNESS=1 node continuity-freshness.js
---folder specs/system-speckit/052-memory-decommission-landing --json` returned `stale`
+--folder specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing --json` returned `stale`
 instead of the real fingerprint state) before changing anything. Fixed the precedence
 bug and rebuilt; that alone still resolved 052 to `missing_fingerprint` rather than the
 spec-named `zero_fingerprint`, because the original per-document candidate/fingerprint
@@ -142,7 +142,7 @@ the orchestrator bridge, and re-ran every suite plus live `validate.sh --strict`
 | Orchestrator bridge suite | `cd runtime && npx vitest run tests/validation-orchestrator-bridge.vitest.ts` | Exit 0 — 11 passed |
 | Writer suites | `npx --prefix scripts vitest run --config runtime/vitest.config.ts scripts/tests/generate-context-cli-authority.vitest.ts scripts/tests/generate-context-save-lock.vitest.ts` | Exit 0 — 18 passed |
 | Pre-existing consumer suite (discovered, not in the named file set) | `cd runtime && npx vitest run tests/continuity-freshness.vitest.ts` | Exit 0 — 15 passed, 2 pre-existing failures (confirmed present before this phase via a stashed-source baseline rerun; unrelated fixture bug, see Known Limitations), 1 skipped |
-| Live reproduction, 052 | `SPECKIT_COMPLETION_FRESHNESS=1 node scripts/dist/validation/continuity-freshness.js --folder specs/system-speckit/052-memory-decommission-landing --json` | `code: "zero_fingerprint"` (was `"stale"`) |
+| Live reproduction, 052 | `SPECKIT_COMPLETION_FRESHNESS=1 node scripts/dist/validation/continuity-freshness.js --folder specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing --json` | `code: "zero_fingerprint"` (was `"stale"`) |
 | Live reproduction, 053 | Same command, folder `053-spec-kit-runtime-rename` | `code: "zero_fingerprint"` (was `"stale"`) |
 | `validate.sh --strict`, 052 & 053 | `SPECKIT_COMPLETION_FRESHNESS=1 bash scripts/spec/validate.sh <folder> --strict` | Both `RESULT: PASSED`, exit 0 — matches the T001 baseline exit code |
 | `validate.sh --strict`, all seven `049-memory-decommission/*` children | Same command per child | All `RESULT: PASSED`, exit 0, `zero_fingerprint` |

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/056-integration-research-remediation/003-hook-markers-and-improvement-family",
+  "specFolder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/003-hook-markers-and-improvement-family",
   "description": "Claude and Cursor hook registrations now carry the same self-diagnosing drift fallback as Codex and Devin, and the improvement/ artifact family the",
   "keywords": [
     "claude",

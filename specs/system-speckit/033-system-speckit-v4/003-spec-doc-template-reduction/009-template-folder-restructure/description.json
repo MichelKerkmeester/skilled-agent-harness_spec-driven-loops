@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
   "description": "The former `templates/manifest/` directory mixed required core templates, optional add-ons, packet-type templates, the contract manifest, and",
   "keywords": [
     "former",

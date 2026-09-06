@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/049-memory-decommission",
-  "spec_folder": "system-speckit/049-memory-decommission",
+  "packet_id": "system-speckit/033-system-speckit-v4/017-memory-database-decommission",
+  "spec_folder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/049-memory-decommission/001-trigger-index-replacement",
-    "system-speckit/049-memory-decommission/002-memory-consumer-rewire",
-    "system-speckit/049-memory-decommission/003-spec-memory-server-removal",
-    "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
-    "system-speckit/049-memory-decommission/005-ripgrep-retrieval-research",
-    "system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory",
-    "system-speckit/049-memory-decommission/007-deep-review-remediation"
+    "system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement",
+    "system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire",
+    "system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal",
+    "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
+    "system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research",
+    "system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory",
+    "system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -207,7 +207,7 @@
     "source_doc_hashes": {
       "spec.md": "0519d22a974a9a6762ef4e6749400dbbe30661906141d9aaf7ecfdf0b0d1fa7d"
     },
-    "last_active_child_id": "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
     "last_active_at": null
   }
 }

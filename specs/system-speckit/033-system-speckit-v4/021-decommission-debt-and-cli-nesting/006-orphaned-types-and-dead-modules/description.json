@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/054-decommission-debt-fixes/006-orphaned-types-and-dead-modules",
+  "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/006-orphaned-types-and-dead-modules",
   "description": "`.opencode/skills/system-spec-kit/shared/types.ts` still exports `IVectorStore` (line 246), `SearchOptions` (189), `SearchResult` (204), `StoreStats`",
   "keywords": [
     "opencode",

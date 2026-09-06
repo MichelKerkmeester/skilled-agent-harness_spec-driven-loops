@@ -125,7 +125,7 @@ export const EXCLUDED_DIR_NAMES = Object.freeze(
 );
 
 /** Artifact directory used when `--out` is absent. */
-const DEFAULT_OUT_DIR = 'specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/scratch';
+const DEFAULT_OUT_DIR = 'specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit/scratch';
 
 /** Phrase the baseline recipes run against when `--probe` is absent. */
 const DEFAULT_PROBE = 'grep convention';

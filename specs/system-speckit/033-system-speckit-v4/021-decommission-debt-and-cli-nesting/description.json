@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/054-decommission-debt-fixes",
+  "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting",
   "description": "The landing and rename packets closed with debt recorded rather than fixed: the scripts freshness table counted the trigger-index generator's fixtures",
   "keywords": [
     "landing",

@@ -70,7 +70,7 @@ If it still will not fit, the packet is trying to be one goal when it is two. Sp
 From a real four-phase packet whose durable slice measures 1,986 characters against a 3,000 budget:
 
 ```text
-Execute specs/system-speckit/042-nested-goal-template-addon/goal.md.
+Execute specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/goal.md.
 
 BINDING: read each phase's goal.md before working that phase; its criteria bind
 as if written here. PRECEDENCE: parent decisions outrank child detail; child

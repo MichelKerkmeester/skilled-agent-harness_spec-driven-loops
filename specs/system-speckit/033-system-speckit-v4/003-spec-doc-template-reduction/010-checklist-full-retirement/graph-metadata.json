@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
-  "spec_folder": "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
-  "parent_id": "system-speckit/036-spec-doc-template-reduction",
+  "packet_id": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement",
+  "spec_folder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement",
+  "parent_id": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -57,7 +57,7 @@
       "mcp-server/scripts/repair-graph-metadata.mjs",
       "scripts/utils/template-structure.js",
       "scripts/tests/check-ac-coverage.sh",
-      "specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/spec.md",
+      "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/spec.md",
       "mcp-server/tool-schemas.ts"
     ],
     "entities": [

@@ -11,7 +11,7 @@ contextType: "tasks"
 parent: "system-speckit"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-single-segment-packet-pointer"
+    packet_pointer: "system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer"
     last_updated_at: "2026-09-02T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored tasks for the single-segment packet_pointer widening"
@@ -71,8 +71,8 @@ _memory:
 
 - [x] T004 `cd mcp-server && npm run build`; confirm exit 0. Was: not yet rebuilt against the widened regex — now: exit 0, observed post-restore rebuild (`@spec-kit/mcp-server dist build preparation recorded` x3, `tsc --build` clean).
 - [x] T005 `NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/obsidian/005-component-surface-system --strict`; confirm the first `RESULT:` line reads `RESULT: PASSED` and the output carries zero `SPECDOC_FRONTMATTER_004` lines. Was: fails with `SPECDOC_FRONTMATTER_004` under the current regex (observed 2026-09-02); `validate.sh` also exits 3 "stale" until T004 rebuilds the orchestrator — now: first `RESULT:` line `RESULT: PASSED`, `grep -c SPECDOC_FRONTMATTER_004` = 0.
-- [x] T006 `NODE_PRESERVE_SYMLINKS=1 npx tsx .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts specs/system-speckit/050-single-segment-packet-pointer`; confirm it completes and `graph-metadata.json` reflects this packet. Was: `graph-metadata.json` already present from initial authoring; backfill re-run here to positionally align after this packet's own edits.
-- [x] T007 `NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-speckit/050-single-segment-packet-pointer --strict`; confirm the first `RESULT:` line reads `RESULT: PASSED` for this packet itself.
+- [x] T006 `NODE_PRESERVE_SYMLINKS=1 npx tsx .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts specs/system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer`; confirm it completes and `graph-metadata.json` reflects this packet. Was: `graph-metadata.json` already present from initial authoring; backfill re-run here to positionally align after this packet's own edits.
+- [x] T007 `NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer --strict`; confirm the first `RESULT:` line reads `RESULT: PASSED` for this packet itself.
 <!-- /ANCHOR:phase-3 -->
 
 ---

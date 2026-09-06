@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation",
-  "spec_folder": "system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation",
-  "parent_id": "system-speckit/045-daemon-and-test-harness-hardening",
+  "packet_id": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation",
+  "spec_folder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation",
+  "parent_id": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],

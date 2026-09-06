@@ -1,8 +1,8 @@
 {
   "run_id": "1787723389999-m6mva1",
   "loop_type": "research",
-  "spec_folder": "specs/system-speckit/036-spec-doc-template-reduction/001-analysis",
-  "base_artifact_dir": "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/research",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/research",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,
@@ -22,7 +22,7 @@
   "timestamp_anomalies": [
     {
       "label": "ox-alpha-a",
-      "state_log": "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/research/lineages/ox-alpha-a/deep-research-state.jsonl",
+      "state_log": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/research/lineages/ox-alpha-a/deep-research-state.jsonl",
       "window": {
         "start_at_iso": "2026-08-26T05:49:50.003Z",
         "end_at_iso": "2026-08-26T06:36:19.742Z",

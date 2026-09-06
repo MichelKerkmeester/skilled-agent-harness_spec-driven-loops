@@ -6,7 +6,7 @@ trigger_phrases: []
 
 **Lineage:** grok-46-xhigh-b (`cli-cursor` / `cursor-grok-4.6-xhigh`)
 **Session:** `fanout-grok-46-xhigh-b-1787723787313-4bzy0g`
-**Spec:** `specs/system-speckit/037-decisions-memory-redesign/001-analysis`
+**Spec:** `specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis`
 **Stop reason:** `max_iterations` (10/10; `stopPolicy: max-iterations`; convergence was telemetry only)
 **Scope:** Workstream B only. Workstream A (templates) is cross-context and is not synthesized here.
 **Mode:** Report-only — no product implementation in this lineage.
@@ -17,7 +17,7 @@ trigger_phrases: []
 ## 1. METADATA
 
 - **Research ID:** RESEARCH-037-B-grok-46-xhigh-b
-- **Feature/Spec:** `specs/system-speckit/037-decisions-memory-redesign/001-analysis` (Workstream B)
+- **Feature/Spec:** `specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis` (Workstream B)
 - **Status:** Complete (lineage synthesis; packet memory-save skipped by fan-out containment)
 - **Date Started:** 2026-08-26
 - **Date Completed:** 2026-08-26

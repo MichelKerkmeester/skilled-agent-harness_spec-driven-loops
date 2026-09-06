@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment",
+  "specFolder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment",
   "description": "On 2026-08-30 three vitest trees were killed after 2h35m, 3h41m and 4h12m, each holding roughly 96% of a core",
   "keywords": [
     "three",

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/042-nested-goal-template-addon/002-durable-slice-validator"
+    packet_pointer: "system-speckit/033-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator"
     last_updated_at: "2026-08-30T04:17:55Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the phase specification"

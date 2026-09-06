@@ -472,4 +472,4 @@ all forbidden, including where they would improve the document.
 ## 16. RESEARCH SOURCE
 
 The amendments in sections 13 through 15, the variant taxonomy, the trigger negatives and the
-ripgrep constraints derive from specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md
+ripgrep constraints derive from specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md

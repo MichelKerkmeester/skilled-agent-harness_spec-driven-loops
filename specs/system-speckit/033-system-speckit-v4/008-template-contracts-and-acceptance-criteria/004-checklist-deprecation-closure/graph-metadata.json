@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure",
-  "spec_folder": "system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure",
-  "parent_id": "system-speckit/033-spec-kit-template-optimization",
+  "packet_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure",
+  "spec_folder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure",
+  "parent_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -53,7 +53,7 @@
       "scripts/rules/check-description-shape.sh",
       "scripts/spec/repair-derived.cjs",
       "manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md",
-      "specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/implementation-summary.md"
+      "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/implementation-summary.md"
     ],
     "entities": [
       {

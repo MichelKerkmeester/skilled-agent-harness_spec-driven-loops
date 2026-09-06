@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-plan-preflight-nested-packet-resolution"
+    packet_pointer: "system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets"
     last_updated_at: "2026-08-15T13:28:53Z"
     last_updated_by: "claude-code"
     recent_action: "Implemented and verified the override guard"

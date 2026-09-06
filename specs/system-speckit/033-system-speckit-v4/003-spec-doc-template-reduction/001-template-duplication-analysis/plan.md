@@ -57,8 +57,8 @@ Review `001-analysis/research/research.md` and convert recommendations R1 throug
 Evidence-to-contract analysis: findings become ranked recommendations, recommendations become requirements, and requirements become sequenced implementation packets.
 
 ### Key Components
-- **Research report**: `specs/system-speckit/036-spec-doc-template-reduction/001-analysis/research/research.md` contains the measured findings and recommendation evidence.
-- **Phase specification**: `specs/system-speckit/036-spec-doc-template-reduction/001-analysis/spec.md` defines the six requirements and acceptance criteria.
+- **Research report**: `specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/research/research.md` contains the measured findings and recommendation evidence.
+- **Phase specification**: `specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/spec.md` defines the six requirements and acceptance criteria.
 - **Contract surfaces**: `.opencode/skills/system-spec-kit/templates/`, `.opencode/skills/system-spec-kit/mcp-server/lib/`, `.opencode/skills/system-spec-kit/scripts/`, and the golden snapshot suite receive the child-phase work.
 
 ### Data Flow

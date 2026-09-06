@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-speckit/036-spec-doc-template-reduction/008-plan-and-contract-optimization",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization",
   "description": "The manifest declares `implementation-summary.md` in `requiredCoreDocs` for every numbered level, including Level 1 at",
   "keywords": [
     "manifest",

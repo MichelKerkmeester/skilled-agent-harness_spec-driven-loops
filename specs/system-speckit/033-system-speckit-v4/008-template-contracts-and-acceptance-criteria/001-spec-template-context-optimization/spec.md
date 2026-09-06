@@ -12,14 +12,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization"
+    packet_pointer: "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization"
     last_updated_at: "2026-08-13T04:01:32Z"
     last_updated_by: "claude-code"
     recent_action: "Remediated second deep-review findings; packet complete"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/research/research.md"
+      - "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/research/research.md"
     session_dedup:
       fingerprint: "sha256:3c0a8afae7d909707ca0206ded6c7d534954357d6902df46f3bcc82ac607d5f3"
       session_id: "2026-08-12-system-speckit-034-optimizations"
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-spec-kit-template-optimization |
+| **Parent Packet** | system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria |
 | **Predecessor** | None |
 | **Successor** | 002-acceptance-criteria-template |
 | **Priority** | P2 |

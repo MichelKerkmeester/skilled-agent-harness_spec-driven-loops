@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/037-decisions-memory-redesign/003-deprecation-mechanics",
-  "spec_folder": "system-speckit/037-decisions-memory-redesign/003-deprecation-mechanics",
-  "parent_id": "system-speckit/037-decisions-memory-redesign",
+  "packet_id": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/003-deprecation-mechanics",
+  "spec_folder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/003-deprecation-mechanics",
+  "parent_id": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system",
   "children_ids": [],
   "manual": {
     "depends_on": [],

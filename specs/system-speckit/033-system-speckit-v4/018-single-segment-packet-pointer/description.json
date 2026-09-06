@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/050-single-segment-packet-pointer",
+  "specFolder": "system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer",
   "description": "`SPECDOCFRONTMATTER004` accepts a `packetpointer` with one safe segment as well as two-or-more, so a flattened `specs/` layout can pass validation",
   "keywords": [
     "specdocfrontmatter004",

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-spec-kit-template-optimization"
+    packet_pointer: "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria"
     last_updated_at: "2026-08-30T04:17:55Z"
     last_updated_by: "claude-code"
     recent_action: "Restructured this document to the goal template shape shipped by packet 042"

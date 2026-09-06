@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/041-validation-reduction/006-delete-taste-rules",
+  "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/006-delete-taste-rules",
   "description": "Remove the rules that no code path and no downstream workflow reads, so that",
   "keywords": [
     "remove",

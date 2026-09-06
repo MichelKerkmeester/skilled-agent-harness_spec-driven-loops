@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/046-path-containment-followups",
+  "specFolder": "system-speckit/033-system-speckit-v4/013-repair-handle-containment",
   "description": "Two packets closed on the same idea — prove membership rather than match a shape — and each left a",
   "keywords": [
     "two",

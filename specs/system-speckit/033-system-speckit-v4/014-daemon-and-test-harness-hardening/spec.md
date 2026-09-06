@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/045-daemon-and-test-harness-hardening"
+    packet_pointer: "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening"
     last_updated_at: "2026-08-30T09:56:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored phase parent from a live zombie sweep; four phases scoped from observed evidence"
@@ -60,7 +60,7 @@ _memory:
 | **Created** | 2026-08-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/045-daemon-and-test-harness-hardening |
+| **Parent Packet** | system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening |
 | **Predecessor** | `035-process-reaper-classification-fix` (classification fixed; never wired to an apply path) |
 | **Successor** | None |
 | **Handoff Criteria** | Each phase's guard is proven reachable at runtime by a negative control, not merely present in source |

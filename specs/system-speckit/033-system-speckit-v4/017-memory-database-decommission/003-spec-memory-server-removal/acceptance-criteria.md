@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-memory-decommission/003-spec-memory-server-removal"
+    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal"
     last_updated_at: "2026-09-03T21:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed all fourteen acceptance rows"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/049-memory-decommission/003-spec-memory-server-removal
+**Packet:** system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-03
@@ -55,7 +55,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 The seam rows AC-010 to AC-014 each carry the same rule. A mixed row, one that matches a memory term
 inside a file with a surviving owner, is closed by a source-level edit that keeps the owner working.
 A token deletion or a line drop does not satisfy the criterion even when the search comes back clean.
-Surface inventory: `specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md`.
+Surface inventory: `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md`.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|

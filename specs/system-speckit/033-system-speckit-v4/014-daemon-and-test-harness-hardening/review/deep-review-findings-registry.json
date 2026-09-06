@@ -263,7 +263,7 @@
       "findingId": "P1-004",
       "severity": "P1",
       "title": "Phase 3 completion claims lack a tracked negative-control artifact",
-      "file": "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md",
+      "file": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md",
       "line": 58,
       "description": "",
       "findingClass": null,
@@ -292,7 +292,7 @@
       "findingId": "P1-005",
       "severity": "P1",
       "title": "Phase 4 completion claims lack a tracked follower negative-control artifact",
-      "file": "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md",
+      "file": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md",
       "line": 58,
       "description": "",
       "findingClass": null,
@@ -807,13 +807,13 @@
       "id": "SL-004-006",
       "dimension": "maintainability",
       "targetRefs": [
-        "specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-strategy.md"
+        "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-strategy.md"
       ],
       "bugClass": "advisory_carry_forward",
       "disposition": "deferred",
       "rationale": "No new evidence justifies escalation.",
       "evidenceRefs": [
-        "specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-strategy.md"
+        "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-strategy.md"
       ],
       "reason": "P2 carry-forward policy."
     }
@@ -824,13 +824,13 @@
       "id": "SL-004-004",
       "dimension": "traceability",
       "targetRefs": [
-        "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md"
+        "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md"
       ],
       "bugClass": "completion_evidence_gap",
       "disposition": "ruled_out",
       "rationale": "Durable log entries and reconciled criteria close the original claim.",
       "evidenceRefs": [
-        "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84"
+        "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84"
       ],
       "reason": "Goal-log measurements are present and consistent with source behavior."
     },
@@ -839,13 +839,13 @@
       "id": "SL-004-005",
       "dimension": "traceability",
       "targetRefs": [
-        "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md"
+        "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md"
       ],
       "bugClass": "completion_evidence_gap",
       "disposition": "ruled_out",
       "rationale": "Durable log entries and reconciled criteria close the original claim.",
       "evidenceRefs": [
-        "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84"
+        "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84"
       ],
       "reason": "Goal-log measurements are present and consistent with source behavior."
     }
@@ -856,13 +856,13 @@
       "id": "SL-004-004",
       "dimension": "traceability",
       "targetRefs": [
-        "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md"
+        "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md"
       ],
       "bugClass": "completion_evidence_gap",
       "disposition": "ruled_out",
       "rationale": "Durable log entries and reconciled criteria close the original claim.",
       "evidenceRefs": [
-        "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84"
+        "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84"
       ],
       "proof": "Goal-log measurements are present and consistent with source behavior."
     },
@@ -871,13 +871,13 @@
       "id": "SL-004-005",
       "dimension": "traceability",
       "targetRefs": [
-        "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md"
+        "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md"
       ],
       "bugClass": "completion_evidence_gap",
       "disposition": "ruled_out",
       "rationale": "Durable log entries and reconciled criteria close the original claim.",
       "evidenceRefs": [
-        "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84"
+        "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84"
       ],
       "proof": "Goal-log measurements are present and consistent with source behavior."
     }

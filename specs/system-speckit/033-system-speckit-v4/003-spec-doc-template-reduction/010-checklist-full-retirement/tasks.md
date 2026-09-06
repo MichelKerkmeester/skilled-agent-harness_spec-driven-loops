@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement"
     last_updated_at: "2026-08-30T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped the canonical evidence read, the source precedence and the unit suite"
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read what the tasks/checklist merge said it would do with the template - its files-to-change table records `Delete/retire` (`specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/spec.md`)
+- [x] T001 Read what the tasks/checklist merge said it would do with the template - its files-to-change table records `Delete/retire` (`specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/spec.md`)
 - [x] T002 Inventory every producer, read-path and artifact still naming the document - 2,270 tracked packet copies, the template, 3 worked examples, and references across rules, server modules and scripts
 - [x] T003 Capture a validation baseline before any edit - fixed 12-packet sample recorded as 10 PASSED / 2 FAILED
 <!-- /ANCHOR:phase-1 -->

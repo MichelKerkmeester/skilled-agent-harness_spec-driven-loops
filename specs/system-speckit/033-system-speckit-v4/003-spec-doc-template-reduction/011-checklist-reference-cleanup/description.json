@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/036-spec-doc-template-reduction/011-checklist-reference-cleanup",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/011-checklist-reference-cleanup",
   "description": "Finish the retirement: remove what pointed at the deleted document",
   "keywords": [
     "finish",

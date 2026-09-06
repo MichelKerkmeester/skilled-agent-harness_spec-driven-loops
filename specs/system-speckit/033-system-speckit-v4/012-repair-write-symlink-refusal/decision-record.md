@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/044-repair-write-symlink-refusal"
+    packet_pointer: "system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal"
     last_updated_at: "2026-08-30T15:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded the vector the refusal does not cover, reproduced against the shipped code"

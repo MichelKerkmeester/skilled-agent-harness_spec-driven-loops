@@ -67,7 +67,7 @@ contextType: "general"
 - [x] T017 Run the markdown link guard across the repository (`.opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs`)
 - [x] T018 Verify ignore semantics in both directions (`.gitignore`)
 - [x] T019 Diagnose the recreated old directory and confirm it is a pre-change daemon, not a missed reference (`implementation-summary.md`)
-- [x] T020 Stage by explicit pathspec, excluding three concurrent sessions' in-flight work (`.gitignore`, `.opencode/`, `specs/system-speckit/038-skills-state-consolidation/`)
+- [x] T020 Stage by explicit pathspec, excluding three concurrent sessions' in-flight work (`.gitignore`, `.opencode/`, `specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation/`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

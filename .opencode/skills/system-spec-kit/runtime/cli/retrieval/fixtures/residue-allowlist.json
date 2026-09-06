@@ -14,7 +14,7 @@
       "reason": "The sweep's own tests. Their fixtures have to contain the terms to prove the classifier works."
     },
     {
-      "pathPrefixOrGlob": "specs/system-speckit/049-memory-decommission/",
+      "pathPrefixOrGlob": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/",
       "reason": "The decommission packet's own documents. They have to name the surface they are retiring."
     },
     {

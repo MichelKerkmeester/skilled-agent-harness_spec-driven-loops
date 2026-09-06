@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization",
-  "spec_folder": "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization",
-  "parent_id": "system-speckit/033-spec-kit-template-optimization",
+  "packet_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization",
+  "spec_folder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization",
+  "parent_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,7 +48,7 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
-      "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/research/research.md",
+      "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/research/research.md",
       "references/templates/template-guide.md",
       "mcp-server/handlers/memory-search.ts",
       "mcp-server/tests/memory-search-token-budget.vitest.ts",

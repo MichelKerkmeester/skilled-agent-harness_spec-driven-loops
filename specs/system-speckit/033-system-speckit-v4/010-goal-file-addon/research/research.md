@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Nested goal addon — grok46-xhigh lineage synthesis
 
-Lineage-local synthesis for `specs/system-speckit/042-nested-goal-template-addon`. Canonical for this fan-out lineage. Parent `research/research.md` is produced by the parent merge step, not this file.
+Lineage-local synthesis for `specs/system-speckit/033-system-speckit-v4/010-goal-file-addon`. Canonical for this fan-out lineage. Parent `research/research.md` is produced by the parent merge step, not this file.
 
 <!-- MACHINE-OWNED: synthesis from iterations 1–3 -->
 
@@ -12,7 +12,7 @@ Lineage-local synthesis for `specs/system-speckit/042-nested-goal-template-addon
 
 | Field | Value |
 |-------|-------|
-| Spec | `specs/system-speckit/042-nested-goal-template-addon` |
+| Spec | `specs/system-speckit/033-system-speckit-v4/010-goal-file-addon` |
 | Lineage | grok46-xhigh |
 | Session | fanout-grok46-xhigh-1788025387577-mq8fbn |
 | Executor | cli-cursor / cursor-grok-4.6-xhigh |
@@ -167,7 +167,7 @@ Must-not:
 - `.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs`
 - `.opencode/commands/speckit/assets/speckit-plan-auto.yaml` (and seven sibling YAMLs)
 - `.opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md`
-- `specs/system-speckit/033-spec-kit-template-optimization/goal.md`
+- `specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/goal.md`
 
 Spec-folder `resource-map.md` was absent at init; no placeholder citation.
 

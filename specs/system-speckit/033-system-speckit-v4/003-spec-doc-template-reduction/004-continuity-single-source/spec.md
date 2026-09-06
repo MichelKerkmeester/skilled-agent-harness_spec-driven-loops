@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction/004-continuity-single-source"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source"
     last_updated_at: "2026-08-26T07:05:00Z"
     last_updated_by: "design-author"
     recent_action: "Authored continuity-consolidation design from 001-analysis research (R4)"

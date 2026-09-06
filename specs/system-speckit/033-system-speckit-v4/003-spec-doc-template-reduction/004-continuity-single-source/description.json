@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/036-spec-doc-template-reduction/004-continuity-single-source",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source",
   "description": "The ~16-line `memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary, about 80 near-identical lines across",
   "keywords": [
     "16-line",

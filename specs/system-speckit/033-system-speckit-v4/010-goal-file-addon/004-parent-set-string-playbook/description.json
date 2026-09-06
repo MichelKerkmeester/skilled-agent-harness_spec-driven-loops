@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/042-nested-goal-template-addon/004-parent-set-string-playbook",
+  "specFolder": "system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
   "description": "Nothing dereferences a path inside a goal string",
   "keywords": [
     "nothing",

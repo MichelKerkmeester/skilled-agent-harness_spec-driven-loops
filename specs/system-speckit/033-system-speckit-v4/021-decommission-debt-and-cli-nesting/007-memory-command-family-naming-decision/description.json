@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/054-decommission-debt-fixes/007-memory-command-family-naming-decision",
+  "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision",
   "description": "The surviving continuity writer and retrieval commands still carry the word \"memory\" throughout their names, paths, and package metadata: the",
   "keywords": [
     "surviving",

@@ -1,6 +1,6 @@
 {
   "researchTopic": "Nested goal addon for system-spec-kit: a parent goal.md that references per-phase child goal.md files, wired into the Level contract, template logic, and the speckit command surface.",
-  "specFolder": "specs/system-speckit/042-nested-goal-template-addon",
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon",
   "maxIterations": 3,
   "convergenceThreshold": 0.05,
   "antiConvergence": {

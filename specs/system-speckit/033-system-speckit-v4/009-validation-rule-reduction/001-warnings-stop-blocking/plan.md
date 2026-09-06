@@ -7,7 +7,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-validation-reduction/001-warnings-stop-blocking"
+    packet_pointer: "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/001-warnings-stop-blocking"
     last_updated_at: "2026-08-29T18:45:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Recorded how the change was measured"

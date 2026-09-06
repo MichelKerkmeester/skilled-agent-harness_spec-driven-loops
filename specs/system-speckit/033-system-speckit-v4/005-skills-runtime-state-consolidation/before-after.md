@@ -24,7 +24,7 @@ contextType: "general"
 **Status:** Accepted
 **Date:** 2026-08-28
 **Owner:** Operator
-**Related packet:** `specs/system-speckit/038-skills-state-consolidation`
+**Related packet:** `specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation`
 <!-- /ANCHOR:metadata -->
 
 ---

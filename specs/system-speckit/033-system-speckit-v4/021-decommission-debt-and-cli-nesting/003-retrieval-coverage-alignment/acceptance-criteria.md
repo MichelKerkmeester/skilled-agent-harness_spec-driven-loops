@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment"
+    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/003-retrieval-coverage-alignment"
     last_updated_at: "2026-09-05T06:13:06Z"
     last_updated_by: "claude-code"
     recent_action: "Verified all four criteria Met with proving commands"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/054-decommission-debt-fixes/003-retrieval-coverage-alignment
+**Packet:** system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/003-retrieval-coverage-alignment
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-05

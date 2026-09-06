@@ -102,7 +102,7 @@ rg -l 'system-spec-kit/mcp-server|@spec-kit/mcp-server' . -g '!**/node_modules/*
 node .opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs check-all                                                             # every package fresh
 node .opencode/bin/compiled-route-guard.cjs                                                                                                # all hubs fresh
 node .opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs --json                                                    # live must be 0
-NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-speckit/053-spec-kit-runtime-rename --strict
+NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename --strict
 bash .opencode/commands/doctor/scripts/route-validate.sh
 node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
 ```

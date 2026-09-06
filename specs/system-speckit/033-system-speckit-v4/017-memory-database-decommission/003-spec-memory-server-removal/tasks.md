@@ -136,7 +136,7 @@ its verification is the pass condition, not the edit itself.
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Acceptance criteria**: See `acceptance-criteria.md`
-- **Inventory source**: `specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md`
+- **Inventory source**: `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

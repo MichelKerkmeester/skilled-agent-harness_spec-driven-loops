@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template"
+    packet_pointer: "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template"
     last_updated_at: "2026-08-30T04:17:55Z"
     last_updated_by: "claude-code"
     recent_action: "Authored phase spec from the operator goal prompt"
@@ -58,7 +58,7 @@ Acceptance criteria currently have no single home and no authority. They are aut
 | **Created** | 2026-08-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-spec-kit-template-optimization |
+| **Parent Packet** | system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria |
 | **Predecessor** | 001-spec-template-context-optimization |
 | **Successor** | 003-restore-level-upgrade-and-vocabulary-invariance |
 <!-- /ANCHOR:metadata -->

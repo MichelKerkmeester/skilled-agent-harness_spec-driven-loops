@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/035-process-reaper-classification-fix",
+  "specFolder": "system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification",
   "description": "The daemon-reaper (`process-memory-harness.ts`) classifies each running process before deciding whether it is a termination candidate",
   "keywords": [
     "daemon-reaper",

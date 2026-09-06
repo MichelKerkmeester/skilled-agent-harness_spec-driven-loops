@@ -1,8 +1,8 @@
 {
   "run_id": "1787723787313-4bzy0g",
   "loop_type": "research",
-  "spec_folder": "specs/system-speckit/037-decisions-memory-redesign/001-analysis",
-  "base_artifact_dir": "specs/system-speckit/037-decisions-memory-redesign/001-analysis/research",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/research",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

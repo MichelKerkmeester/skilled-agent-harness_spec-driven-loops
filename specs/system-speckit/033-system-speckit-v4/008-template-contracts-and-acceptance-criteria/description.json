@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/033-spec-kit-template-optimization",
+  "specFolder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
   "description": "The spec-kit document templates carry two unresolved costs",
   "keywords": [
     "spec-kit",

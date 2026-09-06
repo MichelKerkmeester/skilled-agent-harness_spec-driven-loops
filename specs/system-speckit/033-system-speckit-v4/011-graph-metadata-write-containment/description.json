@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/043-workspace-path-containment",
+  "specFolder": "system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment",
   "description": "`writeGraphMetadataFile` canonicalizes its destination, then asks a classifier whether the result may hold graph metadata",
   "keywords": [
     "writegraphmetadatafile",

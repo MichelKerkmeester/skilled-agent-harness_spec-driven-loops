@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene",
+  "specFolder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene",
   "description": "`git-live-follow.sh` emits its divergence warning as two unconditional `echo` statements inside the poll loop, which runs every 5 seconds by default",
   "keywords": [
     "git-live-follow",

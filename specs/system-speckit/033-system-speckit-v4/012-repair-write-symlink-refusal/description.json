@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/044-repair-write-symlink-refusal",
+  "specFolder": "system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal",
   "description": "The repair script decides whether a candidate is a regular file while walking the tree, using the directory entry \u2014 which reports on the link itself,",
   "keywords": [
     "repair",

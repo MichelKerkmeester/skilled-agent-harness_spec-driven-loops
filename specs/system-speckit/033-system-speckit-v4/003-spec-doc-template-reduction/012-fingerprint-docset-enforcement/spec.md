@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction/012-fingerprint-docset-enforcement"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement"
     last_updated_at: "2026-08-30T14:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored from a fresh-model review finding, reproduced against the live tree"

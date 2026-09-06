@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/041-validation-reduction/001-warnings-stop-blocking",
+  "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/001-warnings-stop-blocking",
   "description": "Strict mode decides which rules run; it stops deciding what a warning means.",
   "keywords": [
     "strict",

@@ -128,7 +128,7 @@ Two items were excluded when this phase was planned and then executed in this fo
 |------|------|--------|------------|
 | Risk | This phase is scoped and documented as Level 2 by the parent's scaffold, but the move itself is Level-3-scale work (708-file precedent at packet 053) | High if execution starts without re-leveling | This spec explicitly states: `recommend-level.sh` MUST be run and the execution packet MUST be created at Level 3 before any `git mv`; this was the plan; the operator then directed execution in this folder after the score was recorded, and the review passes stood in for the separate packet |
 | Risk | A grep-only inventory misses a reference resolved only at runtime (e.g., a path built from a template string, or a symlink target) | High - a missed reference silently breaks a hook or CI job | Resolution-based inventory (import graphs, `spawnSync` targets, YAML `command:` fields) per REQ-001, not grep alone |
-| Dependency | Packet 053's own review-loop precedent and its lineage artifacts, for the review-pass shape this phase's plan reuses | Low - precedent already exists and is readable | Cite `specs/system-speckit/053-spec-kit-runtime-rename/` directly in the execution plan |
+| Dependency | Packet 053's own review-loop precedent and its lineage artifacts, for the review-pass shape this phase's plan reuses | Low - precedent already exists and is readable | Cite `specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/` directly in the execution plan |
 <!-- /ANCHOR:risks -->
 
 ---

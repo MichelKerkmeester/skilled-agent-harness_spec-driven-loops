@@ -7,7 +7,7 @@ trigger_phrases: []
 **Session:** 2026-08-31-auto-deep-review-045 · **Generation:** 1 · **Lineage:** new
 **Iteration:** 1 of 4 (convergenceThreshold 0.10, stopPolicy convergence)
 **Focus:** D2 Security + D1 Correctness on the four predicate-bearing guards.
-**Mode:** review · **Target:** `specs/system-speckit/045-daemon-and-test-harness-hardening`
+**Mode:** review · **Target:** `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening`
 **Budget profile:** scan (target ≤ 12 tool calls).
 
 ---
@@ -15,8 +15,8 @@ trigger_phrases: []
 ## Dispatcher
 
 - Dispatched by `/deep:review` loop for one iteration.
-- Spec folder: `specs/system-speckit/045-daemon-and-test-harness-hardening`
-- Artifact directory: `specs/system-speckit/045-daemon-and-test-harness-hardening/review`
+- Spec folder: `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening`
+- Artifact directory: `specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review`
 - Adjacent in scope: `specs/cli-external-orchestration/058-flag-enum-authority` and the cli-devin surface (deferred — not the riskiest per operator brief).
 
 ---

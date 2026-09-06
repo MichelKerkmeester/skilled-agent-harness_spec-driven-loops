@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-spec-kit-template-optimization",
-  "spec_folder": "system-speckit/033-spec-kit-template-optimization",
+  "packet_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
+  "spec_folder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization",
-    "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
-    "system-speckit/033-spec-kit-template-optimization/003-restore-level-upgrade-and-vocabulary-invariance",
-    "system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure"
+    "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization",
+    "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
+    "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance",
+    "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure"
   ],
   "manual": {
     "depends_on": [],
@@ -180,7 +180,7 @@
     "source_doc_hashes": {
       "spec.md": "8da74987e00e9b9a2114b06793bfa97fe3239a0b7670df1454fdca517e295861"
     },
-    "last_active_child_id": "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
     "last_active_at": null
   }
 }

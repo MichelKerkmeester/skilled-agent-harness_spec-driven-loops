@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh",
+  "specFolder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/004-shared-parsers-and-post-run-refresh",
   "description": "One frontmatter parser and one write-boundary primitive now live in the spec-kit shared package and are used by the spec-kit CLI, the runtime",
   "keywords": [
     "one",

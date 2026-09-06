@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/036-spec-doc-template-reduction/001-analysis",
-  "spec_folder": "system-speckit/036-spec-doc-template-reduction/001-analysis",
-  "parent_id": "system-speckit/036-spec-doc-template-reduction",
+  "packet_id": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
+  "spec_folder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
+  "parent_id": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,15 +48,15 @@
       "research/research.md",
       ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
-      "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/research/research.md",
-      "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/spec.md",
+      "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/research/research.md",
+      "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/spec.md",
       "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/spec.md",
+        "path": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/spec.md",
         "source": "derived"
       },
       {

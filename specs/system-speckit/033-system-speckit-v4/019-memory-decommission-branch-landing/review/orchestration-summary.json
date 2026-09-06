@@ -1,8 +1,8 @@
 {
   "run_id": "1788552418848-3us41r",
   "loop_type": "review",
-  "spec_folder": ".opencode/specs/system-speckit/052-memory-decommission-landing",
-  "base_artifact_dir": ".opencode/specs/system-speckit/052-memory-decommission-landing/review",
+  "spec_folder": ".opencode/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing",
+  "base_artifact_dir": ".opencode/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

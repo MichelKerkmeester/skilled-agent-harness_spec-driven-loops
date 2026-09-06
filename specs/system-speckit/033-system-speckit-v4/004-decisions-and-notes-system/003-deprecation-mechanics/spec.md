@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-decisions-memory-redesign/003-deprecation-mechanics"
+    packet_pointer: "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/003-deprecation-mechanics"
     last_updated_at: "2026-08-26T07:20:00Z"
     last_updated_by: "design-author"
     recent_action: "Authored deprecation-mechanics design from 001-analysis research (R1/R3/R5/R7/R9)"

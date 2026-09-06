@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/042-nested-goal-template-addon/001-manifest-and-goal-template"
+    packet_pointer: "system-speckit/033-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template"
     last_updated_at: "2026-08-30T04:17:55Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the phase specification from the verified research"
@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/042-nested-goal-template-addon/001-manifest-and-goal-template
+**Packet:** system-speckit/033-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template
 **Level:** 2
 **Status:** Draft
 **Date:** 2026-08-29

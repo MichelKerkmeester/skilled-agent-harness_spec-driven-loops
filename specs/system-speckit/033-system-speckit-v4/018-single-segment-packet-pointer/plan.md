@@ -11,7 +11,7 @@ contextType: "plan"
 parent: "system-speckit"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-single-segment-packet-pointer"
+    packet_pointer: "system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer"
     last_updated_at: "2026-09-02T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored the plan for the single-segment packet_pointer widening"

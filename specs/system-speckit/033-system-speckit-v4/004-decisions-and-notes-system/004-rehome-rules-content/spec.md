@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-decisions-memory-redesign/004-rehome-rules-content"
+    packet_pointer: "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content"
     last_updated_at: "2026-08-26T07:25:00Z"
     last_updated_by: "design-author"
     recent_action: "Authored rehome design from 001-analysis research (R6) + verified citation census"

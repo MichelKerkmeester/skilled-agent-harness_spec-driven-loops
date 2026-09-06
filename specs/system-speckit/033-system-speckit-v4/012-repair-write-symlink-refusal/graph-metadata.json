@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/044-repair-write-symlink-refusal",
-  "spec_folder": "system-speckit/044-repair-write-symlink-refusal",
+  "packet_id": "system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal",
+  "spec_folder": "system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal",
   "parent_id": null,
   "children_ids": [],
   "manual": {

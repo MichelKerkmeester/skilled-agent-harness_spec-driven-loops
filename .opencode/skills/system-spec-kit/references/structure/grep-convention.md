@@ -404,7 +404,7 @@ The second row is worth a decision rather than a shrug. A field with 35 values i
 
 ### Research
 
-- [research.md](../../../../../specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md) - Section 8 carries the source citations behind the frontmatter, trigger, anchor and naming rules
+- [research.md](../../../../../specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md) - Section 8 carries the source citations behind the frontmatter, trigger, anchor and naming rules
 
 ### Scripts
 

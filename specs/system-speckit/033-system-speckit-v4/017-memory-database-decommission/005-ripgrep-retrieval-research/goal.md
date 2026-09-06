@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-memory-decommission/005-ripgrep-retrieval-research"
+    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research"
     last_updated_at: "2026-09-02T18:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Research run complete; folding findings into the build phases"

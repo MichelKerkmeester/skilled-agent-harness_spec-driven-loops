@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/036-spec-doc-template-reduction/003-template-dedup",
+  "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup",
   "description": "`decision-record.md.tmpl` already shares its ADR skeleton across the L3 and L3+ blocks",
   "keywords": [
     "decision-record",

@@ -36,7 +36,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 Source inventory for every count and target below:
-specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md
 
 - [x] T001 Confirm the phase-001 artifacts exist and are usable: `trigger-index.json` and `retrieval-conventions.md` (done)
 - [x] T002 Write the residue sweep script using the exact recipe in `plan.md` §5, with `--json --ignore-case --no-ignore-global` and the four exclusions (`.git`, `node_modules`, `z_archive`, the mcp-server tree) (`scratch/residue-sweep.sh`) (done)

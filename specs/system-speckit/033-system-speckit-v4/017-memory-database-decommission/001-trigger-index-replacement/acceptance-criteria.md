@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-memory-decommission/001-trigger-index-replacement"
+    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement"
     last_updated_at: "2026-09-02T11:04:50Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/049-memory-decommission/001-trigger-index-replacement
+**Packet:** system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-02

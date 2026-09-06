@@ -10,15 +10,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/052-memory-decommission-landing"
+    packet_pointer: "system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing"
     last_updated_at: "2026-09-04T17:48:43Z"
     last_updated_by: "claude-code"
     recent_action: "Closed the landing after the rename review passed clean"
     next_safe_action: "Nothing pending; the packet is closed"
     blockers: []
     key_files:
-      - "specs/system-speckit/052-memory-decommission-landing/goal.md"
-      - "specs/system-speckit/052-memory-decommission-landing/review/lineages/luna-max/review-report.md"
+      - "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md"
+      - "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/review/lineages/luna-max/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-04-052-memory-decommission-landing"

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/053-spec-kit-runtime-rename",
-  "spec_folder": "system-speckit/053-spec-kit-runtime-rename",
+  "packet_id": "system-speckit/033-system-speckit-v4/020-runtime-package-rename",
+  "spec_folder": "system-speckit/033-system-speckit-v4/020-runtime-package-rename",
   "parent_id": null,
   "children_ids": [],
   "manual": {

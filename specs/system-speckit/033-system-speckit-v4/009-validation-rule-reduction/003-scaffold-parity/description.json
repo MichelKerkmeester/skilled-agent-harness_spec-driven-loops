@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/041-validation-reduction/003-scaffold-parity",
+  "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/003-scaffold-parity",
   "description": "A packet created with no human input stops failing validation the moment it exists.",
   "keywords": [
     "packet",

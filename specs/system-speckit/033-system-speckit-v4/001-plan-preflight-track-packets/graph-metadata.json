@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/034-plan-preflight-nested-packet-resolution",
-  "spec_folder": "system-speckit/034-plan-preflight-nested-packet-resolution",
+  "packet_id": "system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets",
+  "spec_folder": "system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets",
   "parent_id": null,
   "children_ids": [],
   "manual": {

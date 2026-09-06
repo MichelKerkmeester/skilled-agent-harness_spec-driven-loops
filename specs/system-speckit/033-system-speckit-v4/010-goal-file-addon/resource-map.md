@@ -18,7 +18,7 @@ Emitted from this lineage's iteration deltas. Spec-folder `resource-map.md` was 
 - `.opencode/hooks/goal/goal-plugin.md` — OpenCode plugin contract
 - `.opencode/commands/speckit/assets/speckit-plan-auto.yaml` — goal_prompting block
 - `.opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md` — CC-029
-- `specs/system-speckit/033-spec-kit-template-optimization/goal.md` — 15028-byte drift exhibit
+- `specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/goal.md` — 15028-byte drift exhibit
 
 ## Scripts
 
@@ -37,8 +37,8 @@ Emitted from this lineage's iteration deltas. Spec-folder `resource-map.md` was 
 
 ## Specs
 
-- `specs/system-speckit/042-nested-goal-template-addon/` — this packet
-- `specs/system-speckit/033-spec-kit-template-optimization/goal.md`
+- `specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/` — this packet
+- `specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/goal.md`
 
 ## Config
 

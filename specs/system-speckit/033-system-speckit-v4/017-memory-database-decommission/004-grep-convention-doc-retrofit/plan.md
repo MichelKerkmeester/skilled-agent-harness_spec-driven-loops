@@ -395,7 +395,7 @@ class and path rank tuple in section 3, and reads the exit status on every call.
 ## RESEARCH SOURCE
 
 The pipeline shape, the glob and ignore constraints, the diagnostics schema, the rank tuple, the exit
-mapping and the negative controls derive from specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md
+mapping and the negative controls derive from specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md
 
 ---
 

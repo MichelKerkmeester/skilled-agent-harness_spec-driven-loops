@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping"
+    packet_pointer: "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping"
     last_updated_at: "2026-08-30T09:56:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -43,7 +43,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping
+**Packet:** system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping
 **Level:** 2
 **Status:** Draft
 **Date:** 2026-08-30

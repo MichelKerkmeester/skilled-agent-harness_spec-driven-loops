@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction/011-checklist-reference-cleanup"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/011-checklist-reference-cleanup"
     last_updated_at: "2026-08-30T09:10:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Removed every dead markdown link to the retired checklist.md"

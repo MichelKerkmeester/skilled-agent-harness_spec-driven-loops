@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/056-integration-research-remediation/002-metadata-drift-and-rules
+**Packet:** system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-05

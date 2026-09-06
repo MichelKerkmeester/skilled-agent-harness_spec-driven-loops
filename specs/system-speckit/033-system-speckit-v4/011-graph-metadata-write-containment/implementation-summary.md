@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/043-workspace-path-containment"
+    packet_pointer: "system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment"
     last_updated_at: "2026-08-30T08:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Proved root membership in the graph-metadata write guard"

@@ -113,7 +113,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `.opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` (pre-move path `scripts/spec/`) | Internal | Green - exists and is executable | Cannot confirm the Level 3 re-scoring; execution phase would start under-scoped |
-| Packet 053's review-loop precedent and lineage artifacts | Internal | Green - `specs/system-speckit/053-spec-kit-runtime-rename/` exists and is readable | The execution phase would have to reinvent the review-pass shape instead of reusing a proven one |
+| Packet 053's review-loop precedent and lineage artifacts | Internal | Green - `specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/` exists and is readable | The execution phase would have to reinvent the review-pass shape instead of reusing a proven one |
 <!-- /ANCHOR:dependencies -->
 
 ---

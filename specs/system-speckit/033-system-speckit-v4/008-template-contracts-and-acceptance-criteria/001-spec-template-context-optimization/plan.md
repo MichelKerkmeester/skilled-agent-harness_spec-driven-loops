@@ -8,14 +8,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization"
+    packet_pointer: "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization"
     last_updated_at: "2026-08-13T04:01:32Z"
     last_updated_by: "claude-code"
     recent_action: "Reconciled plan to shipped state after two deep-reviews"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/spec.md"
+      - "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/spec.md"
     session_dedup:
       fingerprint: "sha256:a993607a0ed02f4c59f6f939fa96298040cff39b060b3fc9ae7f011da249f559"
       session_id: "2026-08-12-system-speckit-034-optimizations"

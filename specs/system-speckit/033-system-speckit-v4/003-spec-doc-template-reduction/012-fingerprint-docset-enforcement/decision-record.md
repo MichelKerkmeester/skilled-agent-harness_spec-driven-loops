@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-spec-doc-template-reduction/012-fingerprint-docset-enforcement"
+    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement"
     last_updated_at: "2026-08-30T18:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Reversed the stamp-only design after measuring the drift rate and what remediating it would mean"

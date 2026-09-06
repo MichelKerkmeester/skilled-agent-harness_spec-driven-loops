@@ -97,7 +97,7 @@ contextType: "general"
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Acceptance criteria**: See `acceptance-criteria.md`
-- **Research**: T011 through T028 derive from specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md
+- **Research**: T011 through T028 derive from specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md
 <!-- /ANCHOR:cross-refs -->
 
 ---
