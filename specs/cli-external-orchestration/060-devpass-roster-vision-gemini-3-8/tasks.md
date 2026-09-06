@@ -156,6 +156,17 @@ The reason is the measurement, not a policy change: on three solid-colour probes
 
 ---
 
+<!-- ANCHOR:phase-5 -->
+## Phase 5: Roster narrowing (2026-09-06)
+
+- [x] T038 Remove the third OpenRouter model and the two extra DevPass models from both CLI rosters, and add the provider-scoped closed-roster sentence [evidence: zero residue grep in both `providers-and-models.md` files]
+- [x] T039 Remove the two models from the pi provider block and its guide [evidence: `.pi/models.json` llmgateway carries two models; `pi --list-models` shows two `llmgateway` rows]
+- [x] T040 Remove the OpenRouter id from `PI_SUPPORTED_MODELS`, its CJS mirror and `PI_MODEL_PROVIDERS`, and update the pinned tests and the playbook count [evidence: executor and fan-out suites 213/213, `npm run typecheck` clean]
+- [x] T041 Record the reversal in this packet and supersede AC-017 by ADR-001 [evidence: `decision-record.md` ADR-001, AC-019 to AC-021]
+<!-- /ANCHOR:phase-5 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 

@@ -13,10 +13,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/060-devpass-roster-vision-gemini-3-8"
-    last_updated_at: "2026-09-04T00:00:00Z"
+    last_updated_at: "2026-09-06T00:00:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "All six workstreams shipped and verified"
-    next_safe_action: "None - work is complete and verified"
+    recent_action: "Roster narrowed to the two flash families on OpenRouter and DevPass"
+    next_safe_action: "Commit the packet"
     blockers: []
     key_files:
       - ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md"
@@ -272,7 +272,7 @@ No other CLI needs a removal: cli-opencode retired V4 Pro from its catalog alrea
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- **Which DevPass models enter the roster?** **RESOLVED (operator, 2026-09-04):** exactly four — `deepseek-v4-flash`, `deepseek-v4-flash-vision-exp`, `glm-5.3-flash`, `gemini-3.8-flash`.
+- **Which DevPass models enter the roster?** **RESOLVED (operator, 2026-09-04):** exactly four — `deepseek-v4-flash`, `deepseek-v4-flash-vision-exp`, `glm-5.3-flash`, `gemini-3.8-flash`. **NARROWED (operator, 2026-09-06):** DevPass and OpenRouter carry only the DeepSeek V4 Flash family and GLM-5.3-Flash on both CLIs. Recorded in `decision-record.md` ADR-001 and the summary's narrowing section.
 - **How far does the Gemini swap reach?** **RESOLVED (operator, 2026-09-04):** everywhere the hub names it, cursor and devin included, gated on a live `--list-models` check. The gate was run before this spec was written and **passed** on both CLIs.
 - **Does `.pi/settings.json` need a Gemini swap?** **RESOLVED (operator, 2026-09-04): it needs an ADD, and it is now in scope.** `enabledModels` holds eleven ids and **not one Gemini id**, though packet 055's spec lists adding `openrouter/google/gemini-3.7-flash` there among its shipped changes — so either that edit was dropped or the spec overstated it. There is nothing to *swap*; WS6 adds `openrouter/google/gemini-3.8-flash` outright. This began as a finding flagged for the operator and deliberately left unfixed; the operator's "also fix pi" instruction moved it in.
 - **How far does "remove DeepSeek V4 Pro from all rosters" reach?** **RESOLVED (evidence + operator, 2026-09-04):** exactly one enforced roster carries it — cli-devin's, under three ids. cli-opencode retired it earlier, cli-pi never had it, cli-cursor never had it. The remaining V4 Pro strings in the hub are an inert `.pi/models.json` block (deleted under WS6), a stale `--variant` example in cli-claude-code, and the 2026-05-04 incident record, which stays.

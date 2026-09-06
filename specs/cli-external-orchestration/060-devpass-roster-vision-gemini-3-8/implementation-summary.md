@@ -79,6 +79,17 @@ The swap exposed two copies of the same fact, which is the recurring shape of ev
 | `.pi/models.json`, `.pi/settings.json`, `.pi/custom-providers.md` | Modified | DevPass provider, V4 Pro deleted, Gemini enabled |
 | `.claude/`, `.codex/`, `.cursor/`, `.devin/` hooks | Deleted | 11 orphaned mirror symlinks failing the parity gate |
 | `.gitignore` | Modified | The 26 GB retrieval index and its decisions log |
+### Roster narrowing, 2026-09-06
+
+Two days after this packet widened the DevPass and OpenRouter rosters, the operator found two of
+the DevPass models in the usage log and narrowed both providers to the DeepSeek V4 Flash family and
+GLM-5.3-Flash on both CLIs. The picker entries had already been removed by hand. This pass removed
+the models from the two `providers-and-models.md` rosters, the pi provider block and its guide, the
+executor allowlist with its CJS mirror and provider map, the two unit test files that pin the pi
+roster, and the cli-pi playbook scenario that counted eleven ids. Both closed-roster rules gained
+one sentence: a provider's live catalog is not a roster, and a model allowed on one route is not
+thereby allowed on another. Luna through the codex provider is untouched. The pi list shows two
+`llmgateway` rows, the two suites pass at 213 of 213, and the runtime typechecks.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -117,6 +128,10 @@ edit, or the "no regressions" claim at the end will have nothing to measure agai
 |-------|--------|
 | Packet structure and metadata | PASS pending — recorded here once `validate.sh --strict` prints `RESULT: PASSED` |
 | Guard suites, typecheck, live dispatch, vision probe | NOT RUN — implementation has not started |
+| Roster narrowing, 2026-09-06: executor and fan-out suites | 213 passed, 0 failed |
+| Roster narrowing, 2026-09-06: `npm run typecheck` | exit 0 |
+| Roster narrowing, 2026-09-06: `pi --list-models` llmgateway rows | two, the flash vision variant and GLM-5.3-Flash |
+| Roster narrowing, 2026-09-06: residue grep over both rosters and the pi config | no matches |
 <!-- /ANCHOR:verification -->
 
 ---

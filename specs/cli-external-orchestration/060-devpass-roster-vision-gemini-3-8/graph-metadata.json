@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
@@ -59,8 +60,7 @@
       ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/README.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md"
+      ".opencode/skills/cli-external-orchestration/cli-cursor/README.md"
     ],
     "entities": [
       {
@@ -85,6 +85,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -154,12 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "prompt-templates.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Three distinct truth gaps sit in the CLI hub at once, and each one makes a document lie about what a dispatch will do",
     "created_at": "2026-09-04T11:49:59.788Z",
-    "last_save_at": "2026-09-05T07:05:31.253Z",
+    "last_save_at": "2026-09-06T07:10:48.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,15 +218,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19e957f6b9d1244becf0a38e1a026450bec4e09db9b93854954af76776744c00",
+    "source_fingerprint": "sha256:b9684cf3d15c3406fdbaffd428597a01a5649884acf1b3f2d0369b340347f640",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4be612ea4462853b0552aedd52b2a2a57cc6e40cfdbfd1e7ccfeef9a3aebae6a",
+      "spec.md": "4fc09d66eca30f9da0f8facdfbd7e5e0e38ac1431634c341e6237450fc51199a",
       "plan.md": "5c3cd5198f8b0bcec8d8147e0cd09efc45ec082e0f6dd5299f46d6057508ec79",
-      "tasks.md": "6dbfede4657b48a1d1fdb27aa78fe9beb09bdaa60f58bea66042ae031fe5d62a",
-      "implementation-summary.md": "f9f64f7ca736bc1bbee902a964bb201ce7614af07dd3d51328546595a4065409"
+      "tasks.md": "56eec8aa95f762ff99ad76056021cae5ac873c10a49a364edfd60ecdf2f945da",
+      "decision-record.md": "70d5f48c3eb30a60c0be86c338058230c6dfe821fc9f6ad98bf0ea39182410a6",
+      "implementation-summary.md": "e70669992ebf3275aa8f689e5bb1cfdcc6d9f245b7f7a5398125523adefe4d98"
     },
     "last_active_child_id": null,
     "last_active_at": null

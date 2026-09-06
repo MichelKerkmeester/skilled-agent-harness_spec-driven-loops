@@ -69,9 +69,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-014 | REQ-012 | Given the retired ids, When each is dispatched through the devin fan-out, Then all three are rejected | Negative fixtures in `fanout-run.vitest.ts` assert all three retired ids reject, the bare `deepseek-v4` alias included | Met | - |
 | AC-015 | REQ-013 | Given every devin doc, When `rg -n 'deepseek-v4-pro'` runs, Then hits appear only under `changelog/` and `benchmark/` | `rg 'deepseek-v4-pro'` over the CLI skills returns hits only in `changelog/`, `benchmark/` and the incident record; all five recommendation sites repoint to `gpt-5-6-luna-max` | Met | - |
 | AC-016 | REQ-014 | Given `.pi/models.json`, When parsed, Then it is valid JSON with two cline-pass models and no `deepseek-v4-pro` | `.pi/models.json` parses; `cline-pass` now holds exactly `cline-pass/deepseek-v4-flash` and `z-ai/glm-5.3-flash` | Met | - |
-| AC-017 | REQ-014 | Given `.pi/settings.json`, When parsed, Then `enabledModels` contains `openrouter/google/gemini-3.8-flash` | `.pi/settings.json` parses; `enabledModels` carries `openrouter/google/gemini-3.8-flash` | Met | - |
+| AC-017 | REQ-014 | Given `.pi/settings.json`, When parsed, Then `enabledModels` contains `openrouter/google/gemini-3.8-flash` (true on 2026-09-04, superseded by AC-019 on 2026-09-06) | `.pi/settings.json` parses; `enabledModels` carries `openrouter/google/gemini-3.8-flash` | Superseded | ADR-001 |
 | AC-018 | REQ-013 | Given the 2026-05-04 incident record, When the diff is reviewed, Then it still names `opencode-go/deepseek-v4-pro` and was not edited | `git diff` shows no change to `destructive-scope-violations.md`; the 2026-05-04 incident still names `opencode-go/deepseek-v4-pro` | Met | - |
 | AC-012 | REQ-011 | Given the packet folder, When `validate.sh --strict` runs, Then it prints `RESULT: PASSED` with `Errors: 0` | `RESULT: PASSED` observed with `Errors: 0`, not inferred from an exit code | Met | - |
+| AC-019 | REQ-014 | Given the operator's roster narrowing on 2026-09-06, When both CLI rosters, the pi provider block and the executor allowlist are read, Then OpenRouter carries only DeepSeek V4 Flash and GLM-5.3-Flash and DevPass carries only those two families | `rg -n 'gemini\|llmgateway/gpt-5.6-luna'` over both `providers-and-models.md` files, `.pi/models.json` and `.pi/custom-providers.md` returns nothing; `PI_SUPPORTED_MODELS` holds ten ids with no `google/` entry | Met | - |
+| AC-020 | REQ-014 | Given the executor and fan-out suites, When run after the removal, Then every test passes and the runtime typechecks | `vitest run` on `executor-config.vitest.ts` and `fanout-run.vitest.ts`: 213 passed, 0 failed. `npm run typecheck` exit 0 | Met | - |
+| AC-021 | REQ-014 | Given both closed-roster rules, When read, Then each states that a provider's live catalog is not a roster and that a model allowed on one route is not allowed on another | The sentence is present in the §2 blockquote of both `providers-and-models.md` files | Met | - |
 
 ### Status values
 
@@ -97,6 +100,8 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 
 **Closeable:** Yes
+
+Amended 2026-09-06: the roster this packet widened was narrowed again on the operator's instruction. AC-017 recorded a true state on its date and is superseded by AC-019 under ADR-001 rather than rewritten. AC-019 to AC-021 close the narrowing.
 
 All eighteen rows are `Met`, each against an observation rather than an inference. Three are worth naming because they changed what the packet says.
 
